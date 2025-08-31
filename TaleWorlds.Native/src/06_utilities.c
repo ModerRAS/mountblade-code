@@ -668,7 +668,7 @@ if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_context = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_generate_resource_handle(*(uint64_t *)(utility_context_parameter + UTILITY_RESOURCE_HANDLE_OFFSET),*(int64_t *)(utility_stack_context + UTILITY_POINTER_OFFSET) + UTILITY_THREAD_HANDLE_OFFSET,
+    utility_context_data = utility_generate_resource_handle(*(uint64_t *)(utility_context_parameter + UTILITY_RESOURCE_HANDLE_OFFSET),*(int64_t *)(utility_stack_context + UTILITY_POINTER_OFFSET) + UTILITY_THREAD_HANDLE_OFFSET,
 &utility_stack_context);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
@@ -692,7 +692,7 @@ while( true ) {
 *(int64_t **)(utility_stack_context + UTILITY_MEMORY_POINTER_OFFSET_BASE) = utility_context_parameter;
 utility_handle_context_processing(utility_stack_context,utility_context_parameter);
 utility_context_data[2] = utility_stack_context;
-utility_context_data = utility_validate_buffer_vars(utility_stack_context);
+    utility_context_data = utility_validate_buffer_vars(utility_stack_context);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 return 0;
 }
@@ -1079,7 +1079,7 @@ else {
 utility_stack_buffer[0] -= 8;
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_create_context_instance(utility_stack_buffer[0],utility_context_parameter + UTILITY_THREAD_DATA_OFFSET,utility_stack_buffer);
+    utility_context_data = utility_create_context_instance(utility_stack_buffer[0],utility_context_parameter + UTILITY_THREAD_DATA_OFFSET,utility_stack_buffer);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (utility_stack_buffer[0] != UTILITY_BOOLEAN_FALSE) {
     
@@ -1087,7 +1087,7 @@ if (utility_stack_buffer[0] != UTILITY_BOOLEAN_FALSE) {
 if (*(int64_t *)(utility_stack_buffer[0] + UTILITY_POINTER_OFFSET) == UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_process_resource_operation(*(int64_t *)(utility_stack_buffer[0] + UTILITY_POINTER_OFFSET),*(uint32_t *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET),
+    utility_context_data = utility_process_resource_operation(*(int64_t *)(utility_stack_buffer[0] + UTILITY_POINTER_OFFSET),*(uint32_t *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET),
 *(uint8_t *)(utility_context_parameter + UTILITY_STATUS_THREAD_CREATED));
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -1135,7 +1135,7 @@ utility_network_float_data = *(float *)(utility_context_parameter + UTILITY_THRE
 for (utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_THREAD_BUFFER_OFFSET);
 (*(uint64_t **)(utility_loop_index + UTILITY_THREAD_BUFFER_OFFSET) <= utility_context_parameter &&
 (utility_context_parameter < *(uint64_t **)(utility_loop_index + UTILITY_THREAD_BUFFER_OFFSET) + *(int *)(utility_loop_index + UTILITY_THREAD_SIZE_OFFSET))); utility_context_parameter = utility_context_parameter + 1) {
-utility_context_data = utility_process_resource_operation(*utility_buffer_handle,utility_network_float_data,0);
+    utility_context_data = utility_process_resource_operation(*utility_buffer_handle,utility_network_float_data,0);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -1285,14 +1285,14 @@ return utility_resource_id;
 if (*(int64_t *)(utility_stack_context + UTILITY_POINTER_OFFSET) == UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_process_resource_operation(*(int64_t *)(utility_stack_context + UTILITY_POINTER_OFFSET),*utility_buffer_handle,*(uint8_t *)(utility_context_parameter + UTILITY_STATUS_THREAD_CREATED)
+    utility_context_data = utility_process_resource_operation(*(int64_t *)(utility_stack_context + UTILITY_POINTER_OFFSET),*utility_buffer_handle,*(uint8_t *)(utility_context_parameter + UTILITY_STATUS_THREAD_CREATED)
 );
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
 utility_context_parameter = utility_context_parameter + 1;
 utility_context_parameter = utility_context_parameter + 2;
 } while ((int)utility_resource_handle < *(int *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET));
@@ -1837,7 +1837,7 @@ utility_network_float_data = *(float *)(utility_context_parameter + UTILITY_STAT
 for (utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_THREAD_BUFFER_OFFSET);
 (*(uint64_t **)(utility_loop_index + UTILITY_THREAD_BUFFER_OFFSET) <= utility_context_parameter &&
 (utility_context_parameter < *(uint64_t **)(utility_loop_index + UTILITY_THREAD_BUFFER_OFFSET) + *(int *)(utility_loop_index + UTILITY_THREAD_SIZE_OFFSET))); utility_context_parameter = utility_context_parameter + 1) {
-utility_context_data = utility_process_resource_operation(*utility_buffer_handle,utility_network_float_data,0);
+    utility_context_data = utility_process_resource_operation(*utility_buffer_handle,utility_network_float_data,0);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -1932,8 +1932,8 @@ else {
 utility_stack_long_context = *(int64_t *)(utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
 utility_stack_buffer[0] = 2;
 }
-utility_context_data = utility_execute_resource_command(utility_context_parameter,utility_stack_buffer,*(uint32_t *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET),utility_parameter_value);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_execute_resource_command(utility_context_parameter,utility_stack_buffer,*(uint32_t *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET),utility_parameter_value);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -1947,7 +1947,7 @@ return utility_resource_id;
 }
 return utility_resource_id;
 }
-utility_context_data = UTILITY_STATUS_FLAG_F;
+    utility_context_data = UTILITY_STATUS_FLAG_F;
 }
 return utility_resource_id;
 }
@@ -1970,7 +1970,7 @@ utility_loop_index = utility_stack_offset_data;
 }
 else {
 utility_stack_offset_data = *(int64_t *)(utility_input_context + UTILITY_THREAD_HANDLE_OFFSET);
-utility_context_data = 2;
+    utility_context_data = 2;
 }
 utility_operation_status = utility_execute_resource_command();
 if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
@@ -2299,7 +2299,7 @@ if (*(int64_t *)(utility_stack_context + UTILITY_POINTER_OFFSET) == UTILITY_BOOL
 return UTILITY_STATUS_RESOURCE_AVAILABLE;
 }
 *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET) = *(uint64_t *)(*(int64_t *)(utility_stack_context + UTILITY_POINTER_OFFSET) + UTILITY_STATUS_FLAG_MASK_8_BIT);
-utility_context_data = utility_refresh_context_resources(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_parameter);
+    utility_context_data = utility_refresh_context_resources(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_parameter);
 }
 return utility_resource_id;
 }
@@ -2408,7 +2408,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = (int)*(uint *)(utility_stack_context + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)(utility_stack_context + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
 utility_operation_status = (*(uint *)(utility_stack_context + UTILITY_CONTEXT_CONFIG_OFFSET) ^ utility_context_data) - utility_context_data;
 utility_operation_status = *(int *)(utility_stack_context + UTILITY_THREAD_CONFIG_OFFSET) + 1;
 if (utility_operation_status < utility_operation_status) {
@@ -2475,7 +2475,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = (int)*(uint *)(utility_buffer_handle + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)(utility_buffer_handle + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
 utility_operation_status = (*(uint *)(utility_buffer_handle + UTILITY_CONTEXT_CONFIG_OFFSET) ^ utility_context_data) - utility_context_data;
 utility_operation_status = *(int *)(utility_buffer_handle + UTILITY_THREAD_CONFIG_OFFSET) + 1;
 if (utility_operation_status < utility_operation_status) {
@@ -2539,7 +2539,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = (int)*(uint *)(utility_resource_handle + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)(utility_resource_handle + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
 utility_operation_status = (*(uint *)(utility_resource_handle + UTILITY_CONTEXT_CONFIG_OFFSET) ^ utility_context_data) - utility_context_data;
 utility_operation_status = *(int *)(utility_resource_handle + UTILITY_THREAD_CONFIG_OFFSET) + 1;
 if (utility_operation_status < utility_operation_status) {
@@ -2772,7 +2772,7 @@ return UTILITY_STATUS_RESOURCE_AVAILABLE;
 }
 *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET) =
 *(uint64_t *)(*(int64_t *)(*(int64_t *)(utility_stack_context + UTILITY_THREAD_HANDLE_OFFSET) + UTILITY_SERVICE_HANDLER_OFFSET_PRIMARY_HEX) + UTILITY_STATUS_FLAG_MASK_8_BIT);
-utility_context_data = utility_refresh_context_resources(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_parameter);
+    utility_context_data = utility_refresh_context_resources(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_parameter);
 }
 return utility_resource_id;
 }
@@ -2790,10 +2790,10 @@ utility_stack_context = utility_stack_context + -8;
 if (*(int64_t *)(utility_stack_context + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_FLAG_EXTENDED;
 }
-utility_context_data = utility_invoke_service(*(uint64_t *)(*(int64_t *)(utility_stack_context + UTILITY_THREAD_CONTEXT_OFFSET) + UTILITY_SERVICE_OFFSET_D0),
+    utility_context_data = utility_invoke_service(*(uint64_t *)(*(int64_t *)(utility_stack_context + UTILITY_THREAD_CONTEXT_OFFSET) + UTILITY_SERVICE_OFFSET_D0),
 utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_refresh_context_resources(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_parameter);
+    utility_context_data = utility_refresh_context_resources(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_parameter);
 }
 }
 return utility_resource_id;
@@ -2816,13 +2816,13 @@ return UTILITY_STATUS_FLAG_F;
 utility_resource_id = utility_handle_service_request(*(uint32_t *)(utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET),&utility_stack_context);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (utility_stack_context != UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_stack_context - UTILITY_POINTER_OFFSET;
+    utility_context_data = utility_stack_context - UTILITY_POINTER_OFFSET;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0 < *(int *)(utility_resource_handle + UTILITY_THREAD_CONFIG_OFFSET)) {
 do {
 utility_loop_index = *(int64_t *)(utility_resource_handle + UTILITY_THREAD_DATA_OFFSET) + utility_context_data;
@@ -2842,19 +2842,19 @@ utility_operation_status = utility_process_request(utility_context_parameter,uti
 if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_invoke_service(utility_loop_index,utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET);
+    utility_context_data = utility_invoke_service(utility_loop_index,utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_refresh_context_resources(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_parameter);
+    utility_context_data = utility_refresh_context_resources(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_parameter);
 return utility_resource_id;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
-utility_context_data = utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET;
 } while ((int)utility_resource_handle < *(int *)(utility_resource_handle + UTILITY_THREAD_CONFIG_OFFSET));
 }
-utility_context_data = UTILITY_STATUS_RESOURCE_NOT_FOUND;
+    utility_context_data = UTILITY_STATUS_RESOURCE_NOT_FOUND;
 }
 return utility_resource_id;
 }
@@ -2883,7 +2883,7 @@ if (utility_buffer_handle != UTILITY_BOOLEAN_FALSE) {
 }
 utility_context_temp_value = utility_buffer_handle - UTILITY_POINTER_OFFSET;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0 < *(int *)(utility_resource_handle + UTILITY_THREAD_CONFIG_OFFSET)) {
 do {
 utility_loop_index = *(int64_t *)(utility_resource_handle + UTILITY_THREAD_DATA_OFFSET) + utility_context_data;
@@ -2903,16 +2903,16 @@ utility_operation_status = utility_process_request(utility_context_parameter);
 if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_invoke_service(utility_loop_index,utility_context_auxiliary_pointer + UTILITY_THREAD_CONTEXT_OFFSET);
+    utility_context_data = utility_invoke_service(utility_loop_index,utility_context_auxiliary_pointer + UTILITY_THREAD_CONTEXT_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_refresh_context_resources(*(uint64_t *)(utility_context_resource_handle + UTILITY_CONTEXT_SERVICE_OFFSET));
+    utility_context_data = utility_refresh_context_resources(*(uint64_t *)(utility_context_resource_handle + UTILITY_CONTEXT_SERVICE_OFFSET));
 return utility_resource_id;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
-utility_context_data = utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET;
 } while ((int)utility_resource_handle < *(int *)(utility_resource_handle + UTILITY_THREAD_CONFIG_OFFSET));
 }
 return UTILITY_STATUS_RESOURCE_NOT_FOUND;
@@ -2971,7 +2971,7 @@ return UTILITY_STATUS_FLAG_F;
 if (*(int64_t *)(*(int64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) + UTILITY_THREAD_HANDLE_OFFSET + (int64_t)utility_operation_status * UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_FLAG_EXTENDED;
 }
-utility_context_data = utility_invoke_service(*(int64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) + (int64_t)utility_operation_status * UTILITY_THREAD_CONTEXT_OFFSET,utility_context_parameter + UTILITY_STATUS_THREAD_CREATED);
+    utility_context_data = utility_invoke_service(*(int64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) + (int64_t)utility_operation_status * UTILITY_THREAD_CONTEXT_OFFSET,utility_context_parameter + UTILITY_STATUS_THREAD_CREATED);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -2983,12 +2983,12 @@ if ((*(int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARY) != UTI
 utility_stack_context = UTILITY_BOOLEAN_FALSE;
 utility_system_cleanup_handler(&utility_stack_context);
 if (utility_stack_context == *(int64_t *)((int64_t)*(int *)(utility_loop_index + UTILITY_STATUS_FLAG_MASK_7C_HEX) * 8 + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARYc4f450)) {
-utility_context_data = utility_execute_context_command(utility_loop_index,utility_context_parameter);
+    utility_context_data = utility_execute_context_command(utility_loop_index,utility_context_parameter);
 goto UTILITY_LABEL_OPERATION_CONTINUE;
 }
 }
 *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) = *(int *)(utility_context_parameter + UTILITY_POINTER_OFFSET) + UTILITY_ALIGNMENT_VALUE & UTILITY_ALIGNMENT_MASK;
-utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
+    utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
 UTILITY_LABEL_OPERATION_CONTINUE:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 return 0;
@@ -3171,19 +3171,19 @@ if (utility_stack_buffer[0] != UTILITY_BOOLEAN_FALSE) {
 }
 utility_loop_index = utility_stack_buffer[0] + -8;
 }
-utility_context_data = *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET) = *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET);
 *(uint64_t *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) = utility_context_data;
-utility_context_data = *(uint32_t *)(utility_context_parameter + UTILITY_CONTEXT_CONFIG_OFFSET);
-utility_context_data = *(uint32_t *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
-utility_context_data = *(uint32_t *)(utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_context_parameter + UTILITY_CONTEXT_CONFIG_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
+    utility_context_data = *(uint32_t *)(utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET);
 *(uint32_t *)(utility_loop_index + UTILITY_THREAD_BUFFER_OFFSET) = *(uint32_t *)(utility_context_parameter + UTILITY_THREAD_CONFIG_OFFSET);
 *(uint32_t *)(utility_loop_index + UTILITY_RESOURCE_FLAG_OFFSET) = utility_context_data;
 *(uint32_t *)(utility_loop_index + UTILITY_THREAD_SIZE_OFFSET) = utility_context_data;
 *(uint32_t *)(utility_loop_index + UTILITY_RESOURCE_COUNT_OFFSET) = utility_context_data;
-utility_context_data = *(uint32_t *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX);
-utility_context_data = *(uint32_t *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
-utility_context_data = *(uint32_t *)(utility_context_parameter + UTILITY_CONTEXT_EXTENDED_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX);
+    utility_context_data = *(uint32_t *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = *(uint32_t *)(utility_context_parameter + UTILITY_CONTEXT_EXTENDED_OFFSET);
 *(uint32_t *)(utility_loop_index + UTILITY_RESOURCE_SIZE_OFFSET) = *(uint32_t *)(utility_context_parameter + UTILITY_THREAD_POINTER_OFFSET);
 *(uint32_t *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX) = utility_context_data;
 *(uint32_t *)(utility_loop_index + UTILITY_CONTEXT_TABLE_OFFSET) = utility_context_data;
@@ -3193,7 +3193,7 @@ if ((*(int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARY) != UTI
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
 utility_system_cleanup_handler(utility_stack_buffer);
 if (utility_stack_buffer[0] == *(int64_t *)((int64_t)*(int *)(utility_loop_index + UTILITY_STATUS_FLAG_MASK_7C_HEX) * 8 + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARYc4f450)) {
-utility_context_data = utility_execute_context_command(utility_loop_index,utility_context_parameter);
+    utility_context_data = utility_execute_context_command(utility_loop_index,utility_context_parameter);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 return 0;
 }
@@ -3201,7 +3201,7 @@ return utility_resource_id;
 }
 }
 *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) = *(int *)(utility_context_parameter + UTILITY_POINTER_OFFSET) + UTILITY_ALIGNMENT_VALUE & UTILITY_ALIGNMENT_MASK;
-utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
+    utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 return 0;
 }
@@ -3253,7 +3253,7 @@ else {
 utility_stack_buffer[0] -= 8;
 }
 utility_stack_context = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_create_context_instance(utility_stack_buffer[0],utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET,&utility_stack_context);
+    utility_context_data = utility_create_context_instance(utility_stack_buffer[0],utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET,&utility_stack_context);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (utility_stack_context == UTILITY_BOOLEAN_FALSE) {
     
@@ -3300,7 +3300,7 @@ else {
 utility_stack_buffer[0] -= 8;
 }
 utility_stack_context = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_create_context_instance(utility_stack_buffer[0],utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET,&utility_stack_context);
+    utility_context_data = utility_create_context_instance(utility_stack_buffer[0],utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET,&utility_stack_context);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (utility_stack_context == UTILITY_BOOLEAN_FALSE) {
     
@@ -3316,16 +3316,16 @@ return UTILITY_STATUS_FLAG_EXTENDED;
 if ((*(uint8_t *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET) & UTILITY_STATUS_ENABLED_FLAG_PRIMARY) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_FLAG_F;
 }
-utility_context_data = utility_process_resource_data(utility_loop_index,utility_context_parameter + UTILITY_CONTEXT_OFFSET_STACK_SMALL_HEX,utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = utility_process_resource_data(utility_loop_index,utility_context_parameter + UTILITY_CONTEXT_OFFSET_STACK_SMALL_HEX,utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_network_float_data = *(float *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
 if ((*(float *)(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET) <= utility_network_float_data) &&
 (utility_network_float_data < *(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX) || utility_network_float_data == *(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX))) {
-utility_context_data = *(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET);
 *(float *)(utility_stack_context + 4) = utility_network_float_data;
 utility_free_context_resources(utility_context_data,utility_context_parameter);
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 }
@@ -3353,16 +3353,16 @@ return UTILITY_STATUS_FLAG_EXTENDED;
 if ((*(uint8_t *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET) & UTILITY_STATUS_ENABLED_FLAG_PRIMARY) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_FLAG_F;
 }
-utility_context_data = utility_process_resource_data(utility_loop_index,utility_input_context + UTILITY_CONTEXT_OFFSET_STACK_SMALL_HEX,utility_input_context + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = utility_process_resource_data(utility_loop_index,utility_input_context + UTILITY_CONTEXT_OFFSET_STACK_SMALL_HEX,utility_input_context + UTILITY_THREAD_DATA_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_network_float_data = *(float *)(utility_input_context + UTILITY_THREAD_DATA_OFFSET);
 if ((*(float *)(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET) <= utility_network_float_data) &&
 (utility_network_float_data < *(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX) || utility_network_float_data == *(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX))) {
-utility_context_data = *(uint64_t *)(utility_context_base_pointer + UTILITY_CONTEXT_SERVICE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_context_base_pointer + UTILITY_CONTEXT_SERVICE_OFFSET);
 *(float *)(utility_buffer_handle + 4) = utility_network_float_data;
 utility_free_context_resources(utility_context_data);
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 return utility_resource_id;
 }
@@ -3384,16 +3384,16 @@ return UTILITY_STATUS_FLAG_EXTENDED;
 if ((*(uint8_t *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET) & UTILITY_STATUS_ENABLED_FLAG_PRIMARY) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_FLAG_F;
 }
-utility_context_data = utility_process_resource_data(utility_loop_index,utility_input_context + UTILITY_CONTEXT_OFFSET_STACK_SMALL_HEX,utility_input_context + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = utility_process_resource_data(utility_loop_index,utility_input_context + UTILITY_CONTEXT_OFFSET_STACK_SMALL_HEX,utility_input_context + UTILITY_THREAD_DATA_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_network_float_data = *(float *)(utility_input_context + UTILITY_THREAD_DATA_OFFSET);
 if ((*(float *)(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET) <= utility_network_float_data) &&
 (utility_network_float_data < *(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX) || utility_network_float_data == *(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX))) {
-utility_context_data = *(uint64_t *)(utility_context_base_pointer + UTILITY_CONTEXT_SERVICE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_context_base_pointer + UTILITY_CONTEXT_SERVICE_OFFSET);
 *(float *)(utility_buffer_handle + 4) = utility_network_float_data;
 utility_free_context_resources(utility_context_data);
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 return utility_resource_id;
 }
@@ -3408,16 +3408,16 @@ int64_t utility_buffer_handle;
 if ((*(uint8_t *)(utility_resource_handle + UTILITY_THREAD_STATUS_OFFSET) & UTILITY_STATUS_ENABLED_FLAG_PRIMARY) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_FLAG_F;
 }
-utility_context_data = utility_process_resource_data(utility_context_parameter,utility_input_context + UTILITY_CONTEXT_OFFSET_STACK_SMALL_HEX,utility_input_context + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = utility_process_resource_data(utility_context_parameter,utility_input_context + UTILITY_CONTEXT_OFFSET_STACK_SMALL_HEX,utility_input_context + UTILITY_THREAD_DATA_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_network_float_data = *(float *)(utility_input_context + UTILITY_THREAD_DATA_OFFSET);
 if ((*(float *)(utility_resource_handle + UTILITY_THREAD_POINTER_OFFSET) <= utility_network_float_data) &&
 (utility_network_float_data < *(float *)(utility_resource_handle + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX) || utility_network_float_data == *(float *)(utility_resource_handle + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX))) {
-utility_context_data = *(uint64_t *)(utility_context_base_pointer + UTILITY_CONTEXT_SERVICE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_context_base_pointer + UTILITY_CONTEXT_SERVICE_OFFSET);
 *(float *)(utility_buffer_handle + 4) = utility_network_float_data;
 utility_free_context_resources(utility_context_data);
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 return utility_resource_id;
 }
@@ -3438,7 +3438,7 @@ utility_context_temp_value = *(uint64_t *)(utility_base_context_ptr + UTILITY_CO
 *(float *)(utility_buffer_handle + 4) = utility_network_float_data;
 utility_free_context_resources(utility_context_temp_value);
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 return utility_resource_id;
 }
@@ -3481,7 +3481,7 @@ if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_FLAG_EXTENDED;
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_create_resource_handler(utility_context_parameter,utility_loop_index,utility_context_parameter + UTILITY_THREAD_CONFIG_OFFSET,utility_stack_buffer);
+    utility_context_data = utility_create_resource_handler(utility_context_parameter,utility_loop_index,utility_context_parameter + UTILITY_THREAD_CONFIG_OFFSET,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -3529,7 +3529,7 @@ if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_FLAG_EXTENDED;
 }
 utility_stack_buffer_array_int_data[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_create_resource_handler(utility_context_parameter,utility_loop_index,utility_context_parameter + UTILITY_THREAD_CONFIG_OFFSET,utility_stack_buffer_array_int_data);
+    utility_context_data = utility_create_resource_handler(utility_context_parameter,utility_loop_index,utility_context_parameter + UTILITY_THREAD_CONFIG_OFFSET,utility_stack_buffer_array_int_data);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -3537,7 +3537,7 @@ utility_loop_index = (int64_t)utility_stack_buffer_array_int_data[0];
 utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
 utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET + utility_loop_index * UTILITY_THREAD_CONTEXT_OFFSET);
 if ((*(uint8_t *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET) & UTILITY_STATUS_ENABLED_FLAG_PRIMARY) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_process_resource_data(utility_loop_index,utility_context_parameter + UTILITY_STACK_OFFSET_LARGE,utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET);
+    utility_context_data = utility_process_resource_data(utility_loop_index,utility_context_parameter + UTILITY_STACK_OFFSET_LARGE,utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -3598,7 +3598,7 @@ utility_network_float_data = utility_network_float_data;
 }
 *(float *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET) = utility_network_float_data;
 *(float *)(utility_loop_index + 4) = utility_network_float_data;
-utility_context_data = utility_invoke_service(utility_loop_index,utility_context_parameter + UTILITY_STATUS_THREAD_CREATED);
+    utility_context_data = utility_invoke_service(utility_loop_index,utility_context_parameter + UTILITY_STATUS_THREAD_CREATED);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -3607,7 +3607,7 @@ if ((*(int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARY) != UTI
 utility_stack_context = UTILITY_BOOLEAN_FALSE;
 utility_system_cleanup_handler(&utility_stack_context,utility_context_parameter,utility_context_parameter,utility_context_parameter,utility_input_context);
 if (utility_stack_context == *(int64_t *)((int64_t)*(int *)(utility_loop_index + UTILITY_STATUS_FLAG_MASK_7C_HEX) * 8 + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARYc4f450)) {
-utility_context_data = utility_execute_context_command(utility_loop_index,utility_context_parameter);
+    utility_context_data = utility_execute_context_command(utility_loop_index,utility_context_parameter);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 return 0;
 }
@@ -3615,7 +3615,7 @@ return utility_resource_id;
 }
 }
 *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) = *(int *)(utility_context_parameter + UTILITY_POINTER_OFFSET) + UTILITY_ALIGNMENT_VALUE & UTILITY_ALIGNMENT_MASK;
-utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
+    utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 return 0;
 }
@@ -3643,14 +3643,14 @@ if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_combine_values(utility_unsigned_temp_value,utility_temp_float_value) - UTILITY_POINTER_OFFSET;
+    utility_context_data = utility_combine_values(utility_unsigned_temp_value,utility_temp_float_value) - UTILITY_POINTER_OFFSET;
 if (utility_combine_values(utility_unsigned_temp_value,utility_temp_float_value) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 utility_operation_status = *(int *)(utility_resource_handle + UTILITY_THREAD_CONFIG_OFFSET);
 utility_context_parameter = (float *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET + (int64_t)*(int *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET) * 4);
 if (0 < *(int *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET)) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 do {
 utility_operation_status = *(int *)(((utility_context_parameter + UTILITY_THREAD_DATA_OFFSET) - (int64_t)utility_context_parameter) + (int64_t)utility_context_parameter);
 if (utility_operation_status != -1) {
@@ -3685,8 +3685,8 @@ utility_network_float_data = utility_temp_float_value;
 }
 *utility_buffer_handle = utility_network_float_data;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
 utility_context_parameter = utility_context_parameter + 1;
 } while ((int)utility_resource_handle < *(int *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET));
 if (0 < *(int *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET)) {
@@ -3698,8 +3698,8 @@ if (utility_operation_status != -1) {
 }
 *(float *)(*(int64_t *)(utility_resource_handle + UTILITY_THREAD_DATA_OFFSET) + 4 + (int64_t)utility_operation_status * UTILITY_THREAD_CONTEXT_OFFSET) = *utility_buffer_handle;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
 utility_context_parameter = utility_context_parameter + 1;
 } while ((int)utility_resource_handle < *(int *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET));
 }
@@ -3730,7 +3730,7 @@ utility_context_temp_value = (uint64_t)utility_context_temp_counter;
 utility_operation_status = *(int *)(utility_resource_handle + UTILITY_THREAD_CONFIG_OFFSET);
 utility_context_parameter = (float *)(utility_resource_handle + UTILITY_THREAD_DATA_OFFSET + (int64_t)*(int *)(utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET) * 4);
 if (0 < *(int *)(utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET)) {
-utility_context_data = utility_context_temp_counter;
+    utility_context_data = utility_context_temp_counter;
 do {
 utility_operation_status = *(int *)(((utility_resource_handle + UTILITY_THREAD_DATA_OFFSET) - (int64_t)utility_context_parameter) + (int64_t)utility_context_parameter);
 if (utility_operation_status != -1) {
@@ -3765,7 +3765,7 @@ utility_network_float_data = utility_network_float_data;
 }
 *utility_buffer_handle = utility_network_float_data;
 }
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 utility_context_parameter = utility_context_parameter + 1;
 } while ((int)utility_resource_handle < *(int *)(utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET));
 if (0 < *(int *)(utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET)) {
@@ -3910,7 +3910,7 @@ if ((*(int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARY) != UTI
 }
 }
 *(uint *)(utility_context_parameter_ptr_primary + UTILITY_POINTER_OFFSET) = *(int *)(utility_context_parameter_ptr_primary + UTILITY_POINTER_OFFSET) + UTILITY_ALIGNMENT_VALUE & UTILITY_ALIGNMENT_MASK;
-utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
+    utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
     return 0;
 }
@@ -3979,7 +3979,7 @@ if ((*(int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARY) != UTI
 utility_stack_context = UTILITY_BOOLEAN_FALSE;
 utility_system_cleanup_handler(&utility_stack_context);
 if (utility_stack_context == *(int64_t *)((int64_t)*(int *)(utility_loop_index + UTILITY_STATUS_FLAG_MASK_7C_HEX) * 8 + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARYc4f450)) {
-utility_context_data = utility_execute_context_command(utility_loop_index,utility_context_parameter);
+    utility_context_data = utility_execute_context_command(utility_loop_index,utility_context_parameter);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 return 0;
 }
@@ -3987,7 +3987,7 @@ return utility_resource_id;
 }
 }
 *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) = *(int *)(utility_context_parameter + UTILITY_POINTER_OFFSET) + UTILITY_ALIGNMENT_VALUE & UTILITY_ALIGNMENT_MASK;
-utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
+    utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 return 0;
 }
@@ -4024,7 +4024,7 @@ if ((*(int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARY) != UTI
 utility_stack_context = UTILITY_BOOLEAN_FALSE;
 utility_system_cleanup_handler(&utility_stack_context);
 if (utility_stack_context == *(int64_t *)((int64_t)*(int *)(utility_loop_index + UTILITY_STATUS_FLAG_MASK_7C_HEX) * 8 + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARYc4f450)) {
-utility_context_data = utility_execute_context_command(utility_loop_index,utility_context_parameter);
+    utility_context_data = utility_execute_context_command(utility_loop_index,utility_context_parameter);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 return 0;
 }
@@ -4032,7 +4032,7 @@ return utility_resource_id;
 }
 }
 *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) = *(int *)(utility_context_parameter + UTILITY_POINTER_OFFSET) + UTILITY_ALIGNMENT_VALUE & UTILITY_ALIGNMENT_MASK;
-utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
+    utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 return 0;
 }
@@ -4150,9 +4150,9 @@ if ((utility_loop_index == UTILITY_BOOLEAN_FALSE) || (*(int64_t *)(utility_loop_
 utility_context_temp_value = UTILITY_STATUS_RESOURCE_NOT_FOUND;
 }
 else {
-utility_context_data = utility_invoke_service(*(int64_t *)(utility_loop_index + UTILITY_SERVICE_CONTEXT_OFFSET_MEDIUM),utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = utility_invoke_service(*(int64_t *)(utility_loop_index + UTILITY_SERVICE_CONTEXT_OFFSET_MEDIUM),utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_refresh_context_resources(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_parameter);
+    utility_context_data = utility_refresh_context_resources(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_parameter);
 return utility_resource_id;
 }
 }
@@ -4175,7 +4175,7 @@ utility_loop_index = (**(code **)(**(int64_t **)(utility_context_parameter + 800
 if ((utility_loop_index == UTILITY_BOOLEAN_FALSE) || (*(int64_t *)(utility_loop_index + UTILITY_SERVICE_CONTEXT_OFFSET_MEDIUM) == UTILITY_BOOLEAN_FALSE)) {
 return UTILITY_STATUS_RESOURCE_NOT_FOUND;
 }
-utility_context_data = utility_invoke_service(*(int64_t *)(utility_loop_index + UTILITY_SERVICE_CONTEXT_OFFSET_MEDIUM),utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = utility_invoke_service(*(int64_t *)(utility_loop_index + UTILITY_SERVICE_CONTEXT_OFFSET_MEDIUM),utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -4185,10 +4185,10 @@ if (((*(int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARY) == UT
 (utility_system_cleanup_handler(&utility_buffer_workspace_area),
 *(int64_t *)((int64_t)*(int *)(utility_loop_index + UTILITY_STATUS_FLAG_MASK_7C_HEX) * 8 + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARYc4f450) != UTILITY_BOOLEAN_FALSE)) {
 *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) = *(int *)(utility_context_parameter + UTILITY_POINTER_OFFSET) + UTILITY_ALIGNMENT_VALUE & UTILITY_ALIGNMENT_MASK;
-utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
+    utility_context_data = utility_get_context_info(*(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX));
 }
 else {
-utility_context_data = utility_execute_context_command(utility_loop_index,utility_context_parameter);
+    utility_context_data = utility_execute_context_command(utility_loop_index,utility_context_parameter);
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -4419,7 +4419,7 @@ if ((*(uint *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET) & UTIL
 return UTILITY_STATUS_ENABLED_FLAG_DECIMAL;
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_create_resource_context_advanced(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET,utility_stack_buffer);
+    utility_context_data = utility_create_resource_context_advanced(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET,utility_stack_buffer);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_loop_index = utility_get_resource_id(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_buffer[0]);
 if ((*(uint *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET) >> 4 & 1) != UTILITY_BOOLEAN_FALSE) {
@@ -4432,7 +4432,7 @@ if ((*(float *)(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET) <= utility_n
 utility_network_float_data = utility_network_float_data;
 }
 *(float *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET) = utility_network_float_data;
-utility_context_data = utility_set_resource_value(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_buffer[0],utility_network_float_data);
+    utility_context_data = utility_set_resource_value(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_buffer[0],utility_network_float_data);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_free_context_resources(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_parameter);
 }
@@ -4462,7 +4462,7 @@ if ((*(float *)(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET) <= utility_n
 utility_network_float_data = utility_network_float_data;
 }
 *(float *)(utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET) = utility_network_float_data;
-utility_context_data = utility_set_resource_value(utility_context_index_source + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_uint_data,utility_network_float_data);
+    utility_context_data = utility_set_resource_value(utility_context_index_source + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_uint_data,utility_network_float_data);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_free_context_resources(*(uint64_t *)(utility_context_index_source + UTILITY_CONTEXT_SERVICE_OFFSET));
 }
@@ -4506,15 +4506,15 @@ utility_loop_index = utility_get_resource_id(utility_context_parameter + UTILITY
 if ((*(uint *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET) >> 4 & 1) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_FLAG_F;
 }
-utility_context_data = utility_process_resource_data(utility_loop_index,utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_DECIMAL,utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET);
+    utility_context_data = utility_process_resource_data(utility_loop_index,utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_DECIMAL,utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_network_float_data = *(float *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET);
 if ((utility_network_float_data < *(float *)(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET)) ||
 (*(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX) <= utility_network_float_data && utility_network_float_data != *(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX))) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
-utility_context_data = utility_set_resource_value(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_buffer[0]);
+    utility_context_data = utility_set_resource_value(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_buffer[0]);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_free_context_resources(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_parameter);
 }
@@ -4535,15 +4535,15 @@ utility_loop_index = utility_get_resource_id();
 if ((*(uint *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET) >> 4 & 1) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_FLAG_F;
 }
-utility_context_data = utility_process_resource_data(utility_loop_index,utility_input_context + UTILITY_STATUS_ENABLED_FLAG_DECIMAL,utility_input_context + UTILITY_THREAD_CONTEXT_OFFSET);
+    utility_context_data = utility_process_resource_data(utility_loop_index,utility_input_context + UTILITY_STATUS_ENABLED_FLAG_DECIMAL,utility_input_context + UTILITY_THREAD_CONTEXT_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_network_float_data = *(float *)(utility_input_context + UTILITY_THREAD_CONTEXT_OFFSET);
 if ((utility_network_float_data < *(float *)(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET)) ||
 (*(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX) <= utility_network_float_data && utility_network_float_data != *(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX))) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
-utility_context_data = utility_set_resource_value(utility_context_auxiliary_pointer + UTILITY_CONTEXT_TABLE_OFFSET,utility_buffer_handle);
+    utility_context_data = utility_set_resource_value(utility_context_auxiliary_pointer + UTILITY_CONTEXT_TABLE_OFFSET,utility_buffer_handle);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_free_context_resources(*(uint64_t *)(utility_context_auxiliary_pointer + UTILITY_CONTEXT_SERVICE_OFFSET));
 }
@@ -4567,7 +4567,7 @@ if ((utility_network_float_data < *(float *)(utility_resource_handle + UTILITY_T
 utility_context_temp_value = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
-utility_context_data = utility_set_resource_value(utility_context_auxiliary_pointer + UTILITY_CONTEXT_TABLE_OFFSET,utility_buffer_handle);
+    utility_context_data = utility_set_resource_value(utility_context_auxiliary_pointer + UTILITY_CONTEXT_TABLE_OFFSET,utility_buffer_handle);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_free_context_resources(*(uint64_t *)(utility_context_auxiliary_pointer + UTILITY_CONTEXT_SERVICE_OFFSET));
 }
@@ -4592,7 +4592,7 @@ if ((utility_stack_buffer[0] & UTILITY_STATUS_FLAG_MASK_F800000) == UTILITY_STAT
 return UTILITY_STATUS_ENABLED_FLAG_DECIMAL;
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_create_resource_analyzer(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_DATA_OFFSET,utility_stack_buffer);
+    utility_context_data = utility_create_resource_analyzer(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_DATA_OFFSET,utility_stack_buffer);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_loop_index = utility_get_resource_id(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_buffer[0]);
 if ((*(uint *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET) >> 4 & 1) != UTILITY_BOOLEAN_FALSE) {
@@ -4605,7 +4605,7 @@ if ((*(float *)(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET) <= utility_n
 utility_network_float_data = utility_network_float_data;
 }
 *(float *)(utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET) = utility_network_float_data;
-utility_context_data = utility_set_resource_value(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_buffer[0],utility_network_float_data);
+    utility_context_data = utility_set_resource_value(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_buffer[0],utility_network_float_data);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (uint64_t *)utility_allocate_resource_id(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_buffer,utility_stack_buffer[0]);
 *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET) = *utility_buffer_handle;
@@ -4635,7 +4635,7 @@ if ((*(float *)(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET) <= utility_n
 utility_network_float_data = utility_network_float_data;
 }
 *(float *)(utility_resource_handle + UTILITY_THREAD_HANDLE_OFFSET) = utility_network_float_data;
-utility_context_data = utility_set_resource_value(utility_input_context + UTILITY_CONTEXT_TABLE_OFFSET,utility_buffer_handle,utility_network_float_data);
+    utility_context_data = utility_set_resource_value(utility_input_context + UTILITY_CONTEXT_TABLE_OFFSET,utility_buffer_handle,utility_network_float_data);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (uint64_t *)utility_allocate_resource_id(utility_input_context + UTILITY_CONTEXT_TABLE_OFFSET,&utility_buffer_workspace_area,utility_buffer_handle);
 *(uint64_t *)(utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET) = *utility_buffer_handle;
@@ -4688,15 +4688,15 @@ utility_loop_index = utility_get_resource_id(utility_context_parameter + UTILITY
 if ((*(uint *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET) >> 4 & 1) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_FLAG_F;
 }
-utility_context_data = utility_process_resource_data(utility_loop_index,utility_context_parameter + UTILITY_RESOURCE_FLAG_A0,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = utility_process_resource_data(utility_loop_index,utility_context_parameter + UTILITY_RESOURCE_FLAG_A0,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_network_float_data = *(float *)(utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
 if ((utility_network_float_data < *(float *)(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET)) ||
 (*(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX) <= utility_network_float_data && utility_network_float_data != *(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX))) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
-utility_context_data = utility_set_resource_value(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_buffer[0]);
+    utility_context_data = utility_set_resource_value(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_buffer[0]);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (uint64_t *)utility_allocate_resource_id(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_stack_buffer,utility_stack_buffer[0]);
 *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET) = *utility_buffer_handle;
@@ -4720,15 +4720,15 @@ utility_loop_index = utility_get_resource_id();
 if ((*(uint *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET) >> 4 & 1) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_FLAG_F;
 }
-utility_context_data = utility_process_resource_data(utility_loop_index,utility_input_context + UTILITY_RESOURCE_FLAG_A0,utility_input_context + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = utility_process_resource_data(utility_loop_index,utility_input_context + UTILITY_RESOURCE_FLAG_A0,utility_input_context + UTILITY_THREAD_HANDLE_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_network_float_data = *(float *)(utility_input_context + UTILITY_THREAD_HANDLE_OFFSET);
 if ((utility_network_float_data < *(float *)(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET)) ||
 (*(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX) <= utility_network_float_data && utility_network_float_data != *(float *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_HEX))) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
-utility_context_data = utility_set_resource_value(utility_context_auxiliary_pointer + UTILITY_CONTEXT_TABLE_OFFSET,utility_buffer_handle);
+    utility_context_data = utility_set_resource_value(utility_context_auxiliary_pointer + UTILITY_CONTEXT_TABLE_OFFSET,utility_buffer_handle);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (uint64_t *)
 utility_allocate_resource_id(utility_context_auxiliary_pointer + UTILITY_CONTEXT_TABLE_OFFSET,&utility_buffer_workspace_area,utility_buffer_handle);
@@ -4756,7 +4756,7 @@ if ((utility_network_float_data < *(float *)(utility_resource_handle + UTILITY_T
 utility_context_temp_value = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
-utility_context_data = utility_set_resource_value(utility_context_auxiliary_pointer + UTILITY_CONTEXT_TABLE_OFFSET,utility_buffer_handle);
+    utility_context_data = utility_set_resource_value(utility_context_auxiliary_pointer + UTILITY_CONTEXT_TABLE_OFFSET,utility_buffer_handle);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (uint64_t *)
 utility_allocate_resource_id(utility_context_auxiliary_pointer + UTILITY_CONTEXT_TABLE_OFFSET,&utility_buffer_workspace_area,utility_buffer_handle);
@@ -5207,16 +5207,16 @@ if (utility_context_parameter == UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_FLAG_F;
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
-utility_context_data = *(uint *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = *(uint *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
 utility_stack_medium_buffer[0] = UTILITY_BOOLEAN_FALSE;
 utility_operation_status = utility_stack_process_primary(utility_stack_medium_buffer,utility_context_parameter);
 if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_parameter_value = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_parameter | UTILITY_THREAD_HANDLE_OFFSET_PRIMARY00000;
+    utility_context_data = utility_context_parameter | UTILITY_THREAD_HANDLE_OFFSET_PRIMARY00000;
 if ((utility_resource_handle & 1) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_parameter;
+    utility_context_data = utility_context_parameter;
 }
 utility_operation_status = utility_execute_operation(utility_context_parameter,utility_context_parameter,utility_context_data,&utility_parameter_value);
 if ((utility_operation_status == UTILITY_BOOLEAN_FALSE) && (utility_context_parameter = (int64_t *)(utility_context_parameter + UTILITY_POINTER_OFFSET), utility_context_parameter != (int64_t *)UTILITY_NULL_POINTER)) {
@@ -5277,7 +5277,7 @@ memset(*utility_buffer_handle + (int64_t)utility_operation_status * UTILITY_CONT
 }
 }
 *(uint32_t *)(utility_context_parameter + 1) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = (utility_resource_handle ^ (int)utility_resource_handle >> UTILITY_STATUS_FLAG_F) - ((int)utility_resource_handle >> UTILITY_STATUS_FLAG_F);
+    utility_context_data = (utility_resource_handle ^ (int)utility_resource_handle >> UTILITY_STATUS_FLAG_F) - ((int)utility_resource_handle >> UTILITY_STATUS_FLAG_F);
 if ((int)utility_resource_handle < 1) {
 return utility_resource_id;
 }
@@ -5315,7 +5315,7 @@ utility_file_context_validator(utility_context_parameter + UTILITY_THREAD_POINTE
 utility_system_connection_manager(utility_context_parameter + UTILITY_THREAD_CONFIG_OFFSET);
 utility_path_validator(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET);
 utility_context_parameter = (int64_t *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
-utility_context_data = *(uint *)(utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
+    utility_context_data = *(uint *)(utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
 if ((int)((utility_resource_handle ^ (int)utility_resource_handle >> UTILITY_STATUS_FLAG_F) - ((int)utility_resource_handle >> UTILITY_STATUS_FLAG_F)) < 0) {
 if (0 < *(int *)(utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET)) {
 return UTILITY_STATUS_THREAD_CREATED;
@@ -5405,7 +5405,7 @@ utility_context_parameter[-1] = UTILITY_BOOLEAN_FALSE;
 utility_context_parameter = utility_context_parameter + 4;
 utility_loop_index = utility_loop_index + -1;
 } while (utility_loop_index != UTILITY_BOOLEAN_FALSE);
-utility_context_data = *(uint *)((int64_t)utility_context_parameter + UTILITY_BUFFER_ELEMENT_SIZE);
+    utility_context_data = *(uint *)((int64_t)utility_context_parameter + UTILITY_BUFFER_ELEMENT_SIZE);
 }
 }
 *(uint32_t *)(utility_context_parameter + 1) = UTILITY_BOOLEAN_FALSE;
@@ -5444,28 +5444,28 @@ utility_operation_status = 4;
 if (((utility_operation_status <= utility_operation_status) || ((int)utility_context_parameter[3] != utility_operation_status)) || ((int)utility_context_parameter[4] != -1)) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = (int)*(uint *)((int64_t)utility_context_parameter + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)((int64_t)utility_context_parameter + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
 if (((int)((*(uint *)((int64_t)utility_context_parameter + UTILITY_STATUS_THREAD_CREATED) ^ utility_context_data) - utility_context_data) < utility_operation_status) &&
 (utility_context_data = utility_resource_acquire(utility_context_parameter + 2,utility_operation_status), (int)utility_resource_handle != UTILITY_BOOLEAN_FALSE)) {
 return utility_resource_id;
 }
-utility_context_data = utility_resource_setup(utility_context_parameter,utility_operation_status);
+    utility_context_data = utility_resource_setup(utility_context_parameter,utility_operation_status);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0 < utility_operation_status) {
     
 }
 do {
 *(uint32_t *)(*utility_buffer_handle + utility_resource_handle * 4) = UTILITY_MAX_UINT32;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while ((int64_t)utility_resource_handle < (int64_t)utility_operation_status);
 }
 utility_loop_index = utility_context_parameter[3];
-utility_context_data = utility_context_data;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0 < (int)utility_loop_index) {
 do {
 if ((int)utility_context_data[1] == UTILITY_BOOLEAN_FALSE) {
@@ -5479,10 +5479,10 @@ utility_context_parameter = (int *)(utility_context_data[2] + 4 + (int64_t)utili
 utility_operation_status = *utility_buffer_handle;
 }
 *utility_buffer_handle = (int)utility_context_data;
-utility_context_data = utility_resource_handle + 1;
-utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
+    utility_context_data = utility_resource_handle + 1;
+    utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
 *(uint32_t *)(utility_context_data[2] + 4 + utility_context_data) = UTILITY_MAX_UINT32;
-utility_context_data = utility_resource_handle + UTILITY_THREAD_HANDLE_OFFSET;
+    utility_context_data = utility_resource_handle + UTILITY_THREAD_HANDLE_OFFSET;
 } while ((int64_t)utility_resource_handle < (int64_t)(int)utility_loop_index);
 }
 }
@@ -5512,28 +5512,28 @@ utility_operation_status = 4;
 if (((utility_operation_status <= utility_accumulator_data) || ((int)utility_resource_handle[3] != utility_accumulator_data)) || ((int)utility_resource_handle[4] != -1)) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = (int)*(uint *)((int64_t)utility_resource_handle + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)((int64_t)utility_resource_handle + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
 if (((int)((*(uint *)((int64_t)utility_resource_handle + UTILITY_STATUS_THREAD_CREATED) ^ utility_context_data) - utility_context_data) < utility_operation_status) &&
 (utility_context_data = utility_resource_acquire(utility_resource_handle + 2,utility_operation_status), (int)utility_resource_handle != UTILITY_BOOLEAN_FALSE)) {
 return utility_resource_id;
 }
-utility_context_data = utility_resource_setup();
+    utility_context_data = utility_resource_setup();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0 < utility_operation_status) {
     
 }
 do {
 *(uint32_t *)(*utility_resource_handle + utility_resource_handle * 4) = UTILITY_MAX_UINT32;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while ((int64_t)utility_resource_handle < (int64_t)utility_operation_status);
 }
 utility_loop_index = utility_resource_handle[3];
-utility_context_data = utility_context_data;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0 < (int)utility_loop_index) {
 do {
 if ((int)utility_resource_handle[1] == UTILITY_BOOLEAN_FALSE) {
@@ -5547,10 +5547,10 @@ utility_context_parameter = (int *)(utility_resource_handle[2] + 4 + (int64_t)ut
 utility_operation_status = *utility_buffer_handle;
 }
 *utility_buffer_handle = (int)utility_context_data;
-utility_context_data = utility_resource_handle + 1;
-utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
+    utility_context_data = utility_resource_handle + 1;
+    utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
 *(uint32_t *)(utility_resource_handle[2] + 4 + utility_context_data) = UTILITY_MAX_UINT32;
-utility_context_data = utility_resource_handle + UTILITY_THREAD_HANDLE_OFFSET;
+    utility_context_data = utility_resource_handle + UTILITY_THREAD_HANDLE_OFFSET;
 } while ((int64_t)utility_resource_handle < (int64_t)(int)utility_loop_index);
 }
 }
@@ -5628,7 +5628,7 @@ utility_loop_index = utility_loop_index - ((int64_t)utility_network_float_data +
 }
 utility_network_boolean_flag = *(uint8_t *)(utility_context_parameter + UTILITY_CONTEXT_OFFSET_6C);
 if (*(int64_t *)(utility_context_parameter + UTILITY_CONTEXT_OFFSET_C0) != UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_network_address_validator(utility_context_parameter);
+    utility_context_data = utility_network_address_validator(utility_context_parameter);
 utility_operation_status = (**(code **)(utility_context_parameter + UTILITY_CONTEXT_OFFSET_C0))
 (utility_context_data,utility_operation_status,*(uint32_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET),*(uint64_t *)(utility_context_parameter + UTILITY_RESOURCE_FLAG_B8)
 );
@@ -5753,7 +5753,7 @@ if ((*(uint8_t *)(utility_input_context + UTILITY_CONTEXT_OFFSET_6C) & UTILITY_S
 utility_network_char_value = utility_context_flags;
 }
 if (*(int64_t *)(utility_input_context + UTILITY_CONTEXT_OFFSET_C0) != UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_network_address_validator();
+    utility_context_data = utility_network_address_validator();
 utility_operation_status = (**(code **)(utility_input_context + UTILITY_CONTEXT_OFFSET_C0))
 (utility_context_data,utility_context_data_index,*(uint32_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET),
 *(uint64_t *)(utility_input_context + UTILITY_RESOURCE_FLAG_B8));
@@ -5850,7 +5850,7 @@ if (*(int *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET) <= utility_
 return;
 }
 }
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
 *utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 utility_context_data[1] = utility_context_data;
 }
@@ -5996,7 +5996,7 @@ if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if ((int)utility_context_data[1] == UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 utility_loop_index = (int64_t)(int)((int)utility_context_data[1] - 1U & utility_context_data);
 utility_context_parameter = (int *)(*utility_buffer_handle + utility_loop_index * 4);
 utility_operation_status = *(int *)(*utility_buffer_handle + utility_loop_index * 4);
@@ -6018,10 +6018,10 @@ utility_operation_status = (int)utility_context_parameter[4];
 if (utility_operation_status == -1) {
     
 }
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 utility_operation_status = (int)utility_context_parameter[3];
 utility_operation_status = utility_operation_status + 1;
-utility_context_data = (int)*(uint *)((int64_t)utility_context_parameter + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)((int64_t)utility_context_parameter + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
 utility_operation_status = (*(uint *)((int64_t)utility_context_parameter + UTILITY_STATUS_THREAD_CREATED) ^ utility_context_data) - utility_context_data;
 if (utility_operation_status < utility_operation_status) {
     
@@ -6043,7 +6043,7 @@ else if (utility_operation_status < utility_operation_status) {
 }
 utility_operation_status = utility_operation_status;
 }
-utility_context_data = utility_resource_acquire(utility_context_parameter + 2,utility_operation_status);
+    utility_context_data = utility_resource_acquire(utility_context_parameter + 2,utility_operation_status);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -6107,7 +6107,7 @@ if (utility_operation_status == -1) {
 utility_stack_checksum_value = *utility_context_auxiliary_pointer;
 utility_operation_status = (int)utility_input_context[3];
 utility_operation_status = utility_operation_status + 1;
-utility_context_data = (int)*(uint *)((int64_t)utility_input_context + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)((int64_t)utility_input_context + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
 utility_operation_status = (*(uint *)((int64_t)utility_input_context + UTILITY_STATUS_THREAD_CREATED) ^ utility_context_data) - utility_context_data;
 if (utility_operation_status < utility_operation_status) {
     
@@ -6129,7 +6129,7 @@ else if (utility_operation_status < utility_operation_status) {
 }
 utility_operation_status = utility_operation_status;
 }
-utility_context_data = utility_resource_acquire(utility_input_context + 2,utility_operation_status);
+    utility_context_data = utility_resource_acquire(utility_input_context + 2,utility_operation_status);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -6194,7 +6194,7 @@ else if (utility_operation_status < utility_operation_status) {
 }
 utility_operation_status = utility_operation_status;
 }
-utility_context_data = utility_resource_acquire(utility_input_context + UTILITY_THREAD_HANDLE_OFFSET,utility_operation_status);
+    utility_context_data = utility_resource_acquire(utility_input_context + UTILITY_THREAD_HANDLE_OFFSET,utility_operation_status);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -6244,7 +6244,7 @@ if (utility_context_parameter < utility_context_parameter) {
     
 }
 }
-utility_context_data = utility_resource_acquire(utility_input_context + UTILITY_THREAD_HANDLE_OFFSET,utility_context_parameter);
+    utility_context_data = utility_resource_acquire(utility_input_context + UTILITY_THREAD_HANDLE_OFFSET,utility_context_parameter);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (uint64_t *)
 ((int64_t)*(int *)(utility_input_context + UTILITY_THREAD_CONTEXT_OFFSET) * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_input_context + UTILITY_THREAD_HANDLE_OFFSET));
@@ -6597,7 +6597,7 @@ utility_context_parameter = utility_context_main;
 else if ((utility_operation_status == 7) &&
 (utility_operation_status = utility_handle_service_request(*(uint32_t *)(utility_loop_index  + UTILITY_CONTEXT_OFFSET_CONTROL_HEX + utility_loop_index * UTILITY_THREAD_HANDLE_OFFSET),
 utility_stack_buffer), utility_context_parameter = utility_context_main, utility_operation_status == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = *(uint32_t *)(utility_loop_index  + UTILITY_CONTEXT_OFFSET_CONTROL_HEX + utility_loop_index * UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_loop_index  + UTILITY_CONTEXT_OFFSET_CONTROL_HEX + utility_loop_index * UTILITY_THREAD_HANDLE_OFFSET);
 utility_operation_status = (int)utility_resource_handle + 1;
 utility_operation_status = utility_operation_status;
 if (utility_operation_status < 0) {
@@ -6631,18 +6631,18 @@ else if (utility_operation_status < utility_operation_status) {
 }
 utility_operation_status = utility_operation_status;
 }
-utility_context_data = utility_buffer_allocator(&utility_stack_vector_x_component,utility_operation_status);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_buffer_allocator(&utility_stack_vector_x_component,utility_operation_status);
+    utility_context_data = (uint64_t)utility_context_data;
 utility_operation_status = (int)utility_stack_vector_y_component;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_stack_vector_y_component.component_x;
+    utility_context_data = utility_stack_vector_y_component.component_x;
 if ((int64_t)utility_stack_vector_y_component < 0) {
-utility_context_data = -utility_stack_vector_y_component.component_x;
+    utility_context_data = -utility_stack_vector_y_component.component_x;
 }
 utility_loop_index = (int64_t)(int)utility_stack_vector_y_component;
-utility_context_data = utility_stack_vector_y_component.component_x;
+    utility_context_data = utility_stack_vector_y_component.component_x;
 if ((int)utility_resource_handle < 0) {
 if (0 < (int)utility_stack_vector_y_component) {
 return utility_resource_id;
@@ -6671,7 +6671,7 @@ utility_context_parameter = utility_context_parameter + 1;
 }
 utility_stack_vector_y_component = utility_stack_vector_y_component & UTILITY_MAX_UINT3200000000;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
@@ -6681,11 +6681,11 @@ return utility_resource_id;
 utility_buffer_allocator(&utility_stack_vector_x_component,0);
 return utility_resource_id;
 }
-utility_context_data = (uint64_t)utility_stack_vector_y_component.component_x;
+    utility_context_data = (uint64_t)utility_stack_vector_y_component.component_x;
 utility_operation_status = (int)utility_stack_vector_y_component;
 }
 utility_stack_buffer[0] = utility_operation_status + 1;
-utility_context_data = (uint64_t)utility_stack_buffer[0];
+    utility_context_data = (uint64_t)utility_stack_buffer[0];
 utility_stack_vector_y_component = utility_combine_values(utility_stack_vector_y_component.component_x,utility_stack_buffer[0]);
 *(uint32_t *)(utility_stack_vector_x_component + (int64_t)utility_operation_status * 4) = utility_context_data;
 utility_context_parameter = utility_context_main;
@@ -6718,7 +6718,7 @@ utility_operation_status = utility_stack_buffer_array_int_data[0];
 UTILITY_LABEL_CHECK_CONDITION:
 } while (utility_stack_buffer_array_int_data[0] != -1);
 utility_stack_buffer_array_int_data[0] = -1;
-utility_context_data = utility_stack_vector_x_component;
+    utility_context_data = utility_stack_vector_x_component;
 }
 utility_loop_index = (int64_t)(utility_operation_status + -1);
 if (-1 < utility_operation_status + -1) {
@@ -6778,14 +6778,14 @@ utility_buffer_allocator(&utility_stack_vector_x_component,0);
 }
 UTILITY_LABEL_CONDITION_MET:
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0 < *(int *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET)) {
 do {
-utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (int)utility_resource_handle + 1;
 utility_context_parameter = (uint8_t *)(utility_resource_handle + 0xb + *(int64_t *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET));
 *utility_buffer_handle = *utility_buffer_handle & UTILITY_BYTE_MASK_CLEAR_LSB;
-utility_context_data = utility_resource_handle + 0xc;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_resource_handle + 0xc;
+    utility_context_data = (uint64_t)utility_context_data;
 } while ((int)utility_resource_handle < *(int *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET));
 }
 utility_operation_status = utility_system_connection_manager(utility_context_parameter + UTILITY_STATUS_FLAG_MASK_PRIMARY);
@@ -6794,11 +6794,11 @@ if ((utility_operation_status == UTILITY_BOOLEAN_FALSE) && (utility_operation_st
 *(uint32_t *)(utility_context_parameter + UTILITY_CONTEXT_OFFSET_DATA_SECONDARY) = UTILITY_BOOLEAN_FALSE;
 }
 *(uint *)(utility_context_parameter + UTILITY_CONTEXT_OFFSET_6C) = *(uint *)(utility_context_parameter + UTILITY_CONTEXT_OFFSET_6C) & UTILITY_FLAG_MASK_DEBUG_BIT;
-utility_context_data = *(uint *)(utility_context_parameter + UTILITY_CONTEXT_OFFSET_6C);
+    utility_context_data = *(uint *)(utility_context_parameter + UTILITY_CONTEXT_OFFSET_6C);
 UTILITY_LABEL_VALIDATION_PASSED:
 if ((utility_resource_handle >> UTILITY_STATUS_ENABLED_FLAG_9 & 1) != UTILITY_BOOLEAN_FALSE) {
 utility_loop_index = *(int64_t *)(utility_context_parameter + UTILITY_RESOURCE_FLAG_A0);
-utility_context_data = utility_memory_manager(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET),utility_context_parameter + UTILITY_RESOURCE_FLAG_A0,0);
+    utility_context_data = utility_memory_manager(*(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET),utility_context_parameter + UTILITY_RESOURCE_FLAG_A0,0);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -6808,7 +6808,7 @@ if ((*(int *)(utility_context_parameter + UTILITY_CONTEXT_OFFSET_CONTROL_TERTIAR
 utility_stack_buffer_array_int_data[0] = utility_concat_int_values(utility_stack_buffer_array_int_data[0]._1_3_,1);
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
 do {
-utility_context_data = CreateMailslot(utility_context_parameter,utility_stack_buffer_array_int_data,utility_stack_buffer);
+    utility_context_data = CreateMailslot(utility_context_parameter,utility_stack_buffer_array_int_data,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -6892,7 +6892,7 @@ utility_context_parameter[5] = UTILITY_BOOLEAN_FALSE;
 *(uint8_t *)((int64_t)utility_context_parameter + 10) = 3;
 utility_context_parameter[3] = UTILITY_BOOLEAN_TRUE;
 utility_loop_index = *(int64_t *)(*(int64_t *)(utility_context_parameter + UTILITY_POINTER_OFFSET) + UTILITY_RESOURCE_HANDLE_OFFSET);
-utility_context_data = utility_create_instance(*(uint64_t *)(utility_loop_index + 0x4d0),*(uint32_t *)(utility_loop_index + UTILITY_STATUS_FLAG_MASK74));
+    utility_context_data = utility_create_instance(*(uint64_t *)(utility_loop_index + 0x4d0),*(uint32_t *)(utility_loop_index + UTILITY_STATUS_FLAG_MASK74));
 *(uint64_t *)(utility_context_parameter + 4) = utility_context_data;
 memory_copy_pointer(utility_context_parameter + 6,utility_loop_index,(int64_t)utility_operation_status);
 }
@@ -7389,10 +7389,10 @@ if (((*(uint8_t *)(utility_loop_index + UTILITY_CONTEXT_OFFSET_EXTENDED_HEX) & 1
 utility_parameter_value = UTILITY_BOOLEAN_FALSE;
 utility_operation_status = utility_invoke_service(utility_loop_index,&utility_parameter_value);
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_SYSTEM_READY;
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_THREAD_CREATED);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_THREAD_CREATED);
 *(uint32_t *)(utility_context_base_pointer + -UTILITY_STATUS_FLAG_MASK_8_BIT) = UTILITY_BOOLEAN_FALSE;
 *(int *)(utility_context_base_pointer + -0x68) = utility_context_status_code;
 *(void **)(utility_context_base_pointer + -UTILITY_MEMORY_POINTER_OFFSET_BASE) = &utility_system_reserved_area;
@@ -7444,10 +7444,10 @@ if (((*(uint8_t *)(utility_loop_index + UTILITY_CONTEXT_OFFSET_EXTENDED_HEX) & 1
 utility_parameter_value = UTILITY_BOOLEAN_FALSE;
 utility_operation_status = utility_invoke_service(utility_loop_index,&utility_parameter_value);
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_SYSTEM_READY;
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_THREAD_CREATED);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_THREAD_CREATED);
 *(uint32_t *)(utility_context_base_pointer + -UTILITY_STATUS_FLAG_MASK_8_BIT) = UTILITY_BOOLEAN_FALSE;
 *(int *)(utility_context_base_pointer + -0x68) = utility_context_status_code;
 *(void **)(utility_context_base_pointer + -UTILITY_MEMORY_POINTER_OFFSET_BASE) = &utility_system_reserved_area;
@@ -7499,10 +7499,10 @@ if (((*(uint8_t *)(utility_loop_index + UTILITY_CONTEXT_OFFSET_EXTENDED_HEX) & 1
 utility_parameter_value = UTILITY_BOOLEAN_FALSE;
 utility_operation_status = utility_invoke_service(utility_loop_index,&utility_parameter_value);
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_SYSTEM_READY;
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_THREAD_CREATED);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_THREAD_CREATED);
 *(uint32_t *)(utility_context_base_pointer + -UTILITY_STATUS_FLAG_MASK_8_BIT) = UTILITY_BOOLEAN_FALSE;
 *(int *)(utility_context_base_pointer + -0x68) = utility_context_status_code;
 *(void **)(utility_context_base_pointer + -UTILITY_MEMORY_POINTER_OFFSET_BASE) = &utility_system_reserved_area;
@@ -7559,10 +7559,10 @@ if (utility_loop_index != UTILITY_BOOLEAN_FALSE) {
 utility_parameter_value = UTILITY_BOOLEAN_FALSE;
 utility_operation_status = utility_invoke_service(utility_loop_index,&utility_parameter_value);
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) break;
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_THREAD_CREATED);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_THREAD_CREATED);
 *(uint32_t *)(utility_context_base_pointer + -UTILITY_STATUS_FLAG_MASK_8_BIT) = UTILITY_BOOLEAN_FALSE;
 *(int *)(utility_context_base_pointer + -0x68) = utility_operation_status;
 *(void **)(utility_context_base_pointer + -UTILITY_MEMORY_POINTER_OFFSET_BASE) = &utility_system_reserved_area;
@@ -7756,8 +7756,8 @@ utility_loop_index = utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET;
 utility_context_parameter = utility_stack_primary_context;
 } while (utility_loop_index < utility_stack_thread_config);
 }
-utility_context_data = *(uint64_t *)(*(int64_t *)(utility_context_parameter + UTILITY_POINTER_OFFSET) + 800);
-utility_context_data = (**(code **)*utility_buffer_handle)(utility_context_parameter);
+    utility_context_data = *(uint64_t *)(*(int64_t *)(utility_context_parameter + UTILITY_POINTER_OFFSET) + 800);
+    utility_context_data = (**(code **)*utility_buffer_handle)(utility_context_parameter);
 utility_operation_status = utility_execute_operation_sequence(utility_context_data,utility_context_data,utility_char_buffer_alternative);
 if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
     
@@ -7765,7 +7765,7 @@ if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
 if (utility_char_buffer_alternative[0] != '\0') {
     
 }
-utility_context_data = utility_get_system_state();
+    utility_context_data = utility_get_system_state();
 utility_operation_status = memcmp(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET,utility_context_data,UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
     
@@ -7850,7 +7850,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_DELETE
 utility_network_float_data = (float)((int)utility_network_float_data + 1);
 utility_context_parameter = utility_context_parameter + 1;
 } while ((int)utility_network_float_data < 6);
-utility_context_data = utility_initialize_component(utility_context_parameter + 200);
+    utility_context_data = utility_initialize_component(utility_context_parameter + 200);
 if ((float)(utility_resource_handle / UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) != UTILITY_BOOLEAN_FALSE.0) {
 utility_stack_context_pointer_buffer = &utility_system_reserved_area;
 utility_stack_primary_context_value = utility_stack_extended_context_value;
@@ -8005,46 +8005,46 @@ utility_context_parameter = &utility_system_reserved_area;
 else {
 utility_context_parameter = *(void **)(utility_loop_index + UTILITY_THREAD_SIZE_OFFSET);
 }
-utility_context_data = utility_copy_data(utility_context_base_pointer + 1,utility_context_parameter,UTILITY_MEMORY_POINTER_OFFSET_BASE);
+    utility_context_data = utility_copy_data(utility_context_base_pointer + 1,utility_context_parameter,UTILITY_MEMORY_POINTER_OFFSET_BASE);
 utility_operation_status = utility_initialize_registry(utility_context_data,utility_context_base_pointer + -4);
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_SET_ENVIRONMENT_VARIABLE;
 }
 utility_register_precision = UTILITY_BOOLEAN_FALSE.0;
-utility_context_data = utility_resource_handle + 1;
-utility_context_data = utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET;
+    utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET;
 utility_context_auxiliary_pointer = utility_buffer_handle;
 } while ((int64_t)utility_resource_handle < utility_buffer_handle);
 }
-utility_context_data = *(uint64_t *)(*(int64_t *)(utility_context_index_source + UTILITY_POINTER_OFFSET) + 800);
-utility_context_data = (**(code **)*utility_buffer_handle)(utility_context_parameter);
+    utility_context_data = *(uint64_t *)(*(int64_t *)(utility_context_index_source + UTILITY_POINTER_OFFSET) + 800);
+    utility_context_data = (**(code **)*utility_buffer_handle)(utility_context_parameter);
 utility_operation_status = utility_execute_operation_sequence(utility_context_data,utility_context_data,utility_char_buffer_data);
 if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_xmm0_result;
+    utility_context_data = utility_xmm0_result;
 if (utility_char_buffer_data[0] != '\0') {
     
 }
-utility_context_data = utility_get_system_state();
+    utility_context_data = utility_get_system_state();
 utility_operation_status = memcmp(utility_context_service_handle + UTILITY_THREAD_POINTER_OFFSET,utility_context_data,UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
-utility_context_data = utility_parameter_float;
+    utility_context_data = utility_parameter_float;
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = *(uint64_t *)(utility_context_service_handle + UTILITY_THREAD_POINTER_OFFSET);
-utility_context_data = *(uint64_t *)(utility_context_service_handle + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_THREAD_BUFFER_OFFSET);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_RESOURCE_FLAG_OFFSET);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_THREAD_SIZE_OFFSET);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_RESOURCE_COUNT_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_context_service_handle + UTILITY_THREAD_POINTER_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_context_service_handle + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_RESOURCE_FLAG_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_THREAD_SIZE_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_RESOURCE_COUNT_OFFSET);
 utility_context_base_pointer[-0xe] = &utility_system_reserved_area;
 utility_context_base_pointer[-0xb] = utility_context_data;
 utility_context_base_pointer[-10] = utility_context_data;
 *(float *)(utility_context_base_pointer + -UTILITY_STATUS_INVALID_PARAMETER) = utility_register_precision;
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_RESOURCE_SIZE_OFFSET);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_CONTEXT_TABLE_OFFSET);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + 100);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_RESOURCE_SIZE_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_CONTEXT_TABLE_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + 100);
 *(uint32_t *)(utility_context_base_pointer + -0xc) = utility_parameter_value;
 *(uint32_t *)(utility_context_base_pointer + -9) = utility_context_data;
 *(uint32_t *)((int64_t)utility_context_base_pointer + -0x44) = utility_context_data;
@@ -8055,7 +8055,7 @@ utility_context_data = *(uint32_t *)(utility_context_service_handle + 100);
 *(uint32_t *)(utility_context_base_pointer + -6) = utility_context_data;
 *(uint32_t *)((int64_t)utility_context_base_pointer + -0x2c) = utility_context_data;
 utility_operation_status = utility_initialize_registry(utility_context_data,utility_context_base_pointer + -0xe);
-utility_context_data = utility_float_result;
+    utility_context_data = utility_float_result;
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_SET_ENVIRONMENT_VARIABLE;
 }
 }
@@ -8126,15 +8126,15 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_SET_EN
 utility_network_float_data = (float)((int)utility_network_float_data + 1);
 utility_context_parameter = utility_context_parameter + 1;
 } while ((int)utility_network_float_data < 6);
-utility_context_data = utility_initialize_component(utility_context_auxiliary_pointer + 200);
-utility_context_data = utility_float_result_alpha;
+    utility_context_data = utility_initialize_component(utility_context_auxiliary_pointer + 200);
+    utility_context_data = utility_float_result_alpha;
 if ((float)(utility_resource_handle / UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) != UTILITY_BOOLEAN_FALSE.0) {
 utility_buffer_handle = &utility_system_reserved_area;
 utility_buffer_handle = utility_parameter_value;
 utility_buffer_handle = utility_register_precision;
 utility_stack_float_primary = (float)(utility_resource_handle / UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
 utility_operation_status = utility_initialize_registry(utility_float_result_alpha,&utility_buffer_workspace_area);
-utility_context_data = utility_float_result_beta;
+    utility_context_data = utility_float_result_beta;
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_SET_ENVIRONMENT_VARIABLE;
 }
 if ((*(uint *)(utility_context_auxiliary_pointer + UTILITY_MEMORY_FLAG_OFFSET) >> 1 & 1) != UTILITY_BOOLEAN_FALSE) {
@@ -8156,7 +8156,7 @@ utility_operation_status = utility_initialize_registry(utility_float_result_gamm
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_SET_ENVIRONMENT_VARIABLE;
 }
 output_pointer = utility_context_init(utility_context_auxiliary_pointer);
-utility_context_data = utility_float_result_delta;
+    utility_context_data = utility_float_result_delta;
 if (utility_operation_status == 4) {
     
 }
@@ -8165,7 +8165,7 @@ utility_buffer_handle = utility_parameter_value;
 utility_buffer_handle = utility_register_precision;
 utility_stack_float_primary = utility_register_precision;
 utility_operation_status = utility_initialize_registry(utility_float_result_delta,&utility_buffer_workspace_area);
-utility_context_data = utility_float_result_epsilon;
+    utility_context_data = utility_float_result_epsilon;
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_SET_ENVIRONMENT_VARIABLE;
 }
 if ((*(uint *)(utility_context_auxiliary_pointer + UTILITY_MEMORY_FLAG_OFFSET) >> 3 & 1) != UTILITY_BOOLEAN_FALSE) {
@@ -8264,46 +8264,46 @@ utility_context_parameter = &utility_system_reserved_area;
 else {
 utility_context_parameter = *(void **)(utility_loop_index + UTILITY_THREAD_SIZE_OFFSET);
 }
-utility_context_data = utility_copy_data(utility_context_base_pointer + 1,utility_context_parameter,UTILITY_MEMORY_POINTER_OFFSET_BASE);
+    utility_context_data = utility_copy_data(utility_context_base_pointer + 1,utility_context_parameter,UTILITY_MEMORY_POINTER_OFFSET_BASE);
 utility_operation_status = utility_initialize_registry(utility_context_data,utility_context_base_pointer + -4);
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto GetEnvironmentVariable;
 }
 utility_register_precision = UTILITY_BOOLEAN_FALSE.0;
-utility_context_data = utility_resource_handle + 1;
-utility_context_data = utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET;
+    utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET;
 utility_context_auxiliary_pointer = utility_buffer_handle;
 } while ((int64_t)utility_resource_handle < utility_stack_counter);
 }
-utility_context_data = *(uint64_t *)(*(int64_t *)(utility_context_index_source + UTILITY_POINTER_OFFSET) + 800);
-utility_context_data = (**(code **)*utility_register_r12_value)(utility_register_r12_value);
+    utility_context_data = *(uint64_t *)(*(int64_t *)(utility_context_index_source + UTILITY_POINTER_OFFSET) + 800);
+    utility_context_data = (**(code **)*utility_register_r12_value)(utility_register_r12_value);
 utility_operation_status = utility_execute_operation_sequence(utility_context_data,utility_context_data,utility_char_buffer_data);
 if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_float_result_primary;
+    utility_context_data = utility_float_result_primary;
 if (utility_char_buffer_data[0] != '\0') {
     
 }
-utility_context_data = utility_get_system_state();
+    utility_context_data = utility_get_system_state();
 utility_operation_status = memcmp(utility_context_service_handle + UTILITY_THREAD_POINTER_OFFSET,utility_context_data,UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
-utility_context_data = utility_xmm0_result;
+    utility_context_data = utility_xmm0_result;
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = *(uint64_t *)(utility_context_service_handle + UTILITY_THREAD_POINTER_OFFSET);
-utility_context_data = *(uint64_t *)(utility_context_service_handle + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_THREAD_BUFFER_OFFSET);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_RESOURCE_FLAG_OFFSET);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_THREAD_SIZE_OFFSET);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_RESOURCE_COUNT_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_context_service_handle + UTILITY_THREAD_POINTER_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_context_service_handle + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_RESOURCE_FLAG_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_THREAD_SIZE_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_RESOURCE_COUNT_OFFSET);
 utility_context_base_pointer[-0xe] = &utility_system_reserved_area;
 utility_context_base_pointer[-0xb] = utility_context_data;
 utility_context_base_pointer[-10] = utility_context_data;
 *(float *)(utility_context_base_pointer + -UTILITY_STATUS_INVALID_PARAMETER) = utility_register_precision;
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_RESOURCE_SIZE_OFFSET);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_CONTEXT_TABLE_OFFSET);
-utility_context_data = *(uint32_t *)(utility_context_service_handle + 100);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_RESOURCE_SIZE_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + UTILITY_CONTEXT_TABLE_OFFSET);
+    utility_context_data = *(uint32_t *)(utility_context_service_handle + 100);
 *(uint32_t *)(utility_context_base_pointer + -0xc) = utility_parameter_value;
 *(uint32_t *)(utility_context_base_pointer + -9) = utility_context_data;
 *(uint32_t *)((int64_t)utility_context_base_pointer + -0x44) = utility_context_data;
@@ -8314,7 +8314,7 @@ utility_context_data = *(uint32_t *)(utility_context_service_handle + 100);
 *(uint32_t *)(utility_context_base_pointer + -6) = utility_context_data;
 *(uint32_t *)((int64_t)utility_context_base_pointer + -0x2c) = utility_context_data;
 utility_operation_status = utility_initialize_registry(utility_context_data,utility_context_base_pointer + -0xe);
-utility_context_data = utility_parameter_float;
+    utility_context_data = utility_parameter_float;
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto GetEnvironmentVariable;
 }
 }
@@ -8385,15 +8385,15 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto GetEnvironmentVariab
 utility_network_float_data = (float)((int)utility_network_float_data + 1);
 utility_context_parameter = utility_context_parameter + 1;
 } while ((int)utility_network_float_data < 6);
-utility_context_data = utility_initialize_component(utility_context_auxiliary_pointer + 200);
-utility_context_data = utility_xmm0_precision;
+    utility_context_data = utility_initialize_component(utility_context_auxiliary_pointer + 200);
+    utility_context_data = utility_xmm0_precision;
 if ((float)(utility_resource_handle / UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) != UTILITY_BOOLEAN_FALSE.0) {
 utility_buffer_handle = &utility_system_reserved_area;
 utility_buffer_handle = utility_parameter_value;
 utility_buffer_handle = utility_register_precision;
 utility_stack_float_primary = (float)(utility_resource_handle / UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
 utility_operation_status = utility_initialize_registry(utility_xmm0_precision,&utility_buffer_workspace_area);
-utility_context_data = utility_float_result_alpha;
+    utility_context_data = utility_float_result_alpha;
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto GetEnvironmentVariable;
 }
 if ((*(uint *)(utility_context_auxiliary_pointer + UTILITY_MEMORY_FLAG_OFFSET) >> 1 & 1) != UTILITY_BOOLEAN_FALSE) {
@@ -8415,7 +8415,7 @@ utility_operation_status = utility_initialize_registry(utility_float_result_beta
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto GetEnvironmentVariable;
 }
 output_pointer = utility_context_init(utility_context_auxiliary_pointer);
-utility_context_data = utility_float_result_gamma;
+    utility_context_data = utility_float_result_gamma;
 if (utility_operation_status == 4) {
     
 }
@@ -8424,7 +8424,7 @@ utility_buffer_handle = utility_parameter_value;
 utility_buffer_handle = utility_register_precision;
 utility_stack_float_primary = utility_register_precision;
 utility_operation_status = utility_initialize_registry(utility_float_result_gamma,&utility_buffer_workspace_area);
-utility_context_data = utility_float_result_delta;
+    utility_context_data = utility_float_result_delta;
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto GetEnvironmentVariable;
 }
 if ((*(uint *)(utility_context_auxiliary_pointer + UTILITY_MEMORY_FLAG_OFFSET) >> 3 & 1) != UTILITY_BOOLEAN_FALSE) {
@@ -8524,15 +8524,15 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_HANDLE
 utility_network_float_data = (float)((int)utility_network_float_data + 1);
 utility_context_parameter = utility_context_parameter + 1;
 } while ((int)utility_network_float_data < 6);
-utility_context_data = utility_initialize_component(utility_context_auxiliary_pointer + 200);
-utility_context_data = utility_xmm0_result;
+    utility_context_data = utility_initialize_component(utility_context_auxiliary_pointer + 200);
+    utility_context_data = utility_xmm0_result;
 if ((float)(utility_resource_handle / UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) != UTILITY_BOOLEAN_FALSE.0) {
 utility_buffer_handle = &utility_system_reserved_area;
 utility_buffer_handle = utility_parameter_value;
 utility_buffer_handle = utility_register_precision;
 utility_stack_float_primary = (float)(utility_resource_handle / UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
 utility_operation_status = utility_initialize_registry(utility_xmm0_result,&utility_buffer_workspace_area);
-utility_context_data = utility_parameter_float;
+    utility_context_data = utility_parameter_float;
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_HANDLER_INITIALIZED;
 }
 if ((*(uint *)(utility_context_auxiliary_pointer + UTILITY_MEMORY_FLAG_OFFSET) >> 1 & 1) != UTILITY_BOOLEAN_FALSE) {
@@ -8554,7 +8554,7 @@ utility_operation_status = utility_initialize_registry(utility_float_result,&uti
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_HANDLER_INITIALIZED;
 }
 output_pointer = utility_context_init();
-utility_context_data = utility_xmm0_precision;
+    utility_context_data = utility_xmm0_precision;
 if (utility_operation_status == 4) {
     
 }
@@ -8563,7 +8563,7 @@ utility_buffer_handle = utility_parameter_value;
 utility_buffer_handle = utility_register_precision;
 utility_stack_float_primary = utility_register_precision;
 utility_operation_status = utility_initialize_registry(utility_xmm0_precision,&utility_buffer_workspace_area);
-utility_context_data = utility_float_result_alpha;
+    utility_context_data = utility_float_result_alpha;
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_HANDLER_INITIALIZED;
 }
 if ((*(uint *)(utility_context_auxiliary_pointer + UTILITY_MEMORY_FLAG_OFFSET) >> 3 & 1) != UTILITY_BOOLEAN_FALSE) {
@@ -8708,10 +8708,10 @@ if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
 utility_context_temp_value = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
-utility_context_data = (**(code **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))(utility_context_parameter,&utility_system_reserved_area);
+    utility_context_data = (**(code **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))(utility_context_parameter,&utility_system_reserved_area);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_QUATERNARY;
-utility_context_data = InitializePerformanceCounter(utility_context_parameter,&utility_system_reserved_area,2,2,UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_QUATERNARY;
+    utility_context_data = InitializePerformanceCounter(utility_context_parameter,&utility_system_reserved_area,2,2,UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
 if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 (utility_context_data = InitializePerformanceCounter(utility_context_parameter,&utility_system_reserved_area,*(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY6bc)),
 (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
@@ -8721,11 +8721,11 @@ if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 (utility_context_data = InitializePerformanceCounter(utility_context_parameter,&utility_system_reserved_area,*(uint32_t *)(utility_loop_index + 0x6d0),
 *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY93c),*(uint32_t *)(utility_loop_index + 0x6d4)),
 (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY668);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY624);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY620);
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY61c);
-utility_context_data = InitializePerformanceCounter(utility_context_parameter,&utility_system_reserved_area,*(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY60c),
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY668);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY624);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY620);
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY61c);
+    utility_context_data = InitializePerformanceCounter(utility_context_parameter,&utility_system_reserved_area,*(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY60c),
 *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY610),*(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY614),
 *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY618),utility_context_data,utility_context_data,utility_context_data,utility_context_data);
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
@@ -8734,13 +8734,13 @@ if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY644),
 *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY64c),utility_context_data,utility_context_data,utility_context_data,utility_context_data),
 (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY660);
-utility_context_data = InitializePerformanceCounter(utility_context_parameter,&utility_system_reserved_area,(double)*(float *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY650),
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY660);
+    utility_context_data = InitializePerformanceCounter(utility_context_parameter,&utility_system_reserved_area,(double)*(float *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY650),
 *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY654),*(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY658),
 *(uint32_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY65c),utility_context_data,utility_context_data,utility_context_data,utility_context_data);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
-utility_context_data = InitializePerformanceCounter(utility_context_parameter,&utility_system_reserved_area,*(uint32_t *)(utility_loop_index + 4),
+    utility_context_data = *(uint32_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = InitializePerformanceCounter(utility_context_parameter,&utility_system_reserved_area,*(uint32_t *)(utility_loop_index + 4),
 *(uint32_t *)(utility_loop_index + UTILITY_POINTER_OFFSET),*(uint32_t *)(utility_loop_index + UTILITY_BUFFER_ELEMENT_SIZE),utility_context_data,
 utility_context_data,utility_context_data,utility_context_data,utility_context_data);
 if ((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
@@ -8773,7 +8773,7 @@ if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
 utility_context_temp_value = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
-utility_context_data = (**(code **)(*utility_resource_handle + UTILITY_POINTER_OFFSET))();
+    utility_context_data = (**(code **)(*utility_resource_handle + UTILITY_POINTER_OFFSET))();
 if ((((((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = InitializePerformanceCounter(), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
 (utility_context_data = InitializePerformanceCounter(), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
 ((utility_context_data = InitializePerformanceCounter(), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE && (utility_context_data = InitializePerformanceCounter(), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)))
@@ -8907,7 +8907,7 @@ utility_stack_buffer_array_handle = &utility_system_reserved_area;
 utility_network_float_data = utility_calculate_network_float_value(utility_context_parameter,0);
 utility_context_parameter = (int64_t *)(utility_loop_index + 0xe0 + (int64_t)utility_context_parameter);
 utility_loop_index = *utility_buffer_handle;
-utility_context_data = utility_context_data[1];
+    utility_context_data = utility_context_data[1];
 utility_stack_index_value = (uint)utility_loop_index;
 utility_stack_buffer_array_offset = (uint32_t)((uint64_t)utility_loop_index >> UTILITY_THREAD_DATA_OFFSET);
 utility_stack_resource_id = (uint32_t)utility_context_data;
@@ -8980,7 +8980,7 @@ utility_operation_status = utility_allocate_memory(*(uint64_t *)(utility_context
 if (((utility_operation_status != UTILITY_BOOLEAN_FALSE) || (utility_operation_status = utility_memory_manager(utility_stack_buffer_array_size[0],&utility_stack_long_primary,0), utility_operation_status != UTILITY_BOOLEAN_FALSE)
 ) || (utility_operation_status = (**(code **)(*utility_buffer_handle + UTILITY_THREAD_HANDLE_OFFSET))(utility_context_parameter), utility_operation_status != UTILITY_BOOLEAN_FALSE))
 goto UTILITY_LABEL_REGISTRY_DONE;
-utility_context_data = (uint64_t)(utility_stack_long_primary * 48000) /
+    utility_context_data = (uint64_t)(utility_stack_long_primary * 48000) /
 (uint64_t)*(uint *)((int64_t)utility_context_parameter + UTILITY_STATUS_THREAD_CREATED);
 utility_loop_index = utility_context_data[2];
 pointer_340 = (int64_t *)&utility_system_reserved_area;
@@ -9005,7 +9005,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_REGIST
 *(uint8_t *)(utility_context_parameter + 4) = UTILITY_BOOLEAN_FALSE;
 }
 }
-utility_context_data = (int)utility_context_parameter + 1;
+    utility_context_data = (int)utility_context_parameter + 1;
 utility_context_parameter = (int64_t *)(uint64_t)utility_context_data;
 } while ((int)utility_resource_handle < utility_operation_status);
 }
@@ -9137,7 +9137,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 return;
 }
 }
-utility_context_data = (int)*(uint *)(utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)(utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET) >> UTILITY_STATUS_FLAG_F;
 if (((int)((*(uint *)(utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET) ^ utility_context_data) - utility_context_data) < utility_operation_status) &&
 (utility_operation_status = utility_context_acquire(utility_context_parameter + UTILITY_THREAD_CONFIG_OFFSET,utility_operation_status), utility_operation_status != UTILITY_BOOLEAN_FALSE)) {
 return;
@@ -9203,7 +9203,7 @@ if (utility_loop_index != UTILITY_BOOLEAN_FALSE) {
 utility_stack_small_value = utility_context_temp_value;
 }
 utility_stack_medium_buffer = &utility_system_reserved_area;
-utility_context_data = utility_initialize_registry(utility_context_parameter,&utility_stack_medium_buffer);
+    utility_context_data = utility_initialize_registry(utility_context_parameter,&utility_stack_medium_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -9289,10 +9289,10 @@ utility_context_parameter = utility_context_parameter + 2;
 return UTILITY_STATUS_RESOURCE_NOT_FOUND;
 }
 UTILITY_LABEL_BUFFER_READY:
-utility_context_data = utility_context_data[1] & UTILITY_FLAG_MASK_WORDff;
+    utility_context_data = utility_context_data[1] & UTILITY_FLAG_MASK_WORDff;
 if (((char)(utility_context_data[1] >> UTILITY_THREAD_CONTEXT_OFFSET) == '\0') && ((int)utility_resource_handle < (int)utility_context_parameter[3])) {
 utility_context_parameter = (uint64_t *)(utility_context_data[2] + (uint64_t)utility_resource_handle * UTILITY_THREAD_HANDLE_OFFSET);
-utility_context_data = utility_context_data[1];
+    utility_context_data = utility_context_data[1];
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_data[1] = utility_context_data;
 return 0;
@@ -9358,7 +9358,7 @@ if (utility_operation_status < 0) {
 }
 return UTILITY_STATUS_RESOURCE_NOT_FOUND;
 }
-utility_context_data = utility_execute_service_operation(utility_context_parameter,utility_operation_status,0,utility_context_parameter,utility_context_parameter,utility_context_parameter);
+    utility_context_data = utility_execute_service_operation(utility_context_parameter,utility_operation_status,0,utility_context_parameter,utility_context_parameter,utility_context_parameter);
 return utility_resource_id;
 }
 utility_operation_status = utility_operation_status + -1;
@@ -9411,9 +9411,9 @@ utility_context_parameter[3] = utility_context_temp_value;
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
-utility_context_data = *(uint3 *)((int64_t)utility_context_parameter * 3 + utility_context_parameter[6]);
+    utility_context_data = *(uint3 *)((int64_t)utility_context_parameter * 3 + utility_context_parameter[6]);
 while (utility_context_data = (uint)utility_context_data, utility_resource_handle != UTILITY_FLAG_MASK_WORDff) {
-utility_context_data = *(uint *)(*utility_buffer_handle + (uint64_t)utility_resource_handle * 8);
+    utility_context_data = *(uint *)(*utility_buffer_handle + (uint64_t)utility_resource_handle * 8);
 if ((utility_resource_handle & UTILITY_FLAG_MASK_WORDff) != UTILITY_FLAG_MASK_WORDff) {
 utility_loop_index = (uint64_t)(utility_resource_handle & UTILITY_FLAG_MASK_WORDff) + utility_context_parameter[4];
 utility_operation_status = utility_validate_parameter(utility_loop_index);
@@ -9432,21 +9432,21 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_context_parameter = utility_context_parameter + (int)utility_context_data;
-utility_context_data = utility_resource_handle + utility_operation_status;
+    utility_context_data = utility_resource_handle + utility_operation_status;
 do {
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 utility_context_parameter = utility_context_parameter + -1;
 *utility_buffer_handle = utility_context_data;
 utility_context_parameter = utility_context_parameter + 1;
 utility_operation_status = utility_operation_status + -1;
 } while (utility_operation_status != UTILITY_BOOLEAN_FALSE);
 }
-utility_context_data = utility_resource_handle & (int)(utility_resource_handle - utility_context_parameter) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = utility_resource_handle & (int)(utility_resource_handle - utility_context_parameter) >> UTILITY_STATUS_FLAG_F;
 }
 }
 utility_operation_status = utility_operation_status + utility_operation_status;
 }
-utility_context_data = *(uint3 *)((uint64_t)utility_resource_handle * 3 + utility_context_parameter[8]);
+    utility_context_data = *(uint3 *)((uint64_t)utility_resource_handle * 3 + utility_context_parameter[8]);
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (utility_context_parameter != UTILITY_BOOLEAN_FALSE) {
@@ -9461,7 +9461,7 @@ if (utility_context_parameter < utility_context_parameter) {
     
 }
 do {
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_parameter = utility_context_parameter + 1;
 *utility_buffer_handle = utility_context_data;
@@ -9478,7 +9478,7 @@ if (utility_context_parameter < utility_context_parameter) {
     
 }
 do {
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_parameter = utility_context_parameter + 1;
 *utility_buffer_handle = utility_context_data;
@@ -9490,7 +9490,7 @@ if (utility_context_parameter < utility_context_parameter) {
     
 }
 do {
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_parameter = utility_context_parameter + 1;
 *utility_buffer_handle = utility_context_data;
@@ -9498,7 +9498,7 @@ utility_context_parameter = utility_context_parameter + -1;
 } while (utility_context_parameter < utility_context_parameter);
 }
 utility_context_parameter[(int64_t)utility_context_parameter + -1] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_falsex41;
+    utility_context_data = utility_falsex41;
 }
 }
 if UTILITY_NULL_PTR) {
@@ -9545,9 +9545,9 @@ utility_context_parameter[3] = utility_context_temp_value;
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 utility_operation_status = (int)utility_context_base_pointer;
-utility_context_data = *(uint3 *)((int64_t)utility_context_parameter * 3 + utility_context_auxiliary_pointer[6]);
+    utility_context_data = *(uint3 *)((int64_t)utility_context_parameter * 3 + utility_context_auxiliary_pointer[6]);
 while (utility_context_data = (uint)utility_context_data, utility_resource_handle != UTILITY_FLAG_MASK_WORDff) {
-utility_context_data = *(uint *)(*utility_context_auxiliary_pointer + (uint64_t)utility_resource_handle * 8);
+    utility_context_data = *(uint *)(*utility_context_auxiliary_pointer + (uint64_t)utility_resource_handle * 8);
 if ((utility_resource_handle & UTILITY_FLAG_MASK_WORDff) != UTILITY_FLAG_MASK_WORDff) {
 utility_loop_index = (uint64_t)(utility_resource_handle & UTILITY_FLAG_MASK_WORDff) + utility_context_auxiliary_pointer[4];
 utility_operation_status = utility_validate_parameter(utility_loop_index);
@@ -9566,21 +9566,21 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_context_parameter = utility_context_index_source + (int)utility_context_data;
-utility_context_data = utility_resource_handle + utility_operation_status;
+    utility_context_data = utility_resource_handle + utility_operation_status;
 do {
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 utility_context_parameter = utility_context_parameter + -1;
 *utility_buffer_handle = utility_context_data;
 utility_context_parameter = utility_context_parameter + 1;
 utility_operation_status = utility_operation_status + -1;
 } while (utility_operation_status != UTILITY_BOOLEAN_FALSE);
 }
-utility_context_data = utility_resource_handle & (int)(utility_resource_handle - utility_operation_status) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = utility_resource_handle & (int)(utility_resource_handle - utility_operation_status) >> UTILITY_STATUS_FLAG_F;
 }
 }
 utility_operation_status = utility_operation_status + utility_operation_status;
 }
-utility_context_data = *(uint3 *)((uint64_t)utility_resource_handle * 3 + utility_context_auxiliary_pointer[8]);
+    utility_context_data = *(uint3 *)((uint64_t)utility_resource_handle * 3 + utility_context_auxiliary_pointer[8]);
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
@@ -9595,7 +9595,7 @@ if (utility_context_index_source < utility_context_parameter) {
     
 }
 do {
-utility_context_data = *utility_context_index_source;
+    utility_context_data = *utility_context_index_source;
 *utility_context_index_source = *utility_buffer_handle;
 utility_context_index_source = utility_context_index_source + 1;
 *utility_buffer_handle = utility_context_data;
@@ -9613,7 +9613,7 @@ if (utility_context_index_source < utility_context_parameter) {
     
 }
 do {
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_parameter = utility_context_parameter + 1;
 *utility_buffer_handle = utility_context_data;
@@ -9625,7 +9625,7 @@ if (utility_context_parameter < utility_context_parameter) {
     
 }
 do {
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_parameter = utility_context_parameter + 1;
 *utility_buffer_handle = utility_context_data;
@@ -9633,7 +9633,7 @@ utility_context_parameter = utility_context_parameter + -1;
 } while (utility_context_parameter < utility_context_parameter);
 }
 utility_context_index_source[utility_context_base_pointer + -1] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_falsex41;
+    utility_context_data = utility_falsex41;
 }
 }
 if UTILITY_NULL_PTR) {
@@ -9683,7 +9683,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = utility_context_index_source + (int)utility_context_data_index;
 utility_context_data_index = utility_context_data_index + utility_operation_status;
 do {
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 utility_context_parameter = utility_context_parameter + -1;
 *utility_buffer_handle = utility_context_data;
 utility_context_parameter = utility_context_parameter + 1;
@@ -9695,7 +9695,7 @@ utility_context_data_index = utility_context_data_index & (int)(utility_context_
 }
 utility_register_r15d_value = utility_register_r15d_value + utility_operation_status;
 }
-utility_context_data = (uint)*(uint3 *)((utility_context_parameter & UTILITY_MAX_UINT32) * 3 + utility_context_auxiliary_pointer[8]);
+    utility_context_data = (uint)*(uint3 *)((utility_context_parameter & UTILITY_MAX_UINT32) * 3 + utility_context_auxiliary_pointer[8]);
 utility_context_parameter = (uint64_t)utility_context_data;
 } while (utility_resource_handle != UTILITY_FLAG_MASK_WORDff);
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
@@ -9710,7 +9710,7 @@ if (utility_context_index_source < utility_context_parameter) {
     
 }
 do {
-utility_context_data = *utility_context_index_source;
+    utility_context_data = *utility_context_index_source;
 *utility_context_index_source = *utility_buffer_handle;
 utility_context_index_source = utility_context_index_source + 1;
 *utility_buffer_handle = utility_context_data;
@@ -9727,7 +9727,7 @@ if (utility_context_index_source < utility_context_parameter) {
     
 }
 do {
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_parameter = utility_context_parameter + 1;
 *utility_buffer_handle = utility_context_data;
@@ -9739,7 +9739,7 @@ if (utility_context_parameter < utility_context_parameter) {
     
 }
 do {
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_parameter = utility_context_parameter + 1;
 *utility_buffer_handle = utility_context_data;
@@ -9798,7 +9798,7 @@ if (utility_context_index_source < utility_context_parameter) {
     
 }
 do {
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_parameter = utility_context_parameter + 1;
 *utility_buffer_handle = utility_context_data;
@@ -9810,7 +9810,7 @@ if (utility_context_parameter < utility_context_parameter) {
     
 }
 do {
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_parameter = utility_context_parameter + 1;
 *utility_buffer_handle = utility_context_data;
@@ -9938,7 +9938,7 @@ if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_stack_buffer[0] = *utility_buffer_handle;
-utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))(*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))(*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 return utility_resource_id;
 }
 uint64_t utility_environment_handle_manager(int64_t *utility_buffer_handle,uint32_t *utility_buffer_handle)
@@ -9949,7 +9949,7 @@ if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_stack_buffer[0] = *utility_buffer_handle;
-utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))(*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))(*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 return utility_resource_id;
 }
 uint64_t utility_environment_resource_handler(uint64_t *utility_buffer_handle,int64_t utility_context_parameter)
@@ -9959,10 +9959,10 @@ uint64_t utility_resource_id;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = *utility_buffer_handle;
-utility_context_data = get_file_time(utility_context_data);
+    utility_context_data = *utility_buffer_handle;
+    utility_context_data = get_file_time(utility_context_data);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(utility_context_data,utility_context_parameter + 4);
+    utility_context_data = get_file_time(utility_context_data,utility_context_parameter + 4);
 }
 return utility_resource_id;
 }
@@ -9979,11 +9979,11 @@ return UTILITY_STATUS_THREAD_CREATED;
 utility_stack_buffer[0] = *utility_buffer_handle;
 utility_loop_index = *utility_buffer_handle;
 utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET);
-utility_context_data = (**(code **)*utility_buffer_handle)(utility_context_parameter,utility_stack_buffer,4);
+    utility_context_data = (**(code **)*utility_buffer_handle)(utility_context_parameter,utility_stack_buffer,4);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET);
 utility_stack_buffer[0] = utility_context_data[1];
-utility_context_data = (**(code **)*utility_buffer_handle)(utility_context_parameter,utility_stack_buffer,4);
+    utility_context_data = (**(code **)*utility_buffer_handle)(utility_context_parameter,utility_stack_buffer,4);
 }
 return utility_resource_id;
 }
@@ -10088,18 +10088,18 @@ uint64_t utility_resource_id;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = *utility_buffer_handle;
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter,4);
+    utility_context_data = *utility_buffer_handle;
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter,4);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + 4,2);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + 4,2);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + 6,2);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + 6,2);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + UTILITY_POINTER_OFFSET,8);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + UTILITY_POINTER_OFFSET,8);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(utility_context_data,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = get_file_time(utility_context_data,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(utility_context_data,utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
+    utility_context_data = get_file_time(utility_context_data,utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
 }
 }
 }
@@ -10119,23 +10119,23 @@ utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_buffer[0] + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_CONTEXT_CREATED;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,4,0);
 }
 UTILITY_LABEL_CONTEXT_CREATED:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
@@ -10145,7 +10145,7 @@ if (2 < utility_stack_buffer[0]) {
 }
 return UTILITY_STATUS_INVALID_PARAMETER;
 }
-utility_context_data = utility_handle_parameter_validation(utility_context_parameter,utility_context_parameter + 1,4);
+    utility_context_data = utility_handle_parameter_validation(utility_context_parameter,utility_context_parameter + 1,4);
 }
 return utility_resource_id;
 }
@@ -10166,16 +10166,16 @@ if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_buffer_handle = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_buffer_handle + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_CONTEXT_CREATED;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,4,0);
 }
 UTILITY_LABEL_CONTEXT_CREATED:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
@@ -10185,7 +10185,7 @@ if (2 < utility_buffer_handle) {
 }
 return UTILITY_STATUS_INVALID_PARAMETER;
 }
-utility_context_data = utility_handle_parameter_validation(utility_context_parameter,utility_input_context + 1,4);
+    utility_context_data = utility_handle_parameter_validation(utility_context_parameter,utility_input_context + 1,4);
 }
 return utility_resource_id;
 }
@@ -10206,11 +10206,11 @@ return UTILITY_STATUS_THREAD_CREATED;
 utility_stack_buffer[0] = *utility_buffer_handle;
 utility_loop_index = *utility_buffer_handle;
 utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET);
-utility_context_data = (**(code **)*utility_buffer_handle)(utility_context_parameter,utility_stack_buffer,4);
+    utility_context_data = (**(code **)*utility_buffer_handle)(utility_context_parameter,utility_stack_buffer,4);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stack_buffer[0] = utility_context_data[1];
 utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET);
-utility_context_data = (**(code **)*utility_buffer_handle)(utility_context_parameter,utility_stack_buffer,4);
+    utility_context_data = (**(code **)*utility_buffer_handle)(utility_context_parameter,utility_stack_buffer,4);
 }
 return utility_resource_id;
 }
@@ -10221,14 +10221,14 @@ uint64_t utility_resource_id;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = *utility_buffer_handle;
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter,4);
+    utility_context_data = *utility_buffer_handle;
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter,4);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + 4,2);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + 4,2);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + 6,2);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + 6,2);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + UTILITY_POINTER_OFFSET,8);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + UTILITY_POINTER_OFFSET,8);
 }
 }
 }
@@ -10252,23 +10252,23 @@ if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_buffer[0] + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_RESOURCE_INITIALIZED;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer_array_int_data,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer_array_int_data,1,4,0);
 }
 UTILITY_LABEL_RESOURCE_INITIALIZED:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_operation_finalize(utility_context_parameter,utility_stack_buffer_array_int_data[0]);
 utility_context_parameter = (uint *)*utility_buffer_handle;
 while (0 < utility_stack_buffer_array_int_data[0]) {
-utility_context_data = utility_handle_parameter_validation(utility_context_parameter,utility_context_parameter,4);
+    utility_context_data = utility_handle_parameter_validation(utility_context_parameter,utility_context_parameter,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -10285,7 +10285,7 @@ break;
 default:
 goto UTILITY_LABEL_HANDLER_REGISTERED;
 case UTILITY_THREAD_HANDLE_OFFSET:
-utility_context_data = get_file_time(utility_context_parameter,utility_context_parameter + 1);
+    utility_context_data = get_file_time(utility_context_parameter,utility_context_parameter + 1);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -10293,7 +10293,7 @@ utility_loop_index = 8;
 utility_stack_buffer_array_int_data[0] = utility_stack_buffer_array_int_data[0] + -8;
 break;
 case UTILITY_STATUS_ENABLED_FLAG_PRIMARY:
-utility_context_data = GetLocalTime(utility_context_parameter,utility_context_parameter + 1);
+    utility_context_data = GetLocalTime(utility_context_parameter,utility_context_parameter + 1);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -10301,11 +10301,11 @@ utility_loop_index = UTILITY_STATUS_ENABLED_FLAG_QUATERNARY;
 utility_stack_buffer_array_int_data[0] = utility_stack_buffer_array_int_data[0] + -UTILITY_STATUS_ENABLED_FLAG_QUATERNARY;
 break;
 case UTILITY_THREAD_DATA_OFFSET:
-utility_context_data = get_file_time(utility_context_parameter,utility_context_parameter + 1);
+    utility_context_data = get_file_time(utility_context_parameter,utility_context_parameter + 1);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = get_file_time(utility_context_parameter,utility_context_parameter + 2);
+    utility_context_data = get_file_time(utility_context_parameter,utility_context_parameter + 2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -10377,16 +10377,16 @@ if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_buffer[0] + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_SYSTEM_INITIALIZED;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer_array_int_data,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer_array_int_data,1,4,0);
 }
 UTILITY_LABEL_SYSTEM_INITIALIZED:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
@@ -10395,13 +10395,13 @@ if (utility_stack_buffer_array_int_data[0] < 0) {
 }
 return UTILITY_STATUS_INVALID_PARAMETER;
 }
-utility_context_data = utility_resource_process(utility_context_parameter,utility_stack_buffer_array_int_data[0]);
+    utility_context_data = utility_resource_process(utility_context_parameter,utility_stack_buffer_array_int_data[0]);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (0 < utility_stack_buffer_array_int_data[0]) {
     
 }
 do {
-utility_context_data = GetSystemTime(utility_context_parameter,*utility_buffer_handle + (int64_t)utility_operation_status * UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
+    utility_context_data = GetSystemTime(utility_context_parameter,*utility_buffer_handle + (int64_t)utility_operation_status * UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -10471,7 +10471,7 @@ utility_system_network_initializer(utility_context_parameter);
 }
 else {
 utility_operation_status = utility_stack_buffer_array_int_data[0] + 1;
-utility_context_data = (int)*(uint *)((int64_t)utility_context_parameter + UTILITY_BUFFER_ELEMENT_SIZE) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)((int64_t)utility_context_parameter + UTILITY_BUFFER_ELEMENT_SIZE) >> UTILITY_STATUS_FLAG_F;
 if (((int)((*(uint *)((int64_t)utility_context_parameter + UTILITY_BUFFER_ELEMENT_SIZE) ^ utility_context_data) - utility_context_data) < utility_operation_status) &&
 (utility_context_data = utility_context_acquire(utility_context_parameter,utility_operation_status), (int)utility_resource_handle != UTILITY_BOOLEAN_FALSE)) {
 return utility_resource_id;
@@ -10483,7 +10483,7 @@ if (utility_operation_status < utility_operation_status) {
 memset((int64_t)utility_operation_status + *utility_buffer_handle,0,(int64_t)(utility_operation_status - utility_operation_status));
 }
 *(int *)(utility_context_parameter + 1) = utility_operation_status;
-utility_context_data = utility_handle_parameter_validation(utility_context_parameter,*utility_buffer_handle,utility_loop_index);
+    utility_context_data = utility_handle_parameter_validation(utility_context_parameter,*utility_buffer_handle,utility_loop_index);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -10506,7 +10506,7 @@ utility_system_network_initializer();
 }
 else {
 utility_operation_status = utility_buffer_handle + 1;
-utility_context_data = (int)*(uint *)((int64_t)utility_resource_handle + UTILITY_BUFFER_ELEMENT_SIZE) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)((int64_t)utility_resource_handle + UTILITY_BUFFER_ELEMENT_SIZE) >> UTILITY_STATUS_FLAG_F;
 if (((int)((*(uint *)((int64_t)utility_resource_handle + UTILITY_BUFFER_ELEMENT_SIZE) ^ utility_context_data) - utility_context_data) < utility_operation_status) &&
 (utility_context_data = utility_context_acquire(), (int)utility_resource_handle != UTILITY_BOOLEAN_FALSE)) {
 return utility_resource_id;
@@ -10518,7 +10518,7 @@ if (utility_operation_status < utility_operation_status) {
 memset((int64_t)utility_operation_status + *utility_resource_handle,0,(int64_t)(utility_operation_status - utility_operation_status));
 }
 *(int *)(utility_resource_handle + 1) = utility_operation_status;
-utility_context_data = utility_handle_parameter_validation();
+    utility_context_data = utility_handle_parameter_validation();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -10550,7 +10550,7 @@ if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_stack_buffer_array_int_data[0] = *(int *)(utility_loop_index + utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_buffer_array_int_data,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -10600,8 +10600,8 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
 } while ((int)utility_resource_handle < utility_operation_status);
 }
 utility_operation_status = utility_context_parameter[0xe];
@@ -10611,7 +10611,7 @@ utility_operation_status = (**(code **)**(uint64_t **)(utility_context_parameter
 if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0 < utility_operation_status) {
     
 }
@@ -10623,8 +10623,8 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
 } while ((int)utility_resource_handle < utility_operation_status);
 }
 utility_operation_status = utility_context_parameter[UTILITY_STATUS_ENABLED_FLAG_2];
@@ -10634,7 +10634,7 @@ utility_operation_status = (**(code **)**(uint64_t **)(utility_context_parameter
 if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0 < utility_operation_status) {
     
 }
@@ -10648,7 +10648,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while ((int64_t)utility_resource_handle < (int64_t)utility_operation_status);
 }
 utility_operation_status = utility_context_parameter[UTILITY_STATUS_ENABLED_FLAG6];
@@ -10658,8 +10658,8 @@ utility_operation_status = (**(code **)**(uint64_t **)(utility_context_parameter
 if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_data;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0 < utility_operation_status) {
     
 }
@@ -10671,15 +10671,15 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = *(uint *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 if (utility_resource_handle < UTILITY_MEMORY_POINTER_OFFSET_1000) {
     
 }
 utility_parameter_value = utility_concatenate_int64_with_int16(utility_parameter_value.primary,(short)utility_context_data);
-utility_context_data = 2;
+    utility_context_data = 2;
 }
 else {
-utility_context_data = 4;
+    utility_context_data = 4;
 utility_parameter_value = utility_combine_values(utility_parameter_value.component_x,
 (utility_resource_handle & UTILITY_FLAG_MASK_0xFFFFC000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | utility_resource_handle & UTILITY_STATUS_FLAG_MASK_SMALL);
 }
@@ -10696,8 +10696,8 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = utility_resource_handle + 1;
-utility_context_data = utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET;
+    utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET;
 } while ((int64_t)utility_resource_handle < (int64_t)utility_operation_status);
 }
 utility_operation_status = utility_operation_complete(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10732,7 +10732,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while ((int64_t)utility_resource_handle < (int64_t)utility_operation_status);
 }
 utility_parameter_value = utility_combine_values(utility_parameter_value.component_x,utility_context_parameter[UTILITY_THREAD_DATA_OFFSET]);
@@ -10787,9 +10787,9 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
-utility_context_data = utility_xmm0_result;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_xmm0_result;
 } while ((int)utility_resource_handle < utility_operation_status);
 }
 utility_context_parameter = *(uint64_t **)(utility_resource_handle + UTILITY_POINTER_OFFSET);
@@ -10799,8 +10799,8 @@ utility_operation_status = (**(code **)*utility_buffer_handle)(utility_context_p
 if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_data;
-utility_context_data = utility_parameter_float;
+    utility_context_data = utility_context_data;
+    utility_context_data = utility_parameter_float;
 if (0 < utility_operation_status) {
     
 }
@@ -10812,9 +10812,9 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
-utility_context_data = utility_float_result;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_float_result;
 } while ((int)utility_resource_handle < utility_operation_status);
 }
 utility_context_parameter = *(uint64_t **)(utility_resource_handle + UTILITY_POINTER_OFFSET);
@@ -10824,7 +10824,7 @@ utility_operation_status = (**(code **)*utility_buffer_handle)(utility_context_p
 if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0 < utility_operation_status) {
     
 }
@@ -10838,7 +10838,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while ((int64_t)utility_resource_handle < (int64_t)utility_operation_status);
 }
 utility_context_parameter = *(uint64_t **)(utility_resource_handle + UTILITY_POINTER_OFFSET);
@@ -10848,9 +10848,9 @@ utility_operation_status = (**(code **)*utility_buffer_handle)(utility_context_p
 if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_data;
-utility_context_data = utility_context_data;
-utility_context_data = utility_xmm0_precision;
+    utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
+    utility_context_data = utility_xmm0_precision;
 if (0 < utility_operation_status) {
     
 }
@@ -10862,16 +10862,16 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = *(uint *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 utility_context_parameter = *(uint64_t **)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 if (utility_resource_handle < UTILITY_MEMORY_POINTER_OFFSET_1000) {
     
 }
 *(short *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (short)utility_context_data;
-utility_context_data = 2;
+    utility_context_data = 2;
 }
 else {
-utility_context_data = 4;
+    utility_context_data = 4;
 *(uint *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (utility_resource_handle & UTILITY_FLAG_MASK_0xFFFFC000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | utility_resource_handle & UTILITY_STATUS_FLAG_MASK_SMALL;
 }
 utility_operation_status = (**(code **)*utility_buffer_handle)(utility_context_parameter,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,utility_context_data);
@@ -10886,9 +10886,9 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = utility_resource_handle + 1;
-utility_context_data = utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET;
-utility_context_data = utility_float_result_beta;
+    utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + UTILITY_THREAD_CONTEXT_OFFSET;
+    utility_context_data = utility_float_result_beta;
 } while ((int64_t)utility_resource_handle < (int64_t)utility_operation_status);
 }
 utility_operation_status = utility_operation_complete(utility_context_data,utility_context_auxiliary_pointer + UTILITY_CONTEXT_TABLE_OFFSET);
@@ -10923,7 +10923,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while ((int64_t)utility_resource_handle < (int64_t)utility_operation_status);
 }
 utility_context_parameter = *(uint64_t **)(utility_resource_handle + UTILITY_POINTER_OFFSET);
@@ -10970,16 +10970,16 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = *(uint *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 utility_context_parameter = *(uint64_t **)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 if (utility_resource_handle < UTILITY_MEMORY_POINTER_OFFSET_1000) {
     
 }
 *(short *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (short)utility_context_data;
-utility_context_data = 2;
+    utility_context_data = 2;
 }
 else {
-utility_context_data = 4;
+    utility_context_data = 4;
 *(uint *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (utility_resource_handle & UTILITY_FLAG_MASK_0xFFFFC000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | utility_resource_handle & UTILITY_STATUS_FLAG_MASK_SMALL;
 }
 utility_operation_status = (**(code **)*utility_buffer_handle)(utility_context_parameter,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,utility_context_data);
@@ -10996,7 +10996,7 @@ return;
 }
 utility_loop_index = utility_loop_index + 1;
 utility_loop_index = utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET;
-utility_context_data = utility_parameter_float;
+    utility_context_data = utility_parameter_float;
 } while (utility_loop_index < utility_context_index_source);
 }
 utility_operation_status = utility_operation_complete(utility_context_data,utility_context_auxiliary_pointer + UTILITY_CONTEXT_TABLE_OFFSET);
@@ -11165,7 +11165,7 @@ else {
 utility_network_float_data = UTILITY_BOOLEAN_FALSE.0;
 }
 utility_stack_buffer[0] = (uint16_t)(int)(utility_network_float_data * 65535.0);
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_buffer,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -11184,7 +11184,7 @@ else {
 utility_network_float_data = UTILITY_BOOLEAN_FALSE.0;
 }
 utility_stack_buffer[0] = (uint16_t)(int)(utility_network_float_data * 65535.0);
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_buffer,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -11224,7 +11224,7 @@ else {
 utility_network_float_data = UTILITY_BOOLEAN_FALSE.0;
 }
 utility_operation_flags = (uint16_t)(int)(utility_network_float_data * 65535.0);
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_base_pointer + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_base_pointer + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_base_pointer + UTILITY_POINTER_OFFSET),&utility_buffer_workspace_area,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -11243,7 +11243,7 @@ else {
 utility_network_float_data = UTILITY_BOOLEAN_FALSE.0;
 }
 utility_operation_flags = (uint16_t)(int)(utility_network_float_data * 65535.0);
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_base_pointer + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_base_pointer + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_base_pointer + UTILITY_POINTER_OFFSET),&utility_buffer_workspace_area,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -11347,15 +11347,15 @@ return;
 utility_operation_status = utility_operation_status + 1;
 } while (utility_operation_status < (int)utility_context_parameter[0x68]);
 }
-utility_context_data = utility_context_parameter[100];
+    utility_context_data = utility_context_parameter[100];
 if (utility_resource_handle < UTILITY_MEMORY_POINTER_OFFSET_1000) {
     
 }
 utility_parameter_value = utility_concatenate_int64_with_int16(utility_parameter_value.primary,(short)utility_context_data);
-utility_context_data = 2;
+    utility_context_data = 2;
 }
 else {
-utility_context_data = 4;
+    utility_context_data = 4;
 utility_parameter_value = utility_combine_values(utility_parameter_value.component_x,(utility_resource_handle & UTILITY_FLAG_MASK_0xFFFFC000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | utility_resource_handle & UTILITY_STATUS_FLAG_MASK_SMALL);
 }
 utility_operation_status = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
@@ -11510,16 +11510,16 @@ utility_operation_status = utility_operation_status + 1;
 utility_context_parameter = utility_float_result;
 } while (utility_operation_status < *(int *)(utility_input_context + UTILITY_CONTEXT_OFFSET_EXTENDED_HEX));
 }
-utility_context_data = *(uint *)(utility_input_context + 400);
+    utility_context_data = *(uint *)(utility_input_context + 400);
 utility_context_parameter = *(uint64_t **)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 if (utility_resource_handle < UTILITY_MEMORY_POINTER_OFFSET_1000) {
     
 }
 *(short *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (short)utility_context_data;
-utility_context_data = 2;
+    utility_context_data = 2;
 }
 else {
-utility_context_data = 4;
+    utility_context_data = 4;
 *(uint *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (utility_resource_handle & UTILITY_FLAG_MASK_0xFFFFC000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | utility_resource_handle & UTILITY_STATUS_FLAG_MASK_SMALL;
 }
 utility_operation_status = (**(code **)*utility_buffer_handle)(utility_context_parameter,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,utility_context_data);
@@ -11640,44 +11640,44 @@ utility_context_temp_value = (ushort)(*(int *)(utility_context_parameter + UTILI
 if ((*(int *)(utility_context_parameter + UTILITY_CONTEXT_CONFIG_OFFSET) != UTILITY_BOOLEAN_FALSE) || (*(int *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) != UTILITY_BOOLEAN_FALSE)) {
 utility_context_temp_value = utility_resource_handle | 2;
 }
-utility_context_data = utility_resource_handle | 4;
+    utility_context_data = utility_resource_handle | 4;
 if (*(short *)(utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARYc) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
-utility_context_data = utility_resource_handle | 8;
+    utility_context_data = utility_resource_handle | 8;
 if (*(short *)(utility_context_parameter + UTILITY_CONTEXT_OFFSET_STACK_SMALL4) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
-utility_context_data = utility_resource_handle | UTILITY_THREAD_HANDLE_OFFSET;
+    utility_context_data = utility_resource_handle | UTILITY_THREAD_HANDLE_OFFSET;
 if (*(int *)(utility_context_parameter + 0x260) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
-utility_context_data = utility_resource_handle | UTILITY_THREAD_DATA_OFFSET;
+    utility_context_data = utility_resource_handle | UTILITY_THREAD_DATA_OFFSET;
 if (*(int *)(utility_context_parameter + UTILITY_BLOCK_SIZE_390) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 if ((*(int *)(utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET) != UTILITY_BOOLEAN_FALSE) || (*(int *)(utility_context_parameter + UTILITY_THREAD_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = utility_resource_handle | 0x40;
+    utility_context_data = utility_resource_handle | 0x40;
 }
 if ((*(int64_t *)(utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_BOOLEAN_FALSE) || (*(int64_t *)(utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = utility_resource_handle | UTILITY_MEMORY_POINTER_OFFSET_BASE;
+    utility_context_data = utility_resource_handle | UTILITY_MEMORY_POINTER_OFFSET_BASE;
 }
 if (((*(int *)(utility_context_parameter + 0x3c) != UTILITY_BOOLEAN_FALSE) || (*(int *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) != UTILITY_BOOLEAN_FALSE)) ||
 (*(int *)(utility_context_parameter + UTILITY_CONTEXT_EXTENDED_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = utility_resource_handle | UTILITY_THREAD_HANDLE_OFFSET_PRIMARY;
+    utility_context_data = utility_resource_handle | UTILITY_THREAD_HANDLE_OFFSET_PRIMARY;
 }
-utility_context_data = GetDiskFreeSpace(utility_context_parameter);
+    utility_context_data = GetDiskFreeSpace(utility_context_parameter);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stack_int_count[0] = *(int *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))(*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_int_count,4);
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))(*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_int_count,4);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stack_int_count[0] = utility_concatenate_int16_with_int16(utility_stack_int_count[0].secondary,utility_context_data);
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_int_count,2);
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_data_initialize(utility_context_parameter,utility_context_parameter + UTILITY_CONTEXT_RESOURCE_OFFSET), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
 if ((utility_resource_handle & 1) != UTILITY_BOOLEAN_FALSE) {
 utility_stack_int_count[0] = *(int *)(utility_context_parameter + UTILITY_THREAD_CONFIG_OFFSET);
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_int_count,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -11692,7 +11692,7 @@ if (((((utility_resource_handle & 2) == UTILITY_BOOLEAN_FALSE) ||
 if ((utility_resource_handle & UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 utility_operation_status = *(int *)(utility_context_parameter + 0x260);
 utility_stack_int_count[0] = utility_operation_status;
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_int_count,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -11703,12 +11703,12 @@ if (0 < utility_operation_status) {
 do {
 utility_loop_index = *(int64_t *)(utility_context_parameter + 600) + utility_loop_index;
 svariable = *(short *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY4);
-utility_context_data = GetDiskFreeSpace(utility_context_parameter,utility_loop_index);
+    utility_context_data = GetDiskFreeSpace(utility_context_parameter,utility_loop_index);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_stack_int_count[0] = utility_concat_int_values(utility_stack_int_count[0]._1_3_,svariable != UTILITY_BOOLEAN_FALSE);
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_int_count,1);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -11774,11 +11774,11 @@ if (0 < utility_operation_status) {
 }
 do {
 svariable = *(short *)(*(int64_t *)(utility_input_context + 600) + utility_context_auxiliary_pointer + UTILITY_STATUS_ENABLED_FLAG_PRIMARY4);
-utility_context_data = GetDiskFreeSpace();
+    utility_context_data = GetDiskFreeSpace();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = (**(code **)**(uint64_t **)(utility_resource_handle + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_resource_handle + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_resource_handle + UTILITY_POINTER_OFFSET),&utility_buffer_workspace_area,1,utility_register_r9,svariable != UTILITY_BOOLEAN_FALSE);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -11912,7 +11912,7 @@ utility_context_temp_value = 2;
 }
 else {
 utility_parameter_value = (utility_resource_handle & UTILITY_FLAG_MASK_0xFFFFC000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | utility_resource_handle & UTILITY_STATUS_FLAG_MASK_SMALL;
-utility_context_data = 4;
+    utility_context_data = 4;
 }
 utility_operation_status = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),&utility_parameter_value,utility_context_data);
@@ -11936,13 +11936,13 @@ if (utility_resource_handle < UTILITY_MEMORY_POINTER_OFFSET_1000) {
     
 }
 utility_stack_buffer[0] = utility_concatenate_int16_with_int16(utility_stack_buffer[0].secondary,(short)utility_context_data);
-utility_context_data = 2;
+    utility_context_data = 2;
 }
 else {
-utility_context_data = 4;
+    utility_context_data = 4;
 utility_stack_buffer[0] = (utility_resource_handle & UTILITY_FLAG_MASK_0xFFFFC000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | utility_resource_handle & UTILITY_STATUS_FLAG_MASK_SMALL;
 }
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_buffer,utility_context_data);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if ((utility_resource_handle != UTILITY_BOOLEAN_FALSE) &&
@@ -11993,7 +11993,7 @@ default:
 return UTILITY_STATUS_THREAD_CREATED;
 case UTILITY_THREAD_HANDLE_OFFSET:
 utility_stack_buffer[0] = utility_context_data[1];
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -12002,7 +12002,7 @@ utility_loop_index = 8;
 utility_operation_status = -8;
 break;
 case UTILITY_STATUS_ENABLED_FLAG_PRIMARY:
-utility_context_data = GetDiskFreeSpace(utility_context_parameter,utility_context_parameter + 1);
+    utility_context_data = GetDiskFreeSpace(utility_context_parameter,utility_context_parameter + 1);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -12011,13 +12011,13 @@ utility_operation_status = -UTILITY_STATUS_ENABLED_FLAG_QUATERNARY;
 break;
 case UTILITY_THREAD_DATA_OFFSET:
 utility_stack_buffer[0] = utility_context_data[1];
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_stack_checksum_buffer[0] = utility_context_data[2];
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_checksum_buffer,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -12027,7 +12027,7 @@ utility_operation_status = -0xc;
 }
 utility_context_parameter = (uint *)((int64_t)utility_context_parameter + utility_loop_index);
 }
-utility_context_data = (uint64_t)(-(uint)(utility_operation_status != UTILITY_BOOLEAN_FALSE) & UTILITY_STATUS_THREAD_CREATED);
+    utility_context_data = (uint64_t)(-(uint)(utility_operation_status != UTILITY_BOOLEAN_FALSE) & UTILITY_STATUS_THREAD_CREATED);
 }
 return utility_resource_id;
 }
@@ -12068,7 +12068,7 @@ default:
 return UTILITY_STATUS_THREAD_CREATED;
 case UTILITY_THREAD_HANDLE_OFFSET:
 utility_buffer_handle = utility_input_context[1];
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_index_source + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_index_source + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_index_source + UTILITY_POINTER_OFFSET),&utility_buffer_workspace_area,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -12077,7 +12077,7 @@ utility_loop_index = 8;
 utility_operation_status = -8;
 break;
 case UTILITY_STATUS_ENABLED_FLAG_PRIMARY:
-utility_context_data = GetDiskFreeSpace(utility_float_result_primary,utility_input_context + 1);
+    utility_context_data = GetDiskFreeSpace(utility_float_result_primary,utility_input_context + 1);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -12086,12 +12086,12 @@ utility_operation_status = -UTILITY_STATUS_ENABLED_FLAG_QUATERNARY;
 break;
 case UTILITY_THREAD_DATA_OFFSET:
 utility_buffer_handle = utility_input_context[1];
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_index_source + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_index_source + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_index_source + UTILITY_POINTER_OFFSET),&utility_buffer_workspace_area,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = (**(code **)**(uint64_t **)(utility_context_index_source + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_context_index_source + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_index_source + UTILITY_POINTER_OFFSET),&utility_buffer_workspace_area,4,utility_register_r9,utility_input_context[2]);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -12150,61 +12150,61 @@ uint64_t utility_resource_id;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_SIZE_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_SIZE_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_COUNT_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_COUNT_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + 100);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + 100);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_6C);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_6C);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_PRIMARY);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_PRIMARY);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK4);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK4);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_8_BIT);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_8_BIT);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < UTILITY_STATUS_FLAG_MASK4) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_audio_player_play(utility_context_parameter);
@@ -12240,10 +12240,10 @@ if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x3d) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_buffer_free(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = utility_buffer_free(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close(utility_context_parameter,utility_stack_buffer);
@@ -12251,7 +12251,7 @@ utility_stream_close(utility_context_parameter,utility_stack_buffer);
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 return utility_resource_id;
@@ -12269,10 +12269,10 @@ if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x3d) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_buffer_free(*utility_resource_handle,utility_input_context + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = utility_buffer_free(*utility_resource_handle,utility_input_context + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close();
@@ -12280,7 +12280,7 @@ utility_stream_close();
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 return utility_resource_id;
 }
@@ -12347,13 +12347,13 @@ return UTILITY_STATUS_INVALID_PARAMETER;
 }
 }
 else if ((utility_accumulator_data == UTILITY_STATUS_ENABLED_FLAG_2) && (*(uint *)(utility_resource_handle + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) < 0x40)) {
-utility_context_data = utility_device_driver_load();
+    utility_context_data = utility_device_driver_load();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 goto UTILITY_LABEL_INIT_COMPLETE;
 }
-utility_context_data = utility_device_controller_initialize();
+    utility_context_data = utility_device_controller_initialize();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -12411,7 +12411,7 @@ if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTIL
 return (uint64_t)resource_context_input_value;
 }
 utility_context_parameter = (int64_t *)*utility_resource_handle;
-utility_context_data = resource_context_input_value;
+    utility_context_data = resource_context_input_value;
 if (*utility_buffer_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -12419,26 +12419,26 @@ if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_BUFFER_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,utility_register_esi_data,utility_register_esi_data,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,utility_register_esi_data,utility_register_esi_data,0);
 }
 else {
 utility_stack_uint_secondary = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,(int64_t)&utility_buffer_workspace_area + 4);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,(int64_t)&utility_buffer_workspace_area + 4);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_stack_uint_secondary + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_BUFFER_CHECK;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 }
-utility_context_data = utility_register_esi_data;
+    utility_context_data = utility_register_esi_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = (uint)(utility_stack_char_primary != '\0');
-utility_context_data = utility_context_data;
-utility_context_data = (uint)(utility_stack_char_primary == '\0');
+    utility_context_data = (uint)(utility_stack_char_primary != '\0');
+    utility_context_data = utility_context_data;
+    utility_context_data = (uint)(utility_stack_char_primary == '\0');
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
@@ -12448,82 +12448,82 @@ return (uint64_t)utility_context_data;
 *(uint *)(utility_context_base_pointer + UTILITY_CONTEXT_OFFSET_EXTENDED_HEX) = (*(uint *)(utility_context_base_pointer + UTILITY_CONTEXT_OFFSET_EXTENDED_HEX) | utility_context_data) & ~utility_context_data;
 utility_accumulator_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (UTILITY_MEMORY_POINTER_OFFSETb < utility_accumulator_data) {
     
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_base_pointer + UTILITY_CONTEXT_OFFSET_EXTENDED_HEX,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_base_pointer + UTILITY_CONTEXT_OFFSET_EXTENDED_HEX,4);
 }
 else {
-utility_context_data = (uint64_t)resource_context_input_value;
+    utility_context_data = (uint64_t)resource_context_input_value;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_audio_manager_control();
+    utility_context_data = utility_audio_manager_control();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_interface_renderer_draw();
+    utility_context_data = utility_interface_renderer_draw();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_interface_renderer_draw();
+    utility_context_data = utility_interface_renderer_draw();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_interface_controller_handle();
+    utility_context_data = utility_interface_controller_handle();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x41 < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_base_pointer + 0xcc,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_base_pointer + 0xcc,4);
 }
 else {
-utility_context_data = (uint64_t)resource_context_input_value;
+    utility_context_data = (uint64_t)resource_context_input_value;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x41 < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_base_pointer + UTILITY_SERVICE_OFFSET_D0,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_base_pointer + UTILITY_SERVICE_OFFSET_D0,4);
 }
 else {
-utility_context_data = (uint64_t)resource_context_input_value;
+    utility_context_data = (uint64_t)resource_context_input_value;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (0x5a < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
-utility_context_data = utility_interface_updater_refresh();
+    utility_context_data = utility_interface_updater_refresh();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_interface_updater_refresh();
+    utility_context_data = utility_interface_updater_refresh();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 }
 if (0x6e < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_base_pointer + 200,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_base_pointer + 200,4);
 }
 else {
-utility_context_data = (uint64_t)resource_context_input_value;
+    utility_context_data = (uint64_t)resource_context_input_value;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if ((UTILITY_MEMORY_POINTER_OFFSETb < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) && (utility_context_data = resource_context_input_value, *(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE))
 {
 utility_context_parameter = (int64_t *)*utility_resource_handle;
@@ -12547,7 +12547,7 @@ resource_context_input_value = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 }
-utility_context_data = resource_context_input_value;
+    utility_context_data = resource_context_input_value;
 if (resource_context_input_value != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_RETURN_ERROR;
 switch(utility_buffer_handle) {
 case 0:
@@ -12571,11 +12571,11 @@ case 6:
 utility_register_esi_data = 6;
 break;
 default:
-utility_context_data = utility_falsexd;
+    utility_context_data = utility_falsexd;
 goto UTILITY_LABEL_RETURN_SUCCESS;
 }
 *(uint *)(utility_context_base_pointer + UTILITY_STATUS_INVALID_PARAMETER4) = utility_register_esi_data;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 UTILITY_LABEL_RETURN_SUCCESS:
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
@@ -12644,7 +12644,7 @@ utility_context_temp_value = utility_handle_parameter_validation(utility_context
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 else {
@@ -12652,7 +12652,7 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = GetLocalTime(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
+    utility_context_data = GetLocalTime(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -12691,7 +12691,7 @@ utility_context_temp_value = utility_handle_parameter_validation(utility_context
 }
 }
 else {
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 }
 }
 else {
@@ -12701,7 +12701,7 @@ if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = GetLocalTime(*utility_resource_handle,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
+    utility_context_data = GetLocalTime(*utility_resource_handle,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -12733,12 +12733,12 @@ if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = GetLocalTime(*utility_resource_handle,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
+    utility_context_data = GetLocalTime(*utility_resource_handle,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX,4);
 utility_input_context = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
@@ -12762,7 +12762,7 @@ if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX,4);
 utility_input_context = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
@@ -12805,14 +12805,14 @@ if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x55) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_SIZE_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_SIZE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_COUNT_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_COUNT_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -12821,7 +12821,7 @@ else {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_8_BIT);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_8_BIT);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -12829,14 +12829,14 @@ return utility_resource_id;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -12845,10 +12845,10 @@ if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_loop_index = *utility_buffer_handle;
-utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,4);
+    utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,4);
 if ((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + 100,2), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
 (utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + 0x66,2), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY,8);
+    utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY,8);
 }
 utility_buffer_handle = utility_register_bpl_value;
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -12859,14 +12859,14 @@ else {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_PRIMARY);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_PRIMARY);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK4);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -12881,24 +12881,24 @@ utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_CLEANUP_DONE;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
 }
 UTILITY_LABEL_CLEANUP_DONE:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
@@ -12926,10 +12926,10 @@ return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_loop_index = *utility_resource_handle;
 _utility_stack_char_primary = utility_context_base_pointer;
-utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_input_context + UTILITY_CONTEXT_TABLE_OFFSET,4);
+    utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_input_context + UTILITY_CONTEXT_TABLE_OFFSET,4);
 if ((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_input_context + 100,2), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
 (utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_input_context + 0x66,2), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_input_context + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY,8);
+    utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_input_context + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY,8);
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -12939,14 +12939,14 @@ else {
 if (*(int *)(utility_context_main + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_STATUS_FLAG_MASK_PRIMARY);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_STATUS_FLAG_MASK_PRIMARY);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_STATUS_FLAG_MASK4);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_STATUS_FLAG_MASK4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -12961,23 +12961,23 @@ utility_context_parameter = (int64_t *)*utility_resource_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_buffer_handle = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_buffer_handle + 1) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_CLEANUP_DONE;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
 }
 UTILITY_LABEL_CLEANUP_DONE:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
@@ -13013,23 +13013,23 @@ utility_context_parameter = (int64_t *)*utility_resource_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_buffer_handle = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_buffer_handle + 1) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_CLEANUP_DONE;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
 }
 UTILITY_LABEL_CLEANUP_DONE:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
@@ -13055,14 +13055,14 @@ if (utility_context_parameter != UTILITY_BOOLEAN_FALSE) {
 }
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_STATUS_FLAG_MASK_PRIMARY);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_STATUS_FLAG_MASK_PRIMARY);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_STATUS_FLAG_MASK4);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_STATUS_FLAG_MASK4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -13077,23 +13077,23 @@ utility_buffer_handle = utility_combine_values(utility_stack_operation_control_c
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_uint_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_uint_data + 1) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_CLEANUP_DONE;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
 }
 UTILITY_LABEL_CLEANUP_DONE:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
@@ -13173,28 +13173,28 @@ if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_VALIDATION_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_VALIDATION_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_validate(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_resource_validate(*utility_buffer_handle,utility_stack_buffer);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_stack_buffer[0] & 1;
-utility_context_data = utility_stack_buffer[0] >> 1;
+    utility_context_data = utility_stack_buffer[0] & 1;
+    utility_context_data = utility_stack_buffer[0] >> 1;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 do {
-utility_context_data = utility_resource_read(utility_context_parameter,utility_stack_buffer[0]);
+    utility_context_data = utility_resource_read(utility_context_parameter,utility_stack_buffer[0]);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_registry_manager_control(utility_context_parameter,utility_context_parameter + 0xe8,utility_operation_status,utility_context_parameter);
+    utility_context_data = utility_registry_manager_control(utility_context_parameter,utility_context_parameter + 0xe8,utility_operation_status,utility_context_parameter);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_resource_write(utility_context_parameter,utility_stack_buffer);
+    utility_context_data = utility_resource_write(utility_context_parameter,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -13221,7 +13221,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 return;
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_stack_control_flag >> 1;
+    utility_context_data = utility_stack_control_flag >> 1;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -13267,14 +13267,14 @@ utility_context_temp_value = utility_stream_create(utility_context_parameter,uti
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_time_processor(utility_context_parameter,utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET);
+    utility_context_data = utility_time_processor(utility_context_parameter,utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_HANDLE_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_HANDLE_OFFSET);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -13283,7 +13283,7 @@ return (uint64_t)utility_context_data;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_CONTROL_PRIMARY);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_CONTROL_PRIMARY);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -13292,47 +13292,47 @@ return (uint64_t)utility_context_data;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_CONTROL_TERTIARY,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_CONTROL_TERTIARY,4);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 return (uint64_t)utility_context_data;
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < UTILITY_MEMORY_POINTER_OFFSET2) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_context_parameter = (int64_t *)*utility_buffer_handle;
-utility_context_data = UTILITY_BOOLEAN_TRUE;
+    utility_context_data = UTILITY_BOOLEAN_TRUE;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_ARRAY_PROCESSING:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_char_buffer_data,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_char_buffer_data,1,1,0);
 }
 else {
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_stack_buffer[0] + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_ARRAY_PROCESSING;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = (uint)(utility_char_buffer_data[0] != '\0');
-utility_context_data = (uint)(utility_char_buffer_data[0] == '\0');
+    utility_context_data = (uint)(utility_char_buffer_data[0] != '\0');
+    utility_context_data = (uint)(utility_char_buffer_data[0] == '\0');
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
@@ -13346,19 +13346,19 @@ else {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_FLAG_B8,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_FLAG_B8,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if ((((*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) &&
 (utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_DATA_SECONDARY), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
 (utility_context_data = utility_context_data, *(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) &&
 ((utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_SERVICE_OFFSET), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE &&
 (utility_context_data = utility_context_data, *(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)))) {
 utility_loop_index = *utility_buffer_handle;
-utility_context_data = get_file_time(utility_loop_index,utility_context_parameter + UTILITY_MEMORY_POINTER_OFFSET_BASE);
+    utility_context_data = get_file_time(utility_loop_index,utility_context_parameter + UTILITY_MEMORY_POINTER_OFFSET_BASE);
 if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 ((utility_context_data = get_file_time(utility_loop_index,utility_context_parameter + UTILITY_MEMORY_POINTER_OFFSET4), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE &&
 (utility_context_data = utility_time_formatter(utility_context_parameter,utility_context_parameter + UTILITY_MEMORY_POINTER_OFFSET8), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)))) &&
@@ -13371,44 +13371,44 @@ if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 ((utility_context_data = utility_context_data, *(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE &&
 ((utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_CONTROL_QUATERNARY,4), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE &&
 (utility_context_data = utility_stream_validate(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY,utility_context_parameter), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)))))))))) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (UTILITY_THREAD_STATUS_OFFSET < *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_BUFFER_PRIMARY,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_BUFFER_PRIMARY,4);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x46 < *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + 0xc0,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + 0xc0,4);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x47 < *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_FLAG_A0);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_FLAG_A0);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x4f < *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
@@ -13416,10 +13416,10 @@ if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < UTILITY_MEMO
 UTILITY_LABEL_CONTEXT_EXISTS:
 utility_stream_close(utility_context_parameter,utility_stack_buffer_array_stream);
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_time_data_extractor(utility_context_parameter + 200,*utility_buffer_handle);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_time_data_extractor(utility_context_parameter + 200,*utility_buffer_handle);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_CONTEXT_EXISTS;
 }
 }
@@ -13448,7 +13448,7 @@ uint32_t utility_buffer_handle;
 if (*(int *)(utility_context_main + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_HANDLE_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_HANDLE_OFFSET);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -13457,7 +13457,7 @@ return (uint64_t)utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_CONTROL_PRIMARY);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_CONTROL_PRIMARY);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -13466,47 +13466,47 @@ return (uint64_t)utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_CONTROL_TERTIARY,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_CONTROL_TERTIARY,4);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 return (uint64_t)utility_context_data;
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < UTILITY_MEMORY_POINTER_OFFSET2) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_context_parameter = (int64_t *)*utility_resource_handle;
-utility_context_data = UTILITY_BOOLEAN_TRUE;
+    utility_context_data = UTILITY_BOOLEAN_TRUE;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_ARRAY_PROCESSING:
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
 }
 else {
 utility_buffer_handle = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_buffer_handle + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_ARRAY_PROCESSING;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = (uint)(utility_buffer_handle != '\0');
-utility_context_data = (uint)(utility_buffer_handle == '\0');
+    utility_context_data = (uint)(utility_buffer_handle != '\0');
+    utility_context_data = (uint)(utility_buffer_handle == '\0');
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
@@ -13520,19 +13520,19 @@ else {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_FLAG_B8,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_FLAG_B8,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if ((((*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) &&
 (utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_DATA_SECONDARY), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
 (utility_context_data = utility_context_data, *(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) &&
 ((utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_SERVICE_OFFSET), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE &&
 (utility_context_data = utility_context_data, *(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)))) {
 utility_loop_index = *utility_resource_handle;
-utility_context_data = get_file_time(utility_loop_index,utility_context_index_source + UTILITY_MEMORY_POINTER_OFFSET_BASE);
+    utility_context_data = get_file_time(utility_loop_index,utility_context_index_source + UTILITY_MEMORY_POINTER_OFFSET_BASE);
 if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 ((utility_context_data = get_file_time(utility_loop_index,utility_context_index_source + UTILITY_MEMORY_POINTER_OFFSET4), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE &&
 (utility_context_data = utility_time_formatter(), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)))) &&
@@ -13545,55 +13545,55 @@ if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 ((utility_context_data = utility_context_data, *(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE &&
 ((utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_CONTROL_QUATERNARY,4), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE &&
 (utility_context_data = utility_stream_validate(utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)))))))))) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (UTILITY_THREAD_STATUS_OFFSET < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_BUFFER_PRIMARY,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_BUFFER_PRIMARY,4);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x46 < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + 0xc0,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + 0xc0,4);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x47 < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_FLAG_A0);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_FLAG_A0);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (0x4f < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < UTILITY_MEMORY_POINTER_OFFSET2) {
 UTILITY_LABEL_CONTEXT_EXISTS:
 utility_stream_close();
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_time_data_extractor(utility_context_index_source + 200,*utility_resource_handle);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_time_data_extractor(utility_context_index_source + 200,*utility_resource_handle);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_CONTEXT_EXISTS;
 }
 }
@@ -13624,41 +13624,41 @@ if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
 }
 return (uint64_t)utility_context_temp_value;
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < UTILITY_MEMORY_POINTER_OFFSET2) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_context_parameter = (int64_t *)*utility_resource_handle;
-utility_context_data = UTILITY_BOOLEAN_TRUE;
+    utility_context_data = UTILITY_BOOLEAN_TRUE;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_ARRAY_PROCESSING:
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
 }
 else {
 utility_buffer_handle = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_buffer_handle + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_ARRAY_PROCESSING;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = (uint)(utility_buffer_handle != '\0');
-utility_context_data = (uint)(utility_buffer_handle == '\0');
+    utility_context_data = (uint)(utility_buffer_handle != '\0');
+    utility_context_data = (uint)(utility_buffer_handle == '\0');
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
@@ -13672,19 +13672,19 @@ else {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_FLAG_B8,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_FLAG_B8,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if ((((*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) &&
 (utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_DATA_SECONDARY), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
 (utility_context_data = utility_context_data, *(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) &&
 ((utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_SERVICE_OFFSET), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE &&
 (utility_context_data = utility_context_data, *(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)))) {
 utility_loop_index = *utility_resource_handle;
-utility_context_data = get_file_time(utility_loop_index,utility_context_index_source + UTILITY_MEMORY_POINTER_OFFSET_BASE);
+    utility_context_data = get_file_time(utility_loop_index,utility_context_index_source + UTILITY_MEMORY_POINTER_OFFSET_BASE);
 if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 ((utility_context_data = get_file_time(utility_loop_index,utility_context_index_source + UTILITY_MEMORY_POINTER_OFFSET4), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE &&
 (utility_context_data = utility_time_formatter(), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)))) &&
@@ -13697,55 +13697,55 @@ if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 ((utility_context_data = utility_context_data, *(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE &&
 ((utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_CONTROL_QUATERNARY,4), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE &&
 (utility_context_data = utility_stream_validate(utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)))))))))) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (UTILITY_THREAD_STATUS_OFFSET < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_BUFFER_PRIMARY,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_BUFFER_PRIMARY,4);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x46 < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + 0xc0,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + 0xc0,4);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x47 < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_FLAG_A0);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_FLAG_A0);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (0x4f < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < UTILITY_MEMORY_POINTER_OFFSET2) {
 UTILITY_LABEL_CONTEXT_EXISTS:
 utility_stream_close();
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_time_data_extractor(utility_context_index_source + 200,*utility_resource_handle);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_time_data_extractor(utility_context_index_source + 200,*utility_resource_handle);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_CONTEXT_EXISTS;
 }
 }
@@ -13782,34 +13782,34 @@ if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTIL
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_context_parameter = (int64_t *)*utility_resource_handle;
-utility_context_data = UTILITY_BOOLEAN_TRUE;
+    utility_context_data = UTILITY_BOOLEAN_TRUE;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_ARRAY_PROCESSING:
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
 }
 else {
 utility_buffer_handle = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_buffer_handle + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_ARRAY_PROCESSING;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = (uint)(utility_buffer_handle != '\0');
-utility_context_data = (uint)(utility_buffer_handle == '\0');
+    utility_context_data = (uint)(utility_buffer_handle != '\0');
+    utility_context_data = (uint)(utility_buffer_handle == '\0');
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
@@ -13823,19 +13823,19 @@ else {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_FLAG_B8,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_FLAG_B8,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if ((((*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) &&
 (utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_DATA_SECONDARY), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
 (utility_context_data = utility_context_data, *(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) &&
 ((utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_SERVICE_OFFSET), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE &&
 (utility_context_data = utility_context_data, *(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)))) {
 utility_loop_index = *utility_resource_handle;
-utility_context_data = get_file_time(utility_loop_index,utility_context_index_source + UTILITY_MEMORY_POINTER_OFFSET_BASE);
+    utility_context_data = get_file_time(utility_loop_index,utility_context_index_source + UTILITY_MEMORY_POINTER_OFFSET_BASE);
 if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 ((utility_context_data = get_file_time(utility_loop_index,utility_context_index_source + UTILITY_MEMORY_POINTER_OFFSET4), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE &&
 (utility_context_data = utility_time_formatter(), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)))) &&
@@ -13848,55 +13848,55 @@ if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 ((utility_context_data = utility_context_data, *(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE &&
 ((utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_CONTROL_QUATERNARY,4), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE &&
 (utility_context_data = utility_stream_validate(utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)))))))))) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (UTILITY_THREAD_STATUS_OFFSET < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_BUFFER_PRIMARY,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_BUFFER_PRIMARY,4);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x46 < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + 0xc0,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + 0xc0,4);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x47 < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_FLAG_A0);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_RESOURCE_FLAG_A0);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (0x4f < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < UTILITY_MEMORY_POINTER_OFFSET2) {
 UTILITY_LABEL_CONTEXT_EXISTS:
 utility_stream_close();
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_time_data_extractor(utility_context_index_source + 200,*utility_resource_handle);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_time_data_extractor(utility_context_index_source + 200,*utility_resource_handle);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_CONTEXT_EXISTS;
 }
 }
@@ -13948,7 +13948,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 return;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 utility_loop_index = *(int64_t *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET) + (int64_t)utility_operation_status * 8;
 utility_operation_status = get_file_time(utility_context_data,utility_loop_index);
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
@@ -14015,7 +14015,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 return;
 }
 if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = *utility_input_context;
+    utility_context_data = *utility_input_context;
 utility_loop_index = *(int64_t *)(utility_resource_handle + UTILITY_THREAD_DATA_OFFSET) + (int64_t)utility_operation_status * 8;
 utility_operation_status = get_file_time(utility_context_data,utility_loop_index);
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
@@ -14058,12 +14058,12 @@ if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET);
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_resource_write(utility_context_parameter,0), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
 if ((0x6b < *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET)) &&
 (utility_context_data = utility_resource_configure(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_POINTER_OFFSET,0), (int)utility_resource_handle != UTILITY_BOOLEAN_FALSE)) {
@@ -14092,15 +14092,15 @@ if (utility_stack_buffer[0] != UTILITY_BOOLEAN_FALSE) {
 return;
 }
 utility_operation_status = utility_resource_validate(*utility_buffer_handle,utility_stack_buffer);
-utility_context_data = utility_stack_buffer[0];
+    utility_context_data = utility_stack_buffer[0];
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
     
 }
 return;
 }
-utility_context_data = utility_stack_buffer[0] & 1;
-utility_context_data = (int)*(uint *)(utility_context_parameter + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
-utility_context_data = utility_stack_buffer[0] >> 1;
+    utility_context_data = utility_stack_buffer[0] & 1;
+    utility_context_data = (int)*(uint *)(utility_context_parameter + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = utility_stack_buffer[0] >> 1;
 if (((int)((*(uint *)(utility_context_parameter + UTILITY_STATUS_THREAD_CREATED) ^ utility_context_data) - utility_context_data) < (int)utility_context_data) &&
 (utility_operation_status = utility_resource_test(utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET,utility_context_data), utility_operation_status != UTILITY_BOOLEAN_FALSE)) {
 return;
@@ -14146,14 +14146,14 @@ utility_stack_buffer[0] = utility_stack_buffer[0] & -utility_context_data;
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
 utility_operation_status = utility_resource_validate(*utility_buffer_handle,utility_stack_buffer);
-utility_context_data = utility_stack_buffer[0];
+    utility_context_data = utility_stack_buffer[0];
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
     
 }
 return;
 }
 utility_loop_index = (int64_t)(int)utility_stack_buffer[0];
-utility_context_data = (int)*(uint *)(utility_context_parameter + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)(utility_context_parameter + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
 if (((int)((*(uint *)(utility_context_parameter + UTILITY_CONTEXT_CONFIG_OFFSET) ^ utility_context_data) - utility_context_data) < (int)utility_stack_buffer[0]) &&
 (utility_operation_status = utility_context_acquire(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET,utility_stack_buffer[0]), utility_operation_status != UTILITY_BOOLEAN_FALSE)) {
 return;
@@ -14220,8 +14220,8 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 }
 return;
 }
-utility_context_data = (int)*(uint *)(utility_context_service_handle + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
-utility_context_data = utility_stack_handle_temp >> 1;
+    utility_context_data = (int)*(uint *)(utility_context_service_handle + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = utility_stack_handle_temp >> 1;
 if (((int)((*(uint *)(utility_context_service_handle + UTILITY_STATUS_THREAD_CREATED) ^ utility_context_data) - utility_context_data) < (int)utility_context_data) &&
 (utility_operation_status = utility_resource_test(utility_context_service_handle + UTILITY_THREAD_HANDLE_OFFSET,utility_context_data), utility_operation_status != UTILITY_BOOLEAN_FALSE)) {
 return;
@@ -14274,7 +14274,7 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
 return;
 }
 utility_loop_index = (int64_t)(int)utility_buffer_handle;
-utility_context_data = (int)*(uint *)(utility_context_service_handle + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)(utility_context_service_handle + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
 if (((int)((*(uint *)(utility_context_service_handle + UTILITY_CONTEXT_CONFIG_OFFSET) ^ utility_context_data) - utility_context_data) < (int)utility_buffer_handle) &&
 (utility_operation_status = utility_context_acquire(utility_context_service_handle + UTILITY_THREAD_DATA_OFFSET,utility_buffer_handle), utility_operation_status != UTILITY_BOOLEAN_FALSE)) {
 return;
@@ -14347,19 +14347,19 @@ int utility_stack_buffer_array_int_data [2];
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_stack_buffer_array_int_data[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_validate(*utility_buffer_handle,utility_stack_buffer_array_int_data);
+    utility_context_data = utility_resource_validate(*utility_buffer_handle,utility_stack_buffer_array_int_data);
 utility_operation_status = utility_stack_buffer_array_int_data[0];
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_loop_index = (int64_t)utility_stack_buffer_array_int_data[0];
-utility_context_data = (int)*(uint *)(utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)(utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) >> UTILITY_STATUS_FLAG_F;
 if (((int)((*(uint *)(utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) ^ utility_context_data) - utility_context_data) < utility_stack_buffer_array_int_data[0]) &&
 (utility_context_data = utility_resource_check_status(utility_context_parameter + UTILITY_POINTER_OFFSET,utility_stack_buffer_array_int_data[0]), (int)utility_resource_handle != UTILITY_BOOLEAN_FALSE)) {
 return utility_resource_id;
@@ -14372,13 +14372,13 @@ utility_context_parameter = (uint64_t *)(*(int64_t *)(utility_context_parameter 
 if (0 < utility_operation_status - utility_operation_status) {
     
 }
-utility_context_data = (uint64_t)(uint)(utility_operation_status - utility_operation_status);
+    utility_context_data = (uint64_t)(uint)(utility_operation_status - utility_operation_status);
 do {
 if (utility_context_parameter != (uint64_t *)UTILITY_NULL_PTR) {
 *utility_buffer_handle = UTILITY_BOOLEAN_FALSE;
 }
 utility_context_parameter = utility_context_parameter + 1;
-utility_context_data = utility_resource_handle - 1;
+    utility_context_data = utility_resource_handle - 1;
 } while (utility_resource_handle != UTILITY_BOOLEAN_FALSE);
 }
 }
@@ -14387,32 +14387,32 @@ if (utility_operation_status != UTILITY_BOOLEAN_FALSE) {
     
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,*(uint64_t *)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_loop_index << 3);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,*(uint64_t *)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_loop_index << 3);
 if ((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_VALIDATION_OK;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 }
 UTILITY_LABEL_VALIDATION_OK:
-utility_context_data = utility_resource_prepare(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET);
+    utility_context_data = utility_resource_prepare(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < UTILITY_STATUS_FLAG_MASKc) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + 4,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + 4,4);
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_system_shutdown(utility_context_parameter);
+    utility_context_data = utility_system_shutdown(utility_context_parameter);
 }
 else {
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 }
 }
 return utility_resource_id;
@@ -14450,18 +14450,18 @@ utility_context_temp_value = utility_stream_create(utility_context_parameter,uti
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_stream_create(utility_context_parameter,utility_stack_buffer,0,UTILITY_STREAM_TYPE_BLMP);
+    utility_context_data = utility_stream_create(utility_context_parameter,utility_stack_buffer,0,UTILITY_STREAM_TYPE_BLMP);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_time_processor(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = utility_time_processor(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetLocalTime(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_POINTER_OFFSET);
+    utility_context_data = GetLocalTime(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_POINTER_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -14474,30 +14474,30 @@ utility_stack_uint_count = utility_context_parameter[3];
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x6d) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = *utility_buffer_handle;
-utility_context_data = utility_handle_parameter_validation(utility_context_data,&utility_stack_quaternary_byte_flag,4);
+    utility_context_data = *utility_buffer_handle;
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,&utility_stack_quaternary_byte_flag,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_handle_parameter_validation(utility_context_data,&utility_stack_uint_size,2);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,&utility_stack_uint_size,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_handle_parameter_validation(utility_context_data,(int64_t)&utility_stack_uint_size + 2,2);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,(int64_t)&utility_stack_uint_size + 2,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_handle_parameter_validation(utility_context_data,&utility_stack_thread_offset_temp,8);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,&utility_stack_thread_offset_temp,8);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (UTILITY_MEMORY_POINTER_OFFSET1 < *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET)) {
-utility_context_data = utility_data_access(utility_context_parameter,utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET);
+    utility_context_data = utility_data_access(utility_context_parameter,utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -14506,18 +14506,18 @@ goto UTILITY_LABEL_MAIN_CONTINUE;
 if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x6a) {
 utility_stack_context_pointer_secondary = (uint64_t *)UTILITY_NULL_POINTER;
 utility_stack_context = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_data_transform(utility_context_parameter,&utility_stack_context_pointer_secondary,0);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_data_transform(utility_context_parameter,&utility_stack_context_pointer_secondary,0);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_RESOURCE_AVAILABLE:
-utility_context_data = utility_stack_context.component_x;
+    utility_context_data = utility_stack_context.component_x;
 if ((int64_t)utility_stack_context < 0) {
-utility_context_data = -utility_stack_context.component_x;
+    utility_context_data = -utility_stack_context.component_x;
 }
 utility_operation_status = (int)utility_stack_context;
-utility_context_data = utility_stack_context.component_x;
+    utility_context_data = utility_stack_context.component_x;
 if ((int)utility_resource_handle < 0) {
 if (0 < (int)utility_stack_context) {
 return utility_resource_id;
@@ -14527,7 +14527,7 @@ utility_resource_memory_allocator(*(uint64_t *)(utility_system_reserved_area + U
 }
 utility_stack_context_pointer_secondary = (uint64_t *)UTILITY_NULL_POINTER;
 utility_stack_context = utility_stack_context & UTILITY_MAX_UINT32;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 if (utility_operation_status < 0) {
     
@@ -14539,9 +14539,9 @@ if (utility_operation_status < 0) {
 utility_loop_index = (int64_t)utility_operation_status * UTILITY_THREAD_CONTEXT_OFFSET + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY + (int64_t)utility_stack_context_pointer_secondary;
 do {
 utility_context_parameter = (uint32_t *)utility_memory_get_pointer();
-utility_context_data = utility_context_data[1];
-utility_context_data = utility_context_data[2];
-utility_context_data = utility_context_parameter[3];
+    utility_context_data = utility_context_data[1];
+    utility_context_data = utility_context_data[2];
+    utility_context_data = utility_context_parameter[3];
 *(uint32_t *)(utility_loop_index + -UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) = *utility_buffer_handle;
 *(uint32_t *)(utility_loop_index + -UTILITY_THREAD_HANDLE_OFFSET) = utility_context_data;
 *(uint32_t *)(utility_loop_index + -0xc) = utility_context_data;
@@ -14550,12 +14550,12 @@ utility_context_data = utility_context_parameter[3];
 utility_loop_index = utility_loop_index + -1;
 utility_loop_index = utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET;
 } while (utility_loop_index != UTILITY_BOOLEAN_FALSE);
-utility_context_data = utility_stack_context.component_x;
+    utility_context_data = utility_stack_context.component_x;
 }
 }
 utility_stack_context = utility_stack_context & UTILITY_MAX_UINT3200000000;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
@@ -14569,21 +14569,21 @@ if ((int)utility_stack_context == UTILITY_BOOLEAN_FALSE) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else {
-utility_context_data = (int)*(uint *)(utility_context_parameter + UTILITY_RESOURCE_COUNT_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)(utility_context_parameter + UTILITY_RESOURCE_COUNT_OFFSET) >> UTILITY_STATUS_FLAG_F;
 utility_context_parameter = utility_stack_context_pointer_secondary;
 if ((int)((*(uint *)(utility_context_parameter + UTILITY_RESOURCE_COUNT_OFFSET) ^ utility_context_data) - utility_context_data) < (int)utility_stack_context) {
-utility_context_data = utility_data_calculate(utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET,utility_stack_context & UTILITY_MAX_UINT32);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_data_calculate(utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET,utility_stack_context & UTILITY_MAX_UINT32);
+    utility_context_data = (uint64_t)utility_context_data;
 utility_context_parameter = utility_stack_context_pointer_secondary;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_RESOURCE_AVAILABLE;
 }
 for (; (utility_operation_status = (int)utility_stack_context, utility_stack_context_pointer_secondary <= utility_context_parameter &&
 (utility_context_parameter < utility_stack_context_pointer_secondary + (int64_t)utility_operation_status * 3)); utility_context_parameter = utility_context_parameter + 3) {
 utility_context_parameter = (uint64_t *)UTILITY_NULL_POINTER;
-utility_context_data = utility_data_compute(utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET,&utility_context_parameter);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_data_compute(utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET,&utility_context_parameter);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_RESOURCE_AVAILABLE;
-utility_context_data = utility_context_data[1];
+    utility_context_data = utility_context_data[1];
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_data[1] = utility_context_data;
 *(uint32_t *)(utility_context_parameter + 2) = *(uint32_t *)(utility_context_parameter + 2);
@@ -14592,11 +14592,11 @@ utility_context_data[1] = utility_context_data;
 *(uint8_t *)(utility_context_parameter + 3) = UTILITY_BOOLEAN_TRUE;
 }
 }
-utility_context_data = utility_stack_context.component_x;
+    utility_context_data = utility_stack_context.component_x;
 if ((int64_t)utility_stack_context < 0) {
-utility_context_data = -utility_stack_context.component_x;
+    utility_context_data = -utility_stack_context.component_x;
 }
-utility_context_data = utility_stack_context.component_x;
+    utility_context_data = utility_stack_context.component_x;
 if ((int)utility_resource_handle < 0) {
 if (0 < utility_operation_status) goto UTILITY_LABEL_OPERATION_CONTINUE;
 if ((0 < (int)utility_stack_context.component_x) && (utility_stack_context_pointer_secondary != (uint64_t *)UTILITY_NULL_POINTER)) {
@@ -14604,7 +14604,7 @@ utility_resource_memory_allocator(*(uint64_t *)(utility_system_reserved_area + U
 }
 utility_stack_context_pointer_secondary = (uint64_t *)UTILITY_NULL_POINTER;
 utility_stack_context = utility_stack_context & UTILITY_MAX_UINT32;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 if (utility_operation_status < 0) {
     
@@ -14616,9 +14616,9 @@ if (utility_operation_status < 0) {
 utility_loop_index = (int64_t)utility_operation_status * UTILITY_THREAD_CONTEXT_OFFSET + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY + (int64_t)utility_stack_context_pointer_secondary;
 do {
 utility_context_parameter = (uint32_t *)utility_memory_get_pointer();
-utility_context_data = utility_context_data[1];
-utility_context_data = utility_context_data[2];
-utility_context_data = utility_context_parameter[3];
+    utility_context_data = utility_context_data[1];
+    utility_context_data = utility_context_data[2];
+    utility_context_data = utility_context_parameter[3];
 *(uint32_t *)(utility_loop_index + -UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) = *utility_buffer_handle;
 *(uint32_t *)(utility_loop_index + -UTILITY_THREAD_HANDLE_OFFSET) = utility_context_data;
 *(uint32_t *)(utility_loop_index + -0xc) = utility_context_data;
@@ -14627,12 +14627,12 @@ utility_context_data = utility_context_parameter[3];
 utility_loop_index = utility_loop_index + -1;
 utility_loop_index = utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET;
 } while (utility_loop_index != UTILITY_BOOLEAN_FALSE);
-utility_context_data = utility_stack_context.component_x;
+    utility_context_data = utility_stack_context.component_x;
 }
 }
 utility_stack_context = utility_stack_context & UTILITY_MAX_UINT3200000000;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
@@ -14641,7 +14641,7 @@ utility_data_convert(&utility_stack_context_pointer_secondary,0);
 }
 }
 else {
-utility_context_data = utility_data_retrieve(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = utility_data_retrieve(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -14650,12 +14650,12 @@ UTILITY_LABEL_OPERATION_CONTINUE:
 for (utility_context_data = *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET);
 (*(uint64_t *)(utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET) <= utility_resource_handle &&
 (utility_resource_handle < (int64_t)*(int *)(utility_context_parameter + UTILITY_THREAD_SIZE_OFFSET) * UTILITY_STATUS_THREAD_CREATED + *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET)));
-utility_context_data = utility_resource_handle + UTILITY_STATUS_THREAD_CREATED) {
+    utility_context_data = utility_resource_handle + UTILITY_STATUS_THREAD_CREATED) {
 utility_data_finalize(utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET);
 }
 UTILITY_LABEL_MAIN_CONTINUE:
 if ((UTILITY_STATUS_FLAG_MASK_PRIMARY < *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET)) && (utility_context_data = UTILITY_STATUS_THREAD_CREATED, *(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY,4);
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
@@ -14711,11 +14711,11 @@ return utility_context_parameter;
 }
 utility_context_parameter = (uint32_t *)utility_memory_get_pointer();
 utility_context_parameter = (uint64_t *)UTILITY_NULL_POINTER;
-utility_context_data = *(uint *)(utility_input_context + UTILITY_POINTER_OFFSET);
-utility_context_data = *utility_buffer_handle;
-utility_context_data = utility_context_data[1];
-utility_context_data = utility_context_data[2];
-utility_context_data = utility_context_parameter[3];
+    utility_context_data = *(uint *)(utility_input_context + UTILITY_POINTER_OFFSET);
+    utility_context_data = *utility_buffer_handle;
+    utility_context_data = utility_context_data[1];
+    utility_context_data = utility_context_data[2];
+    utility_context_data = utility_context_parameter[3];
 *(uint32_t *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_9) = utility_context_data;
 *(uint32_t *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG5) = utility_context_data;
 *(uint32_t *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_PRIMARY) = utility_context_data;
@@ -14725,7 +14725,7 @@ if (utility_resource_handle < 0x6d) {
     
 }
 if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = *utility_input_context;
+    utility_context_data = *utility_input_context;
 utility_context_parameter = (uint64_t *)utility_handle_parameter_validation(utility_context_data,utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_9,4);
 if ((int)utility_context_parameter != UTILITY_BOOLEAN_FALSE) {
 return utility_context_parameter;
@@ -14739,7 +14739,7 @@ if ((int)utility_context_parameter != UTILITY_BOOLEAN_FALSE) {
 return utility_context_parameter;
 }
 utility_context_parameter = (uint64_t *)utility_handle_parameter_validation(utility_context_data,utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_PRIMARY,8);
-utility_context_data = utility_float_result_primary;
+    utility_context_data = utility_float_result_primary;
 }
 else {
 utility_context_parameter = (uint64_t *)UTILITY_STATUS_THREAD_CREATED;
@@ -14759,16 +14759,16 @@ goto UTILITY_LABEL_MAIN_CONTINUE;
 if (*(uint *)(utility_input_context + UTILITY_POINTER_OFFSET) < 0x6a) {
 *(uint64_t *)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_context_base_pointer + -0x21) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_data_transform(utility_context_data,utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED,0);
+    utility_context_data = utility_data_transform(utility_context_data,utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED,0);
 utility_context_parameter = (uint64_t *)(uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_RESOURCE_AVAILABLE:
-utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
-utility_context_data = utility_context_data;
+    utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
+    utility_context_data = utility_context_data;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 utility_operation_status = *(int *)(utility_context_base_pointer + -0x21);
 if ((int)utility_resource_handle < 0) {
@@ -14783,7 +14783,7 @@ utility_resource_memory_allocator(*(uint64_t *)(utility_system_reserved_area + U
 }
 *(uint64_t *)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 else {
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
@@ -14798,9 +14798,9 @@ if (utility_operation_status < 0) {
 utility_loop_index = (int64_t)utility_operation_status * UTILITY_THREAD_CONTEXT_OFFSET + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY + (int64_t)utility_context_parameter;
 do {
 utility_context_parameter = (uint32_t *)utility_memory_get_pointer();
-utility_context_data = utility_context_data[1];
-utility_context_data = utility_context_data[2];
-utility_context_data = utility_context_parameter[3];
+    utility_context_data = utility_context_data[1];
+    utility_context_data = utility_context_data[2];
+    utility_context_data = utility_context_parameter[3];
 *(uint32_t *)(utility_loop_index + -UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) = *utility_buffer_handle;
 *(uint32_t *)(utility_loop_index + -UTILITY_THREAD_HANDLE_OFFSET) = utility_context_data;
 *(uint32_t *)(utility_loop_index + -0xc) = utility_context_data;
@@ -14809,12 +14809,12 @@ utility_context_data = utility_context_parameter[3];
 utility_loop_index = utility_loop_index + -1;
 utility_loop_index = utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET;
 } while (utility_loop_index != UTILITY_BOOLEAN_FALSE);
-utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
+    utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
 }
 }
 *(uint32_t *)(utility_context_base_pointer + -0x21) = UTILITY_BOOLEAN_FALSE;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
@@ -14832,9 +14832,9 @@ if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
 }
 else {
-utility_context_data = (int)*(uint *)(utility_context_index_source + UTILITY_RESOURCE_COUNT_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)(utility_context_index_source + UTILITY_RESOURCE_COUNT_OFFSET) >> UTILITY_STATUS_FLAG_F;
 if ((int)((*(uint *)(utility_context_index_source + UTILITY_RESOURCE_COUNT_OFFSET) ^ utility_context_data) - utility_context_data) < utility_operation_status) {
-utility_context_data = utility_data_calculate(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET,utility_operation_status);
+    utility_context_data = utility_data_calculate(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET,utility_operation_status);
 utility_context_parameter = (uint64_t *)(uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_RESOURCE_AVAILABLE;
 utility_operation_status = *(int *)(utility_context_base_pointer + -0x21);
@@ -14843,10 +14843,10 @@ utility_network_float_data = utility_float_result_alpha;
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
 utility_context_parameter = utility_context_parameter + 3) {
 *(uint64_t *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_data_compute(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
+    utility_context_data = utility_data_compute(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
 utility_context_parameter = (uint64_t *)(uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_RESOURCE_AVAILABLE;
-utility_context_data = utility_context_data[1];
+    utility_context_data = utility_context_data[1];
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_data[1] = utility_context_data;
@@ -14858,10 +14858,10 @@ utility_operation_status = *(int *)(utility_context_base_pointer + -0x21);
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
 }
 }
-utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
-utility_context_data = utility_context_data;
+    utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
+    utility_context_data = utility_context_data;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 if ((int)utility_resource_handle < 0) {
 if (0 < utility_operation_status) goto UTILITY_LABEL_OPERATION_CONTINUE;
@@ -14870,7 +14870,7 @@ utility_resource_memory_allocator(*(uint64_t *)(utility_system_reserved_area + U
 }
 *(uint64_t *)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 if (utility_operation_status < 0) {
     
@@ -14894,12 +14894,12 @@ utility_network_float_data = utility_context_parameter[3];
 utility_loop_index = utility_loop_index + -1;
 utility_loop_index = utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET;
 } while (utility_loop_index != UTILITY_BOOLEAN_FALSE);
-utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
+    utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
 }
 }
 *(uint32_t *)(utility_context_base_pointer + -0x21) = UTILITY_BOOLEAN_FALSE;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
@@ -14918,12 +14918,12 @@ UTILITY_LABEL_OPERATION_CONTINUE:
 for (utility_context_data = *(uint64_t *)(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET);
 (*(uint64_t *)(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET) <= utility_resource_handle &&
 (utility_resource_handle < (int64_t)*(int *)(utility_context_index_source + UTILITY_THREAD_SIZE_OFFSET) * UTILITY_STATUS_THREAD_CREATED + *(uint64_t *)(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET)));
-utility_context_data = utility_resource_handle + UTILITY_STATUS_THREAD_CREATED) {
+    utility_context_data = utility_resource_handle + UTILITY_STATUS_THREAD_CREATED) {
 utility_network_float_data = (float)utility_data_finalize(utility_context_index_source + UTILITY_RESOURCE_SIZE_OFFSET);
 }
 UTILITY_LABEL_MAIN_CONTINUE:
 if ((UTILITY_STATUS_FLAG_MASK_PRIMARY < *(uint *)(utility_input_context + UTILITY_POINTER_OFFSET)) && (utility_context_data = UTILITY_STATUS_THREAD_CREATED, *(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_index_source + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_index_source + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY,4);
 utility_network_float_data = utility_parameter_float;
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
@@ -15000,7 +15000,7 @@ if ((int)utility_context_parameter != UTILITY_BOOLEAN_FALSE) {
 return utility_context_parameter;
 }
 utility_context_parameter = (uint64_t *)utility_handle_parameter_validation(utility_context_data,utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_PRIMARY,8);
-utility_context_data = utility_float_result_primary;
+    utility_context_data = utility_float_result_primary;
 }
 else {
 utility_context_parameter = (uint64_t *)UTILITY_STATUS_THREAD_CREATED;
@@ -15020,16 +15020,16 @@ goto UTILITY_LABEL_MAIN_CONTINUE;
 if (*(uint *)(utility_input_context + UTILITY_POINTER_OFFSET) < 0x6a) {
 *(uint64_t *)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_context_base_pointer + -0x21) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_data_transform(utility_context_data,utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED,0);
+    utility_context_data = utility_data_transform(utility_context_data,utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED,0);
 utility_context_parameter = (uint64_t *)(uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_RESOURCE_AVAILABLE:
-utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
-utility_context_data = utility_context_data;
+    utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
+    utility_context_data = utility_context_data;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 utility_operation_status = *(int *)(utility_context_base_pointer + -0x21);
 if ((int)utility_resource_handle < 0) {
@@ -15044,7 +15044,7 @@ utility_resource_memory_allocator(*(uint64_t *)(utility_system_reserved_area + U
 }
 *(uint64_t *)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 else {
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
@@ -15059,9 +15059,9 @@ if (utility_operation_status < 0) {
 utility_loop_index = (int64_t)utility_operation_status * UTILITY_THREAD_CONTEXT_OFFSET + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY + (int64_t)utility_context_parameter;
 do {
 utility_context_parameter = (uint32_t *)utility_memory_get_pointer();
-utility_context_data = utility_context_data[1];
-utility_context_data = utility_context_data[2];
-utility_context_data = utility_context_parameter[3];
+    utility_context_data = utility_context_data[1];
+    utility_context_data = utility_context_data[2];
+    utility_context_data = utility_context_parameter[3];
 *(uint32_t *)(utility_loop_index + -UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) = *utility_buffer_handle;
 *(uint32_t *)(utility_loop_index + -UTILITY_THREAD_HANDLE_OFFSET) = utility_context_data;
 *(uint32_t *)(utility_loop_index + -0xc) = utility_context_data;
@@ -15070,12 +15070,12 @@ utility_context_data = utility_context_parameter[3];
 utility_loop_index = utility_loop_index + -1;
 utility_loop_index = utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET;
 } while (utility_loop_index != UTILITY_BOOLEAN_FALSE);
-utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
+    utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
 }
 }
 *(uint32_t *)(utility_context_base_pointer + -0x21) = UTILITY_BOOLEAN_FALSE;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
@@ -15093,9 +15093,9 @@ if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
 }
 else {
-utility_context_data = (int)*(uint *)(utility_context_index_source + UTILITY_RESOURCE_COUNT_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)(utility_context_index_source + UTILITY_RESOURCE_COUNT_OFFSET) >> UTILITY_STATUS_FLAG_F;
 if ((int)((*(uint *)(utility_context_index_source + UTILITY_RESOURCE_COUNT_OFFSET) ^ utility_context_data) - utility_context_data) < utility_operation_status) {
-utility_context_data = utility_data_calculate(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET,utility_operation_status);
+    utility_context_data = utility_data_calculate(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET,utility_operation_status);
 utility_context_parameter = (uint64_t *)(uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_RESOURCE_AVAILABLE;
 utility_operation_status = *(int *)(utility_context_base_pointer + -0x21);
@@ -15104,10 +15104,10 @@ utility_network_float_data = utility_float_result_alpha;
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
 utility_context_parameter = utility_context_parameter + 3) {
 *(uint64_t *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_data_compute(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
+    utility_context_data = utility_data_compute(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
 utility_context_parameter = (uint64_t *)(uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_RESOURCE_AVAILABLE;
-utility_context_data = utility_context_data[1];
+    utility_context_data = utility_context_data[1];
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_data[1] = utility_context_data;
@@ -15119,10 +15119,10 @@ utility_operation_status = *(int *)(utility_context_base_pointer + -0x21);
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
 }
 }
-utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
-utility_context_data = utility_context_data;
+    utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
+    utility_context_data = utility_context_data;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 if ((int)utility_resource_handle < 0) {
 if (0 < utility_operation_status) goto UTILITY_LABEL_OPERATION_CONTINUE;
@@ -15131,7 +15131,7 @@ utility_resource_memory_allocator(*(uint64_t *)(utility_system_reserved_area + U
 }
 *(uint64_t *)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 if (utility_operation_status < 0) {
     
@@ -15155,12 +15155,12 @@ utility_network_float_data = utility_context_parameter[3];
 utility_loop_index = utility_loop_index + -1;
 utility_loop_index = utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET;
 } while (utility_loop_index != UTILITY_BOOLEAN_FALSE);
-utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
+    utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
 }
 }
 *(uint32_t *)(utility_context_base_pointer + -0x21) = UTILITY_BOOLEAN_FALSE;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
@@ -15179,12 +15179,12 @@ UTILITY_LABEL_OPERATION_CONTINUE:
 for (utility_context_data = *(uint64_t *)(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET);
 (*(uint64_t *)(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET) <= utility_resource_handle &&
 (utility_resource_handle < (int64_t)*(int *)(utility_context_index_source + UTILITY_THREAD_SIZE_OFFSET) * UTILITY_STATUS_THREAD_CREATED + *(uint64_t *)(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET)));
-utility_context_data = utility_resource_handle + UTILITY_STATUS_THREAD_CREATED) {
+    utility_context_data = utility_resource_handle + UTILITY_STATUS_THREAD_CREATED) {
 utility_network_float_data = (float)utility_data_finalize(utility_context_index_source + UTILITY_RESOURCE_SIZE_OFFSET);
 }
 UTILITY_LABEL_MAIN_CONTINUE:
 if ((UTILITY_STATUS_FLAG_MASK_PRIMARY < *(uint *)(utility_input_context + UTILITY_POINTER_OFFSET)) && (utility_context_data = UTILITY_STATUS_THREAD_CREATED, *(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_index_source + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_index_source + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY,4);
 utility_network_float_data = utility_parameter_float;
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
@@ -15243,16 +15243,16 @@ if (utility_accumulator_data < 0x6a) {
 }
 *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) = utility_register_r12_value;
 *(uint64_t **)(utility_context_base_pointer + -0x21) = utility_register_r12_value;
-utility_context_data = utility_data_transform(utility_context_parameter,utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED,0);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_data_transform(utility_context_parameter,utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED,0);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_RESOURCE_AVAILABLE:
-utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
-utility_context_data = utility_context_data;
+    utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
+    utility_context_data = utility_context_data;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 utility_operation_status = *(int *)(utility_context_base_pointer + -0x21);
 if ((int)utility_resource_handle < 0) {
@@ -15268,7 +15268,7 @@ utility_resource_memory_allocator(*(uint64_t *)(utility_system_reserved_area + U
 *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) = utility_register_r12_value;
 *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL) = utility_context_data;
 utility_context_parameter = utility_register_r12_value;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 else {
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
@@ -15283,9 +15283,9 @@ if (utility_operation_status < 0) {
 utility_loop_index = (int64_t)utility_operation_status * UTILITY_THREAD_CONTEXT_OFFSET + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY + (int64_t)utility_context_parameter;
 do {
 utility_context_parameter = (uint32_t *)utility_memory_get_pointer();
-utility_context_data = utility_context_data[1];
-utility_context_data = utility_context_data[2];
-utility_context_data = utility_context_parameter[3];
+    utility_context_data = utility_context_data[1];
+    utility_context_data = utility_context_data[2];
+    utility_context_data = utility_context_parameter[3];
 *(uint32_t *)(utility_loop_index + -UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) = *utility_buffer_handle;
 *(uint32_t *)(utility_loop_index + -UTILITY_THREAD_HANDLE_OFFSET) = utility_context_data;
 *(uint32_t *)(utility_loop_index + -0xc) = utility_context_data;
@@ -15294,12 +15294,12 @@ utility_context_data = utility_context_parameter[3];
 utility_loop_index = utility_loop_index + -1;
 utility_loop_index = utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET;
 } while (utility_loop_index != UTILITY_BOOLEAN_FALSE);
-utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
+    utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
 }
 }
 *(uint *)(utility_context_base_pointer + -0x21) = utility_context_data;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
@@ -15317,10 +15317,10 @@ if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
 }
 else {
-utility_context_data = (int)*(uint *)(utility_context_index_source + UTILITY_RESOURCE_COUNT_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    utility_context_data = (int)*(uint *)(utility_context_index_source + UTILITY_RESOURCE_COUNT_OFFSET) >> UTILITY_STATUS_FLAG_F;
 if ((int)((*(uint *)(utility_context_index_source + UTILITY_RESOURCE_COUNT_OFFSET) ^ utility_context_data) - utility_context_data) < utility_operation_status) {
-utility_context_data = utility_data_calculate(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET,utility_operation_status);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_data_calculate(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET,utility_operation_status);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_RESOURCE_AVAILABLE;
 utility_operation_status = *(int *)(utility_context_base_pointer + -0x21);
 utility_network_float_data = utility_xmm0_precision;
@@ -15328,10 +15328,10 @@ utility_network_float_data = utility_xmm0_precision;
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
 utility_context_parameter = utility_context_parameter + 3) {
 *(uint64_t **)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = utility_register_r12_value;
-utility_context_data = utility_data_compute(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_data_compute(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_RESOURCE_AVAILABLE;
-utility_context_data = utility_context_data[1];
+    utility_context_data = utility_context_data[1];
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
 *utility_buffer_handle = *utility_buffer_handle;
 utility_context_data[1] = utility_context_data;
@@ -15343,10 +15343,10 @@ utility_operation_status = *(int *)(utility_context_base_pointer + -0x21);
 utility_context_parameter = *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
 }
 }
-utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
-utility_context_data = utility_context_data;
+    utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
+    utility_context_data = utility_context_data;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 if ((int)utility_resource_handle < 0) {
 if (0 < utility_operation_status) goto UTILITY_LABEL_OPERATION_CONTINUE;
@@ -15356,7 +15356,7 @@ utility_resource_memory_allocator(*(uint64_t *)(utility_system_reserved_area + U
 *(uint64_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) = utility_register_r12_value;
 *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL) = utility_context_data;
 utility_context_parameter = utility_register_r12_value;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 if (utility_operation_status < 0) {
     
@@ -15380,12 +15380,12 @@ utility_network_float_data = utility_context_parameter[3];
 utility_loop_index = utility_loop_index + -1;
 utility_loop_index = utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET;
 } while (utility_loop_index != UTILITY_BOOLEAN_FALSE);
-utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
+    utility_context_data = *(uint *)(utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_DECIMAL);
 }
 }
 *(uint *)(utility_context_base_pointer + -0x21) = utility_context_data;
 if ((int)utility_resource_handle < 0) {
-utility_context_data = -utility_context_data;
+    utility_context_data = -utility_context_data;
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
@@ -15394,7 +15394,7 @@ utility_network_float_data = (float)utility_data_convert(utility_context_base_po
 }
 }
 else {
-utility_context_data = utility_data_retrieve(utility_context_parameter,utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = utility_data_retrieve(utility_context_parameter,utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET);
 utility_network_float_data = utility_parameter_float;
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -15404,13 +15404,13 @@ UTILITY_LABEL_OPERATION_CONTINUE:
 for (utility_context_data = *(uint64_t *)(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET);
 (*(uint64_t *)(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET) <= utility_resource_handle &&
 (utility_resource_handle < (int64_t)*(int *)(utility_context_index_source + UTILITY_THREAD_SIZE_OFFSET) * UTILITY_STATUS_THREAD_CREATED + *(uint64_t *)(utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET)));
-utility_context_data = utility_resource_handle + UTILITY_STATUS_THREAD_CREATED) {
+    utility_context_data = utility_resource_handle + UTILITY_STATUS_THREAD_CREATED) {
 utility_network_float_data = (float)utility_data_finalize(utility_context_index_source + UTILITY_RESOURCE_SIZE_OFFSET);
 }
 UTILITY_LABEL_MAIN_CONTINUE:
 if ((UTILITY_STATUS_FLAG_MASK_PRIMARY < *(uint *)(utility_input_context + UTILITY_POINTER_OFFSET)) &&
 (utility_network_boolean_flag = *(uint *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == utility_context_data, utility_context_data = utility_register_r15d_value, utility_network_boolean_flag)) {
-utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_index_source + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_index_source + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY,4);
 utility_network_float_data = utility_xmm0_result;
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
@@ -15464,55 +15464,55 @@ utility_context_temp_value = utility_stream_create(utility_context_parameter,uti
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_stream_create(utility_context_parameter,utility_stack_buffer_array_output,0,UTILITY_STREAM_TYPE_BMRP);
+    utility_context_data = utility_stream_create(utility_context_parameter,utility_stack_buffer_array_output,0,UTILITY_STREAM_TYPE_BMRP);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_time_processor(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = utility_time_processor(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = 4;
+    utility_context_data = 4;
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x6f < *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET,4);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 goto UTILITY_LABEL_NEXT_ITERATION;
 }
 utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_ARRAY_BOUNDARY:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,1,0);
 }
 else {
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_stack_buffer[0] + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_ARRAY_BOUNDARY;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
@@ -15528,7 +15528,7 @@ utility_stack_tertiary_byte_flag = UTILITY_BOOLEAN_TRUE;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 }
 }
@@ -15549,23 +15549,23 @@ utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_buffer[0] + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_HANDLER_PROCESSED;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_stack_uint_data,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_stack_uint_data,1,4,0);
 }
 UTILITY_LABEL_HANDLER_PROCESSED:
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -15576,37 +15576,37 @@ case 0:
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 break;
 case 1:
-utility_context_data = UTILITY_BOOLEAN_TRUE;
+    utility_context_data = UTILITY_BOOLEAN_TRUE;
 break;
 case 2:
-utility_context_data = 2;
+    utility_context_data = 2;
 break;
 case 3:
-utility_context_data = 3;
+    utility_context_data = 3;
 break;
 case 4:
 break;
 case 5:
-utility_context_data = 5;
+    utility_context_data = 5;
 break;
 case 6:
-utility_context_data = 6;
+    utility_context_data = 6;
 break;
 case 7:
-utility_context_data = 7;
+    utility_context_data = 7;
 break;
 case 8:
-utility_context_data = 8;
+    utility_context_data = 8;
 break;
 case 9:
-utility_context_data = 9;
+    utility_context_data = 9;
 break;
 default:
-utility_context_data = utility_falsexd;
+    utility_context_data = utility_falsexd;
 goto UTILITY_LABEL_DATA_VALIDATED;
 }
 *(uint32_t *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = utility_context_data;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 UTILITY_LABEL_DATA_VALIDATED:
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -15614,95 +15614,95 @@ return utility_resource_id;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_create_memory_context(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_SIZE_OFFSET);
+    utility_context_data = utility_create_memory_context(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_SIZE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_POINTER_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_POINTER_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + 0x3c);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + 0x3c);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_FLAG_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_FLAG_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_EXTENDED_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_EXTENDED_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 goto UTILITY_LABEL_PROCESS_COMPLETE;
 }
 utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_SIZE_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,1,0);
 }
 else {
 utility_stack_uint_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_data);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_data);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_stack_uint_data + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_SIZE_CHECK;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = (uint)((char)utility_stack_buffer[0] != '\0');
-utility_context_data = (uint)((char)utility_stack_buffer[0] == '\0');
+    utility_context_data = (uint)((char)utility_stack_buffer[0] != '\0');
+    utility_context_data = (uint)((char)utility_stack_buffer[0] == '\0');
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else {
-utility_context_data = UTILITY_BOOLEAN_TRUE;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = UTILITY_BOOLEAN_TRUE;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 }
 }
 else {
 UTILITY_LABEL_PROCESS_COMPLETE:
-utility_context_data = UTILITY_BOOLEAN_TRUE;
-utility_context_data = utility_context_data;
+    utility_context_data = UTILITY_BOOLEAN_TRUE;
+    utility_context_data = utility_context_data;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -15710,75 +15710,75 @@ return utility_resource_id;
 if ((*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x60) && (utility_context_data = utility_get_float_value(utility_context_parameter), (int)utility_resource_handle != UTILITY_BOOLEAN_FALSE)) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x51 < *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if ((int)utility_context_parameter[8] - 0x52U < UTILITY_STATUS_FLAG_EXTENDED) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_PARAMETER_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,1,0);
 }
 else {
 utility_stack_uint_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_data);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_data);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_stack_uint_data + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_PARAMETER_CHECK;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
-utility_context_data = UTILITY_BOOLEAN_TRUE;
+    utility_context_data = UTILITY_BOOLEAN_TRUE;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = (uint)((char)utility_stack_buffer[0] != '\0');
-utility_context_data = (uint)((char)utility_stack_buffer[0] == '\0');
+    utility_context_data = (uint)((char)utility_stack_buffer[0] != '\0');
+    utility_context_data = (uint)((char)utility_stack_buffer[0] == '\0');
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
 if (utility_resource_handle < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
     
 }
 *(uint *)(utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET) =
 (((utility_stack_buffer[0] | *(uint *)(utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET)) & ~utility_stack_tertiary_byte_flag | utility_resource_handle * 2) & ~(utility_resource_handle * 2) |
 utility_resource_handle * 4) & ~(utility_resource_handle * 4);
-utility_context_data = *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
 }
 if ((utility_resource_handle < UTILITY_MEMORY_POINTER_OFFSET7) && ((*(uint *)(utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET) >> 3 & 1) != UTILITY_BOOLEAN_FALSE)) {
 *(float *)(utility_context_parameter + 0x3c) = *(float *)(utility_context_parameter + 0x3c) - 1.0;
-utility_context_data = *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
 }
 if (utility_resource_handle < UTILITY_MEMORY_POINTER_OFFSETb) {
     
@@ -15787,41 +15787,41 @@ UTILITY_LABEL_ITERATION_DONE:
 utility_stream_close(utility_context_parameter,utility_stack_buffer_array_output);
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_validate(*utility_buffer_handle,utility_stack_buffer);
-utility_context_data = utility_stack_buffer[0];
+    utility_context_data = utility_resource_validate(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_stack_buffer[0];
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_stack_buffer[0] & 1;
-utility_context_data = utility_stack_buffer[0] >> 1;
-utility_context_data = utility_initialize_memory_buffer(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_context_data);
+    utility_context_data = utility_stack_buffer[0] & 1;
+    utility_context_data = utility_stack_buffer[0] >> 1;
+    utility_context_data = utility_initialize_memory_buffer(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET,utility_context_data);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (utility_resource_handle >> 1 != UTILITY_BOOLEAN_FALSE) {
     
 }
 do {
-utility_context_data = utility_resource_read(utility_context_parameter,utility_context_data);
+    utility_context_data = utility_resource_read(utility_context_parameter,utility_context_data);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_create_memory_context(*utility_buffer_handle,(int64_t)(int)utility_resource_handle * UTILITY_THREAD_HANDLE_OFFSET +
+    utility_context_data = utility_create_memory_context(*utility_buffer_handle,(int64_t)(int)utility_resource_handle * UTILITY_THREAD_HANDLE_OFFSET +
 *(int64_t *)(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET));
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_resource_write(utility_context_parameter,utility_stack_buffer);
+    utility_context_data = utility_resource_write(utility_context_parameter,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
 utility_stack_buffer[0] = utility_stack_buffer[0] & -utility_context_data;
-utility_context_data = (uint64_t)utility_stack_buffer[0];
+    utility_context_data = (uint64_t)utility_stack_buffer[0];
 } while ((int)utility_resource_handle < (int)utility_context_data);
 }
 goto UTILITY_LABEL_ITERATION_DONE;
@@ -15872,16 +15872,16 @@ if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTIL
 utility_context_temp_value = utility_handle_parameter_validation(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_STATUS_OFFSET,(uint64_t)utility_context_temp_value);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 goto UTILITY_LABEL_NEXT_ITERATION;
 }
 utility_context_parameter = (int64_t *)*utility_resource_handle;
@@ -15889,22 +15889,22 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_ARRAY_BOUNDARY:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value,0);
 }
 else {
 *(uint32_t *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)*(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf) + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_ARRAY_BOUNDARY;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
@@ -15920,7 +15920,7 @@ else {
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 }
 }
@@ -15942,23 +15942,23 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 *(uint32_t *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)*(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) + (uint64_t)utility_context_data) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_HANDLER_PROCESSED;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x25,utility_register_r14d_value,utility_context_data,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x25,utility_register_r14d_value,utility_context_data,0);
 }
 UTILITY_LABEL_HANDLER_PROCESSED:
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -15969,37 +15969,37 @@ case 0:
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 break;
 case 1:
-utility_context_data = utility_register_r14d_value;
+    utility_context_data = utility_register_r14d_value;
 break;
 case 2:
-utility_context_data = 2;
+    utility_context_data = 2;
 break;
 case 3:
-utility_context_data = 3;
+    utility_context_data = 3;
 break;
 case 4:
 break;
 case 5:
-utility_context_data = 5;
+    utility_context_data = 5;
 break;
 case 6:
-utility_context_data = 6;
+    utility_context_data = 6;
 break;
 case 7:
-utility_context_data = 7;
+    utility_context_data = 7;
 break;
 case 8:
-utility_context_data = 8;
+    utility_context_data = 8;
 break;
 case 9:
-utility_context_data = 9;
+    utility_context_data = 9;
 break;
 default:
-utility_context_data = utility_falsexd;
+    utility_context_data = utility_falsexd;
 goto UTILITY_LABEL_DATA_VALIDATED;
 }
 *(uint *)(utility_context_resource_handle + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = utility_context_data;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 UTILITY_LABEL_DATA_VALIDATED:
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -16007,49 +16007,49 @@ return utility_resource_id;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_create_memory_context(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_SIZE_OFFSET);
+    utility_context_data = utility_create_memory_context(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_SIZE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_POINTER_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_POINTER_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + 0x3c);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + 0x3c);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_RESOURCE_FLAG_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_RESOURCE_FLAG_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_CONTEXT_EXTENDED_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_CONTEXT_EXTENDED_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 utility_network_float_data = utility_float_result_primary;
-utility_context_data = utility_context_data;
-utility_context_data = utility_register_r14d_value;
+    utility_context_data = utility_context_data;
+    utility_context_data = utility_register_r14d_value;
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (int64_t *)*utility_resource_handle;
@@ -16057,25 +16057,25 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_SIZE_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value,0);
 utility_network_float_data = utility_parameter_float;
 }
 else {
 *(uint32_t *)(utility_context_base_pointer + -0x25) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
 utility_network_float_data = utility_xmm0_result;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)*(uint *)(utility_context_base_pointer + -0x25) + 1 <= (uint64_t)utility_context_data[2])
 goto UTILITY_LABEL_SIZE_CHECK;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
@@ -16083,20 +16083,20 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
-utility_context_data = (uint)(*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) != '\0');
-utility_context_data = (uint)(*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) == '\0');
+    utility_context_data = (uint)(*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) != '\0');
+    utility_context_data = (uint)(*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) == '\0');
 }
 else {
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -16106,23 +16106,23 @@ if ((*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x60) &&
 (utility_context_data = utility_get_float_value(), utility_network_float_data = utility_float_result, (int)utility_resource_handle != UTILITY_BOOLEAN_FALSE)) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (0x51 < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_BUFFER_OFFSET);
 utility_network_float_data = utility_xmm0_precision;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (UTILITY_STATUS_ENABLED_FLAG_DECIMAL < (int)utility_resource_handle[8] - 0x52U) goto UTILITY_LABEL_CHECK_PASSED;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 goto UTILITY_LABEL_CHECK_PASSED;
 }
 utility_context_parameter = (int64_t *)*utility_resource_handle;
@@ -16130,44 +16130,44 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_PARAMETER_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value,0);
 utility_network_float_data = utility_float_result_beta;
 }
 else {
 *(uint32_t *)(utility_context_base_pointer + -0x25) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
 utility_network_float_data = utility_float_result_alpha;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)*(uint *)(utility_context_base_pointer + -0x25) + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_PARAMETER_CHECK;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = (uint)(*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) != '\0');
+    utility_context_data = (uint)(*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) != '\0');
 utility_register_r14d_value = (uint)(*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) == '\0');
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 UTILITY_LABEL_CHECK_PASSED:
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 if (utility_resource_handle < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
     
 }
@@ -16175,58 +16175,58 @@ if (utility_resource_handle < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
 (((*(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf) | *(uint *)(utility_context_resource_handle + UTILITY_THREAD_STATUS_OFFSET)) &
 ~*(uint *)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) | utility_resource_handle * 2) & ~(utility_resource_handle * 2) | utility_resource_handle * 4) &
 ~(utility_register_r14d_value * 4);
-utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 }
 if ((utility_resource_handle < UTILITY_MEMORY_POINTER_OFFSET7) && ((*(uint *)(utility_context_resource_handle + UTILITY_THREAD_STATUS_OFFSET) >> 3 & 1) != UTILITY_BOOLEAN_FALSE)) {
 utility_network_float_data = *(float *)(utility_context_resource_handle + 0x3c) - 1.0;
 *(float *)(utility_context_resource_handle + 0x3c) = utility_network_float_data;
-utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 }
 if (UTILITY_MEMORY_POINTER_OFFSETa < utility_context_data) {
     
 }
 utility_loop_index = *utility_resource_handle;
 *(uint32_t *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_validate(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
+    utility_context_data = utility_resource_validate(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
-utility_context_data = utility_initialize_memory_buffer(utility_context_resource_handle + UTILITY_CONTEXT_TABLE_OFFSET,utility_resource_handle >> 1);
+    utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
+    utility_context_data = utility_initialize_memory_buffer(utility_context_resource_handle + UTILITY_CONTEXT_TABLE_OFFSET,utility_resource_handle >> 1);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 *(uint32_t *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 utility_network_float_data = utility_float_result_gamma;
 if (utility_resource_handle >> 1 != UTILITY_BOOLEAN_FALSE) {
     
 }
 do {
-utility_context_data = utility_resource_read(utility_network_float_data,utility_context_data);
+    utility_context_data = utility_resource_read(utility_network_float_data,utility_context_data);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_create_memory_context(*utility_resource_handle,
+    utility_context_data = utility_create_memory_context(*utility_resource_handle,
 (int64_t)(int)utility_resource_handle * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_context_resource_handle + UTILITY_CONTEXT_TABLE_OFFSET));
-utility_context_data = utility_float_result_epsilon;
+    utility_context_data = utility_float_result_epsilon;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
-utility_context_data = utility_float_result_delta;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = utility_float_result_delta;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_resource_write(utility_context_data,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
+    utility_context_data = utility_resource_write(utility_context_data,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
-utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) & -(utility_resource_handle & 1);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) & -(utility_resource_handle & 1);
+    utility_context_data = (uint64_t)utility_context_data;
 *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = utility_context_data;
 utility_network_float_data = utility_float_result_zeta;
 } while ((int)utility_resource_handle < (int)(utility_resource_handle >> 1));
@@ -16275,46 +16275,46 @@ return utility_data_context & UTILITY_MAX_UINT32;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_create_memory_context(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_SIZE_OFFSET);
+    utility_context_data = utility_create_memory_context(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_SIZE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_POINTER_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_POINTER_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + 0x3c);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + 0x3c);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_RESOURCE_FLAG_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_RESOURCE_FLAG_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_CONTEXT_EXTENDED_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_CONTEXT_EXTENDED_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = (uint64_t)(utility_input_context >> UTILITY_BIT_SHIFT_8_BITS);
+    utility_context_data = (uint64_t)(utility_input_context >> UTILITY_BIT_SHIFT_8_BITS);
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 utility_network_float_data = utility_float_result_primary;
 utility_operation_status = utility_operation_status;
@@ -16326,49 +16326,49 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == utility_input_context) {
     
 }
 UTILITY_LABEL_SIZE_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value);
 utility_network_float_data = utility_parameter_float;
 }
 else {
 *(uint32_t *)(utility_context_base_pointer + -0x25) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
 utility_network_float_data = utility_xmm0_result;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)*(uint *)(utility_context_base_pointer + -0x25) + 1 <= (uint64_t)utility_context_data[2])
 goto UTILITY_LABEL_SIZE_CHECK;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 utility_operation_status = (int)utility_combine_flag_values(utility_context_data,*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) != '\0');
 utility_operation_status = (int)utility_combine_flag_values(utility_context_data,*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) == '\0');
 }
 else {
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 }
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 else {
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -16378,24 +16378,24 @@ if ((*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x60) &&
 return utility_resource_id;
 }
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x52) {
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 }
 else if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_BUFFER_OFFSET);
 utility_network_float_data = utility_xmm0_precision;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (UTILITY_STATUS_ENABLED_FLAG_DECIMAL < (int)utility_resource_handle[8] - 0x52U) {
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 goto UTILITY_LABEL_CHECK_PASSED;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 goto UTILITY_LABEL_CHECK_PASSED;
 }
 utility_context_parameter = (int64_t *)*utility_resource_handle;
@@ -16403,24 +16403,24 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == utility_input_context) {
     
 }
 UTILITY_LABEL_PARAMETER_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value);
 utility_network_float_data = utility_float_result_beta;
 }
 else {
 *(uint32_t *)(utility_context_base_pointer + -0x25) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
 utility_network_float_data = utility_float_result_alpha;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)*(uint *)(utility_context_base_pointer + -0x25) + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_PARAMETER_CHECK;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
@@ -16429,17 +16429,17 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 utility_operation_status = (int)utility_combine_flag_values(utility_context_data,*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) != '\0');
 utility_register_r14d_value = (int)utility_combine_flag_values(utility_context_data,*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) == '\0');
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 }
 UTILITY_LABEL_CHECK_PASSED:
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 if (utility_resource_handle < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
     
 }
@@ -16447,57 +16447,57 @@ if (utility_resource_handle < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
 (((*(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf) | *(uint *)(utility_context_resource_handle + UTILITY_THREAD_STATUS_OFFSET)) &
 ~*(uint *)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) | utility_operation_status * 2) & ~(utility_operation_status * 2) | utility_operation_status * 4) &
 ~(utility_register_r14d_value * 4);
-utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 }
 if ((utility_resource_handle < UTILITY_MEMORY_POINTER_OFFSET7) && ((*(uint *)(utility_context_resource_handle + UTILITY_THREAD_STATUS_OFFSET) >> 3 & 1) != UTILITY_BOOLEAN_FALSE)) {
 utility_network_float_data = *(float *)(utility_context_resource_handle + 0x3c) - 1.0;
 *(float *)(utility_context_resource_handle + 0x3c) = utility_network_float_data;
-utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 }
 if (UTILITY_MEMORY_POINTER_OFFSETa < utility_context_data) {
     
 }
 utility_loop_index = *utility_resource_handle;
 *(uint32_t *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_validate(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
+    utility_context_data = utility_resource_validate(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
-utility_context_data = utility_initialize_memory_buffer(utility_context_resource_handle + UTILITY_CONTEXT_TABLE_OFFSET,utility_resource_handle >> 1);
+    utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
+    utility_context_data = utility_initialize_memory_buffer(utility_context_resource_handle + UTILITY_CONTEXT_TABLE_OFFSET,utility_resource_handle >> 1);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 *(uint32_t *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 utility_network_float_data = utility_float_result_gamma;
 if (utility_resource_handle >> 1 != UTILITY_BOOLEAN_FALSE) {
     
 }
 do {
-utility_context_data = utility_resource_read(utility_network_float_data,utility_input_context & UTILITY_MAX_UINT32);
+    utility_context_data = utility_resource_read(utility_network_float_data,utility_input_context & UTILITY_MAX_UINT32);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_create_memory_context(*utility_resource_handle,
+    utility_context_data = utility_create_memory_context(*utility_resource_handle,
 (int64_t)(int)utility_resource_handle * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_context_resource_handle + UTILITY_CONTEXT_TABLE_OFFSET));
-utility_context_data = utility_float_result_epsilon;
+    utility_context_data = utility_float_result_epsilon;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
-utility_context_data = utility_float_result_delta;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = utility_float_result_delta;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_resource_write(utility_context_data,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
+    utility_context_data = utility_resource_write(utility_context_data,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
-utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) & -(utility_resource_handle & 1);
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) & -(utility_resource_handle & 1);
 utility_input_context = (uint64_t)utility_context_data;
 *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = utility_context_data;
 utility_network_float_data = utility_float_result_zeta;
@@ -16543,46 +16543,46 @@ return utility_data_context & UTILITY_MAX_UINT32;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_create_memory_context(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_SIZE_OFFSET);
+    utility_context_data = utility_create_memory_context(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_SIZE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_POINTER_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_POINTER_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + 0x3c);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + 0x3c);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_RESOURCE_FLAG_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_RESOURCE_FLAG_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_CONTEXT_EXTENDED_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_CONTEXT_EXTENDED_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = (uint64_t)(utility_input_context >> UTILITY_BIT_SHIFT_8_BITS);
+    utility_context_data = (uint64_t)(utility_input_context >> UTILITY_BIT_SHIFT_8_BITS);
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 utility_network_float_data = utility_float_result_primary;
 utility_operation_status = utility_operation_status;
@@ -16594,49 +16594,49 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == utility_input_context) {
     
 }
 UTILITY_LABEL_SIZE_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value);
 utility_network_float_data = utility_parameter_float;
 }
 else {
 *(uint32_t *)(utility_context_base_pointer + -0x25) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
 utility_network_float_data = utility_xmm0_result;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)*(uint *)(utility_context_base_pointer + -0x25) + 1 <= (uint64_t)utility_context_data[2])
 goto UTILITY_LABEL_SIZE_CHECK;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 utility_operation_status = (int)utility_combine_flag_values(utility_context_data,*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) != '\0');
 utility_operation_status = (int)utility_combine_flag_values(utility_context_data,*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) == '\0');
 }
 else {
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 }
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 else {
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -16646,24 +16646,24 @@ if ((*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x60) &&
 return utility_resource_id;
 }
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x52) {
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 }
 else if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_BUFFER_OFFSET);
 utility_network_float_data = utility_xmm0_precision;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (UTILITY_STATUS_ENABLED_FLAG_DECIMAL < (int)utility_resource_handle[8] - 0x52U) {
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 goto UTILITY_LABEL_CHECK_PASSED;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 goto UTILITY_LABEL_CHECK_PASSED;
 }
 utility_context_parameter = (int64_t *)*utility_resource_handle;
@@ -16671,24 +16671,24 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == utility_input_context) {
     
 }
 UTILITY_LABEL_PARAMETER_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value);
 utility_network_float_data = utility_float_result_beta;
 }
 else {
 *(uint32_t *)(utility_context_base_pointer + -0x25) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
 utility_network_float_data = utility_float_result_alpha;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)*(uint *)(utility_context_base_pointer + -0x25) + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_PARAMETER_CHECK;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
@@ -16697,17 +16697,17 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 utility_operation_status = (int)utility_combine_flag_values(utility_context_data,*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) != '\0');
 utility_register_r14d_value = (int)utility_combine_flag_values(utility_context_data,*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) == '\0');
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 }
 UTILITY_LABEL_CHECK_PASSED:
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 if (utility_resource_handle < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
     
 }
@@ -16715,57 +16715,57 @@ if (utility_resource_handle < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
 (((*(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf) | *(uint *)(utility_context_resource_handle + UTILITY_THREAD_STATUS_OFFSET)) &
 ~*(uint *)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) | utility_operation_status * 2) & ~(utility_operation_status * 2) | utility_operation_status * 4) &
 ~(utility_register_r14d_value * 4);
-utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 }
 if ((utility_resource_handle < UTILITY_MEMORY_POINTER_OFFSET7) && ((*(uint *)(utility_context_resource_handle + UTILITY_THREAD_STATUS_OFFSET) >> 3 & 1) != UTILITY_BOOLEAN_FALSE)) {
 utility_network_float_data = *(float *)(utility_context_resource_handle + 0x3c) - 1.0;
 *(float *)(utility_context_resource_handle + 0x3c) = utility_network_float_data;
-utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 }
 if (UTILITY_MEMORY_POINTER_OFFSETa < utility_context_data) {
     
 }
 utility_loop_index = *utility_resource_handle;
 *(uint32_t *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_validate(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
+    utility_context_data = utility_resource_validate(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
-utility_context_data = utility_initialize_memory_buffer(utility_context_resource_handle + UTILITY_CONTEXT_TABLE_OFFSET,utility_resource_handle >> 1);
+    utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
+    utility_context_data = utility_initialize_memory_buffer(utility_context_resource_handle + UTILITY_CONTEXT_TABLE_OFFSET,utility_resource_handle >> 1);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 *(uint32_t *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 utility_network_float_data = utility_float_result_gamma;
 if (utility_resource_handle >> 1 != UTILITY_BOOLEAN_FALSE) {
     
 }
 do {
-utility_context_data = utility_resource_read(utility_network_float_data,utility_input_context & UTILITY_MAX_UINT32);
+    utility_context_data = utility_resource_read(utility_network_float_data,utility_input_context & UTILITY_MAX_UINT32);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_create_memory_context(*utility_resource_handle,
+    utility_context_data = utility_create_memory_context(*utility_resource_handle,
 (int64_t)(int)utility_resource_handle * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_context_resource_handle + UTILITY_CONTEXT_TABLE_OFFSET));
-utility_context_data = utility_float_result_epsilon;
+    utility_context_data = utility_float_result_epsilon;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
-utility_context_data = utility_float_result_delta;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = utility_float_result_delta;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_resource_write(utility_context_data,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
+    utility_context_data = utility_resource_write(utility_context_data,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
-utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) & -(utility_resource_handle & 1);
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) & -(utility_resource_handle & 1);
 utility_input_context = (uint64_t)utility_context_data;
 *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = utility_context_data;
 utility_network_float_data = utility_float_result_zeta;
@@ -16823,43 +16823,43 @@ else if (utility_context_data[2] == utility_input_context) {
     
 }
 UTILITY_LABEL_SIZE_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value);
 utility_context_parameter = utility_xmm0_result;
 }
 else {
 *(int *)(utility_context_base_pointer + -0x25) = utility_operation_status;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
 utility_context_parameter = utility_float_result_primary;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)*(uint *)(utility_context_base_pointer + -0x25) + 1 <= (uint64_t)utility_context_data[2])
 goto UTILITY_LABEL_SIZE_CHECK;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 utility_operation_status = (int)utility_combine_flag_values(utility_context_data,*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) != '\0');
 utility_operation_status = (int)utility_combine_flag_values(utility_context_data,*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) == '\0');
 }
 else {
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 }
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 else {
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -16869,14 +16869,14 @@ if ((*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x60) &&
 return utility_resource_id;
 }
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x52) {
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 }
 else if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == utility_operation_status) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_resource_handle + UTILITY_THREAD_BUFFER_OFFSET);
 utility_context_parameter = utility_float_result;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -16889,25 +16889,25 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == utility_input_context) {
     
 }
 UTILITY_LABEL_PARAMETER_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7,utility_register_r14d_value,utility_register_r14d_value);
 utility_context_parameter = utility_float_result_alpha;
 }
 else {
 *(int *)(utility_context_base_pointer + -0x25) = utility_operation_status;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x25);
 utility_context_parameter = utility_xmm0_precision;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)*(uint *)(utility_context_base_pointer + -0x25) + 1 <= (uint64_t)utility_context_data[2])
 goto UTILITY_LABEL_PARAMETER_CHECK;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
@@ -16916,22 +16916,22 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 utility_operation_status = (int)utility_combine_flag_values(utility_context_data,*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) != '\0');
 utility_register_r14d_value = (int)utility_combine_flag_values(utility_context_data,*(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) == '\0');
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 else {
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 if (utility_resource_handle < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
     
 }
@@ -16939,12 +16939,12 @@ if (utility_resource_handle < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
 (((*(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf) | *(uint *)(utility_context_resource_handle + UTILITY_THREAD_STATUS_OFFSET)) &
 ~*(uint *)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) | utility_operation_status * 2) & ~(utility_operation_status * 2) | utility_operation_status * 4) &
 ~(utility_register_r14d_value * 4);
-utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 }
 if ((utility_resource_handle < UTILITY_MEMORY_POINTER_OFFSET7) && ((*(uint *)(utility_context_resource_handle + UTILITY_THREAD_STATUS_OFFSET) >> 3 & 1) != UTILITY_BOOLEAN_FALSE)) {
 utility_context_parameter = *(float *)(utility_context_resource_handle + 0x3c) - 1.0;
 *(float *)(utility_context_resource_handle + 0x3c) = utility_context_parameter;
-utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET);
 }
 if (utility_resource_handle < UTILITY_MEMORY_POINTER_OFFSETb) {
     
@@ -16954,42 +16954,42 @@ utility_stream_close(utility_context_parameter,utility_context_base_pointer + -0
 }
 utility_loop_index = *utility_resource_handle;
 *(int *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf) = utility_operation_status;
-utility_context_data = utility_resource_validate(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
+    utility_context_data = utility_resource_validate(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
-utility_context_data = utility_initialize_memory_buffer(utility_context_resource_handle + UTILITY_CONTEXT_TABLE_OFFSET,utility_resource_handle >> 1);
+    utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf);
+    utility_context_data = utility_initialize_memory_buffer(utility_context_resource_handle + UTILITY_CONTEXT_TABLE_OFFSET,utility_resource_handle >> 1);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 *(int *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = utility_operation_status;
-utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
+    utility_context_data = utility_input_context & UTILITY_MAX_UINT32;
 utility_context_parameter = utility_float_result_beta;
 utility_network_float_data = utility_float_result_beta;
 if (utility_resource_handle >> 1 != UTILITY_BOOLEAN_FALSE) {
     
 }
 do {
-utility_context_data = utility_resource_read(utility_network_float_data,utility_input_context & UTILITY_MAX_UINT32);
+    utility_context_data = utility_resource_read(utility_network_float_data,utility_input_context & UTILITY_MAX_UINT32);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_create_memory_context(*utility_resource_handle,
+    utility_context_data = utility_create_memory_context(*utility_resource_handle,
 (int64_t)(int)utility_resource_handle * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_context_resource_handle + UTILITY_CONTEXT_TABLE_OFFSET));
-utility_context_data = utility_float_result_delta;
+    utility_context_data = utility_float_result_delta;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
-utility_context_data = utility_float_result_gamma;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = utility_float_result_gamma;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_resource_write(utility_context_data,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
+    utility_context_data = utility_resource_write(utility_context_data,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
-utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) & -(utility_resource_handle & 1);
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) & -(utility_resource_handle & 1);
 utility_input_context = (uint64_t)utility_context_data;
 *(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = utility_context_data;
 utility_context_parameter = utility_float_result_epsilon;
@@ -17025,29 +17025,29 @@ if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_stack_buffer[0] = *(uint *)(utility_context_parameter + UTILITY_THREAD_SIZE_OFFSET);
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_buffer[0] + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_FINAL_PROCESSING;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,4,0);
 }
 UTILITY_LABEL_FINAL_PROCESSING:
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -17058,11 +17058,11 @@ if (UTILITY_MAX_BUFFER_SIZE < utility_stack_buffer[0]) {
 }
 return UTILITY_STATUS_INVALID_PARAMETER;
 }
-utility_context_data = utility_resource_get_context(utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = utility_resource_get_context(utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET);
 if ((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_CONTEXT_FINALIZED;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -17071,7 +17071,7 @@ UTILITY_LABEL_CONTEXT_FINALIZED:
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (0 < (int)utility_stack_buffer[0]) {
 do {
-utility_context_data = utility_resource_process_data(utility_context_parameter,utility_context_parameter,utility_operation_status);
+    utility_context_data = utility_resource_process_data(utility_context_parameter,utility_context_parameter,utility_operation_status);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -17082,7 +17082,7 @@ if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x6e) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_buffer_free(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX);
+    utility_context_data = utility_buffer_free(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX);
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
@@ -17129,16 +17129,16 @@ if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_buffer_handle = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_buffer_handle + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_FINAL_PROCESSING;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,4,0);
 }
 UTILITY_LABEL_FINAL_PROCESSING:
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -17153,7 +17153,7 @@ resource_context_result = utility_resource_get_context(register_rbp_data + UTILI
 if ((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_CONTEXT_FINALIZED;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -17162,7 +17162,7 @@ UTILITY_LABEL_CONTEXT_FINALIZED:
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if (0 < (int)utility_buffer_handle) {
 do {
-utility_context_data = utility_resource_process_data();
+    utility_context_data = utility_resource_process_data();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -17173,7 +17173,7 @@ if (*(uint *)(utility_context_index_source + UTILITY_POINTER_OFFSET) < 0x6e) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_context_index_source[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_buffer_free(*utility_context_index_source,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX);
+    utility_context_data = utility_buffer_free(*utility_context_index_source,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX);
 }
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
@@ -17210,34 +17210,34 @@ if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_context_parameter = (int64_t *)*utility_buffer_handle;
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_buffer[0] + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_CLEANUP_START;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,4,0);
 }
 UTILITY_LABEL_CLEANUP_START:
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 *(uint *)(utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET) = utility_stack_buffer[0];
-utility_context_data = utility_falsexd;
+    utility_context_data = utility_falsexd;
 if (utility_stack_buffer[0] < 5) {
     
 }
@@ -17253,30 +17253,30 @@ utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_buffer[0] + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_FINAL_VALIDATION;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,4,0);
 }
 UTILITY_LABEL_FINAL_VALIDATION:
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 *(uint *)(utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) = utility_stack_buffer[0];
-utility_context_data = utility_falsexd;
+    utility_context_data = utility_falsexd;
 if (utility_stack_buffer[0] < 3) {
     
 }
@@ -17285,7 +17285,7 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_network_operation(utility_context_parameter,utility_context_parameter,0);
+    utility_context_data = utility_network_operation(utility_context_parameter,utility_context_parameter,0);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -17300,16 +17300,16 @@ if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_BUFFER_PROCESSING:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,1,0);
 }
 else {
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_stack_buffer[0] + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_BUFFER_PROCESSING;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 }
@@ -17348,34 +17348,34 @@ if (*(int *)(utility_context_main + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BO
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_context_parameter = (int64_t *)*utility_input_context;
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 _utility_stack_reserved_char = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)_utility_stack_reserved_char + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_CLEANUP_START;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,4,0);
 }
 UTILITY_LABEL_CLEANUP_START:
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 *(uint *)(utility_context_auxiliary_pointer + UTILITY_THREAD_HANDLE_OFFSET) = utility_buffer_handle;
-utility_context_data = utility_falsexd;
+    utility_context_data = utility_falsexd;
 if (utility_buffer_handle < 5) {
     
 }
@@ -17391,30 +17391,30 @@ utility_context_parameter = (int64_t *)*utility_input_context;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 _utility_stack_reserved_char = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)_utility_stack_reserved_char + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_FINAL_VALIDATION;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,4,0);
 }
 UTILITY_LABEL_FINAL_VALIDATION:
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 *(uint *)(utility_context_auxiliary_pointer + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) = utility_buffer_handle;
-utility_context_data = utility_falsexd;
+    utility_context_data = utility_falsexd;
 if (utility_buffer_handle < 3) {
     
 }
@@ -17423,7 +17423,7 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_network_operation();
+    utility_context_data = utility_network_operation();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -17438,16 +17438,16 @@ if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_BUFFER_PROCESSING:
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,1,0);
 }
 else {
 utility_buffer_handle = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_buffer_handle + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_BUFFER_PROCESSING;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 }
@@ -17497,12 +17497,12 @@ utility_context_temp_value = utility_resource_create(*utility_buffer_handle,&uti
 }
 else {
 utility_buffer_handle = (uint)utility_context_service_handle;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_buffer_workspace_area);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_buffer_handle + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_BUFFER_PROCESSING;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 }
@@ -17554,19 +17554,19 @@ return utility_resource_id;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_create_memory_context(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_create_memory_context(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x36) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_create_memory_context(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_PRIMARY);
+    utility_context_data = utility_create_memory_context(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_PRIMARY);
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -17576,8 +17576,8 @@ if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x3d) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_buffer_free(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_buffer_free(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close(utility_context_parameter,utility_stack_buffer_array_stream);
@@ -17596,19 +17596,19 @@ uint64_t utility_context_temp_value;
 if (*(int *)(utility_context_main + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_create_memory_context(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_TABLE_OFFSET);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_create_memory_context(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_TABLE_OFFSET);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x36) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_create_memory_context(*utility_resource_handle,utility_context_index_source + UTILITY_STATUS_FLAG_MASK_PRIMARY);
+    utility_context_data = utility_create_memory_context(*utility_resource_handle,utility_context_index_source + UTILITY_STATUS_FLAG_MASK_PRIMARY);
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -17618,8 +17618,8 @@ if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x3d) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_buffer_free(*utility_resource_handle,utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_buffer_free(*utility_resource_handle,utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close();
@@ -17644,9 +17644,9 @@ if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x36) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_create_memory_context(*utility_resource_handle,utility_context_index_source + UTILITY_STATUS_FLAG_MASK_PRIMARY);
+    utility_context_data = utility_create_memory_context(*utility_resource_handle,utility_context_index_source + UTILITY_STATUS_FLAG_MASK_PRIMARY);
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -17656,8 +17656,8 @@ if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x3d) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_buffer_free(*utility_resource_handle,utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_buffer_free(*utility_resource_handle,utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close();
@@ -17687,7 +17687,7 @@ if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_stack_buffer_array_int_data[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_file_operation(utility_context_parameter,utility_stack_buffer_array_int_data);
+    utility_context_data = utility_file_operation(utility_context_parameter,utility_stack_buffer_array_int_data);
 if ((int)utility_resource_handle == UTILITY_STATUS_ENABLED_FLAG_2) {
 UTILITY_LABEL_ARRAY_CHECK:
 utility_stream_close(utility_context_parameter,utility_stack_checksum_buffer);
@@ -17696,7 +17696,7 @@ if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (utility_stack_buffer_array_int_data[0] < 1) goto UTILITY_LABEL_ARRAY_CHECK;
-utility_context_data = utility_stream_create(utility_context_parameter,utility_stack_buffer,0,UTILITY_THREAD_SIZE_OFFSET4f5250);
+    utility_context_data = utility_stream_create(utility_context_parameter,utility_stack_buffer,0,UTILITY_THREAD_SIZE_OFFSET4f5250);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -17708,62 +17708,62 @@ utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_buffer[0] + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_INDEX_VALID;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,4,0);
 }
 UTILITY_LABEL_INDEX_VALID:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stack_counter = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_thread_operation(utility_context_parameter,utility_stack_buffer[0],&utility_stack_counter);
+    utility_context_data = utility_thread_operation(utility_context_parameter,utility_stack_buffer[0],&utility_stack_counter);
 utility_loop_index = utility_stack_counter;
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_stack_counter + UTILITY_THREAD_BUFFER_OFFSET,2);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_stack_counter + UTILITY_THREAD_BUFFER_OFFSET,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_loop_index + 0x4a,2);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_loop_index + 0x4a,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_time_processor(utility_context_parameter,utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
+    utility_context_data = utility_time_processor(utility_context_parameter,utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_data_access(utility_context_parameter,utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = utility_data_access(utility_context_parameter,utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_interface_renderer_draw(utility_context_parameter,utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET,0);
+    utility_context_data = utility_interface_renderer_draw(utility_context_parameter,utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET,0);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 *(uint32_t *)(utility_loop_index + UTILITY_CONTEXT_EXTENDED_OFFSET) = UTILITY_MAX_UINT32;
 goto UTILITY_LABEL_ARRAY_PROCESSED;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 UTILITY_LABEL_ARRAY_PROCESSED:
@@ -17792,7 +17792,7 @@ if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (utility_stack_buffer_array_size_data < 1) goto UTILITY_LABEL_ARRAY_CHECK;
-utility_context_data = utility_stream_create();
+    utility_context_data = utility_stream_create();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -17804,62 +17804,62 @@ utility_context_parameter = (int64_t *)*utility_resource_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_context_pointer_offset_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_status_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_status_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_context_pointer_offset_data + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_INDEX_VALID;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_buffer_workspace_area,1,4,0);
 }
 UTILITY_LABEL_INDEX_VALID:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_buffer_handle = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_thread_operation();
+    utility_context_data = utility_thread_operation();
 utility_loop_index = utility_buffer_handle;
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_buffer_handle + UTILITY_THREAD_BUFFER_OFFSET,2);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_buffer_handle + UTILITY_THREAD_BUFFER_OFFSET,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_loop_index + 0x4a,2);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_loop_index + 0x4a,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_time_processor();
+    utility_context_data = utility_time_processor();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_data_access();
+    utility_context_data = utility_data_access();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_interface_renderer_draw();
+    utility_context_data = utility_interface_renderer_draw();
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 *(uint32_t *)(utility_loop_index + UTILITY_CONTEXT_EXTENDED_OFFSET) = UTILITY_MAX_UINT32;
 goto UTILITY_LABEL_ARRAY_PROCESSED;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 UTILITY_LABEL_ARRAY_PROCESSED:
@@ -17883,14 +17883,14 @@ if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetLocalTime(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = GetLocalTime(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_audio_manager_control(utility_context_parameter,utility_context_parameter + UTILITY_POINTER_OFFSET), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + 0xc,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + 0xc,4);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_resource_write(utility_context_parameter,0);
+    utility_context_data = utility_resource_write(utility_context_parameter,0);
 }
 }
 }
@@ -18031,13 +18031,13 @@ if ((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + 0xf0,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + 0xf0,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_VALIDATION_OFFSET,4);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_VALIDATION_OFFSET,4);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -18045,16 +18045,16 @@ if (((*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < UTILITY_ME
 ((*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < UTILITY_MEMORY_POINTER_OFFSET_SMALL && (*(int *)(utility_context_parameter + UTILITY_CONTEXT_VALIDATION_OFFSET) == UTILITY_STATUS_FLAG_MASK_MEDIUM)))) {
 *(uint32_t *)(utility_context_parameter + UTILITY_CONTEXT_VALIDATION_OFFSET) = utility_falsex21;
 }
-utility_context_data = utility_environment_resource_handler(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET_PRIMARY);
+    utility_context_data = utility_environment_resource_handler(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET_PRIMARY);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x68) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = *utility_buffer_handle;
-utility_context_data = get_file_time(utility_context_data,utility_stack_buffer);
+    utility_context_data = *utility_buffer_handle;
+    utility_context_data = get_file_time(utility_context_data,utility_stack_buffer);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(utility_context_data,auutility_buffer_variablec);
+    utility_context_data = get_file_time(utility_context_data,auutility_buffer_variablec);
 }
 }
 }
@@ -18066,9 +18066,9 @@ if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x39) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_MEMORY_FLAG_F4,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_MEMORY_FLAG_F4,4);
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
@@ -18076,10 +18076,10 @@ if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x5e) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + 0xfc);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + 0xfc);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 }
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
@@ -18093,7 +18093,7 @@ utility_stream_close(utility_context_parameter,utility_stack_buffer);
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 return utility_resource_id;
@@ -18110,11 +18110,11 @@ uint64_t utility_context_temp_value;
 if (*(int *)(utility_context_main + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + 0xf0,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + 0xf0,4);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_VALIDATION_OFFSET,4);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_VALIDATION_OFFSET,4);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -18122,16 +18122,16 @@ if (((*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < UTILITY_MEMO
 ((*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < UTILITY_MEMORY_POINTER_OFFSET_SMALL && (*(int *)(utility_context_index_source + UTILITY_CONTEXT_VALIDATION_OFFSET) == UTILITY_STATUS_FLAG_MASK_MEDIUM)))) {
 *(uint32_t *)(utility_context_index_source + UTILITY_CONTEXT_VALIDATION_OFFSET) = utility_falsex21;
 }
-utility_context_data = utility_environment_resource_handler();
+    utility_context_data = utility_environment_resource_handler();
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x68) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = *utility_resource_handle;
-utility_context_data = get_file_time(utility_context_data,&utility_buffer_workspace_area);
+    utility_context_data = *utility_resource_handle;
+    utility_context_data = get_file_time(utility_context_data,&utility_buffer_workspace_area);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(utility_context_data,&utility_buffer_workspace_area);
+    utility_context_data = get_file_time(utility_context_data,&utility_buffer_workspace_area);
 }
 }
 }
@@ -18143,9 +18143,9 @@ if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x39) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_MEMORY_FLAG_F4,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_MEMORY_FLAG_F4,4);
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
@@ -18153,10 +18153,10 @@ if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x5e) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + 0xfc);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + 0xfc);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 }
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
@@ -18170,7 +18170,7 @@ utility_stream_close();
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 return utility_resource_id;
 }
@@ -18189,8 +18189,8 @@ if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_VALIDATION_OFFSET,4);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_VALIDATION_OFFSET,4);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -18198,16 +18198,16 @@ if (((*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < UTILITY_MEMO
 ((*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < UTILITY_MEMORY_POINTER_OFFSET_SMALL && (*(int *)(utility_context_index_source + UTILITY_CONTEXT_VALIDATION_OFFSET) == UTILITY_STATUS_FLAG_MASK_MEDIUM)))) {
 *(uint32_t *)(utility_context_index_source + UTILITY_CONTEXT_VALIDATION_OFFSET) = utility_falsex21;
 }
-utility_context_data = utility_environment_resource_handler();
+    utility_context_data = utility_environment_resource_handler();
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x68) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = *utility_resource_handle;
-utility_context_data = get_file_time(utility_context_data,&utility_buffer_workspace_area);
+    utility_context_data = *utility_resource_handle;
+    utility_context_data = get_file_time(utility_context_data,&utility_buffer_workspace_area);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(utility_context_data,&utility_buffer_workspace_area);
+    utility_context_data = get_file_time(utility_context_data,&utility_buffer_workspace_area);
 }
 }
 }
@@ -18219,9 +18219,9 @@ if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x39) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_MEMORY_FLAG_F4,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_MEMORY_FLAG_F4,4);
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
@@ -18229,10 +18229,10 @@ if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x5e) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + 0xfc);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + 0xfc);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 }
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
@@ -18245,7 +18245,7 @@ utility_stream_close();
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 return utility_resource_id;
 }
@@ -18267,16 +18267,16 @@ if (((*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < UTILITY_MEMO
 ((*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < UTILITY_MEMORY_POINTER_OFFSET_SMALL && (*(int *)(utility_index_source + UTILITY_CONTEXT_VALIDATION_OFFSET) == UTILITY_STATUS_FLAG_MASK_MEDIUM)))) {
 *(uint32_t *)(utility_index_source + UTILITY_CONTEXT_VALIDATION_OFFSET) = utility_falsex21;
 }
-utility_context_data = utility_environment_resource_handler();
+    utility_context_data = utility_environment_resource_handler();
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x68) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = *utility_resource_handle;
-utility_context_data = get_file_time(utility_context_data,&utility_buffer_workspace_area);
+    utility_context_data = *utility_resource_handle;
+    utility_context_data = get_file_time(utility_context_data,&utility_buffer_workspace_area);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(utility_context_data,&utility_buffer_workspace_area);
+    utility_context_data = get_file_time(utility_context_data,&utility_buffer_workspace_area);
 }
 }
 }
@@ -18288,9 +18288,9 @@ if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x39) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_MEMORY_FLAG_F4,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_MEMORY_FLAG_F4,4);
 }
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
@@ -18298,10 +18298,10 @@ if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x5e) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + 0xfc);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + 0xfc);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 }
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
@@ -18314,7 +18314,7 @@ utility_stream_close();
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 return utility_resource_id;
 }
@@ -18335,10 +18335,10 @@ if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x39) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_MEMORY_FLAG_F4,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_MEMORY_FLAG_F4,4);
 }
 else {
-utility_context_data = (uint64_t)resource_context_input_value;
+    utility_context_data = (uint64_t)resource_context_input_value;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x5e) {
@@ -18355,7 +18355,7 @@ return utility_resource_id;
 }
 utility_stream_close();
 }
-utility_context_data = (uint64_t)resource_context_input_value;
+    utility_context_data = (uint64_t)resource_context_input_value;
 }
 }
 return utility_resource_id;
@@ -18370,10 +18370,10 @@ if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x39) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_MEMORY_FLAG_F4,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_MEMORY_FLAG_F4,4);
 }
 else {
-utility_context_data = (uint64_t)resource_context_input_value;
+    utility_context_data = (uint64_t)resource_context_input_value;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x5e) {
@@ -18390,7 +18390,7 @@ utility_stream_close();
 }
 }
 else {
-utility_context_data = (uint64_t)resource_context_input_value;
+    utility_context_data = (uint64_t)resource_context_input_value;
 }
 }
 return utility_resource_id;
@@ -18413,26 +18413,26 @@ if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = *utility_buffer_handle;
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + UTILITY_RESOURCE_FLAG_OFFSET,4);
+    utility_context_data = *utility_buffer_handle;
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + UTILITY_RESOURCE_FLAG_OFFSET,4);
 if ((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + UTILITY_THREAD_SIZE_OFFSET,2), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
 (utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + 0x52,2), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + UTILITY_RESOURCE_COUNT_OFFSET,8);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + UTILITY_RESOURCE_COUNT_OFFSET,8);
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x3d) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_buffer_free(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = utility_buffer_free(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close(utility_context_parameter,utility_stack_buffer_array_stream);
@@ -18452,26 +18452,26 @@ int64_t utility_data_context;
 if (*(int *)(utility_context_main + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = *utility_resource_handle;
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + UTILITY_RESOURCE_FLAG_OFFSET,4);
+    utility_context_data = *utility_resource_handle;
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + UTILITY_RESOURCE_FLAG_OFFSET,4);
 if ((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + UTILITY_THREAD_SIZE_OFFSET,2), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
 (utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + 0x52,2), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + UTILITY_RESOURCE_COUNT_OFFSET,8);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + UTILITY_RESOURCE_COUNT_OFFSET,8);
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_THREAD_BUFFER_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x3d) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_buffer_free(*utility_resource_handle,utility_input_context + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = utility_buffer_free(*utility_resource_handle,utility_input_context + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close();
@@ -18501,16 +18501,16 @@ if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_THREAD_BUFFER_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x3d) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_buffer_free(*utility_resource_handle,utility_input_context + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = utility_buffer_free(*utility_resource_handle,utility_input_context + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close();
@@ -18527,16 +18527,16 @@ int64_t utility_data_context;
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = get_file_time(*utility_resource_handle,utility_input_context + UTILITY_THREAD_BUFFER_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET) < 0x3d) {
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_buffer_free(*utility_resource_handle,utility_input_context + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = utility_buffer_free(*utility_resource_handle,utility_input_context + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close();
@@ -18556,12 +18556,12 @@ if ((UTILITY_MEMORY_POINTER_OFFSET7 < *(uint *)(utility_context_parameter + UTIL
 (utility_context_temp_value = utility_stream_create(utility_context_parameter,utility_stack_medium_buffer,1,0x46464353), (int)utility_resource_handle != UTILITY_BOOLEAN_FALSE)) {
 return utility_resource_id;
 }
-utility_context_data = utility_stream_create(utility_context_parameter,utility_stack_buffer_array_stream,0,UTILITY_STREAM_TYPE_FECS);
+    utility_context_data = utility_stream_create(utility_context_parameter,utility_stack_buffer_array_stream,0,UTILITY_STREAM_TYPE_FECS);
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_time_processor(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_buffer_free(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_6C);
+    utility_context_data = utility_buffer_free(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_6C);
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_interface_renderer_draw(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET,0), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
 if ((*(int *)(utility_context_parameter + UTILITY_POINTER_OFFSET) - UTILITY_STATUS_RESOURCE_NOT_FOUND_U < UTILITY_STATUS_ENABLED_FLAG_PRIMARY) &&
 (utility_context_data = utility_audio_manager_control(utility_context_parameter,utility_context_parameter + UTILITY_CONTEXT_EXTENDED_OFFSET), (int)utility_resource_handle != UTILITY_BOOLEAN_FALSE)) {
@@ -18575,10 +18575,10 @@ if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < UTILITY_MEMO
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 else if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close(utility_context_parameter,utility_stack_buffer_array_stream);
@@ -18604,58 +18604,58 @@ utility_context_temp_value = utility_stream_create(utility_context_parameter,uti
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_stream_create(utility_context_parameter,utility_stack_buffer,0,UTILITY_STREAM_TYPE_BANS);
+    utility_context_data = utility_stream_create(utility_context_parameter,utility_stack_buffer,0,UTILITY_STREAM_TYPE_BANS);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_time_processor(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = utility_time_processor(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_EXTENDED_OFFSET,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_EXTENDED_OFFSET,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_validate(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_resource_validate(*utility_buffer_handle,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_stack_buffer[0] & 1;
-utility_context_data = utility_stack_buffer[0] >> 1;
-utility_context_data = utility_context_data;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_stack_buffer[0] & 1;
+    utility_context_data = utility_stack_buffer[0] >> 1;
+    utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 do {
-utility_context_data = utility_resource_read(utility_context_parameter,utility_context_data);
+    utility_context_data = utility_resource_read(utility_context_parameter,utility_context_data);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data_ptr_data_manager(utility_context_parameter,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY,utility_context_data,utility_context_parameter);
+    utility_context_data = utility_context_data_ptr_data_manager(utility_context_parameter,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY,utility_context_data,utility_context_parameter);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_resource_write(utility_context_parameter,utility_stack_buffer);
+    utility_context_data = utility_resource_write(utility_context_parameter,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
 utility_stack_buffer[0] = utility_stack_buffer[0] & -utility_context_data;
-utility_context_data = (uint64_t)utility_stack_buffer[0];
+    utility_context_data = (uint64_t)utility_stack_buffer[0];
 } while ((int)utility_resource_handle < (int)utility_context_data);
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_buffer_free(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = utility_buffer_free(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_BUFFER_OFFSET);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -18668,38 +18668,38 @@ utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_buffer[0] + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_SYSTEM_CHECK;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_buffer,1,4,0);
 }
 UTILITY_LABEL_SYSTEM_CHECK:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 *(uint *)(utility_context_parameter + UTILITY_RESOURCE_FLAG_OFFSET) = utility_stack_buffer[0];
-utility_context_data = utility_falsexd;
+    utility_context_data = utility_falsexd;
 if (utility_stack_buffer[0] < 7) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if ((0x32 < *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET)) && (utility_context_data = UTILITY_STATUS_THREAD_CREATED, *(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close(utility_context_parameter,utility_stack_buffer);
@@ -18723,45 +18723,45 @@ uint utility_stack_context_pointer_offset_data;
 if (*(int *)(utility_context_main + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_EXTENDED_OFFSET,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_resource_handle,utility_context_index_source + UTILITY_CONTEXT_EXTENDED_OFFSET,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 utility_stack_context_pointer_offset_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_validate(*utility_resource_handle,&utility_stack_status_buffer);
+    utility_context_data = utility_resource_validate(*utility_resource_handle,&utility_stack_status_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_stack_base_pointer_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_stack_context_pointer_offset_data & 1;
-utility_context_data = utility_stack_context_pointer_offset_data >> 1;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_stack_context_pointer_offset_data & 1;
+    utility_context_data = utility_stack_context_pointer_offset_data >> 1;
+    utility_context_data = utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 do {
-utility_context_data = utility_resource_read();
+    utility_context_data = utility_resource_read();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data_ptr_data_manager();
+    utility_context_data = utility_context_data_ptr_data_manager();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_resource_write();
+    utility_context_data = utility_resource_write();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
 utility_stack_base_pointer_data = utility_stack_base_pointer_data & -utility_context_data;
 } while ((int)utility_resource_handle < (int)utility_context_data);
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_buffer_free(*utility_resource_handle,utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = utility_buffer_free(*utility_resource_handle,utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -18774,38 +18774,38 @@ utility_context_parameter = (int64_t *)*utility_resource_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_base_pointer_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&stack_bufferb0);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&stack_bufferb0);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_base_pointer_data + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_SYSTEM_CHECK;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_stack_status_buffer,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_stack_status_buffer,1,4,0);
 }
 UTILITY_LABEL_SYSTEM_CHECK:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 *(uint *)(utility_context_index_source + UTILITY_RESOURCE_FLAG_OFFSET) = utility_stack_context_pointer_offset_data;
-utility_context_data = utility_falsexd;
+    utility_context_data = utility_falsexd;
 if (utility_stack_context_pointer_offset_data < 7) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if ((0x32 < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) && (utility_context_data = UTILITY_STATUS_THREAD_CREATED, *(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close();
@@ -18831,39 +18831,39 @@ return utility_resource_id;
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 utility_stack_context_pointer_offset_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_validate(*utility_resource_handle,&utility_stack_status_buffer);
+    utility_context_data = utility_resource_validate(*utility_resource_handle,&utility_stack_status_buffer);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_stack_base_pointer_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_stack_context_pointer_offset_data & 1;
-utility_context_data = utility_stack_context_pointer_offset_data >> 1;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_stack_context_pointer_offset_data & 1;
+    utility_context_data = utility_stack_context_pointer_offset_data >> 1;
+    utility_context_data = utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 do {
-utility_context_data = utility_resource_read();
+    utility_context_data = utility_resource_read();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data_ptr_data_manager();
+    utility_context_data = utility_context_data_ptr_data_manager();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_resource_write();
+    utility_context_data = utility_resource_write();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
 utility_stack_base_pointer_data = utility_stack_base_pointer_data & -utility_context_data;
 } while ((int)utility_resource_handle < (int)utility_context_data);
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_buffer_free(*utility_resource_handle,utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = utility_buffer_free(*utility_resource_handle,utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -18876,38 +18876,38 @@ utility_context_parameter = (int64_t *)*utility_resource_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_base_pointer_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&stack_bufferb0);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&stack_bufferb0);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_base_pointer_data + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_SYSTEM_CHECK;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_stack_status_buffer,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_stack_status_buffer,1,4,0);
 }
 UTILITY_LABEL_SYSTEM_CHECK:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 *(uint *)(utility_context_index_source + UTILITY_RESOURCE_FLAG_OFFSET) = utility_stack_context_pointer_offset_data;
-utility_context_data = utility_falsexd;
+    utility_context_data = utility_falsexd;
 if (utility_stack_context_pointer_offset_data < 7) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if ((0x32 < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) && (utility_context_data = UTILITY_STATUS_THREAD_CREATED, *(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close();
@@ -18934,34 +18934,34 @@ if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 utility_stack_base_pointer_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_stack_uint_b8_data & 1;
-utility_context_data = utility_stack_uint_b8_data >> 1;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_stack_uint_b8_data & 1;
+    utility_context_data = utility_stack_uint_b8_data >> 1;
+    utility_context_data = utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 do {
-utility_context_data = utility_resource_read();
+    utility_context_data = utility_resource_read();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_context_data_ptr_data_manager();
+    utility_context_data = utility_context_data_ptr_data_manager();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_resource_write();
+    utility_context_data = utility_resource_write();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = (uint64_t)utility_context_data;
 utility_stack_base_pointer_data = utility_stack_base_pointer_data & -utility_context_data;
 } while ((int)utility_resource_handle < (int)utility_context_data);
 }
 if (*(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_buffer_free(*utility_resource_handle,utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET);
+    utility_context_data = utility_buffer_free(*utility_resource_handle,utility_context_index_source + UTILITY_THREAD_BUFFER_OFFSET);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -18974,38 +18974,38 @@ utility_context_parameter = (int64_t *)*utility_resource_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_base_pointer_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&stack_bufferb0);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&stack_bufferb0);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_base_pointer_data + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_SYSTEM_CHECK;
 }
 }
-utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_stack_status_buffer,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,&utility_stack_status_buffer,1,4,0);
 }
 UTILITY_LABEL_SYSTEM_CHECK:
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 *(uint *)(utility_context_index_source + UTILITY_RESOURCE_FLAG_OFFSET) = utility_stack_uint_b8_data;
-utility_context_data = utility_falsexd;
+    utility_context_data = utility_falsexd;
 if (utility_stack_uint_b8_data < 7) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if ((0x32 < *(uint *)(utility_resource_handle + UTILITY_POINTER_OFFSET)) && (utility_context_data = UTILITY_STATUS_THREAD_CREATED, *(int *)(utility_resource_handle[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = get_file_time(*utility_resource_handle,utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close();
@@ -19050,18 +19050,18 @@ utility_context_temp_value = utility_handle_parameter_validation(utility_context
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_handle_parameter_validation(utility_context_data,&utility_stack_uint_size,2);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,&utility_stack_uint_size,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_handle_parameter_validation(utility_context_data,(int64_t)&utility_stack_uint_size + 2,2);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,(int64_t)&utility_stack_uint_size + 2,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_handle_parameter_validation(utility_context_data,&utility_stack_thread_offset_temp,8);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,&utility_stack_thread_offset_temp,8);
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_context_data_ptr_data_validator(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_POINTER_OFFSET,0), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
@@ -19069,8 +19069,8 @@ if ((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context
 if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < UTILITY_MEMORY_POINTER_OFFSET4) {
 utility_stack_context_pointer_secondary = UTILITY_NULL_PTR;
 utility_stack_context = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_interface_updater_refresh(utility_context_parameter,&utility_stack_context_pointer_secondary,0);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_interface_updater_refresh(utility_context_parameter,&utility_stack_context_pointer_secondary,0);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -19087,29 +19087,29 @@ utility_loop_index = utility_allocate_buffer_memory(*(uint64_t *)(utility_system
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_falsex26;
+    utility_context_data = utility_falsex26;
 goto UTILITY_LABEL_RESOURCE_CHECK;
 }
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 *(int64_t *)
 *(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) = utility_loop_index;
 *(uint32_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET) = utility_context_data;
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_allocate_system_buffer(utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET,utility_loop_index);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_allocate_system_buffer(utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET,utility_loop_index);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_RESOURCE_CHECK;
 }
 }
 utility_buffer_cleanup(&utility_stack_context_pointer_secondary);
 }
 else {
-utility_context_data = utility_resource_initializer(utility_context_parameter,utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET);
+    utility_context_data = utility_resource_initializer(utility_context_parameter,utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 }
-utility_context_data = utility_resource_processor(utility_context_parameter,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_8_BIT,0);
+    utility_context_data = utility_resource_processor(utility_context_parameter,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_8_BIT,0);
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_resource_finalizer(utility_context_parameter,utility_context_parameter + UTILITY_MEMORY_POINTER_OFFSET8,0), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
 utility_stream_close(utility_context_parameter,utility_stack_buffer);
 }
@@ -19159,19 +19159,19 @@ utility_context_temp_value = utility_handle_parameter_validation(utility_context
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG5,2);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG5,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG3,2);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG3,2);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_PRIMARY,8);
-utility_context_data = utility_float_result_primary;
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_base_pointer + -UTILITY_STATUS_ENABLED_FLAG_PRIMARY,8);
+    utility_context_data = utility_float_result_primary;
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_context_data_ptr_data_validator(utility_context_data,utility_context_service_handle + UTILITY_THREAD_POINTER_OFFSET,0), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
@@ -19179,8 +19179,8 @@ if ((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context
 if (*(uint *)(utility_input_context + UTILITY_POINTER_OFFSET) < UTILITY_MEMORY_POINTER_OFFSET4) {
 *(uint64_t *)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_context_base_pointer + -0x21) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_interface_updater_refresh(utility_parameter_float,utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED,0);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_interface_updater_refresh(utility_parameter_float,utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED,0);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -19199,32 +19199,32 @@ utility_loop_index = utility_allocate_buffer_memory(*(uint64_t *)(utility_system
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_falsex26;
+    utility_context_data = utility_falsex26;
 goto UTILITY_LABEL_RESOURCE_CHECK;
 }
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 *(int64_t *)
 *(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) = utility_loop_index;
 *(uint32_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET) = utility_context_data;
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_allocate_system_buffer(utility_context_service_handle + UTILITY_RESOURCE_SIZE_OFFSET,utility_loop_index);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_allocate_system_buffer(utility_context_service_handle + UTILITY_RESOURCE_SIZE_OFFSET,utility_loop_index);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_RESOURCE_CHECK;
 utility_operation_status = *(int *)(utility_context_base_pointer + -0x21);
 utility_context_parameter = *(uint32_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
 }
 }
-utility_context_data = utility_buffer_cleanup(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
+    utility_context_data = utility_buffer_cleanup(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
 }
 else {
-utility_context_data = utility_resource_initializer(utility_parameter_float,utility_context_service_handle + UTILITY_RESOURCE_SIZE_OFFSET);
-utility_context_data = utility_float_result;
+    utility_context_data = utility_resource_initializer(utility_parameter_float,utility_context_service_handle + UTILITY_RESOURCE_SIZE_OFFSET);
+    utility_context_data = utility_float_result;
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 }
-utility_context_data = utility_resource_processor(utility_context_data,utility_context_service_handle + UTILITY_STATUS_FLAG_MASK_8_BIT,0);
+    utility_context_data = utility_resource_processor(utility_context_data,utility_context_service_handle + UTILITY_STATUS_FLAG_MASK_8_BIT,0);
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 (utility_context_data = utility_resource_finalizer(utility_xmm0_precision,utility_context_service_handle + UTILITY_MEMORY_POINTER_OFFSET8,0), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
 utility_stream_close(utility_float_result_alpha,utility_context_base_pointer + 7);
@@ -19266,17 +19266,17 @@ utility_loop_index = utility_allocate_buffer_memory(*(uint64_t *)(utility_system
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_falsex26;
+    utility_context_data = utility_falsex26;
 goto UTILITY_LABEL_RESOURCE_CHECK;
 }
-utility_context_data = *utility_buffer_handle;
+    utility_context_data = *utility_buffer_handle;
 *(int64_t *)
 *(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) = utility_loop_index;
 *(uint32_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET) = utility_context_data;
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = utility_resource_handle;
 *(int *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = (int)utility_resource_handle;
-utility_context_data = utility_allocate_system_buffer(utility_context_service_handle + UTILITY_RESOURCE_SIZE_OFFSET,utility_loop_index);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_allocate_system_buffer(utility_context_service_handle + UTILITY_RESOURCE_SIZE_OFFSET,utility_loop_index);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_RESOURCE_CHECK;
 utility_operation_status = *(int *)(utility_context_base_pointer + -0x21);
 utility_context_parameter = *(uint32_t **)(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
@@ -19285,12 +19285,12 @@ utility_context_parameter = *(uint32_t **)(utility_context_base_pointer + -UTILI
 utility_buffer_cleanup(utility_context_base_pointer + -UTILITY_CONTEXT_OFFSET_RESERVED);
 }
 else {
-utility_context_data = utility_resource_initializer();
+    utility_context_data = utility_resource_initializer();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 }
-utility_context_data = utility_resource_processor();
+    utility_context_data = utility_resource_processor();
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_resource_finalizer(), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
 utility_stream_close();
 }
@@ -19323,7 +19323,7 @@ utility_context_temp_value = utility_stream_create(utility_context_parameter,uti
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_stream_create(utility_context_parameter,utility_stack_network_buffer_primary,0,UTILITY_STREAM_TYPE_BNRT);
+    utility_context_data = utility_stream_create(utility_context_parameter,utility_stack_network_buffer_primary,0,UTILITY_STREAM_TYPE_BNRT);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -19331,37 +19331,37 @@ if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_loop_index = *utility_buffer_handle;
-utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET,4);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET,4);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY,2);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY,2);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG6,2);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG6,2);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET,8);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_parameter + UTILITY_THREAD_CONTEXT_OFFSET,8);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_time_processor(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = utility_time_processor(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY,4);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -19370,30 +19370,30 @@ return (uint64_t)utility_context_data;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET);
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_STATUS_OFFSET);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 return (uint64_t)utility_context_data;
 }
-utility_context_data = utility_process_operation(utility_context_parameter,utility_context_parameter);
+    utility_context_data = utility_process_operation(utility_context_parameter,utility_context_parameter);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_time_formatter(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_SIZE_OFFSET);
+    utility_context_data = utility_time_formatter(utility_context_parameter,utility_context_parameter + UTILITY_THREAD_SIZE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET);
+    utility_context_data = get_file_time(*utility_buffer_handle,utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 return (uint64_t)utility_context_data;
 }
-utility_context_data = *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
 if (UTILITY_STATUS_FLAG_MASKe < utility_context_data) goto UTILITY_LABEL_SIZE_VALIDATION;
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
@@ -19402,20 +19402,20 @@ utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_MEMORY_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_resource_buffer,1,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_resource_buffer,1,4,0);
 }
 else {
 utility_stack_buffer[0] = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,utility_stack_buffer);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if ((uint64_t)utility_stack_buffer[0] + 4 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_MEMORY_CHECK;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
@@ -19432,7 +19432,7 @@ utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 UTILITY_LABEL_ALLOCATION_DONE:
 utility_network_boolean_flag = utility_resource_handle == UTILITY_BOOLEAN_FALSE;
 if (utility_network_boolean_flag) {
@@ -19447,23 +19447,23 @@ if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_PROCESSING_COMPLETE:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_char_id_array,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_char_id_array,1,1,0);
 goto UTILITY_LABEL_ALLOCATION_DONE;
 }
 utility_stack_uint_a4_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_a4_data);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_a4_data);
 utility_network_boolean_flag = utility_resource_handle == UTILITY_BOOLEAN_FALSE;
 if (utility_network_boolean_flag) {
     
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)utility_stack_uint_a4_data + 1) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_ALLOCATION_DONE;
 }
 goto UTILITY_LABEL_PROCESSING_COMPLETE;
 }
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_network_boolean_flag) {
     
 }
@@ -19471,7 +19471,7 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -19484,22 +19484,22 @@ utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_BUFFER_VALIDATION:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_char_id_array,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_char_id_array,1,1,0);
 }
 else {
 utility_stack_uint_a4_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_a4_data);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_a4_data);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_stack_uint_a4_data + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_BUFFER_VALIDATION;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
@@ -19507,7 +19507,7 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 }
 utility_stack_buffer[0] = utility_concat_int_values(utility_stack_buffer[0]._1_3_,utility_stack_char_id_array[0] != '\0');
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -19515,7 +19515,7 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -19528,22 +19528,22 @@ utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_FIRST_BUFFER_DONE:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_char_id_array,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_char_id_array,1,1,0);
 }
 else {
 utility_stack_uint_a4_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_a4_data);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_a4_data);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_stack_uint_a4_data + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_FIRST_BUFFER_DONE;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
@@ -19551,7 +19551,7 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 }
 cutility_buffer_variable = utility_stack_char_id_array[0] != '\0';
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -19559,7 +19559,7 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -19572,26 +19572,26 @@ utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_SECOND_BUFFER_DONE:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_char_id_array,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_char_id_array,1,1,0);
 }
 else {
 utility_stack_uint_a4_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_a4_data);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_a4_data);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_stack_uint_a4_data + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_SECOND_BUFFER_DONE;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 utility_network_boolean_flag = utility_resource_handle == UTILITY_BOOLEAN_FALSE && utility_stack_char_id_array[0] != '\0';
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -19599,7 +19599,7 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -19612,22 +19612,22 @@ utility_context_parameter = (int64_t *)*utility_buffer_handle;
 if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_THIRD_BUFFER_DONE:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_char_id_array,1,1,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_stack_char_id_array,1,1,0);
 }
 else {
 utility_stack_uint_a4_data = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_a4_data);
+    utility_context_data = utility_execute_system_call(*utility_buffer_handle,&utility_stack_uint_a4_data);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)utility_stack_uint_a4_data + 1 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_THIRD_BUFFER_DONE;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
@@ -19635,7 +19635,7 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 }
 utility_network_boolean_flag = utility_stack_char_id_array[0] != '\0';
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -19643,7 +19643,7 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -19653,12 +19653,12 @@ if ((((!utility_network_boolean_flag) && ((char)utility_stack_buffer[0] == '\0')
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 *(uint32_t *)(utility_context_parameter + UTILITY_THREAD_POINTER_OFFSET) = utility_context_data;
-utility_context_data = *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
 UTILITY_LABEL_SIZE_VALIDATION:
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if ((UTILITY_STATUS_FLAG_MASKe < utility_context_data) && (utility_context_data = UTILITY_STATUS_THREAD_CREATED, *(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_POINTER_OFFSET,4);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_POINTER_OFFSET,4);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close(utility_context_parameter,utility_stack_network_buffer_primary);
@@ -19682,37 +19682,37 @@ if (*(int *)(utility_context_main + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BO
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_loop_index = *utility_input_context;
-utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_service_handle + UTILITY_THREAD_HANDLE_OFFSET,utility_context_status_code + 3);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_service_handle + UTILITY_THREAD_HANDLE_OFFSET,utility_context_status_code + 3);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_service_handle + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY,utility_context_status_code + 1);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_service_handle + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY,utility_context_status_code + 1);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_service_handle + UTILITY_STATUS_ENABLED_FLAG6,utility_context_status_code + 1);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_service_handle + UTILITY_STATUS_ENABLED_FLAG6,utility_context_status_code + 1);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_service_handle + UTILITY_THREAD_CONTEXT_OFFSET,utility_context_status_code + 7);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(utility_loop_index,utility_context_service_handle + UTILITY_THREAD_CONTEXT_OFFSET,utility_context_status_code + 7);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_time_processor();
+    utility_context_data = utility_time_processor();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_service_handle + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY,4);
+    utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_service_handle + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY,4);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -19721,30 +19721,30 @@ return (uint64_t)utility_context_data;
 if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_service_handle + UTILITY_THREAD_STATUS_OFFSET);
+    utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_service_handle + UTILITY_THREAD_STATUS_OFFSET);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 return (uint64_t)utility_context_data;
 }
-utility_context_data = utility_process_operation();
+    utility_context_data = utility_process_operation();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_time_formatter();
+    utility_context_data = utility_time_formatter();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = get_file_time(*utility_input_context,utility_context_service_handle + UTILITY_RESOURCE_SIZE_OFFSET);
+    utility_context_data = get_file_time(*utility_input_context,utility_context_service_handle + UTILITY_RESOURCE_SIZE_OFFSET);
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
 return (uint64_t)utility_context_data;
 }
-utility_context_data = *(uint *)(utility_input_context + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_input_context + UTILITY_POINTER_OFFSET);
 if (UTILITY_STATUS_FLAG_MASKe < utility_context_data) goto UTILITY_LABEL_SIZE_VALIDATION;
 if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
@@ -19754,20 +19754,20 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_MEMORY_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x41,utility_context_status_code,4,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x41,utility_context_status_code,4,0);
 }
 else {
 *(uint32_t *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if ((uint64_t)*(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) + 4 <= (uint64_t)utility_context_data[2]) goto UTILITY_LABEL_MEMORY_CHECK;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
@@ -19785,7 +19785,7 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 UTILITY_LABEL_ALLOCATION_DONE:
 utility_network_boolean_flag = utility_resource_handle == UTILITY_BOOLEAN_FALSE;
 if (utility_network_boolean_flag) {
@@ -19800,23 +19800,23 @@ if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_PROCESSING_COMPLETE:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,0);
 goto UTILITY_LABEL_ALLOCATION_DONE;
 }
 *(uint32_t *)(utility_context_base_pointer + -0x45) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
 utility_network_boolean_flag = utility_resource_handle == UTILITY_BOOLEAN_FALSE;
 if (utility_network_boolean_flag) {
     
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)*(uint *)(utility_context_base_pointer + -0x45) + 1) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_ALLOCATION_DONE;
 }
 goto UTILITY_LABEL_PROCESSING_COMPLETE;
 }
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_network_boolean_flag) {
     
 }
@@ -19824,7 +19824,7 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -19838,23 +19838,23 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_BUFFER_VALIDATION:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,0);
 }
 else {
 *(uint32_t *)(utility_context_base_pointer + -0x45) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)*(uint *)(utility_context_base_pointer + -0x45) + 1 <= (uint64_t)utility_context_data[2])
 goto UTILITY_LABEL_BUFFER_VALIDATION;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
@@ -19862,7 +19862,7 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 }
 *(bool *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = *(char *)(utility_context_base_pointer + -0x49) != '\0';
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -19870,7 +19870,7 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -19884,23 +19884,23 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_FIRST_BUFFER_DONE:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,0);
 }
 else {
 *(uint32_t *)(utility_context_base_pointer + -0x45) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)*(uint *)(utility_context_base_pointer + -0x45) + 1 <= (uint64_t)utility_context_data[2])
 goto UTILITY_LABEL_FIRST_BUFFER_DONE;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
@@ -19908,7 +19908,7 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 }
 *(bool *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf) = *(char *)(utility_context_base_pointer + -0x49) != '\0';
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -19916,7 +19916,7 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -19930,23 +19930,23 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_SECOND_BUFFER_DONE:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,0);
 }
 else {
 *(uint32_t *)(utility_context_base_pointer + -0x45) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)*(uint *)(utility_context_base_pointer + -0x45) + 1 <= (uint64_t)utility_context_data[2])
 goto UTILITY_LABEL_SECOND_BUFFER_DONE;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
@@ -19954,7 +19954,7 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 }
 utility_network_boolean_flag = *(char *)(utility_context_base_pointer + -0x49) != '\0';
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -19962,7 +19962,7 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -19976,23 +19976,23 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_THIRD_BUFFER_DONE:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,0);
 }
 else {
 *(uint32_t *)(utility_context_base_pointer + -0x45) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if ((uint64_t)*(uint *)(utility_context_base_pointer + -0x45) + 1 <= (uint64_t)utility_context_data[2])
 goto UTILITY_LABEL_THIRD_BUFFER_DONE;
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 }
 }
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
@@ -20000,7 +20000,7 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 }
 utility_network_boolean_flag = *(char *)(utility_context_base_pointer + -0x49) != '\0';
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -20008,7 +20008,7 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
@@ -20019,12 +20019,12 @@ if ((((!utility_network_boolean_flag) && (*(char *)(utility_context_base_pointer
 utility_context_status_code = UTILITY_BOOLEAN_FALSE;
 }
 *(int *)(utility_context_service_handle + UTILITY_THREAD_POINTER_OFFSET) = utility_context_status_code;
-utility_context_data = *(uint *)(utility_input_context + UTILITY_POINTER_OFFSET);
+    utility_context_data = *(uint *)(utility_input_context + UTILITY_POINTER_OFFSET);
 UTILITY_LABEL_SIZE_VALIDATION:
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if ((UTILITY_STATUS_FLAG_MASKe < utility_context_data) && (utility_context_data = UTILITY_STATUS_THREAD_CREATED, *(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_service_handle + UTILITY_THREAD_POINTER_OFFSET,4);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_service_handle + UTILITY_THREAD_POINTER_OFFSET,4);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close();
@@ -20054,22 +20054,22 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] == utility_context_parameter) {
     
 }
 UTILITY_LABEL_MEMORY_CHECK:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x41,utility_context_status_code,4,utility_context_parameter);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x41,utility_context_status_code,4,utility_context_parameter);
 }
 else {
 *(int *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = (int)utility_context_parameter;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = UTILITY_BOOLEAN_FALSE;
 if ((uint64_t)utility_context_data[2] < (uint64_t)*(uint *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) + 4) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_MEMORY_ALLOCATED;
 }
 goto UTILITY_LABEL_MEMORY_CHECK;
@@ -20086,7 +20086,7 @@ utility_network_boolean_flag = *(uint *)(utility_input_context + UTILITY_POINTER
 *(char *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf) = (char)utility_context_data;
 utility_network_boolean_flag = false;
 if (*(uint *)(utility_input_context + UTILITY_POINTER_OFFSET) < UTILITY_THREAD_POINTER_OFFSET) {
-utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
+    utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
 }
 else if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (int64_t *)*utility_input_context;
@@ -20094,7 +20094,7 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 UTILITY_LABEL_ALLOCATION_DONE:
 utility_network_boolean_flag = utility_resource_handle == UTILITY_BOOLEAN_FALSE;
 if (utility_network_boolean_flag) {
@@ -20109,24 +20109,24 @@ if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_PROCESSING_COMPLETE:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,0);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,0);
 goto UTILITY_LABEL_ALLOCATION_DONE;
 }
 *(int *)(utility_context_base_pointer + -0x45) = (int)utility_context_parameter;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
 utility_network_boolean_flag = utility_resource_handle == UTILITY_BOOLEAN_FALSE;
 if (utility_network_boolean_flag) {
     
 }
 if ((uint64_t)utility_context_data[2] < (uint64_t)*(uint *)(utility_context_base_pointer + -0x45) + 1) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_ALLOCATION_DONE;
 }
 goto UTILITY_LABEL_PROCESSING_COMPLETE;
 }
 }
 utility_context_parameter = UTILITY_BOOLEAN_FALSE;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_network_boolean_flag) {
     
 }
@@ -20134,13 +20134,13 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(uint *)(utility_input_context + UTILITY_POINTER_OFFSET) < 0x67) {
-utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
+    utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
 }
 else if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (int64_t *)*utility_input_context;
@@ -20148,24 +20148,24 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_BUFFER_VALIDATION:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,utility_context_parameter);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,utility_context_parameter);
 }
 else {
 *(int *)(utility_context_base_pointer + -0x45) = (int)utility_context_parameter;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_context_parameter = UTILITY_BOOLEAN_FALSE;
 if ((uint64_t)utility_context_data[2] < (uint64_t)*(uint *)(utility_context_base_pointer + -0x45) + 1) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_BUFFER_ONE_READY;
 }
 goto UTILITY_LABEL_BUFFER_VALIDATION;
@@ -20179,21 +20179,21 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 }
 *(bool *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASK7) = *(char *)(utility_context_base_pointer + -0x49) != '\0';
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
+    utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(uint *)(utility_input_context + UTILITY_POINTER_OFFSET) < UTILITY_STATUS_FLAG_MASK9) {
-utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
+    utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
 }
 else if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (int64_t *)*utility_input_context;
@@ -20201,24 +20201,24 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_FIRST_BUFFER_DONE:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,utility_context_parameter);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,utility_context_parameter);
 }
 else {
 *(int *)(utility_context_base_pointer + -0x45) = (int)utility_context_parameter;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_context_parameter = UTILITY_BOOLEAN_FALSE;
 if ((uint64_t)utility_context_data[2] < (uint64_t)*(uint *)(utility_context_base_pointer + -0x45) + 1) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_BUFFER_TWO_READY;
 }
 goto UTILITY_LABEL_FIRST_BUFFER_DONE;
@@ -20232,21 +20232,21 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 }
 *(bool *)(utility_context_base_pointer + UTILITY_STATUS_FLAG_MASKf) = *(char *)(utility_context_base_pointer + -0x49) != '\0';
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
+    utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(uint *)(utility_input_context + UTILITY_POINTER_OFFSET) < UTILITY_STATUS_FLAG_MASKa) {
-utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
+    utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
 }
 else if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (int64_t *)*utility_input_context;
@@ -20254,24 +20254,24 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_SECOND_BUFFER_DONE:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,utility_context_parameter);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,utility_context_parameter);
 }
 else {
 *(int *)(utility_context_base_pointer + -0x45) = (int)utility_context_parameter;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_context_parameter = UTILITY_BOOLEAN_FALSE;
 if ((uint64_t)utility_context_data[2] < (uint64_t)*(uint *)(utility_context_base_pointer + -0x45) + 1) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_BUFFER_THREE_READY;
 }
 goto UTILITY_LABEL_SECOND_BUFFER_DONE;
@@ -20285,21 +20285,21 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 }
 utility_network_boolean_flag = *(char *)(utility_context_base_pointer + -0x49) != '\0';
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
+    utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(uint *)(utility_input_context + UTILITY_POINTER_OFFSET) < UTILITY_STATUS_FLAG_MASKb) {
-utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
+    utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
 }
 else if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
 utility_context_parameter = (int64_t *)*utility_input_context;
@@ -20307,24 +20307,24 @@ utility_loop_index = *utility_buffer_handle;
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] == UTILITY_BOOLEAN_FALSE) {
     
 }
 UTILITY_LABEL_THIRD_BUFFER_DONE:
-utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,utility_context_parameter);
+    utility_context_data = utility_resource_create(*utility_buffer_handle,utility_context_base_pointer + -0x49,utility_context_status_code,utility_context_status_code,utility_context_parameter);
 }
 else {
 *(int *)(utility_context_base_pointer + -0x45) = (int)utility_context_parameter;
-utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
+    utility_context_data = utility_execute_system_call(utility_loop_index,utility_context_base_pointer + -0x45);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_context_parameter = UTILITY_BOOLEAN_FALSE;
 if ((uint64_t)utility_context_data[2] < (uint64_t)*(uint *)(utility_context_base_pointer + -0x45) + 1) {
-utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
+    utility_context_data = UTILITY_STATUS_ENABLED_FLAG_PRIMARY;
 goto UTILITY_LABEL_BUFFER_FOUR_READY;
 }
 goto UTILITY_LABEL_THIRD_BUFFER_DONE;
@@ -20338,15 +20338,15 @@ if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
 }
 utility_network_boolean_flag = *(char *)(utility_context_base_pointer + -0x49) != '\0';
 }
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
+    utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -20361,11 +20361,11 @@ UTILITY_LABEL_SIZE_VALIDATION:
 if (utility_accumulator_data < UTILITY_STATUS_FLAG_MASKf) {
     
 }
-utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
+    utility_context_data = utility_context_parameter & UTILITY_MAX_UINT32;
 }
 else if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_service_handle + UTILITY_THREAD_POINTER_OFFSET,4);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = utility_handle_parameter_validation(*utility_input_context,utility_context_service_handle + UTILITY_THREAD_POINTER_OFFSET,4);
+    utility_context_data = (uint64_t)utility_context_data;
 }
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -20393,11 +20393,11 @@ if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = *utility_buffer_handle;
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + UTILITY_STATUS_INVALID_PARAMETERc,4);
+    utility_context_data = *utility_buffer_handle;
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + UTILITY_STATUS_INVALID_PARAMETERc,4);
 if ((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + 0xe0,2), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
 (utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + 0xe2,2), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + UTILITY_MEMORY_STATUS_OFFSET,8);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_context_parameter + UTILITY_MEMORY_STATUS_OFFSET,8);
 }
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_stream_close(utility_context_parameter,utility_stack_buffer_array_stream);
@@ -20415,14 +20415,14 @@ int64_t utility_data_context;
 if (*(int *)(utility_context_main + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = *utility_resource_handle;
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + UTILITY_STATUS_INVALID_PARAMETERc,4);
+    utility_context_data = *utility_resource_handle;
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + UTILITY_STATUS_INVALID_PARAMETERc,4);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + 0xe0,2);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + 0xe0,2);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + 0xe2,2);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + 0xe2,2);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + UTILITY_MEMORY_STATUS_OFFSET,8);
+    utility_context_data = utility_handle_parameter_validation(utility_context_data,utility_input_context + UTILITY_MEMORY_STATUS_OFFSET,8);
 }
 }
 }
@@ -20474,28 +20474,28 @@ if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_stack_buffer[0] = *(uint32_t *)(utility_context_parameter + UTILITY_THREAD_SIZE_OFFSET);
-utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))(*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4)
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))(*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4)
 ;
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_stack_buffer[0] = *(uint32_t *)(utility_context_parameter + UTILITY_RESOURCE_COUNT_OFFSET);
-utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_stack_buffer[0] = *(uint32_t *)(utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET);
-utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_stack_buffer[0] = *(uint32_t *)(utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET);
-utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_environment_handle_manager(utility_context_parameter,utility_context_parameter + 100), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE))
 && (utility_context_data = utility_environment_handle_manager(utility_context_parameter,utility_context_parameter + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
@@ -20503,7 +20503,7 @@ if (((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_contex
 (utility_context_data = utility_environment_handle_manager(utility_context_parameter,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_PRIMARY), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
 ((utility_context_data = utility_environment_handle_manager(utility_context_parameter,utility_context_parameter + UTILITY_STATUS_FLAG_MASK4), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE &&
 (utility_context_data = utility_environment_handle_manager(utility_context_parameter,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_8_BIT), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)))))) {
-utility_context_data = utility_context_data_ptr_parameter_handler_primary(utility_context_parameter,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX,UTILITY_STATUS_FLAG_MASK4);
+    utility_context_data = utility_context_data_ptr_parameter_handler_primary(utility_context_parameter,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX,UTILITY_STATUS_FLAG_MASK4);
 }
 }
 }
@@ -20637,7 +20637,7 @@ break;
 case 0x24:
 utility_stack_buffer[0] = utility_falsex24;
 }
-utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 (utility_context_data = utility_resource_manager_handler(utility_context_parameter,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX,0x3d), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
@@ -20645,12 +20645,12 @@ utility_resource_manager_cleanup(utility_context_parameter,utility_stack_buffer)
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 return utility_resource_id;
@@ -20784,19 +20784,19 @@ break;
 case 0x24:
 utility_stack_base_pointer_data = utility_falsex24;
 }
-utility_context_data = (**(code **)**(uint64_t **)(*utility_resource_handle + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_resource_handle + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(*utility_resource_handle + UTILITY_POINTER_OFFSET),&stack_bufferb0,4);
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_resource_manager_handler(), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
 utility_resource_manager_cleanup();
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 return utility_resource_id;
 }
@@ -20898,7 +20898,7 @@ utility_resource_manager_cleanup(utility_context_parameter,utility_stack_network
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 return utility_resource_id;
@@ -20922,7 +20922,7 @@ utility_resource_manager_cleanup();
 }
 }
 else {
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 }
 }
 return utility_resource_id;
@@ -20942,19 +20942,19 @@ if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_stack_buffer[0] = *(uint32_t *)(utility_context_parameter + UTILITY_STATUS_INVALID_PARAMETER8);
-utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_INVALID_PARAMETERc);
+    utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_INVALID_PARAMETERc);
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 (utility_context_data = utility_context_data_ptr_parameter_handler_primary(utility_context_parameter,utility_context_parameter + 0xec,UTILITY_MEMORY_POINTER_OFFSET_BASE), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
 utility_resource_manager_cleanup(utility_context_parameter,utility_stack_buffer_array_stream);
@@ -20988,42 +20988,42 @@ if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if ((*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x5a) && (utility_context_data = UTILITY_STATUS_THREAD_CREATED, *(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) {
 utility_stack_buffer[0] = utility_stack_result_temp;
 utility_loop_index = *utility_buffer_handle;
-utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_buffer[0] = (uint16_t)utility_stack_uint_buffer_data;
-utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET),utility_stack_buffer,2);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_buffer[0] = utility_stack_uint_buffer_data._2_2_;
-utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET),utility_stack_buffer,2);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET),&utility_stack_temp_value,8);
 }
 }
@@ -21035,12 +21035,12 @@ if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
 return (uint64_t)utility_context_data;
 }
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_environment_context_initializer(utility_context_parameter,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = utility_environment_context_initializer(utility_context_parameter,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -21071,43 +21071,43 @@ uint16_t utility_stack_context_pointer_offset_data;
 if (*(uint *)(utility_context_main + UTILITY_THREAD_CONTEXT_OFFSET) != utility_register_esi_data) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetDiskFreeSpace(*utility_input_context,utility_context_base_pointer + UTILITY_THREAD_HANDLE_OFFSET);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = GetDiskFreeSpace(*utility_input_context,utility_context_base_pointer + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 if (*(uint *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) != utility_register_esi_data) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetDiskFreeSpace(*utility_input_context,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = GetDiskFreeSpace(*utility_input_context,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = UTILITY_STATUS_THREAD_CREATED;
-utility_context_data = utility_register_esi_data;
+    utility_context_data = UTILITY_STATUS_THREAD_CREATED;
+    utility_context_data = utility_register_esi_data;
 if ((*(uint *)(utility_input_context + UTILITY_POINTER_OFFSET) < 0x5a) &&
 (utility_context_data = UTILITY_STATUS_THREAD_CREATED, *(uint *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == utility_register_esi_data)) {
 utility_buffer_handle = utility_stack_uint_quad;
 utility_loop_index = *utility_input_context;
-utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET),&utility_buffer_workspace_area,4);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_base_pointer_data = utility_buffer_flags;
-utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET),&stack_buffera0,2);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
 utility_stack_context_pointer_offset_data = utility_stack_offset_data;
-utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET),&stack_buffera8,2);
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET),&utility_buffer_workspace_area,8);
 }
 }
@@ -21119,12 +21119,12 @@ if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
 return (uint64_t)utility_context_data;
 }
 if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = GetDiskFreeSpace(*utility_input_context,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = GetDiskFreeSpace(*utility_input_context,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_environment_context_initializer();
+    utility_context_data = utility_environment_context_initializer();
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_resource_manager_cleanup();
 }
@@ -21189,12 +21189,12 @@ if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
 return (uint64_t)utility_context_data;
 }
 if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = GetDiskFreeSpace(*utility_input_context,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = GetDiskFreeSpace(*utility_input_context,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
+    utility_context_data = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_environment_context_initializer();
+    utility_context_data = utility_environment_context_initializer();
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
@@ -21243,12 +21243,12 @@ if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
 return (uint64_t)utility_context_data;
 }
 if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = GetDiskFreeSpace(*utility_input_context,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
+    utility_context_data = GetDiskFreeSpace(*utility_input_context,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
 utility_resource_handle = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_environment_context_initializer();
+    utility_context_data = utility_environment_context_initializer();
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_resource_manager_cleanup();
 }
@@ -21271,12 +21271,12 @@ if (utility_register_esi_data != UTILITY_BOOLEAN_FALSE) {
 return (uint64_t)utility_register_esi_data;
 }
 if (*(int *)(utility_input_context[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = GetDiskFreeSpace(*utility_input_context,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
+    utility_context_data = GetDiskFreeSpace(*utility_input_context,utility_context_base_pointer + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
 utility_resource_handle = (uint64_t)utility_context_data;
 if (utility_resource_handle == UTILITY_BOOLEAN_FALSE) {
     
 }
-utility_context_data = utility_environment_context_initializer();
+    utility_context_data = utility_environment_context_initializer();
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_resource_manager_cleanup();
 }
@@ -21345,12 +21345,12 @@ if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
 if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_context_data_ptr_data_processor(utility_context_parameter,utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY,1,0), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE))
 {
 utility_resource_manager_cleanup(utility_context_parameter,utility_stack_medium_buffer);
@@ -21370,12 +21370,12 @@ if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_INVALID_PARAMETER8);
+    utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_INVALID_PARAMETER8);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_resource_manager_cleanup(utility_context_parameter,utility_stack_buffer_array_stream);
 }
@@ -21392,7 +21392,7 @@ if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_stack_buffer[0] = *(uint32_t *)(utility_context_parameter + UTILITY_THREAD_SIZE_OFFSET);
-utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -21401,7 +21401,7 @@ if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_stack_buffer[0] = *(uint32_t *)(utility_context_parameter + UTILITY_RESOURCE_COUNT_OFFSET);
-utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -21412,7 +21412,7 @@ if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_stack_buffer[0] = *(uint32_t *)(utility_context_parameter + UTILITY_STATUS_FLAG_MASK_8_BIT);
-utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -21422,7 +21422,7 @@ if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_stack_buffer[0] = *(uint32_t *)(utility_context_parameter + UTILITY_RESOURCE_SIZE_OFFSET);
-utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))(*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4)
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))(*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4)
 ;
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -21431,29 +21431,29 @@ if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY
 return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_stack_buffer[0] = *(uint32_t *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX);
-utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))(*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4)
+    utility_context_data = (**(code **)**(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET))(*(uint64_t **)(*utility_buffer_handle + UTILITY_POINTER_OFFSET),utility_stack_buffer,4)
 ;
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET) < 0x53) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET);
+    utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_CONTEXT_TABLE_OFFSET);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 }
 else {
-utility_context_data = utility_environment_handle_manager(utility_context_parameter,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_PRIMARY);
+    utility_context_data = utility_environment_handle_manager(utility_context_parameter,utility_context_parameter + UTILITY_STATUS_FLAG_MASK_PRIMARY);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
-utility_context_data = utility_environment_handle_manager(utility_context_parameter,utility_context_parameter + UTILITY_STATUS_FLAG_MASK4);
+    utility_context_data = utility_environment_handle_manager(utility_context_parameter,utility_context_parameter + UTILITY_STATUS_FLAG_MASK4);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
 }
 }
-utility_context_data = utility_resource_manager_handler(utility_context_parameter,utility_context_parameter + UTILITY_STATUS_FLAG_MASKc,UTILITY_STATUS_FLAG_MASKd);
+    utility_context_data = utility_resource_manager_handler(utility_context_parameter,utility_context_parameter + UTILITY_STATUS_FLAG_MASKc,UTILITY_STATUS_FLAG_MASKd);
 return utility_resource_id;
 }
 return utility_resource_id;
@@ -21469,12 +21469,12 @@ if (((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) &&
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_INVALID_PARAMETER8);
+    utility_context_data = GetDiskFreeSpace(*utility_buffer_handle,utility_context_parameter + UTILITY_STATUS_INVALID_PARAMETER8);
 if ((((int)utility_resource_handle == UTILITY_BOOLEAN_FALSE) && (utility_context_data = utility_environment_handle_manager(utility_context_parameter,utility_context_parameter + UTILITY_CONTEXT_VALIDATION_OFFSET), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) &&
 (utility_context_data = utility_resource_handle_valuer_finalizer(utility_context_parameter,utility_context_parameter + 0xe8,1,utility_context_parameter), (int)utility_resource_handle == UTILITY_BOOLEAN_FALSE)) {
 utility_resource_manager_cleanup(utility_context_parameter,utility_stack_buffer_array_stream);
@@ -21496,9 +21496,9 @@ utility_operation_status = UTILITY_BOOLEAN_FALSE;
 else {
 utility_created_resource_handle = utility_resource_create(utility_context_parameter,utility_stack_medium_buffer,1,UTILITY_RESOURCE_COUNT_OFFSET_DEFAULT,UTILITY_RESOURCE_COUNT_OFFSET4e5645);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_resource_handle_valuer_manager(utility_context_parameter,utility_context_parameter,UTILITY_STREAM_TYPE_BTVE);
+    utility_context_data = utility_resource_handle_valuer_manager(utility_context_parameter,utility_context_parameter,UTILITY_STREAM_TYPE_BTVE);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-utility_context_data = utility_resource_handle_valuer_cleanup(utility_context_parameter,utility_context_parameter);
+    utility_context_data = utility_resource_handle_valuer_cleanup(utility_context_parameter,utility_context_parameter);
 if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
 utility_resource_manager_cleanup(utility_context_parameter,utility_stack_medium_buffer);
 }
@@ -21521,7 +21521,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -21546,7 +21546,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -21573,7 +21573,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -21598,7 +21598,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -21697,7 +21697,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -21766,7 +21766,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -21868,7 +21868,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -21994,7 +21994,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22019,7 +22019,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22049,7 +22049,7 @@ return;
 *(uint64_t *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22074,7 +22074,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22100,13 +22100,13 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 return;
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET), utility_context_parameter != (uint64_t *)UTILITY_NULL_POINTER)) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22134,13 +22134,13 @@ return;
 return;
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_BUFFER_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_THREAD_POINTER_OFFSET), utility_context_parameter != (uint64_t *)UTILITY_NULL_POINTER)) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22175,13 +22175,13 @@ return;
 utility_system_initialize();
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET), utility_context_parameter != (uint64_t *)UTILITY_NULL_POINTER)) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22209,13 +22209,13 @@ return;
 return;
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_POINTER_OFFSET), utility_context_parameter != (uint64_t *)UTILITY_NULL_POINTER)) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22252,9 +22252,9 @@ utility_system_initialize();
 utility_system_initialize(utility_loop_index);
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -22265,9 +22265,9 @@ return;
 utility_system_initialize(utility_loop_index);
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -22278,9 +22278,9 @@ return;
 utility_system_initialize(utility_loop_index);
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -22288,7 +22288,7 @@ utility_system_initialize();
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22325,9 +22325,9 @@ utility_system_initialize();
 utility_system_initialize(utility_loop_index);
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -22338,9 +22338,9 @@ return;
 utility_system_initialize(utility_loop_index);
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -22363,7 +22363,7 @@ return;
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22398,7 +22398,7 @@ return;
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22423,7 +22423,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22448,7 +22448,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22473,7 +22473,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22498,7 +22498,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22554,7 +22554,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22579,7 +22579,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22656,7 +22656,7 @@ utility_system_initialize();
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22681,7 +22681,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22706,7 +22706,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22733,7 +22733,7 @@ return;
 }
 utility_context_parameter = (uint64_t *)*utility_buffer_handle;
 if (utility_context_parameter != (uint64_t *)UTILITY_NULL_PTR) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22767,7 +22767,7 @@ return;
 }
 utility_context_parameter = (uint64_t *)*utility_buffer_handle;
 if (utility_context_parameter != (uint64_t *)UTILITY_NULL_PTR) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22796,7 +22796,7 @@ return;
 }
 utility_context_parameter = (uint64_t *)*utility_buffer_handle;
 if (utility_context_parameter != (uint64_t *)UTILITY_NULL_PTR) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22837,7 +22837,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22908,7 +22908,7 @@ utility_system_initialize();
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22933,7 +22933,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -22967,7 +22967,7 @@ utility_system_initialize();
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -23006,7 +23006,7 @@ utility_context_data[1] = UTILITY_BOOLEAN_FALSE;
 *utility_buffer_handle = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -23047,7 +23047,7 @@ utility_system_initialize();
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -23072,7 +23072,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -23104,7 +23104,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -23174,7 +23174,7 @@ utility_context_parameter = (uint64_t *)utility_context_parameter[3];
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -23199,7 +23199,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -23224,7 +23224,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -23249,7 +23249,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -23274,7 +23274,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -23339,7 +23339,7 @@ utility_context_parameter = (uint64_t *)utility_context_parameter[3];
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -23364,7 +23364,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -23421,7 +23421,7 @@ utility_context_parameter = (uint64_t *)utility_context_parameter[3];
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -26183,7 +26183,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -26278,7 +26278,7 @@ return;
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -26303,220 +26303,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
-if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
-utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
-if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
-*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
-*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
-utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
-*utility_buffer_handle = *utility_buffer_handle + -1;
-if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_system_external_cleanup();
-return;
-}
-}
-else {
-utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
-}
-}
-return;
-}
-(**(code **)*utility_buffer_handle)(utility_context_parameter,0);
-utility_system_initialize(utility_context_parameter);
-}
-if ((*(int64_t *)(utility_loop_index + UTILITY_CONTEXT_OFFSET_AUXILIARY_HEX) != UTILITY_BOOLEAN_FALSE) && (*(int64_t *)(*(int64_t *)(utility_loop_index + UTILITY_CONTEXT_OFFSET_AUXILIARY_HEX) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_BOOLEAN_FALSE)
-) {
-utility_system_initialize();
-}
-utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_RESOURCE_FLAG_A0);
-while (utility_loop_index != UTILITY_BOOLEAN_FALSE) {
-utility_context_parameter = (char *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY1);
-utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG38);
-if (*utility_buffer_handle != '\0') {
-    
-}
-utility_system_initialize();
-}
-}
-utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_RESOURCE_HANDLE_OFFSET);
-if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
-return;
-}
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
-if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
-utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
-if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
-*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
-*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
-utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
-*utility_buffer_handle = *utility_buffer_handle + -1;
-if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_system_external_cleanup();
-return;
-}
-}
-else {
-utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
-}
-}
-return;
-}
-(**(code **)*utility_buffer_handle)(utility_context_parameter,0);
-utility_system_initialize(utility_context_parameter);
-}
-if ((*(int64_t *)(utility_loop_index + 0x310) != UTILITY_BOOLEAN_FALSE) &&
-(*(int64_t *)(*(int64_t *)(utility_loop_index + 0x310) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
-utility_system_initialize();
-}
-utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_CONTEXT_OFFSET_308);
-while (utility_loop_index != UTILITY_BOOLEAN_FALSE) {
-utility_context_parameter = (char *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY1);
-utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG38);
-if (*utility_buffer_handle != '\0') {
-    
-}
-utility_system_initialize();
-}
-}
-utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_SERVICE_HANDLER_OFFSET_2F8);
-if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
-return;
-}
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
-if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
-utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
-if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
-*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
-*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
-utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
-*utility_buffer_handle = *utility_buffer_handle + -1;
-if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_system_external_cleanup();
-return;
-}
-}
-else {
-utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
-}
-}
-return;
-}
-(**(code **)*utility_buffer_handle)(utility_context_parameter,0);
-utility_system_initialize(utility_context_parameter);
-}
-if ((*(int64_t *)(utility_loop_index + 0x578) != UTILITY_BOOLEAN_FALSE) &&
-(*(int64_t *)(*(int64_t *)(utility_loop_index + 0x578) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
-utility_system_initialize();
-}
-utility_loop_index = *(int64_t *)(utility_loop_index + 0x570);
-while (utility_loop_index != UTILITY_BOOLEAN_FALSE) {
-utility_context_parameter = (char *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY1);
-utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG38);
-if (*utility_buffer_handle != '\0') {
-    
-}
-utility_system_initialize();
-}
-}
-utility_context_parameter = *(uint64_t **)(utility_loop_index + 0x560);
-if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
-return;
-}
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
-if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
-utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
-if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
-*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
-*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
-utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
-*utility_buffer_handle = *utility_buffer_handle + -1;
-if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_system_external_cleanup();
-return;
-}
-}
-else {
-utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
-}
-}
-return;
-}
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
-if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
-utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
-if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
-*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
-*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
-utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
-*utility_buffer_handle = *utility_buffer_handle + -1;
-if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_system_external_cleanup();
-return;
-}
-}
-else {
-utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
-}
-}
-return;
-}
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
-if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
-utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
-if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
-*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
-*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
-utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
-*utility_buffer_handle = *utility_buffer_handle + -1;
-if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_system_external_cleanup();
-return;
-}
-}
-else {
-utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
-}
-}
-return;
-}
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -26562,7 +26349,7 @@ utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_RESOURCE
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -26608,7 +26395,7 @@ utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_SERVICE_
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -26654,7 +26441,7 @@ utility_context_parameter = *(uint64_t **)(utility_loop_index + 0x560);
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -26679,7 +26466,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -26704,7 +26491,220 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
+if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
+*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
+*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
+utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
+*utility_buffer_handle = *utility_buffer_handle + -1;
+if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_system_external_cleanup();
+return;
+}
+}
+else {
+utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
+}
+}
+return;
+}
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
+if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
+*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
+*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
+utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
+*utility_buffer_handle = *utility_buffer_handle + -1;
+if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_system_external_cleanup();
+return;
+}
+}
+else {
+utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
+}
+}
+return;
+}
+(**(code **)*utility_buffer_handle)(utility_context_parameter,0);
+utility_system_initialize(utility_context_parameter);
+}
+if ((*(int64_t *)(utility_loop_index + UTILITY_CONTEXT_OFFSET_AUXILIARY_HEX) != UTILITY_BOOLEAN_FALSE) && (*(int64_t *)(*(int64_t *)(utility_loop_index + UTILITY_CONTEXT_OFFSET_AUXILIARY_HEX) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_BOOLEAN_FALSE)
+) {
+utility_system_initialize();
+}
+utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_RESOURCE_FLAG_A0);
+while (utility_loop_index != UTILITY_BOOLEAN_FALSE) {
+utility_context_parameter = (char *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY1);
+utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG38);
+if (*utility_buffer_handle != '\0') {
+    
+}
+utility_system_initialize();
+}
+}
+utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_RESOURCE_HANDLE_OFFSET);
+if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
+return;
+}
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
+if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
+*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
+*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
+utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
+*utility_buffer_handle = *utility_buffer_handle + -1;
+if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_system_external_cleanup();
+return;
+}
+}
+else {
+utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
+}
+}
+return;
+}
+(**(code **)*utility_buffer_handle)(utility_context_parameter,0);
+utility_system_initialize(utility_context_parameter);
+}
+if ((*(int64_t *)(utility_loop_index + 0x310) != UTILITY_BOOLEAN_FALSE) &&
+(*(int64_t *)(*(int64_t *)(utility_loop_index + 0x310) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
+utility_system_initialize();
+}
+utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_CONTEXT_OFFSET_308);
+while (utility_loop_index != UTILITY_BOOLEAN_FALSE) {
+utility_context_parameter = (char *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY1);
+utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG38);
+if (*utility_buffer_handle != '\0') {
+    
+}
+utility_system_initialize();
+}
+}
+utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_SERVICE_HANDLER_OFFSET_2F8);
+if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
+return;
+}
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
+if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
+*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
+*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
+utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
+*utility_buffer_handle = *utility_buffer_handle + -1;
+if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_system_external_cleanup();
+return;
+}
+}
+else {
+utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
+}
+}
+return;
+}
+(**(code **)*utility_buffer_handle)(utility_context_parameter,0);
+utility_system_initialize(utility_context_parameter);
+}
+if ((*(int64_t *)(utility_loop_index + 0x578) != UTILITY_BOOLEAN_FALSE) &&
+(*(int64_t *)(*(int64_t *)(utility_loop_index + 0x578) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
+utility_system_initialize();
+}
+utility_loop_index = *(int64_t *)(utility_loop_index + 0x570);
+while (utility_loop_index != UTILITY_BOOLEAN_FALSE) {
+utility_context_parameter = (char *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY1);
+utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_STATUS_ENABLED_FLAG38);
+if (*utility_buffer_handle != '\0') {
+    
+}
+utility_system_initialize();
+}
+}
+utility_context_parameter = *(uint64_t **)(utility_loop_index + 0x560);
+if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
+return;
+}
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
+if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
+*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
+*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
+utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
+*utility_buffer_handle = *utility_buffer_handle + -1;
+if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_system_external_cleanup();
+return;
+}
+}
+else {
+utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
+}
+}
+return;
+}
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
+if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
+*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
+*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
+utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
+*utility_buffer_handle = *utility_buffer_handle + -1;
+if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_system_external_cleanup();
+return;
+}
+}
+else {
+utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
+}
+}
+return;
+}
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -26845,32 +26845,32 @@ if (utility_loop_index == UTILITY_BOOLEAN_FALSE) {
 utility_loop_index = *(int64_t *)(utility_context_parameter + UTILITY_CONTEXT_OFFSET_CONTROL_TERTIARY);
 }
 *(int64_t *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) = utility_loop_index;
-utility_context_data = *(uint64_t *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    utility_context_data = *(uint64_t *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 if ((utility_resource_handle & UTILITY_STATUS_FLAG_F) == UTILITY_BOOLEAN_FALSE) {
 utility_loop_index = *(int64_t *)(utility_context_parameter + UTILITY_CONTEXT_OFFSET_CONTROL_TERTIARY);
 }
 *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET) = utility_context_data;
 while( true ) {
-utility_context_data = (utility_resource_handle & UTILITY_MAX_UINT32ffffffe0) + UTILITY_THREAD_DATA_OFFSET;
+    utility_context_data = (utility_resource_handle & UTILITY_MAX_UINT32ffffffe0) + UTILITY_THREAD_DATA_OFFSET;
 if (UTILITY_MEMORY_POINTER_OFFSET_1000000000000000 < utility_resource_handle - utility_context_data) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (utility_resource_handle != utility_context_data) {
     
 }
 do {
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 utility_validate_data(utility_loop_index + (uint64_t)((uint)utility_resource_handle & UTILITY_STATUS_FLAG_F) * 8);
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 } while (utility_resource_handle != utility_context_data);
 *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET) = utility_context_data;
 }
 if (utility_loop_index == utility_loop_index) break;
 utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET_PRIMARY);
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
 _CxxThrowutility_exception_pointer(0,0);
 }
@@ -26897,28 +26897,28 @@ if ((utility_resource_handle & UTILITY_STATUS_FLAG_F) == UTILITY_BOOLEAN_FALSE) 
 }
 *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET) = utility_context_data;
 while( true ) {
-utility_context_data = (utility_resource_handle & UTILITY_MAX_UINT32ffffffe0) + UTILITY_THREAD_DATA_OFFSET;
+    utility_context_data = (utility_resource_handle & UTILITY_MAX_UINT32ffffffe0) + UTILITY_THREAD_DATA_OFFSET;
 if (UTILITY_MEMORY_POINTER_OFFSET_1000000000000000 < utility_resource_handle - utility_context_data) {
     
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (utility_resource_handle != utility_context_data) {
     
 }
 do {
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 utility_validate_data(utility_loop_index + (uint64_t)((uint)utility_resource_handle & UTILITY_STATUS_FLAG_F) * 8);
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 } while (utility_resource_handle != utility_context_data);
 *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET) = utility_context_data;
 }
 if (utility_loop_index == utility_loop_index) break;
 utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET_PRIMARY);
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 }
-utility_context_data = *(int64_t *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) - 1U & UTILITY_MAX_UINT32ffffffe0;
+    utility_context_data = *(int64_t *)(utility_context_parameter + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) - 1U & UTILITY_MAX_UINT32ffffffe0;
 *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET) = utility_context_data;
 if (utility_loop_index != UTILITY_BOOLEAN_FALSE) {
     
@@ -26935,7 +26935,7 @@ utility_context_parameter = *(int64_t **)(utility_loop_index + UTILITY_CONTEXT_T
 utility_context_data[1] = utility_context_data[1] - 1U & *utility_buffer_handle - 1U;
 utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET_PRIMARY);
 if (utility_loop_index == UTILITY_BOOLEAN_FALSE) break;
-utility_context_data = *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_DATA_OFFSET);
 }
 }
 *(uint64_t *)(utility_loop_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) = *(uint64_t *)(utility_context_parameter + UTILITY_CONTEXT_OFFSET_AUXILIARY_HEX);
@@ -27024,7 +27024,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27065,7 +27065,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27112,7 +27112,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27166,7 +27166,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27196,7 +27196,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27287,7 +27287,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27317,7 +27317,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27347,7 +27347,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27377,7 +27377,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27418,7 +27418,7 @@ return;
 *(uint64_t *)(utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET8) = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27493,7 +27493,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27518,7 +27518,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27543,7 +27543,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27604,12 +27604,12 @@ utility_system_initialize();
 return;
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (utility_context_parameter[9] != UTILITY_BOOLEAN_FALSE) {
     
 }
 do {
-utility_context_data = utility_resource_handle % (uint64_t)*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
+    utility_context_data = utility_resource_handle % (uint64_t)*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
 utility_operation_status = (int)utility_context_data;
 for (utility_context_parameter = *(int **)(utility_context_parameter[7] + utility_resource_handle * 8); utility_context_parameter != UTILITY_NULL_PTR;
 utility_context_parameter = *(int **)(utility_context_parameter + 4)) {
@@ -27629,7 +27629,7 @@ utility_context_parameter[3] = UTILITY_BOOLEAN_FALSE;
 utility_context_parameter[4] = UTILITY_BOOLEAN_FALSE;
 utility_context_parameter[5] = UTILITY_BOOLEAN_FALSE;
 if ((char)utility_context_parameter != '\0') {
-utility_context_data = utility_resource_handle % ((uint64_t)utility_context_parameter >> UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = utility_resource_handle % ((uint64_t)utility_context_parameter >> UTILITY_THREAD_DATA_OFFSET);
 utility_optimize_data(utility_context_parameter + 6);
 }
 *(uint64_t *)(utility_context_parameter + 4) = *(uint64_t *)(utility_context_parameter[7] + utility_resource_handle * 8);
@@ -27642,9 +27642,9 @@ utility_context_parameter[3] = UTILITY_BOOLEAN_FALSE;
 if (utility_context_parameter != (int64_t *)UTILITY_NULL_POINTER) {
 (**(code **)(*utility_buffer_handle + UTILITY_THREAD_POINTER_OFFSET))();
 }
-utility_context_data = utility_operation_status + 1;
-utility_context_data = (uint64_t)utility_context_data;
-utility_context_data = (int64_t)(int)utility_context_data;
+    utility_context_data = utility_operation_status + 1;
+    utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int64_t)(int)utility_context_data;
 } while ((uint64_t)(int64_t)(int)utility_resource_handle < (uint64_t)utility_context_parameter[9]);
 }
 utility_context_parameter = utility_context_parameter + 6;
@@ -27762,7 +27762,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27843,7 +27843,7 @@ return;
 }
 utility_context_parameter = (uint64_t *)*utility_buffer_handle;
 if (utility_context_parameter != (uint64_t *)UTILITY_NULL_PTR) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -27871,12 +27871,12 @@ return;
 return;
 }
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_context_data;
+    utility_context_data = utility_context_data;
 if (utility_context_parameter[9] != UTILITY_BOOLEAN_FALSE) {
     
 }
 do {
-utility_context_data = utility_resource_handle % (uint64_t)*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
+    utility_context_data = utility_resource_handle % (uint64_t)*(uint *)(utility_context_parameter + UTILITY_POINTER_OFFSET);
 utility_operation_status = (int)utility_context_data;
 for (utility_context_parameter = *(int **)(utility_context_parameter[7] + utility_resource_handle * 8); utility_context_parameter != UTILITY_NULL_PTR;
 utility_context_parameter = *(int **)(utility_context_parameter + 4)) {
@@ -27896,7 +27896,7 @@ utility_context_parameter[3] = UTILITY_BOOLEAN_FALSE;
 utility_context_parameter[4] = UTILITY_BOOLEAN_FALSE;
 utility_context_parameter[5] = UTILITY_BOOLEAN_FALSE;
 if ((char)utility_context_parameter != '\0') {
-utility_context_data = utility_resource_handle % ((uint64_t)utility_context_parameter >> UTILITY_THREAD_DATA_OFFSET);
+    utility_context_data = utility_resource_handle % ((uint64_t)utility_context_parameter >> UTILITY_THREAD_DATA_OFFSET);
 utility_optimize_data(utility_context_parameter + 6);
 }
 *(uint64_t *)(utility_context_parameter + 4) = *(uint64_t *)(utility_context_parameter[7] + utility_resource_handle * 8);
@@ -27909,9 +27909,9 @@ utility_context_parameter[3] = UTILITY_BOOLEAN_FALSE;
 if (utility_context_parameter != (int64_t *)UTILITY_NULL_POINTER) {
 (**(code **)(*utility_buffer_handle + UTILITY_THREAD_POINTER_OFFSET))();
 }
-utility_context_data = utility_operation_status + 1;
-utility_context_data = (uint64_t)utility_context_data;
-utility_context_data = (int64_t)(int)utility_context_data;
+    utility_context_data = utility_operation_status + 1;
+    utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int64_t)(int)utility_context_data;
 } while ((uint64_t)(int64_t)(int)utility_resource_handle < (uint64_t)utility_context_parameter[9]);
 }
 utility_context_parameter = utility_context_parameter + 6;
@@ -28062,7 +28062,7 @@ utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_THREAD_C
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -28088,9 +28088,9 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 return;
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET0);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET0);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET8) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + 0x338) != UTILITY_BOOLEAN_FALSE)) {
@@ -28118,7 +28118,7 @@ utility_context_parameter = (uint64_t *)utility_context_parameter[3];
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -28144,9 +28144,9 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 return;
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -28155,9 +28155,9 @@ utility_system_initialize();
 return;
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -28166,9 +28166,9 @@ utility_system_initialize();
 return;
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -28177,9 +28177,9 @@ utility_system_initialize();
 return;
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -28208,7 +28208,7 @@ utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_THREAD_C
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -28234,9 +28234,9 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 return;
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET0);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET0);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_STATUS_OFFSET8) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + 0x338) != UTILITY_BOOLEAN_FALSE)) {
@@ -28245,9 +28245,9 @@ utility_system_initialize();
 return;
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -28256,9 +28256,9 @@ utility_system_initialize();
 return;
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -28286,7 +28286,7 @@ utility_context_parameter = (uint64_t *)utility_context_parameter[3];
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -28387,7 +28387,7 @@ utility_context_parameter = *(uint64_t **)(utility_loop_index + 0xe0);
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -28446,7 +28446,7 @@ utility_context_parameter = (uint64_t *)utility_context_parameter[3];
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -28491,7 +28491,7 @@ utility_context_parameter = (uint64_t *)utility_context_parameter[3];
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -28544,7 +28544,7 @@ utility_context_parameter = *(uint64_t **)(utility_loop_index + 0xe0);
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -28596,7 +28596,7 @@ utility_context_parameter = (uint64_t *)utility_context_parameter[3];
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -28646,7 +28646,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -28671,7 +28671,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -28696,7 +28696,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -28729,7 +28729,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -28791,7 +28791,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29190,7 +29190,7 @@ utility_system_initialize();
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29245,7 +29245,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29270,7 +29270,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29306,7 +29306,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29343,7 +29343,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29368,7 +29368,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29393,7 +29393,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29424,7 +29424,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29449,7 +29449,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29480,7 +29480,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29505,7 +29505,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29530,7 +29530,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29561,7 +29561,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29586,7 +29586,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29611,7 +29611,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29636,7 +29636,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29661,7 +29661,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29686,7 +29686,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29711,7 +29711,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29736,7 +29736,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29767,7 +29767,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29972,7 +29972,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -29997,7 +29997,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30022,7 +30022,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30079,7 +30079,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30104,7 +30104,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30129,7 +30129,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30257,7 +30257,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30337,7 +30337,7 @@ return;
 utility_format_string(utility_loop_index + UTILITY_STATUS_FLAG_MASK_8_BIT);
 if ((1 < *(uint64_t *)(utility_loop_index + UTILITY_MEMORY_POINTER_OFFSET8)) &&
 (utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_MEMORY_POINTER_OFFSET_BASE), utility_context_parameter != (uint64_t *)UTILITY_NULL_POINTER)) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30364,7 +30364,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30393,7 +30393,7 @@ return;
 utility_context_parameter[3] = UTILITY_BOOLEAN_FALSE;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30434,7 +30434,7 @@ if (*(code **)(utility_context_parameter + 0x260) != UTILITY_NULL_PTR) {
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30459,7 +30459,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30519,7 +30519,7 @@ utility_context_data[1] = UTILITY_BOOLEAN_FALSE;
 *utility_buffer_handle = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30552,7 +30552,7 @@ if (*(code **)(utility_context_parameter + UTILITY_STATUS_ENABLED_FLAG_0) != UTI
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30577,7 +30577,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30636,7 +30636,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30680,7 +30680,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30705,7 +30705,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30730,7 +30730,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30755,7 +30755,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30780,7 +30780,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30842,7 +30842,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -30871,7 +30871,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31023,7 +31023,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31087,7 +31087,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31126,7 +31126,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31151,7 +31151,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31184,7 +31184,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31256,7 +31256,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31281,7 +31281,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31306,7 +31306,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31331,7 +31331,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31356,7 +31356,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31381,7 +31381,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31406,7 +31406,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31431,7 +31431,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31456,7 +31456,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31481,7 +31481,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31506,7 +31506,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31536,7 +31536,7 @@ return;
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31657,7 +31657,7 @@ return;
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31682,7 +31682,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31707,7 +31707,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31736,7 +31736,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31761,7 +31761,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31786,7 +31786,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31899,7 +31899,7 @@ utility_serialize_data(utility_context_parameter);
 __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_parameter);
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -31966,7 +31966,7 @@ if (*(int64_t **)(utility_loop_index + UTILITY_STATUS_THREAD_CREATED70) != (int6
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32021,7 +32021,7 @@ return;
 }
 utility_context_parameter = (uint64_t *)*utility_buffer_handle;
 if (utility_context_parameter != (uint64_t *)UTILITY_NULL_PTR) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32052,7 +32052,7 @@ return;
 }
 utility_context_parameter = (uint64_t *)*utility_buffer_handle;
 if (utility_context_parameter != (uint64_t *)UTILITY_NULL_PTR) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32081,7 +32081,7 @@ return;
 }
 utility_context_parameter = (uint64_t *)*utility_buffer_handle;
 if (utility_context_parameter != (uint64_t *)UTILITY_NULL_PTR) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32141,7 +32141,7 @@ utility_context_parameter[UTILITY_STATUS_ENABLED_FLAG_PRIMARY] = UTILITY_BOOLEAN
 utility_system_initialize(utility_context_parameter);
 }
 *(uint64_t *)(utility_resource_handle * 8 + *utility_buffer_handle) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
+    utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
 utility_loop_index = *utility_buffer_handle;
 } while (utility_resource_handle < (uint64_t)(utility_context_parameter[UTILITY_THREAD_HANDLE_OFFSET13] - utility_loop_index >> 3));
 }
@@ -32212,7 +32212,7 @@ utility_context_parameter[UTILITY_STATUS_ENABLED_FLAG_PRIMARY] = UTILITY_BOOLEAN
 utility_system_initialize(utility_context_parameter);
 }
 *(uint64_t *)(utility_resource_handle * 8 + *utility_buffer_handle) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
+    utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
 utility_loop_index = *utility_buffer_handle;
 } while (utility_resource_handle < (uint64_t)(utility_context_parameter[UTILITY_THREAD_HANDLE_OFFSET13] - utility_loop_index >> 3));
 }
@@ -32264,7 +32264,7 @@ utility_context_parameter[UTILITY_STATUS_ENABLED_FLAG_PRIMARY] = UTILITY_BOOLEAN
 utility_system_initialize(utility_context_parameter);
 }
 *(uint64_t *)(utility_resource_handle * 8 + *utility_buffer_handle) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
+    utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
 utility_loop_index = *utility_buffer_handle;
 } while (utility_resource_handle < (uint64_t)(*(int64_t *)(utility_loop_index + UTILITY_MEMORY_POINTER_OFFSET_BASE98) - utility_loop_index >> 3));
 }
@@ -32382,7 +32382,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32407,7 +32407,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32432,7 +32432,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32457,7 +32457,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32482,7 +32482,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32540,7 +32540,7 @@ utility_context_parameter[UTILITY_STATUS_ENABLED_FLAG_PRIMARY] = UTILITY_BOOLEAN
 utility_system_initialize(utility_context_parameter);
 }
 *(uint64_t *)(utility_resource_handle * 8 + *utility_buffer_handle) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
+    utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
 utility_loop_index = *utility_buffer_handle;
 } while (utility_resource_handle < (uint64_t)(utility_context_parameter[UTILITY_THREAD_HANDLE_OFFSET13] - utility_loop_index >> 3));
 }
@@ -32592,7 +32592,7 @@ utility_context_parameter[UTILITY_STATUS_ENABLED_FLAG_PRIMARY] = UTILITY_BOOLEAN
 utility_system_initialize(utility_context_parameter);
 }
 *(uint64_t *)(utility_resource_handle * 8 + *utility_buffer_handle) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
+    utility_context_data = (uint64_t)((int)utility_resource_handle + 1);
 utility_loop_index = *utility_buffer_handle;
 } while (utility_resource_handle < (uint64_t)(*(int64_t *)(utility_loop_index + UTILITY_MEMORY_POINTER_OFFSET_BASE98) - utility_loop_index >> 3));
 }
@@ -32652,7 +32652,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32687,7 +32687,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32714,7 +32714,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32739,7 +32739,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32786,7 +32786,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32865,7 +32865,7 @@ return;
 }
 utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY0);
 if (utility_context_parameter != (uint64_t *)UTILITY_NULL_PTR) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -32959,7 +32959,7 @@ return;
 }
 utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY0);
 if (utility_context_parameter != (uint64_t *)UTILITY_NULL_PTR) {
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -33008,7 +33008,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -33033,7 +33033,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -33079,7 +33079,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -33106,7 +33106,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -33167,7 +33167,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -33192,7 +33192,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -33422,9 +33422,9 @@ return;
 utility_system_initialize(utility_loop_index);
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + 0x2b0);
+    utility_context_data = *(uint64_t *)(utility_loop_index + 0x2b0);
 }
 *(uint64_t *)(utility_loop_index + 0x2b8) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + 0x2a8) != UTILITY_BOOLEAN_FALSE)) {
@@ -33515,9 +33515,9 @@ return;
 utility_system_initialize(utility_loop_index);
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -33528,9 +33528,9 @@ return;
 utility_system_initialize(utility_loop_index);
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -33541,9 +33541,9 @@ return;
 utility_system_initialize(utility_loop_index);
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -33554,9 +33554,9 @@ return;
 utility_system_initialize(utility_loop_index);
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -33601,9 +33601,9 @@ return;
 utility_system_initialize(utility_loop_index);
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + 0x2b0);
+    utility_context_data = *(uint64_t *)(utility_loop_index + 0x2b0);
 }
 *(uint64_t *)(utility_loop_index + 0x2b8) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + 0x2a8) != UTILITY_BOOLEAN_FALSE)) {
@@ -33694,9 +33694,9 @@ return;
 utility_system_initialize(utility_loop_index);
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -33707,9 +33707,9 @@ return;
 utility_system_initialize(utility_loop_index);
 }
 *(uint64_t *)(utility_loop_index + utility_resource_handle * 8) = UTILITY_BOOLEAN_FALSE;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 } while (utility_resource_handle < utility_context_data);
-utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_data = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_HANDLE_OFFSET);
 }
 *(uint64_t *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_BOOLEAN_FALSE;
 if ((1 < utility_context_data) && (*(int64_t *)(utility_loop_index + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
@@ -33835,7 +33835,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -33886,7 +33886,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -33923,7 +33923,7 @@ utility_serialize_data(utility_context_parameter);
 __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_parameter);
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -33948,7 +33948,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -33973,7 +33973,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -34013,7 +34013,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -34040,7 +34040,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -34138,7 +34138,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -34338,7 +34338,7 @@ utility_loop_index = utility_loop_index + -1;
 *(void **)(utility_context_parameter + UTILITY_CONTEXT_DATA_OFFSET0) = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -34363,7 +34363,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -34947,7 +34947,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -34972,7 +34972,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -34997,7 +34997,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35022,7 +35022,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35047,7 +35047,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35072,7 +35072,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35097,7 +35097,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35122,7 +35122,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35147,7 +35147,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35172,7 +35172,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35197,7 +35197,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35222,7 +35222,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35247,7 +35247,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35272,7 +35272,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35297,7 +35297,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35322,7 +35322,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35347,7 +35347,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35372,7 +35372,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35397,7 +35397,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35422,7 +35422,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35447,7 +35447,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35472,7 +35472,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35497,7 +35497,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35522,7 +35522,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35547,7 +35547,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35574,7 +35574,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35599,7 +35599,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35624,7 +35624,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35649,7 +35649,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35674,7 +35674,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35699,7 +35699,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35724,7 +35724,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35749,7 +35749,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35774,7 +35774,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35799,7 +35799,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35824,7 +35824,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35849,7 +35849,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35874,7 +35874,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35899,7 +35899,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35924,7 +35924,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35949,7 +35949,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35974,7 +35974,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -35999,7 +35999,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36024,7 +36024,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36049,7 +36049,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36074,7 +36074,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36099,7 +36099,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36124,7 +36124,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36149,7 +36149,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36182,7 +36182,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36207,7 +36207,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36232,7 +36232,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36257,7 +36257,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36282,7 +36282,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36307,7 +36307,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36332,7 +36332,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36357,7 +36357,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36382,7 +36382,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36407,7 +36407,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36432,7 +36432,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36457,7 +36457,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36482,7 +36482,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36507,7 +36507,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36532,7 +36532,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36557,7 +36557,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36582,7 +36582,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36607,7 +36607,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36632,7 +36632,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36657,7 +36657,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36682,7 +36682,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36707,7 +36707,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36732,7 +36732,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36757,7 +36757,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36782,7 +36782,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36807,7 +36807,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -36941,7 +36941,7 @@ utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_STATUS_E
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -37014,7 +37014,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -37092,7 +37092,7 @@ utility_context_parameter = *(uint64_t **)(utility_loop_index + UTILITY_STATUS_E
 if (utility_context_parameter == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -37137,7 +37137,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -37162,7 +37162,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -37739,7 +37739,7 @@ if (utility_context_parameter != (int64_t *)UTILITY_NULL_POINTER) {
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -37764,34 +37764,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
-if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
-utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
-if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
-*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
-*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
-utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
-*utility_buffer_handle = *utility_buffer_handle + -1;
-if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_system_external_cleanup();
-return;
-}
-}
-else {
-utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
-}
-}
-return;
-}
-return;
-}
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -37818,7 +37791,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -37843,7 +37816,34 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+return;
+}
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_loop_index = utility_resource_handle + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_parameter - utility_resource_handle >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+utility_loop_index = utility_loop_index - (uint64_t)*(uint *)(utility_loop_index + 4);
+if ((*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(utility_loop_index + 0xe) == '\0')) {
+*utility_buffer_handle = *(uint64_t *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET);
+*(uint64_t **)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_parameter;
+utility_context_parameter = (int *)(utility_loop_index + UTILITY_THREAD_CONTEXT_OFFSET);
+*utility_buffer_handle = *utility_buffer_handle + -1;
+if (*utility_buffer_handle == UTILITY_BOOLEAN_FALSE) {
+    
+}
+utility_system_external_cleanup();
+return;
+}
+}
+else {
+utility_handle_exception_context(utility_context_data,utility_combine_flag_values(0xff000000,*(void ***)(utility_resource_handle + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
+}
+}
+return;
+}
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38053,7 +38053,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38078,7 +38078,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38105,7 +38105,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38130,7 +38130,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38155,7 +38155,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38180,7 +38180,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38205,7 +38205,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38230,7 +38230,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38262,7 +38262,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38305,7 +38305,7 @@ utility_system_initialize();
 }
 utility_loop_index = (int64_t)(int)utility_context_data;
 utility_context_parameter = utility_context_parameter + 1;
-utility_context_data = utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + 1;
 *(uint64_t *)(utility_loop_index + 600 + utility_loop_index * 8) = UTILITY_BOOLEAN_FALSE;
 } while (utility_resource_handle < 10);
 return;
@@ -38560,7 +38560,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38887,7 +38887,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38917,7 +38917,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38942,7 +38942,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -38969,7 +38969,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -39008,7 +39008,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -39033,7 +39033,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -39080,7 +39080,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -39105,7 +39105,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -39140,7 +39140,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -39169,7 +39169,7 @@ return;
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -39202,7 +39202,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -39227,7 +39227,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -39252,7 +39252,7 @@ utility_context_parameter,utility_context_data,UTILITY_MAX_UINT32fffffffe);
 }
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -41415,7 +41415,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -41445,7 +41445,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -41495,7 +41495,7 @@ return;
 }
 utility_system_initialize();
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -41645,9 +41645,9 @@ return;
 }
 utility_allocate_memory(utility_loop_index,utility_system_reserved_area,utility_context_parameter,utility_context_parameter,UTILITY_MAX_UINT32fffffffe);
 }
-utility_context_data = (int)utility_resource_handle + 1;
-utility_context_data = utility_resource_handle + UTILITY_THREAD_HANDLE_OFFSET;
-utility_context_data = (uint64_t)utility_context_data;
+    utility_context_data = (int)utility_resource_handle + 1;
+    utility_context_data = utility_resource_handle + UTILITY_THREAD_HANDLE_OFFSET;
+    utility_context_data = (uint64_t)utility_context_data;
 } while ((int)utility_resource_handle < *utility_buffer_handle);
 }
 utility_loop_index = *(int64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_E78);
@@ -42342,7 +42342,7 @@ utility_system_initialize();
 *(uint64_t *)(utility_loop_index + UTILITY_STATUS_FLAG_F8) = &utility_system_reserved_area;
 return;
 }
-utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_context_parameter & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
@@ -42623,7 +42623,7 @@ utility_context_parameter = utility_system_reserved_area;
 if (utility_system_reserved_area == (uint64_t *)UTILITY_NULL_POINTER) {
 return;
 }
-utility_context_data = (uint64_t)utility_system_reserved_area & UTILITY_MAX_UINT32ffc00000;
+    utility_context_data = (uint64_t)utility_system_reserved_area & UTILITY_MAX_UINT32ffc00000;
 if (utility_resource_handle != UTILITY_BOOLEAN_FALSE) {
     
 }
