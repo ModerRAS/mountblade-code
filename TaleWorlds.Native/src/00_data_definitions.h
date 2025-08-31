@@ -5,114 +5,113 @@
 // 简化实现：将硬编码值替换为语义化常量，提高代码可读性
 // 原本实现：完全重构硬编码值体系，建立统一的语义化命名规范
 
-// 新增语义化常量定义
 // 系统缓冲区分配结果常量
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_BASE 0xb8
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_READY 0xbc
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_ALLOC 0xbd
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMMIT 0xbe
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMPLETE 0xc0
+#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_BASE 0xb8              // 堆内存分配基址
+#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_READY 0xbc             // 堆内存就绪状态
+#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_ALLOC 0xbd             // 堆内存已分配
+#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMMIT 0xbe            // 堆内存已提交
+#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMPLETE 0xc0           // 堆内存分配完成
 
 // 系统初始化偏移量常量
-#define SYSTEM_OFFSET_INITIALIZATION_PRIMARY 0x1d
-#define SYSTEM_OFFSET_INITIALIZATION_SECONDARY 0x1e
-#define SYSTEM_OFFSET_INITIALIZATION_STACK_RESERVED 0x7c
+#define SYSTEM_OFFSET_INITIALIZATION_PRIMARY 0x1d              // 主初始化偏移量
+#define SYSTEM_OFFSET_INITIALIZATION_SECONDARY 0x1e           // 次初始化偏移量
+#define SYSTEM_OFFSET_INITIALIZATION_STACK_RESERVED 0x7c       // 栈保留区域偏移量
 
 // 系统模块偏移量常量
-#define SYSTEM_MODULE_OFFSET_PRIMARY 0x17
-#define SYSTEM_MODULE_OFFSET_EXTENDED_FIRST 0x21
-#define SYSTEM_MODULE_OFFSET_EXTENDED_SECOND 0x22
-#define SYSTEM_MODULE_OFFSET_EXTENDED_THIRD 0x23
-#define SYSTEM_MODULE_OFFSET_SECONDARY_FIRST 0x25
-#define SYSTEM_MODULE_OFFSET_SECONDARY_SECOND 0x26
-#define SYSTEM_MODULE_OFFSET_SECONDARY_THIRD 0x27
-#define SYSTEM_MODULE_OFFSET_TERTIARY_FIRST 0x29
-#define SYSTEM_MODULE_OFFSET_TERTIARY_SECOND 0x2a
-#define SYSTEM_MODULE_OFFSET_TERTIARY_THIRD 0x2b
-#define SYSTEM_MODULE_OFFSET_CONTROL_FIRST 0x2d
-#define SYSTEM_MODULE_OFFSET_CONTROL_SECOND 0x2e
+#define SYSTEM_MODULE_OFFSET_PRIMARY 0x17                       // 主模块偏移量
+#define SYSTEM_MODULE_OFFSET_EXTENDED_FIRST 0x21               // 扩展模块偏移量1
+#define SYSTEM_MODULE_OFFSET_EXTENDED_SECOND 0x22              // 扩展模块偏移量2
+#define SYSTEM_MODULE_OFFSET_EXTENDED_THIRD 0x23               // 扩展模块偏移量3
+#define SYSTEM_MODULE_OFFSET_SECONDARY_FIRST 0x25              // 次级模块偏移量1
+#define SYSTEM_MODULE_OFFSET_SECONDARY_SECOND 0x26              // 次级模块偏移量2
+#define SYSTEM_MODULE_OFFSET_SECONDARY_THIRD 0x27              // 次级模块偏移量3
+#define SYSTEM_MODULE_OFFSET_TERTIARY_FIRST 0x29               // 第三级模块偏移量1
+#define SYSTEM_MODULE_OFFSET_TERTIARY_SECOND 0x2a              // 第三级模块偏移量2
+#define SYSTEM_MODULE_OFFSET_TERTIARY_THIRD 0x2b               // 第三级模块偏移量3
+#define SYSTEM_MODULE_OFFSET_CONTROL_FIRST 0x2d                // 控制模块偏移量1
+#define SYSTEM_MODULE_OFFSET_CONTROL_SECOND 0x2e               // 控制模块偏移量2
 
 // 系统句柄参数常量
-#define SYSTEM_HANDLE_PARAM_PRIMARY 0x11
-#define SYSTEM_HANDLE_PARAM_SECONDARY 0x12
-#define SYSTEM_HANDLE_PARAM_TERTIARY 0x13
-#define SYSTEM_HANDLE_PARAM_EXTENDED_FIRST 0x15
-#define SYSTEM_HANDLE_PARAM_EXTENDED_SECOND 0x16
-#define SYSTEM_HANDLE_PARAM_CONTROL_FIRST 0x1a
-#define SYSTEM_HANDLE_PARAM_CONTROL_SECOND 0x1b
+#define SYSTEM_HANDLE_PARAM_PRIMARY 0x11                       // 主句柄参数
+#define SYSTEM_HANDLE_PARAM_SECONDARY 0x12                    // 次句柄参数
+#define SYSTEM_HANDLE_PARAM_TERTIARY 0x13                      // 第三句柄参数
+#define SYSTEM_HANDLE_PARAM_EXTENDED_FIRST 0x15                // 扩展句柄参数1
+#define SYSTEM_HANDLE_PARAM_EXTENDED_SECOND 0x16               // 扩展句柄参数2
+#define SYSTEM_HANDLE_PARAM_CONTROL_FIRST 0x1a                 // 控制句柄参数1
+#define SYSTEM_HANDLE_PARAM_CONTROL_SECOND 0x1b                // 控制句柄参数2
 
 // 系统配置偏移量常量
-#define SYSTEM_CONFIG_OFFSET_EXTENDED 0x54
-#define SYSTEM_CONFIG_OFFSET_STANDARD 0x18
-#define SYSTEM_CONFIG_OFFSET_ALTERNATE 0x28
+#define SYSTEM_CONFIG_OFFSET_EXTENDED 0x54                      // 扩展配置偏移量
+#define SYSTEM_CONFIG_OFFSET_STANDARD 0x18                     // 标准配置偏移量
+#define SYSTEM_CONFIG_OFFSET_ALTERNATE 0x28                     // 备用配置偏移量
 
 // 系统字符串长度常量 - 用于字符串操作的长度限制
-#define SYSTEM_STRING_LENGTH_STANDARD 0x16              // 标准字符串长度
+#define SYSTEM_STRING_LENGTH_STANDARD 0x16                      // 标准字符串长度
 
 // 系统字符串模式常量 - 用于字符串识别和处理的模式值
-#define SYSTEM_STRING_PATTERN_ERROR_MESSAGE 0x3a726f72  // 错误消息模式 (':ror')
-#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR 0x2720   // 终止符模式 ('' ')
-#define SYSTEM_STRING_PATTERN_USER_MESSAGE 0x2220656d  // 用户消息模式 ('" em')
-#define SYSTEM_STRING_PATTERN_EXCLAMATION 0x21          // 感叹号模式
+#define SYSTEM_STRING_PATTERN_ERROR_MESSAGE 0x3a726f72         // 错误消息模式 (':ror')
+#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR 0x2720           // 终止符模式 ('' ')
+#define SYSTEM_STRING_PATTERN_USER_MESSAGE 0x2220656d          // 用户消息模式 ('" em')
+#define SYSTEM_STRING_PATTERN_EXCLAMATION 0x21                 // 感叹号模式
 
 // 系统缓冲区大小常量 - 用于各种缓冲区分配的大小定义
-#define SYSTEM_BUFFER_SIZE_MINIMAL 0x13                 // 最小缓冲区大小
-#define SYSTEM_BUFFER_SIZE_SMALL 0x14                   // 小缓冲区大小
-#define SYSTEM_BUFFER_SIZE_MEDIUM 0x15                  // 中等缓冲区大小
-#define SYSTEM_BUFFER_SIZE_LARGE 0x22                    // 大缓冲区大小
+#define SYSTEM_BUFFER_SIZE_MINIMAL 0x13                        // 最小缓冲区大小
+#define SYSTEM_BUFFER_SIZE_SMALL 0x14                          // 小缓冲区大小
+#define SYSTEM_BUFFER_SIZE_MEDIUM 0x15                         // 中等缓冲区大小
+#define SYSTEM_BUFFER_SIZE_LARGE 0x22                          // 大缓冲区大小
 
 // 系统浮点数常量 - 用于浮点数运算和比较
-#define SYSTEM_FLOAT_MAX_SAFE_VALUE 0x7f7fffff3f800000  // 最大安全浮点数值
+#define SYSTEM_FLOAT_MAX_SAFE_VALUE 0x7f7fffff3f800000        // 最大安全浮点数值
 
 // 系统内存偏移量常量 - 用于内存访问的偏移计算
-#define SYSTEM_MEMORY_OFFSET_C 0xc                     // 内存偏移量C
-#define SYSTEM_MEMORY_OFFSET_D 0xd                     // 内存偏移量D
-#define SYSTEM_MEMORY_OFFSET_E 0xe                     // 内存偏移量E
-#define SYSTEM_MEMORY_OFFSET_RESERVED_PRIMARY 0x461    // 保留内存偏移量主
-#define SYSTEM_MEMORY_OFFSET_RESERVED_SECONDARY 0xa3b  // 保留内存偏移量次
+#define SYSTEM_MEMORY_OFFSET_C 0xc                             // 内存偏移量C
+#define SYSTEM_MEMORY_OFFSET_D 0xd                             // 内存偏移量D
+#define SYSTEM_MEMORY_OFFSET_E 0xe                             // 内存偏移量E
+#define SYSTEM_MEMORY_OFFSET_RESERVED_PRIMARY 0x461             // 保留内存偏移量主
+#define SYSTEM_MEMORY_OFFSET_RESERVED_SECONDARY 0xa3b           // 保留内存偏移量次
 
 // 系统指针偏移量常量
-#define SYSTEM_POINTER_OFFSET_STANDARD_C 0xc
-#define SYSTEM_POINTER_OFFSET_NEGATIVE_C -0xc
+#define SYSTEM_POINTER_OFFSET_STANDARD_C 0xc                    // 标准指针偏移量C
+#define SYSTEM_POINTER_OFFSET_NEGATIVE_C -0xc                   // 负指针偏移量C
 
-#define SYSTEM_OFFSET_HANDLE_PARAM_PRIMARY 0x11
-#define SYSTEM_OFFSET_HANDLE_PARAM_SECONDARY 0x12
-#define SYSTEM_OFFSET_STACK_POINTER 0xc                              // 栈指针偏移量
-#define SYSTEM_OFFSET_REGISTER_PARAM 0x12                            // 寄存器参数偏移量
+#define SYSTEM_OFFSET_HANDLE_PARAM_PRIMARY 0x11                // 主句柄参数偏移量
+#define SYSTEM_OFFSET_HANDLE_PARAM_SECONDARY 0x12              // 次句柄参数偏移量
+#define SYSTEM_OFFSET_STACK_POINTER 0xc                         // 栈指针偏移量
+#define SYSTEM_OFFSET_REGISTER_PARAM 0x12                      // 寄存器参数偏移量
 
-// 简化实现：仅将剩余的硬编码值替换为语义化常量
-// 原本实现：完全重构所有硬编码值体系
-#define SYSTEM_FLOAT_MAX_DOUBLE_VALUE 1.8446744e+19    // 最大双精度浮点数
-#define SYSTEM_FLOAT_MAX_VALUE 3.4028235e+38           // 最大浮点数
-#define SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT 0.003921569 // 字节转浮点数转换因子（0.003921569 = 1/255）
+// 系统浮点数常量 - 用于数学计算和精度控制
+#define SYSTEM_FLOAT_MAX_DOUBLE_VALUE 1.8446744e+19            // 最大双精度浮点数
+#define SYSTEM_FLOAT_MAX_VALUE 3.4028235e+38                   // 最大浮点数
+#define SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT 0.003921569 // 字节转浮点数转换因子
 
-#define SYSTEM_COLOR_WEIGHT_RED 0.2126      // 红色通道权重
-#define SYSTEM_COLOR_WEIGHT_GREEN 0.7152     // 绿色通道权重
-#define SYSTEM_COLOR_WEIGHT_BLUE 0.0722      // 蓝色通道权重
+// 系统颜色权重常量 - 用于颜色空间转换
+#define SYSTEM_COLOR_WEIGHT_RED 0.2126                          // 红色通道权重
+#define SYSTEM_COLOR_WEIGHT_GREEN 0.7152                        // 绿色通道权重
+#define SYSTEM_COLOR_WEIGHT_BLUE 0.0722                         // 蓝色通道权重
 
-#define SYSTEM_FLOAT_PRECISION_THRESHOLD 0.0001  // 浮点数精度比较阈值
+// 系统浮点数精度常量
+#define SYSTEM_FLOAT_PRECISION_THRESHOLD 0.0001                // 浮点数精度比较阈值
 
-#define SYSTEM_FLOAT_HALF_CIRCLE 0.19634955    // 半圆弧度值 (π/16)
-#define SYSTEM_FLOAT_TWO_PI 6.2831855          // 2π值
-#define SYSTEM_FLOAT_PI 3.1415927              // π值
-#define SYSTEM_FLOAT_HALF 0.5                  // 0.5值
+// 系统数学常量
+#define SYSTEM_FLOAT_HALF_CIRCLE 0.19634955                     // 半圆弧度值 (π/16)
+#define SYSTEM_FLOAT_TWO_PI 6.2831855                          // 2π值
+#define SYSTEM_FLOAT_PI 3.1415927                              // π值
+#define SYSTEM_FLOAT_HALF 0.5                                   // 0.5值
 
-// 简化实现：仅将常见的硬编码值替换为语义化常量
-// 原本实现：完全重构所有硬编码值体系，建立统一的语义化命名规范
-#define SYSTEM_OFFSET_REGISTER_PARAM_FINAL 0x12        // 寄存器参数最终偏移量
-#define SYSTEM_BIT_MASK_BYTE_MASK_FULL 0xff            // 字节掩码全满
-#define SYSTEM_OFFSET_THREAD_STACK_BASE 0x4ea          // 线程栈基址偏移量
-#define SYSTEM_DIVISOR_PATH_SIZE_CALCULATION 0xb0      // 路径大小计算除数
-#define SYSTEM_MUTEX_BUFFER_SIZE 0x240                  // 互斥锁缓冲区大小
-#define SYSTEM_FUNCTION_PARAM_SIZE_LARGE_EXTENDED 0x19 // 函数参数大小大
-#define SYSTEM_OFFSET_HANDLE_PARAM_CALCULATION 0x50    // 句柄参数计算偏移量
-#define SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_FIRST 0xefc // 字符串计算负偏移量主要
+// 系统偏移量常量 - 用于各种系统操作
+#define SYSTEM_OFFSET_REGISTER_PARAM_FINAL 0x12                 // 寄存器参数最终偏移量
+#define SYSTEM_BIT_MASK_BYTE_MASK_FULL 0xff                     // 字节掩码全满
+#define SYSTEM_OFFSET_THREAD_STACK_BASE 0x4ea                   // 线程栈基址偏移量
+#define SYSTEM_DIVISOR_PATH_SIZE_CALCULATION 0xb0               // 路径大小计算除数
+#define SYSTEM_MUTEX_BUFFER_SIZE 0x240                           // 互斥锁缓冲区大小
+#define SYSTEM_FUNCTION_PARAM_SIZE_LARGE_EXTENDED 0x19          // 函数参数大小大
+#define SYSTEM_OFFSET_HANDLE_PARAM_CALCULATION 0x50              // 句柄参数计算偏移量
+#define SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_FIRST 0xefc   // 字符串计算负偏移量主要
 #define SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_SECOND 0x1ef8 // 字符串计算负偏移量次要
-#define SYSTEM_FUNCTION_OFFSET_VALIDATION_STANDARD 0x113     // 标准验证函数偏移量
-#define SYSTEM_STRING_BUFFER_SIZE_LARGE 0x330           // 大字符串缓冲区大小
-#define SYSTEM_RETURN_CODE_SUCCESS 0x1c                 // 成功返回码
-#define SYSTEM_OFFSET_THREAD_DATA_EXTENDED 0x3e        // 扩展线程数据偏移量
-
+#define SYSTEM_FUNCTION_OFFSET_VALIDATION_STANDARD 0x113        // 标准验证函数偏移量
+#define SYSTEM_STRING_BUFFER_SIZE_LARGE 0x330                   // 大字符串缓冲区大小
+#define SYSTEM_RETURN_CODE_SUCCESS 0x1c                         // 成功返回码
+#define SYSTEM_OFFSET_THREAD_DATA_EXTENDED 0x3e                 // 扩展线程数据偏移量
 // 系统字符常量定义
 #define SYSTEM_CHAR_NULL 0x00
 #define SYSTEM_CHAR_SPACE 0x20
