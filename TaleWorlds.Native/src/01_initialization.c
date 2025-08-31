@@ -1584,12 +1584,12 @@ void system_initialize_thread_pool(void)
   uint64_t *thread_parent;
   uint64_t *thread_child;
   uint64_t *thread_temp;
-  uint64_t thread_init_flag;
+  uint64_t thread_pool_init_flag;
   
   global_context = (longlong *)system_get_global_context();
   thread_context = (uint64_t *)*global_context;
   thread_init_status = *(char *)((longlong)thread_context[1] + SYSTEM_STATUS_FLAG_OFFSET);
-  thread_init_flag = 0;
+  thread_pool_init_flag = 0;
   thread_parent = thread_context;
   thread_node = (uint64_t *)thread_context[1];
   
@@ -1617,7 +1617,7 @@ void system_initialize_thread_pool(void)
   thread_parent[0x03] = SYSTEM_THREAD_POOL_ID_SECONDARY;
   thread_parent[0x01] = &system_handler_database;
   thread_parent[0x02] = 1;
-  thread_parent[10] = thread_init_flag;
+  thread_parent[10] = thread_pool_init_flag;
   return;
 }
 /**
@@ -2590,12 +2590,12 @@ void system_initialize_input_system(void)
   uint64_t config_buffer_length;
   uint32_t config_buffer[SYSTEM_HEADER_BUFFER_SIZE];
   
-  thread_global_context_ptr = &system_thread_context_workeronfig;
+  thread_global_context_ptr = &system_thread_context_worker_config;
   config_buffer_pointer = config_buffer;
   config_buffer[0] = 0;
   config_buffer_length = 0x03;
   strcpy_s(config_buffer, SYSTEM_STANDARD_BUFFER_SIZE, &system_runtime_config_path, runtime_config_value, SYSTEM_INVALID_HANDLE_VALUE);
-  system_runtime_data_0x010020c = system_create_thread_context(&thread_global_context_ptr);
+  system_input_thread_context = system_create_thread_context(&thread_global_context_ptr);
   return;
 }
 /**
@@ -3350,7 +3350,7 @@ void system_initialize_database(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = SYSTEM_STACK_INITIAL_VALUE;
@@ -4091,7 +4091,7 @@ void system_initialize_thread_context_stage_2(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x07;
@@ -4112,7 +4112,7 @@ void system_initialize_thread_context_stage_3(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x04;
@@ -4133,7 +4133,7 @@ void system_initialize_thread_context_stage_4(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x03;
@@ -4154,7 +4154,7 @@ void system_initialize_thread_context_stage_5(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x08;
@@ -6428,7 +6428,7 @@ void system_initialize_event_system_stage_5(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x04;
@@ -6457,7 +6457,7 @@ void system_initialize_thread_management_stage_1(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x016;
@@ -6476,7 +6476,7 @@ void system_initialize_thread_management_stage_2(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x016;
@@ -6855,7 +6855,7 @@ void system_initialize_resource_management_stage_1(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x0A;
@@ -7369,7 +7369,7 @@ void system_initialize_graphics_management_stage_3(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x02;
@@ -7388,7 +7388,7 @@ void system_initialize_graphics_management_stage_4(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x01;
@@ -7407,7 +7407,7 @@ void system_initialize_graphics_management_stage_5(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = SYSTEM_STACK_INITIAL_VALUE;
@@ -7426,7 +7426,7 @@ void system_initialize_audio_management_stage_1(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x06;
@@ -7445,7 +7445,7 @@ void system_initialize_audio_management_stage_2(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x0A;
@@ -7464,7 +7464,7 @@ void system_initialize_audio_management_stage_3(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x09;
@@ -7483,7 +7483,7 @@ void system_initialize_audio_management_stage_4(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x05;
@@ -7502,7 +7502,7 @@ void system_initialize_audio_management_stage_5(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x01a;
@@ -7521,7 +7521,7 @@ void system_initialize_ui_management_stage_1(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x08;
@@ -9250,7 +9250,7 @@ void system_initialize_system_services_stage_5(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x016;
@@ -9731,7 +9731,7 @@ void system_setup_animation_pipeline(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x012;
@@ -9750,7 +9750,7 @@ void system_setup_ai_pipeline(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x01;
@@ -10777,7 +10777,7 @@ void system_initialize_sound_config(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x01b;
@@ -11299,7 +11299,7 @@ void system_setup_audio_filters(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = SYSTEM_CONFIG_DATA_SIZE;
@@ -11318,7 +11318,7 @@ void system_calibrate_audio_volume(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x07;
@@ -11337,7 +11337,7 @@ void system_adjust_audio_balance(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = SYSTEM_STATUS_FLAG_OFFSET;
@@ -11356,7 +11356,7 @@ void system_set_audio_parameters(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x014;
@@ -12689,7 +12689,7 @@ void system_initialize_gpu_resources(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x06;
@@ -13103,7 +13103,7 @@ void system_initialize_lock_manager(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x01b;
@@ -13209,7 +13209,7 @@ void system_initialize_critical_section(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = SYSTEM_CONFIG_DATA_SIZE;
@@ -13282,7 +13282,7 @@ void system_initialize_spinlock_system(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x01003;
@@ -13309,7 +13309,7 @@ void system_initialize_barrier_system(void)
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x011;
@@ -16777,7 +16777,7 @@ uint64_t * system_get_memory_table_entry(uint64_t *system_context_parameter)
   *system_context_parameter = &system_data_animation_pool_base;
   system_context_parameter[1] = 0;
   *(uint64_t *)(system_context_parameter + 2) = 0;
-  *system_context_parameter = &system_thread_context_workeronfig;
+  *system_context_parameter = &system_thread_context_worker_config;
   system_context_parameter[1] = system_context_parameter + 3;
   *(uint64_t *)(system_context_parameter + 2) = 0;
   *(uint32_t *)(system_context_parameter + 3) = 0;
@@ -16801,7 +16801,7 @@ void system_initialize_watchpoint_system(longlong system_context_parameter,longl
   
   system_context_identifier_f1 = SYSTEM_INVALID_HANDLE_VALUE;
   system_context_identifier = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_config_buffer;
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_thread_global_context_ptr = context_buffer_d0;
   system_context_identifier_d1 = 0;
   context_buffer_d0[0] = 0;
@@ -16832,7 +16832,7 @@ system_update_memory_table(uint64_t *system_context_parameter,longlong system_co
   *system_context_parameter = &system_data_animation_pool_base;
   system_context_parameter[1] = 0;
   *(uint64_t *)(system_context_parameter + 2) = 0;
-  *system_context_parameter = &system_thread_context_workeronfig;
+  *system_context_parameter = &system_thread_context_worker_config;
   system_context_parameter[1] = system_context_parameter + 3;
   *(uint64_t *)(system_context_parameter + 2) = 0;
   *(uint32_t *)(system_context_parameter + 3) = 0;
@@ -21564,7 +21564,7 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   system_context_identifier = SYSTEM_CONFIG_DATA_SIZE10101;
   system_context_identifier = 1;
   system_context_identifier = 1;
-  system_thread_global_context_ptr = &system_thread_context_workeronfig;
+  system_thread_global_context_ptr = &system_thread_context_worker_config;
   system_thread_global_context_ptr = context_buffer_d0;
   context_buffer_d0[0] = 0;
   system_context_identifier_d1 = *(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
