@@ -1,7 +1,6 @@
 /**
  * @file 01_initialization.c
  * 
- * 原本实现：完全重构初始化系统所有命名体系，建立统一的语义化命名规范
  * 简化实现：仅修复语法错误，优化变量命名，为关键函数添加文档注释，保持代码结构不变
  *
  * 功能描述：
@@ -11,6 +10,7 @@
  * 4. 系统状态管理和监控
  * 5. 硬件抽象层初始化
  * 6. 安全和权限管理
+ */
 
 #include "TaleWorlds.Native.Split.h"
 
@@ -196,22 +196,22 @@
 #define SYSTEM_CONTEXT_OFFSET_RESERVED_2C1 0x02c001
 #define SYSTEM_CONTEXT_OFFSET_RESERVED_2D0 0x02d0
 #define SYSTEM_CONTEXT_OFFSET_RESERVED_2D1 0x02d001
-#define SYSTEM_CONTEXT_OFFSET_2E0 0x02e0
-#define SYSTEM_CONTEXT_OFFSET_2E1 0x02e001
-#define SYSTEM_CONTEXT_OFFSET_2F0 0x02f0
-#define SYSTEM_CONTEXT_OFFSET_2F1 0x02f001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_2E0 0x02e0
+#define SYSTEM_CONTEXT_OFFSET_SECONDARY_2E0 0x02e001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_2F0 0x02f0
+#define SYSTEM_CONTEXT_OFFSET_SECONDARY_2F0 0x02f001
 #define SYSTEM_MEMORY_POOL_SIZE_OFFSET_PRIMARY 0x0300
 #define SYSTEM_MEMORY_POOL_SIZE_OFFSET_SECONDARY 0x030001
-#define SYSTEM_CONTEXT_OFFSET_310 0x0310
-#define SYSTEM_CONTEXT_OFFSET_0x031001 0x031001
-#define SYSTEM_CONTEXT_OFFSET_0x0400 0x0400
-#define SYSTEM_CONTEXT_OFFSET_0x040001 0x040001
-#define SYSTEM_CONTEXT_OFFSET_330 0x0330
-#define SYSTEM_CONTEXT_OFFSET_0x033001 0x033001
-#define SYSTEM_CONTEXT_OFFSET_340 0x0340
-#define SYSTEM_CONTEXT_OFFSET_0x034001 0x034001
-#define SYSTEM_CONTEXT_OFFSET_350 0x0350
-#define SYSTEM_CONTEXT_OFFSET_0x035001 0x035001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_310 0x0310
+#define SYSTEM_CONTEXT_OFFSET_SECONDARY_310 0x031001
+#define SYSTEM_CONTEXT_OFFSET_PRIMARY_400 0x0400
+#define SYSTEM_CONTEXT_OFFSET_SECONDARY_400 0x040001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_330 0x0330
+#define SYSTEM_CONTEXT_OFFSET_SECONDARY_330 0x033001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_340 0x0340
+#define SYSTEM_CONTEXT_OFFSET_SECONDARY_340 0x034001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_350 0x0350
+#define SYSTEM_CONTEXT_OFFSET_SECONDARY_350 0x035001
 #define SYSTEM_CONTEXT_OFFSET_360 0x0360
 #define SYSTEM_CONTEXT_OFFSET_0x036001 0x036001
 #define SYSTEM_CONTEXT_OFFSET_0x030030 0x030030
@@ -336,11 +336,11 @@
 #define SYSTEM_CONTEXT_OFFSET_0x0320 0x0320
 #define SYSTEM_CONTEXT_OFFSET_0x032001 0x032001
 #define SYSTEM_CONTEXT_OFFSET_0x0330 0x0330
-#define SYSTEM_CONTEXT_OFFSET_0x033001 0x033001
+#define SYSTEM_CONTEXT_OFFSET_SECONDARY_330 0x033001
 #define SYSTEM_CONTEXT_OFFSET_0x0340 0x0340
-#define SYSTEM_CONTEXT_OFFSET_0x034001 0x034001
+#define SYSTEM_CONTEXT_OFFSET_SECONDARY_340 0x034001
 #define SYSTEM_CONTEXT_OFFSET_0x0350 0x0350
-#define SYSTEM_CONTEXT_OFFSET_0x035001 0x035001
+#define SYSTEM_CONTEXT_OFFSET_SECONDARY_350 0x035001
 #define SYSTEM_CONTEXT_OFFSET_0x0360 0x0360
 #define SYSTEM_CONTEXT_OFFSET_0x036001 0x036001
 #define SYSTEM_CONTEXT_OFFSET_0x030030 0x030030
@@ -1474,7 +1474,7 @@ void *system_data_resource_pool_base0;
 void *system_data_resource_pool_base1;
 void *system_data_resource_pool_base2;
 void *system_data_config_161;
-void *system_data_0x01003002;
+void *system_data_audio_pool_base;
 void *system_data_config_0x010031;
 
 /**
@@ -34877,13 +34877,27 @@ void system_function_0x06003bc0(uint64_t *system_context_parameter)
                     // WARNING: Subroutine does not return
   memset(system_buffer_pointer,0,SYSTEM_RESOURCE_BLOCK_OFFSET_200000);
 }
-void system_function_0x06003f00(void)
+/**
+ * 销毁互斥锁资源
+ * 
+ * 清理和销毁系统中的互斥锁资源，释放相关内存
+ * 
+ * @return 无返回值
+ */
+void system_destroy_mutex_resource(void)
 
 {
   _Mtx_destroy_in_situ();
   return;
 }
-void system_function_0x06003f30(void)
+/**
+ * 销毁互斥锁资源副本
+ * 
+ * 清理和销毁系统中的互斥锁资源副本，确保资源完全释放
+ * 
+ * @return 无返回值
+ */
+void system_destroy_mutex_resource_copy(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -35653,7 +35667,14 @@ void system_function_0x06002220(longlong system_context_parameter,uint64_t syste
   *(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) = 0;
   return;
 }
-void system_function_0x06002241(void)
+/**
+ * 执行内存拷贝操作
+ * 
+ * 执行系统级别的内存拷贝操作，用于数据传输
+ * 
+ * @return 无返回值
+ */
+void system_execute_memory_copy(void)
 
 {
                     // WARNING: Subroutine does not return
