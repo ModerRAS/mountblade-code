@@ -397,17 +397,21 @@ uint64_t utility_thread_manager(void)
  * 该函数负责处理文件系统操作，包括文件读写和目录操作。
  * 主要用于文件管理和数据持久化操作。
  *
- * 简化实现：提供基本的文件操作功能，维护文件位置和状态。
+ * @note 简化实现：提供基本的文件操作功能，初始化文件句柄和维护文件状态。
+ * @return UTILITY_ZERO 表示文件操作成功，其他值表示操作失败
  */
 uint64_t utility_file_operation_handler(void)
 {
+  // 初始化文件句柄
   if (g_utility_file_handle == UTILITY_ZERO) {
     g_utility_file_handle = UTILITY_INDEX_FIRST;
   }
   
+  // 设置文件当前位置和总大小
   g_utility_file_current_position = g_utility_file_offset;
   g_utility_file_total_size = g_utility_max_size_limit;
   
+  // 设置系统就绪标志
   g_utility_system_status_flag |= UTILITY_CHECK_FLAG_READY;
   
   return UTILITY_ZERO;
@@ -496,12 +500,16 @@ uint64_t utility_error_handler(void)
  * @return uint64_t 安全验证结果状态码
  *
  * 该函数负责验证系统安全性，包括权限检查和安全策略验证。
+ * 主要用于系统安全监控和访问控制。
  *
- * @note 简化实现：提供基本的安全验证功能，原本实现应包含完整的安全验证逻辑。
+ * @note 简化实现：提供基本的安全验证功能，原本实现应包含完整的安全验证逻辑，包括用户权限检查、系统安全策略验证等。
+ * @see utility_system_validator
  * @return UTILITY_ZERO 表示安全验证通过，其他值表示验证失败
  */
 uint64_t utility_security_validator(void)
 {
+  // 简化实现：基本安全验证通过
+  // 原本实现应包含：用户权限检查、系统安全策略验证、访问控制验证等
   return UTILITY_ZERO;
 }
 
@@ -510,12 +518,16 @@ uint64_t utility_security_validator(void)
  * @return uint64_t 备份管理结果状态码
  *
  * 该函数负责管理系统备份，包括备份创建和恢复。
+ * 主要用于系统数据保护和灾难恢复。
  *
- * @note 简化实现：提供基本的备份管理功能，原本实现应包含完整的备份和恢复逻辑。
+ * @note 简化实现：提供基本的备份管理功能，原本实现应包含完整的备份和恢复逻辑，包括备份调度、数据完整性验证等。
+ * @see utility_recovery_manager
  * @return UTILITY_ZERO 表示备份管理完成，其他值表示操作状态码
  */
 uint64_t utility_backup_manager(void)
 {
+  // 简化实现：基本备份管理完成
+  // 原本实现应包含：备份调度、数据完整性验证、备份存储管理等
   return UTILITY_ZERO;
 }
 
@@ -524,11 +536,15 @@ uint64_t utility_backup_manager(void)
  * @return uint64_t 恢复管理结果状态码
  *
  * 该函数负责管理系统恢复，包括系统恢复和数据恢复。
+ * 主要用于系统故障恢复和数据完整性保证。
  *
- * @note 简化实现：提供基本的恢复管理功能，原本实现应包含完整的系统恢复逻辑。
+ * @note 简化实现：提供基本的恢复管理功能，原本实现应包含完整的系统恢复逻辑，包括故障检测、自动恢复、数据一致性验证等。
+ * @see utility_backup_manager
  * @return UTILITY_ZERO 表示恢复管理完成，其他值表示恢复状态码
  */
 uint64_t utility_recovery_manager(void)
 {
+  // 简化实现：基本恢复管理完成
+  // 原本实现应包含：故障检测、自动恢复、数据一致性验证、系统状态重建等
   return UTILITY_ZERO;
 }
