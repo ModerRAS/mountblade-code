@@ -249,6 +249,8 @@ void *utility_global_data_primary;
 void *utility_global_data_secondary;
 void *utility_global_data_tertiary;
 void *utility_global_data_quaternary;
+void *utility_global_data_context;
+void *utility_global_data_flag;
 void *utility_global_data_auxiliary;
 void *utility_global_data_backup;
 int utility_global_status_flag_primary;
@@ -38351,13 +38353,13 @@ utility_cleanup_resource_data(*(uint32_t *)*utility_buffer_ptr);
 return;
 }
 {
-utility_global_data_c = &utility_system_data;
-if (utility_global_data_d != UTILITY_FALSE) {
-utility_system_initialize();
+utility_global_data_context = &utility_system_data;
+if (utility_global_data_flag != UTILITY_FALSE) {
+    utility_system_initialize();
 }
-utility_global_data_d = UTILITY_FALSE;
-utility_global_data_f = UTILITY_FALSE;
-utility_global_data_c = &utility_system_reserved_memory;
+utility_global_data_flag = UTILITY_FALSE;
+utility_global_data_auxiliary = UTILITY_FALSE;
+utility_global_data_context = &utility_system_reserved_memory;
 if (utility_system_reserved_memory == UTILITY_FALSE) {
 utility_create_resource();
 utility_loop_index = 0;
