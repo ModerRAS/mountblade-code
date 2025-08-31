@@ -118,49 +118,92 @@ int ai_system_initialize(void)
   init_result = system_initialize_callback(ai_setup_function);
   return (init_result != 0) - 1;
 }
-int FUN_18002d010(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 初始化线程同步系统1
+ * @param param_1 线程参数1
+ * @param param_2 线程参数2
+ * @param param_3 线程参数3
+ * @param param_4 线程参数4
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化第一个线程同步系统，包括条件变量和互斥锁
+ */
+int thread_sync_system_initialize_1(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  uVar2 = 0xfffffffffffffffe;
+  longlong init_result;
+  undefined8 mutex_flags;
+  mutex_flags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c910a8,2,param_3,param_4,uVar2);
-  DAT_180c910f8 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180941650);
-  return (lVar1 != 0) - 1;
+  _Mtx_init_in_situ(0x180c910a8, 2, param_3, param_4, mutex_flags);
+  thread_sync_1_flag = 0;
+  init_result = system_initialize_callback(thread_sync_setup_1);
+  return (init_result != 0) - 1;
 }
-int FUN_18002d060(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+/**
+ * @brief 初始化线程同步系统2
+ * @param param_1 线程参数1
+ * @param param_2 线程参数2
+ * @param param_3 线程参数3
+ * @param param_4 线程参数4
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化第二个线程同步系统，包括条件变量和互斥锁
+ */
+int thread_sync_system_initialize_2(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  uVar2 = 0xfffffffffffffffe;
+  longlong init_result;
+  undefined8 mutex_flags;
+  mutex_flags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c91148,2,param_3,param_4,uVar2);
-  DAT_180c91198 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180941690);
-  return (lVar1 != 0) - 1;
+  _Mtx_init_in_situ(0x180c91148, 2, param_3, param_4, mutex_flags);
+  thread_sync_2_flag = 0;
+  init_result = system_initialize_callback(thread_sync_setup_2);
+  return (init_result != 0) - 1;
 }
-int FUN_18002d0b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+/**
+ * @brief 初始化线程同步系统3
+ * @param param_1 线程参数1
+ * @param param_2 线程参数2
+ * @param param_3 线程参数3
+ * @param param_4 线程参数4
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化第三个线程同步系统，包括条件变量和互斥锁
+ */
+int thread_sync_system_initialize_3(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  uVar2 = 0xfffffffffffffffe;
+  longlong init_result;
+  undefined8 mutex_flags;
+  mutex_flags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c911e8,2,param_3,param_4,uVar2);
-  DAT_180c91238 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_1809416d0);
-  return (lVar1 != 0) - 1;
+  _Mtx_init_in_situ(0x180c911e8, 2, param_3, param_4, mutex_flags);
+  thread_sync_3_flag = 0;
+  init_result = system_initialize_callback(thread_sync_setup_3);
+  return (init_result != 0) - 1;
 }
-int FUN_18002d100(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+/**
+ * @brief 初始化线程同步系统4
+ * @param param_1 线程参数1
+ * @param param_2 线程参数2
+ * @param param_3 线程参数3
+ * @param param_4 线程参数4
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化第四个线程同步系统，包括条件变量和互斥锁
+ */
+int thread_sync_system_initialize_4(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  uVar2 = 0xfffffffffffffffe;
+  longlong init_result;
+  undefined8 mutex_flags;
+  mutex_flags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c91288,2,param_3,param_4,uVar2);
-  DAT_180c912d8 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180941710);
-  return (lVar1 != 0) - 1;
+  _Mtx_init_in_situ(0x180c91288, 2, param_3, param_4, mutex_flags);
+  thread_sync_4_flag = 0;
+  init_result = system_initialize_callback(thread_sync_setup_4);
+  return (init_result != 0) - 1;
 }
   DAT_180bf64e8 = 0;
   _DAT_180bf64e0 = 6;
