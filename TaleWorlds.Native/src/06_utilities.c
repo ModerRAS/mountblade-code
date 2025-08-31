@@ -58270,7 +58270,19 @@ void utility_unwind_final_handler_cleanup(uint64 utility_resource_primary_handle
   *(uint64 *)(utility_resource_context_handle + utility_offset_tls_handler_primary) = &utility_thread_local_storage_cleanup;
   return;
 }
-// 线程回调清理函数 - 清理线程相关的回调资源
+/**
+ * @brief 线程回调清理函数 - 清理线程相关的回调资源
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_resource_cache 资源缓存
+ * @param utility_operation_flags 操作标志
+ * @param utility_resource_callback_handler 资源回调处理器
+ * @return 无返回值
+ * 
+ * 该函数负责清理线程相关的回调资源，确保线程安全退出。
+ * 
+ * 简化实现：添加基本线程回调清理逻辑
+ * 原本实现：完全重构线程回调管理系统，建立完整的线程清理规范
+ */
 void utility_unwind_final_thread_callback(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_thread_context_pointer;
