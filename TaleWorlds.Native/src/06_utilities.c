@@ -2368,15 +2368,15 @@ uint64_t utility_validate_resource_context(longlong pointer_,longlong pointer_)
   if (*(int *)(alstack_variable[0] + 0x58) + *(int *)(alstack_variable[0] + 0x54) +
       *(int *)(alstack_variable[0] + 0x4c) == 1) {
     alstack_variable[0] = 0;
-    opointer_ = FUN_18088c740(alstack_variable);
+    opointer_ = utility_stack_operation_primary(alstack_variable);
     if (opointer_ == 0) {
-      opointer_ = FUN_1808c7b30(iteration_count,*(uint64_t *)(iteration_count + 8),*(uint64_t *)(pointer_ + 0x90),
+      opointer_ = utility_stack_operation_secondary(iteration_count,*(uint64_t *)(iteration_count + 8),*(uint64_t *)(pointer_ + 0x90),
                             *(uint64_t *)(pointer_ + 800));
       if (opointer_ == 0) {
-        FUN_18088c790(alstack_variable);
+        utility_stack_cleanup_operation(alstack_variable);
       }
     }
-    FUN_18088c790(alstack_variable);
+    utility_stack_cleanup_operation(alstack_variable);
   }
   return 0;
 }
@@ -2424,17 +2424,17 @@ uint64_t utility_allocate_resource_buffer(longlong pointer_,uint64_t pointer_)
     return 0;
   }
   alstack_variable[0] = 0;
-  opointer_ = FUN_18088c740(alstack_variable);
+  opointer_ = utility_stack_operation_primary(alstack_variable);
   if (opointer_ == 0) {
-    opointer_ = FUN_1808c7dc0(iteration_count,0);
+    opointer_ = utility_stack_operation_tertiary(iteration_count,0);
     if (opointer_ == 0) {
-      opointer_ = FUN_18088ac50(pointer_);
+      opointer_ = utility_pointer_operation_primary(pointer_);
       if (opointer_ == 0) {
-        FUN_18088c790(alstack_variable);
+        utility_stack_cleanup_operation(alstack_variable);
       }
     }
   }
-  FUN_18088c790(alstack_variable);
+  utility_stack_cleanup_operation(alstack_variable);
 }
 uint64_t utility_check_resource_status(longlong pointer_)
 {
@@ -3520,7 +3520,7 @@ void SetThreadContext(longlong pointer_,longlong pointer_)
   uint64_t austack_variable [2];
   pointer_ = (longlong *)0x0;
   austack_variable[0] = 0;
-  opointer_ = FUN_18088c740(austack_variable);
+  opointer_ = utility_stack_operation_primary(austack_variable);
   if ((opointer_ == 0) && (opointer_ = FUN_1808bdd90(*(uint64_t *)(pointer_ + 0x90)), opointer_ == 0)) {
     pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x50) + -8);
     if (*(longlong *)(pointer_ + 0x50) == 0) {
@@ -3555,7 +3555,7 @@ void SetThreadContext(longlong pointer_,longlong pointer_)
       pointer_ = pointer_;
     } while ((*pointer_ == 0) || (opointer_ = FUN_18088aca0(pointer_), opointer_ == 0));
   }
-  FUN_18088c790(austack_variable);
+  utility_stack_cleanup_operation(austack_variable);
 }
 uint64_t FUN_180891820(longlong pointer_)
 {
@@ -6417,7 +6417,7 @@ uint32_t FUN_180894dd0(longlong pointer_,uint64_t pointer_,uint pointer_,longlon
   opointer_ = 0;
   resource_context = *(uint *)(pointer_ + 0x20);
   stack_buffer_28[0] = 0;
-  opointer_ = FUN_18088c740(stack_buffer_28,pointer_);
+  opointer_ = utility_stack_operation_primary(stack_buffer_28,pointer_);
   if (opointer_ == 0) {
     ustack_variable = 0;
     resource_context = pointer_ | 0x10000000;
@@ -6443,7 +6443,7 @@ uint32_t FUN_180894dd0(longlong pointer_,uint64_t pointer_,uint pointer_,longlon
     }
   }
 LAB_180894ebf:
-  FUN_18088c790(stack_buffer_28);
+  utility_stack_cleanup_operation(stack_buffer_28);
 }
 // WARNING: Removing unreachable block (ram,0x000180895f53)
 // WARNING: Removing unreachable block (ram,0x000180895f67)
@@ -9800,7 +9800,7 @@ void QueryPerformanceFrequency(longlong *pointer_)
   stack_uint_38 = utility_system_reserved_ ^ (ulonglong)stack_buffer_368;
   pointer_ = (longlong *)0x0;
   stack_array_300[1] = 0;
-  opointer_ = FUN_18088c740(stack_array_300 + 1,pointer_[1]);
+  opointer_ = utility_stack_operation_primary(stack_array_300 + 1,pointer_[1]);
   if ((opointer_ == 0) && (opointer_ = FUN_1808987e0(pointer_,1), opointer_ == 0)) {
     (**(code **)(*pointer_ + 8))(pointer_,&utility_system_reserved_);
     if (((*(uint *)(pointer_ + 3) & 0x1000000) == 0) ||
@@ -10042,7 +10042,7 @@ LAB_180898629:
     }
   }
 LAB_18089866f:
-  FUN_18088c790(stack_array_300 + 1);
+  utility_stack_cleanup_operation(stack_array_300 + 1);
 }
  void InitializeSystemTime(longlong pointer_,uint64_t pointer_)
 void InitializeSystemTime(longlong pointer_,uint64_t pointer_)
