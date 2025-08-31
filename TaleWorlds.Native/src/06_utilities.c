@@ -8479,7 +8479,7 @@ void * utility_file_open_handle(long long context_pointer,void * data_ptr,uint p
   long long *utility_temp_long_pointer;
   int result_int;
   uint utility_result_ptr;
-  void * temp_var_20;
+  void * temp_register_20;
   void * asystem_temp_var [2];
   
   if (param == 0) {
@@ -9513,7 +9513,7 @@ context_pointer_process_data(int context_pointer,int data_ptr,void * param,void 
   void **system_data_pointer;
   void * unassigned_ebp;
   long long global_register_rdi;
-  void * temp_var_20;
+  void * temp_register_20;
   
   if (data_ptr < context_pointer) {
     data_ptr = context_pointer;
@@ -10613,7 +10613,7 @@ utility_system_operation_perform:
   float extraout_XMM0_Da_05;
   float extraout_XMM0_Da_06;
   float utility_float_var0;
-  void * temp_var_20;
+  void * temp_register_20;
   float fStackX_24;
   void **utility_buffer_ptr;
   int utility_utility_stack_param;
@@ -11246,7 +11246,7 @@ void utility_thread_resumer_resume(void)
   void * extraout_XMM0_Da_08;
   void * unaff_XMM6_Da;
   void * unaff_XMM6_Dc;
-  void * temp_var_20;
+  void * temp_register_20;
   char acStackX_24 [4];
   void **utility_utility_stack_param;
   float utility_buffer_ptr;
@@ -11504,7 +11504,7 @@ utility_general_function_error_handler:
   void * extraout_XMM0_Da_07;
   void * unaff_XMM6_Da;
   void * unaff_XMM6_Dc;
-  void * temp_var_20;
+  void * temp_register_20;
   char acStackX_24 [4];
   void **utility_utility_stack_param;
   float utility_buffer_ptr;
@@ -11722,7 +11722,7 @@ void utility_thread_prioritizer_set(float context_pointer)
   void * extraout_XMM0_Da_03;
   void * extraout_XMM0_Da_04;
   void * utility_result_ptr;
-  void * temp_var_20;
+  void * temp_register_20;
   void **utility_utility_stack_param;
   float utility_buffer_ptr;
   void * utility_utility_stack_param;
@@ -11982,7 +11982,7 @@ UTILITY_LABEL_LOG_WRITE:
 
 {
   void * system_temp_register_18;
-  void * temp_var_20;
+  void * temp_register_20;
   void * asystem_temp_var8 [32];
   void * asystem_temp_var8 [1024];
   ulong long utility_temp_var;
