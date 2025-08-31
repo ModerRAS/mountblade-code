@@ -758,7 +758,7 @@ uint64_t utility_resource_operation_handler(int64_t utility_context_ptr)
  *
  * @note 此函数为简化实现，主要处理上下文存储指针的管理操作
  */
-uint64_t context_storage_ptr_manager(int64_t resource_count, uint64_t utility_context_ptr)
+uint64_t temp_storage_ptr_manager(int64_t resource_count, uint64_t utility_context_ptr)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
@@ -998,156 +998,156 @@ uint64_t utility_time_zone_converter(uint64_t resource_count, int64_t *buffer_pt
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
 }
-    context_storage = (int)resource_identifier + 1;
-    context_storage = (uint64_t)context_storage;
-} while ((int)resource_identifier < utility_status_code);
+    temp_storage = (int)resource_id + 1;
+    temp_storage = (uint64_t)temp_storage;
+} while ((int)resource_id < utility_status_code);
     utility_status_code = utility_context_ptr[UTILITY_OFFSET_FOURTEEN];
-    utility_parameter_storage = utility_combine_values(utility_parameter_storage.component_x,utility_status_code);
+    parameter_data = utility_combine_values(parameter_data.component_x,utility_status_code);
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    context_storage = context_storage;
+    temp_storage = temp_storage;
     if (0 < utility_status_code) {
 do {
-    utility_disk_space_result = GetDiskFreeSpace(utility_context_ptr,(int64_t)(int)resource_identifier * UTILITY_THREAD_HANDLE_OFFSET +
+    utility_disk_space_result = GetDiskFreeSpace(utility_context_ptr,(int64_t)(int)resource_id * UTILITY_THREAD_HANDLE_OFFSET +
 *(int64_t *)(utility_context_ptr + UTILITY_BUFFER_ELEMENT_SIZE));
     if (utility_status_code != UTILITY_FALSE) {
-    context_storage = (int)resource_identifier + 1;
-    context_storage = (uint64_t)context_storage;
-} while ((int)resource_identifier < utility_status_code);
+    temp_storage = (int)resource_id + 1;
+    temp_storage = (uint64_t)temp_storage;
+} while ((int)resource_id < utility_status_code);
     utility_status_code = utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_SECONDARY];
-    utility_parameter_storage = utility_combine_values(utility_parameter_storage.component_x,utility_status_code);
+    parameter_data = utility_combine_values(parameter_data.component_x,utility_status_code);
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    context_storage = context_storage;
+    temp_storage = temp_storage;
     if (0 < utility_status_code) {
 do {
-    utility_parameter_storage = utility_combine_values(utility_parameter_storage.component_x,
-*(uint32_t *)(*(int64_t *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET) + resource_identifier * UTILITY_DEFAULT_ALLOCATION_SIZE));
+    parameter_data = utility_combine_values(parameter_data.component_x,
+*(uint32_t *)(*(int64_t *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET) + resource_id * UTILITY_DEFAULT_ALLOCATION_SIZE));
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code != UTILITY_FALSE) {
-    context_storage = resource_identifier + 1;
-} while ((int64_t)resource_identifier < (int64_t)utility_status_code);
+    temp_storage = resource_id + 1;
+} while ((int64_t)resource_id < (int64_t)utility_status_code);
     utility_status_code = utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG6];
-    utility_parameter_storage = utility_combine_values(utility_parameter_storage.component_x,utility_status_code);
+    parameter_data = utility_combine_values(parameter_data.component_x,utility_status_code);
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    context_storage = context_storage;
-    context_storage = context_storage;
+    temp_storage = temp_storage;
+    temp_storage = temp_storage;
     if (0 < utility_status_code) {
 do {
-    iteration_index = *(int64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) + context_storage;
+    iteration_index = *(int64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) + temp_storage;
     utility_disk_space_result = GetDiskFreeSpace(utility_context_ptr,iteration_index);
     if (utility_status_code != UTILITY_FALSE) {
-    context_storage = *(uint *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
-    if (resource_identifier < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
-    utility_parameter_storage = utility_concatenate_int64_with_int16(utility_parameter_storage.primary,(short)context_storage);
-    context_storage = 2;
+    temp_storage = *(uint *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+    if (resource_id < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
+    parameter_data = utility_concatenate_int64_with_int16(parameter_data.primary,(short)temp_storage);
+    temp_storage = 2;
 else {
-    context_storage = UTILITY_DEFAULT_ALLOCATION_SIZE;
-    utility_parameter_storage = utility_combine_values(utility_parameter_storage.component_x,
-(resource_identifier & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_identifier & UTILITY_STATUS_FLAG_MASK_SMALL);
+    temp_storage = UTILITY_DEFAULT_ALLOCATION_SIZE;
+    parameter_data = utility_combine_values(parameter_data.component_x,
+(resource_id & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_id & UTILITY_STATUS_FLAG_MASK_SMALL);
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,context_storage);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,temp_storage);
     if (utility_status_code != UTILITY_FALSE) {
     utility_execution_result = utility_operation_execute(utility_context_ptr,iteration_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
     if (utility_status_code != UTILITY_FALSE) {
-    context_storage = resource_identifier + 1;
-    context_storage = resource_identifier + UTILITY_THREAD_CONTEXT_OFFSET;
-} while ((int64_t)resource_identifier < (int64_t)utility_status_code);
+    temp_storage = resource_id + 1;
+    temp_storage = resource_id + UTILITY_THREAD_CONTEXT_OFFSET;
+} while ((int64_t)resource_id < (int64_t)utility_status_code);
     utility_status_code = utility_operation_complete(utility_context_ptr,utility_context_ptr + UTILITY_THREAD_CONTEXT_OFFSET);
     if (utility_status_code == UTILITY_FALSE) {
     utility_status_code = utility_context_ptr[UTILITY_STATUS_FLAG_EXTENDED];
-    utility_parameter_storage = utility_combine_values(utility_parameter_storage.component_x,utility_status_code);
+    parameter_data = utility_combine_values(parameter_data.component_x,utility_status_code);
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
     if (0 < utility_status_code) {
 do {
     iteration_index = *(int64_t *)(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED);
-    utility_parameter_storage.component_y = *(uint32_t *)(iteration_index + resource_identifier * 8);
+    parameter_data.component_y = *(uint32_t *)(iteration_index + resource_id * 8);
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code != UTILITY_FALSE) {
-    utility_parameter_storage = utility_combine_values(utility_parameter_storage.component_x,*(uint32_t *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE + resource_identifier * 8));
+    parameter_data = utility_combine_values(parameter_data.component_x,*(uint32_t *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE + resource_id * 8));
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code != UTILITY_FALSE) {
-    context_storage = resource_identifier + 1;
-} while ((int64_t)resource_identifier < (int64_t)utility_status_code);
-    utility_parameter_storage = utility_combine_values(utility_parameter_storage.component_x,utility_context_ptr[UTILITY_THREAD_DATA_OFFSET]);
+    temp_storage = resource_id + 1;
+} while ((int64_t)resource_id < (int64_t)utility_status_code);
+    parameter_data = utility_combine_values(parameter_data.component_x,utility_context_ptr[UTILITY_THREAD_DATA_OFFSET]);
 (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
-    context_storage = (int)resource_identifier + 1;
-    context_storage = (uint64_t)context_storage;
-    context_storage = utility_xmm0_result;
-} while ((int)resource_identifier < utility_status_code);
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    temp_storage = (int)resource_id + 1;
+    temp_storage = (uint64_t)temp_storage;
+    temp_storage = utility_xmm0_result;
+} while ((int)resource_id < utility_status_code);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
     utility_status_code = *(int *)(auxiliary_context_ptr + UTILITY_THREAD_POINTER_OFFSET);
 *(int *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = utility_status_code;
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    context_storage = context_storage;
-    context_storage = utility_parameter_float;
+    temp_storage = temp_storage;
+    temp_storage = utility_parameter_float;
     if (0 < utility_status_code) {
 do {
-    utility_disk_space_result = GetDiskFreeSpace(context_storage,(int64_t)(int)resource_identifier * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(auxiliary_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY))
+    utility_disk_space_result = GetDiskFreeSpace(temp_storage,(int64_t)(int)resource_id * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(auxiliary_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY))
 ;
     if (utility_status_code != UTILITY_FALSE) {
-    context_storage = (int)resource_identifier + 1;
-    context_storage = (uint64_t)context_storage;
-    context_storage = utility_float_result;
-} while ((int)resource_identifier < utility_status_code);
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    temp_storage = (int)resource_id + 1;
+    temp_storage = (uint64_t)temp_storage;
+    temp_storage = utility_float_result;
+} while ((int)resource_id < utility_status_code);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
     utility_status_code = *(int *)(auxiliary_context_ptr + UTILITY_THREAD_BUFFER_OFFSET);
 *(int *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = utility_status_code;
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    context_storage = context_storage;
+    temp_storage = temp_storage;
     if (0 < utility_status_code) {
 do {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) =
-*(uint32_t *)(*(int64_t *)(auxiliary_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) + resource_identifier * UTILITY_DEFAULT_ALLOCATION_SIZE);
+*(uint32_t *)(*(int64_t *)(auxiliary_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) + resource_id * UTILITY_DEFAULT_ALLOCATION_SIZE);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code != UTILITY_FALSE) {
-    context_storage = resource_identifier + 1;
-} while ((int64_t)resource_identifier < (int64_t)utility_status_code);
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    temp_storage = resource_id + 1;
+} while ((int64_t)resource_id < (int64_t)utility_status_code);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
     utility_status_code = *(int *)(auxiliary_context_ptr + UTILITY_RESOURCE_SIZE_OFFSET);
 *(int *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = utility_status_code;
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    context_storage = context_storage;
-    context_storage = context_storage;
-    context_storage = utility_xmm_register_value;
+    temp_storage = temp_storage;
+    temp_storage = temp_storage;
+    temp_storage = utility_xmm_register_value;
     if (0 < utility_status_code) {
 do {
-    iteration_index = *(int64_t *)(auxiliary_context_ptr + UTILITY_THREAD_SIZE_OFFSET) + context_storage;
-    utility_disk_space_result = GetDiskFreeSpace(context_storage,iteration_index);
+    iteration_index = *(int64_t *)(auxiliary_context_ptr + UTILITY_THREAD_SIZE_OFFSET) + temp_storage;
+    utility_disk_space_result = GetDiskFreeSpace(temp_storage,iteration_index);
     if (utility_status_code != UTILITY_FALSE) {
-    context_storage = *(uint *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
-    if (resource_identifier < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
-*(short *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (short)context_storage;
-    context_storage = 2;
+    temp_storage = *(uint *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
+    if (resource_id < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
+*(short *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (short)temp_storage;
+    temp_storage = 2;
 else {
-    context_storage = UTILITY_DEFAULT_ALLOCATION_SIZE;
-*(uint *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (resource_identifier & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_identifier & UTILITY_STATUS_FLAG_MASK_SMALL;
-    utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,context_storage);
+    temp_storage = UTILITY_DEFAULT_ALLOCATION_SIZE;
+*(uint *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (resource_id & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_id & UTILITY_STATUS_FLAG_MASK_SMALL;
+    utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,temp_storage);
     if (utility_status_code != UTILITY_FALSE) {
     utility_execution_result = utility_operation_execute(utility_result_float_alpha,iteration_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
     if (utility_status_code != UTILITY_FALSE) {
-    context_storage = resource_identifier + 1;
-    context_storage = resource_identifier + UTILITY_THREAD_CONTEXT_OFFSET;
-    context_storage = utility_float_result_beta;
-} while ((int64_t)resource_identifier < (int64_t)utility_status_code);
-    utility_status_code = utility_operation_complete(context_storage,auxiliary_context_ptr + UTILITY_CONTEXT_TABLE_OFFSET);
+    temp_storage = resource_id + 1;
+    temp_storage = resource_id + UTILITY_THREAD_CONTEXT_OFFSET;
+    temp_storage = utility_float_result_beta;
+} while ((int64_t)resource_id < (int64_t)utility_status_code);
+    utility_status_code = utility_operation_complete(temp_storage,auxiliary_context_ptr + UTILITY_CONTEXT_TABLE_OFFSET);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
     utility_status_code = *(int *)(auxiliary_context_ptr + UTILITY_STATUS_FLAG_MASK_8_BIT);
 *(int *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = utility_status_code;
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
@@ -1155,38 +1155,38 @@ else {
     if (0 < utility_status_code) {
 do {
     iteration_index = *(int64_t *)(auxiliary_context_ptr + UTILITY_STATUS_FLAG_MASK_PRIMARY);
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_index + resource_identifier * 8);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
+*(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_index + resource_id * 8);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code != UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE + resource_identifier * 8);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
+*(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE + resource_id * 8);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code != UTILITY_FALSE) {
-    context_storage = resource_identifier + 1;
-} while ((int64_t)resource_identifier < (int64_t)utility_status_code);
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    temp_storage = resource_id + 1;
+} while ((int64_t)resource_id < (int64_t)utility_status_code);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(auxiliary_context_ptr + UTILITY_MEMORY_POINTER_OFFSET_BASE);
 (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
-    context_storage = *(uint *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
-    if (resource_identifier < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
-*(short *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (short)context_storage;
-    context_storage = 2;
+    temp_storage = *(uint *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
+    if (resource_id < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
+*(short *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (short)temp_storage;
+    temp_storage = 2;
 else {
-    context_storage = UTILITY_DEFAULT_ALLOCATION_SIZE;
-*(uint *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (resource_identifier & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_identifier & UTILITY_STATUS_FLAG_MASK_SMALL;
-    utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,context_storage);
+    temp_storage = UTILITY_DEFAULT_ALLOCATION_SIZE;
+*(uint *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (resource_id & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_id & UTILITY_STATUS_FLAG_MASK_SMALL;
+    utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,temp_storage);
     if (utility_status_code != UTILITY_FALSE) {
     utility_execution_result = utility_operation_execute(utility_xmm0_result,iteration_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
     if (utility_status_code != UTILITY_FALSE) {
     iteration_index = iteration_index + 1;
     iteration_index = iteration_index + UTILITY_THREAD_CONTEXT_OFFSET;
-    context_storage = utility_parameter_float;
+    temp_storage = utility_parameter_float;
 } while (iteration_index < utility_context_index_source);
-    utility_status_code = utility_operation_complete(context_storage,auxiliary_context_ptr + UTILITY_CONTEXT_TABLE_OFFSET);
+    utility_status_code = utility_operation_complete(temp_storage,auxiliary_context_ptr + UTILITY_CONTEXT_TABLE_OFFSET);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
     utility_status_code = *(int *)(auxiliary_context_ptr + UTILITY_STATUS_FLAG_MASK_8_BIT);
 *(int *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = utility_status_code;
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
@@ -1194,36 +1194,36 @@ else {
     if (0 < utility_status_code) {
 do {
     iteration_index = *(int64_t *)(auxiliary_context_ptr + UTILITY_STATUS_FLAG_MASK_PRIMARY);
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_index + utility_input_parameter * 8);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code != UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE + utility_input_parameter * 8);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code != UTILITY_FALSE) {
     utility_input_parameter = utility_input_parameter + 1;
 } while (utility_input_parameter < utility_status_code);
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(auxiliary_context_ptr + UTILITY_MEMORY_POINTER_OFFSET_BASE);
 (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     utility_disk_space_result = GetDiskFreeSpace(utility_context_ptr,utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_THREE);
     if (utility_status_code != UTILITY_FALSE) {
-    if (((context_storage[1] & UTILITY_MEMORY_POINTER_OFFSET_BASE_ZERO) == UTILITY_FALSE) ||
+    if (((temp_storage[1] & UTILITY_MEMORY_POINTER_OFFSET_BASE_ZERO) == UTILITY_FALSE) ||
 ((utility_valueidation_result = utility_operation_verify(utility_context_ptr,utility_context_ptr + UTILITY_THREAD_CONTEXT_OFFSET), utility_status_code == UTILITY_FALSE &&
 (utility_valueidation_result = utility_operation_verify(utility_context_ptr,utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_SEVEN), utility_status_code == UTILITY_FALSE)))) {
 GetModuleHandle(utility_context_ptr,utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_NINE);
     utility_valueidation_result = utility_operation_verify();
     if ((((utility_status_code == UTILITY_FALSE) && (utility_valueidation_result = utility_operation_verify(), utility_status_code == UTILITY_FALSE)) &&
 (utility_valueidation_result = utility_operation_verify(), utility_status_code == UTILITY_FALSE)) && (utility_valueidation_result = utility_operation_verify(), utility_status_code == UTILITY_FALSE)) {
-    if ((*(uint *)(resource_identifier + UTILITY_DEFAULT_ALLOCATION_SIZE) & UTILITY_THREAD_HANDLE_OFFSET_PRIMARY) != UTILITY_FALSE) {
-    buffer_ptr = *(uint32_t *)(resource_identifier + UTILITY_THREAD_BUFFER_OFFSET);
+    if ((*(uint *)(resource_id + UTILITY_DEFAULT_ALLOCATION_SIZE) & UTILITY_THREAD_HANDLE_OFFSET_PRIMARY) != UTILITY_FALSE) {
+    buffer_ptr = *(uint32_t *)(resource_id + UTILITY_THREAD_BUFFER_OFFSET);
     utility_status_code = (**(code **)**(uint64_t **)(utility_input_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_input_parameter + UTILITY_POINTER_OFFSET),&utility_main_workspace_buffer,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code != UTILITY_FALSE) {
     utility_disk_space_result = GetDiskFreeSpace();
     if (utility_status_code != UTILITY_FALSE) {
-    if ((*(uint *)(resource_identifier + UTILITY_DEFAULT_ALLOCATION_SIZE) & UTILITY_MEMORY_POINTER_OFFSET_BASE_ZERO) != UTILITY_FALSE) {
+    if ((*(uint *)(resource_id + UTILITY_DEFAULT_ALLOCATION_SIZE) & UTILITY_MEMORY_POINTER_OFFSET_BASE_ZERO) != UTILITY_FALSE) {
     utility_valueidation_result = utility_operation_verify();
     if (utility_status_code != UTILITY_FALSE) {
     utility_valueidation_result = utility_operation_verify();
@@ -1238,72 +1238,72 @@ uint64_t utility_system_processor_info_reader(int64_t resource_count,int64_t uti
     if (utility_status_code != UTILITY_FALSE) {
     utility_status_code = utility_status_code + 1;
 } while (utility_status_code < (int)utility_context_ptr[UTILITY_CONTEXT_DATA_PRIMARY_OFFSET]);
-    context_storage = utility_context_ptr[100];
-    if (resource_identifier < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
-    utility_parameter_storage = utility_concatenate_int64_with_int16(utility_parameter_storage.primary,(short)context_storage);
-    context_storage = 2;
+    temp_storage = utility_context_ptr[100];
+    if (resource_id < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
+    parameter_data = utility_concatenate_int64_with_int16(parameter_data.primary,(short)temp_storage);
+    temp_storage = 2;
 else {
-    context_storage = UTILITY_DEFAULT_ALLOCATION_SIZE;
-    utility_parameter_storage = utility_combine_values(utility_parameter_storage.component_x,(resource_identifier & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_identifier & UTILITY_STATUS_FLAG_MASK_SMALL);
+    temp_storage = UTILITY_DEFAULT_ALLOCATION_SIZE;
+    parameter_data = utility_combine_values(parameter_data.component_x,(resource_id & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_id & UTILITY_STATUS_FLAG_MASK_SMALL);
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,context_storage);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,temp_storage);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_parameter_storage.component_y = utility_context_ptr[UTILITY_CHARACTER_COMPARE_UPPER_E];
+    parameter_data.component_y = utility_context_ptr[UTILITY_CHARACTER_COMPARE_UPPER_E];
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (((utility_status_code == UTILITY_FALSE) && (utility_status_code = utility_data_process(utility_context_ptr,utility_context_ptr + UTILITY_CONTEXT_PROCESS_DATA_PRIMARY_OFFSET), utility_status_code == UTILITY_FALSE)) &&
 (utility_status_code = utility_data_process(utility_context_ptr,utility_context_ptr + UTILITY_POINTER_THRESHOLD_VALUE), utility_status_code == UTILITY_FALSE)) {
-    utility_parameter_storage.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_1];
+    parameter_data.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_1];
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_parameter_storage.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_2];
+    parameter_data.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_2];
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_parameter_storage.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_3];
+    parameter_data.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_3];
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_parameter_storage.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_4];
+    parameter_data.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_4];
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_parameter_storage.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_5];
+    parameter_data.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_5];
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_parameter_storage.component_y = utility_context_ptr[UTILITY_CONTEXT_OFFSET_STATUS];
+    parameter_data.component_y = utility_context_ptr[UTILITY_CONTEXT_OFFSET_STATUS];
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_parameter_storage = utility_combine_values(utility_parameter_storage.component_x,utility_context_ptr[UTILITY_MAX_RESOURCE_INDEX]);
+    parameter_data = utility_combine_values(parameter_data.component_x,utility_context_ptr[UTILITY_MAX_RESOURCE_INDEX]);
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_parameter_storage = *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_MASK_PRIMARY);
+    parameter_data = *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_MASK_PRIMARY);
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,8);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,8);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_parameter_storage = *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_OFFSET_2);
+    parameter_data = *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_OFFSET_2);
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,8);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,8);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_parameter_storage = *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_OFFSET_4);
+    parameter_data = *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_OFFSET_4);
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,8);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,8);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_parameter_storage.component_y = utility_context_ptr[UTILITY_STATUS_FLAG_MASK_SEVEN];
+    parameter_data.component_y = utility_context_ptr[UTILITY_STATUS_FLAG_MASK_SEVEN];
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_parameter_storage.component_y = utility_context_ptr[UTILITY_STATUS_FLAG_OFFSET_6];
+    parameter_data.component_y = utility_context_ptr[UTILITY_STATUS_FLAG_OFFSET_6];
     utility_status_code = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_parameter_storage = utility_combine_values(utility_parameter_storage.component_x,utility_context_ptr[UTILITY_STATUS_FLAG_MASK_8_BIT]);
+    parameter_data = utility_combine_values(parameter_data.component_x,utility_context_ptr[UTILITY_STATUS_FLAG_MASK_8_BIT]);
 (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&utility_parameter_storage,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&parameter_data,UTILITY_DEFAULT_ALLOCATION_SIZE);
     utility_status_code = SetLocalTime(utility_float_result_primary,iteration_index + UTILITY_STATUS_THREAD_CREATED);
     if (utility_status_code != UTILITY_FALSE) {
     utility_status_code = SetLocalTime(utility_xmm0_result,iteration_index + UTILITY_THREAD_CONFIG_OFFSET);
@@ -1313,70 +1313,70 @@ else {
     utility_status_code = utility_status_code + 1;
     utility_context_ptr = utility_float_result;
 } while (utility_status_code < *(int *)(utility_input_parameter + UTILITY_CONTEXT_OFFSET_EXTENDED_HEX));
-    context_storage = *(uint *)(utility_input_parameter + 400);
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
-    if (resource_identifier < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
-*(short *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (short)context_storage;
-    context_storage = 2;
+    temp_storage = *(uint *)(utility_input_parameter + 400);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
+    if (resource_id < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
+*(short *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (short)temp_storage;
+    temp_storage = 2;
 else {
-    context_storage = UTILITY_DEFAULT_ALLOCATION_SIZE;
-*(uint *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (resource_identifier & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_identifier & UTILITY_STATUS_FLAG_MASK_SMALL;
-    utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,context_storage);
+    temp_storage = UTILITY_DEFAULT_ALLOCATION_SIZE;
+*(uint *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = (resource_id & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_id & UTILITY_STATUS_FLAG_MASK_SMALL;
+    utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,temp_storage);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_NONARY4);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (((utility_status_code == UTILITY_FALSE) && (utility_status_code = utility_data_process(utility_xmm_register_value,utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_NONARY8), utility_status_code == UTILITY_FALSE))
 && (utility_status_code = utility_data_process(utility_result_float_alpha,utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_NONARYc), utility_status_code == UTILITY_FALSE)) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_OFFSET_A4);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_OFFSET_A8);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGac);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGb4);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGb8);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGb0);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGbc);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint64_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint64_t *)(utility_input_parameter + UTILITY_STATUS_THREAD_CREATED0);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,8);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint64_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint64_t *)(utility_input_parameter + UTILITY_STATUS_THREAD_CREATED8);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,8);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint64_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint64_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_ZERO);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,8);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_DECIMALc);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_EIGHT);
     utility_status_code = (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_identifier + UTILITY_POINTER_OFFSET);
+    utility_context_ptr = *(uint64_t **)(resource_id + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX)
 ;
 (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
@@ -1404,7 +1404,7 @@ uint64_t utility_stream_manager_flush(void)
 uint64_t utility_thread_scheduler_run(int64_t resource_count,uint64_t *buffer_ptr)
 uint64_t utility_network_connector_link(int64_t resource_count,int64_t *buffer_ptr)
 uint64_t utility_network_receiver_get(int utility_context_ptr)
-    if ((uint64_t)context_storage[2] < (uint64_t)utility_stack_uint_data + 1) {
+    if ((uint64_t)temp_storage[2] < (uint64_t)utility_stack_uint_data + 1) {
     utility_status_code = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
 goto UTILITY_LABEL_CLEANUP_DONE;
     utility_status_code = utility_resource_create(*buffer_ptr,&utility_main_workspace_buffer,1,1,0);
@@ -1419,8 +1419,8 @@ uint64_t utility_security_validator_verify(void)
  */
 uint64_t utility_security_encryptor_encode(int64_t resource_count,uint64_t *buffer_ptr)
     utility_status_code = UTILITY_FALSE;
-    context_storage = utility_stack_control_status >> 1;
-    if (resource_identifier != UTILITY_FALSE) {
+    temp_storage = utility_stack_control_status >> 1;
+    if (resource_id != UTILITY_FALSE) {
 do {
     utility_status_code = utility_resource_read();
     if (utility_status_code != UTILITY_FALSE) {
@@ -1429,59 +1429,59 @@ do {
     utility_status_code = utility_resource_write();
     if (utility_status_code != UTILITY_FALSE) {
     utility_status_code = utility_status_code + 1;
-} while (utility_status_code < (int)context_storage);
+} while (utility_status_code < (int)temp_storage);
     utility_stream_close();
 uint64_t utility_security_decryptor_decode(int64_t resource_count,int64_t *buffer_ptr)
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
-    context_storage = *buffer_ptr;
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
+    temp_storage = *buffer_ptr;
     iteration_index = *(int64_t *)(utility_context_ptr + UTILITY_THREAD_DATA_OFFSET) + (int64_t)utility_status_code * 8;
-    utility_status_code = get_file_time(context_storage,iteration_index);
+    utility_status_code = get_file_time(temp_storage,iteration_index);
     if (utility_status_code != UTILITY_FALSE) {
-    utility_status_code = get_file_time(context_storage,iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
+    utility_status_code = get_file_time(temp_storage,iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
 else {
     utility_status_code = UTILITY_STATUS_THREAD_CREATED;
     if (utility_status_code != UTILITY_FALSE) {
     utility_status_code = utility_resource_write(utility_context_ptr,stack_buffer);
     if (utility_status_code != UTILITY_FALSE) {
     utility_status_code = utility_status_code + 1;
-    stack_buffer[0] = stack_buffer[0] & -context_storage;
-} while (utility_status_code < (int)context_storage);
+    stack_buffer[0] = stack_buffer[0] & -temp_storage;
+} while (utility_status_code < (int)temp_storage);
     utility_stream_close(utility_context_ptr,utility_stream_buffer_array);
     if (*(int *)(utility_input_parameter[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
-    context_storage = *utility_input_parameter;
-    iteration_index = *(int64_t *)(resource_identifier + UTILITY_THREAD_DATA_OFFSET) + (int64_t)utility_status_code * 8;
-    utility_status_code = get_file_time(context_storage,iteration_index);
+    temp_storage = *utility_input_parameter;
+    iteration_index = *(int64_t *)(resource_id + UTILITY_THREAD_DATA_OFFSET) + (int64_t)utility_status_code * 8;
+    utility_status_code = get_file_time(temp_storage,iteration_index);
     if (utility_status_code != UTILITY_FALSE) {
-    utility_status_code = get_file_time(context_storage,iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
+    utility_status_code = get_file_time(temp_storage,iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
 else {
     utility_status_code = UTILITY_STATUS_THREAD_CREATED;
     if (utility_status_code != UTILITY_FALSE) {
     utility_status_code = utility_resource_write();
     if (utility_status_code != UTILITY_FALSE) {
     utility_status_code = utility_status_code + 1;
-} while (utility_status_code < (int)context_storage);
+} while (utility_status_code < (int)temp_storage);
     utility_stream_close();
 uint64_t utility_interface_controller_handle(int64_t resource_count,uint64_t *buffer_ptr)
     utility_status_code = utility_resource_validate(*buffer_ptr,stack_buffer);
-    context_storage = stack_buffer[0];
+    temp_storage = stack_buffer[0];
     if (utility_status_code != UTILITY_FALSE) {
-    context_storage = stack_buffer[0] & 1;
-    context_storage = (int)*(uint *)(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
-    context_storage = stack_buffer[0] >> 1;
-    if (((int)((*(uint *)(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED) ^ context_storage) - context_storage) < (int)context_storage) &&
-(utility_status_code = utility_resource_test(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET,context_storage), utility_status_code != UTILITY_FALSE)) {
+    temp_storage = stack_buffer[0] & 1;
+    temp_storage = (int)*(uint *)(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
+    temp_storage = stack_buffer[0] >> 1;
+    if (((int)((*(uint *)(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED) ^ temp_storage) - temp_storage) < (int)temp_storage) &&
+(utility_status_code = utility_resource_test(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET,temp_storage), utility_status_code != UTILITY_FALSE)) {
     utility_status_code = *(int *)(utility_context_ptr + UTILITY_THREAD_CONTEXT_OFFSET);
-    if (utility_status_code < (int)context_storage) {
+    if (utility_status_code < (int)temp_storage) {
 memset((int64_t)utility_status_code * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET),0,
-(int64_t)(int)(resource_identifier - utility_status_code) << UTILITY_DEFAULT_ALLOCATION_SIZE);
-*(uint *)(utility_context_ptr + UTILITY_THREAD_CONTEXT_OFFSET) = context_storage;
+(int64_t)(int)(resource_id - utility_status_code) << UTILITY_DEFAULT_ALLOCATION_SIZE);
+*(uint *)(utility_context_ptr + UTILITY_THREAD_CONTEXT_OFFSET) = temp_storage;
     stack_buffer[0] = UTILITY_FALSE;
     utility_status_code = UTILITY_FALSE;
-    if (resource_identifier >> 1 != UTILITY_FALSE) {
+    if (resource_id >> 1 != UTILITY_FALSE) {
 do {
     utility_status_code = utility_resource_read(utility_context_ptr,stack_buffer[0]);
     if (utility_status_code != UTILITY_FALSE) {
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
     utility_status_code = GetLocalTime(*buffer_ptr,(int64_t)utility_status_code * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET));
 else {
     utility_status_code = UTILITY_STATUS_THREAD_CREATED;
@@ -1489,22 +1489,22 @@ else {
     utility_status_code = utility_resource_write(utility_context_ptr,stack_buffer);
     if (utility_status_code != UTILITY_FALSE) {
     utility_status_code = utility_status_code + 1;
-    stack_buffer[0] = stack_buffer[0] & -context_storage;
-} while (utility_status_code < (int)context_storage);
+    stack_buffer[0] = stack_buffer[0] & -temp_storage;
+} while (utility_status_code < (int)temp_storage);
     stack_buffer[0] = UTILITY_FALSE;
     utility_status_code = utility_resource_validate(*buffer_ptr,stack_buffer);
-    context_storage = stack_buffer[0];
+    temp_storage = stack_buffer[0];
     if (utility_status_code != UTILITY_FALSE) {
     iteration_index = (int64_t)(int)stack_buffer[0];
-    context_storage = (int)*(uint *)(utility_context_ptr + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
-    if (((int)((*(uint *)(utility_context_ptr + UTILITY_CONTEXT_CONFIG_OFFSET) ^ context_storage) - context_storage) < (int)stack_buffer[0]) &&
+    temp_storage = (int)*(uint *)(utility_context_ptr + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    if (((int)((*(uint *)(utility_context_ptr + UTILITY_CONTEXT_CONFIG_OFFSET) ^ temp_storage) - temp_storage) < (int)stack_buffer[0]) &&
 (utility_status_code = utility_context_acquire(utility_context_ptr + UTILITY_THREAD_DATA_OFFSET,stack_buffer[0]), utility_status_code != UTILITY_FALSE)) {
     utility_status_code = *(int *)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET);
-    if (utility_status_code < (int)context_storage) {
-memset((int64_t)utility_status_code + *(int64_t *)(utility_context_ptr + UTILITY_THREAD_DATA_OFFSET),0,(int64_t)(int)(resource_identifier - utility_status_code));
-*(uint *)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET) = context_storage;
-    if (resource_identifier != UTILITY_FALSE) {
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
+    if (utility_status_code < (int)temp_storage) {
+memset((int64_t)utility_status_code + *(int64_t *)(utility_context_ptr + UTILITY_THREAD_DATA_OFFSET),0,(int64_t)(int)(resource_id - utility_status_code));
+*(uint *)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET) = temp_storage;
+    if (resource_id != UTILITY_FALSE) {
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
     utility_status_code = resource_handle_parameter_validation(*buffer_ptr,*(uint64_t *)(utility_context_ptr + UTILITY_THREAD_DATA_OFFSET),iteration_index);
     if (utility_status_code == UTILITY_FALSE) goto UTILITY_LABEL_OPERATION_SUCCESS;
 else {
@@ -1519,23 +1519,23 @@ else {
     utility_status_code = utility_resource_prepare(utility_context_ptr,utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
     if (utility_status_code == UTILITY_FALSE) {
     utility_system_shutdown(utility_context_ptr);
-    context_storage = (int)*(uint *)(utility_service_context_handle + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
-    context_storage = utility_stack_handle_value >> 1;
-    if (((int)((*(uint *)(utility_service_context_handle + UTILITY_STATUS_THREAD_CREATED) ^ context_storage) - context_storage) < (int)context_storage) &&
-(utility_status_code = utility_resource_test(utility_service_context_handle + UTILITY_THREAD_HANDLE_OFFSET,context_storage), utility_status_code != UTILITY_FALSE)) {
+    temp_storage = (int)*(uint *)(utility_service_context_handle + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
+    temp_storage = utility_stack_handle_value >> 1;
+    if (((int)((*(uint *)(utility_service_context_handle + UTILITY_STATUS_THREAD_CREATED) ^ temp_storage) - temp_storage) < (int)temp_storage) &&
+(utility_status_code = utility_resource_test(utility_service_context_handle + UTILITY_THREAD_HANDLE_OFFSET,temp_storage), utility_status_code != UTILITY_FALSE)) {
     utility_status_code = *(int *)(utility_service_context_handle + UTILITY_THREAD_CONTEXT_OFFSET);
-    if (utility_status_code < (int)context_storage) {
+    if (utility_status_code < (int)temp_storage) {
 memset((int64_t)utility_status_code * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_service_context_handle + UTILITY_THREAD_HANDLE_OFFSET),0,
-(int64_t)(int)(resource_identifier - utility_status_code) << UTILITY_DEFAULT_ALLOCATION_SIZE);
-*(uint *)(utility_service_context_handle + UTILITY_THREAD_CONTEXT_OFFSET) = context_storage;
+(int64_t)(int)(resource_id - utility_status_code) << UTILITY_DEFAULT_ALLOCATION_SIZE);
+*(uint *)(utility_service_context_handle + UTILITY_THREAD_CONTEXT_OFFSET) = temp_storage;
     buffer_ptr = UTILITY_FALSE;
     utility_status_code = UTILITY_FALSE;
     if (utility_stack_handle_value >> 1 != UTILITY_FALSE) {
 do {
     utility_status_code = utility_resource_read();
     if (utility_status_code != UTILITY_FALSE) {
-    if (*(int *)(resource_identifier[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
-    utility_status_code = GetLocalTime(*resource_identifier,(int64_t)utility_status_code * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_service_context_handle + UTILITY_THREAD_HANDLE_OFFSET));
+    if (*(int *)(resource_id[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
+    utility_status_code = GetLocalTime(*resource_id,(int64_t)utility_status_code * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_service_context_handle + UTILITY_THREAD_HANDLE_OFFSET));
 else {
     utility_status_code = UTILITY_STATUS_THREAD_CREATED;
     if (utility_status_code != UTILITY_FALSE) {
@@ -1543,22 +1543,22 @@ else {
     if (utility_status_code != UTILITY_FALSE) {
     utility_status_code = utility_status_code + 1;
     buffer_ptr = buffer_ptr & -(utility_stack_handle_value & 1);
-} while (utility_status_code < (int)context_storage);
+} while (utility_status_code < (int)temp_storage);
     buffer_ptr = UTILITY_FALSE;
-    utility_status_code = utility_resource_validate(*resource_identifier,&utility_main_workspace_buffer);
+    utility_status_code = utility_resource_validate(*resource_id,&utility_main_workspace_buffer);
     utility_status_code = buffer_ptr;
     if (utility_status_code != UTILITY_FALSE) {
     iteration_index = (int64_t)(int)buffer_ptr;
-    context_storage = (int)*(uint *)(utility_service_context_handle + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
-    if (((int)((*(uint *)(utility_service_context_handle + UTILITY_CONTEXT_CONFIG_OFFSET) ^ context_storage) - context_storage) < (int)buffer_ptr) &&
+    temp_storage = (int)*(uint *)(utility_service_context_handle + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    if (((int)((*(uint *)(utility_service_context_handle + UTILITY_CONTEXT_CONFIG_OFFSET) ^ temp_storage) - temp_storage) < (int)buffer_ptr) &&
 (utility_status_code = utility_context_acquire(utility_service_context_handle + UTILITY_THREAD_DATA_OFFSET,buffer_ptr), utility_status_code != UTILITY_FALSE)) {
     utility_status_code = *(int *)(utility_service_context_handle + UTILITY_THREAD_CONFIG_OFFSET);
     if (utility_status_code < UTILITY_MAX_OPERATION_VALUE) {
 memset((int64_t)utility_status_code + *(int64_t *)(utility_service_context_handle + UTILITY_THREAD_DATA_OFFSET),0,(int64_t)(utility_status_code - utility_status_code));
 *(int *)(utility_service_context_handle + UTILITY_THREAD_CONFIG_OFFSET) = utility_status_code;
     if (utility_status_code != UTILITY_FALSE) {
-    if (*(int *)(resource_identifier[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
-    utility_status_code = resource_handle_parameter_validation(*resource_identifier,*(uint64_t *)(utility_service_context_handle + UTILITY_THREAD_DATA_OFFSET),iteration_index);
+    if (*(int *)(resource_id[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
+    utility_status_code = resource_handle_parameter_validation(*resource_id,*(uint64_t *)(utility_service_context_handle + UTILITY_THREAD_DATA_OFFSET),iteration_index);
     if (utility_status_code == UTILITY_FALSE) goto UTILITY_LABEL_OPERATION_SUCCESS;
 else {
     utility_status_code = UTILITY_STATUS_THREAD_CREATED;
@@ -1574,276 +1574,276 @@ else {
     utility_system_shutdown();
 uint64_t utility_process_resource_context_primary(int64_t resource_count,uint64_t *buffer_ptr)
 void InitializeEncryption(void)
-    context_storage = utility_stream_create(utility_context_ptr,stack_buffer_array_output,0,UTILITY_STREAM_TYPE_BMRP);
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    context_storage = utility_time_processor(utility_context_ptr,utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET);
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    context_storage = UTILITY_DEFAULT_ALLOCATION_SIZE;
+    temp_storage = utility_stream_create(utility_context_ptr,stack_buffer_array_output,0,UTILITY_STREAM_TYPE_BMRP);
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    temp_storage = utility_time_processor(utility_context_ptr,utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET);
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    temp_storage = UTILITY_DEFAULT_ALLOCATION_SIZE;
     utility_status_code = UTILITY_FALSE;
     utility_status_code = UTILITY_FALSE;
-    context_storage = context_storage;
+    temp_storage = temp_storage;
     if (UTILITY_MAX_RESOURCE_INDEX < *(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET)) {
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
-    context_storage = resource_handle_parameter_validation(*buffer_ptr,utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
+    temp_storage = resource_handle_parameter_validation(*buffer_ptr,utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
 else {
-    context_storage = UTILITY_STATUS_THREAD_CREATED;
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    context_storage = context_storage;
+    temp_storage = UTILITY_STATUS_THREAD_CREATED;
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    temp_storage = temp_storage;
     if (*(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET) < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
-    context_storage = UTILITY_STATUS_THREAD_CREATED;
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
+    temp_storage = UTILITY_STATUS_THREAD_CREATED;
 goto UTILITY_LABEL_NEXT_ITERATION;
     utility_context_ptr = (int64_t *)*buffer_ptr;
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = UTILITY_STATUS_THREAD_CREATED;
-else if (context_storage[2] == UTILITY_FALSE) {
+    temp_storage = UTILITY_STATUS_THREAD_CREATED;
+else if (temp_storage[2] == UTILITY_FALSE) {
 UTILITY_LABEL_ARRAY_BOUNDARY:
-    context_storage = utility_resource_create(*buffer_ptr,stack_buffer,1,1,0);
+    temp_storage = utility_resource_create(*buffer_ptr,stack_buffer,1,1,0);
 else {
     stack_buffer[0] = UTILITY_FALSE;
-    context_storage = utility_execute_system_call(*buffer_ptr,stack_buffer);
-    if (resource_identifier == UTILITY_FALSE) {
-    if ((uint64_t)stack_buffer[0] + 1 <= (uint64_t)context_storage[2]) goto UTILITY_LABEL_ARRAY_BOUNDARY;
-    context_storage = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
-    if (resource_identifier == UTILITY_FALSE) {
+    temp_storage = utility_execute_system_call(*buffer_ptr,stack_buffer);
+    if (resource_id == UTILITY_FALSE) {
+    if ((uint64_t)stack_buffer[0] + 1 <= (uint64_t)temp_storage[2]) goto UTILITY_LABEL_ARRAY_BOUNDARY;
+    temp_storage = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
+    if (resource_id == UTILITY_FALSE) {
     stack_buffer[0] = (uint)((char)stack_buffer[0] != '\0');
     utility_stack_tertiary_flag = (uint)((char)stack_buffer[0] == '\0');
     utility_status_code = UTILITY_FALSE;
 else {
     stack_buffer[0] = UTILITY_FALSE;
     utility_stack_tertiary_flag = UTILITY_TRUE;
-    if (resource_identifier == UTILITY_FALSE) {
-    context_storage = context_storage;
+    if (resource_id == UTILITY_FALSE) {
+    temp_storage = temp_storage;
 else {
 UTILITY_LABEL_NEXT_ITERATION:
     utility_stack_tertiary_flag = UTILITY_TRUE;
     stack_buffer[0] = UTILITY_FALSE;
-    if (resource_identifier != UTILITY_FALSE) {
-    return (uint64_t)context_storage;
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
+    if (resource_id != UTILITY_FALSE) {
+    return (uint64_t)temp_storage;
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
     return UTILITY_STATUS_THREAD_CREATED;
     utility_context_ptr = (int64_t *)*buffer_ptr;
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = UTILITY_STATUS_THREAD_CREATED;
+    temp_storage = UTILITY_STATUS_THREAD_CREATED;
 else {
-    if (context_storage[2] != UTILITY_FALSE) {
+    if (temp_storage[2] != UTILITY_FALSE) {
     stack_buffer[0] = UTILITY_FALSE;
-    context_storage = utility_execute_system_call(*buffer_ptr,stack_buffer);
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    if ((uint64_t)context_storage[2] < (uint64_t)stack_buffer[0] + UTILITY_DEFAULT_ALLOCATION_SIZE) {
-    context_storage = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
+    temp_storage = utility_execute_system_call(*buffer_ptr,stack_buffer);
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    if ((uint64_t)temp_storage[2] < (uint64_t)stack_buffer[0] + UTILITY_DEFAULT_ALLOCATION_SIZE) {
+    temp_storage = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
 goto UTILITY_LABEL_HANDLER_PROCESSED;
-    context_storage = utility_resource_create(*buffer_ptr,&utility_stack_uint_data,1,UTILITY_DEFAULT_ALLOCATION_SIZE,0);
+    temp_storage = utility_resource_create(*buffer_ptr,&utility_stack_uint_data,1,UTILITY_DEFAULT_ALLOCATION_SIZE,0);
 UTILITY_LABEL_HANDLER_PROCESSED:
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
 switch(utility_stack_uint_data) {
 case 0:
     utility_status_code = UTILITY_FALSE;
 break;
 case 1:
-    context_storage = UTILITY_TRUE;
+    temp_storage = UTILITY_TRUE;
 break;
 case 2:
-    context_storage = 2;
+    temp_storage = 2;
 break;
 case 3:
-    context_storage = 3;
+    temp_storage = 3;
 break;
 case UTILITY_DEFAULT_ALLOCATION_SIZE:
 break;
 case 5:
-    context_storage = 5;
+    temp_storage = 5;
 break;
 case 6:
-    context_storage = 6;
+    temp_storage = 6;
 break;
 case 7:
-    context_storage = 7;
+    temp_storage = 7;
 break;
 case 8:
-    context_storage = 8;
+    temp_storage = 8;
 break;
 case 9:
-    context_storage = 9;
+    temp_storage = 9;
 break;
 default:
-    context_storage = utility_falsexd;
+    temp_storage = utility_falsexd;
 goto UTILITY_LABEL_DATA_VALIDATED;
-*(uint32_t *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = context_storage;
-    context_storage = context_storage;
+*(uint32_t *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = temp_storage;
+    temp_storage = temp_storage;
 UTILITY_LABEL_DATA_VALIDATED:
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
     return UTILITY_STATUS_THREAD_CREATED;
-    context_storage = utility_create_memory_context(*buffer_ptr,utility_context_ptr + UTILITY_THREAD_SIZE_OFFSET);
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
+    temp_storage = utility_create_memory_context(*buffer_ptr,utility_context_ptr + UTILITY_THREAD_SIZE_OFFSET);
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
     return UTILITY_STATUS_THREAD_CREATED;
-    context_storage = get_file_time(*buffer_ptr,utility_context_ptr + UTILITY_THREAD_POINTER_OFFSET);
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
+    temp_storage = get_file_time(*buffer_ptr,utility_context_ptr + UTILITY_THREAD_POINTER_OFFSET);
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
     return UTILITY_STATUS_THREAD_CREATED;
-    context_storage = get_file_time(*buffer_ptr,utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_VALUE);
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
+    temp_storage = get_file_time(*buffer_ptr,utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_VALUE);
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
     return UTILITY_STATUS_THREAD_CREATED;
-    context_storage = get_file_time(*buffer_ptr,utility_context_ptr + UTILITY_RESOURCE_FLAG_OFFSET);
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
+    temp_storage = get_file_time(*buffer_ptr,utility_context_ptr + UTILITY_RESOURCE_FLAG_OFFSET);
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
     return UTILITY_STATUS_THREAD_CREATED;
-    context_storage = get_file_time(*buffer_ptr,utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
+    temp_storage = get_file_time(*buffer_ptr,utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
     return UTILITY_STATUS_THREAD_CREATED;
-    context_storage = get_file_time(*buffer_ptr,utility_context_ptr + UTILITY_CONTEXT_EXTENDED_OFFSET);
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    context_storage = context_storage;
+    temp_storage = get_file_time(*buffer_ptr,utility_context_ptr + UTILITY_CONTEXT_EXTENDED_OFFSET);
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    temp_storage = temp_storage;
     if (*(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET) < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
-    context_storage = UTILITY_STATUS_THREAD_CREATED;
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
+    temp_storage = UTILITY_STATUS_THREAD_CREATED;
 goto UTILITY_LABEL_PROCESS_COMPLETE;
     utility_context_ptr = (int64_t *)*buffer_ptr;
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = UTILITY_STATUS_THREAD_CREATED;
-else if (context_storage[2] == UTILITY_FALSE) {
+    temp_storage = UTILITY_STATUS_THREAD_CREATED;
+else if (temp_storage[2] == UTILITY_FALSE) {
 UTILITY_LABEL_SIZE_CHECK:
-    context_storage = utility_resource_create(*buffer_ptr,stack_buffer,1,1,0);
+    temp_storage = utility_resource_create(*buffer_ptr,stack_buffer,1,1,0);
 else {
     utility_stack_uint_data = UTILITY_FALSE;
-    context_storage = utility_execute_system_call(*buffer_ptr,&utility_stack_uint_data);
-    if (resource_identifier == UTILITY_FALSE) {
-    if ((uint64_t)utility_stack_uint_data + 1 <= (uint64_t)context_storage[2]) goto UTILITY_LABEL_SIZE_CHECK;
-    context_storage = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
+    temp_storage = utility_execute_system_call(*buffer_ptr,&utility_stack_uint_data);
+    if (resource_id == UTILITY_FALSE) {
+    if ((uint64_t)utility_stack_uint_data + 1 <= (uint64_t)temp_storage[2]) goto UTILITY_LABEL_SIZE_CHECK;
+    temp_storage = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
     utility_status_code = UTILITY_FALSE;
-    if (resource_identifier == UTILITY_FALSE) {
-    context_storage = (uint)((char)stack_buffer[0] != '\0');
-    context_storage = (uint)((char)stack_buffer[0] == '\0');
+    if (resource_id == UTILITY_FALSE) {
+    temp_storage = (uint)((char)stack_buffer[0] != '\0');
+    temp_storage = (uint)((char)stack_buffer[0] == '\0');
     utility_status_code = UTILITY_FALSE;
 else {
-    context_storage = UTILITY_TRUE;
-    context_storage = (uint64_t)context_storage;
-    if (resource_identifier == UTILITY_FALSE) {
-    context_storage = context_storage;
+    temp_storage = UTILITY_TRUE;
+    temp_storage = (uint64_t)temp_storage;
+    if (resource_id == UTILITY_FALSE) {
+    temp_storage = temp_storage;
 else {
 UTILITY_LABEL_PROCESS_COMPLETE:
-    context_storage = UTILITY_TRUE;
-    context_storage = context_storage;
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    if ((*(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET) < UTILITY_CONTEXT_TABLE_OFFSET_VALUE) && (context_storage = utility_get_float_value(utility_context_ptr), (int)resource_identifier != UTILITY_FALSE)) {
-        return resource_identifier;
-    context_storage = context_storage;
+    temp_storage = UTILITY_TRUE;
+    temp_storage = temp_storage;
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    if ((*(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET) < UTILITY_CONTEXT_TABLE_OFFSET_VALUE) && (temp_storage = utility_get_float_value(utility_context_ptr), (int)resource_id != UTILITY_FALSE)) {
+        return resource_id;
+    temp_storage = temp_storage;
     if (UTILITY_CHARACTER_Q_COMPARE < *(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET)) {
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
-    context_storage = get_file_time(*buffer_ptr,utility_context_ptr + UTILITY_THREAD_BUFFER_OFFSET);
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
+    temp_storage = get_file_time(*buffer_ptr,utility_context_ptr + UTILITY_THREAD_BUFFER_OFFSET);
 else {
-    context_storage = UTILITY_STATUS_THREAD_CREATED;
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    context_storage = context_storage;
+    temp_storage = UTILITY_STATUS_THREAD_CREATED;
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    temp_storage = temp_storage;
     if ((int)utility_context_ptr[8] - UTILITY_CHARACTER_COMPARE_UPPER_RU < UTILITY_STATUS_FLAG_EXTENDED) {
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
     utility_context_ptr = (int64_t *)*buffer_ptr;
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = UTILITY_STATUS_THREAD_CREATED;
-else if (context_storage[2] == UTILITY_FALSE) {
+    temp_storage = UTILITY_STATUS_THREAD_CREATED;
+else if (temp_storage[2] == UTILITY_FALSE) {
 UTILITY_LABEL_PARAMETER_CHECK:
-    context_storage = utility_resource_create(*buffer_ptr,stack_buffer,1,1,0);
+    temp_storage = utility_resource_create(*buffer_ptr,stack_buffer,1,1,0);
 else {
     utility_stack_uint_data = UTILITY_FALSE;
-    context_storage = utility_execute_system_call(*buffer_ptr,&utility_stack_uint_data);
-    if (resource_identifier == UTILITY_FALSE) {
-    if ((uint64_t)utility_stack_uint_data + 1 <= (uint64_t)context_storage[2]) goto UTILITY_LABEL_PARAMETER_CHECK;
-    context_storage = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
+    temp_storage = utility_execute_system_call(*buffer_ptr,&utility_stack_uint_data);
+    if (resource_id == UTILITY_FALSE) {
+    if ((uint64_t)utility_stack_uint_data + 1 <= (uint64_t)temp_storage[2]) goto UTILITY_LABEL_PARAMETER_CHECK;
+    temp_storage = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
     utility_status_code = UTILITY_FALSE;
-    context_storage = UTILITY_TRUE;
-    if (resource_identifier == UTILITY_FALSE) {
-    context_storage = (uint)((char)stack_buffer[0] != '\0');
-    context_storage = (uint)((char)stack_buffer[0] == '\0');
-    context_storage = (uint64_t)context_storage;
-    if (resource_identifier == UTILITY_FALSE) {
-    context_storage = context_storage;
+    temp_storage = UTILITY_TRUE;
+    if (resource_id == UTILITY_FALSE) {
+    temp_storage = (uint)((char)stack_buffer[0] != '\0');
+    temp_storage = (uint)((char)stack_buffer[0] == '\0');
+    temp_storage = (uint64_t)temp_storage;
+    if (resource_id == UTILITY_FALSE) {
+    temp_storage = temp_storage;
 else {
-    context_storage = UTILITY_STATUS_THREAD_CREATED;
-    if ((int)resource_identifier == UTILITY_FALSE) {
-    context_storage = *(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET);
-    if (resource_identifier < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
+    temp_storage = UTILITY_STATUS_THREAD_CREATED;
+    if ((int)resource_id == UTILITY_FALSE) {
+    temp_storage = *(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET);
+    if (resource_id < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
 *(uint *)(utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET) =
-(((stack_buffer[0] | *(uint *)(utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET)) & ~utility_stack_tertiary_flag | resource_identifier * 2) & ~(resource_identifier * 2) |
-    resource_identifier * UTILITY_DEFAULT_ALLOCATION_SIZE) & ~(resource_identifier * UTILITY_DEFAULT_ALLOCATION_SIZE);
-    context_storage = *(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET);
-    if ((resource_identifier < UTILITY_MEMORY_POINTER_OFFSET7) && ((*(uint *)(utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET) >> 3 & 1) != UTILITY_FALSE)) {
+(((stack_buffer[0] | *(uint *)(utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET)) & ~utility_stack_tertiary_flag | resource_id * 2) & ~(resource_id * 2) |
+    resource_id * UTILITY_DEFAULT_ALLOCATION_SIZE) & ~(resource_id * UTILITY_DEFAULT_ALLOCATION_SIZE);
+    temp_storage = *(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET);
+    if ((resource_id < UTILITY_MEMORY_POINTER_OFFSET7) && ((*(uint *)(utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET) >> 3 & 1) != UTILITY_FALSE)) {
 *(float *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_VALUE) = *(float *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_VALUE) - 1.0;
-    context_storage = *(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET);
-    if (resource_identifier < UTILITY_MEMORY_POINTER_OFFSETb) {
+    temp_storage = *(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET);
+    if (resource_id < UTILITY_MEMORY_POINTER_OFFSETb) {
 UTILITY_LABEL_ITERATION_DONE:
     utility_stream_close(utility_context_ptr,stack_buffer_array_output);
     stack_buffer[0] = UTILITY_FALSE;
-    context_storage = utility_resource_validate(*buffer_ptr,stack_buffer);
-    context_storage = stack_buffer[0];
-    if ((int)resource_identifier == UTILITY_FALSE) {
-    context_storage = stack_buffer[0] & 1;
-    context_storage = stack_buffer[0] >> 1;
-    context_storage = utility_initialize_memory_buffer(utility_context_ptr + UTILITY_CONTEXT_TABLE_OFFSET,context_storage);
-    if ((int)resource_identifier == UTILITY_FALSE) {
+    temp_storage = utility_resource_validate(*buffer_ptr,stack_buffer);
+    temp_storage = stack_buffer[0];
+    if ((int)resource_id == UTILITY_FALSE) {
+    temp_storage = stack_buffer[0] & 1;
+    temp_storage = stack_buffer[0] >> 1;
+    temp_storage = utility_initialize_memory_buffer(utility_context_ptr + UTILITY_CONTEXT_TABLE_OFFSET,temp_storage);
+    if ((int)resource_id == UTILITY_FALSE) {
     stack_buffer[0] = UTILITY_FALSE;
-    context_storage = context_storage;
-    if (resource_identifier >> 1 != UTILITY_FALSE) {
+    temp_storage = temp_storage;
+    if (resource_id >> 1 != UTILITY_FALSE) {
 do {
-    context_storage = utility_resource_read(utility_context_ptr,context_storage);
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
-    context_storage = utility_create_memory_context(*buffer_ptr,(int64_t)(int)resource_identifier * UTILITY_THREAD_HANDLE_OFFSET +
+    temp_storage = utility_resource_read(utility_context_ptr,temp_storage);
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    if (*(int *)(temp_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
+    temp_storage = utility_create_memory_context(*buffer_ptr,(int64_t)(int)resource_id * UTILITY_THREAD_HANDLE_OFFSET +
 *(int64_t *)(utility_context_ptr + UTILITY_CONTEXT_TABLE_OFFSET));
 else {
-    context_storage = UTILITY_STATUS_THREAD_CREATED;
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    context_storage = utility_resource_write(utility_context_ptr,stack_buffer);
-        if ((int)resource_identifier != UTILITY_FALSE) {
-        return resource_identifier;
-    context_storage = (int)resource_identifier + 1;
-    context_storage = (uint64_t)context_storage;
-    stack_buffer[0] = stack_buffer[0] & -context_storage;
-    context_storage = (uint64_t)stack_buffer[0];
-} while ((int)resource_identifier < (int)context_storage);
+    temp_storage = UTILITY_STATUS_THREAD_CREATED;
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    temp_storage = utility_resource_write(utility_context_ptr,stack_buffer);
+        if ((int)resource_id != UTILITY_FALSE) {
+        return resource_id;
+    temp_storage = (int)resource_id + 1;
+    temp_storage = (uint64_t)temp_storage;
+    stack_buffer[0] = stack_buffer[0] & -temp_storage;
+    temp_storage = (uint64_t)stack_buffer[0];
+} while ((int)resource_id < (int)temp_storage);
 goto UTILITY_LABEL_ITERATION_DONE;
-        return resource_identifier;
+        return resource_id;
 uint64_t utility_cleanup_resource_context(void)
 uint64_t utility_device_controller_initialize(int64_t resource_count,int64_t *buffer_ptr)
 uint64_t utility_configure_resource_handler(int64_t resource_count,int64_t *buffer_ptr)
 uint64_t utility_validate_resource_access(int64_t resource_count,uint64_t *buffer_ptr)
-uint64_t resource_identifier_validator_primary(uint64_t resource_count,int64_t *buffer_ptr)
-uint64_t resource_identifier_validator_tertiary(void)
+uint64_t resource_id_validator_primary(uint64_t resource_count,int64_t *buffer_ptr)
+uint64_t resource_id_validator_tertiary(void)
 uint64_t utility_manage_resource_pool(int64_t resource_count,uint64_t *buffer_ptr)
 uint64_t utility_context_process_primary(int64_t resource_count,uint64_t *buffer_ptr)
 uint64_t utility_context_ptr_handler(int64_t resource_count,uint64_t *buffer_ptr)
 uint64_t utility_manage_memory_pool(int64_t resource_count,uint64_t *buffer_ptr)
 uint64_t resource_handle_thread_operation(int64_t resource_count,int64_t *buffer_ptr)
-uint64_t context_storage_ptr_processor(int64_t resource_count,uint64_t *buffer_ptr)
-uint64_t context_storage_ptr_cleanup(int64_t resource_count,int64_t *buffer_ptr)
+uint64_t temp_storage_ptr_processor(int64_t resource_count,uint64_t *buffer_ptr)
+uint64_t temp_storage_ptr_cleanup(int64_t resource_count,int64_t *buffer_ptr)
 goto UTILITY_LABEL_FINAL_CHECK;
-else if ((utility_accumulator_value == UTILITY_STATUS_ENABLED_FLAG_SECONDARY) && (*(uint *)(resource_identifier + UTILITY_POINTER_OFFSET) < UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE)) {
+else if ((utility_accumulator_value == UTILITY_STATUS_ENABLED_FLAG_SECONDARY) && (*(uint *)(resource_id + UTILITY_POINTER_OFFSET) < UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE)) {
     utility_status_code = utility_resource_create();
     if (utility_status_code != UTILITY_FALSE) {
     utility_status_code = utility_context_port_value;
-    if (*(int *)(resource_identifier[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
+    if (*(int *)(resource_id[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
     utility_stack_base_pointer_data = 6;
-    utility_status_code = (**(code **)**(uint64_t **)(*resource_identifier + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(*resource_identifier + UTILITY_POINTER_OFFSET),&stack_bufferb0,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    utility_status_code = (**(code **)**(uint64_t **)(*resource_id + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(*resource_id + UTILITY_POINTER_OFFSET),&stack_bufferb0,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (utility_status_code != UTILITY_FALSE) {
     utility_status_code = UTILITY_FALSE;
 do {
@@ -1851,12 +1851,12 @@ do {
     if (utility_status_code != UTILITY_FALSE) {
     utility_status_code = utility_status_code + 1;
 } while (utility_status_code < 6);
-    if (*(uint *)(resource_identifier + UTILITY_POINTER_OFFSET) < UTILITY_CONTEXT_COMPONENT_Y_OFFSET_5) {
+    if (*(uint *)(resource_id + UTILITY_POINTER_OFFSET) < UTILITY_CONTEXT_COMPONENT_Y_OFFSET_5) {
     utility_context_port_value = UTILITY_FALSE;
-else if (*(int *)(resource_identifier[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
+else if (*(int *)(resource_id[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
     utility_stack_base_pointer_data = utility_concat_int_values(utility_stack_base_pointer_data._1_3_,*(uint8_t *)(utility_context_index_source + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX));
-    utility_context_port_value = (**(code **)**(uint64_t **)(*resource_identifier + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(*resource_identifier + UTILITY_POINTER_OFFSET),&stack_bufferb0,1);
+    utility_context_port_value = (**(code **)**(uint64_t **)(*resource_id + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(*resource_id + UTILITY_POINTER_OFFSET),&stack_bufferb0,1);
     if (utility_context_port_value != UTILITY_FALSE) {
     utility_resource_manager_cleanup();
     utility_status_code = utility_system_operation();
@@ -1865,13 +1865,13 @@ UTILITY_LABEL_FINAL_CHECK:
     utility_resource_manager_cleanup();
 uint64_t utility_manage_system_resources(int64_t resource_count,uint64_t *buffer_ptr,uint32_t utility_context_ptr,uint32_t utility_context_ptr,
 char utility_context_ptr)
-uint64_t context_storage_ptr_creator(int64_t resource_count,int64_t *buffer_ptr)
-uint64_t resource_identifier_validator_validator(int64_t resource_count,uint64_t *buffer_ptr)
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+uint64_t temp_storage_ptr_creator(int64_t resource_count,int64_t *buffer_ptr)
+uint64_t resource_id_validator_validator(int64_t resource_count,uint64_t *buffer_ptr)
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -1879,13 +1879,13 @@ uint64_t resource_identifier_validator_validator(int64_t resource_count,uint64_t
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -1893,13 +1893,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -1907,13 +1907,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -1921,8 +1921,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_MASK_PRIMARY) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_MEMORY_POINTER_OFFSET_BASE) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY) = &utility_system_reserved_memory;
@@ -1943,11 +1943,11 @@ else {
 *(uint64_t *)(utility_context_ptr + UTILITY_THREAD_CONTEXT_OFFSET_PRIMARY) = &utility_system_reserved_memory;
     if (*(int64_t *)(utility_context_ptr + UTILITY_THREAD_BUFFER_OFFSET) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_THREAD_BUFFER_OFFSET) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -1955,8 +1955,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(utility_context_ptr + UTILITY_MEMORY_POINTER_OFFSET_BASE) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_RESOURCE_HANDLE_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_MASK_8_BIT) = &utility_system_reserved_memory;
@@ -1977,11 +1977,11 @@ else {
 *(uint32_t *)(utility_context_ptr + UTILITY_RESOURCE_FLAG_A0) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_MEMORY_POINTER_OFFSET8) = &utility_system_reserved_memory;
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_SECONDARY0) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -1989,8 +1989,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
 *(uint64_t *)(iteration_index + UTILITY_RESOURCE_SIZE_OFFSET) = &utility_system_data;
     if (*(int64_t *)(iteration_index + UTILITY_CONTEXT_TABLE_OFFSET) != UTILITY_FALSE) {
@@ -2019,25 +2019,25 @@ else {
     utility_context_ptr[8] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 10) = UTILITY_FALSE;
     utility_context_ptr[7] = &utility_system_reserved_memory;
-    context_storage[1] = &utility_system_data;
-    if (context_storage[2] != UTILITY_FALSE) {
-    context_storage[2] = UTILITY_FALSE;
+    temp_storage[1] = &utility_system_data;
+    if (temp_storage[2] != UTILITY_FALSE) {
+    temp_storage[2] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_DEFAULT_ALLOCATION_SIZE) = UTILITY_FALSE;
-    context_storage[1] = &utility_system_reserved_memory;
+    temp_storage[1] = &utility_system_reserved_memory;
     utility_context_ptr[8] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 10) = UTILITY_FALSE;
     utility_context_ptr[7] = &utility_system_reserved_memory;
-    context_storage[1] = &utility_system_data;
-    if (context_storage[2] != UTILITY_FALSE) {
-    context_storage[2] = UTILITY_FALSE;
+    temp_storage[1] = &utility_system_data;
+    if (temp_storage[2] != UTILITY_FALSE) {
+    temp_storage[2] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_DEFAULT_ALLOCATION_SIZE) = UTILITY_FALSE;
-    context_storage[1] = &utility_system_reserved_memory;
+    temp_storage[1] = &utility_system_reserved_memory;
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2045,8 +2045,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
@@ -2073,11 +2073,11 @@ else {
 *(uint64_t *)(iteration_index + UTILITY_RESOURCE_SIZE_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_SIZE_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2085,13 +2085,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2099,16 +2099,16 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_BUFFER_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_RESOURCE_SIZE_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2116,13 +2116,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2130,19 +2130,19 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_POINTER_OFFSET), utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR)) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    if ((1 < temp_storage) && (utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_POINTER_OFFSET), utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR)) {
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2150,19 +2150,19 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_BUFFER_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_THREAD_POINTER_OFFSET), utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR)) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    if ((1 < temp_storage) && (utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_THREAD_POINTER_OFFSET), utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR)) {
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2170,20 +2170,20 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_POINTER_OFFSET), utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR)) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    if ((1 < temp_storage) && (utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_POINTER_OFFSET), utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR)) {
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2191,19 +2191,19 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_POINTER_OFFSET), utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR)) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    if ((1 < temp_storage) && (utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_POINTER_OFFSET), utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR)) {
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2211,35 +2211,35 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_initialize(iteration_index);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
     utility_system_initialize(iteration_index);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
     utility_system_initialize(iteration_index);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2247,23 +2247,23 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_initialize(iteration_index);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
     utility_system_initialize(iteration_index);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
 *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_POINTER_OFFSET) = &utility_system_reserved_memory;
@@ -2273,11 +2273,11 @@ else {
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2285,19 +2285,19 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage[1] = UTILITY_FALSE;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2305,13 +2305,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2319,13 +2319,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2333,13 +2333,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2347,13 +2347,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2361,26 +2361,26 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    if (context_storage[1] == UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    if (temp_storage[1] == UTILITY_FALSE) {
+    temp_storage[1] = UTILITY_FALSE;
 _Cnd_destroy_in_situ(utility_context_ptr + UTILITY_STATUS_MEMORY_IN_USE_VALUEa);
     utility_system_handler_scheduler();
     if (utility_context_ptr[UTILITY_OFFSET_FOURTEEN] != UTILITY_FALSE) {
 *(uint64_t *)(utility_context_ptr[UTILITY_OFFSET_FOURTEEN] + UTILITY_THREAD_HANDLE_OFFSET) = UTILITY_FALSE;
 *(uint8_t *)(utility_context_ptr[UTILITY_OFFSET_FOURTEEN] + UTILITY_POINTER_OFFSET) = UTILITY_TRUE;
-    context_storage[2] = &utility_system_reserved_memory;
-    if (*(int *)(context_storage[1] + UTILITY_POINTER_OFFSET) == UTILITY_FALSE) {
+    temp_storage[2] = &utility_system_reserved_memory;
+    if (*(int *)(temp_storage[1] + UTILITY_POINTER_OFFSET) == UTILITY_FALSE) {
 terminate();
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2388,13 +2388,13 @@ terminate();
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2402,12 +2402,12 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*(int64_t **)(iteration_index + UTILITY_STATUS_ENABLED_FLAG5d0) != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(**(int64_t **)(iteration_index + UTILITY_STATUS_ENABLED_FLAG5d0) + UTILITY_THREAD_POINTER_OFFSET))();
-    utility_system_context_scheduler(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_MEDIUM,UTILITY_THREAD_DATA_OFFSET,UTILITY_THREAD_SIZE_OFFSET,utility_system_external_processor,context_storage);
+    utility_system_context_scheduler(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_MEDIUM,UTILITY_THREAD_DATA_OFFSET,UTILITY_THREAD_SIZE_OFFSET,utility_system_external_processor,temp_storage);
     utility_system_context_scheduler(iteration_index + UTILITY_MEMORY_POINTER_OFFSETb8,8,UTILITY_DEFAULT_ALLOCATION_SIZE,utility_resource_loader_callback);
     utility_context_ptr = *(int64_t **)(iteration_index + UTILITY_MEMORY_POINTER_OFFSETb0);
     if (utility_context_ptr != (int64_t *)UTILITY_NULL_PTR) {
@@ -2417,11 +2417,11 @@ else {
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2429,13 +2429,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2443,13 +2443,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2457,15 +2457,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_context_ptr = (uint64_t *)*buffer_ptr;
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2473,18 +2473,18 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAG50) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAG60) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY8) = &utility_system_reserved_memory;
     utility_context_ptr = (uint64_t *)*buffer_ptr;
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2492,15 +2492,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_context_ptr = (uint64_t *)*buffer_ptr;
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2508,15 +2508,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2524,8 +2524,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + 0x920) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + 0x930) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + 0x918) = &utility_system_reserved_memory;
@@ -2542,11 +2542,11 @@ else {
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2554,13 +2554,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2568,18 +2568,18 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_data;
     if (*(int64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) != UTILITY_FALSE) {
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2587,21 +2587,21 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_data;
     if (*(int64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) != UTILITY_FALSE) {
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2609,15 +2609,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2625,13 +2625,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2639,14 +2639,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2654,8 +2654,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
@@ -2672,11 +2672,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = (uint64_t *)utility_context_ptr[3];
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2684,13 +2684,13 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2698,13 +2698,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2712,13 +2712,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2726,13 +2726,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2740,14 +2740,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((utility_context_ptr[6] != UTILITY_FALSE) && (*(int64_t *)(utility_context_ptr[6] + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)) {
     iteration_index = utility_context_ptr[5];
@@ -2757,11 +2757,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = (uint64_t *)utility_context_ptr[3];
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2769,13 +2769,13 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2783,11 +2783,11 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((utility_context_ptr[6] != UTILITY_FALSE) && (*(int64_t *)(utility_context_ptr[6] + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)) {
     iteration_index = utility_context_ptr[5];
@@ -2797,11 +2797,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = (uint64_t *)utility_context_ptr[3];
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -2809,21 +2809,21 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_NINE] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAGb) = UTILITY_FALSE;
     utility_context_ptr[UTILITY_THREAD_CONTEXT_OFFSET] = &utility_system_reserved_memory;
     utility_process_data(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_SECONDARY,utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_QUATERNARY],utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     if (utility_context_ptr[UTILITY_STATUS_INVALID_PARAMETER] != UTILITY_FALSE) {
     if (utility_context_ptr[9] != UTILITY_FALSE) {
-    if (context_storage[1] != UTILITY_FALSE) {
+    if (temp_storage[1] != UTILITY_FALSE) {
 *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET8) = &utility_system_data;
     if (*(int64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX0) != UTILITY_FALSE) {
 *(uint64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX0) = UTILITY_FALSE;
@@ -2945,7 +2945,7 @@ else {
     utility_process_data(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_SECONDARY,utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_QUATERNARY],utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     if (utility_context_ptr[UTILITY_STATUS_INVALID_PARAMETER] != UTILITY_FALSE) {
     if (utility_context_ptr[9] != UTILITY_FALSE) {
-    if (context_storage[1] != UTILITY_FALSE) {
+    if (temp_storage[1] != UTILITY_FALSE) {
 *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET8) = &utility_system_data;
     if (*(int64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX0) != UTILITY_FALSE) {
 *(uint64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX0) = UTILITY_FALSE;
@@ -3942,7 +3942,7 @@ else {
 *(uint64_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = &utility_system_reserved_memory;
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
@@ -4538,11 +4538,11 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4550,8 +4550,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = &utility_system_reserved_memory;
@@ -4578,11 +4578,11 @@ else {
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4590,13 +4590,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4604,8 +4604,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((*(int64_t *)(iteration_index + UTILITY_CONTEXT_OFFSET_AUXILIARY_HEX) != UTILITY_FALSE) && (*(int64_t *)(*(int64_t *)(iteration_index + UTILITY_CONTEXT_OFFSET_AUXILIARY_HEX) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)
 ) {
@@ -4616,11 +4616,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_RESOURCE_HANDLE_OFFSET);
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4628,8 +4628,8 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((*(int64_t *)(iteration_index + 0x310) != UTILITY_FALSE) &&
 (*(int64_t *)(*(int64_t *)(iteration_index + 0x310) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)) {
@@ -4640,11 +4640,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_SERVICE_HANDLER_OFFSET_ALT);
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4652,8 +4652,8 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((*(int64_t *)(iteration_index + 0x578) != UTILITY_FALSE) &&
 (*(int64_t *)(*(int64_t *)(iteration_index + 0x578) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)) {
@@ -4664,11 +4664,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = *(uint64_t **)(iteration_index + 0x560);
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4676,13 +4676,13 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4690,13 +4690,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4704,13 +4704,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4718,8 +4718,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((*(int64_t *)(iteration_index + UTILITY_CONTEXT_OFFSET_AUXILIARY_HEX) != UTILITY_FALSE) && (*(int64_t *)(*(int64_t *)(iteration_index + UTILITY_CONTEXT_OFFSET_AUXILIARY_HEX) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)
 ) {
@@ -4730,11 +4730,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_RESOURCE_HANDLE_OFFSET);
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4742,8 +4742,8 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((*(int64_t *)(iteration_index + 0x310) != UTILITY_FALSE) &&
 (*(int64_t *)(*(int64_t *)(iteration_index + 0x310) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)) {
@@ -4754,11 +4754,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_SERVICE_HANDLER_OFFSET_ALT);
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4766,8 +4766,8 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((*(int64_t *)(iteration_index + 0x578) != UTILITY_FALSE) &&
 (*(int64_t *)(*(int64_t *)(iteration_index + 0x578) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)) {
@@ -4778,11 +4778,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = *(uint64_t **)(iteration_index + 0x560);
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4790,13 +4790,13 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4804,13 +4804,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4818,27 +4818,27 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    if (context_storage[1] == UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    if (temp_storage[1] == UTILITY_FALSE) {
+    temp_storage[1] = UTILITY_FALSE;
 _Cnd_destroy_in_situ(utility_context_ptr + UTILITY_STATUS_MEMORY_IN_USE_VALUEa);
     utility_system_handler_scheduler();
     if (utility_context_ptr[UTILITY_OFFSET_FOURTEEN] != UTILITY_FALSE) {
 *(uint64_t *)(utility_context_ptr[UTILITY_OFFSET_FOURTEEN] + UTILITY_THREAD_HANDLE_OFFSET) = UTILITY_FALSE;
 *(uint8_t *)(utility_context_ptr[UTILITY_OFFSET_FOURTEEN] + UTILITY_POINTER_OFFSET) = UTILITY_TRUE;
-    context_storage[2] = &utility_system_reserved_memory;
-    if (*(int *)(context_storage[1] + UTILITY_POINTER_OFFSET) == UTILITY_FALSE) {
+    temp_storage[2] = &utility_system_reserved_memory;
+    if (*(int *)(temp_storage[1] + UTILITY_POINTER_OFFSET) == UTILITY_FALSE) {
 terminate();
-    if (context_storage[1] == UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    if (temp_storage[1] == UTILITY_FALSE) {
+    temp_storage[1] = UTILITY_FALSE;
 _Cnd_destroy_in_situ(utility_context_ptr + UTILITY_STATUS_MEMORY_IN_USE_VALUEa);
     utility_system_handler_scheduler();
     if (utility_context_ptr[UTILITY_OFFSET_FOURTEEN] != UTILITY_FALSE) {
 *(uint64_t *)(utility_context_ptr[UTILITY_OFFSET_FOURTEEN] + UTILITY_THREAD_HANDLE_OFFSET) = UTILITY_FALSE;
 *(uint8_t *)(utility_context_ptr[UTILITY_OFFSET_FOURTEEN] + UTILITY_POINTER_OFFSET) = UTILITY_TRUE;
-    context_storage[2] = &utility_system_reserved_memory;
-    if (*(int *)(context_storage[1] + UTILITY_POINTER_OFFSET) == UTILITY_FALSE) {
+    temp_storage[2] = &utility_system_reserved_memory;
+    if (*(int *)(temp_storage[1] + UTILITY_POINTER_OFFSET) == UTILITY_FALSE) {
 terminate();
  * 异常处理器函数1
  * 处理系统中的异常情况，确保系统稳定性
@@ -4854,44 +4854,44 @@ void utility_catch_memory_exception_handler(uint64_t resource_count,int64_t util
     utility_context_ptr[8] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 10) = UTILITY_FALSE;
     utility_context_ptr[7] = &utility_system_reserved_memory;
-    context_storage[1] = &utility_system_data;
-    if (context_storage[2] != UTILITY_FALSE) {
-    context_storage[2] = UTILITY_FALSE;
+    temp_storage[1] = &utility_system_data;
+    if (temp_storage[2] != UTILITY_FALSE) {
+    temp_storage[2] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_DEFAULT_ALLOCATION_SIZE) = UTILITY_FALSE;
-    context_storage[1] = &utility_system_reserved_memory;
+    temp_storage[1] = &utility_system_reserved_memory;
     utility_context_ptr[8] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 10) = UTILITY_FALSE;
     utility_context_ptr[7] = &utility_system_reserved_memory;
-    context_storage[1] = &utility_system_data;
-    if (context_storage[2] != UTILITY_FALSE) {
-    context_storage[2] = UTILITY_FALSE;
+    temp_storage[1] = &utility_system_data;
+    if (temp_storage[2] != UTILITY_FALSE) {
+    temp_storage[2] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_DEFAULT_ALLOCATION_SIZE) = UTILITY_FALSE;
-    context_storage[1] = &utility_system_reserved_memory;
+    temp_storage[1] = &utility_system_reserved_memory;
     utility_context_ptr[8] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 10) = UTILITY_FALSE;
     utility_context_ptr[7] = &utility_system_reserved_memory;
-    context_storage[1] = &utility_system_data;
-    if (context_storage[2] != UTILITY_FALSE) {
-    context_storage[2] = UTILITY_FALSE;
+    temp_storage[1] = &utility_system_data;
+    if (temp_storage[2] != UTILITY_FALSE) {
+    temp_storage[2] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_DEFAULT_ALLOCATION_SIZE) = UTILITY_FALSE;
-    context_storage[1] = &utility_system_reserved_memory;
-    if (context_storage[1] == UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = &utility_system_reserved_memory;
+    if (temp_storage[1] == UTILITY_FALSE) {
+    temp_storage[1] = UTILITY_FALSE;
 _Cnd_destroy_in_situ(utility_context_ptr + UTILITY_STATUS_MEMORY_IN_USE_VALUEa);
     utility_system_handler_scheduler();
     if (utility_context_ptr[UTILITY_OFFSET_FOURTEEN] != UTILITY_FALSE) {
 *(uint64_t *)(utility_context_ptr[UTILITY_OFFSET_FOURTEEN] + UTILITY_THREAD_HANDLE_OFFSET) = UTILITY_FALSE;
 *(uint8_t *)(utility_context_ptr[UTILITY_OFFSET_FOURTEEN] + UTILITY_POINTER_OFFSET) = UTILITY_TRUE;
-    context_storage[2] = &utility_system_reserved_memory;
-    if (*(int *)(context_storage[1] + UTILITY_POINTER_OFFSET) == UTILITY_FALSE) {
+    temp_storage[2] = &utility_system_reserved_memory;
+    if (*(int *)(temp_storage[1] + UTILITY_POINTER_OFFSET) == UTILITY_FALSE) {
 terminate();
     if (*(int64_t *)(utility_context_ptr + UTILITY_OFFSET_192) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_OFFSET_192) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4899,15 +4899,15 @@ terminate();
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_RESOURCE_HANDLE_OFFSET) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_RESOURCE_HANDLE_OFFSET) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4915,21 +4915,21 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_BUFFER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = &utility_system_reserved_memory;
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
     if (*(int64_t *)(utility_context_ptr + UTILITY_THREAD_DATA_OFFSET) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_THREAD_DATA_OFFSET) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4937,8 +4937,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(utility_context_ptr + UTILITY_OFFSET_192) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_SERVICE_OFFSET_D0) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_RESOURCE_FLAG_RESERVED_AREA) = &utility_system_reserved_memory;
@@ -4950,11 +4950,11 @@ else {
 *(uint32_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX0) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_VALIDATION_OFFSET) = &utility_system_reserved_memory;
     if (*(int64_t *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4962,14 +4962,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_CONTEXT_SERVICE_OFFSET) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -4977,8 +4977,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_AUDIO_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_THREAD_DATA_OFFSET_PRIMARY_HEX) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_EXTENDED_MEDIUM_HEX) = &utility_system_reserved_memory;
@@ -5005,11 +5005,11 @@ else {
 *(uint32_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED8) = &utility_system_reserved_memory;
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY8) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5017,14 +5017,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_THREAD_DATA_OFFSET8) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5032,14 +5032,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET8) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5047,14 +5047,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_CONTEXT_STACK_POINTER_OFFSET) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5062,19 +5062,19 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage[1] = UTILITY_FALSE;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
 *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX0) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_SECONDARY0) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET8) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5082,19 +5082,19 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_SERVICE_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_CONTEXT_OFFSET_AUXILIARY_HEX) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_RESOURCE_HANDLE_OFFSET) = &utility_system_reserved_memory;
 *(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_SERVICE_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_CONTEXT_OFFSET_AUXILIARY_HEX) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_RESOURCE_HANDLE_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5102,13 +5102,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5116,13 +5116,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5130,8 +5130,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(code **)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_SEVEN8) != UTILITY_NULL_PTR) {
 (**(code **)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_SEVEN8))(iteration_index + UTILITY_STATUS_ENABLED_FLAG68,0,0);
 *(void **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
@@ -5140,12 +5140,12 @@ else {
 *(void **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_status_code = UTILITY_FALSE;
-    context_storage = context_storage;
+    temp_storage = temp_storage;
     if (utility_context_ptr[9] != UTILITY_FALSE) {
 do {
-    context_storage = resource_identifier % (uint64_t)*(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET);
-    utility_status_code = (int)context_storage;
-for (utility_context_ptr = *(int **)(utility_context_ptr[7] + resource_identifier * 8); utility_context_ptr != UTILITY_NULL_PTR;
+    temp_storage = resource_id % (uint64_t)*(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET);
+    utility_status_code = (int)temp_storage;
+for (utility_context_ptr = *(int **)(utility_context_ptr[7] + resource_id * 8); utility_context_ptr != UTILITY_NULL_PTR;
     utility_context_ptr = *(int **)(utility_context_ptr + UTILITY_DEFAULT_ALLOCATION_SIZE)) {
     if (utility_status_code == *buffer_ptr) {
 if UTILITY_NULL_PTR) goto UTILITY_LABEL_EXIT_POINT;
@@ -5154,25 +5154,25 @@ break;
 *(uint32_t *)(utility_context_ptr + 9),1);
     utility_context_ptr = (int *)utility_allocate_memory(utility_system_reserved_memory,UTILITY_THREAD_CONTEXT_OFFSET,*(uint8_t *)((int64_t)utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX));
     *buffer_ptr = utility_status_code;
-    context_storage[2] = UTILITY_FALSE;
+    temp_storage[2] = UTILITY_FALSE;
     utility_context_ptr[3] = UTILITY_FALSE;
     utility_context_ptr[UTILITY_DEFAULT_ALLOCATION_SIZE] = UTILITY_FALSE;
     if ((char)utility_context_ptr != '\0') {
-    context_storage = resource_identifier % ((uint64_t)utility_context_ptr >> UTILITY_THREAD_DATA_OFFSET);
+    temp_storage = resource_id % ((uint64_t)utility_context_ptr >> UTILITY_THREAD_DATA_OFFSET);
     utility_optimize_data(utility_context_ptr + 6);
-*(uint64_t *)(utility_context_ptr + UTILITY_DEFAULT_ALLOCATION_SIZE) = *(uint64_t *)(utility_context_ptr[7] + resource_identifier * 8);
-*(int **)(utility_context_ptr[7] + resource_identifier * 8) = utility_context_ptr;
+*(uint64_t *)(utility_context_ptr + UTILITY_DEFAULT_ALLOCATION_SIZE) = *(uint64_t *)(utility_context_ptr[7] + resource_id * 8);
+*(int **)(utility_context_ptr[7] + resource_id * 8) = utility_context_ptr;
     utility_context_ptr[9] = utility_context_ptr[9] + 1;
 UTILITY_LABEL_EXIT_POINT:
     utility_context_ptr = *(int64_t **)(utility_context_ptr + 2);
-    context_storage[2] = UTILITY_FALSE;
+    temp_storage[2] = UTILITY_FALSE;
     utility_context_ptr[3] = UTILITY_FALSE;
     if (utility_context_ptr != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*buffer_ptr + UTILITY_THREAD_POINTER_OFFSET))();
-    context_storage = utility_status_code + 1;
-    context_storage = (uint64_t)context_storage;
-    context_storage = (int64_t)(int)context_storage;
-} while ((uint64_t)(int64_t)(int)resource_identifier < (uint64_t)utility_context_ptr[9]);
+    temp_storage = utility_status_code + 1;
+    temp_storage = (uint64_t)temp_storage;
+    temp_storage = (int64_t)(int)temp_storage;
+} while ((uint64_t)(int64_t)(int)resource_id < (uint64_t)utility_context_ptr[9]);
     utility_context_ptr = utility_context_ptr + 6;
     utility_validate_format(utility_context_ptr);
     utility_context_ptr = utility_context_ptr + UTILITY_STATUS_MEMORY_IN_USE_VALUEd;
@@ -5236,11 +5236,11 @@ free();
 *(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_OFFSET_DATA_PRIMARY) = &utility_system_reserved_memory;
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5248,8 +5248,8 @@ free();
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_POINTER_OFFSET) = &utility_system_reserved_memory;
@@ -5266,11 +5266,11 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_context_ptr = (uint64_t *)*buffer_ptr;
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5278,15 +5278,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_status_code = UTILITY_FALSE;
-    context_storage = context_storage;
+    temp_storage = temp_storage;
     if (utility_context_ptr[9] != UTILITY_FALSE) {
 do {
-    context_storage = resource_identifier % (uint64_t)*(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET);
-    utility_status_code = (int)context_storage;
-for (utility_context_ptr = *(int **)(utility_context_ptr[7] + resource_identifier * 8); utility_context_ptr != UTILITY_NULL_PTR;
+    temp_storage = resource_id % (uint64_t)*(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET);
+    utility_status_code = (int)temp_storage;
+for (utility_context_ptr = *(int **)(utility_context_ptr[7] + resource_id * 8); utility_context_ptr != UTILITY_NULL_PTR;
     utility_context_ptr = *(int **)(utility_context_ptr + UTILITY_DEFAULT_ALLOCATION_SIZE)) {
     if (utility_status_code == *buffer_ptr) {
 if UTILITY_NULL_PTR) goto UTILITY_LABEL_EXIT_POINT;
@@ -5295,25 +5295,25 @@ break;
 *(uint32_t *)(utility_context_ptr + 9),1);
     utility_context_ptr = (int *)utility_allocate_memory(utility_system_reserved_memory,UTILITY_THREAD_CONTEXT_OFFSET,*(uint8_t *)((int64_t)utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX));
     *buffer_ptr = utility_status_code;
-    context_storage[2] = UTILITY_FALSE;
+    temp_storage[2] = UTILITY_FALSE;
     utility_context_ptr[3] = UTILITY_FALSE;
     utility_context_ptr[UTILITY_DEFAULT_ALLOCATION_SIZE] = UTILITY_FALSE;
     if ((char)utility_context_ptr != '\0') {
-    context_storage = resource_identifier % ((uint64_t)utility_context_ptr >> UTILITY_THREAD_DATA_OFFSET);
+    temp_storage = resource_id % ((uint64_t)utility_context_ptr >> UTILITY_THREAD_DATA_OFFSET);
     utility_optimize_data(utility_context_ptr + 6);
-*(uint64_t *)(utility_context_ptr + UTILITY_DEFAULT_ALLOCATION_SIZE) = *(uint64_t *)(utility_context_ptr[7] + resource_identifier * 8);
-*(int **)(utility_context_ptr[7] + resource_identifier * 8) = utility_context_ptr;
+*(uint64_t *)(utility_context_ptr + UTILITY_DEFAULT_ALLOCATION_SIZE) = *(uint64_t *)(utility_context_ptr[7] + resource_id * 8);
+*(int **)(utility_context_ptr[7] + resource_id * 8) = utility_context_ptr;
     utility_context_ptr[9] = utility_context_ptr[9] + 1;
 UTILITY_LABEL_EXIT_POINT:
     utility_context_ptr = *(int64_t **)(utility_context_ptr + 2);
-    context_storage[2] = UTILITY_FALSE;
+    temp_storage[2] = UTILITY_FALSE;
     utility_context_ptr[3] = UTILITY_FALSE;
     if (utility_context_ptr != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*buffer_ptr + UTILITY_THREAD_POINTER_OFFSET))();
-    context_storage = utility_status_code + 1;
-    context_storage = (uint64_t)context_storage;
-    context_storage = (int64_t)(int)context_storage;
-} while ((uint64_t)(int64_t)(int)resource_identifier < (uint64_t)utility_context_ptr[9]);
+    temp_storage = utility_status_code + 1;
+    temp_storage = (uint64_t)temp_storage;
+    temp_storage = (int64_t)(int)temp_storage;
+} while ((uint64_t)(int64_t)(int)resource_id < (uint64_t)utility_context_ptr[9]);
     utility_context_ptr = utility_context_ptr + 6;
     utility_validate_format(utility_context_ptr);
     utility_context_ptr = utility_context_ptr + UTILITY_STATUS_MEMORY_IN_USE_VALUEd;
@@ -5350,7 +5350,7 @@ free();
     if ((code *)utility_context_ptr[3] != UTILITY_NULL_PTR) {
 (*(code *)utility_context_ptr[3])(utility_context_ptr + 1,0,0);
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
     if (*buffer_ptr != UTILITY_FALSE) {
@@ -5384,11 +5384,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET);
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5396,14 +5396,14 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_STATUS_OFFSET0);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_STATUS_OFFSET0);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_STATUS_OFFSET8) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + 0x338) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + 0x338) != UTILITY_FALSE)) {
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((utility_context_ptr[6] != UTILITY_FALSE) && (*(int64_t *)(utility_context_ptr[6] + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)) {
     iteration_index = utility_context_ptr[5];
@@ -5413,11 +5413,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = (uint64_t *)utility_context_ptr[3];
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5425,32 +5425,32 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((*(int64_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) != UTILITY_FALSE) && (*(int64_t *)(*(int64_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)
 ) {
@@ -5461,11 +5461,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET);
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5473,26 +5473,26 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_STATUS_OFFSET0);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_STATUS_OFFSET0);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_STATUS_OFFSET8) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + 0x338) != UTILITY_FALSE)) {
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + 0x338) != UTILITY_FALSE)) {
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((utility_context_ptr[6] != UTILITY_FALSE) && (*(int64_t *)(utility_context_ptr[6] + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)) {
     iteration_index = utility_context_ptr[5];
@@ -5502,11 +5502,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = (uint64_t *)utility_context_ptr[3];
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5514,8 +5514,8 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(code **)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_EIGHT) != UTILITY_NULL_PTR) {
 (**(code **)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_EIGHT))(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED8,0,0);
 *(void **)(utility_context_ptr + UTILITY_MEMORY_POINTER_OFFSET_BASE) = &utility_system_reserved_memory;
@@ -5543,11 +5543,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_MEDIUM_VALUE);
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5555,8 +5555,8 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
@@ -5568,11 +5568,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = (uint64_t *)utility_context_ptr[3];
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5580,8 +5580,8 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((utility_context_ptr[6] != UTILITY_FALSE) && (*(int64_t *)(utility_context_ptr[6] + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)) {
     iteration_index = utility_context_ptr[5];
@@ -5591,11 +5591,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = (uint64_t *)utility_context_ptr[3];
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5603,8 +5603,8 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((*(int64_t *)(iteration_index + UTILITY_CONTEXT_VALIDATION_OFFSET) != UTILITY_FALSE) && (*(int64_t *)(*(int64_t *)(iteration_index + UTILITY_CONTEXT_VALIDATION_OFFSET) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)
@@ -5616,11 +5616,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_MEDIUM_VALUE);
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5628,8 +5628,8 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
 (**(code **)*buffer_ptr)(utility_context_ptr,0);
     if ((utility_context_ptr[6] != UTILITY_FALSE) && (*(int64_t *)(utility_context_ptr[6] + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE)) {
@@ -5640,11 +5640,11 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != '\0') {
     utility_context_ptr = (uint64_t *)utility_context_ptr[3];
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5652,14 +5652,14 @@ while (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5667,13 +5667,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5681,13 +5681,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5695,13 +5695,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5709,18 +5709,18 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(utility_context_ptr + UTILITY_RESOURCE_FLAG_RESERVED_AREA) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 200) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY) = &utility_system_reserved_memory;
     if (*(int64_t *)(utility_context_ptr + UTILITY_MEMORY_POINTER_OFFSET_MEDIUM_VALUE) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_MEMORY_POINTER_OFFSET_MEDIUM_VALUE) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5728,8 +5728,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(utility_context_ptr + UTILITY_MEMORY_POINTER_OFFSET2) = UTILITY_FALSE;
     if (*(int64_t *)(utility_context_ptr + UTILITY_MEMORY_POINTER_OFFSET_SMALL) != UTILITY_FALSE) {
 *(uint64_t *)(utility_context_ptr + UTILITY_MEMORY_POINTER_OFFSET_SMALL) = UTILITY_FALSE;
@@ -5749,8 +5749,8 @@ else {
 *(uint64_t *)((int64_t)utility_context_ptr + UTILITY_STATUS_ENABLED_FLAGa) = UTILITY_FALSE;
     if (*buffer_ptr != UTILITY_FALSE) {
     *buffer_ptr = UTILITY_FALSE;
-    if (context_storage[1] != UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    if (temp_storage[1] != UTILITY_FALSE) {
+    temp_storage[1] = UTILITY_FALSE;
     utility_context_ptr = (int64_t *)((int64_t)utility_context_ptr + UTILITY_CONTEXT_RESOURCE_OFFSET);
 *(int64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_MASK_PRIMARY) = UTILITY_FALSE;
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_MASK_8_BIT) != UTILITY_FALSE) {
@@ -5764,8 +5764,8 @@ else {
 *(uint64_t *)((int64_t)utility_context_ptr + UTILITY_STATUS_ENABLED_FLAGa) = UTILITY_FALSE;
     if (*buffer_ptr != UTILITY_FALSE) {
     *buffer_ptr = UTILITY_FALSE;
-    if (context_storage[1] != UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    if (temp_storage[1] != UTILITY_FALSE) {
+    temp_storage[1] = UTILITY_FALSE;
     utility_context_ptr = (int64_t *)((int64_t)utility_context_ptr + UTILITY_CONTEXT_RESOURCE_OFFSET);
     if (*(int64_t *)((int64_t)utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_SECONDARY) != UTILITY_FALSE) {
 *(uint64_t *)((int64_t)utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_SECONDARY) = UTILITY_FALSE;
@@ -5773,8 +5773,8 @@ else {
 *(uint64_t *)((int64_t)utility_context_ptr + UTILITY_STATUS_ENABLED_FLAGa) = UTILITY_FALSE;
     if (*buffer_ptr != UTILITY_FALSE) {
     *buffer_ptr = UTILITY_FALSE;
-    if (context_storage[1] != UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    if (temp_storage[1] != UTILITY_FALSE) {
+    temp_storage[1] = UTILITY_FALSE;
     utility_context_ptr = (int64_t *)((int64_t)utility_context_ptr + UTILITY_CONTEXT_RESOURCE_OFFSET);
 *(int64_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) = UTILITY_FALSE;
     if (*(int64_t *)(iteration_index + UTILITY_THREAD_BUFFER_OFFSET) != UTILITY_FALSE) {
@@ -5788,8 +5788,8 @@ else {
 *(uint64_t *)((int64_t)utility_context_ptr + UTILITY_STATUS_ENABLED_FLAGa) = UTILITY_FALSE;
     if (*buffer_ptr != UTILITY_FALSE) {
     *buffer_ptr = UTILITY_FALSE;
-    if (context_storage[1] != UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    if (temp_storage[1] != UTILITY_FALSE) {
+    temp_storage[1] = UTILITY_FALSE;
     utility_context_ptr = (int64_t *)((int64_t)utility_context_ptr + UTILITY_CONTEXT_RESOURCE_OFFSET);
     if (*(int64_t *)((int64_t)utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_SECONDARY) != UTILITY_FALSE) {
 *(uint64_t *)((int64_t)utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_SECONDARY) = UTILITY_FALSE;
@@ -5797,24 +5797,24 @@ else {
 *(uint64_t *)((int64_t)utility_context_ptr + UTILITY_STATUS_ENABLED_FLAGa) = UTILITY_FALSE;
     if (*buffer_ptr != UTILITY_FALSE) {
     *buffer_ptr = UTILITY_FALSE;
-    if (context_storage[1] != UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    if (temp_storage[1] != UTILITY_FALSE) {
+    temp_storage[1] = UTILITY_FALSE;
     utility_context_ptr = (int64_t *)((int64_t)utility_context_ptr + UTILITY_CONTEXT_RESOURCE_OFFSET);
     *buffer_ptr = UTILITY_FALSE;
-    if (context_storage[1] != UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    if (temp_storage[1] != UTILITY_FALSE) {
+    temp_storage[1] = UTILITY_FALSE;
 *(int64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_SECONDARY) = UTILITY_FALSE;
     if (*(int64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAGa) != UTILITY_FALSE) {
 *(uint64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAGa) = UTILITY_FALSE;
     *buffer_ptr = UTILITY_FALSE;
-    if (context_storage[1] != UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    if (temp_storage[1] != UTILITY_FALSE) {
+    temp_storage[1] = UTILITY_FALSE;
 *(int64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_SECONDARY) = UTILITY_FALSE;
     if (*(int64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAGa) != UTILITY_FALSE) {
 *(uint64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAGa) = UTILITY_FALSE;
     *buffer_ptr = UTILITY_FALSE;
-    if (context_storage[1] != UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    if (temp_storage[1] != UTILITY_FALSE) {
+    temp_storage[1] = UTILITY_FALSE;
 *(int64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_SECONDARY) = UTILITY_FALSE;
     if (*(int64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAGa) != UTILITY_FALSE) {
 *(uint64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAGa) = UTILITY_FALSE;
@@ -5848,19 +5848,19 @@ else {
     utility_context_ptr = *(int64_t **)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET);
     if (utility_context_ptr != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*buffer_ptr + UTILITY_THREAD_POINTER_OFFSET))();
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
     if (*(int64_t *)(utility_context_ptr + UTILITY_MEMORY_POINTER_OFFSET8) != UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
     if (*(int64_t *)(utility_context_ptr + UTILITY_MEMORY_POINTER_OFFSET8) != UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5868,9 +5868,9 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage[1] = UTILITY_FALSE;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
     if (*buffer_ptr != UTILITY_FALSE) {
@@ -5882,11 +5882,11 @@ else {
     utility_context_ptr = *(int64_t **)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
     if (utility_context_ptr != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*buffer_ptr + UTILITY_THREAD_POINTER_OFFSET))();
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5894,13 +5894,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5908,16 +5908,16 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_network_boolean_flag = (uint8_t)utility_system_reserved_memory & 0x3f;
 (*(code *)((utility_system_reserved_memory ^ utility_system_reserved_memory) >> utility_network_boolean_flag |
 (utility_system_reserved_memory ^ utility_system_reserved_memory) << UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE - utility_network_boolean_flag))(UTILITY_THREAD_CONTEXT_OFFSET_PRIMARYc82238);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5925,15 +5925,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_CONTEXT_VALIDATION_OFFSET) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_INVALID_PARAMETER8) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5941,13 +5941,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5955,13 +5955,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5969,14 +5969,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5984,13 +5984,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -5998,14 +5998,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_CONTEXT_VALIDATION_OFFSET) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6013,13 +6013,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6027,13 +6027,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6041,14 +6041,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_INVALID_PARAMETER8) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6056,13 +6056,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6070,13 +6070,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6084,13 +6084,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6098,13 +6098,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6112,13 +6112,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6126,13 +6126,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6140,13 +6140,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6154,14 +6154,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6169,8 +6169,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_context_ptr = *(int64_t **)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
@@ -6198,11 +6198,11 @@ else {
 (utility_system_reserved_memory ^ utility_system_reserved_memory) << UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE - utility_network_boolean_flag))(UTILITY_THREAD_CONTEXT_OFFSET_PRIMARYc82238);
 *(uint64_t *)(iteration_index + UTILITY_RESOURCE_FLAG_RESERVED_AREA) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_RESOURCE_FLAG_RESERVED_AREA) = UTILITY_FALSE;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6210,13 +6210,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6224,13 +6224,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6238,19 +6238,19 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_context_ptr = *(int64_t **)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
     if (utility_context_ptr != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*buffer_ptr + UTILITY_THREAD_POINTER_OFFSET))();
     utility_context_ptr = *(int64_t **)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
     if (utility_context_ptr != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*buffer_ptr + UTILITY_THREAD_POINTER_OFFSET))();
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6258,13 +6258,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6272,13 +6272,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6286,8 +6286,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
@@ -6311,11 +6311,11 @@ else {
     *buffer_ptr = &utility_system_reserved_memory;
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6323,15 +6323,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = UTILITY_FALSE;
@@ -6346,11 +6346,11 @@ else {
     utility_format_string(iteration_index + UTILITY_STATUS_FLAG_MASK_8_BIT);
     if ((1 < *(uint64_t *)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET8)) &&
 (utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_BASE), utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR)) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6358,13 +6358,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6372,15 +6372,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint32_t *)(utility_context_ptr + UTILITY_DEFAULT_ALLOCATION_SIZE) = UTILITY_FALSE;
     utility_context_ptr[3] = UTILITY_FALSE;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6388,8 +6388,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(code **)(utility_context_ptr + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX) != UTILITY_NULL_PTR) {
 (**(code **)(utility_context_ptr + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX))(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_ZERO,0,0);
     if (*(code **)(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED0) != UTILITY_NULL_PTR) {
@@ -6398,11 +6398,11 @@ else {
 (**(code **)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET0))(utility_context_ptr + UTILITY_BLOCK_SIZE_LARGE,0,0);
     if (*(code **)(utility_context_ptr + UTILITY_CONTEXT_VALIDATION_OFFSET) != UTILITY_NULL_PTR) {
 (**(code **)(utility_context_ptr + UTILITY_CONTEXT_VALIDATION_OFFSET))(utility_context_ptr + UTILITY_CONTEXT_OFFSET_STACK_SMALL0,0,0);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6410,13 +6410,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6424,22 +6424,22 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
 *(uint64_t *)(utility_context_ptr + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_THREAD_BUFFER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = &utility_system_reserved_memory;
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6447,17 +6447,17 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(code **)(utility_context_ptr + UTILITY_STATUS_FLAG_AUDIO_OFFSET) != UTILITY_NULL_PTR) {
 (**(code **)(utility_context_ptr + UTILITY_STATUS_FLAG_AUDIO_OFFSET))(utility_context_ptr + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX,0,0);
     if (*(code **)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_ZERO) != UTILITY_NULL_PTR) {
 (**(code **)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_ZERO))(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED0,0,0);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6465,13 +6465,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6479,13 +6479,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG68) == UTILITY_FALSE) {
 *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED8) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_EIGHT) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED0) = &utility_system_reserved_memory;
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
     if (*(code **)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_THREE0) != UTILITY_NULL_PTR) {
@@ -6493,11 +6493,11 @@ else {
     if (*(code **)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX0) != UTILITY_NULL_PTR) {
 (**(code **)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX0))(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET_PRIMARY,0,0);
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG68) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6505,14 +6505,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6520,13 +6520,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6534,13 +6534,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6548,13 +6548,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6562,13 +6562,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6576,8 +6576,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(code **)(utility_context_ptr + UTILITY_STATUS_FLAG_EXTENDED_MEDIUM_HEX) != UTILITY_NULL_PTR) {
 (**(code **)(utility_context_ptr + UTILITY_STATUS_FLAG_EXTENDED_MEDIUM_HEX))(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_EIGHT,0,0);
 *(void **)(utility_context_ptr + UTILITY_RESOURCE_HANDLE_OFFSET) = &utility_system_reserved_memory;
@@ -6588,11 +6588,11 @@ else {
 *(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_OFFSET_AUXILIARY_HEX) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_RESOURCE_FLAG_RESERVED_AREA) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_RESOURCE_FLAG_A0) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6600,13 +6600,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6614,8 +6614,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_network_boolean_flag = (uint8_t)utility_system_reserved_memory & 0x3f;
 (*(code *)((utility_system_reserved_memory ^ utility_system_reserved_memory) >> utility_network_boolean_flag |
 (utility_system_reserved_memory ^ utility_system_reserved_memory) << UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE - utility_network_boolean_flag))(UTILITY_THREAD_CONTEXT_OFFSET_PRIMARYc82238);
@@ -6627,7 +6627,7 @@ else {
  *  * @return 无返回值
  */
 void utility_catch_network_connection_handler(uint64_t resource_count,int64_t utility_context_ptr)
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
  * 网络处理器2
@@ -6639,11 +6639,11 @@ void utility_catch_network_connection_handler(uint64_t resource_count,int64_t ut
  */
 void utility_catch_network_timeout_handler(uint64_t resource_count,int64_t utility_context_ptr)
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6651,22 +6651,22 @@ void utility_catch_network_timeout_handler(uint64_t resource_count,int64_t utili
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t **)(iteration_index + UTILITY_STATUS_ENABLED_FLAG5d0) != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(**(int64_t **)(iteration_index + UTILITY_STATUS_ENABLED_FLAG5d0) + UTILITY_THREAD_POINTER_OFFSET))();
-    utility_system_context_scheduler(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_MEDIUM,UTILITY_THREAD_DATA_OFFSET,UTILITY_THREAD_SIZE_OFFSET,utility_system_external_processor,context_storage);
+    utility_system_context_scheduler(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_MEDIUM,UTILITY_THREAD_DATA_OFFSET,UTILITY_THREAD_SIZE_OFFSET,utility_system_external_processor,temp_storage);
     utility_system_context_scheduler(iteration_index + UTILITY_MEMORY_POINTER_OFFSETb8,8,UTILITY_DEFAULT_ALLOCATION_SIZE,utility_resource_loader_callback);
     utility_context_ptr = *(int64_t **)(iteration_index + UTILITY_MEMORY_POINTER_OFFSETb0);
     if (utility_context_ptr != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*buffer_ptr + UTILITY_THREAD_POINTER_OFFSET))();
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6674,14 +6674,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG60) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6689,13 +6689,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6703,14 +6703,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG60) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6718,8 +6718,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = &utility_system_reserved_memory;
@@ -6734,11 +6734,11 @@ else {
     utility_context_ptr = *(int64_t **)(utility_context_ptr + UTILITY_STATUS_FLAG_MASK_PRIMARY);
     if (utility_context_ptr != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*buffer_ptr + UTILITY_THREAD_POINTER_OFFSET))();
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6746,13 +6746,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6760,13 +6760,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6774,13 +6774,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6788,13 +6788,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6802,13 +6802,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6816,13 +6816,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6830,13 +6830,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6844,13 +6844,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6858,13 +6858,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6872,13 +6872,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6886,16 +6886,16 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6903,8 +6903,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_OFFSET_AUXILIARY_HEX) = &utility_system_data;
     if (*(int64_t *)(utility_context_ptr + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY) != UTILITY_FALSE) {
 *(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY) = UTILITY_FALSE;
@@ -6938,17 +6938,17 @@ else {
     utility_network_boolean_flag = (uint8_t)utility_system_reserved_memory & 0x3f;
 (*(code *)((utility_system_reserved_memory ^ utility_system_reserved_memory) >> utility_network_boolean_flag |
 (utility_system_reserved_memory ^ utility_system_reserved_memory) << UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE - utility_network_boolean_flag))(UTILITY_THREAD_CONTEXT_OFFSET_PRIMARYc82238);
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6956,13 +6956,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6970,13 +6970,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6984,13 +6984,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -6998,13 +6998,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7012,13 +7012,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7026,8 +7026,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = &utility_system_reserved_memory;
@@ -7059,11 +7059,11 @@ void * utility_catch_buffer_manager_handler(uint64_t resource_count,int64_t util
     if (*(char *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET_EXTENDED) != '\0') {
     utility_serialize_data(utility_context_ptr);
 __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_ptr);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7071,8 +7071,8 @@ __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_ptr);
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_deserialize_data();
     if (*(int64_t **)(iteration_index + UTILITY_STATUS_THREAD_CREATEDd0) != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(**(int64_t **)(iteration_index + UTILITY_STATUS_THREAD_CREATEDd0) + UTILITY_THREAD_POINTER_OFFSET))();
@@ -7100,11 +7100,11 @@ else {
 (**(code **)(**(int64_t **)(iteration_index + UTILITY_STATUS_THREAD_CREATED78) + UTILITY_THREAD_POINTER_OFFSET))();
     if (*(int64_t **)(iteration_index + UTILITY_STATUS_THREAD_CREATED70) != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(**(int64_t **)(iteration_index + UTILITY_STATUS_THREAD_CREATED70) + UTILITY_THREAD_POINTER_OFFSET))();
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7112,15 +7112,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_context_ptr = (uint64_t *)*buffer_ptr;
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7128,15 +7128,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_context_ptr = (uint64_t *)*buffer_ptr;
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7144,15 +7144,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_context_ptr = (uint64_t *)*buffer_ptr;
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7160,14 +7160,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_status_code = UTILITY_FALSE;
     utility_context_ptr = utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET12;
     iteration_index = *buffer_ptr;
     if (utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET13] - iteration_index >> 3 != UTILITY_FALSE) {
 do {
-    utility_context_ptr = *(uint64_t **)(resource_identifier * 8 + iteration_index);
+    utility_context_ptr = *(uint64_t **)(resource_id * 8 + iteration_index);
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
     if ((int64_t *)utility_context_ptr[UTILITY_STATUS_INVALID_PARAMETER] != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*(int64_t *)utility_context_ptr[UTILITY_STATUS_INVALID_PARAMETER] + UTILITY_THREAD_HANDLE_OFFSET))();
@@ -7185,10 +7185,10 @@ do {
 (**(code **)(*(int64_t *)utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX] + UTILITY_THREAD_HANDLE_OFFSET))();
     utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX] = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
-*(uint64_t *)(resource_identifier * 8 + *buffer_ptr) = UTILITY_FALSE;
-    context_storage = (uint64_t)((int)resource_identifier + 1);
+*(uint64_t *)(resource_id * 8 + *buffer_ptr) = UTILITY_FALSE;
+    temp_storage = (uint64_t)((int)resource_id + 1);
     iteration_index = *buffer_ptr;
-} while (resource_identifier < (uint64_t)(utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET13] - iteration_index >> 3));
+} while (resource_id < (uint64_t)(utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET13] - iteration_index >> 3));
     utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET13] = iteration_index;
     utility_context_ptr = (uint64_t *)utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET_EXTENDED3];
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
@@ -7208,7 +7208,7 @@ for (iteration_index = utility_context_ptr[0xff9]; iteration_index != iteration_
     iteration_index = *buffer_ptr;
     if (utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET13] - iteration_index >> 3 != UTILITY_FALSE) {
 do {
-    utility_context_ptr = *(uint64_t **)(resource_identifier * 8 + iteration_index);
+    utility_context_ptr = *(uint64_t **)(resource_id * 8 + iteration_index);
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
     if ((int64_t *)utility_context_ptr[UTILITY_STATUS_INVALID_PARAMETER] != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*(int64_t *)utility_context_ptr[UTILITY_STATUS_INVALID_PARAMETER] + UTILITY_THREAD_HANDLE_OFFSET))();
@@ -7226,10 +7226,10 @@ do {
 (**(code **)(*(int64_t *)utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX] + UTILITY_THREAD_HANDLE_OFFSET))();
     utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX] = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
-*(uint64_t *)(resource_identifier * 8 + *buffer_ptr) = UTILITY_FALSE;
-    context_storage = (uint64_t)((int)resource_identifier + 1);
+*(uint64_t *)(resource_id * 8 + *buffer_ptr) = UTILITY_FALSE;
+    temp_storage = (uint64_t)((int)resource_id + 1);
     iteration_index = *buffer_ptr;
-} while (resource_identifier < (uint64_t)(utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET13] - iteration_index >> 3));
+} while (resource_id < (uint64_t)(utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET13] - iteration_index >> 3));
     utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET13] = iteration_index;
     utility_context_ptr = (uint64_t *)utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET_EXTENDED3];
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
@@ -7257,10 +7257,10 @@ for (iteration_index = utility_context_ptr[0xff9]; iteration_index != iteration_
 (**(code **)(*(int64_t *)utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX] + UTILITY_THREAD_HANDLE_OFFSET))();
     utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX] = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
-*(uint64_t *)(resource_identifier * 8 + *buffer_ptr) = UTILITY_FALSE;
-    context_storage = (uint64_t)((int)resource_identifier + 1);
+*(uint64_t *)(resource_id * 8 + *buffer_ptr) = UTILITY_FALSE;
+    temp_storage = (uint64_t)((int)resource_id + 1);
     iteration_index = *buffer_ptr;
-} while (resource_identifier < (uint64_t)(*(int64_t *)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_BASE98) - iteration_index >> 3));
+} while (resource_id < (uint64_t)(*(int64_t *)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_BASE98) - iteration_index >> 3));
 *(int64_t *)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_BASE98) = iteration_index;
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET218);
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
@@ -7304,11 +7304,11 @@ for (iteration_index = *(int64_t *)(iteration_index + UTILITY_STATUS_FLAG_MASK_F
 *(uint32_t *)(utility_context_ptr + UTILITY_CONTEXT_OFFSET_308) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_SERVICE_HANDLER_OFFSET_TERTIARY_VALUE) = &utility_system_reserved_memory;
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAGb8) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7316,13 +7316,13 @@ for (iteration_index = *(int64_t *)(iteration_index + UTILITY_STATUS_FLAG_MASK_F
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7330,13 +7330,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7344,13 +7344,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7358,13 +7358,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7372,14 +7372,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_status_code = UTILITY_FALSE;
     utility_context_ptr = utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET12;
     iteration_index = *buffer_ptr;
     if (utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET13] - iteration_index >> 3 != UTILITY_FALSE) {
 do {
-    utility_context_ptr = *(uint64_t **)(resource_identifier * 8 + iteration_index);
+    utility_context_ptr = *(uint64_t **)(resource_id * 8 + iteration_index);
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
     if ((int64_t *)utility_context_ptr[UTILITY_STATUS_INVALID_PARAMETER] != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*(int64_t *)utility_context_ptr[UTILITY_STATUS_INVALID_PARAMETER] + UTILITY_THREAD_HANDLE_OFFSET))();
@@ -7397,10 +7397,10 @@ do {
 (**(code **)(*(int64_t *)utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX] + UTILITY_THREAD_HANDLE_OFFSET))();
     utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX] = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
-*(uint64_t *)(resource_identifier * 8 + *buffer_ptr) = UTILITY_FALSE;
-    context_storage = (uint64_t)((int)resource_identifier + 1);
+*(uint64_t *)(resource_id * 8 + *buffer_ptr) = UTILITY_FALSE;
+    temp_storage = (uint64_t)((int)resource_id + 1);
     iteration_index = *buffer_ptr;
-} while (resource_identifier < (uint64_t)(utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET13] - iteration_index >> 3));
+} while (resource_id < (uint64_t)(utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET13] - iteration_index >> 3));
     utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET13] = iteration_index;
     utility_context_ptr = (uint64_t *)utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET_EXTENDED3];
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
@@ -7428,10 +7428,10 @@ for (iteration_index = utility_context_ptr[0xff9]; iteration_index != iteration_
 (**(code **)(*(int64_t *)utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX] + UTILITY_THREAD_HANDLE_OFFSET))();
     utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX] = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
-*(uint64_t *)(resource_identifier * 8 + *buffer_ptr) = UTILITY_FALSE;
-    context_storage = (uint64_t)((int)resource_identifier + 1);
+*(uint64_t *)(resource_id * 8 + *buffer_ptr) = UTILITY_FALSE;
+    temp_storage = (uint64_t)((int)resource_id + 1);
     iteration_index = *buffer_ptr;
-} while (resource_identifier < (uint64_t)(*(int64_t *)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_BASE98) - iteration_index >> 3));
+} while (resource_id < (uint64_t)(*(int64_t *)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_BASE98) - iteration_index >> 3));
 *(int64_t *)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_BASE98) = iteration_index;
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET218);
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
@@ -7458,11 +7458,11 @@ for (iteration_index = *(int64_t *)(iteration_index + UTILITY_STATUS_FLAG_MASK_F
 *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_POINTER_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7470,13 +7470,13 @@ for (iteration_index = *(int64_t *)(iteration_index + UTILITY_STATUS_FLAG_MASK_F
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7484,13 +7484,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7498,13 +7498,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7512,13 +7512,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7526,8 +7526,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + 0x568) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + 0x578) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + 0x560) = &utility_system_reserved_memory;
@@ -7538,11 +7538,11 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY0);
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7550,8 +7550,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
 *(uint64_t *)(iteration_index + 0x568) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + 0x578) = UTILITY_FALSE;
@@ -7563,11 +7563,11 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY0);
     if (utility_context_ptr != (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7575,15 +7575,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7591,13 +7591,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7605,16 +7605,16 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_network_boolean_flag = (uint8_t)utility_system_reserved_memory & 0x3f;
 (*(code *)((utility_system_reserved_memory ^ utility_system_reserved_memory) >> utility_network_boolean_flag |
 (utility_system_reserved_memory ^ utility_system_reserved_memory) << UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE - utility_network_boolean_flag))(UTILITY_THREAD_CONTEXT_OFFSET_PRIMARYc82238);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7622,13 +7622,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7636,23 +7636,23 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET) = &utility_system_data;
     if (*(int64_t *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) != UTILITY_FALSE) {
 *(uint64_t *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET) = &utility_system_reserved_memory;
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
     if (*(int64_t *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7660,13 +7660,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7674,8 +7674,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
@@ -7688,79 +7688,79 @@ else {
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
     if (*buffer_ptr == UTILITY_FALSE) {
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(utility_context_ptr + UTILITY_RESOURCE_FLAG_A0) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_SERVICE_OFFSET) = &utility_system_reserved_memory;
     utility_system_initialize(iteration_index);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_SERVICE_HANDLER_OFFSET_PRIMARY_VALUE);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_SERVICE_HANDLER_OFFSET_PRIMARY_VALUE);
 *(uint64_t *)(iteration_index + UTILITY_STATUS_MEMORY_IN_USE_VALUEb8) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_STATUS_MEMORY_IN_USE_VALUEa8) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_STATUS_MEMORY_IN_USE_VALUEa8) != UTILITY_FALSE)) {
     utility_system_initialize(iteration_index);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
     utility_system_initialize(iteration_index);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
     utility_system_initialize(iteration_index);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
     utility_system_initialize(iteration_index);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
     utility_system_initialize(iteration_index);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_SERVICE_HANDLER_OFFSET_PRIMARY_VALUE);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_SERVICE_HANDLER_OFFSET_PRIMARY_VALUE);
 *(uint64_t *)(iteration_index + UTILITY_STATUS_MEMORY_IN_USE_VALUEb8) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_STATUS_MEMORY_IN_USE_VALUEa8) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_STATUS_MEMORY_IN_USE_VALUEa8) != UTILITY_FALSE)) {
     utility_system_initialize(iteration_index);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
     utility_system_initialize(iteration_index);
-*(uint64_t *)(iteration_index + resource_identifier * 8) = UTILITY_FALSE;
-    context_storage = resource_identifier + 1;
-} while (resource_identifier < context_storage);
-    context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
+*(uint64_t *)(iteration_index + resource_id * 8) = UTILITY_FALSE;
+    temp_storage = resource_id + 1;
+} while (resource_id < temp_storage);
+    temp_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET) = UTILITY_FALSE;
-    if ((1 < context_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    if ((1 < temp_storage) && (*(int64_t *)(iteration_index + UTILITY_POINTER_OFFSET) != UTILITY_FALSE)) {
 *(int64_t *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_THREAD_BUFFER_OFFSET) = UTILITY_FALSE;
 *(uint8_t *)(utility_context_ptr + UTILITY_THREAD_SIZE_OFFSET) = UTILITY_FALSE;
@@ -7793,11 +7793,11 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_THREAD_SIZE_OFFSET) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_THREAD_SIZE_OFFSET) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7805,8 +7805,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_data;
     if (*(int64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) != UTILITY_FALSE) {
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
@@ -7817,11 +7817,11 @@ else {
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7829,19 +7829,19 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(char *)(iteration_index + -UTILITY_CONTEXT_RESOURCE_OFFSET_VALUE) != '\0') {
     utility_serialize_data(utility_context_ptr);
 __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_ptr);
     if (*(char *)(iteration_index + -UTILITY_CONTEXT_RESOURCE_OFFSET_VALUE) != '\0') {
     utility_serialize_data(utility_context_ptr);
 __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_ptr);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7849,13 +7849,13 @@ __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_ptr);
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7863,13 +7863,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7877,19 +7877,19 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = &utility_system_reserved_memory;
     if (*(char *)(iteration_index + UTILITY_CONTEXT_OFFSET_DATA_SECONDARY) != '\0') {
     utility_serialize_data(utility_context_ptr);
 __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_ptr);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7897,13 +7897,13 @@ __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_ptr);
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7911,8 +7911,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_context_ptr = *(int64_t **)(*(int64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_MASK_PRIMARY) + UTILITY_STATUS_ENABLED_FLAGb8);
     if (utility_context_ptr != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*buffer_ptr + UTILITY_THREAD_POINTER_OFFSET))();
@@ -7950,11 +7950,11 @@ break;
 *(uint64_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -7962,8 +7962,8 @@ break;
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     iteration_index = (int64_t)*(int *)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_BASE88) * UTILITY_THREAD_DATA_OFFSET;
     iteration_index = *(int64_t *)(iteration_index + 200 + iteration_index + UTILITY_STATUS_FLAG_MASK_FIFTEEN20);
     utility_status_code = (int)(*(int64_t *)(iteration_index + UTILITY_SERVICE_OFFSET_D0 + iteration_index + UTILITY_STATUS_FLAG_MASK_FIFTEEN20) - iteration_index >> 3) + -1;
@@ -8062,11 +8062,11 @@ break;
     iteration_index = iteration_index + -1;
 } while (-1 < iteration_index);
 *(void **)(utility_context_ptr + UTILITY_CONTEXT_DATA_OFFSET0) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8074,13 +8074,13 @@ break;
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8088,8 +8088,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG50) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG60) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY8) = &utility_system_reserved_memory;
@@ -8359,11 +8359,11 @@ break;
 *(uint64_t *)(utility_context_ptr + 0x3c0) = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + UTILITY_CHARACTER_COMPARE_LIMIT_10) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_CHARACTER_COMPARE_LIMIT_28) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8371,13 +8371,13 @@ break;
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8385,13 +8385,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8399,13 +8399,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8413,13 +8413,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8427,13 +8427,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8441,13 +8441,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8455,13 +8455,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8469,13 +8469,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8483,13 +8483,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8497,13 +8497,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8511,13 +8511,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8525,13 +8525,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8539,13 +8539,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8553,13 +8553,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8567,13 +8567,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8581,13 +8581,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8595,13 +8595,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8609,13 +8609,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8623,13 +8623,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8637,13 +8637,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8651,13 +8651,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8665,13 +8665,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8679,13 +8679,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8693,13 +8693,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8707,13 +8707,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8721,13 +8721,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8735,13 +8735,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8749,13 +8749,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8763,13 +8763,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8777,13 +8777,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8791,13 +8791,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8805,13 +8805,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8819,13 +8819,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8833,13 +8833,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8847,13 +8847,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8861,13 +8861,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8875,13 +8875,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8889,13 +8889,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8903,13 +8903,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8917,13 +8917,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8931,13 +8931,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8945,13 +8945,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8959,13 +8959,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8973,13 +8973,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -8987,13 +8987,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9001,13 +9001,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9015,13 +9015,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9029,13 +9029,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9043,13 +9043,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9057,13 +9057,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9071,13 +9071,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9085,13 +9085,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9099,13 +9099,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9113,13 +9113,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9127,13 +9127,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9141,13 +9141,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9155,13 +9155,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9169,13 +9169,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9183,13 +9183,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9197,13 +9197,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9211,13 +9211,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9225,13 +9225,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9239,13 +9239,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9253,13 +9253,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9267,13 +9267,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9281,13 +9281,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9295,13 +9295,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9309,13 +9309,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9323,13 +9323,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9337,13 +9337,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9351,13 +9351,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9365,13 +9365,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9379,13 +9379,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9393,13 +9393,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9407,8 +9407,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = &utility_system_data;
     if (*(int64_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) != UTILITY_FALSE) {
 *(uint64_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = UTILITY_FALSE;
@@ -9437,12 +9437,12 @@ else {
 *(uint32_t *)(utility_context_ptr + UTILITY_RESOURCE_FLAG_A0) = UTILITY_FALSE;
 *(uint64_t *)(utility_context_ptr + UTILITY_MEMORY_POINTER_OFFSET8) = &utility_system_reserved_memory;
     if (*buffer_ptr == UTILITY_FALSE) {
-    utility_system_context_scheduler(iteration_index + UTILITY_CACHE_OFFSET,8,2,utility_resource_loader_callback,context_storage);
+    utility_system_context_scheduler(iteration_index + UTILITY_CACHE_OFFSET,8,2,utility_resource_loader_callback,temp_storage);
     if (*(int64_t **)(iteration_index + UTILITY_USER_DATA_OFFSET) != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(**(int64_t **)(iteration_index + UTILITY_USER_DATA_OFFSET) + UTILITY_THREAD_POINTER_OFFSET))();
     if (*(int64_t **)(iteration_index + UTILITY_CONFIG_STORAGE_OFFSET) != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(**(int64_t **)(iteration_index + UTILITY_CONFIG_STORAGE_OFFSET) + UTILITY_THREAD_POINTER_OFFSET))();
-    utility_system_context_scheduler(iteration_index + 0xea0,8,2,utility_resource_loader_callback,context_storage);
+    utility_system_context_scheduler(iteration_index + 0xea0,8,2,utility_resource_loader_callback,temp_storage);
     utility_system_context_scheduler(iteration_index + UTILITY_RESOURCE_FLAG_E90,8,2,utility_resource_loader_callback);
     utility_system_context_scheduler(iteration_index + UTILITY_DEBUG_INFO_OFFSET,8,2,utility_resource_loader_callback);
     utility_system_context_scheduler(iteration_index + 0xc28,UTILITY_STATUS_ENABLED_FLAG_SECONDARY8,2,utility_callback_handler);
@@ -9456,11 +9456,11 @@ else {
     if (*(int64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY80) != UTILITY_FALSE) {
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY60);
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9468,21 +9468,21 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage[1] = UTILITY_FALSE;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
     if (*buffer_ptr != UTILITY_FALSE) {
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
     if (*buffer_ptr != UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9490,15 +9490,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
-    utility_system_context_scheduler(iteration_index + UTILITY_CACHE_OFFSET,8,2,utility_resource_loader_callback,context_storage);
+    utility_system_context_scheduler(iteration_index + UTILITY_CACHE_OFFSET,8,2,utility_resource_loader_callback,temp_storage);
     if (*(int64_t **)(iteration_index + UTILITY_USER_DATA_OFFSET) != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(**(int64_t **)(iteration_index + UTILITY_USER_DATA_OFFSET) + UTILITY_THREAD_POINTER_OFFSET))();
     if (*(int64_t **)(iteration_index + UTILITY_CONFIG_STORAGE_OFFSET) != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(**(int64_t **)(iteration_index + UTILITY_CONFIG_STORAGE_OFFSET) + UTILITY_THREAD_POINTER_OFFSET))();
-    utility_system_context_scheduler(iteration_index + 0xea0,8,2,utility_resource_loader_callback,context_storage);
+    utility_system_context_scheduler(iteration_index + 0xea0,8,2,utility_resource_loader_callback,temp_storage);
     utility_system_context_scheduler(iteration_index + UTILITY_RESOURCE_FLAG_E90,8,2,utility_resource_loader_callback);
     utility_system_context_scheduler(iteration_index + UTILITY_DEBUG_INFO_OFFSET,8,2,utility_resource_loader_callback);
     utility_system_context_scheduler(iteration_index + 0xc28,UTILITY_STATUS_ENABLED_FLAG_SECONDARY8,2,utility_callback_handler);
@@ -9512,11 +9512,11 @@ else {
     if (*(int64_t *)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY80) != UTILITY_FALSE) {
     utility_context_ptr = *(uint64_t **)(iteration_index + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY60);
     if (utility_context_ptr == (uint64_t *)UTILITY_NULL_PTR) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9524,13 +9524,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9538,13 +9538,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9552,8 +9552,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     iteration_index = (int64_t)*(int *)(iteration_index + UTILITY_MEMORY_POINTER_OFFSET_BASE88) * UTILITY_THREAD_DATA_OFFSET;
     iteration_index = *(int64_t *)(iteration_index + 200 + iteration_index + UTILITY_STATUS_FLAG_MASK_FIFTEEN20);
@@ -9808,11 +9808,11 @@ break;
     utility_context_ptr = *(int64_t **)(*(int64_t *)(utility_context_ptr + UTILITY_RESOURCE_SIZE_OFFSET) + UTILITY_STATUS_ENABLED_FLAGb8);
     if (utility_context_ptr != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*buffer_ptr + UTILITY_THREAD_POINTER_OFFSET))();
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9820,13 +9820,13 @@ break;
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9834,13 +9834,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9848,13 +9848,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9862,13 +9862,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9876,8 +9876,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 } while (iteration_index != *(int64_t *)(iteration_index + 0x330));
     if (*buffer_ptr != UTILITY_FALSE) {
     utility_context_ptr = *(int64_t **)(iteration_index + 0x328);
@@ -9887,10 +9887,10 @@ while (utility_context_ptr < (int64_t *)(*(int64_t *)(iteration_index + UTILITY_
     if (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != UTILITY_FALSE) {
     *buffer_ptr = UTILITY_FALSE;
-    if ((int64_t *)context_storage[2] != (int64_t *)UTILITY_NULL_PTR) {
-(**(code **)(*(int64_t *)context_storage[2] + UTILITY_THREAD_POINTER_OFFSET))();
-    if ((int64_t *)context_storage[1] != (int64_t *)UTILITY_NULL_PTR) {
-(**(code **)(*(int64_t *)context_storage[1] + UTILITY_THREAD_POINTER_OFFSET))();
+    if ((int64_t *)temp_storage[2] != (int64_t *)UTILITY_NULL_PTR) {
+(**(code **)(*(int64_t *)temp_storage[2] + UTILITY_THREAD_POINTER_OFFSET))();
+    if ((int64_t *)temp_storage[1] != (int64_t *)UTILITY_NULL_PTR) {
+(**(code **)(*(int64_t *)temp_storage[1] + UTILITY_THREAD_POINTER_OFFSET))();
     if ((int64_t *)*buffer_ptr != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*(int64_t *)*buffer_ptr + UTILITY_THREAD_POINTER_OFFSET))();
     if (*buffer_ptr == UTILITY_FALSE) {
@@ -9907,10 +9907,10 @@ while (utility_context_ptr < (int64_t *)(utility_context_ptr[9] + UTILITY_POINTE
     iteration_index = *buffer_ptr;
     if (iteration_index != UTILITY_FALSE) {
     *buffer_ptr = UTILITY_FALSE;
-    if ((int64_t *)context_storage[2] != (int64_t *)UTILITY_NULL_PTR) {
-(**(code **)(*(int64_t *)context_storage[2] + UTILITY_THREAD_POINTER_OFFSET))();
-    if ((int64_t *)context_storage[1] != (int64_t *)UTILITY_NULL_PTR) {
-(**(code **)(*(int64_t *)context_storage[1] + UTILITY_THREAD_POINTER_OFFSET))();
+    if ((int64_t *)temp_storage[2] != (int64_t *)UTILITY_NULL_PTR) {
+(**(code **)(*(int64_t *)temp_storage[2] + UTILITY_THREAD_POINTER_OFFSET))();
+    if ((int64_t *)temp_storage[1] != (int64_t *)UTILITY_NULL_PTR) {
+(**(code **)(*(int64_t *)temp_storage[1] + UTILITY_THREAD_POINTER_OFFSET))();
     if ((int64_t *)*buffer_ptr != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*(int64_t *)*buffer_ptr + UTILITY_THREAD_POINTER_OFFSET))();
     if (*buffer_ptr == UTILITY_FALSE) {
@@ -9923,10 +9923,10 @@ while (utility_context_ptr < (int64_t *)(utility_context_ptr[9] + UTILITY_POINTE
     if (iteration_index != UTILITY_FALSE) {
     if (*buffer_ptr != UTILITY_FALSE) {
     *buffer_ptr = UTILITY_FALSE;
-    if ((int64_t *)context_storage[2] != (int64_t *)UTILITY_NULL_PTR) {
-(**(code **)(*(int64_t *)context_storage[2] + UTILITY_THREAD_POINTER_OFFSET))();
-    if ((int64_t *)context_storage[1] != (int64_t *)UTILITY_NULL_PTR) {
-(**(code **)(*(int64_t *)context_storage[1] + UTILITY_THREAD_POINTER_OFFSET))();
+    if ((int64_t *)temp_storage[2] != (int64_t *)UTILITY_NULL_PTR) {
+(**(code **)(*(int64_t *)temp_storage[2] + UTILITY_THREAD_POINTER_OFFSET))();
+    if ((int64_t *)temp_storage[1] != (int64_t *)UTILITY_NULL_PTR) {
+(**(code **)(*(int64_t *)temp_storage[1] + UTILITY_THREAD_POINTER_OFFSET))();
     if ((int64_t *)*buffer_ptr != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(*(int64_t *)*buffer_ptr + UTILITY_THREAD_POINTER_OFFSET))();
     if (*buffer_ptr == UTILITY_FALSE) {
@@ -9946,11 +9946,11 @@ while (utility_context_ptr < (int64_t *)(utility_context_ptr[9] + UTILITY_POINTE
 *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_POINTER_OFFSET) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9958,13 +9958,13 @@ while (utility_context_ptr < (int64_t *)(utility_context_ptr[9] + UTILITY_POINTE
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9972,13 +9972,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -9986,13 +9986,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10000,13 +10000,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10014,13 +10014,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10028,13 +10028,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10042,13 +10042,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10056,14 +10056,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10071,15 +10071,15 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
-    iteration_index = (int64_t)(int)context_storage;
+    iteration_index = (int64_t)(int)temp_storage;
     utility_context_ptr = utility_context_ptr + 1;
-    context_storage = resource_identifier + 1;
+    temp_storage = resource_id + 1;
 *(uint64_t *)(iteration_index + 600 + iteration_index * 8) = UTILITY_FALSE;
-} while (resource_identifier < 10);
+} while (resource_id < 10);
     if (*(int64_t **)(iteration_index + UTILITY_HANDLE_COMPARE_LIMIT_40) != (int64_t *)UTILITY_NULL_PTR) {
 (**(code **)(**(int64_t **)(iteration_index + UTILITY_HANDLE_COMPARE_LIMIT_40) + UTILITY_THREAD_POINTER_OFFSET))();
     if (*(int64_t **)(iteration_index + UTILITY_THREAD_POINTER_OFFSET8) != (int64_t *)UTILITY_NULL_PTR) {
@@ -10109,18 +10109,18 @@ else {
 *(uint64_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_CONFIG_OFFSET) = &utility_system_reserved_memory;
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10128,8 +10128,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
@@ -10250,11 +10250,11 @@ else {
     if (*(int64_t *)(utility_context_ptr + 200) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_MEMORY_POINTER_OFFSET_LARGE_VALUE) == UTILITY_FALSE) {
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10262,14 +10262,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + 200) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10277,13 +10277,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10291,13 +10291,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10305,14 +10305,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10320,13 +10320,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10334,17 +10334,17 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(char *)(iteration_index + UTILITY_MEMORY_POINTER_OFFSETc) != '\0') {
     utility_serialize_data(utility_context_ptr);
 __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_ptr);
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10352,13 +10352,13 @@ __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_ptr);
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10366,16 +10366,16 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(char *)(iteration_index + -UTILITY_CONTEXT_RESOURCE_OFFSET_VALUE) != '\0') {
     utility_serialize_data(utility_context_ptr);
 __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_ptr);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10383,13 +10383,13 @@ __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_ptr);
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10397,14 +10397,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*buffer_ptr == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10412,13 +10412,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10426,13 +10426,13 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -10440,8 +10440,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_FILE_TIME_OFFSET_18) = &utility_system_data;
     if (*(int64_t *)(iteration_index + 0x9d0) != UTILITY_FALSE) {
 *(uint64_t *)(iteration_index + 0x9d0) = UTILITY_FALSE;
@@ -11752,11 +11752,11 @@ else {
     if (*(int64_t *)(utility_context_ptr + UTILITY_SERVICE_OFFSET_D0) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_THREE0) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -11764,14 +11764,14 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_MASK_PRIMARY) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -11779,18 +11779,18 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX0) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_LOOP_CONTEXT_EXTENDED_OFFSET) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_SERVICE_OFFSET_D0) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY) == UTILITY_FALSE) {
     if (*(int64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_THREE0) == UTILITY_FALSE) {
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -11798,8 +11798,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
@@ -11827,14 +11827,14 @@ else {
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
-    context_storage = (int)resource_identifier + 1;
-    context_storage = resource_identifier + UTILITY_THREAD_HANDLE_OFFSET;
-    context_storage = (uint64_t)context_storage;
-} while ((int)resource_identifier < *buffer_ptr);
+    temp_storage = (int)resource_id + 1;
+    temp_storage = resource_id + UTILITY_THREAD_HANDLE_OFFSET;
+    temp_storage = (uint64_t)temp_storage;
+} while ((int)resource_id < *buffer_ptr);
     iteration_index = *(int64_t *)(iteration_index + UTILITY_STATUS_FLAG_PERFORMANCE_COUNTER_OFFSET);
     if (iteration_index != UTILITY_FALSE) {
-    context_storage[0] = UTILITY_FALSE;
-    context_storage[1] = UTILITY_FALSE;
+    temp_storage[0] = UTILITY_FALSE;
+    temp_storage[1] = UTILITY_FALSE;
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
@@ -11868,17 +11868,17 @@ else {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + UTILITY_STATUS_MEMORY_IN_USE_VALUEd58);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + UTILITY_STATUS_MEMORY_IN_USE_VALUEd48);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
@@ -11932,37 +11932,37 @@ else {
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + 0x378);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + UTILITY_CONTEXT_ITERATOR_OFFSET);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + UTILITY_CONTEXT_DATA_OFFSET8);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + 0x318);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + UTILITY_CONTEXT_OFFSET_308);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + UTILITY_SERVICE_HANDLER_OFFSET_ALT);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
@@ -11991,37 +11991,37 @@ else {
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + 0x378);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + UTILITY_CONTEXT_ITERATOR_OFFSET);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + UTILITY_CONTEXT_DATA_OFFSET8);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + 0x318);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + UTILITY_CONTEXT_OFFSET_308);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     iteration_index = *(int64_t *)(iteration_index + UTILITY_SERVICE_HANDLER_OFFSET_ALT);
     if (iteration_index != UTILITY_FALSE) {
     if (utility_system_reserved_memory != UTILITY_FALSE) {
 *(int *)(utility_system_reserved_memory + 0x3a8) = *(int *)(utility_system_reserved_memory + 0x3a8) + -1;
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
@@ -12034,7 +12034,7 @@ else {
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
@@ -12065,11 +12065,11 @@ else {
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
     utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,UTILITY_MAX_UINT32fffffffe);
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
-    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,context_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
+    utility_allocate_memory(iteration_index,utility_system_reserved_memory,utility_context_ptr,utility_context_ptr,temp_storage);
     utility_network_boolean_flag = (uint8_t)utility_system_reserved_memory & 0x3f;
 (*(code *)((utility_system_reserved_memory ^ utility_system_reserved_memory) >> utility_network_boolean_flag |
 (utility_system_reserved_memory ^ utility_system_reserved_memory) << UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE - utility_network_boolean_flag))(UTILITY_THREAD_CONTEXT_OFFSET_PRIMARYc82238);
@@ -12084,11 +12084,11 @@ else {
 *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET_PRIMARY_HEX) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + UTILITY_HANDLE_PARAMETER_OFFSET_1) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_STATUS_FLAG_F8) = &utility_system_reserved_memory;
-    context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -12096,8 +12096,8 @@ else {
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_context_ptr,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_context_ptr,temp_storage,UTILITY_MAX_UINT32fffffffe);
 *(uint64_t *)(iteration_index + UTILITY_HANDLE_COMPARE_LIMIT_40) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + 0x3a0) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + UTILITY_THREAD_POINTER_OFFSET8) = &utility_system_reserved_memory;
@@ -12110,11 +12110,11 @@ void utility_configure_event_handler(uint64_t *buffer_ptr,int64_t utility_contex
 bool utility_system_validator(uint64_t *buffer_ptr)
 void utility_process_event_secondary(uint64_t resource_count,int64_t utility_context_ptr)
 uint32_t utility_status_checker(uint64_t resource_count,int64_t utility_context_ptr)
-    context_storage = (uint64_t)utility_system_reserved_memory & UTILITY_MAX_UINT32ffc00000;
-    if (resource_identifier != UTILITY_FALSE) {
-    iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_system_reserved_memory - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
+    temp_storage = (uint64_t)utility_system_reserved_memory & UTILITY_MAX_UINT32ffc00000;
+    if (resource_id != UTILITY_FALSE) {
+    iteration_index = resource_id + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_system_reserved_memory - resource_id >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
     iteration_index = iteration_index - (uint64_t)*(uint *)(iteration_index + UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if ((*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
+    if ((*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer) && (*(char *)(iteration_index + UTILITY_OFFSET_FOURTEEN) == '\0')) {
     *utility_system_reserved_memory = *(uint64_t *)(iteration_index + UTILITY_THREAD_DATA_OFFSET);
 *(uint64_t **)(iteration_index + UTILITY_THREAD_DATA_OFFSET) = utility_context_ptr;
     utility_context_ptr = (int *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
@@ -12122,8 +12122,8 @@ uint32_t utility_status_checker(uint64_t resource_count,int64_t utility_context_
     if (*buffer_ptr == UTILITY_FALSE) {
     utility_system_external_cleanup();
 else {
-    resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
-    utility_system_reserved_memory,context_storage,UTILITY_MAX_UINT32fffffffe);
+    resource_handle_exception_context(temp_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_id + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
+    utility_system_reserved_memory,temp_storage,UTILITY_MAX_UINT32fffffffe);
 void utility_destroy_mutex_in_situ(void)
 * 销毁互斥体函数
 * 功能：销毁系统互斥体，释放同步资源
