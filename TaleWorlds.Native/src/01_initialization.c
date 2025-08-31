@@ -11408,73 +11408,83 @@ void system_initialize_dual_pointer_param(longlong *context_pointer,uint64_t *fl
   *flags_var = &SYSTEM_DATABASE_CURSOR_TYPE;
   return;
 }
+/**
+ * @brief 系统主预初始化函数
+ * 
+ * 该函数负责系统的主要预初始化工作，包括创建系统对象、配置系统参数、
+ * 初始化数据库连接、计算旋转角度等核心功能的预初始化。
+ * 
+ * @note 这是简化实现，主要处理系统预初始化的核心工作
+ * 原本实现：完全重构系统预初始化流程，建立统一的初始化规范
+ * 简化实现：仅进行基本的系统预初始化，保持代码结构不变
+ */
 void system_main_preinit(void)
 {
-  uint64_t unsigned_value_primary_var;
-  char char_flag;
-  int system_memory_compare_status;
-  longlong ***ppsystem_table_pointer;
+  uint64_t system_primary_value;
+  char system_status_flag;
+  int system_memory_compare_result;
+  longlong ***system_table_triple_ptr;
   ulonglong vertex_buffer_offset;
-  longlong transform_temp6;
+  longlong transform_matrix_temp;
   uint64_t *system_config_data_ptr;
   uint32_t *system_config_next_ptr;
-  int32_t *nonary_ptr;
-  uint32_t unsigned_value_primary_var0;
-  float rotation_cosine_temp11;
-  float rotation_cosine_temp12;
-  uint8_t stack_array_698 [32];
-  longlong lStack_678;
-  longlong lStack_670;
-  int iStack_668;
-  void *stack_pointer_618;
-  uint8_t *stack_pointer_610;
-  uint stack_uint_608;
-  ulonglong stack_uint_600;
-  uint32_t stack_uint_5b8;
-  longlong ***ppplStack_590;
-  longlong **ppstack_long_588;
-  longlong ****ppppstack_long_580;
-  void *stack_pointer_578;
-  uint64_t stack_uint_570;
-  uint32_t stack_uint_568;
-  uint64_t stack_uint_560;
-  void *stack_pointer_558;
-  longlong lStack_550;
-  int iStack_548;
-  uint32_t stack_uint_540;
-  void *stack_pointer_538;
-  longlong lStack_530;
-  uint32_t stack_uint_520;
-  longlong ***appplStack_518 [2];
-  void *stack_pointer_508;
-  code *pcStack_500;
-  uint64_t stack_uint_4f8;
-  longlong **pplStack_4f0;
-  void *stack_pointer_4e8;
-  uint8_t *stack_pointer_4e0;
-  uint32_t stack_uint_4d8;
-  uint8_t stack_array_4d0 [72];
-  void *stack_pointer_488;
-  uint8_t *stack_pointer_480;
+  int32_t *system_ninth_ptr;
+  uint64_t system_primary_value_alt;
+  float rotation_cosine_x;
+  float rotation_cosine_y;
+  uint8_t system_stack_array_698 [32];
+  longlong system_stack_long_678;
+  longlong system_stack_long_670;
+  int system_stack_int_668;
+  void *system_stack_ptr_618;
+  uint8_t *system_stack_ptr_610;
+  uint system_stack_uint_608;
+  ulonglong system_stack_ulong_600;
+  uint32_t system_stack_uint_5b8;
+  longlong ***system_stack_triple_ptr_590;
+  longlong **system_stack_double_ptr_588;
+  longlong ****system_stack_quad_ptr_580;
+  void *system_stack_ptr_578;
+  uint64_t system_stack_uint_570;
+  uint32_t system_stack_uint_568;
+  uint64_t system_stack_uint_560;
+  void *system_stack_ptr_558;
+  longlong system_stack_long_550;
+  int system_stack_int_548;
+  uint32_t system_stack_uint_540;
+  void *system_stack_ptr_538;
+  longlong system_stack_long_530;
+  uint32_t system_stack_uint_520;
+  longlong ***system_stack_triple_array_518 [2];
+  void *system_stack_ptr_508;
+  code *system_stack_code_ptr_500;
+  uint64_t system_stack_uint_4f8;
+  longlong **system_stack_double_ptr_4f0;
+  void *system_stack_ptr_4e8;
+  uint8_t *system_stack_ptr_4e0;
+  uint32_t system_stack_uint_4d8;
+  uint8_t system_stack_array_4d0 [72];
+  void *system_stack_ptr_488;
+  uint8_t *system_stack_ptr_480;
   uint32_t system_stack_uint_478;
-  uint8_t stack_array_470 [72];
-  void *stack_pointer_428;
-  uint8_t *stack_pointer_420;
-  uint32_t stack_uint_418;
-  uint8_t stack_array_410 [72];
-  void *stack_pointer_3c8;
-  uint8_t *stack_pointer_3c0;
-  uint32_t stack_uint_3b8;
-  uint8_t stack_array_3b0 [72];
-  void *stack_pointer_368;
-  uint8_t *stack_pointer_360;
-  uint32_t stack_uint_358;
-  uint8_t stack_array_350 [72];
-  void *stack_pointer_308;
-  uint8_t *stack_pointer_300;
-  uint32_t stack_uint_2f8;
-  uint8_t stack_array_2f0 [648];
-  ulonglong stack_variable_uint_68;
+  uint8_t system_stack_array_470 [72];
+  void *system_stack_ptr_428;
+  uint8_t *system_stack_ptr_420;
+  uint32_t system_stack_uint_418;
+  uint8_t system_stack_array_410 [72];
+  void *system_stack_ptr_3c8;
+  uint8_t *system_stack_ptr_3c0;
+  uint32_t system_stack_uint_3b8;
+  uint8_t system_stack_array_3b0 [72];
+  void *system_stack_ptr_368;
+  uint8_t *system_stack_ptr_360;
+  uint32_t system_stack_uint_358;
+  uint8_t system_stack_array_350 [72];
+  void *system_stack_ptr_308;
+  uint8_t *system_stack_ptr_300;
+  uint32_t system_stack_uint_2f8;
+  uint8_t system_stack_array_2f0 [648];
+  ulonglong system_stack_ulong_68;
   
   stack_uint_4f8 = 0xfffffffffffffffe;
   stack_variable_uint_68 = _SYSTEM_CONFIG_DATA_TYPE_35 ^ (ulonglong)astack_uint_698;
