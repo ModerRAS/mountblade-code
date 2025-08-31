@@ -117,7 +117,7 @@ void utility_memory_cleanup_handler(void)
 
 /**
  * @brief 处理资源数据
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 操作结果状态码
  *
  * 该函数负责处理系统资源数据，包括：
@@ -126,7 +126,7 @@ void utility_memory_cleanup_handler(void)
  * - 返回处理结果
  *
  */
-uint64 utility_process_resource_data(longlong UTILITY_RESOURCE_PRIMARY_HANDLE)
+uint64 utility_process_resource_data(longlong utility_resource_primary_handle)
 {
   uint64 UTILITY_RESULT;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
@@ -270,7 +270,7 @@ void utility_memory_deallocator(void)
 
 /**
  * @brief 验证资源访问权限 - 检查系统资源的访问权限
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 验证结果状态码，UTILITY_ERROR_FLAG表示错误，其他值表示成功
  *
  * 该函数负责验证系统资源的访问权限，包括：
@@ -281,7 +281,7 @@ void utility_memory_deallocator(void)
  *
  * 简化实现：主要处理资源访问验证的基本逻辑
  */
-uint64 utility_validate_resource_access(longlong UTILITY_RESOURCE_PRIMARY_HANDLE)
+uint64 utility_validate_resource_access(longlong utility_resource_primary_handle)
 {
   return UTILITY_ZERO;
 }
