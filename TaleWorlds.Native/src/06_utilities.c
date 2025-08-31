@@ -1337,7 +1337,7 @@ void *utility_unknown_segment_98b928;
 void *utility_unknown_segment_a01638;
 void *utility_unknown_segment_a01650;
 void * utility_global_data_mutex_secondary;
-void **PTR_?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A_180944718;
+void **utility_global_data_locale_codecvt;
 void *utility_unknown_segment_bd8990;
 void *utility_unknown_segment_a01630;
 void *utility_unknown_segment_09ee10;
