@@ -214,11 +214,11 @@ int system_check_initialization_status(void)
 int system_initialize_core(system_uint64_t context_param, system_uint64_t config_param, 
                            system_uint64_t memory_param, system_uint64_t thread_param)
 {
-    system_uint64_t *temp_memory_ptr;
-    system_uint64_t *config_ptr;
-    system_uint64_t *module_ptr;
-    char validation_result;
-    int initialization_status;
+    system_uint64_t *temporary_memory_pointer;
+    system_uint64_t *configuration_pointer;
+    system_uint64_t *module_pointer;
+    char validation_status;
+    int initialization_result;
     
     // 验证系统上下文参数
     if (context_param == 0) {
@@ -226,22 +226,22 @@ int system_initialize_core(system_uint64_t context_param, system_uint64_t config
     }
     
     // 分配临时内存用于初始化
-    temp_memory_ptr = (system_uint64_t *)malloc(INIT_SIZE_STANDARD_COMPARE);
-    if (temp_memory_ptr == NULL) {
+    temporary_memory_pointer = (system_uint64_t *)malloc(INIT_SIZE_STANDARD_COMPARE);
+    if (temporary_memory_pointer == NULL) {
         return -1;
     }
     
     // 验证系统配置参数
-    config_ptr = (system_uint64_t *)config_param;
-    if (config_ptr == NULL) {
-        free(temp_memory_ptr);
+    configuration_pointer = (system_uint64_t *)config_param;
+    if (configuration_pointer == NULL) {
+        free(temporary_memory_pointer);
         return -1;
     }
     
     // 初始化系统模块内存
-    module_ptr = (system_uint64_t *)malloc(INIT_SIZE_STANDARD_COMPARE);
-    if (module_ptr == NULL) {
-        free(temp_memory_ptr);
+    module_pointer = (system_uint64_t *)malloc(INIT_SIZE_STANDARD_COMPARE);
+    if (module_pointer == NULL) {
+        free(temporary_memory_pointer);
         return -1;
     }
     
@@ -250,8 +250,8 @@ int system_initialize_core(system_uint64_t context_param, system_uint64_t config
     system_initialization_status = 1;
     
     // 清理临时资源
-    free(temp_memory_ptr);
-    free(module_ptr);
+    free(temporary_memory_pointer);
+    free(module_pointer);
     
     return 0;
 }
@@ -456,10 +456,15 @@ void* system_allocate_memory(size_t size)
 
 /**
  * @brief 系统内存释放函数
- * @param ptr 要释放的内存指针
+ * @param ptr 要释放的内存指针，必须是通过system_allocate_memory分配的内存
  * 
- * 该函数释放系统分配的内存。
- * 这是简化实现，提供基本的内存释放功能。
+ * 该函数释放系统之前分配的内存空间。
+ * 使用标准free函数进行内存释放，提供安全的内存管理功能。
+ * 
+ * @note 这是简化实现，提供基本的内存释放功能
+ * @warning 传入NULL指针是安全的，但释放未分配的内存会导致未定义行为
+ * @param ptr 可以是NULL，此时函数不执行任何操作
+ * @return 无返回值
  */
 void system_free_memory(void* ptr)
 {
@@ -471,8 +476,16 @@ void system_free_memory(void* ptr)
 /**
  * @brief 系统清理函数
  * 
- * 该函数清理系统资源。
- * 这是简化实现，提供基本的清理功能。
+ * 该函数负责清理系统占用的所有资源，包括：
+ * - 释放全局系统上下文指针
+ * - 释放系统缓冲区指针
+ * - 重置系统初始化状态
+ * 
+ * 该函数应该在系统关闭时调用，确保所有资源都被正确释放。
+ * 
+ * @note 这是简化实现，提供基本的清理功能
+ * @warning 调用此函数后，系统将回到未初始化状态
+ * @return 无返回值
  */
 void system_cleanup(void)
 {
