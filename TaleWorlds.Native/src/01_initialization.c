@@ -430,8 +430,8 @@ void *system_unknown_180a13ca0;
 void *system_unknown_180a13cac;
 void *system_unknown_180239520;
 
-// 函数: void *system_function_056de0;
-void *system_function_056de0;
+// 函数: void *system_initialize_config_loader;
+void *system_initialize_config_loader;
 void *system_unknown_180a172e0;
 void *system_unknown_180a17308;
 void *system_unknown_180a17398;
@@ -548,8 +548,8 @@ void *system_data_180d48dc0;
 void *system_data_180d48dc8;
 void *system_data_180d48dd0;
 
-// 函数: void *system_function_0670d0;
-void *system_function_0670d0;
+// 函数: void *system_initialize_state_manager;
+void *system_initialize_state_manager;
 void *system_unknown_180a25980;
 void *system_data_180bfc170;
 void *system_unknown_180a258e0;
@@ -630,8 +630,8 @@ void *system_unknown_180a25900;
 void *system_unknown_180a25ad0;
 void *system_unknown_180a25a6c;
 
-// 函数: void *system_function_06b8f0;
-void *system_function_06b8f0;
+// 函数: void *system_initialize_graphics_system;
+void *system_initialize_graphics_system;
 
 /**
  * @brief 内存管理器初始化函数
@@ -2548,8 +2548,8 @@ void system_setup_backup_system(void)
 
 
 
-// 函数: void system_function_02f070(void)
-void system_function_02f070(void)
+// 函数: void system_initialize_audio_system(void)
+void system_initialize_audio_system(void)
 
 {
   char cVar1;
@@ -2598,8 +2598,8 @@ void system_function_02f070(void)
 
 
 
-// 函数: void system_function_02f170(void)
-void system_function_02f170(void)
+// 函数: void system_initialize_resource_system(void)
+void system_initialize_resource_system(void)
 
 {
   char cVar1;
@@ -2648,8 +2648,8 @@ void system_function_02f170(void)
 
 
 
-// 函数: void system_function_02f270(void)
-void system_function_02f270(void)
+// 函数: void system_initialize_filesystem(void)
+void system_initialize_filesystem(void)
 
 {
   char cVar1;
@@ -2698,8 +2698,8 @@ void system_function_02f270(void)
 
 
 
-// 函数: void system_function_02f370(void)
-void system_function_02f370(void)
+// 函数: void system_initialize_input_system(void)
+void system_initialize_input_system(void)
 
 {
   char cVar1;
@@ -2748,8 +2748,8 @@ void system_function_02f370(void)
 
 
 
-// 函数: void system_function_02f470(void)
-void system_function_02f470(void)
+// 函数: void system_initialize_physics_system(void)
+void system_initialize_physics_system(void)
 
 {
   char cVar1;
@@ -2798,8 +2798,8 @@ void system_function_02f470(void)
 
 
 
-// 函数: void system_function_02f570(void)
-void system_function_02f570(void)
+// 函数: void system_initialize_animation_system(void)
+void system_initialize_animation_system(void)
 
 {
   char cVar1;
@@ -2848,8 +2848,8 @@ void system_function_02f570(void)
 
 
 
-// 函数: void system_function_02f670(void)
-void system_function_02f670(void)
+// 函数: void system_initialize_network_system(void)
+void system_initialize_network_system(void)
 
 {
   char cVar1;
@@ -38818,8 +38818,8 @@ void system_function_067070(longlong *param_1)
 
 
 
-// 函数: void system_function_0670d0(void)
-void system_function_0670d0(void)
+// 函数: void system_initialize_state_manager(void)
+void system_initialize_state_manager(void)
 
 {
   FUN_180067070();
@@ -41155,8 +41155,8 @@ void system_function_06b780(void)
     (**(code **)(_system_data_180c8f008 + 0x88))(1);
   }
 
-// 函数: void system_function_06b8f0(longlong param_1)
-void system_function_06b8f0(longlong param_1)
+// 函数: void system_initialize_graphics_system(longlong param_1)
+void system_initialize_graphics_system(longlong param_1)
 
 {
   *(uint64_t *)(param_1 + 0x20) = &system_unknown_180a3c3e0;
