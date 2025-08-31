@@ -3359,7 +3359,14 @@ void system_initialize_database(void)
   return;
 }
 /**
- * @return 无返回值
+ * @brief 设置数据库表结构
+ * 
+ * 初始化数据库系统中的表结构，包括表创建、索引建立和关系配置。
+ * 该函数负责设置数据库的基本架构，为数据存储和查询提供基础支持。
+ * 数据库表是游戏引擎中存储游戏数据、配置和状态信息的核心组件。
+ *
+ * @return void
+ */
 void system_setup_database_tables(void)
 
 {
@@ -16824,7 +16831,7 @@ void system_initialize_watchpoint_system(longlong system_context_parameter,longl
 }
 
 uint64_t *
-system_update_memory_table(uint64_t *system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
+system_update_memory_table(uint64_t *memory_table_ptr, longlong memory_size, uint64_t memory_flags, uint64_t memory_alignment)
 
 {
   void **data_context;
