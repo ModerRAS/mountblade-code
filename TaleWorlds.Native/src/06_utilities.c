@@ -407,10 +407,10 @@ void utility_process_thread_data(int64_t thread_handle, int64_t context_data)
     utility_data_checksum = (uint64_t)utility_system_reserved_memory ^ (uint64_t)utility_thread_temp_buffer;
     
     // 调用系统服务管理器处理线程句柄和上下文存储
-    utility_operation_status = utility_service_request_processor(*(uint32_t *)(thread_handle + UTILITY_THREAD_HANDLE_OFFSET), utility_context_data_storage);
+    utility_operation_result = utility_service_request_processor(*(uint32_t *)(thread_handle + UTILITY_THREAD_HANDLE_OFFSET), utility_context_data_storage);
     
     // 检查系统状态和上下文存储的有效性
-    if ((utility_operation_status == UTILITY_FALSE) && (*(int64_t *)(utility_context_data_storage[0] + UTILITY_MEMORY_POINTER_OFFSET) != UTILITY_FALSE)) {
+    if ((utility_operation_result == UTILITY_FALSE) && (*(int64_t *)(utility_context_data_storage[0] + UTILITY_MEMORY_POINTER_OFFSET) != UTILITY_FALSE)) {
         utility_data_buffer = utility_large_temp_buffer;
         utility_items_processed = UTILITY_FALSE;
         utility_iteration_counter = 0;
@@ -733,7 +733,7 @@ int64_t utility_iteration_counter = 0;
     uint64_t utility_status;
 int64_t utility_stack_data_value [2];
     int utility_operation_status = UTILITY_FALSE;
-    utility_status = utility_service_request_processor;(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET),utility_stack_data_value);
+    utility_status = utility_service_request_processor(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_value);
     utility_iteration_counter = 0;
     if ((int)utility_status != UTILITY_FALSE) {
     return utility_status;
@@ -768,7 +768,7 @@ int64_t utility_iteration_counter = 0;
     uint64_t utility_status;
     int64_t *resource_manager;
 int64_t utility_stack_data_value [4];
-    utility_status = utility_service_request_processor;(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET),utility_stack_data_value);
+    utility_status = utility_service_request_processor(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_value);
     if ((int)utility_status == UTILITY_FALSE) {
     utility_context_data = *(int64_t **)(utility_stack_data_value[0] + UTILITY_THREAD_DATA_OFFSET);
     while ((*(int64_t **)(utility_stack_data_value[0] + UTILITY_THREAD_DATA_OFFSET) <= utility_context_data &&
@@ -802,7 +802,7 @@ int64_t utility_iteration_counter = 0;
     uint64_t utility_status;
     int utility_operation_status;
 int64_t utility_stack_data_value [2];
-    utility_status = utility_service_request_processor;(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET),utility_stack_data_value);
+    utility_status = utility_service_request_processor(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_value);
     utility_iteration_counter = 0;
     if ((int)utility_status != UTILITY_FALSE) {
     return utility_status;
@@ -845,7 +845,7 @@ int64_t utility_stack_data_value [2];
 int64_t utility_iteration_counter = 0;
     uint64_t utility_status;
 int64_t utility_stack_data_value [4];
-    utility_status = utility_service_request_processor;(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET),utility_stack_data_value);
+    utility_status = utility_service_request_processor(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_value);
     if ((int)utility_status != UTILITY_FALSE) {
     return utility_status;
 }
@@ -2040,7 +2040,7 @@ break;
 
     uint64_t utility_status;
 int64_t utility_stack_data_value [4];
-    utility_status = utility_service_request_processor;(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET),utility_stack_data_value);
+    utility_status = utility_service_request_processor(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_value);
     if ((int)utility_status == UTILITY_FALSE) {
 *(uint32_t *)(*(int64_t *)(utility_stack_data_value[0] + UTILITY_THREAD_HANDLE_OFFSET) + UTILITY_THREAD_SIZE_OFFSET) = *(uint32_t *)(utility_context_data + UTILITY_THREAD_CONTEXT_OFFSET);
     if ((*(int64_t *)(utility_stack_data_value[0] + UTILITY_MEMORY_POINTER_OFFSET) != UTILITY_FALSE) && (utility_resource_context_value = utility_check_context_manager_status(), (int)utility_resource_pointer != UTILITY_FALSE)) {
@@ -2995,7 +2995,7 @@ void utility_initialize_critical_section_ex(void)
     if (((utility_float_temp_value == UTILITY_FLOAT_ZERO) && (*(float *)(utility_context_data + UTILITY_FLOAT_ARRAY_OFFSET_INDEX) == UTILITY_FLOAT_ZERO)) && (utility_network_float_value == UTILITY_FLOAT_ZERO)) {
     return UTILITY_STATUS_FLAG_F;
 }
-    utility_status = utility_service_request_processor;(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET),utility_stack_data_value);
+    utility_status = utility_service_request_processor(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_value);
     if ((int)utility_status != UTILITY_FALSE) {
     return utility_status;
 }
@@ -3072,7 +3072,7 @@ int64_t utility_stack_data_value [2];
     if ((*(uint *)(utility_context_data + UTILITY_THREAD_DATA_OFFSET) & UTILITY_FLAG_MASK_FLOAT_OPERATIONS) == UTILITY_FLAG_MASK_FLOAT_OPERATIONS) {
     return UTILITY_STATUS_ENABLED_FLAG_DECIMAL;
 }
-    utility_status = utility_service_request_processor;(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET),utility_stack_data_value);
+    utility_status = utility_service_request_processor(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_value);
     if ((int)utility_status == UTILITY_FALSE) {
     if (utility_stack_data_value[0] == UTILITY_FALSE) {
     utility_stack_data_value[0] = UTILITY_FALSE;
@@ -3115,7 +3115,7 @@ int64_t utility_iteration_counter = 0;
     uint64_t utility_status;
 int64_t utility_stack_ptr;
 int64_t utility_stack_data_value [2];
-    utility_status = utility_service_request_processor;(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET),utility_stack_data_value);
+    utility_status = utility_service_request_processor(*(uint32_t *)(utility_context_data + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_value);
     if ((int)utility_status == UTILITY_FALSE) {
     if (utility_stack_data_value[0] == UTILITY_FALSE) {
     utility_stack_data_value[0] = UTILITY_FALSE;
