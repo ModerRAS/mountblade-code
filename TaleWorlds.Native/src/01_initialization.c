@@ -734,16 +734,6 @@ static void *system_database_table_ptr_tertiary;
 static void *system_database_index_ptr_tertiary;
 int32_t system_initialize_cache(void);
 /**
- * @brief 系统配置结构初始化函数
- * 
- * 该函数负责初始化系统的配置数据结构，设置关键的配置参数和函数指针。
- * 通过内存比较和指针操作，确保配置数据的正确性和完整性。
- * 
- * @note 这是简化实现，主要处理系统配置结构的初始化工作
- * 原本实现：完全重构配置结构系统，建立统一的配置管理规范
- * 简化实现：仅初始化基本的配置结构，保持代码逻辑不变
- */
-/**
  * @brief 初始化系统配置结构
  * 
  * 该函数负责初始化系统的配置结构，包括配置参数的设置和内存分配。
