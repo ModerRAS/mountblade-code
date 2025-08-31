@@ -282,18 +282,13 @@ int system_initialize_config_0xc_buffer_0x10(void)
  * 该函数负责初始化系统配置，设置全局数据和回调函数
  */
 int system_initialize_config_4_buffer_0x10(void)
-int function_(void)
-{
-  longlong data_definitions_system_result;
-  uint64_t register_param;
-  _global_data = &global_system_data;
-  _global_data = &global_data;
-  global_data = 0;
-  _global_data = 5;
-  strcpy_s(&global_data,0x10,&unknown_data,register_param,0xfffffffffffffffe);
-  data_definitions_system_result = system_register_callback(function_);
-  return (data_definitions_system_result != 0) - 1;
-}
+/**
+ * @brief 系统初始化配置函数 - 配置值5，缓冲区大小0x10
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_config_5_buffer_0x10(void)
 /**
  * @brief 初始化游戏界面字符串
  * @return 成功返回0，失败返回-1
