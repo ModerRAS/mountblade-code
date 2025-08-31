@@ -56531,22 +56531,22 @@ void utility_unwind_final_function_zero_echo_four_zero(uint64 utility_resource_p
   if (*(code **)(utility_resource_context_handle  + utility_resource_data_buffer_offset_septendecimal_primary) != (code *)utility_null_pointer) {
     (**(code **)(utility_resource_context_handle  + utility_resource_data_buffer_offset_septendecimal_primary))(utility_resource_context_handle  + utility_resource_data_buffer_offset_septendecimal_secondary,utility_null_pointer,utility_resource_callback_handler,utility_system_end_flag);
   }
-  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_20F8) = &utility_thread_local_storage_data;
+  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_primary) = &utility_thread_local_storage_data;
   if (*(longlong *)(utility_resource_context_handle + utility_context_UTILITY_RESOURCE_PTR_OFFSET_primary0) != UTILITY_ZERO) {
       
     utility_handle_critical_error();
   }
   *(uint64 *)(utility_resource_context_handle + utility_context_UTILITY_RESOURCE_PTR_OFFSET_primary0) = UTILITY_ZERO;
-  *(uint32 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_2110) = UTILITY_ZERO;
-  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_20F8) = &utility_thread_local_storage_cleanup;
-  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_20D8) = &utility_thread_local_storage_data;
-  if (*(longlong *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_20E0) != UTILITY_ZERO) {
+  *(uint32 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_secondary) = UTILITY_ZERO;
+  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_primary) = &utility_thread_local_storage_cleanup;
+  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_tertiary) = &utility_thread_local_storage_data;
+  if (*(longlong *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_quaternary) != UTILITY_ZERO) {
       
     utility_handle_critical_error();
   }
-  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_20E0) = UTILITY_ZERO;
-  *(uint32 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_20F0) = UTILITY_ZERO;
-  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_20D8) = &utility_thread_local_storage_cleanup;
+  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_quaternary) = UTILITY_ZERO;
+  *(uint32 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_quinary) = UTILITY_ZERO;
+  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_tertiary) = &utility_thread_local_storage_cleanup;
   return;
 }
 void utility_unwind_final_function_zero_echo_six_zero(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
@@ -56556,22 +56556,22 @@ void utility_unwind_final_function_zero_echo_six_zero(uint64 utility_resource_pr
   if (*(code **)(utility_resource_context_handle  + utility_resource_data_buffer_offset_octodecimal_primary) != (code *)utility_null_pointer) {
     (**(code **)(utility_resource_context_handle  + utility_resource_data_buffer_offset_octodecimal_primary))(utility_resource_context_handle  + utility_resource_data_buffer_offset_octodecimal_secondary,utility_null_pointer,utility_resource_callback_handler,utility_system_end_flag);
   }
-  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_2168) = &utility_thread_local_storage_data;
-  if (*(longlong *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_2170) != UTILITY_ZERO) {
+  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_senary) = &utility_thread_local_storage_data;
+  if (*(longlong *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_septenary) != UTILITY_ZERO) {
       
     utility_handle_critical_error();
   }
-  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_2170) = UTILITY_ZERO;
+  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_septenary) = UTILITY_ZERO;
   *(uint32 *)(utility_resource_context_handle + UTILITY_RESOURCE_PTR_OFFSET_extended_2180) = UTILITY_ZERO;
-  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_2168) = &utility_thread_local_storage_cleanup;
-  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_2148) = &utility_thread_local_storage_data;
-  if (*(longlong *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_2150) != UTILITY_ZERO) {
+  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_senary) = &utility_thread_local_storage_cleanup;
+  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_octonary) = &utility_thread_local_storage_data;
+  if (*(longlong *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_novenary) != UTILITY_ZERO) {
       
     utility_handle_critical_error();
   }
-  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_2150) = UTILITY_ZERO;
+  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_novenary) = UTILITY_ZERO;
   *(uint32 *)(utility_resource_context_handle + utility_thread_storage_callback_ptr_offset) = UTILITY_ZERO;
-  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_2148) = &utility_thread_local_storage_cleanup;
+  *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_octonary) = &utility_thread_local_storage_cleanup;
   return;
 }
 void utility_unwind_final_function_zero_echo_eight_zero(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
