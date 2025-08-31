@@ -6947,7 +6947,7 @@ uint32_t utility_stack_uint_120;
 uint32_t utility_stack_uint_11c;
 uint32_t utility_stack_uint_118;
 uint32_t utility_stack_uint_114;
-void *utility_utility_stack_buffer_108;
+void *utility_stack_buffer_context_108;
 uint32_t utility_stack_uint_mini_value0;
 uint32_t utility_stack_uint_f8;
 uint32_t utility_stack_uint_f0;
