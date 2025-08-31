@@ -492,8 +492,10 @@ uint64_t utility_database_operation_handler(void)
  * @return uint64_t 缓存管理结果状态码
  *
  * 该函数负责管理系统缓存资源，包括缓存分配和回收。
+ * 主要用于系统性能优化和数据缓存管理。
  *
- * 简化实现：提供基本的缓存管理功能。
+ * @note 简化实现：提供基本的缓存管理功能，原本实现应包含完整的缓存策略实现、缓存淘汰算法、缓存一致性维护等。
+ * @return UTILITY_ZERO 表示缓存管理成功，其他值表示管理失败
  */
 uint64_t utility_cache_manager(void)
 {
@@ -505,8 +507,10 @@ uint64_t utility_cache_manager(void)
  * @return uint64_t 日志记录结果状态码
  *
  * 该函数负责记录系统日志信息，包括错误日志和调试信息。
+ * 主要用于系统运行状态监控和问题诊断。
  *
- * 简化实现：提供基本的日志记录功能。
+ * @note 简化实现：提供基本的日志记录功能，原本实现应包含完整的日志级别管理、日志格式化、日志轮转等功能。
+ * @return UTILITY_ZERO 表示日志记录成功，其他值表示记录失败
  */
 uint64_t utility_logger(void)
 {
