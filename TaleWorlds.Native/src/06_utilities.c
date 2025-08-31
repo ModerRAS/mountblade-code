@@ -476,7 +476,7 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
                 utility_loop_index = 0;
                 do {
                     // 获取资源值
-                    utility_status = *(uint64_t *)(utility_buffer_ptr + utility_loop_index = 0;
+                    utility_status = *(uint64_t *)(utility_buffer_ptr + utility_loop_index);
                     
                     // 初始化上下文管理器
                     utility_status_code = utility_context_init(utility_status);
@@ -485,7 +485,7 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
                         utility_activate_context(utility_status, 1);
                     }
                     
-                    utility_loop_index = 0;
+                    utility_loop_index++;
                 } while (utility_loop_index < utility_max_iterations);
             }
             // 清理缓冲区管理器
@@ -761,9 +761,9 @@ while ((*(int64_t **)(utility_stack_data[0] + UTILITY_THREAD_DATA_OFFSET) <= uti
 (utility_context_input_data < *(int64_t **)(utility_stack_data[0] + UTILITY_THREAD_DATA_OFFSET) + *(int *)(utility_stack_data[0] + UTILITY_THREAD_CONFIG_OFFSET)))) {
 utility_loop_index = 0;
 utility_context_input_data = utility_context_input_data + 1;
-if ((*(int64_t *)(utility_loop_index = 0;
-(utility_loop_index = 0;
-utility_context_input_data = (uint *)(utility_loop_index = 0;
+if ((*(int64_t *)(utility_loop_index)) != 0) {
+    utility_loop_index++;
+    utility_context_input_data = (uint *)(utility_loop_index);
 *utility_buffer_ptr = *utility_buffer_ptr | 4;
 }
 }
