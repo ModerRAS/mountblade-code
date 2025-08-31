@@ -20,7 +20,7 @@ int32_t network_socket_handle;         // 网络套接字句柄
 void* system_configuration_data_buffer_secondary; // 系统配置数据次缓冲区指针
 
 
-void* MemoryManagerSetup;
+void* memory_manager_setup;
 void* system_physics_simulator;
 void* system_network_manager;
 void* system_ui_renderer;
@@ -30,11 +30,11 @@ void* system_ui_system;
 void* system_script_engine;
 
 
-void* InitializeGraphicsSystem;
+void* initialize_graphics_system;
 void* system_graphics_device;
 
 
-void* InitializeAudioSystem;
+void* initialize_audio_system;
 void* system_audio_context;
 
 
@@ -407,10 +407,10 @@ void* system_ai_world;
 void* InitializeAISystem;
 
 
-// 简化实现：整理重复的变量声明，保持代码结构不变，提高可读性
-void* system_context_primary_array[6];         // 主系统上下文指针数组（替代重复的system_global_context声明）
-char system_context_type;                   // 系统上下文类型（替代重复的char system_global_context声明）
-char system_initialized_flag;                // 系统初始化标志（替代重复的g_system_initialized声明）
+
+void* system_context_primary_array[6];         
+char system_context_type;                   
+char system_initialized_flag;                
 void* system_context_secondary_array[5];     // 次要系统上下文指针数组（替代重复的system_global_context声明）
 // 系统初始化状态和上下文数组（替代重复的声明）
 system_uint8_t system_init_status_primary;    // 主系统初始化状态
