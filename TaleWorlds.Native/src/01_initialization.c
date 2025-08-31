@@ -19209,7 +19209,7 @@ system_init_label_memory_init:
 
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_355(void)
+void system_initialize_core_context(void)
 {
   *system_context_param = &system_global_context;
   *system_context_param = &system_global_context;
