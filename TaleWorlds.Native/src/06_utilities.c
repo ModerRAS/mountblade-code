@@ -39383,6 +39383,13 @@ void utility_initialize_pointer(void)
 utility_system_reserved_data = &utility_system_reserved_data;
 return;
 }
+/**
+ * @brief 设置系统指针
+ * 功能：设置系统数据指针，初始化系统数据结构
+ * 这是简化实现，主要处理指针的设置工作
+ * 
+ * @return 无返回值
+ */
 void utility_setup_pointer(void)
 {
 utility_system_reserved_data = &utility_system_data;
