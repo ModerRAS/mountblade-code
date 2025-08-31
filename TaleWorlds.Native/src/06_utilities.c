@@ -345,18 +345,22 @@ uint64_t utility_context_manager(void)
  * 该函数负责处理系统配置信息，包括配置读取和验证。
  * 主要用于系统配置管理和参数设置。
  *
- * 简化实现：提供基本的配置处理功能，验证系统配置状态。
+ * @note 简化实现：提供基本的配置处理功能，初始化配置偏移量和查找表。
+ * @return UTILITY_ZERO 表示配置处理成功，其他值表示处理失败
  */
 uint64_t utility_config_handler(void)
 {
+  // 初始化系统配置偏移量
   if (g_utility_system_config_offset == UTILITY_ZERO) {
     g_utility_system_config_offset = UTILITY_OFFSET_DATA;
   }
   
+  // 初始化查找表偏移量
   if (g_utility_lookup_table_offset == UTILITY_ZERO) {
     g_utility_lookup_table_offset = UTILITY_OFFSET_LIST_DATA;
   }
   
+  // 设置系统已初始化标志
   g_utility_system_status_flag |= UTILITY_CHECK_FLAG_INITIALIZED;
   
   return UTILITY_ZERO;
@@ -369,14 +373,17 @@ uint64_t utility_config_handler(void)
  * 该函数负责管理系统线程资源，包括线程创建和销毁。
  * 主要用于多线程环境下的资源管理和线程同步。
  *
- * 简化实现：提供基本的线程管理功能，初始化线程本地存储。
+ * @note 简化实现：提供基本的线程管理功能，初始化线程本地存储和操作计数器。
+ * @return UTILITY_ZERO 表示线程管理成功，其他值表示管理失败
  */
 uint64_t utility_thread_manager(void)
 {
+  // 初始化线程本地存储偏移量
   if (g_utility_thread_local_offset == UTILITY_ZERO) {
     g_utility_thread_local_offset = UTILITY_TLS_OFFSET_THREAD_DATA;
   }
   
+  // 设置系统活跃标志并递增操作计数器
   g_utility_system_status_flag |= UTILITY_CHECK_FLAG_ACTIVE;
   g_utility_operation_counter++;
   
