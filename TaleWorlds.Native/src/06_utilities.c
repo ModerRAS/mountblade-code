@@ -2908,23 +2908,21 @@ return UTILITY_STATUS_RESOURCE_NOT_FOUND;
 * 创建并初始化共享内存区域，用于进程间通信
 * @return 无返回值
 */
-void InitializeSharedMemory(void)
 /**
-* @brief 初始化共享内存
-* 创建并初始化共享内存区域，用于进程间通信
-* @return 无返回值
-*/
+ * @brief 初始化共享内存
+ * 创建并初始化共享内存区域，用于进程间通信
+ * @return 无返回值
+ */
 void InitializeSharedMemory(void)
 {
-int utility_operation_status;
-int64_t utility_context_resource_handle;
-utility_operation_status = utility_invoke_service();
-if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
+    int utility_operation_status;
+    int64_t utility_context_resource_handle;
     
-}
-utility_refresh_context_resources(*(uint64_t *)(utility_context_resource_handle + UTILITY_CONTEXT_SERVICE_OFFSET));
-}
-return;
+    utility_operation_status = utility_invoke_service();
+    if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
+        // 空操作，保持现有逻辑
+    }
+    utility_refresh_context_resources(*(uint64_t *)(utility_context_resource_handle + UTILITY_CONTEXT_SERVICE_OFFSET));
 }
 /**
  * 共享内存分配器函数
