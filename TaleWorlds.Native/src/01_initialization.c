@@ -4735,8 +4735,8 @@ int system_function_032d30(void)
   _system_data_180bf7e90 = &system_unknown_1809fcc58;
   _system_data_180bf7e98 = &system_data_180bf7ea8;
 
-// 函数: void system_function_033780(void)
-void system_function_033780(void)
+// 函数: void system_initialize_thread_context_stage_1(void)
+void system_initialize_thread_context_stage_1(void)
 
 {
   uint64_t in_R9;
@@ -4759,8 +4759,8 @@ void system_function_033780(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_033810(void)
-void system_function_033810(void)
+// 函数: void system_initialize_thread_context_stage_2(void)
+void system_initialize_thread_context_stage_2(void)
 
 {
   uint64_t in_R9;
@@ -4783,8 +4783,8 @@ void system_function_033810(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_0338a0(void)
-void system_function_0338a0(void)
+// 函数: void system_initialize_thread_context_stage_3(void)
+void system_initialize_thread_context_stage_3(void)
 
 {
   uint64_t in_R9;
@@ -4807,8 +4807,8 @@ void system_function_0338a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_033930(void)
-void system_function_033930(void)
+// 函数: void system_initialize_thread_context_stage_4(void)
+void system_initialize_thread_context_stage_4(void)
 
 {
   uint64_t in_R9;
@@ -4831,8 +4831,8 @@ void system_function_033930(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_0339c0(void)
-void system_function_0339c0(void)
+// 函数: void system_initialize_thread_context_stage_5(void)
+void system_initialize_thread_context_stage_5(void)
 
 {
   uint64_t in_R9;
@@ -4853,8 +4853,8 @@ void system_function_0339c0(void)
 
 
 
-// 函数: void system_function_033a50(void)
-void system_function_033a50(void)
+// 函数: void system_initialize_memory_pool_stage_1(void)
+void system_initialize_memory_pool_stage_1(void)
 
 {
   char system_status_flag;
@@ -4903,8 +4903,8 @@ void system_function_033a50(void)
 
 
 
-// 函数: void system_function_033b50(void)
-void system_function_033b50(void)
+// 函数: void system_initialize_memory_pool_stage_2(void)
+void system_initialize_memory_pool_stage_2(void)
 
 {
   char system_status_flag;
@@ -4953,8 +4953,8 @@ void system_function_033b50(void)
 
 
 
-// 函数: void system_function_033c50(void)
-void system_function_033c50(void)
+// 函数: void system_initialize_memory_pool_stage_3(void)
+void system_initialize_memory_pool_stage_3(void)
 
 {
   char system_status_flag;
@@ -5003,8 +5003,8 @@ void system_function_033c50(void)
 
 
 
-// 函数: void system_function_033d50(void)
-void system_function_033d50(void)
+// 函数: void system_initialize_memory_pool_stage_4(void)
+void system_initialize_memory_pool_stage_4(void)
 
 {
   char system_status_flag;
@@ -5053,8 +5053,8 @@ void system_function_033d50(void)
 
 
 
-// 函数: void system_function_033e50(void)
-void system_function_033e50(void)
+// 函数: void system_initialize_memory_pool_stage_5(void)
+void system_initialize_memory_pool_stage_5(void)
 
 {
   char system_status_flag;
@@ -5103,8 +5103,8 @@ void system_function_033e50(void)
 
 
 
-// 函数: void system_function_033f50(void)
-void system_function_033f50(void)
+// 函数: void system_initialize_resource_manager_stage_1(void)
+void system_initialize_resource_manager_stage_1(void)
 
 {
   char system_status_flag;
@@ -5153,8 +5153,8 @@ void system_function_033f50(void)
 
 
 
-// 函数: void system_function_034050(void)
-void system_function_034050(void)
+// 函数: void system_initialize_resource_manager_stage_2(void)
+void system_initialize_resource_manager_stage_2(void)
 
 {
   char system_status_flag;
@@ -5203,8 +5203,8 @@ void system_function_034050(void)
 
 
 
-// 函数: void system_function_034150(void)
-void system_function_034150(void)
+// 函数: void system_initialize_resource_manager_stage_3(void)
+void system_initialize_resource_manager_stage_3(void)
 
 {
   char system_status_flag;
@@ -5253,8 +5253,8 @@ void system_function_034150(void)
 
 
 
-// 函数: void system_function_034250(void)
-void system_function_034250(void)
+// 函数: void system_initialize_resource_manager_stage_4(void)
+void system_initialize_resource_manager_stage_4(void)
 
 {
   char system_status_flag;
@@ -5303,8 +5303,8 @@ void system_function_034250(void)
 
 
 
-// 函数: void system_function_034350(void)
-void system_function_034350(void)
+// 函数: void system_initialize_resource_manager_stage_5(void)
+void system_initialize_resource_manager_stage_5(void)
 
 {
   char system_status_flag;
@@ -5353,8 +5353,8 @@ void system_function_034350(void)
 
 
 
-// 函数: void system_function_034450(void)
-void system_function_034450(void)
+// 函数: void system_initialize_network_system_stage_1(void)
+void system_initialize_network_system_stage_1(void)
 
 {
   char system_status_flag;
@@ -5403,8 +5403,8 @@ void system_function_034450(void)
 
 
 
-// 函数: void system_function_034550(void)
-void system_function_034550(void)
+// 函数: void system_initialize_network_system_stage_2(void)
+void system_initialize_network_system_stage_2(void)
 
 {
   char system_status_flag;
@@ -5453,8 +5453,8 @@ void system_function_034550(void)
 
 
 
-// 函数: void system_function_034650(void)
-void system_function_034650(void)
+// 函数: void system_initialize_network_system_stage_3(void)
+void system_initialize_network_system_stage_3(void)
 
 {
   char system_status_flag;
@@ -5503,8 +5503,8 @@ void system_function_034650(void)
 
 
 
-// 函数: void system_function_034750(void)
-void system_function_034750(void)
+// 函数: void system_initialize_network_system_stage_4(void)
+void system_initialize_network_system_stage_4(void)
 
 {
   char system_status_flag;
@@ -5553,8 +5553,8 @@ void system_function_034750(void)
 
 
 
-// 函数: void system_function_034850(void)
-void system_function_034850(void)
+// 函数: void system_initialize_network_system_stage_5(void)
+void system_initialize_network_system_stage_5(void)
 
 {
   char system_status_flag;
@@ -5603,8 +5603,8 @@ void system_function_034850(void)
 
 
 
-// 函数: void system_function_034950(void)
-void system_function_034950(void)
+// 函数: void system_initialize_graphics_system_stage_1(void)
+void system_initialize_graphics_system_stage_1(void)
 
 {
   char system_status_flag;
@@ -5653,8 +5653,8 @@ void system_function_034950(void)
 
 
 
-// 函数: void system_function_034a50(void)
-void system_function_034a50(void)
+// 函数: void system_initialize_graphics_system_stage_2(void)
+void system_initialize_graphics_system_stage_2(void)
 
 {
   ulonglong uVar1;
@@ -5710,8 +5710,8 @@ void system_function_034a50(void)
 
 
 
-// 函数: void system_function_034b40(void)
-void system_function_034b40(void)
+// 函数: void system_initialize_graphics_system_stage_3(void)
+void system_initialize_graphics_system_stage_3(void)
 
 {
   char system_status_flag;
@@ -5760,8 +5760,8 @@ void system_function_034b40(void)
 
 
 
-// 函数: void system_function_034c40(void)
-void system_function_034c40(void)
+// 函数: void system_initialize_graphics_system_stage_4(void)
+void system_initialize_graphics_system_stage_4(void)
 
 {
   char system_status_flag;
@@ -5810,8 +5810,8 @@ void system_function_034c40(void)
 
 
 
-// 函数: void system_function_034d40(void)
-void system_function_034d40(void)
+// 函数: void system_initialize_graphics_system_stage_5(void)
+void system_initialize_graphics_system_stage_5(void)
 
 {
   char system_status_flag;
@@ -5860,8 +5860,8 @@ void system_function_034d40(void)
 
 
 
-// 函数: void system_function_034e40(void)
-void system_function_034e40(void)
+// 函数: void system_initialize_audio_system_stage_1(void)
+void system_initialize_audio_system_stage_1(void)
 
 {
   char system_status_flag;
@@ -5910,8 +5910,8 @@ void system_function_034e40(void)
 
 
 
-// 函数: void system_function_034f40(void)
-void system_function_034f40(void)
+// 函数: void system_initialize_audio_system_stage_2(void)
+void system_initialize_audio_system_stage_2(void)
 
 {
   char system_status_flag;
@@ -5960,8 +5960,8 @@ void system_function_034f40(void)
 
 
 
-// 函数: void system_function_035040(void)
-void system_function_035040(void)
+// 函数: void system_initialize_audio_system_stage_3(void)
+void system_initialize_audio_system_stage_3(void)
 
 {
   char system_status_flag;
@@ -6010,8 +6010,8 @@ void system_function_035040(void)
 
 
 
-// 函数: void system_function_035140(void)
-void system_function_035140(void)
+// 函数: void system_initialize_audio_system_stage_4(void)
+void system_initialize_audio_system_stage_4(void)
 
 {
   char system_status_flag;
@@ -6060,8 +6060,8 @@ void system_function_035140(void)
 
 
 
-// 函数: void system_function_035240(void)
-void system_function_035240(void)
+// 函数: void system_initialize_audio_system_stage_5(void)
+void system_initialize_audio_system_stage_5(void)
 
 {
   char system_status_flag;
@@ -6110,8 +6110,8 @@ void system_function_035240(void)
 
 
 
-// 函数: void system_function_035340(void)
-void system_function_035340(void)
+// 函数: void system_initialize_ui_system_stage_1(void)
+void system_initialize_ui_system_stage_1(void)
 
 {
   char system_status_flag;
@@ -6160,8 +6160,8 @@ void system_function_035340(void)
 
 
 
-// 函数: void system_function_035440(void)
-void system_function_035440(void)
+// 函数: void system_initialize_ui_system_stage_2(void)
+void system_initialize_ui_system_stage_2(void)
 
 {
   char system_status_flag;
@@ -6210,8 +6210,8 @@ void system_function_035440(void)
 
 
 
-// 函数: void system_function_035540(void)
-void system_function_035540(void)
+// 函数: void system_initialize_ui_system_stage_3(void)
+void system_initialize_ui_system_stage_3(void)
 
 {
   char system_status_flag;
@@ -6260,8 +6260,8 @@ void system_function_035540(void)
 
 
 
-// 函数: void system_function_035640(void)
-void system_function_035640(void)
+// 函数: void system_initialize_ui_system_stage_4(void)
+void system_initialize_ui_system_stage_4(void)
 
 {
   char system_status_flag;
@@ -6310,8 +6310,8 @@ void system_function_035640(void)
 
 
 
-// 函数: void system_function_035740(void)
-void system_function_035740(void)
+// 函数: void system_initialize_ui_system_stage_5(void)
+void system_initialize_ui_system_stage_5(void)
 
 {
   char system_status_flag;
@@ -6360,8 +6360,8 @@ void system_function_035740(void)
 
 
 
-// 函数: void system_function_035840(void)
-void system_function_035840(void)
+// 函数: void system_initialize_database_stage_1(void)
+void system_initialize_database_stage_1(void)
 
 {
   char system_status_flag;
@@ -6410,8 +6410,8 @@ void system_function_035840(void)
 
 
 
-// 函数: void system_function_035940(void)
-void system_function_035940(void)
+// 函数: void system_initialize_database_stage_2(void)
+void system_initialize_database_stage_2(void)
 
 {
   char system_status_flag;
@@ -6460,8 +6460,8 @@ void system_function_035940(void)
 
 
 
-// 函数: void system_function_035a40(void)
-void system_function_035a40(void)
+// 函数: void system_initialize_database_stage_3(void)
+void system_initialize_database_stage_3(void)
 
 {
   char system_status_flag;
@@ -6510,8 +6510,8 @@ void system_function_035a40(void)
 
 
 
-// 函数: void system_function_035b40(void)
-void system_function_035b40(void)
+// 函数: void system_initialize_database_stage_4(void)
+void system_initialize_database_stage_4(void)
 
 {
   char system_status_flag;
@@ -6560,8 +6560,8 @@ void system_function_035b40(void)
 
 
 
-// 函数: void system_function_035c40(void)
-void system_function_035c40(void)
+// 函数: void system_initialize_database_stage_5(void)
+void system_initialize_database_stage_5(void)
 
 {
   char system_status_flag;
@@ -6610,8 +6610,8 @@ void system_function_035c40(void)
 
 
 
-// 函数: void system_function_035d40(void)
-void system_function_035d40(void)
+// 函数: void system_initialize_security_stage_1(void)
+void system_initialize_security_stage_1(void)
 
 {
   char system_status_flag;
@@ -6660,8 +6660,8 @@ void system_function_035d40(void)
 
 
 
-// 函数: void system_function_035e40(void)
-void system_function_035e40(void)
+// 函数: void system_initialize_security_stage_2(void)
+void system_initialize_security_stage_2(void)
 
 {
   char system_status_flag;
@@ -6710,8 +6710,8 @@ void system_function_035e40(void)
 
 
 
-// 函数: void system_function_035f50(void)
-void system_function_035f50(void)
+// 函数: void system_initialize_security_stage_3(void)
+void system_initialize_security_stage_3(void)
 
 {
   char system_status_flag;
@@ -6760,8 +6760,8 @@ void system_function_035f50(void)
 
 
 
-// 函数: void system_function_036050(void)
-void system_function_036050(void)
+// 函数: void system_initialize_security_stage_4(void)
+void system_initialize_security_stage_4(void)
 
 {
   char system_status_flag;
@@ -6810,8 +6810,8 @@ void system_function_036050(void)
 
 
 
-// 函数: void system_function_036150(void)
-void system_function_036150(void)
+// 函数: void system_initialize_security_stage_5(void)
+void system_initialize_security_stage_5(void)
 
 {
   char system_status_flag;
@@ -6860,8 +6860,8 @@ void system_function_036150(void)
 
 
 
-// 函数: void system_function_036250(void)
-void system_function_036250(void)
+// 函数: void system_initialize_config_system_stage_1(void)
+void system_initialize_config_system_stage_1(void)
 
 {
   char system_status_flag;
@@ -6910,8 +6910,8 @@ void system_function_036250(void)
 
 
 
-// 函数: void system_function_036350(void)
-void system_function_036350(void)
+// 函数: void system_initialize_config_system_stage_2(void)
+void system_initialize_config_system_stage_2(void)
 
 {
   char system_status_flag;
@@ -6960,8 +6960,8 @@ void system_function_036350(void)
 
 
 
-// 函数: void system_function_036450(void)
-void system_function_036450(void)
+// 函数: void system_initialize_config_system_stage_3(void)
+void system_initialize_config_system_stage_3(void)
 
 {
   char system_status_flag;
@@ -7010,8 +7010,8 @@ void system_function_036450(void)
 
 
 
-// 函数: void system_function_036550(void)
-void system_function_036550(void)
+// 函数: void system_initialize_config_system_stage_4(void)
+void system_initialize_config_system_stage_4(void)
 
 {
   char system_status_flag;
@@ -7060,8 +7060,8 @@ void system_function_036550(void)
 
 
 
-// 函数: void system_function_036650(void)
-void system_function_036650(void)
+// 函数: void system_initialize_config_system_stage_5(void)
+void system_initialize_config_system_stage_5(void)
 
 {
   char system_status_flag;
@@ -7110,8 +7110,8 @@ void system_function_036650(void)
 
 
 
-// 函数: void system_function_036750(void)
-void system_function_036750(void)
+// 函数: void system_initialize_event_system_stage_1(void)
+void system_initialize_event_system_stage_1(void)
 
 {
   char system_status_flag;
@@ -7160,8 +7160,8 @@ void system_function_036750(void)
 
 
 
-// 函数: void system_function_036850(void)
-void system_function_036850(void)
+// 函数: void system_initialize_event_system_stage_2(void)
+void system_initialize_event_system_stage_2(void)
 
 {
   char system_status_flag;
@@ -7210,8 +7210,8 @@ void system_function_036850(void)
 
 
 
-// 函数: void system_function_036950(void)
-void system_function_036950(void)
+// 函数: void system_initialize_event_system_stage_3(void)
+void system_initialize_event_system_stage_3(void)
 
 {
   char system_status_flag;
@@ -7260,8 +7260,8 @@ void system_function_036950(void)
 
 
 
-// 函数: void system_function_036a50(void)
-void system_function_036a50(void)
+// 函数: void system_initialize_event_system_stage_4(void)
+void system_initialize_event_system_stage_4(void)
 
 {
   char system_status_flag;
@@ -7312,8 +7312,8 @@ void system_function_036a50(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_036b50(void)
-void system_function_036b50(void)
+// 函数: void system_initialize_event_system_stage_5(void)
+void system_initialize_event_system_stage_5(void)
 
 {
   uint64_t in_R9;
