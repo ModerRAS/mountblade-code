@@ -48388,24 +48388,16 @@ int utility_system_initialize(void)
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
-/**
-/**
- * @brief 缓冲区管理器清理函数
-/**
- *  * @param buffer_ptr 缓冲区指针
- *  * @return 清理状态
- */
-/**
+/** 
  * @brief Utility Buffer Cleanup
-/**
  *
- * 功能描述
+ * 功能描述：清理缓冲区管理器，释放缓冲区资源
  *
- *  * @param parameters 参数说明
- *  * @return 返回值说明
+ * @param buffer_ptr 缓冲区指针
+ * @return 清理状态
  *
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构缓冲区清理机制
+ * 简化实现：仅进行参数验证和返回状态，保持代码结构不变
  */
 int utility_buffer_cleanup(uint64_t **buffer_ptr)
 {
