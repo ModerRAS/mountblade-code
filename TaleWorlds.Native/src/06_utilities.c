@@ -380,7 +380,7 @@
 #define UTILITY_LARGE_BUFFER_SIZE 0x648
 #define UTILITY_CONNECTION_ID_OFFSET UTILITY_MAX_RESOURCE_INDEX4
 #define UTILITY_NETWORK_BUFFER_SIZE 0x738
-#define UTILITY_NEGATIVE_512MB_64BIT -UTILITY_STATUS_MEMORY_IN_USE_VALUE000000000000000
+#define UTILITY_NEGATIVE_512MB_64BIT -0x200000000000
 #define UTILITY_CONTEXT_OFFSET_AUXILIARY UTILITY_STACK_OFFSET_LARGE_VALUE
 #define UTILITY_BYTE_MASK_CLEAR_LSB UTILITY_BYTE_MASK_CLEAR_LSB
 #define UTILITY_STATUS_FLAG_F UTILITY_STATUS_ENABLED_FLAG_4_BITS_VALUE
@@ -400,13 +400,13 @@
 #define UTILITY_STATUS_FLAG_MASK_FIFTEEN 0xf
 #define UTILITY_STATUS_FLAG_MASK_SEVEN 0x7
 #define UTILITY_DATA_CONTEXT_OFFSET UTILITY_DATA_CONTEXT_OFFSET
-#define UTILITY_THREAD_HANDLE_OFFSET_PRIMARY UTILITY_STATUS_RESOURCE_LOCKED_VALUE0
+#define UTILITY_THREAD_HANDLE_OFFSET_PRIMARY 0x70
 #define UTILITY_THREAD_STATUS_OFFSET 0x34
-#define UTILITY_THREAD_DATA_OFFSET_SECONDARY UTILITY_STATUS_MEMORY_IN_USE_VALUE0
+#define UTILITY_THREAD_DATA_OFFSET_SECONDARY 0x70
 #define UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX 0x40
 #define UTILITY_OFFSET_NEGATIVE_68 -0x44
 #define UTILITY_OFFSET_NEGATIVE_60 -0x3c
-#define UTILITY_OFFSET_NEGATIVE_44 -UTILITY_STATUS_MEMORY_IN_USE_VALUEc
+#define UTILITY_OFFSET_NEGATIVE_44 -0x2c
 #define UTILITY_RESOURCE_FLAG_E9 0xe9
 #define UTILITY_STACK_OFFSET_SMALL_VALUE 0x25
 #define UTILITY_STACK_OFFSET_LARGE_VALUE 0xa8
@@ -424,8 +424,8 @@
 #define UTILITY_LOOP_COUNTER_PERFORMANCE_SECONDARY_OFFSET 0x6dc
 #define UTILITY_LOOP_CONTEXT_EXTENDED_OFFSET 0xf0
 // 上下文相关偏移量
-#define UTILITY_CONTEXT_VALIDATION_OFFSET UTILITY_STATUS_MEMORY_IN_USE_VALUE60
-#define UTILITY_CONTEXT_OFFSET_TEMP UTILITY_STATUS_MEMORY_IN_USE_VALUE68
+#define UTILITY_CONTEXT_VALIDATION_OFFSET 0x60
+#define UTILITY_CONTEXT_OFFSET_TEMP 0x68
 #define UTILITY_CONTEXT_PROCESS_DATA_PRIMARY_OFFSET 0x66
 #define UTILITY_CONTEXT_COMPONENT_Y_OFFSET_FIRST 0x69
 #define UTILITY_CONTEXT_COMPONENT_Y_OFFSET_SECOND 0x6a
@@ -446,14 +446,14 @@
 // 句柄处理相关限制值
 #define UTILITY_HANDLE_COMPARE_LIMIT_1 0x500
 // 新增语义化常量定义
-#define UTILITY_STATUS_RUNNING_STATE UTILITY_STATUS_MEMORY_IN_USE_VALUE
+#define UTILITY_STATUS_RUNNING_STATE 0x6c
 #define UTILITY_MEMORY_PAGE_ALIGNMENT_MASK 0xfffffffffffffff0
-#define UTILITY_MEMORY_NEGATIVE_512MB -UTILITY_STATUS_MEMORY_IN_USE_VALUE0000000
-#define UTILITY_CONTEXT_RESERVED_OFFSET UTILITY_STATUS_MEMORY_IN_USE_VALUE9
+#define UTILITY_MEMORY_NEGATIVE_512MB -0x20000000
+#define UTILITY_CONTEXT_RESERVED_OFFSET 0x9
 #define UTILITY_CONTEXT_EXTENDED_OFFSET 0xa0
 #define UTILITY_BYTE_MASK_CLEAR_LSB 0xfe
 #define UTILITY_DATA_AREA_OFFSET 0x6c
-#define UTILITY_CONTROL_BLOCK_OFFSET UTILITY_STATUS_RESOURCE_LOCKED_VALUE92
+#define UTILITY_CONTROL_BLOCK_OFFSET 0xc0
 #define UTILITY_CHECKSUM_VALIDATION_OFFSET 0x5f0
 #define UTILITY_EXTENDED_CONTROL_OFFSET 0xe00
 #define UTILITY_VALIDATION_CHECKSUM_OFFSET 0xe38
@@ -481,14 +481,14 @@
 #define UTILITY_CHARACTER_COMPARE_LOWER_M 0x6d
 #define UTILITY_CHARACTER_COMPARE_UPPER_R 0x52
 #define UTILITY_CHARACTER_COMPARE_UPPER_E 0x65
-#define UTILITY_CONTEXT_BASE_POINTER_OFFSET -UTILITY_STATUS_MEMORY_IN_USE_VALUE1
+#define UTILITY_CONTEXT_BASE_POINTER_OFFSET -0x1
 // 参数验证相关偏移量
 #define UTILITY_PARAMETER_VALIDATION_OFFSET_1 0xcc
 #define UTILITY_FILE_TIME_OFFSET_1 0x9c
-#define UTILITY_HANDLE_PARAMETER_OFFSET_1 UTILITY_STATUS_MEMORY_IN_USE_VALUE10
-#define UTILITY_HANDLE_PARAMETER_OFFSET_2 UTILITY_STATUS_MEMORY_IN_USE_VALUE18
-#define UTILITY_HANDLE_PARAMETER_OFFSET_3 UTILITY_STATUS_MEMORY_IN_USE_VALUEf4
-#define UTILITY_HANDLE_PARAMETER_OFFSET_4 UTILITY_STATUS_MEMORY_IN_USE_VALUE1c
+#define UTILITY_HANDLE_PARAMETER_OFFSET_1 0x10
+#define UTILITY_HANDLE_PARAMETER_OFFSET_2 0x18
+#define UTILITY_HANDLE_PARAMETER_OFFSET_3 0xf4
+#define UTILITY_HANDLE_PARAMETER_OFFSET_4 0x1c
 #define UTILITY_HANDLE_PARAMETER_OFFSET_5 0xf0
 #define UTILITY_FILE_TIME_OFFSET_2 0xfc
 // 流处理相关限制值
@@ -517,7 +517,7 @@
 #define UTILITY_FLAG_MASK_WORD7FFF 0x7fff
 #define UTILITY_FLOAT_FLAG_MASK_F800000 0x7f800000
 #define UTILITY_ALIGNMENT_MASK 0xfffffff0
-#define UTILITY_SERVICE_HANDLER_OFFSET_ALT UTILITY_STATUS_MEMORY_IN_USE_VALUEf8
+#define UTILITY_SERVICE_HANDLER_OFFSET_ALT 0xf8
 #define UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY 0xb0
 #define UTILITY_BLOCK_SIZE_LARGE UTILITY_HANDLE_COMPARE_LIMIT_40
 #define UTILITY_MAX_UINT32_MASK 0xffffffff00000000
@@ -528,7 +528,7 @@
 #define UTILITY_THREAD_CONTEXT_OFFSET_PRIMARY 0xc4f450
 #define UTILITY_CONTEXT_OFFSET_STATUS UTILITY_DATA_AREA_OFFSET
 #define UTILITY_MEMORY_POINTER_OFFSET_ONE_KB UTILITY_MAX_OPERATION_RANGE_VALUE
-#define UTILITY_FLAG_MASK_MEMORY_ALLOCATED UTILITY_BUFFER_OPERATION_SIZE00
+#define UTILITY_FLAG_MASK_MEMORY_ALLOCATED 0x400
 #define UTILITY_BLOCK_SIZE_MEDIUM UTILITY_HANDLE_COMPARE_LIMIT_4
 #define UTILITY_BLOCK_SIZE_EXTRA_LARGE UTILITY_HANDLE_COMPARE_LIMIT_48
 // 新增的语义化常量定义 - 硬编码十六进制值替换
@@ -536,13 +536,13 @@
 #define UTILITY_OFFSET_MEDIUM_DATA UTILITY_BUFFER_ELEMENT_SIZE_VALUE
 #define UTILITY_OFFSET_LARGE_DATA UTILITY_OFFSET_FOURTEEN
 #define UTILITY_OFFSET_EXTRA_DATA UTILITY_STATUS_ENABLED_FLAG_4_BITS_VALUE
-#define UTILITY_CONTEXT_EXECUTION_STATUS_OFFSET UTILITY_STATUS_MEMORY_IN_USE_VALUE20
-#define UTILITY_CONTEXT_STACK_POINTER_OFFSET UTILITY_STATUS_MEMORY_IN_USE_VALUE28
-#define UTILITY_CONTEXT_REGISTER_VALUE_OFFSET UTILITY_STATUS_MEMORY_IN_USE_VALUE30
+#define UTILITY_CONTEXT_EXECUTION_STATUS_OFFSET 0x20
+#define UTILITY_CONTEXT_STACK_POINTER_OFFSET 0x28
+#define UTILITY_CONTEXT_REGISTER_VALUE_OFFSET 0x30
 #define UTILITY_CONTEXT_VALIDATION_OFFSET UTILITY_CONTEXT_VALIDATION_OFFSET
 #define UTILITY_OFFSET_192 UTILITY_CONTROL_BLOCK_OFFSET
-#define UTILITY_OFFSET_1752 UTILITY_STATUS_RESOURCE_LOCKED_VALUE752
-#define UTILITY_OFFSET_1920 UTILITY_STATUS_RESOURCE_LOCKED_VALUE920
+#define UTILITY_OFFSET_1752 0x6d8
+#define UTILITY_OFFSET_1920 0x780
 #define UTILITY_OFFSET_NEGATIVE_104 -UTILITY_CONTEXT_DATA_PRIMARY_OFFSET
 #define UTILITY_OFFSET_NEGATIVE_96 -0x60
 #define UTILITY_OFFSET_NEGATIVE_92 -UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_VALUE
@@ -571,13 +571,13 @@
 // 工具系统字符比较限制常量定义
 #define UTILITY_CHARACTER_COMPARE_LIMIT 0x50
 #define UTILITY_CHARACTER_COMPARE_LIMIT_34 0x34
-#define UTILITY_STREAM_COMPARE_LIMIT_18 UTILITY_STATUS_RESOURCE_LOCKED_VALUE8
+#define UTILITY_STREAM_COMPARE_LIMIT_18 0x8
 // 工具系统句柄比较限制常量定义
 #define UTILITY_HANDLE_COMPARE_LIMIT_40 0x40
 #define UTILITY_HANDLE_COMPARE_LIMIT_48 0x48
 // 工具系统缓冲区操作常量定义
-#define UTILITY_BUFFER_OPERATION_SIZE0 UTILITY_STATUS_RESOURCE_AVAILABLE_VALUE
-#define UTILITY_BUFFER_OPERATION_SIZE00 UTILITY_STATUS_RESOURCE_AVAILABLE_VALUE0
+#define UTILITY_BUFFER_OPERATION_SIZE0 0x6c
+#define UTILITY_BUFFER_OPERATION_SIZE00 0x400
 // 工具系统上下文数据偏移量常量定义
 #define UTILITY_CONTEXT_DATA_PRIMARY_OFFSET 0x68
 #define UTILITY_CONTEXT_OFFSET_TEMP 0x70
@@ -601,7 +601,7 @@ void *utility_global_data_backup;
 int utility_global_status_flag_primary;
 void *utility_global_main_pointer_secondary;
 int utility_global_status_flag_secondary;
-void *utility_system_context;
+void *utility_environment_context;
 long long utility_configuration_data;
 long long utility_state_machine_data;
 void *utility_buffer_primary;
@@ -1181,15 +1181,15 @@ else {
 do {
     iteration_counter = *(int64_t *)(aux_context_ptr + UTILITY_STATUS_FLAG_MASK_PRIMARY);
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_counter + utility_input_parameter * 8);
+*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_counter + utility_input_argument * 8);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status != UTILITY_FALSE) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_counter + UTILITY_DEFAULT_ALLOCATION_SIZE + utility_input_parameter * 8);
+*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_counter + UTILITY_DEFAULT_ALLOCATION_SIZE + utility_input_argument * 8);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status != UTILITY_FALSE) {
-    utility_input_parameter = utility_input_parameter + 1;
-} while (utility_input_parameter < execution_status);
+    utility_input_argument = utility_input_argument + 1;
+} while (utility_input_argument < execution_status);
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(aux_context_ptr + UTILITY_MEMORY_POINTER_OFFSET_BASE);
 (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
@@ -1204,8 +1204,8 @@ GetModuleHandle(utility_context,utility_context + UTILITY_STATUS_ENABLED_FLAG_NI
 (utility_valueidation_result = utility_operation_verify(), execution_status == UTILITY_FALSE)) && (utility_valueidation_result = utility_operation_verify(), execution_status == UTILITY_FALSE)) {
     if ((*(uint *)(resource_handle + UTILITY_DEFAULT_ALLOCATION_SIZE) & UTILITY_THREAD_HANDLE_OFFSET_PRIMARY) != UTILITY_FALSE) {
     buffer_pointer = *(uint32_t *)(resource_handle + UTILITY_THREAD_BUFFER_OFFSET);
-    execution_status = (**(code **)**(uint64_t **)(utility_input_parameter + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_input_parameter + UTILITY_POINTER_OFFSET),&utility_large_workspace,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)**(uint64_t **)(utility_input_argument + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_input_argument + UTILITY_POINTER_OFFSET),&utility_large_workspace,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status != UTILITY_FALSE) {
     disk_info = utility_get_disk_free_space();
     if (execution_status != UTILITY_FALSE) {
@@ -1304,8 +1304,8 @@ else {
     if (execution_status != UTILITY_FALSE) {
     execution_status = execution_status + 1;
     utility_context = float_operation_result;
-} while (execution_status < *(int *)(utility_input_parameter + UTILITY_CONTEXT_OFFSET_EXTENDED_HEX));
-    temp_buffer = *(uint *)(utility_input_parameter + 400);
+} while (execution_status < *(int *)(utility_input_argument + UTILITY_CONTEXT_OFFSET_EXTENDED_HEX));
+    temp_buffer = *(uint *)(utility_input_argument + 400);
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
     if (resource_handle < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
 *(short *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = (short)temp_buffer;
@@ -1316,60 +1316,60 @@ else {
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,temp_buffer);
     if (execution_status == UTILITY_FALSE) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_NONARY4);
+*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_argument + UTILITY_STATUS_ENABLED_FLAG_NONARY4);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if (((execution_status == UTILITY_FALSE) && (execution_status = utility_data_process(utility_xmm_register_value,utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_NONARY8), execution_status == UTILITY_FALSE))
-&& (execution_status = utility_data_process(utility_result_float_alpha,utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_NONARYc), execution_status == UTILITY_FALSE)) {
+    if (((execution_status == UTILITY_FALSE) && (execution_status = utility_data_process(utility_xmm_register_value,utility_input_argument + UTILITY_STATUS_ENABLED_FLAG_NONARY8), execution_status == UTILITY_FALSE))
+&& (execution_status = utility_data_process(utility_result_float_alpha,utility_input_argument + UTILITY_STATUS_ENABLED_FLAG_NONARYc), execution_status == UTILITY_FALSE)) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_OFFSET_A4);
-    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if (execution_status == UTILITY_FALSE) {
-    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_OFFSET_A8);
+*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_argument + UTILITY_STATUS_ENABLED_FLAG_OFFSET_A4);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGac);
+*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_argument + UTILITY_STATUS_ENABLED_FLAG_OFFSET_A8);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGb4);
+*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_argument + UTILITY_STATUS_ENABLED_FLAGac);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGb8);
+*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_argument + UTILITY_STATUS_ENABLED_FLAGb4);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGb0);
+*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_argument + UTILITY_STATUS_ENABLED_FLAGb8);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGbc);
+*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_argument + UTILITY_STATUS_ENABLED_FLAGb0);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint64_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint64_t *)(utility_input_parameter + UTILITY_STATUS_THREAD_CREATED0);
+*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_argument + UTILITY_STATUS_ENABLED_FLAGbc);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    if (execution_status == UTILITY_FALSE) {
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+*(uint64_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint64_t *)(utility_input_argument + UTILITY_STATUS_THREAD_CREATED0);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,8);
     if (execution_status == UTILITY_FALSE) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint64_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint64_t *)(utility_input_parameter + UTILITY_STATUS_THREAD_CREATED8);
+*(uint64_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint64_t *)(utility_input_argument + UTILITY_STATUS_THREAD_CREATED8);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,8);
     if (execution_status == UTILITY_FALSE) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint64_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint64_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_ZERO);
+*(uint64_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint64_t *)(utility_input_argument + UTILITY_STATUS_ENABLED_FLAG_ZERO);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,8);
     if (execution_status == UTILITY_FALSE) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_DECIMALc);
+*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_argument + UTILITY_STATUS_ENABLED_FLAG_DECIMALc);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_EIGHT);
+*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_argument + UTILITY_STATUS_ENABLED_FLAG_EIGHT);
     execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
     utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
-*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX)
+*(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_argument + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX)
 ;
 (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
 /**
@@ -1529,7 +1529,7 @@ goto UTILITY_LABEL_CLEANUP_DONE;
     execution_status = utility_resource_create(*buffer_pointer,&utility_large_workspace,1,1,0);
 UTILITY_LABEL_CLEANUP_DONE:
     if (execution_status == UTILITY_FALSE) {
-*(bool *)(utility_input_parameter + UTILITY_STATUS_FLAG_OFFSET_C) = buffer_pointer != '\0';
+*(bool *)(utility_input_argument + UTILITY_STATUS_FLAG_OFFSET_C) = buffer_pointer != '\0';
 uint64_t utility_security_validator_verify(void)
  * 安全加密器编码
  *  * @param utility_context 加密参数
