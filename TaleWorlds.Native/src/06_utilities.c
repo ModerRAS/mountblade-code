@@ -3353,7 +3353,7 @@ uint64 utility_handle_resource_cycle_response(longlong utility_resource_primary_
   }
   switch(*(uint32 *)(utility_resource_primary_handle + utility_offset_resource_ptr)) {
   case UTILITY_ZERO:
-    if ((utility_null_pointer <= utility_float_value) && (utility_float_value <= utility_float_value_var_256)) goto label_float_check;
+    if ((utility_null_pointer <= utility_float_value) && (utility_float_value <= utility_max_float_value)) goto label_float_check;
     goto code_label_float_join;
   case UTILITY_INDEX_INCREMENT:
   case utility_case_value_two:
