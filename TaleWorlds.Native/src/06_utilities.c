@@ -761,10 +761,10 @@ while ((*(int64_t **)(utility_stack_data[0] + UTILITY_THREAD_DATA_OFFSET) <= uti
 (utility_context_input_data < *(int64_t **)(utility_stack_data[0] + UTILITY_THREAD_DATA_OFFSET) + *(int *)(utility_stack_data[0] + UTILITY_THREAD_CONFIG_OFFSET)))) {
 utility_loop_index = 0;
 utility_context_input_data = utility_context_input_data + 1;
-if ((*(int64_t *)(utility_loop_index = 0;
-(utility_loop_index = 0;
-utility_context_input_data = (uint *)(utility_loop_index = 0;
-*utility_buffer_ptr = *utility_buffer_ptr | 4;
+if ((*(int64_t *)(utility_loop_index)) != 0) {
+    utility_loop_index++;
+    utility_context_input_data = (uint *)(utility_loop_index);
+    *utility_buffer_ptr = *utility_buffer_ptr | 4;
 }
 }
 utility_status_code = UTILITY_FALSE;
@@ -834,9 +834,9 @@ utility_stack_data[0] -= 8;
 }
 utility_loop_index = 0;
 if (utility_loop_index < utility_max_iterations) {
-*(int *)(utility_loop_index = 0;
-if ((*(char *)(utility_loop_index = 0;
-return utility_status;
+*(int *)(utility_loop_index) = 0;
+if ((*(char *)(utility_loop_index)) != 0) {
+    return utility_status;
 }
 return 0;
 }
