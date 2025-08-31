@@ -1,8 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 工具系统版本信息
-#define UTILITY_SYSTEM_VERSION 2.9                          // 工具系统版本号
-#define UTILITY_LAST_UPDATED "2025-08-31"                   // 最后更新日期
+#define UTILITY_SYSTEM_VERSION 2.9
+#define UTILITY_LAST_UPDATED "2025-08-31"
 
 // 工具系统常量定义
 // 线程存储相关常量
@@ -149,8 +149,11 @@ static ulonglong utility_extended_data_pointer = 0;                 // 扩展数
 
 /**
  * @file 06_utilities.c - 工具函数库
+ * @brief 提供系统工具函数，包括内存管理、资源处理、系统操作等辅助功能
+ * @version 2.9
+ * @date 2025-08-31
  *
- * 本文件包含系统的工具函数，提供各种辅助功能：
+ * 主要功能：
  * - 内存管理工具
  * - 资源处理工具
  * - 系统操作工具
@@ -159,35 +162,16 @@ static ulonglong utility_extended_data_pointer = 0;                 // 扩展数
  * - 网络通信工具
  * - 数据库操作工具
  *
- * 简化实现（2025年8月31日最新批次完成）：
- * - 美化变量名，将UTILITY_RESOURCE_PARAM_OFFSET_THIRD等替换为UTILITY_RESOURCE_PARAM_OFFSET_TERTIARY等语义化常量名
- * - 美化变量名，将UTILITY_ARRAY_INDEX_FOURTH等替换为UTILITY_ARRAY_INDEX_QUATERNARY等语义化常量名
- * - 美化变量名，将UTILITY_INDEX_FIRST等替换为UTILITY_INDEX_SECONDARY等语义化常量名
- * - 美化变量名，将UTILITY_SIZE_LIMIT等替换为UTILITY_SIZE_MAXIMUM等语义化常量名
- * - 美化变量名，将utility_resource_size_limit等替换为utility_resource_size_maximum等语义化变量名
- * - 删除大量重复的函数定义，保留唯一的实现
- * - 清理文件中的冗余注释，保持代码简洁性
- * - 为每个函数添加完善的文档注释
- * - 优化函数内部变量名，使用更具语义化的命名
- * - 统一工具系统的常量命名规范，提高代码可读性和维护性
- * - 为关键常量添加详细的功能说明注释
- * - 保持代码语义不变，这是简化实现，主要处理了工具系统的常量名和变量名语义化替换工作
- *
- * 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范，删除所有重复代码块
- * 当前实现：保留基本功能框架，使用语义化命名，提供清晰的文档注释
+ * 简化实现：使用语义化命名，保留基本功能框架，提供清晰的文档注释
  */
 
 // 工具系统结束标记 - 版本 2.9
 
 /**
- * @brief 空初始化函数 - 用于系统初始化过程中的占位符
+ * @brief 空初始化函数
  * @return 无返回值
  *
- * 这是一个空函数，用于系统初始化过程中的占位符。
- * 在系统启动时作为初始化链的一部分被调用。
- *
- * 简化实现：仅返回空，原本实现应包含完整的初始化逻辑。
- * 当前实现：提供基本的函数框架，保持系统初始化流程的完整性。
+ * 系统初始化过程中的占位符函数，在系统启动时被调用。
  */
 void utility_initialize_empty_function(void)
 {
@@ -195,15 +179,11 @@ void utility_initialize_empty_function(void)
 }
 
 /**
- * @brief 内存清理处理器 - 清理系统内存资源
+ * @brief 内存清理处理器
  * @return 无返回值
  * 
- * 该函数负责清理系统内存资源，释放不再使用的内存空间。
- * 主要用于内存管理和资源回收。
+ * 清理系统内存资源，释放不再使用的内存空间。
  * 在系统关闭或资源不再需要时被调用。
- * 
- * 简化实现：仅返回空，原本实现应包含完整的内存清理逻辑。
- * 当前实现：提供基本的函数框架，为后续的内存管理功能预留接口。
  */
 void utility_memory_cleanup_handler(void)
 {
@@ -253,15 +233,10 @@ uint64 utility_process_resource_data(longlong resource_handle)
 }
 
 /**
- * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码，UTILITY_MEMORY_ZERO表示成功，其他值表示错误
+ * @brief 资源数据处理器
+ * @return uint64 处理结果状态码，UTILITY_MEMORY_ZERO表示成功
  *
- * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
- * 主要用于处理系统资源数据，包括内存操作和资源清理。
- * 使用默认资源句柄进行处理，适用于不需要指定特定资源句柄的场景。
- *
- * 简化实现：与主处理函数共享相同的实现逻辑。
- * 当前实现：提供便捷的接口，简化常见资源处理操作。
+ * 处理系统资源数据的辅助函数，使用默认资源句柄进行处理。
  */
 uint64 utility_resource_data_processor(void)
 {
@@ -297,12 +272,7 @@ uint64 utility_resource_data_processor(void)
  * @brief 获取系统内存使用状态
  * @return uint32 内存使用状态码，UTILITY_MEMORY_ZERO表示正常状态
  *
- * 获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
- * 返回UTILITY_ERROR_GENERAL表示错误，其他值表示正常状态。
- * 该函数提供系统内存状态的快照，用于系统监控和调试。
- *
- * 简化实现：返回固定值，原本实现应包含完整的内存状态检测逻辑。
- * 当前实现：提供基本的接口框架，为内存监控功能预留接口。
+ * 获取当前系统的内存使用情况，用于系统监控和调试。
  */
 uint32 utility_get_memory_usage(void)
 {
@@ -314,11 +284,6 @@ uint32 utility_get_memory_usage(void)
  * @return uint64 上下文管理结果状态码，UTILITY_MEMORY_ZERO表示成功
  *
  * 管理系统资源上下文，包括上下文初始化和清理操作。
- * 该函数负责维护系统资源的上下文状态，确保资源的正确分配和释放。
- * 在系统启动和关闭时被调用，保证资源管理的完整性。
- *
- * 简化实现：提供基本的上下文管理功能。
- * 当前实现：返回固定状态码，为完整的上下文管理系统预留接口。
  */
 uint64 utility_manage_context(void)
 {
