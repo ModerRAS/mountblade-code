@@ -277,7 +277,9 @@ uint64_t utility_system_validator(void)
  * 该函数负责清理系统资源，包括内存释放和资源回收。
  * 主要用于系统资源管理和清理操作。
  *
- * 简化实现：提供基本的清理功能。
+ * @note 简化实现：提供基本的清理功能，释放系统资源句柄并重置状态标志。
+ * @see utility_resource_manager, utility_system_validator
+ * @return UTILITY_ZERO 表示清理成功，其他值表示清理失败
  */
 uint64_t utility_system_cleaner(void)
 {
