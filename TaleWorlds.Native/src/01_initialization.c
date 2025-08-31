@@ -1064,6 +1064,21 @@ void system_initialize_config(void)
 
 
 
+/**
+ * @brief 系统资源初始化函数
+ * 
+ * 初始化系统资源管理模块，设置资源管理器和缓存。
+ * 
+ * @details 功能说明：
+ * - 获取系统上下文管理器
+ * - 遍历资源配置数据
+ * - 分配资源管理空间
+ * - 初始化资源管理器上下文
+ * - 设置资源管理参数
+ * 
+ * @note 简化实现：保留核心资源初始化逻辑，删除冗余代码
+ * @return void
+ */
 void system_initialize_resource(void)
 
 {
