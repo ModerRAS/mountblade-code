@@ -1,51 +1,51 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 工具系统常量定义
-// 线程存储数组索引常量
-#define UTILITY_THREAD_STORAGE_ARRAY_INDEX_DATA 0xD     // 数据存储索引
-#define UTILITY_THREAD_STORAGE_ARRAY_INDEX_EXTRA 0xE     // 扩展存储索引
-#define UTILITY_THREAD_STORAGE_ARRAY_INDEX_CLEANUP 0xF   // 清理函数索引
+// 线程存储相关常量
+#define UTILITY_THREAD_STORAGE_INDEX_DATA 0xD          // 线程存储数据索引
+#define UTILITY_THREAD_STORAGE_INDEX_EXTRA 0xE         // 线程存储扩展索引
+#define UTILITY_THREAD_STORAGE_INDEX_CLEANUP 0xF       // 线程存储清理索引
 
 // 资源句柄参数偏移量常量
-#define UTILITY_RESOURCE_HANDLE_PARAM_OFFSET_QUATERNARY 0x4        // 第四级参数偏移量
-#define UTILITY_RESOURCE_HANDLE_PARAM_OFFSET_SENARY 0x6           // 第六级参数偏移量
-#define UTILITY_RESOURCE_HANDLE_PARAM_OFFSET_TERTIARY 0x3          // 第三级参数偏移量
-#define UTILITY_RESOURCE_HANDLE_PARAM_OFFSET_QUINARY 0x5          // 第五级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_TERTIARY 0x3     // 第三级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_QUATERNARY 0x4   // 第四级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_QUINARY 0x5      // 第五级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_SENARY 0x6       // 第六级参数偏移量
 
 // 数组索引常量
-#define UTILITY_ARRAY_INDEX_QUATERNARY 0x4                        // 第四级数组索引
+#define UTILITY_ARRAY_INDEX_QUATERNARY 0x4             // 第四级数组索引
 
 // 资源清理偏移量常量
-#define UTILITY_RESOURCE_CLEANUP_OFFSET_EXTENDED_C60 0xC60         // 清理操作偏移量C60
-#define UTILITY_RESOURCE_CLEANUP_OFFSET_EXTENDED_1CF0 0x1CF0      // 清理偏移量1CF0
+#define UTILITY_CLEANUP_OFFSET_C60 0xC60                // 清理操作偏移量C60
+#define UTILITY_CLEANUP_OFFSET_1CF0 0x1CF0              // 清理操作偏移量1CF0
 
 // 线程本地存储偏移量常量
-#define UTILITY_TLS_OFFSET_EXTENDED_23A0 0x23A0                    // 线程本地存储偏移量23A0
+#define UTILITY_TLS_OFFSET_23A0 0x23A0                  // 线程本地存储偏移量23A0
 
-// 数据偏移量常量
-#define UTILITY_DATA_OFFSET_EXTENDED_1B00 0x1B00                  // 数据偏移量1B00
-#define UTILITY_DATA_OFFSET_EXTENDED_1B40 0x1B40                  // 数据偏移量1B40
-#define UTILITY_DATA_OFFSET_EXTENDED_1B48 0x1B48                  // 数据偏移量1B48
-#define UTILITY_DATA_OFFSET_EXTENDED_1B80 0x1B80                  // 数据偏移量1B80
-#define UTILITY_DATA_POINTER_OFFSET 0x8                            // 数据指针偏移量
-#define UTILITY_FIELD_OFFSET 0xC                                   // 字段偏移量
-#define UTILITY_OFFSET_DATA 0x10                                   // 偏移量数据
-#define UTILITY_SECONDARY_BYTE_OFFSET 0x14                        // 次要字节偏移量
-#define UTILITY_PADDING_OFFSET 0x18                               // 填充偏移量
+// 数据结构偏移量常量
+#define UTILITY_DATA_OFFSET_1B00 0x1B00                 // 数据偏移量1B00
+#define UTILITY_DATA_OFFSET_1B40 0x1B40                 // 数据偏移量1B40
+#define UTILITY_DATA_OFFSET_1B48 0x1B48                 // 数据偏移量1B48
+#define UTILITY_DATA_OFFSET_1B80 0x1B80                 // 数据偏移量1B80
+#define UTILITY_DATA_POINTER_OFFSET 0x8                 // 数据指针偏移量
+#define UTILITY_FIELD_OFFSET 0xC                        // 字段偏移量
+#define UTILITY_OFFSET_DATA 0x10                        // 数据偏移量
+#define UTILITY_BYTE_OFFSET 0x14                        // 字节偏移量
+#define UTILITY_PADDING_OFFSET 0x18                     // 填充偏移量
 
-// 检查标志常量
-#define UTILITY_CHECK_FLAG_10 0x10                                // 检查标志10
-#define UTILITY_CHECK_FLAG_28 0x28                                // 检查标志28
-#define UTILITY_CHECK_FLAG_30 0x30                                // 检查标志30
-#define UTILITY_CHECK_FLAG_50 0x50                                // 检查标志50
-#define UTILITY_CHECK_FLAG_60 0x60                                // 检查标志60
-#define UTILITY_CHECK_FLAG_70 0x70                                // 检查标志70
-#define UTILITY_CHECK_FLAG_98 0x98                                // 检查标志98
-#define UTILITY_CHECK_FLAG_B0 0xB0                                // 检查标志B0
-#define UTILITY_CHECK_FLAG_B8 0xB8                                // 检查标志B8
-#define UTILITY_CHECK_FLAG_D0 0xD0                                // 检查标志D0
-#define UTILITY_CHECK_FLAG_E0 0xE0                                // 检查标志E0
-#define UTILITY_CHECK_FLAG_F0 0xF0                                // 检查标志F0
+// 系统状态标志常量
+#define UTILITY_STATUS_FLAG_10 0x10                     // 状态标志10
+#define UTILITY_STATUS_FLAG_28 0x28                     // 状态标志28
+#define UTILITY_STATUS_FLAG_30 0x30                     // 状态标志30
+#define UTILITY_STATUS_FLAG_50 0x50                     // 状态标志50
+#define UTILITY_STATUS_FLAG_60 0x60                     // 状态标志60
+#define UTILITY_STATUS_FLAG_70 0x70                     // 状态标志70
+#define UTILITY_STATUS_FLAG_98 0x98                     // 状态标志98
+#define UTILITY_STATUS_FLAG_B0 0xB0                     // 状态标志B0
+#define UTILITY_STATUS_FLAG_B8 0xB8                     // 状态标志B8
+#define UTILITY_STATUS_FLAG_D0 0xD0                     // 状态标志D0
+#define UTILITY_STATUS_FLAG_E0 0xE0                     // 状态标志E0
+#define UTILITY_STATUS_FLAG_F0 0xF0                     // 状态标志F0
 
 // 内存操作常量
 #define UTILITY_MEMORY_OFFSET_NEGATIVE -1                          // 内存偏移量负值
