@@ -1,6 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-
 // 工具系统常量定义 - 语义化美化
 // 线程存储数组索引常量
 #define UTILITY_THREAD_STORAGE_ARRAY_INDEX_DATA 0xD     // 数据存储索引
@@ -1035,22 +1034,6 @@ uint64_t utility_context_manager(void)
   return UTILITY_ZERO;
 }
 
-  if ((int)utility_result != UTILITY_ZERO) {
-    return utility_result;
-  }
-  if (utility_system_resource_handle == UTILITY_ZERO) {
-    utility_system_resource_handle = UTILITY_ZERO;
-  }
-  else {
-    utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
-  }
-  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
-    return UTILITY_ERROR_FLAG;
-  }
-  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
-  return UTILITY_ZERO;
-uint64_t utility_system_validator(int64_t resource_handle, uint32_t validation_flag)
-}
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
