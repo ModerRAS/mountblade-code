@@ -12593,6 +12593,14 @@ int system_audio_register_value_gpu_memory_pool(uint64_t system_context_paramete
  *
  * @return 无返回值
 
+/**
+ * 初始化内存分配器
+ * 
+ * 设置内存分配策略和回收机制
+ * 为系统提供基础的内存管理服务
+ *
+ * @return 无返回值
+ */
 void system_initialize_memory_allocator(void)
 /**
  * 
@@ -14012,6 +14020,15 @@ void WotsMain(uint64_t system_context_parameter)
   
                     // 0x045a00  0x02003  WotsMain
 
+/**
+ * 设置定时器回调函数
+ * 
+ * 注册定时器触发时调用的回调函数
+ * 为系统提供定时事件处理
+ *
+ * @param system_context_parameter 系统上下文参数指针
+ * @return 无返回值
+ */
 void system_set_timer_callback(longlong *system_context_parameter)
 
 {
@@ -14020,6 +14037,16 @@ void system_set_timer_callback(longlong *system_context_parameter)
   }
   return;
 }
+/**
+ * 清除定时器回调函数
+ * 
+ * 移除已注册的定时器回调函数
+ * 停止定时器事件处理
+ *
+ * @param system_context_parameter 系统上下文参数
+ * @param system_context_parameter 清除参数
+ * @return 无返回值
+ */
 void system_clear_timer_callback(longlong system_context_parameter,longlong system_context_parameter)
 
 {
@@ -14046,6 +14073,17 @@ void system_clear_timer_callback(longlong system_context_parameter,longlong syst
   **(uint0x01_t **)(system_context_parameter + 0x01) = 0;
   return;
 }
+/**
+ * 配置定时器间隔
+ * 
+ * 设置定时器的触发间隔和参数
+ * 调整定时器的工作频率
+ *
+ * @param system_context_parameter 系统上下文参数
+ * @param system_context_parameter 时间间隔参数
+ * @param system_context_parameter 配置参数
+ * @return 无返回值
+ */
 void system_configure_timer_interval(longlong system_context_parameter,uint64_t system_context_parameter,int system_context_parameter)
 
 {
@@ -14063,6 +14101,15 @@ void system_check_timer_overflow(void)
                     // WARNING: Subroutine does not return
   memcpy();
 }
+/**
+ * 处理定时器中断
+ * 
+ * 响应定时器中断事件并执行相应处理
+ * 维护定时器系统的正常运行
+ *
+ * @param system_context_parameter 系统上下文参数指针
+ * @return 无返回值
+ */
 void system_handle_timer_interrupt(uint0x01_t *system_context_parameter)
 
 {
@@ -14079,6 +14126,18 @@ void system_initialize_clock_system(void)
   system_finalize_initialization();
 }
 
+/**
+ * 处理内存分配请求
+ * 
+ * 根据请求参数分配内存块并返回指针
+ * 管理内存分配的生命周期
+ *
+ * @param system_context_parameter 系统上下文参数指针
+ * @param system_context_parameter 分配大小参数
+ * @param system_context_parameter 分配标志参数
+ * @param system_context_parameter 对齐参数
+ * @return 分配的内存块指针
+ */
 uint64_t *
 system_process_memory_allocation(uint64_t *system_context_parameter,ulonglong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 
@@ -14090,6 +14149,16 @@ system_process_memory_allocation(uint64_t *system_context_parameter,ulonglong sy
   return system_context_parameter;
 }
 
+/**
+ * 分配内存块
+ * 
+ * 从内存池中分配指定大小的内存块
+ * 提供快速的内存分配服务
+ *
+ * @param system_context_parameter 系统上下文参数指针
+ * @param system_context_parameter 分配大小
+ * @return 分配的内存块指针
+ */
 uint64_t * system_allocate_memory_block(uint64_t *system_context_parameter,uint system_context_parameter)
 
 {

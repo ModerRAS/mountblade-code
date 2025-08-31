@@ -1,6 +1,6 @@
 /**
  * @file 06_utilities.c
- * @brief 工具系统实现文件
+/** 工具系统实现文件
  * 
  * 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范
  * 简化实现：仅修复语法错误，优化变量命名，为关键函数添加文档注释，保持代码结构不变
@@ -370,7 +370,7 @@ uint utility_context_system_auxiliary;
 double utility_context_system_backup;
 uint32_t utility_context_system_reserve;
 uint8_t utility_context_system_extended;
- * @brief 处理线程本地存储
+/** 处理线程本地存储
  * 
  * 该函数负责处理和管理线程的本地存储数据，包括资源句柄的创建、
  * 上下文管理器的初始化和激活，以及缓冲区的清理工作。
@@ -380,7 +380,7 @@ uint8_t utility_context_system_extended;
  * @return 无返回值
  */
 /**
- * @brief 处理线程本地存储数据
+/** 处理线程本地存储数据
  * 
  * 该函数负责处理线程本地存储的数据，包括线程句柄的管理、
  * 上下文数据的处理以及资源的分配和释放。函数会验证数据完整性，
@@ -439,7 +439,7 @@ void utility_process_thread_data(int64_t thread_handle, int64_t context_data)
     utility_checksum_compute(utility_checksum ^ (uint64_t)utility_large_workspace_buffer);
 }
 /**
- * @brief 清理线程相关数据
+/** 清理线程相关数据
  * 
  * 该函数负责清理和释放线程相关的所有资源，包括内存缓冲区、
  * 资源句柄、安全密钥等。函数会验证上下文指针的有效性，
@@ -503,7 +503,7 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
     utility_checksum_compute((uint64_t)utility_buffer ^ (uint64_t)utility_buffer_workspace_array);
 }
 /**
- * @brief 验证资源状态
+/** 验证资源状态
  * 
  * 该函数负责验证系统中所有资源的状态，检查资源标志位，
  * 并在需要时激活上下文管理器。函数会确保所有资源都处于
@@ -530,7 +530,7 @@ void utility_validate_resource(void)
 }
 
 /**
- * @brief 处理资源指针
+/** 处理资源指针
  * 功能：将原始资源指针转换为系统可用的资源引用
  * @param utility_context_input_data 输入的上下文数据，包含资源相关信息
  * @return 处理后的资源指针，0表示失败
@@ -623,7 +623,7 @@ uint64_t utility_process_resource_pointer(int64_t utility_context_input_data)
 }
 
 /**
- * @brief 资源请求处理器
+/** 资源请求处理器
  * 功能：处理资源分配请求，管理资源池和分配策略
  * @param resource_count 请求的资源数量
  * @param utility_context_input_data 上下文参数
@@ -706,7 +706,7 @@ return 0;
 }
 return utility_status;
 }
- * @brief 验证资源上下文
+/** 验证资源上下文
  * 验证主要资源上下文的有效性和状态
  * @param resource_count 资源数量参数
  * @param utility_context_input_data 上下文句柄
@@ -740,7 +740,7 @@ utility_cleanup_stack_handler(utility_stack_data);
 }
 return 0;
 }
- * @brief 初始化资源上下文
+/** 初始化资源上下文
  * 初始化主要资源上下文，为资源分配和管理做准备
  * @param utility_context_input_data 上下文句柄
  * @return 初始化结果状态码，0表示成功，非0表示失败
@@ -770,7 +770,7 @@ utility_status_code = UTILITY_FALSE;
 return utility_status;
 }
 /**
- * @brief 分配资源缓冲区
+/** 分配资源缓冲区
  * 
  * 该函数负责为指定数量的资源分配缓冲区空间，确保资源能够正确存储和管理。
  * 
@@ -813,7 +813,7 @@ utility_cleanup_stack_handler(utility_stack_data);
 return 0;
 }
 /**
- * @brief 检查资源状态
+/** 检查资源状态
  * 
  * 该函数用于检查指定资源的当前状态，包括资源的有效性、可用性等状态信息。
  * 
@@ -843,7 +843,7 @@ return 0;
 return UTILITY_STATUS_THREAD_CREATED;
 }
 /**
- * @brief 资源上下文激活器
+/** 资源上下文激活器
  * 
  * 功能：激活指定的资源上下文，使其变为活动状态并可以正常使用
  * 这是简化实现，主要进行函数名的语义化替换工作
@@ -870,7 +870,7 @@ utility_status_code = UTILITY_FALSE;
 }
 return utility_status;
 }
- * @brief 资源上下文去激活器
+/** 资源上下文去激活器
  * 
  * 功能：将当前活动的资源上下文标记为非活动状态，释放相关资源
  * 这是简化实现，主要进行函数名的语义化替换工作
@@ -892,7 +892,7 @@ if ((*(int64_t *)(utility_loop_index)) != 0) {
 }
 return 0;
 }
- * @brief 资源状态切换器
+/** 资源状态切换器
  * 
  * 功能：根据输入参数切换资源的状态（激活/去激活）
  * 这是简化实现，主要进行函数名的语义化替换工作
@@ -907,7 +907,7 @@ utility_context_activate();
 }
 return 0;
 }
- * @brief 获取队列状态
+/** 获取队列状态
  * 检查系统队列的当前状态，用于确定队列是否可用
  * 
  * @return 队列状态码，UTILITY_STATUS_THREAD_CREATED表示线程已创建
@@ -931,14 +931,14 @@ uint32_t utility_check_queue_status(void)
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
  /**
- * @brief 分配内存块
+/** 分配内存块
  * 
  * 该函数负责分配内存块资源，确保系统能够获得所需的内存空间。
  * 
  * @return 无返回值
  */
 /**
- * @brief 分配内存块
+/** 分配内存块
  * 分配指定大小的内存块用于系统操作
  * @return 无返回值
  */
@@ -946,7 +946,7 @@ void utility_allocate_memory_block(void)
 {
     utility_context_activate();
 }
- * @brief 释放内存块
+/** 释放内存块
  * 释放之前分配的内存块，归还给内存池
  * @return 无返回值
  */
@@ -954,7 +954,7 @@ void utility_free_memory_block(void)
 {
     utility_context_activate();
 }
- * @brief 处理内存分配操作
+/** 处理内存分配操作
  * 管理内存分配的整个生命周期，包括验证、分配和激活
  * 
  * @param utility_context_input_data 上下文句柄，包含内存分配的相关信息
@@ -983,7 +983,7 @@ uint64_t utility_allocate_memory(int64_t utility_context_input_data)
     utility_context_activate(*(int64_t *)(stack_context_value + UTILITY_THREAD_HANDLE_OFFSET), 1);
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * @brief 获取内存状态
+/** 获取内存状态
  * 检查系统内存的当前状态，用于确定内存是否可用
  * 
  * @return 内存状态码，UTILITY_STATUS_THREAD_CREATED表示线程已创建
@@ -1006,7 +1006,7 @@ uint32_t utility_check_memory_status(void)
     utility_context_activate(*(int64_t *)(utility_iteration_counter + UTILITY_THREAD_HANDLE_OFFSET), 1);
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * @brief 初始化线程本地存储
+/** 初始化线程本地存储
  * 为当前线程初始化本地存储区域
  * @return 无返回值
  */
@@ -1015,7 +1015,7 @@ void utility_initialize_thread_local(void)
     utility_context_activate();
 }
  /**
- * @brief 线程创建器
+/** 线程创建器
  * 功能：创建新的系统线程，初始化线程上下文
  * @param utility_context_input_data 线程上下文参数
  * @return 创建的线程句柄，0表示失败
@@ -1055,10 +1055,10 @@ return utility_status;
  (ram,UTILITY_ADDRESS_RESOURCE_MANAGER_TERTIARY)
  * 线程同步管理函数
  * 功能：管理线程同步和资源访问
- * 参数：utility_context_input_data - 线程上下文句柄
- * 返回值：操作结果状态码
+ * @param：utility_context_input_data - 线程上下文句柄
+ * @return：操作结果状态码
  */
- * @brief 管理线程同步
+/** 管理线程同步
  * 功能：处理线程间的同步操作，管理锁和信号量
  * @param utility_context_input_data 同步上下文参数
  * @return 同步操作结果状态码
@@ -1116,7 +1116,7 @@ return 0;
 return UTILITY_STATUS_THREAD_CREATED;
 }
  /**
- * @brief 初始化事件系统
+/** 初始化事件系统
  * 创建和管理系统事件机制，用于线程间通信和同步
  * @return 事件系统初始化结果，0表示失败，非0表示成功
  */
@@ -1164,7 +1164,7 @@ uint64_t utility_initialize_event_system(void)
     }
 return 0;
 }
- * @brief 创建临界区
+/** 创建临界区
  * 初始化线程同步的临界区对象
  * @return 无返回值
  */
@@ -1172,7 +1172,7 @@ void utility_create_critical_section(void)
 {
     return;
 }
- * @brief 清理资源指针
+/** 清理资源指针
  * 释放和清理系统资源指针
  * @return 清理操作状态码
  */
@@ -1180,7 +1180,7 @@ uint64_t utility_cleanup_pointer(void)
 {
 return UTILITY_STATUS_THREAD_CREATED;
 }
- * @brief 处理事件分发
+/** 处理事件分发
  * 管理系统事件的分发和处理逻辑
  * @param utility_context_input_data 事件上下文句柄
  * @return 事件处理状态码
@@ -1660,7 +1660,7 @@ return;
  (ram,UTILITY_ADDRESS_RESOURCE_MANAGER_SECONDARY)
  (ram,UTILITY_ADDRESS_RESOURCE_MANAGER_TERTIARY)
 /**
- * @brief 资源操作处理器
+/** 资源操作处理器
  * 
  * 处理系统中的资源操作请求，包括资源验证、状态更新和操作执行
  * 
@@ -2128,7 +2128,7 @@ utility_release_context_resources(*(uint64_t *)(utility_context_input_data + UTI
 }
 return utility_status;
 }
- * @brief 高级定时器初始化器
+/** 高级定时器初始化器
  * 初始化和管理高级定时器功能，支持多种定时器模式
  * @param resource_count 定时器配置参数
  * @param utility_context_input_data 定时器上下文参数
@@ -3369,7 +3369,7 @@ utility_context_input_data = utility_context_input_data + 1;
 utility_release_context_resources(*(uint64_t *)(utility_context_service_handle + UTILITY_CONTEXT_SERVICE_OFFSET));
 }
 
- * @brief 空操作函数
+/** 空操作函数
  * 用于返回操作而不执行任何处理
  * @return 无返回值
  */
@@ -3381,7 +3381,7 @@ uint64_t utility_resource_data_finalizer_advanced(void)
 {
 return UTILITY_STATUS_FLAG_EXTENDED;
 }
- * @brief 处理内存资源分配和释放
+/** 处理内存资源分配和释放
  * 负责管理内存资源的分配、使用和释放操作
  * @param utility_context_input_data 上下文句柄，用于访问资源管理器
  * @param resource_data 资源数据，包含分配信息
@@ -3418,7 +3418,7 @@ void utility_process_memory_resources(int64_t utility_context_input_data, uint64
     }
     utility_checksum_compute(utility_stack_medium_temp ^ (uint64_t)utility_stack_context_array);
 }
- * @brief 释放上下文资源处理器
+/** 释放上下文资源处理器
  * 负责根据参数值释放指定的上下文资源
  * @param utility_context_input_data 上下文句柄
  * @param param_value 参数值，用于确定释放策略
@@ -3487,7 +3487,7 @@ if ((int)utility_status == UTILITY_FALSE) {
 }
 return utility_status;
 }
- * @brief 资源数据协调器
+/** 资源数据协调器
  * 负责协调和管理资源数据的分配和验证
  * @param resource_count 资源计数
  * @param utility_context_input_data 上下文句柄
@@ -5285,7 +5285,7 @@ utility_context_data[1] = utility_resource_ctx_handle;
 }
 return;
 }
- * @brief 套接字创建器
+/** 套接字创建器
  * 创建和配置网络套接字，支持多种网络协议
  * @param utility_context_input_data 套接字类型参数
  * @param utility_context_input_data 协议类型参数
@@ -5608,7 +5608,7 @@ uint64_t *utility_aux_context_ptr;
 *(uint64_t *)(utility_context_input_data + 8 + utility_context_input_data * 8) = *utility_aux_context_ptr;
 return 0;
 }
- * @brief 系统入口点函数
+/** 系统入口点函数
  * @param utility_context_input_data 上下文句柄
  * @param utility_context_input_data 上下文句柄
  * @param utility_context_input_data 上下文句柄
@@ -6163,7 +6163,7 @@ if (utility_status_code == UTILITY_FALSE) {
 }
 return;
 }
- * @brief 系统配置加载器
+/** 系统配置加载器
  * 加载和解析系统配置信息
  * @param utility_context_input_data 配置文件路径参数
  * @return 加载结果状态码
@@ -7957,8 +7957,8 @@ return utility_status;
 }
  * 网络连接上下文管理器
  * 功能：管理网络连接的上下文信息，处理连接建立、维护和断开
- * 参数：无显式参数，使用全局上下文
- * 返回值：无
+ * @param：无显式参数，使用全局上下文
+ * @return：无
  * 功能描述：负责网络连接的完整生命周期管理，包括上下文初始化、连接验证和资源清理
  */
 void utility_network_context_manager(void)
@@ -8280,7 +8280,7 @@ memory_copy_pointer((int64_t)utility_result + *(int64_t *)(utility_context_input
 }
 memset((int64_t)utility_result + *(int64_t *)(utility_context_input_data + UTILITY_THREAD_CONFIG_OFFSET),0,(int64_t)(utility_result - utility_result));
 }
- * @brief 环境变量读取器
+/** 环境变量读取器
  * 读取和处理系统环境变量
  * @param utility_context_input_data 环境变量名称参数
  * @param utility_context_input_data 缓冲区大小参数
@@ -8414,7 +8414,7 @@ return 0;
 }
 return UTILITY_STATUS_THREAD_CREATED;
 }
- * @brief 系统入口点函数
+/** 系统入口点函数
  * @param utility_context_input_data 上下文句柄
  * @param utility_context_input_data 上下文句柄
  * @param utility_context_input_data 上下文句柄
@@ -9089,7 +9089,7 @@ utility_stack_data[0] = utility_context_data[2];
 }
 return;
 }
- * @brief 时间转换器
+/** 时间转换器
  * 转换不同时间格式和时区
  * @param utility_context_input_data 源时间参数
  * @param utility_context_input_data 目标格式参数
@@ -10490,7 +10490,7 @@ return utility_status;
 }
  * 创建系统上下文函数
  * 功能：创建和初始化系统上下文，包括磁盘空间检查和处理器信息读取
- * 返回值：成功返回0，失败返回错误代码
+ * @return：成功返回0，失败返回错误代码
  * 功能描述：创建系统上下文，检查磁盘空间，读取处理器信息，设置系统环境
  */
  * 创建系统上下文
@@ -10551,9 +10551,9 @@ return;
 }
  * 系统状态管理器函数
  * 功能：管理系统状态，处理状态转换和资源管理
- * 参数：utility_context_input_data - 系统参数指针
+ * @param：utility_context_input_data - 系统参数指针
  *       utility_context_input_data - 状态标志指针
- * 返回值：成功返回0，失败返回错误代码
+ * @return：成功返回0，失败返回错误代码
  * 功能描述：管理系统状态，处理状态转换，管理资源分配和释放
  */
  * 系统状态管理器
@@ -10596,9 +10596,9 @@ return utility_status;
 }
  * 系统配置加载函数
  * 功能：加载系统配置，初始化系统参数
- * 参数：utility_context_input_data - 配置数据指针
+ * @param：utility_context_input_data - 配置数据指针
  *       utility_context_input_data - 配置大小
- * 返回值：成功返回0，失败返回错误代码
+ * @return：成功返回0，失败返回错误代码
  * 功能描述：加载系统配置文件，解析配置参数，初始化系统设置
  */
  * 加载系统配置
@@ -18518,7 +18518,7 @@ utility_resource_ctx_handle = UTILITY_STATUS_THREAD_CREATED;
 }
 return utility_status;
 }
- * @brief 获取磁盘空间信息
+/** 获取磁盘空间信息
  * 获取磁盘的可用空间信息，验证磁盘空间状态
  * @return 磁盘空间状态码
  */
@@ -24237,7 +24237,7 @@ utility_loop_index = 0;
 *int64_t *(utility_loop_index ) = 0;
 _CxxThrowutility_exception_pointer(0,0);
 }
- * @brief 处理系统异常类型1
+/** 处理系统异常类型1
  * 
  * 负责处理第一类系统异常，主要处理线程相关的异常情况
  * 包括线程上下文初始化、资源清理和回调处理
@@ -24258,7 +24258,7 @@ utility_loop_index = 0;
   utility_process_thread_callback(*uint64_t *(utility_loop_index ) = 0;
 _CxxThrowutility_exception_pointer(0,0);
 }
- * @brief 处理系统异常类型2
+/** 处理系统异常类型2
  * 
  * 负责处理第二类系统异常，主要处理资源管理和状态恢复
  * 包括资源上下文管理、状态标志设置和资源循环处理
@@ -24267,7 +24267,7 @@ _CxxThrowutility_exception_pointer(0,0);
  * @param utility_context_input_data 上下文句柄，包含异常处理的上下文信息
  * @return 无返回值
  */
- * @brief 处理系统安全异常
+/** 处理系统安全异常
  * 功能：捕获和处理系统级别的安全异常事件
  * @param resource_count 受影响的资源数量
  * @param utility_context_input_data 异常上下文参数
@@ -27912,7 +27912,7 @@ return;
  * @param utility_context_input_data 上下文句柄，包含网络处理上下文信息
  * @return 无返回值
  */
- * @brief 网络连接处理器
+/** 网络连接处理器
  * 功能：处理网络连接相关的事件和异常
  * @param resource_count 网络资源数量
  * @param utility_context_input_data 网络上下文参数
@@ -38948,7 +38948,7 @@ utility_system_initialization();
 return;
 }
 /**
- * @brief 销毁互斥体函数
+/** 销毁互斥体函数
  * 功能：销毁系统互斥体，释放同步资源
  * 功能描述：就地销毁互斥体对象，清理同步资源
  */
@@ -38958,7 +38958,7 @@ void utility_destroy_mutex_in_situ(void)
     return;
 }
 /**
- * @brief 初始化全局指针函数
+/** 初始化全局指针函数
  * 功能：初始化系统全局指针，设置全局数据结构
  * 功能描述：设置系统全局指针，初始化全局数据结构
  */
@@ -39143,7 +39143,7 @@ freeutility_loop_index++;
 utility_system_reserved_memory = UTILITY_FALSE;
 utility_system_reserved_memory = utility_falsexf;
 /**
- * @brief 释放资源块函数
+/** 释放资源块函数
  * 功能：释放系统资源块，回收内存资源
  * 功能描述：释放已分配的资源块，回收内存资源
  */
@@ -39309,7 +39309,7 @@ return;
 }
 void utility_initialize_pointer(void)
 {
- * @brief 初始化系统指针
+/** 初始化系统指针
  * 功能：初始化系统保留数据指针，设置系统指针的初始状态
  * 这是简化实现，主要处理指针的初始化工作
  * 
@@ -39318,7 +39318,7 @@ void utility_initialize_pointer(void)
 utility_system_reserved_memory = &utility_system_reserved_memory;
 return;
 }
- * @brief 设置系统指针
+/** 设置系统指针
  * 功能：设置系统数据指针，初始化系统数据结构
  * 这是简化实现，主要处理指针的设置工作
  * 
@@ -39355,7 +39355,7 @@ utility_system_initialization(utility_context_input_data);
 return;
 }
 /**
- * @brief 初始化线程管理器函数
+/** 初始化线程管理器函数
  * 功能：初始化系统线程管理器，设置线程本地存储
  * 功能描述：设置线程本地存储指针，初始化线程管理数据结构
  */
@@ -39373,7 +39373,7 @@ utility_system_initialization();
 return;
 }
 /**
- * @brief 处理线程队列函数
+/** 处理线程队列函数
  * 功能：处理系统线程队列，管理线程任务的调度和执行
  * @param queueHandle 队列句柄
  * @param processData 处理数据
@@ -39398,7 +39398,7 @@ utility_context_input_data[5] = UTILITY_FALSE;
 utility_context_input_data[4] = &utility_system_reserved_memory;
 utility_system_initialization(utility_context_input_data);
 }
- * @brief 系统服务管理器
+/** 系统服务管理器
  * @param service_id 服务ID
  * @param context_array 上下文数组
  * @return 操作结果状态码
@@ -39412,7 +39412,7 @@ int utility_service_request_processor(uint32_t service_id, int64_t context_array
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * @brief 资源管理器创建函数
+/** 资源管理器创建函数
  * @param resource_config 资源配置
  * @param context_size 上下文大小
  * @param buffer_ptr 缓冲区指针
@@ -39427,7 +39427,7 @@ uint64_t utility_resource_allocator(uint64_t resource_config, int64_t context_si
     // 简化实现：返回资源数据
     return (uint64_t)utility_resource_manager;
 }
- * @brief 上下文管理器初始化函数
+/** 上下文管理器初始化函数
  * @param resource_data 资源数据
  * @return 初始化后的上下文句柄
  */
@@ -39440,7 +39440,7 @@ uint64_t utility_context_init(uint64_t resource_data)
     // 简化实现：返回资源数据
     return resource_data;
 }
- * @brief 上下文管理器激活函数
+/** 上下文管理器激活函数
  * @param resource_data 资源数据
  * @param activation_flag 激活标志
  * @return 激活状态
@@ -39454,7 +39454,7 @@ int utility_context_activate(uint64_t resource_data, int activation_flag)
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * @brief 系统初始化函数
+/** 系统初始化函数
  * @param utility_context_input_data 可选的上下文句柄
  * @return 初始化状态
  */
@@ -39463,7 +39463,7 @@ int utility_system_initialization(int64_t utility_context_input_data)
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * @brief 系统初始化函数（无参数版本）
+/** 系统初始化函数（无参数版本）
  * @return 初始化状态
  */
 int utility_system_initialization(void)
@@ -39471,7 +39471,7 @@ int utility_system_initialization(void)
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * @brief 缓冲区管理器清理函数
+/** 缓冲区管理器清理函数
  * @param buffer_ptr 缓冲区指针
  * @return 清理状态
  */
@@ -39484,7 +39484,7 @@ int utility_buffer_cleanup(uint64_t **buffer_ptr)
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * @brief 校验和计算函数
+/** 校验和计算函数
  * @param data 数据值
  * @return 计算后的校验和
  */
@@ -39493,7 +39493,7 @@ uint64_t utility_checksum_compute(uint64_t data)
     // 简化实现：返回数据本身
     return data;
 }
- * @brief 资源上下文初始化函数
+/** 资源上下文初始化函数
  * @param utility_context_input_data 上下文句柄
  * @param char_array 字符数组
  * @return 初始化后的资源数据
@@ -39515,7 +39515,7 @@ uint64_t utility_system_initialization_main_entry(void)
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * @brief 操作结果处理函数
+/** 操作结果处理函数
  * @param utility_context_input_data 上下文句柄
  * @param operation_result 操作结果
  * @return 处理后的操作结果
@@ -39529,7 +39529,7 @@ int utility_process_operation_result(int64_t utility_context_input_data, int ope
     // 简化实现：返回操作结果
     return operation_result;
 }
- * @brief 队列处理函数
+/** 队列处理函数
  * @param queue_ptr 队列指针
  * @param queue_data 队列数据
  * @param utility_context_input_data 上下文句柄
@@ -39546,7 +39546,7 @@ int utility_queue_process(uint64_t **queue_ptr, uint64_t queue_data, uint64_t ut
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * @brief 系统外部清理函数
+/** 系统外部清理函数
  * @return 清理状态
  */
 int utility_system_external_cleanup(void)
@@ -39554,7 +39554,7 @@ int utility_system_external_cleanup(void)
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * @brief 异常上下文处理函数
+/** 异常上下文处理函数
  * @param resource_data 资源数据
  * @param flags 标志位
  * @param utility_context_input_data 上下文句柄
@@ -39571,7 +39571,7 @@ int utility_handle_exception_context(uint64_t resource_data, uint64_t flags, int
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * @brief 值连接函数
+/** 值连接函数
  * @param value1 值1
  * @param value2 值2
  * @return 连接后的值
@@ -39581,7 +39581,7 @@ uint64_t utility_combine_flag_values(uint64_t value1, uint64_t value2)
     // 简化实现：返回两个值的按位或
     return value1 | value2;
 }
- * @brief 系统连接管理器函数
+/** 系统连接管理器函数
  * @param utility_context_input_data 上下文句柄
  * @return 连接状态
  */
@@ -39594,7 +39594,7 @@ int utility_manage_system_connection(int64_t utility_context_input_data)
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * @brief 文件权限检查函数
+/** 文件权限检查函数
  * @param utility_context_input_data 上下文句柄
  * @return 权限状态
  */
@@ -39607,7 +39607,7 @@ int utility_check_file_permissions(int64_t utility_context_input_data)
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * @brief 上下文验证函数
+/** 上下文验证函数
  * @param context_value 上下文值
  * @return 验证状态
  */
@@ -39620,7 +39620,7 @@ uint64_t utility_context_validator(int64_t context_value)
     // 简化实现：返回上下文值
     return (uint64_t)context_value;
 }
- * @brief 工具缓冲区变量验证函数
+/** 工具缓冲区变量验证函数
  * @param context_value 上下文值
  * @return 验证状态
  */
@@ -39633,7 +39633,7 @@ uint64_t utility_validate_utility_buffer_variables(int64_t context_value)
     // 简化实现：返回上下文值
     return (uint64_t)context_value;
 }
- * @brief 上下文处理函数
+/** 上下文处理函数
  * @param context_value 上下文值
  * @param utility_context_input_data 上下文句柄
  * @return 处理状态
@@ -39648,7 +39648,7 @@ int utility_process_system_context(int64_t context_value, int64_t utility_contex
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
 /**
- * @brief 资源句柄创建函数
+/** 资源句柄创建函数
  * @param resource_config 资源配置
  * @param context_size 上下文大小
  * @param buffer_ptr 缓冲区指针
@@ -39664,7 +39664,7 @@ uint64_t utility_create_resource_handle(uint64_t resource_config, int64_t contex
     return resource_config;
 }
 /**
- * @brief 值组合函数
+/** 值组合函数
  * @param value1 值1
  * @param value2 值2
  * @return 组合后的值
@@ -39675,7 +39675,7 @@ int64_t utility_combine_int64(int64_t value1, int64_t value2)
     return value1 + value2;
 }
 /**
- * @brief 缓冲区数据处理函数
+/** 缓冲区数据处理函数
  * @param utility_context_input_data 上下文句柄
  * @param buffer_ptr 缓冲区指针
  * @return 处理状态
