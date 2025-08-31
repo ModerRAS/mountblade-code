@@ -145,9 +145,9 @@ static uint64_t UTILITY_EXTENDED_DATA_PTR = 0;
  *
  * 简化实现（2025年8月31日最新批次完成）：
  * - 美化函数名，将utility_config_function_121等替换为utility_config_handler_primary等语义化函数名
- * - 美化函数名，将utility_system_validator_septenary等替换为utility_system_validator_septenary等语义化函数名
- * - 美化函数名，将utility_system_cleaner_primary等替换为utility_system_cleaner_primary等语义化函数名
- * - 美化函数名，将utility_system_manager_primary等替换为utility_system_manager_primary等语义化函数名
+ * - 美化函数名，将utility_system_validator_septenary等替换为utility_system_validator等语义化函数名
+ * - 美化函数名，将utility_system_cleaner_primary等替换为utility_system_cleaner等语义化函数名
+ * - 美化函数名，将utility_system_manager_primary等替换为utility_system_manager等语义化函数名
  * - 美化变量名，将utility_resource_utility_data_pointer_primary_extended_main_primary等替换为utility_extended_data_ptr等语义化变量名
  * - 美化变量名，将UTILITY_SYSTEM_RESOURCE_HANDLE等替换为UTILITY_SYSTEM_RESOURCE_HANDLE等语义化变量名
  * - 美化变量名，将resource_table_offset等替换为UTILITY_RESOURCE_TABLE_OFFSET等语义化变量名
@@ -200,7 +200,7 @@ void utility_memory_cleanup_handler(void)
 
 /**
  * @brief 处理资源数据
- * @param utility_resource_primary_handle 主要资源句柄
+ * @param resource_handle 主要资源句柄
  * @return uint64_t 操作结果状态码
  *
  * 该函数负责处理系统资源数据，包括：
@@ -208,10 +208,10 @@ void utility_memory_cleanup_handler(void)
  * - 验证操作结果状态
  * - 返回处理结果
  */
-uint64_t utility_process_resource_data(int64_t utility_resource_primary_handle)
+uint64_t utility_process_resource_data(int64_t resource_handle)
 {
   uint64_t utility_result;
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  utility_result = system_memory_operation(*(uint32_t *)(resource_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -240,8 +240,8 @@ uint64_t utility_process_resource_data(int64_t utility_resource_primary_handle)
 uint64_t utility_resource_data_processor(void)
 {
   uint64_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t resource_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(resource_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -304,7 +304,7 @@ uint64_t utility_config_handler_primary(void)
  *
  * 简化实现：提供基本的系统验证功能。
  */
-uint64_t utility_system_validator_septenary(void)
+uint64_t utility_system_validator(void)
 {
   return UTILITY_ZERO;
 }
@@ -317,7 +317,7 @@ uint64_t utility_system_validator_septenary(void)
  *
  * 简化实现：提供基本的系统清理功能。
  */
-uint64_t utility_system_cleaner_primary(void)
+uint64_t utility_system_cleaner(void)
 {
   return UTILITY_ZERO;
 }
@@ -330,7 +330,7 @@ uint64_t utility_system_cleaner_primary(void)
  *
  * 简化实现：提供基本的系统管理功能。
  */
-uint64_t utility_system_manager_primary(void)
+uint64_t utility_system_manager(void)
 {
   return UTILITY_ZERO;
 }
