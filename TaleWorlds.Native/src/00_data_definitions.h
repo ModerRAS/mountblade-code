@@ -5,42 +5,6 @@
 // 简化实现：将硬编码值替换为语义化常量，提高代码可读性
 // 原本实现：完全重构硬编码值体系，建立统一的语义化命名规范
 
-// 最新语义化美化工作总结（2025年8月31日最新批次完成）：
-// - 美化内存分配大小常量，将SYSTEM_ALLOC_SIZE_1C8等替换为SYSTEM_ALLOC_SIZE_MEMORY_BLOCK_LARGE等语义化常量
-// - 美化配置偏移量常量，将SYSTEM_CONFIG_OFFSET_MODULE_HANDLE0等替换为SYSTEM_CONFIG_OFFSET_MODULE_HANDLE_PRIMARY等语义化常量
-// - 美化初始化结构偏移量常量，将SYSTEM_OFFSET_INITIALIZATION_STRUCTURE_RESERVED2替换为SYSTEM_OFFSET_INITIALIZATION_STRUCTURE_RESERVED_SECONDARY等语义化常量
-// - 美化线程相关常量，将THREAD_DATA_BUFFER_ADDR_0等替换为THREAD_DATA_BUFFER_ADDR_PRIMARY等语义化常量
-// - 美化缓冲区分配结果常量，将SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS0等替换为SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS_FIRST等语义化常量
-// - 美化控制值常量，将SYSTEM_CONTROL_VALUE_B0等替换为SYSTEM_CONTROL_VALUE_BUFFER_ALIGNMENT等语义化常量
-// - 美化字符常量，将SYSTEM_CHAR_DC2替换为SYSTEM_CHAR_DEVICE_CONTROL_2等语义化常量
-// - 美化函数调用偏移量常量，将SYSTEM_OFFSET_FUNCTION_CALL_A8替换为SYSTEM_OFFSET_FUNCTION_CALL_ADDRESS_ALIGNMENT等语义化常量
-// - 美化字符串模式常量，将SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_3替换为SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_FUNC等语义化常量
-// - 美化线程栈地址常量，将SYSTEM_THREAD_STACK_BASE_ADDRESS_4EA替换为SYSTEM_THREAD_STACK_BASE_ADDRESS_CONTROL等语义化常量
-// - 美化指针偏移量常量，将SYSTEM_POINTER_OFFSET_1替换为SYSTEM_POINTER_OFFSET_UNIT等语义化常量
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余数字后缀常量名的语义化替换
-// - 原本实现：完全重构所有常量命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的数字后缀常量名替换为语义化名称，保持代码结构不变
-
-// 最新语义化美化工作总结（2025年8月31日最终批次完成）：
-// - 美化缓冲区大小常量，将SYSTEM_BUFFER_SIZE_1M等替换为SYSTEM_BUFFER_SIZE_1_MEGABYTE等语义化常量
-// - 美化特殊浮点数值常量，将SYSTEM_FLOAT_VALUE_PI_DIV_4等替换为SYSTEM_FLOAT_VALUE_PI_DIVIDED_BY_FOUR等语义化常量
-// - 美化特殊字符串模式常量，将SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_2等替换为SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_DECORATION等语义化常量
-// - 美化特殊位掩码常量，将SYSTEM_BIT_MASK_SPECIAL_1等替换为SYSTEM_BIT_MASK_ADDRESS_VALIDATION等语义化常量
-// - 美化特殊错误码常量，将SYSTEM_ERROR_CODE_SPECIAL_1等替换为SYSTEM_ERROR_CODE_MEMORY_ALLOCATION_FAILED等语义化常量
-// - 美化特殊地址偏移常量，将SYSTEM_ADDRESS_OFFSET_SPECIAL_1等替换为SYSTEM_ADDRESS_OFFSET_HEAP_BASE等语义化常量
-// - 美化特殊指针偏移常量，将SYSTEM_POINTER_OFFSET_70等替换为SYSTEM_POINTER_OFFSET_THREAD_LOCAL_STORAGE等语义化常量
-// - 美化特殊数值常量，将SYSTEM_SPECIAL_VALUE_NEGATIVE_1等替换为SYSTEM_SPECIAL_VALUE_INVALID_INDEX等语义化常量
-// - 美化特殊最大值常量，将SYSTEM_MAX_VALUE_32BIT等替换为SYSTEM_MAX_VALUE_32BIT_UNSIGNED等语义化常量
-// - 美化特殊寄存器常量，将SYSTEM_REGISTER_OFFSET_20等替换为SYSTEM_REGISTER_OFFSET_STACK_POINTER等语义化常量
-// - 美化特殊缓冲区代码常量，将SYSTEM_BUFFER_CODE_SPECIAL_1等替换为SYSTEM_BUFFER_CODE_ALLOC_PRIMARY等语义化常量
-// - 美化特殊位掩码对齐常量，将SYSTEM_BIT_MASK_ALIGN_2BIT等替换为SYSTEM_BIT_MASK_ALIGN_2BIT_ALIGNMENT等语义化常量
-// - 美化扩展缓冲区分配结果常量，将SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_20替换为SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_MAXIMUM等语义化常量
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余数字后缀常量名的语义化替换
-// - 原本实现：完全重构所有常量命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的数字后缀常量名替换为语义化名称，保持代码结构不变
-
 // 最新语义化美化工作总结（2025年8月30日最终批次最新完成）：
 // - 美化位掩码常量，将硬编码值替换为语义化常量
 // - 美化字符串模式常量，提高代码可读性
@@ -689,7 +653,7 @@
 #define SYSTEM_OFFSET_INITIALIZATION_STRUCTURE_EXTENDED 0x1340
 #define SYSTEM_OFFSET_INITIALIZATION_STRUCTURE_TERTIARY 0x1344
 #define SYSTEM_OFFSET_INITIALIZATION_STRUCTURE_QUATERNARY 0x1348
-#define SYSTEM_OFFSET_INITIALIZATION_STRUCTURE_RESERVED_SECONDARY 0x134c  // 初始化结构保留偏移量2
+#define SYSTEM_OFFSET_INITIALIZATION_STRUCTURE_RESERVED2 0x134c  // 初始化结构保留偏移量2
 
 // 系统配置常量定义
 #define SYSTEM_CONFIG_DEFAULT_TIMEOUT SYSTEM_CONTROL_VALUE_LINE_FEED
@@ -826,9 +790,9 @@
 // 系统字符常量
 
 // 系统内存分配大小常量
-#define SYSTEM_ALLOC_SIZE_MEMORY_BLOCK_LARGE 0x1c8  // 大内存块分配大小
-#define SYSTEM_ALLOC_SIZE_MEMORY_BLOCK_MEDIUM 0xf8    // 中等内存块分配大小
-#define SYSTEM_ALLOC_SIZE_MEMORY_BLOCK_SMALL 0xb0    // 小内存块分配大小
+#define SYSTEM_ALLOC_SIZE_1C8 0x1c8  // 分配大小1C8
+#define SYSTEM_ALLOC_SIZE_F8 0xf8    // 分配大小F8
+#define SYSTEM_ALLOC_SIZE_B0 0xb0    // 分配大小B0
 
 // 系统特殊偏移量常量
 #define SYSTEM_MUTEX_OFFSET_THREAD_CONTROL 0x6e8    // 互斥量线程控制偏移量
@@ -854,9 +818,9 @@
 #define SYSTEM_CONFIG_OFFSET_PROCESS_FLAG 0x28         // 配置进程标志偏移量
 #define SYSTEM_CONFIG_OFFSET_VALID_FLAG 0x2d           // 配置有效标志偏移量
 #define SYSTEM_CONFIG_OFFSET_DATA_FLAG 0x23            // 配置数据标志偏移量
-#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE_PRIMARY 0x30       // 主模块句柄偏移量
-#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE_SECONDARY 0x34       // 次要模块句柄偏移量
-#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE_TERTIARY 0x3c       // 第三模块句柄偏移量
+#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE0 0x30       // 配置模块句柄0偏移量
+#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE4 0x34       // 配置模块句柄4偏移量
+#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLEc 0x3c       // 配置模块句柄c偏移量
 
 #define SYSTEM_VALIDATION_OFFSET_TYPE_CHECK 0x161c      // 验证类型检查偏移量
 #define SYSTEM_VALIDATION_OFFSET_DATA_INTEGRITY 0x167c    // 验证数据完整性偏移量
@@ -1423,7 +1387,7 @@
 #define THREAD_DATA_BUFFER_ADDR 0x180a03a80                // 线程数据缓冲区地址
 #define CONFIG_DATA_BUFFER_ADDR 0x180c95fe0                // 配置数据缓冲区地址
 #define CONSTANT_STRING_BUFFER_ADDR 0x180c8ece0           // 常量字符串缓冲区地址
-#define THREAD_DATA_BUFFER_ADDR_PRIMARY 0x180c8f000              // 主线程数据缓冲区地址
+#define THREAD_DATA_BUFFER_ADDR_0 0x180c8f000              // 线程数据缓冲区地址0
 #define SYSTEM_STRING_BUFFER_ADDR 0x180c8ed80               // 系统字符串缓冲区地址
 #define SYSTEM_DATA_BUFFER_BASE_ADDRESS 0x180329eb0        // 系统数据缓冲区基地址
 #define RESOURCE_DATA_BUFFER_ADDR 0x180d49130              // 资源数据缓冲区地址
@@ -1577,14 +1541,14 @@
 
 // 新增语义化常量定义 - 美化硬编码十六进制常量
 #define SYSTEM_FLOAT_ARRAY_TERTIARY_ADDRESS 0x180c8ed90    // 浮点数组第三级地址
-#define THREAD_CLEANUP_FUNCTION_SECONDARY 0x18064ffd0                // 次要线程清理函数地址
+#define THREAD_CLEANUP_FUNCTION_2 0x18064ffd0                // 线程清理函数2地址
 // 系统常量定义（美化硬编码数值）
 #define SYSTEM_CONSTANT_UNIT 1                           // 单位常量
 #define SYSTEM_CONSTANT_PAIR 2                           // 对常量
 #define SYSTEM_CONSTANT_TRIPLE 3                        // 三元组常量
 #define SYSTEM_CONSTANT_QUADRUPLE 0x2c                   // 四元组常量
 #define SYSTEM_CONSTANT_PAIR0 SYSTEM_CHAR_SPACE          // 对常量0
-#define SYSTEM_CONSTANT_PAIR_SMALL 0x28                       // 小对常量
+#define SYSTEM_CONSTANT_PAIR8 0x28                       // 对常量8
 #define SYSTEM_CONSTANT_PAIRC 0x2c                        // 对常量C
 #define SYSTEM_CONSTANT_PAIRFF SYSTEM_CHAR_SLASHf        // 对常量FF
 #define SYSTEM_CONSTANT_TRIPLE800000 0x3800000           // 三元组常量800000
@@ -1643,7 +1607,7 @@
 // 系统数据缓冲区地址
 #define THREAD_POOL_DATA_BUFFER_ADDR 0x180c8f010
 #define THREAD_OPERATION_FLAGS_ADDR 0x180c8f020
-#define THREAD_OPERATION_FLAGS_ADDR_PRIMARY 0x180c8f030
+#define THREAD_OPERATION_FLAGS_ADDR_0 0x180c8f030
 #define SYSTEM_CONTROL_FLAG_BUFFER_ADDR 0x180c8f040
 #define SYSTEM_INIT_FLAG_BUFFER_ADDR 0x180c8f050
 #define PTHREAD_OPERATION_FLAGS_ADDR 0x180c8f060
@@ -1882,10 +1846,10 @@ extern char system_cleanup_handler_flag_buffer;                            // �
 #define SYSTEM_BUFFER_ALLOC_RESULT_OPTIMAL_SUCCESS 0x26       // 缓冲区分配成功结果7
 #define SYSTEM_BUFFER_ALLOC_RESULT_MAXIMAL_SUCCESS 0x27       // 缓冲区分配成功结果8
 #define SYSTEM_BUFFER_ALLOC_RESULT_SUPERIOR_SUCCESS 0x29       // 缓冲区分配成功结果9
-#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS_FIRST 0x2a      // 缓冲区分配基本成功结果1
-#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS_SECOND 0x2b      // 缓冲区分配基本成功结果2
-#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS_THIRD 0x2d      // 缓冲区分配基本成功结果3
-#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS_FOURTH 0x2e      // 缓冲区分配基本成功结果4
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS0 0x2a      // 缓冲区分配成功结果10
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS1 0x2b      // 缓冲区分配成功结果11
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS2 0x2d      // 缓冲区分配成功结果12
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS3 0x2e      // 缓冲区分配成功结果13
 #define SYSTEM_BUFFER_ALLOC_RESULT_RESERVED_BASIC 0xb        // 缓冲区分配保留结果1
 #define SYSTEM_BUFFER_ALLOC_RESULT_RESERVED_STANDARD 0x11       // 缓冲区分配保留结果2
 #define SYSTEM_BUFFER_ALLOC_RESULT_RESERVED_EXTENDED 0x12       // 缓冲区分配保留结果3
@@ -2005,21 +1969,21 @@ extern char system_cleanup_handler_flag_buffer;                            // �
 #define SYSTEM_ERROR_ADAP_HDW_ERR 0x1f
 
 // 系统特殊常量定义 - 美化为语义化名称
-#define SYSTEM_CHAR_DEVICE_CONTROL_2 0x12          // 设备控制2字符
+#define SYSTEM_CHAR_DC2 0x12          // DC2 控制字符
 #define SYSTEM_CHAR_DIGIT_ZERO 0x30   // '0' 字符
-#define SYSTEM_CONTROL_VALUE_BUFFER_ALIGNMENT 0xb0    // 缓冲区对齐控制值
-#define SYSTEM_CONTROL_VALUE_DATA_VALIDATION 0xd4    // 数据验证控制值  
+#define SYSTEM_CONTROL_VALUE_B0 0xb0    // 控制值 B0
+#define SYSTEM_CONTROL_VALUE_D4 0xd4    // 控制值 D4  
 #define SYSTEM_CHAR_DIGIT_ONE 0x48     // '1' 字符
 #define SYSTEM_CONTROL_VALUE_STANDARD_SIZE 0x14   // 控制值 14
 #define SYSTEM_CONTROL_VALUE_EXTENDED_SIZE 0x28   // 控制值 28
 #define SYSTEM_CHAR_DIGIT_FIVE 0x58    // '5' 字符
 #define SYSTEM_CONTROL_VALUE_C 0xc     // 控制值 C
-#define SYSTEM_CONTROL_VALUE_ADDRESS_ALIGNMENT 0xa8   // 地址对齐控制值
+#define SYSTEM_CONTROL_VALUE_A8 0xa8   // 控制值 A8
 #define SYSTEM_CONTROL_VALUE_MEDIUM_SIZE 0x18  // 控制值 18
-#define SYSTEM_CONTROL_VALUE_ACCESS_MASK 0xa0   // 访问掩码控制值
+#define SYSTEM_CONTROL_VALUE_A0 0xa0   // 控制值 A0
 #define SYSTEM_CHAR_LOWERCASE_P 0x50   // 'p' 字符
 #define SYSTEM_CONTROL_VALUE_LARGE_SIZE 0x96   // 控制值 96
-#define SYSTEM_CONTROL_VALUE_FLAG_MASK 0xf8   // 标志掩码控制值
+#define SYSTEM_CONTROL_VALUE_F8 0xf8   // 控制值 F8
 #define SYSTEM_CONTROL_VALUE_FC 0xfc   // 控制值 FC
 #define SYSTEM_CHAR_DOLLAR_SIGN 0x24   // '$' 字符
 #define SYSTEM_CHAR_DIGIT_FOUR 0x34    // '4' 字符
@@ -2028,26 +1992,26 @@ extern char system_cleanup_handler_flag_buffer;                            // �
 #define SYSTEM_CHAR_LOWERCASE_Q 0x51    // 'q' 字符
 #define SYSTEM_CONTROL_VALUE_COMPRESSED_SIZE 0x94    // 控制值 94
 #define SYSTEM_CONTROL_VALUE_FUNCTION_POINTER 0x98    // 控制值 98
-#define SYSTEM_CONTROL_VALUE_FUNCTION_POINTER 0x9c    // 函数指针控制值
-#define SYSTEM_CONTROL_VALUE_ADDRESS_OFFSET 0xa4    // 地址偏移控制值
+#define SYSTEM_CONTROL_VALUE_9C 0x9c    // 控制值 9C
+#define SYSTEM_CONTROL_VALUE_A4 0xa4    // 控制值 A4
 #define SYSTEM_CONTROL_VALUE_AC 0xac    // 控制值 AC
-#define SYSTEM_CONTROL_VALUE_BUFFER_OFFSET 0xb4    // 缓冲区偏移控制值
-#define SYSTEM_CONTROL_VALUE_BUFFER_SIZE 0xb5    // 缓冲区大小控制值
-#define SYSTEM_CONTROL_VALUE_BUFFER_CAPACITY 0xb8    // 缓冲区容量控制值
+#define SYSTEM_CONTROL_VALUE_B4 0xb4    // 控制值 B4
+#define SYSTEM_CONTROL_VALUE_B5 0xb5    // 控制值 B5
+#define SYSTEM_CONTROL_VALUE_B8 0xb8    // 控制值 B8
 #define SYSTEM_CONTROL_VALUE_BC 0xbc    // 控制值 BC
 #define SYSTEM_CONTROL_VALUE_BD 0xbd    // 控制值 BD
 #define SYSTEM_CONTROL_VALUE_BE 0xbe    // 控制值 BE
-#define SYSTEM_CONTROL_VALUE_CACHE_FLUSH 0xc0    // 缓存刷新控制值
-#define SYSTEM_CONTROL_VALUE_GROUP_SEPARATOR 0x1d    // 组分隔符控制值
-#define SYSTEM_CONTROL_VALUE_CACHE_INVALIDATE 0xc4    // 缓存失效控制值
+#define SYSTEM_CONTROL_VALUE_C0 0xc0    // 控制值 C0
+#define SYSTEM_CONTROL_VALUE_1D 0x1d    // 控制值 1D
+#define SYSTEM_CONTROL_VALUE_C4 0xc4    // 控制值 C4
 #define SYSTEM_CONTROL_VALUE_CC 0xcc    // 控制值 CC
-#define SYSTEM_CONTROL_VALUE_DATA_FLUSH 0xd0    // 数据刷新控制值
+#define SYSTEM_CONTROL_VALUE_D0 0xd0    // 控制值 D0
 #define SYSTEM_CHAR_DIGIT_TWO 0x32      // '2' 字符
 #define SYSTEM_CHAR_PERIOD 0x2e          // '.' 字符
 #define SYSTEM_CONTROL_VALUE_BASIC_CONFIG 0x15     // 控制值 15
 #define SYSTEM_CONTROL_VALUE_STANDARD_CONFIG 0x16     // 控制值 16
-#define SYSTEM_CONTROL_VALUE_SUBSTITUTE_CHARACTER 0x1a     // 替换字符控制值
-#define SYSTEM_CONTROL_VALUE_ESCAPE_CHARACTER 0x1b     // 转义字符控制值
+#define SYSTEM_CONTROL_VALUE_1A 0x1a     // 控制值 1A
+#define SYSTEM_CONTROL_VALUE_1B 0x1b     // 控制值 1B
 #define SYSTEM_CONTROL_VALUE_EB 0xeb     // 控制值 EB
 #define SYSTEM_CONTROL_VALUE_EF 0xef     // 控制值 EF
 #define SYSTEM_CONTROL_VALUE_E 0xe       // 控制值 E
@@ -14604,8 +14568,8 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_OFFSET_VALIDATION_TYPE_D 0x0d                     // 验证类型D偏移量
 #define SYSTEM_OFFSET_STRING_MULTIPLIER 0xd0                     // 字符串乘数偏移量
 #define SYSTEM_OFFSET_FUNCTION_CALL_98 0x98                      // 函数调用98偏移量
-#define SYSTEM_OFFSET_FUNCTION_CALL_ADDRESS_ALIGNMENT 0xa8                      // 函数调用地址对齐偏移量
-#define SYSTEM_OFFSET_FREE_PARAMETER_CACHE_CONTROL 0xc0                     // 释放参数缓存控制偏移量
+#define SYSTEM_OFFSET_FUNCTION_CALL_A8 0xa8                      // 函数调用A8偏移量
+#define SYSTEM_OFFSET_FREE_PARAMETER_C0 0xc0                     // 释放参数C0偏移量
 #define SYSTEM_OFFSET_BIT_MASK_ADDRESS_ALIGN 0xffffff00                   // 地址对齐位掩码偏移量
 #define SYSTEM_OFFSET_GLOBAL_DATA_MATRIX_TRANSFORM 0x1626                   // 全局数据矩阵变换偏移量
 #define SYSTEM_OFFSET_GLOBAL_DATA_138 0x138                      // 全局数据偏移量138
@@ -14762,7 +14726,7 @@ void system_data_initialization_cleanup(void)
 
 // 系统字符串模式常量定义
 #define SYSTEM_STRING_PATTERN_TERMINATOR_BASIC 0x526f662f             // 终止符模式1
-#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_FUNC 0x466f6e63             // 函数终止符模式
+#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_3 0x466f6e63             // 终止符模式3
 
 // 基础位掩码常量定义（2025年8月30日语义化美化）
 
@@ -14868,7 +14832,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_STRING_CONSTANT_N696C2074612027 0x696c2074612027   // 字符串常量"nlic ta '"
 
 // 系统线程栈地址常量定义（2025年8月30日最终批次）
-#define SYSTEM_THREAD_STACK_BASE_ADDRESS_CONTROL 0x4ea              // 线程栈基址控制值
+#define SYSTEM_THREAD_STACK_BASE_ADDRESS_4EA 0x4ea              // 线程栈基址4EA
 #define SYSTEM_THREAD_STACK_POINTER_C88 0xc88                   // 线程栈指针C88
 
 // 系统状态码常量定义（2025年8月30日最终批次）
@@ -14956,7 +14920,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_PATH_BUFFER_SIZE_MAXIMAL 38                              // 路径缓冲区大小38（最大）
 
 // 指针偏移量常量定义（2025年8月30日最终批次补充）
-#define SYSTEM_POINTER_OFFSET_UNIT 0x1                               // 单位指针偏移量
+#define SYSTEM_POINTER_OFFSET_1 0x1                               // 指针偏移量1
 
 // 寄存器偏移量常量定义（2025年8月30日最终批次补充）
 #define SYSTEM_OFFSET_REGISTER_1C 0x1c                             // 寄存器1C偏移量
