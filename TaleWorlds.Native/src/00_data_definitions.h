@@ -2546,45 +2546,45 @@ int initialize_network_module(void)
   system_global_context_pointer = STRING_BUFFER_SIZE;
   strcpy_s(&shader_resource_buffer_geometry,SYSTEM_CONFIG_BUFFER_SIZE,&shader_fragment_definition_string);
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &shader_resource_buffer_3;
-  shader_resource_buffer_3 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &shader_resource_buffer_geometry;
+  shader_resource_buffer_geometry = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_MODULE_CONFIG_OPCODE_EXTENDED;
-  strcpy_s(&shader_resource_buffer_3,SYSTEM_CONFIG_BUFFER_SIZE,&shader_geometry_definition_string);
+  strcpy_s(&shader_resource_buffer_geometry,SYSTEM_CONFIG_BUFFER_SIZE,&shader_geometry_definition_string);
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &shader_resource_buffer_4;
-  shader_resource_buffer_4 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &shader_resource_buffer_compute;
+  shader_resource_buffer_compute = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_0F;
-  strcpy_s(&shader_resource_buffer_4,SYSTEM_CONFIG_BUFFER_SIZE,&shader_compute_config_string);
+  strcpy_s(&shader_resource_buffer_compute,SYSTEM_CONFIG_BUFFER_SIZE,&shader_compute_config_string);
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &shader_resource_buffer_5;
-  shader_resource_buffer_5 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &shader_resource_buffer_tessellation;
+  shader_resource_buffer_tessellation = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_MEMORY_FREE;
-  strcpy_s(&shader_resource_buffer_5,SYSTEM_CONFIG_BUFFER_SIZE,&shader_tessellation_definition_string);
+  strcpy_s(&shader_resource_buffer_tessellation,SYSTEM_CONFIG_BUFFER_SIZE,&shader_tessellation_definition_string);
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &shader_resource_buffer_6;
-  shader_resource_buffer_6 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &shader_resource_buffer_lighting;
+  shader_resource_buffer_lighting = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_DATA_WRITE;
-  strcpy_s(&shader_resource_buffer_6,SYSTEM_CONFIG_BUFFER_SIZE,&shader_lighting_definition_string);
+  strcpy_s(&shader_resource_buffer_lighting,SYSTEM_CONFIG_BUFFER_SIZE,&shader_lighting_definition_string);
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &shader_resource_buffer_7;
-  shader_resource_buffer_7 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &shader_resource_buffer_shadow;
+  shader_resource_buffer_shadow = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_MODULE_CONFIG_OPCODE_EXTENDED;
-  strcpy_s(&shader_resource_buffer_7,SYSTEM_CONFIG_BUFFER_SIZE,&shader_shadow_definition_string);
+  strcpy_s(&shader_resource_buffer_shadow,SYSTEM_CONFIG_BUFFER_SIZE,&shader_shadow_definition_string);
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &shader_resource_buffer_8;
-  shader_resource_buffer_8 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &shader_resource_buffer_postprocess;
+  shader_resource_buffer_postprocess = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = path_buffer_size;
-  strcpy_s(&shader_resource_buffer_8,SYSTEM_CONFIG_BUFFER_SIZE,&shader_postprocess_definition_string);
+  strcpy_s(&shader_resource_buffer_postprocess,SYSTEM_CONFIG_BUFFER_SIZE,&shader_postprocess_definition_string);
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &shader_resource_buffer_9;
-  shader_resource_buffer_9 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &shader_resource_buffer_particle;
+  shader_resource_buffer_particle = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_STRING_MANAGER;
-  strcpy_s(&shader_resource_buffer_9,SYSTEM_CONFIG_BUFFER_SIZE,&shader_particle_definition_string);
+  strcpy_s(&shader_resource_buffer_particle,SYSTEM_CONFIG_BUFFER_SIZE,&shader_particle_definition_string);
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &audio_resource_buffer_0;
-  audio_resource_buffer_0 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &audio_resource_buffer_primary;
+  audio_resource_buffer_primary = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_MEMORY_FREE;
-  strcpy_s(&audio_resource_buffer_0,SYSTEM_CONFIG_BUFFER_SIZE,&shader_water_definition_string);
+  strcpy_s(&audio_resource_buffer_primary,SYSTEM_CONFIG_BUFFER_SIZE,&shader_water_definition_string);
   resource_template_pointer = &system_default_resource_template;
   system_global_context_pointer = &audio_config_buffer;
   audio_config_buffer = SYSTEM_ZERO_VALUE;
@@ -2593,9 +2593,9 @@ int initialize_network_module(void)
   system_initialization_result = system_execution_function(&system_init_function_tertiary);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
-  system_module_config_buffer_1 = SYSTEM_ZERO_VALUE;
+  system_module_config_buffer_initialization = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_AUDIO;
-  strcpy_s(&system_module_config_buffer_1,path_buffer_size,&system_event_system_config_string,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_initialization,path_buffer_size,&system_event_system_config_string,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(event_system_initialization_callback);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2611,9 +2611,9 @@ int initialize_physics_module(void)
   system_initialization_result = system_execution_function(time_system_initialization_callback);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
-  system_module_config_buffer_2 = SYSTEM_ZERO_VALUE;
+  system_module_config_buffer_settings = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = STRING_BUFFER_SIZE;
-  strcpy_s(&system_module_config_buffer_2,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_settings,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(file_system_initialization_callback);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2622,10 +2622,10 @@ int initialize_ai_module(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_1;
-  system_module_texture_buffer_1 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_diffuse;
+  system_module_texture_buffer_diffuse = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_STRING_MANAGER;
-  strcpy_s(&system_module_texture_buffer_1,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_diffuse,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(debug_system_initialization_callback);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2634,10 +2634,10 @@ int initialize_ui_module(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_2;
-  system_module_texture_buffer_2 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_normal;
+  system_module_texture_buffer_normal = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_DATA_WRITE;
-  strcpy_s(&system_module_texture_buffer_2,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_normal,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_ui_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2646,10 +2646,10 @@ int initialize_scripting_module(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_3;
-  system_module_texture_buffer_3 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_specular;
+  system_module_texture_buffer_specular = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_DATA_WRITE;
-  strcpy_s(&system_module_texture_buffer_3,SYSTEM_CONFIG_BUFFER_SIZE,&system_scripting_module_string,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_specular,SYSTEM_CONFIG_BUFFER_SIZE,&system_scripting_module_string,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_scripting_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2658,10 +2658,10 @@ int initialize_audio_engine(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_4;
-  system_module_texture_buffer_4 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_emissive;
+  system_module_texture_buffer_emissive = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_AUDIO;
-  strcpy_s(&system_module_texture_buffer_4,SYSTEM_CONFIG_BUFFER_SIZE,&system_audio_engine_string,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_emissive,SYSTEM_CONFIG_BUFFER_SIZE,&system_audio_engine_string,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_audio_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2670,10 +2670,10 @@ int initialize_video_subsystem(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_5;
-  system_module_texture_buffer_5 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_roughness;
+  system_module_texture_buffer_roughness = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = STRING_BUFFER_SIZE;
-  strcpy_s(&system_module_texture_buffer_5,SYSTEM_CONFIG_BUFFER_SIZE,&system_video_engine_string,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_roughness,SYSTEM_CONFIG_BUFFER_SIZE,&system_video_engine_string,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_video_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2682,10 +2682,10 @@ int initialize_input_handler(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_6;
-  system_module_texture_buffer_6 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_metallic;
+  system_module_texture_buffer_metallic = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_SHADER;
-  strcpy_s(&system_module_texture_buffer_6,SYSTEM_CONFIG_BUFFER_SIZE,&system_input_system_string,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_metallic,SYSTEM_CONFIG_BUFFER_SIZE,&system_input_system_string,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_input_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2694,10 +2694,10 @@ int initialize_network_stack(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_7;
-  system_module_texture_buffer_7 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_ambient;
+  system_module_texture_buffer_ambient = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = STRING_BUFFER_SIZE;
-  strcpy_s(&system_module_texture_buffer_7,SYSTEM_CONFIG_BUFFER_SIZE,&system_network_system_string,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_ambient,SYSTEM_CONFIG_BUFFER_SIZE,&system_network_system_string,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_network_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2706,10 +2706,10 @@ int initialize_file_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_10;
-  system_module_config_buffer_10 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_network;
+  system_module_config_buffer_network = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_AUDIO;
-  strcpy_s(&system_module_config_buffer_10,SYSTEM_CONFIG_BUFFER_SIZE,&system_file_system_string,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_network,SYSTEM_CONFIG_BUFFER_SIZE,&system_file_system_string,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_physics_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2718,10 +2718,10 @@ int initialize_memory_manager(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_11;
-  system_module_config_buffer_11 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_rendering;
+  system_module_config_buffer_rendering = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_FONT;
-  strcpy_s(&system_module_config_buffer_11,SYSTEM_CONFIG_BUFFER_SIZE,&system_memory_manager_string,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_rendering,SYSTEM_CONFIG_BUFFER_SIZE,&system_memory_manager_string,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_animation_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2730,10 +2730,10 @@ int initialize_thread_manager(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_12;
-  system_module_config_buffer_12 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_input;
+  system_module_config_buffer_input = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_MEMORY_FREE;
-  strcpy_s(&system_module_config_buffer_12,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string1,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_input,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string1,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_ai_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2742,10 +2742,10 @@ int initialize_event_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_13;
-  system_module_config_buffer_13 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_audio;
+  system_module_config_buffer_audio = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_STRING_MANAGER;
-  strcpy_s(&system_module_config_buffer_13,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string2,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_audio,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string2,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_terrain_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2754,10 +2754,10 @@ int initialize_timer_service(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_14;
-  system_module_config_buffer_14 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_ui;
+  system_module_config_buffer_ui = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_MODULE_CONFIG_OPCODE_EXTENDED;
-  strcpy_s(&system_module_config_buffer_14,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string3,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_ui,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string3,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_weather_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2766,10 +2766,10 @@ int initialize_logger_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_15;
-  system_module_config_buffer_15 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_physics;
+  system_module_config_buffer_physics = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_SHADER;
-  strcpy_s(&system_module_config_buffer_15,SYSTEM_CONFIG_BUFFER_SIZE,&logger_string_buffer,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_physics,SYSTEM_CONFIG_BUFFER_SIZE,&logger_string_buffer,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_lighting_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2778,10 +2778,10 @@ int initialize_config_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_16;
-  system_module_config_buffer_16 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_animation;
+  system_module_config_buffer_animation = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_SHADER;
-  strcpy_s(&system_module_config_buffer_16,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string4,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_animation,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string4,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_particle_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2790,10 +2790,10 @@ int initialize_resource_cache(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_17;
-  system_module_config_buffer_17 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_ai;
+  system_module_config_buffer_ai = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = path_buffer_size;
-  strcpy_s(&system_module_config_buffer_17,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string5,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_ai,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string5,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_shader_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2802,10 +2802,10 @@ int initialize_asset_loader(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_18;
-  system_module_config_buffer_18 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_pathfinding;
+  system_module_config_buffer_pathfinding = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_STRING_MANAGER;
-  strcpy_s(&system_module_config_buffer_18,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string6,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_pathfinding,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string6,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_texture_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2814,10 +2814,10 @@ int initialize_shader_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_19;
-  system_module_config_buffer_19 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_collision;
+  system_module_config_buffer_collision = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_1E;
-  strcpy_s(&system_module_config_buffer_19,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string7,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_collision,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string7,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_mesh_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2826,10 +2826,10 @@ int initialize_texture_manager(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_20;
-  system_module_config_buffer_20 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_visibility;
+  system_module_config_buffer_visibility = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_1B;
-  strcpy_s(&system_module_config_buffer_20,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string8,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_visibility,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string8,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_material_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2838,10 +2838,10 @@ int initialize_mesh_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_21;
-  system_module_config_buffer_21 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_lighting;
+  system_module_config_buffer_lighting = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_1B;
-  strcpy_s(&system_module_config_buffer_21,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string9,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_lighting,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_config_string9,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_camera_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2850,10 +2850,10 @@ int initialize_animation_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_22;
-  system_module_config_buffer_22 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_shadow;
+  system_module_config_buffer_shadow = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_1C;
-  strcpy_s(&system_module_config_buffer_22,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string0,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_shadow,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string0,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_render_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2862,10 +2862,10 @@ int initialize_particle_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_23;
-  system_module_config_buffer_23 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_reflection;
+  system_module_config_buffer_reflection = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_1D;
-  strcpy_s(&system_module_config_buffer_23,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string1,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_reflection,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string1,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_ui_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2874,10 +2874,10 @@ int initialize_physics_engine(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_24;
-  system_module_config_buffer_24 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_postprocessing;
+  system_module_config_buffer_postprocessing = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = path_buffer_size;
-  strcpy_s(&system_module_config_buffer_24,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string2,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_postprocessing,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string2,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_scripting_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2886,10 +2886,10 @@ int initialize_collision_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_25;
-  system_module_config_buffer_25 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_effects;
+  system_module_config_buffer_effects = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_1D;
-  strcpy_s(&system_module_config_buffer_25,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string3,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_effects,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string3,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_audio_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2910,10 +2910,10 @@ int initialize_navigation_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_27;
-  system_module_config_buffer_27 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_debug;
+  system_module_config_buffer_debug = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_SHADER;
-  strcpy_s(&system_module_config_buffer_27,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string4,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_debug,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string4,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_input_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2922,10 +2922,10 @@ int initialize_ui_framework(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_28;
-  system_module_config_buffer_28 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_profiling;
+  system_module_config_buffer_profiling = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_MODEL;
-  strcpy_s(&system_module_config_buffer_28,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string5,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_profiling,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string5,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_network_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2934,10 +2934,10 @@ int initialize_scripting_engine(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_config_buffer_29;
-  system_module_config_buffer_29 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_config_buffer_logging;
+  system_module_config_buffer_logging = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_SYSTEM_INIT;
-  strcpy_s(&system_module_config_buffer_29,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string6,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_config_buffer_logging,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string6,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_physics_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2946,10 +2946,10 @@ int initialize_database_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_10;
-  system_module_texture_buffer_10 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_height;
+  system_module_texture_buffer_height = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_SYSTEM_RESET;
-  strcpy_s(&system_module_texture_buffer_10,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string7,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_height,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string7,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_animation_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2958,10 +2958,10 @@ int initialize_network_manager(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_11;
-  system_module_texture_buffer_11 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_opacity;
+  system_module_texture_buffer_opacity = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_SYSTEM_SHUTDOWN;
-  strcpy_s(&system_module_texture_buffer_11,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string8,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_opacity,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string8,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_ai_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2970,10 +2970,10 @@ int initialize_security_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_12;
-  system_module_texture_buffer_12 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_reflection;
+  system_module_texture_buffer_reflection = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_1E;
-  strcpy_s(&system_module_texture_buffer_12,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string9,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_reflection,SYSTEM_CONFIG_BUFFER_SIZE,&system_module_texture_string9,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_terrain_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2982,10 +2982,10 @@ int initialize_encryption_service(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_13;
-  system_module_texture_buffer_13 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_refraction;
+  system_module_texture_buffer_refraction = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_1E;
-  strcpy_s(&system_module_texture_buffer_13,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string0,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_refraction,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string0,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_weather_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -2994,10 +2994,10 @@ int initialize_authentication_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_14;
-  system_module_texture_buffer_14 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_displacement;
+  system_module_texture_buffer_displacement = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_DATA_WRITE;
-  strcpy_s(&system_module_texture_buffer_14,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string1,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_displacement,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string1,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_lighting_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -3006,10 +3006,10 @@ int initialize_permission_manager(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_15;
-  system_module_texture_buffer_15 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_detail;
+  system_module_texture_buffer_detail = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_STRING_MANAGER;
-  strcpy_s(&system_module_texture_buffer_15,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string2,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_detail,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string2,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_particle_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -3018,10 +3018,10 @@ int initialize_session_manager(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_16;
-  system_module_texture_buffer_16 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_lightmap;
+  system_module_texture_buffer_lightmap = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_STRING_MANAGER;
-  strcpy_s(&system_module_texture_buffer_16,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string3,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_lightmap,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string3,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_shader_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -3030,10 +3030,10 @@ int initialize_user_profile_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_17;
-  system_module_texture_buffer_17 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_cubemap;
+  system_module_texture_buffer_cubemap = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_MEMORY_FREE;
-  strcpy_s(&system_module_texture_buffer_17,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string4,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_cubemap,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string4,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_texture_secondary_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -3042,10 +3042,10 @@ int initialize_save_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_18;
-  system_module_texture_buffer_18 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_gradient;
+  system_module_texture_buffer_gradient = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_1A;
-  strcpy_s(&system_module_texture_buffer_18,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string5,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_gradient,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string5,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_41_init_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -3054,10 +3054,10 @@ int initialize_achievement_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_19;
-  system_module_texture_buffer_19 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_noise;
+  system_module_texture_buffer_noise = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_MEMORY_ALLOC;
-  strcpy_s(&system_module_texture_buffer_19,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string6,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_noise,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string6,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_42_init_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -3066,10 +3066,10 @@ int initialize_statistics_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_20;
-  system_module_texture_buffer_20 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_mask;
+  system_module_texture_buffer_mask = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_STRING_MANAGER;
-  strcpy_s(&system_module_texture_buffer_20,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string7,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_mask,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string7,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_43_init_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -3078,10 +3078,10 @@ int initialize_analytics_service(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_21;
-  system_module_texture_buffer_21 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_stencil;
+  system_module_texture_buffer_stencil = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_RESOURCE_ID_STRING_MANAGER;
-  strcpy_s(&system_module_texture_buffer_21,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string8,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_stencil,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string8,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_44_init_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -3090,10 +3090,10 @@ int initialize_debug_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_22;
-  system_module_texture_buffer_22 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_depth;
+  system_module_texture_buffer_depth = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_1B;
-  strcpy_s(&system_module_texture_buffer_22,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string9,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_depth,SYSTEM_CONFIG_BUFFER_SIZE,&system_ui_module_string9,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_45_init_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
@@ -3102,10 +3102,10 @@ int initialize_profiling_system(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
-  system_global_context_pointer = &system_module_texture_buffer_23;
-  system_module_texture_buffer_23 = SYSTEM_ZERO_VALUE;
+  system_global_context_pointer = &system_module_texture_buffer_velocity;
+  system_module_texture_buffer_velocity = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = SYSTEM_OPCODE_THREAD_DESTROY;
-  strcpy_s(&system_module_texture_buffer_23,SYSTEM_CONFIG_BUFFER_SIZE,&system_scripting_module_string0,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_module_texture_buffer_velocity,SYSTEM_CONFIG_BUFFER_SIZE,&system_scripting_module_string0,system_string_length_parameter,default_thread_pool_flag);
   system_initialization_result = system_execution_function(resource_manager_46_init_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
