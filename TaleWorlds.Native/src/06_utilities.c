@@ -327,7 +327,7 @@ void // 清理线程资源，释放线程相关内存
     if (*(int64_t *)(context_pointer + 8) != 0) {
         utility_buffer_pointer = &utility_buffer_workspace;
         utility_operation_result = 0;
-        utility_process_count = 0;
+        utility_iteration_index = 0;
         utility_status_flags = UTILITY_BUFFER_FLAGS_DEFAULT;
 
         utility_resource_data = utility_resource_manager_create(*(uint64_t *)(utility_resource_pointer + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(context_pointer + 8), &utility_buffer_workspace);
@@ -341,9 +341,8 @@ void // 清理线程资源，释放线程相关内存
                     if (utility_operation_result != 2) {
                         utility_context_manager_activate(utility_resource_data, 1);
                     }
-                    utility_operation_result = utility_operation_result + 1;
                     utility_iteration_index = utility_iteration_index + 8;
-                } while (utility_operation_result < utility_process_count);
+                } while (utility_iteration_index < utility_process_count);
             }
             utility_buffer_manager_cleanup(&utility_buffer_workspace);
         }
@@ -368,10 +367,11 @@ void // 清理线程资源，释放线程相关内存
  */
 void utility_validate_resource_state(void)
 {
-int64_t utility_resource_pointer;
-uint64_t utility_buffer_pointer;
+int64_t utility_resource_pointer = 0;
+uint64_t utility_buffer_pointer = 0;
+uint8_t utility_buffer_workspace[512];
 if ((*(uint *)(utility_resource_pointer + UTILITY_MEMORY_FLAG_OFFSET) >> 7 & 1) != 0) {
-utility_context_manager_activate();
+utility_context_manager_activate(utility_resource_pointer);
 }
 utility_buffer_manager_cleanup(&utility_buffer_workspace);
 utility_calculate_checksum(utility_buffer_pointer ^ (uint64_t)&utility_buffer_workspace);
@@ -420,14 +420,12 @@ utility_resource_data = utility_system_initialize(utility_iteration_index);
 if ((int)utility_resource_value != 0) {
 return utility_resource_value;
 }
-if ((char)utility_resource_data == (char)utility_resource_data) {
 if (utility_character_array[0] == (char)utility_resource_data) {
 context_handle = (int64_t *)(utility_iteration_index + UTILITY_DATA_CONTEXT_OFFSET);
 utility_resource_data = 0;
 utility_operation_result = *(int *)(utility_iteration_index + UTILITY_DATA_INDEX_OFFSET);
 if (0 < utility_operation_result) {
 context_handle = (int64_t *)*utility_buffer_ptr;
-utility_resource_data = utility_resource_data;
 do {
 if (*utility_buffer_ptr == utility_iteration_index) {
 if (-1 < (int)utility_resource_data) {
@@ -435,7 +433,6 @@ return 0;
 }
 break;
 }
-utility_resource_data = (uint64_t)((int)utility_resource_data + 1);
 utility_resource_data = utility_resource_data + 1;
 context_handle = context_handle + 1;
 } while ((int64_t)utility_resource_data < (int64_t)utility_operation_result);
@@ -443,10 +440,6 @@ context_handle = context_handle + 1;
 utility_operation_result = utility_operation_result + 1;
 if (*(int *)(utility_iteration_index + UTILITY_CALC_MULTIPLIER_OFFSET) < utility_operation_result) {
 utility_operation_result = (int)((float)*(int *)(utility_iteration_index + UTILITY_CALC_MULTIPLIER_OFFSET) * 1.5);
-utility_operation_result = utility_operation_result;
-if (utility_operation_result <= utility_operation_result) {
-utility_operation_result = utility_operation_result;
-}
 if (utility_operation_result < 8) {
 utility_operation_result = 8;
 }
