@@ -1,13 +1,6 @@
-/*
- * TaleWorlds.Native 初始化系统
- * 
- * 简化实现：保持代码语义不变，仅进行语义化美化
- * 原本实现：完全重构系统初始化流程，建立更清晰的架构和错误处理机制
-
-
 #include <stdint.h>
 
-// 系统字符串常量定义（2025年8月31日补充）
+// 系统字符串常量定义
 #define SYSTEM_INIT_STRING_SCRIPT_PATH 0x656c706974736572    // 脚本路径字符串常量
 #define SYSTEM_INIT_STRING_SCRIPT_EXT 0x656e696c2e637073    // 脚本扩展名字符串常量
 #define SYSTEM_INIT_STRING_EN_SUFFIX 0x656e    // 英文后缀字符串常量
