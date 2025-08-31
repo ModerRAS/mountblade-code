@@ -129,13 +129,30 @@ uint32 utility_get_system_info(void)
       
   utility_free_memory(*(longlong *)(utility_resource_context_handle + utility_resource_offset_standard),utility_memory_release_flag); // Memory block release function
 }
-// 函数: void utility_emergency_memory_release(void)
+/**
+ * @brief 紧急内存释放 - 在紧急情况下释放系统内存
+ * @return 无返回值
+ * 
+ * 该函数用于在紧急情况下释放系统内存，确保系统稳定运行。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 void utility_emergency_memory_release(void)
 {
       
   utility_free_memory(); // Memory block release function
 }
-// 函数: void utility_return_empty_function(void)
+/**
+ * @brief 空返回函数 - 用于系统初始化过程中的占位符
+ * @return 无返回值
+ * 
+ * 这是一个简化实现的空函数，原本实现应该包含完整的系统初始化逻辑。
+ * 在当前简化实现中，仅作为函数占位符存在。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 void utility_return_empty_function(void)
 {
   return;

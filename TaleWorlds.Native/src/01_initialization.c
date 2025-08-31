@@ -260,7 +260,6 @@ void* system_cache_system;
 void* system_heap;
 
 // 函数: void SystemCoreInitializer;
-void* SystemCoreInitializer;
 void* system_registry;
 void* system_service_locator;
 void* system_dependency_injector;
@@ -434,10 +433,8 @@ char system_initialized_array[2];// 系统初始化标志数组（2个元素）
 char system_initialized;
 
 // 函数: void SystemCoreInitializer;
-void* SystemCoreInitializer;
 
 // 函数: void SystemCoreInitializer;
-void* SystemCoreInitializer;
 
 /**
  * @brief 初始化基本系统核心组件
@@ -60683,16 +60680,12 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
 
 
 // 函数: void SystemCoreInitializer;
-void* SystemCoreInitializer;
 
 // 函数: void SystemCoreInitializer;
-void* SystemCoreInitializer;
 
 // 函数: void SystemCoreInitializer;
-void* SystemCoreInitializer;
 
 // 函数: void SystemCoreInitializer;
-void* SystemCoreInitializer;
 system_uint0x102_t system_global_context;
 
 system_uint64_t system_generic_function_(void)
@@ -61780,10 +61773,8 @@ system_uint64_t system_generic_function_(void)
 
 
 // 函数: void SystemCoreInitializer;
-void* SystemCoreInitializer;
 
 // 函数: void SystemCoreInitializer;
-void* SystemCoreInitializer;
 system_uint64_t system_global_context;
 system_uint0x102_t system_global_context;
 void* *system_global_context;
