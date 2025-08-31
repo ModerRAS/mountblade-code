@@ -727,7 +727,7 @@ uint8_t utility_context_system_extended;
  * 简化实现：仅添加文档注释，保持代码结构不变
  */
 
-void utility_process_thread_storage
+void utility_process_thread_storage(void)
 {
 
 uint64_t resource_handle_semaphore_pointer
