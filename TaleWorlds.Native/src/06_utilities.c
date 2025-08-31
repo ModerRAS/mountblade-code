@@ -5274,7 +5274,7 @@ goto UTILITY_LABEL_WAIT_STATE;
 }
 }
 else {
-if ((utility_network_char_data != '\x02') || ((*(uint8_t *)(context_handle + 0x6c) & 4) != UTILITY_BOOLEAN_FALSE)) goto UTILITY_LABEL_WAIT_STATE;
+if ((utility_network_char_data != '\x02') || ((*(uint8_t *)(context_handle + UTILITY_CONTEXT_OFFSET_6C) & UTILITY_STATUS_ENABLED_FLAG4) != UTILITY_BOOLEAN_FALSE)) goto UTILITY_LABEL_WAIT_STATE;
 utility_stack_connection_id = *(uint32_t *)(utility_loop_counter + UTILITY_THREAD_DATA_OFFSET);
 utility_operation_status = utility_socket_creator(context_handle,utility_operation_result,&utility_stack_connection_id);
 if (utility_operation_result != UTILITY_BOOLEAN_FALSE) goto InitializeSocket;
@@ -5285,8 +5285,8 @@ if ((utility_operation_result != UTILITY_BOOLEAN_FALSE) || (*(int *)(utility_sta
 *utility_buffer_ptr = UTILITY_BOOLEAN_FALSE;
 }
 else {
-*(uint *)(context_handle + 0x6c) = *(uint *)(context_handle + 0x6c) & UTILITY_FLAG_MASK_0XFDFFFFFF;
-*(uint *)(context_handle + 0x6c) = *(uint *)(context_handle + 0x6c) | UTILITY_FLAG_MASK_0X4000000;
+*(uint *)(context_handle + UTILITY_CONTEXT_OFFSET_6C) = *(uint *)(context_handle + UTILITY_CONTEXT_OFFSET_6C) & UTILITY_FLAG_MASK_0XFDFFFFFF;
+*(uint *)(context_handle + UTILITY_CONTEXT_OFFSET_6C) = *(uint *)(context_handle + UTILITY_CONTEXT_OFFSET_6C) | UTILITY_FLAG_MASK_0X4000000;
 *utility_buffer_ptr = UTILITY_BOOLEAN_FALSE;
 }
 InitializeSocket:
@@ -5348,10 +5348,10 @@ utility_loop_counter = utility_loop_counter - ((int64_t)utility_network_float_va
 *(int64_t *)(utility_input_context + UTILITY_CONTEXT_SERVICE_OFFSET) = utility_loop_counter;
 }
 utility_network_char_data = (int64_t)utility_network_float_value + utility_loop_counter < utility_loop_counter - utility_loop_counter;
-if ((*(uint8_t *)(utility_input_context + 0x6c) & 2) != UTILITY_BOOLEAN_FALSE) {
+if ((*(uint8_t *)(utility_input_context + UTILITY_CONTEXT_OFFSET_6C) & UTILITY_STATUS_ENABLED_FLAG) != UTILITY_BOOLEAN_FALSE) {
 utility_network_char_data = utility_context_flag_byte;
 }
-if (*(int64_t *)(utility_input_context + 0xc0) != UTILITY_BOOLEAN_FALSE) {
+if (*(int64_t *)(utility_input_context + UTILITY_CONTEXT_OFFSET_C0) != UTILITY_BOOLEAN_FALSE) {
 utility_resource_context = utility_network_address_validator();
 utility_operation_status = (**(code **)(utility_input_context + 0xc0))
 (utility_resource_context,utility_context_buffer_index,*(uint32_t *)(utility_loop_counter + UTILITY_THREAD_CONTEXT_OFFSET),
@@ -5386,7 +5386,7 @@ goto UTILITY_LABEL_WAIT_STATE;
 }
 }
 else {
-if ((utility_network_char_data != '\x02') || ((*(uint8_t *)(context_handle + 0x6c) & 4) != UTILITY_BOOLEAN_FALSE)) goto UTILITY_LABEL_WAIT_STATE;
+if ((utility_network_char_data != '\x02') || ((*(uint8_t *)(context_handle + UTILITY_CONTEXT_OFFSET_6C) & UTILITY_STATUS_ENABLED_FLAG4) != UTILITY_BOOLEAN_FALSE)) goto UTILITY_LABEL_WAIT_STATE;
 utility_buffer_ptr.component_x = *(uint32_t *)(utility_loop_counter + UTILITY_THREAD_DATA_OFFSET);
 utility_operation_status = utility_socket_creator(context_handle,utility_context_buffer_index,(int64_t)&utility_buffer_workspace + 4);
 if (utility_operation_result != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_PROCESS_NEXT;
