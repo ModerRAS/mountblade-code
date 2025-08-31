@@ -35540,7 +35540,7 @@ system_initialize_context_pool(uint64_t *system_param_1,ulonglong system_param_2
     system_cleanup_context_resources();
   }
   _Mtx_destroy_in_situ();
-  FUN_1805065c0(system_param_1);
+  system_initialize_system_context(system_param_1);
   if ((system_param_2 & 1) != 0) {
     free(system_param_1,0xb8,system_param_3,system_param_4,system_uint_value);
   }
@@ -35594,14 +35594,14 @@ void system_function_061380(uint64_t system_param_1,longlong system_param_2)
   system_complete_audio_setup(system_long_value + 0x48,&system_stack_ptr);
   *(uint64_t **)(system_long_context + 400) = system_handle_ptr;
   system_stack_ptra8 = &system_unknown_18098bcb0;
-  FUN_180627e10(_system_data_180c86870 + 0x170,system_stack_char_buffer,&system_runtime_context_ptr);
+  system_create_system_handle(_system_data_180c86870 + 0x170,system_stack_char_buffer,&system_runtime_context_ptr);
   if (0 < *(int *)(system_param_2 + 0x10)) {
     system_set_ui_parameter(system_stack_char_buffer,system_stack_uint + *(int *)(system_param_2 + 0x10));
                     // WARNING: Subroutine does not return
     memcpy((ulonglong)system_stack_uint + lStack_228,*(uint64_t *)(system_param_2 + 8),
            (longlong)(*(int *)(system_param_2 + 0x10) + 1));
   }
-  FUN_18062c100(system_stack_char_buffer,system_stack_char_buffer);
+  system_configure_system_handle(system_stack_char_buffer,system_stack_char_buffer);
   system_setup_ui_layout(system_stack_char_buffer,1);
                     // WARNING: Subroutine does not return
   memset(system_stack_char_buffer,0,0x100);
@@ -35953,7 +35953,7 @@ void system_function_062920(int *system_param_1)
   system_stack_uint = 1;
   system_stack_char_bufferb8[0] = 0x20;
   if (*(longlong *)(system_long_buffer + 8) != 0) {
-    FUN_180057980(system_long_buffer,&lStack_168,system_stack_char_bufferb8);
+    system_process_system_request(system_long_buffer,&lStack_168,system_stack_char_bufferb8);
   }
   system_stack_uint = 0;
   system_stack_ptr = &system_unknown_180a3c3e0;
@@ -36008,7 +36008,7 @@ void system_function_062920(int *system_param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180062ee0(uint64_t system_param_1,uint32_t system_param_2)
+uint64_t system_validate_system_parameter(uint64_t system_param_1,uint32_t system_param_2)
 
 {
   uint16_t system_uint_value;
@@ -36059,7 +36059,7 @@ uint64_t FUN_180062ee0(uint64_t system_param_1,uint32_t system_param_2)
   }
   system_int_context = SetConsoleTextAttribute(_system_data_180c912f0,system_uint_value);
   if (system_int_context == 0) {
-    FUN_18005d3a0(&system_graphics_config_ptr);
+    system_update_graphics_config(&system_graphics_config_ptr);
     return 0;
   }
   return 1;
@@ -36100,7 +36100,7 @@ void system_function_062fd0(longlong system_param_1)
       if (*(void ***)(system_param_1 + 0x38) != (void **)0x0) {
         system_manager_ptr = *(void ***)(system_param_1 + 0x38);
       }
-      FUN_1806391a0(*(longlong *)(system_param_1 + 0x20) + 0x20,system_manager_ptr,auStackX_8);
+      system_create_system_instance(*(longlong *)(system_param_1 + 0x20) + 0x20,system_manager_ptr,auStackX_8);
       plVar7 = (longlong *)(*(longlong *)(system_param_1 + 0x20) + 0x20);
       (**(code **)(*plVar7 + 0x108))(plVar7,1);
       plVar7 = (longlong *)(*(longlong *)(system_param_1 + 0x20) + 0x20);
@@ -36127,7 +36127,7 @@ void system_function_062fd0(longlong system_param_1)
       }
       system_local_int = -1;
 code_r0x0001800630e9:
-      FUN_1806288c0(system_param_1 + 0x30,system_local_int,&system_stack_ptr);
+      system_process_system_operation(system_param_1 + 0x30,system_local_int,&system_stack_ptr);
       system_stack_ptr = &system_unknown_180a3c3e0;
                     // WARNING: Subroutine does not return
       system_initialize_component(system_config_ptr);
@@ -36156,7 +36156,7 @@ code_r0x0001800630e9:
       plVar7 = (longlong *)(*(longlong *)(system_param_1 + 0x20) + 0xd8);
       (**(code **)(*plVar7 + 0x70))(plVar7,&system_audio_config_ptr);
       system_cleanup_context_resources(*(longlong *)(system_param_1 + 0x20) + 0xd8);
-      FUN_18062da70(*(longlong *)(system_param_1 + 0x20) + 0xe0);
+      system_cleanup_system_resources(*(longlong *)(system_param_1 + 0x20) + 0xe0);
       break;
     case 4:
       auStackX_18[0] = 0;
@@ -36165,7 +36165,7 @@ code_r0x0001800630e9:
       if (system_manager_ptr != (void **)0x0) {
         system_handler_ptr = system_manager_ptr;
       }
-      FUN_1806391a0(*(longlong *)(system_param_1 + 0x20) + 0xd8,system_handler_ptr,auStackX_18);
+      system_create_system_instance(*(longlong *)(system_param_1 + 0x20) + 0xd8,system_handler_ptr,auStackX_18);
       plVar7 = (longlong *)(*(longlong *)(system_param_1 + 0x20) + 0xd8);
       (**(code **)(*plVar7 + 0x108))(plVar7,1);
       plVar7 = (longlong *)(*(longlong *)(system_param_1 + 0x20) + 0xd8);
@@ -36182,15 +36182,15 @@ code_r0x0001800630e9:
           system_manager_ptr = *(void ***)(system_param_1 + 0x38);
         }
         if ((*(byte *)(system_config_ptr + 1) & 2) != 0) {
-          FUN_180062ee0((ulonglong)*(uint *)(&system_memory_pool_config + (longlong)(int)system_uint_value * 4) +
+          system_validate_system_parameter((ulonglong)*(uint *)(&system_memory_pool_config + (longlong)(int)system_uint_value * 4) +
                         0x180000000,*(uint32_t *)(system_param_1 + 0x50));
           system_int_buffer = WriteConsoleA(_system_data_180c912f0,system_manager_ptr,system_uint_context,auStackX_20,0);
           if ((system_int_buffer == 0) || (auStackX_20[0] < system_uint_context)) {
-            FUN_18005d3a0(&system_ui_config_ptr,system_manager_ptr);
+            system_update_graphics_config(&system_ui_config_ptr,system_manager_ptr);
           }
           system_int_buffer = SetConsoleTextAttribute(_system_data_180c912f0,0xf);
           if (system_int_buffer == 0) {
-            FUN_18005d3a0(&system_graphics_config_ptr);
+            system_update_graphics_config(&system_graphics_config_ptr);
           }
         }
         if ((*(byte *)(system_config_ptr + 1) & 8) != 0) {
@@ -36445,7 +36445,7 @@ void system_function_063b30(uint64_t system_param_1,longlong system_param_2)
   
   system_stack_uint = 0;
   lStack_40 = 0;
-  FUN_180627e10(system_param_1,&system_stack_ptr,&system_core_config_data);
+  system_create_system_handle(system_param_1,&system_stack_ptr,&system_core_config_data);
   system_data_ptr = &system_data_18098bc73;
   if (system_stack_ptr != (void **)0x0) {
     system_data_ptr = system_stack_ptr;
@@ -36687,7 +36687,7 @@ void system_function_064010(uint64_t system_param_1)
   system_stack_ptra0 = &system_unknown_18098bcb0;
   system_stack_uintf8 = 0;
   lStack_2f0 = 0;
-  FUN_180627e10(system_param_1,&system_stack_ptr,&system_thread_table_ptr);
+  system_create_system_handle(system_param_1,&system_stack_ptr,&system_thread_table_ptr);
   system_handle_ptr = &system_data_18098bc73;
   if (system_stack_ptr != (void **)0x0) {
     system_handle_ptr = system_stack_ptr;
@@ -36718,7 +36718,7 @@ void system_function_064010(uint64_t system_param_1)
   }
   system_stack_uinte0 = 0;
   lStack_2d8 = 0;
-  FUN_180627e10(system_param_1,&system_stack_ptr,&system_memory_table_ptr);
+  system_create_system_handle(system_param_1,&system_stack_ptr,&system_memory_table_ptr);
   system_handle_ptr = &system_data_18098bc73;
   if (system_stack_ptr != (void **)0x0) {
     system_handle_ptr = system_stack_ptr;
@@ -36806,7 +36806,7 @@ ulonglong FUN_1800649d0(uint64_t system_param_1)
   else {
     system_stack_uint = 0;
     lStack_70 = 0;
-    FUN_180627e10(system_param_1,&system_stack_ptr,&system_network_table_ptr);
+    system_create_system_handle(system_param_1,&system_stack_ptr,&system_network_table_ptr);
     system_handle_ptr = &system_data_18098bc73;
     if (system_stack_ptr != (void **)0x0) {
       system_handle_ptr = system_stack_ptr;
@@ -37281,7 +37281,7 @@ void system_function_065160(uint64_t system_param_1)
   system_stack_uint = 0xfffffffffffffffe;
   system_stack_uint = _system_data_180bf00a8 ^ (ulonglong)system_stack_char_buffer;
   system_stack_uint = 0;
-  FUN_180627e10(system_param_1,&system_stack_ptr,&system_main_buffer_ptr);
+  system_create_system_handle(system_param_1,&system_stack_ptr,&system_main_buffer_ptr);
   system_stack_uint = 0;
   lStack_278 = 0;
   system_uint_ptr = &system_data_18098bc73;
@@ -37483,7 +37483,7 @@ void system_function_065160(uint64_t system_param_1)
     system_stack_uint = 3;
     system_stack_char_buffer[0] = 10;
     if (lStack_238 != 0) {
-      FUN_180057980(&system_stack_ptr,&system_stack_ptr,system_stack_char_buffer);
+      system_process_system_request(&system_stack_ptr,&system_stack_ptr,system_stack_char_buffer);
     }
     system_local_uint = (longlong)system_stack_ptr - (longlong)system_stack_ptr >> 5;
     system_uint_ptr = system_stack_ptr;
@@ -37498,7 +37498,7 @@ void system_function_065160(uint64_t system_param_1)
         system_stack_uint = 3;
         system_stack_char_buffer[0] = 0x23;
         if (system_uint_ptr[1] != 0) {
-          FUN_180057980(system_uint_ptr,&system_stack_ptr,system_stack_char_buffer);
+          system_process_system_request(system_uint_ptr,&system_stack_ptr,system_stack_char_buffer);
         }
         system_config_ptr = system_stack_ptr;
         system_uint_ptr = system_stack_ptr;
@@ -37883,7 +37883,7 @@ void system_function_066140(longlong *system_param_1,uint64_t system_param_2,uin
   system_set_ui_parameter(&system_stack_ptr,1);
   *(uint16_t *)((ulonglong)system_stack_uint + lStack_68) = 0x5c;
   system_stack_uint = 1;
-  FUN_180627e10(&system_stack_ptr,&system_stack_ptr,system_param_3);
+  system_create_system_handle(&system_stack_ptr,&system_stack_ptr,system_param_3);
   system_stack_ptr = &system_unknown_180a3c3e0;
   if (lStack_68 != 0) {
                     // WARNING: Subroutine does not return
@@ -38107,8 +38107,8 @@ SYSTEM_LABEL:
     system_monitor_audio_device_context(&system_stack_ptr,system_param_);
     FUN_180063cf0(&system_stack_ptr);
     system_initialize_render_state(&system_stack_ptr);
-    FUN_180627e10(&system_stack_ptr,&system_stack_uint_ptr,&system_memory_config_ptr);
-    FUN_180627e10(&system_stack_ptr,&system_stack_ptr,&system_memory_config_ptr);
+    system_create_system_handle(&system_stack_ptr,&system_stack_uint_ptr,&system_memory_config_ptr);
+    system_create_system_handle(&system_stack_ptr,&system_stack_ptr,&system_memory_config_ptr);
     system_cleanup_thread_resources(&system_stack_ptr,&system_stack_uint_ptr);
     system_stack_ptr = &system_unknown_180a3c3e0;
     if (lStack_108 != 0) {
@@ -44595,7 +44595,7 @@ SYSTEM_LABEL:
       memcpy(system_handler_ptr + system_local_uint,system_param_2,(longlong)((int)system_local_long + 2));
     }
   }
-  FUN_180627e10(&system_stack_ptr,&system_stack_uint_ptr,&system_stack_uint);
+  system_create_system_handle(&system_stack_ptr,&system_stack_uint_ptr,&system_stack_uint);
   system_stack_uint = 0;
   system_stack_uintc = 0;
   system_stack_ptr = &system_unknown_180a3c3e0;
@@ -45501,7 +45501,7 @@ SYSTEM_LABEL:
       memcpy(system_handler_ptr + system_local_uint,system_param_2,(longlong)((int)system_local_long + 2));
     }
   }
-  FUN_180627e10(&system_stack_ptr,&system_stack_uint_ptr,&system_stack_uint);
+  system_create_system_handle(&system_stack_ptr,&system_stack_uint_ptr,&system_stack_uint);
   system_stack_uint = 0;
   system_stack_ptr = &system_unknown_180a3c3e0;
   if (system_handler_ptr != (uint8_t *)0x0) {

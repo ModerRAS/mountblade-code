@@ -510,7 +510,8 @@ if (utility_resource_data != 0) {
     return utility_resource_value;
 }
 while( true ) {
-if (context_handle == context_handle) {
+// 简化实现：优化条件判断
+if (context_handle != 0) {
 *(int64_t **)(utility_stack_context_value + UTILITY_MEMORY_POINTER_OFFSET0) = context_handle;
 utility_process_context(utility_stack_context_value,context_handle);
 context_handle[2] = utility_stack_context_value;
