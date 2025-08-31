@@ -1,133 +1,16 @@
-#include "TaleWorlds.Native.Split.h"
+#!/bin/bash
 
-// 06_utilities.c - 工具函数库
-// 
-// 本文件包含系统的工具函数，提供各种辅助功能：
-// - 内存管理工具
-// - 资源处理工具
-// - 系统操作工具
-// - 线程管理工具
-// - 文件系统工具
-// - 网络通信工具
-// - 数据库操作工具
+# 06_utilities.c文件清理脚本
+# 用于清理重复的函数定义，保持文件简洁
 
-/**
- * @brief 空初始化函数 - 用于系统初始化过程中的占位符
- * 
- * 的空函数，应该包含完整的系统初始化逻辑。
- * 
- * 
- * @return 无返回值
- */
-void utility_initialize_empty_function(void)
-{
-  return;
-}
-/**
- * @brief 处理资源数据
- * @param utility_resource_primary_handle 主要资源句柄
- * @return uint64 操作结果状态码
- * 
- * 该函数负责处理系统资源数据，包括：
- * - 执行系统内存操作
- * - 验证操作结果状态
- * - 返回处理结果
- * 
- */
-uint64 utility_process_resource_data(longlong utility_resource_primary_handle)
-{
-  uint64 utility_result;
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
-  if ((int)utility_result != UTILITY_ZERO) {
-    return utility_result;
-  }
-  if (UTILITY_SYSTEM_RESOURCE_HANDLE == UTILITY_ZERO) {
-    UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_ZERO;
-  }
-  else {
-    UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_OFFSET_NEGATIVE;
-  }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
-    return UTILITY_OFFSET_FLAG;
-  }
-      
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR),UTILITY_MEMORY_FLAG);
+INPUT_FILE="/dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c"
+TEMP_FILE="/tmp/utilities_cleaned.c"
 
-  return UTILITY_ZERO;
-}
-/**
- * @brief 获取内存使用情况 - 监控系统内存使用状态
- * 
- * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
- * 
- * 
- * @return uint32 内存使用状态码，UTILITY_OFFSET_FLAG表示错误，其他值表示正常状态
- */
-uint32 utility_get_memory_usage(void)
-{
-  longlong UTILITY_REGISTER_INPUT;
-  longlong UTILITY_RESOURCE_CACHE;
-  if (UTILITY_REGISTER_INPUT == UTILITY_ZERO) {
-    UTILITY_RESOURCE_CONTEXT_HANDLE = UTILITY_ZERO;
-  }
-  else {
-    UTILITY_RESOURCE_CONTEXT_HANDLE = UTILITY_REGISTER_INPUT + UTILITY_MEMORY_OFFSET_NEGATIVE;
-  }
-  if (*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
-    return UTILITY_OFFSET_FLAG;
-  }
-      
-  utility_free_memory(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_OFFSET_RESOURCE_PTR),UTILITY_MEMORY_FLAG);
+# 提取文件头部（常量定义和全局变量声明）
+head -n 130 "$INPUT_FILE" > "$TEMP_FILE"
 
-  return UTILITY_ZERO;
-}
-/**
- * @brief 释放内存并退出 - 清理系统资源并安全退出
- * 
- * 该函数负责释放系统内存资源并执行退出操作。
- * 
- * 
- * @return 无返回值
- */
-void utility_release_memory_and_exit(void)
-{
-      
-  utility_free_memory(); // Memory block release function
-}
-/**
- * @brief 清理资源函数 - 执行系统资源的清理操作
- * 
- * 该函数负责清理系统资源，确保资源被正确释放。
- * 
- * 
- * @return 无返回值
- */
-void utility_cleanup_resource_function(void)
-{
-  return;
-}
-/**
- * @brief 验证资源访问权限 - 验证系统资源的访问权限和状态
- * @param utility_resource_primary_handle 主要资源句柄
- * @return uint64 验证结果状态码
- * 
- * 该函数负责验证系统资源的访问权限，包括：
- * - 执行系统内存操作
- * - 验证资源句柄有效性
- * - 返回验证结果
- * 
- */
-uint64 utility_validate_resource_access(longlong utility_resource_primary_handle)
-{
-  uint64 utility_result;
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
-  if ((int)utility_result != UTILITY_ZERO) {
-    return utility_result;
-  }
-  if (UTILITY_SYSTEM_RESOURCE_HANDLE == UTILITY_ZERO) {
-    UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_ZERO;
-  }
-  else {
+# 添加函数定义部分
+cat >> "$TEMP_FILE" << 'EOF'
 
 /**
  * @file 06_utilities.c - 工具函数库
@@ -350,3 +233,12 @@ uint64 utility_system_manager_primary(void)
 {
   return UTILITY_ZERO;
 }
+EOF
+
+# 替换原文件
+mv "$TEMP_FILE" "$INPUT_FILE"
+
+echo "06_utilities.c文件清理完成"
+echo "原文件大小：$(wc -c < "$INPUT_FILE") 字节"
+echo "新文件大小：$(wc -c < "$INPUT_FILE") 字节"
+echo "行数：$(wc -l < "$INPUT_FILE") 行"
