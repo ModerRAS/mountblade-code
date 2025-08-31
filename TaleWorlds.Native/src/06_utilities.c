@@ -11,13 +11,18 @@
 #define UTILITY_THREAD_STORAGE_INDEX_CLEANUP 0xF       // 线程存储清理索引
 
 // 资源句柄参数偏移量常量
-#define UTILITY_RESOURCE_PARAM_OFFSET_THIRD 0x3        // 第三级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_FOURTH 0x4       // 第四级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_FIFTH 0x5        // 第五级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_SIXTH 0x6         // 第六级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_PRIMARY 0x1      // 第一级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_SECONDARY 0x2    // 第二级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_TERTIARY 0x3     // 第三级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_QUATERNARY 0x4    // 第四级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_QUINARY 0x5       // 第五级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_SENARY 0x6        // 第六级参数偏移量
 
 // 数组索引常量
-#define UTILITY_ARRAY_INDEX_FOURTH 0x4                  // 第四级数组索引
+#define UTILITY_ARRAY_INDEX_PRIMARY 0x0                 // 第一级数组索引
+#define UTILITY_ARRAY_INDEX_SECONDARY 0x1               // 第二级数组索引
+#define UTILITY_ARRAY_INDEX_TERTIARY 0x2                // 第三级数组索引
+#define UTILITY_ARRAY_INDEX_QUATERNARY 0x4              // 第四级数组索引
 
 // 资源清理偏移量常量
 #define UTILITY_CLEANUP_OFFSET_C60 0xC60                // 清理操作偏移量C60
@@ -69,14 +74,14 @@
 #define UTILITY_ERROR_CODE_OFFSET 0x4                              // 错误代码偏移量
 
 // 索引常量
-#define UTILITY_INDEX_FIRST 0x1                                    // 第一索引
-#define UTILITY_INDEX_ZERO 0x0                                     // 零索引
+#define UTILITY_INDEX_PRIMARY 0x0                                  // 第一索引
+#define UTILITY_INDEX_SECONDARY 0x1                                // 第二索引
 
 // 大小限制常量
 #define UTILITY_SIZE_OFFSET 0x8                                    // 大小偏移量
 #define UTILITY_SIZE_BYTE_OFFSET 0x1                               // 字节大小偏移量
 #define UTILITY_SIZE_STANDARD 0x4                                   // 标准大小
-#define UTILITY_SIZE_LIMIT 0x1000                                  // 大小限制
+#define UTILITY_SIZE_MAXIMUM 0x1000                                 // 最大大小限制
 
 // 位掩码常量
 #define UTILITY_MASK_EF 0xEF                                       // 掩码EF
@@ -117,7 +122,7 @@ static longlong utility_resource_cache = 0;                        // 资源缓�
 // 缓冲区变量
 static uint32 utility_buffer[1024] = {0};                          // 主缓冲区，用于数据存储和处理
 static uint32 utility_processing_buffer[1024] = {0};              // 处理缓冲区，用于数据处理操作
-static uint32 utility_resource_size_limit = 1024;                 // 资源大小限制，控制资源分配的最大大小
+static uint32 utility_resource_size_maximum = 1024;                // 资源最大大小，控制资源分配的最大大小
 
 // 资源管理变量
 static longlong utility_resource_context_handle = 0;               // 资源上下文句柄，用于资源上下文管理
