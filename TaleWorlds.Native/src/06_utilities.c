@@ -2,134 +2,133 @@
 
 // 工具系统常量定义 - 语义化美化版本
 // 线程存储数组索引常量
-#define UTILITY_THREAD_STORAGE_ARRAY_INDEX_DATA 0xD     // 数据存储索引
-#define UTILITY_THREAD_STORAGE_ARRAY_INDEX_EXTRA 0xE     // 扩展存储索引
-#define UTILITY_THREAD_STORAGE_ARRAY_INDEX_CLEANUP 0xF   // 清理函数索引
+#define UTILITY_THREAD_STORAGE_INDEX_DATA 0xD                    // 数据存储索引
+#define UTILITY_THREAD_STORAGE_INDEX_EXTRA 0xE                    // 扩展存储索引
+#define UTILITY_THREAD_STORAGE_INDEX_CLEANUP 0xF                  // 清理函数索引
 
 // 资源句柄参数偏移量常量
-#define UTILITY_RESOURCE_HANDLE_PARAM_OFFSET_QUATERNARY 0x4        // 第四级参数偏移量
-#define UTILITY_RESOURCE_HANDLE_PARAM_OFFSET_SENARY 0x6           // 第六级参数偏移量
-#define UTILITY_RESOURCE_HANDLE_PARAM_OFFSET_TERTIARY 0x3          // 第三级参数偏移量
-#define UTILITY_RESOURCE_HANDLE_PARAM_OFFSET_QUINARY 0x5          // 第五级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_QUATERNARY 0x4           // 第四级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_SENARY 0x6                // 第六级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_TERTIARY 0x3             // 第三级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_QUINARY 0x5               // 第五级参数偏移量
 
 // 数组索引常量
-#define UTILITY_ARRAY_INDEX_QUATERNARY 0x4                        // 第四级数组索引
+#define UTILITY_ARRAY_INDEX_QUATERNARY 0x4                       // 第四级数组索引
 
 // 资源清理偏移量常量
-#define UTILITY_RESOURCE_CLEANUP_OFFSET_EXTENDED_C60 0xC60         // 清理操作偏移量C60
-#define UTILITY_RESOURCE_CLEANUP_OFFSET_EXTENDED_1CF0 0x1CF0      // 清理偏移量1CF0
+#define UTILITY_RESOURCE_CLEANUP_OFFSET_C60 0xC60                 // 清理操作偏移量C60
+#define UTILITY_RESOURCE_CLEANUP_OFFSET_1CF0 0x1CF0              // 清理偏移量1CF0
 
 // 线程本地存储偏移量常量
-#define UTILITY_TLS_OFFSET_EXTENDED_23A0 0x23A0                    // 线程本地存储偏移量23A0
+#define UTILITY_TLS_OFFSET_23A0 0x23A0                           // 线程本地存储偏移量23A0
 
 // 数据偏移量常量
-#define UTILITY_DATA_OFFSET_EXTENDED_1B00 0x1B00                  // 数据偏移量1B00
-#define UTILITY_DATA_OFFSET_EXTENDED_1B40 0x1B40                  // 数据偏移量1B40
-#define UTILITY_DATA_OFFSET_EXTENDED_1B48 0x1B48                  // 数据偏移量1B48
-#define UTILITY_DATA_OFFSET_EXTENDED_1B80 0x1B80                  // 数据偏移量1B80
-#define UTILITY_DATA_POINTER_OFFSET 0x8                            // 数据指针偏移量
-#define UTILITY_FIELD_OFFSET 0xC                                   // 字段偏移量
-#define UTILITY_OFFSET_DATA 0x10                                   // 偏移量数据
-#define UTILITY_SECONDARY_BYTE_OFFSET 0x14                        // 次要字节偏移量
-#define UTILITY_PADDING_OFFSET 0x18                               // 填充偏移量
+#define UTILITY_DATA_OFFSET_1B00 0x1B00                          // 数据偏移量1B00
+#define UTILITY_DATA_OFFSET_1B40 0x1B40                          // 数据偏移量1B40
+#define UTILITY_DATA_OFFSET_1B48 0x1B48                          // 数据偏移量1B48
+#define UTILITY_DATA_OFFSET_1B80 0x1B80                          // 数据偏移量1B80
+#define UTILITY_DATA_POINTER_OFFSET 0x8                          // 数据指针偏移量
+#define UTILITY_FIELD_OFFSET 0xC                                  // 字段偏移量
+#define UTILITY_OFFSET_DATA 0x10                                  // 偏移量数据
+#define UTILITY_SECONDARY_BYTE_OFFSET 0x14                       // 次要字节偏移量
+#define UTILITY_PADDING_OFFSET 0x18                              // 填充偏移量
 
 // 检查标志常量
-#define UTILITY_CHECK_FLAG_10 0x10                                // 检查标志10
-#define UTILITY_CHECK_FLAG_28 0x28                                // 检查标志28
-#define UTILITY_CHECK_FLAG_30 0x30                                // 检查标志30
-#define UTILITY_CHECK_FLAG_50 0x50                                // 检查标志50
-#define UTILITY_CHECK_FLAG_60 0x60                                // 检查标志60
-#define UTILITY_CHECK_FLAG_70 0x70                                // 检查标志70
-#define UTILITY_CHECK_FLAG_98 0x98                                // 检查标志98
-#define UTILITY_CHECK_FLAG_B0 0xB0                                // 检查标志B0
-#define UTILITY_CHECK_FLAG_B8 0xB8                                // 检查标志B8
-#define UTILITY_CHECK_FLAG_D0 0xD0                                // 检查标志D0
-#define UTILITY_CHECK_FLAG_E0 0xE0                                // 检查标志E0
-#define UTILITY_CHECK_FLAG_F0 0xF0                                // 检查标志F0
+#define UTILITY_CHECK_FLAG_10 0x10                               // 检查标志10
+#define UTILITY_CHECK_FLAG_28 0x28                               // 检查标志28
+#define UTILITY_CHECK_FLAG_30 0x30                               // 检查标志30
+#define UTILITY_CHECK_FLAG_50 0x50                               // 检查标志50
+#define UTILITY_CHECK_FLAG_60 0x60                               // 检查标志60
+#define UTILITY_CHECK_FLAG_70 0x70                               // 检查标志70
+#define UTILITY_CHECK_FLAG_98 0x98                               // 检查标志98
+#define UTILITY_CHECK_FLAG_B0 0xB0                               // 检查标志B0
+#define UTILITY_CHECK_FLAG_B8 0xB8                               // 检查标志B8
+#define UTILITY_CHECK_FLAG_D0 0xD0                               // 检查标志D0
+#define UTILITY_CHECK_FLAG_E0 0xE0                               // 检查标志E0
+#define UTILITY_CHECK_FLAG_F0 0xF0                               // 检查标志F0
 
 // 新增语义化偏移量常量
-#define UTILITY_OFFSET_LIST_HANDLE 0x4                           // 列表句柄偏移量
+#define UTILITY_OFFSET_LIST_HANDLE 0x4                            // 列表句柄偏移量
 #define UTILITY_OFFSET_STRUCT_ONE 0x8                             // 结构体偏移量1
-#define UTILITY_OFFSET_PTR_CHECKSUM 0xC                           // 校验和指针偏移量
+#define UTILITY_OFFSET_CHECKSUM_PTR 0xC                           // 校验和指针偏移量
 #define UTILITY_OFFSET_SECONDARY_BYTE 0x10                        // 次要字节偏移量
 
 // 内存操作常量
-#define UTILITY_MEMORY_OFFSET_NEGATIVE -1                          // 内存偏移量负值
-#define UTILITY_MEMORY_NEGATIVE_OFFSET -1                          // 内存负偏移量
-#define UTILITY_MEMORY_FLAG 0x1                                    // 内存操作标志
-#define UTILITY_MEMORY_STANDARD_OFFSET 0x4                         // 内存标准偏移量
-#define UTILITY_ZERO 0                                             // 零值常量
-#define UTILITY_OFFSET_FLAG 0x10                                   // 偏移量标志
+#define UTILITY_MEMORY_NEGATIVE_OFFSET -1                         // 内存负偏移量
+#define UTILITY_MEMORY_OPERATION_FLAG 0x1                         // 内存操作标志
+#define UTILITY_MEMORY_STANDARD_OFFSET 0x4                        // 内存标准偏移量
+#define UTILITY_ZERO 0                                            // 零值常量
+#define UTILITY_OFFSET_FLAG 0x10                                  // 偏移量标志
 
 // 数据偏移量常量
-#define UTILITY_DATA_OFFSET 0x10                                   // 数据偏移量
-#define UTILITY_OFFSET_RESOURCE_PTR 0x8                            // 资源指针偏移量
+#define UTILITY_DATA_OFFSET 0x10                                  // 数据偏移量
+#define UTILITY_OFFSET_RESOURCE_PTR 0x8                           // 资源指针偏移量
 
 // 错误代码常量
-#define UTILITY_ERROR_FLAG 0xFFFFFFFF                              // 错误标志
-#define UTILITY_ERROR_INVALID_HANDLE 0xFFFFFFFE                    // 无效句柄错误
+#define UTILITY_ERROR_CODE_INVALID 0xFFFFFFFF                     // 错误代码
+#define UTILITY_ERROR_HANDLE_INVALID 0xFFFFFFFE                   // 无效句柄错误
 #define UTILITY_ERROR_OFFSET 0x4                                  // 错误偏移量
 
 // 索引常量
-#define UTILITY_INDEX_ONE 0x1                                      // 索引1
-#define UTILITY_INDEX_ZERO 0x0                                     // 索引0
+#define UTILITY_INDEX_ONE 0x1                                     // 索引1
+#define UTILITY_INDEX_ZERO 0x0                                    // 索引0
 
 // 大小限制常量
-#define UTILITY_SIZE_OFFSET 0x8                                    // 大小偏移量
-#define UTILITY_SIZE_OFFSET_EXTENDED_BYTE 0x1                      // 扩展字节大小偏移量
-#define UTILITY_SIZE_STANDARD 0x4                                  // 标准大小
-#define UTILITY_SIZE_LIMIT_STANDARD 0x1000                         // 标准大小限制
+#define UTILITY_SIZE_OFFSET 0x8                                   // 大小偏移量
+#define UTILITY_SIZE_EXTENDED_BYTE 0x1                            // 扩展字节大小
+#define UTILITY_SIZE_STANDARD 0x4                                 // 标准大小
+#define UTILITY_SIZE_LIMIT 0x1000                                 // 标准大小限制
 
 // 字节掩码常量
-#define UTILITY_BYTE_MASK_EF 0xEF                                  // 字节掩码EF
-#define UTILITY_BYTE_MASK_DF 0xDF                                  // 字节掩码DF
-#define UTILITY_BYTE_MASK_BF 0xBF                                  // 字节掩码BF
-#define UTILITY_BYTE_MASK_EXTENDED_PRIMARY 0xFF                    // 扩展主字节掩码
-#define UTILITY_WORD_MASK_FEFF 0xFEFF                              // 字掩码FEFF
+#define UTILITY_BYTE_MASK_EF 0xEF                                 // 字节掩码EF
+#define UTILITY_BYTE_MASK_DF 0xDF                                 // 字节掩码DF
+#define UTILITY_BYTE_MASK_BF 0xBF                                 // 字节掩码BF
+#define UTILITY_BYTE_MASK_PRIMARY 0xFF                             // 主字节掩码
+#define UTILITY_WORD_MASK_FEFF 0xFEFF                             // 字掩码FEFF
 
 // 其他常量
-#define UTILITY_CHAR_NULL '\0'                                     // 空字符
+#define UTILITY_CHAR_NULL '\0'                                    // 空字符
 #define UTILITY_STACK_PRIMARY 0x1                                  // 主栈
 #define UTILITY_OFFSET_STRUCTURE 0x10                              // 结构体偏移量
-#define UTILITY_LIST_DATA_OFFSET 0x14                              // 列表数据偏移量
+#define UTILITY_OFFSET_LIST_DATA 0x14                              // 列表数据偏移量
 
 // 全局变量声明 - 语义化美化版本
-static int64_t UTILITY_SYSTEM_RESOURCE_HANDLE = 0;
-static uint32_t UTILITY_STACK_PROCESSING_BUFFER[16] = {0};
-static uint32_t UTILITY_STACK_BUFFER_ARRAY[16] = {0};
-static uint32_t UTILITY_STACK_DATA[16] = {0};
-static float UTILITY_FLOAT_PRIMARY_VALUE = 0.0f;
-static uint32_t UTILITY_STATUS_VALUE = 0;
-static int UTILITY_COUNTER = 0;
-static uint32_t UTILITY_STATE = 0;
-static uint32_t *UTILITY_PTR_BUFFER = NULL;
-static int64_t UTILITY_TEMPORARY_LONG_STORAGE = 0;
-static uint32_t *UTILITY_GENERIC_DATA_POINTER = NULL;
-static int *UTILITY_RESULT_POINTER = NULL;
-static uint32_t *UTILITY_CPU_REGISTER_RAX = NULL;
-static int64_t UTILITY_DATA_POINTER_PRIMARY_EXTENDED = 0;
-static uint32_t *UTILITY_SYSTEM_MEMORY_HANDLE = NULL;
-static int64_t UTILITY_RESOURCE_CACHE = 0;
-static uint32_t UTILITY_BUFFER[1024] = {0};
-static uint32_t UTILITY_PROCESSING_BUFFER[1024] = {0};
-static uint32_t UTILITY_RESOURCE_SIZE_LIMIT = 1024;
-static int64_t UTILITY_RESOURCE_CONTEXT_HANDLE = 0;
-static uint32_t UTILITY_RESOURCE_BUFFER = 0;
-static uint32_t UTILITY_BOUNDARY_TWO = 2;
-static uint32_t UTILITY_RESOURCE_CONFIG_OFFSET = 0;
-static uint32_t UTILITY_RESOURCE_TABLE_OFFSET = 0;
-static int64_t UTILITY_FRAME_PTR = 0;
-static int64_t UTILITY_FILE_DATA_OFFSET = 0;
-static uint32_t UTILITY_FILE_HANDLE_OFFSET = 0;
-static uint64_t UTILITY_FILE_POSITION_OFFSET = 0;
-static float UTILITY_RESOURCE_DATA_BUFFER_POSITION = 0.0f;
-static int64_t UTILITY_DATA_BUFFER_PRIMARY = 0;
-static uint32_t UTILITY_LOCAL_INTEGER_VALUE = 0;
-static int64_t UTILITY_BUFFER_POSITION = 0;
-static uint64_t UTILITY_RESULT = 0;
-static uint32_t UTILITY_THREAD_OFFSET = 0;
-static uint64_t UTILITY_FILE_SIZE_PARAM = 0;
-static uint64_t UTILITY_EXTENDED_DATA_PTR = 0;
+static int64_t g_utility_resource_handle = 0;
+static uint32_t g_utility_stack_buffer[16] = {0};
+static uint32_t g_utility_stack_array[16] = {0};
+static uint32_t g_utility_stack_data[16] = {0};
+static float g_utility_float_value = 0.0f;
+static uint32_t g_utility_status = 0;
+static int g_utility_counter = 0;
+static uint32_t g_utility_state = 0;
+static uint32_t *g_utility_ptr_buffer = NULL;
+static int64_t g_utility_temp_long = 0;
+static uint32_t *g_utility_data_ptr = NULL;
+static int *g_utility_result_ptr = NULL;
+static uint32_t *g_utility_cpu_rax = NULL;
+static int64_t g_utility_data_ext = 0;
+static uint32_t *g_utility_mem_handle = NULL;
+static int64_t g_utility_resource_cache = 0;
+static uint32_t g_utility_buffer[1024] = {0};
+static uint32_t g_utility_proc_buffer[1024] = {0};
+static uint32_t g_utility_size_limit = 1024;
+static int64_t g_utility_context_handle = 0;
+static uint32_t g_utility_resource_buf = 0;
+static uint32_t g_utility_boundary = 2;
+static uint32_t g_utility_config_offset = 0;
+static uint32_t g_utility_table_offset = 0;
+static int64_t g_utility_frame_ptr = 0;
+static int64_t g_utility_file_offset = 0;
+static uint32_t g_utility_file_handle = 0;
+static uint64_t g_utility_file_pos = 0;
+static float g_utility_data_pos = 0.0f;
+static int64_t g_utility_data_buffer = 0;
+static uint32_t g_utility_local_int = 0;
+static int64_t g_utility_buffer_pos = 0;
+static uint64_t g_utility_result = 0;
+static uint32_t g_utility_thread_offset = 0;
+static uint64_t g_utility_file_size = 0;
+static uint64_t g_utility_ext_data_ptr = 0;
 
 // 函数声明 - 语义化美化版本
 uint64_t system_memory_operation(uint32_t operation_type, void **resource_handle);
