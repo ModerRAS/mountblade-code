@@ -94,9 +94,6 @@
 #define SYSTEM_FLOAT_PI 3.1415927              // π值
 #define SYSTEM_FLOAT_HALF 0.5                  // 0.5值
 
-// 新增硬编码值常量定义（2025年8月30日最终批次美化）
-// 简化实现：仅将常见的硬编码值替换为语义化常量
-// 原本实现：完全重构所有硬编码值体系，建立统一的语义化命名规范
 #define SYSTEM_OFFSET_REGISTER_PARAM_FINAL 0x12        // 寄存器参数最终偏移量
 #define SYSTEM_BIT_MASK_BYTE_MASK_FULL 0xff            // 字节掩码全满
 #define SYSTEM_OFFSET_THREAD_STACK_BASE 0x4ea          // 线程栈基址偏移量
