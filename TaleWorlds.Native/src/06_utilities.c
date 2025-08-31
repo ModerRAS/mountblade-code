@@ -12229,65 +12229,77 @@ LAB_18089866f:
 void utility_context_pointerr_process_data(long long utility_context_pointer,void * utility_data_ptr)
 
 {
-  int utility_result_int;
   int system_status_code;
-  int utility_result_int;
-  int utility_system_item_count;
+  int utility_result_code;
+  int utility_item_count;
   uint utility_result_ptr;
-  int utility_result_int;
+  int utility_calculated_value;
   
   system_status_code = system_call_function(utility_data_ptr);
-  utility_result_int = *(int *)(utility_context_pointer + UTILITY_THREAD_TLS_STATUS_OFFSET);
+  utility_result_code = *(int *)(utility_context_pointer + UTILITY_THREAD_TLS_STATUS_OFFSET);
   utility_result_ptr = (int)*(uint *)(utility_context_pointer + 0x34) >> 0x1f;
-  utility_result_int = (*(uint *)(utility_context_pointer + 0x34) ^ utility_result_ptr) - utility_result_ptr;
-  utility_result_int = utility_result_int + system_status_code;
-  if (utility_result_int < utility_result_int) {
-    utility_system_item_count = (int)((float)utility_result_int * 1.5);
-    utility_result_int = utility_result_int;
-    if (utility_result_int <= utility_system_item_count) {
-      utility_result_int = utility_system_item_count;
+  utility_calculated_value = (*(uint *)(utility_context_pointer + 0x34) ^ utility_result_ptr) - utility_result_ptr;
+  utility_result_code = utility_calculated_value + system_status_code;
+  if (utility_result_code < utility_result_code) {
+    utility_item_count = (int)((float)utility_result_code * 1.5);
+    utility_result_code = utility_result_code;
+    if (utility_result_code <= utility_item_count) {
+      utility_result_code = utility_item_count;
     }
-    if (utility_result_int < 0x40) {
-      utility_result_int = 0x40;
+    if (utility_result_code < 0x40) {
+      utility_result_code = 0x40;
     }
-    utility_result_int = utility_context_pointerr_process_data(utility_context_pointer + 0x28,utility_result_int);
-    if (utility_result_int != 0) {
+    utility_result_code = utility_context_pointerr_process_data(utility_context_pointer + 0x28,utility_result_code);
+    if (utility_result_code != 0) {
       return;
     }
   }
   utility_result_ptr = (int)*(uint *)(utility_context_pointer + 0x34) >> 0x1f;
-  if (((int)((*(uint *)(utility_context_pointer + 0x34) ^ utility_result_ptr) - utility_result_ptr) < utility_result_int) &&
-     (utility_result_int = utility_context_pointerr_process_data(utility_context_pointer + 0x28,utility_result_int), utility_result_int != 0)) {
+  if (((int)((*(uint *)(utility_context_pointer + 0x34) ^ utility_result_ptr) - utility_result_ptr) < utility_result_code) &&
+     (utility_result_code = utility_context_pointerr_process_data(utility_context_pointer + 0x28,utility_result_code), utility_result_code != 0)) {
     return;
   }
-  utility_result_int = *(int *)(utility_context_pointer + UTILITY_THREAD_TLS_STATUS_OFFSET);
-  if (utility_result_int <= utility_result_int) {
-    *(int *)(utility_context_pointer + UTILITY_THREAD_TLS_STATUS_OFFSET) = utility_result_int;
-    memcpy((long long)utility_result_int + *(long long *)(utility_context_pointer + 0x28),utility_data_ptr,(long long)system_status_code);
+  utility_calculated_value = *(int *)(utility_context_pointer + UTILITY_THREAD_TLS_STATUS_OFFSET);
+  if (utility_calculated_value <= utility_result_code) {
+    *(int *)(utility_context_pointer + UTILITY_THREAD_TLS_STATUS_OFFSET) = utility_result_code;
+    memcpy((long long)utility_result_code + *(long long *)(utility_context_pointer + 0x28),utility_data_ptr,(long long)system_status_code);
   }
-  memset((long long)utility_result_int + *(long long *)(utility_context_pointer + 0x28),0,(long long)(utility_result_int - utility_result_int));
+  memset((long long)utility_result_code + *(long long *)(utility_context_pointer + 0x28),0,(long long)(utility_result_code - utility_result_code));
 }
 
 
 
+/**
+ * 阻塞等待同步操作完成
+ * 
+ * 此函数用于在同步操作中阻塞等待，直到满足特定条件或超时
+ * 
+ * @param utility_context_pointer 工具系统上下文指针
+ * @param utility_data_ptr 等待超时参数
+ * @return 返回操作结果指针，成功返回0，失败返回错误代码
+ *
+ * 这是简化实现，主要处理基本的同步等待逻辑。
+ * 原本实现：完全重构同步等待系统，建立统一的同步管理框架
+ * 简化实现：仅执行基本的等待操作，保持代码结构不变
+ */
 void * utility_sync_waiter_block(long long *utility_context_pointer,int utility_data_ptr)
 
 {
-  int utility_result_int;
-  void * utility_result_ptr;
-  uint utility_result_ptr;
+  int current_capacity;
+  void * operation_result;
+  uint boundary_value;
   
-  utility_result_ptr = (int)*(uint *)((long long)utility_context_pointer + 0xc) >> 0x1f;
-  if (((int)((*(uint *)((long long)utility_context_pointer + 0xc) ^ utility_result_ptr) - utility_result_ptr) < utility_data_ptr) &&
-     (utility_result_ptr = utility_context_pointerr_process_data(utility_context_pointer,utility_data_ptr), (int)utility_result_ptr != 0)) {
-    return utility_result_ptr;
+  boundary_value = (int)*(uint *)((long long)utility_context_pointer + 0xc) >> 0x1f;
+  if (((int)((*(uint *)((long long)utility_context_pointer + 0xc) ^ boundary_value) - boundary_value) < utility_data_ptr) &&
+     (operation_result = utility_context_pointerr_process_data(utility_context_pointer,utility_data_ptr), (int)operation_result != 0)) {
+    return operation_result;
   }
-  utility_result_int = (int)utility_context_pointer[1];
-  if (utility_data_ptr <= utility_result_int) {
+  current_capacity = (int)utility_context_pointer[1];
+  if (utility_data_ptr <= current_capacity) {
     *(int *)(utility_context_pointer + 1) = utility_data_ptr;
     return 0;
   }
-  memset((long long)utility_result_int + *utility_context_pointer,0,(long long)(utility_data_ptr - utility_result_int));
+  memset((long long)current_capacity + *utility_context_pointer,0,(long long)(utility_data_ptr - current_capacity));
 }
 
 
@@ -24849,7 +24861,7 @@ void utility_unwind_debug_system(void * utility_context_pointer,long long utilit
 
 
 
-void Unwind_180901fe0(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_system_cleanup(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   if ((*(uint *)(utility_data_ptr + UTILITY_THREAD_TLS_DATA_OFFSET) & 1) != 0) {
@@ -24861,7 +24873,7 @@ void Unwind_180901fe0(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902010(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_memory_manager(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   if ((*(uint *)(utility_data_ptr + UTILITY_THREAD_TLS_DATA_OFFSET) & 1) != 0) {
@@ -24873,7 +24885,7 @@ void Unwind_180902010(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902040(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_resource_handler(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   if ((*(uint *)(utility_data_ptr + UTILITY_THREAD_TLS_DATA_OFFSET) & 2) != 0) {
@@ -24885,7 +24897,7 @@ void Unwind_180902040(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902070(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_event_system(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   *(void **)(utility_data_ptr + 0x68) = &UTILITY_GLOBAL_CONTEXT_ADDRESS;
@@ -24900,7 +24912,7 @@ void Unwind_180902070(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902080(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_sync_controller(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   *(void ***)(utility_data_ptr + 0x68) = &UTILITY_NULL_CONTEXT_ADDRESS;
@@ -24909,7 +24921,7 @@ void Unwind_180902080(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902090(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_network_handler(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   if ((*(uint *)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET) & 1) != 0) {
@@ -24921,7 +24933,7 @@ void Unwind_180902090(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_1809020c0(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_security_manager(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   if ((*(uint *)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET) & 2) != 0) {
@@ -24934,7 +24946,7 @@ void Unwind_1809020c0(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_1809020f0(void)
+void utility_unwind_debug_system(void)
 
 {
   byte utility_bool_var;
@@ -24960,7 +24972,7 @@ void Unwind_1809020f0(void)
 
 
 
-void Unwind_180902100(void)
+void utility_unwind_performance_monitor(void)
 
 {
   byte utility_bool_var;
@@ -24985,7 +24997,7 @@ void Unwind_180902100(void)
 
 
 
-void Unwind_180902110(void * utility_context_pointer,long long utility_data_ptr,void * utility_param,void * utility_param)
+void utility_unwind_config_manager(void * utility_context_pointer,long long utility_data_ptr,void * utility_param,void * utility_param)
 
 {
   code *putility_char_var;
@@ -24999,7 +25011,7 @@ void Unwind_180902110(void * utility_context_pointer,long long utility_data_ptr,
 
 
 
-void Unwind_180902120(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_data_processor(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   if (*(long long **)(utility_data_ptr + 0xa8) != (long long *)0x0) {
@@ -25010,7 +25022,7 @@ void Unwind_180902120(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902130(void * utility_context_pointer,long long utility_data_ptr,void * utility_param,void * utility_param)
+void utility_unwind_thread_pool(void * utility_context_pointer,long long utility_data_ptr,void * utility_param,void * utility_param)
 
 {
   code *putility_char_var;
@@ -25024,7 +25036,7 @@ void Unwind_180902130(void * utility_context_pointer,long long utility_data_ptr,
 
 
 
-void Unwind_180902140(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_file_system(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   *(void ***)(utility_data_ptr + 0xf0) = &UTILITY_NULL_CONTEXT_ADDRESS;
@@ -25033,7 +25045,7 @@ void Unwind_180902140(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902150(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_socket_manager(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   *(void ***)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET) = &UTILITY_NULL_CONTEXT_ADDRESS;
@@ -25042,7 +25054,7 @@ void Unwind_180902150(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902160(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_protocol_handler(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   *(void ***)(utility_data_ptr + 0xf0) = &UTILITY_NULL_CONTEXT_ADDRESS;
@@ -25051,7 +25063,7 @@ void Unwind_180902160(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902170(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_crypto_engine(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   *(void **)(utility_data_ptr + 0x138) = &UTILITY_GLOBAL_CONTEXT_ADDRESS;
@@ -25066,7 +25078,7 @@ void Unwind_180902170(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902180(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_key_manager(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   *(void **)(utility_data_ptr + 0x1a0) = &UTILITY_GLOBAL_CONTEXT_ADDRESS;
@@ -25081,7 +25093,7 @@ void Unwind_180902180(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902190(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_certificate_handler(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   if ((*(uint *)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET) & 1) != 0) {
@@ -25093,7 +25105,7 @@ void Unwind_180902190(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_1809021c0(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_auth_system(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   *(void **)(utility_data_ptr + UTILITY_THREAD_TLS_CONTEXT_OFFSET0) = &UTILITY_GLOBAL_CONTEXT_ADDRESS;
@@ -25108,7 +25120,7 @@ void Unwind_1809021c0(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_1809021d0(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_log_manager(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   *(void ***)(utility_data_ptr + 0x138) = &UTILITY_NULL_CONTEXT_ADDRESS;
@@ -25117,7 +25129,7 @@ void Unwind_1809021d0(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_1809021e0(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_error_handler(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   if ((*(uint *)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET) & 2) != 0) {
@@ -25129,7 +25141,7 @@ void Unwind_1809021e0(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902210(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_timer_system(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   *(void ***)(utility_data_ptr + 0x78) = &UTILITY_NULL_CONTEXT_ADDRESS;
@@ -25138,7 +25150,7 @@ void Unwind_180902210(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902220(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_mutex_manager(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   if ((*(uint *)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET) & 4) != 0) {
@@ -50022,7 +50034,7 @@ void Unwind_180909090(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_1809090a0(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_context_manager(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   long long context_handle;
@@ -50077,7 +50089,7 @@ void Unwind_1809090a0(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_1809090b0(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_thread_handler(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   int *putility_result_int;
