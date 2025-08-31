@@ -1,5 +1,52 @@
 #include "TaleWorlds.Native.Split.h"
 
+// ============================================================================
+// 工具系统常量定义 - 语义化常量替换硬编码值
+// ============================================================================
+
+// 系统状态常量
+#define UTILITY_STATUS_SUCCESS 0x0
+#define UTILITY_STATUS_FAILURE 0xFFFFFFFF
+#define UTILITY_STATUS_INVALID_PARAM 0xFFFFFFFD
+#define UTILITY_STATUS_RESOURCE_NOT_FOUND 0xFFFFFFFE
+
+// 内存管理常量
+#define UTILITY_MEMORY_PAGE_SIZE 0x1000
+#define UTILITY_MEMORY_ALIGNMENT_MASK 0xFFFFFFF0
+#define UTILITY_MEMORY_STACK_OFFSET 0x20
+#define UTILITY_MEMORY_HEAP_OFFSET 0x40
+
+// 线程管理常量
+#define UTILITY_THREAD_CONTEXT_OFFSET 0x8
+#define UTILITY_THREAD_DATA_OFFSET 0x10
+#define UTILITY_THREAD_CONFIG_OFFSET 0x18
+#define UTILITY_THREAD_STATUS_OFFSET 0x20
+
+// 资源管理常量
+#define UTILITY_RESOURCE_HANDLE_OFFSET 0x50
+#define UTILITY_RESOURCE_SIZE_OFFSET 0x48
+#define UTILITY_RESOURCE_COUNT_OFFSET 0x40
+
+// 缓冲区操作常量
+#define UTILITY_BUFFER_ELEMENT_SIZE 0x10
+#define UTILITY_BUFFER_ALIGNMENT 0x4
+#define UTILITY_BUFFER_DEFAULT_SIZE 0x400
+
+// 网络相关常量
+#define UTILITY_NETWORK_CONTEXT_OFFSET 0x2e8
+#define UTILITY_NETWORK_DATA_OFFSET 0x68
+
+// 标志位常量
+#define UTILITY_FLAG_ENABLED 0x1
+#define UTILITY_FLAG_DISABLED 0x0
+#define UTILITY_FLAG_MASK_BYTE 0xFF
+#define UTILITY_FLAG_MASK_WORD 0xFFFF
+#define UTILITY_FLAG_MASK_DWORD 0xFFFFFFFF
+
+// ============================================================================
+// 工具系统全局变量定义 - 语义化变量名
+// ============================================================================
+
 // 函数: undefined FUN_1809414f0;
 undefined FUN_1809414f0;
 undefined DAT_180bf5290;
@@ -1022,37 +1069,37 @@ undefined DAT_180bfa350;
 undefined DAT_180bfa358;
 undefined DAT_180bfa360;
 undefined DAT_180bfa368;
-// 工具系统数据段定义 - 语义化命名
-void *utility_data_segment_primary;        // 主要数据段
-void *utility_data_segment_secondary;      // 次要数据段
-void *utility_data_segment_tertiary;       // 第三数据段
-void *utility_data_segment_quaternary;     // 第四数据段
-void *utility_data_segment_primary_ext;     // 主要数据段扩展
-void *utility_data_segment_secondary_ext;   // 次要数据段扩展
-void *utility_data_segment_tertiary_ext;    // 第三数据段扩展
-void *utility_data_segment_quaternary_ext;  // 第四数据段扩展
+// 数据段管理变量
+void *primary_data_segment;                                         // 主要数据段
+void *secondary_data_segment;                                       // 次要数据段
+void *tertiary_data_segment;                                        // 第三数据段
+void *quaternary_data_segment;                                      // 第四数据段
+void *primary_data_segment_extended;                                // 主要数据段扩展
+void *secondary_data_segment_extended;                              // 次要数据段扩展
+void *tertiary_data_segment_extended;                               // 第三数据段扩展
+void *quaternary_data_segment_extended;                             // 第四数据段扩展
 
-// 工具系统未知数据段 - 待进一步分析
-void *utility_unknown_data_segment_600;    // 未知数据段1
-void *utility_unknown_data_segment_168;    // 未知数据段2
-void *utility_unknown_data_segment_178;    // 未知数据段3
-void *utility_unknown_data_segment_188;    // 未知数据段4
-void *utility_unknown_data_segment_190;    // 未知数据段5
-void *utility_unknown_data_segment_5b8;    // 未知数据段6
-void *utility_unknown_data_segment_c50;    // 未知数据段7
-void *utility_unknown_data_segment_c60;    // 未知数据段8
+// 保留数据段变量 - 待进一步分析用途
+void *reserved_data_segment_600;                                    // 保留数据段600
+void *reserved_data_segment_168;                                    // 保留数据段168
+void *reserved_data_segment_178;                                    // 保留数据段178
+void *reserved_data_segment_188;                                    // 保留数据段188
+void *reserved_data_segment_190;                                    // 保留数据段190
+void *reserved_data_segment_5b8;                                    // 保留数据段5b8
+void *reserved_data_segment_c50;                                    // 保留数据段c50
+void *reserved_data_segment_c60;                                    // 保留数据段c60
 
-// 工具系统配置数据段
-void *utility_config_data_primary;         // 主要配置数据段
-void *utility_config_data_secondary;       // 次要配置数据段
-void *utility_config_data_tertiary;        // 第三配置数据段
-void *utility_config_data_quaternary;      // 第四配置数据段
-void *utility_config_data_primary_ext;     // 主要配置数据段扩展
-void *utility_config_data_secondary_ext;   // 次要配置数据段扩展
-void *utility_config_data_tertiary_ext;    // 第三配置数据段扩展
-void *utility_config_data_quaternary_ext;  // 第四配置数据段扩展
-void *utility_config_data_tertiary_ext2;   // 第三配置数据段扩展2
-void *utility_config_data_quaternary_ext2; // 第四配置数据段扩展2
+// 配置数据段管理变量
+void *primary_config_data_segment;                                   // 主要配置数据段
+void *secondary_config_data_segment;                                 // 次要配置数据段
+void *tertiary_config_data_segment;                                  // 第三配置数据段
+void *quaternary_config_data_segment;                                // 第四配置数据段
+void *primary_config_data_segment_extended;                          // 主要配置数据段扩展
+void *secondary_config_data_segment_extended;                        // 次要配置数据段扩展
+void *tertiary_config_data_segment_extended;                         // 第三配置数据段扩展
+void *quaternary_config_data_segment_extended;                       // 第四配置数据段扩展
+void *tertiary_config_data_segment_extended_secondary;               // 第三配置数据段扩展2
+void *quaternary_config_data_segment_extended_secondary;             // 第四配置数据段扩展2
 undefined DAT_180bfa9f0;
 undefined DAT_180bfa9f8;
 undefined DAT_180bfaa78;
@@ -79962,8 +80009,10 @@ void Unwind_180912970(undefined8 param_1,longlong param_2)
 
 undefined4 UNK_180d49260;
 
-// 函数: void FUN_18094136c(undefined8 param_1,longlong param_2)
-void FUN_18094136c(undefined8 param_1,longlong param_2)
+// 函数: void utility_check_and_reset_state(undefined8 param_1,longlong param_2)
+// 功能: 检查状态并在必要时重置系统状态
+// 参数: param_1 - 上下文参数, param_2 - 状态参数
+void utility_check_and_reset_state(undefined8 param_1,longlong param_2)
 
 {
   char cVar1;
