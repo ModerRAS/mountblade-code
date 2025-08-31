@@ -401,6 +401,7 @@ void utility_process_thread_data(int64_t thread_handle, int64_t context_data)
     uint8_t *utility_buffer;
     int utility_resource_count;
     uint32_t utility_buffer_flags;
+    int utility_status_code = UTILITY_FALSE;
     uint8_t utility_large_workspace_buffer[512];
     uint64_t utility_checksum;
     int64_t utility_processed_count_value;      // 已处理的项目计数器
@@ -455,10 +456,11 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
     int utility_max_iteration_count;
     uint32_t utility_buffer_flags;
     uint64_t utility_security_key_value;
-    int utility_result;
+    int utility_result = UTILITY_FALSE;
     uint64_t utility_status;
     int64_t utility_resource_ptr;
     uint8_t utility_buffer_workspace_array[512];
+    int utility_status_code = UTILITY_FALSE;
     
     // 检查上下文指针的有效性
     if (*(int64_t *)(context_pointer + UTILITY_MEMORY_POINTER_OFFSET) != UTILITY_FALSE) {
