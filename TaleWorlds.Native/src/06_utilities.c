@@ -626,6 +626,7 @@ uint64_t utility_process_resource_pointer(int64_t utility_context_parameter_ptr)
     *(int64_t *)(*utility_buffer_pointer + (int64_t)*(int *)(utility_current_index + UTILITY_DATA_INDEX_OFFSET) * 8) = utility_current_index;
     *(int *)(utility_current_index + UTILITY_DATA_INDEX_OFFSET) = *(int *)(utility_current_index + UTILITY_DATA_INDEX_OFFSET) + 1;
     *(int *)(utility_current_index + UTILITY_DATA_COUNTER_OFFSET) = *(int *)(utility_current_index + UTILITY_DATA_COUNTER_OFFSET) + 1;
+    }
     else {
         utility_context_value_temp = utility_create_resource_iterator(utility_current_index + UTILITY_CONTEXT_ITERATOR_OFFSET, utility_current_index);
         if ((int)utility_resource_pointer != UTILITY_BOOLEAN_FALSE) {
