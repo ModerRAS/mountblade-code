@@ -26071,7 +26071,7 @@ ulonglong system_util_180060a50(longlong *context_pointer,uint *flags_var)
     if (loop_bound_limit != 0) {
       do {
         if (quaternary_pointer == (ulonglong *)0x0) {
-          quaternary_pointer = (ulonglong *)&#define SYSTEM_CONSTANT_00000008 0x00000008
+          quaternary_pointer = (ulonglong *)0x8;
         }
         system_config_node_ptr = (ulonglong *)(*quaternary_pointer - 8);
         if (*quaternary_pointer == 0) {
@@ -26099,7 +26099,7 @@ ulonglong system_util_180060a50(longlong *context_pointer,uint *flags_var)
   if ((int)unsigned_value_primary_var0 != 0) {
     do {
       if (quaternary_pointer == (ulonglong *)0x0) {
-        quaternary_pointer = (ulonglong *)&#define SYSTEM_CONSTANT_00000008 0x00000008
+        quaternary_pointer = (ulonglong *)0x8;
       }
       unsigned_value_primary_var0 = *quaternary_pointer;
       quinary_pointer = (ulonglong *)(unsigned_value_primary_var0 - 8);
