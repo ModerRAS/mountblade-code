@@ -84,6 +84,9 @@ void *utility_data_buffer_secondary;
 
 // 操作标志常量
 #define UTILITY_CLEANUP_FLAG 0x80000000
+
+// 全局数据地址常量
+#define UTILITY_GLOBAL_DATA_PROCESS_CONTEXT_180982240 0x180982240
 void *utility_resource_pool_primary;
 void *utility_resource_cache_secondary;
 void *utility_memory_manager_main;
@@ -7913,7 +7916,7 @@ int context_pointer_process_data(long long *context_pointer,long long data_ptr,i
   int result_int;
   int utility_status_code;
   
-  result_int = context_pointer_process_data(data_ptr,param,&UNK_180982240);
+  result_int = context_pointer_process_data(data_ptr,param,&UTILITY_GLOBAL_DATA_PROCESS_CONTEXT_180982240);
   utility_status_code = context_pointer_process_data(data_ptr + result_int,param - result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
   result_int = result_int + utility_status_code;
   utility_status_code = system_call_function(result_int + data_ptr,param - result_int,((int)context_pointer[2] + 2) * 0xc);
