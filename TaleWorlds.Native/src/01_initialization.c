@@ -16836,14 +16836,14 @@ system_update_memory_table(uint64_t *memory_table_ptr, longlong memory_size, uin
 }
 
 uint64_t *
-system_remove_memory_table_entry(uint64_t *system_context_parameter,ulonglong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
+system_remove_memory_table_entry(uint64_t *memory_table_ptr, ulonglong entry_flags, uint64_t entry_size, uint64_t entry_alignment)
 
 {
-  *system_context_parameter = &system_data_animation_pool_base;
-  if ((system_context_parameter & 1) != 0) {
-    free(system_context_parameter,0x05001,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
+  *memory_table_ptr = &system_data_animation_pool_base;
+  if ((entry_flags & 1) != 0) {
+    free(memory_table_ptr,0x05001,entry_size,entry_alignment,SYSTEM_INVALID_HANDLE_VALUE);
   }
-  return system_context_parameter;
+  return memory_table_ptr;
 }
 void system_setup_memory_watching(longlong system_context_parameter,longlong system_context_parameter)
 
