@@ -337,69 +337,39 @@ void *network_buffer_static_tertiary;
 /** 静态第四网络缓冲区 */
 void *network_buffer_static_quaternary;
 
-/**
- * 主网络连接状态
- * 主要网络连接的状态值
- */
+/* 网络连接状态管理 */
+/** 主网络连接状态 */
 int network_connection_state_primary;
 
-/**
- * 辅助网络连接状态
- * 辅助网络连接的状态值
- */
+/** 辅助网络连接状态 */
 int network_connection_state_secondary;
 
-/**
- * 第三网络连接状态
- * 第三网络连接的状态值
- */
+/** 第三网络连接状态 */
 int network_connection_state_tertiary;
 
-/**
- * 第四网络连接状态
- * 第四网络连接的状态值
- */
+/** 第四网络连接状态 */
 int network_connection_state_quaternary;
 
-/**
- * 第五网络连接状态
- * 第五网络连接的状态值
- */
+/** 第五网络连接状态 */
 int network_connection_state_quinary;
 
-/**
- * 第六网络连接状态
- * 第六网络连接的状态值
- */
+/** 第六网络连接状态 */
 int network_connection_state_senary;
-/**
- * 主数据传输对象
- * 管理主要数据传输操作
- */
+
+/* 网络数据传输对象 */
+/** 主数据传输对象 */
 void *network_data_transfer_primary;
 
-/**
- * 辅助数据传输对象
- * 管理辅助数据传输操作
- */
+/** 辅助数据传输对象 */
 void *network_data_transfer_secondary;
 
-/**
- * 第三数据传输对象
- * 管理第三数据传输操作
- */
+/** 第三数据传输对象 */
 void *network_data_transfer_tertiary;
 
-/**
- * 第四数据传输对象
- * 管理第四数据传输操作
- */
+/** 第四数据传输对象 */
 void *network_data_transfer_quaternary;
 
-/**
- * 第五数据传输对象
- * 管理第五数据传输操作
- */
+/** 第五数据传输对象 */
 void *network_data_transfer_quinary;
 
 /**
