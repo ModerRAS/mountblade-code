@@ -78,21 +78,6 @@
 #define SYSTEM_OFFSET_STACK_POINTER 0xc                              // 栈指针偏移量
 #define SYSTEM_OFFSET_REGISTER_PARAM 0x12                            // 寄存器参数偏移量
 
-系统事件处理参数变量名，将system_event_handle_paramr_017替换为system_event_handle_paramr_process_pointer等语义化变量名
-系统处理参数变量名，将system_handle_paramr_002替换为system_handle_paramr_initialize_stack等语义化变量名
-系统处理参数变量名，将system_handle_paramr_007替换为system_handle_paramr_process_parameters等语义化变量名
-系统处理参数变量名，将system_handle_paramr_008替换为system_handle_paramr_get_string_pointer等语义化变量名
-系统处理参数变量名，将system_handle_paramr_009替换为system_handle_paramr_process_mutex等语义化变量名
-寄存器变量名，将extraout_XMM0_Da_00替换为xmm0_register_value等语义化变量名
-标志处理变量名，将flag_handle_paramr_function替换为flag_handle_paramr_processor等语义化变量名
-硬编码十六进制值，将0x2e2e6c替换为SYSTEM_STRING_PATTERN_DOT_DOT_L等语义化常量
-硬编码偏移量，将0x1340、0x1500、0x13b0等替换为SYSTEM_OFFSET_GLOBAL_DATA_*等语义化常量
-硬编码函数偏移量，将200替换为SYSTEM_OFFSET_FUNCTION_CALLBACK_STANDARD等语义化常量
-硬编码浮点常量，将0x4cbebc20、0x7f7fffff等替换为SYSTEM_FLOAT_CONSTANT_*等语义化常量
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码值的语义化替换
-// - 原本实现：完全重构所有硬编码值体系，重新设计所有硬编码值的语义化规范
-// - 简化实现：仅将常见的硬编码十六进制值替换为语义化常量
 
 #define SYSTEM_FLOAT_MAX_DOUBLE_VALUE 1.8446744e+19    // 最大双精度浮点数
 #define SYSTEM_FLOAT_MAX_VALUE 3.4028235e+38           // 最大浮点数
