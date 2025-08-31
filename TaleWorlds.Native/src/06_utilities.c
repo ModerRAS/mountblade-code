@@ -187,9 +187,9 @@
 #define UTILITY_FLAG_MASK_0XFFFFC000 UTILITY_FLAG_MASK_0XFFFFc000
 #define UTILITY_FLAG_MASK_0X4000 0x4000
 #define UTILITY_FLAG_MASK_0X6000000 0x6000000
-#define UTILITY_FLAG_MASK_0X40000 UTILITY_FLAG_MASK_0X40000
-#define UTILITY_FLAG_MASK_0X3FFFFFFF UTILITY_MAX_BUFFER_SIZEfffff
-#define UTILITY_FLAG_MASK_0XFFFF7FFF UTILITY_FLAG_MASK_0XFFFF7fff
+#define UTILITY_FLAG_MASK_0X40000 0x40000
+#define UTILITY_FLAG_MASK_0X3FFFFFFF 0x3FFFFFFF
+#define UTILITY_FLAG_MASK_0XFFFF7FFF 0x7fff
 #define UTILITY_FLAG_MASK_0XFF000000 0xff000000
 #define UTILITY_STREAM_TYPE_FEBE 0x46464542
 #define UTILITY_STREAM_TYPE_BFEB 0x42464542
@@ -218,7 +218,6 @@
 #define UTILITY_STREAM_TYPE_BDMC 0x42444d43
 #define UTILITY_STREAM_TYPE_IDMC 0x49444d43
 #define UTILITY_MEMORY_POINTER_OFFSET000 UTILITY_FLAG_MASK_0X4000
-#define UTILITY_STATUS_FLAG_MASKfff 0xfff
 #define UTILITY_RESOURCE_COUNT_OFFSET53494c 0x53494c
 // 新增硬编码值常量定义
 #define UTILITY_CONTEXT_SIZE_MULTIPLIER_44 0x44
@@ -1019,36 +1018,6 @@ void utility_thread_local_initializer(void)
  * @param utility_context_input_parameter 输入的原始资源指针值
  * @return 转换后的资源指针，0表示失败
  */
-uint64_t utility_process_resource_pointer(int64_t utility_context_input_parameter)
-{
-uint64_t utility_resource_status_value;
-int64_t utility_stack_buffer_context [2];
-utility_resource_status_value = utility_system_service_handler(*(uint32_t *)(utility_context_input_parameter + UTILITY_THREAD_HANDLE_OFFSET),utility_stack_buffer_context);
-if ((int)utility_resource_status_value == UTILITY_BOOLEAN_FALSE) {
-if (utility_stack_buffer_context[0] == UTILITY_BOOLEAN_FALSE) {
-utility_stack_buffer_context[0] = UTILITY_BOOLEAN_FALSE;
-}
-else {
-utility_stack_buffer_context[0] -= 8;
-}
-utility_stack_buffer_context[0] = UTILITY_BOOLEAN_FALSE;
-utility_resource_context_value = utility_create_context_instance(utility_stack_buffer_context[0],utility_context_input_parameter + UTILITY_THREAD_CONTEXT_OFFSET,utility_stack_buffer_context);
-if ((int)utility_resource_status_value == UTILITY_BOOLEAN_FALSE) {
-if (utility_stack_buffer_context[0] != UTILITY_BOOLEAN_FALSE) {
-if (*(int64_t *)(utility_stack_buffer_context[0] + UTILITY_POINTER_OFFSET) == UTILITY_BOOLEAN_FALSE) {
-return UTILITY_STATUS_THREAD_CREATED;
-}
-utility_resource_context_value = utility_process_resource_operation(*(int64_t *)(utility_stack_buffer_context[0] + UTILITY_POINTER_OFFSET),*(uint32_t *)(utility_context_input_parameter + UTILITY_THREAD_DATA_OFFSET),
-*(uint8_t *)(utility_context_input_parameter + UTILITY_CONTEXT_RESOURCE_OFFSET));
-if ((int)utility_resource_status_value != UTILITY_BOOLEAN_FALSE) {
-return utility_resource_status_value;
-}
-}
-utility_operation_status_code = UTILITY_BOOLEAN_FALSE;
-}
-}
-return utility_resource_status_value;
-}
 /**
  * 线程创建处理函数
  * 功能：处理线程创建和初始化过程
