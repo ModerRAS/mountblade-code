@@ -302,14 +302,14 @@ void system_main_entry_init(system_uint64_t context_param)
  */
 void system_initialize_with_context_config_memory(int64_t context_param, system_uint64_t config_param, int memory_param)
 {
-    system_uint64_t *context_ptr = (system_uint64_t *)context_param;
+    system_uint64_t *context_pointer = (system_uint64_t *)context_param;
     
-    if (context_ptr != NULL && config_param != 0) {
-        context_ptr[1] = config_param;
-        context_ptr[2] = (system_uint64_t)memory_param;
+    if (context_pointer != NULL && config_param != 0) {
+        context_pointer[1] = config_param;
+        context_pointer[2] = (system_uint64_t)memory_param;
         
-        system_global_context_ptr = context_ptr;
-        system_initialized = 1;
+        global_system_context_pointer = context_pointer;
+        system_initialization_status = 1;
     }
 }
 
@@ -326,15 +326,15 @@ void system_initialize_with_context_config_memory(int64_t context_param, system_
 void system_initialize_with_full_parameters(system_uint64_t context_param, system_uint64_t config_param, 
                                            system_uint64_t memory_param, system_uint64_t thread_param)
 {
-    system_uint64_t *context_ptr = (system_uint64_t *)context_param;
+    system_uint64_t *context_pointer = (system_uint64_t *)context_param;
     
-    if (context_ptr != NULL && config_param != 0 && memory_param != 0 && thread_param != 0) {
-        context_ptr[1] = config_param;
-        context_ptr[2] = memory_param;
-        context_ptr[3] = thread_param;
+    if (context_pointer != NULL && config_param != 0 && memory_param != 0 && thread_param != 0) {
+        context_pointer[1] = config_param;
+        context_pointer[2] = memory_param;
+        context_pointer[3] = thread_param;
         
-        system_global_context_ptr = context_ptr;
-        system_initialized = 1;
+        global_system_context_pointer = context_pointer;
+        system_initialization_status = 1;
     }
 }
 
@@ -348,8 +348,8 @@ void system_initialize_with_full_parameters(system_uint64_t context_param, syste
 void system_initialize_resource_manager(uint64_t *context_param)
 {
     if (context_param != NULL) {
-        system_global_context_ptr = (system_uint64_t *)context_param;
-        system_initialized = 1;
+        global_system_context_pointer = (system_uint64_t *)context_param;
+        system_initialization_status = 1;
     }
 }
 
@@ -367,15 +367,15 @@ void system_initialize_resource_manager(uint64_t *context_param)
 system_uint64_t system_initialize_full_parameters_return_ulong(system_uint64_t context_param, uint64_t config_param, 
                                                         system_uint64_t memory_param, system_uint64_t thread_param)
 {
-    system_uint64_t *context_ptr = (system_uint64_t *)context_param;
+    system_uint64_t *context_pointer = (system_uint64_t *)context_param;
     
-    if (context_ptr != NULL && config_param != 0 && memory_param != 0 && thread_param != 0) {
-        context_ptr[1] = (system_uint64_t)config_param;
-        context_ptr[2] = memory_param;
-        context_ptr[3] = thread_param;
+    if (context_pointer != NULL && config_param != 0 && memory_param != 0 && thread_param != 0) {
+        context_pointer[1] = (system_uint64_t)config_param;
+        context_pointer[2] = memory_param;
+        context_pointer[3] = thread_param;
         
-        system_global_context_ptr = context_ptr;
-        system_initialized = 1;
+        global_system_context_pointer = context_pointer;
+        system_initialization_status = 1;
         
         return 0;
     }
@@ -397,15 +397,15 @@ system_uint64_t system_initialize_full_parameters_return_ulong(system_uint64_t c
 system_uint8_t system_initialize_full_parameters_return_byte(int64_t context_param, system_uint64_t config_param, 
                                                   system_uint64_t memory_param, system_uint64_t thread_param)
 {
-    system_uint64_t *context_ptr = (system_uint64_t *)context_param;
+    system_uint64_t *context_pointer = (system_uint64_t *)context_param;
     
-    if (context_ptr != NULL && config_param != 0 && memory_param != 0 && thread_param != 0) {
-        context_ptr[1] = config_param;
-        context_ptr[2] = memory_param;
-        context_ptr[3] = thread_param;
+    if (context_pointer != NULL && config_param != 0 && memory_param != 0 && thread_param != 0) {
+        context_pointer[1] = config_param;
+        context_pointer[2] = memory_param;
+        context_pointer[3] = thread_param;
         
-        system_global_context_ptr = context_ptr;
-        system_initialized = 1;
+        global_system_context_pointer = context_pointer;
+        system_initialization_status = 1;
         
         return 0;
     }
