@@ -6180,10 +6180,10 @@ return;
   uint system_calculation_result;
   ulonglong system_initialization_primary_flag;
   int system_offset_value;
-  float *system_float_buffer;
+  float *system_float_buffer_primary;
   float system_float_result;
   
-  system_float_buffer = (float *)SYSTEM_INIT_FLAG_ENABLED_MEMORY_START;
+  system_float_buffer_primary = (float *)SYSTEM_INIT_FLAG_ENABLED_MEMORY_START;
   system_initialization_primary_flag = 0;
   system_offset_value = -SYSTEM_INIT_SIZE_STANDARD;
   system_max_iterations = system_initialization_primary_flag;
@@ -6191,7 +6191,7 @@ return;
     if (0 < (longlong)system_max_iterations) {
       comparison_result = -SYSTEM_INIT_SIZE_STANDARD;
       system_initialization_loop_counter = system_initialization_primary_flag;
-      system_float_array_iterator = system_float_buffer;
+      system_float_array_iterator = system_float_buffer_primary;
       do {
         system_float_result = SYSTEM_INIT_FLOAT_VALUE_ZERO;
         if (-1 < (longlong)system_initialization_loop_counter) {
