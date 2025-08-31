@@ -158,7 +158,7 @@ static uint64_t UTILITY_EXTENDED_DATA_PTR = 0;
  * - 美化变量名，将utility_data_buffer_primary等替换为UTILITY_DATA_BUFFER_PRIMARY等语义化变量名
  * - 美化变量名，将utility_local_integer_value等替换为UTILITY_LOCAL_INTEGER_VALUE等语义化变量名
  * - 美化变量名，将UTILITY_BUFFER_position等替换为UTILITY_BUFFER_POSITION等语义化变量名
- * - 美化变量名，将utility_result等替换为UTILITY_RESULT等语义化变量名
+ * - 美化变量名，将utility_result等替换为result等语义化变量名
  * - 美化变量名，将utility_thread_offset等替换为UTILITY_THREAD_OFFSET等语义化变量名
  * - 美化变量名，将utility_file_size_param等替换为UTILITY_FILE_SIZE_PARAM等语义化变量名
  * - 美化变量名，将utility_extended_data_ptr等替换为UTILITY_EXTENDED_DATA_PTR等语义化变量名
@@ -210,10 +210,10 @@ void utility_memory_cleanup_handler(void)
  */
 uint64_t utility_process_resource_data(int64_t resource_handle)
 {
-  uint64_t utility_result;
-  utility_result = system_memory_operation(*(uint32_t *)(resource_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
-  if ((int)utility_result != UTILITY_ZERO) {
-    return utility_result;
+  uint64_t result;
+  result = system_memory_operation(*(uint32_t *)(resource_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  if ((int)result != UTILITY_ZERO) {
+    return result;
   }
   if (UTILITY_SYSTEM_RESOURCE_HANDLE == UTILITY_ZERO) {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_ZERO;
