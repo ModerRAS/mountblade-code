@@ -153,41 +153,219 @@ void *network_configure_socket_options;
  * 负责初始化网络套接字层
  */
 void *network_initialize_socket_layer;
+/**
+ * 主网络状态
+ * 主要网络连接的状态标识
+ */
 int network_status_primary;
+
+/**
+ * 辅助网络状态
+ * 辅助网络连接的状态标识
+ */
 int network_status_secondary;
+
+/**
+ * 已连接状态
+ * 表示网络连接已建立
+ */
 int network_status_connected;
+
+/**
+ * 已断开状态
+ * 表示网络连接已断开
+ */
 int network_status_disconnected;
+
+/**
+ * 连接中状态
+ * 表示正在建立网络连接
+ */
 int network_status_connecting;
+
+/**
+ * 错误状态
+ * 表示网络连接出现错误
+ */
 int network_status_error;
+
+/**
+ * 超时状态
+ * 表示网络连接超时
+ */
 int network_status_timeout;
+
+/**
+ * 繁忙状态
+ * 表示网络连接正在处理其他请求
+ */
 int network_status_busy;
+
+/**
+ * 就绪状态
+ * 表示网络连接已就绪可以通信
+ */
 int network_status_ready;
+
+/**
+ * 空闲状态
+ * 表示网络连接处于空闲状态
+ */
 int network_status_idle;
+
+/**
+ * 发送中状态
+ * 表示正在发送数据
+ */
 int network_status_sending;
+
+/**
+ * 接收中状态
+ * 表示正在接收数据
+ */
 int network_status_receiving;
+
+/**
+ * 处理中状态
+ * 表示正在处理数据
+ */
 int network_status_processing;
+
+/**
+ * 等待状态
+ * 表示正在等待响应
+ */
 int network_status_waiting;
+
+/**
+ * 全局主状态
+ * 网络系统的全局主状态
+ */
 int network_global_state_primary;
+/**
+ * 主网络连接上下文
+ * 存储主网络连接的上下文信息
+ */
 void *network_connection_context_primary;
+
+/**
+ * 辅助网络连接上下文
+ * 存储辅助网络连接的上下文信息
+ */
 void *network_connection_context_secondary;
+
+/**
+ * 第三网络连接上下文
+ * 存储第三网络连接的上下文信息
+ */
 void *network_connection_context_tertiary;
+
+/**
+ * 第四网络连接上下文
+ * 存储第四网络连接的上下文信息
+ */
 void *network_connection_context_quaternary;
+
+/**
+ * 第五网络连接上下文
+ * 存储第五网络连接的上下文信息
+ */
 void *network_connection_context_quinary;
+
+/**
+ * 第六网络连接上下文
+ * 存储第六网络连接的上下文信息
+ */
 void *network_connection_context_senary;
+
+/**
+ * 第七网络连接上下文
+ * 存储第七网络连接的上下文信息
+ */
 void *network_connection_context_septenary;
+
+/**
+ * 第八网络连接上下文
+ * 存储第八网络连接的上下文信息
+ */
 void *network_connection_context_octonary;
+
+/**
+ * 主网络配置数据
+ * 存储主网络配置的数据
+ */
 void *network_config_primary_data;
+
+/**
+ * 第九网络连接上下文
+ * 存储第九网络连接的上下文信息
+ */
 void *network_connection_context_nonary;
+
+/**
+ * 主网络配置寄存器
+ * 主网络配置的寄存器值
+ */
 int network_config_register_primary;
+
+/**
+ * 辅助网络配置寄存器
+ * 辅助网络配置的寄存器值
+ */
 int network_config_register_secondary;
+
+/**
+ * 第三网络配置寄存器
+ * 第三网络配置的寄存器值
+ */
 int network_config_register_tertiary;
+
+/**
+ * 第十网络连接上下文
+ * 存储第十网络连接的上下文信息
+ */
 void *network_connection_context_denary;
+
+/**
+ * 扩展主网络连接上下文
+ * 存储扩展主网络连接的上下文信息
+ */
 void *network_connection_context_primary_extended;
+
+/**
+ * 扩展辅助网络连接上下文
+ * 存储扩展辅助网络连接的上下文信息
+ */
 void *network_connection_context_secondary_extended;
+
+/**
+ * 扩展第三网络连接上下文
+ * 存储扩展第三网络连接的上下文信息
+ */
 void *network_connection_context_tertiary_extended;
+
+/**
+ * 扩展第四网络连接上下文
+ * 存储扩展第四网络连接的上下文信息
+ */
 void *network_connection_context_quaternary_extended;
+
+/**
+ * 扩展第五网络连接上下文
+ * 存储扩展第五网络连接的上下文信息
+ */
 void *network_connection_context_quinary_extended;
+
+/**
+ * 扩展第六网络连接上下文
+ * 存储扩展第六网络连接的上下文信息
+ */
 void *network_connection_context_senary_extended;
+
+/**
+ * 扩展第七网络连接上下文
+ * 存储扩展第七网络连接的上下文信息
+ */
 void *network_connection_context_septenary_extended;
 
 /**
