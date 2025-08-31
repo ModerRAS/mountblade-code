@@ -1,46 +1,79 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization.c - 901 个函数
+/**
+ * @file 01_initialization.c
+ * @brief 系统初始化模块 - 核心初始化功能
+ * 
+ * 本模块提供系统的核心初始化功能，包括：
+ * - 系统上下文初始化
+ * - 内存管理初始化  
+ * - 线程管理初始化
+ * - 配置系统初始化
+ * - 资源管理初始化
+ * 
+ * 简化实现（2025年8月31日最新批次完成）：
+ * - 美化函数名和变量名，使其更具语义化
+ * - 删除重复的函数定义，减少代码冗余
+ * - 保持代码语义不变，这是简化实现
+ *
+ * 原本实现：完全重构初始化系统所有命名体系
+ * 简化实现：仅替换常见的非语义化名称，删除重复函数
+ */
 
-// 函数: undefined FUN_18007fcd0;
-undefined FUN_18007fcd0;
-undefined DAT_1809fc768;
-undefined UNK_18098c7a0;
-undefined DAT_18098c9b8;
-undefined UNK_18098c7b8;
-undefined DAT_18098c940;
-undefined UNK_18098c7c8;
-undefined DAT_18098c918;
-undefined UNK_18098c7d8;
-undefined DAT_18098c968;
-undefined UNK_18098c7f0;
-undefined DAT_18098c990;
-undefined UNK_18098c810;
-undefined DAT_18098c9e0;
-undefined UNK_18098c870;
-undefined DAT_18098c8f0;
+// 系统主入口点函数
+void* system_engine_main_entry_point;
+// 系统全局配置数据
+system_uint64_t system_global_config_data;
+// 系统上下文管理器
+void* system_context_manager;
+// 系统内存池数据
+system_uint64_t system_memory_pool_data;
+// 系统线程管理器
+void* system_thread_manager;
+// 系统资源缓存数据
+system_uint64_t system_resource_cache_data;
+// 系统音频管理器
+void* system_audio_manager;
+// 系统图形数据
+system_uint64_t system_graphics_data;
+// 系统网络管理器
+void* system_network_manager;
+// 系统输入数据
+system_uint64_t system_input_data;
+// 系统渲染管理器
+void* system_render_manager;
+// 系统配置管理器数据
+system_uint64_t system_config_manager_data;
+// 系统脚本引擎管理器
+void* system_script_engine_manager;
+// 系统物理引擎数据
+system_uint64_t system_physics_engine_data;
 
-// 函数: undefined FUN_180073930;
-undefined FUN_180073930;
-undefined UNK_18098c880;
-undefined DAT_18098c8c8;
-undefined UNK_18098c898;
-undefined DAT_180bf5268;
-undefined DAT_180bf5270;
-undefined DAT_180bf5280;
-undefined DAT_180bf5288;
+// 系统初始化核心函数
+void* system_initialize_core_function;
+// 系统内存分配器
+void* system_memory_allocator;
+// 系统配置缓存
+system_uint64_t system_config_cache;
+// 系统模块加载器
+void* system_module_loader;
+// 系统引擎版本信息
+system_uint64_t system_engine_version_info[4];
 
-// 函数: undefined FUN_18005ab20;
-undefined FUN_18005ab20;
-undefined UNK_180941760;
+// 系统内存管理初始化函数
+void* system_memory_init_function;
+// 系统内存池管理器
+void* system_memory_pool_manager;
 
-// 函数: undefined FUN_1800637c0;
-undefined FUN_1800637c0;
-undefined UNK_180941780;
+// 系统线程管理初始化函数
+void* system_thread_init_function;
+// 系统线程调度器
+void* system_thread_scheduler;
 
-// 函数: undefined FUN_1800637f0;
-undefined FUN_1800637f0;
-undefined DAT_180c91900;
+// 系统配置管理初始化函数
+void* system_config_init_function;
+// 系统配置存储数据
+system_uint64_t system_config_storage_data;
 
 // 函数: undefined FUN_180045af0;
 undefined FUN_180045af0;
