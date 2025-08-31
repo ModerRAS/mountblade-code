@@ -349,21 +349,21 @@ void *buffer_advanced_tertiary_ptr;
 void *buffer_advanced_quaternary_ptr;
 void *buffer_advanced_auxiliary_ptr;
 void *buffer_advanced_backup_ptr;
-void *utility_buffer_reserve_extended;
-void *utility_buffer_extended;
-void *utility_network_context_extended;
-void *utility_resource_extended;
-void *utility_thread_extended;
-void *utility_event_extended;
-void *utility_memory_extended;
-void *utility_context_system_primary;
-    int utility_context_system_secondary;
-long long utility_context_system_tertiary;
-char utility_context_system_quaternary;
-    uint utility_context_system_auxiliary;
-double utility_context_system_backup;
-    uint32_t utility_context_system_reserve;
-    uint8_t utility_context_system_extended;
+void *buffer_reserve_extended_ptr;
+void *buffer_extended_ptr;
+void *network_context_extended_ptr;
+void *resource_extended_ptr;
+void *thread_extended_ptr;
+void *event_extended_ptr;
+void *memory_extended_ptr;
+void *context_system_primary_ptr;
+int context_system_secondary;
+long long context_system_tertiary;
+char context_system_quaternary;
+uint context_system_auxiliary;
+double context_system_backup;
+uint32_t context_system_reserve;
+uint8_t context_system_extended;
 /** 处理线程本地存储
  * 
  * 该函数负责处理和管理线程的本地存储数据，包括资源句柄的创建、
@@ -510,7 +510,7 @@ double utility_context_system_backup;
  * @param utility_context_pointer 输入的上下文数据，包含资源相关信息
  * @return 处理后的资源指针，0表示失败
  */
-uint64_t utility_process_resource_pointer(int64_t utility_context_pointer)
+uint64_t process_resource_pointer(int64_t context_pointer)
 {
     int64_t utility_current_counter;
     int64_t utility_iteration_max;
@@ -603,7 +603,7 @@ uint64_t utility_process_resource_pointer(int64_t utility_context_pointer)
  * @param utility_context_pointer 上下文参数
  * @return 分配的资源句柄，0表示失败
  */
-  uint64_t utility_handle_resource(int64_t resource_count, int64_t utility_context_pointer)
+  uint64_t handle_resource(int64_t resource_count, int64_t context_pointer)
 {
 
     int64_t *utility_resource_manager_ptr;
@@ -694,7 +694,7 @@ while( true ) {
  * @param utility_context_pointer 上下文句柄
  * @return 验证结果状态码，0表示成功，非0表示失败
  */
-    uint64_t utility_validate_resource_context(int64_t resource_count,int64_t utility_context_pointer)
+    uint64_t validate_resource_context(int64_t resource_count,int64_t context_pointer)
 {
 
 int64_t utility_loop_counter = 0;
@@ -727,7 +727,7 @@ int64_t utility_stack_data_buffer [2];
  * @param utility_context_pointer 上下文句柄
  * @return 初始化结果状态码，0表示成功，非0表示失败
  */
-    uint64_t utility_resource_context_init(int64_t utility_context_pointer)
+    uint64_t resource_context_init(int64_t context_pointer)
 {
 
     uint *utility_data_storage_pointer;
@@ -760,7 +760,7 @@ int64_t utility_stack_data_buffer [4];
  * @param utility_context_pointer 上下文输入数据，包含分配所需的配置信息
  * @return 分配结果状态码，0表示成功，非0表示失败
  */
-    uint64_t utility_allocate_resource_buffer(int64_t resource_count,uint64_t utility_context_pointer)
+    uint64_t allocate_resource_buffer(int64_t resource_count,uint64_t context_pointer)
 {
 
 int64_t utility_loop_counter = 0;
@@ -802,7 +802,7 @@ int64_t utility_stack_data_buffer [2];
  * @param utility_context_pointer 上下文输入数据，包含要检查的资源信息
  * @return 资源状态码，UTILITY_STATUS_THREAD_CREATED表示线程已创建
  */
-    uint64_t utility_resource_status_checker(int64_t utility_context_pointer)
+    uint64_t resource_status_checker(int64_t context_pointer)
 {
 
 int64_t utility_loop_counter = 0;
@@ -833,7 +833,7 @@ int64_t utility_stack_data_buffer [4];
  * @param utility_context_pointer 上下文输入数据，包含资源上下文的相关信息
  * @return 操作状态码，0表示成功，非0表示失败
  */
-    uint64_t utility_activate_resource_context(int64_t utility_context_pointer)
+    uint64_t activate_resource_context(int64_t context_pointer)
 {
 
     uint64_t utility_status;
@@ -860,7 +860,7 @@ else {
  * 
  * @return 操作状态码，0表示成功，非0表示失败
  */
-    uint64_t utility_deactivate_resource_context(void)
+    uint64_t deactivate_resource_context(void)
 {
 
 int64_t utility_context_main_data;
@@ -884,7 +884,7 @@ else {
  * @param utility_context_pointer 输入的状态控制参数
  * @return 操作状态码，0表示成功，非0表示失败
  */
-    uint64_t utility_toggle_resource_state(char utility_context_pointer)
+    uint64_t toggle_resource_state(char context_pointer)
 {
 
     if (utility_context_pointer != '\0') {
@@ -897,7 +897,7 @@ else {
  * 
  * @return 队列状态码，UTILITY_STATUS_THREAD_CREATED表示线程已创建
  */
-    uint32_t utility_check_queue_status(void)
+    uint32_t check_queue_status(void)
 
     int64_t context_pointer;
     int64_t utility_loop_counter;
@@ -922,7 +922,7 @@ else {
  * @param utility_context_pointer 上下文句柄，包含内存分配的相关信息
  * @return 操作结果状态码
  */
-    uint64_t utility_allocate_memory(int64_t utility_context_pointer)
+    uint64_t allocate_memory(int64_t context_pointer)
 {
 
     uint64_t resource_value;
@@ -951,7 +951,7 @@ else {
  * 
  * @return 内存状态码，UTILITY_STATUS_THREAD_CREATED表示线程已创建
  */
-    uint32_t utility_check_memory_status(void)
+    uint32_t check_memory_status(void)
 {
     int64_t context_pointer;
     int64_t utility_loop_counter;
@@ -979,7 +979,7 @@ else {
  * @param utility_context_pointer 线程上下文参数
  * @return 创建的线程句柄，0表示失败
  */
-uint64_t utility_create_thread(int64_t utility_context_pointer)
+uint64_t create_thread(int64_t context_pointer)
 {
     uint64_t utility_status;
     int64_t utility_stack_data_buffer[2];
@@ -1018,7 +1018,7 @@ uint64_t utility_create_thread(int64_t utility_context_pointer)
  * 功能：管理线程同步和资源访问
  * @param utility_context_pointer 线程上下文句柄
  * @return 操作结果状态码
-    uint64_t utility_manage_thread_synchronization(int64_t utility_context_pointer)
+    uint64_t manage_thread_synchronization(int64_t context_pointer)
 {
 {
     int64_t utility_loop_counter = 0;
@@ -1029,7 +1029,7 @@ uint64_t utility_create_thread(int64_t utility_context_pointer)
 float utility_float_param_secondary;
     uint8_t utility_resource_context_data_status [16];
 int64_t utility_stack_pointer;
-    utility_status = utility_handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_STATUS_THREAD_CREATED),&utility_stack_pointer);
+    utility_status = utility_handle_service_request;(*(uint32_t *)(utility_context_pointer + UTILITY_STATUS_THREAD_CREATED),&utility_stack_pointer);
     if ((int)utility_status != UTILITY_STATUS_FALSE) {
     return utility_status;
 }
@@ -1076,7 +1076,7 @@ utility_loop_counter = 0;
  * 创建和管理系统事件机制，用于线程间通信和同步
  * @return 事件系统初始化结果，0表示失败，非0表示成功
  */
-    uint64_t utility_initialize_event_system(void)
+    uint64_t initialize_event_system(void)
 {
 
     int64_t utility_loop_counter = 0;
@@ -1129,7 +1129,7 @@ utility_loop_counter = 0;
  * 释放和清理系统资源指针
  * @return 清理操作状态码
  */
-    uint64_t utility_cleanup_pointer(void)
+    uint64_t cleanup_pointer(void)
 {
 
     return UTILITY_STATUS_THREAD_CREATED;
@@ -1139,7 +1139,7 @@ utility_loop_counter = 0;
  * @param utility_context_pointer 事件上下文句柄
  * @return 事件处理状态码
  */
-    uint64_t utility_handle_event_dispatch(int64_t utility_context_pointer)
+    uint64_t handle_event_dispatch(int64_t context_pointer)
 {
 
     uint64_t utility_event_status;
@@ -1150,7 +1150,7 @@ utility_loop_counter = 0;
     int64_t utility_stack_pointer;
     uint64_t utility_status_code;
     
-    utility_status = utility_handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET), &utility_stack_pointer);
+    utility_status = utility_handle_service_request;(*(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET), &utility_stack_pointer);
     if ((int)utility_status == UTILITY_STATUS_FALSE) {
         utility_status_code = UTILITY_STATUS_FALSE;
         utility_resource_context_data_status = utility_stack_pointer - UTILITY_MEMORY_POINTER_OFFSET;
@@ -1207,7 +1207,7 @@ utility_loop_counter = 0;
  * 初始化系统回调机制，为事件处理提供支持
  * @return 初始化结果状态码
  */
-    uint64_t utility_initialize_callback_system(void)
+    uint64_t initialize_callback_system(void)
 {
 
     return UTILITY_STATUS_THREAD_CREATED;
@@ -1218,13 +1218,13 @@ utility_loop_counter = 0;
  * @param utility_context_pointer 事件上下文句柄
  * @return 注册结果状态码
  */
-    uint64_t utility_register_event_callback(int64_t utility_context_pointer)
+    uint64_t register_event_callback(int64_t context_pointer)
 {
 
     uint64_t utility_status;
     int64_t utility_stack_pointer;
     
-    utility_status = utility_handle_service_request(
+    utility_status = utility_handle_service_request;(
         *(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET),
         &utility_stack_pointer);
     
@@ -1243,7 +1243,7 @@ utility_loop_counter = 0;
     }
     utility_context_activate(*(int64_t *)(utility_stack_pointer + UTILITY_THREAD_HANDLE_OFFSET),1);
 }
-    uint32_t utility_get_callback_state(void)
+    uint32_t get_callback_state(void)
 
 int64_t utility_context_main_data;
 int64_t utility_loop_counter = 0;
@@ -1278,7 +1278,7 @@ void DeleteCriticalSection(void)
  * 处理资源指针的转换和管理
  * 将原始资源指针转换为系统可用的资源引用
  * 
-    uint32_t utility_get_buffer_state(void)
+    uint32_t get_buffer_state(void)
 
 int64_t utility_context_main_data;
 int64_t utility_loop_counter = 0;
@@ -1340,7 +1340,7 @@ int64_t utility_stack_pointer;
 }
     utility_context_activate(utility_loop_counter = 0;
 }
-    uint32_t utility_get_stream_state(void)
+    uint32_t get_stream_state(void)
 
 int64_t utility_context_main_data;
 int64_t utility_loop_counter = 0;
@@ -1379,7 +1379,7 @@ void WaitForEvent(void)
 }
 处理资源指针的转换和管理
  * 将原始资源指针转换为系统可用的资源引用
-    uint32_t utility_get_cache_state(void)
+    uint32_t get_cache_state(void)
 
 int64_t utility_context_main_data;
 int64_t utility_loop_counter = 0;
@@ -1442,7 +1442,7 @@ else {
 }
     utility_context_activate(*(int64_t *)(utility_stack_pointer + UTILITY_THREAD_HANDLE_OFFSET),1);
 }
-    uint32_t utility_get_mutex_state(void)
+    uint32_t get_mutex_state(void)
 
 int64_t utility_context_main_data;
 int64_t utility_loop_counter = 0;
@@ -1538,7 +1538,7 @@ int64_t utility_stack_pointer;
 }
     utility_context_activate(*(int64_t *)(utility_stack_pointer + UTILITY_THREAD_HANDLE_OFFSET),1);
 }
-    uint32_t utility_get_semaphore_handle(void)
+    uint32_t get_semaphore_handle(void)
 
 int64_t utility_data_storage_pointer;
     if (utility_data_storage_pointer != UTILITY_STATUS_FALSE) {
@@ -1595,7 +1595,7 @@ void WaitForSemaphore(void)
 }
 处理资源指针的转换和管理
  * 将原始资源指针转换为系统可用的资源引用
-    uint32_t utility_get_timer_state(void)
+    uint32_t get_timer_state(void)
 
 int64_t utility_data_storage_pointer;
     if (utility_data_storage_pointer != UTILITY_STATUS_FALSE) {
@@ -1749,7 +1749,7 @@ long long utility_parameter_data;
     uint32_t utility_stack_data_buffer [2];
 int64_t utility_stack_long_context;
     int stack_int_count;
-    utility_status = utility_handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_CONTEXT_RESOURCE_OFFSET),&utility_parameter_data);
+    utility_status = utility_handle_service_request;(*(uint32_t *)(utility_context_pointer + UTILITY_CONTEXT_RESOURCE_OFFSET),&utility_parameter_data);
     if ((int)utility_status == UTILITY_STATUS_FALSE) {
 stack_int_count = *(int *)(utility_context_pointer + UTILITY_THREAD_CONTEXT_OFFSET);
     if ((0 < stack_int_count) && (*(uint *)(utility_context_pointer + UTILITY_STATUS_THREAD_CREATED) < 2)) {
@@ -1870,7 +1870,7 @@ do {
  * 该函数负责初始化和管理系统资源，处理资源分配和释放
  * @return 操作结果，0表示成功
  */
-int utility_process_resource_manager(void)
+int process_resource_manager(void)
 {
     int64_t *resource_manager;
     int utility_status_code;
