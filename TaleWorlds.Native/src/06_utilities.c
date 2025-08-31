@@ -467,6 +467,12 @@ void utility_process_thread_local_storage(int64_t thread_handle, int64_t context
  * @param context_pointer 线程上下文指针，包含需要清理的资源信息
  * @return 无返回值
  */
+/**
+ * @brief 清理线程资源
+ * 功能：释放线程相关的资源，清理内存和句柄
+ * @param context_pointer 线程上下文指针，包含需要清理的资源信息
+ * @return 无返回值
+ */
 void utility_cleanup_thread_resources(int64_t context_pointer)
 {
     int64_t utility_iteration_index;
@@ -534,6 +540,11 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
  * 以及清理缓冲区和计算校验和，确保资源的完整性和一致性
  * @return 无返回值
  */
+/**
+ * @brief 验证资源状态
+ * 功能：检查系统中所有资源的状态，确保资源处于有效状态
+ * @return 无返回值
+ */
 void utility_validate_resource_state(void)
 {
     int64_t utility_resource_pointer = UTILITY_BOOLEAN_FALSE;
@@ -558,6 +569,12 @@ void utility_validate_resource_state(void)
  * 
  * @param utility_context_input_parameter 输入的原始资源指针值
  * @return 转换后的资源指针，0表示失败
+ */
+/**
+ * @brief 处理资源指针
+ * 功能：将原始资源指针转换为系统可用的资源引用
+ * @param utility_context_input_parameter 输入的上下文参数
+ * @return 处理后的资源指针，0表示失败
  */
 uint64_t utility_process_resource_pointer(int64_t utility_context_input_parameter)
 {
@@ -652,6 +669,13 @@ uint64_t utility_process_resource_pointer(int64_t utility_context_input_paramete
  * @param resource_count 请求参数，包含资源类型和数量信息
  * @param utility_context_input_parameter 输入上下文，包含请求的环境信息
  * @return 资源分配结果，0表示失败，非0表示成功分配的资源句柄
+ */
+/**
+ * @brief 资源请求处理器
+ * 功能：处理资源分配请求，管理资源池和分配策略
+ * @param resource_count 请求的资源数量
+ * @param utility_context_input_parameter 上下文参数
+ * @return 分配的资源句柄，0表示失败
  */
 uint64_t utility_resource_request_handler(int64_t resource_count,int64_t utility_context_input_parameter)
 {
@@ -1023,6 +1047,12 @@ void utility_thread_local_initializer(void)
  * 参数：utility_context_input_parameter - 线程上下文句柄
  * 返回值：操作结果状态码
  */
+/**
+ * @brief 线程创建器
+ * 功能：创建新的系统线程，初始化线程上下文
+ * @param utility_context_input_parameter 线程上下文参数
+ * @return 创建的线程句柄，0表示失败
+ */
 uint64_t utility_thread_creator(int64_t utility_context_input_parameter)
 {
 uint64_t utility_resource_status_value;
@@ -1061,6 +1091,12 @@ return utility_resource_status_value;
  * 功能：管理线程同步和资源访问
  * 参数：utility_context_input_parameter - 线程上下文句柄
  * 返回值：操作结果状态码
+ */
+/**
+ * @brief 管理线程同步
+ * 功能：处理线程间的同步操作，管理锁和信号量
+ * @param utility_context_input_parameter 同步上下文参数
+ * @return 同步操作结果状态码
  */
 uint64_t utility_manage_thread_synchronization(int64_t utility_context_input_parameter)
 {
@@ -24392,6 +24428,13 @@ _CxxThrowutility_exception_pointer(0,0);
  * @param utility_context_input_parameter 上下文句柄，包含异常处理的上下文信息
  * @return 无返回值
  */
+/**
+ * @brief 处理系统安全异常
+ * 功能：捕获和处理系统级别的安全异常事件
+ * @param resource_count 受影响的资源数量
+ * @param utility_context_input_parameter 异常上下文参数
+ * @return 无返回值
+ */
 void utility_handle_system_security_exception(uint64_t resource_count,int64_t utility_context_input_parameter)
 {
 uint64_t utility_resource_context_value;
@@ -28032,6 +28075,13 @@ return;
  *
  * @param resource_count 资源计数，用于标识网络处理所需的资源数量
  * @param utility_context_input_parameter 上下文句柄，包含网络处理上下文信息
+ * @return 无返回值
+ */
+/**
+ * @brief 网络连接处理器
+ * 功能：处理网络连接相关的事件和异常
+ * @param resource_count 网络资源数量
+ * @param utility_context_input_parameter 网络上下文参数
  * @return 无返回值
  */
 void utility_catch_network_connection_handler(uint64_t resource_count,int64_t utility_context_input_parameter)
