@@ -130,7 +130,7 @@ static longlong utility_buffer_position = 0;
 static uint64 utility_result = 0;
 static uint32 utility_thread_offset = 0;
 static uint64 utility_file_size_param = 0;
-static ulonglong utility_resource_utility_data_pointer_primary_extended_main_primary = 0;
+static ulonglong utility_extended_data_ptr = 0;
 
 /**
  * @file 06_utilities.c - 工具函数库
