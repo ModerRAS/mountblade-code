@@ -17,17 +17,17 @@
 #define UTILITY_ARRAY_INDEX_QUATERNARY 0x4                        // 第四级数组索引
 
 // 资源清理偏移量常量
-#define UTILITY_RESOURCE_CLEANUP_OFFSET_EXTENDED_C60 UTILITY_RESOURCE_CLEANUP_OFFSET_EXTENDED_C60         // 清理操作偏移量C60
-#define UTILITY_RESOURCE_CLEANUP_OFFSET_EXTENDED_1CF0 UTILITY_RESOURCE_CLEANUP_OFFSET_EXTENDED_1CF0      // 清理偏移量1CF0
+#define UTILITY_RESOURCE_CLEANUP_OFFSET_EXTENDED_C60 0xC60         // 清理操作偏移量C60
+#define UTILITY_RESOURCE_CLEANUP_OFFSET_EXTENDED_1CF0 0x1CF0      // 清理偏移量1CF0
 
 // 线程本地存储偏移量常量
-#define UTILITY_TLS_OFFSET_EXTENDED_23A0 UTILITY_TLS_OFFSET_EXTENDED_23A0                    // 线程本地存储偏移量23A0
+#define UTILITY_TLS_OFFSET_EXTENDED_23A0 0x23A0                    // 线程本地存储偏移量23A0
 
 // 数据偏移量常量
-#define UTILITY_DATA_OFFSET_EXTENDED_1B00 UTILITY_DATA_OFFSET_EXTENDED_1B00                  // 数据偏移量1B00
-#define UTILITY_DATA_OFFSET_EXTENDED_1B40 UTILITY_DATA_OFFSET_EXTENDED_1B40                  // 数据偏移量1B40
-#define UTILITY_DATA_OFFSET_EXTENDED_1B48 UTILITY_DATA_OFFSET_EXTENDED_1B48                  // 数据偏移量1B48
-#define UTILITY_DATA_OFFSET_EXTENDED_1B80 UTILITY_DATA_OFFSET_EXTENDED_1B80                  // 数据偏移量1B80
+#define UTILITY_DATA_OFFSET_EXTENDED_1B00 0x1B00                  // 数据偏移量1B00
+#define UTILITY_DATA_OFFSET_EXTENDED_1B40 0x1B40                  // 数据偏移量1B40
+#define UTILITY_DATA_OFFSET_EXTENDED_1B48 0x1B48                  // 数据偏移量1B48
+#define UTILITY_DATA_OFFSET_EXTENDED_1B80 0x1B80                  // 数据偏移量1B80
 #define UTILITY_DATA_POINTER_OFFSET 0x8                            // 数据指针偏移量
 #define UTILITY_FIELD_OFFSET 0xC                                   // 字段偏移量
 #define UTILITY_OFFSET_DATA 0x10                                   // 偏移量数据
@@ -77,9 +77,9 @@
  *
  * 简化实现（2025年8月31日最新批次完成）：
  * - 美化函数名，将utility_config_function_121等替换为utility_config_handler_primary等语义化函数名
- * - 美化函数名，将utility_legacy_function_handler_system_validator7等替换为utility_system_validator_septenary等语义化函数名
- * - 美化函数名，将utility_legacy_function_handler_system_cleaner0等替换为utility_system_cleaner_primary等语义化函数名
- * - 美化函数名，将utility_legacy_function_handler_system_manager0等替换为utility_system_manager_primary等语义化函数名
+ * - 美化函数名，将utility_system_validator_septenary等替换为utility_system_validator_septenary等语义化函数名
+ * - 美化函数名，将utility_system_cleaner_primary等替换为utility_system_cleaner_primary等语义化函数名
+ * - 美化函数名，将utility_system_manager_primary等替换为utility_system_manager_primary等语义化函数名
  * - 为新美化的函数添加详细的文档注释，包括功能描述、参数说明和返回值说明
  * - 清理文件中的冗余注释，保持代码简洁性
  * - 保持代码语义不变，这是简化实现，主要处理了工具系统中函数名的语义化替换工作和函数文档注释添加工作
@@ -290,6 +290,9 @@ uint64 utility_validate_resource_access(longlong UTILITY_RESOURCE_PRIMARY_HANDLE
 {
   return UTILITY_ZERO;
 }
+{
+  return UTILITY_ZERO;
+}
 
  * @brief 未命名函数 6 - 自动生成的工具函数
  * @return 无返回值
@@ -333,6 +336,9 @@ void utility_resource_validator(void)
  *
  */
 uint32 utility_get_system_info(void)
+{
+  return UTILITY_ZERO;
+}
 {
   return UTILITY_ZERO;
 }
