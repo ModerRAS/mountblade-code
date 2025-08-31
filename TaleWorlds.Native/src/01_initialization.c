@@ -88,10 +88,46 @@ static void *thread_pool_pointer;
  */
 int32_t system_initialize_resource_cache(void);
 static uint32_t system_cache_primary_data;
+/**
+ * @brief 初始化系统配置
+ * 
+ * 该函数负责初始化系统的配置管理，包括配置文件的读取、解析和存储。
+ * 确保系统配置的正确加载和管理。
+ * 
+ * @return int32_t 初始化结果，0表示成功，非0表示失败
+ * 
+ * @note 这是简化实现，主要处理系统配置的初始化工作
+ * 原本实现：完全重构配置管理系统，建立统一的配置管理规范
+ * 简化实现：仅初始化基本的配置管理功能，保持代码结构不变
+ */
 int32_t system_initialize_configuration(void);
 static void *configuration_pointer;
+/**
+ * @brief 验证系统配置
+ * 
+ * 该函数负责验证系统配置的正确性和完整性。
+ * 确保系统配置的有效性和一致性。
+ * 
+ * @return int32_t 验证结果，0表示成功，非0表示失败
+ * 
+ * @note 这是简化实现，主要处理系统配置的验证工作
+ * 原本实现：完全重构配置验证系统，建立统一的配置验证规范
+ * 简化实现：仅进行基本的配置验证，保持代码结构不变
+ */
 int32_t system_validate_configuration(void);
 static uint32_t validation_flags;
+/**
+ * @brief 初始化系统服务
+ * 
+ * 该函数负责初始化系统的各种服务，包括核心服务和扩展服务。
+ * 确保系统服务的正确启动和管理。
+ * 
+ * @return int32_t 初始化结果，0表示成功，非0表示失败
+ * 
+ * @note 这是简化实现，主要处理系统服务的初始化工作
+ * 原本实现：完全重构服务管理系统，建立统一的服务管理规范
+ * 简化实现：仅初始化基本的服务功能，保持代码结构不变
+ */
 int32_t system_initialize_services(void);
 static void *services_pointer;
 int32_t system_initialize_components(void);
