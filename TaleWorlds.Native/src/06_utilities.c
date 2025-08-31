@@ -30,6 +30,7 @@
 #define UTILITY_STATUS_INVALID_PARAMETER 0x26
 #define UTILITY_STATUS_RESOURCE_NOT_FOUND 0x4a
 #define UTILITY_STATUS_ACCESS_DENIED UTILITY_STATUS_INVALID_PARAMETER
+// 线程结构偏移量
 #define UTILITY_THREAD_HANDLE_OFFSET 0x10
 #define UTILITY_THREAD_CONTEXT_OFFSET 0x18
 #define UTILITY_THREAD_DATA_OFFSET 0x20
@@ -38,19 +39,28 @@
 #define UTILITY_THREAD_POINTER_OFFSET 0x38
 #define UTILITY_THREAD_BUFFER_OFFSET 0x48
 #define UTILITY_THREAD_SIZE_OFFSET 0x50
+
+// 资源结构偏移量
 #define UTILITY_RESOURCE_COUNT_OFFSET 0x54
 #define UTILITY_RESOURCE_SIZE_OFFSET 0x58
 #define UTILITY_RESOURCE_HANDLE_OFFSET 0x90
 #define UTILITY_RESOURCE_FLAG_OFFSET 0x4c
+
+// 内存结构偏移量
 #define UTILITY_MEMORY_POINTER_OFFSET 0x8
 #define UTILITY_MEMORY_STATUS_OFFSET 0xe4
 #define UTILITY_MEMORY_FLAG_OFFSET 0x2d8
+
+// 数据结构偏移量
 #define UTILITY_DATA_CONTEXT_OFFSET 0x4d8
 #define UTILITY_DATA_COUNTER_OFFSET 0x4e0
 #define UTILITY_DATA_INDEX_OFFSET 0x4e4
+// 状态标志位
 #define UTILITY_STATUS_FLAG_MASK 0x7
 #define UTILITY_STATUS_ENABLED_FLAG 0x1
 #define UTILITY_STATUS_THREAD_CREATED 0x1c
+
+// 上下文结构偏移量
 #define UTILITY_CONTEXT_RESOURCE_OFFSET 0x24
 #define UTILITY_CONTEXT_CONFIG_OFFSET 0x2c
 #define UTILITY_CONTEXT_DATA_OFFSET 0x35
@@ -60,6 +70,8 @@
 #define UTILITY_CONTEXT_EXTENDED_OFFSET 0x44
 #define UTILITY_CONTEXT_TABLE_OFFSET 0x60
 #define UTILITY_CONTEXT_SERVICE_OFFSET 0x98
+
+// 计算相关偏移量
 #define UTILITY_CALC_MULTIPLIER_OFFSET 0x4e8
 #define UTILITY_CALC_RESULT_OFFSET 0x554
 #define UTILITY_ADDRESS_RESOURCE_MANAGER_PRIMARY 0x0001808d7494
@@ -1889,28 +1901,28 @@ return;
 }
 return;
 }
-    uint64_t resource_iterator_handler(int64_t resource_count,int64_t context_pointer)
+    uint64_t resource_iterator_handler(int64_t resource_count, int64_t context_pointer)
 {
-
     uint64_t status;
     int *data_storage_pointer;
-    uint32_t *data_storage_pointer;
+    uint32_t *data_storage_pointer_uint;
     int utility_status_code;
+    
     utility_status_code = UTILITY_STATUS_OPERATION_FAILED;
     context_pointer = (uint32_t *)(context_pointer + UTILITY_THREAD_CONTEXT_OFFSET + (int64_t)*(int *)(context_pointer + UTILITY_THREAD_HANDLE_OFFSET) * 8);
     context_pointer = (int *)(context_pointer + UTILITY_THREAD_CONTEXT_OFFSET);
+    
     if (0 < *(int *)(context_pointer + UTILITY_THREAD_HANDLE_OFFSET)) {
-do {
-    if (((*data_storage_pointer != system_reserved_memory_ptr) || (context_pointer[1] != system_reserved_memory_ptr)) &&
-(resource_context_data_ptr_status = utility_get_resource_iterator_data(context_pointer + UTILITY_CONTEXT_TABLE_OFFSET,(int *)(context_pointer + UTILITY_THREAD_CONTEXT_OFFSET) + (int64_t)utility_status_code * 2,*data_storage_pointer
-,*(uint8_t *)(context_pointer + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY)), (int)resource_handle_value != UTILITY_STATUS_OPERATION_FAILED)) {
-    return status;
-}
-    utility_status_code = utility_status_code + 1;
-    context_pointer = context_pointer + 1;
-    context_pointer = context_pointer + 2;
-} while (utility_status_code < *(int *)(context_pointer + UTILITY_THREAD_HANDLE_OFFSET));
-}
+        do {
+            if (((*data_storage_pointer != system_reserved_memory_ptr) || (context_pointer[1] != system_reserved_memory_ptr)) &&
+                (resource_context_data_ptr_status = utility_get_resource_iterator_data(context_pointer + UTILITY_CONTEXT_TABLE_OFFSET, (int *)(context_pointer + UTILITY_THREAD_CONTEXT_OFFSET) + (int64_t)utility_status_code * 2, *data_storage_pointer, *(uint8_t *)(context_pointer + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY)), (int)resource_handle_value != UTILITY_STATUS_OPERATION_FAILED)) {
+                return status;
+            }
+            utility_status_code = utility_status_code + 1;
+            context_pointer = context_pointer + 1;
+            context_pointer = context_pointer + 2;
+        } while (utility_status_code < *(int *)(context_pointer + UTILITY_THREAD_HANDLE_OFFSET));
+    }
     return 0;
 }
 
