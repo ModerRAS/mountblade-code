@@ -1,10 +1,31 @@
 // 06_utilities.c - 工具系统模块
 // 简化实现：仅美化关键变量名、函数名和添加必要注释，保持代码结构不变
 // 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范
+/**
+ * @brief 空初始化函数 - 用于系统初始化过程中的占位符
+ * 
+ * 这是一个简化实现的空函数，原本实现应该包含完整的系统初始化逻辑。
+ * 在当前简化实现中，仅作为函数占位符存在。
+ * 
+ * @return 无返回值
+ */
 void utility_initialize_empty_function(void)
 {
   return;
 }
+/**
+ * @brief 处理资源数据
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @return uint64 操作结果状态码
+ * 
+ * 该函数负责处理系统资源数据，包括：
+ * - 执行系统内存操作
+ * - 验证操作结果状态
+ * - 返回处理结果
+ * 
+ * 简化实现：仅添加必要的文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 uint64 utility_process_resource_data(longlong utility_resource_primary_handle)
 {
   uint64 utility_operation_result;
@@ -24,6 +45,14 @@ uint64 utility_process_resource_data(longlong utility_resource_primary_handle)
       
   utility_free_memory(*(longlong *)(utility_system_resource_handle + utility_resource_offset_standard),utility_memory_release_flag); // Memory block release function
 }
+/**
+ * @brief 获取内存使用情况 - 监控系统内存使用状态
+ * 
+ * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
+ * 这是简化实现，原本实现应该包含完整的内存使用统计逻辑。
+ * 
+ * @return uint32 内存使用状态码，utility_offset_flag_byte表示错误，其他值表示正常状态
+ */
 uint32 utility_get_memory_usage(void)
 {
   longlong utility_register_input_primary;
@@ -40,13 +69,27 @@ uint32 utility_get_memory_usage(void)
       
   utility_free_memory(*(longlong *)(utility_resource_context_handle + utility_resource_offset_standard),utility_memory_release_flag); // Memory block release function
 }
-// 函数: void utility_release_memory_and_exit(void)
+/**
+ * @brief 释放内存并退出 - 清理系统资源并安全退出
+ * 
+ * 该函数负责释放系统内存资源并执行退出操作。
+ * 这是简化实现，原本实现应该包含完整的资源清理和退出流程。
+ * 
+ * @return 无返回值
+ */
 void utility_release_memory_and_exit(void)
 {
       
   utility_free_memory(); // Memory block release function
 }
-// 函数: void utility_cleanup_resource_function(void)
+/**
+ * @brief 清理资源函数 - 执行系统资源的清理操作
+ * 
+ * 该函数负责清理系统资源，确保资源被正确释放。
+ * 这是简化实现，原本实现应该包含完整的资源清理逻辑。
+ * 
+ * @return 无返回值
+ */
 void utility_cleanup_resource_function(void)
 {
   return;
@@ -606,6 +649,18 @@ uint64 wait_for_event(longlong utility_resource_primary_handle)
       
   utility_free_memory(*(longlong *)(utility_system_resource_handle + utility_resource_offset_standard),utility_memory_release_flag); // Memory block release function
 }
+/**
+ * @brief 设置事件状态
+ * @return uint32 操作结果状态码
+ * 
+ * 该函数用于设置系统事件状态，包括：
+ * - 验证输入寄存器状态
+ * - 设置资源上下文句柄
+ * - 返回操作结果状态
+ * 
+ * 简化实现：仅添加必要的文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 uint32 utility_set_event(void)
 {
   longlong utility_register_input_primary;
@@ -713,7 +768,17 @@ void utility_initialize_file_system(void)
       
   utility_free_memory(); // Memory block release function
 }
-// 函数: void utility_mount_file_system(void)
+/**
+ * @brief 挂载文件系统
+ * @return 无返回值
+ * 
+ * 该函数负责挂载系统文件系统，包括：
+ * - 释放内存块
+ * - 准备文件系统操作环境
+ * 
+ * 简化实现：仅添加必要的文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 void utility_mount_file_system(void)
 {
       
