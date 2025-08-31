@@ -10,8 +10,6 @@
 /* 工具系统全局变量定义 */
 
 /* 全局数据管理 */
-
-
 void *utility_global_data_primary;
 void *utility_global_data_secondary;
 void *utility_global_data_tertiary;
@@ -88,54 +86,54 @@ void *g_180bf65f0;
 void *g_180bf65f8;
 void *g_180bf6600;
 void *g_180bf6608;
-void *g_180a00518;
-void *g_180bf6620;
-void *g_180bf6628;
-void *g_180bf6630;
-void *g_180bf6638;
-void *g_180a00528;
-void *g_180bf6650;
-void *g_180bf6658;
-void *g_180bf6660;
-void *g_180bf6668;
-void *g_180a00538;
-void *g_180bf6680;
-void *g_180bf6688;
-void *g_180bf6690;
-void *g_180bf6698;
-void *g_180a00540;
-void *g_180bf66b0;
-void *g_180bf66b8;
-void *g_180bf66c0;
-void *g_180bf66c8;
-void *g_180a00548;
-void *g_180bf52e8;
-void *g_180bf52f0;
-void *g_180bf52f8;
-void *g_180bf5300;
-void *g_180a01300;
-void *g_180bf5738;
-void *g_180bf5740;
-void *g_180bf5748;
-void *g_180bf5750;
-void *g_180a01330;
-void *g_180c9196c;
-void *g_180a02998;
-void *g_180c919e0;
-void *g_180a0b1c8;
-void *g_180bf6750;
-void *g_180bf6758;
-void *g_180bf6760;
-void *g_180bf6768;
-void *g_180bf67a8;
-void *g_180bf67b0;
-void *g_180bf67b8;
-void *g_180bf67c0;
-void *g_180bf6800;
-void *g_180bf6808;
-void *g_180bf6810;
-void *g_180bf6818;
-void *g_180bf6858;
+void *utility_data_stream_0;
+void *utility_data_stream_1;
+void *utility_data_stream_2;
+void *utility_data_stream_3;
+void *utility_data_stream_4;
+void *utility_data_stream_5;
+void *utility_processor_data_0;
+void *utility_processor_data_1;
+void *utility_processor_data_2;
+void *utility_processor_data_3;
+void *utility_processor_data_4;
+void *utility_control_data_0;
+void *utility_control_data_1;
+void *utility_control_data_2;
+void *utility_control_data_3;
+void *utility_control_data_4;
+void *utility_system_data_0;
+void *utility_system_data_1;
+void *utility_system_data_2;
+void *utility_system_data_3;
+void *utility_system_data_4;
+void *utility_communication_data_0;
+void *utility_communication_data_1;
+void *utility_communication_data_2;
+void *utility_communication_data_3;
+void *utility_communication_data_4;
+void *utility_system_state_0;
+void *utility_system_state_1;
+void *utility_system_state_2;
+void *utility_system_state_3;
+void *utility_system_state_4;
+void *utility_advanced_processor_0;
+void *utility_advanced_processor_1;
+void *utility_advanced_processor_2;
+void *utility_advanced_processor_3;
+void *utility_buffer_advanced_0;
+void *utility_buffer_advanced_1;
+void *utility_buffer_advanced_2;
+void *utility_buffer_advanced_3;
+void *utility_buffer_advanced_4;
+void *utility_buffer_advanced_5;
+void *utility_buffer_advanced_6;
+void *utility_buffer_advanced_7;
+void *utility_processor_advanced_0;
+void *utility_processor_advanced_1;
+void *utility_processor_advanced_2;
+void *utility_processor_advanced_3;
+void *utility_processor_advanced_4;
 void *g_180bf6860;
 void *g_180bf6868;
 void *g_180bf6870;
@@ -36988,25 +36986,25 @@ void Unwind_1809077b0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_1809077c0(void)
 {
-  g_180bf6620 = &g_18098bcb0;
+  utility_data_stream_1 = &g_18098bcb0;
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_1809077d0(void)
 {
-  g_180bf6650 = &g_18098bcb0;
+  utility_processor_data_0 = &g_18098bcb0;
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_1809077e0(void)
 {
-  g_180bf6680 = &g_18098bcb0;
+  utility_control_data_0 = &g_18098bcb0;
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_1809077f0(void)
 {
-  g_180bf66b0 = &g_18098bcb0;
+  utility_system_data_0 = &g_18098bcb0;
   return;
 }
 void Unwind_180907800(undefined8 param,longlong param)
@@ -38798,13 +38796,13 @@ void Unwind_180908570(undefined8 param,longlong param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_1809085a0(void)
 {
-  g_180bf52e8 = &g_18098bcb0;
+  utility_communication_data_0 = &g_18098bcb0;
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_1809085b0(void)
 {
-  g_180bf5738 = &g_18098bcb0;
+  utility_system_state_0 = &g_18098bcb0;
   return;
 }
 void Unwind_1809085c0(undefined8 param,longlong param)
@@ -62121,7 +62119,7 @@ void FUN_1809415d0(void)
  void FUN_1809415f0(void)
 void FUN_1809415f0(void)
 {
-  utility_memory_a = &g_18098bcb0;
+  utility_memory_allocator_primary = &g_18098bcb0;
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -62237,28 +62235,28 @@ void FUN_180941880(void)
  void FUN_1809418a0(void)
 void FUN_1809418a0(void)
 {
-  g_180bf6620 = &g_18098bcb0;
+  utility_data_stream_1 = &g_18098bcb0;
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
  void FUN_1809418c0(void)
 void FUN_1809418c0(void)
 {
-  g_180bf6650 = &g_18098bcb0;
+  utility_processor_data_0 = &g_18098bcb0;
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
  void FUN_1809418e0(void)
 void FUN_1809418e0(void)
 {
-  g_180bf6680 = &g_18098bcb0;
+  utility_control_data_0 = &g_18098bcb0;
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
  void FUN_180941900(void)
 void FUN_180941900(void)
 {
-  g_180bf66b0 = &g_18098bcb0;
+  utility_system_data_0 = &g_18098bcb0;
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -62281,14 +62279,14 @@ void FUN_180941920(undefined8 param,undefined8 param,undefined8 param,undefined8
  void FUN_180941980(void)
 void FUN_180941980(void)
 {
-  g_180bf52e8 = &g_18098bcb0;
+  utility_communication_data_0 = &g_18098bcb0;
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
  void FUN_1809419a0(void)
 void FUN_1809419a0(void)
 {
-  g_180bf5738 = &g_18098bcb0;
+  utility_system_state_0 = &g_18098bcb0;
   return;
 }
  void FUN_1809419c0(void)
