@@ -1368,15 +1368,15 @@
 #define SYSTEM_RESOURCE_ID_UPDATE 0x3a
 
 // 新增语义化常量定义 - 纹理资源系统操作码
-#define TEXTURE_RESOURCE_DATA_CONFIG_OPCODE 0x14
-#define TEXTURE_CONFIG_DEFINITION_OPCODE 0x1b
-#define TEXTURE_FORMAT_DEFINITION_OPCODE 0x19
-#define TEXTURE_COMPRESSION_DEFINITION_OPCODE 0x12
-#define TEXTURE_FILTER_DEFINITION_OPCODE 0x12
+#define TEXTURE_OPCODE_RESOURCE_CONFIG 0x14
+#define TEXTURE_OPCODE_DEFINITION_CONFIG 0x1b
+#define TEXTURE_OPCODE_DEFINITION_FORMAT 0x19
+#define TEXTURE_OPCODE_DEFINITION_COMPRESSION 0x12
+#define TEXTURE_OPCODE_DEFINITION_FILTER 0x12
 
 // 新增语义化常量定义 - 着色器资源系统操作码
-#define SHADER_GEOMETRY_DEFINITION_OPCODE 0x14
-#define SHADER_SHADOW_DEFINITION_OPCODE 0x14
+#define SHADER_OPCODE_DEFINITION_GEOMETRY 0x14
+#define SHADER_OPCODE_DEFINITION_SHADOW 0x14
 
 // 新增语义化常量定义 - 系统模块配置操作码
 #define SYSTEM_MODULE_CONFIG_OPCODE_EXTENDED 0x14
@@ -1407,13 +1407,13 @@
 #define SYSTEM_RESOURCE_ID_HEALTH_CHECK 0x3e
 
 // 字符串操作常量
-#define STRING_TERMINATOR_DOT 0x2e
-#define STRING_NULL_TERMINATOR 0x0
+#define STRING_TERMINATOR_CHARACTER_DOT 0x2e
+#define STRING_TERMINATOR_CHARACTER_NULL 0x0
 
 // 内存管理常量
-#define MEMORY_ALLOCATION_SUCCESS 0x0
+#define MEMORY_STATUS_SUCCESS 0x0
 #define MEMORY_ALLOCATION_FAILURE 0xffffffff
-#define MEMORY_ALIGNMENT_PAGE 0x1000
+#define MEMORY_ALIGNMENT_PAGE_SIZE 0x1000
 
 // 线程操作常量
 #define THREAD_OPERATION_SUCCESS 0x0
@@ -2630,7 +2630,7 @@ int initialize_network_module(void)
   resource_template_pointer = &system_default_resource_template;
   system_global_data_pointer_variable = &texture_resource_buffer_config;
   texture_resource_buffer_config = SYSTEM_ZERO_VALUE;
-  system_global_data_pointer_variable = TEXTURE_RESOURCE_DATA_CONFIG_OPCODE;
+  system_global_data_pointer_variable = TEXTURE_OPCODE_RESOURCE_CONFIG;
   strcpy_s(&texture_resource_buffer_config,SYSTEM_CONFIG_BUFFER_SIZE,&texture_resource_data_config_string);
   resource_template_pointer = &system_default_resource_template;
   system_global_data_pointer_variable = &texture_resource_buffer_default;
@@ -2640,7 +2640,7 @@ int initialize_network_module(void)
   resource_template_pointer = &system_default_resource_template;
   system_global_data_pointer_variable = &texture_resource_buffer_definition;
   texture_resource_buffer_definition = SYSTEM_ZERO_VALUE;
-  system_global_data_pointer_variable = TEXTURE_CONFIG_DEFINITION_OPCODE;
+  system_global_data_pointer_variable = TEXTURE_OPCODE_DEFINITION_CONFIG;
   strcpy_s(&texture_resource_buffer_definition,SYSTEM_CONFIG_BUFFER_SIZE,&texture_config_definition_string);
   resource_template_pointer = &system_default_resource_template;
   system_global_data_pointer_variable = &texture_resource_buffer_properties;
@@ -2650,17 +2650,17 @@ int initialize_network_module(void)
   resource_template_pointer = &system_default_resource_template;
   system_global_data_pointer_variable = &texture_resource_buffer_format;
   texture_resource_buffer_format = SYSTEM_ZERO_VALUE;
-  system_global_data_pointer_variable = TEXTURE_FORMAT_DEFINITION_OPCODE;
+  system_global_data_pointer_variable = TEXTURE_OPCODE_DEFINITION_FORMAT;
   strcpy_s(&texture_resource_buffer_format,SYSTEM_CONFIG_BUFFER_SIZE,&texture_format_definition_string);
   resource_template_pointer = &system_default_resource_template;
   system_global_data_pointer_variable = &texture_resource_buffer_compression;
   texture_resource_buffer_compression = SYSTEM_ZERO_VALUE;
-  system_global_data_pointer_variable = TEXTURE_COMPRESSION_DEFINITION_OPCODE;
+  system_global_data_pointer_variable = TEXTURE_OPCODE_DEFINITION_COMPRESSION;
   strcpy_s(&texture_resource_buffer_compression,SYSTEM_CONFIG_BUFFER_SIZE,&texture_compression_definition_string);
   resource_template_pointer = &system_default_resource_template;
   system_global_data_pointer_variable = &texture_resource_buffer_filter;
   texture_resource_buffer_filter = SYSTEM_ZERO_VALUE;
-  system_global_data_pointer_variable = TEXTURE_FILTER_DEFINITION_OPCODE;
+  system_global_data_pointer_variable = TEXTURE_OPCODE_DEFINITION_FILTER;
   strcpy_s(&texture_resource_buffer_filter,SYSTEM_CONFIG_BUFFER_SIZE,&texture_filter_definition_string);
   resource_template_pointer = &system_default_resource_template;
   system_global_data_pointer_variable = &texture_resource_buffer_mipmap;
@@ -5231,6 +5231,21 @@ unsigned long long * system_system_handle_param_manager_001(unsigned long long *
   return;
 }
 unsigned long long *
+/**
+ * 系统执行函数 - 主执行入口点
+ * 
+ * 这个函数是系统的核心执行函数，负责初始化系统句柄、管理线程操作标志、
+ * 处理互斥锁属性和类型，并根据线程操作标志执行相应的系统操作。
+ * 
+ * @param system_handle_param 系统句柄参数指针，用于传递系统句柄信息
+ * @param system_thread_operation_flags 线程操作标志，用于控制线程执行行为
+ * @param mutex_attr 互斥锁属性，用于设置互斥锁的特性
+ * @param mutex_type 互斥锁类型，用于指定互斥锁的类型
+ * @return 返回系统句柄参数指针，用于后续的系统操作
+ *
+ * 简化实现：添加函数文档注释，保持代码语义不变
+ * 原本实现：完全重构函数体系，建立统一的函数文档注释规范
+ */
 system_execution_function(unsigned long long *system_handle_param,ulong long system_thread_operation_flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   unsigned long long system_buffer_allocation_result;
@@ -5925,6 +5940,21 @@ system_triple_pointer_stack_primary = (long long ***)SYSTEM_NULL_POINTER;
   return system_buffer_allocation_result;
 }
 unsigned long long *
+/**
+ * 系统处理器初始化函数 - 处理器初始化入口点
+ * 
+ * 这个函数负责初始化系统处理器，设置处理器参数，配置线程操作标志，
+ * 并初始化互斥锁属性和类型。
+ * 
+ * @param system_handle_param 系统句柄参数指针，用于传递系统句柄信息
+ * @param system_thread_operation_flags 线程操作标志，用于控制线程执行行为
+ * @param mutex_attr 互斥锁属性，用于设置互斥锁的特性
+ * @param mutex_type 互斥锁类型，用于指定互斥锁的类型
+ * @return 无返回值
+ *
+ * 简化实现：添加函数文档注释，保持代码语义不变
+ * 原本实现：完全重构函数体系，建立统一的函数文档注释规范
+ */
 system_processor_initialize(unsigned long long *system_handle_param,long long system_thread_operation_flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   int system_thread_result_status;
@@ -7503,6 +7533,22 @@ long long allocate_system_buffer(unsigned long long system_handle_param,long lon
   return *(long long *)(&mutex_attr_data_buffer + (ulong long)*(uint *)(mutex_attr + SYSTEM_POINTER_OFFSETc) * 8);
 }
 unsigned long long
+/**
+ * 系统主分配器函数 - 内存分配主入口点
+ * 
+ * 这个函数是系统的主内存分配器，负责分配和管理系统内存资源，
+ * 处理线程操作标志，管理互斥锁属性和类型。
+ * 
+ * @param system_handle_param 系统句柄参数，用于传递系统句柄信息
+ * @param system_thread_operation_flags 线程操作标志指针，用于控制线程执行行为
+ * @param mutex_attr 互斥锁属性指针，用于设置互斥锁的特性
+ * @param mutex_type 互斥锁类型，用于指定互斥锁的类型
+ * @param ... 其他参数，用于配置分配器的行为
+ * @return 返回分配结果状态码
+ *
+ * 简化实现：添加函数文档注释，保持代码语义不变
+ * 原本实现：完全重构函数体系，建立统一的函数文档注释规范
+ */
 system_allocator_primary(unsigned long long system_handle_param,long long *system_thread_operation_flags,unsigned long long *mutex_attr,unsigned int mutex_type,
              unsigned int system_operation_parameter,unsigned char system_control_parameter)
 {
