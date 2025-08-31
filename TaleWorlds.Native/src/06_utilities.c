@@ -21954,7 +21954,7 @@ void utility_unwind_exception_handler_reset_all_zero(uint64 utility_resource_pri
   utility_module_pointer_manager(*(longlong *)(utility_resource_context_handle + utility_pointer_offset) + utility_data_start_offset_extended);
   return;
 }
-void utilityunwindexceptionhandlerflushzerozerozeroallzero(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_exception_handler_flush_all_zero(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   utility_resource_data_ptr = *(longlong **)(*(longlong *)(utility_resource_context_handle + utility_data_start_offset_extended) + utility_offset_resource_ptr);
@@ -21963,7 +21963,7 @@ void utilityunwindexceptionhandlerflushzerozerozeroallzero(uint64 utility_resour
   }
   return;
 }
-void utilityunwindexceptionhandlercleanzerozerozeroallzero(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_exception_handler_clean_all_zero(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   utility_resource_data_ptr = *(longlong **)(*(longlong *)(utility_resource_context_handle + utility_data_start_offset_extended) + utility_offset_resource_ptr);
@@ -39966,6 +39966,20 @@ void utility_unwind_handler_cleanup_stage_10(uint64 utility_resource_primary_han
   }
   return;
 }
+/**
+ * @brief 清理处理阶段41 - 执行第41阶段的资源清理操作
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_resource_cache 资源缓存
+ * @return 无返回值
+ * 
+ * 该函数负责执行第41阶段的资源清理操作，包括：
+ * - 资源状态验证
+ * - 缓冲区索引处理
+ * - 内存数据清理
+ * 
+ * 简化实现：添加基本资源清理逻辑
+ * 原本实现：完全重构资源清理管理系统，建立完整的清理规范
+ */
 void utility_unwind_handler_cleanup_stage_41(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   int *utility_status_pointer;
