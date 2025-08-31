@@ -21977,7 +21977,7 @@ void utility_unwind_exception_handler_clear_all_zero(uint64 utility_resource_pri
   utility_module_pointer_manager(*(longlong *)(utility_resource_context_handle + utility_pointer_offset) + utility_data_start_offset_extended);
   return;
 }
-void utilityunwindexceptionhandlerresetzerozerozeroallzero(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_exception_handler_reset_all_zero(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   utility_module_pointer_manager(*(longlong *)(utility_resource_context_handle + utility_pointer_offset) + utility_data_start_offset_extended);
   return;
