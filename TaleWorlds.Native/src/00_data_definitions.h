@@ -1,6 +1,16 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
-// 语义化常量定义 - 线程栈配置偏移量
+
+/**
+ * @file 00_data_definitions.h
+ * @brief 系统数据定义头文件
+ * 
+ * 本文件定义了系统运行所需的各种常量、偏移量和全局变量。
+ * 简化实现：提供基本的常量定义和变量声明。
+ * 原本实现：包含完整的系统数据结构定义和初始化逻辑。
+ */
+
+// 线程栈配置偏移量常量定义
 #define SYSTEM_OFFSET_THREAD_STACK_CONFIG    0x3088
 #define SYSTEM_OFFSET_THREAD_STACK_SIZE      0x3089
 #define SYSTEM_OFFSET_THREAD_STACK_BASE      0x308a
