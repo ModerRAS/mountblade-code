@@ -101,6 +101,9 @@
  * @return uint32_t 计算后的网络值
  * @note 简化实现：使用宏定义替换原有SUB168函数调用
  *       原本实现：完整的网络数据处理函数，包含协议验证和数据校验
+ * @details 该宏函数实现网络数据的左移操作，常用于网络协议
+ *          数据包的编码和解码过程。shift参数控制左移的位数，
+ *          实现网络数据的快速处理和转换。
  */
 #define engine_compute_network_operation(value, shift) ((uint32_t)(value) << (shift))
 

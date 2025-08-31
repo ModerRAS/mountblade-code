@@ -554,7 +554,7 @@
 #define SYSTEM_MODULE_OFFSET_TERTIARY_THIRD 0x2b               // 第三级模块偏移量3
 #define SYSTEM_MODULE_OFFSET_CONTROL_FIRST 0x2d                // 控制模块偏移量1
 #define SYSTEM_MODULE_OFFSET_CONTROL_SECOND 0x2e               // 控制模块偏移量2
-// 系统句柄参数常量
+// 系统句柄参数常量 - 用于系统资源句柄管理的参数定义
 #define SYSTEM_HANDLE_PARAM_PRIMARY 0x11                       // 主句柄参数
 #define SYSTEM_HANDLE_PARAM_SECONDARY 0x12                    // 次句柄参数
 #define SYSTEM_HANDLE_PARAM_TERTIARY 0x13                      // 第三句柄参数
@@ -562,7 +562,7 @@
 #define SYSTEM_HANDLE_PARAM_EXTENDED_SECOND 0x16               // 扩展句柄参数2
 #define SYSTEM_HANDLE_PARAM_CONTROL_FIRST 0x1a                 // 控制句柄参数1
 #define SYSTEM_HANDLE_PARAM_CONTROL_SECOND 0x1b                // 控制句柄参数2
-// 系统配置偏移量常量
+// 系统配置偏移量常量 - 用于系统配置管理的偏移量定义
 #define SYSTEM_CONFIG_OFFSET_EXTENDED 0x54                      // 扩展配置偏移量
 #define SYSTEM_CONFIG_OFFSET_STANDARD 0x18                     // 标准配置偏移量
 #define SYSTEM_CONFIG_OFFSET_ALTERNATE 0x28                     // 备用配置偏移量
@@ -586,7 +586,7 @@
 #define SYSTEM_MEMORY_OFFSET_E 0xe                             // 内存偏移量E
 #define SYSTEM_MEMORY_OFFSET_RESERVED_PRIMARY 0x461             // 保留内存偏移量主
 #define SYSTEM_MEMORY_OFFSET_RESERVED_SECONDARY 0xa3b           // 保留内存偏移量次
-// 系统指针偏移量常量
+// 系统指针偏移量常量 - 用于指针运算和地址计算的偏移量定义
 #define SYSTEM_POINTER_OFFSET_STANDARD_C 0xc                    // 标准指针偏移量C
 #define SYSTEM_POINTER_OFFSET_NEGATIVE_C -0xc                   // 负指针偏移量C
 #define SYSTEM_OFFSET_HANDLE_PARAM_PRIMARY 0x11                // 主句柄参数偏移量
