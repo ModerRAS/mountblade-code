@@ -25666,7 +25666,7 @@ void utility_unwind_tls_flag_clear_bit23_offset1c8(void * utility_context_pointe
     utility_context_pointerr_process_data();
   }
   _Mtx_destroy_in_situ();
-  *(void **)(context_handle + UTILITY_THREAD_TLS_DATA_OFFSET) = &UNK_180a30778;
+  *(void **)(context_handle + UTILITY_THREAD_TLS_DATA_OFFSET) = &utility_system_thread_manager8;
   *(void **)(context_handle + 0x58) = &UTILITY_GLOBAL_CONTEXT_ADDRESS;
   if (*(long long *)(context_handle + 0x60) != 0) {
     utility_context_pointerr_process_data();
@@ -25697,7 +25697,7 @@ void utility_unwind_sync_manager_primary(void * utility_context_pointer,long lon
     utility_context_pointerr_process_data();
   }
   _Mtx_destroy_in_situ();
-  *(void **)(context_handle + 0xd8) = &UNK_180a30778;
+  *(void **)(context_handle + 0xd8) = &utility_system_thread_manager8;
   *(void **)(context_handle + 0x110) = &UTILITY_GLOBAL_CONTEXT_ADDRESS;
   if (*(long long *)(context_handle + 0x118) != 0) {
     utility_context_pointerr_process_data();
@@ -25728,7 +25728,7 @@ void utility_unwind_tls_flag_clear_bit24(void * utility_context_pointer,long lon
     utility_context_pointerr_process_data();
   }
   _Mtx_destroy_in_situ();
-  *process_data_ptr = &UNK_180a30778;
+  *process_data_ptr = &utility_system_thread_manager8;
   process_data_ptr[7] = &UTILITY_GLOBAL_CONTEXT_ADDRESS;
   if (process_data_ptr[8] != 0) {
     utility_context_pointerr_process_data();
@@ -25755,7 +25755,7 @@ void utility_unwind_tls_flag_clear_bit24_offset1d8(void * utility_context_pointe
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x78);
   _Mtx_destroy_in_situ();
-  *process_data_ptr = &UNK_180a30778;
+  *process_data_ptr = &utility_system_thread_manager8;
   process_data_ptr[7] = &UTILITY_GLOBAL_CONTEXT_ADDRESS;
   if (process_data_ptr[8] != 0) {
     utility_context_pointerr_process_data();
@@ -35910,7 +35910,7 @@ void Unwind_180904dd0(void * utility_context_pointer,long long utility_data_ptr)
     utility_context_pointerr_process_data();
   }
   _Mtx_destroy_in_situ();
-  *process_data_ptr = &UNK_180a30778;
+  *process_data_ptr = &utility_system_thread_manager8;
   process_data_ptr[7] = &UTILITY_GLOBAL_CONTEXT_ADDRESS;
   if (process_data_ptr[8] != 0) {
     utility_context_pointerr_process_data();
@@ -35937,7 +35937,7 @@ void Unwind_180904de0(void * utility_context_pointer,long long utility_data_ptr)
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x40);
   _Mtx_destroy_in_situ();
-  *process_data_ptr = &UNK_180a30778;
+  *process_data_ptr = &utility_system_thread_manager8;
   process_data_ptr[7] = &UTILITY_GLOBAL_CONTEXT_ADDRESS;
   if (process_data_ptr[8] != 0) {
     utility_context_pointerr_process_data();
@@ -35963,7 +35963,7 @@ void Unwind_180904df0(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x40);
-  *process_data_ptr = &UNK_180a30778;
+  *process_data_ptr = &utility_system_thread_manager8;
   process_data_ptr[7] = &UTILITY_GLOBAL_CONTEXT_ADDRESS;
   if (process_data_ptr[8] != 0) {
     utility_context_pointerr_process_data();
@@ -49842,7 +49842,7 @@ void Unwind_180908f30(void * utility_context_pointer,long long utility_data_ptr)
   
   utility_loop_counter = *(long long *)(utility_data_ptr + 0x40);
   utility_ptr_var = (void **)(utility_loop_counter + -0xa0);
-  *utility_ptr_var = &UNK_180a01668;
+  *utility_ptr_var = &utility_system_resource_pool8;
   if ((*(long long *)(utility_loop_counter + -UTILITY_THREAD_TLS_DATA_OFFSET) != 0) && (**(long long **)(utility_loop_counter + -0x88) == utility_loop_counter + -UTILITY_THREAD_TLS_STATUS_OFFSET)) {
     utility_return_value = *(void **)(utility_loop_counter + -0x10);
     utility_temp_long_var = *(long long *)(utility_loop_counter + -UTILITY_THREAD_TLS_CONTEXT_OFFSET);
@@ -50017,7 +50017,7 @@ void Unwind_180909080(void * utility_context_pointer,long long utility_data_ptr)
   void **utility_ptr_var;
   
   utility_ptr_var = (void **)(utility_data_ptr + 0x88);
-  *utility_ptr_var = &UNK_180a01668;
+  *utility_ptr_var = &utility_system_resource_pool8;
   if ((*(long long *)(utility_data_ptr + 0x108) != 0) && (**(long long **)(utility_data_ptr + 0xa0) == utility_data_ptr + 0xf8))
   {
     utility_return_value = *(void **)(utility_data_ptr + 0x118);
@@ -57715,7 +57715,7 @@ void Unwind_18090c200(void * utility_context_pointer,long long utility_data_ptr)
   
   utility_loop_counter = *(long long *)(utility_data_ptr + 0x70);
   utility_ptr_var = (void **)(utility_loop_counter + -0xa0);
-  *utility_ptr_var = &UNK_180a01668;
+  *utility_ptr_var = &utility_system_resource_pool8;
   if ((*(long long *)(utility_loop_counter + -UTILITY_THREAD_TLS_DATA_OFFSET) != 0) && (**(long long **)(utility_loop_counter + -0x88) == utility_loop_counter + -UTILITY_THREAD_TLS_STATUS_OFFSET)) {
     utility_return_value = *(void **)(utility_loop_counter + -0x10);
     utility_temp_long_var = *(long long *)(utility_loop_counter + -UTILITY_THREAD_TLS_CONTEXT_OFFSET);
@@ -57755,7 +57755,7 @@ void Unwind_18090c240(void * utility_context_pointer,long long utility_data_ptr)
   
   utility_loop_counter = *(long long *)(utility_data_ptr + 0x40);
   utility_ptr_var = (void **)(utility_loop_counter + -0xa0);
-  *utility_ptr_var = &UNK_180a01668;
+  *utility_ptr_var = &utility_system_resource_pool8;
   if ((*(long long *)(utility_loop_counter + -UTILITY_THREAD_TLS_DATA_OFFSET) != 0) && (**(long long **)(utility_loop_counter + -0x88) == utility_loop_counter + -UTILITY_THREAD_TLS_STATUS_OFFSET)) {
     utility_return_value = *(void **)(utility_loop_counter + -0x10);
     utility_temp_long_var = *(long long *)(utility_loop_counter + -UTILITY_THREAD_TLS_CONTEXT_OFFSET);
@@ -58014,7 +58014,7 @@ void Unwind_18090c380(void * utility_context_pointer,long long utility_data_ptr)
   
   utility_loop_counter = *(long long *)(utility_data_ptr + 0x40);
   utility_ptr_var = (void **)(utility_loop_counter + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
-  *utility_ptr_var = &UNK_180a01668;
+  *utility_ptr_var = &utility_system_resource_pool8;
   if ((*(long long *)(utility_loop_counter + 0x98) != 0) && (**(long long **)(utility_loop_counter + UTILITY_THREAD_TLS_STATUS_OFFSET) == utility_loop_counter + 0x88)) {
     utility_return_value = *(void **)(utility_loop_counter + 0xa8);
     utility_temp_long_var = *(long long *)(utility_loop_counter + 0xa0);
@@ -71454,7 +71454,7 @@ void Unwind_180910580(void * utility_context_pointer,long long utility_data_ptr)
   
   utility_loop_counter = *(long long *)(utility_data_ptr + 0x68);
   utility_ptr_var = (void **)(utility_loop_counter + 0x10);
-  *utility_ptr_var = &UNK_180a01668;
+  *utility_ptr_var = &utility_system_resource_pool8;
   if ((*(long long *)(utility_loop_counter + 0x90) != 0) && (**(long long **)(utility_loop_counter + 0x28) == utility_loop_counter + 0x80)) {
     utility_return_value = *(void **)(utility_loop_counter + 0xa0);
     utility_temp_long_var = *(long long *)(utility_loop_counter + 0x98);
@@ -71662,7 +71662,7 @@ void Unwind_1809106a0(void * utility_context_pointer,long long utility_data_ptr)
   
   utility_loop_counter = *(long long *)(utility_data_ptr + 0x40);
   utility_ptr_var = (void **)(utility_loop_counter + -0xa0);
-  *utility_ptr_var = &UNK_180a01668;
+  *utility_ptr_var = &utility_system_resource_pool8;
   if ((*(long long *)(utility_loop_counter + -UTILITY_THREAD_TLS_DATA_OFFSET) != 0) && (**(long long **)(utility_loop_counter + -0x88) == utility_loop_counter + -UTILITY_THREAD_TLS_STATUS_OFFSET)) {
     utility_return_value = *(void **)(utility_loop_counter + -0x10);
     utility_temp_long_var = *(long long *)(utility_loop_counter + -UTILITY_THREAD_TLS_CONTEXT_OFFSET);
