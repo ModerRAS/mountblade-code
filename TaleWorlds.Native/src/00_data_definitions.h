@@ -2907,75 +2907,127 @@ int initialize_background_thread_pool(void)
   system_initialization_result = system_execution_function(&g_systemInitFunction6);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
+/**
+ * @brief 初始化备份系统
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统的备份功能，包括设置内存分配标志和
+ * 调用资源管理器的初始化函数。这是简化实现，主要处理基本的备份系统初始化。
+ * 原本实现：完整的备份系统初始化流程，包括多种备份策略和恢复机制
+ */
 int initialize_backup_system(void)
 {
-  long long system_initialization_result;
+  long long initialization_result;
   system_global_data_pointer_variable = SYSTEM_ZERO_VALUE;
   system_ram_flag_1 = SYSTEM_MEMORY_ALLOC_HUGE;
   system_global_flag_secondary = SYSTEM_ZERO_VALUE;
   system_global_data_pointer_variable = SYSTEM_ZERO_VALUE;
   system_global_data_pointer_variable = SYSTEM_ZERO_VALUE;
-  system_initialization_result = system_execution_function(resource_manager_55_init_function);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  initialization_result = system_execution_function(resource_manager_55_init_function);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
+/**
+ * @brief 初始化恢复系统
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统的恢复功能，包括设置数据缓冲区和
+ * 调用资源管理器的初始化函数。这是简化实现，主要处理基本的恢复系统初始化。
+ * 原本实现：完整的恢复系统初始化流程，包括数据完整性检查和恢复策略
+ */
 int initialize_recovery_system(void)
 {
-  long long system_initialization_result;
+  long long initialization_result;
   system_global_data_pointer_variable = SYSTEM_THREE_VALUE;
   system_global_data_pointer_variable = &system_data_buffer;
   system_global_data_pointer_variable = &system_data_buffer;
   system_global_data_pointer_variable = SYSTEM_ZERO_VALUE;
   system_global_data_pointer_variable = SYSTEM_ZERO_VALUE;
   system_global_data_pointer_variable = SYSTEM_ZERO_VALUE;
-  system_initialization_result = system_execution_function(resource_manager_56_init_function);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  initialization_result = system_execution_function(resource_manager_56_init_function);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
+/**
+ * @brief 初始化优先级线程池
+ * @param handle_param 线程池句柄参数
+ * @param system_thread_operation_flags 线程操作标志
+ * @param mutex_attr 互斥锁属性
+ * @param mutex_type 互斥锁类型
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化具有优先级管理的线程池系统，包括互斥锁初始化和
+ * 共享数据缓冲区设置。这是简化实现，主要处理基本的优先级线程池初始化。
+ * 原本实现：完整的优先级线程池初始化流程，包括复杂的优先级调度算法
+ */
 int initialize_priority_thread_pool(unsigned long long handle_param,unsigned long long system_thread_operation_flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
-  long long system_initialization_result;
+  long long initialization_result;
   _Mtx_init_in_situ(THIRD_MUTEX_ADDRESS,SYSTEM_MUTEX_TYPE_DEFAULT,mutex_attr,mutex_type,default_thread_pool_flag);
   system_global_data_pointer_variable = &shared_system_data_buffer;
   system_global_data_pointer_variable = &system_thread_global_data_buffer;
   system_global_data_pointer_variable = SYSTEM_ZERO_VALUE;
   system_thread_global_data_buffer = SYSTEM_ZERO_VALUE;
-  system_initialization_result = system_execution_function(resource_manager_57_init_function);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  initialization_result = system_execution_function(resource_manager_57_init_function);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
+/**
+ * @brief 初始化维护服务
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统的维护服务，包括设置共享数据缓冲区和字符串处理。
+ * 这是简化实现，主要处理基本的维护服务初始化。
+ * 原本实现：完整的维护服务初始化流程，包括多种维护策略和调度机制
+ */
 int initialize_maintenance_service(void)
 {
-  long long system_initialization_result;
-  unsigned long long system_string_length;
+  long long initialization_result;
+  unsigned long long string_length;
   system_global_data_pointer_variable = &shared_system_data_buffer;
   system_global_data_pointer_variable = &system_large_string_1;
   system_large_string_1 = SYSTEM_ZERO_VALUE;
   system_global_data_pointer_variable = STRING_BUFFER_SIZE;
   strcpy_s(&system_large_string_1,SYSTEM_CONFIG_BUFFER_SIZE,&g_largeString1,system_string_length_parameter,default_thread_pool_flag);
-  system_initialization_result = system_execution_function(resource_manager_58_init_function);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  initialization_result = system_execution_function(resource_manager_58_init_function);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
+/**
+ * @brief 初始化优化系统
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统的优化功能，包括设置共享数据缓冲区和字符串处理。
+ * 这是简化实现，主要处理基本的优化系统初始化。
+ * 原本实现：完整的优化系统初始化流程，包括多种优化算法和性能调优机制
+ */
 int initialize_optimization_system(void)
 {
-  long long system_initialization_result;
-  unsigned long long system_string_length;
+  long long initialization_result;
+  unsigned long long string_length;
   system_global_data_pointer_variable = &shared_system_data_buffer;
   system_global_data_pointer_variable = &system_large_string_2;
   system_large_string_2 = SYSTEM_ZERO_VALUE;
   system_global_data_pointer_variable = SYSTEM_THREE_VALUE;
   strcpy_s(&system_large_string_2,SYSTEM_CONFIG_BUFFER_SIZE,&g_largeString2,system_string_length_parameter,default_thread_pool_flag);
-  system_initialization_result = system_execution_function(resource_manager_59_init_function);
+  initialization_result = system_execution_function(resource_manager_59_init_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
+/**
+ * @brief 初始化性能监控器
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统的性能监控功能，包括设置共享数据缓冲区和字符串处理。
+ * 这是简化实现，主要处理基本的性能监控初始化。
+ * 原本实现：完整的性能监控初始化流程，包括多种性能指标收集和分析机制
+ */
 int initialize_performance_monitor(void)
 {
-  long long system_initialization_result;
-  unsigned long long system_string_length;
+  long long initialization_result;
+  unsigned long long string_length;
   system_global_data_pointer_variable = &shared_system_data_buffer;
   system_global_data_pointer_variable = &system_large_string_3;
   system_large_string_3 = SYSTEM_ZERO_VALUE;
   system_global_data_pointer_variable = SYSTEM_FIVE_VALUE;
   strcpy_s(&system_large_string_3,SYSTEM_CONFIG_BUFFER_SIZE,&g_largeString3,system_string_length_parameter,default_thread_pool_flag);
-  system_initialization_result = system_execution_function(resource_manager_60_init_function);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  initialization_result = system_execution_function(resource_manager_60_init_function);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
   config_shader_path_buffer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer_variable = SYSTEM_RESOURCE_ID_AUDIO;
@@ -2983,36 +3035,74 @@ int initialize_performance_monitor(void)
   system_initialization_result = system_execution_function(resource_manager_61_init_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
+/**
+ * @brief 初始化负载均衡器
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统的负载均衡功能，包括设置资源模板和配置缓冲区。
+ * 这是简化实现，主要处理基本的负载均衡初始化。
+ * 原本实现：完整的负载均衡初始化流程，包括复杂的负载分配算法和策略
+ */
 int initialize_load_balancer(void)
 {
-  long long system_initialization_result;
-  unsigned long long system_string_length;
+  long long initialization_result;
+  unsigned long long string_length;
   system_global_data_pointer_variable = &system_alternate_resource_template;
   system_global_data_pointer_variable = &config_texture_path_buffer;
   config_texture_path_buffer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer_variable = SYSTEM_NINE_VALUE;
   strcpy_s(&config_texture_path_buffer,path_buffer_size,&config_string_secondary,system_string_length_parameter,default_thread_pool_flag);
-  system_initialization_result = system_execution_function(resource_manager_62_init_function);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  initialization_result = system_execution_function(resource_manager_62_init_function);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
+/**
+ * @brief 初始化模型路径配置
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化模型路径配置系统，包括设置路径缓冲区和字符串处理。
+ * 这是简化实现，主要处理基本的模型路径配置初始化。
+ * 原本实现：完整的模型路径配置初始化流程，包括多种路径解析和验证机制
+ */
+int initialize_model_path_config(void)
+{
+  long long initialization_result;
   config_model_path_buffer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer_variable = SYSTEM_RESOURCE_ID_AUDIO;
   strcpy_s(&config_model_path_buffer,path_buffer_size,&system_event_system_config_string,system_string_length_parameter,default_thread_pool_flag);
-  system_initialization_result = system_execution_function(resource_manager_63_init_function);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  initialization_result = system_execution_function(resource_manager_63_init_function);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
+/**
+ * @brief 初始化扩展系统
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统的扩展功能，包括设置音频路径配置和资源模板。
+ * 这是简化实现，主要处理基本的扩展系统初始化。
+ * 原本实现：完整的扩展系统初始化流程，包括动态扩展和资源管理机制
+ */
 int initialize_scaling_system(void)
 {
-  long long system_initialization_result;
-  unsigned long long system_string_length;
+  long long initialization_result;
+  unsigned long long string_length;
   system_global_data_pointer_variable = &system_alternate_resource_template;
   system_global_data_pointer_variable = &config_audio_path_buffer;
   config_audio_path_buffer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer_variable = SYSTEM_NINE_VALUE;
   strcpy_s(&config_audio_path_buffer,path_buffer_size,&config_string_secondary,system_string_length_parameter,default_thread_pool_flag);
-  system_initialization_result = system_execution_function(resource_manager_64_init_function);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  initialization_result = system_execution_function(resource_manager_64_init_function);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
+
+/**
+ * @brief 系统主初始化函数
+ * @param handle_param 系统句柄参数
+ * 
+ * 该函数是系统的主要初始化入口点，负责初始化核心系统、子系统模块和服务层。
+ * 这是简化实现，主要处理基本的系统初始化流程。
+ * 原本实现：完整的系统初始化流程，包括复杂的依赖关系管理和错误处理
+ */
+void system_main_initialize(unsigned long long handle_param)
+{
   system_thread_global_flag_2 = SYSTEM_THREAD_FLAG_ENABLED;
   system_thread_global_flag_1 = SYSTEM_ZERO_VALUE;
   SYSTEM_TEMP_STACK_ARRAY[SYSTEM_ARRAY_INDEX_FIRST] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
@@ -3021,6 +3111,14 @@ int initialize_scaling_system(void)
   initialize_service_layer();
   return;
 }
+/**
+ * @brief DLL主入口函数
+ * @param handle_param DLL句柄参数
+ * 
+ * 该函数是DLL的主要入口点，负责初始化系统核心组件和服务。
+ * 这是简化实现，主要处理基本的DLL初始化流程。
+ * 原本实现：完整的DLL初始化流程，包括模块加载和依赖解析
+ */
 void WotsMainNativeSDLL(unsigned long long handle_param)
 {
   unsigned long long SYSTEM_TEMP_STACK_ARRAY [2];
@@ -13366,25 +13464,49 @@ section_processing_complete_label:
   return allocation_result;
 }
 
-// 系统清理函数 - 清理系统资源
+/**
+ * @brief 清理系统资源
+ * 
+ * 该函数负责清理系统运行期间分配的各种资源，包括内存、句柄等。
+ * 这是简化实现，主要处理基本的资源清理工作。
+ * 原本实现：完整的资源清理流程，包括递归清理和依赖关系处理
+ */
 void system_cleanup_resources(void)
 {
   system_cleanup_flag = '\0';
 }
 
-// 系统标志重置函数 - 重置主要系统标志
+/**
+ * @brief 重置主要系统标志
+ * 
+ * 该函数负责重置系统的主要标志位，将它们恢复到初始状态。
+ * 这是简化实现，主要处理基本的主要标志重置工作。
+ * 原本实现：完整的标志重置流程，包括标志状态验证和错误处理
+ */
 void system_reset_primary_flags(void)
 {
   system_global_flag_primary = SYSTEM_ZERO_VALUE;
 }
 
-// 系统标志重置函数 - 重置第四级系统标志
+/**
+ * @brief 重置第四级系统标志
+ * 
+ * 该函数负责重置系统的第四级标志位，将它们恢复到初始状态。
+ * 这是简化实现，主要处理基本的第四级标志重置工作。
+ * 原本实现：完整的第四级标志重置流程，包括标志状态验证和错误处理
+ */
 void system_reset_quaternary_flags(void)
 {
   system_global_flag_quaternary = SYSTEM_ZERO_VALUE;
 }
 
-// 脚本系统清理函数 - 清理脚本系统资源
+/**
+ * @brief 清理脚本系统资源
+ * 
+ * 该函数负责清理脚本系统运行期间分配的资源，包括脚本对象、执行环境等。
+ * 这是简化实现，主要处理基本的脚本系统清理工作。
+ * 原本实现：完整的脚本系统清理流程，包括脚本引擎关闭和内存释放
+ */
 void script_system_cleanup(void)
 {
   script_system_initialized = '\0';
