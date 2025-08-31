@@ -476,7 +476,7 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
                 utility_loop_index = 0;
                 do {
                     // 获取资源值
-                    utility_status = *(uint64_t *)(utility_buffer_ptr + utility_loop_index = 0;
+                    utility_status = *(uint64_t *)(utility_buffer_ptr + utility_loop_index);
                     
                     // 初始化上下文管理器
                     utility_status_code = utility_context_init(utility_status);
@@ -485,7 +485,7 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
                         utility_activate_context(utility_status, 1);
                     }
                     
-                    utility_loop_index = 0;
+                    utility_loop_index++;
                 } while (utility_loop_index < utility_max_iterations);
             }
             // 清理缓冲区管理器
@@ -28730,7 +28730,7 @@ return;
 if (*(char *)(utility_loop_index = 0;
 utility_serialize_data(utility_context_input_data);
 }
-__1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_input_data);
+utility_streambuf_standard_destructor(utility_context_input_data);
 return;
 }
  * 上下文管理器处理器
@@ -28794,7 +28794,7 @@ return;
 if (*(char *)(utility_context_input_data + UTILITY_THREAD_HANDLE_OFFSET_EXTENDED) != '\0') {
 utility_serialize_data(utility_context_input_data);
 }
-__1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_input_data);
+utility_streambuf_standard_destructor(utility_context_input_data);
 return;
 }
 utility_resource_ctx_handle = (uint64_t)utility_context_input_data & UTILITY_MAX_UINT32ffc00000;
@@ -30644,13 +30644,13 @@ return;
 if (*(char *)(utility_loop_index = 0;
 utility_serialize_data(utility_context_input_data);
 }
-__1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_input_data);
+utility_streambuf_standard_destructor(utility_context_input_data);
 return;
 }
 if (*(char *)(utility_loop_index = 0;
 utility_serialize_data(utility_context_input_data);
 }
-__1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_input_data);
+utility_streambuf_standard_destructor(utility_context_input_data);
 return;
 }
 utility_resource_ctx_handle = (uint64_t)utility_context_input_data & UTILITY_MAX_UINT32ffc00000;
@@ -30726,7 +30726,7 @@ return;
 if (*(char *)(utility_loop_index = 0;
 utility_serialize_data(utility_context_input_data);
 }
-__1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_input_data);
+utility_streambuf_standard_destructor(utility_context_input_data);
 return;
 }
 return;
@@ -35143,7 +35143,7 @@ return;
 if (*(char *)(utility_loop_index = 0;
 utility_serialize_data(utility_context_input_data);
 }
-__1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_input_data);
+utility_streambuf_standard_destructor(utility_context_input_data);
 return;
 }
 return;
@@ -35203,7 +35203,7 @@ return;
 if (*(char *)(utility_loop_index = 0;
 utility_serialize_data(utility_context_input_data);
 }
-__1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_input_data);
+utility_streambuf_standard_destructor(utility_context_input_data);
 return;
 }
 return;
