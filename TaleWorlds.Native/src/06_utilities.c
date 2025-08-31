@@ -40653,16 +40653,14 @@ return;
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
 
-
+/** 资源句柄创建函数
  * @param resource_config 资源配置
  * @param context_size 上下文大小
  * @param buffer_ptr 缓冲区指针
  * @return 创建的资源句柄
  */
-    uint64_t utility_create_resource_handle(uint64_t resource_config, int64_t context_size, uint64_t **buffer_ptr)
+uint64_t utility_create_resource_handle(uint64_t resource_config, int64_t context_size, uint64_t **buffer_ptr)
 {
-
-
     if (buffer_ptr == NULL) {
         return 0;
     }
@@ -40671,8 +40669,7 @@ return;
     return resource_config;
 }
 
-
- * 值组合函数
+/** 值组合函数
  * @param value1 值1
  * @param value2 值2
  * @return 组合后的值
@@ -40683,16 +40680,13 @@ int64_t utility_combine_int64(int64_t value1, int64_t value2)
     return value1 + value2;
 }
 
-
- * 缓冲区数据处理函数
+/** 缓冲区数据处理函数
  * @param utility_context_input_data 上下文句柄
  * @param buffer_ptr 缓冲区指针
  * @return 处理状态
  */
-    int utility_process_buffer_data(int64_t utility_context_input_data, uint64_t *buffer_ptr)
+int utility_process_buffer_data(int64_t utility_context_input_data, uint64_t *buffer_ptr)
 {
-
-
     if (utility_context_input_data == UTILITY_FALSE || buffer_ptr == NULL) {
         return UTILITY_ERROR_INVALID_PARAM;
     }
