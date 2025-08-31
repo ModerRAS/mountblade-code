@@ -634,15 +634,6 @@ void *system_unknown_180a25a6c;
 void *system_initialize_graphics_system;
 
 /**
- * @brief 内存管理器初始化函数
- * 初始化系统内存管理和分配器
- */
-// 函数: void system_initialize_memory_manager(void)
-/**
- * @brief 内存管理器初始化函数
- * 初始化系统内存管理和分配器
- */
-/**
  * @brief 系统内存管理器初始化函数
  * 
  * 初始化系统的内存管理器，包括内存分配、资源块管理和数据库配置。

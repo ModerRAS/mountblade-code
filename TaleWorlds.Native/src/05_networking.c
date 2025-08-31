@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 05_networking.c - 908 个函数
+/* 
+ * 网络系统模块
+ * 简化实现：美化网络系统函数名和变量名，添加详细的文档注释
+ * 原本实现：完全重构网络系统所有命名体系，建立统一的语义化命名规范
+ */
 
 network_initialize_system;
 /**
@@ -198,51 +202,51 @@ void *network_buffer_manager_primary;
 void *UNK_18088d500;
 void *network_buffer_manager_secondary;
 
-FUN_18088ea60;
-void *FUN_18088ea60;
-void *UNK_180986218;
-void *UNK_180986240;
-void *UNK_180986244;
-void *UNK_180986248;
-void *UNK_18098624c;
-void *UNK_180986250;
-void *UNK_180986268;
+network_packet_processor_primary;
+void *network_packet_processor_primary;
+void *network_connection_context_primary;
+void *network_connection_context_secondary;
+void *network_connection_context_tertiary;
+void *network_buffer_state_primary;
+void *network_buffer_state_secondary;
+void *network_buffer_state_tertiary;
+void *network_socket_context_primary;
 void *network_system_config_primary;
 void *network_system_config_secondary;
-void *UNK_1809862d0;
-void *UNK_180986298;
-void *UNK_180984010;
-void *UNK_180982240;
-void *UNK_180983588;
-void *UNK_1809841e0;
-void *UNK_180984358;
-void *UNK_1809843d0;
-void *UNK_180986350;
-void *UNK_180986370;
-void *UNK_1809868b0;
-void *UNK_1809863f8;
-void *UNK_180986470;
-void *UNK_180982588;
-void *UNK_180982608;
-void *UNK_1809830b8;
-void *UNK_180983238;
-void *UNK_1809839d8;
-void *UNK_1809850f8;
-void *UNK_180982f38;
-void *UNK_1809834f8;
-void *UNK_180986408;
-void *UNK_1809864dc;
-void *UNK_1809864e0;
-void *UNK_180986508;
-void *UNK_180986550;
-void *UNK_180986590;
-void *UNK_1809865f0;
-void *UNK_1809866c0;
-void *UNK_180986730;
-void *UNK_1809867b0;
-void *UNK_180986850;
-void *UNK_180982378;
-void *UNK_180986390;
+void *network_socket_context_secondary;
+void *network_thread_context_primary;
+void *network_event_context_primary;
+void *network_event_context_secondary;
+void *network_protocol_context_primary;
+void *network_protocol_context_secondary;
+void *network_security_context_primary;
+void *network_security_context_secondary;
+void *network_compression_context_primary;
+void *network_compression_context_secondary;
+void *network_error_context_primary;
+void *network_timeout_context_primary;
+void *network_timeout_context_secondary;
+void *network_statistics_primary;
+void *network_statistics_secondary;
+void *network_bandwidth_monitor_primary;
+void *network_bandwidth_monitor_secondary;
+void *network_latency_tracker_primary;
+void *network_latency_tracker_secondary;
+void *network_flow_controller_primary;
+void *network_flow_controller_secondary;
+void *network_connection_validator_primary;
+void *network_connection_validator_secondary;
+void *network_authentication_manager_primary;
+void *network_authentication_manager_secondary;
+void *network_encryption_engine_primary;
+void *network_encryption_engine_secondary;
+void *network_checksum_calculator_primary;
+void *network_checksum_calculator_secondary;
+void *network_state_machine_primary;
+void *network_state_machine_secondary;
+void *network_packet_queue_primary;
+void *network_packet_queue_secondary;
+void *network_buffer_allocator_primary;
 void *UNK_180986488;
 void *UNK_1809864b0;
 void *UNK_180986940;
@@ -391,14 +395,14 @@ uint network_connection_validate_primary(longlong *network_context_param)
 // WARNING: Type propagation algorithm not settling
 
 
-// 函数: void FUN_1808401c0(undefined8 network_context_param)
-void FUN_1808401c0(undefined8 network_context_param)
+// 函数: void network_process_connection_validation(undefined8 network_context_param)
+void network_process_connection_validation(undefined8 network_context_param)
 
 {
-  int network_int_value;
-  int network_int_result;
-  longlong alStackX_10 [2];
-  undefined8 *puStackX_20;
+  int network_validation_result;
+  int network_connection_status;
+  longlong network_connection_data [2];
+  undefined8 *network_connection_pointer;
   
   alStackX_10[1] = 0;
   network_int_value = func_0x00018088c590(network_context_param,alStackX_10);
@@ -420,7 +424,7 @@ void FUN_1808401c0(undefined8 network_context_param)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180840270(longlong *network_context_param)
+undefined8 network_validate_connection_parameters(longlong *network_context_param)
 
 {
   int network_int_value;
@@ -85527,7 +85531,7 @@ undefined8 FUN_18088e480(longlong network_context_param,longlong param_2,byte pa
     *(int *)(network_context_param + 400) = network_int_result;
     *(float *)(network_context_param + 0x194) = (float)network_int_result * fVar5;
   }
-  network_uint_temp = FUN_180748e20(lVar4,0,FUN_18088ea60,network_context_param);
+  network_uint_temp = FUN_180748e20(lVar4,0,network_packet_processor_primary,network_context_param);
   if ((int)network_uint_temp != 0) {
     return network_uint_temp;
   }
@@ -85933,7 +85937,7 @@ void FUN_18088e970(longlong network_context_param,longlong *param_2,int param_3)
 
 
 undefined8
-FUN_18088ea60(undefined8 network_context_param,int param_2,undefined8 param_3,longlong param_4,longlong param_5)
+network_packet_processor_primary(undefined8 network_context_param,int param_2,undefined8 param_3,longlong param_4,longlong param_5)
 
 {
   undefined8 network_uint_value;
@@ -86037,13 +86041,13 @@ int FUN_18088ebb0(longlong network_context_param,int param_2,longlong param_3)
     network_int_result = func_0x00018074b7b0(network_int_value + network_context_param,param_2 - network_int_value,0x7d);
     return network_int_result + network_int_value;
   }
-  network_int_value = func_0x00018076b690(&UNK_180986218);
+  network_int_value = func_0x00018076b690(&network_connection_context_primary);
   if (param_2 < network_int_value + 1) {
                     // WARNING: Subroutine does not return
-    FUN_18076b390(network_context_param,param_2,&UNK_1809fe7f8,&UNK_180986218,unaff_RDI);
+    FUN_18076b390(network_context_param,param_2,&UNK_1809fe7f8,&network_connection_context_primary,unaff_RDI);
   }
                     // WARNING: Subroutine does not return
-  memcpy(network_context_param,&UNK_180986218,(longlong)(network_int_value + 1));
+  memcpy(network_context_param,&network_connection_context_primary,(longlong)(network_int_value + 1));
 }
 
 
@@ -86176,15 +86180,15 @@ undefined8 FUN_18088eea0(undefined8 network_context_param,float *param_2)
     }
     else if (*pcStackX_20 != '\0') {
       cVar1 = *pcVar3;
-      lVar6 = FUN_18076b7c0(pcVar3,&UNK_180986240);
+      lVar6 = FUN_18076b7c0(pcVar3,&network_connection_context_secondary);
       if (lVar6 == 0) {
-        lVar6 = FUN_18076b7c0(pcVar3,&UNK_180986244);
+        lVar6 = FUN_18076b7c0(pcVar3,&network_connection_context_tertiary);
         if (lVar6 == 0) {
-          lVar6 = FUN_18076b7c0(pcVar3,&UNK_180986248);
+          lVar6 = FUN_18076b7c0(pcVar3,&network_buffer_state_primary);
           if (lVar6 == 0) {
-            lVar6 = FUN_18076b7c0(pcVar3,&UNK_18098624c);
+            lVar6 = FUN_18076b7c0(pcVar3,&network_buffer_state_secondary);
             if (lVar6 == 0) {
-              lVar6 = FUN_18076b7c0(pcVar3,&UNK_180986250);
+              lVar6 = FUN_18076b7c0(pcVar3,&network_buffer_state_tertiary);
               if (lVar6 == 0) {
                 return 0x13;
               }
@@ -86235,15 +86239,15 @@ undefined8 FUN_18088eebb(void)
   }
   else if (*in_stack_00000048 != '\0') {
     cVar1 = *in_stack_00000040;
-    lVar4 = FUN_18076b7c0(in_stack_00000040,&UNK_180986240);
+    lVar4 = FUN_18076b7c0(in_stack_00000040,&network_connection_context_secondary);
     if (lVar4 == 0) {
-      lVar4 = FUN_18076b7c0(in_stack_00000040,&UNK_180986244);
+      lVar4 = FUN_18076b7c0(in_stack_00000040,&network_connection_context_tertiary);
       if (lVar4 == 0) {
-        lVar4 = FUN_18076b7c0(in_stack_00000040,&UNK_180986248);
+        lVar4 = FUN_18076b7c0(in_stack_00000040,&network_buffer_state_primary);
         if (lVar4 == 0) {
-          lVar4 = FUN_18076b7c0(in_stack_00000040,&UNK_18098624c);
+          lVar4 = FUN_18076b7c0(in_stack_00000040,&network_buffer_state_secondary);
           if (lVar4 == 0) {
-            lVar4 = FUN_18076b7c0(in_stack_00000040,&UNK_180986250);
+            lVar4 = FUN_18076b7c0(in_stack_00000040,&network_buffer_state_tertiary);
             if (lVar4 == 0) {
               return 0x13;
             }
@@ -86288,15 +86292,15 @@ undefined8 FUN_18088ef0e(int network_context_param)
   
   if (in_CL != '\0') {
     cVar1 = *unaff_RBX;
-    lVar3 = FUN_18076b7c0(network_context_param,&UNK_180986240);
+    lVar3 = FUN_18076b7c0(network_context_param,&network_connection_context_secondary);
     if (lVar3 == 0) {
-      lVar3 = FUN_18076b7c0(extraout_XMM0_Da,&UNK_180986244);
+      lVar3 = FUN_18076b7c0(extraout_XMM0_Da,&network_connection_context_tertiary);
       if (lVar3 == 0) {
-        lVar3 = FUN_18076b7c0(extraout_XMM0_Da_00,&UNK_180986248);
+        lVar3 = FUN_18076b7c0(extraout_XMM0_Da_00,&network_buffer_state_primary);
         if (lVar3 == 0) {
-          lVar3 = FUN_18076b7c0(extraout_XMM0_Da_01,&UNK_18098624c);
+          lVar3 = FUN_18076b7c0(extraout_XMM0_Da_01,&network_buffer_state_secondary);
           if (lVar3 == 0) {
-            lVar3 = FUN_18076b7c0(extraout_XMM0_Da_02,&UNK_180986250);
+            lVar3 = FUN_18076b7c0(extraout_XMM0_Da_02,&network_buffer_state_tertiary);
             if (lVar3 == 0) {
               return 0x13;
             }
@@ -86551,7 +86555,7 @@ void FUN_18088f1a0(undefined8 network_context_param,longlong param_2)
     puStack_60 = auStack_1c;
     puStack_68 = auStack_1e;
     puStack_70 = auStack_20;
-    FUN_18010cbc0(uStack_28,&UNK_180986268,param_2,param_2 + 4);
+    FUN_18010cbc0(uStack_28,&network_socket_context_primary,param_2,param_2 + 4);
     *(byte *)(param_2 + 8) = auStack_20[0];
     *(byte *)(param_2 + 9) = auStack_1e[0];
     *(byte *)(param_2 + 10) = auStack_1c[0];
@@ -92506,7 +92510,7 @@ int FUN_180893760(longlong network_context_param,longlong param_2)
     }
     else {
       lVar2 = FUN_180741e10(*(undefined8 *)(network_global_data_table + 0x1a0),*(int *)(network_context_param + 0x20),
-                            &UNK_1809862d0,0x315,0,0,1);
+                            &network_socket_context_secondary,0x315,0,0,1);
       if (lVar2 != 0) {
                     // WARNING: Subroutine does not return
         memcpy(lVar2,*(undefined8 *)(network_context_param + 0x18),(longlong)*(int *)(network_context_param + 0x20));
@@ -92548,7 +92552,7 @@ int FUN_18089379d(longlong network_context_param,undefined8 param_2)
     network_int_value = 0x1f;
   }
   else {
-    lVar2 = FUN_180741e10(*(undefined8 *)(network_global_data_table + 0x1a0),param_2,&UNK_1809862d0,0x315,0);
+    lVar2 = FUN_180741e10(*(undefined8 *)(network_global_data_table + 0x1a0),param_2,&network_socket_context_secondary,0x315,0);
     if (lVar2 != 0) {
                     // WARNING: Subroutine does not return
       memcpy(lVar2,*(undefined8 *)(unaff_RDI + 0x18),(longlong)*(int *)(unaff_RDI + 0x20));
@@ -93266,7 +93270,7 @@ int FUN_180894650(longlong *network_context_param,longlong param_2,int param_3)
   int network_int_value;
   int network_int_result;
   
-  network_int_value = FUN_18074b880(param_2,param_3,&UNK_180986298);
+  network_int_value = FUN_18074b880(param_2,param_3,&network_thread_context_primary);
   network_int_result = FUN_18074b880(param_2 + network_int_value,param_3 - network_int_value,&DAT_180a06434);
   network_int_value = network_int_value + network_int_result;
   network_int_result = func_0x00018074b7d0(network_int_value + param_2,param_3 - network_int_value,(int)network_context_param[3] * 8 + 0x20);
@@ -93285,7 +93289,7 @@ int FUN_180894700(longlong *network_context_param,longlong param_2,int param_3)
   int network_int_value;
   int network_int_result;
   
-  network_int_value = FUN_18074b880(param_2,param_3,&UNK_180984010);
+  network_int_value = FUN_18074b880(param_2,param_3,&network_event_context_primary);
   network_int_result = FUN_18074b880(param_2 + network_int_value,param_3 - network_int_value,&DAT_180a06434);
   network_int_value = network_int_value + network_int_result;
   network_int_result = func_0x00018074b7d0(network_int_value + param_2,param_3 - network_int_value,(int)network_context_param[3] * 0xc + 0x20);
@@ -93304,7 +93308,7 @@ int FUN_1808947b0(longlong *network_context_param,longlong param_2,int param_3)
   int network_int_value;
   int network_int_result;
   
-  network_int_value = FUN_18074b880(param_2,param_3,&UNK_180982240);
+  network_int_value = FUN_18074b880(param_2,param_3,&network_event_context_secondary);
   network_int_result = FUN_18074b880(param_2 + network_int_value,param_3 - network_int_value,&DAT_180a06434);
   network_int_value = network_int_value + network_int_result;
   network_int_result = func_0x00018074b7d0(network_int_value + param_2,param_3 - network_int_value,((int)network_context_param[2] + 2) * 0xc);
@@ -95107,7 +95111,7 @@ ulonglong FUN_180896140(longlong network_context_param)
               do {
                 uStack_e0 = *(int *)(lVar5 + 0xc + lVar15 * 0x10);
                 uStack_e8 = 0;
-                puStack_f0 = &UNK_180983588;
+                puStack_f0 = &network_protocol_context_primary;
                 FUN_180892120(&puStack_f0,*(undefined8 *)(network_context_param + 0x58));
                 iVar4 = func_0x0001808c7ed0(network_uint_temp);
               } while (0 < iVar4);
@@ -95140,17 +95144,17 @@ ulonglong FUN_180896140(longlong network_context_param)
               uStack_d0 = 0;
               uStack_c0 = 0x3f800000;
               FUN_180891d40(&puStack_d8,*(undefined8 *)(network_context_param + 0x58));
-              puStack_98 = &UNK_180984358;
+              puStack_98 = &network_security_context_primary;
               uStack_88 = *(int *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_90 = 0;
               uStack_80 = 0;
               FUN_180891cf0(&puStack_98,*(undefined8 *)(network_context_param + 0x58));
-              puStack_b8 = &UNK_1809843d0;
+              puStack_b8 = &network_security_context_secondary;
               uStack_a8 = *(int *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = uStack_a0 & 0xffffff00;
               FUN_180891ca0(&puStack_b8,*(undefined8 *)(network_context_param + 0x58));
-              puStack_f0 = &UNK_1809841e0;
+              puStack_f0 = &network_protocol_context_secondary;
               uStack_e0 = *(int *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_e8 = 0;
               FUN_180891de0(&puStack_f0,*(undefined8 *)(network_context_param + 0x58));
@@ -95375,7 +95379,7 @@ LAB_1808963ec:
 undefined8 * FUN_180896800(undefined8 *network_context_param,ulonglong param_2)
 
 {
-  *network_context_param = &UNK_180986350;
+  *network_context_param = &network_compression_context_primary;
   if ((param_2 & 1) != 0) {
     free(network_context_param,0x28);
   }
@@ -95387,9 +95391,9 @@ undefined8 * FUN_180896800(undefined8 *network_context_param,ulonglong param_2)
 undefined8 * FUN_180896830(undefined8 *network_context_param,ulonglong param_2)
 
 {
-  *network_context_param = &UNK_180986370;
+  *network_context_param = &network_compression_context_secondary;
   FUN_180840270(network_context_param + 5);
-  *network_context_param = &UNK_180986350;
+  *network_context_param = &network_compression_context_primary;
   if ((param_2 & 1) != 0) {
     free(network_context_param,0x38);
   }
@@ -95434,7 +95438,7 @@ undefined8 FUN_1808968a0(longlong network_context_param)
       }
     }
     piVar3 = (int *)FUN_180741e10(*(undefined8 *)(network_global_data_table + 0x1a0),iVar5 + 0x19,
-                                  &UNK_1809868b0,0x278,0,0,1);
+                                  &network_error_context_primary,0x278,0,0,1);
     piVar3[0] = 0;
     piVar3[1] = 0;
     piVar3[2] = 0;
@@ -95481,7 +95485,7 @@ int FUN_180896aa0(longlong network_context_param,longlong param_2,int param_3)
   int iVar3;
   
   network_uint_value = *(undefined8 *)(network_context_param + 0x10);
-  network_int_result = FUN_18074b880(param_2,param_3,&UNK_1809863f8);
+  network_int_result = FUN_18074b880(param_2,param_3,&network_timeout_context_primary);
   iVar3 = FUN_18074b880(param_2 + network_int_result,param_3 - network_int_result,&DAT_180a06434);
   network_int_result = network_int_result + iVar3;
   iVar3 = func_0x00018074be80(network_int_result + param_2,param_3 - network_int_result,network_uint_value);
@@ -95500,7 +95504,7 @@ int FUN_180896b20(longlong network_context_param,longlong param_2,int param_3)
   
   network_uint_value = *(int *)(network_context_param + 0x14);
   network_uint_result = *(int *)(network_context_param + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180986470);
+  iVar3 = FUN_18074b880(param_2,param_3,&network_timeout_context_secondary);
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,network_uint_result);
@@ -95593,7 +95597,7 @@ LAB_180896ce3:
     else {
       iStack_2f0 = 0;
       if (1 < iVar3 - 1U) {
-        puStack_2f8 = &UNK_180982608;
+        puStack_2f8 = &network_statistics_secondary;
         ppuVar6 = &puStack_2f8;
         uStack_2b0 = 0;
         uStack_2e8 = 0;
@@ -95606,7 +95610,7 @@ LAB_180896ce3:
         uStack_2ac = param_3;
         goto LAB_180896ce3;
       }
-      puStack_2f8 = &UNK_180982588;
+      puStack_2f8 = &network_statistics_primary;
       lStack_2d8 = (ulonglong)param_3 << 0x20;
       uStack_2e8 = *(undefined8 *)(param_2 + 0x228);
       uStack_2e0 = (ulonglong)CONCAT14(iVar3 != 1,*(int *)(param_2 + 0x230));
@@ -95649,7 +95653,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(int *)(lVar1 + 0x18);
         uStack_280 = *(int *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_1809830b8;
+        puStack_2a8 = &network_bandwidth_monitor_primary;
         iVar4 = iVar5 + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -95668,7 +95672,7 @@ LAB_180896ce3:
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_180984358;
+          puStack_2f8 = &network_security_context_primary;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar5 = FUN_180897520(network_context_param,&puStack_2f8);
@@ -95677,7 +95681,7 @@ LAB_180896ce3:
         iVar5 = iVar4;
         if (*(char *)(lVar2 + 0x29) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_1809843d0;
+          puStack_2f8 = &network_security_context_secondary;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar7 = FUN_180897520(network_context_param,&puStack_2f8);
@@ -95696,7 +95700,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(int *)(lVar1 + 0x18);
         uStack_280 = *(int *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_1809830b8;
+        puStack_2a8 = &network_bandwidth_monitor_primary;
         iVar4 = iVar5 + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -95715,7 +95719,7 @@ LAB_180896ce3:
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_180984358;
+          puStack_2f8 = &network_security_context_primary;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar5 = FUN_180897520(network_context_param,&puStack_2f8);
@@ -95724,7 +95728,7 @@ LAB_180896ce3:
         iVar5 = iVar4;
         if (*(char *)(lVar2 + 0x29) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_1809843d0;
+          puStack_2f8 = &network_security_context_secondary;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar7 = FUN_180897520(network_context_param,&puStack_2f8);
@@ -95743,7 +95747,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(int *)(lVar1 + 0x18);
         uStack_280 = *(int *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_1809830b8;
+        puStack_2a8 = &network_bandwidth_monitor_primary;
         iVar4 = iVar5 + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -95762,7 +95766,7 @@ LAB_180896ce3:
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_180984358;
+          puStack_2f8 = &network_security_context_primary;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar5 = FUN_180897520(network_context_param,&puStack_2f8);
@@ -95771,7 +95775,7 @@ LAB_180896ce3:
         iVar5 = iVar4;
         if (*(char *)(lVar2 + 0x29) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_1809843d0;
+          puStack_2f8 = &network_security_context_secondary;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar7 = FUN_180897520(network_context_param,&puStack_2f8);
@@ -95790,7 +95794,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(int *)(lVar1 + 0x18);
         uStack_280 = *(int *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_1809830b8;
+        puStack_2a8 = &network_bandwidth_monitor_primary;
         iVar4 = iVar5 + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -95809,7 +95813,7 @@ LAB_180896ce3:
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_180984358;
+          puStack_2f8 = &network_security_context_primary;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar5 = FUN_180897520(network_context_param,&puStack_2f8);
@@ -95818,7 +95822,7 @@ LAB_180896ce3:
         iVar5 = iVar4;
         if (*(char *)(lVar2 + 0x29) != '\0') {
           iStack_2f0 = 0;
-          puStack_2f8 = &UNK_1809843d0;
+          puStack_2f8 = &network_security_context_secondary;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar7 = FUN_180897520(network_context_param,&puStack_2f8);
@@ -95840,7 +95844,7 @@ LAB_180896ce3:
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(int *)(lVar1 + 0x18);
         uStack_280 = *(int *)(lVar1 + 0x1c);
-        puStack_2a8 = &UNK_180983238;
+        puStack_2a8 = &network_bandwidth_monitor_secondary;
         iVar4 = iVar5 + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = iVar7;
@@ -95918,7 +95922,7 @@ void FUN_180896e11(void)
         uVar6 = *(int *)(lVar1 + 0x1c);
         *(int *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
+        *(undefined **)(unaff_RBP + -0x80) = &network_bandwidth_monitor_primary;
         unaff_R12D = unaff_R12D + 1;
         *(int *)(unaff_RBP + -0x54) = uStackX_20;
         *(int *)(unaff_RBP + -0x70) = unaff_EBX;
@@ -95941,7 +95945,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_180984358;
+          in_stack_00000030 = &network_security_context_primary;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
@@ -95950,7 +95954,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(lVar2 + 0x29) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_1809843d0;
+          in_stack_00000030 = &network_security_context_secondary;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
@@ -95971,7 +95975,7 @@ void FUN_180896e11(void)
         uVar6 = *(int *)(lVar1 + 0x1c);
         *(int *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
+        *(undefined **)(unaff_RBP + -0x80) = &network_bandwidth_monitor_primary;
         unaff_R12D = unaff_R12D + 1;
         *(int *)(unaff_RBP + -0x54) = uStackX_20;
         *(int *)(unaff_RBP + -0x70) = unaff_EBX;
@@ -95994,7 +95998,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_180984358;
+          in_stack_00000030 = &network_security_context_primary;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
@@ -96003,7 +96007,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(lVar2 + 0x29) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_1809843d0;
+          in_stack_00000030 = &network_security_context_secondary;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
@@ -96024,7 +96028,7 @@ void FUN_180896e11(void)
         uVar6 = *(int *)(lVar1 + 0x1c);
         *(int *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
+        *(undefined **)(unaff_RBP + -0x80) = &network_bandwidth_monitor_primary;
         unaff_R12D = unaff_R12D + 1;
         *(int *)(unaff_RBP + -0x54) = uStackX_20;
         *(int *)(unaff_RBP + -0x70) = unaff_EBX;
@@ -96047,7 +96051,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_180984358;
+          in_stack_00000030 = &network_security_context_primary;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
@@ -96056,7 +96060,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(lVar2 + 0x29) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_1809843d0;
+          in_stack_00000030 = &network_security_context_secondary;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
@@ -96077,7 +96081,7 @@ void FUN_180896e11(void)
         uVar6 = *(int *)(lVar1 + 0x1c);
         *(int *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
+        *(undefined **)(unaff_RBP + -0x80) = &network_bandwidth_monitor_primary;
         unaff_R12D = unaff_R12D + 1;
         *(int *)(unaff_RBP + -0x54) = uStackX_20;
         *(int *)(unaff_RBP + -0x70) = unaff_EBX;
@@ -96100,7 +96104,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_180984358;
+          in_stack_00000030 = &network_security_context_primary;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
@@ -96109,7 +96113,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(lVar2 + 0x29) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_1809843d0;
+          in_stack_00000030 = &network_security_context_secondary;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           iVar8 = FUN_180897520(fVar10,&stack0x00000030);
@@ -96133,7 +96137,7 @@ void FUN_180896e11(void)
         uVar6 = *(int *)(lVar1 + 0x1c);
         *(int *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = iVar8;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_180983238;
+        *(undefined **)(unaff_RBP + -0x80) = &network_bandwidth_monitor_secondary;
         iVar8 = iVar8 + 1;
         *(int *)(unaff_RBP + -0x54) = uStackX_20;
         *(int *)(unaff_RBP + -0x70) = unaff_EBX;
@@ -96418,7 +96422,7 @@ void FUN_1808975e0(longlong network_context_param,longlong param_2)
                 if (*pfVar15 != 0.0) {
                   uStack_1b0 = uStack_1c8;
                   uStack_1b8 = 0;
-                  puStack_1c0 = &UNK_1809839d8;
+                  puStack_1c0 = &network_latency_tracker_primary;
                   fStack_1a8 = fVar13;
                   fStack_1a4 = *pfVar15;
                   iVar6 = FUN_180897520(network_context_param,&puStack_1c0);
@@ -96427,7 +96431,7 @@ void FUN_1808975e0(longlong network_context_param,longlong param_2)
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
               } while ((int)fVar13 < 4);
-              pfVar15 = (float *)&UNK_1809850f8;
+              pfVar15 = (float *)&network_latency_tracker_secondary;
               fVar13 = 0.0;
               do {
                 fVar1 = *(float *)(lVar2 + -0x180985054 + (longlong)pfVar15);
@@ -96676,7 +96680,7 @@ void FUN_180897644(void)
               fVar1 = *pfVar21;
               if (fVar1 != 0.0) {
                 in_stack_00000038 = uStackX_20;
-                in_stack_00000028 = &UNK_1809839d8;
+                in_stack_00000028 = &network_latency_tracker_primary;
                 in_stack_00000030 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
@@ -96686,7 +96690,7 @@ void FUN_180897644(void)
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
             } while ((int)fVar19 < 4);
-            pfVar21 = (float *)&UNK_1809850f8;
+            pfVar21 = (float *)&network_latency_tracker_secondary;
             fVar19 = unaff_R13D;
             do {
               fVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar21);
@@ -96922,7 +96926,7 @@ void FUN_1808976b0(void)
           fVar1 = *pfVar21;
           if (fVar1 != 0.0) {
             in_stack_00000038 = uStackX_20;
-            in_stack_00000028 = &UNK_1809839d8;
+            in_stack_00000028 = &network_latency_tracker_primary;
             in_stack_00000030 = unaff_R13D;
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
@@ -96932,7 +96936,7 @@ void FUN_1808976b0(void)
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
         } while ((int)fVar19 < 4);
-        pfVar21 = (float *)&UNK_1809850f8;
+        pfVar21 = (float *)&network_latency_tracker_secondary;
         fVar19 = unaff_R13D;
         do {
           fVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar21);
@@ -97056,7 +97060,7 @@ void FUN_180897859(float network_context_param)
       fVar1 = *pfVar5;
       if (fVar1 != 0.0) {
         in_stack_00000038 = uStackX_20;
-        in_stack_00000028 = &UNK_1809839d8;
+        in_stack_00000028 = &network_latency_tracker_primary;
         in_stack_00000030 = unaff_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
@@ -97066,7 +97070,7 @@ void FUN_180897859(float network_context_param)
       fVar4 = (float)((int)fVar4 + 1);
       pfVar5 = pfVar5 + 1;
     } while ((int)fVar4 < 4);
-    pfVar5 = (float *)&UNK_1809850f8;
+    pfVar5 = (float *)&network_latency_tracker_secondary;
     fVar4 = unaff_R13D;
     do {
       fVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar5);
@@ -97224,7 +97228,7 @@ LAB_180897ce8:
       uStack_240 = *(int *)(lVar1 + 0x1c);
       uStack_260 = 0;
       iVar3 = iVar4 + 1;
-      puStack_268 = &UNK_180982f38;
+      puStack_268 = &network_flow_controller_primary;
       uStack_23c = auStack_288[0];
       uStack_258 = param_3;
       iStack_250 = iVar4;
@@ -97237,7 +97241,7 @@ LAB_180897ce8:
         do {
           uStack_278 = 0;
           lVar2 = network_context_param[4];
-          puStack_280 = &UNK_1809834f8;
+          puStack_280 = &network_flow_controller_secondary;
           uStack_270 = auStack_288[0];
           if (((char)lVar2 == '\0') && (iVar3 = FUN_1808987e0(network_context_param,1), iVar3 != 0))
           goto LAB_180897ce8;
@@ -97302,7 +97306,7 @@ undefined8 FUN_180897d90(longlong *network_context_param)
   int uStack_14;
   
   uStack_20 = 0;
-  puStack_28 = &UNK_180986408;
+  puStack_28 = &network_connection_validator_primary;
   uStack_18 = 2;
   uStack_14 = 0x20214;
   network_uint_result = FUN_180897520(network_context_param,&puStack_28);
@@ -97313,47 +97317,47 @@ undefined8 FUN_180897d90(longlong *network_context_param)
       network_uint_result = 0x1c;
     }
     else {
-      network_uint_result = (**(code **)(*network_context_param + 8))(network_context_param,&UNK_1809864dc);
+      network_uint_result = (**(code **)(*network_context_param + 8))(network_context_param,&network_connection_validator_secondary);
       if ((int)network_uint_result == 0) {
         uVar4 = 0x14;
-        network_uint_result = FUN_180897d20(network_context_param,&UNK_1809864e0,2,2,0x14);
+        network_uint_result = FUN_180897d20(network_context_param,&network_authentication_manager_primary,2,2,0x14);
         if (((((int)network_uint_result == 0) &&
-             (network_uint_result = FUN_180897d20(network_context_param,&UNK_180986508,*(int *)(lVar1 + 0x116bc)),
+             (network_uint_result = FUN_180897d20(network_context_param,&network_authentication_manager_secondary,*(int *)(lVar1 + 0x116bc)),
              (int)network_uint_result == 0)) &&
-            (network_uint_result = FUN_180897d20(network_context_param,&UNK_180986550,(ulonglong)*(uint *)(lVar1 + 0x6d8),
+            (network_uint_result = FUN_180897d20(network_context_param,&network_encryption_engine_primary,(ulonglong)*(uint *)(lVar1 + 0x6d8),
                                    (ulonglong)*(uint *)(lVar1 + 0x6dc) /
                                    (ulonglong)*(uint *)(lVar1 + 0x6d8),uVar4), (int)network_uint_result == 0)) &&
-           (network_uint_result = FUN_180897d20(network_context_param,&UNK_180986590,*(int *)(lVar1 + 0x6d0),
+           (network_uint_result = FUN_180897d20(network_context_param,&network_encryption_engine_secondary,*(int *)(lVar1 + 0x6d0),
                                   *(int *)(lVar1 + 0x1193c),*(int *)(lVar1 + 0x6d4)),
            (int)network_uint_result == 0)) {
           uVar4 = *(int *)(lVar1 + 0x11668);
           uVar8 = *(int *)(lVar1 + 0x11624);
           uVar7 = *(int *)(lVar1 + 0x11620);
           uVar6 = *(int *)(lVar1 + 0x1161c);
-          network_uint_result = FUN_180897d20(network_context_param,&UNK_1809865f0,*(int *)(lVar1 + 0x1160c),
+          network_uint_result = FUN_180897d20(network_context_param,&network_checksum_calculator_primary,*(int *)(lVar1 + 0x1160c),
                                 *(int *)(lVar1 + 0x11610),*(int *)(lVar1 + 0x11614),
                                 *(int *)(lVar1 + 0x11618),uVar6,uVar7,uVar8,uVar4);
           if (((int)network_uint_result == 0) &&
-             (network_uint_result = FUN_180897d20(network_context_param,&UNK_1809866c0,*(int *)(lVar1 + 0x11628),
+             (network_uint_result = FUN_180897d20(network_context_param,&network_checksum_calculator_secondary,*(int *)(lVar1 + 0x11628),
                                     (double)*(float *)(lVar1 + 0x11640),
                                     *(int *)(lVar1 + 0x11644),
                                     *(int *)(lVar1 + 0x1164c),uVar6,uVar7,uVar8,uVar4),
              (int)network_uint_result == 0)) {
             uVar6 = *(int *)(lVar1 + 0x11660);
-            network_uint_result = FUN_180897d20(network_context_param,&UNK_180986730,(double)*(float *)(lVar1 + 0x11650),
+            network_uint_result = FUN_180897d20(network_context_param,&network_state_machine_primary,(double)*(float *)(lVar1 + 0x11650),
                                   *(int *)(lVar1 + 0x11654),*(int *)(lVar1 + 0x11658),
                                   *(int *)(lVar1 + 0x1165c),uVar6,uVar7,uVar8,uVar4);
             if ((int)network_uint_result == 0) {
               uVar5 = *(int *)(lVar3 + 0x10);
-              network_uint_result = FUN_180897d20(network_context_param,&UNK_1809867b0,*(int *)(lVar3 + 4),
+              network_uint_result = FUN_180897d20(network_context_param,&network_state_machine_secondary,*(int *)(lVar3 + 4),
                                     *(int *)(lVar3 + 8),*(int *)(lVar3 + 0xc),uVar5,
                                     uVar6,uVar7,uVar8,uVar4);
               if ((((int)network_uint_result == 0) &&
-                  (network_uint_result = FUN_180897d20(network_context_param,&UNK_180986850,*(int *)(lVar1 + 0x1e0),
+                  (network_uint_result = FUN_180897d20(network_context_param,&network_packet_queue_primary,*(int *)(lVar1 + 0x1e0),
                                          *(int *)(network_context_param[1] + 0x20),
                                          *(int *)(lVar1 + 0x78),uVar5,uVar6,uVar7,uVar8,uVar4
                                         ), (int)network_uint_result == 0)) &&
-                 ((network_uint_result = (**(code **)(*network_context_param + 8))(network_context_param,&UNK_1809864dc), (int)network_uint_result == 0 &&
+                 ((network_uint_result = (**(code **)(*network_context_param + 8))(network_context_param,&network_connection_validator_secondary), (int)network_uint_result == 0 &&
                   (((*(uint *)(network_context_param + 3) & 2) != 0 ||
                    (network_uint_result = FUN_180898040(network_context_param), (int)network_uint_result == 0)))))) {
                 network_uint_result = 0;
@@ -97517,7 +97521,7 @@ void FUN_180898040(longlong *network_context_param)
       iVar6 = *(int *)(lVar15 + 0x28);
       if (iVar6 != 1) {
         uStack_338 = uStack_338 & 0xffffffff00000000;
-        plStack_340 = (longlong *)&UNK_180982378;
+        plStack_340 = (longlong *)&network_packet_queue_secondary;
         aplStack_330[0] = (longlong *)CONCAT44(aplStack_330[0]._4_4_,iVar6);
         iVar7 = FUN_180897520(network_context_param,&plStack_340);
         if (iVar7 != 0) goto LAB_18089866f;
@@ -97608,7 +97612,7 @@ void FUN_180898040(longlong *network_context_param)
               uVar9 = (ulonglong)(lStack_320 * 48000) /
                       (ulonglong)*(uint *)((longlong)network_context_param + 0x1c);
               lVar4 = network_context_param[2];
-              plStack_340 = (longlong *)&UNK_180986390;
+              plStack_340 = (longlong *)&network_buffer_allocator_primary;
               uStack_338 = uStack_338 & 0xffffffff00000000;
               network_context_param[2] = uVar9;
               aplStack_330[0] = plVar16;
@@ -97820,7 +97824,7 @@ undefined8 FUN_1808987e0(longlong *network_context_param,char param_2)
       if (lVar1 != 0) {
         uStack_18 = uVar4;
       }
-      puStack_28 = &UNK_180986390;
+      puStack_28 = &network_buffer_allocator_primary;
       network_uint_result = FUN_180897520(network_context_param,&puStack_28);
       if ((int)network_uint_result != 0) {
         return network_uint_result;
