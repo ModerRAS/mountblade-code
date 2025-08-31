@@ -29369,13 +29369,6 @@ do {
 }
 _CxxThrowutility_exception_pointer(0,0);
 }
- * 内存管理器处理器
- * 处理内存管理相关的异常和错误情况
- *
- * @param resource_count 资源计数，用于标识内存管理所需的资源数量
- * @param utility_context_ptr 上下文句柄，包含内存管理上下文信息
- * @return 无返回值
- */
 /**
  * @brief Utility Catch Memory Manager Handler
 /**

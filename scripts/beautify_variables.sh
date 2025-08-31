@@ -1,0 +1,85 @@
+#!/bin/bash
+
+# 为01_initialization.c文件中的变量名添加语义化替换
+# 简化实现：仅将常见的非语义化变量名替换为语义化名称，保持代码结构不变
+# 原本实现：完全重构所有变量名的命名体系，建立统一的语义化命名规范
+
+INPUT_FILE="TaleWorlds.Native/src/01_initialization.c"
+
+# 替换通用变量名
+sed -i 's/cVar1/status_flag/g' "$INPUT_FILE"
+sed -i 's/cVar2/char_flag/g' "$INPUT_FILE"
+sed -i 's/cVar3/char_result/g' "$INPUT_FILE"
+sed -i 's/puVar1/pointer_primary/g' "$INPUT_FILE"
+sed -i 's/puVar2/pointer_secondary/g' "$INPUT_FILE"
+sed -i 's/puVar3/pointer_tertiary/g' "$INPUT_FILE"
+sed -i 's/puVar4/pointer_quaternary/g' "$INPUT_FILE"
+sed -i 's/puVar5/pointer_quinary/g' "$INPUT_FILE"
+sed -i 's/puVar6/pointer_senary/g' "$INPUT_FILE"
+sed -i 's/puVar7/pointer_septenary/g' "$INPUT_FILE"
+sed -i 's/puVar8/pointer_octonary/g' "$INPUT_FILE"
+sed -i 's/puVar9/pointer_nonary/g' "$INPUT_FILE"
+sed -i 's/puVar10/pointer_denary/g' "$INPUT_FILE"
+sed -i 's/iVar1/integer_primary/g' "$INPUT_FILE"
+sed -i 's/iVar2/integer_secondary/g' "$INPUT_FILE"
+sed -i 's/iVar3/integer_result/g' "$INPUT_FILE"
+sed -i 's/iVar4/integer_value/g' "$INPUT_FILE"
+sed -i 's/iVar5/integer_count/g' "$INPUT_FILE"
+sed -i 's/iVar6/integer_index/g' "$INPUT_FILE"
+sed -i 's/iVar7/integer_flag/g' "$INPUT_FILE"
+sed -i 's/iVar8/integer_status/g' "$INPUT_FILE"
+sed -i 's/iVar9/integer_code/g' "$INPUT_FILE"
+sed -i 's/iVar10/integer_offset/g' "$INPUT_FILE"
+sed -i 's/plVar1/long_pointer_primary/g' "$INPUT_FILE"
+sed -i 's/plVar2/long_pointer_secondary/g' "$INPUT_FILE"
+sed -i 's/plVar3/long_pointer_result/g' "$INPUT_FILE"
+sed -i 's/plVar4/long_pointer_value/g' "$INPUT_FILE"
+sed -i 's/lVar1/long_value_primary/g' "$INPUT_FILE"
+sed -i 's/lVar2/long_value_secondary/g' "$INPUT_FILE"
+sed -i 's/lVar3/long_value_result/g' "$INPUT_FILE"
+sed -i 's/lVar4/long_value_offset/g' "$INPUT_FILE"
+sed -i 's/lVar5/long_value_size/g' "$INPUT_FILE"
+sed -i 's/uVar1/unsigned_value_primary/g' "$INPUT_FILE"
+sed -i 's/uVar2/unsigned_value_secondary/g' "$INPUT_FILE"
+sed -i 's/uVar3/unsigned_value_result/g' "$INPUT_FILE"
+sed -i 's/uVar4/unsigned_value_count/g' "$INPUT_FILE"
+sed -i 's/uVar5/unsigned_value_index/g' "$INPUT_FILE"
+sed -i 's/pcVar1/char_pointer_primary/g' "$INPUT_FILE"
+sed -i 's/pcVar2/char_pointer_secondary/g' "$INPUT_FILE"
+sed -i 's/pcVar3/char_pointer_result/g' "$INPUT_FILE"
+sed -i 's/pcVar4/char_pointer_value/g' "$INPUT_FILE"
+sed -i 's/piVar1/integer_pointer_primary/g' "$INPUT_FILE"
+sed -i 's/piVar2/integer_pointer_secondary/g' "$INPUT_FILE"
+sed -i 's/piVar3/integer_pointer_result/g' "$INPUT_FILE"
+sed -i 's/piVar4/integer_pointer_value/g' "$INPUT_FILE"
+sed -i 's/puStackX_/stack_pointer_/g' "$INPUT_FILE"
+sed -i 's/pcStackX_/stack_char_pointer_/g' "$INPUT_FILE"
+sed -i 's/piStackX_/stack_int_pointer_/g' "$INPUT_FILE"
+sed -i 's/plStackX_/stack_long_pointer_/g' "$INPUT_FILE"
+sed -i 's/iStackX_/stack_int_value_/g' "$INPUT_FILE"
+sed -i 's/uStackX_/stack_unsigned_value_/g' "$INPUT_FILE"
+sed -i 's/lStackX_/stack_long_value_/g' "$INPUT_FILE"
+sed -i 's/local_/variable_/g' "$INPUT_FILE"
+sed -i 's/local_/variable_/g' "$INPUT_FILE"
+
+# 替换特定于系统的变量名
+sed -i 's/DAT_1809fc740/SYSTEM_CONFIG_DATA_SIGNATURE/g' "$INPUT_FILE"
+sed -i 's/DAT_1809fc768/MEMORY_POOL_DATA_SIGNATURE/g' "$INPUT_FILE"
+sed -i 's/DAT_1809fc790/SYSTEM_HANDLER_TABLE/g' "$INPUT_FILE"
+sed -i 's/UNK_18098c790/SYSTEM_CONFIG_HANDLER_TABLE/g' "$INPUT_FILE"
+sed -i 's/FUN_18007fcd0/system_config_callback_handler/g' "$INPUT_FILE"
+sed -i 's/FUN_18008d070/system_get_root_table/g' "$INPUT_FILE"
+sed -i 's/FUN_18008f0d0/system_allocate_config_memory/g' "$INPUT_FILE"
+sed -i 's/FUN_18008f140/system_setup_config_block/g' "$INPUT_FILE"
+
+# 替换栈变量名
+sed -i 's/puStackX_10/temp_config_pointer/g' "$INPUT_FILE"
+sed -i 's/pcStackX_18/config_callback_function/g' "$INPUT_FILE"
+sed -i 's/uStackX_18/stack_temp_value/g' "$INPUT_FILE"
+
+echo "变量名美化完成"
+
+# 删除脚本文件
+rm -f "$0"
+
+echo "01_initialization.c变量名美化完成"
