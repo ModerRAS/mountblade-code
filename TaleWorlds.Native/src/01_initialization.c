@@ -2898,8 +2898,8 @@ void system_initialize_network_system(void)
 
 
 
-// 函数: void system_function_02f770(void)
-void system_function_02f770(void)
+// 函数: void system_initialize_ui_system(void)
+void system_initialize_ui_system(void)
 
 {
   char cVar1;
@@ -2948,8 +2948,8 @@ void system_function_02f770(void)
 
 
 
-// 函数: void system_function_02f870(void)
-void system_function_02f870(void)
+// 函数: void system_initialize_database(void)
+void system_initialize_database(void)
 
 {
   char cVar1;
@@ -2998,8 +2998,8 @@ void system_function_02f870(void)
 
 
 
-// 函数: void system_function_02f970(void)
-void system_function_02f970(void)
+// 函数: void system_initialize_thread_pool(void)
+void system_initialize_thread_pool(void)
 
 {
   char cVar1;
@@ -3048,8 +3048,8 @@ void system_function_02f970(void)
 
 
 
-// 函数: void system_function_02fa70(void)
-void system_function_02fa70(void)
+// 函数: void system_initialize_memory_pool(void)
+void system_initialize_memory_pool(void)
 
 {
   char cVar1;
@@ -3098,8 +3098,8 @@ void system_function_02fa70(void)
 
 
 
-// 函数: void system_function_02fb70(void)
-void system_function_02fb70(void)
+// 函数: void system_initialize_resource_pool(void)
+void system_initialize_resource_pool(void)
 
 {
   char cVar1;
@@ -3148,8 +3148,8 @@ void system_function_02fb70(void)
 
 
 
-// 函数: void system_function_02fc70(void)
-void system_function_02fc70(void)
+// 函数: void system_initialize_callback_pool(void)
+void system_initialize_callback_pool(void)
 
 {
   char cVar1;
@@ -3198,8 +3198,8 @@ void system_function_02fc70(void)
 
 
 
-// 函数: void system_function_02fd70(void)
-void system_function_02fd70(void)
+// 函数: void system_initialize_event_pool(void)
+void system_initialize_event_pool(void)
 
 {
   char cVar1;
@@ -3248,8 +3248,8 @@ void system_function_02fd70(void)
 
 
 
-// 函数: void system_function_02fe70(void)
-void system_function_02fe70(void)
+// 函数: void system_initialize_message_pool(void)
+void system_initialize_message_pool(void)
 
 {
   char cVar1;
@@ -3298,8 +3298,8 @@ void system_function_02fe70(void)
 
 
 
-// 函数: void system_function_02ff70(void)
-void system_function_02ff70(void)
+// 函数: void system_initialize_signal_pool(void)
+void system_initialize_signal_pool(void)
 
 {
   char cVar1;
@@ -3348,8 +3348,8 @@ void system_function_02ff70(void)
 
 
 
-// 函数: void system_function_030070(void)
-void system_function_030070(void)
+// 函数: void system_initialize_interrupt_pool(void)
+void system_initialize_interrupt_pool(void)
 
 {
   char cVar1;
