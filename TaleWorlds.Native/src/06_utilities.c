@@ -1104,6 +1104,10 @@ void utility_context_cleaner(void)
  *
  */
 void utility_destroy_thread_pool(void)
+{
+  return;
+}
+
 /**
  * @brief 未命名函数 27 - 自动生成的工具函数
  * @return 无返回值
@@ -1115,6 +1119,8 @@ void utility_resource_loader(void)
 {
 
   utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
+  return;
+}
 
 /**
  * @brief 初始化系统互斥锁 - 初始化系统的互斥锁
@@ -1123,14 +1129,11 @@ void utility_resource_loader(void)
  * 该函数用于初始化系统的互斥锁，确保线程同步。
  *
  */
-/**
- * @brief 初始化系统互斥锁 - 初始化系统互斥锁
- * @return 无返回值
- *
- * 该函数负责初始化系统互斥锁。
- *
- */
 void utility_initialize_system_mutex(void)
+{
+  return;
+}
+
 /**
  * @brief 未命名函数 28 - 自动生成的工具函数
  * @return 无返回值
