@@ -11843,11 +11843,17 @@ uint64_t system_event_handler(void)
   system_memory_manager_initialize(psystem_temp_int2 + -4);
   return 0;
 }
-long long system_event_handler(void)
+/**
+ * @brief 系统事件处理器
+ * @return 返回当前时间的毫秒数
+ * 
+ * 该函数获取当前系统时间并转换为毫秒数，用于系统计时和事件调度
+ */
+int64_t system_event_handler(void)
 {
   uint system_temp_uint1;
   system_temp_uint1 = timeGetTime();
-  return (ulong long)system_temp_uint1 * 1000;
+  return (uint64_t)system_temp_uint1 * 1000;
 }
 /**
  * @brief 系统位操作处理函数
