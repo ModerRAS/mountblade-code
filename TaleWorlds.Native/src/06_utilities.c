@@ -232,6 +232,24 @@
 #define UTILITY_STATUS_FLAG_F 0xf
 #define UTILITY_STATUS_ENABLED_FLAG_QUATERNARY 0x4
 
+// 新增常量定义 - 用于替换硬编码值
+#define UTILITY_NEGATIVE_OFFSET_25 -0x25
+#define UTILITY_NEGATIVE_OFFSET_45 -0x45
+#define UTILITY_MAX_HANDLE_SIZE 0x32
+#define UTILITY_MAX_EXTENDED_HANDLE_SIZE 0x5a
+#define UTILITY_SERVICE_HANDLER_OFFSET_ALT 0x2f8
+#define UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY 0xb0
+#define UTILITY_BLOCK_SIZE_LARGE 0x390
+#define UTILITY_MAX_UINT32_MASK 0xffffffff00000000
+#define UTILITY_STATUS_FLAG_MASK_FF00 0xffffff00
+#define UTILITY_STATUS_FLAG_MASK_FFFF 0xffff
+#define UTILITY_FLAG_MASK_WORD_FF 0xff
+#define UTILITY_FLAG_MASK_C000 0xffffc000
+#define UTILITY_THREAD_CONTEXT_OFFSET_PRIMARY 0xc4f450
+#define UTILITY_CONTEXT_OFFSET_STATUS 0x6c
+#define UTILITY_MEMORY_POINTER_OFFSET_1K 0x1000
+#define UTILITY_FLAG_MASK_MEMORY_ALLOCATED 0x40000
+
 void *utility_exception_pointer;
 void *utility_global_data_primary;
 void *utility_global_data_secondary;
@@ -460,7 +478,6 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
         utility_resource_id = utility_resource_create(*(uint64_t *)(context_pointer + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(context_pointer + UTILITY_POINTER_OFFSET), &utility_buffer_handle);
         
         if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
-    
 }
             // 处理进程计数大于0的情况
             if (0 < utility_iteration_maximum_limit) {
@@ -483,7 +500,6 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
         else {
             utility_buffer_cleanup(&utility_buffer_handle);
 }
-    // 计算校验和
 }
 /**
  * @brief 验证资源状态的有效性
