@@ -14258,7 +14258,7 @@ void system_configure_paths(void)
     system_initialize_buffer_type5(&pstack_uint_1b8);
     (**(code **)(**(longlong **)(_SYSTEM_CONFIG_DATA_TYPE_88 + 0x2b0) + 0x98))
               (*(longlong **)(_SYSTEM_CONFIG_DATA_TYPE_88 + 0x2b0),&pstack_uint_1b8);
-    system_util_180061380();
+    system_utility_initialize_system_config();
     long_value_result = _SYSTEM_CONFIG_DATA_TYPE_104;
     unsigned_value_index = system_utility_create_object(_SYSTEM_CONFIG_DATA_TYPE_128,0x70,8,3);
     long_ptr_6 = (longlong *)system_utility_allocate_memory(unsigned_value_index,8,long_value_result);
@@ -14274,7 +14274,7 @@ void system_configure_paths(void)
     (**(code **)(*long_ptr_6 + 0x28))(long_ptr_6);
     (*pchar_flag)(primary_ptr,&plStack_208);
     (**(code **)(*long_ptr_6 + 0x38))(long_ptr_6);
-    system_util_1800624c0();
+    system_utility_initialize_timestamp();
     pstack_uint_1d8 = &system_config_default_handler;
     stack_uint_1c0 = 0;
     pstack_uint_1d0 = (void *)0x0;
@@ -30528,7 +30528,20 @@ system_util_180061300(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint6
   }
   return param_1;
 }
-void system_util_180061380(uint64_t param_1,longlong param_2)
+/**
+ * @brief 系统工具函数：初始化系统配置和内存分配
+ * 
+ * 该函数负责初始化系统配置数据结构，分配必要的内存资源，
+ * 并设置系统配置的默认值。主要用于系统启动阶段的配置初始化。
+ * 
+ * @param param_1 系统配置参数
+ * @param param_2 系统配置数据结构指针
+ * 
+ * @note 这是简化实现，主要处理系统配置初始化工作
+ * 原本实现：完全重构系统配置初始化系统，建立统一的配置管理规范
+ * 简化实现：仅初始化基本的系统配置功能，保持代码结构不变
+ */
+void system_utility_initialize_system_config(uint64_t param_1,longlong param_2)
 {
   longlong system_memory_allocation_result;
   longlong long_value_secondary;
@@ -30795,7 +30808,17 @@ void system_util_1800623e0(longlong *param_1)
   }
   return;
 }
-void system_util_1800624c0(void)
+/**
+ * @brief 系统工具函数：初始化时间戳和系统时钟
+ * 
+ * 该函数负责初始化系统的时间戳，获取当前时间并转换为本地时间。
+ * 主要用于系统日志和时间相关功能的初始化。
+ * 
+ * @note 这是简化实现，主要处理系统时间初始化工作
+ * 原本实现：完全重构时间管理系统，建立统一的时间管理规范
+ * 简化实现：仅初始化基本的时间功能，保持代码结构不变
+ */
+void system_utility_initialize_timestamp(void)
 {
   uint8_t stack_array_208 [48];
   uint32_t stack_uint_1d8;
