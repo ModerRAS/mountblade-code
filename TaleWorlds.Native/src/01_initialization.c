@@ -15734,10 +15734,10 @@ void system_initialize_monitoring_system(uint64_t *param1,uint64_t param1,uint64
 ulonglong system_compare_memory_blocks(longlong param1,longlong param1)
 
 {
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   int system_int_context;
   longlong system_long_handle;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   int system_int_config;
   int system_int_status;
   ulonglong system_audio_local_uint;
@@ -15753,14 +15753,14 @@ ulonglong system_compare_memory_blocks(longlong param1,longlong param1)
     system_int_context = *(int *)(system_audio_local_uint * SYSTEM_CONFIG_DATA_SIZE_160 + SYSTEM_CONFIG_DATA_SIZE_16 + system_long_handle);
     if (system_int_context == system_int_config) {
       if (system_int_context != 0) {
-        system_byte_ptr_ = *(byte **)(system_audio_local_uint * SYSTEM_CONFIG_DATA_SIZE_160 + 8 + system_long_handle);
-        system_audio_local_long = *(longlong *)(param1 + 8) - (longlong)system_byte_ptr_;
+        system_byte_pointer = *(byte **)(system_audio_local_uint * SYSTEM_CONFIG_DATA_SIZE_160 + 8 + system_long_handle);
+        system_audio_local_long = *(longlong *)(param1 + 8) - (longlong)system_byte_pointer;
         do {
-          system_byte_ptr_ = system_byte_ptr_ + system_audio_local_long;
-          system_int_config = (uint)*system_byte_ptr_ - (uint)*system_byte_ptr_;
+          system_byte_pointer = system_byte_pointer + system_audio_local_long;
+          system_int_config = (uint)*system_byte_pointer - (uint)*system_byte_pointer;
           if (system_int_config != 0) break;
-          system_byte_ptr_ = system_byte_ptr_ + 1;
-        } while (*system_byte_ptr_ != 0);
+          system_byte_pointer = system_byte_pointer + 1;
+        } while (*system_byte_pointer != 0);
       }
     }
     else if (system_int_context != 0) goto SYSTEM_LABEL;
@@ -15780,14 +15780,14 @@ SYSTEM_LABEL:
       system_int_status = system_int_config;
       if (system_int_context == system_int_config) {
         if (system_int_context != 0) {
-          system_byte_ptr_ = *(byte **)(system_audio_local_uint + 8 + system_long_handle);
-          system_audio_local_long = *(longlong *)(param1 + 8) - (longlong)system_byte_ptr_;
+          system_byte_pointer = *(byte **)(system_audio_local_uint + 8 + system_long_handle);
+          system_audio_local_long = *(longlong *)(param1 + 8) - (longlong)system_byte_pointer;
           do {
-            system_byte_ptr_ = system_byte_ptr_ + system_audio_local_long;
-            system_int_status = (uint)*system_byte_ptr_ - (uint)*system_byte_ptr_;
+            system_byte_pointer = system_byte_pointer + system_audio_local_long;
+            system_int_status = (uint)*system_byte_pointer - (uint)*system_byte_pointer;
             if (system_int_status != 0) break;
-            system_byte_ptr_ = system_byte_ptr_ + 1;
-          } while (*system_byte_ptr_ != 0);
+            system_byte_pointer = system_byte_pointer + 1;
+          } while (*system_byte_pointer != 0);
         }
 SYSTEM_LABEL:
         if (system_int_status == 0) {
@@ -16166,7 +16166,7 @@ void system_aggregate_performance_stats(uint64_t param1,uint64_t param1,longlong
   int comparison_status;
   uint64_t *system_buffer_ptr;
   uint system_audio_config_value;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint64_t *parent_pointer;
   uint64_t *child_pointer;
   uint64_t *system_manager_ptr;
@@ -16192,13 +16192,13 @@ void system_aggregate_performance_stats(uint64_t param1,uint64_t param1,longlong
           system_byte_context = true;
         }
         else {
-          system_byte_ptr_ = *(byte **)(param1 + 8);
-          system_audio_local_long = child_pointer[5] - (longlong)system_byte_ptr_;
+          system_byte_pointer = *(byte **)(param1 + 8);
+          system_audio_local_long = child_pointer[5] - (longlong)system_byte_pointer;
           do {
-            system_audio_config_value = (uint)system_byte_ptr_[system_audio_local_long];
-            comparison_status = *system_byte_ptr_ - system_audio_config_value;
-            if (*system_byte_ptr_ != system_audio_config_value) break;
-            system_byte_ptr_ = system_byte_ptr_ + 1;
+            system_audio_config_value = (uint)system_byte_pointer[system_audio_local_long];
+            comparison_status = *system_byte_pointer - system_audio_config_value;
+            if (*system_byte_pointer != system_audio_config_value) break;
+            system_byte_pointer = system_byte_pointer + 1;
           } while (system_audio_config_value != 0);
           system_byte_context = 0 < comparison_status;
           if (comparison_status < 1) {
@@ -16219,13 +16219,13 @@ SYSTEM_LABEL:
   if (system_buffer_ptr != parent_pointer) {
     if (*(int *)(system_buffer_ptr + 6) == 0) goto SYSTEM_LABEL;
     if (*(int *)(param1 + SYSTEM_CONFIG_DATA_SIZE_16) != 0) {
-      system_byte_ptr_ = (byte *)system_buffer_ptr[5];
-      system_audio_local_long = *(longlong *)(param1 + 8) - (longlong)system_byte_ptr_;
+      system_byte_pointer = (byte *)system_buffer_ptr[5];
+      system_audio_local_long = *(longlong *)(param1 + 8) - (longlong)system_byte_pointer;
       do {
-        system_byte_value = *system_byte_ptr_;
-        system_audio_config_value = (uint)system_byte_ptr_[system_audio_local_long];
+        system_byte_value = *system_byte_pointer;
+        system_audio_config_value = (uint)system_byte_pointer[system_audio_local_long];
         if (system_byte_value != system_audio_config_value) break;
-        system_byte_ptr_ = system_byte_ptr_ + 1;
+        system_byte_pointer = system_byte_pointer + 1;
       } while (system_audio_config_value != 0);
       if ((int)(system_byte_value - system_audio_config_value) < 1) goto SYSTEM_LABEL;
     }
@@ -16786,7 +16786,7 @@ system_process_memory_request(longlong *param1,uint64_t *param1,uint64_t param1,
   bool system_byte_context;
   longlong *system_long_handle_ptr;
   longlong *context_pointer;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint system_audio_status_flag;
   longlong system_audio_local_long;
   uint64_t system_audio_local_uint;
@@ -16797,13 +16797,13 @@ system_process_memory_request(longlong *param1,uint64_t *param1,uint64_t param1,
     if ((param1[4] != 0) && (*(int *)(system_param_ + SYSTEM_CONFIG_DATA_SIZE_16) != 0)) {
       param1 = context_pointer;
       if (*(int *)(context_pointer + 6) != 0) {
-        system_byte_ptr_ = *(byte **)(system_param_ + 8);
-        system_audio_local_long = context_pointer[5] - (longlong)system_byte_ptr_;
+        system_byte_pointer = *(byte **)(system_param_ + 8);
+        system_audio_local_long = context_pointer[5] - (longlong)system_byte_pointer;
         do {
-          system_byte_value = *system_byte_ptr_;
-          system_audio_status_flag = (uint)system_byte_ptr_[system_audio_local_long];
+          system_byte_value = *system_byte_pointer;
+          system_audio_status_flag = (uint)system_byte_pointer[system_audio_local_long];
           if (system_byte_value != system_audio_status_flag) break;
-          system_byte_ptr_ = system_byte_ptr_ + 1;
+          system_byte_pointer = system_byte_pointer + 1;
         } while (system_audio_status_flag != 0);
         if ((int)(system_byte_value - system_audio_status_flag) < 1) goto SYSTEM_LABEL;
       }
@@ -16820,24 +16820,24 @@ SYSTEM_LABEL:
     context_pointer = (longlong *)func_0x00018066bd70(param1);
     if (*(int *)(system_param_ + SYSTEM_CONFIG_DATA_SIZE_16) != 0) {
       if ((int)param1[6] != 0) {
-        system_byte_ptr_ = *(byte **)(system_param_ + 8);
-        system_audio_local_long = param1[5] - (longlong)system_byte_ptr_;
+        system_byte_pointer = *(byte **)(system_param_ + 8);
+        system_audio_local_long = param1[5] - (longlong)system_byte_pointer;
         do {
-          system_byte_value = *system_byte_ptr_;
-          system_audio_status_flag = (uint)system_byte_ptr_[system_audio_local_long];
+          system_byte_value = *system_byte_pointer;
+          system_audio_status_flag = (uint)system_byte_pointer[system_audio_local_long];
           if (system_byte_value != system_audio_status_flag) break;
-          system_byte_ptr_ = system_byte_ptr_ + 1;
+          system_byte_pointer = system_byte_pointer + 1;
         } while (system_audio_status_flag != 0);
         if ((int)(system_byte_value - system_audio_status_flag) < 1) goto SYSTEM_LABEL;
       }
       if ((int)context_pointer[6] != 0) {
-        system_byte_ptr_ = (byte *)context_pointer[5];
-        system_audio_local_long = *(longlong *)(system_param_ + 8) - (longlong)system_byte_ptr_;
+        system_byte_pointer = (byte *)context_pointer[5];
+        system_audio_local_long = *(longlong *)(system_param_ + 8) - (longlong)system_byte_pointer;
         do {
-          system_byte_value = *system_byte_ptr_;
-          system_audio_status_flag = (uint)system_byte_ptr_[system_audio_local_long];
+          system_byte_value = *system_byte_pointer;
+          system_audio_status_flag = (uint)system_byte_pointer[system_audio_local_long];
           if (system_byte_value != system_audio_status_flag) break;
-          system_byte_ptr_ = system_byte_ptr_ + 1;
+          system_byte_pointer = system_byte_pointer + 1;
         } while (system_audio_status_flag != 0);
         if (0 < (int)(system_byte_value - system_audio_status_flag)) {
           if (*param1 == 0) goto SYSTEM_LABEL;
@@ -16864,13 +16864,13 @@ SYSTEM_LABEL:
         system_byte_context = true;
       }
       else {
-        system_byte_ptr_ = (byte *)context_pointer[5];
-        system_audio_local_long = *(longlong *)(system_param_ + 8) - (longlong)system_byte_ptr_;
+        system_byte_pointer = (byte *)context_pointer[5];
+        system_audio_local_long = *(longlong *)(system_param_ + 8) - (longlong)system_byte_pointer;
         do {
-          system_byte_value = *system_byte_ptr_;
-          system_audio_status_flag = (uint)system_byte_ptr_[system_audio_local_long];
+          system_byte_value = *system_byte_pointer;
+          system_audio_status_flag = (uint)system_byte_pointer[system_audio_local_long];
           if (system_byte_value != system_audio_status_flag) break;
-          system_byte_ptr_ = system_byte_ptr_ + 1;
+          system_byte_pointer = system_byte_pointer + 1;
         } while (system_audio_status_flag != 0);
         system_byte_context = 0 < (int)(system_byte_value - system_audio_status_flag);
       }
@@ -16889,13 +16889,13 @@ SYSTEM_LABEL:
 SYSTEM_LABEL:
     if (*(int *)(system_param_ + SYSTEM_CONFIG_DATA_SIZE_16) == 0) goto SYSTEM_LABEL;
     if ((int)context_pointer[6] != 0) {
-      system_byte_ptr_ = *(byte **)(system_param_ + 8);
-      system_audio_local_long = context_pointer[5] - (longlong)system_byte_ptr_;
+      system_byte_pointer = *(byte **)(system_param_ + 8);
+      system_audio_local_long = context_pointer[5] - (longlong)system_byte_pointer;
       do {
-        system_byte_value = *system_byte_ptr_;
-        system_audio_status_flag = (uint)system_byte_ptr_[system_audio_local_long];
+        system_byte_value = *system_byte_pointer;
+        system_audio_status_flag = (uint)system_byte_pointer[system_audio_local_long];
         if (system_byte_value != system_audio_status_flag) break;
-        system_byte_ptr_ = system_byte_ptr_ + 1;
+        system_byte_pointer = system_byte_pointer + 1;
       } while (system_audio_status_flag != 0);
       if ((int)(system_byte_value - system_audio_status_flag) < 1) goto SYSTEM_LABEL;
     }
@@ -16918,7 +16918,7 @@ void system_initialize_debugging_system(longlong param1,uint64_t param1,longlong
 
 {
   byte system_byte_value;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint system_uint_handle;
   uint64_t *system_buffer_ptr;
   longlong audio_resource_id;
@@ -16930,13 +16930,13 @@ void system_initialize_debugging_system(longlong param1,uint64_t param1,longlong
   if (((char)param1 != '\0') || (param1 == param1)) goto SYSTEM_LABEL;
   if (*(int *)(param1 + 0x30) != 0) {
     if (*(int *)(system_param_ + SYSTEM_CONFIG_DATA_SIZE_16) == 0) goto SYSTEM_LABEL;
-    system_byte_ptr_ = *(byte **)(param1 + SYSTEM_CONTEXT_OFFSET_28);
-    audio_resource_id = *(longlong *)(system_param_ + 8) - (longlong)system_byte_ptr_;
+    system_byte_pointer = *(byte **)(param1 + SYSTEM_CONTEXT_OFFSET_28);
+    audio_resource_id = *(longlong *)(system_param_ + 8) - (longlong)system_byte_pointer;
     do {
-      system_byte_value = *system_byte_ptr_;
-      system_uint_handle = (uint)system_byte_ptr_[audio_resource_id];
+      system_byte_value = *system_byte_pointer;
+      system_uint_handle = (uint)system_byte_pointer[audio_resource_id];
       if (system_byte_value != system_uint_handle) break;
-      system_byte_ptr_ = system_byte_ptr_ + 1;
+      system_byte_pointer = system_byte_pointer + 1;
     } while (system_uint_handle != 0);
     if (0 < (int)(system_byte_value - system_uint_handle)) goto SYSTEM_LABEL;
   }
@@ -21395,7 +21395,7 @@ bool system_validate_network_connection(longlong param1)
   uint64_t *data_pointer;
   byte system_byte_context;
   bool system_byte_handle;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint system_audio_config_value;
   int system_int_status;
   longlong system_audio_local_long;
@@ -21422,12 +21422,12 @@ bool system_validate_network_connection(longlong param1)
           system_byte_handle = true;
         }
         else {
-          system_byte_ptr_ = pbStack_28;
+          system_byte_pointer = pbStack_28;
           do {
-            system_audio_config_value = (uint)system_byte_ptr_[child_pointer[5] - (longlong)pbStack_28];
-            system_int_status = *system_byte_ptr_ - system_audio_config_value;
-            if (*system_byte_ptr_ != system_audio_config_value) break;
-            system_byte_ptr_ = system_byte_ptr_ + 1;
+            system_audio_config_value = (uint)system_byte_pointer[child_pointer[5] - (longlong)pbStack_28];
+            system_int_status = *system_byte_pointer - system_audio_config_value;
+            if (*system_byte_pointer != system_audio_config_value) break;
+            system_byte_pointer = system_byte_pointer + 1;
           } while (system_audio_config_value != 0);
           system_byte_handle = 0 < system_int_status;
           if (system_int_status < 1) {
@@ -21448,13 +21448,13 @@ SYSTEM_LABEL:
     if (system_handler_ptr != data_pointer) {
       if (*(int *)(system_handler_ptr + 6) == 0) goto SYSTEM_LABEL;
       if (system_stack_int_20 != 0) {
-        system_byte_ptr_ = (byte *)system_handler_ptr[5];
-        system_audio_local_long = (longlong)pbStack_28 - (longlong)system_byte_ptr_;
+        system_byte_pointer = (byte *)system_handler_ptr[5];
+        system_audio_local_long = (longlong)pbStack_28 - (longlong)system_byte_pointer;
         do {
-          system_byte_context = *system_byte_ptr_;
-          system_audio_config_value = (uint)system_byte_ptr_[system_audio_local_long];
+          system_byte_context = *system_byte_pointer;
+          system_audio_config_value = (uint)system_byte_pointer[system_audio_local_long];
           if (system_byte_context != system_audio_config_value) break;
-          system_byte_ptr_ = system_byte_ptr_ + 1;
+          system_byte_pointer = system_byte_pointer + 1;
         } while (system_audio_config_value != 0);
         if ((int)(system_byte_context - system_audio_config_value) < 1) goto SYSTEM_LABEL;
       }
@@ -25240,7 +25240,7 @@ longlong * system_initialize_resource_table(longlong param1,longlong *param1,uin
   uint system_audio_context_index;
   longlong system_long_handle;
   longlong system_audio_buffer_ptr;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   longlong system_long_status;
   uint64_t system_audio_local_uint;
   char acStackX_8 [8];
@@ -25261,13 +25261,13 @@ SYSTEM_LABEL:
       goto SYSTEM_LABEL;
     }
     if (*(int *)(system_long_handle + 0x30) != 0) {
-      system_byte_ptr_ = *(byte **)(system_audio_buffer_ptr + SYSTEM_CONTEXT_OFFSET_28);
-      system_long_status = *(longlong *)(system_long_handle + SYSTEM_CONTEXT_OFFSET_28) - (longlong)system_byte_ptr_;
+      system_byte_pointer = *(byte **)(system_audio_buffer_ptr + SYSTEM_CONTEXT_OFFSET_28);
+      system_long_status = *(longlong *)(system_long_handle + SYSTEM_CONTEXT_OFFSET_28) - (longlong)system_byte_pointer;
       do {
-        system_byte_value = *system_byte_ptr_;
-        system_audio_context_index = (uint)system_byte_ptr_[system_long_status];
+        system_byte_value = *system_byte_pointer;
+        system_audio_context_index = (uint)system_byte_pointer[system_long_status];
         if (system_byte_value != system_audio_context_index) break;
-        system_byte_ptr_ = system_byte_ptr_ + 1;
+        system_byte_pointer = system_byte_pointer + 1;
       } while (system_audio_context_index != 0);
       if ((int)(system_byte_value - system_audio_context_index) < 1) goto SYSTEM_LABEL;
     }
@@ -25509,7 +25509,7 @@ uint64_t * system_create_memory_mapping(uint64_t *param1,uint64_t *param1,longlo
 {
   byte system_byte_value;
   bool system_byte_context;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint system_uint_buffer;
   int system_int_config;
   longlong system_long_status;
@@ -25531,13 +25531,13 @@ uint64_t * system_create_memory_mapping(uint64_t *param1,uint64_t *param1,longlo
           system_byte_context = true;
         }
         else {
-          system_byte_ptr_ = *(byte **)(param1 + 8);
-          system_long_status = parent_pointer[5] - (longlong)system_byte_ptr_;
+          system_byte_pointer = *(byte **)(param1 + 8);
+          system_long_status = parent_pointer[5] - (longlong)system_byte_pointer;
           do {
-            system_uint_buffer = (uint)system_byte_ptr_[system_long_status];
-            system_int_config = *system_byte_ptr_ - system_uint_buffer;
-            if (*system_byte_ptr_ != system_uint_buffer) break;
-            system_byte_ptr_ = system_byte_ptr_ + 1;
+            system_uint_buffer = (uint)system_byte_pointer[system_long_status];
+            system_int_config = *system_byte_pointer - system_uint_buffer;
+            if (*system_byte_pointer != system_uint_buffer) break;
+            system_byte_pointer = system_byte_pointer + 1;
           } while (system_uint_buffer != 0);
           system_byte_context = 0 < system_int_config;
           if (system_int_config < 1) {
@@ -25562,13 +25562,13 @@ SYSTEM_LABEL:
         return param1;
       }
       if (*(int *)(param1 + SYSTEM_CONFIG_DATA_SIZE_16) != 0) {
-        system_byte_ptr_ = (byte *)system_manager_ptr[5];
-        system_long_status = *(longlong *)(param1 + 8) - (longlong)system_byte_ptr_;
+        system_byte_pointer = (byte *)system_manager_ptr[5];
+        system_long_status = *(longlong *)(param1 + 8) - (longlong)system_byte_pointer;
         do {
-          system_byte_value = *system_byte_ptr_;
-          system_uint_buffer = (uint)system_byte_ptr_[system_long_status];
+          system_byte_value = *system_byte_pointer;
+          system_uint_buffer = (uint)system_byte_pointer[system_long_status];
           if (system_byte_value != system_uint_buffer) break;
-          system_byte_ptr_ = system_byte_ptr_ + 1;
+          system_byte_pointer = system_byte_pointer + 1;
         } while (system_uint_buffer != 0);
         if ((int)(system_byte_value - system_uint_buffer) < 1) goto SYSTEM_LABEL;
       }
@@ -26621,7 +26621,7 @@ void system_function_058f00(uint64_t param1,uint64_t *param1)
 void system_cleanup_audio_resources(longlong *param1)
 
 {
-  uint64_t *******ppppppsystem_uint_ptr;
+  uint64_t *******system_seven_level_pointer;
   uint64_t *data_pointer;
   uint64_t *system_handle_ptr;
   uint64_t *system_buffer_ptr;
@@ -26634,7 +26634,7 @@ void system_cleanup_audio_resources(longlong *param1)
   uint8_t *system_control_ptr;
   longlong system_audio_local_long;
   void **system_uint_ptr;
-  uint64_t *******ppppppsystem_uint_ptr;
+  uint64_t *******system_seven_level_pointer;
   longlong *psystem_long_var_15;
   uint system_audio_local_uint;
   void **system_uint_ptr;
@@ -26856,36 +26856,36 @@ void system_cleanup_audio_resources(longlong *param1)
             memcpy(system_stack_ptr,&system_stack_uint,system_audio_loop_counter);
           }
           system_stack_uint = 0;
-          ppppppsystem_uint_ptr = &pppppsystem_stack_ptr;
-          for (ppppppsystem_uint_ptr = (uint64_t *******)pppppsystem_stack_ptr;
-              ppppppsystem_uint_ptr != (uint64_t *******)0x0;
-              ppppppsystem_uint_ptr = (uint64_t *******)ppppppsystem_uint_ptr[1]) {
-            ppppppsystem_uint_ptr = ppppppsystem_uint_ptr;
+          system_seven_level_pointer = &pppppsystem_stack_ptr;
+          for (system_seven_level_pointer = (uint64_t *******)pppppsystem_stack_ptr;
+              system_seven_level_pointer != (uint64_t *******)0x0;
+              system_seven_level_pointer = (uint64_t *******)system_seven_level_pointer[1]) {
+            system_seven_level_pointer = system_seven_level_pointer;
           }
-          if ((ppppppsystem_uint_ptr == &pppppsystem_stack_ptr) ||
-             (system_audio_local_long = system_audio_local_long, *(int *)(ppppppsystem_uint_ptr + 6) != 0)) {
-            if ((ppppppsystem_uint_ptr != (uint64_t *******)pppppsystem_stack_ptr) &&
-               (ppppppsystem_uint_ptr != &pppppsystem_stack_ptr)) {
-              func_0x00018066bd70(ppppppsystem_uint_ptr);
+          if ((system_seven_level_pointer == &pppppsystem_stack_ptr) ||
+             (system_audio_local_long = system_audio_local_long, *(int *)(system_seven_level_pointer + 6) != 0)) {
+            if ((system_seven_level_pointer != (uint64_t *******)pppppsystem_stack_ptr) &&
+               (system_seven_level_pointer != &pppppsystem_stack_ptr)) {
+              func_0x00018066bd70(system_seven_level_pointer);
             }
             system_bool_thread_ready = true;
-            ppppppsystem_uint_ptr = &pppppsystem_stack_ptr;
-            ppppppsystem_uint_ptr = (uint64_t *******)pppppsystem_stack_ptr;
-            while (ppppppsystem_uint_ptr != (uint64_t *******)0x0) {
-              system_bool_thread_ready = *(int *)(ppppppsystem_uint_ptr + 6) != 0;
-              ppppppsystem_uint_ptr = ppppppsystem_uint_ptr;
+            system_seven_level_pointer = &pppppsystem_stack_ptr;
+            system_seven_level_pointer = (uint64_t *******)pppppsystem_stack_ptr;
+            while (system_seven_level_pointer != (uint64_t *******)0x0) {
+              system_bool_thread_ready = *(int *)(system_seven_level_pointer + 6) != 0;
+              system_seven_level_pointer = system_seven_level_pointer;
               if (system_bool_thread_ready) {
-                ppppppsystem_uint_ptr = (uint64_t *******)ppppppsystem_uint_ptr[1];
+                system_seven_level_pointer = (uint64_t *******)system_seven_level_pointer[1];
               }
               else {
-                ppppppsystem_uint_ptr = (uint64_t *******)*ppppppsystem_uint_ptr;
+                system_seven_level_pointer = (uint64_t *******)*system_seven_level_pointer;
               }
             }
             system_audio_local_long = system_stack_long_2c8;
             system_audio_loop_counter = system_stack_int_374;
             if (system_bool_thread_ready) {
-              if (ppppppsystem_uint_ptr == (uint64_t *******)pppppsystem_stack_ptr) {
-                if ((ppppppsystem_uint_ptr != &pppppsystem_stack_ptr) && (*(int *)(ppppppsystem_uint_ptr + 6) == 0)) {
+              if (system_seven_level_pointer == (uint64_t *******)pppppsystem_stack_ptr) {
+                if ((system_seven_level_pointer != &pppppsystem_stack_ptr) && (*(int *)(system_seven_level_pointer + 6) == 0)) {
                   system_audio_local_uint = 1;
                 }
                 system_audio_local_long = system_allocate_resource_block(system_context_memory_pool,0x60,(uint8_t)system_stack_uint);
@@ -26908,9 +26908,9 @@ void system_cleanup_audio_resources(longlong *param1)
                 *(uint64_t *)(system_audio_local_long + SYSTEM_CONTEXT_OFFSET_48) = 0;
                 *(uint32_t *)(system_audio_local_long + SYSTEM_CONTEXT_OFFSET_50) = 0;
                     // WARNING: Subroutine does not return
-                system_setup_graphics_pipeline(system_audio_local_long,ppppppsystem_uint_ptr,&pppppsystem_stack_ptr,system_audio_local_uint);
+                system_setup_graphics_pipeline(system_audio_local_long,system_seven_level_pointer,&pppppsystem_stack_ptr,system_audio_local_uint);
               }
-              ppppppsystem_uint_ptr = (uint64_t *******)system_create_memory_handle(ppppppsystem_uint_ptr);
+              system_seven_level_pointer = (uint64_t *******)system_create_memory_handle(system_seven_level_pointer);
               system_audio_local_long = system_stack_long_2c8;
               system_audio_loop_counter = system_stack_int_374;
             }
@@ -26918,17 +26918,17 @@ void system_cleanup_audio_resources(longlong *param1)
           system_audio_local_uint = *(uint *)(data_pointer + system_audio_local_long * 4 + 2);
           system_audio_local_uint = (ulonglong)system_audio_local_uint;
           if (data_pointer[system_audio_local_long * 4 + 1] != 0) {
-            system_set_ui_parameter(ppppppsystem_uint_ptr + 8,system_audio_local_uint);
+            system_set_ui_parameter(system_seven_level_pointer + 8,system_audio_local_uint);
           }
           if (system_audio_local_uint != 0) {
                     // WARNING: Subroutine does not return
-            memcpy(ppppppsystem_uint_ptr[9],data_pointer[system_audio_local_long * 4 + 1],system_audio_local_uint);
+            memcpy(system_seven_level_pointer[9],data_pointer[system_audio_local_long * 4 + 1],system_audio_local_uint);
           }
-          *(uint32_t *)(ppppppsystem_uint_ptr + 10) = 0;
-          if (ppppppsystem_uint_ptr[9] != (uint64_t ******)0x0) {
-            *(uint8_t *)(system_audio_local_uint + (longlong)ppppppsystem_uint_ptr[9]) = 0;
+          *(uint32_t *)(system_seven_level_pointer + 10) = 0;
+          if (system_seven_level_pointer[9] != (uint64_t ******)0x0) {
+            *(uint8_t *)(system_audio_local_uint + (longlong)system_seven_level_pointer[9]) = 0;
           }
-          *(uint32_t *)((longlong)ppppppsystem_uint_ptr + 0x5c) =
+          *(uint32_t *)((longlong)system_seven_level_pointer + 0x5c) =
                *(uint32_t *)((longlong)data_pointer + system_audio_local_long * SYSTEM_RESOURCE_BLOCK_OFFSET_20 + 0x1c);
           system_stack_ptr = (void **)0x0;
           system_stack_uint = system_stack_uint & 0xffffffff00000000;
@@ -26981,11 +26981,11 @@ void system_cleanup_audio_resources(longlong *param1)
   system_stack_uintc = 0;
   if ((uint64_t *******)pppppsystem_stack_ptr != &pppppsystem_stack_ptr) {
     system_audio_local_long = system_stack_long_310 + 0x150;
-    ppppppsystem_uint_ptr = (uint64_t *******)pppppsystem_stack_ptr;
+    system_seven_level_pointer = (uint64_t *******)pppppsystem_stack_ptr;
     system_audio_local_long = system_stack_long_310;
     system_stack_long_368 = system_audio_local_long;
     do {
-      psystem_long_var_15 = (longlong *)system_create_memory_mapping(system_audio_local_long,&system_stack_ptra0,ppppppsystem_uint_ptr + 4);
+      psystem_long_var_15 = (longlong *)system_create_memory_mapping(system_audio_local_long,&system_stack_ptra0,system_seven_level_pointer + 4);
       if (*psystem_long_var_15 != system_audio_local_long) {
         system_bool_thread_ready = false;
         system_audio_local_uint = 0;
@@ -27058,7 +27058,7 @@ void system_cleanup_audio_resources(longlong *param1)
             system_stack_ptr = &system_data_animation_pool_base;
             system_audio_local_long = system_stack_long_310;
             system_audio_local_long = system_stack_long_368;
-            if (*(int *)(ppppppsystem_uint_ptr + 6) == 0) {
+            if (*(int *)(system_seven_level_pointer + 6) == 0) {
               system_bool_thread_ready = true;
               break;
             }
@@ -27070,12 +27070,12 @@ void system_cleanup_audio_resources(longlong *param1)
                    (ulonglong)(*(longlong *)(system_stack_long_310 + 200) - system_audio_local_long >> 3));
         }
         if (!system_bool_thread_ready) {
-          system_audio_local_uint = system_create_uint_buffer(&system_stack_uint,ppppppsystem_uint_ptr + 8);
+          system_audio_local_uint = system_create_uint_buffer(&system_stack_uint,system_seven_level_pointer + 8);
           system_setup_render_parameters(&system_stack_ptr,system_audio_local_uint);
           system_stack_uint = &system_data_animation_pool_base;
           pppppsystem_uint_ptr = (uint64_t ******)&system_data_memory_pool098bc73;
-          if (ppppppsystem_uint_ptr[5] != (uint64_t ******)0x0) {
-            pppppsystem_uint_ptr = ppppppsystem_uint_ptr[5];
+          if (system_seven_level_pointer[5] != (uint64_t ******)0x0) {
+            pppppsystem_uint_ptr = system_seven_level_pointer[5];
           }
           system_setup_render_target(&system_stack_ptr,pppppsystem_uint_ptr);
           system_uint_ptr = &system_data_memory_pool098bc73;
@@ -27110,8 +27110,8 @@ void system_cleanup_audio_resources(longlong *param1)
           system_stack_ptr = &system_data_animation_pool_base;
         }
       }
-      ppppppsystem_uint_ptr = (uint64_t *******)func_0x00018066bd70(ppppppsystem_uint_ptr);
-    } while (ppppppsystem_uint_ptr != &pppppsystem_stack_ptr);
+      system_seven_level_pointer = (uint64_t *******)func_0x00018066bd70(system_seven_level_pointer);
+    } while (system_seven_level_pointer != &pppppsystem_stack_ptr);
   }
   system_cleanup_audio_resources(&pppppsystem_stack_ptr);
                     // WARNING: Subroutine does not return
@@ -27128,7 +27128,7 @@ uint64_t * system_process_shader_data(uint64_t *param1,uint8_t *param1,longlong 
   uint64_t *system_handle_ptr;
   uint64_t *system_buffer_ptr;
   uint system_audio_config_value;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   longlong system_audio_local_long;
   
   system_byte_context = true;
@@ -27146,13 +27146,13 @@ SYSTEM_LABEL:
         system_byte_context = true;
       }
       else {
-        system_byte_ptr_ = (byte *)system_buffer_ptr[5];
-        system_audio_local_long = *(longlong *)(param1 + 8) - (longlong)system_byte_ptr_;
+        system_byte_pointer = (byte *)system_buffer_ptr[5];
+        system_audio_local_long = *(longlong *)(param1 + 8) - (longlong)system_byte_pointer;
         do {
-          system_byte_value = *system_byte_ptr_;
-          system_audio_config_value = (uint)system_byte_ptr_[system_audio_local_long];
+          system_byte_value = *system_byte_pointer;
+          system_audio_config_value = (uint)system_byte_pointer[system_audio_local_long];
           if (system_byte_value != system_audio_config_value) break;
-          system_byte_ptr_ = system_byte_ptr_ + 1;
+          system_byte_pointer = system_byte_pointer + 1;
         } while (system_audio_config_value != 0);
         system_byte_context = 0 < (int)(system_byte_value - system_audio_config_value);
       }
@@ -27170,13 +27170,13 @@ SYSTEM_LABEL:
   }
   if (*(int *)(param1 + SYSTEM_CONFIG_DATA_SIZE_16) != 0) {
     if (*(int *)(system_buffer_ptr + 6) != 0) {
-      system_byte_ptr_ = *(byte **)(param1 + 8);
-      system_audio_local_long = system_buffer_ptr[5] - (longlong)system_byte_ptr_;
+      system_byte_pointer = *(byte **)(param1 + 8);
+      system_audio_local_long = system_buffer_ptr[5] - (longlong)system_byte_pointer;
       do {
-        system_byte_value = *system_byte_ptr_;
-        system_audio_config_value = (uint)system_byte_ptr_[system_audio_local_long];
+        system_byte_value = *system_byte_pointer;
+        system_audio_config_value = (uint)system_byte_pointer[system_audio_local_long];
         if (system_byte_value != system_audio_config_value) break;
-        system_byte_ptr_ = system_byte_ptr_ + 1;
+        system_byte_pointer = system_byte_pointer + 1;
       } while (system_audio_config_value != 0);
       if ((int)(system_byte_value - system_audio_config_value) < 1) goto SYSTEM_LABEL;
     }
@@ -29506,7 +29506,7 @@ void system_function_05cc00(void ***param1,uint64_t param1,uint64_t param1,uint6
   uint system_audio_context_index;
   longlong system_long_handle;
   void ***psystem_uint_ptr;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   void ***pnode_pointer;
   longlong system_audio_local_long;
   uint64_t system_audio_local_uint;
@@ -29561,13 +29561,13 @@ void system_function_05cc00(void ***param1,uint64_t param1,uint64_t param1,uint6
   if (psystem_uint_ptr == pnode_pointer) goto SYSTEM_LABEL;
   if (*(int *)(psystem_uint_ptr + 6) != 0) {
     if (*(int *)(system_long_handle + 0x30) == 0) goto SYSTEM_LABEL;
-    system_byte_ptr_ = psystem_uint_ptr[5];
-    system_audio_local_long = *(longlong *)(system_long_handle + SYSTEM_CONTEXT_OFFSET_28) - (longlong)system_byte_ptr_;
+    system_byte_pointer = psystem_uint_ptr[5];
+    system_audio_local_long = *(longlong *)(system_long_handle + SYSTEM_CONTEXT_OFFSET_28) - (longlong)system_byte_pointer;
     do {
-      system_byte_value = *system_byte_ptr_;
-      system_audio_context_index = (uint)system_byte_ptr_[system_audio_local_long];
+      system_byte_value = *system_byte_pointer;
+      system_audio_context_index = (uint)system_byte_pointer[system_audio_local_long];
       if (system_byte_value != system_audio_context_index) break;
-      system_byte_ptr_ = system_byte_ptr_ + 1;
+      system_byte_pointer = system_byte_pointer + 1;
     } while (system_audio_context_index != 0);
     if (0 < (int)(system_byte_value - system_audio_context_index)) goto SYSTEM_LABEL;
   }
@@ -34556,12 +34556,12 @@ int system_function_0634b0(uint64_t param1,uint64_t param1,uint64_t param1,uint6
 ulonglong system_calculate_memory_checksum(longlong *param1,longlong param1)
 
 {
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint system_audio_context_index;
   uint system_uint_handle;
   longlong system_audio_buffer_ptr;
   ulonglong system_audio_register_value_rax;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint system_audio_status_flag;
   ulonglong system_audio_local_uint;
   longlong system_audio_local_long;
@@ -34576,22 +34576,22 @@ ulonglong system_calculate_memory_checksum(longlong *param1,longlong param1)
     system_audio_local_long = 0;
     do {
       system_uint_handle = *(uint *)(system_audio_local_long + SYSTEM_CONFIG_DATA_SIZE_16 + system_audio_buffer_ptr);
-      system_byte_ptr_ = (byte *)(ulonglong)system_uint_handle;
+      system_byte_pointer = (byte *)(ulonglong)system_uint_handle;
       system_audio_status_flag = system_audio_context_index;
       if (system_uint_handle == system_audio_context_index) {
         if (system_uint_handle != 0) {
-          system_byte_ptr_ = *(byte **)(system_audio_local_long + 8 + system_audio_buffer_ptr);
-          system_audio_local_long = *(longlong *)(param1 + 8) - (longlong)system_byte_ptr_;
+          system_byte_pointer = *(byte **)(system_audio_local_long + 8 + system_audio_buffer_ptr);
+          system_audio_local_long = *(longlong *)(param1 + 8) - (longlong)system_byte_pointer;
           do {
-            system_byte_ptr_ = system_byte_ptr_ + system_audio_local_long;
-            system_audio_status_flag = (uint)*system_byte_ptr_ - (uint)*system_byte_ptr_;
+            system_byte_pointer = system_byte_pointer + system_audio_local_long;
+            system_audio_status_flag = (uint)*system_byte_pointer - (uint)*system_byte_pointer;
             if (system_audio_status_flag != 0) break;
-            system_byte_ptr_ = system_byte_ptr_ + 1;
-          } while (*system_byte_ptr_ != 0);
+            system_byte_pointer = system_byte_pointer + 1;
+          } while (*system_byte_pointer != 0);
         }
 SYSTEM_LABEL:
         if (system_audio_status_flag == 0) {
-          return CONCAT71((int7)((ulonglong)system_byte_ptr_ >> 8),1);
+          return CONCAT71((int7)((ulonglong)system_byte_pointer >> 8),1);
         }
       }
       else if (system_uint_handle == 0) goto SYSTEM_LABEL;
@@ -35485,7 +35485,7 @@ SYSTEM_LABEL:
 void system_function_065160(uint64_t param1)
 
 {
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   int system_int_context;
   bool system_byte_handle;
   uint64_t *system_buffer_ptr;
@@ -35841,11 +35841,11 @@ void system_function_065160(uint64_t param1)
                   system_byte_ptr_ui = (byte *)*system_uint_ptr;
                   system_audio_local_long = (longlong)pcStack_298 - (longlong)system_byte_ptr_ui;
                   do {
-                    system_byte_ptr_ = system_byte_ptr_ui + system_audio_local_long;
-                    system_audio_loop_counter = (uint)*system_byte_ptr_ui - (uint)*system_byte_ptr_;
+                    system_byte_pointer = system_byte_ptr_ui + system_audio_local_long;
+                    system_audio_loop_counter = (uint)*system_byte_ptr_ui - (uint)*system_byte_pointer;
                     if (system_audio_loop_counter != 0) break;
                     system_byte_ptr_ui = system_byte_ptr_ui + 1;
-                  } while (*system_byte_ptr_ != 0);
+                  } while (*system_byte_pointer != 0);
                 }
 SYSTEM_LABEL:
                 if (system_audio_loop_counter == 0) {
@@ -39313,7 +39313,7 @@ void system_function_06c070(longlong param1)
 {
   longlong *system_long_data_ptr;
   int *system_audio_loop_counter_ptr;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint64_t system_uint_buffer;
   uint64_t *system_config_ptr;
   uint64_t *node_pointer;
@@ -39561,11 +39561,11 @@ void system_function_06c070(longlong param1)
           if (system_stack_int_1e8 != 0) {
             system_byte_ptr_network = pbStack_1f0;
             do {
-              system_byte_ptr_ = system_byte_ptr_network + (*(longlong *)(system_audio_local_long + 8) - (longlong)pbStack_1f0);
-              system_audio_loop_counter = (uint)*system_byte_ptr_network - (uint)*system_byte_ptr_;
+              system_byte_pointer = system_byte_ptr_network + (*(longlong *)(system_audio_local_long + 8) - (longlong)pbStack_1f0);
+              system_audio_loop_counter = (uint)*system_byte_ptr_network - (uint)*system_byte_pointer;
               if (system_audio_loop_counter != 0) break;
               system_byte_ptr_network = system_byte_ptr_network + 1;
-            } while (*system_byte_ptr_ != 0);
+            } while (*system_byte_pointer != 0);
           }
 SYSTEM_LABEL:
           if (system_audio_loop_counter == 0) {
@@ -47084,7 +47084,7 @@ void system_function_075630(longlong param1,uint64_t *param1)
 void system_function_0756e0(uint64_t *param1)
 
 {
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   longlong *system_long_context_ptr;
   longlong system_long_handle;
   uint64_t system_uint_buffer;
@@ -47148,8 +47148,8 @@ void system_function_0756e0(uint64_t *param1)
     system_function_0156();
     param1[0x3d] = 0;
     if (param1[0x3e] != 0) {
-      system_byte_ptr_ = (byte *)(param1[0x3e] + 0xfe);
-      *system_byte_ptr_ = *system_byte_ptr_ & 0xfb;
+      system_byte_pointer = (byte *)(param1[0x3e] + 0xfe);
+      *system_byte_pointer = *system_byte_pointer & 0xfb;
     }
   }
   system_long_context_ptr = (longlong *)param1[0x42];
@@ -47675,7 +47675,7 @@ void system_function_075ff0(longlong *param1)
 longlong * system_function_0114(longlong *param1,longlong *param1)
 
 {
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint32_t system_audio_context_index;
   longlong system_long_handle;
   uint32_t system_uint_buffer;
@@ -47740,8 +47740,8 @@ longlong * system_function_0114(longlong *param1,longlong *param1)
     (**(code **)(*param1 + SYSTEM_CONTEXT_OFFSET_38))(param1);
   }
   *(longlong *)(*param1 + SYSTEM_CONTEXT_OFFSET_A8) = param1[0x15];
-  system_byte_ptr_ = (byte *)(*param1 + 0xfd);
-  *system_byte_ptr_ = *system_byte_ptr_ ^ (*(byte *)(*param1 + 0xfd) ^ *(byte *)((longlong)param1 + 0xfd)) & 2;
+  system_byte_pointer = (byte *)(*param1 + 0xfd);
+  *system_byte_pointer = *system_byte_pointer ^ (*(byte *)(*param1 + 0xfd) ^ *(byte *)((longlong)param1 + 0xfd)) & 2;
   *(int *)(*param1 + SYSTEM_CONFIG_DATA_SIZE_160) = (int)param1[SYSTEM_RESOURCE_BLOCK_OFFSET_20];
   system_audio_local_long = param1[0x48];
   system_long_handle = *param1;
@@ -47833,8 +47833,8 @@ longlong * system_function_0114(longlong *param1,longlong *param1)
   *(uint32_t *)(system_long_handle + SYSTEM_OFFSET_STATUS_FLAG4) = system_audio_config_value;
   *(int *)(system_long_handle + SYSTEM_OFFSET_STATUS_FLAG8) = (int)system_audio_local_long;
   *(uint32_t *)(system_long_handle + SYSTEM_OFFSET_STATUS_FLAGc) = system_audio_status_flag;
-  system_byte_ptr_ = (byte *)(*param1 + 0xfd);
-  *system_byte_ptr_ = *system_byte_ptr_ ^ (*(byte *)(*param1 + 0xfd) ^ *(byte *)((longlong)param1 + 0xfd)) & 1;
+  system_byte_pointer = (byte *)(*param1 + 0xfd);
+  *system_byte_pointer = *system_byte_pointer ^ (*(byte *)(*param1 + 0xfd) ^ *(byte *)((longlong)param1 + 0xfd)) & 1;
   *(uint8_t *)(*param1 + 0xf7) = *(uint8_t *)((longlong)param1 + 0xf7);
   *(int *)(*param1 + SYSTEM_RESOURCE_BLOCK_OFFSET_208) = (int)param1[0x41];
   *(int *)(*param1 + 0x1f8) = (int)param1[0x3f];
@@ -51473,7 +51473,7 @@ void system_function_079270(longlong param1,longlong param1)
   longlong *system_long_data_ptr;
   int *system_audio_loop_counter_ptr;
   longlong *system_long_handle_ptr;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint64_t *system_config_ptr;
   float system_float_status;
   float system_audio_local_float;
@@ -51688,9 +51688,9 @@ void system_function_079270(longlong param1,longlong param1)
             do {
               comparison_status9 = *(int *)(system_audio_local_long + 0x30) + system_audio_loop_counter;
               system_audio_loop_counter = system_audio_loop_counter + 1;
-              system_byte_ptr_ = (byte *)(*(longlong *)(system_audio_local_long + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
+              system_byte_pointer = (byte *)(*(longlong *)(system_audio_local_long + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
               system_audio_local_long = system_audio_local_long + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = comparison_status9;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = comparison_status9;
             } while (system_audio_local_long < system_audio_loop_counter);
           }
         }
@@ -51782,7 +51782,7 @@ void system_function_079284(longlong param1)
   longlong *system_long_data_ptr;
   int *system_audio_loop_counter_ptr;
   longlong *system_long_handle_ptr;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint64_t *system_config_ptr;
   float system_float_status;
   float system_audio_local_float;
@@ -51999,9 +51999,9 @@ void system_function_079284(longlong param1)
             do {
               comparison_status9 = *(int *)(system_audio_local_long + 0x30) + system_audio_loop_counter;
               system_audio_loop_counter = system_audio_loop_counter + 1;
-              system_byte_ptr_ = (byte *)(*(longlong *)(system_audio_local_long + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
+              system_byte_pointer = (byte *)(*(longlong *)(system_audio_local_long + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
               system_audio_local_long = system_audio_local_long + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = comparison_status9;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = comparison_status9;
             } while (system_audio_local_long < system_audio_loop_counter);
           }
         }
@@ -52092,7 +52092,7 @@ void system_function_0792ea(void)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint64_t *system_buffer_ptr;
   float system_float_config;
   float system_float_status;
@@ -52291,9 +52291,9 @@ void system_function_0792ea(void)
             do {
               comparison_status6 = *(int *)(system_audio_local_long + 0x30) + system_audio_loop_counter;
               system_audio_loop_counter = system_audio_loop_counter + 1;
-              system_byte_ptr_ = (byte *)(*(longlong *)(system_audio_local_long + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
+              system_byte_pointer = (byte *)(*(longlong *)(system_audio_local_long + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
               system_audio_local_long = system_audio_local_long + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = comparison_status6;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = comparison_status6;
             } while (system_audio_local_long < system_audio_loop_counter);
           }
         }
@@ -52384,7 +52384,7 @@ void system_function_079309(longlong param1,uint param1,uint64_t param1,float *p
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint64_t *system_buffer_ptr;
   float system_float_config;
   float system_float_status;
@@ -52579,9 +52579,9 @@ void system_function_079309(longlong param1,uint param1,uint64_t param1,float *p
             do {
               comparison_status5 = *(int *)(system_audio_local_long + 0x30) + system_audio_loop_counter;
               system_audio_loop_counter = system_audio_loop_counter + 1;
-              system_byte_ptr_ = (byte *)(*(longlong *)(system_audio_local_long + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
+              system_byte_pointer = (byte *)(*(longlong *)(system_audio_local_long + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
               system_audio_local_long = system_audio_local_long + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = comparison_status5;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = comparison_status5;
             } while (system_audio_local_long < system_audio_loop_counter);
           }
         }
@@ -52672,7 +52672,7 @@ void system_function_07940e(void)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   char system_char_buffer;
   longlong audio_resource_id;
   uint32_t system_audio_status_flag;
@@ -52789,9 +52789,9 @@ void system_function_07940e(void)
             do {
               system_audio_loop_counter = *(int *)(audio_resource_id + 0x30) + system_audio_loop_counter;
               system_audio_loop_counter = system_audio_loop_counter + 1;
-              system_byte_ptr_ = (byte *)(*(longlong *)(audio_resource_id + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
+              system_byte_pointer = (byte *)(*(longlong *)(audio_resource_id + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
               system_audio_local_long = system_audio_local_long + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_audio_loop_counter;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_audio_loop_counter;
             } while (system_audio_local_long < system_audio_loop_counter);
           }
         }
@@ -54502,7 +54502,7 @@ uint8_t system_function_0134(longlong param1)
 ulonglong system_function_0135(longlong param1,longlong *param1,byte param1,char param1)
 
 {
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   char system_char_context;
   int comparison_status;
   int system_int_buffer;
@@ -54543,7 +54543,7 @@ ulonglong system_function_0135(longlong param1,longlong *param1,byte param1,char
   while ((system_long_status = param1, (*(byte *)(param1 + 0xfd) & SYSTEM_RESOURCE_BLOCK_OFFSET_20) == 0 &&
          (system_long_status = func_0x000180085de0(*(uint64_t *)(param1 + 0x1b0)), system_long_status != param1))) {
     if ((param1 != '\0') ||
-       (system_byte_ptr_ = (byte *)(param1 + SYSTEM_CONFIG_DATA_SIZE_160), param1 = system_long_status, (*system_byte_ptr_ & 8) != 0)) {
+       (system_byte_pointer = (byte *)(param1 + SYSTEM_CONFIG_DATA_SIZE_160), param1 = system_long_status, (*system_byte_pointer & 8) != 0)) {
       param1 = '\x01';
       param1 = system_long_status;
     }
@@ -54564,8 +54564,8 @@ ulonglong system_function_0135(longlong param1,longlong *param1,byte param1,char
       UNLOCK();
     }
     if (param1[1] != 0) {
-      system_byte_ptr_ = (byte *)(param1[1] + 0xfe);
-      *system_byte_ptr_ = *system_byte_ptr_ & 0xfb;
+      system_byte_pointer = (byte *)(param1[1] + 0xfe);
+      *system_byte_pointer = *system_byte_pointer & 0xfb;
     }
   }
   LOCK();
@@ -57846,7 +57846,7 @@ void system_function_07f8f0(longlong param1)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   char system_char_buffer;
   uint32_t system_audio_config_value;
   uint system_audio_status_flag;
@@ -57957,9 +57957,9 @@ void system_function_07f8f0(longlong param1)
             do {
               system_audio_loop_counter = *(int *)(param1 + 0x30) + system_audio_loop_counter;
               system_audio_loop_counter = system_audio_loop_counter + 1;
-              system_byte_ptr_ = (byte *)(*(longlong *)(param1 + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
+              system_byte_pointer = (byte *)(*(longlong *)(param1 + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
               system_audio_local_long = system_audio_local_long + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_audio_loop_counter;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_audio_loop_counter;
             } while (system_audio_local_long < system_audio_loop_counter);
           }
         }
@@ -58050,7 +58050,7 @@ void system_function_07f90f(uint32_t param1)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   char system_char_buffer;
   uint32_t system_audio_config_value;
   uint system_audio_status_flag;
@@ -58162,9 +58162,9 @@ void system_function_07f90f(uint32_t param1)
           do {
             system_audio_loop_counter = *(int *)(system_audio_register_value + 0x30) + system_audio_loop_counter;
             system_audio_loop_counter = system_audio_loop_counter + 1;
-            system_byte_ptr_ = (byte *)(*(longlong *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
+            system_byte_pointer = (byte *)(*(longlong *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
             system_audio_local_long = system_audio_local_long + 1;
-            *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_audio_loop_counter;
+            *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_audio_loop_counter;
           } while (system_audio_local_long < system_audio_loop_counter);
         }
       }
@@ -58254,7 +58254,7 @@ void system_function_07f933(uint64_t param1,longlong param1)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   char system_char_buffer;
   uint32_t system_audio_config_value;
   uint system_audio_status_flag;
@@ -58363,9 +58363,9 @@ void system_function_07f933(uint64_t param1,longlong param1)
         do {
           system_audio_loop_counter = *(int *)(system_audio_register_value + 0x30) + system_audio_loop_counter;
           system_audio_loop_counter = system_audio_loop_counter + 1;
-          system_byte_ptr_ = (byte *)(*(longlong *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
+          system_byte_pointer = (byte *)(*(longlong *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
           system_audio_local_long = system_audio_local_long + 1;
-          *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_audio_loop_counter;
+          *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_audio_loop_counter;
         } while (system_audio_local_long < system_audio_loop_counter);
       }
     }
@@ -58453,7 +58453,7 @@ void system_function_07f976(void)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint32_t system_uint_buffer;
   uint system_audio_config_value;
   uint system_audio_status_flag;
@@ -58546,9 +58546,9 @@ void system_function_07f976(void)
       do {
         system_audio_loop_counter = *(int *)(system_audio_register_value + 0x30) + system_audio_loop_counter;
         system_audio_loop_counter = system_audio_loop_counter + 1;
-        system_byte_ptr_ = (byte *)(*(longlong *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
+        system_byte_pointer = (byte *)(*(longlong *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
         system_audio_local_long = system_audio_local_long + 1;
-        *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_audio_loop_counter;
+        *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_audio_loop_counter;
       } while (system_audio_local_long < system_audio_loop_counter);
     }
   }
@@ -58635,7 +58635,7 @@ void system_function_07f983(void)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *system_byte_ptr_;
+  byte *system_byte_pointer;
   uint32_t system_uint_buffer;
   uint system_audio_config_value;
   uint system_audio_status_flag;
@@ -58729,9 +58729,9 @@ void system_function_07f983(void)
       do {
         system_audio_loop_counter = *(int *)(system_audio_register_value + 0x30) + system_audio_loop_counter;
         system_audio_loop_counter = system_audio_loop_counter + 1;
-        system_byte_ptr_ = (byte *)(*(longlong *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
+        system_byte_pointer = (byte *)(*(longlong *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_local_long);
         system_audio_local_long = system_audio_local_long + 1;
-        *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_audio_loop_counter;
+        *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_audio_loop_counter;
       } while (system_audio_local_long < system_audio_loop_counter);
     }
   }
