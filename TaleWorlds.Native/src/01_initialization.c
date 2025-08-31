@@ -15879,6 +15879,18 @@ void system_main_postinit(void)
     if (integer_flag != 0) {
       __Throw_C_error_std__YAXH_Z(integer_flag);
     }
+/**
+ * @brief 初始化系统配置管理器
+ * 
+ * 该函数负责初始化系统的配置管理器，包括配置数据的加载、解析和存储。
+ * 确保系统配置的正确初始化和管理。
+ * 
+ * @param system_context_ptr 系统上下文指针
+ * 
+ * @note 这是简化实现，主要处理配置管理器的初始化工作
+ * 原本实现：完全重构配置管理系统，建立统一的配置管理规范
+ * 简化实现：仅初始化基本的配置管理功能，保持代码结构不变
+ */
 void system_initialize_config_manager(longlong system_context_ptr)
 {
   longlong *system_long_primary_ptr;

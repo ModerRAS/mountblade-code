@@ -49867,7 +49867,7 @@ void ** Catch_180908f50(void * utility_context_pointer,long long utility_data_pt
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
             ((long long)*(int *)(**(long long **)(utility_data_ptr + 0x70) + 4) +
              (long long)*(long long **)(utility_data_ptr + 0x70),4,1);
-  return &UNK_1800a0f67;
+  return &utility_function_data_processor7;
 }
 
 
@@ -49885,7 +49885,7 @@ void Unwind_180908f90(void * utility_context_pointer,long long utility_data_ptr)
   context_data_pointer = *(long long **)(utility_data_ptr + 0x38);
   context_data_pointer = *(long long **)((long long)*(int *)(*context_data_pointer + 4) + 0x48 + (long long)context_data_pointer);
   if (context_data_pointer != (long long *)0x0) {
-    if (*(code **)(*context_data_pointer + 0x10) != (code *)&UNK_18009ee10) {
+    if (*(code **)(*context_data_pointer + 0x10) != (code *)&utility_function_initialization_handler0) {
       (**(code **)(*context_data_pointer + 0x10))();
       return;
     }
@@ -49908,7 +49908,7 @@ void Unwind_180908fa0(void * utility_context_pointer,long long utility_data_ptr)
             ((long long)*(int *)(**(long long **)(utility_data_ptr + 0x38) + 4) + 0x48 +
             (long long)*(long long **)(utility_data_ptr + 0x38));
   if (context_data_pointer != (long long *)0x0) {
-    if (*(code **)(*context_data_pointer + 0x10) != (code *)&UNK_18009ee10) {
+    if (*(code **)(*context_data_pointer + 0x10) != (code *)&utility_function_initialization_handler0) {
       (**(code **)(*context_data_pointer + 0x10))();
       return;
     }
@@ -49931,7 +49931,7 @@ void Unwind_180908fb0(void * utility_context_pointer,long long utility_data_ptr)
             ((long long)*(int *)(*(long long *)**(long long **)(utility_data_ptr + 0x40) + 4) + 0x48 +
             **(long long **)(utility_data_ptr + 0x40));
   if (context_data_pointer != (long long *)0x0) {
-    if (*(code **)(*context_data_pointer + 0x10) != (code *)&UNK_18009ee10) {
+    if (*(code **)(*context_data_pointer + 0x10) != (code *)&utility_function_initialization_handler0) {
       (**(code **)(*context_data_pointer + 0x10))();
       return;
     }
