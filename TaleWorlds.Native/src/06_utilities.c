@@ -50,8 +50,8 @@
 // 函数: undefined FUN_1809414f0;
 undefined FUN_1809414f0;
 void *utility_data_segment_5290;        // 数据段5290
-undefined DAT_180bf52a0;
-undefined DAT_180bf52c0;
+void *utility_data_segment_52a0;        // 数据段52a0
+void *utility_data_segment_52c0;        // 数据段52c0
 undefined DAT_180bf52c8;
 undefined DAT_180bf52d0;
 undefined DAT_180bf52d8;
