@@ -111,6 +111,7 @@
 #define UTILITY_CONTEXT_OFFSET_6C 0x6c
 #define UTILITY_CONTEXT_OFFSET_7C 0x7c
 #define UTILITY_SERVICE_CONTEXT_OFFSET_800 0x800
+#define UTILITY_STATUS_ENABLED_FLAG_HEXA_E 0xe
 #define UTILITY_SERVICE_HANDLER_OFFSET_600 0x600
 #define UTILITY_SERVICE_CONTEXT_OFFSET_2E8 0x2e8
 #define UTILITY_STREAM_TYPE_ROOT 0x1
@@ -537,7 +538,6 @@ context_handle += 3;
 context_handle = (int64_t *)((uint64_t)context_handle + 1);
 }
 return UTILITY_STATUS_THREAD_CREATED;
-}
 }
 if (utility_operation_status == UTILITY_STATUS_ENABLED_FLAG_HEXA_E) {
 return 0;
