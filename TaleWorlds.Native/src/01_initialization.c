@@ -2494,7 +2494,7 @@ void system_initialize_graphics_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -2510,8 +2510,8 @@ void system_initialize_graphics_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -2522,7 +2522,7 @@ void system_initialize_graphics_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_mesh_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_mesh_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -2557,7 +2557,7 @@ void system_initialize_audio_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -2573,8 +2573,8 @@ void system_initialize_audio_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -2585,7 +2585,7 @@ void system_initialize_audio_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_material_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_material_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -2736,7 +2736,7 @@ void system_initialize_physics_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -2752,8 +2752,8 @@ void system_initialize_physics_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -2764,7 +2764,7 @@ void system_initialize_physics_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -2793,7 +2793,7 @@ void system_initialize_animation_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -2809,8 +2809,8 @@ void system_initialize_animation_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -2821,7 +2821,7 @@ void system_initialize_animation_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -2842,7 +2842,7 @@ void system_initialize_particle_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -2858,8 +2858,8 @@ void system_initialize_particle_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -2870,7 +2870,7 @@ void system_initialize_particle_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -2891,7 +2891,7 @@ void system_initialize_lighting_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -2907,8 +2907,8 @@ void system_initialize_lighting_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -2919,7 +2919,7 @@ void system_initialize_lighting_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -2940,7 +2940,7 @@ void system_initialize_shadow_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -2956,8 +2956,8 @@ void system_initialize_shadow_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -2968,7 +2968,7 @@ void system_initialize_shadow_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -2989,7 +2989,7 @@ void system_initialize_post_processing(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3005,8 +3005,8 @@ void system_initialize_post_processing(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3017,7 +3017,7 @@ void system_initialize_post_processing(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3038,7 +3038,7 @@ void system_initialize_shader_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3054,8 +3054,8 @@ void system_initialize_shader_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3066,7 +3066,7 @@ void system_initialize_shader_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_sound_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_sound_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3087,7 +3087,7 @@ void system_initialize_texture_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3103,8 +3103,8 @@ void system_initialize_texture_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3115,7 +3115,7 @@ void system_initialize_texture_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3136,7 +3136,7 @@ void system_initialize_mesh_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3152,8 +3152,8 @@ void system_initialize_mesh_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3164,7 +3164,7 @@ void system_initialize_mesh_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_mesh_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_mesh_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3185,7 +3185,7 @@ void system_initialize_material_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3201,8 +3201,8 @@ void system_initialize_material_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3213,7 +3213,7 @@ void system_initialize_material_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_material_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_material_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3232,7 +3232,7 @@ void system_initialize_camera_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3248,8 +3248,8 @@ void system_initialize_camera_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3260,7 +3260,7 @@ void system_initialize_camera_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_texture_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_texture_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3279,7 +3279,7 @@ void system_initialize_render_pipeline(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3295,8 +3295,8 @@ void system_initialize_render_pipeline(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3307,7 +3307,7 @@ void system_initialize_render_pipeline(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_ui_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_ui_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3326,7 +3326,7 @@ void system_initialize_buffer_manager(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3342,8 +3342,8 @@ void system_initialize_buffer_manager(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3354,7 +3354,7 @@ void system_initialize_buffer_manager(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_hud_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_hud_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3431,7 +3431,7 @@ void system_setup_database_tables(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3447,8 +3447,8 @@ void system_setup_database_tables(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3459,7 +3459,7 @@ void system_setup_database_tables(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3478,7 +3478,7 @@ void system_initialize_query_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3494,8 +3494,8 @@ void system_initialize_query_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3506,7 +3506,7 @@ void system_initialize_query_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3525,7 +3525,7 @@ void system_setup_transaction_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3541,8 +3541,8 @@ void system_setup_transaction_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3553,7 +3553,7 @@ void system_setup_transaction_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3572,7 +3572,7 @@ void system_initialize_cache_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3588,8 +3588,8 @@ void system_initialize_cache_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3600,7 +3600,7 @@ void system_initialize_cache_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3619,7 +3619,7 @@ void system_setup_index_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3635,8 +3635,8 @@ void system_setup_index_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3647,7 +3647,7 @@ void system_setup_index_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3666,7 +3666,7 @@ void system_initialize_locking_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3682,8 +3682,8 @@ void system_initialize_locking_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3694,7 +3694,7 @@ void system_initialize_locking_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3713,7 +3713,7 @@ void system_setup_backup_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3729,8 +3729,8 @@ void system_setup_backup_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3741,7 +3741,7 @@ void system_setup_backup_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3793,7 +3793,7 @@ void system_initialize_filesystem(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3809,8 +3809,8 @@ void system_initialize_filesystem(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3821,7 +3821,7 @@ void system_initialize_filesystem(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3866,7 +3866,7 @@ void system_initialize_resource_pool(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3882,8 +3882,8 @@ void system_initialize_resource_pool(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3894,7 +3894,7 @@ void system_initialize_resource_pool(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3911,7 +3911,7 @@ void system_initialize_callback_pool(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3927,8 +3927,8 @@ void system_initialize_callback_pool(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3939,7 +3939,7 @@ void system_initialize_callback_pool(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -3956,7 +3956,7 @@ void system_initialize_event_pool(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -3972,8 +3972,8 @@ void system_initialize_event_pool(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -3984,7 +3984,7 @@ void system_initialize_event_pool(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4001,7 +4001,7 @@ void system_initialize_message_pool(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4017,8 +4017,8 @@ void system_initialize_message_pool(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4029,7 +4029,7 @@ void system_initialize_message_pool(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4046,7 +4046,7 @@ void system_initialize_signal_pool(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4062,8 +4062,8 @@ void system_initialize_signal_pool(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4074,7 +4074,7 @@ void system_initialize_signal_pool(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_texture_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_texture_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4091,7 +4091,7 @@ void system_initialize_interrupt_pool(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4107,8 +4107,8 @@ void system_initialize_interrupt_pool(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4119,7 +4119,7 @@ void system_initialize_interrupt_pool(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4227,7 +4227,7 @@ void system_initialize_memory_pool_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4243,8 +4243,8 @@ void system_initialize_memory_pool_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4255,7 +4255,7 @@ void system_initialize_memory_pool_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_ui_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_ui_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4274,7 +4274,7 @@ void system_initialize_memory_pool_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4290,8 +4290,8 @@ void system_initialize_memory_pool_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4302,7 +4302,7 @@ void system_initialize_memory_pool_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_hud_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_hud_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4321,7 +4321,7 @@ void system_initialize_memory_pool_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4337,8 +4337,8 @@ void system_initialize_memory_pool_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4349,7 +4349,7 @@ void system_initialize_memory_pool_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4368,7 +4368,7 @@ void system_initialize_memory_pool_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4384,8 +4384,8 @@ void system_initialize_memory_pool_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4396,7 +4396,7 @@ void system_initialize_memory_pool_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4415,7 +4415,7 @@ void system_initialize_memory_pool_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4431,8 +4431,8 @@ void system_initialize_memory_pool_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4443,7 +4443,7 @@ void system_initialize_memory_pool_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4720,7 +4720,7 @@ void system_initialize_network_system_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4736,8 +4736,8 @@ void system_initialize_network_system_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4748,7 +4748,7 @@ void system_initialize_network_system_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4765,7 +4765,7 @@ void system_initialize_network_system_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4781,8 +4781,8 @@ void system_initialize_network_system_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4793,7 +4793,7 @@ void system_initialize_network_system_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4810,7 +4810,7 @@ void system_initialize_network_system_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4826,8 +4826,8 @@ void system_initialize_network_system_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4838,7 +4838,7 @@ void system_initialize_network_system_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4855,7 +4855,7 @@ void system_initialize_network_system_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4871,8 +4871,8 @@ void system_initialize_network_system_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4883,7 +4883,7 @@ void system_initialize_network_system_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4900,7 +4900,7 @@ void system_initialize_network_system_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4916,8 +4916,8 @@ void system_initialize_network_system_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4928,7 +4928,7 @@ void system_initialize_network_system_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4945,7 +4945,7 @@ void system_initialize_graphics_system_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -4961,8 +4961,8 @@ void system_initialize_graphics_system_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -4973,7 +4973,7 @@ void system_initialize_graphics_system_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -4990,7 +4990,7 @@ void system_initialize_graphics_system_stage_2(void)
 {
   ulonglong system_uint_value;
   float *audio_system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   ulonglong system_uint_buffer;
   uint system_audio_config_value;
   ulonglong system_audio_status;
@@ -5002,7 +5002,7 @@ void system_initialize_graphics_system_stage_2(void)
   system_uint_buffer = system_audio_status;
   do {
     if (0 < (longlong)system_uint_buffer) {
-      system_comparison_result = SYSTEM_AUDIO_LOOP_START_POSITION;
+      system_compare_result = SYSTEM_AUDIO_LOOP_START_POSITION;
       system_uint_value = system_audio_status;
       audio_system_data_context = audio_system_data_context;
       do {
@@ -5012,12 +5012,12 @@ void system_initialize_graphics_system_stage_2(void)
             audio_volume_value = 0.0x035;
           }
           else {
-            audio_volume_value = 1.0 - (float)system_comparison_result / (float)system_audio_loop_index;
+            audio_volume_value = 1.0 - (float)system_compare_result / (float)system_audio_loop_index;
             audio_volume_value = SQRT(audio_volume_value) * audio_volume_value;
           }
         }
         *audio_system_data_context = audio_volume_value;
-        system_comparison_result = system_comparison_result + 1;
+        system_compare_result = system_compare_result + 1;
         audio_system_data_context = audio_system_data_context + 1;
         system_uint_value = system_uint_value + 1;
       } while ((longlong)system_uint_value < (longlong)system_uint_buffer);
@@ -5040,7 +5040,7 @@ void system_initialize_graphics_system_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5056,8 +5056,8 @@ void system_initialize_graphics_system_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5068,7 +5068,7 @@ void system_initialize_graphics_system_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5085,7 +5085,7 @@ void system_initialize_graphics_system_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5101,8 +5101,8 @@ void system_initialize_graphics_system_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5113,7 +5113,7 @@ void system_initialize_graphics_system_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_sound_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_sound_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5130,7 +5130,7 @@ void system_initialize_graphics_system_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5146,8 +5146,8 @@ void system_initialize_graphics_system_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5158,7 +5158,7 @@ void system_initialize_graphics_system_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_mesh_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_mesh_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5175,7 +5175,7 @@ void system_initialize_audio_system_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5191,8 +5191,8 @@ void system_initialize_audio_system_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5203,7 +5203,7 @@ void system_initialize_audio_system_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_material_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_material_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5220,7 +5220,7 @@ void system_initialize_audio_system_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5236,8 +5236,8 @@ void system_initialize_audio_system_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5248,7 +5248,7 @@ void system_initialize_audio_system_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5265,7 +5265,7 @@ void system_initialize_audio_system_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5281,8 +5281,8 @@ void system_initialize_audio_system_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5293,7 +5293,7 @@ void system_initialize_audio_system_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5310,7 +5310,7 @@ void system_initialize_audio_system_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5326,8 +5326,8 @@ void system_initialize_audio_system_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5338,7 +5338,7 @@ void system_initialize_audio_system_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5355,7 +5355,7 @@ void system_initialize_audio_system_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5371,8 +5371,8 @@ void system_initialize_audio_system_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5383,7 +5383,7 @@ void system_initialize_audio_system_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5400,7 +5400,7 @@ void system_initialize_ui_system_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5416,8 +5416,8 @@ void system_initialize_ui_system_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5428,7 +5428,7 @@ void system_initialize_ui_system_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5445,7 +5445,7 @@ void system_initialize_ui_system_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5461,8 +5461,8 @@ void system_initialize_ui_system_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5473,7 +5473,7 @@ void system_initialize_ui_system_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5490,7 +5490,7 @@ void system_initialize_ui_system_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5506,8 +5506,8 @@ void system_initialize_ui_system_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5518,7 +5518,7 @@ void system_initialize_ui_system_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5535,7 +5535,7 @@ void system_initialize_ui_system_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5551,8 +5551,8 @@ void system_initialize_ui_system_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5563,7 +5563,7 @@ void system_initialize_ui_system_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_ui_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_ui_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5580,7 +5580,7 @@ void system_initialize_ui_system_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5596,8 +5596,8 @@ void system_initialize_ui_system_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5608,7 +5608,7 @@ void system_initialize_ui_system_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_hud_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_hud_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5625,7 +5625,7 @@ void system_initialize_database_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5641,8 +5641,8 @@ void system_initialize_database_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5653,7 +5653,7 @@ void system_initialize_database_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5670,7 +5670,7 @@ void system_initialize_database_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5686,8 +5686,8 @@ void system_initialize_database_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5698,7 +5698,7 @@ void system_initialize_database_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5715,7 +5715,7 @@ void system_initialize_database_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5731,8 +5731,8 @@ void system_initialize_database_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5743,7 +5743,7 @@ void system_initialize_database_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5760,7 +5760,7 @@ void system_initialize_database_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5776,8 +5776,8 @@ void system_initialize_database_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5788,7 +5788,7 @@ void system_initialize_database_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5805,7 +5805,7 @@ void system_initialize_database_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5821,8 +5821,8 @@ void system_initialize_database_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5833,7 +5833,7 @@ void system_initialize_database_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5850,7 +5850,7 @@ void system_initialize_security_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5866,8 +5866,8 @@ void system_initialize_security_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5878,7 +5878,7 @@ void system_initialize_security_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5895,7 +5895,7 @@ void system_initialize_security_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5911,8 +5911,8 @@ void system_initialize_security_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5923,7 +5923,7 @@ void system_initialize_security_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5940,7 +5940,7 @@ void system_initialize_security_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -5956,8 +5956,8 @@ void system_initialize_security_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -5968,7 +5968,7 @@ void system_initialize_security_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_sound_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_sound_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -5985,7 +5985,7 @@ void system_initialize_security_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6001,8 +6001,8 @@ void system_initialize_security_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6013,7 +6013,7 @@ void system_initialize_security_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6030,7 +6030,7 @@ void system_initialize_security_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6046,8 +6046,8 @@ void system_initialize_security_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6058,7 +6058,7 @@ void system_initialize_security_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_ui_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_ui_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6075,7 +6075,7 @@ void system_initialize_config_system_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6091,8 +6091,8 @@ void system_initialize_config_system_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6103,7 +6103,7 @@ void system_initialize_config_system_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_hud_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_hud_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6120,7 +6120,7 @@ void system_initialize_config_system_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6136,8 +6136,8 @@ void system_initialize_config_system_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6148,7 +6148,7 @@ void system_initialize_config_system_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_texture_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_texture_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6165,7 +6165,7 @@ void system_initialize_config_system_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6181,8 +6181,8 @@ void system_initialize_config_system_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6193,7 +6193,7 @@ void system_initialize_config_system_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6210,7 +6210,7 @@ void system_initialize_config_system_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6226,8 +6226,8 @@ void system_initialize_config_system_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6238,7 +6238,7 @@ void system_initialize_config_system_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6255,7 +6255,7 @@ void system_initialize_config_system_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6271,8 +6271,8 @@ void system_initialize_config_system_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6283,7 +6283,7 @@ void system_initialize_config_system_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6300,7 +6300,7 @@ void system_initialize_event_system_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6316,8 +6316,8 @@ void system_initialize_event_system_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6328,7 +6328,7 @@ void system_initialize_event_system_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6345,7 +6345,7 @@ void system_initialize_event_system_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6361,8 +6361,8 @@ void system_initialize_event_system_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6373,7 +6373,7 @@ void system_initialize_event_system_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6390,7 +6390,7 @@ void system_initialize_event_system_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6406,8 +6406,8 @@ void system_initialize_event_system_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6418,7 +6418,7 @@ void system_initialize_event_system_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6435,7 +6435,7 @@ void system_initialize_event_system_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6451,8 +6451,8 @@ void system_initialize_event_system_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6463,7 +6463,7 @@ void system_initialize_event_system_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6547,7 +6547,7 @@ void system_initialize_thread_management_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6563,8 +6563,8 @@ void system_initialize_thread_management_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6575,7 +6575,7 @@ void system_initialize_thread_management_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6592,7 +6592,7 @@ void system_initialize_thread_management_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6608,8 +6608,8 @@ void system_initialize_thread_management_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6620,7 +6620,7 @@ void system_initialize_thread_management_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6637,7 +6637,7 @@ void system_initialize_thread_management_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6653,8 +6653,8 @@ void system_initialize_thread_management_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6665,7 +6665,7 @@ void system_initialize_thread_management_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6682,7 +6682,7 @@ void system_initialize_memory_management_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6698,8 +6698,8 @@ void system_initialize_memory_management_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6710,7 +6710,7 @@ void system_initialize_memory_management_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6727,7 +6727,7 @@ void system_initialize_memory_management_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6743,8 +6743,8 @@ void system_initialize_memory_management_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6755,7 +6755,7 @@ void system_initialize_memory_management_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6772,7 +6772,7 @@ void system_initialize_memory_management_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6788,8 +6788,8 @@ void system_initialize_memory_management_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6800,7 +6800,7 @@ void system_initialize_memory_management_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6817,7 +6817,7 @@ void system_initialize_memory_management_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6833,8 +6833,8 @@ void system_initialize_memory_management_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6845,7 +6845,7 @@ void system_initialize_memory_management_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6862,7 +6862,7 @@ void system_initialize_memory_management_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6878,8 +6878,8 @@ void system_initialize_memory_management_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6890,7 +6890,7 @@ void system_initialize_memory_management_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_texture_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_texture_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6926,7 +6926,7 @@ void system_initialize_resource_management_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6942,8 +6942,8 @@ void system_initialize_resource_management_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6954,7 +6954,7 @@ void system_initialize_resource_management_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_database_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_database_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -6971,7 +6971,7 @@ void system_initialize_resource_management_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -6987,8 +6987,8 @@ void system_initialize_resource_management_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_context,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_context,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -6999,7 +6999,7 @@ void system_initialize_resource_management_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7016,7 +7016,7 @@ void system_initialize_resource_management_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7032,8 +7032,8 @@ void system_initialize_resource_management_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7044,7 +7044,7 @@ void system_initialize_resource_management_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_config_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_config_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7061,7 +7061,7 @@ void system_initialize_resource_management_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7077,8 +7077,8 @@ void system_initialize_resource_management_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7089,7 +7089,7 @@ void system_initialize_resource_management_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_state_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_state_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7106,7 +7106,7 @@ void system_initialize_network_management_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7122,8 +7122,8 @@ void system_initialize_network_management_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7134,7 +7134,7 @@ void system_initialize_network_management_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_status_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_status_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7151,7 +7151,7 @@ void system_initialize_network_management_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7167,8 +7167,8 @@ void system_initialize_network_management_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7179,7 +7179,7 @@ void system_initialize_network_management_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_control_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_control_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7196,7 +7196,7 @@ void system_initialize_network_management_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7212,8 +7212,8 @@ void system_initialize_network_management_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7224,7 +7224,7 @@ void system_initialize_network_management_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_manager_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_manager_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7241,7 +7241,7 @@ void system_initialize_network_management_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7257,8 +7257,8 @@ void system_initialize_network_management_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7269,7 +7269,7 @@ void system_initialize_network_management_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_handler_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_handler_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7286,7 +7286,7 @@ void system_initialize_network_management_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7302,8 +7302,8 @@ void system_initialize_network_management_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&context_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&context_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7314,7 +7314,7 @@ void system_initialize_network_management_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&context_pointer,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&context_pointer,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7331,7 +7331,7 @@ void system_initialize_graphics_management_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7347,8 +7347,8 @@ void system_initialize_graphics_management_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7359,7 +7359,7 @@ void system_initialize_graphics_management_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_buffer_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_buffer_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7376,7 +7376,7 @@ void system_initialize_graphics_management_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7392,8 +7392,8 @@ void system_initialize_graphics_management_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7404,7 +7404,7 @@ void system_initialize_graphics_management_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7592,7 +7592,7 @@ void system_initialize_ui_management_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7608,8 +7608,8 @@ void system_initialize_ui_management_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7620,7 +7620,7 @@ void system_initialize_ui_management_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7637,7 +7637,7 @@ void system_initialize_ui_management_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7653,8 +7653,8 @@ void system_initialize_ui_management_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7665,7 +7665,7 @@ void system_initialize_ui_management_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7682,7 +7682,7 @@ void system_initialize_ui_management_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7698,8 +7698,8 @@ void system_initialize_ui_management_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7710,7 +7710,7 @@ void system_initialize_ui_management_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7727,7 +7727,7 @@ void system_initialize_ui_management_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7743,8 +7743,8 @@ void system_initialize_ui_management_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7755,7 +7755,7 @@ void system_initialize_ui_management_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7772,7 +7772,7 @@ void system_initialize_database_management_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7788,8 +7788,8 @@ void system_initialize_database_management_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7800,7 +7800,7 @@ void system_initialize_database_management_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7817,7 +7817,7 @@ void system_initialize_database_management_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7833,8 +7833,8 @@ void system_initialize_database_management_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7845,7 +7845,7 @@ void system_initialize_database_management_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7862,7 +7862,7 @@ void system_initialize_database_management_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7878,8 +7878,8 @@ void system_initialize_database_management_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7890,7 +7890,7 @@ void system_initialize_database_management_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7907,7 +7907,7 @@ void system_initialize_database_management_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7923,8 +7923,8 @@ void system_initialize_database_management_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7935,7 +7935,7 @@ void system_initialize_database_management_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7952,7 +7952,7 @@ void system_initialize_database_management_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -7968,8 +7968,8 @@ void system_initialize_database_management_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -7980,7 +7980,7 @@ void system_initialize_database_management_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -7997,7 +7997,7 @@ void system_initialize_security_management_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8013,8 +8013,8 @@ void system_initialize_security_management_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8025,7 +8025,7 @@ void system_initialize_security_management_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8042,7 +8042,7 @@ void system_initialize_security_management_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8058,8 +8058,8 @@ void system_initialize_security_management_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8070,7 +8070,7 @@ void system_initialize_security_management_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8087,7 +8087,7 @@ void system_initialize_security_management_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8103,8 +8103,8 @@ void system_initialize_security_management_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8115,7 +8115,7 @@ void system_initialize_security_management_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8132,7 +8132,7 @@ void system_initialize_security_management_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8148,8 +8148,8 @@ void system_initialize_security_management_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8160,7 +8160,7 @@ void system_initialize_security_management_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8177,7 +8177,7 @@ void system_initialize_security_management_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8193,8 +8193,8 @@ void system_initialize_security_management_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8205,7 +8205,7 @@ void system_initialize_security_management_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8222,7 +8222,7 @@ void system_initialize_config_management_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8238,8 +8238,8 @@ void system_initialize_config_management_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8250,7 +8250,7 @@ void system_initialize_config_management_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8267,7 +8267,7 @@ void system_initialize_config_management_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8283,8 +8283,8 @@ void system_initialize_config_management_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8295,7 +8295,7 @@ void system_initialize_config_management_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8312,7 +8312,7 @@ void system_initialize_config_management_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8328,8 +8328,8 @@ void system_initialize_config_management_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8340,7 +8340,7 @@ void system_initialize_config_management_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8357,7 +8357,7 @@ void system_initialize_config_management_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8373,8 +8373,8 @@ void system_initialize_config_management_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8385,7 +8385,7 @@ void system_initialize_config_management_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8402,7 +8402,7 @@ void system_initialize_config_management_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8418,8 +8418,8 @@ void system_initialize_config_management_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8430,7 +8430,7 @@ void system_initialize_config_management_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8447,7 +8447,7 @@ void system_initialize_event_management_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8463,8 +8463,8 @@ void system_initialize_event_management_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8475,7 +8475,7 @@ void system_initialize_event_management_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8492,7 +8492,7 @@ void system_initialize_event_management_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8508,8 +8508,8 @@ void system_initialize_event_management_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8520,7 +8520,7 @@ void system_initialize_event_management_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8537,7 +8537,7 @@ void system_initialize_event_management_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8553,8 +8553,8 @@ void system_initialize_event_management_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8565,7 +8565,7 @@ void system_initialize_event_management_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8582,7 +8582,7 @@ void system_initialize_event_management_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8598,8 +8598,8 @@ void system_initialize_event_management_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8610,7 +8610,7 @@ void system_initialize_event_management_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8627,7 +8627,7 @@ void system_initialize_event_management_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8643,8 +8643,8 @@ void system_initialize_event_management_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8655,7 +8655,7 @@ void system_initialize_event_management_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8672,7 +8672,7 @@ void system_initialize_system_core_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8688,8 +8688,8 @@ void system_initialize_system_core_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8700,7 +8700,7 @@ void system_initialize_system_core_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8717,7 +8717,7 @@ void system_initialize_system_core_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8733,8 +8733,8 @@ void system_initialize_system_core_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8745,7 +8745,7 @@ void system_initialize_system_core_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8762,7 +8762,7 @@ void system_initialize_system_core_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8778,8 +8778,8 @@ void system_initialize_system_core_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8790,7 +8790,7 @@ void system_initialize_system_core_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8807,7 +8807,7 @@ void system_initialize_system_core_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8823,8 +8823,8 @@ void system_initialize_system_core_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8835,7 +8835,7 @@ void system_initialize_system_core_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8852,7 +8852,7 @@ void system_initialize_system_core_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8868,8 +8868,8 @@ void system_initialize_system_core_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8880,7 +8880,7 @@ void system_initialize_system_core_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_database_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_database_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8897,7 +8897,7 @@ void system_initialize_system_components_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8913,8 +8913,8 @@ void system_initialize_system_components_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_context,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_context,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8925,7 +8925,7 @@ void system_initialize_system_components_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8942,7 +8942,7 @@ void system_initialize_system_components_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -8958,8 +8958,8 @@ void system_initialize_system_components_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -8970,7 +8970,7 @@ void system_initialize_system_components_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_config_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_config_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -8987,7 +8987,7 @@ void system_initialize_system_components_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9003,8 +9003,8 @@ void system_initialize_system_components_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9015,7 +9015,7 @@ void system_initialize_system_components_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_state_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_state_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9032,7 +9032,7 @@ void system_initialize_system_components_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9048,8 +9048,8 @@ void system_initialize_system_components_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9060,7 +9060,7 @@ void system_initialize_system_components_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_status_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_status_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9077,7 +9077,7 @@ void system_initialize_system_components_stage_5(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9093,8 +9093,8 @@ void system_initialize_system_components_stage_5(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9105,7 +9105,7 @@ void system_initialize_system_components_stage_5(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_control_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_control_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9122,7 +9122,7 @@ void system_initialize_system_services_stage_1(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9138,8 +9138,8 @@ void system_initialize_system_services_stage_1(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9150,7 +9150,7 @@ void system_initialize_system_services_stage_1(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_manager_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_manager_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9167,7 +9167,7 @@ void system_initialize_system_services_stage_2(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9183,8 +9183,8 @@ void system_initialize_system_services_stage_2(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9195,7 +9195,7 @@ void system_initialize_system_services_stage_2(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_handler_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_handler_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9212,7 +9212,7 @@ void system_initialize_system_services_stage_3(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9228,8 +9228,8 @@ void system_initialize_system_services_stage_3(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&context_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&context_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9240,7 +9240,7 @@ void system_initialize_system_services_stage_3(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&context_pointer,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&context_pointer,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9257,7 +9257,7 @@ void system_initialize_system_services_stage_4(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9273,8 +9273,8 @@ void system_initialize_system_services_stage_4(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9285,7 +9285,7 @@ void system_initialize_system_services_stage_4(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_buffer_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_buffer_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9333,7 +9333,7 @@ void system_setup_rendering_pipeline(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9349,8 +9349,8 @@ void system_setup_rendering_pipeline(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9361,7 +9361,7 @@ void system_setup_rendering_pipeline(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_database_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_database_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9378,7 +9378,7 @@ void system_setup_audio_pipeline(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9394,8 +9394,8 @@ void system_setup_audio_pipeline(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_context,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_context,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9406,7 +9406,7 @@ void system_setup_audio_pipeline(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9423,7 +9423,7 @@ void system_setup_network_pipeline(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9439,8 +9439,8 @@ void system_setup_network_pipeline(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9451,7 +9451,7 @@ void system_setup_network_pipeline(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_config_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_config_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9468,7 +9468,7 @@ void system_setup_input_pipeline(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9484,8 +9484,8 @@ void system_setup_input_pipeline(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9496,7 +9496,7 @@ void system_setup_input_pipeline(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_state_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_state_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9513,7 +9513,7 @@ void system_setup_resource_pipeline(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9529,8 +9529,8 @@ void system_setup_resource_pipeline(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9541,7 +9541,7 @@ void system_setup_resource_pipeline(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_status_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_status_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9558,7 +9558,7 @@ void system_setup_memory_pipeline(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9574,8 +9574,8 @@ void system_setup_memory_pipeline(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9586,7 +9586,7 @@ void system_setup_memory_pipeline(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_control_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_control_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9603,7 +9603,7 @@ void system_setup_thread_pipeline(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9619,8 +9619,8 @@ void system_setup_thread_pipeline(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9631,7 +9631,7 @@ void system_setup_thread_pipeline(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_manager_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_manager_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9648,7 +9648,7 @@ void system_setup_event_pipeline(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9664,8 +9664,8 @@ void system_setup_event_pipeline(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9676,7 +9676,7 @@ void system_setup_event_pipeline(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_handler_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_handler_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9693,7 +9693,7 @@ void system_setup_ui_pipeline(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9709,8 +9709,8 @@ void system_setup_ui_pipeline(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&context_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&context_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9721,7 +9721,7 @@ void system_setup_ui_pipeline(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&context_pointer,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&context_pointer,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9738,7 +9738,7 @@ void system_setup_physics_pipeline(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9754,8 +9754,8 @@ void system_setup_physics_pipeline(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9766,7 +9766,7 @@ void system_setup_physics_pipeline(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_buffer_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_buffer_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9821,7 +9821,7 @@ void system_setup_script_pipeline(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9837,8 +9837,8 @@ void system_setup_script_pipeline(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9849,7 +9849,7 @@ void system_setup_script_pipeline(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9866,7 +9866,7 @@ void system_validate_rendering_config(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9882,8 +9882,8 @@ void system_validate_rendering_config(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9894,7 +9894,7 @@ void system_validate_rendering_config(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9911,7 +9911,7 @@ void system_validate_audio_config(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9927,8 +9927,8 @@ void system_validate_audio_config(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9939,7 +9939,7 @@ void system_validate_audio_config(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -9956,7 +9956,7 @@ void system_validate_network_config(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -9972,8 +9972,8 @@ void system_validate_network_config(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -9984,7 +9984,7 @@ void system_validate_network_config(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10001,7 +10001,7 @@ void system_validate_input_config(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10017,8 +10017,8 @@ void system_validate_input_config(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10029,7 +10029,7 @@ void system_validate_input_config(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10046,7 +10046,7 @@ void system_validate_resource_config(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10062,8 +10062,8 @@ void system_validate_resource_config(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10074,7 +10074,7 @@ void system_validate_resource_config(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10091,7 +10091,7 @@ void system_validate_memory_config(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10107,8 +10107,8 @@ void system_validate_memory_config(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10119,7 +10119,7 @@ void system_validate_memory_config(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10148,7 +10148,7 @@ void system_cleanup_rendering_resources(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10164,8 +10164,8 @@ void system_cleanup_rendering_resources(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10176,7 +10176,7 @@ void system_cleanup_rendering_resources(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10193,7 +10193,7 @@ void system_cleanup_audio_resources(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10209,8 +10209,8 @@ void system_cleanup_audio_resources(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10221,7 +10221,7 @@ void system_cleanup_audio_resources(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10238,7 +10238,7 @@ void system_cleanup_network_resources(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10254,8 +10254,8 @@ void system_cleanup_network_resources(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10266,7 +10266,7 @@ void system_cleanup_network_resources(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10283,7 +10283,7 @@ void system_cleanup_input_resources(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10299,8 +10299,8 @@ void system_cleanup_input_resources(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10311,7 +10311,7 @@ void system_cleanup_input_resources(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10328,7 +10328,7 @@ void system_cleanup_resource_cache(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10344,8 +10344,8 @@ void system_cleanup_resource_cache(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10356,7 +10356,7 @@ void system_cleanup_resource_cache(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10373,7 +10373,7 @@ void system_cleanup_memory_cache(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10389,8 +10389,8 @@ void system_cleanup_memory_cache(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10401,7 +10401,7 @@ void system_cleanup_memory_cache(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10418,7 +10418,7 @@ void system_cleanup_thread_pool(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10434,8 +10434,8 @@ void system_cleanup_thread_pool(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10446,7 +10446,7 @@ void system_cleanup_thread_pool(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10463,7 +10463,7 @@ void system_cleanup_event_queue(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10479,8 +10479,8 @@ void system_cleanup_event_queue(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10491,7 +10491,7 @@ void system_cleanup_event_queue(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10508,7 +10508,7 @@ void system_cleanup_ui_resources(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10524,8 +10524,8 @@ void system_cleanup_ui_resources(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10536,7 +10536,7 @@ void system_cleanup_ui_resources(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10553,7 +10553,7 @@ void system_cleanup_physics_resources(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10569,8 +10569,8 @@ void system_cleanup_physics_resources(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10581,7 +10581,7 @@ void system_cleanup_physics_resources(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10598,7 +10598,7 @@ void system_cleanup_animation_resources(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10614,8 +10614,8 @@ void system_cleanup_animation_resources(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10626,7 +10626,7 @@ void system_cleanup_animation_resources(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10643,7 +10643,7 @@ void system_cleanup_ai_resources(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10659,8 +10659,8 @@ void system_cleanup_ai_resources(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10671,7 +10671,7 @@ void system_cleanup_ai_resources(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10688,7 +10688,7 @@ void system_cleanup_script_resources(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10704,8 +10704,8 @@ void system_cleanup_script_resources(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10716,7 +10716,7 @@ void system_cleanup_script_resources(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10736,7 +10736,7 @@ void system_initialize_audio_config(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10752,8 +10752,8 @@ void system_initialize_audio_config(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10764,7 +10764,7 @@ void system_initialize_audio_config(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10784,7 +10784,7 @@ void system_initialize_music_config(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10800,8 +10800,8 @@ void system_initialize_music_config(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10812,7 +10812,7 @@ void system_initialize_music_config(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10901,7 +10901,7 @@ void system_configure_audio_output(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10917,8 +10917,8 @@ void system_configure_audio_output(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10929,7 +10929,7 @@ void system_configure_audio_output(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_database_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_database_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10946,7 +10946,7 @@ void system_setup_audio_stream(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -10962,8 +10962,8 @@ void system_setup_audio_stream(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_context,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_context,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -10974,7 +10974,7 @@ void system_setup_audio_stream(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -10991,7 +10991,7 @@ void system_initialize_audio_buffer(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11007,8 +11007,8 @@ void system_initialize_audio_buffer(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11019,7 +11019,7 @@ void system_initialize_audio_buffer(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_config_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_config_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11036,7 +11036,7 @@ void system_create_audio_context(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11052,8 +11052,8 @@ void system_create_audio_context(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11064,7 +11064,7 @@ void system_create_audio_context(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_state_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_state_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11081,7 +11081,7 @@ void system_prepare_audio_device(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11097,8 +11097,8 @@ void system_prepare_audio_device(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11109,7 +11109,7 @@ void system_prepare_audio_device(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_status_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_status_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11126,7 +11126,7 @@ void system_enable_audio_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11142,8 +11142,8 @@ void system_enable_audio_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11154,7 +11154,7 @@ void system_enable_audio_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_control_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_control_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11171,7 +11171,7 @@ void system_start_audio_service(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11187,8 +11187,8 @@ void system_start_audio_service(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11199,7 +11199,7 @@ void system_start_audio_service(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_manager_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_manager_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11216,7 +11216,7 @@ void system_activate_audio_channel(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11232,8 +11232,8 @@ void system_activate_audio_channel(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11244,7 +11244,7 @@ void system_activate_audio_channel(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_handler_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_handler_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11261,7 +11261,7 @@ void system_configure_audio_mixer(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11277,8 +11277,8 @@ void system_configure_audio_mixer(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&context_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&context_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11289,7 +11289,7 @@ void system_configure_audio_mixer(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&context_pointer,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&context_pointer,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11306,7 +11306,7 @@ void system_initialize_audio_effects(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11322,8 +11322,8 @@ void system_initialize_audio_effects(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11334,7 +11334,7 @@ void system_initialize_audio_effects(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_buffer_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_buffer_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11439,7 +11439,7 @@ void system_initialize_video_config(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11455,8 +11455,8 @@ void system_initialize_video_config(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11467,7 +11467,7 @@ void system_initialize_video_config(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_memory_pool0a2d660,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_memory_pool0a2d660,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11484,7 +11484,7 @@ void system_setup_video_display(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11500,8 +11500,8 @@ void system_setup_video_display(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11512,7 +11512,7 @@ void system_setup_video_display(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_memory_pool0a2d50020,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_memory_pool0a2d50020,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11529,7 +11529,7 @@ void system_configure_graphics_adapter(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11545,8 +11545,8 @@ void system_configure_graphics_adapter(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11557,7 +11557,7 @@ void system_configure_graphics_adapter(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_database_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_database_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11575,7 +11575,7 @@ void system_create_display_surface(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11591,8 +11591,8 @@ void system_create_display_surface(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11603,7 +11603,7 @@ void system_create_display_surface(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_state_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_state_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11620,7 +11620,7 @@ void system_configure_viewport(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11636,8 +11636,8 @@ void system_configure_viewport(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11648,7 +11648,7 @@ void system_configure_viewport(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_status_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_status_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11665,7 +11665,7 @@ void system_setup_projection_matrix(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11681,8 +11681,8 @@ void system_setup_projection_matrix(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11693,7 +11693,7 @@ void system_setup_projection_matrix(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_control_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_control_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11711,7 +11711,7 @@ void system_setup_shader_pipeline(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11727,8 +11727,8 @@ void system_setup_shader_pipeline(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&context_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&context_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11739,7 +11739,7 @@ void system_setup_shader_pipeline(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&context_pointer,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&context_pointer,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11756,7 +11756,7 @@ void system_initialize_texture_manager(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11772,8 +11772,8 @@ void system_initialize_texture_manager(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11784,7 +11784,7 @@ void system_initialize_texture_manager(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_buffer_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_buffer_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11801,7 +11801,7 @@ void system_create_geometry_buffer(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11817,8 +11817,8 @@ void system_create_geometry_buffer(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11829,7 +11829,7 @@ void system_create_geometry_buffer(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_memory_pool0a2d660,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_memory_pool0a2d660,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11846,7 +11846,7 @@ void system_setup_vertex_attributes(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11862,8 +11862,8 @@ void system_setup_vertex_attributes(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11874,7 +11874,7 @@ void system_setup_vertex_attributes(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_memory_pool0a2d50020,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_memory_pool0a2d50020,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11891,7 +11891,7 @@ void system_configure_index_buffer(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11907,8 +11907,8 @@ void system_configure_index_buffer(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11919,7 +11919,7 @@ void system_configure_index_buffer(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_input_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11936,7 +11936,7 @@ void system_initialize_uniform_blocks(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11952,8 +11952,8 @@ void system_initialize_uniform_blocks(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -11964,7 +11964,7 @@ void system_initialize_uniform_blocks(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_sound_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_sound_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -11981,7 +11981,7 @@ void system_setup_shader_programs(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -11997,8 +11997,8 @@ void system_setup_shader_programs(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12009,7 +12009,7 @@ void system_setup_shader_programs(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_mesh_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_mesh_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12026,7 +12026,7 @@ void system_configure_render_states(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12042,8 +12042,8 @@ void system_configure_render_states(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12054,7 +12054,7 @@ void system_configure_render_states(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_material_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_material_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12071,7 +12071,7 @@ void system_initialize_frame_buffer(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12087,8 +12087,8 @@ void system_initialize_frame_buffer(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12099,7 +12099,7 @@ void system_initialize_frame_buffer(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12116,7 +12116,7 @@ void system_setup_depth_buffer(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12132,8 +12132,8 @@ void system_setup_depth_buffer(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12144,7 +12144,7 @@ void system_setup_depth_buffer(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_lighting_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12161,7 +12161,7 @@ void system_configure_stencil_buffer(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12177,8 +12177,8 @@ void system_configure_stencil_buffer(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12189,7 +12189,7 @@ void system_configure_stencil_buffer(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_camera_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12206,7 +12206,7 @@ void system_initialize_color_buffer(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12222,8 +12222,8 @@ void system_initialize_color_buffer(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12234,7 +12234,7 @@ void system_initialize_color_buffer(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_viewport_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12251,7 +12251,7 @@ void system_setup_render_targets(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12267,8 +12267,8 @@ void system_setup_render_targets(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12279,7 +12279,7 @@ void system_setup_render_targets(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_render_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12296,7 +12296,7 @@ void system_configure_multisampling(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12312,8 +12312,8 @@ void system_configure_multisampling(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12324,7 +12324,7 @@ void system_configure_multisampling(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_audio_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12341,7 +12341,7 @@ void system_initialize_antialiasing(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12357,8 +12357,8 @@ void system_initialize_antialiasing(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12369,7 +12369,7 @@ void system_initialize_antialiasing(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12386,7 +12386,7 @@ void system_setup_post_processing(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12402,8 +12402,8 @@ void system_setup_post_processing(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12414,7 +12414,7 @@ void system_setup_post_processing(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_texture_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_texture_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12431,7 +12431,7 @@ void system_configure_effect_chain(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12447,8 +12447,8 @@ void system_configure_effect_chain(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12459,7 +12459,7 @@ void system_configure_effect_chain(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_memory_pool0a2d660,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_memory_pool0a2d660,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12476,7 +12476,7 @@ void system_initialize_compositor(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12492,8 +12492,8 @@ void system_initialize_compositor(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12504,7 +12504,7 @@ void system_initialize_compositor(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_memory_pool0a2d50020,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_memory_pool0a2d50020,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12561,7 +12561,7 @@ void system_validate_render_system(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12577,8 +12577,8 @@ void system_validate_render_system(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12589,7 +12589,7 @@ void system_validate_render_system(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_memory_pool0a2d660,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_memory_pool0a2d660,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12606,7 +12606,7 @@ void system_test_display_device(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12622,8 +12622,8 @@ void system_test_display_device(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12634,7 +12634,7 @@ void system_test_display_device(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_memory_pool0a2d50020,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_memory_pool0a2d50020,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12651,7 +12651,7 @@ void system_query_graphics_capability(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12667,8 +12667,8 @@ void system_query_graphics_capability(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12679,7 +12679,7 @@ void system_query_graphics_capability(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_memory_pool0a2d660,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_memory_pool0a2d660,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12696,7 +12696,7 @@ void system_configure_render_settings(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12712,8 +12712,8 @@ void system_configure_render_settings(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12724,7 +12724,7 @@ void system_configure_render_settings(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_memory_pool0a2d50020,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_memory_pool0a2d50020,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12794,7 +12794,7 @@ void system_initialize_database_manager(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12810,8 +12810,8 @@ void system_initialize_database_manager(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12822,7 +12822,7 @@ void system_initialize_database_manager(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_music_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12839,7 +12839,7 @@ void system_initialize_network_manager(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12855,8 +12855,8 @@ void system_initialize_network_manager(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12867,7 +12867,7 @@ void system_initialize_network_manager(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_database_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_database_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12884,7 +12884,7 @@ void system_initialize_socket_manager(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12900,8 +12900,8 @@ void system_initialize_socket_manager(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_data_context,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_data_context,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12912,7 +12912,7 @@ void system_initialize_socket_manager(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_data_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_data_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12929,7 +12929,7 @@ void system_initialize_protocol_handler(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12945,8 +12945,8 @@ void system_initialize_protocol_handler(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -12957,7 +12957,7 @@ void system_initialize_protocol_handler(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_config_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_config_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -12974,7 +12974,7 @@ void system_initialize_connection_pool(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -12990,8 +12990,8 @@ void system_initialize_connection_pool(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -13002,7 +13002,7 @@ void system_initialize_connection_pool(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_state_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_state_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -13019,7 +13019,7 @@ void system_initialize_packet_processor(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -13035,8 +13035,8 @@ void system_initialize_packet_processor(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -13047,7 +13047,7 @@ void system_initialize_packet_processor(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_status_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_status_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -13064,7 +13064,7 @@ void system_initialize_stream_handler(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -13080,8 +13080,8 @@ void system_initialize_stream_handler(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -13092,7 +13092,7 @@ void system_initialize_stream_handler(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_control_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_control_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -13110,7 +13110,7 @@ void system_initialize_transaction_manager(void)
 {
   char system_init_status;
   uint64_t *system_data_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   longlong audio_resource_id;
   uint64_t *node_pointer;
@@ -13126,8 +13126,8 @@ void system_initialize_transaction_manager(void)
   parent_pointer = system_data_context;
   node_pointer = (uint64_t *)system_data_context[1];
   while (system_init_status == '\0') {
-    system_comparison_result = memcmp(node_pointer + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (system_comparison_result < 0) {
+    system_compare_result = memcmp(node_pointer + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (system_compare_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -13138,7 +13138,7 @@ void system_initialize_transaction_manager(void)
     node_pointer = child_pointer;
     system_init_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == system_data_context) || (system_comparison_result = memcmp(&system_buffer_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_comparison_result < 0)) {
+  if ((parent_pointer == system_data_context) || (system_compare_result = memcmp(&system_buffer_context,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), system_compare_result < 0)) {
     audio_resource_id = system_allocate_resource_block(context_pointer);
     system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
     parent_pointer = temp_pointer;
@@ -13660,10 +13660,10 @@ void system_create_timer_instance(longlong system_context_parameter)
   longlong system_audio_long_value;
   longlong *system_long_context_ptr;
   char system_char_handle;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   longlong **system_stack_long_int_ptr;
-  longlong *system_buffer_pointer_0x01001;
-  longlong *system_buffer_pointer_20;
+  longlong *system_audio_device_ptr001;
+  longlong *system_audio_config_ptr;
   uint64_t system_uint_buffer;
   
   system_uint_buffer = SYSTEM_INVALID_HANDLE_VALUE;
@@ -13680,7 +13680,7 @@ void system_create_timer_instance(longlong system_context_parameter)
     if (system_char_handle == '\0') goto SYSTEM_LABEL;
   }
   system_long_context_ptr = (longlong *)system_allocate_memory_context(system_context_memory_pool,0x040,0x01,3,system_uint_buffer);
-  system_buffer_pointer_20 = system_long_context_ptr;
+  system_audio_config_ptr = system_long_context_ptr;
   system_initialize_memory_table(system_long_context_ptr);
   *system_long_context_ptr = (longlong)&system_data_main_context;
   system_long_context_ptr[3] = -4;
@@ -13703,7 +13703,7 @@ void system_create_timer_instance(longlong system_context_parameter)
     (**(code **)((void **)*system_global_memory_pool + SYSTEM_CALLBACK_TABLE_OFFSET))();
   }
   system_long_context_ptr = system_global_memory_pool;
-  system_buffer_pointer_0x01001 = system_global_memory_pool;
+  system_audio_device_ptr001 = system_global_memory_pool;
   system_global_memory_pool = (longlong *)0x00;
   if (system_long_context_ptr != (longlong *)0x00) {
     (**(code **)(*system_long_context_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))();
@@ -13722,13 +13722,13 @@ SYSTEM_VALIDATION_CHECK:
     system_long_context_ptr[3] = -1;
     *system_long_context_ptr = (longlong)&system_data_particle_pool_base;
     system_long_context_ptr[4] = 0x010010c0021060;
-    system_buffer_pointer_20 = system_long_context_ptr;
+    system_audio_config_ptr = system_long_context_ptr;
     (**(code **)(*system_long_context_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_context_ptr);
     system_uint_buffer = system_resource_memory_pool;
-    system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-    system_buffer_pointer_0x01 = system_long_context_ptr;
+    system_stack_long_int_ptr = &system_audio_device_ptr;
+    system_audio_device_ptr = system_long_context_ptr;
     (**(code **)(*system_long_context_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_context_ptr);
-    system_process_resource_request(system_uint_buffer,&system_buffer_pointer_0x01);
+    system_process_resource_request(system_uint_buffer,&system_audio_device_ptr);
     (**(code **)(*system_long_context_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_long_context_ptr);
   }
   return;
@@ -13785,7 +13785,7 @@ void system_stop_timer_countdown(void)
   uint64_t *system_data_context;
   code *system_code_ptr_2;
   longlong system_long_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   uint64_t system_audio_config_value;
   longlong *system_long_status_ptr;
   uint32_t system_config_buffer [0x040];
@@ -13847,9 +13847,9 @@ void system_stop_timer_countdown(void)
     system_context_ide0 = 0;
     system_buffer_pointerf0 = (void **)0x00;
     system_context_ide1 = 0;
-    system_buffer_pointer = (longlong *)CONCAT44(system_buffer_pointer._4_4_,SYSTEM_CONFIG_DATA_SIZE_16);
-    system_status_buffer = GetComputerNameA(apsystem_buffer_pointer,&system_buffer_pointer);
-    if (system_status_buffer == 0) {
+    system_buffer_pointer = (longlong *)CONCAT44(system_buffer_pointer.y,SYSTEM_CONFIG_DATA_SIZE_16);
+    system_buffer_size = GetComputerNameA(apsystem_buffer_pointer,&system_buffer_pointer);
+    if (system_buffer_size == 0) {
       system_load_resource_data(&system_graphics_context);
     }
     else {
@@ -13857,9 +13857,9 @@ void system_stop_timer_countdown(void)
       *(uint32_t *)((longlong)apsystem_buffer_pointer + ((ulonglong)system_buffer_pointer & 0x07fffffff)) = 0;
       (**(code **)(system_buffer_pointerd1 + SYSTEM_CONFIG_DATA_SIZE_16))(&system_buffer_pointerd1,apsystem_buffer_pointer);
     }
-    system_buffer_pointer = (longlong *)CONCAT44(system_buffer_pointer._4_4_,SYSTEM_CONFIG_DATA_SIZE_161);
-    system_status_buffer = GetUserNameA(system_config_buffer,&system_buffer_pointer);
-    if (system_status_buffer == 0) {
+    system_buffer_pointer = (longlong *)CONCAT44(system_buffer_pointer.y,SYSTEM_CONFIG_DATA_SIZE_161);
+    system_buffer_size = GetUserNameA(system_config_buffer,&system_buffer_pointer);
+    if (system_buffer_size == 0) {
       system_load_resource_data(&system_display_config);
     }
     else {
@@ -14094,7 +14094,7 @@ void system_get_timer_elapsed_time(void)
   *(uint32_t *)system_handle_ptr = 0;
   system_buffer_pointer = system_handle_ptr;
   system_audio_context_id = system_get_resource_context(system_handle_ptr);
-  system_context_id = CONCAT44(system_context_id._4_4_,system_audio_context_id);
+  system_context_id = CONCAT44(system_context_id.y,system_audio_context_id);
   *system_handle_ptr = 0x03265003400326103453;
   system_context_id = 0x03;
   system_uint_value = GetCurrentThread();
@@ -14123,7 +14123,7 @@ uint64_t system_initialize_main_entry(void)
   code *system_code_ptr_2;
   longlong **system_long_ptr_ptr;
   uint64_t system_uint_buffer;
-  int system_int_config;
+  int system_config_value;
   longlong ****ppsystem_long_ptr_ptr;
   uint64_t system_audio_uint_value;
   longlong ****ppsystem_long_ptr_ptr;
@@ -14258,8 +14258,8 @@ uint64_t system_initialize_main_entry(void)
     system_pointer_table = (longlong ****)0x00;
     WaitForSingleObject(system_global_semaphore_handle,0x07fffffff);
     do {
-      system_int_config = ReleaseSemaphore(system_global_semaphore_handle,1);
-    } while (system_int_config == 0);
+      system_config_value = ReleaseSemaphore(system_global_semaphore_handle,1);
+    } while (system_config_value == 0);
     system_audio_uint_value = __acrt_iob_func(1);
     fflush(system_audio_uint_value);
     system_audio_uint_value = __acrt_iob_func(2);
@@ -15081,7 +15081,7 @@ int system_calculate_performance_metrics(longlong system_context_parameter,longl
   longlong system_long_context;
   void **system_handle_ptr;
   longlong system_audio_buffer_pointer;
-  int system_int_config;
+  int system_config_value;
   longlong system_long_status;
   longlong system_audio_long_value;
   ulonglong system_audio_uint_value;
@@ -15202,14 +15202,14 @@ SYSTEM_VALIDATION_CHECK:
   *(uint64_t *****)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) = pppsystem_uint_ptr;
   *(longlong *)(system_context_parameter + 0x01001) = system_audio_long_value * SYSTEM_CONFIG_DATA_SIZE_160 + system_long_context;
 SYSTEM_VALIDATION_CHECK:
-  system_int_config = (int)((ulonglong)((longlong)pppsystem_uint_ptr - *(longlong *)(system_context_parameter + 0x01)) >> 0x01) + -1;
-  *(int *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET) = system_int_config;
+  system_config_value = (int)((ulonglong)((longlong)pppsystem_uint_ptr - *(longlong *)(system_context_parameter + 0x01)) >> 0x01) + -1;
+  *(int *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET) = system_config_value;
   ppsystem_context_buffer = &ppsystem_buffer_pointer;
   system_create_resource_handle(&ppsystem_buffer_pointer,system_context_id);
   ppsystem_context_buffer = (uint64_t ***)&system_buffer_pointer;
   system_buffer_pointer = (uint64_t *)&system_data_callback_pool_base2;
   if (system_stack_long_int_130 == 0) {
-    return system_int_config;
+    return system_config_value;
   }
                     // WARNING: Subroutine does not return
   system_initialize_component();
@@ -15258,8 +15258,8 @@ ulonglong system_compare_memory_blocks(longlong system_context_parameter,longlon
   int system_int_context;
   longlong system_long_handle;
   byte *system_byte_pointer;
-  int system_int_config;
-  int system_status_code;
+  int system_config_value;
+  int system_return_code;
   ulonglong system_audio_uint_value;
   longlong system_audio_long_value;
   ulonglong system_audio_uint_value;
@@ -15268,22 +15268,22 @@ ulonglong system_compare_memory_blocks(longlong system_context_parameter,longlon
   system_audio_uint_value = (ulonglong)*(int *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET);
   system_long_handle = *(longlong *)(system_context_parameter + 0x01);
   if (system_audio_uint_value < (ulonglong)(*(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) - system_long_handle >> 0x01)) {
-    system_int_config = *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16);
+    system_config_value = *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16);
     system_int_context = *(int *)(system_audio_uint_value * SYSTEM_CONFIG_DATA_SIZE_160 + SYSTEM_CONFIG_DATA_SIZE_16 + system_long_handle);
-    if (system_int_context == system_int_config) {
+    if (system_int_context == system_config_value) {
       if (system_int_context != 0) {
         system_byte_pointer = *(byte **)(system_audio_uint_value * SYSTEM_CONFIG_DATA_SIZE_160 + 0x01 + system_long_handle);
         system_audio_long_value = *(longlong *)(system_context_parameter + 0x01) - (longlong)system_byte_pointer;
         do {
           system_byte_pointer = system_byte_pointer + system_audio_long_value;
-          system_int_config = (uint)*system_byte_pointer - (uint)*system_byte_pointer;
-          if (system_int_config != 0) break;
+          system_config_value = (uint)*system_byte_pointer - (uint)*system_byte_pointer;
+          if (system_config_value != 0) break;
           system_byte_pointer = system_byte_pointer + 1;
         } while (*system_byte_pointer != 0);
       }
     }
     else if (system_int_context != 0) goto SYSTEM_LABEL;
-    if (system_int_config == 0) {
+    if (system_config_value == 0) {
 SYSTEM_VALIDATION_CHECK:
       return system_audio_uint_value & 0x07fffffff;
     }
@@ -15292,24 +15292,24 @@ SYSTEM_VALIDATION_CHECK:
   system_audio_uint_value = 0;
   system_audio_uint_value = *(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) - system_long_handle >> 0x01;
   if (system_audio_uint_value != 0) {
-    system_int_config = *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16);
+    system_config_value = *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16);
     system_audio_uint_value = system_audio_uint_value;
     do {
       system_int_context = *(int *)(system_audio_uint_value + SYSTEM_CONFIG_DATA_SIZE_16 + system_long_handle);
-      system_status_code = system_int_config;
-      if (system_int_context == system_int_config) {
+      system_return_code = system_config_value;
+      if (system_int_context == system_config_value) {
         if (system_int_context != 0) {
           system_byte_pointer = *(byte **)(system_audio_uint_value + 0x01 + system_long_handle);
           system_audio_long_value = *(longlong *)(system_context_parameter + 0x01) - (longlong)system_byte_pointer;
           do {
             system_byte_pointer = system_byte_pointer + system_audio_long_value;
-            system_status_code = (uint)*system_byte_pointer - (uint)*system_byte_pointer;
-            if (system_status_code != 0) break;
+            system_return_code = (uint)*system_byte_pointer - (uint)*system_byte_pointer;
+            if (system_return_code != 0) break;
             system_byte_pointer = system_byte_pointer + 1;
           } while (*system_byte_pointer != 0);
         }
 SYSTEM_VALIDATION_CHECK:
-        if (system_status_code == 0) {
+        if (system_return_code == 0) {
           *(int *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET) = (int)system_audio_uint_value;
           goto SYSTEM_LABEL;
         }
@@ -15338,30 +15338,30 @@ void system_setup_performance_counters(longlong *system_context_parameter,uint64
 
 {
   longlong *system_long_data_ptr;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   uint64_t *temp_pointer;
-  longlong *system_buffer_pointer_0x01001;
+  longlong *system_audio_device_ptr001;
   longlong **system_stack_long_int_ptr;
   uint64_t system_audio_context_id;
   uint64_t system_uint_handle;
   
   system_uint_handle = SYSTEM_INVALID_HANDLE_VALUE;
   system_audio_context_id = 0;
-  system_buffer_pointer_0x01 = system_context_parameter;
+  system_audio_device_ptr = system_context_parameter;
   temp_pointer = system_context_parameter;
   system_initialize_graphics_pipeline();
   system_long_data_ptr = (longlong *)system_allocate_memory_context(system_context_memory_pool,200,0x01,3,system_audio_context_id,system_uint_handle);
-  system_buffer_pointer_0x01 = system_long_data_ptr;
+  system_audio_device_ptr = system_long_data_ptr;
   system_initialize_memory_table(system_long_data_ptr);
   *system_long_data_ptr = (longlong)&system_data_context_manager_base;
   system_long_data_ptr[0x01001] = (longlong)&system_data_1;
-  system_buffer_pointer_0x01001 = system_long_data_ptr;
+  system_audio_device_ptr001 = system_long_data_ptr;
   (**(code **)(*system_long_data_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_data_ptr);
   system_uint_handle = system_resource_memory_pool;
-  system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-  system_buffer_pointer_0x01 = system_long_data_ptr;
+  system_stack_long_int_ptr = &system_audio_device_ptr;
+  system_audio_device_ptr = system_long_data_ptr;
   (**(code **)(*system_long_data_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_data_ptr);
-  system_process_resource_request(system_uint_handle,&system_buffer_pointer_0x01);
+  system_process_resource_request(system_uint_handle,&system_audio_device_ptr);
   (**(code **)(*system_long_data_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_long_data_ptr);
   system_render_offset = (longlong)*(int *)(system_main_context + 0x0224);
   system_setup_rendering_context(&system_data_memory_pool0bf52c0,system_context_parameter);
@@ -15383,7 +15383,7 @@ void system_initialize_metrics_collector(void)
 {
   uint64_t system_uint_value;
   char system_char_data;
-  int system_comparison_result;
+  int system_compare_result;
   longlong ***ppcontext_pointer;
   ulonglong system_audio_config_value;
   longlong system_long_status;
@@ -15529,22 +15529,22 @@ void system_initialize_metrics_collector(void)
     system_initialize_ui_theme(&system_data_memory_pool0bf52c0,&system_buffer_pointer,0,system_global_thread_ptr + -1);
     system_stack_int_0x054001 = system_stack_int_0x054001 + -1;
     system_long_status = (longlong)system_stack_int_0x054001;
-    system_comparison_result = -1;
+    system_compare_result = -1;
     if (-1 < system_stack_int_0x054001) {
       do {
-        system_comparison_result = system_stack_int_0x054001;
+        system_compare_result = system_stack_int_0x054001;
         if (*(char *)(system_stack_long_int_550 + system_long_status) == '/') break;
         system_stack_int_0x054001 = system_stack_int_0x054001 + -1;
         system_long_status = system_long_status + -1;
-        system_comparison_result = -1;
+        system_compare_result = -1;
       } while (-1 < system_long_status);
     }
-    system_initialize_ui_theme(&system_buffer_pointer,&system_buffer_pointer,system_comparison_result + 1,0x07fffffff);
-    system_comparison_result = system_compare_memory_blocks(&system_data_memory_pool0bf5240,&system_buffer_pointer);
-    if (system_comparison_result == -1) {
-      system_comparison_result = system_validate_ui_config(&system_data_memory_pool0bf5240,&system_buffer_pointer);
+    system_initialize_ui_theme(&system_buffer_pointer,&system_buffer_pointer,system_compare_result + 1,0x07fffffff);
+    system_compare_result = system_compare_memory_blocks(&system_data_memory_pool0bf5240,&system_buffer_pointer);
+    if (system_compare_result == -1) {
+      system_compare_result = system_validate_ui_config(&system_data_memory_pool0bf5240,&system_buffer_pointer);
     }
-    system_long_status = (longlong)system_comparison_result * SYSTEM_CONFIG_DATA_SIZE_160;
+    system_long_status = (longlong)system_compare_result * SYSTEM_CONFIG_DATA_SIZE_160;
     ppsystem_buffer_pointer = (longlong ***)(_system_data_memory_pool0bf524001 + 0x030 + system_long_status);
     pppsystem_buffer_pointer = appsystem_buffer_pointer;
     system_buffer_pointer = &system_data_0x01003;
@@ -15594,15 +15594,15 @@ void system_initialize_metrics_collector(void)
     system_context_id = system_context_id & 0x07fffffff;
   }
   system_setup_ui_layout(&system_stack_system_local_variable,1);
-  system_comparison_result = system_context_id + 0x011;
-  system_set_ui_parameter(&system_buffer_pointer,system_comparison_result);
+  system_compare_result = system_context_id + 0x011;
+  system_set_ui_parameter(&system_buffer_pointer,system_compare_result);
   child_pointer = (uint64_t *)(system_buffer_pointer + system_context_id);
   *child_pointer = 0x0600260036e65;
   child_pointer[1] = 0x0635f656e;
   child_pointer[2] = 0x06002666e6f;
   child_pointer[3] = 0x0300100342e603;
   *(uint16_t *)(child_pointer + 4) = 0x034;
-  system_context_id = system_comparison_result;
+  system_context_id = system_compare_result;
   parent_pointer = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x01001,0x01,3);
   system_manager_ptr = &system_data_memory_pool0x02001bc0033;
   if (system_buffer_pointer != (uint32_t *)0x00) {
@@ -15668,7 +15668,7 @@ void system_aggregate_performance_stats(uint64_t system_context_parameter,uint64
 {
   byte system_byte_value;
   bool system_byte_context;
-  int system_comparison_result;
+  int system_compare_result;
   uint64_t *system_buffer_context;
   uint system_audio_config_value;
   byte *system_byte_pointer;
@@ -15679,11 +15679,11 @@ void system_aggregate_performance_stats(uint64_t system_context_parameter,uint64
   uint64_t system_context_id_0x01;
   
   system_context_id_0x01 = system_context_parameter;
-  system_comparison_result = system_compare_memory_blocks(&system_data_memory_pool0bf5240);
-  if (system_comparison_result == -1) {
-    system_comparison_result = system_validate_ui_config(&system_data_memory_pool0bf5240,system_context_parameter);
+  system_compare_result = system_compare_memory_blocks(&system_data_memory_pool0bf5240);
+  if (system_compare_result == -1) {
+    system_compare_result = system_validate_ui_config(&system_data_memory_pool0bf5240,system_context_parameter);
   }
-  parent_pointer = (uint64_t *)(_system_data_memory_pool0bf524001 + SYSTEM_CONTEXT_OFFSET_D0 + (longlong)system_comparison_result * SYSTEM_CONFIG_DATA_SIZE_160);
+  parent_pointer = (uint64_t *)(_system_data_memory_pool0bf524001 + SYSTEM_CONTEXT_OFFSET_D0 + (longlong)system_compare_result * SYSTEM_CONFIG_DATA_SIZE_160);
   system_buffer_context = parent_pointer;
   if ((uint64_t *)parent_pointer[2] != (uint64_t *)0x00) {
     child_pointer = (uint64_t *)parent_pointer[2];
@@ -15701,12 +15701,12 @@ void system_aggregate_performance_stats(uint64_t system_context_parameter,uint64
           system_audio_long_value = child_pointer[5] - (longlong)system_byte_pointer;
           do {
             system_audio_config_value = (uint)system_byte_pointer[system_audio_long_value];
-            system_comparison_result = *system_byte_pointer - system_audio_config_value;
+            system_compare_result = *system_byte_pointer - system_audio_config_value;
             if (*system_byte_pointer != system_audio_config_value) break;
             system_byte_pointer = system_byte_pointer + 1;
           } while (system_audio_config_value != 0);
-          system_byte_context = 0 < system_comparison_result;
-          if (system_comparison_result < 1) {
+          system_byte_context = 0 < system_compare_result;
+          if (system_compare_result < 1) {
             system_manager_ptr = (uint64_t *)child_pointer[1];
             goto SYSTEM_LABEL;
           }
@@ -16265,7 +16265,7 @@ system_process_memory_request(longlong *system_context_parameter,uint64_t *syste
   uint system_audio_status;
   longlong system_audio_long_value;
   uint64_t system_audio_uint_value;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   
   context_pointer = (longlong *)*system_context_parameter;
   if ((system_context_parameter == context_pointer) || (system_context_parameter == system_context_parameter)) {
@@ -16375,8 +16375,8 @@ SYSTEM_VALIDATION_CHECK:
       if ((int)(system_byte_value - system_audio_status) < 1) goto SYSTEM_LABEL;
     }
   }
-  system_create_graphics_buffer(system_context_parameter,&system_buffer_pointer_0x01,system_long_handle_ptr,0,system_param_);
-  context_pointer = system_buffer_pointer_0x01;
+  system_create_graphics_buffer(system_context_parameter,&system_audio_device_ptr,system_long_handle_ptr,0,system_param_);
+  context_pointer = system_audio_device_ptr;
 SYSTEM_VALIDATION_CHECK:
   *system_context_parameter = context_pointer;
   return system_context_parameter;
@@ -17265,7 +17265,7 @@ bool system_check_system_init_status(void)
   char system_init_status;
   uint64_t *system_data_context;
   void **system_handle_ptr;
-  int system_status_buffer;
+  int system_buffer_size;
   bool system_byte_config;
   uint64_t system_context_id;
   longlong system_stack_long_int_40;
@@ -17274,8 +17274,8 @@ bool system_check_system_init_status(void)
   uint system_context_id;
   
   system_initialize_render_state(&system_buffer_pointer);
-  system_status_buffer = system_context_id + 0x011;
-  system_set_ui_parameter(&system_buffer_pointer,system_status_buffer);
+  system_buffer_size = system_context_id + 0x011;
+  system_set_ui_parameter(&system_buffer_pointer,system_buffer_size);
   system_data_context = (uint64_t *)(system_buffer_pointer + system_context_id);
   *system_data_context = 0x0600260036e65;
   system_data_context[1] = 0x0635f656e;
@@ -17288,7 +17288,7 @@ bool system_check_system_init_status(void)
   if (system_buffer_pointer != (void **)0x00) {
     system_handle_ptr = system_buffer_pointer;
   }
-  system_context_id = system_status_buffer;
+  system_context_id = system_buffer_size;
   system_audio_register_value_ui_service(&system_context_id,system_handle_ptr,&system_ui_service_handler);
   if (system_stack_long_int_40 == 0) {
     system_byte_config = false;
@@ -17327,7 +17327,7 @@ void system_initialize_exception_system(void)
   uint64_t *system_data_context;
   uint64_t *system_handle_ptr;
   void **system_buffer_context;
-  int system_int_config;
+  int system_config_value;
   uint32_t system_config_buffer [0x040];
   uint64_t system_context_id;
   uint32_t system_config_buffer [0x01];
@@ -17357,14 +17357,14 @@ void system_initialize_exception_system(void)
   system_setup_render_parameters(system_config_buffer,&system_buffer_pointer);
   system_context_id = 0;
   system_buffer_pointer = &system_data_animation_pool_base;
-  system_int_config = system_context_id + 0x07;
-  system_set_ui_parameter(system_config_buffer,system_int_config);
+  system_config_value = system_context_id + 0x07;
+  system_set_ui_parameter(system_config_buffer,system_config_value);
   system_data_context = (uint64_t *)(system_buffer_pointer + system_context_id);
   *system_data_context = 0x0326500330035;
   system_data_context[1] = 0x06e6f635f;
   system_data_context[2] = 0x02e6003600266;
   system_data_context[3] = 0x034003001034;
-  system_context_id = system_int_config;
+  system_context_id = system_config_value;
   system_handle_ptr = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x01001,0x01,3);
   system_buffer_context = &system_data_memory_pool0x02001bc0033;
   if (system_buffer_pointer != (void **)0x00) {
@@ -17532,8 +17532,8 @@ system_set_initialization_flag(uint64_t *system_context_parameter,uint64_t syste
 {
   uint64_t *system_data_context;
   uint64_t *system_data_context;
-  int system_comparison_result;
-  int system_status_buffer;
+  int system_compare_result;
+  int system_buffer_size;
   uint64_t system_audio_config_value;
   
   system_audio_config_value = SYSTEM_INVALID_HANDLE_VALUE;
@@ -17549,16 +17549,16 @@ system_set_initialization_flag(uint64_t *system_context_parameter,uint64_t syste
   if ((uint32_t *)system_context_parameter[1] != (uint32_t *)0x00) {
     *(uint32_t *)system_context_parameter[1] = 0;
   }
-  system_status_buffer = *(int *)(system_context_parameter + 2);
-  system_comparison_result = system_status_buffer + 6;
-  system_set_ui_parameter(system_context_parameter,system_comparison_result,system_context_parameter,system_context_parameter,1,system_audio_config_value);
+  system_buffer_size = *(int *)(system_context_parameter + 2);
+  system_compare_result = system_buffer_size + 6;
+  system_set_ui_parameter(system_context_parameter,system_compare_result,system_context_parameter,system_context_parameter,1,system_audio_config_value);
   system_data_context = (uint64_t *)((ulonglong)*(uint *)(system_context_parameter + 2) + system_context_parameter[1]);
   *system_data_context = 0x02e2f2e2e;
   *(uint16_t *)(system_data_context + 1) = 0x02f2e;
   *(uint32_t *)((longlong)system_data_context + 6) = 0;
-  *(int *)(system_context_parameter + 2) = system_comparison_result;
-  system_status_buffer = system_status_buffer + 0x02a;
-  system_set_ui_parameter(system_context_parameter,system_status_buffer);
+  *(int *)(system_context_parameter + 2) = system_compare_result;
+  system_buffer_size = system_buffer_size + 0x02a;
+  system_set_ui_parameter(system_context_parameter,system_buffer_size);
   system_data_context = (uint64_t *)((ulonglong)*(uint *)(system_context_parameter + 2) + system_context_parameter[1]);
   *system_data_context = 0x0336c6f6f542f2e2e;
   system_data_context[1] = 0x034003541003403365542f;
@@ -17566,7 +17566,7 @@ system_set_initialization_flag(uint64_t *system_context_parameter,uint64_t syste
   system_data_context[3] = 0x0656d60016361003403441;
   *(uint64_t *)(system_data_context + 4) = 0x02f003300346e;
   *(uint32_t *)((longlong)system_data_context + 0x024) = 0;
-  *(int *)(system_context_parameter + 2) = system_status_buffer;
+  *(int *)(system_context_parameter + 2) = system_buffer_size;
   return system_context_parameter;
 }
 
@@ -17579,7 +17579,7 @@ uint64_t system_process_initialization_step(char system_context_parameter)
   char system_char_data;
   uint64_t *system_handle_ptr;
   void **system_buffer_context;
-  int system_int_config;
+  int system_config_value;
   uint64_t system_audio_status;
   uint64_t system_context_id;
   longlong system_stack_long_int_40;
@@ -17604,8 +17604,8 @@ uint64_t system_process_initialization_step(char system_context_parameter)
     }
   }
   system_initialize_render_state(&system_buffer_pointer);
-  system_int_config = system_context_id + 0x011;
-  system_set_ui_parameter(&system_buffer_pointer,system_int_config);
+  system_config_value = system_context_id + 0x011;
+  system_set_ui_parameter(&system_buffer_pointer,system_config_value);
   system_handle_ptr = (uint64_t *)(system_buffer_pointer + system_context_id);
   *system_handle_ptr = 0x0600260036e65;
   system_handle_ptr[1] = 0x0635f656e;
@@ -17618,7 +17618,7 @@ uint64_t system_process_initialization_step(char system_context_parameter)
   if (system_buffer_pointer != (void **)0x00) {
     system_buffer_context = system_buffer_pointer;
   }
-  system_context_id = system_int_config;
+  system_context_id = system_config_value;
   system_audio_register_value_ui_service(&system_context_id,system_buffer_context,&system_data_memory_pool0x02fc003ec);
   system_long_data_ptr = _system_data_memory_pool0c1600220;
   if (system_stack_long_int_40 == 0) {
@@ -18017,13 +18017,13 @@ void system_decrypt_backup_archive(uint64_t system_context_parameter,uint64_t sy
 {
   uint64_t *system_data_context;
   longlong system_long_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong system_audio_buffer_pointer;
   
   system_long_context = _system_data_memory_pool0c1a002f0;
-  system_comparison_result = (int)(*(longlong *)(_system_data_memory_pool0c1a002f0 + SYSTEM_THREAD_POOL_BASE_OFFSET) - *(longlong *)(_system_data_memory_pool0c1a002f0 + 0x030) >> 3);
+  system_compare_result = (int)(*(longlong *)(_system_data_memory_pool0c1a002f0 + SYSTEM_THREAD_POOL_BASE_OFFSET) - *(longlong *)(_system_data_memory_pool0c1a002f0 + 0x030) >> 3);
   system_audio_buffer_pointer = 0;
-  if (0 < system_comparison_result) {
+  if (0 < system_compare_result) {
     do {
       system_data_context = *(uint64_t **)(*(longlong *)(system_long_context + 0x030) + system_audio_buffer_pointer * 0x01);
       if (system_data_context != (uint64_t *)0x00) {
@@ -18048,7 +18048,7 @@ void system_decrypt_backup_archive(uint64_t system_context_parameter,uint64_t sy
       }
       *(uint64_t *)(*(longlong *)(system_long_context + 0x030) + system_audio_buffer_pointer * 0x01) = 0;
       system_audio_buffer_pointer = system_audio_buffer_pointer + 1;
-    } while (system_audio_buffer_pointer < system_comparison_result);
+    } while (system_audio_buffer_pointer < system_compare_result);
   }
   *(uint64_t *)(system_long_context + SYSTEM_THREAD_POOL_BASE_OFFSET) = *(uint64_t *)(system_long_context + 0x030);
   system_audio_buffer_pointer = system_long_context + SYSTEM_RESOURCE_COUNT_OFFSET;
@@ -18829,18 +18829,18 @@ void system_generate_encryption_key(longlong system_context_parameter)
 {
   longlong system_audio_long_value;
   int system_int_context;
-  int system_comparison_result;
+  int system_compare_result;
   float system_float_buffer;
   float system_float_config;
   float system_float_status;
   
   system_audio_long_value = system_graphics_context;
   system_int_context = *(int *)(_system_data_memory_pool0c1600220 + 0x060020) + -1;
-  system_comparison_result = 0;
-  if ((-1 < system_int_context) && (system_comparison_result = system_int_context, 3 < system_int_context)) {
-    system_comparison_result = 3;
+  system_compare_result = 0;
+  if ((-1 < system_int_context) && (system_compare_result = system_int_context, 3 < system_int_context)) {
+    system_compare_result = 3;
   }
-  audio_volume_value = (float)system_comparison_result;
+  audio_volume_value = (float)system_compare_result;
   audio_volume_value = audio_volume_value * 1.0x0600350001 + 2.0x0400350001;
   system_float_config = audio_volume_value * 4.0x0466666003 + 6.6000004;
   system_float_status = audio_volume_value * 3.3500001 + 4.0x02500003;
@@ -18941,7 +18941,7 @@ void system_encrypt_data_block(longlong *system_context_parameter)
   }
   _system_data_memory_pool0c160021001 = 0;
   system_complete_shader_setup();
-  _system_data_memory_pool0c1600250 = 0;
+  system_global_memory_pool = 0;
   if (system_context_parameter[6] != 0) {
                     // WARNING: Subroutine does not return
     system_initialize_component();
@@ -19056,8 +19056,8 @@ void system_decrypt_data_block(uint64_t system_context_parameter,longlong system
   uint32_t system_audio_context_id;
   uint64_t *system_handle_ptr;
   uint64_t *system_buffer_context;
-  char system_char_config;
-  int system_status_code;
+  char system_char_status;
+  int system_return_code;
   uint64_t system_audio_uint_value;
   longlong system_audio_long_value;
   longlong system_audio_long_value;
@@ -19217,8 +19217,8 @@ void system_decrypt_data_block(uint64_t system_context_parameter,longlong system
         }
         system_apply_shader_settings(extraout_XMM0_Da,system_audio_long_value);
         if (system_audio_uint_value == 0x01) {
-          system_status_code = strcmp(system_control_ptr,&system_config_service_handler);
-          system_bool_graphics_ready = system_status_code == 0;
+          system_return_code = strcmp(system_control_ptr,&system_config_service_handler);
+          system_bool_graphics_ready = system_return_code == 0;
         }
         else {
           system_bool_graphics_ready = false;
@@ -19230,19 +19230,19 @@ void system_verify_encryption_signature(longlong system_context_parameter)
 {
   int *system_audio_loop_index_ptr;
   uint64_t system_audio_context_id;
-  int system_comparison_result;
+  int system_compare_result;
   bool system_byte_buffer;
   uint64_t system_audio_config_value;
   bool system_byte_status;
   
   system_audio_loop_index_ptr = (int *)(system_context_parameter + 0x03d0);
-  if (((int)*(float *)(_system_data_memory_pool0c1600250 + 0x01003ec) == *(int *)(system_context_parameter + 0x03cc)) &&
-     ((int)*(float *)(_system_data_memory_pool0c1600250 + 0x01003f0) == *system_audio_loop_index_ptr)) {
+  if (((int)*(float *)(system_global_memory_pool + 0x01003ec) == *(int *)(system_context_parameter + 0x03cc)) &&
+     ((int)*(float *)(system_global_memory_pool + 0x01003f0) == *system_audio_loop_index_ptr)) {
     system_byte_buffer = false;
   }
   else {
     system_byte_buffer = true;
-    system_initialize_audio_device(_system_data_memory_pool0c1600250,*(int *)(system_context_parameter + 0x03cc),*system_audio_loop_index_ptr);
+    system_initialize_audio_device(system_global_memory_pool,*(int *)(system_context_parameter + 0x03cc),*system_audio_loop_index_ptr);
   }
   if (*(int *)(*(longlong *)(system_context_parameter + 0x01) + SYSTEM_THREAD_POOL_BASE_OFFSET) == 2) {
     if ((*(char *)(system_context_parameter + 0x03d4) != '\0') || (*(char *)(system_context_parameter + 0x03d5) != '\0')) {
@@ -19260,7 +19260,7 @@ void system_verify_encryption_signature(longlong system_context_parameter)
   }
   else {
     if (*(char *)(system_context_parameter + 0x03d4) != '\0') {
-      system_comparison_result = *(int *)(_system_data_memory_pool0c1600220 + 0x01ea0);
+      system_compare_result = *(int *)(_system_data_memory_pool0c1600220 + 0x01ea0);
       if ((*(char *)(system_context_parameter + 0x03d5) != '\0') || (system_byte_buffer)) {
         system_audio_config_value = 1;
       }
@@ -19268,7 +19268,7 @@ void system_verify_encryption_signature(longlong system_context_parameter)
         system_audio_config_value = 0;
       }
       system_load_audio_driver(*(longlong *)(system_context_parameter + 0x01),*(uint64_t *)(system_context_parameter + 0x03cc),*system_audio_loop_index_ptr,system_audio_config_value);
-      system_byte_status = system_comparison_result == 2;
+      system_byte_status = system_compare_result == 2;
       goto SYSTEM_LABEL;
     }
     if (!system_byte_buffer) {
@@ -19290,12 +19290,12 @@ SYSTEM_VALIDATION_CHECK:
 uint64_t system_complete_initialization(void)
 
 {
-  uint32_t asystem_uint_var_1 [16];
+  uint32_t system_audio_config_array [16];
   longlong system_long_context;
   longlong system_long_handle;
   uint64_t *system_buffer_context;
   uint system_audio_config_value;
-  int system_status_code;
+  int system_return_code;
   void **system_thread_context_pointer;
   longlong system_stack_long_int_c0;
   uint system_context_id_b1;
@@ -19310,30 +19310,30 @@ uint64_t system_complete_initialization(void)
   
   system_long_handle = _system_data_memory_pool0c160010030;
   system_context_id = SYSTEM_INVALID_HANDLE_VALUE;
-  asystem_uint_var_1 = *(uint32_t (*) [16])
+  system_audio_config_array = *(uint32_t (*) [16])
             (*(longlong *)(_system_data_memory_pool0c160010030 + 0x01) + 0x04c +
             (ulonglong)(*(uint *)(*(longlong *)(_system_data_memory_pool0c160010030 + 0x01) + 0x08c) & 1) * 0x04001);
-  if ((asystem_uint_var_1._12_4_ != 0) && (asystem_uint_var_1._0x01_4_ != 0)) {
+  if ((system_audio_config_array.w != 0) && (system_audio_config_array.z != 0)) {
     system_thread_context_pointer = &system_data_callback_pool_base2;
     system_context_id_b0 = 0;
     system_stack_long_int_c0 = 0;
     system_context_id_b1 = 0;
-    system_configure_audio_stream(&system_thread_context_pointer,asystem_uint_var_1._0_4_);
+    system_configure_audio_stream(&system_thread_context_pointer,system_audio_config_array.x);
     system_audio_config_value = system_context_id_b1 + 1;
     system_set_ui_parameter(&system_thread_context_pointer,system_audio_config_value);
     *(uint16_t *)((ulonglong)system_context_id_b1 + system_stack_long_int_c0) = 0x02c;
     system_context_id_b1 = system_audio_config_value;
-    system_configure_audio_stream(&system_thread_context_pointer,asystem_uint_var_1._0_0x01_ >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
+    system_configure_audio_stream(&system_thread_context_pointer,system_audio_config_array.xy >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
     system_audio_config_value = system_context_id_b1 + 1;
     system_set_ui_parameter(&system_thread_context_pointer,system_audio_config_value);
     *(uint16_t *)((ulonglong)system_context_id_b1 + system_stack_long_int_c0) = 0x02c;
     system_context_id_b1 = system_audio_config_value;
-    system_configure_audio_stream(&system_thread_context_pointer,asystem_uint_var_1._0x01_0x01_ & 0x07fffffff);
-    system_status_code = system_context_id_b1 + 1;
-    system_set_ui_parameter(&system_thread_context_pointer,system_status_code);
+    system_configure_audio_stream(&system_thread_context_pointer,system_audio_config_array.zw & 0x07fffffff);
+    system_return_code = system_context_id_b1 + 1;
+    system_set_ui_parameter(&system_thread_context_pointer,system_return_code);
     *(uint16_t *)((ulonglong)system_context_id_b1 + system_stack_long_int_c0) = 0x02c;
-    system_context_id_b1 = system_status_code;
-    system_configure_audio_stream(&system_thread_context_pointer,asystem_uint_var_1._0x01_0x01_ >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
+    system_context_id_b1 = system_return_code;
+    system_configure_audio_stream(&system_thread_context_pointer,system_audio_config_array.zw >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
     system_buffer_context = (uint64_t *)system_initialize_ui_components(system_config_buffer,&system_thread_context_pointer);
     system_audio_register_value_audio_callback(_system_data_memory_pool0c16001b0 + 0x0530,system_buffer_context);
     *system_buffer_context = &system_data_callback_pool_base2;
@@ -19354,28 +19354,28 @@ uint64_t system_complete_initialization(void)
     system_thread_context_pointer = &system_data_animation_pool_base;
   }
   system_long_context = *(longlong *)(system_long_handle + 0x01);
-  asystem_uint_var_1 = *(uint32_t (*) [16])(system_long_context + 0x06c + (ulonglong)(*(uint *)(system_long_context + 0x08c) & 1) * 0x04001);
-  if ((asystem_uint_var_1._12_4_ != 0) && (asystem_uint_var_1._0x01_4_ != 0)) {
+  system_audio_config_array = *(uint32_t (*) [16])(system_long_context + 0x06c + (ulonglong)(*(uint *)(system_long_context + 0x08c) & 1) * 0x04001);
+  if ((system_audio_config_array.w != 0) && (system_audio_config_array.z != 0)) {
     system_thread_context_pointer = &system_data_callback_pool_base2;
     system_context_id = 0;
     system_stack_long_int_a0 = 0;
     system_context_id = 0;
-    system_configure_audio_stream(&system_thread_context_pointer,asystem_uint_var_1._0_4_);
+    system_configure_audio_stream(&system_thread_context_pointer,system_audio_config_array.x);
     system_audio_config_value = system_context_id + 1;
     system_set_ui_parameter(&system_thread_context_pointer,system_audio_config_value);
     *(uint16_t *)((ulonglong)system_context_id + system_stack_long_int_a0) = 0x02c;
     system_context_id = system_audio_config_value;
-    system_configure_audio_stream(&system_thread_context_pointer,asystem_uint_var_1._0_0x01_ >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
+    system_configure_audio_stream(&system_thread_context_pointer,system_audio_config_array.xy >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
     system_audio_config_value = system_context_id + 1;
     system_set_ui_parameter(&system_thread_context_pointer,system_audio_config_value);
     *(uint16_t *)((ulonglong)system_context_id + system_stack_long_int_a0) = 0x02c;
     system_context_id = system_audio_config_value;
-    system_configure_audio_stream(&system_thread_context_pointer,asystem_uint_var_1._0x01_0x01_ & 0x07fffffff);
-    system_status_code = system_context_id + 1;
-    system_set_ui_parameter(&system_thread_context_pointer,system_status_code);
+    system_configure_audio_stream(&system_thread_context_pointer,system_audio_config_array.zw & 0x07fffffff);
+    system_return_code = system_context_id + 1;
+    system_set_ui_parameter(&system_thread_context_pointer,system_return_code);
     *(uint16_t *)((ulonglong)system_context_id + system_stack_long_int_a0) = 0x02c;
-    system_context_id = system_status_code;
-    system_configure_audio_stream(&system_thread_context_pointer,asystem_uint_var_1._0x01_0x01_ >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
+    system_context_id = system_return_code;
+    system_configure_audio_stream(&system_thread_context_pointer,system_audio_config_array.zw >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
     system_buffer_context = (uint64_t *)system_initialize_ui_components(system_config_buffer,&system_thread_context_pointer);
     system_audio_register_value_audio_callback(_system_data_memory_pool0c16001b0 + 0x05f0,system_buffer_context);
     *system_buffer_context = &system_data_callback_pool_base2;
@@ -19770,8 +19770,8 @@ void system_initialize_checksum_system(void)
   char *system_code_ptr_2;
   uint64_t system_uint_handle;
   longlong system_audio_buffer_pointer;
-  char system_char_config;
-  int system_status_code;
+  char system_char_status;
+  int system_return_code;
   uint64_t system_audio_uint_value;
   longlong system_audio_long_value;
   longlong *system_ptr_system_local_variable;
@@ -19799,24 +19799,24 @@ void system_initialize_checksum_system(void)
     system_audio_long_value = system_get_audio_system_context(system_resource_memory_pool);
     if (system_audio_long_value == 0) break;
     system_ptr_system_local_variable = (longlong *)system_get_audio_system_context(system_uint_handle);
-    system_char_config = (**(code **)(*system_ptr_system_local_variable + SYSTEM_RESOURCE_BLOCK_OFFSET_20))(system_ptr_system_local_variable,1);
-  } while (system_char_config != '\0');
+    system_char_status = (**(code **)(*system_ptr_system_local_variable + SYSTEM_RESOURCE_BLOCK_OFFSET_20))(system_ptr_system_local_variable,1);
+  } while (system_char_status != '\0');
   system_initialize_audio_system_main(system_resource_memory_pool);
   system_data_context = system_memory_pool_data;
   if (*(char *)(system_memory_pool_data + 0x03) != '\0') {
     system_buffer_pointer = (longlong *)SYSTEM_MUTEX_HANDLE_DEFAULT;
-    system_status_code = _Mtx_lock(SYSTEM_MUTEX_HANDLE_DEFAULT);
-    if (system_status_code != 0) {
-      __Throw_C_error_std__YAXH_Z(system_status_code);
+    system_return_code = _Mtx_lock(SYSTEM_MUTEX_HANDLE_DEFAULT);
+    if (system_return_code != 0) {
+      __Throw_C_error_std__YAXH_Z(system_return_code);
     }
     system_start_audio_processing(*(uint64_t *)*system_data_context);
     system_start_audio_processing(*(uint64_t *)system_data_context[1]);
     system_process_audio_data(*system_data_context);
     system_process_audio_data(system_data_context[1]);
     *(uint32_t *)(system_data_context + 0x03) = 0;
-    system_status_code = _Mtx_unlock(SYSTEM_MUTEX_HANDLE_DEFAULT);
-    if (system_status_code != 0) {
-      __Throw_C_error_std__YAXH_Z(system_status_code);
+    system_return_code = _Mtx_unlock(SYSTEM_MUTEX_HANDLE_DEFAULT);
+    if (system_return_code != 0) {
+      __Throw_C_error_std__YAXH_Z(system_return_code);
     }
   }
   system_data_context = (uint64_t *)*_system_data_memory_pool0c1a002e0;
@@ -19898,7 +19898,7 @@ void system_initialize_checksum_system(void)
   system_handler_ptr[3] = 0x063003200356f;
   system_handler_ptr[4] = 0x02f003365;
   system_context_id = 0x08;
-  system_context_id._0_4_ = system_audio_uint_value;
+  system_context_id.x = system_audio_uint_value;
   system_configure_audio_parameters(&system_buffer_pointer,&system_buffer_pointer);
   system_buffer_pointer = &system_data_callback_pool_base2;
   if (system_buffer_pointer != (uint64_t *)0x00) {
@@ -19906,7 +19906,7 @@ void system_initialize_checksum_system(void)
     system_initialize_component();
   }
   system_buffer_pointer = (uint64_t *)0x00;
-  system_context_id = (ulonglong)system_context_id._4_4_ << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
+  system_context_id = (ulonglong)system_context_id.y << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
   system_buffer_pointer = &system_data_animation_pool_base;
   system_buffer_pointer = &system_data_animation_pool_base;
                     // WARNING: Subroutine does not return
@@ -19931,7 +19931,7 @@ void system_calculate_data_checksum(void)
   double system_double_value16;
   longlong **system_stack_long_int_ptr;
   longlong *system_buffer_pointer_10;
-  longlong *system_buffer_pointer_0x01001;
+  longlong *system_audio_device_ptr001;
   longlong system_stack_long_int_20;
   longlong system_stack_long_int_0x020;
   longlong system_stack_long_int_0x01001;
@@ -19988,18 +19988,18 @@ void system_calculate_data_checksum(void)
     system_load_engine_module(system_long_data_ptr[0x02001]);
     (*(code *)(*system_long_ptr_ptr)[0x03])(system_long_ptr_ptr);
   }
-  system_audio_long_value = *(longlong *)(_system_data_memory_pool0c1600250 + 0x01001) - *(longlong *)(_system_data_memory_pool0c1600250 + SYSTEM_CONFIG_DATA_SIZE_16);
+  system_audio_long_value = *(longlong *)(system_global_memory_pool + 0x01001) - *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE_16);
   system_audio_uint_value = system_audio_uint_value;
   if (system_audio_long_value / 0x0A != 0) {
     do {
-      system_setup_network_connection(system_audio_long_value,system_audio_uint_value * 0x0A + *(longlong *)(_system_data_memory_pool0c1600250 + SYSTEM_CONFIG_DATA_SIZE_16));
+      system_setup_network_connection(system_audio_long_value,system_audio_uint_value * 0x0A + *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE_16));
       system_audio_uint_value = (int)system_audio_uint_value + 1;
       system_audio_uint_value = (ulonglong)system_audio_uint_value;
-      system_audio_long_value = *(longlong *)(_system_data_memory_pool0c1600250 + 0x01001) - *(longlong *)(_system_data_memory_pool0c1600250 + SYSTEM_CONFIG_DATA_SIZE_16);
+      system_audio_long_value = *(longlong *)(system_global_memory_pool + 0x01001) - *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE_16);
       system_audio_uint_value = (longlong)(int)system_audio_uint_value;
     } while ((ulonglong)(longlong)(int)system_audio_uint_value < (ulonglong)(system_audio_long_value / 0x0A));
   }
-  *(uint64_t *)(_system_data_memory_pool0c1600250 + 0x01001) = *(uint64_t *)(_system_data_memory_pool0c1600250 + SYSTEM_CONFIG_DATA_SIZE_16);
+  *(uint64_t *)(system_global_memory_pool + 0x01001) = *(uint64_t *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE_16);
   *(uint32_t *)(*(longlong *)(*(longlong *)(system_long_status + 0x01) + 0x0140) + SYSTEM_RESOURCE_BLOCK_OFFSET_0x020001) = 1;
   if (*(char *)(system_long_status + 0x03c001) != '\0') {
     system_complete_network_init(system_long_status);
@@ -20043,7 +20043,7 @@ void system_verify_checksum_validity(longlong system_context_parameter)
   code *system_char_pointer;
   uint32_t *system_buffer_context;
   uint64_t system_audio_config_value;
-  int system_status_code;
+  int system_return_code;
   longlong system_audio_long_value;
   longlong **system_long_ptr_ptr;
   uint16_t *system_manager_ptr;
@@ -20052,7 +20052,7 @@ void system_verify_checksum_validity(longlong system_context_parameter)
   double system_double_value15;
   longlong **system_stack_long_int_ptr;
   longlong *system_buffer_pointer_10;
-  longlong *system_buffer_pointer_0x01001;
+  longlong *system_audio_device_ptr001;
   longlong system_stack_long_int_20;
   longlong system_stack_long_int_0x020;
   longlong system_stack_long_int_0x01001;
@@ -20104,18 +20104,18 @@ void system_verify_checksum_validity(longlong system_context_parameter)
     system_load_engine_module(system_long_data_ptr[0x02001]);
     (*(code *)(*system_long_ptr_ptr)[0x03])(system_long_ptr_ptr);
   }
-  system_audio_long_value = *(longlong *)(_system_data_memory_pool0c1600250 + 0x01001) - *(longlong *)(_system_data_memory_pool0c1600250 + SYSTEM_CONFIG_DATA_SIZE_16);
+  system_audio_long_value = *(longlong *)(system_global_memory_pool + 0x01001) - *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE_16);
   system_audio_uint_value = system_audio_uint_value;
   if (system_audio_long_value / 0x0A != 0) {
     do {
-      system_setup_network_connection(system_audio_long_value,system_audio_uint_value * 0x0A + *(longlong *)(_system_data_memory_pool0c1600250 + SYSTEM_CONFIG_DATA_SIZE_16));
+      system_setup_network_connection(system_audio_long_value,system_audio_uint_value * 0x0A + *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE_16));
       system_audio_uint_value = (int)system_audio_uint_value + 1;
       system_audio_uint_value = (ulonglong)system_audio_uint_value;
-      system_audio_long_value = *(longlong *)(_system_data_memory_pool0c1600250 + 0x01001) - *(longlong *)(_system_data_memory_pool0c1600250 + SYSTEM_CONFIG_DATA_SIZE_16);
+      system_audio_long_value = *(longlong *)(system_global_memory_pool + 0x01001) - *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE_16);
       system_audio_uint_value = (longlong)(int)system_audio_uint_value;
     } while ((ulonglong)(longlong)(int)system_audio_uint_value < (ulonglong)(system_audio_long_value / 0x0A));
   }
-  *(uint64_t *)(_system_data_memory_pool0c1600250 + 0x01001) = *(uint64_t *)(_system_data_memory_pool0c1600250 + SYSTEM_CONFIG_DATA_SIZE_16);
+  *(uint64_t *)(system_global_memory_pool + 0x01001) = *(uint64_t *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE_16);
   *(uint32_t *)(*(longlong *)(*(longlong *)(system_context_parameter + 0x01) + 0x0140) + SYSTEM_RESOURCE_BLOCK_OFFSET_0x020001) = 1;
   if (*(char *)(system_context_parameter + 0x03c001) != '\0') {
     system_complete_network_init(system_context_parameter);
@@ -20146,9 +20146,9 @@ void system_verify_checksum_validity(longlong system_context_parameter)
   *(double *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET) = (double)(system_audio_long_value - system_timer_memory_pool) * _system_data_memory_pool0c1ed50;
   if (system_data_memory_pool0c1200163 != '\0') {
     system_context_id = 0x010010c0021201001;
-    system_status_code = _Mtx_lock(0x010010c0021201001);
-    if (system_status_code != 0) {
-      __Throw_C_error_std__YAXH_Z(system_status_code);
+    system_return_code = _Mtx_lock(0x010010c0021201001);
+    if (system_return_code != 0) {
+      __Throw_C_error_std__YAXH_Z(system_return_code);
     }
 
 void system_initialize_validation_system(longlong system_context_parameter,uint64_t system_context_parameter)
@@ -20157,7 +20157,7 @@ void system_initialize_validation_system(longlong system_context_parameter,uint6
   longlong *system_long_data_ptr;
   char system_char_data;
   char system_char_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   uint64_t system_audio_config_value;
   uint32_t *node_pointer;
   uint64_t *parent_pointer;
@@ -20165,7 +20165,7 @@ void system_initialize_validation_system(longlong system_context_parameter,uint6
   longlong system_audio_long_value;
   longlong system_audio_long_value;
   ulonglong system_audio_uint_value;
-  longlong *psystem_long_var_14;
+  longlong *system_context_ptr;
   uint64_t system_audio_uint_value;
   uint32_t system_config_buffer [0x040];
   longlong **psystem_buffer_pointer;
@@ -20467,7 +20467,7 @@ bool system_validate_network_connection(longlong system_context_parameter)
   bool system_byte_handle;
   byte *system_byte_pointer;
   uint system_audio_config_value;
-  int system_status_code;
+  int system_return_code;
   longlong system_audio_long_value;
   uint64_t *child_pointer;
   uint64_t *system_manager_ptr;
@@ -20495,12 +20495,12 @@ bool system_validate_network_connection(longlong system_context_parameter)
           system_byte_pointer = pbStack_0x02001;
           do {
             system_audio_config_value = (uint)system_byte_pointer[child_pointer[5] - (longlong)pbStack_0x02001];
-            system_status_code = *system_byte_pointer - system_audio_config_value;
+            system_return_code = *system_byte_pointer - system_audio_config_value;
             if (*system_byte_pointer != system_audio_config_value) break;
             system_byte_pointer = system_byte_pointer + 1;
           } while (system_audio_config_value != 0);
-          system_byte_handle = 0 < system_status_code;
-          if (system_status_code < 1) {
+          system_byte_handle = 0 < system_return_code;
+          if (system_return_code < 1) {
             system_manager_ptr = (uint64_t *)child_pointer[1];
             goto SYSTEM_LABEL;
           }
@@ -20585,7 +20585,7 @@ void system_verify_system_compatibility(longlong system_context_parameter,longlo
 {
   longlong *system_long_data_ptr;
   uint64_t system_audio_context_id;
-  int system_comparison_result;
+  int system_compare_result;
   uint64_t *system_buffer_context;
   ulonglong system_audio_config_value;
   longlong system_long_status;
@@ -20629,13 +20629,13 @@ void system_verify_system_compatibility(longlong system_context_parameter,longlo
   *(uint32_t *)system_buffer_context = 0;
   system_buffer_pointer = system_buffer_context;
   system_audio_context_id = system_get_resource_context(system_buffer_context);
-  system_context_id = CONCAT44(system_context_id._4_4_,system_audio_context_id);
+  system_context_id = CONCAT44(system_context_id.y,system_audio_context_id);
   *system_buffer_context = 0x053454c55444f4d5f;
   *(uint16_t *)(system_buffer_context + 1) = 0x02a5f;
   *(uint32_t *)((longlong)system_buffer_context + 10) = 0;
   system_context_id = 10;
-  system_comparison_result = system_validate_network_stream(system_context_parameter + 0x02c0,&system_buffer_pointer);
-  if (-1 < system_comparison_result) {
+  system_compare_result = system_validate_network_stream(system_context_parameter + 0x02c0,&system_buffer_pointer);
+  if (-1 < system_compare_result) {
     system_buffer_pointer = &system_data_callback_pool_base2;
     system_context_id = 0;
     system_buffer_pointer = (uint64_t *)0x00;
@@ -20644,7 +20644,7 @@ void system_verify_system_compatibility(longlong system_context_parameter,longlo
     *(uint32_t *)system_buffer_context = 0;
     system_buffer_pointer = system_buffer_context;
     system_audio_context_id = system_get_resource_context(system_buffer_context);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_audio_context_id);
+    system_context_id = CONCAT44(system_context_id.y,system_audio_context_id);
     *system_buffer_context = 0x0454c55444f4d5f2a;
     *(uint16_t *)(system_buffer_context + 1) = 0x05f53;
     *(uint32_t *)((longlong)system_buffer_context + 10) = 0;
@@ -20671,7 +20671,7 @@ uint64_t system_initialize_memory_context(uint64_t system_context_parameter,uint
 {
   longlong system_audio_long_value;
   uint64_t system_audio_context_id;
-  int system_comparison_result;
+  int system_compare_result;
   uint64_t *system_buffer_context;
   void **system_buffer_pointer;
   uint64_t *system_buffer_pointer;
@@ -20695,13 +20695,13 @@ uint64_t system_initialize_memory_context(uint64_t system_context_parameter,uint
   *(uint32_t *)system_buffer_context = 0;
   system_buffer_pointer = system_buffer_context;
   system_audio_context_id = system_get_resource_context(system_buffer_context);
-  system_context_id = CONCAT44(system_context_id._4_4_,system_audio_context_id);
+  system_context_id = CONCAT44(system_context_id.y,system_audio_context_id);
   *system_buffer_context = 0x053454c55444f4d5f;
   *(uint16_t *)(system_buffer_context + 1) = 0x02a5f;
   *(uint32_t *)((longlong)system_buffer_context + 10) = 0;
   system_context_id = 10;
-  system_comparison_result = system_validate_network_stream(system_audio_long_value + 0x02c0,&system_buffer_pointer);
-  if (-1 < system_comparison_result) {
+  system_compare_result = system_validate_network_stream(system_audio_long_value + 0x02c0,&system_buffer_pointer);
+  if (-1 < system_compare_result) {
     system_buffer_pointer = &system_data_callback_pool_base2;
     system_context_id = 0;
     system_buffer_pointer = (uint64_t *)0x00;
@@ -20710,7 +20710,7 @@ uint64_t system_initialize_memory_context(uint64_t system_context_parameter,uint
     *(uint32_t *)system_buffer_context = 0;
     system_buffer_pointer = system_buffer_context;
     system_audio_context_id = system_get_resource_context(system_buffer_context);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_audio_context_id);
+    system_context_id = CONCAT44(system_context_id.y,system_audio_context_id);
     *system_buffer_context = 0x0454c55444f4d5f2a;
     *(uint16_t *)(system_buffer_context + 1) = 0x05f53;
     *(uint32_t *)((longlong)system_buffer_context + 10) = 0;
@@ -20734,7 +20734,7 @@ void system_check_version_compatibility(longlong system_context_parameter,float 
   float system_audio_offset_value;
   ulonglong system_uint_buffer;
   ulonglong system_audio_config_value;
-  int system_status_code;
+  int system_return_code;
   longlong system_audio_long_value;
   uint64_t system_audio_register_value_rdx;
   longlong system_audio_long_value;
@@ -20799,19 +20799,19 @@ void system_check_version_compatibility(longlong system_context_parameter,float 
       system_audio_uint_value = log2f();
       *(uint64_t *)(system_context_parameter + 0x024001) = system_audio_uint_value;
       *(float *)(system_context_parameter + 0x0250) = _system_data_memory_pool0d4002144;
-      system_audio_long_value = _system_data_memory_pool0c1600250;
-      *(uint32_t *)(_system_data_memory_pool0c1600250 + 0x0162b) = 1;
+      system_audio_long_value = system_global_memory_pool;
+      *(uint32_t *)(system_global_memory_pool + 0x0162b) = 1;
       system_audio_long_value = system_graphics_context;
     }
     else {
       *(float *)(system_context_parameter + 0x023001) = audio_volume_value;
       system_audio_long_value = system_graphics_context;
-      system_audio_long_value = _system_data_memory_pool0c1600250;
+      system_audio_long_value = system_global_memory_pool;
     }
   }
   else {
     *(uint64_t *)(system_context_parameter + 0x023001) = 0x03f00100000;
-    system_audio_long_value = _system_data_memory_pool0c1600250;
+    system_audio_long_value = system_global_memory_pool;
   }
   if ((*(longlong *)(_system_data_memory_pool0c160010020 + 0x03ab001) == 0) || (*(int *)(system_audio_long_value + 0x0540) < 1)) {
     if (*(int *)(system_audio_long_value + 0x02140) == 0) {
@@ -20840,14 +20840,14 @@ void system_check_version_compatibility(longlong system_context_parameter,float 
       system_audio_uint_value = system_audio_uint_value;
       system_audio_uint_value = system_audio_uint_value;
     }
-    system_status_code = (int)system_audio_uint_value / (int)system_audio_uint_value;
+    system_return_code = (int)system_audio_uint_value / (int)system_audio_uint_value;
     system_stack_float_0x01 = (float)(int)system_audio_uint_value;
     do {
       system_audio_uint_value = (uint)(system_stack_float_0x01 * audio_volume_value);
-      if (1 < system_status_code) {
-        system_audio_uint_value = ((system_audio_uint_value - 1) - (int)(system_audio_uint_value - 1) % system_status_code) + system_status_code;
+      if (1 < system_return_code) {
+        system_audio_uint_value = ((system_audio_uint_value - 1) - (int)(system_audio_uint_value - 1) % system_return_code) + system_return_code;
       }
-      system_uint_value = (longlong)(int)(((int)system_audio_uint_value / (int)system_audio_uint_value) * system_audio_uint_value) / (longlong)system_status_code;
+      system_uint_value = (longlong)(int)(((int)system_audio_uint_value / (int)system_audio_uint_value) * system_audio_uint_value) / (longlong)system_return_code;
       system_audio_uint_value = (uint)system_uint_value;
       if (((system_audio_uint_value & 1) == 0) && ((system_uint_value & 1) == 0)) goto SYSTEM_LABEL;
       audio_volume_value = audio_volume_value + SYSTEM_FLOAT_ZERO_VALUE1;
@@ -20877,13 +20877,13 @@ SYSTEM_VALIDATION_CHECK:
       system_audio_config_value = system_uint_value & 0x07fffffff;
       system_uint_value = system_uint_buffer;
     }
-    system_status_code = (int)system_audio_uint_value / (int)system_audio_uint_value;
+    system_return_code = (int)system_audio_uint_value / (int)system_audio_uint_value;
     do {
       system_audio_uint_value = (uint)(audio_volume_value * (float)(int)system_audio_uint_value);
-      if (1 < system_status_code) {
-        system_audio_uint_value = ((system_audio_uint_value - 1) - (int)(system_audio_uint_value - 1) % system_status_code) + system_status_code;
+      if (1 < system_return_code) {
+        system_audio_uint_value = ((system_audio_uint_value - 1) - (int)(system_audio_uint_value - 1) % system_return_code) + system_return_code;
       }
-      system_uint_value = (longlong)(int)(((int)system_audio_uint_value / (int)system_audio_uint_value) * system_audio_uint_value) / (longlong)system_status_code;
+      system_uint_value = (longlong)(int)(((int)system_audio_uint_value / (int)system_audio_uint_value) * system_audio_uint_value) / (longlong)system_return_code;
       if (((system_audio_uint_value & 1) == 0) && ((system_uint_value & 1) == 0)) goto SYSTEM_LABEL;
       audio_volume_value = audio_volume_value + SYSTEM_FLOAT_ZERO_VALUE1;
       *(float *)(system_context_parameter + 0x023001) = audio_volume_value;
@@ -20910,7 +20910,7 @@ void system_validate_platform_requirements(longlong *system_context_parameter,ui
   longlong system_audio_long_value;
   ulonglong system_audio_uint_value;
   ulonglong system_audio_uint_value;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   longlong *system_buffer_pointer_10;
   longlong **system_stack_long_int_ptr;
   longlong asystem_stack_long_int_0x030 [2];
@@ -20921,16 +20921,16 @@ void system_validate_platform_requirements(longlong *system_context_parameter,ui
   void **system_buffer_pointer;
   
   system_long_context = _system_data_memory_pool0c160010030;
-  system_buffer_pointer_0x01 = system_context_parameter;
+  system_audio_device_ptr = system_context_parameter;
   if (*(int *)(_system_data_memory_pool0c1600220 + 0x060024) != *(int *)(_system_data_memory_pool0c1600220 + 0x060020)) {
     system_initialize_memory_context(_system_data_memory_pool0c160010030,system_context_parameter,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   }
-  system_long_handle = _system_data_memory_pool0c1600250;
-  if (_system_data_memory_pool0c1600250 != 0) {
+  system_long_handle = system_global_memory_pool;
+  if (system_global_memory_pool != 0) {
     system_audio_uint_value = 0;
-    system_audio_long_value = *(longlong *)(_system_data_memory_pool0c1600250 + 0x010016001);
+    system_audio_long_value = *(longlong *)(system_global_memory_pool + 0x010016001);
     system_audio_uint_value = system_audio_uint_value;
-    if (*(longlong *)(_system_data_memory_pool0c1600250 + 0x010010030) - system_audio_long_value >> 3 != 0) {
+    if (*(longlong *)(system_global_memory_pool + 0x010010030) - system_audio_long_value >> 3 != 0) {
       do {
         if (*(longlong **)(system_audio_uint_value + system_audio_long_value) != (longlong *)0x00) {
           (**(code **)(**(longlong **)(system_audio_uint_value + system_audio_long_value) + SYSTEM_CONFIG_DATA_SIZE_0x016001))();
@@ -20948,7 +20948,7 @@ void system_validate_platform_requirements(longlong *system_context_parameter,ui
   if (((*(int *)(_system_data_memory_pool0c1600220 + 0x04d4) != *(int *)(_system_data_memory_pool0c1600220 + 0x04d0)) ||
       (*(int *)(_system_data_memory_pool0c1600220 + 0x0314) != *(int *)(_system_data_memory_pool0c1600220 + 0x0310))) ||
      (*(int *)(_system_data_memory_pool0c1600220 + 0x0544) != *(int *)(_system_data_memory_pool0c1600220 + 0x0540))) {
-    system_buffer_pointer_0x01 = asystem_stack_long_int_0x030;
+    system_audio_device_ptr = asystem_stack_long_int_0x030;
     system_buffer_pointer = &system_data_0x01;
     system_buffer_pointer = &system_data_0x03;
     system_start_ui_main_loop(asystem_stack_long_int_0x030);
@@ -20957,7 +20957,7 @@ void system_validate_platform_requirements(longlong *system_context_parameter,ui
      ((*(int *)(_system_data_memory_pool0c1600220 + 0x0200) != *(int *)(_system_data_memory_pool0c1600220 + SYSTEM_THREAD_POOL_BASE_OFFSET0) ||
       (*(int *)(_system_data_memory_pool0c1600220 + 0x03f4) != *(int *)(_system_data_memory_pool0c1600220 + 0x03f0))))) {
     system_uint_buffer = system_allocate_memory_context(system_context_memory_pool,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,0x01,3);
-    system_buffer_pointer_0x01 = asystem_stack_long_int_50;
+    system_audio_device_ptr = asystem_stack_long_int_50;
     system_buffer_pointer = &system_data_6;
     system_buffer_pointer = &system_data_5;
     paudio_resource_id = (longlong *)system_insert_cache_entry(system_uint_buffer,asystem_stack_long_int_50);
@@ -20966,12 +20966,12 @@ void system_validate_platform_requirements(longlong *system_context_parameter,ui
       (**(code **)(*paudio_resource_id + SYSTEM_MEMORY_POOL_BASE_OFFSET))(paudio_resource_id);
     }
     system_uint_buffer = system_resource_memory_pool;
-    system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-    system_buffer_pointer_0x01 = paudio_resource_id;
+    system_stack_long_int_ptr = &system_audio_device_ptr;
+    system_audio_device_ptr = paudio_resource_id;
     if (paudio_resource_id != (longlong *)0x00) {
       (**(code **)(*paudio_resource_id + SYSTEM_MEMORY_POOL_BASE_OFFSET))(paudio_resource_id);
     }
-    system_update_buffer_state(system_uint_buffer,&system_buffer_pointer_0x01);
+    system_update_buffer_state(system_uint_buffer,&system_audio_device_ptr);
     if (paudio_resource_id != (longlong *)0x00) {
       (**(code **)(*paudio_resource_id + SYSTEM_THREAD_POOL_BASE_OFFSET))(paudio_resource_id);
     }
@@ -21026,7 +21026,7 @@ void system_initialize_testing_system(uint64_t system_context_parameter,longlong
 {
   uint64_t *system_data_context;
   int system_int_context;
-  int system_comparison_result;
+  int system_compare_result;
   uint32_t system_config_bufferc1 [0x040];
   void ***psystem_buffer_pointera1;
   uint64_t system_context_ida0;
@@ -21051,14 +21051,14 @@ void system_initialize_testing_system(uint64_t system_context_parameter,longlong
     **(uint32_t **)(system_context_parameter + 0x01) = 0;
     system_int_context = *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16);
   }
-  system_comparison_result = system_int_context + 5;
-  system_set_ui_parameter(system_context_parameter,system_comparison_result);
+  system_compare_result = system_int_context + 5;
+  system_set_ui_parameter(system_context_parameter,system_compare_result);
   system_data_context = (uint64_t *)((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) + *(longlong *)(system_context_parameter + 0x01));
   *system_data_context = 0x03a00350030603;
   *(uint16_t *)(system_data_context + 1) = SYSTEM_RESOURCE_BLOCK_OFFSET_20;
-  *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) = system_comparison_result;
+  *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) = system_compare_result;
   if (0 < system_stack_int_c1) {
-    system_set_ui_parameter(system_context_parameter,system_comparison_result + system_stack_int_c1);
+    system_set_ui_parameter(system_context_parameter,system_compare_result + system_stack_int_c1);
                     // WARNING: Subroutine does not return
     memcpy((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) + *(longlong *)(system_context_parameter + 0x01),system_context_id_d0,
            (longlong)(system_stack_int_c1 + 1));
@@ -21066,14 +21066,14 @@ void system_initialize_testing_system(uint64_t system_context_parameter,longlong
   system_set_ui_parameter(system_context_parameter,system_int_context + 6);
   *(uint16_t *)((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) + *(longlong *)(system_context_parameter + 0x01)) = 10;
   *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) = system_int_context + 6;
-  system_comparison_result = system_int_context + SYSTEM_STACK_UINT_INITIAL_VALUE;
-  system_set_ui_parameter(system_context_parameter,system_comparison_result);
+  system_compare_result = system_int_context + SYSTEM_STACK_UINT_INITIAL_VALUE;
+  system_set_ui_parameter(system_context_parameter,system_compare_result);
   system_data_context = (uint64_t *)((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) + *(longlong *)(system_context_parameter + 0x01));
   *system_data_context = 0x03a0035003063;
   *(uint16_t *)(system_data_context + 1) = SYSTEM_RESOURCE_BLOCK_OFFSET_20;
-  *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) = system_comparison_result;
+  *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) = system_compare_result;
   if (0 < system_stack_int_0x01001001) {
-    system_set_ui_parameter(system_context_parameter,system_comparison_result + system_stack_int_0x01001001);
+    system_set_ui_parameter(system_context_parameter,system_compare_result + system_stack_int_0x01001001);
                     // WARNING: Subroutine does not return
     memcpy((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) + *(longlong *)(system_context_parameter + 0x01),system_context_id,
            (longlong)(system_stack_int_0x01001001 + 1));
@@ -21239,7 +21239,7 @@ void system_run_unit_tests(uint64_t system_context_parameter,uint64_t system_con
   longlong system_audio_long_value;
   longlong system_long_context;
   uint64_t system_uint_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   uint system_audio_config_value;
   uint system_audio_status;
   uint32_t *parent_pointer;
@@ -21325,15 +21325,15 @@ SYSTEM_VALIDATION_CHECK:
     }
   }
   else if (system_audio_status != 0) {
-    system_status_buffer = system_audio_status + 1;
-    if (system_status_buffer < SYSTEM_CONFIG_DATA_SIZE_16) {
-      system_status_buffer = SYSTEM_CONFIG_DATA_SIZE_16;
+    system_buffer_size = system_audio_status + 1;
+    if (system_buffer_size < SYSTEM_CONFIG_DATA_SIZE_16) {
+      system_buffer_size = SYSTEM_CONFIG_DATA_SIZE_16;
     }
-    parent_pointer = (uint32_t *)system_allocate_resource_block(system_context_memory_pool,(longlong)system_status_buffer,0x08);
+    parent_pointer = (uint32_t *)system_allocate_resource_block(system_context_memory_pool,(longlong)system_buffer_size,0x08);
     *parent_pointer = 0;
     system_buffer_pointera1 = parent_pointer;
     system_audio_config_value = system_get_resource_context(parent_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_audio_config_value);
+    system_context_id = CONCAT44(system_context_id.y,system_audio_config_value);
     goto SYSTEM_LABEL;
   }
   if (parent_pointer != (uint32_t *)0x00) {
@@ -21358,7 +21358,7 @@ SYSTEM_VALIDATION_CHECK:
     }
     system_buffer_pointera1 = parent_pointer;
     system_uint_handle = system_get_resource_context(parent_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_uint_handle);
+    system_context_id = CONCAT44(system_context_id.y,system_uint_handle);
   }
 SYSTEM_VALIDATION_CHECK:
                     // WARNING: Subroutine does not return
@@ -21470,7 +21470,7 @@ SYSTEM_VALIDATION_CHECK:
         system_initialize_component();
       }
       system_buffer_pointer = (uint32_t *)0x00;
-      system_context_id = (ulonglong)system_context_id._4_4_ << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
+      system_context_id = (ulonglong)system_context_id.y << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
       system_buffer_pointer = &system_data_animation_pool_base;
       system_audio_uint_value = 1;
       goto joined_r0x01001005430b;
@@ -21482,7 +21482,7 @@ SYSTEM_VALIDATION_CHECK:
     system_initialize_component();
   }
   system_buffer_pointer = (uint32_t *)0x00;
-  system_context_id = (ulonglong)system_context_id._4_4_ << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
+  system_context_id = (ulonglong)system_context_id.y << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
   system_buffer_pointer = &system_data_animation_pool_base;
   system_audio_uint_value = (int)system_audio_uint_value + 1;
   system_audio_uint_value = (ulonglong)system_audio_uint_value;
@@ -21658,7 +21658,7 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
     memcpy((ulonglong)system_context_idf1 + system_stack_long_int_200,system_stack_long_int_0x01001001,(longlong)(system_stack_int_0x010010 + 1));
   }
   system_stack_long_int_1d1 = system_stack_long_int_200;
-  system_context_idc1._0_4_ = (uint64_t)system_context_idf0;
+  system_context_idc1.x = (uint64_t)system_context_idf0;
   system_context_idf1 = 0;
   system_context_ide1 = 0;
   system_stack_long_int_200 = 0;
@@ -21666,7 +21666,7 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   system_buffer_pointer = &system_data_animation_pool_base;
   system_context_id = 0x07fffffff;
   system_context_idd0 = system_uint_value;
-  system_context_idc1._4_4_ = *(uint *)(system_long_status + 0x0A);
+  system_context_idc1.y = *(uint *)(system_long_status + 0x0A);
   system_initialize_database_connection(context_pointer,_system_data_memory_pool0c16001e001,&system_buffer_pointere0,&system_context_id);
   system_activate_database_context(context_pointer);
   (**(code **)(*(longlong *)system_context_parameter[0x056] + 0x08001))((longlong *)system_context_parameter[0x056],context_pointer);
@@ -21680,7 +21680,7 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
     system_initialize_component();
   }
   system_stack_long_int_1d1 = 0;
-  system_context_idc1 = (ulonglong)system_context_idc1._4_4_ << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
+  system_context_idc1 = (ulonglong)system_context_idc1.y << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
   system_buffer_pointere0 = &system_data_animation_pool_base;
   system_buffer_pointer = &system_data_callback_pool_base2;
   if (system_stack_long_int_0x01001001 != 0) {
@@ -21713,7 +21713,7 @@ void system_generate_test_report(void)
   uint system_uint_value;
   longlong *system_long_context_ptr;
   uint64_t *system_handle_ptr;
-  char system_char_buffer;
+  char system_current_char;
   uint64_t *system_config_ptr;
   uint32_t *node_pointer;
   uint64_t *parent_pointer;
@@ -21828,8 +21828,8 @@ SYSTEM_VALIDATION_CHECK:
       *(uint64_t *)(system_buffer_pointer + system_context_id) = 0x06a624f656e656353;
       *(uint32_t *)((longlong)(system_buffer_pointer + system_context_id) + 0x01) = 0;
       system_context_id = system_audio_loop_index;
-      system_char_buffer = system_create_ui_window(&system_buffer_pointer);
-      if (system_char_buffer == '\0') {
+      system_current_char = system_create_ui_window(&system_buffer_pointer);
+      if (system_current_char == '\0') {
         system_buffer_pointer = &system_data_callback_pool_base2;
         if (system_buffer_pointer != (uint32_t *)0x00) {
                     // WARNING: Subroutine does not return
@@ -21859,8 +21859,8 @@ SYSTEM_VALIDATION_CHECK:
           node_pointer = system_buffer_pointer;
         }
         system_process_network_data(&system_thread_context_pointer,&system_network_data_handler,node_pointer);
-        system_char_buffer = system_create_ui_window(&system_thread_context_pointer);
-        if (system_char_buffer == '\0') {
+        system_current_char = system_create_ui_window(&system_thread_context_pointer);
+        if (system_current_char == '\0') {
           system_setup_ui_event_handlers(&system_thread_context_pointer);
         }
         system_long_context_ptr = psystem_stack_long_int_a1;
@@ -21872,8 +21872,8 @@ SYSTEM_VALIDATION_CHECK:
             system_initialize_security_context();
             system_validate_security_certificate();
             system_buffer_pointer = &system_data_callback_pool_base2;
-            system_context_id._0_4_ = 0;
-            system_context_id._4_4_ = 0;
+            system_context_id.x = 0;
+            system_context_id.y = 0;
             system_buffer_pointer = (uint32_t *)0x00;
             system_context_id = 0;
             system_set_ui_parameter(&system_buffer_pointer,*system_uint_ptr);
@@ -21886,7 +21886,7 @@ SYSTEM_VALIDATION_CHECK:
               if (system_buffer_pointer != (uint32_t *)0x00) {
                 *system_buffer_pointer = 0;
               }
-              system_context_id._4_4_ = 0;
+              system_context_id.y = 0;
             }
             system_audio_loop_index = system_context_id + 0x06;
             system_set_ui_parameter(&system_buffer_pointer,system_audio_loop_index);
@@ -21925,8 +21925,8 @@ SYSTEM_VALIDATION_CHECK:
               }
               system_audio_long_value = strstr(node_pointer,&system_data_0x016);
               if (system_audio_long_value != 0) goto SYSTEM_LABEL;
-              system_char_buffer = system_create_string_buffer(&system_buffer_pointer);
-              if (system_char_buffer == '\0') {
+              system_current_char = system_create_string_buffer(&system_buffer_pointer);
+              if (system_current_char == '\0') {
                 system_context_id = 0;
                 if (system_buffer_pointer != (uint32_t *)0x00) {
                   *system_buffer_pointer = 0;
@@ -21943,7 +21943,7 @@ SYSTEM_VALIDATION_CHECK:
                 if (system_buffer_pointer != (uint32_t *)0x00) {
                   system_buffer_pointer[system_audio_uint_value] = 0;
                 }
-                system_context_id._4_4_ = system_uint_ptr[3];
+                system_context_id.y = system_uint_ptr[3];
                 system_context_id = system_uint_value;
                 system_set_ui_parameter(&system_buffer_pointer,0x012);
                 parent_pointer = (uint64_t *)(system_buffer_pointer + system_context_id);
@@ -21954,14 +21954,14 @@ SYSTEM_VALIDATION_CHECK:
                 *(uint16_t *)(parent_pointer + 4) = 0x0656e;
                 *(uint32_t *)((longlong)parent_pointer + 0x012) = 0;
                 system_context_id = 0x012;
-                system_char_buffer = system_create_string_buffer(&system_buffer_pointer);
-                if (system_char_buffer != '\0') goto SYSTEM_LABEL;
+                system_current_char = system_create_string_buffer(&system_buffer_pointer);
+                if (system_current_char != '\0') goto SYSTEM_LABEL;
                 system_buffer_pointer = &system_data_callback_pool_base2;
                 if (system_buffer_pointer != (uint32_t *)0x00) {
                     // WARNING: Subroutine does not return
                   system_initialize_component();
                 }
-                system_context_id = (ulonglong)system_context_id._4_4_ << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
+                system_context_id = (ulonglong)system_context_id.y << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
               }
               else {
 SYSTEM_VALIDATION_CHECK:
@@ -22033,7 +22033,7 @@ SYSTEM_VALIDATION_CHECK:
                     // WARNING: Subroutine does not return
                   system_initialize_component();
                 }
-                system_context_id = (ulonglong)system_context_id._4_4_ << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
+                system_context_id = (ulonglong)system_context_id.y << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
               }
             }
             else {
@@ -22043,7 +22043,7 @@ SYSTEM_VALIDATION_CHECK:
                     // WARNING: Subroutine does not return
                 system_initialize_component();
               }
-              system_context_id = (ulonglong)system_context_id._4_4_ << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
+              system_context_id = (ulonglong)system_context_id.y << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
             }
             system_buffer_pointer = (uint32_t *)0x00;
             system_buffer_pointer = &system_data_animation_pool_base;
@@ -22155,7 +22155,7 @@ void system_initialize_benchmarking_system(void)
   *(uint64_t *)(system_audio_buffer_pointer + SYSTEM_CONTEXT_OFFSET_D0) = 0;
   *(uint64_t *)(system_audio_buffer_pointer + 0x06001) = SYSTEM_RESOURCE_BLOCK_OFFSET_20;
   *(uint64_t *)(system_audio_buffer_pointer + SYSTEM_CONTEXT_OFFSET_E0) = 0;
-  _system_data_memory_pool0c1a00200201 = system_audio_buffer_pointer;
+  system_audio_memory_pool = system_audio_buffer_pointer;
   system_uint_handle = system_allocate_memory_context(system_context_memory_pool,0x030,0x01,3);
                     // WARNING: Subroutine does not return
   memset(system_uint_handle,0,0x030);
@@ -22304,7 +22304,7 @@ void system_verify_optimization_results(void)
   uint64_t *system_data_context;
   uint64_t system_audio_context_id;
   char *system_char_pointer;
-  int system_status_buffer;
+  int system_buffer_size;
   char *system_resource_pointer;
   uint64_t system_audio_register_value;
   uint64_t system_audio_status;
@@ -22313,9 +22313,9 @@ void system_verify_optimization_results(void)
   system_audio_status = SYSTEM_INVALID_HANDLE_VALUE;
   if (*system_memory_pool_base != '\0') {
     system_data_context = (uint64_t *)*system_memory_pool_data;
-    system_status_buffer = _Mtx_lock(SYSTEM_MUTEX_HANDLE_DEFAULT);
-    if (system_status_buffer != 0) {
-      __Throw_C_error_std__YAXH_Z(system_status_buffer);
+    system_buffer_size = _Mtx_lock(SYSTEM_MUTEX_HANDLE_DEFAULT);
+    if (system_buffer_size != 0) {
+      __Throw_C_error_std__YAXH_Z(system_buffer_size);
     }
     system_audio_context_id = system_memory_pool_index;
     system_memory_pool_index = *system_data_context;
@@ -22339,9 +22339,9 @@ void system_verify_optimization_results(void)
     system_configure_graphics_parameter(&system_graphics_parameter_0x2002,*(uint64_t *)(system_char_pointer + SYSTEM_SECURITY_CONTEXT_OFFSET));
     system_validate_graphics_configuration();
     system_memory_pool_index = system_audio_context_id;
-    system_status_buffer = _Mtx_unlock(SYSTEM_MUTEX_HANDLE_DEFAULT);
-    if (system_status_buffer != 0) {
-      __Throw_C_error_std__YAXH_Z(system_status_buffer);
+    system_buffer_size = _Mtx_unlock(SYSTEM_MUTEX_HANDLE_DEFAULT);
+    if (system_buffer_size != 0) {
+      __Throw_C_error_std__YAXH_Z(system_buffer_size);
     }
   }
   return;
@@ -22351,10 +22351,10 @@ void system_initialize_tuning_system(longlong system_context_parameter)
 {
   char system_init_status;
   char system_char_data;
-  int system_comparison_result;
+  int system_compare_result;
   uint64_t *system_buffer_context;
   ulonglong system_audio_config_value;
-  int system_status_code;
+  int system_return_code;
   char *pcVar0x03;
   longlong *plVar0x01;
   longlong system_audio_long_value;
@@ -22375,19 +22375,19 @@ void system_initialize_tuning_system(longlong system_context_parameter)
     system_audio_uint_value = system_audio_uint_value;
     do {
       system_audio_loop_index = (int)system_audio_uint_value;
-      system_status_code = -1;
+      system_return_code = -1;
       if ((ulonglong)(longlong)system_audio_loop_index < (ulonglong)(system_audio_long_value - system_audio_long_value >> 3)) {
         system_audio_long_value = *(longlong *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET);
         system_audio_long_value = system_audio_long_value;
         system_audio_loop_index = system_audio_loop_index;
         system_audio_loop_index = -1;
         do {
-          system_status_code = *(int *)(*(longlong *)(system_audio_long_value + system_audio_long_value) + SYSTEM_CONFIG_DATA_SIZE_16);
-          system_comparison_result = *(int *)(*(longlong *)(system_audio_uint_value + system_audio_long_value) + SYSTEM_CONFIG_DATA_SIZE_16);
-          if (system_status_code == system_comparison_result) {
-            if (system_status_code == 0) {
+          system_return_code = *(int *)(*(longlong *)(system_audio_long_value + system_audio_long_value) + SYSTEM_CONFIG_DATA_SIZE_16);
+          system_compare_result = *(int *)(*(longlong *)(system_audio_uint_value + system_audio_long_value) + SYSTEM_CONFIG_DATA_SIZE_16);
+          if (system_return_code == system_compare_result) {
+            if (system_return_code == 0) {
 SYSTEM_VALIDATION_CHECK:
-              if (system_comparison_result != 0) goto SYSTEM_LABEL;
+              if (system_compare_result != 0) goto SYSTEM_LABEL;
               system_validation_flag = true;
             }
             else {
@@ -22403,21 +22403,21 @@ SYSTEM_VALIDATION_CHECK:
             }
           }
           else {
-            if (system_status_code == 0) goto SYSTEM_LABEL;
+            if (system_return_code == 0) goto SYSTEM_LABEL;
 SYSTEM_VALIDATION_CHECK:
             system_validation_flag = false;
           }
-          system_status_code = system_audio_loop_index;
+          system_return_code = system_audio_loop_index;
           if (!system_validation_flag) {
-            system_status_code = system_audio_loop_index;
+            system_return_code = system_audio_loop_index;
           }
           system_audio_loop_index = system_audio_loop_index + 1;
           system_audio_long_value = system_audio_long_value + 0x01;
-          system_audio_loop_index = system_status_code;
+          system_audio_loop_index = system_return_code;
         } while ((ulonglong)(longlong)system_audio_loop_index < (ulonglong)(system_audio_long_value - system_audio_long_value >> 3));
       }
-      if (system_status_code != -1) {
-        system_audio_long_value = (longlong)system_status_code;
+      if (system_return_code != -1) {
+        system_audio_long_value = (longlong)system_return_code;
         system_audio_long_value = *(longlong *)(system_audio_long_value + system_audio_long_value * 0x01);
         *(double *)(*(longlong *)(system_audio_uint_value + system_audio_long_value) + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) =
              *(double *)(system_audio_long_value + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) + *(double *)(*(longlong *)(system_audio_uint_value + system_audio_long_value) + SYSTEM_AUDIO_TABLE_OFFSET_VALUE);
@@ -23897,8 +23897,8 @@ void system_initialize_update_system(void)
   longlong system_long_handle;
   ulonglong system_uint_buffer;
   
-  system_data_context = _system_data_memory_pool0c1600250;
-  if (_system_data_memory_pool0c1600250 == (uint64_t *)0x00) {
+  system_data_context = system_global_memory_pool;
+  if (system_global_memory_pool == (uint64_t *)0x00) {
     return;
   }
   system_initialize_shader_cache();
@@ -24251,7 +24251,7 @@ uint64_t * system_create_memory_mapping(uint64_t *system_context_parameter,uint6
   bool system_byte_context;
   byte *system_byte_pointer;
   uint system_uint_buffer;
-  int system_int_config;
+  int system_config_value;
   longlong system_long_status;
   uint64_t *parent_pointer;
   uint64_t *child_pointer;
@@ -24275,12 +24275,12 @@ uint64_t * system_create_memory_mapping(uint64_t *system_context_parameter,uint6
           system_long_status = parent_pointer[5] - (longlong)system_byte_pointer;
           do {
             system_uint_buffer = (uint)system_byte_pointer[system_long_status];
-            system_int_config = *system_byte_pointer - system_uint_buffer;
+            system_config_value = *system_byte_pointer - system_uint_buffer;
             if (*system_byte_pointer != system_uint_buffer) break;
             system_byte_pointer = system_byte_pointer + 1;
           } while (system_uint_buffer != 0);
-          system_byte_context = 0 < system_int_config;
-          if (system_int_config < 1) {
+          system_byte_context = 0 < system_config_value;
+          if (system_config_value < 1) {
             child_pointer = (uint64_t *)parent_pointer[1];
             goto SYSTEM_LABEL;
           }
@@ -25234,7 +25234,7 @@ void system_cleanup_audio_resources(longlong *system_context_parameter)
   longlong system_audio_long_value;
   void **system_uint_ptr;
   uint64_t *******system_seven_level_pointer;
-  longlong *psystem_long_var_15;
+  longlong *system_memory_ptr;
   void **system_uint_ptr;
   longlong system_audio_long_value;
   uint64_t ******pppppsystem_uint_ptr;
@@ -25343,7 +25343,7 @@ void system_cleanup_audio_resources(longlong *system_context_parameter)
           *system_control_ptr = 0;
           system_buffer_pointer = system_control_ptr;
           system_audio_uint_value = system_get_resource_context(system_control_ptr);
-          system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+          system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
                     // WARNING: Subroutine does not return
           memcpy(system_control_ptr,system_uint_ptr,system_audio_loop_index);
         }
@@ -25448,7 +25448,7 @@ void system_cleanup_audio_resources(longlong *system_context_parameter)
                                          SYSTEM_CONFIG_DATA_SIZE_16000 + system_audio_uint_value)) % system_audio_uint_value);
               }
             }
-            system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+            system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
                     // WARNING: Subroutine does not return
             memcpy(system_buffer_pointer,&system_context_id,system_audio_loop_index);
           }
@@ -25582,8 +25582,8 @@ void system_cleanup_audio_resources(longlong *system_context_parameter)
     system_audio_long_value = system_stack_long_int_310;
     system_stack_long_int_0x036001 = system_audio_long_value;
     do {
-      psystem_long_var_15 = (longlong *)system_create_memory_mapping(system_audio_long_value,&system_buffer_pointera0,system_seven_level_pointer + 4);
-      if (*psystem_long_var_15 != system_audio_long_value) {
+      system_memory_ptr = (longlong *)system_create_memory_mapping(system_audio_long_value,&system_buffer_pointera0,system_seven_level_pointer + 4);
+      if (*system_memory_ptr != system_audio_long_value) {
         system_bool_thread_ready = false;
         system_audio_uint_value = 0;
         system_audio_long_value = *(longlong *)(system_audio_long_value + SYSTEM_CONTEXT_OFFSET_C0);
@@ -25631,7 +25631,7 @@ void system_cleanup_audio_resources(longlong *system_context_parameter)
                                            * SYSTEM_CONFIG_DATA_SIZE_16000 + system_audio_uint_value)) % system_audio_uint_value);
                 }
               }
-              system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+              system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
               if (*(int *)(system_audio_long_value + SYSTEM_STACK_UINT_INITIAL_VALUE1) != 0) {
                     // WARNING: Subroutine does not return
                 memcpy(system_buffer_pointer,*(uint64_t *)(system_audio_long_value + SYSTEM_STACK_UINT_INITIAL_VALUE0),*(int *)(system_audio_long_value + SYSTEM_STACK_UINT_INITIAL_VALUE1) + 1);
@@ -26977,7 +26977,7 @@ void system_initialize_thread_pool(uint64_t system_context_parameter,uint64_t sy
   *(uint32_t *)system_data_context = 0;
   system_buffer_pointer = system_data_context;
   system_uint_value = system_get_resource_context(system_data_context);
-  system_context_id = CONCAT44(system_context_id._4_4_,system_uint_value);
+  system_context_id = CONCAT44(system_context_id.y,system_uint_value);
   *system_data_context = 0x06040000326f03460026445;
   *(uint64_t *)(system_data_context + 1) = 0x06002666e6f;
   *(uint16_t *)((longlong)system_data_context + 0x04) = 0x06003;
@@ -27111,7 +27111,7 @@ void system_synchronize_threads(uint64_t system_context_parameter,uint64_t syste
   *(uint32_t *)system_data_context = 0;
   system_buffer_pointer = system_data_context;
   system_uint_value = system_get_resource_context(system_data_context);
-  system_context_id = CONCAT44(system_context_id._4_4_,system_uint_value);
+  system_context_id = CONCAT44(system_context_id.y,system_uint_value);
   *system_data_context = 0x06500366544;
   system_data_context[1] = 0x06d00306f6c;
   system_data_context[2] = SYSTEM_RESOURCE_BLOCK_OFFSET_0x02000346e65;
@@ -27354,7 +27354,7 @@ void system_optimize_thread_execution(uint64_t system_context_parameter,uint64_t
   *(uint32_t *)system_data_context = 0;
   system_buffer_pointer = system_data_context;
   system_uint_value = system_get_resource_context(system_data_context);
-  system_context_id = CONCAT44(system_context_id._4_4_,system_uint_value);
+  system_context_id = CONCAT44(system_context_id.y,system_uint_value);
   *system_data_context = 0x06e6f6040000326503355;
   *(uint64_t *)(system_data_context + 1) = 0x06003600266;
   system_context_id = SYSTEM_STACK_UINT_INITIAL_VALUE;
@@ -27588,7 +27588,7 @@ void system_optimize_config_performance(longlong *system_context_parameter)
 {
   int system_int_value;
   longlong system_long_context;
-  int system_comparison_result;
+  int system_compare_result;
   uint64_t system_uint_buffer;
   longlong *paudio_resource_id;
   code *pcVar6;
@@ -27599,8 +27599,8 @@ void system_optimize_config_performance(longlong *system_context_parameter)
   code *pcStack_e1;
   code *pcStack_e0;
   uint64_t system_context_id_d1;
-  longlong *psystem_stack_long_int_d0;
-  longlong *psystem_stack_long_int_c1;
+  longlong *system_stack_buffer3;
+  longlong *system_stack_buffer8;
   longlong asystem_stack_long_int_b1 [0x02];
   longlong asystem_stack_long_int_0x030 [10];
   uint32_t system_context_id;
@@ -27609,9 +27609,9 @@ void system_optimize_config_performance(longlong *system_context_parameter)
   system_context_id_d1 = SYSTEM_INVALID_HANDLE_VALUE;
   system_context_id = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_config_buffer;
   system_int_value = *(int *)(*(longlong *)(*(longlong *)(system_resource_memory_pool + 0x01) + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
-  psystem_stack_long_int_d0 = system_context_parameter;
-  system_comparison_result = _Thrd_id();
-  if (system_comparison_result == system_int_value) {
+  system_stack_buffer3 = system_context_parameter;
+  system_compare_result = _Thrd_id();
+  if (system_compare_result == system_int_value) {
     (*(code *)system_context_parameter[3])(system_context_parameter);
   }
   else {
@@ -27634,7 +27634,7 @@ void system_optimize_config_performance(longlong *system_context_parameter)
       pcStack_e1 = pcVar6;
     }
     paudio_resource_id = (longlong *)system_validate_cache_consistency(system_uint_buffer,asystem_stack_long_int_f1,asystem_stack_long_int_b1);
-    psystem_stack_long_int_c1 = paudio_resource_id;
+    system_stack_buffer8 = paudio_resource_id;
     if (paudio_resource_id != (longlong *)0x00) {
       (**(code **)(*paudio_resource_id + SYSTEM_MEMORY_POOL_BASE_OFFSET))(paudio_resource_id);
     }
@@ -28020,42 +28020,42 @@ int system_get_system_status(void)
 {
   longlong system_audio_long_value;
   longlong system_long_context;
-  int system_comparison_result;
-  int system_status_buffer;
-  int system_int_config;
-  int system_status_code;
+  int system_compare_result;
+  int system_buffer_size;
+  int system_config_value;
+  int system_return_code;
   
   system_long_context = _system_data_memory_pool0c1600230;
   system_audio_long_value = _system_data_memory_pool0c1600230 + 0x030030;
-  system_comparison_result = _Mtx_lock(system_audio_long_value);
-  if (system_comparison_result != 0) {
-    __Throw_C_error_std__YAXH_Z(system_comparison_result);
+  system_compare_result = _Mtx_lock(system_audio_long_value);
+  if (system_compare_result != 0) {
+    __Throw_C_error_std__YAXH_Z(system_compare_result);
   }
-  system_comparison_result = system_access_cache_metadata();
-  system_status_buffer = _Mtx_unlock(system_audio_long_value);
-  if (system_status_buffer != 0) {
-    __Throw_C_error_std__YAXH_Z(system_status_buffer);
+  system_compare_result = system_access_cache_metadata();
+  system_buffer_size = _Mtx_unlock(system_audio_long_value);
+  if (system_buffer_size != 0) {
+    __Throw_C_error_std__YAXH_Z(system_buffer_size);
   }
-  system_status_buffer = _Mtx_lock(system_long_context + 0x03c0);
-  if (system_status_buffer != 0) {
-    __Throw_C_error_std__YAXH_Z(system_status_buffer);
+  system_buffer_size = _Mtx_lock(system_long_context + 0x03c0);
+  if (system_buffer_size != 0) {
+    __Throw_C_error_std__YAXH_Z(system_buffer_size);
   }
-  system_status_buffer = system_access_cache_metadata();
-  system_int_config = _Mtx_unlock(system_long_context + 0x03c0);
-  if (system_int_config != 0) {
-    __Throw_C_error_std__YAXH_Z(system_int_config);
+  system_buffer_size = system_access_cache_metadata();
+  system_config_value = _Mtx_unlock(system_long_context + 0x03c0);
+  if (system_config_value != 0) {
+    __Throw_C_error_std__YAXH_Z(system_config_value);
   }
-  system_int_config = system_get_cache_entry_count(system_long_context);
-  system_status_code = _Mtx_lock(system_long_context + 0x0250);
-  if (system_status_code != 0) {
-    __Throw_C_error_std__YAXH_Z(system_status_code);
+  system_config_value = system_get_cache_entry_count(system_long_context);
+  system_return_code = _Mtx_lock(system_long_context + 0x0250);
+  if (system_return_code != 0) {
+    __Throw_C_error_std__YAXH_Z(system_return_code);
   }
-  system_status_code = system_access_cache_metadata();
+  system_return_code = system_access_cache_metadata();
   system_audio_loop_index = _Mtx_unlock(system_long_context + 0x0250);
   if (system_audio_loop_index != 0) {
     __Throw_C_error_std__YAXH_Z(system_audio_loop_index);
   }
-  return system_status_code + system_status_buffer + system_comparison_result + system_int_config;
+  return system_return_code + system_buffer_size + system_compare_result + system_config_value;
 }
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -28590,7 +28590,7 @@ void system_initialize_audio_system(longlong system_context_parameter,uint64_t s
   longlong *system_long_handle_ptr;
   longlong *context_pointer;
   longlong audio_resource_id;
-  int system_status_code;
+  int system_return_code;
   longlong system_audio_long_value;
   
   audio_resource_id = system_context_memory_pool;
@@ -28599,40 +28599,40 @@ void system_initialize_audio_system(longlong system_context_parameter,uint64_t s
   }
   *(uint64_t *)(audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20) = 0;
   *(code **)(audio_resource_id + SYSTEM_MEMORY_POOL_BASE_OFFSET) = system_security_guard;
-  system_status_code = 0;
+  system_return_code = 0;
   system_long_data_ptr = (longlong *)(system_context_parameter + 0x01);
   if (*(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) - *system_long_data_ptr >> 3 != 0) {
     audio_resource_id = 0;
     do {
       system_release_buffer_resource(*(uint64_t *)(*system_long_data_ptr + audio_resource_id));
-      system_status_code = system_status_code + 1;
+      system_return_code = system_return_code + 1;
       audio_resource_id = audio_resource_id + 0x01;
-    } while ((ulonglong)(longlong)system_status_code < (ulonglong)(*(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) - *system_long_data_ptr >> 3))
+    } while ((ulonglong)(longlong)system_return_code < (ulonglong)(*(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) - *system_long_data_ptr >> 3))
     ;
   }
-  system_status_code = 0;
+  system_return_code = 0;
   system_long_context_ptr = (longlong *)(system_context_parameter + SYSTEM_MEMORY_POOL_BASE_OFFSET);
   if (*(longlong *)(system_context_parameter + 0x030) - *system_long_context_ptr >> 3 != 0) {
     audio_resource_id = 0;
     do {
       system_release_buffer_resource(*(uint64_t *)(*system_long_context_ptr + audio_resource_id));
-      system_status_code = system_status_code + 1;
+      system_return_code = system_return_code + 1;
       audio_resource_id = audio_resource_id + 0x01;
-    } while ((ulonglong)(longlong)system_status_code < (ulonglong)(*(longlong *)(system_context_parameter + 0x030) - *system_long_context_ptr >> 3))
+    } while ((ulonglong)(longlong)system_return_code < (ulonglong)(*(longlong *)(system_context_parameter + 0x030) - *system_long_context_ptr >> 3))
     ;
   }
-  system_status_code = 0;
+  system_return_code = 0;
   system_long_handle_ptr = (longlong *)(system_context_parameter + SYSTEM_RESOURCE_TABLE_OFFSET);
   if (*(longlong *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET) - *system_long_handle_ptr >> 3 != 0) {
     audio_resource_id = 0;
     do {
       system_release_buffer_resource(*(uint64_t *)(*system_long_handle_ptr + audio_resource_id));
-      system_status_code = system_status_code + 1;
+      system_return_code = system_return_code + 1;
       audio_resource_id = audio_resource_id + 0x01;
-    } while ((ulonglong)(longlong)system_status_code < (ulonglong)(*(longlong *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET) - *system_long_handle_ptr >> 3))
+    } while ((ulonglong)(longlong)system_return_code < (ulonglong)(*(longlong *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET) - *system_long_handle_ptr >> 3))
     ;
   }
-  system_status_code = 0;
+  system_return_code = 0;
   audio_resource_id = *system_long_data_ptr;
   if (*(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) - audio_resource_id >> 3 != 0) {
     system_audio_long_value = 0;
@@ -28647,12 +28647,12 @@ void system_initialize_audio_system(longlong system_context_parameter,uint64_t s
         }
       }
       *(uint64_t *)(system_audio_long_value + *system_long_data_ptr) = 0;
-      system_status_code = system_status_code + 1;
+      system_return_code = system_return_code + 1;
       system_audio_long_value = system_audio_long_value + 0x01;
       audio_resource_id = *system_long_data_ptr;
-    } while ((ulonglong)(longlong)system_status_code < (ulonglong)(*(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) - audio_resource_id >> 3));
+    } while ((ulonglong)(longlong)system_return_code < (ulonglong)(*(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) - audio_resource_id >> 3));
   }
-  system_status_code = 0;
+  system_return_code = 0;
   audio_resource_id = *system_long_context_ptr;
   if (*(longlong *)(system_context_parameter + 0x030) - audio_resource_id >> 3 != 0) {
     system_audio_long_value = 0;
@@ -28667,12 +28667,12 @@ void system_initialize_audio_system(longlong system_context_parameter,uint64_t s
         }
       }
       *(uint64_t *)(system_audio_long_value + *system_long_context_ptr) = 0;
-      system_status_code = system_status_code + 1;
+      system_return_code = system_return_code + 1;
       system_audio_long_value = system_audio_long_value + 0x01;
       audio_resource_id = *system_long_context_ptr;
-    } while ((ulonglong)(longlong)system_status_code < (ulonglong)(*(longlong *)(system_context_parameter + 0x030) - audio_resource_id >> 3));
+    } while ((ulonglong)(longlong)system_return_code < (ulonglong)(*(longlong *)(system_context_parameter + 0x030) - audio_resource_id >> 3));
   }
-  system_status_code = 0;
+  system_return_code = 0;
   audio_resource_id = *system_long_handle_ptr;
   if (*(longlong *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET) - audio_resource_id >> 3 != 0) {
     system_audio_long_value = 0;
@@ -28687,10 +28687,10 @@ void system_initialize_audio_system(longlong system_context_parameter,uint64_t s
         }
       }
       *(uint64_t *)(system_audio_long_value + *system_long_handle_ptr) = 0;
-      system_status_code = system_status_code + 1;
+      system_return_code = system_return_code + 1;
       system_audio_long_value = system_audio_long_value + 0x01;
       audio_resource_id = *system_long_handle_ptr;
-    } while ((ulonglong)(longlong)system_status_code < (ulonglong)(*(longlong *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET) - audio_resource_id >> 3));
+    } while ((ulonglong)(longlong)system_return_code < (ulonglong)(*(longlong *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET) - audio_resource_id >> 3));
   }
   system_reset_buffer_state(system_context_parameter + 0x054001);
   system_reset_buffer_state(system_context_parameter + 0x02e0);
@@ -28722,12 +28722,12 @@ void system_configure_buffer_strategy(longlong system_context_parameter)
 {
   longlong system_audio_long_value;
   longlong system_long_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong system_audio_buffer_pointer;
   
   system_long_context = GetCurrentThread();
-  system_comparison_result = (int)(*(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) - *(longlong *)(system_context_parameter + 0x01) >> 3);
-  if (0 < system_comparison_result) {
+  system_compare_result = (int)(*(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) - *(longlong *)(system_context_parameter + 0x01) >> 3);
+  if (0 < system_compare_result) {
     system_audio_buffer_pointer = 0;
     do {
       system_audio_long_value = *(longlong *)(*(longlong *)(*(longlong *)(system_context_parameter + 0x01) + system_audio_buffer_pointer * 0x01) + SYSTEM_AUDIO_TABLE_OFFSET_VALUE);
@@ -28735,7 +28735,7 @@ void system_configure_buffer_strategy(longlong system_context_parameter)
         ResumeThread();
       }
       system_audio_buffer_pointer = system_audio_buffer_pointer + 1;
-    } while (system_audio_buffer_pointer < system_comparison_result);
+    } while (system_audio_buffer_pointer < system_compare_result);
   }
   return;
 }
@@ -29040,7 +29040,7 @@ void system_process_resource_request(longlong system_context_parameter,longlong 
 {
   uint64_t *system_data_context;
   code *system_code_ptr_2;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   longlong *system_buffer_pointer_10;
   longlong **system_stack_long_int_ptr;
   uint64_t system_uint_handle;
@@ -29048,13 +29048,13 @@ void system_process_resource_request(longlong system_context_parameter,longlong 
   system_uint_handle = SYSTEM_INVALID_HANDLE_VALUE;
   system_data_context = (uint64_t *)**(uint64_t **)(system_context_parameter + 0x01);
   system_code_ptr_2 = *(code **)*system_data_context;
-  system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-  system_buffer_pointer_0x01 = (longlong *)*system_context_parameter;
+  system_stack_long_int_ptr = &system_audio_device_ptr;
+  system_audio_device_ptr = (longlong *)*system_context_parameter;
   system_buffer_pointer_10 = system_context_parameter;
-  if (system_buffer_pointer_0x01 != (longlong *)0x00) {
-    (**(code **)(*system_buffer_pointer_0x01 + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
+  if (system_audio_device_ptr != (longlong *)0x00) {
+    (**(code **)(*system_audio_device_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
   }
-  (*system_code_ptr_2)(system_data_context,&system_buffer_pointer_0x01,system_context_parameter,system_context_parameter,system_uint_handle);
+  (*system_code_ptr_2)(system_data_context,&system_audio_device_ptr,system_context_parameter,system_context_parameter,system_uint_handle);
   if ((longlong *)*system_context_parameter != (longlong *)0x00) {
     (**(code **)(*(longlong *)*system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET))();
   }
@@ -29065,7 +29065,7 @@ void system_update_buffer_state(longlong system_context_parameter,longlong *syst
 {
   uint64_t *system_data_context;
   code *system_code_ptr_2;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   longlong *system_buffer_pointer_10;
   longlong **system_stack_long_int_ptr;
   uint64_t system_uint_handle;
@@ -29073,13 +29073,13 @@ void system_update_buffer_state(longlong system_context_parameter,longlong *syst
   system_uint_handle = SYSTEM_INVALID_HANDLE_VALUE;
   system_data_context = *(uint64_t **)(*(longlong *)(system_context_parameter + 0x01) + 0x01);
   system_code_ptr_2 = *(code **)*system_data_context;
-  system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-  system_buffer_pointer_0x01 = (longlong *)*system_context_parameter;
+  system_stack_long_int_ptr = &system_audio_device_ptr;
+  system_audio_device_ptr = (longlong *)*system_context_parameter;
   system_buffer_pointer_10 = system_context_parameter;
-  if (system_buffer_pointer_0x01 != (longlong *)0x00) {
-    (**(code **)(*system_buffer_pointer_0x01 + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
+  if (system_audio_device_ptr != (longlong *)0x00) {
+    (**(code **)(*system_audio_device_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
   }
-  (*system_code_ptr_2)(system_data_context,&system_buffer_pointer_0x01,system_context_parameter,system_context_parameter,system_uint_handle);
+  (*system_code_ptr_2)(system_data_context,&system_audio_device_ptr,system_context_parameter,system_context_parameter,system_uint_handle);
   if ((longlong *)*system_context_parameter != (longlong *)0x00) {
     (**(code **)(*(longlong *)*system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET))();
   }
@@ -29090,7 +29090,7 @@ void system_validate_buffer_operation(longlong system_context_parameter,longlong
 {
   uint64_t *system_data_context;
   code *system_code_ptr_2;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   longlong *system_buffer_pointer_10;
   longlong **system_stack_long_int_ptr;
   uint64_t system_uint_handle;
@@ -29098,13 +29098,13 @@ void system_validate_buffer_operation(longlong system_context_parameter,longlong
   system_uint_handle = SYSTEM_INVALID_HANDLE_VALUE;
   system_data_context = *(uint64_t **)(*(longlong *)(system_context_parameter + 0x01) + SYSTEM_CONFIG_DATA_SIZE_16);
   system_code_ptr_2 = *(code **)*system_data_context;
-  system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-  system_buffer_pointer_0x01 = (longlong *)*system_context_parameter;
+  system_stack_long_int_ptr = &system_audio_device_ptr;
+  system_audio_device_ptr = (longlong *)*system_context_parameter;
   system_buffer_pointer_10 = system_context_parameter;
-  if (system_buffer_pointer_0x01 != (longlong *)0x00) {
-    (**(code **)(*system_buffer_pointer_0x01 + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
+  if (system_audio_device_ptr != (longlong *)0x00) {
+    (**(code **)(*system_audio_device_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
   }
-  (*system_code_ptr_2)(system_data_context,&system_buffer_pointer_0x01,system_context_parameter,system_context_parameter,system_uint_handle);
+  (*system_code_ptr_2)(system_data_context,&system_audio_device_ptr,system_context_parameter,system_context_parameter,system_uint_handle);
   if ((longlong *)*system_context_parameter != (longlong *)0x00) {
     (**(code **)(*(longlong *)*system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET))();
   }
@@ -29156,19 +29156,19 @@ void system_dispatch_events(longlong system_context_parameter,longlong *system_c
   ulonglong system_audio_context_id;
   longlong system_long_handle;
   longlong *context_pointer;
-  int system_int_config;
+  int system_config_value;
   ulonglong system_audio_status;
   
-  system_int_config = 0;
+  system_config_value = 0;
   system_long_data_ptr = *(longlong **)(system_context_parameter + SYSTEM_RESOURCE_TABLE_OFFSET);
   system_audio_status = *(longlong *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET) - (longlong)system_long_data_ptr >> 3;
   context_pointer = system_long_data_ptr;
   if (system_audio_status != 0) {
     do {
       if ((longlong *)*context_pointer == system_context_parameter) {
-        system_release_buffer_resource(system_long_data_ptr[system_int_config]);
+        system_release_buffer_resource(system_long_data_ptr[system_config_value]);
         system_audio_context_id = *(ulonglong *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET);
-        system_long_handle = *(longlong *)(system_context_parameter + SYSTEM_RESOURCE_TABLE_OFFSET) + (longlong)system_int_config * 0x01;
+        system_long_handle = *(longlong *)(system_context_parameter + SYSTEM_RESOURCE_TABLE_OFFSET) + (longlong)system_config_value * 0x01;
         system_audio_status = system_long_handle + 0x01;
         if (system_audio_status < system_audio_context_id) {
                     // WARNING: Subroutine does not return
@@ -29177,9 +29177,9 @@ void system_dispatch_events(longlong system_context_parameter,longlong *system_c
         *(ulonglong *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET) = system_audio_context_id - 0x01;
         break;
       }
-      system_int_config = system_int_config + 1;
+      system_config_value = system_config_value + 1;
       context_pointer = context_pointer + 1;
-    } while ((ulonglong)(longlong)system_int_config < system_audio_status);
+    } while ((ulonglong)(longlong)system_config_value < system_audio_status);
   }
   if (system_context_parameter != (longlong *)0x00) {
     system_long_handle = __RTCastToVoid(system_context_parameter);
@@ -29198,19 +29198,19 @@ void system_handle_event_callback(longlong system_context_parameter,longlong *sy
   ulonglong system_audio_context_id;
   longlong system_long_handle;
   longlong *context_pointer;
-  int system_int_config;
+  int system_config_value;
   ulonglong system_audio_status;
   
-  system_int_config = 0;
+  system_config_value = 0;
   system_long_data_ptr = *(longlong **)(system_context_parameter + SYSTEM_RESOURCE_TABLE_OFFSET);
   system_audio_status = *(longlong *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET) - (longlong)system_long_data_ptr >> 3;
   context_pointer = system_long_data_ptr;
   if (system_audio_status != 0) {
     do {
       if ((longlong *)*context_pointer == system_context_parameter) {
-        system_release_buffer_resource(system_long_data_ptr[system_int_config]);
+        system_release_buffer_resource(system_long_data_ptr[system_config_value]);
         system_audio_context_id = *(ulonglong *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET);
-        system_long_handle = *(longlong *)(system_context_parameter + SYSTEM_RESOURCE_TABLE_OFFSET) + (longlong)system_int_config * 0x01;
+        system_long_handle = *(longlong *)(system_context_parameter + SYSTEM_RESOURCE_TABLE_OFFSET) + (longlong)system_config_value * 0x01;
         system_audio_status = system_long_handle + 0x01;
         if (system_audio_status < system_audio_context_id) {
                     // WARNING: Subroutine does not return
@@ -29219,9 +29219,9 @@ void system_handle_event_callback(longlong system_context_parameter,longlong *sy
         *(ulonglong *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET) = system_audio_context_id - 0x01;
         break;
       }
-      system_int_config = system_int_config + 1;
+      system_config_value = system_config_value + 1;
       context_pointer = context_pointer + 1;
-    } while ((ulonglong)(longlong)system_int_config < system_audio_status);
+    } while ((ulonglong)(longlong)system_config_value < system_audio_status);
   }
   if (system_context_parameter != (longlong *)0x00) {
     system_long_handle = __RTCastToVoid(system_context_parameter);
@@ -29659,7 +29659,7 @@ longlong system_get_buffer_base_address(void)
 {
   longlong *system_long_data_ptr;
   uint *system_data_context;
-  int *psystem_comparison_result;
+  int *psystem_compare_result;
   uint system_uint_buffer;
   ulonglong *system_config_ptr;
   ulonglong system_audio_status;
@@ -29735,11 +29735,11 @@ longlong system_get_buffer_base_address(void)
   do {
     system_audio_uint_value = system_audio_register_value & *system_audio_register_value - 1;
     if (*(int *)(system_audio_register_value[1] + system_audio_uint_value * SYSTEM_CONFIG_DATA_SIZE_16) == 0) {
-      psystem_comparison_result = (int *)(system_audio_register_value[1] + system_audio_uint_value * SYSTEM_CONFIG_DATA_SIZE_16);
+      psystem_compare_result = (int *)(system_audio_register_value[1] + system_audio_uint_value * SYSTEM_CONFIG_DATA_SIZE_16);
       LOCK();
-      system_bool_10 = *psystem_comparison_result == 0;
+      system_bool_10 = *psystem_compare_result == 0;
       if (system_bool_10) {
-        *psystem_comparison_result = system_audio_register_value;
+        *psystem_compare_result = system_audio_register_value;
       }
       UNLOCK();
       if (system_bool_10) {
@@ -29805,7 +29805,7 @@ longlong system_get_buffer_size(void)
   longlong system_audio_register_value;
   longlong system_audio_register_value;
   int system_audio_register_value;
-  bool system_byte_var_;
+  bool system_bool_flag;
   char system_audio_stack_param;
   
   while( true ) {
@@ -29832,12 +29832,12 @@ longlong system_get_buffer_size(void)
               if (*(int *)(system_audio_register_value[1] + system_audio_uint_value * SYSTEM_CONFIG_DATA_SIZE_16) == 0) {
                 system_audio_loop_index_ptr = (int *)(system_audio_register_value[1] + system_audio_uint_value * SYSTEM_CONFIG_DATA_SIZE_16);
                 LOCK();
-                system_byte_var_ = *system_audio_loop_index_ptr == 0;
-                if (system_byte_var_) {
+                system_bool_flag = *system_audio_loop_index_ptr == 0;
+                if (system_bool_flag) {
                   *system_audio_loop_index_ptr = system_audio_register_value;
                 }
                 UNLOCK();
-                if (system_byte_var_) {
+                if (system_bool_flag) {
                   *(longlong *)(system_audio_register_value[1] + 0x01 + system_audio_uint_value * SYSTEM_CONFIG_DATA_SIZE_16) = system_long_status;
                   return system_long_status;
                 }
@@ -29894,7 +29894,7 @@ uint64_t * system_translate_buffer_pointer(longlong *system_context_parameter,ch
   uint64_t *node_pointer;
   ulonglong system_audio_uint_value;
   ulonglong system_audio_uint_value;
-  bool system_byte_var_;
+  bool system_bool_flag;
   
   node_pointer = (uint64_t *)0x00;
   system_data_context = (uint64_t *)*system_context_parameter;
@@ -29973,26 +29973,26 @@ uint64_t * system_translate_buffer_pointer(longlong *system_context_parameter,ch
           system_data_context[1] = system_config_ptr;
           LOCK();
           system_audio_buffer_pointer = *system_context_parameter;
-          system_byte_var_ = system_long_handle == system_audio_buffer_pointer;
-          if (system_byte_var_) {
+          system_bool_flag = system_long_handle == system_audio_buffer_pointer;
+          if (system_bool_flag) {
             *system_context_parameter = (longlong)system_data_context;
             system_audio_buffer_pointer = system_long_handle;
           }
           UNLOCK();
           system_long_handle = system_audio_buffer_pointer;
           system_config_ptr = system_data_context;
-        } while (!system_byte_var_);
+        } while (!system_bool_flag);
       }
       return system_config_ptr;
     }
     if ((*(char *)(system_data_context + 2) != '\0') && (*(char *)(system_data_context + 0x02) == system_context_parameter)) {
       LOCK();
-      system_byte_var_ = *(char *)(system_data_context + 2) == '\x1';
-      if (system_byte_var_) {
+      system_bool_flag = *(char *)(system_data_context + 2) == '\x1';
+      if (system_bool_flag) {
         *(char *)(system_data_context + 2) = '\0';
       }
       UNLOCK();
-      if (system_byte_var_) {
+      if (system_bool_flag) {
         *system_context_parameter = 1;
         return system_data_context;
       }
@@ -30091,7 +30091,7 @@ uint64_t system_configure_buffer_context(longlong system_context_parameter,longl
   longlong *system_long_handle_ptr;
   ulonglong system_uint_buffer;
   ulonglong system_context_id_0x01001;
-  longlong *system_buffer_pointer_20;
+  longlong *system_audio_config_ptr;
   
   system_uint_value = *(ulonglong *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_20);
   system_uint_buffer = (ulonglong)((uint)system_uint_value & 0x01f);
@@ -30114,7 +30114,7 @@ SYSTEM_VALIDATION_CHECK:
         system_context_parameter = (longlong *)*system_context_parameter;
         *system_long_handle_ptr = (longlong)system_context_parameter;
         if (system_context_parameter != (longlong *)0x00) {
-          system_buffer_pointer_20 = system_long_handle_ptr;
+          system_audio_config_ptr = system_long_handle_ptr;
           (**(code **)(*system_context_parameter + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
         }
         *(longlong **)(system_context_id_0x01001 + 0x01) = system_long_handle_ptr;
@@ -30955,7 +30955,7 @@ void system_initialize_performance_monitor(uint64_t *system_context_parameter)
 {
   longlong *system_long_data_ptr;
   int *system_audio_loop_index_ptr;
-  int system_comparison_result;
+  int system_compare_result;
   uint system_uint_buffer;
   ulonglong system_audio_config_value;
   longlong system_long_status;
@@ -31036,10 +31036,10 @@ code_r0x01001006004003:
       system_audio_long_value = system_context_parameter[10];
       LOCK();
       system_audio_loop_index_ptr = (int *)(system_audio_long_value + 0x080);
-      system_comparison_result = *system_audio_loop_index_ptr;
+      system_compare_result = *system_audio_loop_index_ptr;
       *system_audio_loop_index_ptr = *system_audio_loop_index_ptr + -SYSTEM_STANDARD_BUFFER_SIZE000000;
       UNLOCK();
-      if (system_comparison_result == 0) {
+      if (system_compare_result == 0) {
         system_audio_long_value = *(longlong *)(system_audio_long_value + SYSTEM_MEMORY_POOL_BASE_OFFSET);
         do {
           *(longlong *)(system_audio_long_value + 0x08001) = system_audio_long_value;
@@ -31056,11 +31056,11 @@ code_r0x01001006004003:
           if (system_bool_12) break;
           LOCK();
           system_audio_loop_index_ptr = (int *)(system_audio_long_value + 0x080);
-          system_comparison_result = *system_audio_loop_index_ptr;
+          system_compare_result = *system_audio_loop_index_ptr;
           *system_audio_loop_index_ptr = *system_audio_loop_index_ptr + SYSTEM_MAXIMUM_SEMAPHORE_COUNT;
           UNLOCK();
           system_audio_long_value = system_long_status;
-        } while (system_comparison_result == 1);
+        } while (system_compare_result == 1);
       }
       system_audio_long_value = system_audio_long_value;
     } while (system_audio_long_value != system_context_parameter[0x01]);
@@ -31262,7 +31262,7 @@ void system_validate_filesystem_structure(longlong *system_context_parameter)
 {
   longlong *system_long_data_ptr;
   char system_char_data;
-  int system_comparison_result;
+  int system_compare_result;
   uint64_t system_context_id_0x01;
   longlong *system_buffer_pointer;
   char cStack_0x01001;
@@ -31275,9 +31275,9 @@ void system_validate_filesystem_structure(longlong *system_context_parameter)
         system_cleanup_audio_stream(*(uint64_t *)(*system_long_data_ptr + SYSTEM_CONFIG_DATA_SIZE_16),0);
         system_buffer_pointer = system_context_parameter + 0x033;
         cStack_0x01001 = 0;
-        system_comparison_result = _Mtx_lock();
-        if (system_comparison_result != 0) {
-          __Throw_C_error_std__YAXH_Z(system_comparison_result);
+        system_compare_result = _Mtx_lock();
+        if (system_compare_result != 0) {
+          __Throw_C_error_std__YAXH_Z(system_compare_result);
         }
         cStack_0x01001 = '\x1';
         if ((char)system_context_parameter[0x03d] == '\x1') {
@@ -31289,9 +31289,9 @@ void system_validate_filesystem_structure(longlong *system_context_parameter)
           *(uint32_t *)(system_context_parameter + 0x03d) = 0;
           if (cStack_0x01001 == '\0') goto SYSTEM_LABEL;
         }
-        system_comparison_result = _Mtx_unlock(system_buffer_pointer);
-        if (system_comparison_result != 0) {
-          __Throw_C_error_std__YAXH_Z(system_comparison_result);
+        system_compare_result = _Mtx_unlock(system_buffer_pointer);
+        if (system_compare_result != 0) {
+          __Throw_C_error_std__YAXH_Z(system_compare_result);
         }
       }
 SYSTEM_VALIDATION_CHECK:
@@ -31307,9 +31307,9 @@ uint64_t system_configure_audio_stream(longlong system_context_parameter,char sy
   int system_int_context;
   longlong *system_long_handle_ptr;
   uint64_t system_uint_buffer;
-  longlong *system_buffer_pointer_0x01001;
+  longlong *system_audio_device_ptr001;
   
-  system_buffer_pointer_0x01001 = (longlong *)0x00;
+  system_audio_device_ptr001 = (longlong *)0x00;
   system_long_handle_ptr = (longlong *)0x00;
   if (system_context_parameter != '\0') {
     if (*(int *)(system_context_parameter + 0x0140) < 1) {
@@ -31323,9 +31323,9 @@ uint64_t system_configure_audio_stream(longlong system_context_parameter,char sy
       if ((*(longlong *)(system_context_parameter + 200) - *(longlong *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_D0) >> 3) +
           ((*(longlong *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_E0) - *(longlong *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0) >> 3) + -1) * SYSTEM_RESOURCE_BLOCK_OFFSET_20 +
           (*(longlong *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE1) - (longlong)*(longlong **)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A1) >> 3) != 0) {
-        system_buffer_pointer_0x01001 = (longlong *)**(longlong **)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A1);
-        if (system_buffer_pointer_0x01001 != (longlong *)0x00) {
-          (**(code **)(*system_buffer_pointer_0x01001 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_buffer_pointer_0x01001);
+        system_audio_device_ptr001 = (longlong *)**(longlong **)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A1);
+        if (system_audio_device_ptr001 != (longlong *)0x00) {
+          (**(code **)(*system_audio_device_ptr001 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_audio_device_ptr001);
         }
         system_long_handle_ptr = *(longlong **)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A1);
         if (system_long_handle_ptr + 1 == *(longlong **)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE1)) {
@@ -31354,10 +31354,10 @@ uint64_t system_configure_audio_stream(longlong system_context_parameter,char sy
       if (system_int_context != 0) {
         __Throw_C_error_std__YAXH_Z(system_int_context);
       }
-      system_long_handle_ptr = system_buffer_pointer_0x01001;
-      if (system_buffer_pointer_0x01001 != (longlong *)0x00) {
-        (**(code **)(*system_buffer_pointer_0x01001 + SYSTEM_CALLBACK_TABLE_OFFSET))(system_buffer_pointer_0x01001);
-        (**(code **)(*system_buffer_pointer_0x01001 + SYSTEM_MESSAGE_BUFFER_OFFSET))(system_buffer_pointer_0x01001);
+      system_long_handle_ptr = system_audio_device_ptr001;
+      if (system_audio_device_ptr001 != (longlong *)0x00) {
+        (**(code **)(*system_audio_device_ptr001 + SYSTEM_CALLBACK_TABLE_OFFSET))(system_audio_device_ptr001);
+        (**(code **)(*system_audio_device_ptr001 + SYSTEM_MESSAGE_BUFFER_OFFSET))(system_audio_device_ptr001);
         LOCK();
         *(int *)(system_context_parameter + 0x0140) = *(int *)(system_context_parameter + 0x0140) + -1;
         UNLOCK();
@@ -31366,11 +31366,11 @@ uint64_t system_configure_audio_stream(longlong system_context_parameter,char sy
       }
     }
   }
-  system_buffer_pointer_0x01001 = system_long_handle_ptr;
+  system_audio_device_ptr001 = system_long_handle_ptr;
   system_uint_buffer = 0;
 SYSTEM_VALIDATION_CHECK:
-  if (system_buffer_pointer_0x01001 != (longlong *)0x00) {
-    (**(code **)(*system_buffer_pointer_0x01001 + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_buffer_pointer_0x01001);
+  if (system_audio_device_ptr001 != (longlong *)0x00) {
+    (**(code **)(*system_audio_device_ptr001 + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_audio_device_ptr001);
   }
   return system_uint_buffer;
 }
@@ -31380,14 +31380,14 @@ bool system_validate_audio_stream(longlong system_context_parameter,uint64_t sys
 {
   longlong *system_long_data_ptr;
   char system_char_data;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   
-  system_buffer_pointer_0x01 = (longlong *)0x00;
+  system_audio_device_ptr = (longlong *)0x00;
   WaitForSingleObject(**(uint64_t **)(system_context_parameter + 0x01f0),1,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
-  system_char_data = system_create_audio_stream_context(*(uint64_t *)(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET),system_context_parameter + SYSTEM_SIGNAL_HANDLER_OFFSET,&system_buffer_pointer_0x01);
-  system_long_data_ptr = system_buffer_pointer_0x01;
+  system_char_data = system_create_audio_stream_context(*(uint64_t *)(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET),system_context_parameter + SYSTEM_SIGNAL_HANDLER_OFFSET,&system_audio_device_ptr);
+  system_long_data_ptr = system_audio_device_ptr;
   if (system_char_data != '\0') {
-    (**(code **)(*system_buffer_pointer_0x01 + SYSTEM_CALLBACK_TABLE_OFFSET))(system_buffer_pointer_0x01);
+    (**(code **)(*system_audio_device_ptr + SYSTEM_CALLBACK_TABLE_OFFSET))(system_audio_device_ptr);
     (**(code **)(*system_long_data_ptr + SYSTEM_MESSAGE_BUFFER_OFFSET))(system_long_data_ptr);
   }
   if (system_long_data_ptr != (longlong *)0x00) {
@@ -31726,14 +31726,14 @@ bool system_configure_context_parameter(longlong system_context_parameter,uint64
 {
   longlong *system_long_data_ptr;
   char system_char_data;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   
-  system_buffer_pointer_0x01 = (longlong *)0x00;
-  system_char_data = system_create_audio_stream_context(*(uint64_t *)(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET),system_context_parameter + SYSTEM_SIGNAL_HANDLER_OFFSET,&system_buffer_pointer_0x01,system_context_parameter,
+  system_audio_device_ptr = (longlong *)0x00;
+  system_char_data = system_create_audio_stream_context(*(uint64_t *)(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET),system_context_parameter + SYSTEM_SIGNAL_HANDLER_OFFSET,&system_audio_device_ptr,system_context_parameter,
                         SYSTEM_INVALID_HANDLE_VALUE);
-  system_long_data_ptr = system_buffer_pointer_0x01;
+  system_long_data_ptr = system_audio_device_ptr;
   if (system_char_data != '\0') {
-    (**(code **)(*system_buffer_pointer_0x01 + SYSTEM_CALLBACK_TABLE_OFFSET))(system_buffer_pointer_0x01);
+    (**(code **)(*system_audio_device_ptr + SYSTEM_CALLBACK_TABLE_OFFSET))(system_audio_device_ptr);
     (**(code **)(*system_long_data_ptr + SYSTEM_MESSAGE_BUFFER_OFFSET))(system_long_data_ptr);
   }
   if (system_long_data_ptr != (longlong *)0x00) {
@@ -31830,16 +31830,16 @@ void system_manage_file_caching(longlong system_context_parameter,longlong *syst
   uint64_t *system_data_context;
   longlong system_long_context;
   longlong system_long_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   longlong audio_resource_id;
   uint64_t system_audio_status;
   uint32_t system_audio_uint_value;
   
   system_audio_status = SYSTEM_INVALID_HANDLE_VALUE;
   audio_resource_id = system_context_parameter + SYSTEM_CONTEXT_OFFSET_F0;
-  system_status_buffer = _Mtx_lock();
-  if (system_status_buffer != 0) {
-    __Throw_C_error_std__YAXH_Z(system_status_buffer);
+  system_buffer_size = _Mtx_lock();
+  if (system_buffer_size != 0) {
+    __Throw_C_error_std__YAXH_Z(system_buffer_size);
   }
   system_audio_uint_value = 1;
   system_update_context_attribute(system_context_parameter + SYSTEM_FILESYSTEM_HANDLE_OFFSET,system_context_parameter);
@@ -31850,12 +31850,12 @@ void system_manage_file_caching(longlong system_context_parameter,longlong *syst
   system_long_context = *(longlong *)(system_resource_memory_pool + SYSTEM_CONFIG_DATA_SIZE_16);
   system_long_handle = *(longlong *)(system_resource_memory_pool + 0x01);
   do {
-    system_status_buffer = ReleaseSemaphore(*system_data_context,system_long_context - system_long_handle >> 3 & 0x07fffffff,0,system_context_parameter,system_audio_status,audio_resource_id,system_audio_uint_value);
-  } while (system_status_buffer == 0);
+    system_buffer_size = ReleaseSemaphore(*system_data_context,system_long_context - system_long_handle >> 3 & 0x07fffffff,0,system_context_parameter,system_audio_status,audio_resource_id,system_audio_uint_value);
+  } while (system_buffer_size == 0);
   system_release_graphics_resources(system_context_parameter + 0x090);
-  system_status_buffer = _Mtx_unlock(audio_resource_id);
-  if (system_status_buffer != 0) {
-    __Throw_C_error_std__YAXH_Z(system_status_buffer);
+  system_buffer_size = _Mtx_unlock(audio_resource_id);
+  if (system_buffer_size != 0) {
+    __Throw_C_error_std__YAXH_Z(system_buffer_size);
   }
   if ((longlong *)*system_context_parameter != (longlong *)0x00) {
     (**(code **)(*(longlong *)*system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET))();
@@ -31982,60 +31982,60 @@ void system_initialize_network_stack(longlong *system_context_parameter)
   longlong *paudio_resource_id;
   longlong *system_long_status_ptr;
   longlong *system_ptr_system_local_variable;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   longlong **system_stack_long_int_ptr;
-  longlong *system_buffer_pointer_0x01001;
-  longlong *system_buffer_pointer_20;
+  longlong *system_audio_device_ptr001;
+  longlong *system_audio_config_ptr;
   
   system_long_handle = system_memory_pool_config;
-  system_buffer_pointer_0x01 = system_context_parameter;
+  system_audio_device_ptr = system_context_parameter;
   system_uint_buffer = system_allocate_memory_context(system_context_memory_pool,0x030,0x01,3,SYSTEM_INVALID_HANDLE_VALUE);
   paudio_resource_id = (longlong *)system_create_resource_context(system_uint_buffer,0,system_long_handle);
-  system_buffer_pointer_0x01001 = paudio_resource_id;
+  system_audio_device_ptr001 = paudio_resource_id;
   if (paudio_resource_id != (longlong *)0x00) {
     (**(code **)(*paudio_resource_id + SYSTEM_MEMORY_POOL_BASE_OFFSET))(paudio_resource_id);
   }
   system_data_context = *(uint64_t **)(system_long_handle + 400);
   system_code_ptr_2 = *(code **)*system_data_context;
-  system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-  system_buffer_pointer_0x01 = paudio_resource_id;
+  system_stack_long_int_ptr = &system_audio_device_ptr;
+  system_audio_device_ptr = paudio_resource_id;
   if (paudio_resource_id != (longlong *)0x00) {
     (**(code **)(*paudio_resource_id + SYSTEM_MEMORY_POOL_BASE_OFFSET))(paudio_resource_id);
   }
-  (*system_code_ptr_2)(system_data_context,&system_buffer_pointer_0x01);
+  (*system_code_ptr_2)(system_data_context,&system_audio_device_ptr);
   system_uint_buffer = system_allocate_memory_context(system_context_memory_pool,0x030,0x01,3);
   system_long_status_ptr = (longlong *)system_create_resource_context(system_uint_buffer,4,system_long_handle);
-  system_buffer_pointer_20 = system_long_status_ptr;
+  system_audio_config_ptr = system_long_status_ptr;
   if (system_long_status_ptr != (longlong *)0x00) {
     (**(code **)(*system_long_status_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_status_ptr);
   }
   system_data_context = *(uint64_t **)(system_long_handle + 400);
   system_code_ptr_2 = *(code **)*system_data_context;
-  system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-  system_buffer_pointer_0x01 = system_long_status_ptr;
+  system_stack_long_int_ptr = &system_audio_device_ptr;
+  system_audio_device_ptr = system_long_status_ptr;
   if (system_long_status_ptr != (longlong *)0x00) {
     (**(code **)(*system_long_status_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_status_ptr);
   }
-  (*system_code_ptr_2)(system_data_context,&system_buffer_pointer_0x01);
+  (*system_code_ptr_2)(system_data_context,&system_audio_device_ptr);
   system_uint_buffer = system_allocate_memory_context(system_context_memory_pool,0x030,0x01,3);
   system_ptr_system_local_variable = (longlong *)system_create_resource_context(system_uint_buffer,0,system_long_handle);
   if (system_ptr_system_local_variable != (longlong *)0x00) {
     system_stack_long_int_ptr = (longlong **)system_ptr_system_local_variable;
     (**(code **)(*system_ptr_system_local_variable + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_ptr_system_local_variable);
   }
-  system_buffer_pointer_0x01001 = system_ptr_system_local_variable;
+  system_audio_device_ptr001 = system_ptr_system_local_variable;
   if (paudio_resource_id != (longlong *)0x00) {
     system_stack_long_int_ptr = (longlong **)paudio_resource_id;
     (**(code **)(*paudio_resource_id + SYSTEM_THREAD_POOL_BASE_OFFSET))(paudio_resource_id);
   }
   system_data_context = *(uint64_t **)(system_long_handle + 400);
   system_code_ptr_2 = *(code **)*system_data_context;
-  system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-  system_buffer_pointer_0x01 = system_ptr_system_local_variable;
+  system_stack_long_int_ptr = &system_audio_device_ptr;
+  system_audio_device_ptr = system_ptr_system_local_variable;
   if (system_ptr_system_local_variable != (longlong *)0x00) {
     (**(code **)(*system_ptr_system_local_variable + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_ptr_system_local_variable);
   }
-  (*system_code_ptr_2)(system_data_context,&system_buffer_pointer_0x01);
+  (*system_code_ptr_2)(system_data_context,&system_audio_device_ptr);
   system_load_engine_module(*(uint64_t *)(system_long_handle + 400));
   if (system_long_status_ptr != (longlong *)0x00) {
     (**(code **)(*system_long_status_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_long_status_ptr);
@@ -32057,60 +32057,60 @@ void system_configure_network_parameters(longlong *system_context_parameter)
   longlong *paudio_resource_id;
   longlong *system_long_status_ptr;
   longlong *system_ptr_system_local_variable;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   longlong **system_stack_long_int_ptr;
-  longlong *system_buffer_pointer_0x01001;
-  longlong *system_buffer_pointer_20;
+  longlong *system_audio_device_ptr001;
+  longlong *system_audio_config_ptr;
   
   system_long_handle = system_memory_pool_config;
-  system_buffer_pointer_0x01 = system_context_parameter;
+  system_audio_device_ptr = system_context_parameter;
   system_uint_buffer = system_allocate_memory_context(system_context_memory_pool,0x030,0x01,3,SYSTEM_INVALID_HANDLE_VALUE);
   paudio_resource_id = (longlong *)system_create_resource_context(system_uint_buffer,0,system_long_handle);
-  system_buffer_pointer_0x01001 = paudio_resource_id;
+  system_audio_device_ptr001 = paudio_resource_id;
   if (paudio_resource_id != (longlong *)0x00) {
     (**(code **)(*paudio_resource_id + SYSTEM_MEMORY_POOL_BASE_OFFSET))(paudio_resource_id);
   }
   system_data_context = *(uint64_t **)(system_long_handle + 400);
   system_code_ptr_2 = *(code **)*system_data_context;
-  system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-  system_buffer_pointer_0x01 = paudio_resource_id;
+  system_stack_long_int_ptr = &system_audio_device_ptr;
+  system_audio_device_ptr = paudio_resource_id;
   if (paudio_resource_id != (longlong *)0x00) {
     (**(code **)(*paudio_resource_id + SYSTEM_MEMORY_POOL_BASE_OFFSET))(paudio_resource_id);
   }
-  (*system_code_ptr_2)(system_data_context,&system_buffer_pointer_0x01);
+  (*system_code_ptr_2)(system_data_context,&system_audio_device_ptr);
   system_uint_buffer = system_allocate_memory_context(system_context_memory_pool,0x030,0x01,3);
   system_long_status_ptr = (longlong *)system_create_resource_context(system_uint_buffer,3,system_long_handle);
-  system_buffer_pointer_20 = system_long_status_ptr;
+  system_audio_config_ptr = system_long_status_ptr;
   if (system_long_status_ptr != (longlong *)0x00) {
     (**(code **)(*system_long_status_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_status_ptr);
   }
   system_data_context = *(uint64_t **)(system_long_handle + 400);
   system_code_ptr_2 = *(code **)*system_data_context;
-  system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-  system_buffer_pointer_0x01 = system_long_status_ptr;
+  system_stack_long_int_ptr = &system_audio_device_ptr;
+  system_audio_device_ptr = system_long_status_ptr;
   if (system_long_status_ptr != (longlong *)0x00) {
     (**(code **)(*system_long_status_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_status_ptr);
   }
-  (*system_code_ptr_2)(system_data_context,&system_buffer_pointer_0x01);
+  (*system_code_ptr_2)(system_data_context,&system_audio_device_ptr);
   system_uint_buffer = system_allocate_memory_context(system_context_memory_pool,0x030,0x01,3);
   system_ptr_system_local_variable = (longlong *)system_create_resource_context(system_uint_buffer,0,system_long_handle);
   if (system_ptr_system_local_variable != (longlong *)0x00) {
     system_stack_long_int_ptr = (longlong **)system_ptr_system_local_variable;
     (**(code **)(*system_ptr_system_local_variable + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_ptr_system_local_variable);
   }
-  system_buffer_pointer_0x01001 = system_ptr_system_local_variable;
+  system_audio_device_ptr001 = system_ptr_system_local_variable;
   if (paudio_resource_id != (longlong *)0x00) {
     system_stack_long_int_ptr = (longlong **)paudio_resource_id;
     (**(code **)(*paudio_resource_id + SYSTEM_THREAD_POOL_BASE_OFFSET))(paudio_resource_id);
   }
   system_data_context = *(uint64_t **)(system_long_handle + 400);
   system_code_ptr_2 = *(code **)*system_data_context;
-  system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-  system_buffer_pointer_0x01 = system_ptr_system_local_variable;
+  system_stack_long_int_ptr = &system_audio_device_ptr;
+  system_audio_device_ptr = system_ptr_system_local_variable;
   if (system_ptr_system_local_variable != (longlong *)0x00) {
     (**(code **)(*system_ptr_system_local_variable + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_ptr_system_local_variable);
   }
-  (*system_code_ptr_2)(system_data_context,&system_buffer_pointer_0x01);
+  (*system_code_ptr_2)(system_data_context,&system_audio_device_ptr);
   system_load_engine_module(*(uint64_t *)(system_long_handle + 400));
   if (system_long_status_ptr != (longlong *)0x00) {
     (**(code **)(*system_long_status_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_long_status_ptr);
@@ -32174,13 +32174,13 @@ void system_optimize_network_performance(longlong *system_context_parameter)
   longlong system_long_handle;
   uint64_t system_uint_buffer;
   longlong *paudio_resource_id;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   longlong *system_buffer_pointer_10;
   longlong **system_stack_long_int_ptr;
   
   system_long_handle = system_memory_pool_config;
   if (*(char *)(system_memory_pool_config + 0x01001) != '\0') {
-    system_buffer_pointer_0x01 = system_context_parameter;
+    system_audio_device_ptr = system_context_parameter;
     system_uint_buffer = system_allocate_memory_context(system_context_memory_pool,0x030,0x01,3,SYSTEM_INVALID_HANDLE_VALUE);
     paudio_resource_id = (longlong *)system_create_resource_context(system_uint_buffer,6,system_long_handle);
     system_buffer_pointer_10 = paudio_resource_id;
@@ -32189,12 +32189,12 @@ void system_optimize_network_performance(longlong *system_context_parameter)
     }
     system_data_context = *(uint64_t **)(system_long_handle + 400);
     system_code_ptr_2 = *(code **)*system_data_context;
-    system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-    system_buffer_pointer_0x01 = paudio_resource_id;
+    system_stack_long_int_ptr = &system_audio_device_ptr;
+    system_audio_device_ptr = paudio_resource_id;
     if (paudio_resource_id != (longlong *)0x00) {
       (**(code **)(*paudio_resource_id + SYSTEM_MEMORY_POOL_BASE_OFFSET))(paudio_resource_id);
     }
-    (*system_code_ptr_2)(system_data_context,&system_buffer_pointer_0x01);
+    (*system_code_ptr_2)(system_data_context,&system_audio_device_ptr);
     system_load_engine_module(*(uint64_t *)(system_long_handle + 400));
     if (paudio_resource_id != (longlong *)0x00) {
       (**(code **)(*paudio_resource_id + SYSTEM_THREAD_POOL_BASE_OFFSET))(paudio_resource_id);
@@ -32291,7 +32291,7 @@ void system_optimize_performance_settings(int *system_context_parameter)
   *(uint32_t *)system_config_ptr = 0;
   system_buffer_pointera1 = system_config_ptr;
   system_uint_handle = system_get_resource_context(system_config_ptr);
-  system_context_id = CONCAT44(system_context_id._4_4_,system_uint_handle);
+  system_context_id = CONCAT44(system_context_id.y,system_uint_handle);
   *system_config_ptr = 0x05f6500330035;
   system_config_ptr[1] = 0x0650032610030;
   system_config_ptr[2] = 0x0635f00346e;
@@ -32389,7 +32389,7 @@ void system_cleanup_network_resources(longlong system_context_parameter)
   uint system_uint_value;
   uint system_audio_context_id;
   uint64_t system_uint_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   uint64_t *system_config_ptr;
   longlong system_long_status;
   longlong *system_ptr_system_local_variable;
@@ -32425,7 +32425,7 @@ void system_cleanup_network_resources(longlong system_context_parameter)
       *(uint32_t *)system_config_ptr = 0;
       system_buffer_pointer = system_config_ptr;
       system_uint_handle = system_get_resource_context(system_config_ptr);
-      system_context_id = CONCAT44(system_context_id._4_4_,system_uint_handle);
+      system_context_id = CONCAT44(system_context_id.y,system_uint_handle);
       *system_config_ptr = 0x03300326f0032032655f;
       system_context_id = 0x03;
       system_audio_loop_index = *(int *)(system_context_parameter + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) + -1;
@@ -32496,12 +32496,12 @@ code_r0x0100100630e002:
         if ((*(byte *)(system_config_ptr + 1) & 2) != 0) {
           system_validate_system_parameter((ulonglong)*(uint *)(&system_memory_pool_config + (longlong)(int)system_uint_value * 4) +
                         0x010010000000,*(uint64_t *)(system_context_parameter + SYSTEM_RESOURCE_COUNT_OFFSET));
-          system_status_buffer = WriteConsoleA(_system_data_memory_pool0c212f0,system_manager_ptr,system_audio_context_id,system_stack_array,0);
-          if ((system_status_buffer == 0) || (system_stack_array[0] < system_audio_context_id)) {
+          system_buffer_size = WriteConsoleA(_system_data_memory_pool0c212f0,system_manager_ptr,system_audio_context_id,system_stack_array,0);
+          if ((system_buffer_size == 0) || (system_stack_array[0] < system_audio_context_id)) {
             system_update_graphics_config(&system_ui_config_ptr,system_manager_ptr);
           }
-          system_status_buffer = SetConsoleTextAttribute(_system_data_memory_pool0c212f0,0x07);
-          if (system_status_buffer == 0) {
+          system_buffer_size = SetConsoleTextAttribute(_system_data_memory_pool0c212f0,0x07);
+          if (system_buffer_size == 0) {
             system_update_graphics_config(&system_graphics_config_pointer);
           }
         }
@@ -32770,7 +32770,7 @@ void system_cleanup_security_resources(void)
   uint64_t *system_handle_ptr;
   uint64_t *system_buffer_context;
   uint64_t *system_config_ptr;
-  int system_status_code;
+  int system_return_code;
   longlong system_audio_long_value;
   longlong system_audio_long_value;
   void **system_manager_ptr;
@@ -32818,8 +32818,8 @@ void system_cleanup_security_resources(void)
   system_buffer_context = system_buffer_pointera1;
   if (system_audio_uint_value != 0) {
     do {
-      system_status_code = *(int *)((longlong)system_buffer_pointerd1 + system_audio_uint_value + SYSTEM_CONFIG_DATA_SIZE_16);
-      if (system_status_code < 4) {
+      system_return_code = *(int *)((longlong)system_buffer_pointerd1 + system_audio_uint_value + SYSTEM_CONFIG_DATA_SIZE_16);
+      if (system_return_code < 4) {
 SYSTEM_VALIDATION_CHECK:
         system_byte_context = false;
       }
@@ -32827,7 +32827,7 @@ SYSTEM_VALIDATION_CHECK:
         system_audio_long_value = 0;
         do {
           system_audio_long_value = system_audio_long_value + 1;
-          if (*(char *)(*(longlong *)((longlong)system_buffer_pointerd1 + system_audio_uint_value + 0x01) + (longlong)(system_status_code + -4) +
+          if (*(char *)(*(longlong *)((longlong)system_buffer_pointerd1 + system_audio_uint_value + 0x01) + (longlong)(system_return_code + -4) +
                        system_audio_long_value) != (&system_resource_table_ptr)[system_audio_long_value]) goto SYSTEM_LABEL;
           system_audio_long_value = system_audio_long_value;
         } while (system_audio_long_value != 5);
@@ -32839,8 +32839,8 @@ SYSTEM_VALIDATION_CHECK:
         if (system_data_context != (void **)0x00) {
           system_manager_ptr = system_data_context;
         }
-        system_status_code = _stat64i0x040(system_manager_ptr,system_config_buffer);
-        if ((system_status_code != -1) && (system_audio_long_value < system_stack_long_int_0x024001)) {
+        system_return_code = _stat64i0x040(system_manager_ptr,system_config_buffer);
+        if ((system_return_code != -1) && (system_audio_long_value < system_stack_long_int_0x024001)) {
           system_audio_long_value = system_stack_long_int_0x024001;
           system_audio_loop_index = (int)system_audio_uint_value;
         }
@@ -33335,7 +33335,7 @@ void system_configure_utility_parameters(longlong *system_context_parameter,long
   system_context_id_f0 = 0;
   system_buffer_pointer = (uint32_t *)0x00;
   system_context_id_f1 = 0;
-  system_context_id._0_4_ = (int)system_audio_uint_value;
+  system_context_id.x = (int)system_audio_uint_value;
   system_int_context = (int)system_context_id;
   system_context_id = system_audio_uint_value;
   system_set_ui_parameter(&system_buffer_pointer,system_audio_uint_value & 0x07fffffff);
@@ -33363,7 +33363,7 @@ void system_configure_utility_parameters(longlong *system_context_parameter,long
     *(uint64_t *)(system_buffer_context + 2) = 0;
     *(uint64_t *)(system_buffer_context + 2) = 0;
     system_buffer_context[1] = system_buffer_pointer;
-    *(uint64_t *)((longlong)system_buffer_context + 0x0A) = system_context_id_f0._4_4_;
+    *(uint64_t *)((longlong)system_buffer_context + 0x0A) = system_context_id_f0.y;
     *(uint64_t *)(system_buffer_context + 3) = (uint64_t)system_context_id_f0;
     system_context_id_f1 = 0;
     system_buffer_pointer = (uint32_t *)0x00;
@@ -33394,7 +33394,7 @@ SYSTEM_VALIDATION_CHECK:
     *(uint64_t *)(system_thread_context_pointer + 2) = 0;
     *(uint64_t *)(system_thread_context_pointer + 2) = system_context_id_f1;
     system_thread_context_pointer[1] = system_buffer_pointer;
-    *(uint64_t *)((longlong)system_thread_context_pointer + 0x0A) = system_context_id_f0._4_4_;
+    *(uint64_t *)((longlong)system_thread_context_pointer + 0x0A) = system_context_id_f0.y;
     *(uint64_t *)(system_thread_context_pointer + 3) = (uint64_t)system_context_id_f0;
     system_context_id_f1 = 0;
     system_buffer_pointer = (uint32_t *)0x00;
@@ -34020,7 +34020,7 @@ void system_core_initialize(uint64_t system_context_parameter,longlong system_co
   char system_char_data;
   uint64_t system_uint_handle;
   longlong system_audio_buffer_pointer;
-  int system_int_config;
+  int system_config_value;
   longlong *psystem_stack_long_int_b0;
   void **system_thread_context_pointer;
   longlong system_stack_long_int_a0;
@@ -34036,10 +34036,10 @@ void system_core_initialize(uint64_t system_context_parameter,longlong system_co
   system_context_id = SYSTEM_INVALID_HANDLE_VALUE;
   psystem_stack_long_int_b0 = *(longlong **)(system_event_handler + 0x01001);
   system_initialize_ui_components(&system_thread_context_pointer,_system_data_memory_pool0c160010030 + 0x010030,system_context_parameter,system_context_parameter,0);
-  system_int_config = system_context_id + 3;
-  system_set_ui_parameter(&system_thread_context_pointer,system_int_config);
+  system_config_value = system_context_id + 3;
+  system_set_ui_parameter(&system_thread_context_pointer,system_config_value);
   *(uint64_t *)((ulonglong)system_context_id + system_stack_long_int_a0) = 0x0306d0034;
-  system_context_id = system_int_config;
+  system_context_id = system_config_value;
   system_char_data = system_create_ui_window(&system_thread_context_pointer);
   if (system_char_data == '\0') {
     system_setup_ui_event_handlers(&system_thread_context_pointer);
@@ -34134,7 +34134,7 @@ void system_core_configure(longlong *system_context_parameter,uint64_t system_co
     *(uint32_t *)(system_uint_buffer + system_stack_long_int_0x06001) = 0;
   }
   system_context_id = system_uint_value;
-  system_context_id._4_4_ = *(uint *)(system_long_context + 0x0A);
+  system_context_id.y = *(uint *)(system_long_context + 0x0A);
   system_set_ui_parameter(&system_buffer_pointer,1);
   *(uint16_t *)((ulonglong)system_context_id + system_stack_long_int_0x06001) = 0x05c;
   system_context_id = 1;
@@ -34145,7 +34145,7 @@ void system_core_configure(longlong *system_context_parameter,uint64_t system_co
     system_initialize_component();
   }
   system_stack_long_int_0x06001 = 0;
-  system_context_id = (ulonglong)system_context_id._4_4_ << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
+  system_context_id = (ulonglong)system_context_id.y << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
   system_buffer_pointer = &system_data_animation_pool_base;
   system_handle_ptr = &system_data_memory_pool0x02001bc0033;
   if (system_buffer_pointer != (void **)0x00) {
@@ -34189,7 +34189,7 @@ void system_core_setup(uint64_t system_context_parameter,uint64_t system_context
   char system_init_status;
   int system_int_context;
   uint64_t system_uint_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   uint64_t system_audio_config_value;
   ulonglong system_audio_status;
   uint32_t system_config_bufferf1 [0x040];
@@ -34232,7 +34232,7 @@ void system_core_setup(uint64_t system_context_parameter,uint64_t system_context
   system_context_id_b0 = SYSTEM_INVALID_HANDLE_VALUE;
   system_context_id = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_config_bufferf1;
   system_init_status = (**(code **)**(uint64_t **)(system_event_handler + 0x01001))();
-  system_status_buffer = 0;
+  system_buffer_size = 0;
   if (system_init_status != '\0') {
     system_setup_render_target(&system_buffer_pointerb1,&system_data_memory_pool0c140010030);
     system_function_0025(&system_buffer_pointerb1,0);
@@ -34242,7 +34242,7 @@ void system_core_setup(uint64_t system_context_parameter,uint64_t system_context
       system_initialize_component();
     }
     system_stack_long_int_1b0 = 0;
-    system_context_ida0 = (ulonglong)system_context_ida0._4_4_ << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
+    system_context_ida0 = (ulonglong)system_context_ida0.y << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
     system_buffer_pointerb1 = &system_data_animation_pool_base;
     goto SYSTEM_LABEL;
   }
@@ -34260,21 +34260,21 @@ void system_core_setup(uint64_t system_context_parameter,uint64_t system_context
       case 1:
         break;
       default:
-        system_status_buffer = 1;
+        system_buffer_size = 1;
         break;
       case 4:
-        system_status_buffer = 2;
+        system_buffer_size = 2;
         break;
       case 5:
-        system_status_buffer = 3;
+        system_buffer_size = 3;
         break;
       case 6:
-        system_status_buffer = 4;
+        system_buffer_size = 4;
         break;
       case 0x03:
-        system_status_buffer = 5;
+        system_buffer_size = 5;
       }
-      if (system_status_buffer == 4) goto SYSTEM_LABEL;
+      if (system_buffer_size == 4) goto SYSTEM_LABEL;
     }
     else if (*(char *)(system_memory_pool_config + 0x01001) != '\0') {
       system_buffer_pointerc1 = &system_audio_resource_config_ptr;
@@ -34288,7 +34288,7 @@ void system_core_setup(uint64_t system_context_parameter,uint64_t system_context
 SYSTEM_VALIDATION_CHECK:
     system_function_0005(&system_buffer_pointer);
     system_audio_config_value = system_setup_render_target(&system_buffer_pointer,&system_audio_flag);
-    system_status_buffer = system_validate_network_stream(&system_buffer_pointer,system_audio_config_value);
+    system_buffer_size = system_validate_network_stream(&system_buffer_pointer,system_audio_config_value);
     system_buffer_pointer = &system_data_callback_pool_base2;
     if (system_stack_long_int_130 != 0) {
                     // WARNING: Subroutine does not return
@@ -34297,7 +34297,7 @@ SYSTEM_VALIDATION_CHECK:
     system_stack_long_int_130 = 0;
     system_context_id = 0;
     system_buffer_pointer = &system_data_animation_pool_base;
-    system_initialize_ui_theme(&system_buffer_pointer,&system_thread_context_pointer,system_status_buffer + 0x03,0x07fffffff);
+    system_initialize_ui_theme(&system_buffer_pointer,&system_thread_context_pointer,system_buffer_size + 0x03,0x07fffffff);
     system_buffer_pointerb1 = &system_data_callback_pool_base2;
     system_context_ida0 = 0;
     system_stack_long_int_1b0 = 0;
@@ -34314,9 +34314,9 @@ SYSTEM_VALIDATION_CHECK:
     system_process_network_data(&system_buffer_pointer,&system_primary_cache_pointer,system_audio_status / SYSTEM_CONFIG_DATA_SIZE_160000 & 0x07fffffff);
     system_config_buffer[0] = 0x04001;
     system_audio_config_value = GetCurrentProcess();
-    system_status_buffer = K0x040GetProcessMemoryInfo(system_audio_config_value,system_config_buffer,0x04001);
+    system_buffer_size = K0x040GetProcessMemoryInfo(system_audio_config_value,system_config_buffer,0x04001);
     system_audio_status = 0;
-    if (system_status_buffer != 0) {
+    if (system_buffer_size != 0) {
       system_audio_status = system_context_id;
     }
     system_process_network_data(&system_buffer_pointer,&system_primary_cache_pointer,system_audio_status / SYSTEM_CONFIG_DATA_SIZE_160000 & 0x07fffffff);
@@ -34354,9 +34354,9 @@ SYSTEM_VALIDATION_CHECK:
     }
     psystem_thread_context_pointer = &system_buffer_pointer;
     system_audio_config_value = system_initialize_ui_components(&system_buffer_pointer,&system_buffer_pointer);
-    system_function_0x01003(system_audio_config_value);
+    system_cleanup_audio_resource003(system_audio_config_value);
     system_monitor_audio_device_context(&system_buffer_pointer,system_param_);
-    system_function_0x01001(&system_buffer_pointer);
+    system_cleanup_audio_resource001(&system_buffer_pointer);
     system_initialize_render_state(&system_buffer_pointer);
     system_create_system_handle(&system_buffer_pointer,&system_thread_context_pointer,&system_memory_config_ptr);
     system_create_system_handle(&system_buffer_pointer,&system_buffer_pointer,&system_memory_config_ptr);
@@ -34385,7 +34385,7 @@ SYSTEM_VALIDATION_CHECK:
     system_stack_long_int_130 = 0;
     system_context_id = 0;
     system_buffer_pointer = &system_data_animation_pool_base;
-    system_function_0x01002(&system_buffer_pointer);
+    system_cleanup_audio_resource002(&system_buffer_pointer);
     system_function_0021(&system_buffer_pointer);
     system_function_0023(&system_buffer_pointer);
     system_function_0024(&system_buffer_pointer,system_context_parameter,system_context_parameter,0);
@@ -34438,10 +34438,10 @@ void system_core_validate(uint64_t system_context_parameter,uint64_t system_cont
 {
   longlong system_audio_long_value;
   char system_char_data;
-  int system_comparison_result;
+  int system_compare_result;
   uint64_t system_uint_buffer;
   uint64_t *system_config_ptr;
-  int system_status_code;
+  int system_return_code;
   longlong system_audio_long_value;
   void **system_thread_context_pointer;
   uint64_t *system_buffer_pointer;
@@ -34452,7 +34452,7 @@ void system_core_validate(uint64_t system_context_parameter,uint64_t system_cont
   system_char_data = (**(code **)**(uint64_t **)(system_event_handler + 0x01001))();
   if (system_char_data == '\0') {
     if ((memory_system_ready == '\0') && (*(int *)(_system_data_memory_pool0c16001b0 + SYSTEM_CONFIG_DATA_SIZE_16e0) != 1)) {
-      system_comparison_result = 0;
+      system_compare_result = 0;
       if ((system_context_parameter != '\0') || (system_audio_status_char != '\0')) {
 SYSTEM_VALIDATION_CHECK:
         system_function_0005(system_config_buffer);
@@ -34464,7 +34464,7 @@ SYSTEM_VALIDATION_CHECK:
         *(uint32_t *)system_config_ptr = 0;
         system_buffer_pointer = system_config_ptr;
         system_uint_buffer = system_get_resource_context(system_config_ptr);
-        system_context_id = CONCAT44(system_context_id._4_4_,system_uint_buffer);
+        system_context_id = CONCAT44(system_context_id.y,system_uint_buffer);
         *system_config_ptr = 0x03365600100336103263;
         system_context_id = 0x03;
         system_validate_network_stream(system_config_buffer,&system_thread_context_pointer);
@@ -34472,28 +34472,28 @@ SYSTEM_VALIDATION_CHECK:
                     // WARNING: Subroutine does not return
         system_initialize_component(system_config_ptr);
       }
-      if (((system_audio_config_flag == '\0') || (system_status_code = IsDebuggerPresent(), system_status_code != 0)) &&
+      if (((system_audio_config_flag == '\0') || (system_return_code = IsDebuggerPresent(), system_return_code != 0)) &&
          (resource_system_ready == '\0')) {
         system_uint_buffer = MessageBoxA(0,&system_audio_resource_config_ptr,&system_network_config_ptr,SYSTEM_AUDIO_TABLE_OFFSET_VALUE004);
         switch(system_uint_buffer) {
         case 1:
           break;
         default:
-          system_comparison_result = 1;
+          system_compare_result = 1;
           break;
         case 4:
-          system_comparison_result = 2;
+          system_compare_result = 2;
           break;
         case 5:
-          system_comparison_result = 3;
+          system_compare_result = 3;
           break;
         case 6:
-          system_comparison_result = 4;
+          system_compare_result = 4;
           break;
         case 0x03:
-          system_comparison_result = 5;
+          system_compare_result = 5;
         }
-        if (system_comparison_result == 4) goto SYSTEM_LABEL;
+        if (system_compare_result == 4) goto SYSTEM_LABEL;
       }
       else if (*(char *)(system_memory_pool_config + 0x01001) != '\0') {
         system_configure_system_parameters(system_memory_pool_config,3,0x07fffffff00000000,0x06,&system_audio_network_ptr,&system_network_config_ptr,
@@ -34517,17 +34517,17 @@ SYSTEM_VALIDATION_CHECK:
       system_audio_long_value = system_audio_long_value + 1;
     } while (*(char *)(system_audio_long_value + 0x010010c0014010031) != '\0');
     if ((int)(system_audio_long_value + 1) != 0) {
-      system_status_code = (int)system_audio_long_value + 2;
-      system_comparison_result = system_status_code;
-      if (system_status_code < SYSTEM_CONFIG_DATA_SIZE_16) {
-        system_comparison_result = SYSTEM_CONFIG_DATA_SIZE_16;
+      system_return_code = (int)system_audio_long_value + 2;
+      system_compare_result = system_return_code;
+      if (system_return_code < SYSTEM_CONFIG_DATA_SIZE_16) {
+        system_compare_result = SYSTEM_CONFIG_DATA_SIZE_16;
       }
-      system_buffer_pointer = (uint64_t *)system_allocate_resource_block(system_context_memory_pool,(longlong)system_comparison_result,0x08);
+      system_buffer_pointer = (uint64_t *)system_allocate_resource_block(system_context_memory_pool,(longlong)system_compare_result,0x08);
       *(uint32_t *)system_buffer_pointer = 0;
       system_uint_buffer = system_get_resource_context(system_buffer_pointer);
-      system_context_id = CONCAT44(system_context_id._4_4_,system_uint_buffer);
+      system_context_id = CONCAT44(system_context_id.y,system_uint_buffer);
                     // WARNING: Subroutine does not return
-      memcpy(system_buffer_pointer,&system_data_memory_pool0c140010030,system_status_code);
+      memcpy(system_buffer_pointer,&system_data_memory_pool0c140010030,system_return_code);
     }
     system_context_id = 0;
     system_function_0025(&system_thread_context_pointer,system_param_);
@@ -34751,14 +34751,14 @@ void system_handle_errors(longlong system_context_parameter)
 {
   longlong system_audio_long_value;
   longlong system_long_context;
-  int system_comparison_result;
+  int system_compare_result;
   uint64_t system_uint_buffer;
   uint64_t system_audio_config_value;
   longlong *system_long_status_ptr;
   uint system_stack_array [2];
   longlong system_stack_long_int_10;
   longlong system_stack_long_int_0x01001;
-  longlong *system_buffer_pointer_20;
+  longlong *system_audio_config_ptr;
   uint64_t system_context_id;
   uint64_t system_context_idc;
   uint64_t system_context_id;
@@ -34777,11 +34777,11 @@ void system_handle_errors(longlong system_context_parameter)
   system_stack_long_int_10 = 0;
   while( true ) {
     while( true ) {
-      system_comparison_result = GetQueuedCompletionStatus
+      system_compare_result = GetQueuedCompletionStatus
                         (*(uint64_t *)(system_context_parameter + SYSTEM_MEMORY_POOL_BASE_OFFSET),system_stack_array,&system_stack_long_int_0x01001,&system_stack_long_int_10,
                          0x07fffffff);
       system_long_context = system_stack_long_int_10;
-      if (system_comparison_result == 0) break;
+      if (system_compare_result == 0) break;
       if (system_stack_long_int_0x01001 == -1) {
         return;
       }
@@ -34791,7 +34791,7 @@ void system_handle_errors(longlong system_context_parameter)
       if (*(longlong *)(system_stack_long_int_10 + 0x0A001) < 1) {
         system_audio_long_value = *(longlong *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_20);
         system_audio_config_value = system_allocate_memory_context(system_context_memory_pool,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,0x01,10);
-        system_buffer_pointer_20 = (longlong *)&system_context_id;
+        system_audio_config_ptr = (longlong *)&system_context_id;
         system_buffer_pointer = &network_callback;
         system_buffer_pointer = &file_system_callback;
         system_context_id = (uint64_t)system_uint_buffer;
@@ -34807,32 +34807,32 @@ void system_handle_errors(longlong system_context_parameter)
           (**(code **)(*system_long_status_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_status_ptr);
         }
         system_uint_buffer = system_resource_memory_pool;
-        system_buffer_pointer_20 = system_long_status_ptr;
+        system_audio_config_ptr = system_long_status_ptr;
         if (*(char *)(system_audio_long_value + 0x036001) == '\0') {
           system_long_status_ptr[3] = -4;
           (**(code **)(*system_long_status_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_status_ptr);
-          system_create_buffer_context(system_uint_buffer,&system_buffer_pointer_20);
+          system_create_buffer_context(system_uint_buffer,&system_audio_config_ptr);
         }
         else {
           if (system_long_status_ptr != (longlong *)0x00) {
             (**(code **)(*system_long_status_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_status_ptr);
           }
-          system_function_0010(system_uint_buffer,&system_buffer_pointer_20);
+          system_function_0010(system_uint_buffer,&system_audio_config_ptr);
         }
         if (system_long_status_ptr != (longlong *)0x00) {
           (**(code **)(*system_long_status_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_long_status_ptr);
         }
       }
     }
-    system_comparison_result = GetLastError();
-    if (system_comparison_result == 0x02df) {
+    system_compare_result = GetLastError();
+    if (system_compare_result == 0x02df) {
       return;
     }
     if (system_stack_long_int_10 == 0) break;
     system_function_0033(*(uint64_t *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_20));
   }
                     // WARNING: Subroutine does not return
-  system_setup_audio_format(system_memory_pool_config,&system_filesystem_config_ptr,system_comparison_result);
+  system_setup_audio_format(system_memory_pool_config,&system_filesystem_config_ptr,system_compare_result);
 }
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -35061,7 +35061,7 @@ void system_function_0x06003f60(longlong system_context_parameter,longlong syste
   system_audio_status = 0;
   system_context_idb1 = 0;
   system_context_idc0 = 0x060000001;
-  system_context_idc1 = CONCAT44(system_context_idc1._4_4_,3);
+  system_context_idc1 = CONCAT44(system_context_idc1.y,3);
   system_long_context = CreateFileA(system_buffer_context,SYSTEM_STANDARD_BUFFER_SIZE000000,1,0);
   if (system_long_context == -1) {
     system_buffer_context = &system_data_memory_pool0x02001bc0033;
@@ -35133,7 +35133,7 @@ uint64_t system_function_0034(longlong system_context_parameter,longlong system_
 {
   ulonglong system_uint_value;
   char system_char_data;
-  int system_comparison_result;
+  int system_compare_result;
   uint64_t system_uint_buffer;
   ulonglong system_audio_config_value;
   uint64_t *node_pointer;
@@ -35143,17 +35143,17 @@ uint64_t system_function_0034(longlong system_context_parameter,longlong system_
   system_audio_uint_value = *(ulonglong *)(system_context_parameter + 0x011001) & 0x07ffffffffffff000;
   system_audio_config_value = (*(longlong *)(system_context_parameter + 0x0120) - system_audio_uint_value) + *(ulonglong *)(system_context_parameter + 0x011001);
   system_audio_uint_value = (ulonglong)(-(uint)((system_audio_config_value & 0x07ff) != 0) & SYSTEM_CONFIG_DATA_SIZE_1600) + (system_audio_config_value & 0x07ffffffffffff000);
-  system_comparison_result = _Mtx_lock(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_0x020030010);
-  if (system_comparison_result != 0) {
-    __Throw_C_error_std__YAXH_Z(system_comparison_result);
+  system_compare_result = _Mtx_lock(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_0x020030010);
+  if (system_compare_result != 0) {
+    __Throw_C_error_std__YAXH_Z(system_compare_result);
   }
   node_pointer = *(uint64_t **)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_0x02003003001);
   if (node_pointer == (uint64_t *)0x00) {
     system_uint_value = *(ulonglong *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_0x020030030);
     if (0x07ff < system_uint_value) {
-      system_comparison_result = _Mtx_unlock(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_0x020030010);
-      if (system_comparison_result != 0) {
-        __Throw_C_error_std__YAXH_Z(system_comparison_result);
+      system_compare_result = _Mtx_unlock(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_0x020030010);
+      if (system_compare_result != 0) {
+        __Throw_C_error_std__YAXH_Z(system_compare_result);
       }
       system_function_0035(SYSTEM_RESOURCE_BLOCK_OFFSET_20,system_context_parameter);
       uRam00000000000001f0 = 0;
@@ -35176,16 +35176,16 @@ uint64_t system_function_0034(longlong system_context_parameter,longlong system_
         lRam00000000000001f1 = system_context_parameter;
         *(int *)(system_context_parameter + 0x0120) = *(int *)(system_context_parameter + 0x0120) + 1;
         UNLOCK();
-        system_comparison_result = ReadFile(*(uint64_t *)(system_context_parameter + 0x012001),uRam00000000000001f0,system_audio_uint_value & 0x07fffffff,0,
+        system_compare_result = ReadFile(*(uint64_t *)(system_context_parameter + 0x012001),uRam00000000000001f0,system_audio_uint_value & 0x07fffffff,0,
                          0);
-        if (system_comparison_result != 0) {
+        if (system_compare_result != 0) {
                     // WARNING: Subroutine does not return
           system_setup_audio_format(system_memory_pool_config,&system_initialization_buffer_ptr);
         }
-        system_comparison_result = GetLastError();
-        if (system_comparison_result != 0x03e5) {
+        system_compare_result = GetLastError();
+        if (system_compare_result != 0x03e5) {
                     // WARNING: Subroutine does not return
-          system_setup_audio_format(system_memory_pool_config,&system_runtime_buffer_ptr,system_comparison_result);
+          system_setup_audio_format(system_memory_pool_config,&system_runtime_buffer_ptr,system_compare_result);
         }
         system_uint_buffer = 1;
       }
@@ -35280,25 +35280,25 @@ void system_function_0x060016b0(longlong system_context_parameter)
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
   longlong system_long_handle;
-  char system_char_buffer;
+  char system_current_char;
   longlong *paudio_resource_id;
   longlong *system_long_status_ptr;
   longlong *system_ptr_system_local_variable;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   
-  system_char_buffer = system_function_0x03001(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16,&system_buffer_pointer_0x01);
+  system_current_char = system_function_0x03001(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16,&system_audio_device_ptr);
   do {
-    if (system_char_buffer == '\0') {
+    if (system_current_char == '\0') {
       return;
     }
     system_long_context_ptr = *(longlong **)(system_context_parameter + 0x031001);
-    if (system_buffer_pointer_0x01 != (longlong *)0x00) {
-      *(uint32_t *)(system_buffer_pointer_0x01 + 4) = 0;
-      *system_long_context_ptr = *system_long_context_ptr - system_buffer_pointer_0x01[1];
-      system_long_context_ptr[2] = system_long_context_ptr[2] + system_buffer_pointer_0x01[1];
-      system_ptr_system_local_variable = (longlong *)system_buffer_pointer_0x01[3];
+    if (system_audio_device_ptr != (longlong *)0x00) {
+      *(uint32_t *)(system_audio_device_ptr + 4) = 0;
+      *system_long_context_ptr = *system_long_context_ptr - system_audio_device_ptr[1];
+      system_long_context_ptr[2] = system_long_context_ptr[2] + system_audio_device_ptr[1];
+      system_ptr_system_local_variable = (longlong *)system_audio_device_ptr[3];
       system_long_status_ptr = (longlong *)system_long_context_ptr[3];
-      paudio_resource_id = system_buffer_pointer_0x01;
+      paudio_resource_id = system_audio_device_ptr;
       if (system_ptr_system_local_variable != system_long_status_ptr) {
         do {
           if ((system_ptr_system_local_variable == (longlong *)0x00) || ((char)system_ptr_system_local_variable[4] != '\0')) break;
@@ -35330,7 +35330,7 @@ void system_function_0x060016b0(longlong system_context_parameter)
         system_ptr_system_local_variable = (longlong *)paudio_resource_id[2];
       }
     }
-    system_char_buffer = system_function_0x03001(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16,&system_buffer_pointer_0x01);
+    system_current_char = system_function_0x03001(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16,&system_audio_device_ptr);
   } while( true );
 }
 void system_function_0x06001003d0(longlong system_context_parameter,uint64_t *system_context_parameter)
@@ -35386,10 +35386,10 @@ longlong *system_manage_audio_context(longlong audio_context_pool, longlong *con
     *(uint64_t *)(resource_handle + 0x011001) = 0;
     *(uint64_t *)(resource_handle + 0x0120) = 0;
     if ((char)context_index != '\0') {
-      memory_buffer = system_allocate_memory_context(system_context_memory_pool,(ulonglong)context_index._4_4_ * 0x01 + 0x01,0x01,
+      memory_buffer = system_allocate_memory_context(system_context_memory_pool,(ulonglong)context_index.y * 0x01 + 0x01,0x01,
                             *(uint32_t *)(audio_context_pool + 0x02c));
                     // WARNING: Subroutine does not return
-      memset(memory_buffer,0,(ulonglong)context_index._4_4_ * 0x01);
+      memset(memory_buffer,0,(ulonglong)context_index.y * 0x01);
     }
     *(uint64_t *)(resource_handle + 0x0120) = *(uint64_t *)(*(longlong *)(audio_context_pool + 0x01) + calculated_context_index * 0x01);
     *(longlong *)(*(longlong *)(audio_context_pool + 0x01) + calculated_context_index * 0x01) = resource_handle;
@@ -35415,7 +35415,7 @@ uint64_t system_function_0x03001(ulonglong *system_context_parameter,uint64_t *s
   ulonglong *system_data_context;
   longlong system_long_handle;
   longlong system_audio_buffer_pointer;
-  char system_char_config;
+  char system_char_status;
   bool system_byte_status;
   ulonglong system_audio_uint_value;
   ulonglong system_audio_uint_value;
@@ -35453,8 +35453,8 @@ uint64_t system_function_0x03001(ulonglong *system_context_parameter,uint64_t *s
     system_audio_uint_value = system_audio_uint_value;
   } while (system_audio_uint_value < 3);
   if (system_audio_uint_value != 0) {
-    system_char_config = system_function_0x03002(system_audio_uint_value,system_context_parameter);
-    if (system_char_config != '\0') {
+    system_char_status = system_function_0x03002(system_audio_uint_value,system_context_parameter);
+    if (system_char_status != '\0') {
       return 1;
     }
     system_audio_uint_value = *system_context_parameter;
@@ -36428,7 +36428,7 @@ void system_function_06a130(longlong system_context_parameter)
     SetUnhandledExceptionFilter(&system_error_handler_ptr);
   }
   system_uint_handle = system_allocate_memory_context(system_context_memory_pool,0x010030,0x01,3);
-  _system_data_memory_pool0c160024001 = system_function_0x016(system_uint_handle);
+  _system_data_memory_pool0c160024001 = system_cleanup_audio_resource6(system_uint_handle);
   system_initialize_component_context(system_config_buffer);
   system_uint_handle = system_allocate_memory_context(system_context_memory_pool,1000,0x01,3);
   _system_data_memory_pool0c160010030 = system_get_component_context(system_uint_handle);
@@ -36667,7 +36667,7 @@ longlong system_function_0061(longlong system_context_parameter,uint system_cont
 }
 
 uint64_t *
-system_function_0062(uint64_t *system_context_parameter,uint64_t *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
+system_configure_audio_device(uint64_t *system_context_parameter,uint64_t *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 
 {
   code *psystem_init_status;
@@ -37033,20 +37033,20 @@ void system_function_06c30(longlong system_context_parameter)
   uint64_t system_uint_buffer;
   uint64_t *system_config_ptr;
   uint64_t *node_pointer;
-  bool system_byte_var_;
+  bool system_bool_flag;
   longlong system_audio_long_value;
   char cVar0x02;
   longlong system_audio_long_value;
-  longlong *psystem_long_var_11;
+  longlong *system_buffer_ptr;
   byte *system_byte_ptr_network;
   longlong system_audio_long_value;
   longlong system_audio_long_value;
-  longlong *psystem_long_var_15;
-  longlong *psystem_long_var_0x01001;
+  longlong *system_memory_ptr;
+  longlong *system_audio_stream_ptr;
   uint64_t *system_data_context0;
   longlong system_audio_long_value;
   code *system_code_ptr_22;
-  longlong *plVar23;
+  longlong *system_global_array;
   void **system_data_context4;
   ulonglong system_audio_uint_value;
   uint32_t system_config_buffer [0x040];
@@ -37129,8 +37129,8 @@ void system_function_06c30(longlong system_context_parameter)
         system_audio_long_value = system_audio_long_value / 1000000000;
         system_stack_int_0x04001 = (int)system_audio_long_value;
         system_stack_int_210 = (int)system_audio_long_value + system_stack_int_0x04001 * -1000000000;
-        system_context_id._4_4_ = (uint64_t)((ulonglong)system_audio_long_value >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
-        system_context_id = system_context_id._4_4_;
+        system_context_id.y = (uint64_t)((ulonglong)system_audio_long_value >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
+        system_context_id = system_context_id.y;
         system_context_idc = system_context_idc;
         system_context_id = system_audio_long_value;
         system_stack_int_40 = system_stack_int_210;
@@ -37148,18 +37148,18 @@ void system_function_06c30(longlong system_context_parameter)
           if (system_audio_loop_index != 0) {
             __Throw_C_error_std__YAXH_Z(system_audio_loop_index);
           }
-          system_byte_var_ = false;
+          system_bool_flag = false;
         }
         else {
           system_audio_loop_index = _Mtx_unlock();
           if (system_audio_loop_index != 0) {
             __Throw_C_error_std__YAXH_Z(system_audio_loop_index);
           }
-          system_byte_var_ = true;
+          system_bool_flag = true;
         }
       }
       else {
-        system_byte_var_ = true;
+        system_bool_flag = true;
       }
     }
     else {
@@ -37205,50 +37205,50 @@ void system_function_06c30(longlong system_context_parameter)
       system_context_id = *(uint64_t *)(system_audio_long_value + 0x01a0);
       *(longlong *)(system_context_parameter + 0x03d0) = *(longlong *)(system_context_parameter + 0x03d0) + -0x01a001;
       system_function_0046();
-      system_byte_var_ = true;
+      system_bool_flag = true;
     }
     system_data_context0 = *(uint64_t **)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0);
     if ((void **)*system_data_context0 == &system_data_memory_allocator) {
       cVar0x02 = system_function_0x03001(system_data_context0 + 2,&system_buffer_pointer);
       while (cVar0x02 != '\0') {
-        plVar23 = (longlong *)system_data_context0[0x02002];
+        system_global_array = (longlong *)system_data_context0[0x02002];
         if (system_buffer_pointer != (longlong *)0x00) {
           *(uint32_t *)(system_buffer_pointer + 4) = 0;
-          *plVar23 = *plVar23 - system_buffer_pointer[1];
-          plVar23[2] = plVar23[2] + system_buffer_pointer[1];
-          psystem_long_var_0x01001 = (longlong *)system_buffer_pointer[3];
-          psystem_long_var_15 = (longlong *)plVar23[3];
-          psystem_long_var_11 = system_buffer_pointer;
-          if (psystem_long_var_0x01001 != psystem_long_var_15) {
+          *system_global_array = *system_global_array - system_buffer_pointer[1];
+          system_global_array[2] = system_global_array[2] + system_buffer_pointer[1];
+          system_audio_stream_ptr = (longlong *)system_buffer_pointer[3];
+          system_memory_ptr = (longlong *)system_global_array[3];
+          system_buffer_ptr = system_buffer_pointer;
+          if (system_audio_stream_ptr != system_memory_ptr) {
             do {
-              if ((psystem_long_var_0x01001 == (longlong *)0x00) || ((char)psystem_long_var_0x01001[4] != '\0')) break;
-              system_audio_long_value = psystem_long_var_11[2];
-              psystem_long_var_0x01001[2] = system_audio_long_value;
+              if ((system_audio_stream_ptr == (longlong *)0x00) || ((char)system_audio_stream_ptr[4] != '\0')) break;
+              system_audio_long_value = system_buffer_ptr[2];
+              system_audio_stream_ptr[2] = system_audio_long_value;
               if (system_audio_long_value != 0) {
-                *(longlong **)(system_audio_long_value + 0x01001) = psystem_long_var_0x01001;
+                *(longlong **)(system_audio_long_value + 0x01001) = system_audio_stream_ptr;
               }
-              psystem_long_var_0x01001[1] = psystem_long_var_0x01001[1] + psystem_long_var_11[1];
-              *psystem_long_var_11 = plVar23[0x02001005];
-              plVar23[0x02001005] = (longlong)psystem_long_var_11;
-              system_long_data_ptr = psystem_long_var_0x01001 + 3;
-              psystem_long_var_15 = (longlong *)plVar23[3];
-              psystem_long_var_11 = psystem_long_var_0x01001;
-              psystem_long_var_0x01001 = (longlong *)*system_long_data_ptr;
-            } while ((longlong *)*system_long_data_ptr != psystem_long_var_15);
+              system_audio_stream_ptr[1] = system_audio_stream_ptr[1] + system_buffer_ptr[1];
+              *system_buffer_ptr = system_global_array[0x02001005];
+              system_global_array[0x02001005] = (longlong)system_buffer_ptr;
+              system_long_data_ptr = system_audio_stream_ptr + 3;
+              system_memory_ptr = (longlong *)system_global_array[3];
+              system_buffer_ptr = system_audio_stream_ptr;
+              system_audio_stream_ptr = (longlong *)*system_long_data_ptr;
+            } while ((longlong *)*system_long_data_ptr != system_memory_ptr);
           }
-          psystem_long_var_0x01001 = (longlong *)psystem_long_var_11[2];
-          while (((psystem_long_var_11 != psystem_long_var_15 && (psystem_long_var_0x01001 != (longlong *)0x00)) && ((char)psystem_long_var_0x01001[4] == '\0')
+          system_audio_stream_ptr = (longlong *)system_buffer_ptr[2];
+          while (((system_buffer_ptr != system_memory_ptr && (system_audio_stream_ptr != (longlong *)0x00)) && ((char)system_audio_stream_ptr[4] == '\0')
                  )) {
-            system_audio_long_value = psystem_long_var_0x01001[2];
-            psystem_long_var_11[2] = system_audio_long_value;
+            system_audio_long_value = system_audio_stream_ptr[2];
+            system_buffer_ptr[2] = system_audio_long_value;
             if (system_audio_long_value != 0) {
-              *(longlong **)(system_audio_long_value + 0x01001) = psystem_long_var_11;
+              *(longlong **)(system_audio_long_value + 0x01001) = system_buffer_ptr;
             }
-            psystem_long_var_11[1] = psystem_long_var_11[1] + psystem_long_var_0x01001[1];
-            *psystem_long_var_0x01001 = plVar23[0x02001005];
-            plVar23[0x02001005] = (longlong)psystem_long_var_0x01001;
-            psystem_long_var_15 = (longlong *)plVar23[3];
-            psystem_long_var_0x01001 = (longlong *)psystem_long_var_11[2];
+            system_buffer_ptr[1] = system_buffer_ptr[1] + system_audio_stream_ptr[1];
+            *system_audio_stream_ptr = system_global_array[0x02001005];
+            system_global_array[0x02001005] = (longlong)system_audio_stream_ptr;
+            system_memory_ptr = (longlong *)system_global_array[3];
+            system_audio_stream_ptr = (longlong *)system_buffer_ptr[2];
           }
         }
         cVar0x02 = system_function_0x03001(system_data_context0 + 2,&system_buffer_pointer);
@@ -37257,8 +37257,8 @@ void system_function_06c30(longlong system_context_parameter)
     else {
       (**(code **)((void **)*system_data_context0 + 0x01001))(system_data_context0);
     }
-    if (system_byte_var_) {
-      plVar23 = *(longlong **)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0);
+    if (system_bool_flag) {
+      system_global_array = *(longlong **)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0);
       system_audio_uint_value = system_audio_uint_value;
       if (0 < system_stack_int_1e1) {
         do {
@@ -37267,8 +37267,8 @@ void system_function_06c30(longlong system_context_parameter)
           system_audio_uint_value = (ulonglong)system_audio_uint_value;
         } while ((int)system_audio_uint_value < system_stack_int_1e1);
       }
-      psystem_long_var_0x01001 = (longlong *)plVar23[0x06003];
-      for (system_audio_long_value = psystem_long_var_0x01001[system_audio_uint_value % (ulonglong)*(uint *)(plVar23 + SYSTEM_EVENT_QUEUE_OFFSET)]; system_audio_long_value != 0;
+      system_audio_stream_ptr = (longlong *)system_global_array[0x06003];
+      for (system_audio_long_value = system_audio_stream_ptr[system_audio_uint_value % (ulonglong)*(uint *)(system_global_array + SYSTEM_EVENT_QUEUE_OFFSET)]; system_audio_long_value != 0;
           system_audio_long_value = *(longlong *)(system_audio_long_value + 0x0120)) {
         system_audio_loop_index = *(int *)(system_audio_long_value + SYSTEM_CONFIG_DATA_SIZE_16);
         if (system_stack_int_1e1 == system_audio_loop_index) {
@@ -37284,7 +37284,7 @@ void system_function_06c30(longlong system_context_parameter)
 SYSTEM_VALIDATION_CHECK:
           if (system_audio_loop_index == 0) {
             if (system_audio_long_value != 0) {
-              system_audio_long_value = plVar23[0x06001];
+              system_audio_long_value = system_global_array[0x06001];
               goto SYSTEM_LABEL;
             }
             break;
@@ -37292,10 +37292,10 @@ SYSTEM_VALIDATION_CHECK:
         }
         else if (system_stack_int_1e1 == 0) goto SYSTEM_LABEL;
       }
-      system_audio_long_value = plVar23[0x06001];
-      system_audio_long_value = psystem_long_var_0x01001[system_audio_long_value];
+      system_audio_long_value = system_global_array[0x06001];
+      system_audio_long_value = system_audio_stream_ptr[system_audio_long_value];
 SYSTEM_VALIDATION_CHECK:
-      if ((system_audio_long_value != psystem_long_var_0x01001[system_audio_long_value]) && (system_audio_long_value = *(longlong *)(system_audio_long_value + 0x011001), system_audio_long_value != 0)) {
+      if ((system_audio_long_value != system_audio_stream_ptr[system_audio_long_value]) && (system_audio_long_value = *(longlong *)(system_audio_long_value + 0x011001), system_audio_long_value != 0)) {
 SYSTEM_VALIDATION_CHECK:
         if (system_stack_long_int_c1 == 0) {
           system_audio_uint_value = 0;
@@ -37310,9 +37310,9 @@ SYSTEM_VALIDATION_CHECK:
           }
         }
         LOCK();
-        plVar23 = (longlong *)(system_context_parameter + 0x03f0);
-        system_audio_long_value = *plVar23;
-        *plVar23 = *plVar23 + system_audio_uint_value;
+        system_global_array = (longlong *)(system_context_parameter + 0x03f0);
+        system_audio_long_value = *system_global_array;
+        *system_global_array = *system_global_array + system_audio_uint_value;
         UNLOCK();
         LOCK();
         system_audio_loop_index_ptr = (int *)(system_context_parameter + 0x03f001);
@@ -37352,36 +37352,36 @@ SYSTEM_VALIDATION_CHECK:
         }
         goto SYSTEM_LABEL;
       }
-      if (*(int *)((longlong)plVar23 + 0x040c) < (int)plVar23[0x065]) {
-        system_data_context0 = (uint64_t *)*psystem_long_var_0x01001;
-        psystem_long_var_15 = psystem_long_var_0x01001;
+      if (*(int *)((longlong)system_global_array + 0x040c) < (int)system_global_array[0x065]) {
+        system_data_context0 = (uint64_t *)*system_audio_stream_ptr;
+        system_memory_ptr = system_audio_stream_ptr;
         if (system_data_context0 == (uint64_t *)0x00) {
-          psystem_long_var_15 = psystem_long_var_0x01001 + 1;
-          system_data_context0 = (uint64_t *)*psystem_long_var_15;
+          system_memory_ptr = system_audio_stream_ptr + 1;
+          system_data_context0 = (uint64_t *)*system_memory_ptr;
           if (system_data_context0 == (uint64_t *)0x00) {
             do {
-              psystem_long_var_15 = psystem_long_var_15 + 1;
-              system_data_context0 = (uint64_t *)*psystem_long_var_15;
+              system_memory_ptr = system_memory_ptr + 1;
+              system_data_context0 = (uint64_t *)*system_memory_ptr;
             } while (system_data_context0 == (uint64_t *)0x00);
-            system_audio_long_value = plVar23[0x06001];
+            system_audio_long_value = system_global_array[0x06001];
           }
         }
-        if (system_data_context0 != (uint64_t *)psystem_long_var_0x01001[system_audio_long_value]) {
+        if (system_data_context0 != (uint64_t *)system_audio_stream_ptr[system_audio_long_value]) {
           do {
             if (*(int *)(system_data_context0[0x023] + 0x0120) == 0) {
               system_uint_buffer = system_data_context0[0x023];
-              *(int *)(plVar23 + 0x065) = (int)plVar23[0x065] + -1;
-              (**(code **)(*plVar23 + SYSTEM_CONFIG_DATA_SIZE_16))(plVar23,system_uint_buffer);
+              *(int *)(system_global_array + 0x065) = (int)system_global_array[0x065] + -1;
+              (**(code **)(*system_global_array + SYSTEM_CONFIG_DATA_SIZE_16))(system_global_array,system_uint_buffer);
               system_audio_long_value = system_data_context0[0x024];
-              plVar23 = psystem_long_var_15;
+              system_global_array = system_memory_ptr;
               while (system_audio_long_value == 0) {
-                plVar23 = plVar23 + 1;
-                system_audio_long_value = *plVar23;
+                system_global_array = system_global_array + 1;
+                system_audio_long_value = *system_global_array;
               }
-              system_config_ptr = (uint64_t *)*psystem_long_var_15;
+              system_config_ptr = (uint64_t *)*system_memory_ptr;
               node_pointer = (uint64_t *)system_config_ptr[0x024];
               if (system_config_ptr == system_data_context0) {
-                *psystem_long_var_15 = (longlong)node_pointer;
+                *system_memory_ptr = (longlong)node_pointer;
               }
               else {
                 for (; node_pointer != system_data_context0; node_pointer = (uint64_t *)node_pointer[0x024]) {
@@ -37396,30 +37396,30 @@ SYSTEM_VALIDATION_CHECK:
             }
             system_data_context0 = (uint64_t *)system_data_context0[0x024];
             while (system_data_context0 == (uint64_t *)0x00) {
-              psystem_long_var_15 = psystem_long_var_15 + 1;
-              system_data_context0 = (uint64_t *)*psystem_long_var_15;
+              system_memory_ptr = system_memory_ptr + 1;
+              system_data_context0 = (uint64_t *)*system_memory_ptr;
             }
-          } while (system_data_context0 != *(uint64_t **)(plVar23[0x06003] + plVar23[0x06001] * 0x01));
+          } while (system_data_context0 != *(uint64_t **)(system_global_array[0x06003] + system_global_array[0x06001] * 0x01));
         }
       }
-      psystem_long_var_0x01001 = (longlong *)(system_context_parameter + 0x03c001);
+      system_audio_stream_ptr = (longlong *)(system_context_parameter + 0x03c001);
       system_audio_long_value = 0;
-      plVar23 = *(longlong **)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0);
-      if (*(int *)((longlong)plVar23 + 0x040c) < (int)plVar23[0x065]) {
+      system_global_array = *(longlong **)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0);
+      if (*(int *)((longlong)system_global_array + 0x040c) < (int)system_global_array[0x065]) {
         system_audio_uint_value = *(ulonglong *)(system_context_parameter + 0x03d0);
         if (system_audio_uint_value < *(ulonglong *)(system_context_parameter + 0x03d001)) {
           *(ulonglong *)(system_context_parameter + 0x03d0) = system_audio_uint_value + 0x01a001;
           system_function_0x06001(system_audio_uint_value,&system_buffer_pointerf1);
           goto SYSTEM_LABEL;
         }
-        system_audio_long_value = *psystem_long_var_0x01001;
+        system_audio_long_value = *system_audio_stream_ptr;
         system_audio_long_value = (longlong)(system_audio_uint_value - system_audio_long_value) / 0x01a001;
         if (system_audio_long_value == 0) {
           system_audio_long_value = 1;
 SYSTEM_VALIDATION_CHECK:
           system_audio_long_value = system_allocate_resource_block(system_context_memory_pool,system_audio_long_value * 0x01a001,*(uint32_t *)(system_context_parameter + 0x03e0));
           system_audio_uint_value = *(ulonglong *)(system_context_parameter + 0x03d0);
-          system_audio_long_value = *psystem_long_var_0x01001;
+          system_audio_long_value = *system_audio_stream_ptr;
         }
         else {
           system_audio_long_value = system_audio_long_value * 2;
@@ -37429,25 +37429,25 @@ SYSTEM_VALIDATION_CHECK:
         system_audio_long_value = system_stack_long_int_0x023001;
         system_function_0x06001(system_stack_long_int_0x023001,&system_buffer_pointerf1);
         system_audio_long_value = *(longlong *)(system_context_parameter + 0x03d0);
-        system_audio_long_value = *psystem_long_var_0x01001;
+        system_audio_long_value = *system_audio_stream_ptr;
         if (system_audio_long_value != system_audio_long_value) {
           do {
             system_function_0046(system_audio_long_value);
             system_audio_long_value = system_audio_long_value + 0x01a001;
           } while (system_audio_long_value != system_audio_long_value);
-          system_audio_long_value = *psystem_long_var_0x01001;
+          system_audio_long_value = *system_audio_stream_ptr;
         }
         if (system_audio_long_value != 0) {
                     // WARNING: Subroutine does not return
           system_initialize_component(system_audio_long_value);
         }
-        *psystem_long_var_0x01001 = system_audio_long_value;
+        *system_audio_stream_ptr = system_audio_long_value;
         *(longlong *)(system_context_parameter + 0x03d0) = system_audio_long_value + 0x01a001;
         *(longlong *)(system_context_parameter + 0x03d001) = system_audio_long_value * 0x01a001 + system_audio_long_value;
         goto SYSTEM_LABEL;
       }
-      *(int *)(plVar23 + 0x065) = (int)plVar23[0x065] + 1;
-      system_audio_long_value = (**(code **)(*plVar23 + 0x01))(plVar23,&system_buffer_pointerf1);
+      *(int *)(system_global_array + 0x065) = (int)system_global_array[0x065] + 1;
+      system_audio_long_value = (**(code **)(*system_global_array + 0x01))(system_global_array,&system_buffer_pointerf1);
       if (system_audio_long_value != 0) goto SYSTEM_LABEL;
       (*pcStack_0x03001)(system_config_buffer);
       psystem_buffer_pointer = (void ***)system_config_buffer;
@@ -38018,7 +38018,7 @@ uint64_t system_function_0x032(ulonglong *system_context_parameter,uint64_t syst
   ulonglong *system_data_context;
   longlong system_long_handle;
   longlong system_audio_buffer_pointer;
-  char system_char_config;
+  char system_char_status;
   ulonglong system_audio_status;
   ulonglong system_audio_uint_value;
   ulonglong system_audio_uint_value;
@@ -38055,15 +38055,15 @@ uint64_t system_function_0x032(ulonglong *system_context_parameter,uint64_t syst
     system_audio_uint_value = system_audio_uint_value;
   } while (system_audio_uint_value < 3);
   if (system_audio_uint_value != 0) {
-    system_char_config = system_function_0x034(system_audio_uint_value,system_context_parameter,system_audio_uint_value,system_audio_uint_value,SYSTEM_INVALID_HANDLE_VALUE);
-    if (system_char_config != '\0') {
+    system_char_status = system_function_0x034(system_audio_uint_value,system_context_parameter,system_audio_uint_value,system_audio_uint_value,SYSTEM_INVALID_HANDLE_VALUE);
+    if (system_char_status != '\0') {
       return 1;
     }
     system_audio_uint_value = *system_context_parameter;
     while (system_audio_uint_value != 0) {
       if (system_audio_uint_value != system_audio_uint_value) {
         if (*(char *)(system_audio_uint_value + SYSTEM_RESOURCE_TABLE_OFFSET) == '\0') {
-          system_char_config = system_function_0x036(system_audio_uint_value,system_context_parameter);
+          system_char_status = system_function_0x036(system_audio_uint_value,system_context_parameter);
         }
         else {
           if (SYSTEM_STANDARD_BUFFER_SIZE00000000000000 <
@@ -38092,17 +38092,17 @@ uint64_t system_function_0x032(ulonglong *system_context_parameter,uint64_t syst
               system_function_0x03003(system_context_parameter,system_long_handle);
               system_function_0046(system_long_handle);
               *(uint32_t *)((system_audio_buffer_pointer - system_audio_uint_value) + 0x0352f) = 1;
-              system_char_config = '\x1';
+              system_char_status = '\x1';
               goto SYSTEM_LABEL;
             }
             LOCK();
             *(longlong *)(system_audio_uint_value + SYSTEM_THREAD_POOL_BASE_OFFSET) = *(longlong *)(system_audio_uint_value + SYSTEM_THREAD_POOL_BASE_OFFSET) + 1;
             UNLOCK();
           }
-          system_char_config = '\0';
+          system_char_status = '\0';
         }
 SYSTEM_VALIDATION_CHECK:
-        if (system_char_config != '\0') {
+        if (system_char_status != '\0') {
           return 1;
         }
       }
@@ -38423,12 +38423,12 @@ void system_function_06dc10(longlong *system_context_parameter)
 {
   longlong *system_long_data_ptr;
   int *system_audio_loop_index_ptr;
-  int system_comparison_result;
+  int system_compare_result;
   longlong system_audio_buffer_pointer;
   longlong audio_resource_id;
   longlong system_long_status;
   longlong system_audio_long_value;
-  bool system_byte_var_;
+  bool system_bool_flag;
   
   system_function_0046((ulonglong)(*(uint *)(system_context_parameter + 1) & 0x01f) * 0x01a001 + *system_context_parameter);
   LOCK();
@@ -38442,10 +38442,10 @@ void system_function_06dc10(longlong *system_context_parameter)
     audio_resource_id = system_context_parameter[3];
     LOCK();
     system_audio_loop_index_ptr = (int *)(system_audio_buffer_pointer + 0x03530);
-    system_comparison_result = *system_audio_loop_index_ptr;
+    system_compare_result = *system_audio_loop_index_ptr;
     *system_audio_loop_index_ptr = *system_audio_loop_index_ptr + -SYSTEM_STANDARD_BUFFER_SIZE000000;
     UNLOCK();
-    if (system_comparison_result == 0) {
+    if (system_compare_result == 0) {
       system_audio_long_value = *(longlong *)(audio_resource_id + SYSTEM_MEMORY_POOL_BASE_OFFSET);
       do {
         *(longlong *)(system_audio_buffer_pointer + 0x0353001) = system_audio_long_value;
@@ -38453,22 +38453,22 @@ void system_function_06dc10(longlong *system_context_parameter)
         system_long_data_ptr = (longlong *)(audio_resource_id + SYSTEM_MEMORY_POOL_BASE_OFFSET);
         LOCK();
         system_long_status = *system_long_data_ptr;
-        system_byte_var_ = system_audio_long_value == system_long_status;
-        if (system_byte_var_) {
+        system_bool_flag = system_audio_long_value == system_long_status;
+        if (system_bool_flag) {
           *system_long_data_ptr = system_audio_buffer_pointer;
           system_long_status = system_audio_long_value;
         }
         UNLOCK();
-        if (system_byte_var_) {
+        if (system_bool_flag) {
           return;
         }
         LOCK();
         system_audio_loop_index_ptr = (int *)(system_audio_buffer_pointer + 0x03530);
-        system_comparison_result = *system_audio_loop_index_ptr;
+        system_compare_result = *system_audio_loop_index_ptr;
         *system_audio_loop_index_ptr = *system_audio_loop_index_ptr + SYSTEM_MAXIMUM_SEMAPHORE_COUNT;
         UNLOCK();
         system_audio_long_value = system_long_status;
-      } while (system_comparison_result == 1);
+      } while (system_compare_result == 1);
     }
   }
   return;
@@ -38629,13 +38629,13 @@ longlong * system_function_0x03002(longlong system_context_parameter,longlong sy
   return (longlong *)0x00;
 }
 
-longlong system_function_0x010(longlong system_context_parameter,ulonglong system_context_parameter)
+longlong system_cleanup_audio_resource0(longlong system_context_parameter,ulonglong system_context_parameter)
 
 {
-  system_function_0x014();
+  system_cleanup_audio_resource4();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  system_function_0x013(system_context_parameter + 200);
+  system_cleanup_audio_resource3(system_context_parameter + 200);
   system_complete_graphics_init(system_context_parameter);
   if ((system_context_parameter & 1) != 0) {
     free(system_context_parameter,SYSTEM_AUDIO_TABLE_OFFSET_VALUE1);
@@ -38761,7 +38761,7 @@ void system_function_06e140(void)
   return;
 }
 
-uint64_t * system_function_0x012(uint64_t *system_context_parameter,ulonglong system_context_parameter)
+uint64_t * system_cleanup_audio_resource2(uint64_t *system_context_parameter,ulonglong system_context_parameter)
 
 {
   *system_context_parameter = &system_graphics_context_ptr;
@@ -39062,7 +39062,7 @@ void system_function_06e640(longlong *system_context_parameter)
   system_initialize_component();
 }
 
-uint64_t * system_function_0x015(uint64_t *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
+uint64_t * system_cleanup_audio_resource5(uint64_t *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 
 {
   ulonglong system_uint_value;
@@ -39102,7 +39102,7 @@ uint64_t * system_function_0x015(uint64_t *system_context_parameter,uint64_t sys
   system_context_parameter[0x023] = 0;
   system_context_parameter[0x01f] = system_context_parameter + 0x021;
   system_context_parameter[0x01d] = 0x09;
-  system_audio_buffer_pointer = system_function_0x011();
+  system_audio_buffer_pointer = system_cleanup_audio_resource1();
   system_context_parameter[0x0A] = system_audio_buffer_pointer;
   if (system_audio_buffer_pointer == 0) {
     system_context_parameter[0x01d] = 0;
@@ -39135,7 +39135,7 @@ uint64_t * system_function_0x015(uint64_t *system_context_parameter,uint64_t sys
 }
 
 uint64_t *
-system_function_0x016(uint64_t *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
+system_cleanup_audio_resource6(uint64_t *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 
 {
   uint64_t *system_data_context;
@@ -39182,15 +39182,15 @@ void system_function_06e20020(void)
 {
   longlong system_audio_long_value;
   char system_char_data;
-  int system_comparison_result;
+  int system_compare_result;
   longlong *context_pointer;
   
   system_audio_long_value = _system_data_memory_pool0c160024001;
-  system_function_0x01002(_system_data_memory_pool0c160024001);
+  system_cleanup_audio_resource002(_system_data_memory_pool0c160024001);
   *(int *)(system_audio_long_value + 0x05c) = *(int *)(system_audio_long_value + 0x05c) + 1;
-  system_comparison_result = _Mtx_lock(system_audio_long_value + SYSTEM_FILESYSTEM_HANDLE_OFFSET);
-  if (system_comparison_result != 0) {
-    __Throw_C_error_std__YAXH_Z(system_comparison_result);
+  system_compare_result = _Mtx_lock(system_audio_long_value + SYSTEM_FILESYSTEM_HANDLE_OFFSET);
+  if (system_compare_result != 0) {
+    __Throw_C_error_std__YAXH_Z(system_compare_result);
   }
   context_pointer = *(longlong **)(system_audio_long_value + SYSTEM_SIGNAL_HANDLER_OFFSET);
   if ((context_pointer != (longlong *)(system_audio_long_value + SYSTEM_SIGNAL_HANDLER_OFFSET)) && (*(uint *)(context_pointer + 2) < *(uint *)(system_audio_long_value + 0x05c))) {
@@ -39200,22 +39200,22 @@ void system_function_06e20020(void)
                     // WARNING: Subroutine does not return
     system_initialize_component();
   }
-  system_comparison_result = _Mtx_unlock(system_audio_long_value + SYSTEM_FILESYSTEM_HANDLE_OFFSET);
-  if (system_comparison_result != 0) {
-    __Throw_C_error_std__YAXH_Z(system_comparison_result);
+  system_compare_result = _Mtx_unlock(system_audio_long_value + SYSTEM_FILESYSTEM_HANDLE_OFFSET);
+  if (system_compare_result != 0) {
+    __Throw_C_error_std__YAXH_Z(system_compare_result);
   }
   *(int *)(system_audio_long_value + 0x0164) = *(int *)(system_audio_long_value + 0x0164) + 1;
-  system_comparison_result = _Mtx_lock(system_audio_long_value + 0x0110);
-  if (system_comparison_result != 0) {
-    __Throw_C_error_std__YAXH_Z(system_comparison_result);
+  system_compare_result = _Mtx_lock(system_audio_long_value + 0x0110);
+  if (system_compare_result != 0) {
+    __Throw_C_error_std__YAXH_Z(system_compare_result);
   }
   context_pointer = *(longlong **)(system_audio_long_value + SYSTEM_CONTEXT_OFFSET_F0);
   do {
     if (context_pointer == (longlong *)(system_audio_long_value + SYSTEM_CONTEXT_OFFSET_F0)) {
 SYSTEM_VALIDATION_CHECK:
-      system_comparison_result = _Mtx_unlock(system_audio_long_value + 0x0110);
-      if (system_comparison_result != 0) {
-        __Throw_C_error_std__YAXH_Z(system_comparison_result);
+      system_compare_result = _Mtx_unlock(system_audio_long_value + 0x0110);
+      if (system_compare_result != 0) {
+        __Throw_C_error_std__YAXH_Z(system_compare_result);
       }
       return;
     }
@@ -39240,14 +39240,14 @@ void system_function_06eb30(uint64_t system_context_parameter,uint64_t system_co
 {
   longlong *system_long_data_ptr;
   longlong system_long_context;
-  int system_comparison_result;
+  int system_compare_result;
   
   system_long_context = _system_data_memory_pool0c160024001;
   system_initialize_audio_system_main(system_resource_memory_pool,system_context_parameter,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
-  system_function_0x01001(system_long_context);
-  system_comparison_result = _Mtx_lock(system_long_context + SYSTEM_FILESYSTEM_HANDLE_OFFSET);
-  if (system_comparison_result != 0) {
-    __Throw_C_error_std__YAXH_Z(system_comparison_result);
+  system_cleanup_audio_resource001(system_long_context);
+  system_compare_result = _Mtx_lock(system_long_context + SYSTEM_FILESYSTEM_HANDLE_OFFSET);
+  if (system_compare_result != 0) {
+    __Throw_C_error_std__YAXH_Z(system_compare_result);
   }
   if (*(longlong *)(system_long_context + SYSTEM_CONFIG_DATA_OFFSET) != 0) {
     system_long_data_ptr = *(longlong **)(**(longlong **)(system_long_context + SYSTEM_SIGNAL_HANDLER_OFFSET) + 0x01);
@@ -39256,13 +39256,13 @@ void system_function_06eb30(uint64_t system_context_parameter,uint64_t system_co
                     // WARNING: Subroutine does not return
     system_initialize_component();
   }
-  system_comparison_result = _Mtx_unlock(system_long_context + SYSTEM_FILESYSTEM_HANDLE_OFFSET);
-  if (system_comparison_result != 0) {
-    __Throw_C_error_std__YAXH_Z(system_comparison_result);
+  system_compare_result = _Mtx_unlock(system_long_context + SYSTEM_FILESYSTEM_HANDLE_OFFSET);
+  if (system_compare_result != 0) {
+    __Throw_C_error_std__YAXH_Z(system_compare_result);
   }
-  system_comparison_result = _Mtx_lock(system_long_context + 0x0110);
-  if (system_comparison_result != 0) {
-    __Throw_C_error_std__YAXH_Z(system_comparison_result);
+  system_compare_result = _Mtx_lock(system_long_context + 0x0110);
+  if (system_compare_result != 0) {
+    __Throw_C_error_std__YAXH_Z(system_compare_result);
   }
   if (*(longlong *)(system_long_context + SYSTEM_CONFIG_DATA_SIZE_0x016001) != 0) {
     system_long_data_ptr = *(longlong **)(**(longlong **)(system_long_context + SYSTEM_CONTEXT_OFFSET_F0) + 0x01);
@@ -39271,9 +39271,9 @@ void system_function_06eb30(uint64_t system_context_parameter,uint64_t system_co
                     // WARNING: Subroutine does not return
     system_initialize_component();
   }
-  system_comparison_result = _Mtx_unlock(system_long_context + 0x0110);
-  if (system_comparison_result != 0) {
-    __Throw_C_error_std__YAXH_Z(system_comparison_result);
+  system_compare_result = _Mtx_unlock(system_long_context + 0x0110);
+  if (system_compare_result != 0) {
+    __Throw_C_error_std__YAXH_Z(system_compare_result);
   }
   return;
 }
@@ -39285,7 +39285,7 @@ void system_function_06edf0(uint64_t system_context_parameter,uint64_t system_co
   longlong system_audio_long_value;
   int system_int_context;
   longlong system_long_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   longlong *paudio_resource_id;
   longlong system_long_status;
   uint64_t system_audio_uint_value;
@@ -39299,17 +39299,17 @@ void system_function_06edf0(uint64_t system_context_parameter,uint64_t system_co
   if (_system_data_memory_pool0c160024001 != 0) {
     system_long_status = _system_data_memory_pool0c160024001 + SYSTEM_CONTEXT_OFFSET_F0;
     system_audio_long_value = _system_data_memory_pool0c160024001 + 0x0110;
-    system_status_buffer = _Mtx_lock(system_audio_long_value);
-    if (system_status_buffer != 0) {
-      __Throw_C_error_std__YAXH_Z(system_status_buffer);
+    system_buffer_size = _Mtx_lock(system_audio_long_value);
+    if (system_buffer_size != 0) {
+      __Throw_C_error_std__YAXH_Z(system_buffer_size);
     }
-    system_status_buffer = *(int *)(system_long_handle + 0x0164);
+    system_buffer_size = *(int *)(system_long_handle + 0x0164);
     system_int_context = *(int *)(system_long_handle + 0x0160);
     paudio_resource_id = (longlong *)
              system_allocate_resource_block(system_context_memory_pool,0x02001,*(uint32_t *)(system_long_handle + SYSTEM_CONFIG_DATA_SIZE_160),system_context_parameter,system_audio_uint_value);
     system_context_id = (uint64_t)system_context_parameter;
     system_context_id = (uint64_t)((ulonglong)system_context_parameter >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
-    *(int *)(paudio_resource_id + 2) = system_status_buffer + system_int_context;
+    *(int *)(paudio_resource_id + 2) = system_buffer_size + system_int_context;
     *(uint64_t *)((longlong)paudio_resource_id + 0x014) = system_context_idc;
     *(uint64_t *)(paudio_resource_id + 3) = system_context_id;
     *(uint64_t *)((longlong)paudio_resource_id + 0x0A) = system_context_id;
@@ -39319,15 +39319,15 @@ void system_function_06edf0(uint64_t system_context_parameter,uint64_t system_co
     **(longlong **)(system_long_handle + 0x07001) = (longlong)paudio_resource_id;
     *(longlong **)(system_long_handle + 0x07001) = paudio_resource_id;
     *(longlong *)(system_long_handle + SYSTEM_CONFIG_DATA_SIZE_0x016001) = *(longlong *)(system_long_handle + SYSTEM_CONFIG_DATA_SIZE_0x016001) + 1;
-    system_status_buffer = _Mtx_unlock(system_audio_long_value);
-    if (system_status_buffer != 0) {
-      __Throw_C_error_std__YAXH_Z(system_status_buffer);
+    system_buffer_size = _Mtx_unlock(system_audio_long_value);
+    if (system_buffer_size != 0) {
+      __Throw_C_error_std__YAXH_Z(system_buffer_size);
     }
   }
   return;
 }
 
-uint64_t system_function_0x01003(longlong system_context_parameter)
+uint64_t system_cleanup_audio_resource003(longlong system_context_parameter)
 
 {
   uint64_t system_uint_value;
@@ -39543,12 +39543,12 @@ ulonglong system_function_0x021(uint64_t system_context_parameter,uint64_t syste
   code *psystem_init_status;
   bool system_byte_context;
   longlong system_long_handle;
-  char system_char_buffer;
-  int system_int_config;
-  int system_status_code;
+  char system_current_char;
+  int system_config_value;
+  int system_return_code;
   ulonglong system_audio_uint_value;
   void **child_pointer;
-  bool system_byte_var_;
+  bool system_bool_flag;
   void **system_buffer_pointer;
   void **system_buffer_pointer;
   uint64_t system_context_id;
@@ -39564,18 +39564,18 @@ ulonglong system_function_0x021(uint64_t system_context_parameter,uint64_t syste
   if (system_long_handle != 0) {
     system_initialize_buffer_allocator(system_long_handle);
   }
-  system_byte_var_ = true;
-  system_char_buffer = (**(code **)**(uint64_t **)(_system_data_memory_pool0c1ed0001 + 0x01001))();
-  if ((system_char_buffer == '\0') && (system_int_config = IsDebuggerPresent(), system_int_config != 0)) {
+  system_bool_flag = true;
+  system_current_char = (**(code **)**(uint64_t **)(_system_data_memory_pool0c1ed0001 + 0x01001))();
+  if ((system_current_char == '\0') && (system_config_value = IsDebuggerPresent(), system_config_value != 0)) {
     system_byte_context = true;
   }
   else {
     system_byte_context = false;
   }
   if (system_long_handle != 0) {
-    system_int_config = *(int *)(**(longlong **)(system_long_handle + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
-    system_status_code = _Thrd_id();
-    system_byte_var_ = system_status_code == system_int_config;
+    system_config_value = *(int *)(**(longlong **)(system_long_handle + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
+    system_return_code = _Thrd_id();
+    system_bool_flag = system_return_code == system_config_value;
   }
   system_function_0x021001(system_config_buffer,0);
   system_buffer_pointer = &system_data_callback_pool_base2;
@@ -39601,15 +39601,15 @@ ulonglong system_function_0x021(uint64_t system_context_parameter,uint64_t syste
   }
   OutputDebugStringA(child_pointer);
   system_function_0003(system_context_parameter);
-  system_long_handle = _system_data_memory_pool0c1600250;
-  if (((system_byte_var_) && (_system_data_memory_pool0c1600250 != 0)) && (*(char *)(_system_data_memory_pool0c1600250 + 0x0160002) != '\x1')) {
+  system_long_handle = system_global_memory_pool;
+  if (((system_bool_flag) && (system_global_memory_pool != 0)) && (*(char *)(system_global_memory_pool + 0x0160002) != '\x1')) {
     system_function_0223(*(uint64_t *)(_system_data_memory_pool0c160010030 + 0x01),*(char *)(_system_data_memory_pool0c16001d0 + SYSTEM_RESOURCE_BLOCK_OFFSET_0x0202001) != '\0',
-                  *(uint64_t *)(_system_data_memory_pool0c1600250 + 0x0160c));
+                  *(uint64_t *)(system_global_memory_pool + 0x0160c));
     *(uint32_t *)(system_long_handle + 0x0160002) = 1;
   }
   if (resource_system_ready == '\0') {
     if ((system_audio_config_flag == '\0') ||
-       ((system_int_config = IsDebuggerPresent(), system_int_config != 0 && (resource_system_ready == '\0')))) {
+       ((system_config_value = IsDebuggerPresent(), system_config_value != 0 && (resource_system_ready == '\0')))) {
       MessageBoxA(0,system_context_parameter,&system_network_context_ptr,0x041010);
     }
     else if (*(char *)(system_memory_pool_config + 0x01001) != '\0') {
@@ -39623,8 +39623,8 @@ ulonglong system_function_0x021(uint64_t system_context_parameter,uint64_t syste
     }
     system_function_0255(child_pointer);
   }
-  system_int_config = system_function_0x021003(system_context_parameter);
-  if ((!system_byte_context) && (system_int_config == 0)) {
+  system_config_value = system_function_0x021003(system_context_parameter);
+  if ((!system_byte_context) && (system_config_value == 0)) {
     system_function_0x02003();
   }
   system_function_0216(system_context_parameter,0);
@@ -39662,7 +39662,7 @@ ulonglong system_function_0x022(uint64_t system_context_parameter,uint64_t syste
   ulonglong system_audio_uint_value;
   uint64_t system_audio_uint_value;
   uint64_t *system_uint_ptr;
-  bool system_bool_15;
+  bool system_audio_initialized;
   byte bStackX_20;
   void **system_thread_context_pointer;
   uint64_t *system_thread_context_pointer;
@@ -39692,7 +39692,7 @@ ulonglong system_function_0x022(uint64_t system_context_parameter,uint64_t syste
     if (system_audio_buffer_pointer != 0) {
       system_initialize_buffer_allocator(system_audio_buffer_pointer);
     }
-    system_bool_15 = true;
+    system_audio_initialized = true;
     system_char_status = (**(code **)**(uint64_t **)(_system_data_memory_pool0c1ed0001 + 0x01001))();
     if ((system_char_status == '\0') && (system_audio_loop_index = IsDebuggerPresent(), system_audio_loop_index != 0)) {
       system_byte_handle = true;
@@ -39703,7 +39703,7 @@ ulonglong system_function_0x022(uint64_t system_context_parameter,uint64_t syste
     if (system_audio_buffer_pointer != 0) {
       system_audio_loop_index = *(int *)(**(longlong **)(system_audio_buffer_pointer + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
       system_audio_loop_index = _Thrd_id();
-      system_bool_15 = system_audio_loop_index == system_audio_loop_index;
+      system_audio_initialized = system_audio_loop_index == system_audio_loop_index;
     }
     system_thread_context_pointer = &system_data_callback_pool_base2;
     system_context_id_a1 = 0;
@@ -39761,15 +39761,15 @@ ulonglong system_function_0x022(uint64_t system_context_parameter,uint64_t syste
       bStackX_20 = 1;
     }
     if (resource_system_ready == '\0') {
-      if (system_bool_15) {
+      if (system_audio_initialized) {
         if (*(longlong *)(_system_data_memory_pool0c160010030 + 0x01) != 0) {
           system_function_0222(*(longlong *)(_system_data_memory_pool0c160010030 + 0x01));
         }
-        system_audio_buffer_pointer = _system_data_memory_pool0c1600250;
-        if ((_system_data_memory_pool0c1600250 != 0) && (*(char *)(_system_data_memory_pool0c1600250 + 0x0160002) != '\x1')) {
+        system_audio_buffer_pointer = system_global_memory_pool;
+        if ((system_global_memory_pool != 0) && (*(char *)(system_global_memory_pool + 0x0160002) != '\x1')) {
           system_function_0223(*(uint64_t *)(_system_data_memory_pool0c160010030 + 0x01),
                         *(char *)(_system_data_memory_pool0c16001d0 + SYSTEM_RESOURCE_BLOCK_OFFSET_0x0202001) != '\0',
-                        *(uint64_t *)(_system_data_memory_pool0c1600250 + 0x0160c));
+                        *(uint64_t *)(system_global_memory_pool + 0x0160c));
           *(uint32_t *)(system_audio_buffer_pointer + 0x0160002) = 1;
         }
       }
@@ -39781,7 +39781,7 @@ ulonglong system_function_0x022(uint64_t system_context_parameter,uint64_t syste
       *(uint32_t *)system_uint_ptr = 0;
       system_thread_context_pointer = system_uint_ptr;
       system_audio_uint_value = system_get_resource_context(system_uint_ptr);
-      system_context_id_c1 = CONCAT44(system_context_id_c1._4_4_,system_audio_uint_value);
+      system_context_id_c1 = CONCAT44(system_context_id_c1.y,system_audio_uint_value);
       *system_uint_ptr = 0x04e52415003204c400352;
       *(uint64_t *)(system_uint_ptr + 1) = 0x040034e4002;
       system_context_id_d0 = SYSTEM_STACK_UINT_INITIAL_VALUE;
@@ -39842,12 +39842,12 @@ ulonglong system_function_0x022(uint64_t system_context_parameter,uint64_t syste
     if (system_char_status != '\0') {
       _system_data_memory_pool0c1200154 = 5;
     }
-    if ((resource_system_ready == '\0') && (system_bool_15)) {
+    if ((resource_system_ready == '\0') && (system_audio_initialized)) {
       if (*(longlong *)(_system_data_memory_pool0c160010030 + 0x01) != 0) {
         system_function_0221();
       }
-      if (_system_data_memory_pool0c1600250 != 0) {
-        system_function_0206(_system_data_memory_pool0c1600250,*(uint32_t *)(_system_data_memory_pool0c1600250 + 0x0160a));
+      if (system_global_memory_pool != 0) {
+        system_function_0206(system_global_memory_pool,*(uint32_t *)(system_global_memory_pool + 0x0160a));
       }
     }
     if (system_audio_buffer_pointer != 0) {
@@ -39882,8 +39882,8 @@ ulonglong system_function_0x023(uint64_t system_context_parameter,uint64_t syste
   code *psystem_init_status;
   longlong system_long_context;
   char system_char_handle;
-  int system_status_buffer;
-  int system_int_config;
+  int system_buffer_size;
+  int system_config_value;
   uint32_t *node_pointer;
   longlong system_audio_long_value;
   void ***pchild_pointer;
@@ -39893,7 +39893,7 @@ ulonglong system_function_0x023(uint64_t system_context_parameter,uint64_t syste
   void **system_uint_ptr;
   uint32_t system_audio_uint_value;
   bool system_bool_14;
-  bool system_bool_15;
+  bool system_audio_initialized;
   uint64_t system_audio_uint_value;
   byte bStack_d1;
   void **system_thread_context_pointer;
@@ -39926,19 +39926,19 @@ ulonglong system_function_0x023(uint64_t system_context_parameter,uint64_t syste
   }
   system_bool_14 = true;
   system_char_handle = (**(code **)**(uint64_t **)(_system_data_memory_pool0c1ed0001 + 0x01001))();
-  if ((system_char_handle == '\0') && (system_status_buffer = IsDebuggerPresent(), system_status_buffer != 0)) {
-    system_bool_15 = true;
+  if ((system_char_handle == '\0') && (system_buffer_size = IsDebuggerPresent(), system_buffer_size != 0)) {
+    system_audio_initialized = true;
   }
   else {
-    system_bool_15 = false;
+    system_audio_initialized = false;
   }
   if (system_long_context != 0) {
-    system_status_buffer = *(int *)(**(longlong **)(system_long_context + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
-    system_int_config = _Thrd_id();
-    system_bool_14 = system_int_config == system_status_buffer;
+    system_buffer_size = *(int *)(**(longlong **)(system_long_context + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
+    system_config_value = _Thrd_id();
+    system_bool_14 = system_config_value == system_buffer_size;
   }
   system_uint_ptr = (void **)0x00;
-  if (!system_bool_15) {
+  if (!system_audio_initialized) {
     system_audio_long_value = system_function_0x021001(&system_buffer_pointer,0);
     system_uint_ptr = *(void ***)(system_audio_long_value + 0x01);
     *(uint64_t *)(system_audio_long_value + SYSTEM_CONFIG_DATA_SIZE_16) = 0;
@@ -39978,7 +39978,7 @@ ulonglong system_function_0x023(uint64_t system_context_parameter,uint64_t syste
   }
   OutputDebugStringA(system_handler_ptr);
   system_function_0003(system_context_parameter);
-  if ((system_audio_config_flag != '\0') && (system_bool_15)) {
+  if ((system_audio_config_flag != '\0') && (system_audio_initialized)) {
     if ((*(char *)(_system_data_memory_pool0c160010030 + 0x025) == '\0') &&
        ((system_context_parameter != '\0' && (*(int *)(_system_data_memory_pool0c160010030 + 0x0340) != 2)))) {
       system_audio_uint_value = 1;
@@ -39999,15 +39999,15 @@ SYSTEM_VALIDATION_CHECK:
         if (*(longlong *)(_system_data_memory_pool0c160010030 + 0x01) != 0) {
           system_function_0222(*(longlong *)(_system_data_memory_pool0c160010030 + 0x01));
         }
-        system_audio_long_value = _system_data_memory_pool0c1600250;
-        if ((_system_data_memory_pool0c1600250 != 0) && (*(char *)(_system_data_memory_pool0c1600250 + 0x0160002) != '\x1')) {
+        system_audio_long_value = system_global_memory_pool;
+        if ((system_global_memory_pool != 0) && (*(char *)(system_global_memory_pool + 0x0160002) != '\x1')) {
           system_function_0223(*(uint64_t *)(_system_data_memory_pool0c160010030 + 0x01),
                         *(char *)(_system_data_memory_pool0c16001d0 + SYSTEM_RESOURCE_BLOCK_OFFSET_0x0202001) != '\0',
-                        *(uint64_t *)(_system_data_memory_pool0c1600250 + 0x0160c));
+                        *(uint64_t *)(system_global_memory_pool + 0x0160c));
           *(uint32_t *)(system_audio_long_value + 0x0160002) = 1;
         }
       }
-      if (((system_audio_config_flag == '\0') || (system_status_buffer = IsDebuggerPresent(), system_status_buffer != 0)) &&
+      if (((system_audio_config_flag == '\0') || (system_buffer_size = IsDebuggerPresent(), system_buffer_size != 0)) &&
          (resource_system_ready == '\0')) {
         MessageBoxA(0,system_context_parameter,&system_network_graphics_ptr,0x041030);
       }
@@ -40019,10 +40019,10 @@ SYSTEM_VALIDATION_CHECK:
     else if (system_audio_config_flag == '\0') {
       system_function_0255(&system_network_config_ptr,system_context_parameter);
     }
-    system_status_buffer = system_function_0x021003(system_context_parameter);
-    if ((!system_bool_15) && (system_status_buffer == 0)) {
-      system_bool_15 = _system_data_memory_pool0c160010030 == 0;
-      if (system_bool_15) {
+    system_buffer_size = system_function_0x021003(system_context_parameter);
+    if ((!system_audio_initialized) && (system_buffer_size == 0)) {
+      system_audio_initialized = _system_data_memory_pool0c160010030 == 0;
+      if (system_audio_initialized) {
         system_audio_uint_value = 0;
         system_buffer_pointer = &system_data_callback_pool_base2;
         system_context_id = 0;
@@ -40032,7 +40032,7 @@ SYSTEM_VALIDATION_CHECK:
         *(uint32_t *)system_manager_ptr = 0;
         system_buffer_pointer = system_manager_ptr;
         system_audio_uint_value = system_get_resource_context(system_manager_ptr);
-        system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+        system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
         *system_manager_ptr = 0x032003000306d035645c5c;
         system_manager_ptr[1] = 0x02e00326f003303365636f;
         system_manager_ptr[2] = 0x06c00326f00303656c610034;
@@ -40051,7 +40051,7 @@ SYSTEM_VALIDATION_CHECK:
         system_manager_ptr = system_buffer_pointer;
       }
       system_audio_uint_value = system_initialize_ui_components(&system_buffer_pointer,pchild_pointer);
-      if (system_bool_15) {
+      if (system_audio_initialized) {
         system_buffer_pointer = &system_data_callback_pool_base2;
         if (system_manager_ptr != (uint64_t *)0x00) {
                     // WARNING: Subroutine does not return
@@ -40061,7 +40061,7 @@ SYSTEM_VALIDATION_CHECK:
         system_context_id = system_context_id & 0x07fffffff00000000;
         system_buffer_pointer = &system_data_animation_pool_base;
       }
-      if (!system_bool_15) {
+      if (!system_audio_initialized) {
         system_buffer_pointer = &system_data_callback_pool_base2;
         if (system_stack_long_int_0x04001 != 0) {
                     // WARNING: Subroutine does not return
@@ -40105,16 +40105,16 @@ SYSTEM_VALIDATION_CHECK:
       if (*(longlong *)(_system_data_memory_pool0c160010030 + 0x01) != 0) {
         system_function_0221();
       }
-      if (_system_data_memory_pool0c1600250 != 0) {
-        system_function_0206(_system_data_memory_pool0c1600250,*(uint32_t *)(_system_data_memory_pool0c1600250 + 0x0160a));
+      if (system_global_memory_pool != 0) {
+        system_function_0206(system_global_memory_pool,*(uint32_t *)(system_global_memory_pool + 0x0160a));
       }
     }
     if (system_long_context != 0) {
       system_configure_buffer_strategy(system_long_context);
     }
     do {
-      system_status_buffer = ReleaseSemaphore(system_global_semaphore_handle,1);
-    } while (system_status_buffer == 0);
+      system_buffer_size = ReleaseSemaphore(system_global_semaphore_handle,1);
+    } while (system_buffer_size == 0);
     system_thread_context_pointer = &system_data_callback_pool_base2;
     if (system_thread_context_pointer != (void **)0x00) {
                     // WARNING: Subroutine does not return
@@ -40155,13 +40155,13 @@ void system_function_0x03060010(uint64_t system_context_parameter,uint64_t syste
 {
   bool system_byte_value;
   char system_char_data;
-  int system_comparison_result;
-  int system_status_buffer;
+  int system_compare_result;
+  int system_buffer_size;
   longlong audio_resource_id;
   void **node_pointer;
   uint64_t system_audio_uint_value;
   void **child_pointer;
-  bool system_byte_var_;
+  bool system_bool_flag;
   void **system_buffer_pointer;
   void **system_buffer_pointer;
   uint64_t system_context_id;
@@ -40170,22 +40170,22 @@ void system_function_0x03060010(uint64_t system_context_parameter,uint64_t syste
   longlong system_stack_long_int_0x04001;
   uint64_t system_context_id;
   
-  system_comparison_result = WaitForSingleObject(system_global_semaphore_handle,0);
-  if (system_comparison_result != 0) {
+  system_compare_result = WaitForSingleObject(system_global_semaphore_handle,0);
+  if (system_compare_result != 0) {
     return;
   }
-  system_byte_var_ = true;
+  system_bool_flag = true;
   system_char_data = (**(code **)**(uint64_t **)(system_event_handler + 0x01001))();
-  if ((system_char_data == '\0') && (system_comparison_result = IsDebuggerPresent(), system_comparison_result != 0)) {
+  if ((system_char_data == '\0') && (system_compare_result = IsDebuggerPresent(), system_compare_result != 0)) {
     system_byte_value = true;
   }
   else {
     system_byte_value = false;
   }
   if (system_resource_memory_pool != 0) {
-    system_comparison_result = *(int *)(**(longlong **)(system_resource_memory_pool + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
-    system_status_buffer = _Thrd_id();
-    system_byte_var_ = system_status_buffer == system_comparison_result;
+    system_compare_result = *(int *)(**(longlong **)(system_resource_memory_pool + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
+    system_buffer_size = _Thrd_id();
+    system_bool_flag = system_buffer_size == system_compare_result;
   }
   child_pointer = (void **)0x00;
   if (!system_byte_value) {
@@ -40225,10 +40225,10 @@ void system_function_0x03060010(uint64_t system_context_parameter,uint64_t syste
     child_pointer = system_buffer_pointer;
   }
   OutputDebugStringA(child_pointer);
-  audio_resource_id = _system_data_memory_pool0c1600250;
-  if (((system_byte_var_) && (_system_data_memory_pool0c1600250 != 0)) && (*(char *)(_system_data_memory_pool0c1600250 + 0x0160002) != '\x1')) {
+  audio_resource_id = system_global_memory_pool;
+  if (((system_bool_flag) && (system_global_memory_pool != 0)) && (*(char *)(system_global_memory_pool + 0x0160002) != '\x1')) {
     system_function_0223(*(uint64_t *)(_system_data_memory_pool0c160010030 + 0x01),*(char *)(_system_data_memory_pool0c16001d0 + SYSTEM_RESOURCE_BLOCK_OFFSET_0x0202001) != '\0',
-                  *(uint64_t *)(_system_data_memory_pool0c1600250 + 0x0160c));
+                  *(uint64_t *)(system_global_memory_pool + 0x0160c));
     *(uint32_t *)(audio_resource_id + 0x0160002) = 1;
   }
   if (resource_system_ready == '\0') {
@@ -40254,7 +40254,7 @@ void system_function_0x03000230(uint64_t system_context_parameter,longlong syste
   code *psystem_init_status;
   bool system_byte_context;
   char system_char_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   uint system_audio_config_value;
   uint system_audio_status;
   uint64_t system_audio_uint_value;
@@ -40330,15 +40330,15 @@ SYSTEM_VALIDATION_CHECK:
     }
   }
   else if (system_audio_status != 0) {
-    system_status_buffer = system_audio_status + 1;
-    if (system_status_buffer < SYSTEM_CONFIG_DATA_SIZE_16) {
-      system_status_buffer = SYSTEM_CONFIG_DATA_SIZE_16;
+    system_buffer_size = system_audio_status + 1;
+    if (system_buffer_size < SYSTEM_CONFIG_DATA_SIZE_16) {
+      system_buffer_size = SYSTEM_CONFIG_DATA_SIZE_16;
     }
-    system_handler_ptr = (uint32_t *)system_allocate_resource_block(system_context_memory_pool,(longlong)system_status_buffer,0x08);
+    system_handler_ptr = (uint32_t *)system_allocate_resource_block(system_context_memory_pool,(longlong)system_buffer_size,0x08);
     *system_handler_ptr = 0;
     system_buffer_pointer = system_handler_ptr;
     system_audio_config_value = system_get_resource_context(system_handler_ptr);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_audio_config_value);
+    system_context_id = CONCAT44(system_context_id.y,system_audio_config_value);
     goto SYSTEM_LABEL;
   }
   if (system_handler_ptr != (uint32_t *)0x00) {
@@ -40346,7 +40346,7 @@ SYSTEM_VALIDATION_CHECK:
   }
   system_audio_config_value = *(uint *)(system_audio_long_value + 0x0A);
   system_context_id = system_audio_status;
-  system_context_id._4_4_ = system_audio_config_value;
+  system_context_id.y = system_audio_config_value;
   if (system_context_parameter != 0) {
     system_audio_long_value = -1;
     do {
@@ -40354,9 +40354,9 @@ SYSTEM_VALIDATION_CHECK:
       system_audio_long_value = system_audio_long_value + 1;
     } while (*(char *)(system_context_parameter + system_audio_long_value) != '\0');
     if (0 < (int)system_audio_long_value) {
-      system_status_buffer = system_audio_status + (int)system_audio_long_value;
-      if (system_status_buffer != 0) {
-        system_audio_status = system_status_buffer + 1;
+      system_buffer_size = system_audio_status + (int)system_audio_long_value;
+      if (system_buffer_size != 0) {
+        system_audio_status = system_buffer_size + 1;
         if (system_handler_ptr == (uint32_t *)0x00) {
           if ((int)system_audio_status < SYSTEM_CONFIG_DATA_SIZE_16) {
             system_audio_status = SYSTEM_CONFIG_DATA_SIZE_16;
@@ -40370,7 +40370,7 @@ SYSTEM_VALIDATION_CHECK:
           system_handler_ptr = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_handler_ptr,system_audio_status,SYSTEM_CONFIG_DATA_SIZE_16);
         }
         system_buffer_pointer = system_handler_ptr;
-        system_context_id._0_4_ = system_get_resource_context(system_handler_ptr);
+        system_context_id.x = system_get_resource_context(system_handler_ptr);
       }
 SYSTEM_VALIDATION_CHECK:
                     // WARNING: Subroutine does not return
@@ -40386,7 +40386,7 @@ SYSTEM_VALIDATION_CHECK:
     system_initialize_component(system_handler_ptr);
   }
   system_buffer_pointer = (uint32_t *)0x00;
-  system_context_id = (ulonglong)system_context_id._4_4_ << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
+  system_context_id = (ulonglong)system_context_id.y << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
   system_buffer_pointer = &system_data_animation_pool_base;
   system_thread_context_pointer = &system_data_callback_pool_base2;
   if (system_stack_long_int_d0 != 0) {
@@ -40409,9 +40409,9 @@ SYSTEM_VALIDATION_CHECK:
     }
     goto SYSTEM_LABEL;
   }
-  system_status_buffer = WaitForSingleObject(system_global_semaphore_handle,1);
+  system_buffer_size = WaitForSingleObject(system_global_semaphore_handle,1);
   system_audio_long_value = system_resource_memory_pool;
-  if (system_status_buffer != 0) {
+  if (system_buffer_size != 0) {
     system_thread_context_pointer = &system_data_callback_pool_base2;
     if (system_thread_context_pointer != (void **)0x00) {
                     // WARNING: Subroutine does not return
@@ -40433,17 +40433,17 @@ SYSTEM_VALIDATION_CHECK:
     system_audio_long_value = system_audio_long_value;
     system_audio_long_value = system_audio_long_value + 1;
   } while (system_uint_ptr[system_audio_long_value] != '\0');
-  system_status_buffer = (int)system_audio_long_value;
-  if (0 < system_status_buffer) {
-    if (system_status_buffer != 0) {
-      system_status_buffer = system_status_buffer + 1;
-      if (system_status_buffer < SYSTEM_CONFIG_DATA_SIZE_16) {
-        system_status_buffer = SYSTEM_CONFIG_DATA_SIZE_16;
+  system_buffer_size = (int)system_audio_long_value;
+  if (0 < system_buffer_size) {
+    if (system_buffer_size != 0) {
+      system_buffer_size = system_buffer_size + 1;
+      if (system_buffer_size < SYSTEM_CONFIG_DATA_SIZE_16) {
+        system_buffer_size = SYSTEM_CONFIG_DATA_SIZE_16;
       }
-      system_buffer_pointer = (uint32_t *)system_allocate_resource_block(system_context_memory_pool,(longlong)system_status_buffer,0x08);
+      system_buffer_pointer = (uint32_t *)system_allocate_resource_block(system_context_memory_pool,(longlong)system_buffer_size,0x08);
       *system_buffer_pointer = 0;
       system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-      system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+      system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
     }
                     // WARNING: Subroutine does not return
     memcpy(system_buffer_pointer + system_context_id,system_uint_ptr,(longlong)((int)system_audio_long_value + 2));
@@ -40451,7 +40451,7 @@ SYSTEM_VALIDATION_CHECK:
   system_buffer_pointer = (uint32_t *)system_allocate_resource_block(system_context_memory_pool,SYSTEM_CONFIG_DATA_SIZE_16,0x08);
   *system_buffer_pointer = 0;
   system_audio_config_value = system_get_resource_context(system_buffer_pointer);
-  system_context_id = CONCAT44(system_context_id._4_4_,system_audio_config_value);
+  system_context_id = CONCAT44(system_context_id.y,system_audio_config_value);
   *(uint16_t *)(system_buffer_pointer + system_context_id) = 10;
   system_context_id = 1;
   system_audio_status = 2;
@@ -40461,7 +40461,7 @@ SYSTEM_VALIDATION_CHECK:
     *system_buffer_pointer = 0;
 SYSTEM_VALIDATION_CHECK:
     system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+    system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
   }
   else if (system_audio_config_value < 3) {
     system_buffer_pointer = (uint32_t *)CONCAT0x031(system_buffer_pointer._1_0x03_,0x08);
@@ -40477,11 +40477,11 @@ SYSTEM_VALIDATION_CHECK:
       system_audio_long_value = system_audio_long_value;
       system_audio_long_value = system_audio_long_value + 1;
     } while (*(char *)(system_context_parameter + system_audio_long_value) != '\0');
-    system_status_buffer = (int)system_audio_long_value;
-    if (0 < system_status_buffer) {
+    system_buffer_size = (int)system_audio_long_value;
+    if (0 < system_buffer_size) {
       system_audio_config_value = system_audio_status;
-      if (system_status_buffer != -2) {
-        system_audio_uint_value = system_status_buffer + 3;
+      if (system_buffer_size != -2) {
+        system_audio_uint_value = system_buffer_size + 3;
         if (system_buffer_pointer == (uint32_t *)0x00) {
           if ((int)system_audio_uint_value < SYSTEM_CONFIG_DATA_SIZE_16) {
             system_audio_uint_value = SYSTEM_CONFIG_DATA_SIZE_16;
@@ -40498,7 +40498,7 @@ SYSTEM_VALIDATION_CHECK:
           system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_uint_value,SYSTEM_CONFIG_DATA_SIZE_16);
         }
         system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-        system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+        system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
         system_audio_config_value = system_context_id;
       }
 SYSTEM_VALIDATION_CHECK:
@@ -40513,7 +40513,7 @@ SYSTEM_VALIDATION_CHECK:
     *system_buffer_pointer = 0;
 SYSTEM_VALIDATION_CHECK:
     system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+    system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
   }
   else if ((uint)system_context_id < 4) {
     system_buffer_pointer = (uint32_t *)CONCAT0x031(system_buffer_pointer._1_0x03_,0x08);
@@ -40541,7 +40541,7 @@ SYSTEM_VALIDATION_CHECK:
       system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_uint_value,SYSTEM_CONFIG_DATA_SIZE_16);
     }
     system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+    system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
   }
 SYSTEM_VALIDATION_CHECK:
   *(uint16_t *)(system_buffer_pointer + system_context_id) = 10;
@@ -40562,7 +40562,7 @@ SYSTEM_VALIDATION_CHECK:
       system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_config_value,SYSTEM_CONFIG_DATA_SIZE_16);
     }
     system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+    system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
   }
 SYSTEM_VALIDATION_CHECK:
   system_audio_long_value = system_stack_long_int_0x01001;
@@ -40578,9 +40578,9 @@ SYSTEM_VALIDATION_CHECK:
       system_audio_long_value = system_audio_long_value + 1;
     } while (*(char *)(system_stack_long_int_0x01001 + system_audio_long_value) != '\0');
     if (0 < (int)system_audio_long_value) {
-      system_status_buffer = system_audio_uint_value + (int)system_audio_long_value;
-      if (system_status_buffer != 0) {
-        system_audio_status = system_status_buffer + 1;
+      system_buffer_size = system_audio_uint_value + (int)system_audio_long_value;
+      if (system_buffer_size != 0) {
+        system_audio_status = system_buffer_size + 1;
         if (system_buffer_pointer == (uint32_t *)0x00) {
           if ((int)system_audio_status < SYSTEM_CONFIG_DATA_SIZE_16) {
             system_audio_status = SYSTEM_CONFIG_DATA_SIZE_16;
@@ -40594,15 +40594,15 @@ SYSTEM_VALIDATION_CHECK:
           system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_status,SYSTEM_CONFIG_DATA_SIZE_16);
         }
         system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-        system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+        system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
       }
 SYSTEM_VALIDATION_CHECK:
                     // WARNING: Subroutine does not return
       memcpy(system_buffer_pointer + system_context_id,system_audio_long_value,(longlong)((int)system_audio_long_value + 2));
     }
   }
-  system_status_buffer = system_audio_status + 0x05;
-  if (system_status_buffer != 0) {
+  system_buffer_size = system_audio_status + 0x05;
+  if (system_buffer_size != 0) {
     system_audio_status = system_audio_status + 0x07;
     if (system_buffer_pointer == (uint32_t *)0x00) {
       if ((int)system_audio_status < SYSTEM_CONFIG_DATA_SIZE_16) {
@@ -40617,18 +40617,18 @@ SYSTEM_VALIDATION_CHECK:
       system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_status,SYSTEM_CONFIG_DATA_SIZE_16);
     }
     system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+    system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
   }
 SYSTEM_VALIDATION_CHECK:
   *(uint16_t *)(system_buffer_pointer + system_context_id) = 10;
-  system_context_id = system_status_buffer;
+  system_context_id = system_buffer_size;
   if (system_audio_long_value != 0) {
     system_initialize_buffer_allocator(system_audio_long_value);
   }
   system_bool_13 = 1;
   cStack_11f = '\x1';
   system_char_handle = (**(code **)**(uint64_t **)(_system_data_memory_pool0c1ed0001 + 0x01001))();
-  if ((system_char_handle != '\0') || (system_status_buffer = IsDebuggerPresent(), system_status_buffer == 0)) {
+  if ((system_char_handle != '\0') || (system_buffer_size = IsDebuggerPresent(), system_buffer_size == 0)) {
     system_bool_13 = 0;
   }
   if (_system_data_memory_pool0c160010030 == 0) {
@@ -40639,16 +40639,16 @@ SYSTEM_VALIDATION_CHECK:
   }
   system_byte_context = true;
   if (system_audio_long_value != 0) {
-    system_status_buffer = *(int *)(**(longlong **)(system_audio_long_value + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
+    system_buffer_size = *(int *)(**(longlong **)(system_audio_long_value + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
     system_audio_loop_index = _Thrd_id();
-    cStack_11f = system_audio_loop_index == system_status_buffer;
+    cStack_11f = system_audio_loop_index == system_buffer_size;
     system_byte_context = (bool)cStack_11f;
   }
-  system_audio_long_value = _system_data_memory_pool0c1600250;
+  system_audio_long_value = system_global_memory_pool;
   if ((resource_system_ready == '\0') && (system_byte_context)) {
-    if ((_system_data_memory_pool0c1600250 != 0) && (*(char *)(_system_data_memory_pool0c1600250 + 0x0160002) != '\x1')) {
+    if ((system_global_memory_pool != 0) && (*(char *)(system_global_memory_pool + 0x0160002) != '\x1')) {
       system_function_0223(*(uint64_t *)(_system_data_memory_pool0c160010030 + 0x01),*(char *)(_system_data_memory_pool0c16001d0 + SYSTEM_RESOURCE_BLOCK_OFFSET_0x0202001) != '\0',
-                    *(uint64_t *)(_system_data_memory_pool0c1600250 + 0x0160c));
+                    *(uint64_t *)(system_global_memory_pool + 0x0160c));
       *(uint32_t *)(system_audio_long_value + 0x0160002) = 1;
     }
     if (*(longlong *)(_system_data_memory_pool0c160010030 + 0x01) != 0) {
@@ -40709,8 +40709,8 @@ SYSTEM_VALIDATION_CHECK:
     if ((_system_data_memory_pool0c160024001 == 0) || (*(int *)(_system_data_memory_pool0c160024001 + 0x016001) == 2)) {
       system_function_0012(system_memory_pool_config,4,0x07fffffff00000000,&system_graphics_shader_ptr);
       system_start_initialization_sequence();
-      system_status_buffer = IsDebuggerPresent();
-      if ((system_status_buffer != 0) && (system_audio_status_char == '\0')) {
+      system_buffer_size = IsDebuggerPresent();
+      if ((system_buffer_size != 0) && (system_audio_status_char == '\0')) {
         psystem_init_status = (code *)swi(3);
         (*psystem_init_status)();
         return;
@@ -40728,7 +40728,7 @@ SYSTEM_VALIDATION_CHECK:
         if (system_buffer_pointer != (uint32_t *)0x00) {
           system_uint_ptr = system_buffer_pointer;
         }
-        if (((system_audio_config_flag == '\0') || (system_status_buffer = IsDebuggerPresent(), system_status_buffer != 0)) &&
+        if (((system_audio_config_flag == '\0') || (system_buffer_size = IsDebuggerPresent(), system_buffer_size != 0)) &&
            (resource_system_ready == '\0')) break;
         if (*(char *)(system_memory_pool_config + 0x01001) != '\0') {
           system_buffer_pointer = &system_audio_network_ptr;
@@ -40740,31 +40740,31 @@ SYSTEM_VALIDATION_CHECK:
       system_audio_uint_value = MessageBoxA(0,system_uint_ptr,system_uint_ptr,0x052012);
       switch(system_audio_uint_value) {
       case 1:
-        system_status_buffer = 0;
+        system_buffer_size = 0;
         break;
       default:
-        system_status_buffer = 1;
+        system_buffer_size = 1;
         break;
       case 4:
-        system_status_buffer = 2;
+        system_buffer_size = 2;
         break;
       case 5:
-        system_status_buffer = 3;
+        system_buffer_size = 3;
         break;
       case 6:
-        system_status_buffer = 4;
+        system_buffer_size = 4;
         break;
       case 0x03:
-        system_status_buffer = 5;
+        system_buffer_size = 5;
       }
-    } while (system_status_buffer == 1);
-    if (system_status_buffer == 2) {
+    } while (system_buffer_size == 1);
+    if (system_buffer_size == 2) {
       if (system_bool_13 == 0) {
         system_uint_ptr = &system_data_memory_pool0x02001bc0033;
         if (system_handler_ptr != (uint32_t *)0x00) {
           system_uint_ptr = system_handler_ptr;
         }
-        if (((system_audio_config_flag == '\0') || (system_status_buffer = IsDebuggerPresent(), system_status_buffer != 0)) &&
+        if (((system_audio_config_flag == '\0') || (system_buffer_size = IsDebuggerPresent(), system_buffer_size != 0)) &&
            (resource_system_ready == '\0')) {
           MessageBoxA(0,system_uint_ptr,&system_graphics_index_cache_ptr,0x041010);
         }
@@ -40782,7 +40782,7 @@ SYSTEM_VALIDATION_CHECK:
         return;
       }
     }
-    else if (system_status_buffer == 3) goto SYSTEM_LABEL;
+    else if (system_buffer_size == 3) goto SYSTEM_LABEL;
     if (_system_data_memory_pool0c160010030 == 0) {
       system_char_handle = '\x1';
     }
@@ -40802,16 +40802,16 @@ SYSTEM_VALIDATION_CHECK:
       if (*(longlong *)(_system_data_memory_pool0c160010030 + 0x01) != 0) {
         system_function_0221();
       }
-      if (_system_data_memory_pool0c1600250 != 0) {
-        system_function_0206(_system_data_memory_pool0c1600250,*(uint32_t *)(_system_data_memory_pool0c1600250 + 0x0160a));
+      if (system_global_memory_pool != 0) {
+        system_function_0206(system_global_memory_pool,*(uint32_t *)(system_global_memory_pool + 0x0160a));
       }
     }
     if (system_stack_long_int_0x020 != 0) {
       system_configure_buffer_strategy();
     }
     do {
-      system_status_buffer = ReleaseSemaphore(system_global_semaphore_handle,1);
-    } while (system_status_buffer == 0);
+      system_buffer_size = ReleaseSemaphore(system_global_semaphore_handle,1);
+    } while (system_buffer_size == 0);
     system_buffer_pointer = &system_data_callback_pool_base2;
     if (system_handler_ptr != (uint32_t *)0x00) {
                     // WARNING: Subroutine does not return
@@ -40915,7 +40915,7 @@ void system_function_0x03100240(uint64_t system_context_parameter,longlong syste
   system_buffer_pointer = (uint32_t *)system_allocate_resource_block(system_context_memory_pool,0x012,0x08);
   *system_buffer_pointer = 0;
   system_audio_context_id = system_get_resource_context(system_buffer_pointer);
-  system_context_id = CONCAT44(system_context_id._4_4_,system_audio_context_id);
+  system_context_id = CONCAT44(system_context_id.y,system_audio_context_id);
   node_pointer = (uint64_t *)(system_buffer_pointer + system_context_id);
   *node_pointer = 0x0650033003341;
   node_pointer[1] = 0x06f60020034032;
@@ -40929,7 +40929,7 @@ void system_function_0x03100240(uint64_t system_context_parameter,longlong syste
     *system_buffer_pointer = 0;
 SYSTEM_VALIDATION_CHECK:
     system_uint_handle = system_get_resource_context(system_buffer_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_uint_handle);
+    system_context_id = CONCAT44(system_context_id.y,system_uint_handle);
   }
   else if (system_audio_context_id < 0x08) {
     system_context_id = 0x011;
@@ -40945,7 +40945,7 @@ SYSTEM_VALIDATION_CHECK:
     *system_buffer_pointer = 0;
 SYSTEM_VALIDATION_CHECK:
     system_uint_handle = system_get_resource_context(system_buffer_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_uint_handle);
+    system_context_id = CONCAT44(system_context_id.y,system_uint_handle);
   }
   else if ((uint)system_context_id < 0x014) {
     system_context_id = 0x012;
@@ -40980,7 +40980,7 @@ SYSTEM_VALIDATION_CHECK:
           system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_uint_value,SYSTEM_CONFIG_DATA_SIZE_16,0x08);
         }
         system_uint_handle = system_get_resource_context(system_buffer_pointer);
-        system_context_id = CONCAT44(system_context_id._4_4_,system_uint_handle);
+        system_context_id = CONCAT44(system_context_id.y,system_uint_handle);
         system_audio_uint_value = system_context_id;
       }
 SYSTEM_VALIDATION_CHECK:
@@ -40995,7 +40995,7 @@ SYSTEM_VALIDATION_CHECK:
     *system_buffer_pointer = 0;
 SYSTEM_VALIDATION_CHECK:
     system_uint_handle = system_get_resource_context(system_buffer_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_uint_handle);
+    system_context_id = CONCAT44(system_context_id.y,system_uint_handle);
   }
   else if ((uint)system_context_id < 0x09) {
     system_context_id = system_audio_context_id;
@@ -41021,7 +41021,7 @@ SYSTEM_VALIDATION_CHECK:
       system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_uint_value,SYSTEM_CONFIG_DATA_SIZE_16,0x08);
     }
     system_uint_handle = system_get_resource_context(system_buffer_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_uint_handle);
+    system_context_id = CONCAT44(system_context_id.y,system_uint_handle);
   }
 SYSTEM_VALIDATION_CHECK:
   *(uint16_t *)(system_buffer_pointer + system_context_id) = 10;
@@ -41041,7 +41041,7 @@ SYSTEM_VALIDATION_CHECK:
       system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_uint_value,SYSTEM_CONFIG_DATA_SIZE_16,0x08);
     }
     system_uint_handle = system_get_resource_context(system_buffer_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_uint_handle);
+    system_context_id = CONCAT44(system_context_id.y,system_uint_handle);
   }
 SYSTEM_VALIDATION_CHECK:
   parent_pointer = (uint64_t *)(system_buffer_pointer + system_context_id);
@@ -41071,7 +41071,7 @@ SYSTEM_VALIDATION_CHECK:
           system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_context_id,SYSTEM_CONFIG_DATA_SIZE_16,0x08);
         }
         system_uint_handle = system_get_resource_context(system_buffer_pointer);
-        system_context_id = CONCAT44(system_context_id._4_4_,system_uint_handle);
+        system_context_id = CONCAT44(system_context_id.y,system_uint_handle);
       }
 SYSTEM_VALIDATION_CHECK:
                     // WARNING: Subroutine does not return
@@ -41092,7 +41092,7 @@ SYSTEM_VALIDATION_CHECK:
       system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_uint_value,SYSTEM_CONFIG_DATA_SIZE_16,0x08);
     }
     system_uint_handle = system_get_resource_context(system_buffer_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_uint_handle);
+    system_context_id = CONCAT44(system_context_id.y,system_uint_handle);
   }
 SYSTEM_VALIDATION_CHECK:
   *(uint16_t *)(system_buffer_pointer + system_context_id) = 10;
@@ -41145,9 +41145,9 @@ void system_function_0x032000(uint64_t system_context_parameter,longlong system_
 {
   code *psystem_init_status;
   char system_char_data;
-  int system_comparison_result;
+  int system_compare_result;
   uint system_uint_buffer;
-  int system_int_config;
+  int system_config_value;
   uint system_audio_status;
   uint64_t system_audio_uint_value;
   longlong system_audio_long_value;
@@ -41224,15 +41224,15 @@ SYSTEM_VALIDATION_CHECK:
     }
   }
   else if (system_audio_status != 0) {
-    system_comparison_result = system_audio_status + 1;
-    if (system_comparison_result < SYSTEM_CONFIG_DATA_SIZE_16) {
-      system_comparison_result = SYSTEM_CONFIG_DATA_SIZE_16;
+    system_compare_result = system_audio_status + 1;
+    if (system_compare_result < SYSTEM_CONFIG_DATA_SIZE_16) {
+      system_compare_result = SYSTEM_CONFIG_DATA_SIZE_16;
     }
-    system_handler_ptr = (uint32_t *)system_allocate_resource_block(system_context_memory_pool,(longlong)system_comparison_result,0x08);
+    system_handler_ptr = (uint32_t *)system_allocate_resource_block(system_context_memory_pool,(longlong)system_compare_result,0x08);
     *system_handler_ptr = 0;
     system_buffer_pointer = system_handler_ptr;
     system_uint_buffer = system_get_resource_context(system_handler_ptr);
-    system_context_id_f1 = CONCAT44(system_context_id_f1._4_4_,system_uint_buffer);
+    system_context_id_f1 = CONCAT44(system_context_id_f1.y,system_uint_buffer);
     goto SYSTEM_LABEL;
   }
   if (system_handler_ptr != (uint32_t *)0x00) {
@@ -41240,7 +41240,7 @@ SYSTEM_VALIDATION_CHECK:
   }
   system_uint_buffer = *(uint *)(system_audio_long_value + 0x0A);
   system_context_id = system_audio_status;
-  system_context_id_f1._4_4_ = system_uint_buffer;
+  system_context_id_f1.y = system_uint_buffer;
   if (system_context_parameter != 0) {
     system_audio_long_value = -1;
     do {
@@ -41248,9 +41248,9 @@ SYSTEM_VALIDATION_CHECK:
       system_audio_long_value = system_audio_long_value + 1;
     } while (*(char *)(system_context_parameter + system_audio_long_value) != '\0');
     if (0 < (int)system_audio_long_value) {
-      system_comparison_result = system_audio_status + (int)system_audio_long_value;
-      if (system_comparison_result != 0) {
-        system_audio_status = system_comparison_result + 1;
+      system_compare_result = system_audio_status + (int)system_audio_long_value;
+      if (system_compare_result != 0) {
+        system_audio_status = system_compare_result + 1;
         if (system_handler_ptr == (uint32_t *)0x00) {
           if ((int)system_audio_status < SYSTEM_CONFIG_DATA_SIZE_16) {
             system_audio_status = SYSTEM_CONFIG_DATA_SIZE_16;
@@ -41264,7 +41264,7 @@ SYSTEM_VALIDATION_CHECK:
           system_handler_ptr = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_handler_ptr,system_audio_status,SYSTEM_CONFIG_DATA_SIZE_16);
         }
         system_buffer_pointer = system_handler_ptr;
-        system_context_id_f1._0_4_ = system_get_resource_context(system_handler_ptr);
+        system_context_id_f1.x = system_get_resource_context(system_handler_ptr);
       }
 SYSTEM_VALIDATION_CHECK:
                     // WARNING: Subroutine does not return
@@ -41279,7 +41279,7 @@ SYSTEM_VALIDATION_CHECK:
     system_initialize_component(system_handler_ptr);
   }
   system_buffer_pointer = (uint32_t *)0x00;
-  system_context_id_f1 = (ulonglong)system_context_id_f1._4_4_ << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
+  system_context_id_f1 = (ulonglong)system_context_id_f1.y << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
   system_buffer_pointer = &system_data_animation_pool_base;
   system_thread_context_pointer = &system_data_callback_pool_base2;
   if (system_stack_long_int_e1 != 0) {
@@ -41295,11 +41295,11 @@ SYSTEM_VALIDATION_CHECK:
   }
   system_char_data = system_function_0215(system_uint_ptr);
   if (system_char_data == '\0') {
-    system_comparison_result = WaitForSingleObject(system_global_semaphore_handle,0);
-    if (system_comparison_result == 0) {
+    system_compare_result = WaitForSingleObject(system_global_semaphore_handle,0);
+    if (system_compare_result == 0) {
       cStack_0x011003 = '\x1';
       system_char_data = (**(code **)**(uint64_t **)(system_event_handler + 0x01001))();
-      if ((system_char_data == '\0') && (system_comparison_result = IsDebuggerPresent(), system_comparison_result != 0)) {
+      if ((system_char_data == '\0') && (system_compare_result = IsDebuggerPresent(), system_compare_result != 0)) {
         system_char_data = '\x1';
       }
       else {
@@ -41308,11 +41308,11 @@ SYSTEM_VALIDATION_CHECK:
       cStack_0x011001 = system_char_data;
       if (system_resource_memory_pool == 0) {
 SYSTEM_VALIDATION_CHECK:
-        system_audio_long_value = _system_data_memory_pool0c1600250;
-        if ((_system_data_memory_pool0c1600250 != 0) && (*(char *)(_system_data_memory_pool0c1600250 + 0x0160002) != '\x1')) {
+        system_audio_long_value = system_global_memory_pool;
+        if ((system_global_memory_pool != 0) && (*(char *)(system_global_memory_pool + 0x0160002) != '\x1')) {
           system_function_0223(*(uint64_t *)(_system_data_memory_pool0c160010030 + 0x01),
                         *(char *)(_system_data_memory_pool0c16001d0 + SYSTEM_RESOURCE_BLOCK_OFFSET_0x0202001) != '\0',
-                        *(uint64_t *)(_system_data_memory_pool0c1600250 + 0x0160c));
+                        *(uint64_t *)(system_global_memory_pool + 0x0160c));
           *(uint32_t *)(system_audio_long_value + 0x0160002) = 1;
         }
         if (*(longlong *)(_system_data_memory_pool0c160010030 + 0x01) != 0) {
@@ -41320,9 +41320,9 @@ SYSTEM_VALIDATION_CHECK:
         }
       }
       else {
-        system_comparison_result = *(int *)(**(longlong **)(system_resource_memory_pool + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
-        system_int_config = _Thrd_id();
-        cStack_0x011003 = system_int_config == system_comparison_result;
+        system_compare_result = *(int *)(**(longlong **)(system_resource_memory_pool + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
+        system_config_value = _Thrd_id();
+        cStack_0x011003 = system_config_value == system_compare_result;
         if ((bool)cStack_0x011003) goto SYSTEM_LABEL;
       }
       if (system_char_data != '\0') {
@@ -41362,7 +41362,7 @@ SYSTEM_VALIDATION_CHECK:
       system_buffer_pointer = (uint32_t *)system_allocate_resource_block(system_context_memory_pool,0x09,0x08);
       *system_buffer_pointer = 0;
       system_audio_status = system_get_resource_context(system_buffer_pointer);
-      system_context_id = CONCAT44(system_context_id._4_4_,system_audio_status);
+      system_context_id = CONCAT44(system_context_id.y,system_audio_status);
       system_uint_ptr = (uint64_t *)(system_buffer_pointer + system_context_id);
       *system_uint_ptr = 0x0600200346f4e;
       system_uint_ptr[1] = 0x06163600266;
@@ -41377,7 +41377,7 @@ SYSTEM_VALIDATION_CHECK:
         *system_buffer_pointer = 0;
 SYSTEM_VALIDATION_CHECK:
         system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-        system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+        system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
       }
       else if (system_audio_status < 0x016) {
         system_buffer_pointer = (uint32_t *)CONCAT0x031(system_buffer_pointer._1_0x03_,0x08);
@@ -41394,7 +41394,7 @@ SYSTEM_VALIDATION_CHECK:
         *system_buffer_pointer = 0;
 SYSTEM_VALIDATION_CHECK:
         system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-        system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+        system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
       }
       else if ((uint)system_context_id < 0x01003) {
         system_buffer_pointer = (uint32_t *)CONCAT0x031(system_buffer_pointer._1_0x03_,0x08);
@@ -41410,11 +41410,11 @@ SYSTEM_VALIDATION_CHECK:
           system_audio_long_value = system_audio_long_value;
           system_audio_long_value = system_audio_long_value + 1;
         } while (*(char *)(system_context_parameter + system_audio_long_value) != '\0');
-        system_comparison_result = (int)system_audio_long_value;
-        if (0 < system_comparison_result) {
+        system_compare_result = (int)system_audio_long_value;
+        if (0 < system_compare_result) {
           system_uint_buffer = system_audio_status;
-          if (system_comparison_result != -0x016) {
-            system_audio_uint_value = system_comparison_result + 0x01003;
+          if (system_compare_result != -0x016) {
+            system_audio_uint_value = system_compare_result + 0x01003;
             if (system_buffer_pointer == (uint32_t *)0x00) {
               if ((int)system_audio_uint_value < SYSTEM_CONFIG_DATA_SIZE_16) {
                 system_audio_uint_value = SYSTEM_CONFIG_DATA_SIZE_16;
@@ -41431,7 +41431,7 @@ SYSTEM_VALIDATION_CHECK:
               system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_uint_value,SYSTEM_CONFIG_DATA_SIZE_16);
             }
             system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-            system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+            system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
             system_uint_buffer = system_context_id;
           }
 SYSTEM_VALIDATION_CHECK:
@@ -41446,7 +41446,7 @@ SYSTEM_VALIDATION_CHECK:
         *system_buffer_pointer = 0;
 SYSTEM_VALIDATION_CHECK:
         system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-        system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+        system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
       }
       else if ((uint)system_context_id < 0x01001) {
         system_buffer_pointer = (uint32_t *)CONCAT0x031(system_buffer_pointer._1_0x03_,0x08);
@@ -41474,7 +41474,7 @@ SYSTEM_VALIDATION_CHECK:
           system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_uint_value,SYSTEM_CONFIG_DATA_SIZE_16);
         }
         system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-        system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+        system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
       }
 SYSTEM_VALIDATION_CHECK:
       *(uint16_t *)(system_buffer_pointer + system_context_id) = 10;
@@ -41495,7 +41495,7 @@ SYSTEM_VALIDATION_CHECK:
           system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_uint_buffer,SYSTEM_CONFIG_DATA_SIZE_16);
         }
         system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-        system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+        system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
       }
 SYSTEM_VALIDATION_CHECK:
       system_uint_ptr = (uint64_t *)(system_buffer_pointer + system_context_id);
@@ -41510,9 +41510,9 @@ SYSTEM_VALIDATION_CHECK:
           system_audio_long_value = system_audio_long_value + 1;
         } while (*(char *)(system_audio_long_value + system_context_parameter) != '\0');
         if (0 < (int)system_audio_long_value) {
-          system_comparison_result = system_audio_uint_value + (int)system_audio_long_value;
-          if (system_comparison_result != 0) {
-            system_audio_status = system_comparison_result + 1;
+          system_compare_result = system_audio_uint_value + (int)system_audio_long_value;
+          if (system_compare_result != 0) {
+            system_audio_status = system_compare_result + 1;
             if (system_buffer_pointer == (uint32_t *)0x00) {
               if ((int)system_audio_status < SYSTEM_CONFIG_DATA_SIZE_16) {
                 system_audio_status = SYSTEM_CONFIG_DATA_SIZE_16;
@@ -41526,7 +41526,7 @@ SYSTEM_VALIDATION_CHECK:
               system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_status,SYSTEM_CONFIG_DATA_SIZE_16);
             }
             system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-            system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+            system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
           }
 SYSTEM_VALIDATION_CHECK:
                     // WARNING: Subroutine does not return
@@ -41549,7 +41549,7 @@ SYSTEM_VALIDATION_CHECK:
           system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_audio_uint_value,SYSTEM_CONFIG_DATA_SIZE_16);
         }
         system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-        system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+        system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
       }
 SYSTEM_VALIDATION_CHECK:
       *(uint16_t *)(system_buffer_pointer + system_context_id) = 0x0a0a;
@@ -41570,7 +41570,7 @@ SYSTEM_VALIDATION_CHECK:
           system_buffer_pointer = (uint32_t *)system_create_component_instance(system_context_memory_pool,system_buffer_pointer,system_uint_buffer,SYSTEM_CONFIG_DATA_SIZE_16);
         }
         system_audio_uint_value = system_get_resource_context(system_buffer_pointer);
-        system_context_id = CONCAT44(system_context_id._4_4_,system_audio_uint_value);
+        system_context_id = CONCAT44(system_context_id.y,system_audio_uint_value);
       }
 SYSTEM_VALIDATION_CHECK:
       system_uint_ptr = (uint64_t *)(system_buffer_pointer + system_context_id);
@@ -41612,8 +41612,8 @@ SYSTEM_VALIDATION_CHECK:
       if (system_thread_context_pointer != (void **)0x00) {
         system_uint_ptr = system_thread_context_pointer;
       }
-      system_comparison_result = system_function_0x021003(system_uint_ptr);
-      if ((cStack_0x011001 == '\0') && (system_comparison_result == 0)) {
+      system_compare_result = system_function_0x021003(system_uint_ptr);
+      if ((cStack_0x011001 == '\0') && (system_compare_result == 0)) {
         if ((_system_data_memory_pool0c160010030 == 0) || (*(char *)(_system_data_memory_pool0c160010030 + 0x0141) == '\0')) {
           system_audio_uint_value = 0;
         }
@@ -41629,7 +41629,7 @@ SYSTEM_VALIDATION_CHECK:
           *(uint32_t *)system_uint_ptr = 0;
           system_thread_context_pointer = system_uint_ptr;
           system_audio_uint_value = system_get_resource_context(system_uint_ptr);
-          system_context_id_b1 = CONCAT44(system_context_id_b1._4_4_,system_audio_uint_value);
+          system_context_id_b1 = CONCAT44(system_context_id_b1.y,system_audio_uint_value);
           *system_uint_ptr = 0x032003000306d035645c5c;
           system_uint_ptr[1] = 0x02e00326f003303365636f;
           system_uint_ptr[2] = 0x06c00326f00303656c610034;
@@ -41697,8 +41697,8 @@ SYSTEM_VALIDATION_CHECK:
         if (*(longlong *)(_system_data_memory_pool0c160010030 + 0x01) != 0) {
           system_function_0221();
         }
-        if (_system_data_memory_pool0c1600250 != 0) {
-          system_function_0206(_system_data_memory_pool0c1600250,*(uint32_t *)(_system_data_memory_pool0c1600250 + 0x0160a));
+        if (system_global_memory_pool != 0) {
+          system_function_0206(system_global_memory_pool,*(uint32_t *)(system_global_memory_pool + 0x0160a));
         }
       }
 
@@ -41730,7 +41730,7 @@ bool system_function_0x024(uint64_t system_context_parameter,uint64_t *system_co
 {
   uint64_t system_uint_value;
   int system_int_context;
-  int system_comparison_result;
+  int system_compare_result;
   longlong system_audio_buffer_pointer;
   uint64_t *system_config_ptr;
   uint64_t *node_pointer;
@@ -41770,7 +41770,7 @@ bool system_function_0x024(uint64_t system_context_parameter,uint64_t *system_co
   
   system_context_id = SYSTEM_INVALID_HANDLE_VALUE;
   system_config_ptr = (uint64_t *)0x00;
-  system_comparison_result = 0;
+  system_compare_result = 0;
   WaitForSingleObject(system_global_semaphore_handle,300000);
   system_stack_long_int_0x04001 = system_resource_memory_pool;
   if (system_resource_memory_pool != 0) {
@@ -41783,7 +41783,7 @@ bool system_function_0x024(uint64_t system_context_parameter,uint64_t *system_co
   system_thread_context_pointer = (uint16_t *)system_allocate_resource_block(system_context_memory_pool,SYSTEM_CONFIG_DATA_SIZE_16,0x08);
   *(uint32_t *)system_thread_context_pointer = 0;
   system_uint_value = system_get_resource_context(system_thread_context_pointer);
-  system_context_id_d1 = CONCAT44(system_context_id_d1._4_4_,system_uint_value);
+  system_context_id_d1 = CONCAT44(system_context_id_d1.y,system_uint_value);
   *system_thread_context_pointer = 0x0a0a;
   *(uint32_t *)(system_thread_context_pointer + 1) = 0;
   system_context_id_e0 = 2;
@@ -41826,7 +41826,7 @@ bool system_function_0x024(uint64_t system_context_parameter,uint64_t *system_co
       system_initialize_component();
     }
     system_buffer_pointer = (uint64_t *)0x00;
-    system_context_id_f1 = (ulonglong)system_context_id_f1._4_4_ << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
+    system_context_id_f1 = (ulonglong)system_context_id_f1.y << SYSTEM_RESOURCE_BLOCK_OFFSET_20;
     system_buffer_pointer = &system_data_animation_pool_base;
   }
   system_audio_buffer_pointer = system_function_0x021001(&system_buffer_pointer,system_context_parameter[1]);
@@ -41871,7 +41871,7 @@ bool system_function_0x024(uint64_t system_context_parameter,uint64_t *system_co
     *(uint32_t *)node_pointer = 0;
     system_buffer_pointer = node_pointer;
     system_uint_value = system_get_resource_context(node_pointer);
-    system_context_id_f1 = CONCAT44(system_context_id_f1._4_4_,system_uint_value);
+    system_context_id_f1 = CONCAT44(system_context_id_f1.y,system_uint_value);
     *node_pointer = 0x032003000306d035645c5c;
     node_pointer[1] = 0x02e00326f003303365636f;
     node_pointer[2] = 0x06c00326f00303656c610034;
@@ -41881,7 +41881,7 @@ bool system_function_0x024(uint64_t system_context_parameter,uint64_t *system_co
     *(uint64_t *)(node_pointer + 5) = 0x06e60020033033;
     *(uint64_t *)((longlong)node_pointer + 0x02c) = 0x06c6f466003;
     *(uint64_t *)(node_pointer + 6) = 0x0326564;
-    system_comparison_result = 0x033;
+    system_compare_result = 0x033;
     system_stack_int_100 = 0x033;
     system_audio_uint_value = 2;
     system_audio_uint_value = 2;
@@ -41903,7 +41903,7 @@ bool system_function_0x024(uint64_t system_context_parameter,uint64_t *system_co
       *(uint32_t *)system_config_ptr = 0;
       system_thread_context_pointer = system_config_ptr;
       system_uint_value = system_get_resource_context(system_config_ptr);
-      system_context_id = CONCAT44(system_context_id._4_4_,system_uint_value);
+      system_context_id = CONCAT44(system_context_id.y,system_uint_value);
       if (*(int *)(system_audio_buffer_pointer + 0x09001) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(system_config_ptr,*(uint64_t *)(system_audio_buffer_pointer + 0x090),*(int *)(system_audio_buffer_pointer + 0x09001) + 1);
@@ -41925,8 +41925,8 @@ bool system_function_0x024(uint64_t system_context_parameter,uint64_t *system_co
   system_context_id = 0;
   system_buffer_pointer = (uint32_t *)0x00;
   system_context_id = 0;
-  if (system_comparison_result != 0) {
-    system_audio_uint_value = system_comparison_result + 1;
+  if (system_compare_result != 0) {
+    system_audio_uint_value = system_compare_result + 1;
     system_audio_uint_value = system_audio_uint_value;
     if (system_audio_uint_value < SYSTEM_CONFIG_DATA_SIZE_16) {
       system_audio_uint_value = SYSTEM_CONFIG_DATA_SIZE_16;
@@ -41935,7 +41935,7 @@ bool system_function_0x024(uint64_t system_context_parameter,uint64_t *system_co
     *child_pointer = 0;
     system_buffer_pointer = child_pointer;
     system_uint_value = system_get_resource_context(child_pointer);
-    system_context_id = CONCAT44(system_context_id._4_4_,system_uint_value);
+    system_context_id = CONCAT44(system_context_id.y,system_uint_value);
                     // WARNING: Subroutine does not return
     memcpy(child_pointer,*pparent_pointer,system_audio_uint_value);
   }
@@ -41973,8 +41973,8 @@ bool system_function_0x024(uint64_t system_context_parameter,uint64_t *system_co
     system_configure_buffer_strategy();
   }
   do {
-    system_comparison_result = ReleaseSemaphore(system_global_semaphore_handle,1);
-  } while (system_comparison_result == 0);
+    system_compare_result = ReleaseSemaphore(system_global_semaphore_handle,1);
+  } while (system_compare_result == 0);
   system_audio_uint_value = __acrt_iob_func(1);
   fflush(system_audio_uint_value);
   system_audio_uint_value = __acrt_iob_func(2);
@@ -42227,7 +42227,7 @@ void system_function_0x033ad0(longlong system_context_parameter,longlong *system
 {
   ushort system_uint_value;
   uint64_t system_audio_context_id;
-  int *psystem_comparison_result;
+  int *psystem_compare_result;
   uint64_t *system_buffer_context;
   uint *system_config_ptr;
   longlong system_long_status;
@@ -42237,14 +42237,14 @@ void system_function_0x033ad0(longlong system_context_parameter,longlong *system
   
   system_function_0x025002(system_context_parameter,system_context_parameter);
   system_long_status = *(longlong *)(system_context_parameter + SYSTEM_MEMORY_POOL_BASE_OFFSET) - *(longlong *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_20);
-  psystem_comparison_result = (int *)system_context_parameter[1];
+  psystem_compare_result = (int *)system_context_parameter[1];
   system_long_status = system_long_status / 0x012 + (system_long_status >> 0x03f);
   system_audio_loop_index = (int)(system_long_status >> 1) - (int)(system_long_status >> 0x03f);
-  if ((ulonglong)((*system_context_parameter - (longlong)psystem_comparison_result) + system_context_parameter[2]) < 5) {
-    system_function_0x025001(system_context_parameter,(longlong)psystem_comparison_result + (4 - *system_context_parameter));
-    psystem_comparison_result = (int *)system_context_parameter[1];
+  if ((ulonglong)((*system_context_parameter - (longlong)psystem_compare_result) + system_context_parameter[2]) < 5) {
+    system_function_0x025001(system_context_parameter,(longlong)psystem_compare_result + (4 - *system_context_parameter));
+    psystem_compare_result = (int *)system_context_parameter[1];
   }
-  *psystem_comparison_result = system_audio_loop_index;
+  *psystem_compare_result = system_audio_loop_index;
   system_buffer_context = (uint64_t *)(system_context_parameter[1] + 4);
   system_context_parameter[1] = (longlong)system_buffer_context;
   system_long_status = (longlong)system_audio_loop_index;
@@ -42392,7 +42392,7 @@ void system_function_0x033adc(longlong system_context_parameter)
 {
   ushort system_uint_value;
   uint64_t system_audio_context_id;
-  int *psystem_comparison_result;
+  int *psystem_compare_result;
   uint64_t *system_buffer_context;
   uint *system_config_ptr;
   longlong system_long_status;
@@ -42403,14 +42403,14 @@ void system_function_0x033adc(longlong system_context_parameter)
   
   system_function_0x025002();
   system_long_status = *(longlong *)(system_context_parameter + SYSTEM_MEMORY_POOL_BASE_OFFSET) - *(longlong *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_20);
-  psystem_comparison_result = (int *)system_audio_register_value[1];
+  psystem_compare_result = (int *)system_audio_register_value[1];
   system_long_status = system_long_status / 0x012 + (system_long_status >> 0x03f);
   system_audio_loop_index = (int)(system_long_status >> 1) - (int)(system_long_status >> 0x03f);
-  if ((ulonglong)((*system_audio_register_value - (longlong)psystem_comparison_result) + system_audio_register_value[2]) < 5) {
+  if ((ulonglong)((*system_audio_register_value - (longlong)psystem_compare_result) + system_audio_register_value[2]) < 5) {
     system_function_0x025001();
-    psystem_comparison_result = (int *)system_audio_register_value[1];
+    psystem_compare_result = (int *)system_audio_register_value[1];
   }
-  *psystem_comparison_result = system_audio_loop_index;
+  *psystem_compare_result = system_audio_loop_index;
   system_buffer_context = (uint64_t *)(system_audio_register_value[1] + 4);
   system_audio_register_value[1] = (longlong)system_buffer_context;
   system_long_status = (longlong)system_audio_loop_index;
@@ -42904,7 +42904,7 @@ void system_function_0x03400020(longlong *system_context_parameter,longlong syst
   longlong *system_long_data_ptr;
   int *system_audio_loop_index_ptr;
   uint system_uint_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   longlong audio_resource_id;
   ulonglong system_audio_status;
   longlong system_audio_long_value;
@@ -42912,7 +42912,7 @@ void system_function_0x03400020(longlong *system_context_parameter,longlong syst
   uint *system_manager_ptr;
   longlong system_audio_long_value;
   longlong system_audio_long_value;
-  longlong *psystem_long_var_12;
+  longlong *system_handle_ptr;
   
   system_uint_handle = **(uint **)(system_context_parameter + 0x01);
   system_manager_ptr = *(uint **)(system_context_parameter + 0x01) + 1;
@@ -42933,33 +42933,33 @@ void system_function_0x03400020(longlong *system_context_parameter,longlong syst
     do {
       system_audio_long_value = *system_long_data_ptr;
       *(int **)(system_context_parameter + 0x01) = (int *)(audio_resource_id + 0x01);
-      system_status_buffer = *(int *)(audio_resource_id + 0x01);
-      psystem_long_var_12 = (longlong *)(system_audio_long_value + system_audio_long_value);
+      system_buffer_size = *(int *)(audio_resource_id + 0x01);
+      system_handle_ptr = (longlong *)(system_audio_long_value + system_audio_long_value);
       *(longlong *)(system_context_parameter + 0x01) = audio_resource_id + 0x04;
-      if (0 < system_status_buffer) {
-        *(short *)(psystem_long_var_12 + 2) = (short)system_status_buffer;
-        if (psystem_long_var_12[1] != 0) {
+      if (0 < system_buffer_size) {
+        *(short *)(system_handle_ptr + 2) = (short)system_buffer_size;
+        if (system_handle_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
           system_initialize_component();
         }
-        psystem_long_var_12[1] = 0;
-        if (*psystem_long_var_12 == 0) {
-          *psystem_long_var_12 = 0;
-          if ((ulonglong)*(ushort *)(psystem_long_var_12 + 2) == 0) {
+        system_handle_ptr[1] = 0;
+        if (*system_handle_ptr == 0) {
+          *system_handle_ptr = 0;
+          if ((ulonglong)*(ushort *)(system_handle_ptr + 2) == 0) {
             system_audio_status = 0;
             audio_resource_id = system_audio_long_value;
           }
           else {
-            audio_resource_id = system_allocate_resource_block(system_context_memory_pool,(ulonglong)*(ushort *)(psystem_long_var_12 + 2) * 4,4);
-            system_audio_status = (ulonglong)*(ushort *)(psystem_long_var_12 + 2);
+            audio_resource_id = system_allocate_resource_block(system_context_memory_pool,(ulonglong)*(ushort *)(system_handle_ptr + 2) * 4,4);
+            system_audio_status = (ulonglong)*(ushort *)(system_handle_ptr + 2);
           }
-          psystem_long_var_12[1] = audio_resource_id;
+          system_handle_ptr[1] = audio_resource_id;
           if (system_audio_status != 0) {
             system_audio_long_value = system_allocate_resource_block(system_context_memory_pool,system_audio_status << 4,4);
           }
-          *psystem_long_var_12 = system_audio_long_value;
+          *system_handle_ptr = system_audio_long_value;
                     // WARNING: Subroutine does not return
-          memcpy(psystem_long_var_12[1],*(uint64_t *)(system_context_parameter + 0x01),(longlong)(system_status_buffer * 4));
+          memcpy(system_handle_ptr[1],*(uint64_t *)(system_context_parameter + 0x01),(longlong)(system_buffer_size * 4));
         }
                     // WARNING: Subroutine does not return
         system_initialize_component();
@@ -42968,11 +42968,11 @@ void system_function_0x03400020(longlong *system_context_parameter,longlong syst
       system_audio_loop_index_ptr = (int *)(audio_resource_id + 0x014);
       *(int **)(system_context_parameter + 0x01) = system_audio_loop_index_ptr;
       audio_resource_id = audio_resource_id + 0x01001;
-      system_status_buffer = *system_audio_loop_index_ptr;
+      system_buffer_size = *system_audio_loop_index_ptr;
       system_audio_long_value = system_audio_long_value + system_audio_long_value;
       *(longlong *)(system_context_parameter + 0x01) = audio_resource_id;
-      if (0 < system_status_buffer) {
-        *(short *)(system_audio_long_value + 0x022) = (short)system_status_buffer;
+      if (0 < system_buffer_size) {
+        *(short *)(system_audio_long_value + 0x022) = (short)system_buffer_size;
         if (*(longlong *)(system_audio_long_value + 0x01a) != 0) {
                     // WARNING: Subroutine does not return
           system_initialize_component();
@@ -42994,7 +42994,7 @@ void system_function_0x03400020(longlong *system_context_parameter,longlong syst
           }
           *(longlong *)(system_audio_long_value + 0x012) = system_audio_long_value;
                     // WARNING: Subroutine does not return
-          memcpy(*(uint64_t *)(system_audio_long_value + 0x01a),*(uint64_t *)(system_context_parameter + 0x01),(longlong)(system_status_buffer * 4));
+          memcpy(*(uint64_t *)(system_audio_long_value + 0x01a),*(uint64_t *)(system_context_parameter + 0x01),(longlong)(system_buffer_size * 4));
         }
                     // WARNING: Subroutine does not return
         system_initialize_component();
@@ -43004,16 +43004,16 @@ void system_function_0x03400020(longlong *system_context_parameter,longlong syst
     } while (system_audio_long_value != 0);
   }
   *(int **)(system_context_parameter + 0x01) = (int *)(audio_resource_id + 0x01);
-  system_status_buffer = *(int *)(audio_resource_id + 0x01);
+  system_buffer_size = *(int *)(audio_resource_id + 0x01);
   *(longlong *)(system_context_parameter + 0x01) = audio_resource_id + 0x04;
-  if (system_status_buffer < 1) {
+  if (system_buffer_size < 1) {
     *(int **)(system_context_parameter + 0x01) = (int *)(audio_resource_id + 0x014);
-    system_status_buffer = *(int *)(audio_resource_id + 0x014);
+    system_buffer_size = *(int *)(audio_resource_id + 0x014);
     *(longlong *)(system_context_parameter + 0x01) = audio_resource_id + 0x01001;
-    if (system_status_buffer < 1) {
+    if (system_buffer_size < 1) {
       return;
     }
-    *(short *)((longlong)system_context_parameter + 0x062) = (short)system_status_buffer;
+    *(short *)((longlong)system_context_parameter + 0x062) = (short)system_buffer_size;
     if (*(longlong *)((longlong)system_context_parameter + 0x05a) == 0) {
       *(uint64_t *)((longlong)system_context_parameter + 0x05a) = 0;
       if (*(longlong *)((longlong)system_context_parameter + 0x052) == 0) {
@@ -43034,7 +43034,7 @@ void system_function_0x03400020(longlong *system_context_parameter,longlong syst
         *(longlong *)((longlong)system_context_parameter + 0x052) = system_audio_long_value;
                     // WARNING: Subroutine does not return
         memcpy(*(uint64_t *)((longlong)system_context_parameter + 0x05a),*(uint64_t *)(system_context_parameter + 0x01),
-               (longlong)(system_status_buffer * 4));
+               (longlong)(system_buffer_size * 4));
       }
                     // WARNING: Subroutine does not return
       system_initialize_component();
@@ -43042,7 +43042,7 @@ void system_function_0x03400020(longlong *system_context_parameter,longlong syst
                     // WARNING: Subroutine does not return
     system_initialize_component();
   }
-  *(short *)(system_context_parameter + 10) = (short)system_status_buffer;
+  *(short *)(system_context_parameter + 10) = (short)system_buffer_size;
   if (system_context_parameter[0x02] != 0) {
                     // WARNING: Subroutine does not return
     system_initialize_component();
@@ -43064,7 +43064,7 @@ void system_function_0x03400020(longlong *system_context_parameter,longlong syst
     }
     system_context_parameter[0x01] = system_audio_long_value;
                     // WARNING: Subroutine does not return
-    memcpy(system_context_parameter[0x02],*(uint64_t *)(system_context_parameter + 0x01),(longlong)(system_status_buffer * 4));
+    memcpy(system_context_parameter[0x02],*(uint64_t *)(system_context_parameter + 0x01),(longlong)(system_buffer_size * 4));
   }
                     // WARNING: Subroutine does not return
   system_initialize_component();
@@ -43077,7 +43077,7 @@ void system_function_0x0340a2(longlong *system_context_parameter)
   longlong *system_long_data_ptr;
   int *system_audio_loop_index_ptr;
   uint system_uint_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   uint *system_audio_register_value_rax;
   longlong audio_resource_id;
   ulonglong system_audio_status;
@@ -43087,7 +43087,7 @@ void system_function_0x0340a2(longlong *system_context_parameter)
   longlong system_audio_long_value;
   longlong system_audio_register_value;
   longlong system_audio_long_value;
-  longlong *psystem_long_var_12;
+  longlong *system_handle_ptr;
   
   system_uint_handle = *system_audio_register_value_rax;
   system_manager_ptr = system_audio_register_value_rax + 1;
@@ -43108,33 +43108,33 @@ void system_function_0x0340a2(longlong *system_context_parameter)
     do {
       system_audio_long_value = *system_long_data_ptr;
       *(int **)(system_audio_register_value + 0x01) = (int *)(audio_resource_id + 0x01);
-      system_status_buffer = *(int *)(audio_resource_id + 0x01);
-      psystem_long_var_12 = (longlong *)(system_audio_long_value + system_audio_long_value);
+      system_buffer_size = *(int *)(audio_resource_id + 0x01);
+      system_handle_ptr = (longlong *)(system_audio_long_value + system_audio_long_value);
       *(longlong *)(system_audio_register_value + 0x01) = audio_resource_id + 0x04;
-      if (0 < system_status_buffer) {
-        *(short *)(psystem_long_var_12 + 2) = (short)system_status_buffer;
-        if (psystem_long_var_12[1] != 0) {
+      if (0 < system_buffer_size) {
+        *(short *)(system_handle_ptr + 2) = (short)system_buffer_size;
+        if (system_handle_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
           system_initialize_component();
         }
-        psystem_long_var_12[1] = 0;
-        if (*psystem_long_var_12 == 0) {
-          *psystem_long_var_12 = 0;
-          if ((ulonglong)*(ushort *)(psystem_long_var_12 + 2) == 0) {
+        system_handle_ptr[1] = 0;
+        if (*system_handle_ptr == 0) {
+          *system_handle_ptr = 0;
+          if ((ulonglong)*(ushort *)(system_handle_ptr + 2) == 0) {
             system_audio_status = 0;
             audio_resource_id = system_audio_long_value;
           }
           else {
-            audio_resource_id = system_allocate_resource_block(system_context_memory_pool,(ulonglong)*(ushort *)(psystem_long_var_12 + 2) * 4,4);
-            system_audio_status = (ulonglong)*(ushort *)(psystem_long_var_12 + 2);
+            audio_resource_id = system_allocate_resource_block(system_context_memory_pool,(ulonglong)*(ushort *)(system_handle_ptr + 2) * 4,4);
+            system_audio_status = (ulonglong)*(ushort *)(system_handle_ptr + 2);
           }
-          psystem_long_var_12[1] = audio_resource_id;
+          system_handle_ptr[1] = audio_resource_id;
           if (system_audio_status != 0) {
             system_audio_long_value = system_allocate_resource_block(system_context_memory_pool,system_audio_status << 4,4);
           }
-          *psystem_long_var_12 = system_audio_long_value;
+          *system_handle_ptr = system_audio_long_value;
                     // WARNING: Subroutine does not return
-          memcpy(psystem_long_var_12[1],*(uint64_t *)(system_audio_register_value + 0x01),(longlong)(system_status_buffer * 4));
+          memcpy(system_handle_ptr[1],*(uint64_t *)(system_audio_register_value + 0x01),(longlong)(system_buffer_size * 4));
         }
                     // WARNING: Subroutine does not return
         system_initialize_component();
@@ -43143,11 +43143,11 @@ void system_function_0x0340a2(longlong *system_context_parameter)
       system_audio_loop_index_ptr = (int *)(audio_resource_id + 0x014);
       *(int **)(system_audio_register_value + 0x01) = system_audio_loop_index_ptr;
       audio_resource_id = audio_resource_id + 0x01001;
-      system_status_buffer = *system_audio_loop_index_ptr;
+      system_buffer_size = *system_audio_loop_index_ptr;
       system_audio_long_value = system_audio_long_value + system_audio_long_value;
       *(longlong *)(system_audio_register_value + 0x01) = audio_resource_id;
-      if (0 < system_status_buffer) {
-        *(short *)(system_audio_long_value + 0x022) = (short)system_status_buffer;
+      if (0 < system_buffer_size) {
+        *(short *)(system_audio_long_value + 0x022) = (short)system_buffer_size;
         if (*(longlong *)(system_audio_long_value + 0x01a) != 0) {
                     // WARNING: Subroutine does not return
           system_initialize_component();
@@ -43169,7 +43169,7 @@ void system_function_0x0340a2(longlong *system_context_parameter)
           }
           *(longlong *)(system_audio_long_value + 0x012) = system_audio_long_value;
                     // WARNING: Subroutine does not return
-          memcpy(*(uint64_t *)(system_audio_long_value + 0x01a),*(uint64_t *)(system_audio_register_value + 0x01),(longlong)(system_status_buffer * 4)
+          memcpy(*(uint64_t *)(system_audio_long_value + 0x01a),*(uint64_t *)(system_audio_register_value + 0x01),(longlong)(system_buffer_size * 4)
                 );
         }
                     // WARNING: Subroutine does not return
@@ -43180,16 +43180,16 @@ void system_function_0x0340a2(longlong *system_context_parameter)
     } while (system_audio_long_value != 0);
   }
   *(int **)(system_audio_register_value + 0x01) = (int *)(audio_resource_id + 0x01);
-  system_status_buffer = *(int *)(audio_resource_id + 0x01);
+  system_buffer_size = *(int *)(audio_resource_id + 0x01);
   *(longlong *)(system_audio_register_value + 0x01) = audio_resource_id + 0x04;
-  if (system_status_buffer < 1) {
+  if (system_buffer_size < 1) {
     *(int **)(system_audio_register_value + 0x01) = (int *)(audio_resource_id + 0x014);
-    system_status_buffer = *(int *)(audio_resource_id + 0x014);
+    system_buffer_size = *(int *)(audio_resource_id + 0x014);
     *(longlong *)(system_audio_register_value + 0x01) = audio_resource_id + 0x01001;
-    if (system_status_buffer < 1) {
+    if (system_buffer_size < 1) {
       return;
     }
-    *(short *)((longlong)system_context_parameter + 0x062) = (short)system_status_buffer;
+    *(short *)((longlong)system_context_parameter + 0x062) = (short)system_buffer_size;
     if (*(longlong *)((longlong)system_context_parameter + 0x05a) == 0) {
       *(uint64_t *)((longlong)system_context_parameter + 0x05a) = 0;
       if (*(longlong *)((longlong)system_context_parameter + 0x052) == 0) {
@@ -43210,7 +43210,7 @@ void system_function_0x0340a2(longlong *system_context_parameter)
         *(longlong *)((longlong)system_context_parameter + 0x052) = system_audio_long_value;
                     // WARNING: Subroutine does not return
         memcpy(*(uint64_t *)((longlong)system_context_parameter + 0x05a),*(uint64_t *)(system_audio_register_value + 0x01),
-               (longlong)(system_status_buffer * 4));
+               (longlong)(system_buffer_size * 4));
       }
                     // WARNING: Subroutine does not return
       system_initialize_component();
@@ -43218,7 +43218,7 @@ void system_function_0x0340a2(longlong *system_context_parameter)
                     // WARNING: Subroutine does not return
     system_initialize_component();
   }
-  *(short *)(system_context_parameter + 10) = (short)system_status_buffer;
+  *(short *)(system_context_parameter + 10) = (short)system_buffer_size;
   if (system_context_parameter[0x02] != 0) {
                     // WARNING: Subroutine does not return
     system_initialize_component();
@@ -43240,7 +43240,7 @@ void system_function_0x0340a2(longlong *system_context_parameter)
     }
     system_context_parameter[0x01] = system_audio_long_value;
                     // WARNING: Subroutine does not return
-    memcpy(system_context_parameter[0x02],*(uint64_t *)(system_audio_register_value + 0x01),(longlong)(system_status_buffer * 4));
+    memcpy(system_context_parameter[0x02],*(uint64_t *)(system_audio_register_value + 0x01),(longlong)(system_buffer_size * 4));
   }
                     // WARNING: Subroutine does not return
   system_initialize_component();
@@ -43528,7 +43528,7 @@ void system_function_0x0344b0(longlong system_context_parameter,longlong system_
   uint system_uint_handle;
   int *system_audio_loop_index_ptr;
   longlong audio_resource_id;
-  int system_status_code;
+  int system_return_code;
   uint64_t system_audio_uint_value;
   uint64_t system_audio_uint_value;
   uint64_t system_audio_uint_value;
@@ -43547,11 +43547,11 @@ void system_function_0x0344b0(longlong system_context_parameter,longlong system_
   system_audio_loop_index_ptr = *(int **)(system_context_parameter + 0x01);
   system_int_context = *system_audio_loop_index_ptr;
   *(int **)(system_context_parameter + 0x01) = system_audio_loop_index_ptr + 1;
-  system_status_code = system_audio_loop_index_ptr[2];
+  system_return_code = system_audio_loop_index_ptr[2];
   system_audio_loop_index = system_audio_loop_index_ptr[3];
   system_audio_loop_index = system_audio_loop_index_ptr[4];
   *(int *)(system_context_parameter + 0x01001) = system_audio_loop_index_ptr[1];
-  *(int *)(system_context_parameter + 0x0A) = system_status_code;
+  *(int *)(system_context_parameter + 0x0A) = system_return_code;
   *(int *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_20) = system_audio_loop_index;
   *(int *)(system_context_parameter + 0x024) = system_audio_loop_index;
   system_uint_ptr = (uint32_t *)(*(longlong *)(system_context_parameter + 0x01) + SYSTEM_CONFIG_DATA_SIZE_16);
@@ -43685,15 +43685,15 @@ void system_function_0x0346c0(longlong system_context_parameter)
 void system_function_0x03400140(longlong system_context_parameter)
 
 {
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   longlong **system_stack_long_int_ptr;
   
   if (*(longlong *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE0) != 0) {
     *(uint64_t *)(*(longlong *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE0) + SYSTEM_CONTEXT_OFFSET_A1) = 0;
-    system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-    system_buffer_pointer_0x01 = *(longlong **)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE0);
-    if (system_buffer_pointer_0x01 != (longlong *)0x00) {
-      (**(code **)(*system_buffer_pointer_0x01 + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
+    system_stack_long_int_ptr = &system_audio_device_ptr;
+    system_audio_device_ptr = *(longlong **)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE0);
+    if (system_audio_device_ptr != (longlong *)0x00) {
+      (**(code **)(*system_audio_device_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
     }
     system_function_0x020001();
     system_stack_long_int_ptr = *(longlong ***)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE0);
@@ -44080,7 +44080,7 @@ system_function_0106(uint64_t system_context_parameter,uint64_t *system_context_
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * system_function_0x010003(uint64_t *system_context_parameter,char system_context_parameter,char system_context_parameter)
+uint64_t * system_create_audio_context(uint64_t *system_context_parameter,char system_context_parameter,char system_context_parameter)
 
 {
   longlong *system_long_data_ptr;
@@ -44282,7 +44282,7 @@ uint64_t * system_function_0x010003(uint64_t *system_context_parameter,char syst
   return system_context_parameter;
 }
 
-uint64_t system_function_0x010001(uint64_t system_context_parameter,ulonglong system_context_parameter)
+uint64_t system_cleanup_audio_resource0001(uint64_t system_context_parameter,ulonglong system_context_parameter)
 
 {
   system_function_0110();
@@ -44292,7 +44292,7 @@ uint64_t system_function_0x010001(uint64_t system_context_parameter,ulonglong sy
   return system_context_parameter;
 }
 
-uint32_t system_function_0x010002(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
+uint32_t system_cleanup_audio_resource0002(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 
 {
   uint32_t system_uint_value;
@@ -44324,7 +44324,7 @@ void system_function_0x035630(longlong system_context_parameter,uint64_t *system
   uint64_t system_audio_uint_value;
   char cVar0x01;
   longlong system_audio_long_value;
-  longlong *psystem_long_var_10;
+  longlong *system_resource_ptr;
   uint32_t asystem_context_id_e1 [0x010014];
   uint64_t system_context_id;
   
@@ -44377,10 +44377,10 @@ void system_function_0x035630(longlong system_context_parameter,uint64_t *system
         *(uint64_t *)(system_long_context_ptr + SYSTEM_RESOURCE_TABLE_OFFSET) = 0x03f003fffff;
         *(uint64_t *)((longlong)system_long_context_ptr + 0x0224) = 0x04cbebc20ccbebc20;
         *(uint64_t *)((longlong)system_long_context_ptr + 0x022c) = 0x03f003fffffccbebc20;
-        psystem_long_var_10 = (longlong *)system_long_context_ptr[0x03];
-        if (psystem_long_var_10 < (longlong *)system_long_context_ptr[0x01]) {
+        system_resource_ptr = (longlong *)system_long_context_ptr[0x03];
+        if (system_resource_ptr < (longlong *)system_long_context_ptr[0x01]) {
           do {
-            system_long_handle = *psystem_long_var_10;
+            system_long_handle = *system_resource_ptr;
             if (((*(byte *)(system_long_handle + SYSTEM_CONFIG_DATA_SIZE_160) & SYSTEM_RESOURCE_BLOCK_OFFSET_20) == 0) || (system_long_context_ptr[5] == 0)) {
               system_audio_long_value = system_long_handle + 0x0120;
             }
@@ -44388,8 +44388,8 @@ void system_function_0x035630(longlong system_context_parameter,uint64_t *system
               system_audio_long_value = system_function_0225(system_long_handle + 0x0120,asystem_context_id_e1,system_long_context_ptr[5] + SYSTEM_MESSAGE_BUFFER_OFFSET);
             }
             system_function_0261(system_data_context,system_long_handle + 0x020034,system_audio_long_value);
-            psystem_long_var_10 = psystem_long_var_10 + 2;
-          } while (psystem_long_var_10 < (longlong *)system_long_context_ptr[0x01]);
+            system_resource_ptr = system_resource_ptr + 2;
+          } while (system_resource_ptr < (longlong *)system_long_context_ptr[0x01]);
         }
         if (((system_long_context_ptr[0x01] - system_long_context_ptr[0x03] & 0x07ffffffffffffff0U) == SYSTEM_CONFIG_DATA_SIZE_16) &&
            (system_long_handle = *(longlong *)system_long_context_ptr[0x03], (*(uint *)(system_long_handle + SYSTEM_CONFIG_DATA_SIZE_160) & SYSTEM_AUDIO_TABLE_OFFSET_VALUE00000) == 0)) {
@@ -44401,11 +44401,11 @@ void system_function_0x035630(longlong system_context_parameter,uint64_t *system
         }
         else {
           system_function_0210(system_data_context);
-          psystem_long_var_10 = (longlong *)system_long_context_ptr[0x03];
+          system_resource_ptr = (longlong *)system_long_context_ptr[0x03];
           audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-          if (psystem_long_var_10 < (longlong *)system_long_context_ptr[0x01]) {
+          if (system_resource_ptr < (longlong *)system_long_context_ptr[0x01]) {
             do {
-              system_long_handle = *psystem_long_var_10;
+              system_long_handle = *system_resource_ptr;
               if ((*(uint *)(system_long_handle + SYSTEM_CONFIG_DATA_SIZE_160) & SYSTEM_AUDIO_TABLE_OFFSET_VALUE00000) == 0) {
                 audio_volume_value = *(float *)(system_long_handle + 0x020024);
                 audio_volume_value = *(float *)(system_long_handle + 0x02002001);
@@ -44457,8 +44457,8 @@ void system_function_0x035630(longlong system_context_parameter,uint64_t *system
               if (audio_volume_value * audio_volume_value < audio_volume_value) {
                 audio_volume_value = SQRT(audio_volume_value) + audio_volume_value;
               }
-              psystem_long_var_10 = psystem_long_var_10 + 2;
-            } while (psystem_long_var_10 < (longlong *)system_long_context_ptr[0x01]);
+              system_resource_ptr = system_resource_ptr + 2;
+            } while (system_resource_ptr < (longlong *)system_long_context_ptr[0x01]);
             if ((SYSTEM_FLOAT_ZERO_VALUE < audio_volume_value) &&
                (audio_volume_value < *(float *)((longlong)system_long_context_ptr + 0x0244) ||
                 audio_volume_value == *(float *)((longlong)system_long_context_ptr + 0x0244))) {
@@ -44665,10 +44665,10 @@ float * system_function_0113(float *system_context_parameter)
   byte system_byte_context;
   longlong *system_long_handle_ptr;
   float *audio_system_data_context;
-  char system_char_config;
+  char system_char_status;
   float *audio_system_data_context;
   ulonglong system_audio_uint_value;
-  bool system_byte_var_;
+  bool system_bool_flag;
   float system_stack_float_b1;
   float system_stack_float_b4;
   float system_stack_float_b0;
@@ -44762,7 +44762,7 @@ float * system_function_0113(float *system_context_parameter)
       system_stack_float_4c = system_context_parameter[0x053];
       system_context_id = *(uint64_t *)(system_context_parameter + 0x054);
       system_context_id = *(uint64_t *)(system_context_parameter + 0x056);
-      system_function_0x01002002(&system_context_id);
+      system_cleanup_audio_resource002002(&system_context_id);
       system_function_0261(audio_system_data_context,audio_system_data_context,&system_context_id);
       audio_system_data_context = *(float **)(system_context_parameter + 0x06e);
       if (((uint)audio_system_data_context[0x04e] & 0x03000) == SYSTEM_RESOURCE_BLOCK_OFFSET_2000) {
@@ -44776,7 +44776,7 @@ float * system_function_0113(float *system_context_parameter)
         system_stack_float_4c = system_context_parameter[0x053];
         system_context_id = *(uint64_t *)(system_context_parameter + 0x054);
         system_context_id = *(uint64_t *)(system_context_parameter + 0x056);
-        system_function_0x01002001(&system_context_id,0x03fc0020fdb);
+        system_cleanup_audio_resource002001(&system_context_id,0x03fc0020fdb);
         system_function_0261(audio_system_data_context,audio_system_data_context,&system_context_id);
         system_context_id = *(uint64_t *)(system_context_parameter + SYSTEM_RESOURCE_TABLE_OFFSET);
         system_context_id = *(uint64_t *)(system_context_parameter + 0x04a);
@@ -44788,7 +44788,7 @@ float * system_function_0113(float *system_context_parameter)
         system_stack_float_4c = system_context_parameter[0x053];
         system_context_id = *(uint64_t *)(system_context_parameter + 0x054);
         system_context_id = *(uint64_t *)(system_context_parameter + 0x056);
-        system_function_0x01002003(&system_context_id);
+        system_cleanup_audio_resource002003(&system_context_id);
         audio_system_data_context = (float *)system_function_0261(audio_system_data_context,audio_system_data_context,&system_context_id);
       }
     }
@@ -44835,19 +44835,19 @@ float * system_function_0113(float *system_context_parameter)
     if (psystem_stack_float_0x02001 != (float *)0x00) {
       while( true ) {
         LOCK();
-        system_char_config = *(char *)(audio_system_data_context + 0x03b);
-        system_byte_var_ = system_char_config == '\0';
-        if (system_byte_var_) {
+        system_char_status = *(char *)(audio_system_data_context + 0x03b);
+        system_bool_flag = system_char_status == '\0';
+        if (system_bool_flag) {
           *(char *)(audio_system_data_context + 0x03b) = '\x1';
-          system_char_config = '\0';
+          system_char_status = '\0';
         }
         UNLOCK();
-        if (system_byte_var_) break;
+        if (system_bool_flag) break;
         audio_volume_value = (float)_Thrd_id();
         if ((audio_system_data_context[0x03c] == audio_volume_value) || (audio_system_data_context[0x03c] != SYSTEM_FLOAT_ZERO_VALUE)) goto SYSTEM_LABEL;
         Sleep();
       }
-      system_char_config = '\0';
+      system_char_status = '\0';
 SYSTEM_VALIDATION_CHECK:
       LOCK();
       audio_system_data_context = audio_system_data_context + 0x03a;
@@ -44855,9 +44855,9 @@ SYSTEM_VALIDATION_CHECK:
       audio_system_data_context = (float *)(ulonglong)(uint)audio_volume_value;
       *audio_system_data_context = (float)((int)*audio_system_data_context + -1);
       UNLOCK();
-      if (system_char_config == '\0') {
+      if (system_char_status == '\0') {
         if ((((audio_volume_value == 1.4013e-45) && (*(longlong *)(psystem_stack_float_0x02001 + 0x014) != 0)) &&
-            (audio_system_data_context = psystem_stack_float_0x02001, system_function_0x012003(psystem_stack_float_0x02001), *(char *)(audio_system_data_context + 0x03f) == '\0')) &&
+            (audio_system_data_context = psystem_stack_float_0x02001, system_cleanup_audio_resource2003(psystem_stack_float_0x02001), *(char *)(audio_system_data_context + 0x03f) == '\0')) &&
            ((*(char *)(audio_system_data_context + 0x03d) == '\0' &&
             (((*(byte *)((longlong)audio_system_data_context + 0x07d) & SYSTEM_RESOURCE_BLOCK_OFFSET_20) == 0 ||
              ((*(byte *)((longlong)audio_system_data_context + 0x07e) & 1) == 0)))))) {
@@ -44884,9 +44884,9 @@ void system_function_0x035ff0(longlong *system_context_parameter)
   ushort system_uint_value;
   longlong *system_long_context_ptr;
   uint system_uint_handle;
-  int system_status_buffer;
-  int system_int_config;
-  int system_status_code;
+  int system_buffer_size;
+  int system_config_value;
+  int system_return_code;
   longlong system_audio_long_value;
   uint32_t system_config_buffer [0x01];
   longlong *system_buffer_pointer;
@@ -44915,9 +44915,9 @@ void system_function_0x035ff0(longlong *system_context_parameter)
       system_long_context_ptr = system_context_parameter;
       if ((((*(byte *)((longlong)system_context_parameter + 0x07d) & SYSTEM_AUDIO_TABLE_OFFSET_VALUE) == 0) || (system_context_parameter[0x042] == 0)) &&
          (system_context_parameter[0x036] != 0)) {
-        system_long_context_ptr = (longlong *)system_function_0x010026();
+        system_long_context_ptr = (longlong *)system_cleanup_audio_resource0026();
       }
-      system_status_code = 0;
+      system_return_code = 0;
       if (system_long_context_ptr == system_context_parameter) {
         system_buffer_pointer = (longlong *)0x00;
         system_config_buffer[0] = 0;
@@ -44935,24 +44935,24 @@ void system_function_0x035ff0(longlong *system_context_parameter)
         }
         system_uint_handle = (uint)system_uint_value;
         if (system_uint_value < 2) {
-          system_status_code = system_uint_handle - 1;
+          system_return_code = system_uint_handle - 1;
           audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-          system_int_config = system_status_code;
+          system_config_value = system_return_code;
         }
         else {
-          system_int_config = system_uint_handle - 1;
+          system_config_value = system_uint_handle - 1;
           if (0 < (int)(system_uint_handle - 2)) {
             do {
-              system_status_buffer = system_int_config + system_status_code >> 1;
-              if (*(float *)(system_buffer_pointer[0x01003] + (longlong)system_status_buffer * 4) <= audio_volume_value) {
-                system_status_code = system_status_buffer;
-                system_status_buffer = system_int_config;
+              system_buffer_size = system_config_value + system_return_code >> 1;
+              if (*(float *)(system_buffer_pointer[0x01003] + (longlong)system_buffer_size * 4) <= audio_volume_value) {
+                system_return_code = system_buffer_size;
+                system_buffer_size = system_config_value;
               }
-              system_int_config = system_status_buffer;
-            } while (system_status_code < system_int_config + -1);
+              system_config_value = system_buffer_size;
+            } while (system_return_code < system_config_value + -1);
           }
-          audio_volume_value = *(float *)(system_buffer_pointer[0x01003] + (longlong)system_status_code * 4);
-          audio_volume_value = (audio_volume_value - audio_volume_value) / (*(float *)(system_buffer_pointer[0x01003] + (longlong)system_int_config * 4) - audio_volume_value);
+          audio_volume_value = *(float *)(system_buffer_pointer[0x01003] + (longlong)system_return_code * 4);
+          audio_volume_value = (audio_volume_value - audio_volume_value) / (*(float *)(system_buffer_pointer[0x01003] + (longlong)system_config_value * 4) - audio_volume_value);
           if (SYSTEM_FLOAT_ZERO_VALUE <= audio_volume_value) {
             if (1.0 <= audio_volume_value) {
               audio_volume_value = 1.0;
@@ -44962,7 +44962,7 @@ void system_function_0x035ff0(longlong *system_context_parameter)
             audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
           }
         }
-        if (-1 < system_status_code) {
+        if (-1 < system_return_code) {
           (**(code **)(*system_context_parameter + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_context_parameter);
           system_context_id = 0;
           system_context_id_f1 = 0;
@@ -44971,7 +44971,7 @@ void system_function_0x035ff0(longlong *system_context_parameter)
           system_context_id_f0 = 0;
           system_function_0x023003(&system_context_id,system_context_parameter,0);
           (**(code **)(*system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_context_parameter);
-          system_function_0240(&system_context_id,system_long_context_ptr,system_int_config,system_status_code,audio_volume_value);
+          system_function_0240(&system_context_id,system_long_context_ptr,system_config_value,system_return_code,audio_volume_value);
           system_function_0x023002(&system_context_id);
         }
         system_function_0152(system_config_buffer);
@@ -44994,25 +44994,25 @@ void system_function_0x035ff0(longlong *system_context_parameter)
         }
         system_uint_handle = (uint)system_uint_value;
         if (system_uint_value < 2) {
-          system_status_code = system_uint_handle - 1;
+          system_return_code = system_uint_handle - 1;
           audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-          system_int_config = system_status_code;
+          system_config_value = system_return_code;
         }
         else {
-          system_int_config = system_uint_handle - 1;
+          system_config_value = system_uint_handle - 1;
           if (0 < (int)(system_uint_handle - 2)) {
             do {
-              system_status_buffer = system_int_config + system_status_code >> 1;
-              if (*(float *)(*(longlong *)(system_stack_long_int_0x010001 + SYSTEM_STACK_UINT_INITIAL_VALUE1) + (longlong)system_status_buffer * 4) <= audio_volume_value) {
-                system_status_code = system_status_buffer;
-                system_status_buffer = system_int_config;
+              system_buffer_size = system_config_value + system_return_code >> 1;
+              if (*(float *)(*(longlong *)(system_stack_long_int_0x010001 + SYSTEM_STACK_UINT_INITIAL_VALUE1) + (longlong)system_buffer_size * 4) <= audio_volume_value) {
+                system_return_code = system_buffer_size;
+                system_buffer_size = system_config_value;
               }
-              system_int_config = system_status_buffer;
-            } while (system_status_code < system_int_config + -1);
+              system_config_value = system_buffer_size;
+            } while (system_return_code < system_config_value + -1);
           }
-          audio_volume_value = *(float *)(*(longlong *)(system_stack_long_int_0x010001 + SYSTEM_STACK_UINT_INITIAL_VALUE1) + (longlong)system_status_code * 4);
+          audio_volume_value = *(float *)(*(longlong *)(system_stack_long_int_0x010001 + SYSTEM_STACK_UINT_INITIAL_VALUE1) + (longlong)system_return_code * 4);
           audio_volume_value = (audio_volume_value - audio_volume_value) /
-                  (*(float *)(*(longlong *)(system_stack_long_int_0x010001 + SYSTEM_STACK_UINT_INITIAL_VALUE1) + (longlong)system_int_config * 4) - audio_volume_value);
+                  (*(float *)(*(longlong *)(system_stack_long_int_0x010001 + SYSTEM_STACK_UINT_INITIAL_VALUE1) + (longlong)system_config_value * 4) - audio_volume_value);
           if (SYSTEM_FLOAT_ZERO_VALUE <= audio_volume_value) {
             if (1.0 <= audio_volume_value) {
               audio_volume_value = 1.0;
@@ -45022,7 +45022,7 @@ void system_function_0x035ff0(longlong *system_context_parameter)
             audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
           }
         }
-        if (-1 < system_status_code) {
+        if (-1 < system_return_code) {
           (**(code **)(*system_context_parameter + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_context_parameter);
           system_context_id_c1 = 0;
           system_context_id_c0 = 0;
@@ -45031,7 +45031,7 @@ void system_function_0x035ff0(longlong *system_context_parameter)
           system_context_id_b1 = 0;
           system_function_0x023003(&system_context_id_c1,system_context_parameter,0);
           (**(code **)(*system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_context_parameter);
-          system_function_0240(&system_context_id_c1,system_audio_long_value,system_int_config,system_status_code,audio_volume_value);
+          system_function_0240(&system_context_id_c1,system_audio_long_value,system_config_value,system_return_code,audio_volume_value);
           system_function_0x023002(&system_context_id_c1);
         }
         system_function_0154(&system_buffer_pointer);
@@ -45067,18 +45067,18 @@ longlong * system_function_0114(longlong *system_context_parameter,longlong *sys
   longlong system_audio_long_value;
   longlong system_audio_long_value;
   uint64_t system_audio_uint_value;
-  longlong *psystem_long_var_0x01002;
+  longlong *system_audio_context_ptr;
   void **system_data_context0;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   longlong *system_buffer_pointer_10;
   uint64_t system_audio_uint_value;
   
   system_buffer_pointer_10 = system_context_parameter;
   system_audio_uint_value = system_allocate_memory_context(system_context_memory_pool,0x0300,SYSTEM_CONFIG_DATA_SIZE_16,0x02,0,SYSTEM_INVALID_HANDLE_VALUE);
-  psystem_long_var_0x01002 = (longlong *)system_function_0x010003(system_audio_uint_value,0,0);
-  *system_context_parameter = (longlong)psystem_long_var_0x01002;
-  if (psystem_long_var_0x01002 != (longlong *)0x00) {
-    (**(code **)(*psystem_long_var_0x01002 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_0x01002);
+  system_audio_context_ptr = (longlong *)system_create_audio_context(system_audio_uint_value,0,0);
+  *system_context_parameter = (longlong)system_audio_context_ptr;
+  if (system_audio_context_ptr != (longlong *)0x00) {
+    (**(code **)(*system_audio_context_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_audio_context_ptr);
   }
   system_audio_uint_value = 1;
   *(byte *)(*system_context_parameter + 0x07d) = *(byte *)(*system_context_parameter + 0x07d) & 0x06f;
@@ -45108,9 +45108,9 @@ longlong * system_function_0114(longlong *system_context_parameter,longlong *sys
   }
   else {
     system_long_handle = *system_context_parameter;
-    system_buffer_pointer_0x01 = system_context_parameter;
+    system_audio_device_ptr = system_context_parameter;
     (**(code **)(*system_context_parameter + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_context_parameter);
-    system_function_0111(system_long_handle,&system_buffer_pointer_0x01);
+    system_function_0111(system_long_handle,&system_audio_device_ptr);
     (**(code **)(*system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_context_parameter);
   }
   *(longlong *)(*system_context_parameter + SYSTEM_CONTEXT_OFFSET_A1) = system_context_parameter[0x09];
@@ -45219,15 +45219,15 @@ longlong * system_function_0114(longlong *system_context_parameter,longlong *sys
   system_audio_context_id = *(uint64_t *)((longlong)system_context_parameter + 0x02dc);
   *(uint64_t *)(*system_context_parameter + 0x02dc) = system_audio_context_id;
   system_long_handle = *system_context_parameter;
-  psystem_long_var_0x01002 = (longlong *)system_context_parameter[0x04d];
-  if (psystem_long_var_0x01002 != (longlong *)0x00) {
-    system_buffer_pointer_0x01 = psystem_long_var_0x01002;
-    (**(code **)(*psystem_long_var_0x01002 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_0x01002,system_audio_context_id,(int)system_audio_long_value,(int)system_audio_long_value,system_audio_uint_value);
+  system_audio_context_ptr = (longlong *)system_context_parameter[0x04d];
+  if (system_audio_context_ptr != (longlong *)0x00) {
+    system_audio_device_ptr = system_audio_context_ptr;
+    (**(code **)(*system_audio_context_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_audio_context_ptr,system_audio_context_id,(int)system_audio_long_value,(int)system_audio_long_value,system_audio_uint_value);
   }
-  system_buffer_pointer_0x01 = *(longlong **)(system_long_handle + 0x026001);
-  *(longlong **)(system_long_handle + 0x026001) = psystem_long_var_0x01002;
-  if (system_buffer_pointer_0x01 != (longlong *)0x00) {
-    (**(code **)(*system_buffer_pointer_0x01 + SYSTEM_THREAD_POOL_BASE_OFFSET))();
+  system_audio_device_ptr = *(longlong **)(system_long_handle + 0x026001);
+  *(longlong **)(system_long_handle + 0x026001) = system_audio_context_ptr;
+  if (system_audio_device_ptr != (longlong *)0x00) {
+    (**(code **)(*system_audio_device_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))();
   }
   system_function_0115(*system_context_parameter,system_context_parameter + 0x03003);
   return system_context_parameter;
@@ -45272,7 +45272,7 @@ void system_function_0x03600360(longlong *system_context_parameter,uint64_t syst
       system_initialize_component();
     }
     system_buffer_pointer[0x01003] = 0;
-    system_function_0x010024(system_buffer_pointer[0x016]);
+    system_cleanup_audio_resource0024(system_buffer_pointer[0x016]);
     system_long_data_ptr[0x016] = 0;
     *(uint64_t *)(system_long_data_ptr + SYSTEM_STATUS_FLAG_OFFSET) = 0;
     system_context_id = SYSTEM_CONFIG_DATA_SIZE_161;
@@ -45379,12 +45379,12 @@ void system_function_0x036a0010(longlong system_context_parameter)
 {
   char *psystem_init_status;
   longlong *system_long_context_ptr;
-  int system_comparison_result;
+  int system_compare_result;
   bool system_byte_buffer;
   
-  system_comparison_result = _Mtx_lock(SYSTEM_MUTEX_BASE_ADDRESS);
-  if (system_comparison_result != 0) {
-    __Throw_C_error_std__YAXH_Z(system_comparison_result);
+  system_compare_result = _Mtx_lock(SYSTEM_MUTEX_BASE_ADDRESS);
+  if (system_compare_result != 0) {
+    __Throw_C_error_std__YAXH_Z(system_compare_result);
   }
   psystem_init_status = (char *)(system_context_parameter + 0x07c);
   *psystem_init_status = *psystem_init_status + -1;
@@ -45403,7 +45403,7 @@ void system_function_0x036a0010(longlong system_context_parameter)
       Sleep(0);
     }
     if ((((*(longlong *)(system_context_parameter + 0x0210) != 0) &&
-         (system_function_0x012003(system_context_parameter), *(char *)(system_context_parameter + 0x07c) == '\0')) &&
+         (system_cleanup_audio_resource2003(system_context_parameter), *(char *)(system_context_parameter + 0x07c) == '\0')) &&
         (*(char *)(system_context_parameter + 0x074) == '\0')) &&
        (((*(byte *)(system_context_parameter + 0x07d) & SYSTEM_RESOURCE_BLOCK_OFFSET_20) == 0 || ((*(byte *)(system_context_parameter + 0x07e) & 1) == 0)))) {
       system_long_context_ptr = *(longlong **)(system_context_parameter + 0x0210);
@@ -45418,9 +45418,9 @@ void system_function_0x036a0010(longlong system_context_parameter)
     }
     UNLOCK();
   }
-  system_comparison_result = _Mtx_unlock(SYSTEM_MUTEX_BASE_ADDRESS);
-  if (system_comparison_result != 0) {
-    __Throw_C_error_std__YAXH_Z(system_comparison_result);
+  system_compare_result = _Mtx_unlock(SYSTEM_MUTEX_BASE_ADDRESS);
+  if (system_compare_result != 0) {
+    __Throw_C_error_std__YAXH_Z(system_compare_result);
   }
   return;
 }
@@ -45464,8 +45464,8 @@ int system_function_0x036c50(longlong system_context_parameter,longlong *system_
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
   ulonglong *system_handle_ptr;
-  char system_char_buffer;
-  int system_int_config;
+  char system_current_char;
+  int system_config_value;
   uint system_audio_status;
   longlong system_audio_long_value;
   char *pcVar0x01;
@@ -45491,14 +45491,14 @@ int system_function_0x036c50(longlong system_context_parameter,longlong *system_
   uint64_t system_context_id;
   
   system_audio_uint_value = SYSTEM_INVALID_HANDLE_VALUE;
-  system_int_config = 0;
-  if (((*(longlong *)(system_context_parameter + 0x01b001) != 0) && (system_int_config = 0, (*(byte *)(system_context_parameter + 1) & 4) == 0)) &&
+  system_config_value = 0;
+  if (((*(longlong *)(system_context_parameter + 0x01b001) != 0) && (system_config_value = 0, (*(byte *)(system_context_parameter + 1) & 4) == 0)) &&
      (*(char *)((longlong)system_context_parameter + 0x012) == '\0')) {
-    system_int_config = system_function_0236();
+    system_config_value = system_function_0236();
   }
   if ((*(byte *)(system_context_parameter + 1) & SYSTEM_RESOURCE_BLOCK_OFFSET_20) == 0) {
-    system_char_buffer = system_function_0116(system_context_parameter);
-    if (system_char_buffer == '\0') {
+    system_current_char = system_function_0116(system_context_parameter);
+    if (system_current_char == '\0') {
       if ((char)system_context_parameter[2] != '\0') {
         system_buffer_pointer = (ulonglong *)0x00;
         system_buffer_pointer = (longlong *)0x00;
@@ -45509,9 +45509,9 @@ int system_function_0x036c50(longlong system_context_parameter,longlong *system_
           (*pcStack_0x030)(&system_buffer_pointer,0,0);
         }
       }
-      system_char_buffer = system_function_0116(system_context_parameter);
-      if (system_char_buffer == '\0') {
-        system_int_config = system_int_config + 1;
+      system_current_char = system_function_0116(system_context_parameter);
+      if (system_current_char == '\0') {
+        system_config_value = system_config_value + 1;
         if (*system_context_parameter != 0) {
           system_context_id_0x01 = system_context_parameter;
           system_complete_audio_setup(*system_context_parameter,&system_context_id_0x01);
@@ -45523,7 +45523,7 @@ int system_function_0x036c50(longlong system_context_parameter,longlong *system_
     }
   }
   if ((*(byte *)(system_context_parameter + 1) & SYSTEM_CONFIG_DATA_SIZE_16) == 0) {
-    return system_int_config;
+    return system_config_value;
   }
   system_context_id = 0;
   system_context_id = 0;
@@ -45536,11 +45536,11 @@ int system_function_0x036c50(longlong system_context_parameter,longlong *system_
     pcVar0x01 = (char *)temp_pointer[3];
   }
   system_audio_status = 0x0905;
-  system_char_buffer = *pcVar0x01;
-  while (system_char_buffer != '\0') {
+  system_current_char = *pcVar0x01;
+  while (system_current_char != '\0') {
     pcVar0x01 = pcVar0x01 + 1;
-    system_audio_status = system_audio_status * 0x021 + (int)system_char_buffer;
-    system_char_buffer = *pcVar0x01;
+    system_audio_status = system_audio_status * 0x021 + (int)system_current_char;
+    system_current_char = *pcVar0x01;
   }
   system_audio_uint_value = (ulonglong)system_audio_status;
   if ((system_audio_uint_value & 1) != 0) {
@@ -45584,9 +45584,9 @@ int system_function_0x036c50(longlong system_context_parameter,longlong *system_
                          (byte)system_audio_uint_value & 1,system_long_data_ptr,1,0,0,&system_context_id_0x01,system_audio_uint_value);
   temp_pointer = &system_context_id_0x01;
   system_context_id_0x01 = 0;
-  system_char_buffer = system_function_0x022003(system_audio_uint_value,system_long_data_ptr,&system_context_id_0x01);
-  if (system_char_buffer == '\0') {
-    system_int_config = system_int_config + 1;
+  system_current_char = system_function_0x022003(system_audio_uint_value,system_long_data_ptr,&system_context_id_0x01);
+  if (system_current_char == '\0') {
+    system_config_value = system_config_value + 1;
   }
   system_context_parameter[6] = *system_long_data_ptr;
   system_audio_long_value = system_context_parameter[0x02];
@@ -45604,15 +45604,15 @@ int system_function_0x036c50(longlong system_context_parameter,longlong *system_
   system_function_0263(system_audio_long_value + SYSTEM_RESOURCE_BLOCK_OFFSET_20,&system_context_id_0x01,*(uint64_t *)(system_audio_long_value + SYSTEM_CONFIG_DATA_SIZE_16),*(uint64_t *)(system_audio_long_value + 0x01001),
                 1);
   if ((char)system_context_id_0x01 != '\0') {
-    system_audio_uint_value = system_audio_uint_value % (ulonglong)system_context_id_0x01._4_4_;
-    system_function_0x010015(system_audio_long_value,system_context_id_0x01._4_4_);
+    system_audio_uint_value = system_audio_uint_value % (ulonglong)system_context_id_0x01.y;
+    system_cleanup_audio_resource0015(system_audio_long_value,system_context_id_0x01.y);
   }
   system_uint_ptr[1] = *(ulonglong *)(*(longlong *)(system_audio_long_value + 0x01) + system_audio_uint_value * 0x01);
   *(ulonglong **)(*(longlong *)(system_audio_long_value + 0x01) + system_audio_uint_value * 0x01) = system_uint_ptr;
   *(longlong *)(system_audio_long_value + 0x01001) = *(longlong *)(system_audio_long_value + 0x01001) + 1;
 SYSTEM_VALIDATION_CHECK:
-  system_function_0x016003(&system_context_id);
-  return system_int_config;
+  system_cleanup_audio_resource6003(&system_context_id);
+  return system_config_value;
 }
 void system_function_0x03003020(longlong *system_context_parameter)
 
@@ -45640,7 +45640,7 @@ void system_function_0x03003020(longlong *system_context_parameter)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong system_function_0x011003(longlong system_context_parameter)
+ulonglong system_cleanup_audio_resource1003(longlong system_context_parameter)
 
 {
   int *system_audio_loop_index_ptr;
@@ -45723,7 +45723,7 @@ void system_function_0x03003150(longlong *system_context_parameter)
   system_buffer_pointer = &system_data_physics_pool_base;
   system_buffer_pointer = system_config_buffer;
   system_config_buffer[0] = system_config_buffer[0] & 0x07fffffffffffff00;
-  system_context_id._0_4_ = 0x012;
+  system_context_id.x = 0x012;
   strcpy_s(system_config_buffer,SYSTEM_RESOURCE_BLOCK_OFFSET_20,&system_filesystem_manager_ptr);
   system_uint_handle = system_function_0245(system_uint_value,&system_buffer_pointer,0);
   system_buffer_pointer = &system_data_animation_pool_base;
@@ -45743,7 +45743,7 @@ void system_function_0x03003150(longlong *system_context_parameter)
         system_buffer_pointer = &system_context_id;
         system_context_id = 0;
         system_config_buffer[0] = 0;
-        system_context_id._0_4_ = (uint)system_context_id & 0x07fffff00;
+        system_context_id.x = (uint)system_context_id & 0x07fffff00;
         system_function_0x023003(&system_buffer_pointer,system_context_parameter,0);
         (**(code **)(*system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_context_parameter);
         system_function_0242(&system_buffer_pointer);
@@ -45765,7 +45765,7 @@ void system_function_0x03003150(longlong *system_context_parameter)
       system_buffer_pointer = &system_context_id;
       system_context_id = 0;
       system_config_buffer[0] = 0;
-      system_context_id._0_4_ = (uint)system_context_id & 0x07fffff00;
+      system_context_id.x = (uint)system_context_id & 0x07fffff00;
       system_function_0x023003(&system_buffer_pointer,system_context_parameter,0);
       (**(code **)(*system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_context_parameter);
       system_function_0243(&system_buffer_pointer);
@@ -45797,7 +45797,7 @@ SYSTEM_VALIDATION_CHECK:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t system_function_0x011002(longlong system_context_parameter,longlong system_context_parameter)
+uint64_t system_cleanup_audio_resource1002(longlong system_context_parameter,longlong system_context_parameter)
 
 {
   uint *system_data_context;
@@ -45997,7 +45997,7 @@ ulonglong system_function_0120(longlong system_context_parameter,uint *system_co
   uint *system_uint_ptr;
   byte system_bool_graphics_ready;
   char *pcVar0x040;
-  int system_comparison_result3;
+  int system_compare_result3;
   ulonglong system_audio_uint_value;
   uint *system_uint_ptr;
   bool system_bool_36;
@@ -46039,7 +46039,7 @@ ulonglong system_function_0120(longlong system_context_parameter,uint *system_co
   system_stack_long_int_20 = system_context_parameter;
   if (*(char *)(system_context_parameter + 0x07002) == '\0') {
     system_audio_uint_value = system_allocate_memory_context(system_context_memory_pool,0x040,0x01,0x02);
-    system_audio_uint_value = system_function_0x010022(system_audio_uint_value);
+    system_audio_uint_value = system_cleanup_audio_resource0022(system_audio_uint_value);
     *(uint64_t *)(system_context_parameter + 0x01d001) = system_audio_uint_value;
     LOCK();
     *(uint32_t *)(system_context_parameter + 0x07002) = 1;
@@ -46089,7 +46089,7 @@ SYSTEM_VALIDATION_CHECK:
     if ((cVar21 == '\0') || (system_context_parameter == 0)) {
       system_function_0134(system_context_parameter,0);
       if ((*(byte *)(system_context_parameter + 0x07e) & 4) == 0) {
-        system_audio_uint_value = system_function_0x011002(system_context_parameter,system_context_parameter);
+        system_audio_uint_value = system_cleanup_audio_resource1002(system_context_parameter,system_context_parameter);
         system_bool_graphics_ready = (char)system_audio_uint_value << 2;
         system_bool_22 = system_bool_graphics_ready | *(byte *)(system_context_parameter + 0x07e) & 0x07b;
         system_audio_uint_value = CONCAT0x031((int0x03)((ulonglong)system_audio_uint_value >> 0x01),system_bool_22);
@@ -46100,7 +46100,7 @@ SYSTEM_VALIDATION_CHECK:
       if (((system_audio_status >> SYSTEM_STATUS_FLAG_OFFSET & 1) != 0) ||
          ((*(longlong *)(system_context_parameter + 600) != 0 && (0 < *(int *)(*(longlong *)(system_context_parameter + 600) + 0x0A)))
          )) {
-        system_comparison_result3 = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
+        system_compare_result3 = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
         system_data_context6 = *(uint64_t **)(system_context_parameter + 600);
         if (system_data_context6 == (uint64_t *)0x00) {
           system_data_context6 = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x05001,0x01,3);
@@ -46119,13 +46119,13 @@ SYSTEM_VALIDATION_CHECK:
           *(uint64_t **)(system_context_parameter + 600) = system_data_context6;
         }
         system_context_parameter = psystem_stack_float_0x01001;
-        if (*(int *)(system_data_context6 + 4) != system_comparison_result3) {
-          *(int *)(system_data_context6 + 4) = system_comparison_result3;
-          system_function_0x012001(system_context_parameter,system_param_);
+        if (*(int *)(system_data_context6 + 4) != system_compare_result3) {
+          *(int *)(system_data_context6 + 4) = system_compare_result3;
+          system_cleanup_audio_resource2001(system_context_parameter,system_param_);
           system_context_parameter = psystem_stack_float_0x01001;
           if (((byte)(system_audio_status >> SYSTEM_STATUS_FLAG_OFFSET) & 1) != 0) {
             if ((*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_160) & SYSTEM_STANDARD_BUFFER_SIZE0) != 0) {
-              system_function_0x014001(system_context_parameter);
+              system_cleanup_audio_resource4001(system_context_parameter);
             }
             system_stack_long_int_0x011001 = _system_data_memory_pool0c160010020 + 0x050016001;
             system_uint_ptr = (uint *)((longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x06a003001) * 0x020001 + system_stack_long_int_0x011001);
@@ -46139,19 +46139,19 @@ SYSTEM_VALIDATION_CHECK:
             system_uint_ptr = system_uint_ptr + (system_audio_uint_value + 1) * 2;
             system_context_id = system_audio_uint_value;
             do {
-              system_comparison_result3 = (int)system_audio_uint_value;
+              system_compare_result3 = (int)system_audio_uint_value;
               if (*(longlong *)system_uint_ptr == 0) {
                 system_audio_long_value = system_allocate_resource_block(system_context_memory_pool,0x04000,0x025);
                 LOCK();
-                system_bool_36 = *(longlong *)(system_uint_ptr + (longlong)system_comparison_result3 * 2 + 2) == 0;
+                system_bool_36 = *(longlong *)(system_uint_ptr + (longlong)system_compare_result3 * 2 + 2) == 0;
                 if (system_bool_36) {
-                  *(longlong *)(system_uint_ptr + (longlong)system_comparison_result3 * 2 + 2) = system_audio_long_value;
+                  *(longlong *)(system_uint_ptr + (longlong)system_compare_result3 * 2 + 2) = system_audio_long_value;
                 }
                 UNLOCK();
                 if (system_bool_36) {
-                  system_function_0213(system_uint_ptr,system_comparison_result3 << 0x02);
+                  system_function_0213(system_uint_ptr,system_compare_result3 << 0x02);
                   LOCK();
-                  *(uint32_t *)((longlong)system_uint_ptr + (longlong)system_comparison_result3 + SYSTEM_STANDARD_BUFFER_SIZE1) = 0;
+                  *(uint32_t *)((longlong)system_uint_ptr + (longlong)system_compare_result3 + SYSTEM_STANDARD_BUFFER_SIZE1) = 0;
                   UNLOCK();
                   system_audio_uint_value = system_context_id;
                 }
@@ -46170,7 +46170,7 @@ SYSTEM_VALIDATION_CHECK:
                 } while (*pcVar0x040 != '\0');
               }
               pcVar0x040 = pcVar0x040 + 1;
-              system_audio_uint_value = (ulonglong)(system_comparison_result3 + 1);
+              system_audio_uint_value = (ulonglong)(system_compare_result3 + 1);
               system_uint_ptr = system_uint_ptr + 2;
             } while ((longlong)(pcVar0x040 + (-SYSTEM_STANDARD_BUFFER_SIZE1 - (longlong)system_uint_ptr)) <= (longlong)system_audio_uint_value);
             system_data_context6 = (uint64_t *)
@@ -46264,7 +46264,7 @@ SYSTEM_VALIDATION_CHECK:
               system_data_context0x02 = system_stack_array;
               system_uint_ptr = *(uint **)(temp_pointer + 10);
             }
-            system_function_0x016001(system_uint_ptr + 0x04e2,system_data_context0x02,asystem_buffer_pointer);
+            system_cleanup_audio_resource6001(system_uint_ptr + 0x04e2,system_data_context0x02,asystem_buffer_pointer);
             system_context_parameter = psystem_stack_float_0x01001;
             system_context_parameter = system_stack_long_int_20;
           }
@@ -46314,11 +46314,11 @@ SYSTEM_VALIDATION_CHECK:
       system_stack_float_0x01c = system_float_buffer * audio_volume_value + system_float_config * audio_volume_value + system_audio_coefficient * audio_volume_value + system_context_parameter[0x07];
       system_context_parameter = &system_stack_float_c1;
     }
-    system_function_0x010023(&system_context_id,system_context_parameter + 0x04,*(uint32_t *)(system_context_parameter + 0x07003),system_context_parameter);
+    system_cleanup_audio_resource0023(&system_context_id,system_context_parameter + 0x04,*(uint32_t *)(system_context_parameter + 0x07003),system_context_parameter);
     system_audio_status = system_context_parameter[0x06f6];
-    system_comparison_result3 = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
+    system_compare_result3 = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
     if (((*(byte *)(system_context_parameter + 0x07d) & 1) == 0) &&
-       ((*(int *)(system_context_parameter + 0x01d0) == system_comparison_result3 || (*(int *)(system_context_parameter + 0x01d0) == system_comparison_result3 + -1)))) {
+       ((*(int *)(system_context_parameter + 0x01d0) == system_compare_result3 || (*(int *)(system_context_parameter + 0x01d0) == system_compare_result3 + -1)))) {
       system_bool_graphics_ready = 0;
     }
     else {
@@ -46338,7 +46338,7 @@ SYSTEM_VALIDATION_CHECK:
     }
     system_audio_uint_value = system_function_0246(system_context_parameter,system_context_parameter,&system_context_id,system_context_parameter,system_param_);
     *(byte *)(system_context_parameter + 0x07d) = *(byte *)(system_context_parameter + 0x07d) & 0x07e;
-    *(int *)(system_context_parameter + 0x01d0) = system_comparison_result3;
+    *(int *)(system_context_parameter + 0x01d0) = system_compare_result3;
     if (system_bool_22 != 0) {
       *(uint64_t *)(system_context_parameter + 0x0160) = system_context_id;
       *(uint64_t *)(system_context_parameter + 0x016001) = system_context_id;
@@ -46433,7 +46433,7 @@ void system_function_0x0300300202c(void)
   longlong system_audio_stack_param;
   
   if (!in_ZF) {
-    system_function_0x014001();
+    system_cleanup_audio_resource4001();
   }
   system_audio_stack_param = _system_data_memory_pool0c160010020 + 0x050016001;
   system_uint_ptr = (uint *)((longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x06a003001) * 0x020001 + system_audio_stack_param);
@@ -46571,7 +46571,7 @@ void system_function_0x0300300202c(void)
     system_uint_ptr = &stack0x010030;
     system_audio_long_value = *(longlong *)(system_audio_stack_param + SYSTEM_MEMORY_POOL_BASE_OFFSET);
   }
-  system_function_0x016001(system_audio_long_value + 0x033001001,system_uint_ptr,&stack0x040);
+  system_cleanup_audio_resource6001(system_audio_long_value + 0x033001001,system_uint_ptr,&stack0x040);
   audio_system_data_context = system_audio_stack_param;
   if ((*(uint *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_160) & SYSTEM_AUDIO_TABLE_OFFSET_VALUE00000) != 0) {
     audio_volume_value = *system_audio_stack_param;
@@ -46620,7 +46620,7 @@ void system_function_0x0300300202c(void)
          system_float_config * audio_volume_value + system_float_status * audio_volume_value + system_audio_target_value * audio_volume_value + system_audio_stack_param[0x07];
     audio_system_data_context = &stack0x0a0;
   }
-  system_function_0x010023(&stack0x060,system_audio_long_value + 0x030,*(uint32_t *)(system_audio_register_value + 0x07003),audio_system_data_context);
+  system_cleanup_audio_resource0023(&stack0x060,system_audio_long_value + 0x030,*(uint32_t *)(system_audio_register_value + 0x07003),audio_system_data_context);
   system_audio_uint_value = system_audio_stack_param;
   system_audio_uint_value = system_audio_stack_param;
   system_audio_uint_value = system_audio_stack_param;
@@ -46675,7 +46675,7 @@ void system_function_0x03003ad001(void)
   float system_audio_offset_value;
   float system_float_buffer;
   float system_float_config;
-  int system_status_code;
+  int system_return_code;
   uint64_t system_audio_uint_value;
   uint64_t system_audio_uint_value;
   uint64_t system_audio_uint_value;
@@ -46819,7 +46819,7 @@ void system_function_0x03003ad001(void)
     system_uint_ptr = &stack0x010030;
     system_audio_long_value = *(longlong *)(system_audio_stack_param + SYSTEM_MEMORY_POOL_BASE_OFFSET);
   }
-  system_function_0x016001(system_audio_long_value + 0x033001001,system_uint_ptr,&stack0x040);
+  system_cleanup_audio_resource6001(system_audio_long_value + 0x033001001,system_uint_ptr,&stack0x040);
   audio_system_data_context = system_audio_stack_param;
   if ((*(uint *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_160) & SYSTEM_AUDIO_TABLE_OFFSET_VALUE00000) != 0) {
     audio_volume_value = *system_audio_stack_param;
@@ -46868,7 +46868,7 @@ void system_function_0x03003ad001(void)
          system_float_buffer * audio_volume_value + system_float_config * audio_volume_value + system_audio_coefficient * audio_volume_value + system_audio_stack_param[0x07];
     audio_system_data_context = &stack0x0a0;
   }
-  system_function_0x010023(&stack0x060,system_audio_long_value + 0x030,*(uint32_t *)(system_audio_register_value + 0x07003),audio_system_data_context);
+  system_cleanup_audio_resource0023(&stack0x060,system_audio_long_value + 0x030,*(uint32_t *)(system_audio_register_value + 0x07003),audio_system_data_context);
   system_audio_uint_value = system_audio_stack_param;
   system_audio_uint_value = system_audio_stack_param;
   system_audio_uint_value = system_audio_stack_param;
@@ -46878,9 +46878,9 @@ void system_function_0x03003ad001(void)
   system_audio_uint_value = system_audio_stack_param;
   system_audio_uint_value = system_audio_stack_param;
   system_bool_audio_ready = *(byte *)(system_audio_long_value + 0x01bd001);
-  system_status_code = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
+  system_return_code = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
   if (((*(byte *)(system_audio_register_value + 0x07d) & 1) == 0) &&
-     ((*(int *)(system_audio_register_value + 0x01d0) == system_status_code || (*(int *)(system_audio_register_value + 0x01d0) == system_status_code + -1)))) {
+     ((*(int *)(system_audio_register_value + 0x01d0) == system_return_code || (*(int *)(system_audio_register_value + 0x01d0) == system_return_code + -1)))) {
     system_bool_graphics_ready = 0;
   }
   else {
@@ -46900,7 +46900,7 @@ void system_function_0x03003ad001(void)
   }
   system_function_0246(system_audio_long_value);
   *(byte *)(system_audio_register_value + 0x07d) = *(byte *)(system_audio_register_value + 0x07d) & 0x07e;
-  *(int *)(system_audio_register_value + 0x01d0) = system_status_code;
+  *(int *)(system_audio_register_value + 0x01d0) = system_return_code;
   if (system_bool_audio_ready != 0) {
     *(uint64_t *)(system_audio_register_value + 0x0160) = system_audio_uint_value;
     *(uint64_t *)(system_audio_register_value + 0x016001) = system_audio_uint_value;
@@ -46923,7 +46923,7 @@ void system_function_0x03003c0026(void)
   float system_audio_offset_value;
   float system_float_buffer;
   float system_float_config;
-  int system_status_code;
+  int system_return_code;
   uint64_t system_audio_uint_value;
   uint64_t system_audio_uint_value;
   uint64_t system_audio_uint_value;
@@ -47005,7 +47005,7 @@ void system_function_0x03003c0026(void)
     fStack00000000000000d1 = system_float_buffer * audio_volume_value + system_float_config * audio_volume_value + system_audio_coefficient * audio_volume_value + system_audio_register_value[0x05];
     fStack00000000000000dc = system_float_buffer * audio_volume_value + system_float_config * audio_volume_value + system_audio_coefficient * audio_volume_value + system_audio_register_value[0x07];
   }
-  system_function_0x010023(&stack0x060,system_audio_register_value + 0x030,*(uint32_t *)(system_audio_register_value + 0x07003));
+  system_cleanup_audio_resource0023(&stack0x060,system_audio_register_value + 0x030,*(uint32_t *)(system_audio_register_value + 0x07003));
   system_audio_uint_value = system_audio_stack_param;
   system_audio_uint_value = system_audio_stack_param;
   system_audio_uint_value = system_audio_stack_param;
@@ -47015,9 +47015,9 @@ void system_function_0x03003c0026(void)
   system_audio_uint_value = system_audio_stack_param;
   system_audio_uint_value = system_audio_stack_param;
   system_bool_network_ready = *(byte *)(system_audio_register_value + 0x01bd001);
-  system_status_code = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
+  system_return_code = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
   if (((*(byte *)(system_audio_register_value + 0x07d) & 1) == 0) &&
-     ((*(int *)(system_audio_register_value + 0x01d0) == system_status_code || (*(int *)(system_audio_register_value + 0x01d0) == system_status_code + -1)))) {
+     ((*(int *)(system_audio_register_value + 0x01d0) == system_return_code || (*(int *)(system_audio_register_value + 0x01d0) == system_return_code + -1)))) {
     system_bool_resource_ready = 0;
   }
   else {
@@ -47037,7 +47037,7 @@ void system_function_0x03003c0026(void)
   }
   system_function_0246();
   *(byte *)(system_audio_register_value + 0x07d) = *(byte *)(system_audio_register_value + 0x07d) & 0x07e;
-  *(int *)(system_audio_register_value + 0x01d0) = system_status_code;
+  *(int *)(system_audio_register_value + 0x01d0) = system_return_code;
   if (system_bool_network_ready != 0) {
     *(uint64_t *)(system_audio_register_value + 0x0160) = system_audio_uint_value;
     *(uint64_t *)(system_audio_register_value + 0x016001) = system_audio_uint_value;
@@ -47060,7 +47060,7 @@ void system_function_0x03003dc6(void)
   float system_audio_offset_value;
   float system_float_buffer;
   float system_float_config;
-  int system_status_code;
+  int system_return_code;
   uint64_t system_audio_uint_value;
   uint64_t system_audio_uint_value;
   uint64_t system_audio_uint_value;
@@ -47111,7 +47111,7 @@ void system_function_0x03003dc6(void)
   uint64_t system_audio_stack_param;
   
   system_context_id_ = 0x07fffffff;
-  system_function_0x016001(system_audio_register_value + 0x033001001,&stack0x030);
+  system_cleanup_audio_resource6001(system_audio_register_value + 0x033001001,&stack0x030);
   audio_system_data_context = system_audio_stack_param;
   if ((*(uint *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_160) & SYSTEM_AUDIO_TABLE_OFFSET_VALUE00000) != 0) {
     audio_volume_value = *system_audio_stack_param;
@@ -47160,7 +47160,7 @@ void system_function_0x03003dc6(void)
          system_float_buffer * audio_volume_value + system_float_config * audio_volume_value + system_audio_coefficient * audio_volume_value + system_audio_stack_param[0x07];
     audio_system_data_context = &stack0x0a0;
   }
-  system_function_0x010023(&stack0x060,system_audio_register_value + 0x030,*(uint32_t *)(system_audio_register_value + 0x07003),audio_system_data_context);
+  system_cleanup_audio_resource0023(&stack0x060,system_audio_register_value + 0x030,*(uint32_t *)(system_audio_register_value + 0x07003),audio_system_data_context);
   system_audio_uint_value = system_audio_stack_param;
   system_audio_uint_value = system_audio_stack_param;
   system_audio_uint_value = system_audio_stack_param;
@@ -47170,9 +47170,9 @@ void system_function_0x03003dc6(void)
   system_audio_uint_value = system_audio_stack_param;
   system_audio_uint_value = system_audio_stack_param;
   system_bool_network_ready = *(byte *)(system_audio_register_value + 0x01bd001);
-  system_status_code = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
+  system_return_code = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
   if (((*(byte *)(system_audio_register_value + 0x07d) & 1) == 0) &&
-     ((*(int *)(system_audio_register_value + 0x01d0) == system_status_code || (*(int *)(system_audio_register_value + 0x01d0) == system_status_code + -1)))) {
+     ((*(int *)(system_audio_register_value + 0x01d0) == system_return_code || (*(int *)(system_audio_register_value + 0x01d0) == system_return_code + -1)))) {
     system_bool_resource_ready = 0;
   }
   else {
@@ -47192,7 +47192,7 @@ void system_function_0x03003dc6(void)
   }
   system_function_0246();
   *(byte *)(system_audio_register_value + 0x07d) = *(byte *)(system_audio_register_value + 0x07d) & 0x07e;
-  *(int *)(system_audio_register_value + 0x01d0) = system_status_code;
+  *(int *)(system_audio_register_value + 0x01d0) = system_return_code;
   if (system_bool_network_ready != 0) {
     *(uint64_t *)(system_audio_register_value + 0x0160) = system_audio_uint_value;
     *(uint64_t *)(system_audio_register_value + 0x016001) = system_audio_uint_value;
@@ -47232,7 +47232,7 @@ void system_function_0x03003dec(void)
   uint64_t system_audio_stack_param;
   uint64_t system_audio_stack_param;
   
-  system_function_0x010023(&stack0x060,system_audio_register_value + 0x030,*(uint32_t *)(system_audio_register_value + 0x07003));
+  system_cleanup_audio_resource0023(&stack0x060,system_audio_register_value + 0x030,*(uint32_t *)(system_audio_register_value + 0x07003));
   system_audio_uint_value = system_audio_stack_param;
   system_audio_uint_value = system_audio_stack_param;
   system_audio_uint_value = system_audio_stack_param;
@@ -47339,11 +47339,11 @@ SYSTEM_VALIDATION_CHECK:
       }
       if ((*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_160) & SYSTEM_AUDIO_TABLE_OFFSET_VALUE00000) == 0) {
         system_context_id = *(uint64_t *)system_context_parameter;
-        system_context_id._0_4_ = (float)*(uint64_t *)(system_context_parameter + 2);
+        system_context_id.x = (float)*(uint64_t *)(system_context_parameter + 2);
         system_context_id = *(uint64_t *)(system_context_parameter + 4);
-        system_context_id._0_4_ = (float)*(uint64_t *)(system_context_parameter + 6);
+        system_context_id.x = (float)*(uint64_t *)(system_context_parameter + 6);
         system_context_id = *(uint64_t *)(system_context_parameter + 0x01);
-        system_context_id._0_4_ = (float)*(uint64_t *)(system_context_parameter + 10);
+        system_context_id.x = (float)*(uint64_t *)(system_context_parameter + 10);
         system_stack_float_0x05001 = system_context_parameter[0x04];
         system_stack_float_54 = system_context_parameter[0x06];
         system_stack_float_50 = system_context_parameter[0x05];
@@ -47365,15 +47365,15 @@ SYSTEM_VALIDATION_CHECK:
         audio_volume_value = system_context_parameter[10];
         system_float_status = *(float *)(system_context_parameter + 0x0124);
         audio_volume_value = *(float *)(system_context_parameter + 0x080);
-        system_context_id._0_4_ = system_float_status * audio_volume_value + system_audio_coefficient * audio_volume_value + system_audio_target_value * audio_volume_value;
+        system_context_id.x = system_float_status * audio_volume_value + system_audio_coefficient * audio_volume_value + system_audio_target_value * audio_volume_value;
         audio_volume_value = *(float *)(system_context_parameter + 0x08001);
         audio_volume_value = *(float *)(system_context_parameter + 0x0140);
-        system_context_id._0_4_ = system_audio_offset_value * audio_volume_value + audio_volume_value * audio_volume_value + audio_volume_value * audio_volume_value;
+        system_context_id.x = system_audio_offset_value * audio_volume_value + audio_volume_value * audio_volume_value + audio_volume_value * audio_volume_value;
         system_context_id = CONCAT44(system_float_status * audio_volume_value + system_audio_coefficient * audio_volume_value + system_audio_target_value * audio_volume_value,
                              system_float_status * audio_volume_value + system_audio_coefficient * audio_volume_value + system_audio_target_value * audio_volume_value);
         system_audio_coefficient = *(float *)(system_context_parameter + 0x014001);
         system_audio_target_value = *(float *)(system_context_parameter + 0x090);
-        system_context_id._0_4_ = system_float_buffer * audio_volume_value + audio_volume_value * audio_volume_value + system_audio_coefficient * audio_volume_value;
+        system_context_id.x = system_float_buffer * audio_volume_value + audio_volume_value * audio_volume_value + system_audio_coefficient * audio_volume_value;
         system_float_status = *(float *)(system_context_parameter + 0x09001);
         system_context_id = CONCAT44(system_audio_offset_value * audio_volume_value + audio_volume_value * audio_volume_value + audio_volume_value * audio_volume_value,
                              system_audio_offset_value * audio_volume_value + audio_volume_value * audio_volume_value + audio_volume_value * audio_volume_value);
@@ -47514,7 +47514,7 @@ void system_function_0x030011e0(longlong system_context_parameter)
   uint64_t system_audio_context_id;
   uint64_t system_uint_handle;
   uint64_t system_uint_buffer;
-  char system_char_config;
+  char system_char_status;
   uint32_t system_audio_status;
   uint64_t *parent_pointer;
   longlong system_audio_long_value;
@@ -47539,15 +47539,15 @@ SYSTEM_VALIDATION_CHECK:
   else {
     system_audio_uint_value = *(uint *)(*(longlong *)(system_audio_long_value + 0x01b001) + 0x08001);
     if ((system_audio_uint_value & SYSTEM_RESOURCE_BLOCK_OFFSET_20) != 0) {
-      system_char_config = '\0';
+      system_char_status = '\0';
       goto SYSTEM_LABEL;
     }
     if ((system_audio_uint_value & SYSTEM_CONFIG_DATA_SIZE_16) == 0) goto SYSTEM_LABEL;
     system_bool_10 = (*(byte *)(system_context_parameter + 0x07d) & 2) == 0;
   }
-  system_char_config = system_bool_10 + '\x1';
+  system_char_status = system_bool_10 + '\x1';
 SYSTEM_VALIDATION_CHECK:
-  *(char *)(system_context_parameter + 0x07f) = system_char_config;
+  *(char *)(system_context_parameter + 0x07f) = system_char_status;
   system_audio_long_value = *(longlong *)(system_context_parameter + 0x01b001);
   system_audio_uint_value = *(uint *)(system_audio_long_value + 0x08001) & 0x03000;
   system_audio_status = 0;
@@ -47581,7 +47581,7 @@ SYSTEM_VALIDATION_CHECK:
     *(uint64_t *)(system_context_parameter + 0x02c4) = system_uint_buffer;
   }
   *(uint16_t *)(system_audio_long_value + 0x03c0) = 0x07fff;
-  system_function_0x011001(system_context_parameter);
+  system_cleanup_audio_resource1001(system_context_parameter);
   if ((*(longlong *)(system_context_parameter + 600) == 0) &&
      ((*(uint *)(*(longlong *)(system_context_parameter + 0x01b001) + SYSTEM_THREAD_POOL_BASE_OFFSET0x01) >> SYSTEM_STATUS_FLAG_OFFSET & 1) != 0)) {
     parent_pointer = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x05001,0x01,0x02);
@@ -47610,12 +47610,12 @@ void system_function_0x030011f4(longlong system_context_parameter)
   uint64_t system_audio_context_id;
   uint64_t system_uint_handle;
   uint64_t system_uint_buffer;
-  char system_char_config;
+  char system_char_status;
   uint32_t system_audio_status;
   longlong system_audio_register_value_rax;
   uint64_t *parent_pointer;
   longlong system_audio_register_value;
-  bool system_byte_var_;
+  bool system_bool_flag;
   
   if ((system_audio_register_value_rax != 0) && (system_audio_long_value = *(longlong *)(system_audio_register_value_rax + SYSTEM_MEMORY_POOL_BASE_OFFSET), system_audio_long_value != 0)) {
     audio_volume_value = (*(float *)(system_audio_long_value + 0x034) * *(float *)(system_audio_long_value + SYSTEM_SECURITY_CONTEXT_OFFSET) -
@@ -47629,20 +47629,20 @@ void system_function_0x030011f4(longlong system_context_parameter)
   }
   if (*(longlong *)(system_context_parameter + 0x01b001) == 0) {
 SYSTEM_VALIDATION_CHECK:
-    system_byte_var_ = (*(byte *)(system_audio_register_value + 0x07d) & 2) != 0;
+    system_bool_flag = (*(byte *)(system_audio_register_value + 0x07d) & 2) != 0;
   }
   else {
     system_audio_uint_value = *(uint *)(*(longlong *)(system_context_parameter + 0x01b001) + 0x08001);
     if ((system_audio_uint_value & SYSTEM_RESOURCE_BLOCK_OFFSET_20) != 0) {
-      system_char_config = '\0';
+      system_char_status = '\0';
       goto SYSTEM_LABEL;
     }
     if ((system_audio_uint_value & SYSTEM_CONFIG_DATA_SIZE_16) == 0) goto SYSTEM_LABEL;
-    system_byte_var_ = (*(byte *)(system_audio_register_value + 0x07d) & 2) == 0;
+    system_bool_flag = (*(byte *)(system_audio_register_value + 0x07d) & 2) == 0;
   }
-  system_char_config = system_byte_var_ + '\x1';
+  system_char_status = system_bool_flag + '\x1';
 SYSTEM_VALIDATION_CHECK:
-  *(char *)(system_audio_register_value + 0x07f) = system_char_config;
+  *(char *)(system_audio_register_value + 0x07f) = system_char_status;
   system_audio_long_value = *(longlong *)(system_audio_register_value + 0x01b001);
   system_audio_uint_value = *(uint *)(system_audio_long_value + 0x08001) & 0x03000;
   system_audio_status = 0;
@@ -47676,7 +47676,7 @@ SYSTEM_VALIDATION_CHECK:
     *(uint64_t *)(system_audio_register_value + 0x02c4) = system_uint_buffer;
   }
   *(uint16_t *)(system_audio_long_value + 0x03c0) = 0x07fff;
-  system_function_0x011001();
+  system_cleanup_audio_resource1001();
   if ((*(longlong *)(system_audio_register_value + 600) == 0) &&
      ((*(uint *)(*(longlong *)(system_audio_register_value + 0x01b001) + SYSTEM_THREAD_POOL_BASE_OFFSET0x01) >> SYSTEM_STATUS_FLAG_OFFSET & 1) != 0)) {
     parent_pointer = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x05001,0x01,0x02);
@@ -47705,13 +47705,13 @@ void system_function_0x0300123002(float system_context_parameter,float system_co
   uint64_t system_audio_context_id;
   uint64_t system_uint_handle;
   uint64_t system_uint_buffer;
-  char system_char_config;
+  char system_char_status;
   uint32_t system_audio_status;
   longlong system_audio_register_value_rax;
   uint64_t *parent_pointer;
   longlong system_audio_register_value_rcx;
   longlong system_audio_register_value;
-  bool system_byte_var_;
+  bool system_bool_flag;
   float in_XMM4_Da;
   float system_register_xmm5_a;
   float system_audio_register_value_Da;
@@ -47723,20 +47723,20 @@ void system_function_0x0300123002(float system_context_parameter,float system_co
                              *(float *)(system_audio_register_value_rax + SYSTEM_FILESYSTEM_HANDLE_OFFSET) < system_audio_register_value_Da);
   if (*(longlong *)(system_audio_register_value_rcx + 0x01b001) == 0) {
 SYSTEM_VALIDATION_CHECK:
-    system_byte_var_ = (*(byte *)(system_audio_register_value + 0x07d) & 2) != 0;
+    system_bool_flag = (*(byte *)(system_audio_register_value + 0x07d) & 2) != 0;
   }
   else {
     system_audio_uint_value = *(uint *)(*(longlong *)(system_audio_register_value_rcx + 0x01b001) + 0x08001);
     if ((system_audio_uint_value & SYSTEM_RESOURCE_BLOCK_OFFSET_20) != 0) {
-      system_char_config = '\0';
+      system_char_status = '\0';
       goto SYSTEM_LABEL;
     }
     if ((system_audio_uint_value & SYSTEM_CONFIG_DATA_SIZE_16) == 0) goto SYSTEM_LABEL;
-    system_byte_var_ = (*(byte *)(system_audio_register_value + 0x07d) & 2) == 0;
+    system_bool_flag = (*(byte *)(system_audio_register_value + 0x07d) & 2) == 0;
   }
-  system_char_config = system_byte_var_ + '\x1';
+  system_char_status = system_bool_flag + '\x1';
 SYSTEM_VALIDATION_CHECK:
-  *(char *)(system_audio_register_value + 0x07f) = system_char_config;
+  *(char *)(system_audio_register_value + 0x07f) = system_char_status;
   system_audio_long_value = *(longlong *)(system_audio_register_value + 0x01b001);
   system_audio_uint_value = *(uint *)(system_audio_long_value + 0x08001) & 0x03000;
   system_audio_status = 0;
@@ -47772,7 +47772,7 @@ SYSTEM_VALIDATION_CHECK:
     *(uint64_t *)(system_audio_register_value + 0x02c4) = system_uint_buffer;
   }
   *(uint16_t *)(system_audio_long_value + 0x03c0) = 0x07fff;
-  system_function_0x011001();
+  system_cleanup_audio_resource1001();
   if ((*(longlong *)(system_audio_register_value + 600) == 0) &&
      ((*(uint *)(*(longlong *)(system_audio_register_value + 0x01b001) + SYSTEM_THREAD_POOL_BASE_OFFSET0x01) >> SYSTEM_STATUS_FLAG_OFFSET & 1) != 0)) {
     parent_pointer = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x05001,0x01,0x02);
@@ -47801,29 +47801,29 @@ void system_function_0x030012a001(longlong system_context_parameter)
   uint64_t system_audio_context_id;
   uint64_t system_uint_handle;
   uint64_t system_uint_buffer;
-  char system_char_config;
+  char system_char_status;
   uint32_t system_audio_status;
   uint64_t *parent_pointer;
   longlong system_audio_register_value;
-  bool system_byte_var_;
+  bool system_bool_flag;
   float system_audio_register_value_Da;
   
   if (*(longlong *)(system_context_parameter + 0x01b001) == 0) {
 SYSTEM_VALIDATION_CHECK:
-    system_byte_var_ = (*(byte *)(system_audio_register_value + 0x07d) & 2) != 0;
+    system_bool_flag = (*(byte *)(system_audio_register_value + 0x07d) & 2) != 0;
   }
   else {
     system_audio_uint_value = *(uint *)(*(longlong *)(system_context_parameter + 0x01b001) + 0x08001);
     if ((system_audio_uint_value & SYSTEM_RESOURCE_BLOCK_OFFSET_20) != 0) {
-      system_char_config = '\0';
+      system_char_status = '\0';
       goto SYSTEM_LABEL;
     }
     if ((system_audio_uint_value & SYSTEM_CONFIG_DATA_SIZE_16) == 0) goto SYSTEM_LABEL;
-    system_byte_var_ = (*(byte *)(system_audio_register_value + 0x07d) & 2) == 0;
+    system_bool_flag = (*(byte *)(system_audio_register_value + 0x07d) & 2) == 0;
   }
-  system_char_config = system_byte_var_ + '\x1';
+  system_char_status = system_bool_flag + '\x1';
 SYSTEM_VALIDATION_CHECK:
-  *(char *)(system_audio_register_value + 0x07f) = system_char_config;
+  *(char *)(system_audio_register_value + 0x07f) = system_char_status;
   system_audio_long_value = *(longlong *)(system_audio_register_value + 0x01b001);
   system_audio_uint_value = *(uint *)(system_audio_long_value + 0x08001) & 0x03000;
   system_audio_status = 0;
@@ -47859,7 +47859,7 @@ SYSTEM_VALIDATION_CHECK:
     *(uint64_t *)(system_audio_register_value + 0x02c4) = system_uint_buffer;
   }
   *(uint16_t *)(system_audio_long_value + 0x03c0) = 0x07fff;
-  system_function_0x011001();
+  system_cleanup_audio_resource1001();
   if ((*(longlong *)(system_audio_register_value + 600) == 0) &&
      ((*(uint *)(*(longlong *)(system_audio_register_value + 0x01b001) + SYSTEM_THREAD_POOL_BASE_OFFSET0x01) >> SYSTEM_STATUS_FLAG_OFFSET & 1) != 0)) {
     parent_pointer = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x05001,0x01,0x02);
@@ -47986,12 +47986,12 @@ void system_function_0x03001550(uint64_t *system_context_parameter,uint64_t syst
     *(uint64_t *)((longlong)system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE4) = *(uint64_t *)((longlong)system_context_parameter + 0x034);
     *(uint64_t *)(system_context_parameter + 0x01003) = *(uint64_t *)(system_context_parameter + 0x07);
     *(uint64_t *)((longlong)system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUEc) = *(uint64_t *)((longlong)system_context_parameter + 0x03c);
-    system_uint_buffer = system_function_0x010020();
+    system_uint_buffer = system_cleanup_audio_resource0020();
     *(uint64_t *)((longlong)system_context_parameter + 0x01c) = 0;
     *(uint64_t *)((longlong)system_context_parameter + 0x02c) = 0;
     *(uint64_t *)((longlong)system_context_parameter + 0x0ac) = 0;
     *(uint64_t *)((longlong)system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUEc) = 0x03f00100000;
-    system_function_0x01001002(system_uint_buffer,system_context_parameter + 0x01001);
+    system_cleanup_audio_resource001002(system_uint_buffer,system_context_parameter + 0x01001);
   }
   else {
     (**(code **)((void **)*system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16))(system_context_parameter,0,system_context_parameter,system_context_parameter,system_audio_config_value);
@@ -48014,7 +48014,7 @@ void system_function_0x030016e0(uint64_t *system_context_parameter,longlong syst
   uint64_t system_audio_uint_value;
   uint64_t system_audio_uint_value;
   uint64_t system_audio_uint_value;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   uint64_t system_stack_array [2];
   uint64_t system_context_id_20;
   uint64_t system_context_id;
@@ -48026,13 +48026,13 @@ void system_function_0x030016e0(uint64_t *system_context_parameter,longlong syst
   do {
     system_long_handle_ptr = (longlong *)system_function_0234(system_context_parameter,system_audio_loop_index);
     if (system_long_handle_ptr != (longlong *)0x00) {
-      system_buffer_pointer_0x01 = system_long_handle_ptr;
+      system_audio_device_ptr = system_long_handle_ptr;
       (**(code **)(*system_long_handle_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_handle_ptr);
     }
-    system_buffer_pointer_0x01 = (longlong *)*plVar0x01;
+    system_audio_device_ptr = (longlong *)*plVar0x01;
     *plVar0x01 = (longlong)system_long_handle_ptr;
-    if (system_buffer_pointer_0x01 != (longlong *)0x00) {
-      (**(code **)(*system_buffer_pointer_0x01 + SYSTEM_THREAD_POOL_BASE_OFFSET))();
+    if (system_audio_device_ptr != (longlong *)0x00) {
+      (**(code **)(*system_audio_device_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))();
     }
     if ((((*(char *)(system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET0) != '\0') && (*(char *)(system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET1) == '\0')) &&
         (system_audio_long_value = *plVar0x01, system_audio_long_value != 0)) && ((*(uint *)(system_audio_long_value + 0x040001) & SYSTEM_RESOURCE_BLOCK_OFFSET_200000) == 0)) {
@@ -48080,9 +48080,9 @@ void system_function_0x030016e0(uint64_t *system_context_parameter,longlong syst
   if ((*(char *)(system_context_parameter + 0x02f0) == '\0') && (*(longlong *)(system_context_parameter + 0x03c001) != 0)) {
     system_function_0233(*(longlong *)(system_context_parameter + 0x03c001),&system_context_id);
     system_audio_context_id = (uint64_t)system_context_id;
-    system_audio_uint_value = system_context_id._4_4_;
+    system_audio_uint_value = system_context_id.y;
     system_audio_uint_value = (uint64_t)system_context_id;
-    system_audio_uint_value = system_context_id._4_4_;
+    system_audio_uint_value = system_context_id.y;
   }
   else {
     system_audio_context_id = *(uint64_t *)(system_context_parameter + 0x02d0);
@@ -48181,10 +48181,10 @@ void system_function_0x030016e0(uint64_t *system_context_parameter,longlong syst
   *(uint32_t *)((longlong)system_context_parameter + 0x092) = *(uint32_t *)(system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET0);
   *(uint32_t *)(system_context_parameter + 0x02a) = *(uint32_t *)(system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET1);
   if ((*(char *)(system_context_parameter + 0x035c) == '\0') && (*(longlong *)(system_context_parameter + 0x03c001) != 0)) {
-    system_function_0x02040(*(longlong *)(system_context_parameter + 0x03c001),&system_buffer_pointer_0x01);
+    system_function_0x02040(*(longlong *)(system_context_parameter + 0x03c001),&system_audio_device_ptr);
   }
   else {
-    system_buffer_pointer_0x01 = *(longlong **)(system_context_parameter + 0x034c);
+    system_audio_device_ptr = *(longlong **)(system_context_parameter + 0x034c);
   }
   if ((*(char *)(system_context_parameter + 0x034001) == '\0') && (*(longlong *)(system_context_parameter + 0x03c001) != 0)) {
     system_function_0231(*(longlong *)(system_context_parameter + 0x03c001),system_stack_array);
@@ -48205,7 +48205,7 @@ void system_function_0x030016e0(uint64_t *system_context_parameter,longlong syst
     system_context_id = *(void ***)(system_context_parameter + 0x0300);
     system_context_id = *(uint64_t *)(system_context_parameter + 0x030001);
   }
-  system_function_0x010021(system_context_parameter + 0x01,&system_context_id,&system_context_id_20,system_stack_array,&system_buffer_pointer_0x01);
+  system_cleanup_audio_resource0021(system_context_parameter + 0x01,&system_context_id,&system_context_id_20,system_stack_array,&system_audio_device_ptr);
   if ((void **)*system_context_parameter == &system_filecontext_pointer) {
     audio_system_data_context = (float *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16);
     *(uint64_t *)audio_system_data_context = system_context_parameter[0x01];
@@ -48220,7 +48220,7 @@ void system_function_0x030016e0(uint64_t *system_context_parameter,longlong syst
     *(uint64_t *)((longlong)system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE4) = *(uint64_t *)((longlong)system_context_parameter + 0x034);
     *(uint64_t *)(system_context_parameter + 0x01003) = *(uint64_t *)(system_context_parameter + 0x07);
     *(uint64_t *)((longlong)system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUEc) = *(uint64_t *)((longlong)system_context_parameter + 0x03c);
-    system_function_0x010020();
+    system_cleanup_audio_resource0020();
     *(uint64_t *)((longlong)system_context_parameter + 0x01c) = 0;
     *(uint64_t *)((longlong)system_context_parameter + 0x02c) = 0;
     *(uint64_t *)((longlong)system_context_parameter + 0x0ac) = 0;
@@ -48318,7 +48318,7 @@ void system_function_0x03001c10(longlong system_context_parameter)
   *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE4) = *(uint64_t *)(system_context_parameter + 0x034);
   *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE1) = *(uint64_t *)(system_context_parameter + SYSTEM_SIGNAL_HANDLER_OFFSET);
   *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUEc) = *(uint64_t *)(system_context_parameter + 0x03c);
-  system_function_0x010020();
+  system_cleanup_audio_resource0020();
   *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUEc) = 0x03f00100000;
   *(uint64_t *)(system_context_parameter + 0x01c) = 0;
   *(uint64_t *)(system_context_parameter + 0x02c) = 0;
@@ -48593,11 +48593,11 @@ void system_function_0x030021a0(longlong system_context_parameter)
   *(uint64_t *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_200) = *(uint64_t *)(system_long_context + SYSTEM_CALLBACK_TABLE_OFFSET);
   system_byte_handle = *(byte *)(system_context_parameter + 0x07d) & SYSTEM_AUDIO_TABLE_OFFSET_VALUE;
   if ((((system_byte_handle != 0) && (system_long_context != 0)) || (*(longlong *)(system_context_parameter + 0x01b0) == 0)) ||
-     (system_audio_long_value = system_function_0x010026(), system_context_parameter == system_audio_long_value)) {
+     (system_audio_long_value = system_cleanup_audio_resource0026(), system_context_parameter == system_audio_long_value)) {
     *(uint64_t *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_204) = *(uint64_t *)(system_long_context + 200);
   }
   if (((system_byte_handle == 0) || (system_long_context == 0)) &&
-     ((*(longlong *)(system_context_parameter + 0x01b0) != 0 && (system_audio_long_value = system_function_0x010026(), system_context_parameter != system_audio_long_value)))) {
+     ((*(longlong *)(system_context_parameter + 0x01b0) != 0 && (system_audio_long_value = system_cleanup_audio_resource0026(), system_context_parameter != system_audio_long_value)))) {
     return;
   }
   *(uint *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET_0x020001) = (uint)*(ushort *)(system_long_context + SYSTEM_CONTEXT_OFFSET_C0);
@@ -48623,8 +48623,8 @@ void system_function_0x0300220030(longlong system_context_parameter,longlong sys
   longlong system_audio_long_value;
   longlong *plVar34;
   longlong system_audio_long_value;
-  int system_comparison_result0x03;
-  int system_comparison_result0x02;
+  int system_compare_result0x03;
+  int system_compare_result0x02;
   ulonglong system_audio_uint_value;
   char *pcVar41;
   uint *system_uint_ptr;
@@ -48717,9 +48717,9 @@ void system_function_0x0300220030(longlong system_context_parameter,longlong sys
     *(int *)(system_audio_long_value + SYSTEM_MEMORY_POOL_BASE_OFFSET) = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
     if (0 < system_audio_loop_index) {
       system_audio_long_value = (longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x05003001) * 0x012001 + _system_data_memory_pool0c160010020 + 0x042001;
-      system_audio_uint_value = system_function_0x015001(system_audio_long_value,system_audio_loop_index);
+      system_audio_uint_value = system_cleanup_audio_resource5001(system_audio_long_value,system_audio_loop_index);
       *(uint64_t *)(system_audio_long_value + 0x030) = system_audio_uint_value;
-      system_function_0x015003(system_audio_long_value,system_audio_uint_value);
+      system_cleanup_audio_resource5003(system_audio_long_value,system_audio_uint_value);
       if (*(longlong *)(system_audio_long_value + SYSTEM_CONFIG_DATA_SIZE_16) == 0) {
         if (*(int *)(system_audio_long_value + 0x01001) != 0) {
           *(uint64_t *)(system_audio_long_value + 0x02c) = *(uint64_t *)(system_audio_long_value + 0x030);
@@ -48755,7 +48755,7 @@ void system_function_0x0300220030(longlong system_context_parameter,longlong sys
           system_audio_uint_value = (uint)system_init_status6;
           system_audio_loop_index = system_audio_loop_index;
           if ((0 < system_audio_loop_index) && (0x07 < system_audio_uint_value)) {
-            system_comparison_result0x02 = *(int *)(system_audio_long_value + 0x02c);
+            system_compare_result0x02 = *(int *)(system_audio_long_value + 0x02c);
             system_long_handle_ptr = (longlong *)((longlong)plVar34 + (longlong)(system_init_status6 + -1) * 4);
             if ((((longlong *)(system_audio_long_value + 0x02c) < plVar34) || (system_long_handle_ptr < (longlong *)(system_audio_long_value + 0x02c)))
                && ((system_long_data_ptr < plVar34 || (system_audio_loop_index = 0, system_long_handle_ptr < system_long_data_ptr)))) {
@@ -48764,27 +48764,27 @@ void system_function_0x0300220030(longlong system_context_parameter,longlong sys
                 system_audio_uint_value = (system_audio_uint_value - 1 | 0x07ffffff0) + 1;
               }
               plVar34 = plVar34 + 4;
-              system_comparison_result0x03 = 0x01;
+              system_compare_result0x03 = 0x01;
               do {
-                *(int *)(plVar34 + -4) = system_audio_loop_index + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + -0x0A) = system_audio_loop_index + 1 + system_comparison_result0x02;
-                *(int *)(plVar34 + SYSTEM_AUDIO_LOOP_START_POSITION) = system_audio_loop_index + 2 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + -0x014) = system_audio_loop_index + 3 + system_comparison_result0x02;
+                *(int *)(plVar34 + -4) = system_audio_loop_index + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + -0x0A) = system_audio_loop_index + 1 + system_compare_result0x02;
+                *(int *)(plVar34 + SYSTEM_AUDIO_LOOP_START_POSITION) = system_audio_loop_index + 2 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + -0x014) = system_audio_loop_index + 3 + system_compare_result0x02;
                 system_audio_loop_index = system_audio_loop_index + SYSTEM_CONFIG_DATA_SIZE_16;
-                *(int *)(plVar34 + -2) = system_comparison_result0x03 + -4 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + -0x04) = system_comparison_result0x03 + SYSTEM_AUDIO_LOOP_START_POSITION + system_comparison_result0x02;
-                *(int *)(plVar34 + -1) = system_comparison_result0x03 + -2 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + -4) = system_comparison_result0x03 + -1 + system_comparison_result0x02;
-                *(int *)plVar34 = system_comparison_result0x03 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + 4) = system_comparison_result0x03 + 1 + system_comparison_result0x02;
-                *(int *)(plVar34 + 1) = system_comparison_result0x03 + 2 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + 0x04) = system_comparison_result0x03 + 3 + system_comparison_result0x02;
-                *(int *)(plVar34 + 2) = system_comparison_result0x03 + 4 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + 0x014) = system_comparison_result0x03 + 5 + system_comparison_result0x02;
-                *(int *)(plVar34 + 3) = system_comparison_result0x03 + 6 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + 0x0A) = system_comparison_result0x03 + 0x03 + system_comparison_result0x02;
+                *(int *)(plVar34 + -2) = system_compare_result0x03 + -4 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + -0x04) = system_compare_result0x03 + SYSTEM_AUDIO_LOOP_START_POSITION + system_compare_result0x02;
+                *(int *)(plVar34 + -1) = system_compare_result0x03 + -2 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + -4) = system_compare_result0x03 + -1 + system_compare_result0x02;
+                *(int *)plVar34 = system_compare_result0x03 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + 4) = system_compare_result0x03 + 1 + system_compare_result0x02;
+                *(int *)(plVar34 + 1) = system_compare_result0x03 + 2 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + 0x04) = system_compare_result0x03 + 3 + system_compare_result0x02;
+                *(int *)(plVar34 + 2) = system_compare_result0x03 + 4 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + 0x014) = system_compare_result0x03 + 5 + system_compare_result0x02;
+                *(int *)(plVar34 + 3) = system_compare_result0x03 + 6 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + 0x0A) = system_compare_result0x03 + 0x03 + system_compare_result0x02;
                 plVar34 = plVar34 + 0x01;
-                system_comparison_result0x03 = system_comparison_result0x03 + SYSTEM_CONFIG_DATA_SIZE_16;
+                system_compare_result0x03 = system_compare_result0x03 + SYSTEM_CONFIG_DATA_SIZE_16;
                 system_audio_loop_index = system_audio_loop_index;
               } while (system_audio_loop_index < (int)(system_audio_uint_value - system_audio_uint_value));
             }
@@ -48799,11 +48799,11 @@ void system_function_0x0300220030(longlong system_context_parameter,longlong sys
           if (0 < (longlong)system_audio_loop_index) {
             system_audio_long_value = 0;
             do {
-              system_comparison_result0x02 = *(int *)(system_audio_long_value + 0x030) + system_audio_loop_index;
+              system_compare_result0x02 = *(int *)(system_audio_long_value + 0x030) + system_audio_loop_index;
               system_audio_loop_index = system_audio_loop_index + 1;
               system_byte_pointer = (byte *)(*(longlong *)(system_audio_long_value + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_long_value);
               system_audio_long_value = system_audio_long_value + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_comparison_result0x02;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_compare_result0x02;
             } while (system_audio_long_value < system_audio_loop_index);
           }
         }
@@ -48903,8 +48903,8 @@ void system_function_0x0300220014(longlong system_context_parameter)
   longlong system_audio_long_value;
   longlong *plVar34;
   longlong system_audio_long_value;
-  int system_comparison_result0x03;
-  int system_comparison_result0x02;
+  int system_compare_result0x03;
+  int system_compare_result0x02;
   ulonglong system_audio_uint_value;
   char *pcVar41;
   uint *system_uint_ptr;
@@ -48999,9 +48999,9 @@ void system_function_0x0300220014(longlong system_context_parameter)
     *(int *)(system_audio_long_value + SYSTEM_MEMORY_POOL_BASE_OFFSET) = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
     if (0 < system_audio_loop_index) {
       system_audio_long_value = (longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x05003001) * 0x012001 + _system_data_memory_pool0c160010020 + 0x042001;
-      system_audio_uint_value = system_function_0x015001(system_audio_long_value,system_audio_loop_index);
+      system_audio_uint_value = system_cleanup_audio_resource5001(system_audio_long_value,system_audio_loop_index);
       *(uint64_t *)(system_audio_long_value + 0x030) = system_audio_uint_value;
-      system_function_0x015003(system_audio_long_value,system_audio_uint_value);
+      system_cleanup_audio_resource5003(system_audio_long_value,system_audio_uint_value);
       if (*(longlong *)(system_audio_long_value + SYSTEM_CONFIG_DATA_SIZE_16) == 0) {
         if (*(int *)(system_audio_long_value + 0x01001) != 0) {
           *(uint64_t *)(system_audio_long_value + 0x02c) = *(uint64_t *)(system_audio_long_value + 0x030);
@@ -49037,7 +49037,7 @@ void system_function_0x0300220014(longlong system_context_parameter)
           system_audio_uint_value = (uint)system_init_status6;
           system_audio_loop_index = system_audio_loop_index;
           if ((0 < system_audio_loop_index) && (0x07 < system_audio_uint_value)) {
-            system_comparison_result0x02 = *(int *)(system_audio_long_value + 0x02c);
+            system_compare_result0x02 = *(int *)(system_audio_long_value + 0x02c);
             system_long_handle_ptr = (longlong *)((longlong)plVar34 + (longlong)(system_init_status6 + -1) * 4);
             if ((((longlong *)(system_audio_long_value + 0x02c) < plVar34) || (system_long_handle_ptr < (longlong *)(system_audio_long_value + 0x02c)))
                && ((system_long_data_ptr < plVar34 || (system_audio_loop_index = 0, system_long_handle_ptr < system_long_data_ptr)))) {
@@ -49046,27 +49046,27 @@ void system_function_0x0300220014(longlong system_context_parameter)
                 system_audio_uint_value = (system_audio_uint_value - 1 | 0x07ffffff0) + 1;
               }
               plVar34 = plVar34 + 4;
-              system_comparison_result0x03 = 0x01;
+              system_compare_result0x03 = 0x01;
               do {
-                *(int *)(plVar34 + -4) = system_audio_loop_index + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + -0x0A) = system_audio_loop_index + 1 + system_comparison_result0x02;
-                *(int *)(plVar34 + SYSTEM_AUDIO_LOOP_START_POSITION) = system_audio_loop_index + 2 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + -0x014) = system_audio_loop_index + 3 + system_comparison_result0x02;
+                *(int *)(plVar34 + -4) = system_audio_loop_index + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + -0x0A) = system_audio_loop_index + 1 + system_compare_result0x02;
+                *(int *)(plVar34 + SYSTEM_AUDIO_LOOP_START_POSITION) = system_audio_loop_index + 2 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + -0x014) = system_audio_loop_index + 3 + system_compare_result0x02;
                 system_audio_loop_index = system_audio_loop_index + SYSTEM_CONFIG_DATA_SIZE_16;
-                *(int *)(plVar34 + -2) = system_comparison_result0x03 + -4 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + -0x04) = system_comparison_result0x03 + SYSTEM_AUDIO_LOOP_START_POSITION + system_comparison_result0x02;
-                *(int *)(plVar34 + -1) = system_comparison_result0x03 + -2 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + -4) = system_comparison_result0x03 + -1 + system_comparison_result0x02;
-                *(int *)plVar34 = system_comparison_result0x03 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + 4) = system_comparison_result0x03 + 1 + system_comparison_result0x02;
-                *(int *)(plVar34 + 1) = system_comparison_result0x03 + 2 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + 0x04) = system_comparison_result0x03 + 3 + system_comparison_result0x02;
-                *(int *)(plVar34 + 2) = system_comparison_result0x03 + 4 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + 0x014) = system_comparison_result0x03 + 5 + system_comparison_result0x02;
-                *(int *)(plVar34 + 3) = system_comparison_result0x03 + 6 + system_comparison_result0x02;
-                *(int *)((longlong)plVar34 + 0x0A) = system_comparison_result0x03 + 0x03 + system_comparison_result0x02;
+                *(int *)(plVar34 + -2) = system_compare_result0x03 + -4 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + -0x04) = system_compare_result0x03 + SYSTEM_AUDIO_LOOP_START_POSITION + system_compare_result0x02;
+                *(int *)(plVar34 + -1) = system_compare_result0x03 + -2 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + -4) = system_compare_result0x03 + -1 + system_compare_result0x02;
+                *(int *)plVar34 = system_compare_result0x03 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + 4) = system_compare_result0x03 + 1 + system_compare_result0x02;
+                *(int *)(plVar34 + 1) = system_compare_result0x03 + 2 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + 0x04) = system_compare_result0x03 + 3 + system_compare_result0x02;
+                *(int *)(plVar34 + 2) = system_compare_result0x03 + 4 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + 0x014) = system_compare_result0x03 + 5 + system_compare_result0x02;
+                *(int *)(plVar34 + 3) = system_compare_result0x03 + 6 + system_compare_result0x02;
+                *(int *)((longlong)plVar34 + 0x0A) = system_compare_result0x03 + 0x03 + system_compare_result0x02;
                 plVar34 = plVar34 + 0x01;
-                system_comparison_result0x03 = system_comparison_result0x03 + SYSTEM_CONFIG_DATA_SIZE_16;
+                system_compare_result0x03 = system_compare_result0x03 + SYSTEM_CONFIG_DATA_SIZE_16;
                 system_audio_loop_index = system_audio_loop_index;
               } while (system_audio_loop_index < (int)(system_audio_uint_value - system_audio_uint_value));
             }
@@ -49081,11 +49081,11 @@ void system_function_0x0300220014(longlong system_context_parameter)
           if (0 < (longlong)system_audio_loop_index) {
             system_audio_long_value = 0;
             do {
-              system_comparison_result0x02 = *(int *)(system_audio_long_value + 0x030) + system_audio_loop_index;
+              system_compare_result0x02 = *(int *)(system_audio_long_value + 0x030) + system_audio_loop_index;
               system_audio_loop_index = system_audio_loop_index + 1;
               system_byte_pointer = (byte *)(*(longlong *)(system_audio_long_value + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_long_value);
               system_audio_long_value = system_audio_long_value + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_comparison_result0x02;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_compare_result0x02;
             } while (system_audio_long_value < system_audio_loop_index);
           }
         }
@@ -49183,8 +49183,8 @@ void system_function_0x030022ea(void)
   uint64_t system_audio_uint_value;
   longlong system_audio_long_value;
   longlong *plVar0x040;
-  int system_comparison_result4;
-  int system_comparison_result6;
+  int system_compare_result4;
+  int system_compare_result6;
   longlong system_audio_register_value;
   ulonglong system_audio_uint_value;
   char *pcVar0x03001;
@@ -49263,9 +49263,9 @@ void system_function_0x030022ea(void)
     if (0 < system_audio_loop_index) {
       system_context_id_ = system_audio_stack_param;
       system_audio_long_value = (longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x05003001) * 0x012001 + _system_data_memory_pool0c160010020 + 0x042001;
-      system_audio_uint_value = system_function_0x015001(system_audio_long_value,system_audio_loop_index,system_audio_long_value,audio_system_data_context,CONCAT44(system_audio_register_value_Db,system_audio_register_value_Da));
+      system_audio_uint_value = system_cleanup_audio_resource5001(system_audio_long_value,system_audio_loop_index,system_audio_long_value,audio_system_data_context,CONCAT44(system_audio_register_value_Db,system_audio_register_value_Da));
       *(uint64_t *)(system_audio_long_value + 0x030) = system_audio_uint_value;
-      system_function_0x015003(system_audio_long_value,system_audio_uint_value);
+      system_cleanup_audio_resource5003(system_audio_long_value,system_audio_uint_value);
       if (*(longlong *)(system_audio_long_value + SYSTEM_CONFIG_DATA_SIZE_16) == 0) {
         if (*(int *)(system_audio_long_value + 0x01001) != 0) {
           *(uint64_t *)(system_audio_long_value + 0x02c) = *(uint64_t *)(system_audio_long_value + 0x030);
@@ -49301,7 +49301,7 @@ void system_function_0x030022ea(void)
           system_audio_uint_value = (uint)system_init_status4;
           system_audio_loop_index = system_audio_loop_index;
           if ((0 < system_audio_loop_index) && (0x07 < system_audio_uint_value)) {
-            system_comparison_result6 = *(int *)(system_audio_long_value + 0x02c);
+            system_compare_result6 = *(int *)(system_audio_long_value + 0x02c);
             system_long_context_ptr = (longlong *)((longlong)plVar0x040 + (longlong)(system_init_status4 + -1) * 4);
             if ((((longlong *)(system_audio_long_value + 0x02c) < plVar0x040) || (system_long_context_ptr < (longlong *)(system_audio_long_value + 0x02c)))
                && ((system_long_data_ptr < plVar0x040 || (system_audio_loop_index = 0, system_long_context_ptr < system_long_data_ptr)))) {
@@ -49310,27 +49310,27 @@ void system_function_0x030022ea(void)
                 system_audio_uint_value = (system_audio_uint_value - 1 | 0x07ffffff0) + 1;
               }
               plVar0x040 = plVar0x040 + 4;
-              system_comparison_result4 = 0x01;
+              system_compare_result4 = 0x01;
               do {
-                *(int *)(plVar0x040 + -4) = system_audio_loop_index + system_comparison_result6;
-                *(int *)((longlong)plVar0x040 + -0x0A) = system_audio_loop_index + 1 + system_comparison_result6;
-                *(int *)(plVar0x040 + SYSTEM_AUDIO_LOOP_START_POSITION) = system_audio_loop_index + 2 + system_comparison_result6;
-                *(int *)((longlong)plVar0x040 + -0x014) = system_audio_loop_index + 3 + system_comparison_result6;
+                *(int *)(plVar0x040 + -4) = system_audio_loop_index + system_compare_result6;
+                *(int *)((longlong)plVar0x040 + -0x0A) = system_audio_loop_index + 1 + system_compare_result6;
+                *(int *)(plVar0x040 + SYSTEM_AUDIO_LOOP_START_POSITION) = system_audio_loop_index + 2 + system_compare_result6;
+                *(int *)((longlong)plVar0x040 + -0x014) = system_audio_loop_index + 3 + system_compare_result6;
                 system_audio_loop_index = system_audio_loop_index + SYSTEM_CONFIG_DATA_SIZE_16;
-                *(int *)(plVar0x040 + -2) = system_comparison_result4 + -4 + system_comparison_result6;
-                *(int *)((longlong)plVar0x040 + -0x04) = system_comparison_result4 + SYSTEM_AUDIO_LOOP_START_POSITION + system_comparison_result6;
-                *(int *)(plVar0x040 + -1) = system_comparison_result4 + -2 + system_comparison_result6;
-                *(int *)((longlong)plVar0x040 + -4) = system_comparison_result4 + -1 + system_comparison_result6;
-                *(int *)plVar0x040 = system_comparison_result4 + system_comparison_result6;
-                *(int *)((longlong)plVar0x040 + 4) = system_comparison_result4 + 1 + system_comparison_result6;
-                *(int *)(plVar0x040 + 1) = system_comparison_result4 + 2 + system_comparison_result6;
-                *(int *)((longlong)plVar0x040 + 0x04) = system_comparison_result4 + 3 + system_comparison_result6;
-                *(int *)(plVar0x040 + 2) = system_comparison_result4 + 4 + system_comparison_result6;
-                *(int *)((longlong)plVar0x040 + 0x014) = system_comparison_result4 + 5 + system_comparison_result6;
-                *(int *)(plVar0x040 + 3) = system_comparison_result4 + 6 + system_comparison_result6;
-                *(int *)((longlong)plVar0x040 + 0x0A) = system_comparison_result4 + 0x03 + system_comparison_result6;
+                *(int *)(plVar0x040 + -2) = system_compare_result4 + -4 + system_compare_result6;
+                *(int *)((longlong)plVar0x040 + -0x04) = system_compare_result4 + SYSTEM_AUDIO_LOOP_START_POSITION + system_compare_result6;
+                *(int *)(plVar0x040 + -1) = system_compare_result4 + -2 + system_compare_result6;
+                *(int *)((longlong)plVar0x040 + -4) = system_compare_result4 + -1 + system_compare_result6;
+                *(int *)plVar0x040 = system_compare_result4 + system_compare_result6;
+                *(int *)((longlong)plVar0x040 + 4) = system_compare_result4 + 1 + system_compare_result6;
+                *(int *)(plVar0x040 + 1) = system_compare_result4 + 2 + system_compare_result6;
+                *(int *)((longlong)plVar0x040 + 0x04) = system_compare_result4 + 3 + system_compare_result6;
+                *(int *)(plVar0x040 + 2) = system_compare_result4 + 4 + system_compare_result6;
+                *(int *)((longlong)plVar0x040 + 0x014) = system_compare_result4 + 5 + system_compare_result6;
+                *(int *)(plVar0x040 + 3) = system_compare_result4 + 6 + system_compare_result6;
+                *(int *)((longlong)plVar0x040 + 0x0A) = system_compare_result4 + 0x03 + system_compare_result6;
                 plVar0x040 = plVar0x040 + 0x01;
-                system_comparison_result4 = system_comparison_result4 + SYSTEM_CONFIG_DATA_SIZE_16;
+                system_compare_result4 = system_compare_result4 + SYSTEM_CONFIG_DATA_SIZE_16;
                 system_audio_loop_index = system_audio_loop_index;
               } while (system_audio_loop_index < (int)(system_audio_uint_value - system_audio_uint_value));
             }
@@ -49345,11 +49345,11 @@ void system_function_0x030022ea(void)
           if (0 < (longlong)system_audio_loop_index) {
             system_audio_long_value = 0;
             do {
-              system_comparison_result6 = *(int *)(system_audio_long_value + 0x030) + system_audio_loop_index;
+              system_compare_result6 = *(int *)(system_audio_long_value + 0x030) + system_audio_loop_index;
               system_audio_loop_index = system_audio_loop_index + 1;
               system_byte_pointer = (byte *)(*(longlong *)(system_audio_long_value + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_long_value);
               system_audio_long_value = system_audio_long_value + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_comparison_result6;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_compare_result6;
             } while (system_audio_long_value < system_audio_loop_index);
           }
         }
@@ -49447,13 +49447,13 @@ void system_function_0x0300230002(longlong system_context_parameter,uint system_
   longlong system_audio_long_value;
   longlong *plVar0x040;
   longlong system_audio_long_value;
-  int system_comparison_result4;
-  int system_comparison_result5;
+  int system_compare_result4;
+  int system_compare_result5;
   longlong system_audio_register_value;
   ulonglong system_audio_uint_value;
   char *pcVar0x03003;
   uint *system_uint_ptr;
-  int system_comparison_result0x02;
+  int system_compare_result0x02;
   longlong system_audio_register_value;
   uint64_t *system_uint_ptr;
   uint *system_uint_ptr;
@@ -49519,14 +49519,14 @@ void system_function_0x0300230002(longlong system_context_parameter,uint system_
   system_context_parameter[SYSTEM_STACK_UINT_INITIAL_VALUE] = audio_volume_value * audio_volume_value + audio_volume_value * audio_volume_value + audio_volume_value * audio_volume_value;
   system_audio_long_value = *(longlong *)(system_audio_register_value + 600);
   if (*(int *)(system_audio_long_value + SYSTEM_MEMORY_POOL_BASE_OFFSET) != *(int *)(_system_data_memory_pool0c160010030 + 0x0224)) {
-    system_comparison_result0x02 = *(int *)(system_audio_long_value + 0x0A) + *(int *)(system_audio_long_value + 0x01001);
+    system_compare_result0x02 = *(int *)(system_audio_long_value + 0x0A) + *(int *)(system_audio_long_value + 0x01001);
     *(int *)(system_audio_long_value + SYSTEM_MEMORY_POOL_BASE_OFFSET) = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
-    if (0 < system_comparison_result0x02) {
+    if (0 < system_compare_result0x02) {
       system_context_id_ = system_audio_stack_param;
       system_audio_long_value = (longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x05003001) * 0x012001 + _system_data_memory_pool0c160010020 + 0x042001;
-      system_audio_uint_value = system_function_0x015001(system_audio_long_value,system_comparison_result0x02,system_context_parameter,system_context_parameter,CONCAT44(system_audio_register_value_Db,system_audio_register_value_Da));
+      system_audio_uint_value = system_cleanup_audio_resource5001(system_audio_long_value,system_compare_result0x02,system_context_parameter,system_context_parameter,CONCAT44(system_audio_register_value_Db,system_audio_register_value_Da));
       *(uint64_t *)(system_audio_long_value + 0x030) = system_audio_uint_value;
-      system_function_0x015003(system_audio_long_value,system_audio_uint_value);
+      system_cleanup_audio_resource5003(system_audio_long_value,system_audio_uint_value);
       if (*(longlong *)(system_audio_long_value + SYSTEM_CONFIG_DATA_SIZE_16) == 0) {
         if (*(int *)(system_audio_long_value + 0x01001) != 0) {
           *(uint64_t *)(system_audio_long_value + 0x02c) = *(uint64_t *)(system_audio_long_value + 0x030);
@@ -49537,12 +49537,12 @@ void system_function_0x0300230002(longlong system_context_parameter,uint system_
         system_init_status4 = *(char *)(system_audio_long_value + 0x044);
         system_audio_uint_value = (ulonglong)system_init_status4;
         system_long_data_ptr = (longlong *)(system_audio_long_value + SYSTEM_THREAD_POOL_BASE_OFFSET);
-        system_comparison_result0x02 = (int)system_init_status4;
+        system_compare_result0x02 = (int)system_init_status4;
         if (*(int *)(system_audio_long_value + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) == (int)system_init_status4) {
           plVar0x040 = (longlong *)*system_long_data_ptr;
         }
         else {
-          *(int *)(system_audio_long_value + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) = system_comparison_result0x02;
+          *(int *)(system_audio_long_value + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) = system_compare_result0x02;
           if (*system_long_data_ptr != 0) {
                     // WARNING: Subroutine does not return
             system_initialize_component();
@@ -49561,8 +49561,8 @@ void system_function_0x0300230002(longlong system_context_parameter,uint system_
           system_audio_loop_index = 0;
           system_audio_uint_value = (uint)system_init_status4;
           system_audio_loop_index = system_audio_loop_index;
-          if ((0 < system_comparison_result0x02) && (0x07 < system_audio_uint_value)) {
-            system_comparison_result5 = *(int *)(system_audio_long_value + 0x02c);
+          if ((0 < system_compare_result0x02) && (0x07 < system_audio_uint_value)) {
+            system_compare_result5 = *(int *)(system_audio_long_value + 0x02c);
             system_long_context_ptr = (longlong *)((longlong)plVar0x040 + (longlong)(system_init_status4 + -1) * 4);
             if ((((longlong *)(system_audio_long_value + 0x02c) < plVar0x040) || (system_long_context_ptr < (longlong *)(system_audio_long_value + 0x02c)))
                && ((system_long_data_ptr < plVar0x040 || (system_audio_loop_index = 0, system_long_context_ptr < system_long_data_ptr)))) {
@@ -49571,27 +49571,27 @@ void system_function_0x0300230002(longlong system_context_parameter,uint system_
                 system_audio_uint_value = (system_audio_uint_value - 1 | 0x07ffffff0) + 1;
               }
               plVar0x040 = plVar0x040 + 4;
-              system_comparison_result4 = 0x01;
+              system_compare_result4 = 0x01;
               do {
-                *(int *)(plVar0x040 + -4) = system_audio_loop_index + system_comparison_result5;
-                *(int *)((longlong)plVar0x040 + -0x0A) = system_audio_loop_index + 1 + system_comparison_result5;
-                *(int *)(plVar0x040 + SYSTEM_AUDIO_LOOP_START_POSITION) = system_audio_loop_index + 2 + system_comparison_result5;
-                *(int *)((longlong)plVar0x040 + -0x014) = system_audio_loop_index + 3 + system_comparison_result5;
+                *(int *)(plVar0x040 + -4) = system_audio_loop_index + system_compare_result5;
+                *(int *)((longlong)plVar0x040 + -0x0A) = system_audio_loop_index + 1 + system_compare_result5;
+                *(int *)(plVar0x040 + SYSTEM_AUDIO_LOOP_START_POSITION) = system_audio_loop_index + 2 + system_compare_result5;
+                *(int *)((longlong)plVar0x040 + -0x014) = system_audio_loop_index + 3 + system_compare_result5;
                 system_audio_loop_index = system_audio_loop_index + SYSTEM_CONFIG_DATA_SIZE_16;
-                *(int *)(plVar0x040 + -2) = system_comparison_result4 + -4 + system_comparison_result5;
-                *(int *)((longlong)plVar0x040 + -0x04) = system_comparison_result4 + SYSTEM_AUDIO_LOOP_START_POSITION + system_comparison_result5;
-                *(int *)(plVar0x040 + -1) = system_comparison_result4 + -2 + system_comparison_result5;
-                *(int *)((longlong)plVar0x040 + -4) = system_comparison_result4 + -1 + system_comparison_result5;
-                *(int *)plVar0x040 = system_comparison_result4 + system_comparison_result5;
-                *(int *)((longlong)plVar0x040 + 4) = system_comparison_result4 + 1 + system_comparison_result5;
-                *(int *)(plVar0x040 + 1) = system_comparison_result4 + 2 + system_comparison_result5;
-                *(int *)((longlong)plVar0x040 + 0x04) = system_comparison_result4 + 3 + system_comparison_result5;
-                *(int *)(plVar0x040 + 2) = system_comparison_result4 + 4 + system_comparison_result5;
-                *(int *)((longlong)plVar0x040 + 0x014) = system_comparison_result4 + 5 + system_comparison_result5;
-                *(int *)(plVar0x040 + 3) = system_comparison_result4 + 6 + system_comparison_result5;
-                *(int *)((longlong)plVar0x040 + 0x0A) = system_comparison_result4 + 0x03 + system_comparison_result5;
+                *(int *)(plVar0x040 + -2) = system_compare_result4 + -4 + system_compare_result5;
+                *(int *)((longlong)plVar0x040 + -0x04) = system_compare_result4 + SYSTEM_AUDIO_LOOP_START_POSITION + system_compare_result5;
+                *(int *)(plVar0x040 + -1) = system_compare_result4 + -2 + system_compare_result5;
+                *(int *)((longlong)plVar0x040 + -4) = system_compare_result4 + -1 + system_compare_result5;
+                *(int *)plVar0x040 = system_compare_result4 + system_compare_result5;
+                *(int *)((longlong)plVar0x040 + 4) = system_compare_result4 + 1 + system_compare_result5;
+                *(int *)(plVar0x040 + 1) = system_compare_result4 + 2 + system_compare_result5;
+                *(int *)((longlong)plVar0x040 + 0x04) = system_compare_result4 + 3 + system_compare_result5;
+                *(int *)(plVar0x040 + 2) = system_compare_result4 + 4 + system_compare_result5;
+                *(int *)((longlong)plVar0x040 + 0x014) = system_compare_result4 + 5 + system_compare_result5;
+                *(int *)(plVar0x040 + 3) = system_compare_result4 + 6 + system_compare_result5;
+                *(int *)((longlong)plVar0x040 + 0x0A) = system_compare_result4 + 0x03 + system_compare_result5;
                 plVar0x040 = plVar0x040 + 0x01;
-                system_comparison_result4 = system_comparison_result4 + SYSTEM_CONFIG_DATA_SIZE_16;
+                system_compare_result4 = system_compare_result4 + SYSTEM_CONFIG_DATA_SIZE_16;
                 system_audio_loop_index = system_audio_loop_index;
               } while (system_audio_loop_index < (int)(system_audio_uint_value - system_audio_uint_value));
             }
@@ -49606,17 +49606,17 @@ void system_function_0x0300230002(longlong system_context_parameter,uint system_
           if (0 < (longlong)system_audio_loop_index) {
             system_audio_long_value = 0;
             do {
-              system_comparison_result5 = *(int *)(system_audio_long_value + 0x030) + system_audio_loop_index;
+              system_compare_result5 = *(int *)(system_audio_long_value + 0x030) + system_audio_loop_index;
               system_audio_loop_index = system_audio_loop_index + 1;
               system_byte_pointer = (byte *)(*(longlong *)(system_audio_long_value + SYSTEM_CONFIG_DATA_SIZE_16) + system_audio_long_value);
               system_audio_long_value = system_audio_long_value + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_comparison_result5;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_pointer * 4) = system_compare_result5;
             } while (system_audio_long_value < system_audio_loop_index);
           }
         }
         system_uint_ptr = (uint *)((longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x0420) * 0x012001 +
                           _system_data_memory_pool0c160010020 + 0x02d0);
-        if (system_comparison_result0x02 == 0) {
+        if (system_compare_result0x02 == 0) {
           system_audio_uint_value = (int)system_init_status4 - 1;
         }
         else {
@@ -49673,7 +49673,7 @@ void system_function_0x0300230002(longlong system_context_parameter,uint system_
           memcpy(*(longlong *)(system_uint_ptr + (ulonglong)system_audio_uint_value * 2 + 2) +
                  (ulonglong)(system_audio_uint_value + system_audio_uint_value * -SYSTEM_STANDARD_BUFFER_SIZE0) * 4,system_uint_ptr,(system_audio_uint_value & 0x07fffffff) << 2);
         }
-        if (system_comparison_result0x02 != 0) {
+        if (system_compare_result0x02 != 0) {
           system_audio_uint_value = system_audio_uint_value & 0x07fffffff;
           do {
             system_audio_uint_value = *system_uint_ptr;
@@ -49698,7 +49698,7 @@ void system_function_0x0300240e(void)
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
   byte *system_byte_pointer;
-  char system_char_buffer;
+  char system_current_char;
   longlong audio_resource_id;
   uint64_t system_audio_status;
   longlong *plVar0x01;
@@ -49723,9 +49723,9 @@ void system_function_0x0300240e(void)
     if (0 < system_audio_loop_index) {
       system_context_id_ = system_audio_stack_param;
       system_audio_long_value = (longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x05003001) * 0x012001 + _system_data_memory_pool0c160010020 + 0x042001;
-      system_audio_status = system_function_0x015001(system_audio_long_value,system_audio_loop_index);
+      system_audio_status = system_cleanup_audio_resource5001(system_audio_long_value,system_audio_loop_index);
       *(uint64_t *)(audio_resource_id + 0x030) = system_audio_status;
-      system_function_0x015003(system_audio_long_value,system_audio_status);
+      system_cleanup_audio_resource5003(system_audio_long_value,system_audio_status);
       if (*(longlong *)(audio_resource_id + SYSTEM_CONFIG_DATA_SIZE_16) == 0) {
         if (*(int *)(audio_resource_id + 0x01001) != 0) {
           *(uint64_t *)(audio_resource_id + 0x02c) = *(uint64_t *)(audio_resource_id + 0x030);
@@ -49733,11 +49733,11 @@ void system_function_0x0300240e(void)
         }
       }
       else {
-        system_char_buffer = *(char *)(audio_resource_id + 0x044);
-        system_audio_uint_value = (ulonglong)system_char_buffer;
+        system_current_char = *(char *)(audio_resource_id + 0x044);
+        system_audio_uint_value = (ulonglong)system_current_char;
         system_long_data_ptr = (longlong *)(audio_resource_id + SYSTEM_THREAD_POOL_BASE_OFFSET);
-        system_audio_loop_index = (int)system_char_buffer;
-        if (*(int *)(audio_resource_id + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) == (int)system_char_buffer) {
+        system_audio_loop_index = (int)system_current_char;
+        if (*(int *)(audio_resource_id + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) == (int)system_current_char) {
           plVar0x01 = (longlong *)*system_long_data_ptr;
         }
         else {
@@ -49747,22 +49747,22 @@ void system_function_0x0300240e(void)
             system_initialize_component();
           }
           *system_long_data_ptr = 0;
-          if (system_char_buffer == '\0') {
+          if (system_current_char == '\0') {
             plVar0x01 = (longlong *)0x00;
             *system_long_data_ptr = 0;
           }
           else {
-            plVar0x01 = (longlong *)system_allocate_memory_context(system_context_memory_pool,(longlong)system_char_buffer * 4);
+            plVar0x01 = (longlong *)system_allocate_memory_context(system_context_memory_pool,(longlong)system_current_char * 4);
             *system_long_data_ptr = (longlong)plVar0x01;
           }
         }
         if (plVar0x01 != (longlong *)0x00) {
           system_audio_loop_index = 0;
-          system_audio_uint_value = (uint)system_char_buffer;
+          system_audio_uint_value = (uint)system_current_char;
           system_audio_loop_index = system_audio_loop_index;
           if ((0 < system_audio_loop_index) && (0x07 < system_audio_uint_value)) {
             system_audio_loop_index = *(int *)(audio_resource_id + 0x02c);
-            system_long_context_ptr = (longlong *)((longlong)plVar0x01 + (longlong)(system_char_buffer + -1) * 4);
+            system_long_context_ptr = (longlong *)((longlong)plVar0x01 + (longlong)(system_current_char + -1) * 4);
             if ((((longlong *)(audio_resource_id + 0x02c) < plVar0x01) || (system_long_context_ptr < (longlong *)(audio_resource_id + 0x02c))) &&
                ((system_long_data_ptr < plVar0x01 || (system_audio_loop_index = 0, system_long_context_ptr < system_long_data_ptr)))) {
               system_audio_uint_value = system_audio_uint_value & SYSTEM_STANDARD_BUFFER_SIZE00000f;
@@ -49816,15 +49816,15 @@ void system_function_0x0300240e(void)
         system_uint_ptr = (uint *)((longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x0420) * 0x012001 +
                           _system_data_memory_pool0c160010020 + 0x02d0);
         if (system_audio_loop_index == 0) {
-          system_audio_uint_value = (int)system_char_buffer - 1;
+          system_audio_uint_value = (int)system_current_char - 1;
         }
         else {
           LOCK();
           system_audio_uint_value = *system_uint_ptr;
-          *system_uint_ptr = *system_uint_ptr + (int)system_char_buffer;
+          *system_uint_ptr = *system_uint_ptr + (int)system_current_char;
           UNLOCK();
           system_audio_uint_value = (ulonglong)(system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE);
-          system_audio_uint_value = (ulonglong)(system_char_buffer + -1 + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE);
+          system_audio_uint_value = (ulonglong)(system_current_char + -1 + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE);
           if (system_audio_uint_value <= system_audio_uint_value) {
             psystem_init_status4 = (char *)((longlong)system_uint_ptr + system_audio_uint_value + SYSTEM_CONFIG_DATA_SIZE_0x016001);
             system_audio_long_value = (system_audio_uint_value - system_audio_uint_value) + 1;
@@ -49867,7 +49867,7 @@ void system_function_0x0300240e(void)
         system_data_context0 = *(uint64_t **)(audio_resource_id + SYSTEM_THREAD_POOL_BASE_OFFSET);
         system_audio_uint_value = system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE;
         *(uint *)(audio_resource_id + 0x02c) = system_audio_uint_value;
-        if (system_audio_uint_value == (int)system_char_buffer + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
+        if (system_audio_uint_value == (int)system_current_char + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
                     // WARNING: Subroutine does not return
           memcpy(*(longlong *)(system_uint_ptr + (ulonglong)system_audio_uint_value * 2 + 2) +
                  (ulonglong)(system_audio_uint_value + system_audio_uint_value * -SYSTEM_STANDARD_BUFFER_SIZE0) * 4,system_data_context0,(system_audio_uint_value & 0x07fffffff) << 2);
@@ -49892,7 +49892,7 @@ void system_function_0x0300240e(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void ** system_function_0x012002(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
+void ** system_cleanup_audio_resource2002(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 
 {
   uint64_t system_uint_value;
@@ -49941,25 +49941,25 @@ uint32_t system_function_0131(void)
   uint32_t system_audio_context_id;
   longlong system_long_handle;
   longlong system_audio_register_value;
-  int system_status_buffer;
+  int system_buffer_size;
   longlong audio_resource_id;
   
-  system_status_buffer = 0;
+  system_buffer_size = 0;
   audio_resource_id = 0;
   do {
     while ((*(char *)(*(longlong *)(system_audio_register_value + 0x01e0) + 0x09 + audio_resource_id) == '\x2' ||
            (*(char *)(*(longlong *)(system_audio_register_value + 0x01e0) + 0x09 + audio_resource_id) == '\x1'))) {
       Sleep(0);
     }
-    system_long_handle = (longlong)system_status_buffer;
+    system_long_handle = (longlong)system_buffer_size;
     audio_resource_id = audio_resource_id + 0x01001;
-    system_status_buffer = system_status_buffer + 1;
+    system_buffer_size = system_buffer_size + 1;
     LOCK();
     system_data_context = (uint32_t *)(*(longlong *)(system_audio_register_value + 0x01e0) + system_long_handle * 0x01001 + 0x09);
     system_audio_context_id = *system_data_context;
     *system_data_context = 0;
     UNLOCK();
-  } while (system_status_buffer < SYSTEM_CONFIG_DATA_SIZE_16);
+  } while (system_buffer_size < SYSTEM_CONFIG_DATA_SIZE_16);
   return system_audio_context_id;
 }
 void system_function_0x030025002e(void)
@@ -49968,7 +49968,7 @@ void system_function_0x030025002e(void)
   return;
 }
 
-uint32_t system_function_0x01040(void)
+uint32_t system_cleanup_audio_resource040(void)
 
 {
   uint32_t *system_data_context;
@@ -50007,7 +50007,7 @@ float * system_function_0133(float *system_context_parameter)
   byte system_byte_context;
   longlong *system_long_handle_ptr;
   float *audio_system_data_context;
-  char system_char_config;
+  char system_char_status;
   float system_float_status;
   float *audio_system_data_context;
   ulonglong system_audio_uint_value;
@@ -50054,7 +50054,7 @@ float * system_function_0133(float *system_context_parameter)
       if (*(void ***)(system_context_parameter + 6) != (void **)0x00) {
         system_buffer_pointer = *(void ***)(system_context_parameter + 6);
       }
-      system_context_id = CONCAT44(system_context_id._4_4_,*(uint64_t *)(*(longlong *)(system_context_parameter + 0x014) + SYSTEM_CALLBACK_TABLE_OFFSET));
+      system_context_id = CONCAT44(system_context_id.y,*(uint64_t *)(*(longlong *)(system_context_parameter + 0x014) + SYSTEM_CALLBACK_TABLE_OFFSET));
       system_buffer_pointer = &system_data_114;
       system_context_id = 0x0100100003026003a;
       system_stack_float_50 = system_float_status;
@@ -50133,7 +50133,7 @@ float * system_function_0133(float *system_context_parameter)
       system_stack_float_4c = system_context_parameter[0x053];
       system_buffer_pointer = *(void ***)(system_context_parameter + 0x054);
       system_context_id = *(uint64_t *)(system_context_parameter + 0x056);
-      system_function_0x01002002(&system_context_id);
+      system_cleanup_audio_resource002002(&system_context_id);
       system_function_0261(audio_system_data_context,audio_system_data_context,&system_context_id);
       audio_system_data_context = *(float **)(system_context_parameter + 0x06e);
       if (((uint)audio_system_data_context[0x04e] & 0x03000) == SYSTEM_RESOURCE_BLOCK_OFFSET_2000) {
@@ -50146,7 +50146,7 @@ float * system_function_0133(float *system_context_parameter)
         system_stack_float_4c = system_context_parameter[0x053];
         system_buffer_pointer = *(void ***)(system_context_parameter + 0x054);
         system_context_id = *(uint64_t *)(system_context_parameter + 0x056);
-        system_function_0x01002001(&system_context_id,0x03fc0020fdb);
+        system_cleanup_audio_resource002001(&system_context_id,0x03fc0020fdb);
         system_function_0261(audio_system_data_context,audio_system_data_context,&system_context_id);
         system_context_id = *(uint64_t *)(system_context_parameter + SYSTEM_RESOURCE_TABLE_OFFSET);
         system_context_id = *(uint64_t *)(system_context_parameter + 0x04a);
@@ -50157,7 +50157,7 @@ float * system_function_0133(float *system_context_parameter)
         system_stack_float_4c = system_context_parameter[0x053];
         system_buffer_pointer = *(void ***)(system_context_parameter + 0x054);
         system_context_id = *(uint64_t *)(system_context_parameter + 0x056);
-        system_function_0x01002003(&system_context_id);
+        system_cleanup_audio_resource002003(&system_context_id);
         audio_system_data_context = (float *)system_function_0261(audio_system_data_context,audio_system_data_context,&system_context_id);
       }
     }
@@ -50204,11 +50204,11 @@ float * system_function_0133(float *system_context_parameter)
     if (psystem_stack_float_0x02001 != (float *)0x00) {
       while( true ) {
         LOCK();
-        system_char_config = *(char *)(audio_system_data_context + 0x03b);
-        system_bool_10 = system_char_config == '\0';
+        system_char_status = *(char *)(audio_system_data_context + 0x03b);
+        system_bool_10 = system_char_status == '\0';
         if (system_bool_10) {
           *(char *)(audio_system_data_context + 0x03b) = '\x1';
-          system_char_config = '\0';
+          system_char_status = '\0';
         }
         UNLOCK();
         if (system_bool_10) break;
@@ -50216,7 +50216,7 @@ float * system_function_0133(float *system_context_parameter)
         if ((audio_system_data_context[0x03c] == system_float_status) || (audio_system_data_context[0x03c] != SYSTEM_FLOAT_ZERO_VALUE)) goto SYSTEM_LABEL;
         Sleep();
       }
-      system_char_config = '\0';
+      system_char_status = '\0';
 SYSTEM_VALIDATION_CHECK:
       LOCK();
       audio_system_data_context = audio_system_data_context + 0x03a;
@@ -50224,9 +50224,9 @@ SYSTEM_VALIDATION_CHECK:
       audio_system_data_context = (float *)(ulonglong)(uint)system_float_status;
       *audio_system_data_context = (float)((int)*audio_system_data_context + -1);
       UNLOCK();
-      if (system_char_config == '\0') {
+      if (system_char_status == '\0') {
         if ((((system_float_status == 1.4013e-45) && (*(longlong *)(psystem_stack_float_0x02001 + 0x014) != 0)) &&
-            (audio_system_data_context = psystem_stack_float_0x02001, system_function_0x012003(psystem_stack_float_0x02001), *(char *)(audio_system_data_context + 0x03f) == '\0')) &&
+            (audio_system_data_context = psystem_stack_float_0x02001, system_cleanup_audio_resource2003(psystem_stack_float_0x02001), *(char *)(audio_system_data_context + 0x03f) == '\0')) &&
            ((*(char *)(audio_system_data_context + 0x03d) == '\0' &&
             (((*(byte *)((longlong)audio_system_data_context + 0x07d) & SYSTEM_RESOURCE_BLOCK_OFFSET_20) == 0 ||
              ((*(byte *)((longlong)audio_system_data_context + 0x07e) & 1) == 0)))))) {
@@ -50264,7 +50264,7 @@ void system_function_0x030026b0(longlong system_context_parameter)
   uint64_t system_audio_status;
   uint64_t system_audio_uint_value;
   uint32_t auVar0x01 [16];
-  bool system_byte_var_;
+  bool system_bool_flag;
   int *system_audio_loop_index_ptr;
   longlong system_audio_long_value;
   int *system_audio_loop_index_ptr;
@@ -50285,7 +50285,7 @@ void system_function_0x030026b0(longlong system_context_parameter)
   ulonglong system_audio_uint_value;
   longlong system_audio_long_value;
   uint *system_uint_ptr;
-  int *psystem_comparison_result4;
+  int *psystem_compare_result4;
   uint32_t (*pauVar35) [16];
   ulonglong system_audio_uint_value;
   uint32_t (*pauVar0x03003) [16];
@@ -50295,7 +50295,7 @@ void system_function_0x030026b0(longlong system_context_parameter)
   ulonglong system_audio_uint_value;
   uint32_t (*pauVar42) [16];
   longlong system_audio_long_value;
-  bool system_bool_44;
+  bool system_audio_enabled;
   uint32_t auVar0x04003 [16];
   int system_stack_int_10;
   ulonglong system_context_id_0x01001;
@@ -50376,8 +50376,8 @@ void system_function_0x030026b0(longlong system_context_parameter)
     system_config_buffer = ZEXT0x0116(0) << SYSTEM_AUDIO_TABLE_OFFSET_VALUE;
   }
   else {
-    system_function_0x01003003(system_config_buffer,system_audio_long_value);
-    system_audio_long_value = system_config_buffer._0_0x01_;
+    system_cleanup_audio_resource003003(system_config_buffer,system_audio_long_value);
+    system_audio_long_value = system_config_buffer.xy;
   }
   psystem_config_buffere0 = (uint32_t (*) [16])(ulonglong)*(ushort *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0);
   system_audio_long_value = -1;
@@ -50493,7 +50493,7 @@ void system_function_0x030026b0(longlong system_context_parameter)
           system_stack_float_0x01003001 = system_stack_float_0x01003001 * audio_volume_value;
         }
         system_context_id = CONCAT44(audio_volume_value,audio_volume_value);
-        audio_system_data_context = (float *)(*(longlong *)(system_config_buffer._0_0x01_ + system_audio_long_value) + system_audio_uint_value);
+        audio_system_data_context = (float *)(*(longlong *)(system_config_buffer.xy + system_audio_long_value) + system_audio_uint_value);
         *audio_system_data_context = audio_volume_value;
         audio_system_data_context[1] = audio_volume_value;
         audio_system_data_context[2] = system_stack_float_0x01003001;
@@ -50503,14 +50503,14 @@ void system_function_0x030026b0(longlong system_context_parameter)
         system_audio_uint_value = system_audio_uint_value + SYSTEM_CONFIG_DATA_SIZE_16;
       } while (system_audio_uint_value != 0);
     }
-    system_audio_long_value = system_config_buffer._0_0x01_;
+    system_audio_long_value = system_config_buffer.xy;
     system_audio_long_value = system_audio_long_value;
   } while (system_audio_long_value < (longlong)psystem_config_buffere0);
   system_stack_long_int_0x010030 = 0;
   system_buffer_pointer = (longlong *)0x00;
   system_buffer_pointer = (longlong *)0x00;
   system_context_id = 3;
-  system_function_0x010030(&system_stack_long_int_0x010030,(longlong)system_audio_loop_index);
+  system_cleanup_audio_resource0030(&system_stack_long_int_0x010030,(longlong)system_audio_loop_index);
   system_audio_uint_value = system_audio_uint_value;
   system_context_id_20 = system_audio_uint_value;
   if (0 < (longlong)system_audio_uint_value) {
@@ -50634,7 +50634,7 @@ SYSTEM_VALIDATION_CHECK:
   system_initialization_flag_temp = 0;
   if (*system_audio_loop_index_ptr < 1) {
 SYSTEM_VALIDATION_CHECK:
-    system_function_0x016002(&system_stack_long_int_0x010030);
+    system_cleanup_audio_resource6002(&system_stack_long_int_0x010030);
     system_audio_long_value = (longlong)system_stack_int_1e1;
     system_context_idd1 = (ulonglong)*(ushort *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0);
     system_context_id_0x01001 = -1;
@@ -50644,13 +50644,13 @@ SYSTEM_VALIDATION_CHECK:
       psystem_stack_int_0x020001 = (int *)0x00;
       system_context_id = 3;
       if (system_audio_long_value == 0) {
-        system_function_0x010010(0);
+        system_cleanup_audio_resource0010(0);
         psystem_stack_int_210 = psystem_stack_int_0x021001;
       }
       else {
-        system_function_0x01003001(&psystem_stack_int_0x021001,system_audio_long_value);
+        system_cleanup_audio_resource003001(&psystem_stack_int_0x021001,system_audio_long_value);
       }
-      plVar0x03002 = (longlong *)((system_context_id_0x01001 + 1) * SYSTEM_RESOURCE_BLOCK_OFFSET_20 + system_config_buffer._0_0x01_);
+      plVar0x03002 = (longlong *)((system_context_id_0x01001 + 1) * SYSTEM_RESOURCE_BLOCK_OFFSET_20 + system_config_buffer.xy);
       system_audio_long_value = 0;
       psystem_stack_int_1f0 = (int *)0x00;
       if (0 < (longlong)system_audio_uint_value) {
@@ -50675,7 +50675,7 @@ SYSTEM_VALIDATION_CHECK:
                 audio_volume_value = *(float *)(system_audio_long_value + 0x04);
                 audio_volume_value = audio_volume_value * audio_volume_value + audio_volume_value * audio_volume_value + audio_volume_value * audio_volume_value;
                 auVar0x04003 = rsqrtss(ZEXT416((uint)audio_volume_value),ZEXT416((uint)audio_volume_value));
-                audio_volume_value = auVar0x04003._0_4_;
+                audio_volume_value = auVar0x04003.x;
                 audio_volume_value = audio_volume_value * 0.5 * (3.0 - audio_volume_value * audio_volume_value * audio_volume_value);
                 *(float *)(system_audio_long_value + 4) = audio_volume_value * audio_volume_value;
                 *(float *)(system_audio_long_value + 0x01) = audio_volume_value * audio_volume_value;
@@ -50685,7 +50685,7 @@ SYSTEM_VALIDATION_CHECK:
                 audio_volume_value = *(float *)(system_audio_long_value + 0x03c);
                 audio_volume_value = audio_volume_value * audio_volume_value + audio_volume_value * audio_volume_value + audio_volume_value * audio_volume_value;
                 auVar0x04003 = rsqrtss(ZEXT416((uint)audio_volume_value),ZEXT416((uint)audio_volume_value));
-                audio_volume_value = auVar0x04003._0_4_;
+                audio_volume_value = auVar0x04003.x;
                 audio_volume_value = audio_volume_value * 0.5 * (3.0 - audio_volume_value * audio_volume_value * audio_volume_value);
                 *(float *)(system_audio_long_value + 0x034) = audio_volume_value * audio_volume_value;
                 *(float *)(system_audio_long_value + SYSTEM_THREAD_POOL_BASE_OFFSET) = audio_volume_value * audio_volume_value;
@@ -50706,7 +50706,7 @@ SYSTEM_VALIDATION_CHECK:
                 audio_volume_value = audio_system_data_context[2];
                 audio_volume_value = audio_volume_value * audio_volume_value + audio_volume_value * audio_volume_value + audio_volume_value * audio_volume_value;
                 auVar0x04003 = rsqrtss(ZEXT416((uint)audio_volume_value),ZEXT416((uint)audio_volume_value));
-                audio_volume_value = auVar0x04003._0_4_;
+                audio_volume_value = auVar0x04003.x;
                 audio_volume_value = audio_volume_value * 0.5 * (3.0 - audio_volume_value * audio_volume_value * audio_volume_value);
                 *audio_system_data_context = audio_volume_value * audio_volume_value;
                 audio_system_data_context[1] = audio_volume_value * audio_volume_value;
@@ -50722,7 +50722,7 @@ SYSTEM_VALIDATION_CHECK:
               system_audio_long_value = 0;
               system_uint_ptr = (uint *)((longlong)*(int *)(system_context_id + system_stack_long_int_1d0 * 4) * 0x05c +
                                 *(longlong *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET));
-              system_bool_44 = false;
+              system_audio_enabled = false;
               system_audio_long_value = (longlong)
                        (int)((*(longlong *)((longlong)(psystem_stack_int_0x021001 + (ulonglong)*system_uint_ptr * 0x01) + 0x01) -
                              *(longlong *)(psystem_stack_int_0x021001 + (ulonglong)*system_uint_ptr * 0x01)) / 0x014);
@@ -50744,7 +50744,7 @@ SYSTEM_VALIDATION_CHECK:
                          *(float *)(system_audio_long_value + 4 + system_audio_long_value) + *(float *)(system_audio_long_value + system_audio_long_value);
                     *(float *)(system_audio_long_value + 0x01 + system_audio_long_value) = audio_volume_value + *(float *)(system_audio_long_value + 0x01 + system_audio_long_value);
                     *(float *)(system_audio_long_value + 0x04 + system_audio_long_value) = audio_volume_value + *(float *)(system_audio_long_value + 0x04 + system_audio_long_value);
-                    system_bool_44 = true;
+                    system_audio_enabled = true;
                     system_audio_uint_value = *system_uint_ptr;
                   }
                   if ((*(uint *)(*(longlong *)(psystem_stack_int_0x021001 + (ulonglong)system_audio_uint_value * 0x01) + 0x014 + system_audio_long_value)
@@ -50762,7 +50762,7 @@ SYSTEM_VALIDATION_CHECK:
                     ;
                     *(float *)(system_audio_long_value + SYSTEM_RESOURCE_BLOCK_OFFSET_20 + system_audio_long_value) = audio_volume_value + *(float *)(system_audio_long_value + SYSTEM_RESOURCE_BLOCK_OFFSET_20 + system_audio_long_value)
                     ;
-                    system_bool_44 = true;
+                    system_audio_enabled = true;
                     system_audio_uint_value = *system_uint_ptr;
                   }
                   if ((*(uint *)(*(longlong *)(psystem_stack_int_0x021001 + (ulonglong)system_audio_uint_value * 0x01) + SYSTEM_MEMORY_POOL_BASE_OFFSET + system_audio_long_value)
@@ -50780,7 +50780,7 @@ SYSTEM_VALIDATION_CHECK:
                     ;
                     *(float *)(system_audio_long_value + 0x034 + system_audio_long_value) = audio_volume_value + *(float *)(system_audio_long_value + 0x034 + system_audio_long_value)
                     ;
-                    system_bool_44 = true;
+                    system_audio_enabled = true;
                   }
                   system_audio_uint_value = *(uint *)(system_audio_long_value + 0x03c +
                                     *(longlong *)(psystem_stack_int_0x021001 + (ulonglong)*system_uint_ptr * 0x01));
@@ -50797,7 +50797,7 @@ SYSTEM_VALIDATION_CHECK:
                     ;
                     *(float *)(system_audio_long_value + SYSTEM_RESOURCE_TABLE_OFFSET + system_audio_long_value) = audio_volume_value + *(float *)(system_audio_long_value + SYSTEM_RESOURCE_TABLE_OFFSET + system_audio_long_value)
                     ;
-                    system_bool_44 = true;
+                    system_audio_enabled = true;
                   }
                   system_audio_long_value = system_audio_long_value + SYSTEM_RESOURCE_COUNT_OFFSET;
                   system_audio_long_value = system_audio_long_value + -1;
@@ -50820,29 +50820,29 @@ SYSTEM_VALIDATION_CHECK:
                          *(float *)(system_audio_long_value + 4 + system_audio_long_value) + *(float *)(system_audio_long_value + system_audio_long_value);
                     *(float *)(system_audio_long_value + 0x01 + system_audio_long_value) = audio_volume_value + *(float *)(system_audio_long_value + 0x01 + system_audio_long_value);
                     *(float *)(system_audio_long_value + 0x04 + system_audio_long_value) = audio_volume_value + *(float *)(system_audio_long_value + 0x04 + system_audio_long_value);
-                    system_bool_44 = true;
+                    system_audio_enabled = true;
                   }
                   system_audio_long_value = system_audio_long_value + 0x014;
                   system_audio_long_value = system_audio_long_value + -1;
                 } while (system_audio_long_value != 0);
               }
-              if (!system_bool_44) {
+              if (!system_audio_enabled) {
                 system_audio_long_value = *plVar0x03002;
-                system_context_idb1._4_4_ = *(uint64_t *)(system_audio_long_value + 0x01 + system_audio_long_value);
-                system_context_idb1._0_4_ = *(uint64_t *)(system_audio_long_value + 4 + system_audio_long_value);
+                system_context_idb1.y = *(uint64_t *)(system_audio_long_value + 0x01 + system_audio_long_value);
+                system_context_idb1.x = *(uint64_t *)(system_audio_long_value + 4 + system_audio_long_value);
                 system_context_idbc = *(uint64_t *)(system_audio_long_value + system_audio_long_value);
                 system_context_ida0 = (int *)CONCAT44((uint64_t)system_context_idb1,system_context_idbc);
-                system_context_id = (int *)CONCAT44(0x03f003fffff,system_context_idb1._4_4_);
-                psystem_stack_int_1b0 = (int *)CONCAT44(psystem_stack_int_1b0._4_4_,0x03f003fffff);
+                system_context_id = (int *)CONCAT44(0x03f003fffff,system_context_idb1.y);
+                psystem_stack_int_1b0 = (int *)CONCAT44(psystem_stack_int_1b0.y,0x03f003fffff);
                 system_audio_uint_value = (ulonglong)*system_uint_ptr;
                 pauVar0x03003 = *(uint32_t (**) [16])(psystem_stack_int_0x021001 + system_audio_uint_value * 0x01 + 2);
                 system_context_idc0 = system_audio_uint_value;
                 if (pauVar0x03003 < *(uint32_t (**) [16])(psystem_stack_int_0x021001 + system_audio_uint_value * 0x01 + 4)) {
                   *(uint32_t **)(psystem_stack_int_0x021001 + system_audio_uint_value * 0x01 + 2) = pauVar0x03003[1] + 4;
-                  auVar0x01._4_4_ = system_context_idbc;
-                  auVar0x01._0_4_ = system_audio_uint_value;
-                  auVar0x01._0x01_4_ = (uint64_t)system_context_idb1;
-                  auVar0x01._12_4_ = system_context_idb1._4_4_;
+                  auVar0x01.y = system_context_idbc;
+                  auVar0x01.x = system_audio_uint_value;
+                  auVar0x01.z = (uint64_t)system_context_idb1;
+                  auVar0x01.w = system_context_idb1.y;
                   *pauVar0x03003 = auVar0x01;
                   *(uint64_t *)pauVar0x03003[1] = 0x03f003fffff;
                 }
@@ -50867,12 +50867,12 @@ SYSTEM_VALIDATION_CHECK:
                     // WARNING: Subroutine does not return
                     memmove(pauVar42,pauVar35,(longlong)pauVar0x03003 - (longlong)pauVar35);
                   }
-                  auVar0x04003._4_4_ = system_context_idbc;
-                  auVar0x04003._0_4_ = system_context_idc0;
-                  auVar0x04003._0x01_4_ = (uint64_t)system_context_idb1;
-                  auVar0x04003._12_4_ = system_context_idb1._4_4_;
+                  auVar0x04003.y = system_context_idbc;
+                  auVar0x04003.x = system_context_idc0;
+                  auVar0x04003.z = (uint64_t)system_context_idb1;
+                  auVar0x04003.w = system_context_idb1.y;
                   *pauVar42 = auVar0x04003;
-                  *(uint64_t *)pauVar42[1] = psystem_stack_int_1b0._0_4_;
+                  *(uint64_t *)pauVar42[1] = psystem_stack_int_1b0.x;
                   if (*(longlong *)(system_audio_loop_index_ptr + system_audio_uint_value * 0x01) != 0) {
                     // WARNING: Subroutine does not return
                     system_initialize_component();
@@ -50912,7 +50912,7 @@ SYSTEM_VALIDATION_CHECK:
               }
               else {
                 auVar0x04003 = rsqrtss(ZEXT416((uint)audio_volume_value),ZEXT416((uint)audio_volume_value));
-                audio_volume_value = auVar0x04003._0_4_;
+                audio_volume_value = auVar0x04003.x;
                 audio_volume_value = audio_volume_value * 0.5 * (3.0 - audio_volume_value * audio_volume_value * audio_volume_value);
                 *(float *)(system_audio_long_value + 4 + system_audio_long_value) = audio_volume_value * audio_volume_value;
                 *(float *)(system_audio_long_value + 0x01 + system_audio_long_value) = audio_volume_value * audio_volume_value;
@@ -51052,10 +51052,10 @@ SYSTEM_VALIDATION_CHECK:
         } while (system_audio_long_value < (longlong)system_audio_uint_value);
         system_audio_long_value = (longlong)system_stack_int_1e1;
       }
-      system_function_0x010031(&psystem_stack_int_0x021001);
+      system_cleanup_audio_resource0031(&psystem_stack_int_0x021001);
       system_context_id_0x01001 = system_context_id_0x01001 + 1;
       if ((longlong)system_context_idd1 <= (longlong)system_context_id_0x01001) {
-        system_function_0x016002(system_config_buffer);
+        system_cleanup_audio_resource6002(system_config_buffer);
         if (system_buffer_pointer != (uint64_t *)0x00) {
                     // WARNING: Subroutine does not return
           system_initialize_component(system_buffer_pointer);
@@ -51071,7 +51071,7 @@ SYSTEM_VALIDATION_CHECK:
   system_audio_uint_value = *(longlong *)(*pauVar42 + system_stack_long_int_0x010030 + 0x01) - (longlong)system_audio_loop_index_ptr >> 2;
   psystem_config_buffere0 = pauVar42;
   if (1 < system_audio_uint_value) {
-    system_bool_44 = true;
+    system_audio_enabled = true;
     system_context_idc1 = system_buffer_pointer[*system_audio_loop_index_ptr];
     system_audio_loop_index = 1;
     system_audio_uint_value = system_context_idc1;
@@ -51079,14 +51079,14 @@ SYSTEM_VALIDATION_CHECK:
     do {
       system_audio_loop_index_ptr = system_audio_loop_index_ptr + 1;
       if ((system_audio_uint_value & system_buffer_pointer[*system_audio_loop_index_ptr]) == 0) {
-        system_bool_44 = false;
+        system_audio_enabled = false;
         break;
       }
       system_audio_uint_value = system_audio_uint_value | system_buffer_pointer[*system_audio_loop_index_ptr];
       system_audio_loop_index = system_audio_loop_index + 1;
     } while ((ulonglong)(longlong)system_audio_loop_index < system_audio_uint_value);
     system_audio_uint_value = (uint)system_context_id_0x01001;
-    if (!system_bool_44) {
+    if (!system_audio_enabled) {
       system_context_ida0 = (int *)0x00;
       system_context_id = (int *)0x00;
       psystem_stack_int_0x010020 = (int *)0x00;
@@ -51158,14 +51158,14 @@ SYSTEM_VALIDATION_CHECK:
         system_context_idb1 = (int *)0x00;
         psystem_stack_int_1b0 = (int *)0x00;
         system_context_ida1 = 3;
-        system_bool_44 = false;
-        system_byte_var_ = false;
+        system_audio_enabled = false;
+        system_bool_flag = false;
         system_audio_uint_value = 0;
         system_context_id = (longlong)psystem_stack_int_210 - (longlong)psystem_stack_int_0x021001 >> 2;
         system_audio_loop_index_ptr = (int *)0x00;
         system_audio_loop_index_ptr = (int *)0x00;
         system_audio_loop_index_ptr = system_audio_loop_index_ptr;
-        psystem_comparison_result4 = system_audio_loop_index_ptr;
+        psystem_compare_result4 = system_audio_loop_index_ptr;
         system_audio_loop_index_ptr = psystem_stack_int_0x021001;
         psystem_stack_int_1f1 = psystem_stack_int_210;
         if (system_context_id != 0) {
@@ -51177,7 +51177,7 @@ SYSTEM_VALIDATION_CHECK:
               if (system_audio_loop_index_ptr < system_audio_loop_index_ptr) {
                 *system_audio_loop_index_ptr = system_audio_loop_index;
                 system_audio_loop_index_ptr = system_audio_loop_index_ptr;
-                system_audio_uint_value = (uint)psystem_comparison_result4;
+                system_audio_uint_value = (uint)psystem_compare_result4;
               }
               else {
                 system_context_idd1 = (longlong)system_audio_loop_index_ptr - (longlong)system_audio_loop_index_ptr;
@@ -51207,7 +51207,7 @@ SYSTEM_VALIDATION_CHECK:
               }
               system_audio_loop_index_ptr = system_audio_loop_index_ptr + 1;
               system_context_idb1 = system_audio_loop_index_ptr;
-              system_bool_44 = system_byte_var_;
+              system_audio_enabled = system_bool_flag;
             }
             else {
               system_context_idc1 = system_context_idc1 | system_buffer_pointer[system_audio_loop_index];
@@ -51216,8 +51216,8 @@ SYSTEM_VALIDATION_CHECK:
                 *system_audio_loop_index_ptr = system_audio_loop_index;
                 system_audio_loop_index_ptr = system_context_id;
                 system_audio_loop_index_ptr = system_audio_loop_index_ptr;
-                system_audio_uint_value = (uint)psystem_comparison_result4;
-                system_bool_44 = true;
+                system_audio_uint_value = (uint)psystem_compare_result4;
+                system_audio_enabled = true;
               }
               else {
                 system_context_idd1 = (longlong)system_audio_loop_index_ptr - (longlong)system_audio_loop_index_ptr;
@@ -51247,34 +51247,34 @@ SYSTEM_VALIDATION_CHECK:
                 system_audio_loop_index_ptr = system_audio_loop_index_ptr;
                 system_context_ida0 = system_audio_loop_index_ptr;
                 system_context_id = system_audio_loop_index_ptr;
-                system_bool_44 = true;
+                system_audio_enabled = true;
               }
             }
             system_audio_uint_value = system_audio_uint_value + 1;
             psystem_stack_int_1f0 = psystem_stack_int_1f0 + 1;
             system_audio_loop_index_ptr = system_audio_loop_index_ptr;
-            psystem_comparison_result4 = (int *)(ulonglong)system_audio_uint_value;
+            psystem_compare_result4 = (int *)(ulonglong)system_audio_uint_value;
             system_audio_loop_index_ptr = psystem_stack_int_1f0;
             system_audio_loop_index_ptr = psystem_stack_int_0x010020;
-            system_byte_var_ = system_bool_44;
+            system_bool_flag = system_audio_enabled;
           } while ((ulonglong)(longlong)(int)system_audio_uint_value < system_context_id);
         }
         plVar0x03002 = system_buffer_pointer;
         system_context_idc0 = (uint)psystem_stack_int_0x021001;
         system_context_idbc = (uint64_t)((ulonglong)psystem_stack_int_0x021001 >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
-        system_context_idb1._0_4_ = SUB14(psystem_stack_int_1f1,0);
-        system_context_idb1._4_4_ = (uint64_t)((ulonglong)psystem_stack_int_1f1 >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
+        system_context_idb1.x = SUB14(psystem_stack_int_1f1,0);
+        system_context_idb1.y = (uint64_t)((ulonglong)psystem_stack_int_1f1 >> SYSTEM_RESOURCE_BLOCK_OFFSET_20);
         psystem_stack_int_1b0 = psystem_stack_int_0x020001;
         system_context_id = 3;
         system_context_ida1 = 3;
         psystem_stack_int_210 = system_audio_loop_index_ptr;
         psystem_stack_int_0x020001 = system_audio_loop_index_ptr;
         psystem_stack_int_1f1 = system_audio_loop_index_ptr;
-        if ((((longlong)system_audio_loop_index_ptr - (longlong)system_audio_loop_index_ptr & 0x07ffffffffffffffcU) == 0) || (!system_bool_44))
+        if ((((longlong)system_audio_loop_index_ptr - (longlong)system_audio_loop_index_ptr & 0x07ffffffffffffffcU) == 0) || (!system_audio_enabled))
         goto SYSTEM_LABEL;
-        system_bool_44 = psystem_stack_int_0x021001 != (int *)0x00;
+        system_audio_enabled = psystem_stack_int_0x021001 != (int *)0x00;
         psystem_stack_int_0x021001 = system_audio_loop_index_ptr;
-        if (system_bool_44) {
+        if (system_audio_enabled) {
                     // WARNING: Subroutine does not return
           system_initialize_component();
         }
@@ -51321,7 +51321,7 @@ SYSTEM_VALIDATION_CHECK:
       plVar0x03002[1] = *plVar0x03002;
     }
     else {
-      system_function_0x01003002(&system_stack_long_int_0x010030,&psystem_stack_int_0x021001);
+      system_cleanup_audio_resource003002(&system_stack_long_int_0x010030,&psystem_stack_int_0x021001);
       system_audio_loop_index_ptr = psystem_stack_int_210;
       system_audio_loop_index_ptr = psystem_stack_int_0x021001;
     }
@@ -51386,7 +51386,7 @@ SYSTEM_VALIDATION_CHECK:
           else {
             *(int *)(system_audio_long_value + 0x02c) = (system_audio_loop_index >> 1) + system_audio_loop_index;
           }
-          system_function_0x01001001(system_audio_long_value + SYSTEM_MEMORY_POOL_BASE_OFFSET);
+          system_cleanup_audio_resource001001(system_audio_long_value + SYSTEM_MEMORY_POOL_BASE_OFFSET);
           system_audio_loop_index = *(int *)(system_audio_long_value + SYSTEM_MEMORY_POOL_BASE_OFFSET);
           system_audio_long_value = *(longlong *)(system_audio_long_value + 0x030);
         }
@@ -51480,27 +51480,27 @@ ulonglong system_function_0135(longlong system_context_parameter,longlong *syste
 {
   byte *system_byte_pointer;
   char system_char_data;
-  int system_comparison_result;
-  int system_status_buffer;
+  int system_compare_result;
+  int system_buffer_size;
   byte system_byte_config;
   longlong system_long_status;
   uint64_t *parent_pointer;
   ulonglong system_audio_uint_value;
   uint64_t system_audio_uint_value;
-  longlong *psystem_long_var_10;
-  longlong *psystem_long_var_11;
-  longlong *psystem_long_var_12;
+  longlong *system_resource_ptr;
+  longlong *system_buffer_ptr;
+  longlong *system_handle_ptr;
   uint64_t system_audio_uint_value;
-  longlong *psystem_long_var_14;
-  bool system_bool_15;
-  longlong *psystem_stack_long_int_f0;
-  longlong *psystem_stack_long_int_e1;
-  longlong *psystem_stack_long_int_e0;
-  longlong *psystem_stack_long_int_d1;
-  longlong *psystem_stack_long_int_d0;
-  longlong *psystem_stack_long_int_c1;
-  longlong *psystem_stack_long_int_c0;
-  longlong *psystem_stack_long_int_b1;
+  longlong *system_context_ptr;
+  bool system_audio_initialized;
+  longlong *system_stack_buffer7;
+  longlong *system_stack_buffer6;
+  longlong *system_stack_buffer5;
+  longlong *system_stack_buffer4;
+  longlong *system_stack_buffer3;
+  longlong *system_stack_buffer8;
+  longlong *system_stack_buffer2;
+  longlong *system_stack_buffer1;
   uint32_t asystem_context_id_b0 [0x01];
   longlong system_stack_long_int_a1;
   uint64_t system_context_id_a0;
@@ -51528,15 +51528,15 @@ ulonglong system_function_0135(longlong system_context_parameter,longlong *syste
     system_context_parameter = '\x1';
   }
   system_function_0SYSTEM_HEADER_BUFFER_SIZE(system_context_parameter);
-  psystem_long_var_14 = (longlong *)(*(longlong *)(system_long_status + 0x01e0) + (ulonglong)system_context_parameter * 0x01001);
-  if ((longlong *)*system_context_parameter != psystem_long_var_14) {
+  system_context_ptr = (longlong *)(*(longlong *)(system_long_status + 0x01e0) + (ulonglong)system_context_parameter * 0x01001);
+  if ((longlong *)*system_context_parameter != system_context_ptr) {
     if ((longlong *)*system_context_parameter != (longlong *)0x00) {
       system_function_0156();
     }
-    *system_context_parameter = (longlong)psystem_long_var_14;
-    if (psystem_long_var_14 != (longlong *)0x00) {
+    *system_context_parameter = (longlong)system_context_ptr;
+    if (system_context_ptr != (longlong *)0x00) {
       LOCK();
-      *(int *)(psystem_long_var_14 + 2) = (int)psystem_long_var_14[2] + 1;
+      *(int *)(system_context_ptr + 2) = (int)system_context_ptr[2] + 1;
       UNLOCK();
     }
     if (system_context_parameter[1] != 0) {
@@ -51545,25 +51545,25 @@ ulonglong system_function_0135(longlong system_context_parameter,longlong *syste
     }
   }
   LOCK();
-  system_bool_15 = *(char *)((longlong)psystem_long_var_14 + 0x09) == '\0';
-  if (system_bool_15) {
-    *(char *)((longlong)psystem_long_var_14 + 0x09) = '\x1';
+  system_audio_initialized = *(char *)((longlong)system_context_ptr + 0x09) == '\0';
+  if (system_audio_initialized) {
+    *(char *)((longlong)system_context_ptr + 0x09) = '\x1';
   }
   UNLOCK();
-  if (!system_bool_15) goto SYSTEM_LABEL;
+  if (!system_audio_initialized) goto SYSTEM_LABEL;
   system_long_status = system_context_parameter;
   if ((*(byte *)(system_context_parameter + 0x07d) & SYSTEM_RESOURCE_BLOCK_OFFSET_20) == 0) {
     system_long_status = func_0x01001000015de0(*(uint64_t *)(system_context_parameter + 0x01b0));
   }
   if (*(int *)(system_long_status + SYSTEM_RESOURCE_BLOCK_OFFSET_200) < 1) {
     LOCK();
-    if (*(char *)((longlong)psystem_long_var_14 + 0x09) == '\x1') {
-      *(char *)((longlong)psystem_long_var_14 + 0x09) = '\x3';
+    if (*(char *)((longlong)system_context_ptr + 0x09) == '\x1') {
+      *(char *)((longlong)system_context_ptr + 0x09) = '\x3';
     }
     UNLOCK();
     goto SYSTEM_LABEL;
   }
-  if (*psystem_long_var_14 == 0) {
+  if (*system_context_ptr == 0) {
     parent_pointer = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x02001,0x01,SYSTEM_RESOURCE_BLOCK_OFFSET_20);
     *parent_pointer = &system_data_primary_context;
     *parent_pointer = &system_data_secondary_context;
@@ -51577,9 +51577,9 @@ ulonglong system_function_0135(longlong system_context_parameter,longlong *syste
     UNLOCK();
     parent_pointer[3] = 0;
     parent_pointer[4] = system_context_parameter;
-    system_function_0x01(psystem_long_var_14);
+    system_cleanup_audio_resource(system_context_ptr);
   }
-  if (psystem_long_var_14[1] == 0) {
+  if (system_context_ptr[1] == 0) {
     parent_pointer = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,SYSTEM_RESOURCE_BLOCK_OFFSET_20,0x01,SYSTEM_RESOURCE_BLOCK_OFFSET_20);
     *parent_pointer = &system_data_primary_context;
     *parent_pointer = &system_data_secondary_context;
@@ -51589,7 +51589,7 @@ ulonglong system_function_0135(longlong system_context_parameter,longlong *syste
     *(uint64_t *)(parent_pointer + 2) = 0;
     UNLOCK();
     parent_pointer[3] = 0;
-    system_function_0x01(psystem_long_var_14 + 1);
+    system_cleanup_audio_resource(system_context_ptr + 1);
   }
   system_context_id = 1;
   system_stack_long_int_0x020 = system_context_parameter;
@@ -51600,7 +51600,7 @@ SYSTEM_VALIDATION_CHECK:
     if (*(longlong *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A1) == 0) {
 SYSTEM_VALIDATION_CHECK:
       LOCK();
-      *(uint32_t *)((longlong)psystem_long_var_14 + 0x09) = 4;
+      *(uint32_t *)((longlong)system_context_ptr + 0x09) = 4;
       UNLOCK();
       system_audio_uint_value = system_function_0154(&system_stack_long_int_0x020);
       return system_audio_uint_value & 0x07fffffffffffff00;
@@ -51611,135 +51611,135 @@ SYSTEM_VALIDATION_CHECK:
     if (system_long_status == 0) goto SYSTEM_LABEL;
   }
   system_audio_uint_value = system_allocate_memory_context(system_context_memory_pool,0x0a0,0x01,SYSTEM_RESOURCE_BLOCK_OFFSET_20);
-  psystem_long_var_10 = (longlong *)system_function_0x01001003(system_audio_uint_value);
-  system_buffer_pointer = psystem_long_var_10;
-  if (psystem_long_var_10 != (longlong *)0x00) {
-    (**(code **)(*psystem_long_var_10 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_10);
+  system_resource_ptr = (longlong *)system_create_resource_handle(system_audio_uint_value);
+  system_buffer_pointer = system_resource_ptr;
+  if (system_resource_ptr != (longlong *)0x00) {
+    (**(code **)(*system_resource_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_resource_ptr);
   }
   system_long_status = system_context_parameter;
   if ((*(byte *)(system_context_parameter + 0x07d) & SYSTEM_RESOURCE_BLOCK_OFFSET_20) == 0) {
     system_long_status = func_0x01001000015de0(*(uint64_t *)(system_context_parameter + 0x01b0));
   }
-  *(uint64_t *)(psystem_long_var_10 + 2) = *(uint64_t *)(system_long_status + SYSTEM_RESOURCE_BLOCK_OFFSET_200);
-  *(byte *)(psystem_long_var_10 + 0x08) =
-       *(byte *)(psystem_long_var_10 + 0x08) ^ (*(byte *)(system_context_parameter + 0x07e) >> 1 ^ *(byte *)(psystem_long_var_10 + 0x08)) & 1;
-  *(byte *)((longlong)psystem_long_var_10 + 0x014) = system_context_parameter;
+  *(uint64_t *)(system_resource_ptr + 2) = *(uint64_t *)(system_long_status + SYSTEM_RESOURCE_BLOCK_OFFSET_200);
+  *(byte *)(system_resource_ptr + 0x08) =
+       *(byte *)(system_resource_ptr + 0x08) ^ (*(byte *)(system_context_parameter + 0x07e) >> 1 ^ *(byte *)(system_resource_ptr + 0x08)) & 1;
+  *(byte *)((longlong)system_resource_ptr + 0x014) = system_context_parameter;
   system_char_data = *(char *)(system_context_parameter + 0x07a);
-  *(char *)((longlong)psystem_long_var_10 + 0x09) = system_char_data;
+  *(char *)((longlong)system_resource_ptr + 0x09) = system_char_data;
   if (system_char_data == '\x1') {
     system_context_parameter = '\x1';
   }
-  psystem_long_var_11 = (longlong *)system_allocate_memory_context(system_context_memory_pool,0x030,0x01,SYSTEM_RESOURCE_BLOCK_OFFSET_20);
-  *psystem_long_var_11 = (longlong)&system_data_primary_context;
-  *psystem_long_var_11 = (longlong)&system_data_secondary_context;
-  *(uint64_t *)(psystem_long_var_11 + 1) = 0;
-  *psystem_long_var_11 = (longlong)&system_handler_120;
-  psystem_long_var_11[4] = 0;
-  psystem_long_var_11[2] = 0;
-  *(byte *)(psystem_long_var_11 + 5) = *(byte *)(psystem_long_var_11 + 5) | 1;
-  system_buffer_pointer = psystem_long_var_11;
-  (**(code **)(*psystem_long_var_11 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_11);
+  system_buffer_ptr = (longlong *)system_allocate_memory_context(system_context_memory_pool,0x030,0x01,SYSTEM_RESOURCE_BLOCK_OFFSET_20);
+  *system_buffer_ptr = (longlong)&system_data_primary_context;
+  *system_buffer_ptr = (longlong)&system_data_secondary_context;
+  *(uint64_t *)(system_buffer_ptr + 1) = 0;
+  *system_buffer_ptr = (longlong)&system_handler_120;
+  system_buffer_ptr[4] = 0;
+  system_buffer_ptr[2] = 0;
+  *(byte *)(system_buffer_ptr + 5) = *(byte *)(system_buffer_ptr + 5) | 1;
+  system_buffer_pointer = system_buffer_ptr;
+  (**(code **)(*system_buffer_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_buffer_ptr);
   system_byte_config = *(byte *)(system_context_parameter + 0x07d) & SYSTEM_RESOURCE_BLOCK_OFFSET_20;
   system_long_status = system_context_parameter;
   if (system_byte_config == 0) {
     system_long_status = func_0x01001000015de0(*(uint64_t *)(system_context_parameter + 0x01b0));
   }
-  system_comparison_result = *(int *)(system_long_status + SYSTEM_RESOURCE_BLOCK_OFFSET_200);
+  system_compare_result = *(int *)(system_long_status + SYSTEM_RESOURCE_BLOCK_OFFSET_200);
   system_long_status = system_context_parameter;
   if (system_byte_config == 0) {
     system_long_status = func_0x01001000015de0(*(uint64_t *)(system_context_parameter + 0x01b0));
   }
-  system_status_buffer = *(int *)(system_long_status + 0x01fc);
+  system_buffer_size = *(int *)(system_long_status + 0x01fc);
   system_audio_uint_value = 2;
-  if (0x07fff < system_comparison_result) {
+  if (0x07fff < system_compare_result) {
     system_audio_uint_value = 4;
   }
-  *(byte *)(psystem_long_var_11 + 5) =
-       *(byte *)(psystem_long_var_11 + 5) ^ (*(byte *)(system_context_parameter + 0x07e) >> 1 ^ *(byte *)(psystem_long_var_11 + 5)) & 1;
-  *(uint64_t *)((longlong)psystem_long_var_11 + 0x014) = system_audio_uint_value;
-  *(int *)(psystem_long_var_11 + 2) = system_status_buffer * 3;
-  *(uint32_t *)(psystem_long_var_11 + 3) = *(uint32_t *)(system_context_parameter + 0x07a);
+  *(byte *)(system_buffer_ptr + 5) =
+       *(byte *)(system_buffer_ptr + 5) ^ (*(byte *)(system_context_parameter + 0x07e) >> 1 ^ *(byte *)(system_buffer_ptr + 5)) & 1;
+  *(uint64_t *)((longlong)system_buffer_ptr + 0x014) = system_audio_uint_value;
+  *(int *)(system_buffer_ptr + 2) = system_buffer_size * 3;
+  *(uint32_t *)(system_buffer_ptr + 3) = *(uint32_t *)(system_context_parameter + 0x07a);
   if ((*(longlong *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A1) == 0) || (*(longlong *)(system_context_parameter + 0x0210) != 0)) {
     if (system_context_parameter == '\0') {
       system_audio_uint_value = system_allocate_memory_context(system_context_memory_pool,0x050,0x01,3);
-      (**(code **)(*psystem_long_var_10 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_10);
-      (**(code **)(*psystem_long_var_11 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_11);
-      pcStack_0x06001 = system_function_0x010014;
+      (**(code **)(*system_resource_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_resource_ptr);
+      (**(code **)(*system_buffer_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_buffer_ptr);
+      pcStack_0x06001 = system_cleanup_audio_resource0014;
       system_buffer_pointer = &system_data_13;
-      psystem_stack_long_int_b1 = (longlong *)system_allocate_memory_context(system_context_memory_pool,SYSTEM_RESOURCE_BLOCK_OFFSET_20,0x01,engine_status_flag);
-      *psystem_stack_long_int_b1 = system_context_parameter;
-      *(byte *)(psystem_stack_long_int_b1 + 1) = system_context_parameter;
-      psystem_stack_long_int_b1[2] = (longlong)psystem_long_var_10;
-      psystem_stack_long_int_b1[3] = (longlong)psystem_long_var_11;
-      asystem_buffer_pointer[0] = psystem_stack_long_int_b1;
-      psystem_long_var_12 = (longlong *)system_function_0062(system_audio_uint_value,asystem_buffer_pointer);
-      psystem_stack_long_int_c0 = psystem_long_var_12;
-      system_buffer_pointer = psystem_long_var_12;
+      system_stack_buffer1 = (longlong *)system_allocate_memory_context(system_context_memory_pool,SYSTEM_RESOURCE_BLOCK_OFFSET_20,0x01,engine_status_flag);
+      *system_stack_buffer1 = system_context_parameter;
+      *(byte *)(system_stack_buffer1 + 1) = system_context_parameter;
+      system_stack_buffer1[2] = (longlong)system_resource_ptr;
+      system_stack_buffer1[3] = (longlong)system_buffer_ptr;
+      asystem_buffer_pointer[0] = system_stack_buffer1;
+      system_handle_ptr = (longlong *)system_configure_audio_device(system_audio_uint_value,asystem_buffer_pointer);
+      system_stack_buffer2 = system_handle_ptr;
+      system_buffer_pointer = system_handle_ptr;
       system_audio_uint_value = system_resource_memory_pool;
-      if (psystem_long_var_12 != (longlong *)0x00) {
-        (**(code **)(*psystem_long_var_12 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_12);
+      if (system_handle_ptr != (longlong *)0x00) {
+        (**(code **)(*system_handle_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_handle_ptr);
         system_audio_uint_value = system_resource_memory_pool;
-        (**(code **)(*psystem_long_var_12 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_12);
+        (**(code **)(*system_handle_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_handle_ptr);
       }
-      system_function_0010(system_audio_uint_value,&psystem_stack_long_int_c0);
-      if (psystem_long_var_12 != (longlong *)0x00) {
-        system_long_status = *psystem_long_var_12;
+      system_function_0010(system_audio_uint_value,&system_stack_buffer2);
+      if (system_handle_ptr != (longlong *)0x00) {
+        system_long_status = *system_handle_ptr;
 SYSTEM_VALIDATION_CHECK:
-        (**(code **)(system_long_status + SYSTEM_THREAD_POOL_BASE_OFFSET))(psystem_long_var_12);
+        (**(code **)(system_long_status + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_handle_ptr);
       }
     }
     else {
-      psystem_stack_long_int_e0 = psystem_long_var_11;
-      (**(code **)(*psystem_long_var_11 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_11);
-      psystem_stack_long_int_d1 = psystem_long_var_10;
-      (**(code **)(*psystem_long_var_10 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_10);
-      system_function_0142(system_context_parameter,system_context_parameter,&psystem_stack_long_int_d1,&psystem_stack_long_int_e0);
-      psystem_stack_long_int_d0 = psystem_long_var_11;
-      (**(code **)(*psystem_long_var_11 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_11);
-      psystem_stack_long_int_c1 = psystem_long_var_10;
-      (**(code **)(*psystem_long_var_10 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_10);
-      system_function_0x013002(system_context_parameter,system_context_parameter,&psystem_stack_long_int_c1,&psystem_stack_long_int_d0);
+      system_stack_buffer5 = system_buffer_ptr;
+      (**(code **)(*system_buffer_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_buffer_ptr);
+      system_stack_buffer4 = system_resource_ptr;
+      (**(code **)(*system_resource_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_resource_ptr);
+      system_function_0142(system_context_parameter,system_context_parameter,&system_stack_buffer4,&system_stack_buffer5);
+      system_stack_buffer3 = system_buffer_ptr;
+      (**(code **)(*system_buffer_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_buffer_ptr);
+      system_stack_buffer8 = system_resource_ptr;
+      (**(code **)(*system_resource_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_resource_ptr);
+      system_cleanup_audio_resource3002(system_context_parameter,system_context_parameter,&system_stack_buffer8,&system_stack_buffer3);
       system_function_0154(&system_stack_long_int_0x020);
       if (*(char *)(system_context_parameter + 0x074) == '\x1') {
-        psystem_stack_long_int_b1 = (longlong *)0x00;
+        system_stack_buffer1 = (longlong *)0x00;
         system_buffer_pointer = (longlong *)0x00;
         asystem_context_id_b0[0] = 0;
         system_context_id_a0 = 3;
         system_stack_long_int_a1 = system_context_parameter;
         system_function_0151(asystem_context_id_b0);
-        psystem_long_var_12 = system_buffer_pointer;
+        system_handle_ptr = system_buffer_pointer;
         system_buffer_pointer = (longlong *)0x00;
-        if (psystem_long_var_12 != (longlong *)0x00) {
-          (**(code **)(*psystem_long_var_12 + SYSTEM_THREAD_POOL_BASE_OFFSET))();
+        if (system_handle_ptr != (longlong *)0x00) {
+          (**(code **)(*system_handle_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))();
         }
         system_function_0152(asystem_context_id_b0);
         if (system_buffer_pointer != (longlong *)0x00) {
           system_long_status = *system_buffer_pointer;
-          psystem_long_var_12 = system_buffer_pointer;
+          system_handle_ptr = system_buffer_pointer;
           goto SYSTEM_LABEL;
         }
       }
     }
   }
   else {
-    psystem_stack_long_int_f0 = psystem_long_var_10;
-    (**(code **)(*psystem_long_var_10 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_10);
-    psystem_stack_long_int_e1 = psystem_long_var_11;
-    (**(code **)(*psystem_long_var_11 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_11);
-    system_function_0x013003(system_context_parameter,system_context_parameter,&psystem_stack_long_int_e1,&psystem_stack_long_int_f0,system_context_parameter);
+    system_stack_buffer7 = system_resource_ptr;
+    (**(code **)(*system_resource_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_resource_ptr);
+    system_stack_buffer6 = system_buffer_ptr;
+    (**(code **)(*system_buffer_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_buffer_ptr);
+    system_cleanup_audio_resource3003(system_context_parameter,system_context_parameter,&system_stack_buffer6,&system_stack_buffer7,system_context_parameter);
   }
-  (**(code **)(*psystem_long_var_11 + SYSTEM_THREAD_POOL_BASE_OFFSET))(psystem_long_var_11);
-  (**(code **)(*psystem_long_var_10 + SYSTEM_THREAD_POOL_BASE_OFFSET))(psystem_long_var_10);
+  (**(code **)(*system_buffer_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_buffer_ptr);
+  (**(code **)(*system_resource_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))(system_resource_ptr);
   system_function_0154(&system_stack_long_int_0x020);
 SYSTEM_VALIDATION_CHECK:
-  return (ulonglong)((byte)(*(char *)((longlong)psystem_long_var_14 + 0x09) - 2U) < 2);
+  return (ulonglong)((byte)(*(char *)((longlong)system_context_ptr + 0x09) - 2U) < 2);
 }
 void system_function_0x03b00230(longlong *system_context_parameter)
 
 {
   longlong system_audio_long_value;
   longlong *system_long_context_ptr;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   longlong *system_buffer_pointer_10;
   longlong **system_stack_long_int_ptr;
   longlong **system_stack_long_int_ptr;
@@ -51751,32 +51751,32 @@ void system_function_0x03b00230(longlong *system_context_parameter)
   
   system_uint_handle = SYSTEM_INVALID_HANDLE_VALUE;
   system_audio_long_value = *system_context_parameter;
-  system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-  system_buffer_pointer_0x01 = (longlong *)system_context_parameter[3];
-  if (system_buffer_pointer_0x01 != (longlong *)0x00) {
-    (**(code **)(*system_buffer_pointer_0x01 + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
+  system_stack_long_int_ptr = &system_audio_device_ptr;
+  system_audio_device_ptr = (longlong *)system_context_parameter[3];
+  if (system_audio_device_ptr != (longlong *)0x00) {
+    (**(code **)(*system_audio_device_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
   }
   system_stack_long_int_ptr = &system_buffer_pointer_10;
   system_buffer_pointer_10 = (longlong *)system_context_parameter[2];
   if (system_buffer_pointer_10 != (longlong *)0x00) {
     (**(code **)(*system_buffer_pointer_10 + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
   }
-  system_function_0142(system_audio_long_value,(char)system_context_parameter[1],&system_buffer_pointer_10,&system_buffer_pointer_0x01,system_uint_handle);
+  system_function_0142(system_audio_long_value,(char)system_context_parameter[1],&system_buffer_pointer_10,&system_audio_device_ptr,system_uint_handle);
   system_audio_long_value = *system_context_parameter;
-  system_stack_long_int_ptr = &system_buffer_pointer_0x01;
-  system_buffer_pointer_0x01 = (longlong *)system_context_parameter[3];
-  if (system_buffer_pointer_0x01 != (longlong *)0x00) {
-    (**(code **)(*system_buffer_pointer_0x01 + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
+  system_stack_long_int_ptr = &system_audio_device_ptr;
+  system_audio_device_ptr = (longlong *)system_context_parameter[3];
+  if (system_audio_device_ptr != (longlong *)0x00) {
+    (**(code **)(*system_audio_device_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
   }
   system_stack_long_int_ptr = &system_buffer_pointer_10;
   system_buffer_pointer_10 = (longlong *)system_context_parameter[2];
   if (system_buffer_pointer_10 != (longlong *)0x00) {
     (**(code **)(*system_buffer_pointer_10 + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
   }
-  system_function_0x013002(system_audio_long_value,(char)system_context_parameter[1],&system_buffer_pointer_10,&system_buffer_pointer_0x01);
+  system_cleanup_audio_resource3002(system_audio_long_value,(char)system_context_parameter[1],&system_buffer_pointer_10,&system_audio_device_ptr);
   system_stack_long_int_0x03001 = *system_context_parameter;
   if (*(char *)(system_stack_long_int_0x03001 + 0x074) == '\x1') {
-    system_buffer_pointer_0x01 = (longlong *)0x00;
+    system_audio_device_ptr = (longlong *)0x00;
     system_buffer_pointer = (longlong *)0x00;
     system_config_buffer[0] = 0;
     system_context_id = 3;
@@ -52227,10 +52227,10 @@ void system_function_0x03c40020(longlong *system_context_parameter,byte system_c
   uint64_t system_context_id_e0;
   uint64_t system_context_id_d1;
   uint64_t system_context_id_d4;
-  longlong *psystem_stack_long_int_d0;
+  longlong *system_stack_buffer3;
   byte bStack_c1;
-  longlong *psystem_stack_long_int_c0;
-  longlong *psystem_stack_long_int_b1;
+  longlong *system_stack_buffer2;
+  longlong *system_stack_buffer1;
   longlong *psystem_stack_long_int_b0;
   byte bStack_a1;
   longlong *psystem_stack_long_int_a0;
@@ -52267,7 +52267,7 @@ void system_function_0x03c40020(longlong *system_context_parameter,byte system_c
     pcStack_f0 = (code *)&system_data_12;
     system_thread_context_pointer = &system_data_11;
     system_context_id = (uint64_t)system_context_id_e0;
-    system_context_id_fc = system_context_id_e0._4_4_;
+    system_context_id_fc = system_context_id_e0.y;
     system_context_id_f1 = system_context_id_d1;
     system_context_id_f4 = system_context_id_d4;
     psystem_stack_long_int_b0 = system_context_parameter;
@@ -52280,7 +52280,7 @@ void system_function_0x03c40020(longlong *system_context_parameter,byte system_c
     if (system_long_handle_ptr != (longlong *)0x00) {
       (**(code **)(*system_long_handle_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_handle_ptr);
     }
-    system_function_0x010032(system_config_buffer,&psystem_stack_long_int_b0);
+    system_cleanup_audio_resource0032(system_config_buffer,&psystem_stack_long_int_b0);
     (*system_resource_pointer)(context_pointer,&system_data_context,system_context_parameter + 0x01003,0,system_config_buffer,&system_context_id);
     if (pcStack_50 != (code *)0x00) {
       (*pcStack_50)(system_config_buffer,0,0);
@@ -52292,18 +52292,18 @@ void system_function_0x03c40020(longlong *system_context_parameter,byte system_c
   else {
     context_pointer = *(longlong **)(system_context_parameter[0x09] + SYSTEM_SECURITY_CONTEXT_OFFSET);
     system_resource_pointer = *(code **)(*context_pointer + SYSTEM_CALLBACK_TABLE_OFFSET);
-    psystem_buffer_pointer = &psystem_stack_long_int_d0;
-    psystem_stack_long_int_d0 = system_context_parameter;
+    psystem_buffer_pointer = &system_stack_buffer3;
+    system_stack_buffer3 = system_context_parameter;
     bStack_c1 = system_context_parameter;
-    psystem_stack_long_int_c0 = system_long_context_ptr;
+    system_stack_buffer2 = system_long_context_ptr;
     if (system_long_context_ptr != (longlong *)0x00) {
       (**(code **)(*system_long_context_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_context_ptr);
     }
-    psystem_stack_long_int_b1 = system_long_handle_ptr;
+    system_stack_buffer1 = system_long_handle_ptr;
     if (system_long_handle_ptr != (longlong *)0x00) {
       (**(code **)(*system_long_handle_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_handle_ptr);
     }
-    system_function_0x010032(system_config_buffer,&psystem_stack_long_int_d0);
+    system_cleanup_audio_resource0032(system_config_buffer,&system_stack_buffer3);
     system_char_status = (*system_resource_pointer)(context_pointer,&system_data_context,system_context_parameter + 0x01003,0,system_config_buffer);
     if (pcStack_0x030 != (code *)0x00) {
       (*pcStack_0x030)(system_config_buffer,0,0);
@@ -52361,7 +52361,7 @@ void system_function_0x03c0030020(longlong *system_context_parameter)
   return;
 }
 
-uint64_t * system_function_0x013001(uint64_t *system_context_parameter,uint64_t *system_context_parameter)
+uint64_t * system_cleanup_audio_resource3001(uint64_t *system_context_parameter,uint64_t *system_context_parameter)
 
 {
   longlong *system_long_data_ptr;
@@ -52412,11 +52412,11 @@ void system_function_0x03c001e0(longlong system_context_parameter,byte system_co
 {
   longlong system_audio_long_value;
   char *system_code_ptr_2;
-  int system_comparison_result;
-  int system_status_buffer;
+  int system_compare_result;
+  int system_buffer_size;
   uint64_t system_audio_config_value;
   longlong *system_long_status_ptr;
-  longlong *psystem_stack_long_int_b1;
+  longlong *system_stack_buffer1;
   longlong *psystem_stack_long_int_b0;
   longlong *psystem_stack_long_int_a1;
   longlong **ppsystem_stack_long_int_a0;
@@ -52435,9 +52435,9 @@ void system_function_0x03c001e0(longlong system_context_parameter,byte system_co
   longlong *system_buffer_pointer;
   
   system_context_id = SYSTEM_INVALID_HANDLE_VALUE;
-  system_comparison_result = *(int *)(*(longlong *)(*(longlong *)(system_resource_memory_pool + 0x01) + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
-  system_status_buffer = _Thrd_id();
-  if (system_status_buffer == system_comparison_result) {
+  system_compare_result = *(int *)(*(longlong *)(*(longlong *)(system_resource_memory_pool + 0x01) + 0x01) + SYSTEM_RESOURCE_TABLE_OFFSET);
+  system_buffer_size = _Thrd_id();
+  if (system_buffer_size == system_compare_result) {
     system_audio_long_value = (ulonglong)system_context_parameter * 0x01001;
     system_audio_config_value = *(uint64_t *)(*(longlong *)(system_context_parameter + 0x01e0) + system_audio_long_value);
     ppsystem_stack_long_int_a0 = &psystem_stack_long_int_a1;
@@ -52447,12 +52447,12 @@ void system_function_0x03c001e0(longlong system_context_parameter,byte system_co
     }
     system_function_0x024001(system_audio_config_value,&psystem_stack_long_int_a1);
     system_audio_config_value = *(uint64_t *)(*(longlong *)(system_context_parameter + 0x01e0) + 0x01 + system_audio_long_value);
-    ppsystem_stack_long_int_a0 = &psystem_stack_long_int_b1;
-    psystem_stack_long_int_b1 = (longlong *)*system_context_parameter;
-    if (psystem_stack_long_int_b1 != (longlong *)0x00) {
-      (**(code **)(*psystem_stack_long_int_b1 + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
+    ppsystem_stack_long_int_a0 = &system_stack_buffer1;
+    system_stack_buffer1 = (longlong *)*system_context_parameter;
+    if (system_stack_buffer1 != (longlong *)0x00) {
+      (**(code **)(*system_stack_buffer1 + SYSTEM_MEMORY_POOL_BASE_OFFSET))();
     }
-    system_function_0x024002(system_audio_config_value,&psystem_stack_long_int_b1);
+    system_function_0x024002(system_audio_config_value,&system_stack_buffer1);
     system_code_ptr_2 = (char *)(*(longlong *)(system_context_parameter + 0x01e0) + 0x09 + system_audio_long_value);
     LOCK();
     if (*system_code_ptr_2 == '\x1') {
@@ -52481,9 +52481,9 @@ void system_function_0x03c001e0(longlong system_context_parameter,byte system_co
     system_buffer_pointer = (longlong *)0x00;
     system_buffer_pointer = system_buffer_pointer;
     system_buffer_pointer = (longlong *)0x00;
-    psystem_stack_long_int_b1 = &system_stack_long_int_0x03001;
-    pcStack_0x04001 = system_function_0x010012;
-    pcStack_40 = system_function_0x010011;
+    system_stack_buffer1 = &system_stack_long_int_0x03001;
+    pcStack_0x04001 = system_cleanup_audio_resource0012;
+    pcStack_40 = system_cleanup_audio_resource0011;
     psystem_stack_long_int_a1 = (longlong *)system_allocate_memory_context(system_context_memory_pool,SYSTEM_RESOURCE_BLOCK_OFFSET_20,0x01,engine_status_flag);
     *psystem_stack_long_int_a1 = system_stack_long_int_0x03001;
     *(byte *)(psystem_stack_long_int_a1 + 1) = bStack_0x030;
@@ -52539,7 +52539,7 @@ void system_function_0x03cbb0(uint system_context_parameter,longlong system_cont
   bool system_byte_config;
   ushort system_audio_status;
   uint16_t system_audio_uint_value;
-  longlong *psystem_long_var_10;
+  longlong *system_resource_ptr;
   int *system_audio_loop_index_ptr;
   int *system_audio_loop_index_ptr;
   float *audio_system_data_context;
@@ -52555,7 +52555,7 @@ void system_function_0x03cbb0(uint system_context_parameter,longlong system_cont
   longlong system_audio_long_value;
   ulonglong system_audio_uint_value;
   longlong system_audio_long_value;
-  longlong *system_buffer_pointer_20;
+  longlong *system_audio_config_ptr;
   uint64_t system_audio_uint_value;
   float system_stack_float_0x012001;
   float system_stack_float_124;
@@ -52587,19 +52587,19 @@ void system_function_0x03cbb0(uint system_context_parameter,longlong system_cont
   }
   system_int_context = *(int *)(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET);
   system_audio_long_value = (longlong)system_int_context;
-  psystem_long_var_10 = (longlong *)system_function_0x010035(_system_data_memory_pool0c1a00200201,&system_buffer_pointer_20,system_int_context * system_audio_loop_index);
-  psystem_long_var_10 = (longlong *)*psystem_long_var_10;
-  if (psystem_long_var_10 != (longlong *)0x00) {
-    (**(code **)(*psystem_long_var_10 + SYSTEM_MEMORY_POOL_BASE_OFFSET))(psystem_long_var_10);
+  system_resource_ptr = (longlong *)system_initialize_audio_system(system_audio_memory_pool,&system_audio_config_ptr,system_int_context * system_audio_loop_index);
+  system_resource_ptr = (longlong *)*system_resource_ptr;
+  if (system_resource_ptr != (longlong *)0x00) {
+    (**(code **)(*system_resource_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_resource_ptr);
   }
   system_long_handle_ptr = (longlong *)*system_context_parameter;
-  *system_context_parameter = (longlong)psystem_long_var_10;
+  *system_context_parameter = (longlong)system_resource_ptr;
   if (system_long_handle_ptr != (longlong *)0x00) {
     (**(code **)(*system_long_handle_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))();
   }
   system_audio_uint_value = 0;
-  if (system_buffer_pointer_20 != (longlong *)0x00) {
-    (**(code **)(*system_buffer_pointer_20 + SYSTEM_THREAD_POOL_BASE_OFFSET))();
+  if (system_audio_config_ptr != (longlong *)0x00) {
+    (**(code **)(*system_audio_config_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))();
   }
   audio_system_data_context = *(float **)(*system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16);
   switch(system_context_parameter) {
@@ -53197,7 +53197,7 @@ code_r0x0100100003db1b:
           system_stack_float_110 = system_stack_float_e0;
         }
         system_function_0262(&system_stack_float_0x012001,&system_stack_float_0x010001,system_stack_float_e0,audio_volume_value,system_audio_uint_value);
-        system_function_0x010016(&system_stack_float_0x012001);
+        system_cleanup_audio_resource0016(&system_stack_float_0x012001);
         if (system_stack_float_0x012001 < SYSTEM_FLOAT_ZERO_VALUE) {
           system_stack_float_0x012001 = -system_stack_float_0x012001;
           system_stack_float_124 = -system_stack_float_124;
@@ -53266,20 +53266,20 @@ void system_function_0x03df50(longlong system_context_parameter,longlong *system
   uint system_uint_handle;
   uint64_t system_uint_buffer;
   uint system_audio_config_value;
-  longlong *system_buffer_pointer_0x01;
+  longlong *system_audio_device_ptr;
   
   if (*(int *)(system_context_parameter + SYSTEM_SECURITY_CONTEXT_OFFSET) != 0) {
     if (system_context_parameter == '\0') {
-      system_uint_buffer = system_function_0x010034(system_context_parameter,&system_buffer_pointer_0x01,*(int *)(system_context_parameter + SYSTEM_SECURITY_CONTEXT_OFFSET) * 3,system_context_parameter,
+      system_uint_buffer = system_cleanup_audio_resource0034(system_context_parameter,&system_audio_device_ptr,*(int *)(system_context_parameter + SYSTEM_SECURITY_CONTEXT_OFFSET) * 3,system_context_parameter,
                             SYSTEM_INVALID_HANDLE_VALUE);
       system_function_0162(system_context_parameter,system_uint_buffer);
     }
     else {
-      system_uint_buffer = system_function_0x010033();
+      system_uint_buffer = system_cleanup_audio_resource0033();
       system_function_0162(system_context_parameter,system_uint_buffer);
     }
-    if (system_buffer_pointer_0x01 != (longlong *)0x00) {
-      (**(code **)(*system_buffer_pointer_0x01 + SYSTEM_THREAD_POOL_BASE_OFFSET))();
+    if (system_audio_device_ptr != (longlong *)0x00) {
+      (**(code **)(*system_audio_device_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))();
     }
     system_long_context = *(longlong *)(*system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16);
     if (system_context_parameter != '\0') {
@@ -53313,10 +53313,10 @@ void system_function_0x03e00010(longlong system_context_parameter,ulonglong syst
 {
   longlong system_audio_long_value;
   int *system_audio_loop_index_ptr;
-  int system_comparison_result;
-  int system_status_buffer;
+  int system_compare_result;
+  int system_buffer_size;
   longlong audio_resource_id;
-  int system_status_code;
+  int system_return_code;
   longlong system_stack_long_int_0x030;
   uint64_t system_context_id;
   longlong system_stack_long_int_60;
@@ -53325,19 +53325,19 @@ void system_function_0x03e00010(longlong system_context_parameter,ulonglong syst
   uint64_t system_context_id;
   
   audio_resource_id = (system_context_parameter & 0x07f) * 0x0A0 + _system_data_memory_pool0c160023001;
-  system_status_buffer = *(int *)(audio_resource_id + SYSTEM_MESSAGE_BUFFER_OFFSET);
-  system_audio_long_value = (longlong)system_status_buffer;
-  if (0 < system_status_buffer) {
+  system_buffer_size = *(int *)(audio_resource_id + SYSTEM_MESSAGE_BUFFER_OFFSET);
+  system_audio_long_value = (longlong)system_buffer_size;
+  if (0 < system_buffer_size) {
     system_context_id = 0;
     system_stack_long_int_0x030 = system_context_parameter;
     system_function_0153(&system_stack_long_int_0x030);
     if (system_stack_long_int_60 != 0) {
-      system_comparison_result = 0;
-      system_status_code = -1;
-      if (0 < system_status_buffer) {
+      system_compare_result = 0;
+      system_return_code = -1;
+      if (0 < system_buffer_size) {
         system_audio_loop_index_ptr = (int *)(audio_resource_id + 0x012001);
         audio_resource_id = system_stack_long_int_60;
-        system_status_buffer = system_status_code;
+        system_buffer_size = system_return_code;
         do {
           switch(*system_audio_loop_index_ptr) {
           case 0:
@@ -53352,29 +53352,29 @@ void system_function_0x03e00010(longlong system_context_parameter,ulonglong syst
           case SYSTEM_STACK_UINT_INITIAL_VALUE:
           case 0x04:
           case 0x06:
-            system_function_0140((longlong)*system_audio_loop_index_ptr,audio_resource_id,*system_context_parameter + 0x01001 + (longlong)system_comparison_result * 0x01);
+            system_function_0140((longlong)*system_audio_loop_index_ptr,audio_resource_id,*system_context_parameter + 0x01001 + (longlong)system_compare_result * 0x01);
             audio_resource_id = system_stack_long_int_60;
             break;
           case 0x01:
-            system_status_code = system_comparison_result;
+            system_return_code = system_compare_result;
             break;
           case 0x02:
-            system_status_buffer = system_comparison_result;
+            system_buffer_size = system_compare_result;
           }
-          system_comparison_result = system_comparison_result + 1;
+          system_compare_result = system_compare_result + 1;
           system_audio_loop_index_ptr = system_audio_loop_index_ptr + 3;
           system_audio_long_value = system_audio_long_value + -1;
         } while (system_audio_long_value != 0);
-        if (system_status_code != -1) {
+        if (system_return_code != -1) {
           system_stack_long_int_0x05001 = system_context_parameter;
           if ((((*(byte *)(system_context_parameter + 0x07d) & SYSTEM_AUDIO_TABLE_OFFSET_VALUE) == 0) || (*(longlong *)(system_context_parameter + 0x0210) == 0))
              && (*(longlong *)(system_context_parameter + 0x01b0) != 0)) {
-            system_stack_long_int_0x05001 = system_function_0x010026();
+            system_stack_long_int_0x05001 = system_cleanup_audio_resource0026();
           }
           system_context_id = 0;
           system_function_0153(&system_stack_long_int_0x05001);
-          system_function_0140(0x01,system_context_id,*system_context_parameter + 0x01001 + (longlong)system_status_code * 0x01);
-          system_function_0140(0x02,system_context_id,*system_context_parameter + 0x01001 + (longlong)system_status_buffer * 0x01);
+          system_function_0140(0x01,system_context_id,*system_context_parameter + 0x01001 + (longlong)system_return_code * 0x01);
+          system_function_0140(0x02,system_context_id,*system_context_parameter + 0x01001 + (longlong)system_buffer_size * 0x01);
           system_function_0154(&system_stack_long_int_0x05001);
         }
       }
@@ -53434,8 +53434,8 @@ void system_function_0x03e5b0(longlong system_context_parameter,longlong *system
   int *system_audio_loop_index_ptr;
   uint64_t *system_handle_ptr;
   longlong system_audio_buffer_pointer;
-  int system_int_config;
-  int system_status_code;
+  int system_config_value;
+  int system_return_code;
   longlong system_audio_long_value;
   ulonglong system_audio_uint_value;
   ulonglong system_audio_uint_value;
@@ -53444,14 +53444,14 @@ void system_function_0x03e5b0(longlong system_context_parameter,longlong *system
   system_audio_uint_value = SYSTEM_INVALID_HANDLE_VALUE;
   system_function_0161(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16);
   system_function_0161(system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET,system_context_parameter);
-  system_status_code = *(int *)(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET);
-  system_audio_uint_value = (longlong)system_status_code * 0x05c + 4;
+  system_return_code = *(int *)(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET);
+  system_audio_uint_value = (longlong)system_return_code * 0x05c + 4;
   system_audio_long_value = system_context_parameter[2];
   system_audio_loop_index_ptr = (int *)system_context_parameter[1];
   system_audio_buffer_pointer = *system_context_parameter;
   if ((ulonglong)((system_audio_buffer_pointer - (longlong)system_audio_loop_index_ptr) + system_audio_long_value) <= system_audio_uint_value) {
     system_function_0x025001(system_context_parameter,(longlong)system_audio_loop_index_ptr + (system_audio_uint_value - system_audio_buffer_pointer),system_audio_long_value,system_audio_uint_value,system_audio_uint_value);
-    system_status_code = *(int *)(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET);
+    system_return_code = *(int *)(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET);
     system_audio_long_value = system_context_parameter[2];
     system_audio_loop_index_ptr = (int *)system_context_parameter[1];
     system_audio_buffer_pointer = *system_context_parameter;
@@ -53460,16 +53460,16 @@ void system_function_0x03e5b0(longlong system_context_parameter,longlong *system
     system_function_0x025001(system_context_parameter,(longlong)system_audio_loop_index_ptr + (4 - system_audio_buffer_pointer));
     system_audio_loop_index_ptr = (int *)system_context_parameter[1];
   }
-  *system_audio_loop_index_ptr = system_status_code;
+  *system_audio_loop_index_ptr = system_return_code;
   system_context_parameter[1] = system_context_parameter[1] + 4;
   system_handle_ptr = (uint64_t *)system_context_parameter[1];
-  system_int_config = 0;
-  system_status_code = system_int_config;
+  system_config_value = 0;
+  system_return_code = system_config_value;
   if (0 < *(int *)(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET)) {
     do {
-      system_function_0126((longlong)system_status_code * 0x05c + *(longlong *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET),system_context_parameter);
-      system_status_code = system_status_code + 1;
-    } while (system_status_code < *(int *)(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET));
+      system_function_0126((longlong)system_return_code * 0x05c + *(longlong *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET),system_context_parameter);
+      system_return_code = system_return_code + 1;
+    } while (system_return_code < *(int *)(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET));
     system_handle_ptr = (uint64_t *)system_context_parameter[1];
   }
   system_uint_value = *(uint64_t *)(system_context_parameter + SYSTEM_SECURITY_CONTEXT_OFFSET);
@@ -53502,11 +53502,11 @@ void system_function_0x03e5b0(longlong system_context_parameter,longlong *system
   ;
   if (*(short *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0) != 0) {
     do {
-      system_audio_long_value = (longlong)system_int_config * 0x050 + *(longlong *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE0);
+      system_audio_long_value = (longlong)system_config_value * 0x050 + *(longlong *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE0);
       system_function_0161(system_audio_long_value,system_context_parameter);
       system_function_0161(system_audio_long_value + SYSTEM_MEMORY_POOL_BASE_OFFSET,system_context_parameter);
-      system_int_config = system_int_config + 1;
-    } while (system_int_config < (int)(uint)*(ushort *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0));
+      system_config_value = system_config_value + 1;
+    } while (system_config_value < (int)(uint)*(ushort *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0));
   }
   system_uint_value = *(uint64_t *)(system_context_parameter + 200);
   system_handle_ptr = (uint64_t *)system_context_parameter[1];
@@ -53688,8 +53688,8 @@ code * system_function_0146(longlong system_context_parameter,char system_contex
         system_context_id = 0;
         system_function_0153(&system_stack_long_int_30);
         system_audio_context_id = system_allocate_memory_context(system_context_memory_pool,0x070,0x01,3);
-        system_audio_context_id = system_function_0x014002(system_audio_context_id);
-        system_function_0x01(system_char_pointer,system_audio_context_id);
+        system_audio_context_id = system_cleanup_audio_resource4002(system_audio_context_id);
+        system_cleanup_audio_resource(system_char_pointer,system_audio_context_id);
         system_function_0204(*(longlong *)system_char_pointer + SYSTEM_CONFIG_DATA_SIZE_16,(longlong)pcStack_20 + SYSTEM_CONFIG_DATA_SIZE_16);
         system_function_0204(*(longlong *)system_char_pointer + SYSTEM_THREAD_POOL_BASE_OFFSET,(longlong)pcStack_20 + SYSTEM_THREAD_POOL_BASE_OFFSET);
         system_function_0203(*(longlong *)system_char_pointer + SYSTEM_CALLBACK_TABLE_OFFSET,(longlong)pcStack_20 + SYSTEM_CALLBACK_TABLE_OFFSET);
@@ -53697,7 +53697,7 @@ code * system_function_0146(longlong system_context_parameter,char system_contex
         if (system_context_parameter != '\0') {
           *(byte *)(system_context_parameter + 0x07d) = *(byte *)(system_context_parameter + 0x07d) | SYSTEM_AUDIO_TABLE_OFFSET_VALUE;
           system_function_0200(*(longlong *)system_char_pointer + 200,(longlong)pcStack_20 + 200);
-          system_function_0x010025(*(longlong *)system_char_pointer + SYSTEM_STACK_UINT_INITIAL_VALUE0,(longlong)pcStack_20 + SYSTEM_STACK_UINT_INITIAL_VALUE0);
+          system_cleanup_audio_resource0025(*(longlong *)system_char_pointer + SYSTEM_STACK_UINT_INITIAL_VALUE0,(longlong)pcStack_20 + SYSTEM_STACK_UINT_INITIAL_VALUE0);
         }
         system_char_pointer = (code *)system_function_0154(&system_stack_long_int_30);
         return system_char_pointer;
@@ -53706,7 +53706,7 @@ code * system_function_0146(longlong system_context_parameter,char system_contex
     if (*(longlong *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A1) == 0) {
       if ((*(byte *)(system_context_parameter + 0x07d) & 4) != 0) {
         system_audio_context_id = system_allocate_memory_context(system_context_memory_pool,0x070,0x01,3);
-        context_pointer = (longlong *)system_function_0x014002(system_audio_context_id);
+        context_pointer = (longlong *)system_cleanup_audio_resource4002(system_audio_context_id);
         pcStack_0x01001 = (code *)SYSTEM_INVALID_HANDLE_VALUE;
         if (context_pointer != (longlong *)0x00) {
           (**(code **)(*context_pointer + SYSTEM_MEMORY_POOL_BASE_OFFSET))(context_pointer);
@@ -53724,7 +53724,7 @@ code * system_function_0146(longlong system_context_parameter,char system_contex
     else {
       context_pointer = *(longlong **)(*(longlong *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A1) + SYSTEM_SECURITY_CONTEXT_OFFSET);
       pcStack_20 = (code *)&system_data_10;
-      pcStack_0x01001 = system_function_0x010013;
+      pcStack_0x01001 = system_cleanup_audio_resource0013;
       system_stack_long_int_30 = system_context_parameter;
       (**(code **)(*context_pointer + SYSTEM_CALLBACK_TABLE_OFFSET))(context_pointer,&system_database_config,system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE1,0,&system_stack_long_int_30);
       system_audio_register_value_rax = pcStack_20;
@@ -53742,7 +53742,7 @@ void system_function_0x03edd0(longlong system_context_parameter,char system_cont
   longlong *system_long_data_ptr;
   
   if (*(longlong *)(system_context_parameter + 0x0210) != 0) {
-    system_function_0x012003();
+    system_cleanup_audio_resource2003();
     if (system_context_parameter != '\0') {
       *(byte *)(system_context_parameter + 0x07d) = *(byte *)(system_context_parameter + 0x07d) | SYSTEM_RESOURCE_BLOCK_OFFSET_20;
       *(byte *)(system_context_parameter + 0x07e) = *(byte *)(system_context_parameter + 0x07e) | 1;
@@ -53770,7 +53770,7 @@ void system_function_0x03ee0030(longlong system_context_parameter)
   int system_int_value;
   uint system_audio_context_id;
   uint64_t system_uint_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   uint system_audio_config_value;
   uint system_audio_status;
   longlong system_audio_long_value;
@@ -53792,7 +53792,7 @@ void system_function_0x03ee0030(longlong system_context_parameter)
         }
         system_audio_long_value = (longlong)(int)system_audio_status * 0x04001001 + _system_data_memory_pool0c160010020 + SYSTEM_STACK_UINT_INITIAL_VALUE1;
         system_audio_long_value = (longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x02c001) * 0x04001001 + _system_data_memory_pool0c160010020 + SYSTEM_STACK_UINT_INITIAL_VALUE1;
-        system_audio_uint_value = system_function_0x015002(system_audio_long_value,*(uint64_t *)(system_audio_long_value + 0x014));
+        system_audio_uint_value = system_cleanup_audio_resource5002(system_audio_long_value,*(uint64_t *)(system_audio_long_value + 0x014));
         system_audio_loop_index = (int)system_audio_uint_value;
         system_audio_uint_value = system_audio_uint_value & 0x07fffffff;
         if (-1 < system_audio_loop_index) {
@@ -53812,14 +53812,14 @@ void system_function_0x03ee0030(longlong system_context_parameter)
           }
           if (0 < (int)system_audio_status) {
             do {
-              system_status_buffer = (int)system_audio_uint_value;
-              system_audio_config_value = (system_audio_context_id - system_audio_loop_index) + system_status_buffer;
+              system_buffer_size = (int)system_audio_uint_value;
+              system_audio_config_value = (system_audio_context_id - system_audio_loop_index) + system_buffer_size;
               system_audio_status = system_audio_config_value >> SYSTEM_STACK_UINT_INITIAL_VALUE;
               system_audio_uint_value = system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE;
-              system_audio_uint_value = (ulonglong)(system_status_buffer + 1);
+              system_audio_uint_value = (ulonglong)(system_buffer_size + 1);
               *(uint64_t *)
                (*(longlong *)(system_audio_long_value + 0x01 + system_audio_uint_value * 0x01) +
-               (ulonglong)(uint)(system_status_buffer + (int)system_audio_uint_value * -SYSTEM_STANDARD_BUFFER_SIZE0) * 0x01) =
+               (ulonglong)(uint)(system_buffer_size + (int)system_audio_uint_value * -SYSTEM_STANDARD_BUFFER_SIZE0) * 0x01) =
                    *(uint64_t *)
                     (*(longlong *)(system_audio_long_value + 0x01 + (ulonglong)system_audio_status * 0x01) +
                     (ulonglong)(system_audio_config_value + system_audio_status * -SYSTEM_STANDARD_BUFFER_SIZE0) * 0x01);
@@ -53836,7 +53836,7 @@ void system_function_0x03ee0030(longlong system_context_parameter)
     }
     else {
       system_audio_long_value = (longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x02c001) * 0x04001001 + _system_data_memory_pool0c160010020 + SYSTEM_STACK_UINT_INITIAL_VALUE1;
-      system_audio_config_value = system_function_0x015002(system_audio_long_value);
+      system_audio_config_value = system_cleanup_audio_resource5002(system_audio_long_value);
       system_audio_context_id = system_audio_config_value >> SYSTEM_STACK_UINT_INITIAL_VALUE;
       system_audio_status = *(uint *)(*(uint64_t **)(system_context_parameter + 0x02d0) + 1);
       system_audio_uint_value = (ulonglong)system_audio_status;
@@ -53873,10 +53873,10 @@ void system_function_0x03eea1(longlong system_context_parameter,int system_conte
 {
   uint system_uint_value;
   uint64_t system_audio_context_id;
-  int system_comparison_result;
+  int system_compare_result;
   uint system_uint_buffer;
   uint system_audio_config_value;
-  int system_status_code;
+  int system_return_code;
   longlong system_audio_register_value;
   int system_audio_register_value;
   longlong system_audio_long_value;
@@ -53894,41 +53894,41 @@ void system_function_0x03eea1(longlong system_context_parameter,int system_conte
       }
       system_audio_long_value = (longlong)(int)system_audio_config_value * 0x04001001 + _system_data_memory_pool0c160010020 + SYSTEM_STACK_UINT_INITIAL_VALUE1;
       system_audio_long_value = (longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x02c001) * 0x04001001 + _system_data_memory_pool0c160010020 + SYSTEM_STACK_UINT_INITIAL_VALUE1;
-      system_audio_uint_value = system_function_0x015002(system_audio_long_value,*(uint64_t *)(system_context_parameter + 0x014));
-      system_status_code = (int)system_audio_uint_value;
+      system_audio_uint_value = system_cleanup_audio_resource5002(system_audio_long_value,*(uint64_t *)(system_context_parameter + 0x014));
+      system_return_code = (int)system_audio_uint_value;
       system_audio_uint_value = system_audio_uint_value & 0x07fffffff;
-      if (-1 < system_status_code) {
+      if (-1 < system_return_code) {
         system_audio_uint_value = system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE & 0x01fffff;
         system_audio_config_value = *(uint *)(*(longlong *)(system_audio_register_value + 0x02d0) + 0x014);
         system_audio_uint_value = (ulonglong)system_audio_config_value;
         system_uint_value = *(uint *)(*(longlong *)(system_audio_register_value + 0x02d0) + 0x01001);
         system_uint_buffer = (uint)system_audio_uint_value;
-        if (system_uint_buffer == system_audio_config_value + system_status_code >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
+        if (system_uint_buffer == system_audio_config_value + system_return_code >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
           system_audio_uint_value = system_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE;
           if (system_audio_uint_value == system_uint_value + system_audio_config_value >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
                     // WARNING: Subroutine does not return
-            memcpy(*(longlong *)(system_audio_long_value + 0x01 + system_audio_uint_value * 0x01) + (ulonglong)(system_status_code + system_uint_buffer * -SYSTEM_STANDARD_BUFFER_SIZE0) * 0x01,
+            memcpy(*(longlong *)(system_audio_long_value + 0x01 + system_audio_uint_value * 0x01) + (ulonglong)(system_return_code + system_uint_buffer * -SYSTEM_STANDARD_BUFFER_SIZE0) * 0x01,
                    *(longlong *)(system_audio_long_value + 0x01 + (ulonglong)system_audio_uint_value * 0x01) +
                    (ulonglong)(system_uint_value + system_audio_uint_value * -SYSTEM_STANDARD_BUFFER_SIZE0) * 0x01,(longlong)(int)system_audio_config_value << 3);
           }
         }
         if (0 < (int)system_audio_config_value) {
           do {
-            system_comparison_result = (int)system_audio_uint_value;
-            system_uint_buffer = (system_uint_value - system_status_code) + system_comparison_result;
+            system_compare_result = (int)system_audio_uint_value;
+            system_uint_buffer = (system_uint_value - system_return_code) + system_compare_result;
             system_audio_config_value = system_uint_buffer >> SYSTEM_STACK_UINT_INITIAL_VALUE;
             system_audio_uint_value = system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE;
-            system_audio_uint_value = (ulonglong)(system_comparison_result + 1);
+            system_audio_uint_value = (ulonglong)(system_compare_result + 1);
             *(uint64_t *)
              (*(longlong *)(system_audio_long_value + 0x01 + system_audio_uint_value * 0x01) +
-             (ulonglong)(uint)(system_comparison_result + (int)system_audio_uint_value * -SYSTEM_STANDARD_BUFFER_SIZE0) * 0x01) =
+             (ulonglong)(uint)(system_compare_result + (int)system_audio_uint_value * -SYSTEM_STANDARD_BUFFER_SIZE0) * 0x01) =
                  *(uint64_t *)
                   (*(longlong *)(system_audio_long_value + 0x01 + (ulonglong)system_audio_config_value * 0x01) +
                   (ulonglong)(system_uint_buffer + system_audio_config_value * -SYSTEM_STANDARD_BUFFER_SIZE0) * 0x01);
             system_audio_uint_value = system_audio_uint_value - 1;
           } while (system_audio_uint_value != 0);
         }
-        *(int *)(*(longlong *)(system_audio_register_value + 0x02d0) + 0x01001) = system_status_code;
+        *(int *)(*(longlong *)(system_audio_register_value + 0x02d0) + 0x01001) = system_return_code;
         *(int *)(*(longlong *)(system_audio_register_value + 0x02d0) + 0x04) = system_audio_register_value;
       }
     }
@@ -53938,7 +53938,7 @@ void system_function_0x03eea1(longlong system_context_parameter,int system_conte
   }
   else {
     system_audio_long_value = (longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x02c001) * 0x04001001 + _system_data_memory_pool0c160010020 + SYSTEM_STACK_UINT_INITIAL_VALUE1;
-    system_uint_buffer = system_function_0x015002(system_audio_long_value);
+    system_uint_buffer = system_cleanup_audio_resource5002(system_audio_long_value);
     system_uint_value = system_uint_buffer >> SYSTEM_STACK_UINT_INITIAL_VALUE;
     system_audio_config_value = *(uint *)(*(uint64_t **)(system_audio_register_value + 0x02d0) + 1);
     system_audio_uint_value = (ulonglong)system_audio_config_value;
@@ -53973,7 +53973,7 @@ void system_function_0x03ef002a(longlong system_context_parameter,longlong syste
   uint system_uint_value;
   int system_int_context;
   uint system_uint_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   ulonglong system_audio_config_value;
   uint system_audio_status;
   longlong system_audio_register_value;
@@ -53988,20 +53988,20 @@ void system_function_0x03ef002a(longlong system_context_parameter,longlong syste
   }
   system_audio_long_value = (longlong)(int)system_uint_handle * 0x04001001 + system_context_parameter;
   system_context_parameter = (longlong)*(int *)(system_context_parameter + 0x0210) * 0x04001001 + system_context_parameter;
-  system_audio_config_value = system_function_0x015002(system_context_parameter,*(uint64_t *)(system_context_parameter + 0x014));
-  system_status_buffer = (int)system_audio_config_value;
+  system_audio_config_value = system_cleanup_audio_resource5002(system_context_parameter,*(uint64_t *)(system_context_parameter + 0x014));
+  system_buffer_size = (int)system_audio_config_value;
   system_audio_uint_value = system_audio_config_value & 0x07fffffff;
-  if (-1 < system_status_buffer) {
+  if (-1 < system_buffer_size) {
     system_audio_uint_value = system_audio_config_value >> SYSTEM_STACK_UINT_INITIAL_VALUE & 0x01fffff;
     system_uint_handle = *(uint *)(*(longlong *)(system_audio_register_value + 0x02d0) + 0x014);
     system_audio_config_value = (ulonglong)system_uint_handle;
     system_uint_value = *(uint *)(*(longlong *)(system_audio_register_value + 0x02d0) + 0x01001);
     system_audio_uint_value = (uint)system_audio_uint_value;
-    if (system_audio_uint_value == system_uint_handle + system_status_buffer >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
+    if (system_audio_uint_value == system_uint_handle + system_buffer_size >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
       system_audio_status = system_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE;
       if (system_audio_status == system_uint_value + system_uint_handle >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
                     // WARNING: Subroutine does not return
-        memcpy(*(longlong *)(system_context_parameter + 0x01 + system_audio_uint_value * 0x01) + (ulonglong)(system_status_buffer + system_audio_uint_value * -SYSTEM_STANDARD_BUFFER_SIZE0) * 0x01,
+        memcpy(*(longlong *)(system_context_parameter + 0x01 + system_audio_uint_value * 0x01) + (ulonglong)(system_buffer_size + system_audio_uint_value * -SYSTEM_STANDARD_BUFFER_SIZE0) * 0x01,
                *(longlong *)(system_audio_long_value + 0x01 + (ulonglong)system_audio_status * 0x01) +
                (ulonglong)(system_uint_value + system_audio_status * -SYSTEM_STANDARD_BUFFER_SIZE0) * 0x01,(longlong)(int)system_uint_handle << 3);
       }
@@ -54009,7 +54009,7 @@ void system_function_0x03ef002a(longlong system_context_parameter,longlong syste
     if (0 < (int)system_uint_handle) {
       do {
         system_int_context = (int)system_audio_uint_value;
-        system_audio_uint_value = (system_uint_value - system_status_buffer) + system_int_context;
+        system_audio_uint_value = (system_uint_value - system_buffer_size) + system_int_context;
         system_uint_handle = system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE;
         system_audio_uint_value = system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE;
         system_audio_uint_value = (ulonglong)(system_int_context + 1);
@@ -54022,7 +54022,7 @@ void system_function_0x03ef002a(longlong system_context_parameter,longlong syste
         system_audio_config_value = system_audio_config_value - 1;
       } while (system_audio_config_value != 0);
     }
-    *(int *)(*(longlong *)(system_audio_register_value + 0x02d0) + 0x01001) = system_status_buffer;
+    *(int *)(*(longlong *)(system_audio_register_value + 0x02d0) + 0x01001) = system_buffer_size;
     *(uint64_t *)(*(longlong *)(system_audio_register_value + 0x02d0) + 0x04) = system_audio_register_value;
   }
   return;
@@ -54187,7 +54187,7 @@ void system_function_0x03f10036(void)
   longlong system_long_context;
   longlong system_audio_register_value;
   longlong system_audio_register_value;
-  int *psystem_comparison_result;
+  int *psystem_compare_result;
   longlong system_audio_buffer_pointer;
   longlong system_audio_register_value;
   longlong audio_resource_id;
@@ -54195,21 +54195,21 @@ void system_function_0x03f10036(void)
   audio_resource_id = -0x01 - system_audio_register_value;
   system_audio_buffer_pointer = (system_audio_register_value - 4U >> 2) + 1;
   system_long_context = system_audio_buffer_pointer * 4;
-  psystem_comparison_result = (int *)(system_audio_register_value + 0x01);
+  psystem_compare_result = (int *)(system_audio_register_value + 0x01);
   do {
-    system_audio_loop_index_ptr = psystem_comparison_result + 0x01;
-    *(float *)((longlong)psystem_comparison_result + **(longlong **)(system_audio_register_value + 0x02d0) + audio_resource_id) = (float)psystem_comparison_result[-2];
-    *(int *)((longlong)psystem_comparison_result + **(longlong **)(system_audio_register_value + 0x02d0) + 4 + audio_resource_id) = psystem_comparison_result[-1];
-    *(float *)((longlong)psystem_comparison_result + **(longlong **)(system_audio_register_value + 0x02d0) + 0x01 + audio_resource_id) = (float)*psystem_comparison_result;
-    *(int *)((longlong)psystem_comparison_result + **(longlong **)(system_audio_register_value + 0x02d0) + 0x04 + audio_resource_id) = psystem_comparison_result[1];
+    system_audio_loop_index_ptr = psystem_compare_result + 0x01;
+    *(float *)((longlong)psystem_compare_result + **(longlong **)(system_audio_register_value + 0x02d0) + audio_resource_id) = (float)psystem_compare_result[-2];
+    *(int *)((longlong)psystem_compare_result + **(longlong **)(system_audio_register_value + 0x02d0) + 4 + audio_resource_id) = psystem_compare_result[-1];
+    *(float *)((longlong)psystem_compare_result + **(longlong **)(system_audio_register_value + 0x02d0) + 0x01 + audio_resource_id) = (float)*psystem_compare_result;
+    *(int *)((longlong)psystem_compare_result + **(longlong **)(system_audio_register_value + 0x02d0) + 0x04 + audio_resource_id) = psystem_compare_result[1];
     *(float *)((**(longlong **)(system_audio_register_value + 0x02d0) - system_audio_register_value) + -0x01001 + (longlong)system_audio_loop_index_ptr) =
-         (float)psystem_comparison_result[2];
-    *(int *)((longlong)psystem_comparison_result + **(longlong **)(system_audio_register_value + 0x02d0) + 0x014 + audio_resource_id) = psystem_comparison_result[3];
+         (float)psystem_compare_result[2];
+    *(int *)((longlong)psystem_compare_result + **(longlong **)(system_audio_register_value + 0x02d0) + 0x014 + audio_resource_id) = psystem_compare_result[3];
     *(float *)((**(longlong **)(system_audio_register_value + 0x02d0) - system_audio_register_value) + -SYSTEM_CONFIG_DATA_SIZE_16 + (longlong)system_audio_loop_index_ptr) =
-         (float)psystem_comparison_result[4];
-    *(int *)((longlong)psystem_comparison_result + **(longlong **)(system_audio_register_value + 0x02d0) + 0x0A + audio_resource_id) = psystem_comparison_result[5];
+         (float)psystem_compare_result[4];
+    *(int *)((longlong)psystem_compare_result + **(longlong **)(system_audio_register_value + 0x02d0) + 0x0A + audio_resource_id) = psystem_compare_result[5];
     system_audio_buffer_pointer = system_audio_buffer_pointer + -1;
-    psystem_comparison_result = system_audio_loop_index_ptr;
+    psystem_compare_result = system_audio_loop_index_ptr;
   } while (system_audio_buffer_pointer != 0);
   for (; system_long_context < system_audio_register_value; system_long_context = system_long_context + 1) {
     *(float *)(**(longlong **)(system_audio_register_value + 0x02d0) + system_long_context * 0x01) =
@@ -54250,7 +54250,7 @@ void system_function_0x03f2cf(void)
   return;
 }
 
-uint64_t * system_function_0x014002(uint64_t *system_context_parameter)
+uint64_t * system_cleanup_audio_resource4002(uint64_t *system_context_parameter)
 
 {
   *system_context_parameter = &system_data_primary_context;
@@ -54291,7 +54291,7 @@ uint64_t * system_function_0150(uint64_t *system_context_parameter,ulonglong sys
                     // WARNING: Subroutine does not return
     system_initialize_component();
   }
-  system_function_0x010024(system_context_parameter[0x016]);
+  system_cleanup_audio_resource0024(system_context_parameter[0x016]);
   system_context_parameter[0x016] = 0;
   if (system_context_parameter[0x01003] != 0) {
                     // WARNING: Subroutine does not return
@@ -54329,32 +54329,32 @@ void system_function_0x03f4c0(uint32_t *system_context_parameter,uint64_t system
   longlong system_audio_long_value;
   longlong *system_long_context_ptr;
   longlong *system_long_handle_ptr;
-  char system_char_buffer;
-  int system_int_config;
+  char system_current_char;
+  int system_config_value;
   uint64_t system_audio_status;
   longlong system_audio_long_value;
   void **child_pointer;
-  bool system_byte_var_;
+  bool system_bool_flag;
   uint64_t system_audio_uint_value;
   
   system_audio_uint_value = SYSTEM_INVALID_HANDLE_VALUE;
-  system_byte_var_ = false;
+  system_bool_flag = false;
   if ((*(byte *)(*(longlong *)(system_context_parameter + 0x01) + 0x07d) & SYSTEM_RESOURCE_BLOCK_OFFSET_20) != 0) {
     system_function_0SYSTEM_HEADER_BUFFER_SIZE();
     system_audio_long_value = 0;
     do {
-      system_char_buffer = *(char *)(*(longlong *)(*(longlong *)(system_context_parameter + 0x01) + 0x01e0) + 0x09 + system_audio_long_value * 0x01001);
-      if (system_char_buffer == '\x1') {
+      system_current_char = *(char *)(*(longlong *)(*(longlong *)(system_context_parameter + 0x01) + 0x01e0) + 0x09 + system_audio_long_value * 0x01001);
+      if (system_current_char == '\x1') {
         Sleep(0);
-        system_byte_var_ = true;
+        system_bool_flag = true;
       }
       system_audio_long_value = system_audio_long_value + 1;
       system_audio_long_value = 0;
-      if (system_char_buffer != '\x1') {
+      if (system_current_char != '\x1') {
         system_audio_long_value = system_audio_long_value;
       }
     } while (system_audio_long_value < SYSTEM_CONFIG_DATA_SIZE_16);
-    if ((system_byte_var_) &&
+    if ((system_bool_flag) &&
        ((system_audio_long_value = *(longlong *)(system_context_parameter + 0x01), *(char *)(system_audio_long_value + 0x07a) == '\0' ||
         (*(char *)(system_audio_long_value + 0x07b) == '\0')))) {
       child_pointer = &system_data_memory_pool0x02001bc0033;
@@ -54368,23 +54368,23 @@ void system_function_0x03f4c0(uint32_t *system_context_parameter,uint64_t system
   system_audio_long_value = *(longlong *)(system_context_parameter + 0x01);
   while( true ) {
     LOCK();
-    system_char_buffer = *(char *)(system_audio_long_value + 0x05c);
-    system_byte_var_ = system_char_buffer == '\0';
-    if (system_byte_var_) {
+    system_current_char = *(char *)(system_audio_long_value + 0x05c);
+    system_bool_flag = system_current_char == '\0';
+    if (system_bool_flag) {
       *(char *)(system_audio_long_value + 0x05c) = '\x1';
-      system_char_buffer = '\0';
+      system_current_char = '\0';
     }
     UNLOCK();
-    if (system_byte_var_) break;
-    system_int_config = _Thrd_id();
-    if (*(int *)(system_audio_long_value + SYSTEM_CONTEXT_OFFSET_F0) == system_int_config) goto SYSTEM_LABEL;
+    if (system_bool_flag) break;
+    system_config_value = _Thrd_id();
+    if (*(int *)(system_audio_long_value + SYSTEM_CONTEXT_OFFSET_F0) == system_config_value) goto SYSTEM_LABEL;
     Sleep();
   }
-  system_char_buffer = '\0';
+  system_current_char = '\0';
 SYSTEM_VALIDATION_CHECK:
   system_audio_status = _Thrd_id();
   *(uint64_t *)(system_audio_long_value + SYSTEM_CONTEXT_OFFSET_F0) = system_audio_status;
-  if (system_char_buffer == '\0') {
+  if (system_current_char == '\0') {
     *system_context_parameter = 1;
   }
   while (*(int *)(system_audio_long_value + 0x05001) != 0) {
@@ -54442,7 +54442,7 @@ void system_function_0x03f6a0(char *system_context_parameter,uint64_t system_con
         system_function_0130(*(uint64_t *)(system_context_parameter + 0x01));
         system_audio_buffer_pointer = *(longlong *)(system_context_parameter + 0x01);
       }
-      system_function_0x014003(system_audio_buffer_pointer,1,system_context_parameter,system_context_parameter,system_audio_config_value);
+      system_cleanup_audio_resource4003(system_audio_buffer_pointer,1,system_context_parameter,system_context_parameter,system_audio_config_value);
       *(uint64_t *)(system_audio_long_value + SYSTEM_CONTEXT_OFFSET_F0) = 0;
       LOCK();
       *(uint32_t *)(system_audio_long_value + 0x05c) = 0;
@@ -54476,11 +54476,11 @@ void system_function_0x03f0030030(longlong *system_context_parameter)
 {
   longlong system_audio_long_value;
   char system_char_data;
-  int system_comparison_result;
+  int system_compare_result;
   bool system_byte_buffer;
   
   system_audio_long_value = *system_context_parameter;
-  system_comparison_result = _Thrd_id();
+  system_compare_result = _Thrd_id();
   while( true ) {
     LOCK();
     system_char_data = *(char *)(system_audio_long_value + 0x05c);
@@ -54491,7 +54491,7 @@ void system_function_0x03f0030030(longlong *system_context_parameter)
     }
     UNLOCK();
     if (system_byte_buffer) break;
-    if (*(int *)(system_audio_long_value + SYSTEM_CONTEXT_OFFSET_F0) == system_comparison_result) goto SYSTEM_LABEL;
+    if (*(int *)(system_audio_long_value + SYSTEM_CONTEXT_OFFSET_F0) == system_compare_result) goto SYSTEM_LABEL;
     Sleep(0);
   }
   system_char_data = '\0';
@@ -54522,7 +54522,7 @@ void system_function_0x03f00140(longlong *system_context_parameter)
   int *system_audio_loop_index_ptr;
   longlong system_long_context;
   char system_char_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   bool system_byte_config;
   
   system_long_context = *system_context_parameter;
@@ -54537,20 +54537,20 @@ void system_function_0x03f00140(longlong *system_context_parameter)
       }
       UNLOCK();
       if (system_byte_config) break;
-      system_status_buffer = _Thrd_id();
-      if ((*(int *)(system_long_context + SYSTEM_CONTEXT_OFFSET_F0) == system_status_buffer) || (*(int *)(system_long_context + SYSTEM_CONTEXT_OFFSET_F0) != 0)) goto SYSTEM_LABEL;
+      system_buffer_size = _Thrd_id();
+      if ((*(int *)(system_long_context + SYSTEM_CONTEXT_OFFSET_F0) == system_buffer_size) || (*(int *)(system_long_context + SYSTEM_CONTEXT_OFFSET_F0) != 0)) goto SYSTEM_LABEL;
       Sleep();
     }
     system_char_handle = '\0';
 SYSTEM_VALIDATION_CHECK:
     LOCK();
     system_audio_loop_index_ptr = (int *)(system_long_context + 0x05001);
-    system_status_buffer = *system_audio_loop_index_ptr;
+    system_buffer_size = *system_audio_loop_index_ptr;
     *system_audio_loop_index_ptr = *system_audio_loop_index_ptr + -1;
     UNLOCK();
     if (system_char_handle == '\0') {
-      if (system_status_buffer == 1) {
-        system_function_0x014003(*system_context_parameter,0);
+      if (system_buffer_size == 1) {
+        system_cleanup_audio_resource4003(*system_context_parameter,0);
       }
       LOCK();
       *(uint32_t *)(system_long_context + 0x05c) = 0;
@@ -54567,7 +54567,7 @@ uint system_function_0x03f0015002(void)
   uint *system_data_context;
   byte system_byte_context;
   char system_char_handle;
-  int system_status_buffer;
+  int system_buffer_size;
   uint system_audio_config_value;
   longlong system_audio_register_value;
   uint64_t *system_audio_register_value;
@@ -54583,8 +54583,8 @@ uint system_function_0x03f0015002(void)
     }
     UNLOCK();
     if (system_byte_status) break;
-    system_status_buffer = _Thrd_id();
-    if ((*(int *)(system_audio_register_value + SYSTEM_CONTEXT_OFFSET_F0) == system_status_buffer) || (*(int *)(system_audio_register_value + SYSTEM_CONTEXT_OFFSET_F0) != 0))
+    system_buffer_size = _Thrd_id();
+    if ((*(int *)(system_audio_register_value + SYSTEM_CONTEXT_OFFSET_F0) == system_buffer_size) || (*(int *)(system_audio_register_value + SYSTEM_CONTEXT_OFFSET_F0) != 0))
     goto SYSTEM_LABEL;
     Sleep();
   }
@@ -54597,7 +54597,7 @@ SYSTEM_VALIDATION_CHECK:
   UNLOCK();
   if (system_char_handle == '\0') {
     if (system_audio_config_value == 1) {
-      system_function_0x014003(*system_audio_register_value,0);
+      system_cleanup_audio_resource4003(*system_audio_register_value,0);
     }
     LOCK();
     system_byte_context = *(byte *)(system_audio_register_value + 0x05c);
@@ -54618,7 +54618,7 @@ uint32_t system_function_0155(void)
   uint64_t *system_audio_register_value;
   
   if (in_EAX == 1) {
-    system_function_0x014003(*system_audio_register_value,0);
+    system_cleanup_audio_resource4003(*system_audio_register_value,0);
   }
   LOCK();
   system_uint_value = *(uint32_t *)(system_audio_register_value + 0x05c);
@@ -54635,7 +54635,7 @@ void system_function_0x03f001f0(longlong system_context_parameter)
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
   byte *system_byte_pointer;
-  char system_char_buffer;
+  char system_current_char;
   uint64_t system_audio_config_value;
   uint system_audio_status;
   longlong *system_ptr_system_local_variable;
@@ -54655,9 +54655,9 @@ void system_function_0x03f001f0(longlong system_context_parameter)
     *(int *)(system_context_parameter + SYSTEM_MEMORY_POOL_BASE_OFFSET) = *(int *)(_system_data_memory_pool0c160010030 + 0x0224);
     if (0 < system_audio_loop_index) {
       system_audio_long_value = (longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x05003001) * 0x012001 + _system_data_memory_pool0c160010020 + 0x042001;
-      system_audio_config_value = system_function_0x015001(system_audio_long_value,system_audio_loop_index);
+      system_audio_config_value = system_cleanup_audio_resource5001(system_audio_long_value,system_audio_loop_index);
       *(uint64_t *)(system_context_parameter + 0x030) = system_audio_config_value;
-      system_function_0x015003(system_audio_long_value,system_audio_config_value);
+      system_cleanup_audio_resource5003(system_audio_long_value,system_audio_config_value);
       if (*(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16) == 0) {
         if (*(int *)(system_context_parameter + 0x01001) != 0) {
           *(uint64_t *)(system_context_parameter + 0x02c) = *(uint64_t *)(system_context_parameter + 0x030);
@@ -54665,11 +54665,11 @@ void system_function_0x03f001f0(longlong system_context_parameter)
         }
       }
       else {
-        system_char_buffer = *(char *)(system_context_parameter + 0x044);
-        system_audio_uint_value = (ulonglong)system_char_buffer;
+        system_current_char = *(char *)(system_context_parameter + 0x044);
+        system_audio_uint_value = (ulonglong)system_current_char;
         system_long_data_ptr = (longlong *)(system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET);
-        system_audio_loop_index = (int)system_char_buffer;
-        if (*(int *)(system_context_parameter + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) == (int)system_char_buffer) {
+        system_audio_loop_index = (int)system_current_char;
+        if (*(int *)(system_context_parameter + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) == (int)system_current_char) {
           system_ptr_system_local_variable = (longlong *)*system_long_data_ptr;
         }
         else {
@@ -54679,22 +54679,22 @@ void system_function_0x03f001f0(longlong system_context_parameter)
             system_initialize_component();
           }
           *system_long_data_ptr = 0;
-          if (system_char_buffer == '\0') {
+          if (system_current_char == '\0') {
             system_ptr_system_local_variable = (longlong *)0x00;
             *system_long_data_ptr = 0;
           }
           else {
-            system_ptr_system_local_variable = (longlong *)system_allocate_memory_context(system_context_memory_pool,(longlong)system_char_buffer * 4);
+            system_ptr_system_local_variable = (longlong *)system_allocate_memory_context(system_context_memory_pool,(longlong)system_current_char * 4);
             *system_long_data_ptr = (longlong)system_ptr_system_local_variable;
           }
         }
         if (system_ptr_system_local_variable != (longlong *)0x00) {
           system_audio_loop_index = 0;
-          system_audio_uint_value = (uint)system_char_buffer;
+          system_audio_uint_value = (uint)system_current_char;
           system_audio_loop_index = system_audio_loop_index;
           if ((0 < system_audio_loop_index) && (0x07 < system_audio_uint_value)) {
             system_audio_loop_index = *(int *)(system_context_parameter + 0x02c);
-            system_long_context_ptr = (longlong *)((longlong)system_ptr_system_local_variable + (longlong)(system_char_buffer + -1) * 4);
+            system_long_context_ptr = (longlong *)((longlong)system_ptr_system_local_variable + (longlong)(system_current_char + -1) * 4);
             if ((((longlong *)(system_context_parameter + 0x02c) < system_ptr_system_local_variable) || (system_long_context_ptr < (longlong *)(system_context_parameter + 0x02c)))
                && ((system_long_data_ptr < system_ptr_system_local_variable || (system_audio_loop_index = 0, system_long_context_ptr < system_long_data_ptr)))) {
               system_audio_status = system_audio_uint_value & SYSTEM_STANDARD_BUFFER_SIZE00000f;
@@ -54748,15 +54748,15 @@ void system_function_0x03f001f0(longlong system_context_parameter)
         system_uint_ptr = (uint *)((longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x0420) * 0x012001 +
                           _system_data_memory_pool0c160010020 + 0x02d0);
         if (system_audio_loop_index == 0) {
-          system_audio_uint_value = (int)system_char_buffer - 1;
+          system_audio_uint_value = (int)system_current_char - 1;
         }
         else {
           LOCK();
           system_audio_uint_value = *system_uint_ptr;
-          *system_uint_ptr = *system_uint_ptr + (int)system_char_buffer;
+          *system_uint_ptr = *system_uint_ptr + (int)system_current_char;
           UNLOCK();
           system_audio_uint_value = (ulonglong)(system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE);
-          system_audio_uint_value = (ulonglong)(system_char_buffer + -1 + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE);
+          system_audio_uint_value = (ulonglong)(system_current_char + -1 + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE);
           if (system_audio_uint_value <= system_audio_uint_value) {
             psystem_init_status3 = (char *)((longlong)system_uint_ptr + system_audio_uint_value + SYSTEM_CONFIG_DATA_SIZE_0x016001);
             system_audio_long_value = (system_audio_uint_value - system_audio_uint_value) + 1;
@@ -54799,7 +54799,7 @@ void system_function_0x03f001f0(longlong system_context_parameter)
         system_uint_ptr = *(uint64_t **)(system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET);
         system_audio_status = system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE;
         *(uint *)(system_context_parameter + 0x02c) = system_audio_uint_value;
-        if (system_audio_status == (int)system_char_buffer + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
+        if (system_audio_status == (int)system_current_char + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
                     // WARNING: Subroutine does not return
           memcpy(*(longlong *)(system_uint_ptr + (ulonglong)system_audio_status * 2 + 2) +
                  (ulonglong)(system_audio_uint_value + system_audio_status * -SYSTEM_STANDARD_BUFFER_SIZE0) * 4,system_uint_ptr,(system_audio_uint_value & 0x07fffffff) << 2);
@@ -54829,7 +54829,7 @@ void system_function_0x03f0020f(uint64_t system_context_parameter)
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
   byte *system_byte_pointer;
-  char system_char_buffer;
+  char system_current_char;
   uint64_t system_audio_config_value;
   uint system_audio_status;
   longlong *system_ptr_system_local_variable;
@@ -54849,9 +54849,9 @@ void system_function_0x03f0020f(uint64_t system_context_parameter)
   *(uint64_t *)(system_audio_register_value + SYSTEM_MEMORY_POOL_BASE_OFFSET) = system_context_parameter;
   if (0 < system_audio_loop_index) {
     system_audio_long_value = (longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x05003001) * 0x012001 + _system_data_memory_pool0c160010020 + 0x042001;
-    system_audio_config_value = system_function_0x015001(system_audio_long_value,system_audio_loop_index);
+    system_audio_config_value = system_cleanup_audio_resource5001(system_audio_long_value,system_audio_loop_index);
     *(uint64_t *)(system_audio_register_value + 0x030) = system_audio_config_value;
-    system_function_0x015003(system_audio_long_value,system_audio_config_value);
+    system_cleanup_audio_resource5003(system_audio_long_value,system_audio_config_value);
     if (*(longlong *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_16) == 0) {
       if (*(int *)(system_audio_register_value + 0x01001) != 0) {
         *(uint64_t *)(system_audio_register_value + 0x02c) = *(uint64_t *)(system_audio_register_value + 0x030);
@@ -54859,11 +54859,11 @@ void system_function_0x03f0020f(uint64_t system_context_parameter)
       }
     }
     else {
-      system_char_buffer = *(char *)(system_audio_register_value + 0x044);
-      system_audio_uint_value = (ulonglong)system_char_buffer;
+      system_current_char = *(char *)(system_audio_register_value + 0x044);
+      system_audio_uint_value = (ulonglong)system_current_char;
       system_long_data_ptr = (longlong *)(system_audio_register_value + SYSTEM_THREAD_POOL_BASE_OFFSET);
-      system_audio_loop_index = (int)system_char_buffer;
-      if (*(int *)(system_audio_register_value + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) == (int)system_char_buffer) {
+      system_audio_loop_index = (int)system_current_char;
+      if (*(int *)(system_audio_register_value + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) == (int)system_current_char) {
         system_ptr_system_local_variable = (longlong *)*system_long_data_ptr;
       }
       else {
@@ -54873,22 +54873,22 @@ void system_function_0x03f0020f(uint64_t system_context_parameter)
           system_initialize_component();
         }
         *system_long_data_ptr = 0;
-        if (system_char_buffer == '\0') {
+        if (system_current_char == '\0') {
           system_ptr_system_local_variable = (longlong *)0x00;
           *system_long_data_ptr = 0;
         }
         else {
-          system_ptr_system_local_variable = (longlong *)system_allocate_memory_context(system_context_memory_pool,(longlong)system_char_buffer * 4);
+          system_ptr_system_local_variable = (longlong *)system_allocate_memory_context(system_context_memory_pool,(longlong)system_current_char * 4);
           *system_long_data_ptr = (longlong)system_ptr_system_local_variable;
         }
       }
       if (system_ptr_system_local_variable != (longlong *)0x00) {
         system_audio_loop_index = 0;
-        system_audio_uint_value = (uint)system_char_buffer;
+        system_audio_uint_value = (uint)system_current_char;
         system_audio_loop_index = system_audio_loop_index;
         if ((0 < system_audio_loop_index) && (0x07 < system_audio_uint_value)) {
           system_audio_loop_index = *(int *)(system_audio_register_value + 0x02c);
-          system_long_context_ptr = (longlong *)((longlong)system_ptr_system_local_variable + (longlong)(system_char_buffer + -1) * 4);
+          system_long_context_ptr = (longlong *)((longlong)system_ptr_system_local_variable + (longlong)(system_current_char + -1) * 4);
           if ((((longlong *)(system_audio_register_value + 0x02c) < system_ptr_system_local_variable) ||
               (system_long_context_ptr < (longlong *)(system_audio_register_value + 0x02c))) &&
              ((system_long_data_ptr < system_ptr_system_local_variable || (system_audio_loop_index = 0, system_long_context_ptr < system_long_data_ptr)))) {
@@ -54943,15 +54943,15 @@ void system_function_0x03f0020f(uint64_t system_context_parameter)
       system_uint_ptr = (uint *)((longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x0420) * 0x012001 + _system_data_memory_pool0c160010020 + 0x02d0
                         );
       if (system_audio_loop_index == 0) {
-        system_audio_uint_value = (int)system_char_buffer - 1;
+        system_audio_uint_value = (int)system_current_char - 1;
       }
       else {
         LOCK();
         system_audio_uint_value = *system_uint_ptr;
-        *system_uint_ptr = *system_uint_ptr + (int)system_char_buffer;
+        *system_uint_ptr = *system_uint_ptr + (int)system_current_char;
         UNLOCK();
         system_audio_uint_value = (ulonglong)(system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE);
-        system_audio_uint_value = (ulonglong)(system_char_buffer + -1 + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE);
+        system_audio_uint_value = (ulonglong)(system_current_char + -1 + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE);
         if (system_audio_uint_value <= system_audio_uint_value) {
           psystem_init_status3 = (char *)((longlong)system_uint_ptr + system_audio_uint_value + SYSTEM_CONFIG_DATA_SIZE_0x016001);
           system_audio_long_value = (system_audio_uint_value - system_audio_uint_value) + 1;
@@ -54994,7 +54994,7 @@ void system_function_0x03f0020f(uint64_t system_context_parameter)
       system_uint_ptr = *(uint64_t **)(system_audio_register_value + SYSTEM_THREAD_POOL_BASE_OFFSET);
       system_audio_status = system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE;
       *(uint *)(system_audio_register_value + 0x02c) = system_audio_uint_value;
-      if (system_audio_status == (int)system_char_buffer + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
+      if (system_audio_status == (int)system_current_char + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
                     // WARNING: Subroutine does not return
         memcpy(*(longlong *)(system_uint_ptr + (ulonglong)system_audio_status * 2 + 2) +
                (ulonglong)(system_audio_uint_value + system_audio_status * -SYSTEM_STANDARD_BUFFER_SIZE0) * 4,system_uint_ptr,(system_audio_uint_value & 0x07fffffff) << 2);
@@ -55023,7 +55023,7 @@ void system_function_0x03f00233(uint64_t system_context_parameter,longlong syste
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
   byte *system_byte_pointer;
-  char system_char_buffer;
+  char system_current_char;
   uint64_t system_audio_config_value;
   uint system_audio_status;
   longlong *system_ptr_system_local_variable;
@@ -55041,9 +55041,9 @@ void system_function_0x03f00233(uint64_t system_context_parameter,longlong syste
   bool system_bool_23;
   
   system_context_parameter = (longlong)*(int *)(system_context_parameter + 0x0250) * 0x012001 + system_context_parameter;
-  system_audio_config_value = system_function_0x015001(system_context_parameter,system_audio_register_value);
+  system_audio_config_value = system_cleanup_audio_resource5001(system_context_parameter,system_audio_register_value);
   *(uint64_t *)(system_audio_register_value + 0x030) = system_audio_config_value;
-  system_function_0x015003(system_context_parameter,system_audio_config_value);
+  system_cleanup_audio_resource5003(system_context_parameter,system_audio_config_value);
   if (*(longlong *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_16) == 0) {
     if (*(int *)(system_audio_register_value + 0x01001) != 0) {
       *(uint64_t *)(system_audio_register_value + 0x02c) = *(uint64_t *)(system_audio_register_value + 0x030);
@@ -55051,11 +55051,11 @@ void system_function_0x03f00233(uint64_t system_context_parameter,longlong syste
     }
   }
   else {
-    system_char_buffer = *(char *)(system_audio_register_value + 0x044);
-    system_audio_uint_value = (ulonglong)system_char_buffer;
+    system_current_char = *(char *)(system_audio_register_value + 0x044);
+    system_audio_uint_value = (ulonglong)system_current_char;
     system_long_data_ptr = (longlong *)(system_audio_register_value + SYSTEM_THREAD_POOL_BASE_OFFSET);
-    system_audio_loop_index = (int)system_char_buffer;
-    if (*(int *)(system_audio_register_value + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) == (int)system_char_buffer) {
+    system_audio_loop_index = (int)system_current_char;
+    if (*(int *)(system_audio_register_value + SYSTEM_AUDIO_TABLE_OFFSET_VALUE) == (int)system_current_char) {
       system_ptr_system_local_variable = (longlong *)*system_long_data_ptr;
     }
     else {
@@ -55065,22 +55065,22 @@ void system_function_0x03f00233(uint64_t system_context_parameter,longlong syste
         system_initialize_component();
       }
       *system_long_data_ptr = 0;
-      if (system_char_buffer == '\0') {
+      if (system_current_char == '\0') {
         system_ptr_system_local_variable = (longlong *)0x00;
         *system_long_data_ptr = 0;
       }
       else {
-        system_ptr_system_local_variable = (longlong *)system_allocate_memory_context(system_context_memory_pool,(longlong)system_char_buffer * 4);
+        system_ptr_system_local_variable = (longlong *)system_allocate_memory_context(system_context_memory_pool,(longlong)system_current_char * 4);
         *system_long_data_ptr = (longlong)system_ptr_system_local_variable;
       }
     }
     if (system_ptr_system_local_variable != (longlong *)0x00) {
       system_audio_loop_index = 0;
-      system_audio_uint_value = (uint)system_char_buffer;
+      system_audio_uint_value = (uint)system_current_char;
       system_audio_loop_index = system_audio_loop_index;
       if ((0 < system_audio_loop_index) && (0x07 < system_audio_uint_value)) {
         system_audio_loop_index = *(int *)(system_audio_register_value + 0x02c);
-        system_long_context_ptr = (longlong *)((longlong)system_ptr_system_local_variable + (longlong)(system_char_buffer + -1) * 4);
+        system_long_context_ptr = (longlong *)((longlong)system_ptr_system_local_variable + (longlong)(system_current_char + -1) * 4);
         if ((((longlong *)(system_audio_register_value + 0x02c) < system_ptr_system_local_variable) || (system_long_context_ptr < (longlong *)(system_audio_register_value + 0x02c)))
            && ((system_long_data_ptr < system_ptr_system_local_variable || (system_audio_loop_index = 0, system_long_context_ptr < system_long_data_ptr)))) {
           system_audio_status = system_audio_uint_value & SYSTEM_STANDARD_BUFFER_SIZE00000f;
@@ -55133,15 +55133,15 @@ void system_function_0x03f00233(uint64_t system_context_parameter,longlong syste
     }
     system_uint_ptr = (uint *)((longlong)*(int *)(_system_data_memory_pool0c160010020 + 0x0420) * 0x012001 + _system_data_memory_pool0c160010020 + 0x02d0);
     if (system_audio_loop_index == 0) {
-      system_audio_uint_value = (int)system_char_buffer - 1;
+      system_audio_uint_value = (int)system_current_char - 1;
     }
     else {
       LOCK();
       system_audio_uint_value = *system_uint_ptr;
-      *system_uint_ptr = *system_uint_ptr + (int)system_char_buffer;
+      *system_uint_ptr = *system_uint_ptr + (int)system_current_char;
       UNLOCK();
       system_audio_uint_value = (ulonglong)(system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE);
-      system_audio_uint_value = (ulonglong)(system_char_buffer + -1 + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE);
+      system_audio_uint_value = (ulonglong)(system_current_char + -1 + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE);
       if (system_audio_uint_value <= system_audio_uint_value) {
         psystem_init_status3 = (char *)((longlong)system_uint_ptr + system_audio_uint_value + SYSTEM_CONFIG_DATA_SIZE_0x016001);
         system_audio_long_value = (system_audio_uint_value - system_audio_uint_value) + 1;
@@ -55184,7 +55184,7 @@ void system_function_0x03f00233(uint64_t system_context_parameter,longlong syste
     system_uint_ptr = *(uint64_t **)(system_audio_register_value + SYSTEM_THREAD_POOL_BASE_OFFSET);
     system_audio_status = system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE;
     *(uint *)(system_audio_register_value + 0x02c) = system_audio_uint_value;
-    if (system_audio_status == (int)system_char_buffer + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
+    if (system_audio_status == (int)system_current_char + system_audio_uint_value >> SYSTEM_STACK_UINT_INITIAL_VALUE) {
                     // WARNING: Subroutine does not return
       memcpy(*(longlong *)(system_uint_ptr + (ulonglong)system_audio_status * 2 + 2) +
              (ulonglong)(system_audio_uint_value + system_audio_status * -SYSTEM_STANDARD_BUFFER_SIZE0) * 4,system_uint_ptr,(system_audio_uint_value & 0x07fffffff) << 2);
@@ -55745,7 +55745,7 @@ void system_function_0x03fcd0(uint64_t system_context_parameter,uint64_t system_
   longlong *system_long_context_ptr;
   
   system_uint_value = system_allocate_memory_context(system_context_memory_pool,0x070,0x01,3,SYSTEM_INVALID_HANDLE_VALUE);
-  system_long_context_ptr = (longlong *)system_function_0x014002(system_uint_value);
+  system_long_context_ptr = (longlong *)system_cleanup_audio_resource4002(system_uint_value);
   if (system_long_context_ptr != (longlong *)0x00) {
     (**(code **)(*system_long_context_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_context_ptr);
   }
@@ -55773,7 +55773,7 @@ void system_function_0x03fd60(uint64_t system_context_parameter,longlong system_
   system_context_id = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_config_buffer;
   *(longlong *)(system_context_parameter + 0x01) = *(longlong *)(system_context_parameter + 0x01) + 4;
   system_int_context = *(int *)(system_context_parameter + 0x014) * *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE_16);
-  system_long_data_ptr = (longlong *)system_function_0x010036(system_context_parameter,asystem_buffer_pointer,system_int_context);
+  system_long_data_ptr = (longlong *)system_cleanup_audio_resource0036(system_context_parameter,asystem_buffer_pointer,system_int_context);
   system_long_data_ptr = (longlong *)*system_long_data_ptr;
   if (system_long_data_ptr != (longlong *)0x00) {
     system_buffer_pointer = system_long_data_ptr;
@@ -55866,28 +55866,23 @@ uint64_t system_calculate_audio_volume_normalized(void)
         if ((int)system_audio_uint_value < 0) {
           system_audio_uint_value = (system_audio_uint_value - 1 | 0x07ffffff001) + 1;
         }
-        auVar21._0_4_ = system_register_xmm5_a + -1;
-        auVar21._4_4_ = system_register_xmm5_b + -1;
-        auVar21._0x01_4_ = system_register_xmm5_c + -1;
-        auVar21._12_4_ = system_register_xmm5_d + -1;
-        asystem_uint_var_0x01001._0_4_ = (float)auVar21._0_4_;
-        asystem_uint_var_0x01001._4_4_ = (float)auVar21._4_4_;
-        asystem_uint_var_0x01001._0x01_4_ = (float)auVar21._0x01_4_;
-        asystem_uint_var_0x01001._12_4_ = (float)auVar21._12_4_;
-        auVar21 = rcpps(auVar21,asystem_uint_var_0x01001);
+        system_math_vector2.x = system_register_xmm5_a + -1;
+        system_math_vector2.y = system_register_xmm5_b + -1;
+        system_math_vector2.z = system_register_xmm5_c + -1;
+        system_math_vector2.w = system_register_xmm5_d + -1;
+        system_audio_volume_vector.x = (float)system_math_vector2.x;
+        system_audio_volume_vector.y = (float)system_math_vector2.y;
+        system_audio_volume_vector.z = (float)system_math_vector2.z;
+        system_audio_volume_vector.w = (float)system_math_vector2.w;
+        system_math_vector2 = rcpps(system_math_vector2,system_audio_volume_vector);
         audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
         audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
         audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
         audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-        audio_volume_value = auVar21._0_4_;
-        audio_volume_value = auVar21._4_4_;
-        audio_volume_value = auVar21._0x01_4_;
-        audio_volume_value = auVar21._12_4_;
-        audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-        audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-        audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-        audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-        audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+        audio_volume_value = system_math_vector2.x;
+        audio_volume_value = system_math_vector2.y;
+        audio_volume_value = system_math_vector2.z;
+        audio_volume_value = system_math_vector2.w;
         audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
         audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
         audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
@@ -55895,10 +55890,15 @@ uint64_t system_calculate_audio_volume_normalized(void)
         audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
         audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
         audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-        audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * asystem_uint_var_0x01001._0_4_;
-        audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * asystem_uint_var_0x01001._4_4_;
-        audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * asystem_uint_var_0x01001._0x01_4_;
-        audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * asystem_uint_var_0x01001._12_4_;
+        audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+        audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+        audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+        audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+        audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+        audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * system_audio_volume_vector.x;
+        audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * system_audio_volume_vector.y;
+        audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * system_audio_volume_vector.z;
+        audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * system_audio_volume_vector.w;
         audio_system_data_context = system_audio_register_value;
         system_audio_loop_index = system_audio_loop_index;
         do {
@@ -56019,12 +56019,12 @@ uint64_t system_function_0265(void)
   float *system_audio_register_value;
   uint system_audio_register_valueD;
   float *system_audio_register_value_r11;
-  uint32_t asystem_uint_var_0x01003 [16];
+  uint32_t system_audio_calc_vector [16];
   int system_register_xmm5_a;
   int system_register_xmm5_b;
   int system_register_xmm5_c;
   int system_register_xmm5_d;
-  uint32_t auVar20 [16];
+  uint32_t system_math_vector1 [16];
   float system_audio_register_value_Da;
   int system_audio_register_value_Da;
   int system_audio_register_value_Db;
@@ -56039,28 +56039,23 @@ uint64_t system_function_0265(void)
       if ((int)system_audio_uint_value < 0) {
         system_audio_uint_value = (system_audio_uint_value - 1 | 0x07ffffff001) + 1;
       }
-      auVar20._0_4_ = system_register_xmm5_a + -1;
-      auVar20._4_4_ = system_register_xmm5_b + -1;
-      auVar20._0x01_4_ = system_register_xmm5_c + -1;
-      auVar20._12_4_ = system_register_xmm5_d + -1;
-      asystem_uint_var_0x01003._0_4_ = (float)auVar20._0_4_;
-      asystem_uint_var_0x01003._4_4_ = (float)auVar20._4_4_;
-      asystem_uint_var_0x01003._0x01_4_ = (float)auVar20._0x01_4_;
-      asystem_uint_var_0x01003._12_4_ = (float)auVar20._12_4_;
-      auVar20 = rcpps(auVar20,asystem_uint_var_0x01003);
+      system_math_vector1.x = system_register_xmm5_a + -1;
+      system_math_vector1.y = system_register_xmm5_b + -1;
+      system_math_vector1.z = system_register_xmm5_c + -1;
+      system_math_vector1.w = system_register_xmm5_d + -1;
+      system_audio_calc_vector.x = (float)system_math_vector1.x;
+      system_audio_calc_vector.y = (float)system_math_vector1.y;
+      system_audio_calc_vector.z = (float)system_math_vector1.z;
+      system_audio_calc_vector.w = (float)system_math_vector1.w;
+      system_math_vector1 = rcpps(system_math_vector1,system_audio_calc_vector);
       audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
       audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
       audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
       audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-      audio_volume_value = auVar20._0_4_;
-      audio_volume_value = auVar20._4_4_;
-      audio_volume_value = auVar20._0x01_4_;
-      audio_volume_value = auVar20._12_4_;
-      audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-      audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-      audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-      audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-      audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+      audio_volume_value = system_math_vector1.x;
+      audio_volume_value = system_math_vector1.y;
+      audio_volume_value = system_math_vector1.z;
+      audio_volume_value = system_math_vector1.w;
       audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
       audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
       audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
@@ -56068,10 +56063,15 @@ uint64_t system_function_0265(void)
       audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
       audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
       audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-      audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * asystem_uint_var_0x01003._0_4_;
-      audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * asystem_uint_var_0x01003._4_4_;
-      audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * asystem_uint_var_0x01003._0x01_4_;
-      audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * asystem_uint_var_0x01003._12_4_;
+      audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+      audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+      audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+      audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+      audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+      audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * system_audio_calc_vector.x;
+      audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * system_audio_calc_vector.y;
+      audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * system_audio_calc_vector.z;
+      audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * system_audio_calc_vector.w;
       audio_system_data_context = system_audio_register_value;
       system_audio_loop_index = system_audio_loop_index;
       do {
@@ -56190,12 +56190,12 @@ uint64_t system_function_0266(int system_context_parameter,uint64_t system_conte
   int system_audio_register_value;
   float *system_audio_register_value;
   float *system_audio_register_value_r11;
-  uint32_t asystem_uint_var_16 [16];
+  uint32_t system_audio_temp_vector [16];
   int system_register_xmm5_a;
   int system_register_xmm5_b;
   int system_register_xmm5_c;
   int system_register_xmm5_d;
-  uint32_t asystem_uint_var_0x01002 [16];
+  uint32_t system_audio_normalize_vector [16];
   int system_audio_register_value_Da;
   int system_audio_register_value_Db;
   int system_audio_register_value_Dc;
@@ -56205,28 +56205,23 @@ uint64_t system_function_0266(int system_context_parameter,uint64_t system_conte
   if ((int)system_audio_uint_value < 0) {
     system_audio_uint_value = (system_audio_uint_value - 1 | 0x07ffffff001) + 1;
   }
-  asystem_uint_var_0x01002._0_4_ = system_register_xmm5_a + -1;
-  asystem_uint_var_0x01002._4_4_ = system_register_xmm5_b + -1;
-  asystem_uint_var_0x01002._0x01_4_ = system_register_xmm5_c + -1;
-  asystem_uint_var_0x01002._12_4_ = system_register_xmm5_d + -1;
-  asystem_uint_var_16._0_4_ = (float)asystem_uint_var_0x01002._0_4_;
-  asystem_uint_var_16._4_4_ = (float)asystem_uint_var_0x01002._4_4_;
-  asystem_uint_var_16._0x01_4_ = (float)asystem_uint_var_0x01002._0x01_4_;
-  asystem_uint_var_16._12_4_ = (float)asystem_uint_var_0x01002._12_4_;
-  asystem_uint_var_0x01002 = rcpps(asystem_uint_var_0x01002,asystem_uint_var_16);
+  system_audio_normalize_vector.x = system_register_xmm5_a + -1;
+  system_audio_normalize_vector.y = system_register_xmm5_b + -1;
+  system_audio_normalize_vector.z = system_register_xmm5_c + -1;
+  system_audio_normalize_vector.w = system_register_xmm5_d + -1;
+  system_audio_temp_vector.x = (float)system_audio_normalize_vector.x;
+  system_audio_temp_vector.y = (float)system_audio_normalize_vector.y;
+  system_audio_temp_vector.z = (float)system_audio_normalize_vector.z;
+  system_audio_temp_vector.w = (float)system_audio_normalize_vector.w;
+  system_audio_normalize_vector = rcpps(system_audio_normalize_vector,system_audio_temp_vector);
   audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
   audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
   audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
   audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-  audio_volume_value = asystem_uint_var_0x01002._0_4_;
-  audio_volume_value = asystem_uint_var_0x01002._4_4_;
-  audio_volume_value = asystem_uint_var_0x01002._0x01_4_;
-  audio_volume_value = asystem_uint_var_0x01002._12_4_;
-  audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-  audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-  audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-  audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-  audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+  audio_volume_value = system_audio_normalize_vector.x;
+  audio_volume_value = system_audio_normalize_vector.y;
+  audio_volume_value = system_audio_normalize_vector.z;
+  audio_volume_value = system_audio_normalize_vector.w;
   audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
   audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
   audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
@@ -56234,10 +56229,15 @@ uint64_t system_function_0266(int system_context_parameter,uint64_t system_conte
   audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
   audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
   audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
-  audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * asystem_uint_var_16._0_4_;
-  audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * asystem_uint_var_16._4_4_;
-  audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * asystem_uint_var_16._0x01_4_;
-  audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * asystem_uint_var_16._12_4_;
+  audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+  audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+  audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+  audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+  audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+  audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * system_audio_temp_vector.x;
+  audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * system_audio_temp_vector.y;
+  audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * system_audio_temp_vector.z;
+  audio_volume_value = (audio_volume_value + audio_volume_value) - audio_volume_value * audio_volume_value * system_audio_temp_vector.w;
   audio_system_data_context = system_audio_register_value;
   do {
     system_audio_loop_index = system_context_parameter;
@@ -56348,7 +56348,7 @@ uint64_t system_function_0x026003(int system_context_parameter,uint64_t system_c
   float *audio_system_data_context;
   int system_audio_register_value;
   longlong system_audio_register_value;
-  int system_comparison_result;
+  int system_compare_result;
   int system_audio_register_valueD;
   float *system_audio_register_value_r11;
   float system_audio_register_value_Da;
@@ -56357,7 +56357,7 @@ uint64_t system_function_0x026003(int system_context_parameter,uint64_t system_c
   
   if (system_context_parameter < system_audio_register_valueD) {
     if (3 < system_audio_register_valueD - system_context_parameter) {
-      system_comparison_result = system_context_parameter + 2;
+      system_compare_result = system_context_parameter + 2;
       system_float_buffer = (float)system_audio_register_value;
       audio_system_data_context = (float *)(system_audio_register_value + ((longlong)system_context_parameter + 2) * 4);
       system_float_config = (float)system_audio_register_valueD;
@@ -56370,21 +56370,21 @@ uint64_t system_function_0x026003(int system_context_parameter,uint64_t system_c
         system_audio_coefficient = audio_system_data_context[-1];
         if (SYSTEM_FLOAT_ZERO_VALUE001 < system_audio_coefficient) {
           system_context_parameter = system_context_parameter + system_audio_coefficient;
-          system_audio_register_value_Da = system_audio_register_value_Da + (((float)(system_comparison_result + -1) * system_float_buffer * 0.5) / system_float_config) * system_audio_coefficient;
+          system_audio_register_value_Da = system_audio_register_value_Da + (((float)(system_compare_result + -1) * system_float_buffer * 0.5) / system_float_config) * system_audio_coefficient;
         }
         system_audio_coefficient = *audio_system_data_context;
         if (SYSTEM_FLOAT_ZERO_VALUE001 < system_audio_coefficient) {
           system_context_parameter = system_context_parameter + system_audio_coefficient;
-          system_audio_register_value_Da = system_audio_register_value_Da + (((float)system_comparison_result * system_float_buffer * 0.5) / system_float_config) * system_audio_coefficient;
+          system_audio_register_value_Da = system_audio_register_value_Da + (((float)system_compare_result * system_float_buffer * 0.5) / system_float_config) * system_audio_coefficient;
         }
         system_audio_coefficient = audio_system_data_context[1];
         if (SYSTEM_FLOAT_ZERO_VALUE001 < system_audio_coefficient) {
           system_context_parameter = system_context_parameter + system_audio_coefficient;
-          system_audio_register_value_Da = system_audio_register_value_Da + (((float)(system_comparison_result + 1) * system_float_buffer * 0.5) / system_float_config) * system_audio_coefficient;
+          system_audio_register_value_Da = system_audio_register_value_Da + (((float)(system_compare_result + 1) * system_float_buffer * 0.5) / system_float_config) * system_audio_coefficient;
         }
         audio_system_data_context = audio_system_data_context + 4;
         system_context_parameter = system_context_parameter + 4;
-        system_comparison_result = system_comparison_result + 4;
+        system_compare_result = system_compare_result + 4;
       } while (system_context_parameter < system_audio_register_valueD + SYSTEM_AUDIO_LOOP_START_POSITION);
     }
     if (system_context_parameter < system_audio_register_valueD) {
@@ -56417,7 +56417,7 @@ uint64_t system_function_0x026001(longlong system_context_parameter,uint system_
   float system_audio_target_value;
   float system_audio_offset_value;
   longlong system_audio_buffer_pointer;
-  int system_int_config;
+  int system_config_value;
   uint system_audio_status;
   ulonglong system_audio_uint_value;
   ulonglong system_audio_uint_value;
@@ -56430,8 +56430,8 @@ uint64_t system_function_0x026001(longlong system_context_parameter,uint system_
   
   system_audio_uint_value = (ulonglong)system_context_parameter;
   system_context_id_10 = 1;
-  system_int_config = 1 << ((byte)system_context_parameter & 0x01f);
-  system_audio_status = system_int_config / 2;
+  system_config_value = 1 << ((byte)system_context_parameter & 0x01f);
+  system_audio_status = system_config_value / 2;
   if (0 < (int)system_context_parameter) {
     do {
       system_audio_loop_index = 0;
@@ -56449,7 +56449,7 @@ uint64_t system_function_0x026001(longlong system_context_parameter,uint system_
               system_audio_uint_value = system_audio_uint_value - 1;
             } while (system_audio_uint_value != 0);
           }
-          audio_volume_value = (float)(int)system_audio_uint_value * (1.0 / (float)system_int_config);
+          audio_volume_value = (float)(int)system_audio_uint_value * (1.0 / (float)system_config_value);
           system_audio_uint_value = (uint)(audio_volume_value * 0x0400036001.0);
           if ((int)system_audio_uint_value < 0) {
             system_audio_uint_value = -system_audio_uint_value;
