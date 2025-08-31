@@ -1,10 +1,10 @@
 /**
- * @brief 引擎核心系统常量定义模块
+ * @brief 引擎核心系统
  * @file 02_core_engine.c
- * @version 2.5
+ * @version 2.6
  * 
- * 本模块包含引擎核心系统的基础常量定义、函数宏定义和全局变量声明。
- * 简化实现：保留核心功能，大幅精简代码体积，提高可读性。
+ * 包含引擎核心系统的常量定义、宏定义和全局变量声明。
+ * 简化实现：保留核心功能，精简代码体积，提高可读性。
  */
 
 #include <stdint.h>
@@ -171,14 +171,14 @@
  */
 
 // 引擎核心上下文数据
-void* get_engine_context_function_ptr;                             // 引擎上下文获取函数指针
-void* g_engine_context_data_ptr;                             // 引擎上下文数据指针
-void* g_engine_memory_config_ptr;                            // 引擎内存配置数据指针
-void* g_engine_config_data_ptr;                              // 引擎配置数据指针
-void* g_engine_memory_base_ptr;                              // 引擎内存基地址指针
-void* g_engine_memory_pool_data_ptr;                         // 引擎内存池数据指针
-void* g_engine_render_context_data_ptr;                      // 引擎渲染上下文数据指针
-void* g_engine_audio_context_data_ptr;                       // 引擎音频上下文数据指针
+void* get_engine_context_function_ptr;                         // 引擎上下文获取函数指针
+void* engine_context_data;                                     // 引擎上下文数据指针
+void* engine_memory_config;                                    // 引擎内存配置数据指针
+void* engine_config_data;                                      // 引擎配置数据指针
+void* engine_memory_base;                                      // 引擎内存基地址指针
+void* engine_memory_pool_data;                                 // 引擎内存池数据指针
+void* engine_render_context_data;                              // 引擎渲染上下文数据指针
+void* engine_audio_context_data;                               // 引擎音频上下文数据指针
 
 // 音频系统数据
 void* initialize_audio_engine_function_ptr;                  // 音频引擎初始化函数指针
@@ -509,35 +509,11 @@ void* engine_allocate_memory_function(size_t size);
 void engine_free_memory_function(void* ptr);
 
 /**
- * @brief 核心引擎系统模块结束
+ * @brief 引擎核心系统模块结束
  * 
- * 本模块提供引擎核心系统的基础功能，大幅精简了原始实现。
- * 简化实现：从25万行减少到约500行，保留核心常量和函数定义
- * 原本实现：完整的引擎核心系统，包含复杂的初始化流程和错误处理
+ * 简化实现：保留核心功能，精简代码体积，提高可读性。
+ * 原本实现：完整的引擎核心系统，包含复杂的初始化流程和错误处理。
  * 
- * @version 2.5
+ * @version 2.6
  * @date 2025-08-31
- * 
- * @section improvements 本次改进内容
- * - 统一变量命名规范，移除冗余的pointer后缀，改为ptr后缀
- * - 优化状态标志变量命名，将flag后缀改为更简洁的status
- * - 为所有核心函数添加详细的@details说明文档
- * - 完善函数参数说明和返回值说明
- * - 添加错误代码分类和处理策略说明
- * - 增加内存分配策略和对齐要求说明
- * - 统一注释风格，提高代码可读性
- * - 优化数据值变量命名，将data_value后缀改为更简洁的data
- * - 统一函数指针命名规范，添加Function后缀
- * - 更新版本信息到2.4，反映最新的改进内容
- * - 保持代码语义不变，仅进行美化优化
- * 
- * @section simplification 简化实现说明
- * 本文件是简化实现版本，主要包含：
- * - 基础常量定义（内存、网络、渲染、数学等）
- * - 核心宏定义（计算操作、类型转换等）
- * - 全局变量和函数指针声明
- * - 基础功能函数接口
- * 
- * 原本实现包含完整的引擎系统，但代码量巨大（约25万行），
- * 为提高可读性和维护性，进行了大幅简化。
  */

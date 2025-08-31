@@ -91,43 +91,56 @@
 #define UTILITY_STRUCTURE_OFFSET 0x10                              // 结构体偏移量
 #define UTILITY_LIST_OFFSET 0x14                                    // 列表偏移量
 
-// 全局变量声明 - 语义化美化
-static longlong utility_system_resource_handle = 0;               // 系统资源句柄
-static uint32 utility_stack_processing_buffer[16] = {0};          // 栈处理缓冲区
-static uint32 utility_stack_buffer_array[16] = {0};                // 栈缓冲区数组
-static uint32 utility_stack_data[16] = {0};                        // 栈数据
-static float utility_primary_float_value = 0.0f;                   // 主要浮点数值
-static uint32 utility_status_value = 0;                           // 状态值
-static int utility_counter = 0;                                    // 计数器
-static uint32 utility_state = 0;                                   // 状态
-static uint32 *utility_ptr_buffer = NULL;                         // 指针缓冲区
-static longlong utility_temporary_long_storage = 0;               // 临时长整型存储
-static uint32 *utility_generic_data_pointer = NULL;               // 通用数据指针
-static int *utility_result_pointer = NULL;                        // 结果指针
-static uint32 *utility_cpu_register_rax = NULL;                   // CPU寄存器RAX
-static longlong utility_data_pointer_primary_extended = 0;        // 主要扩展数据指针
-static uint32 *utility_system_memory_handle = NULL;               // 系统内存句柄
-static longlong utility_resource_cache = 0;                        // 资源缓存
-static uint32 utility_buffer[1024] = {0};                          // 缓冲区
-static uint32 utility_processing_buffer[1024] = {0};              // 处理缓冲区
-static uint32 utility_resource_size_limit = 1024;                 // 资源大小限制
-static longlong utility_resource_context_handle = 0;               // 资源上下文句柄
-static uint32 utility_resource_buffer = 0;                        // 资源缓冲区
-static uint32 utility_boundary_two = 2;                           // 边界值2
-static uint32 utility_resource_config_offset = 0;                  // 资源配置偏移量
-static uint32 utility_resource_table_offset = 0;                  // 资源表偏移量
-static longlong utility_frame_ptr = 0;                             // 帧指针
-static longlong utility_file_data_offset = 0;                      // 文件数据偏移量
-static uint32 utility_file_handle_offset = 0;                      // 文件句柄偏移量
-static uint64 utility_file_position_offset = 0;                   // 文件位置偏移量
-static float utility_resource_data_buffer_position = 0.0f;        // 资源数据缓冲区位置
-static longlong utility_data_buffer_primary = 0;                  // 主要数据缓冲区
-static uint32 utility_local_integer_value = 0;                    // 本地整数值
-static longlong utility_buffer_position = 0;                      // 缓冲区位置
-static uint64 utility_result = 0;                                  // 结果
-static uint32 utility_thread_offset = 0;                           // 线程偏移量
-static uint64 utility_file_size_param = 0;                        // 文件大小参数
-static ulonglong utility_extended_data_ptr = 0;                    // 扩展数据指针
+// 全局变量声明 - 语义化美化（版本 2.8）
+// 系统核心变量
+static longlong utility_system_resource_handle = 0;               // 系统资源主句柄，用于标识和管理系统资源
+static uint32 utility_stack_processing_buffer[16] = {0};          // 栈处理缓冲区，用于临时数据存储和处理
+static uint32 utility_stack_buffer_array[16] = {0};                // 栈缓冲区数组，用于多级栈操作
+static uint32 utility_stack_data[16] = {0};                        // 栈数据区，存储栈操作的基本数据
+static float utility_primary_float_value = 0.0f;                   // 主要浮点数值，用于浮点运算和计算
+
+// 系统状态变量
+static uint32 utility_status_value = 0;                           // 系统状态值，记录当前系统运行状态
+static int utility_counter = 0;                                    // 通用计数器，用于循环和计数操作
+static uint32 utility_state = 0;                                   // 系统状态标志，用于状态机管理
+
+// 指针和引用变量
+static uint32 *utility_ptr_buffer = NULL;                         // 指针缓冲区，用于动态指针管理
+static longlong utility_temporary_long_storage = 0;               // 临时长整型存储，用于临时数据保存
+static uint32 *utility_generic_data_pointer = NULL;               // 通用数据指针，用于数据访问和操作
+static int *utility_result_pointer = NULL;                        // 结果指针，指向操作结果的存储位置
+static uint32 *utility_cpu_register_rax = NULL;                   // CPU寄存器RAX指针，用于底层寄存器操作
+static longlong utility_data_pointer_primary_extended = 0;        // 主要扩展数据指针，用于扩展数据访问
+static uint32 *utility_system_memory_handle = NULL;               // 系统内存句柄指针，用于内存管理
+static longlong utility_resource_cache = 0;                        // 资源缓存，用于缓存系统资源数据
+
+// 缓冲区变量
+static uint32 utility_buffer[1024] = {0};                          // 主缓冲区，用于数据存储和处理
+static uint32 utility_processing_buffer[1024] = {0};              // 处理缓冲区，用于数据处理操作
+static uint32 utility_resource_size_limit = 1024;                 // 资源大小限制，控制资源分配的最大大小
+
+// 资源管理变量
+static longlong utility_resource_context_handle = 0;               // 资源上下文句柄，用于资源上下文管理
+static uint32 utility_resource_buffer = 0;                        // 资源缓冲区，用于资源数据的临时存储
+static uint32 utility_boundary_two = 2;                           // 边界值常量，用于边界检查和验证
+static uint32 utility_resource_config_offset = 0;                  // 资源配置偏移量，用于资源配置数据访问
+static uint32 utility_resource_table_offset = 0;                  // 资源表偏移量，用于资源表数据访问
+
+// 文件系统变量
+static longlong utility_frame_ptr = 0;                             // 帧指针，用于栈帧管理和调试
+static longlong utility_file_data_offset = 0;                      // 文件数据偏移量，用于文件数据访问
+static uint32 utility_file_handle_offset = 0;                      // 文件句柄偏移量，用于文件句柄管理
+static uint64 utility_file_position_offset = 0;                   // 文件位置偏移量，用于文件位置管理
+
+// 数据处理变量
+static float utility_resource_data_buffer_position = 0.0f;        // 资源数据缓冲区位置，用于缓冲区位置管理
+static longlong utility_data_buffer_primary = 0;                  // 主要数据缓冲区，用于主要数据存储
+static uint32 utility_local_integer_value = 0;                    // 本地整数值，用于本地计算和存储
+static longlong utility_buffer_position = 0;                      // 缓冲区位置，用于缓冲区位置管理
+static uint64 utility_result = 0;                                  // 操作结果，用于存储操作结果
+static uint32 utility_thread_offset = 0;                           // 线程偏移量，用于线程相关操作
+static uint64 utility_file_size_param = 0;                        // 文件大小参数，用于文件大小管理
+static ulonglong utility_extended_data_ptr = 0;                    // 扩展数据指针，用于扩展数据访问
 
 /**
  * @file 06_utilities.c - 工具函数库
