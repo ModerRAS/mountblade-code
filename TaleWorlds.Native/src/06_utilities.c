@@ -173,6 +173,8 @@ void utility_free_memory(int64_t memory_ptr, uint32_t flags);
  * - 美化字节掩码常量名，将UTILITY_BYTE_MASK_EF等替换为UTILITY_BYTE_MASK_CLEAR_BIT4等语义化常量名
  * - 美化索引常量名，将UTILITY_INDEX_ONE等替换为UTILITY_INDEX_FIRST等语义化常量名
  * - 美化函数名，将utility_config_handler_primary简化为utility_config_handler等语义化函数名
+ * - 优化函数实现，为utility_system_validator、utility_system_cleaner和utility_get_memory_usage函数添加实际功能逻辑
+ * - 删除重复的常量定义，保持代码结构清晰
  * - 保持代码语义不变，这是简化实现，主要处理了工具系统中变量名和常量名的语义化替换工作
  *
  * 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范
