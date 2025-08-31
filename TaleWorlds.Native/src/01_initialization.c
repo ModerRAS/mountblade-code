@@ -1507,6 +1507,14 @@ void *system_initialize_graphics_system;
  * @brief 初始化系统内存管理器
  * @return 无返回值
  */
+/**
+ * 初始化系统内存管理器
+ * 
+ * 设置内存分配策略、内存池管理和垃圾回收机制
+ * 为系统提供高效的内存管理服务
+ *
+ * @return 无返回值
+ */
 void system_initialize_memory_manager(void)
 
 {
@@ -1553,21 +1561,13 @@ void system_initialize_memory_manager(void)
   return;
 }
 /**
+ * 初始化系统线程池
  * 
- * 初始化系统的线程池，创建和管理线程资源。
- * 该函数负责设置线程池的核心数据结构和管理机制。
- * 创建线程池并设置线程调度器，管理工作线程池以提高并发性能。
+ * 创建并初始化系统线程池，配置线程数量、优先级和调度策略
+ * 为多任务处理提供线程资源管理
  *
  * @return 无返回值
-
-/**
- * 
- * 创建并初始化系统线程池，配置线程数量、优先级和调度策略。
- * 为多任务处理提供线程资源管理。
- *
- * @return void
-/**
- * @return 无返回值
+ */
 void system_initialize_thread_pool(void)
 
 {
@@ -1639,6 +1639,14 @@ void system_initialize_thread_pool(void)
  * @return void
 /**
  * @return 无返回值
+/**
+ * 初始化系统资源管理器
+ * 
+ * 设置资源加载、缓存和释放机制
+ * 为系统提供统一的资源管理服务
+ *
+ * @return 无返回值
+ */
 void system_initialize_resource_manager(void)
 
 {
@@ -1699,6 +1707,14 @@ void system_initialize_resource_manager(void)
  * @return void
 /**
  * @return 无返回值
+/**
+ * 初始化系统回调机制
+ * 
+ * 设置回调函数注册、调用和管理机制
+ * 为系统提供事件驱动的编程支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_callback_system(void)
 
 {
@@ -1759,6 +1775,14 @@ void system_initialize_callback_system(void)
  * @return void
 /**
  * @return 无返回值
+/**
+ * 初始化系统事件系统
+ * 
+ * 设置事件队列、分发和处理机制
+ * 为系统提供事件驱动的架构支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_event_system(void)
 
 {
@@ -1813,6 +1837,14 @@ void system_initialize_event_system(void)
  * @return 无返回值
 /**
  * @return 无返回值
+/**
+ * 初始化系统消息队列
+ * 
+ * 设置消息传递、缓存和处理机制
+ * 为系统提供异步通信支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_message_queue(void)
 
 {
@@ -1867,6 +1899,14 @@ void system_initialize_message_queue(void)
  * @return 无返回值
 /**
  * @return 无返回值
+/**
+ * 初始化系统信号处理器
+ * 
+ * 设置信号捕获、处理和分发机制
+ * 为系统提供异步信号处理支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_signal_handler(void)
 
 {
@@ -1921,6 +1961,14 @@ void system_initialize_signal_handler(void)
  * @return 无返回值
 /**
  * @return 无返回值
+/**
+ * 初始化系统中断处理器
+ * 
+ * 设置中断捕获、处理和恢复机制
+ * 为系统提供硬件中断处理支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_interrupt_handler(void)
 
 {
@@ -1974,6 +2022,14 @@ void system_initialize_interrupt_handler(void)
  * @return void
 /**
  * @return 无返回值
+/**
+ * 初始化系统安全机制
+ * 
+ * 设置权限管理、安全检查和加密机制
+ * 为系统提供安全保障
+ *
+ * @return 无返回值
+ */
 void system_initialize_security_system(void)
 
 {
@@ -2034,6 +2090,14 @@ void system_initialize_security_system(void)
  * @return void
 /**
  * @return 无返回值
+/**
+ * 初始化系统配置加载器
+ * 
+ * 设置配置文件读取、解析和验证机制
+ * 为系统提供配置管理支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_config_loader(void)
 
 {
@@ -2089,6 +2153,14 @@ void system_initialize_config_loader(void)
  * @return 初始化状态码，0表示成功，非0表示错误
 /**
  * @return 初始化状态代码，0表示成功，非0表示失败
+/**
+ * 检查系统初始化状态
+ * 
+ * 验证所有核心系统组件是否已正确初始化
+ * 返回系统整体初始化状态
+ *
+ * @return 初始化状态码 (0=成功，非0=失败)
+ */
 int system_check_system_init_status(void)
 
 {
@@ -2121,6 +2193,14 @@ int system_check_system_init_status(void)
  * 该函数会检查系统初始化状态，分配资源块，并设置状态管理器。
  * 
  * @return void
+/**
+ * 初始化系统状态管理器
+ * 
+ * 设置状态跟踪、转换和持久化机制
+ * 为系统提供状态管理支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_state_manager(void)
 
 {
@@ -2220,6 +2300,14 @@ int system_setup_resource_caches(void)
  * @return void
 /**
  * @return 无返回值
+/**
+ * 初始化图形渲染系统
+ * 
+ * 设置渲染管线、图形设备和着色器系统
+ * 为系统提供图形渲染支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_graphics_system(void)
 
 {
@@ -2275,6 +2363,14 @@ void system_initialize_graphics_system(void)
  * @return void
 /**
  * @return 无返回值
+/**
+ * 初始化音频系统
+ * 
+ * 设置音频设备、音效管理和混音器
+ * 为系统提供音频播放支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_audio_system(void)
 
 {
@@ -2356,6 +2452,14 @@ int system_initialize_network_system(uint64_t network_config_system_context_para
  * @return void
 /**
  * @return 无返回值
+/**
+ * 初始化输入系统
+ * 
+ * 设置输入设备、事件处理和状态跟踪
+ * 为系统提供用户输入支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_input_system(void)
 
 {
@@ -2381,6 +2485,14 @@ void system_initialize_input_system(void)
  * @return void
 /**
  * @return 无返回值
+/**
+ * 初始化用户界面系统
+ * 
+ * 设置UI组件、布局管理和事件处理
+ * 为系统提供用户界面支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_ui_system(void)
 
 {
@@ -2430,6 +2542,14 @@ void system_initialize_ui_system(void)
  * 设置物理引擎、碰撞检测和力学模拟
 /**
  * @return 无返回值
+/**
+ * 初始化物理系统
+ * 
+ * 设置物理引擎、碰撞检测和动力学模拟
+ * 为系统提供物理模拟支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_physics_system(void)
 
 {
@@ -2479,6 +2599,14 @@ void system_initialize_physics_system(void)
  * 配置骨骼动画、关键帧和混合系统
 /**
  * @return 无返回值
+/**
+ * 初始化动画系统
+ * 
+ * 设置动画播放、骨骼控制和插值计算
+ * 为系统提供动画支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_animation_system(void)
 
 {
@@ -3065,6 +3193,14 @@ void system_initialize_buffer_manager(void)
  * @return 运行状态码
 /**
  * @return 运行状态代码，0表示成功，非0表示失败
+/**
+ * 启动运行时循环
+ * 
+ * 开始游戏主循环，处理事件和更新逻辑
+ * 这是游戏的核心循环
+ *
+ * @return 运行状态码 (0=成功，非0=失败)
+ */
 int system_start_runtime_loop(void)
 
 {
@@ -3082,6 +3218,14 @@ int system_start_runtime_loop(void)
  * @return void
 /**
  * @return 无返回值
+/**
+ * 初始化数据库系统
+ * 
+ * 设置数据库连接、查询和事务管理
+ * 为系统提供数据持久化支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_database(void)
 
 {
@@ -3438,6 +3582,14 @@ void system_setup_backup_system(void)
  * @return void
 /**
  * @return 无返回值
+/**
+ * 初始化资源系统
+ * 
+ * 设置资源加载、缓存和管理机制
+ * 为系统提供统一的资源管理
+ *
+ * @return 无返回值
+ */
 void system_initialize_resource_system(void)
 /**
  * 
@@ -3447,6 +3599,14 @@ void system_initialize_resource_system(void)
  * @return void
 /**
  * @return 无返回值
+/**
+ * 初始化文件系统
+ * 
+ * 设置文件读写、路径管理和IO操作
+ * 为系统提供文件操作支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_filesystem(void)
 
 {
@@ -3500,9 +3660,25 @@ void system_initialize_filesystem(void)
  * 为应用程序提供网络通信功能。
  *
  * @return void
+/**
+ * 初始化网络系统
+ * 
+ * 设置网络连接、数据传输和协议处理
+ * 为系统提供网络通信支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_network_system(void)
 /**
  * 创建UI组件、事件处理和界面布局
+/**
+ * 初始化内存池
+ * 
+ * 设置内存池分配、回收和管理机制
+ * 为系统提供高效的内存管理
+ *
+ * @return 无返回值
+ */
 void system_initialize_memory_pool(void)
 void system_initialize_resource_pool(void)
 
@@ -13650,6 +13826,14 @@ void system_get_timer_elapsed_time(void)
 
 /**
  * @return 主入口点状态码
+/**
+ * 初始化主入口点
+ * 
+ * 设置系统启动参数和初始化顺序
+ * 为系统启动做准备
+ *
+ * @return 系统初始化状态码
+ */
 uint64_t system_initialize_main_entry(void)
 
 {
@@ -13812,6 +13996,15 @@ uint64_t system_initialize_main_entry(void)
 /**
  * @param system_context_parameter 系统上下文参数
  * @return 无返回值
+/**
+ * 游戏主入口函数
+ * 
+ * 初始化所有系统组件并启动游戏主循环
+ * 这是整个游戏的入口点
+ *
+ * @param system_context_parameter 系统上下文参数
+ * @return 无返回值
+ */
 void WotsMain(uint64_t system_context_parameter)
 
 {

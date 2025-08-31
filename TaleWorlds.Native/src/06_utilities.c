@@ -1128,17 +1128,17 @@ uint64_t utility_initialize_event_system(void)
     uint64_t utility_status;
     uint32_t *utility_buffer;
     uint64_t utility_resource_context_value;
-    int64_t utility_idx_source;
+    int64_t utility_index_source;
     uint utility_temp_variable;
     utility_status_code = UTILITY_FALSE;
     
     if (utility_context_main_data != UTILITY_FALSE) {
-        utility_temp_var = utility_context_main_data - UTILITY_MEMORY_POINTER_OFFSET;
+        utility_temp_variable = utility_context_main_data - UTILITY_MEMORY_POINTER_OFFSET;
     }
     
-    utility_context_input_data = (uint32_t *)(utility_idx_source + UTILITY_THREAD_DATA_OFFSET + 
-                                   (int64_t)*(int *)(utility_idx_source + UTILITY_THREAD_CONTEXT_OFFSET) * 4);
-    if (0 < *(int *)(utility_idx_source + UTILITY_THREAD_CONTEXT_OFFSET)) {
+    utility_context_input_data = (uint32_t *)(utility_index_source + UTILITY_THREAD_DATA_OFFSET + 
+                                   (int64_t)*(int *)(utility_index_source + UTILITY_THREAD_CONTEXT_OFFSET) * 4);
+    if (0 < *(int *)(utility_index_source + UTILITY_THREAD_CONTEXT_OFFSET)) {
         utility_loop_index = 0;
         
         do {
@@ -1645,10 +1645,10 @@ void ExitThread(void)
 int utility_result;
 uint64_t utility_stack_data [4];
 uint32_t utility_stack_data [2];
-long long utility_stack_temp_result;
-uint32_t utility_stack_temp_var;
-utility_stack_temp_result = *(uint64_t *)(utility_context_input_data + UTILITY_THREAD_HANDLE_OFFSET);
-utility_stack_temp_var = *(uint32_t *)(utility_context_input_data + UTILITY_THREAD_CONTEXT_OFFSET);
+long long utility_stack_temporary_result;
+uint32_t utility_stack_temporary_variable;
+utility_stack_temporary_result = *(uint64_t *)(utility_context_input_data + UTILITY_THREAD_HANDLE_OFFSET);
+utility_stack_temporary_variable = *(uint32_t *)(utility_context_input_data + UTILITY_THREAD_CONTEXT_OFFSET);
 utility_stack_data[0] = 2;
 utility_status_code = utility_execute_operation(utility_context_input_data,utility_stack_data,*(uint32_t *)(utility_context_input_data + UTILITY_STATUS_THREAD_CREATED),utility_stack_data);
 if (utility_status_code == UTILITY_FALSE) {
@@ -1659,17 +1659,19 @@ return;
  (ram,UTILITY_ADDRESS_RESOURCE_MANAGER_PRIMARY)
  (ram,UTILITY_ADDRESS_RESOURCE_MANAGER_SECONDARY)
  (ram,UTILITY_ADDRESS_RESOURCE_MANAGER_TERTIARY)
+/**
+ * @brief 资源操作处理器
+ * 
+ * 处理系统中的资源操作请求，包括资源验证、状态更新和操作执行
+ * 
+ * @param utility_context_input_data 资源操作参数指针
+ * @return uint64_t 操作结果，0表示成功，非0表示错误码
+ */
 uint64_t utility_resource_operation_handler(int64_t utility_context_input_data)
 {
-int64_t utility_loop_index = 0;
-uint utility_resource_context_data;
-uint utility_resource_context_data;
-* 资源操作处理器
-* 处理系统中的资源操作请求，包括资源验证、状态更新和操作执行
-*
-* @param utility_context_input_data 资源操作参数指针
-* @return uint64_t 操作结果，0表示成功，非0表示错误码
-*/
+    int64_t utility_loop_index = 0;
+    uint utility_resource_context_data;
+    uint utility_resource_context_data_secondary;
 uint64_t utility_status;
 uint64_t *utility_buffer;
 int utility_result;
@@ -3309,18 +3311,18 @@ int64_t utility_resource_ptr;
 int64_t utility_loop_index = 0;
 uint64_t utility_resource_context_value;
 float *utility_buffer;
-uint utility_context_temp_counter;
+uint utility_context_temporary_counter;
 uint utility_resource_context_data;
 int64_t utility_context_service_handle;
 float utility_float_param_secondary;
 utility_resource_context_value = utility_context_main_data - UTILITY_MEMORY_POINTER_OFFSET;
 if (utility_context_main_data == UTILITY_FALSE) {
-utility_resource_context_value = (uint64_t)utility_context_temp_counter;
+utility_resource_context_value = (uint64_t)utility_context_temporary_counter;
 }
 utility_status_code = *(int *)(utility_resource_ptr + UTILITY_THREAD_CONFIG_OFFSET);
 utility_context_input_data = (float *)(utility_resource_ptr + UTILITY_THREAD_DATA_OFFSET + (int64_t)*(int *)(utility_resource_ptr + UTILITY_THREAD_CONTEXT_OFFSET) * 4);
 if (0 < *(int *)(utility_resource_ptr + UTILITY_THREAD_CONTEXT_OFFSET)) {
-utility_resource_ctx_handle = utility_context_temp_counter;
+utility_resource_ctx_handle = utility_context_temporary_counter;
 do {
 utility_status_code = *(int *)(((utility_resource_ptr + UTILITY_THREAD_DATA_OFFSET) - (int64_t)utility_context_input_data) + (int64_t)utility_context_input_data);
 if (utility_result != -1) {
@@ -3359,9 +3361,9 @@ utility_status_code = *(int *)((int64_t)utility_context_input_data + utility_loo
 if (utility_result != -1) {
 *(float *)(*(int64_t *)(utility_resource_ptr + UTILITY_THREAD_DATA_OFFSET) + 4 + (int64_t)utility_result * UTILITY_THREAD_CONTEXT_OFFSET) = *utility_buffer;
 }
-utility_context_temp_counter = utility_context_temp_counter + 1;
+utility_context_temporary_counter = utility_context_temporary_counter + 1;
 utility_context_input_data = utility_context_input_data + 1;
-} while ((int)utility_context_temp_counter < *(int *)(utility_resource_ptr + UTILITY_THREAD_CONTEXT_OFFSET));
+} while ((int)utility_context_temporary_counter < *(int *)(utility_resource_ptr + UTILITY_THREAD_CONTEXT_OFFSET));
 }
 }
 utility_release_context_resources(*(uint64_t *)(utility_context_service_handle + UTILITY_CONTEXT_SERVICE_OFFSET));
@@ -4449,19 +4451,19 @@ utility_context_input_data = *(int64_t **)(utility_context_input_data + 800);
 if (utility_context_input_data != (int64_t *)UTILITY_NULL_POINTER) {
 utility_stack_checksum = *utility_buffer;
 utility_stack_uint_resource_data = utility_context_data[1];
-utility_stack_temp_result = utility_context_data[2];
+utility_stack_temporary_result = utility_context_data[2];
 utility_stack_unsigned_int_buffer = utility_context_input_data[3];
 utility_loop_index = 0;
 if (utility_loop_index < utility_max_iteration_count) {
-utility_stack_ptr = utility_stack_temp_result >> UTILITY_THREAD_CONTEXT_OFFSET;
+utility_stack_ptr = utility_stack_temporary_result >> UTILITY_THREAD_CONTEXT_OFFSET;
 utility_stack_context_temp = utility_stack_unsigned_int_buffer >> UTILITY_THREAD_CONTEXT_OFFSET;
 utility_stack_primary_status_flag = utility_stack_uint_resource_data >> UTILITY_THREAD_HANDLE_OFFSET;
 utility_stack_thread_handle_temp = utility_stack_unsigned_int_buffer >> UTILITY_THREAD_HANDLE_OFFSET & UTILITY_BYTE_MASK_8_BIT;
 utility_stack_context_offset_temp = utility_stack_unsigned_int_buffer >> UTILITY_BIT_SHIFT_16_BITS & UTILITY_BYTE_MASK_8_BIT;
 utility_stack_data_byte_flag_4 = utility_stack_unsigned_int_buffer & UTILITY_BYTE_MASK_8_BIT;
-utility_stack_data_byte_flag_3 = utility_stack_temp_result >> UTILITY_THREAD_HANDLE_OFFSET & UTILITY_BYTE_MASK_8_BIT;
-utility_stack_data_byte_flag_2 = utility_stack_temp_result >> UTILITY_BIT_SHIFT_16_BITS & UTILITY_BYTE_MASK_8_BIT;
-utility_stack_data_byte_flag_1 = utility_stack_temp_result & UTILITY_BYTE_MASK_8_BIT;
+utility_stack_data_byte_flag_3 = utility_stack_temporary_result >> UTILITY_THREAD_HANDLE_OFFSET & UTILITY_BYTE_MASK_8_BIT;
+utility_stack_data_byte_flag_2 = utility_stack_temporary_result >> UTILITY_BIT_SHIFT_16_BITS & UTILITY_BYTE_MASK_8_BIT;
+utility_stack_data_byte_flag_1 = utility_stack_temporary_result & UTILITY_BYTE_MASK_8_BIT;
 utility_stack_flag = utility_stack_uint_resource_data & UTILITY_FLAG_MASK_WORD;
 utility_process_memory_block(utility_stack_small_frame,UTILITY_BLOCK_SIZE_39,&utility_system_reserved_memory,utility_stack_checksum);
 }
@@ -4495,7 +4497,7 @@ uint utility_stack_handle;
 uint utility_stack_context;
 uint utility_stack_checksum;
 uint utility_stack_result;
-uint32_t utility_stack_temp_var;
+uint32_t utility_stack_temporary_variable;
 uint utility_stack_operation_code;
 uint utility_stack_data_offset;
 uint utility_stack_state_code;
@@ -4504,14 +4506,14 @@ uint64_t utility_stack_mini_frame;
 utility_stack_mini_frame = utility_system_reserved_memory ^ (uint64_t)utility_stack_status_data;
 utility_context_input_data = *(int64_t **)(utility_context_input_data + 800);
 if (utility_context_input_data != (int64_t *)UTILITY_NULL_POINTER) {
-utility_stack_temp_var = *utility_buffer;
+utility_stack_temporary_variable = *utility_buffer;
 utility_stack_operation_code = utility_context_data[1];
 utility_stack_data_offset = utility_context_data[2];
 utility_stack_state_code = utility_context_input_data[3];
 utility_loop_index = 0;
 if (utility_loop_index < utility_max_iteration_count) {
 utility_stack_context_offset_temp = utility_stack_data_offset >> UTILITY_THREAD_CONTEXT_OFFSET;
-utility_stack_temp_result = utility_stack_state_code >> UTILITY_THREAD_CONTEXT_OFFSET;
+utility_stack_temporary_result = utility_stack_state_code >> UTILITY_THREAD_CONTEXT_OFFSET;
 utility_stack_data_byte_flag_2 = utility_stack_operation_code >> UTILITY_THREAD_HANDLE_OFFSET;
 utility_stack_checksum = utility_stack_state_code >> UTILITY_THREAD_HANDLE_OFFSET & UTILITY_BYTE_MASK_8_BIT;
 utility_stack_context_temp = utility_stack_state_code >> UTILITY_BIT_SHIFT_16_BITS & UTILITY_BYTE_MASK_8_BIT;
@@ -4520,7 +4522,7 @@ utility_stack_data_byte_flag_4 = utility_stack_data_offset >> UTILITY_THREAD_HAN
 utility_stack_ptr = utility_stack_data_offset >> UTILITY_BIT_SHIFT_16_BITS & UTILITY_BYTE_MASK_8_BIT;
 utility_stack_data_byte_flag_3 = utility_stack_data_offset & UTILITY_BYTE_MASK_8_BIT;
 utility_stack_data_byte_flag_1 = utility_stack_operation_code & UTILITY_FLAG_MASK_WORD;
-utility_process_memory_block(utility_stack_checksum,UTILITY_BLOCK_SIZE_39,&utility_system_reserved_memory,utility_stack_temp_var);
+utility_process_memory_block(utility_stack_checksum,UTILITY_BLOCK_SIZE_39,&utility_system_reserved_memory,utility_stack_temporary_variable);
 }
 if ((**int **(utility_loop_index ) = 0;
 (utility_status_code = utility_check_memory_status(*(uint32_t *)(utility_context_input_data + UTILITY_THREAD_CONTEXT_OFFSET)), utility_result == UTILITY_FALSE)) {
@@ -4582,19 +4584,19 @@ utility_context_input_data = *(int64_t **)(utility_context_input_data + 800);
 if (utility_context_input_data != (int64_t *)UTILITY_NULL_POINTER) {
 utility_stack_checksum = *utility_buffer;
 utility_stack_uint_resource_data = utility_context_data[1];
-utility_stack_temp_result = utility_context_data[2];
+utility_stack_temporary_result = utility_context_data[2];
 utility_stack_unsigned_int_buffer = utility_context_input_data[3];
 utility_loop_index = 0;
 if (utility_loop_index < utility_max_iteration_count) {
-utility_stack_ptr = utility_stack_temp_result >> UTILITY_THREAD_CONTEXT_OFFSET;
+utility_stack_ptr = utility_stack_temporary_result >> UTILITY_THREAD_CONTEXT_OFFSET;
 utility_stack_context_temp = utility_stack_unsigned_int_buffer >> UTILITY_THREAD_CONTEXT_OFFSET;
 utility_stack_primary_status_flag = utility_stack_uint_resource_data >> UTILITY_THREAD_HANDLE_OFFSET;
 utility_stack_thread_handle_temp = utility_stack_unsigned_int_buffer >> UTILITY_THREAD_HANDLE_OFFSET & UTILITY_BYTE_MASK_8_BIT;
 utility_stack_context_offset_temp = utility_stack_unsigned_int_buffer >> UTILITY_BIT_SHIFT_16_BITS & UTILITY_BYTE_MASK_8_BIT;
 utility_stack_data_byte_flag_4 = utility_stack_unsigned_int_buffer & UTILITY_BYTE_MASK_8_BIT;
-utility_stack_data_byte_flag_3 = utility_stack_temp_result >> UTILITY_THREAD_HANDLE_OFFSET & UTILITY_BYTE_MASK_8_BIT;
-utility_stack_data_byte_flag_2 = utility_stack_temp_result >> UTILITY_BIT_SHIFT_16_BITS & UTILITY_BYTE_MASK_8_BIT;
-utility_stack_data_byte_flag_1 = utility_stack_temp_result & UTILITY_BYTE_MASK_8_BIT;
+utility_stack_data_byte_flag_3 = utility_stack_temporary_result >> UTILITY_THREAD_HANDLE_OFFSET & UTILITY_BYTE_MASK_8_BIT;
+utility_stack_data_byte_flag_2 = utility_stack_temporary_result >> UTILITY_BIT_SHIFT_16_BITS & UTILITY_BYTE_MASK_8_BIT;
+utility_stack_data_byte_flag_1 = utility_stack_temporary_result & UTILITY_BYTE_MASK_8_BIT;
 utility_stack_flag = utility_stack_uint_resource_data & UTILITY_FLAG_MASK_WORD;
 utility_process_memory_block(utility_stack_small_frame,UTILITY_BLOCK_SIZE_39,&utility_system_reserved_memory,utility_stack_checksum);
 }
@@ -5039,8 +5041,8 @@ int64_t utility_stack_context_offset;
 int64_t utility_stack_multiplier;
 int64_t utility_stack_data_array [13];
 uint8_t utility_stack_large_buffer [1536];
-uint64_t utility_stack_temp_var;
-utility_stack_temp_var = utility_system_reserved_memory ^ (uint64_t)utility_stack_network_buffer;
+uint64_t utility_stack_temporary_variable;
+utility_stack_temporary_variable = utility_system_reserved_memory ^ (uint64_t)utility_stack_network_buffer;
 utility_status_code = *(int *)(utility_context_input_data + UTILITY_CONTEXT_OFFSET_CONTROL_SECONDARY);
 utility_loop_index = 0;
 utility_context_main_data = utility_context_input_data;
@@ -5131,7 +5133,7 @@ else {
 *utility_buffer = UTILITY_FALSE;
 }
 InitializeSocket:
-utility_checksum_compute(utility_stack_temp_var ^ (uint64_t)utility_stack_network_buffer);
+utility_checksum_compute(utility_stack_temporary_variable ^ (uint64_t)utility_stack_network_buffer);
 }
 {
 int64_t utility_loop_index = 0;
@@ -7995,7 +7997,7 @@ uint32_t utility_stack_configuration_data;
 long long utility_stack_large_value;
 long long utility_stack_large_offset;
 uint32_t utility_stack_data_offset;
-uint32_t utility_stack_temp_var;
+uint32_t utility_stack_temporary_variable;
 uint32_t utility_stack_uint_size;
 uint32_t utility_stack_operation_count;
 int64_t utility_stack_long_index;
@@ -18819,15 +18821,15 @@ uint64_t utility_resource_context_value;
 uint16_t utility_stack_data [4];
 uint16_t utility_stack_data [4];
 uint32_t utility_stack_data [2];
-uint32_t utility_stack_temp_result;
+uint32_t utility_stack_temporary_result;
 uint32_t utility_stack_unsigned_int_buffer;
-uint32_t utility_stack_temp_var;
+uint32_t utility_stack_temporary_variable;
 uint32_t utility_stack_operation_code;
 uint8_t utility_stack_small_frame [40];
 utility_context_input_data = (uint32_t *)utility_memory_get_pointer();
-utility_stack_temp_result = *utility_buffer;
+utility_stack_temporary_result = *utility_buffer;
 utility_stack_unsigned_int_buffer = utility_context_data[1];
-utility_stack_temp_var = utility_context_data[2];
+utility_stack_temporary_variable = utility_context_data[2];
 utility_stack_operation_code = utility_context_input_data[3];
 utility_created_resource_handle = utility_resource_allocator(utility_context_input_data,utility_stack_small_frame,0,UTILITY_RESOURCE_FLAG_OFFSET525443,0);
 if ((int)utility_status != UTILITY_FALSE) {
@@ -18846,7 +18848,7 @@ if (utility_resource_ptr == UTILITY_FALSE) {
 utility_resource_ctx_handle = UTILITY_STATUS_THREAD_CREATED;
 utility_status_code = UTILITY_FALSE;
 if ((*(uint *)(utility_context_input_data + UTILITY_MEMORY_POINTER_OFFSET) < 0x5a) && (utility_resource_ctx_handle = UTILITY_STATUS_THREAD_CREATED, *(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE)) {
-utility_stack_data[0] = utility_stack_temp_result;
+utility_stack_data[0] = utility_stack_temporary_result;
 utility_loop_index = 0;
 utility_resource_ctx_handle = (**(code **)**uint64_t **(utility_loop_index ) = 0;
 (*uint64_t **(utility_loop_index ) = 0;
@@ -38966,22 +38968,6 @@ void utility_initialize_global_pointer_(void)
     return;
 }
 {
-utility_system_reserved_memory = &utility_system_reserved_memory;
-return;
-}
-{
-utility_system_reserved_memory = &utility_system_reserved_memory;
-return;
-}
-{
-utility_system_reserved_memory = &utility_system_reserved_memory;
-return;
-}
-{
-utility_system_reserved_memory = &utility_system_reserved_memory;
-return;
-}
-{
 int64_t *resource_manager;
 int *utility_buffer;
 int utility_result;
@@ -39156,11 +39142,11 @@ freeutility_loop_index++;
 }
 utility_system_reserved_memory = UTILITY_FALSE;
 utility_system_reserved_memory = utility_falsexf;
-void utility_free_resource_blocks(void)
-* 释放资源块函数
-* 功能：释放系统资源块，回收内存资源
-* 功能描述：释放已分配的资源块，回收内存资源
-*/
+/**
+ * @brief 释放资源块函数
+ * 功能：释放系统资源块，回收内存资源
+ * 功能描述：释放已分配的资源块，回收内存资源
+ */
 void utility_free_resource_blocks(void)
 {
 uint64_t utility_resource_context_value;
@@ -39368,10 +39354,11 @@ utility_system_initialization(utility_context_input_data);
 }
 return;
 }
-* 初始化线程管理器函数
-* 功能：初始化系统线程管理器，设置线程本地存储
-* 功能描述：设置线程本地存储指针，初始化线程管理数据结构
-*/
+/**
+ * @brief 初始化线程管理器函数
+ * 功能：初始化系统线程管理器，设置线程本地存储
+ * 功能描述：设置线程本地存储指针，初始化线程管理数据结构
+ */
 void InitializeThreadManager(void)
 {
 int64_t utility_loop_index = 0;
@@ -39385,14 +39372,15 @@ utility_system_initialization();
 *uint64_t *(utility_loop_index ) = 0;
 return;
 }
-* 处理线程队列函数
-* 功能：处理系统线程队列，管理线程任务的调度和执行
-* 参数：queueHandle - 队列句柄
-*       processData - 处理数据
-*       callbackData - 回调数据
-*       userData - 用户数据
-* 功能描述：处理线程队列中的任务，管理线程的执行状态
-*/
+/**
+ * @brief 处理线程队列函数
+ * 功能：处理系统线程队列，管理线程任务的调度和执行
+ * @param queueHandle 队列句柄
+ * @param processData 处理数据
+ * @param callbackData 回调数据
+ * @param userData 用户数据
+ * 功能描述：处理线程队列中的任务，管理线程的执行状态
+ */
 void ProcessThreadQueue(uint64_t queueHandle, uint64_t utility_context_input_data, uint64_t callbackData, uint64_t userData)
 {
 uint64_t *utility_buffer;
@@ -39659,6 +39647,7 @@ int utility_process_system_context(int64_t context_value, int64_t utility_contex
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
+/**
  * @brief 资源句柄创建函数
  * @param resource_config 资源配置
  * @param context_size 上下文大小
@@ -39674,6 +39663,7 @@ uint64_t utility_create_resource_handle(uint64_t resource_config, int64_t contex
     // 简化实现：返回资源配置
     return resource_config;
 }
+/**
  * @brief 值组合函数
  * @param value1 值1
  * @param value2 值2
@@ -39684,6 +39674,7 @@ int64_t utility_combine_int64(int64_t value1, int64_t value2)
     // 简化实现：返回两个值的和
     return value1 + value2;
 }
+/**
  * @brief 缓冲区数据处理函数
  * @param utility_context_input_data 上下文句柄
  * @param buffer_ptr 缓冲区指针
