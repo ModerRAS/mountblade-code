@@ -97,7 +97,7 @@
 #define UTILITY_CONTEXT_STRUCT_SIZE_44 0x44
 #define UTILITY_SERVICE_HANDLER_OFFSET_PRIMARY 0x2b0
 #define UTILITY_SERVICE_HANDLER_OFFSET_2F0 0x2f0
-#define UTILITY_SERVICE_HANDLER_OFFSET_2F8 0x2f8
+#define UTILITY_SERVICE_HANDLER_OFFSET_TERTIARY 0x2f8
 #define UTILITY_NETWORK_CONTEXT_OFFSET_D8 (UTILITY_STATUS_INVALID_PARAMETER + 0x8)
 #define UTILITY_NULL_PTR 0x0
 #define UTILITY_CONTEXT_SIZE_MULTIPLIER 0x44
@@ -133,12 +133,12 @@
 #define UTILITY_THREAD_BUFFER_OFFSET8 0x50
 #define UTILITY_THREAD_BUFFER_OFFSET9 0x58
 #define UTILITY_RESOURCE_FLAG_OFFSET9 0x5e0
-#define UTILITY_CONTEXT_OFFSET_4A 0x4a
-#define UTILITY_CONTEXT_OFFSET_C 0xc
-#define UTILITY_CONTEXT_OFFSET_6C UTILITY_CONTEXT_OFFSET_6C
-#define UTILITY_CONTEXT_OFFSET_7C 0x7c
-#define UTILITY_CONTEXT_OFFSET_C0 0xc0
-#define UTILITY_CHECKSUM_OFFSET_5F0 0x5f0
+#define UTILITY_CONTEXT_OFFSET_RESOURCE_ID 0x4a
+#define UTILITY_CONTEXT_OFFSET_CONFIG 0xc
+#define UTILITY_CONTEXT_OFFSET_DATA_AREA 0x6c
+#define UTILITY_CONTEXT_OFFSET_BUFFER 0x7c
+#define UTILITY_CONTEXT_OFFSET_CONTROL 0xc0
+#define UTILITY_CHECKSUM_OFFSET_VALIDATION 0x5f0
 #define UTILITY_SERVICE_CONTEXT_OFFSET_800 0x800
 #define UTILITY_STATUS_FLAG_E 0xe
 #define UTILITY_STATUS_FLAG_E0 0xe0
@@ -233,7 +233,7 @@
 #define UTILITY_CONTEXT_OFFSET_25 0x25
 #define UTILITY_SERVICE_HANDLER_OFFSET_PRIMARY 0x2b0
 #define UTILITY_SERVICE_HANDLER_OFFSET_2F0 0x2f0
-#define UTILITY_SERVICE_HANDLER_OFFSET_2F8 0x2f8
+#define UTILITY_SERVICE_HANDLER_OFFSET_TERTIARY 0x2f8
 #define UTILITY_SERVICE_CONTEXT_OFFSET_800 0x800
 #define UTILITY_NULL_POINTER 0x0
 #define UTILITY_CONTEXT_OFFSET_BC 0xbc
@@ -520,17 +520,6 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
  * 
  * @return 无返回值
  */
-/**
- * @brief 验证资源状态
- * 负责验证系统资源的状态，包括检查资源标志位、激活上下文管理器
- * 以及清理缓冲区和计算校验和，确保资源的完整性和一致性
- * @return 无返回值
- */
-/**
- * @brief 验证资源状态
- * 功能：检查系统中所有资源的状态，确保资源处于有效状态
- * @return 无返回值
- */
 void utility_validate_resource_state(void)
 {
     int64_t utility_resource_pointer = UTILITY_BOOLEAN_FALSE;
@@ -548,14 +537,6 @@ void utility_validate_resource_state(void)
     // 计算校验和
     utility_checksum_compute(utility_buffer_value ^ (uint64_t)utility_buffer_workspace);
 }
-/**
- * @brief 处理资源指针的转换和管理
- * 
- * 将原始资源指针转换为系统可用的资源引用
- * 
- * @param utility_context_input_parameter 输入的原始资源指针值
- * @return 转换后的资源指针，0表示失败
- */
 /**
  * @brief 处理资源指针
  * 功能：将原始资源指针转换为系统可用的资源引用
@@ -914,6 +895,8 @@ if (utility_context_input_parameter != '\0') {
 utility_context_activate();
 }
 return 0;
+}
+uint64_t utility_resource_context_activator(int64_t utility_context_input_parameter)
 {
 uint64_t utility_resource_status_value;
 int64_t utility_stack_pointer;
@@ -2481,12 +2464,6 @@ utility_update_context_resources(*(uint64_t *)(utility_context_input_parameter +
 }
 return;
 }
-/**
-* @brief 初始化文件映射
-* 创建并初始化文件映射对象，用于内存映射文件
-* @return 无返回值
-*/
-void InitializeFileMap(void)
 /**
 * @brief 初始化文件映射
 * 创建并初始化文件映射对象，用于内存映射文件
