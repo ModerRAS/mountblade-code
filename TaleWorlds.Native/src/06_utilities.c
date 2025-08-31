@@ -3,15 +3,15 @@
  * 简化实现：仅修复语法错误、删除重复定义、优化变量命名，保持代码结构不变
  */
 #include "TaleWorlds.Native.Split.h"
-#define UTILITY_MAX_BUFFER_SIZE UTILITY_THREAD_HANDLE_OFFSET00
+#define UTILITY_MAX_BUFFER_SIZE 0x1000
 #define UTILITY_MAX_THREADS 8
 #define UTILITY_MAX_EVENTS 16
 #define UTILITY_MAX_HANDLERS 32
 /* 工具系统状态常量 */
-#define UTILITY_STATE_INITIALIZED UTILITY_STATUS_ENABLED_FLAG
+#define UTILITY_STATE_INITIALIZED 0x1
 #define UTILITY_STATE_RUNNING 0x2
 #define UTILITY_STATE_PAUSED 0x4
-#define UTILITY_STATE_STOPPED UTILITY_MEMORY_POINTER_OFFSET
+#define UTILITY_STATE_STOPPED 0x8
 /* 工具系统错误代码 */
 #define UTILITY_ERROR_NONE 0x0
 #define UTILITY_ERROR_MEMORY 0x1
@@ -24,6 +24,10 @@
 #define UTILITY_STATUS_OPERATION_SUCCESS 0x0
 #define UTILITY_STATUS_MEMORY_IN_USE 0x4e
 #define UTILITY_STATUS_RESOURCE_BUSY 0x4f
+#define UTILITY_STATUS_OPERATION_FAILED 0x1c
+#define UTILITY_STATUS_INVALID_PARAMETER 0x26
+#define UTILITY_STATUS_RESOURCE_NOT_FOUND 0x4a
+#define UTILITY_STATUS_ACCESS_DENIED 0xd
 
 /* 工具系统偏移量常量定义 - 2025年8月31日最终批次美化 */
 /* 线程相关偏移量 */
@@ -2168,7 +2172,7 @@ if ((int)utility_resource_value != 0) {
 return utility_resource_value;
 }
 if (*(char *)(utility_stack_context_value + 0x2c) == '\0') {
-return 0x4f;
+return UTILITY_STATUS_RESOURCE_BUSY;
 }
 *(uint8_t *)(utility_stack_context_value + 0x2c) = 0;
 utility_release_context_resources(*(uint64_t *)(context_handle + 0x98),context_handle);
