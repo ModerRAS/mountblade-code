@@ -1011,54 +1011,70 @@ uint32_t utility_get_stream_status(void)
 {
     int64_t utility_context_main;
     int64_t utility_iteration_index;
+    
     utility_iteration_index = utility_context_main + -8;
     if (utility_context_main == UTILITY_FALSE) {
-
-}
-    utility_iteration_index = UTILITY_FALSE;
-}
+        utility_iteration_index = UTILITY_FALSE;
+    }
+    
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-    return UTILITY_STATUS_THREAD_CREATED;
+        return UTILITY_STATUS_THREAD_CREATED;
+    }
+    
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    return UTILITY_STATUS_OPERATION_SUCCESS;
 }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET),1);
-}
- * 重置事件状态
-将事件对象重置为无信号状态
-调用上下文管理器激活函数来重置事件
+ /** 
+ * @brief Reset Event
  *
- * 简化实现：仅保留单个函数定义，删除重复声明
+ * 功能描述：重置事件状态，将事件对象重置为无信号状态
+ *
+ * 简化实现：调用上下文管理器激活函数来重置事件
  * 原本实现：完全重构事件相关机制
  */
 void ResetEvent(void)
 {
     utility_context_activate(0, 1);
 }
- * 等待事件触发
-等待事件对象变为有信号状态
-当前实现为空函数，仅返回
+ /** 
+ * @brief Wait For Event
  *
- * 简化实现：仅保留单个函数定义，删除重复声明
+ * 功能描述：等待事件触发，等待事件对象变为有信号状态
+ *
+ * 简化实现：当前实现为空函数，仅返回
  * 原本实现：完全重构事件相关机制
  */
 void WaitForEvent(void)
 {
     return;
 }
- * 处理资源指针的转换和管理
- * 将原始资源指针转换为系统可用的资源引用
+ /** 
+ * @brief Utility Get Cache Status
+ *
+ * 功能描述：获取缓存状态，处理资源指针的转换和管理
+ *
+ * @return 缓存状态
+ *
+ * 原本实现：完全重构缓存状态获取机制
+ * 简化实现：保持现有功能，添加语义化文档注释
+ */
 uint32_t utility_get_cache_status(void)
 {
     int64_t utility_context_main;
     int64_t utility_iteration_index;
+    
     if (utility_context_main == UTILITY_FALSE) {
         utility_iteration_index = UTILITY_FALSE;
     } else {
         utility_iteration_index = utility_context_main + -8;
     }
+    
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-    return UTILITY_STATUS_THREAD_CREATED;
-}
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET),1);
+        return UTILITY_STATUS_THREAD_CREATED;
+    }
+    
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    return UTILITY_STATUS_OPERATION_SUCCESS;
 }
  * 关闭事件对象
 释放事件对象资源并清理相关状态
@@ -48274,20 +48290,14 @@ int utility_queue_process(uint64_t **queue_ptr, uint64_t queue_data, uint64_t ut
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
 /** 
- * @brief 系统外部清理函数
-/**
- * @return 清理状态
-*/
  * @brief Utility System External Cleanup
-/**
  *
- * 功能描述
+ * 功能描述：执行工具系统的外部清理操作
  *
- * @param parameters 参数说明
- * @return 返回值说明
+ * @return 清理状态
  *
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构工具系统清理机制
+ * 简化实现：仅返回成功状态，保持代码结构不变
  */
 int utility_system_external_cleanup(void)
 {
@@ -48295,54 +48305,40 @@ int utility_system_external_cleanup(void)
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
 /** 
- * @brief 异常上下文处理函数
-/**
+ * @brief Utility Handle Exception Context
+ *
+ * 功能描述：处理资源异常上下文，管理系统异常状态
+ *
  * @param resource_data 资源数据
  * @param flags 标志位
  * @param utility_context_ptr 上下文句柄
  * @param exception_data 异常数据
  * @param exception_code 异常代码
  * @return 处理状态
-*/
- * @brief Utility Handle Exception Context
-/**
  *
- * 功能描述
- *
- * @param parameters 参数说明
- * @return 返回值说明
- *
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构异常处理机制
+ * 简化实现：仅进行参数验证和返回状态，保持代码结构不变
  */
 int utility_resource_handle_exception_context(uint64_t resource_data, uint64_t flags, int64_t utility_context_ptr, uint64_t exception_data, uint64_t exception_code)
 {
     if (resource_data == UTILITY_FALSE || utility_context_ptr == UTILITY_FALSE) {
-
-}
         return UTILITY_ERROR_INVALID_PARAM;
-}
+    }
 
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
 /** 
- * @brief 值连接函数
-/**
- * @param value1 值1
- * @param value2 值2
- * @return 连接后的值
-*/
  * @brief Utility Combine Flag Values
-/**
  *
- * 功能描述
+ * 功能描述：合并两个标志值，返回按位或结果
  *
- * @param parameters 参数说明
- * @return 返回值说明
+ * @param value1 第一个标志值
+ * @param value2 第二个标志值
+ * @return 合并后的标志值
  *
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构标志值合并机制
+ * 简化实现：仅进行按位或操作，保持代码结构不变
  */
 uint64_t utility_combine_flag_values(uint64_t value1, uint64_t value2)
 {
@@ -48350,21 +48346,15 @@ uint64_t utility_combine_flag_values(uint64_t value1, uint64_t value2)
     return value1 | value2;
 }
 /** 
- * @brief 系统连接管理器函数
-/**
+ * @brief Utility System Connection Manager
+ *
+ * 功能描述：管理系统连接状态，处理连接相关的操作
+ *
  * @param utility_context_ptr 上下文句柄
  * @return 连接状态
-*/
- * @brief Utility System Connection Manager
-/**
  *
- * 功能描述
- *
- * @param parameters 参数说明
- * @return 返回值说明
- *
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构系统连接管理机制
+ * 简化实现：仅进行参数验证和返回状态，保持代码结构不变
  */
 int utility_system_connection_manager(int64_t utility_context_ptr)
 {
