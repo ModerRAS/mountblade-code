@@ -9,9 +9,9 @@
 #include <string.h>
 
 // 系统初始化上下文索引常量
-#define SYSTEM_INIT_CONTEXT_INDEX_PROCESSOR 0x67
-#define SYSTEM_INIT_CONTEXT_INDEX_COUNTER 0x65
-#define SYSTEM_INIT_CONTEXT_INDEX_INITIALIZATION_FLAG 0x6f6
+#define SYSTEM_INIT_CONTEXT_INDEX_PROCESSOR 0x67        // 处理器索引
+#define SYSTEM_INIT_CONTEXT_INDEX_COUNTER 0x65         // 计数器索引
+#define SYSTEM_INIT_CONTEXT_INDEX_INITIALIZATION_FLAG 0x6f6  // 初始化标志索引
 
 // 系统初始化硬编码值语义化常量
 #define SYSTEM_INIT_OFFSET_CHAR_CHECK           0x19    // 字符检查偏移量
@@ -23,12 +23,12 @@
 #define SYSTEM_INIT_VALUE_ZERO                 0        // 零值常量
 
 // 系统魔法数字常量
-#define SYSTEM_INIT_MAGIC_COOKIE_BASIC_PRIMARY     0xfc124d2010d41985f // 系统魔法cookie 1
-#define SYSTEM_INIT_MAGIC_COOKIE_BASIC_SECONDARY   0x0 // 系统魔法cookie 2（待定义）
-#define SYSTEM_INIT_MAGIC_COOKIE_TERTIARY         0xfbb1df897 // 系统魔法cookie 3
-#define SYSTEM_INIT_MAGIC_COOKIE_BASIC_QUATERNARY  0xf249e4010f66f2ab // 系统魔法cookie 4
-#define SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_PRIMARY    0x666df49b97e0f10 // 系统活动魔法cookie 1
-#define SYSTEM_INIT_MAGIC_COOKIE_0x10             0x10    // 系统魔法cookie 0x10
+#define SYSTEM_INIT_MAGIC_COOKIE_BASIC_PRIMARY     0xfc124d2010d41985f // 基础魔法cookie主值
+#define SYSTEM_INIT_MAGIC_COOKIE_BASIC_SECONDARY   0x0 // 基础魔法cookie次值（待定义）
+#define SYSTEM_INIT_MAGIC_COOKIE_TERTIARY         0xfbb1df897 // 第三魔法cookie值
+#define SYSTEM_INIT_MAGIC_COOKIE_BASIC_QUATERNARY  0xf249e4010f66f2ab // 第四魔法cookie值
+#define SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_PRIMARY    0x666df49b97e0f10 // 活动魔法cookie主值
+#define SYSTEM_INIT_MAGIC_COOKIE_0x10             0x10    // 魔法cookie常量0x10
 
 // 系统错误码常量
 #define SYSTEM_INIT_ERROR_GENERIC     0xfffffffffffffff      // 通用错误码
@@ -51,15 +51,15 @@
 #define SYSTEM_INIT_ARRAY_INDEX_FUNCTION_PTR   10      // 函数指针数组索引
 
 // 系统标签语义化常量定义
-#define SYSTEM_INIT_LABEL_MAIN_ENTRY              system_init_label_parameter_check  // 主入口标签
-#define SYSTEM_INIT_LABEL_STRING_TERMINATE_CHECK   system_init_label_string_process  // 字符串终止检查标签
-#define SYSTEM_INIT_LABEL_SIZE_VALIDATION         system_init_label_stack_validation  // 大小验证标签
-#define SYSTEM_INIT_LABEL_MEMORY_CHECK            system_init_label_loop_exit  // 内存检查标签
-#define SYSTEM_INIT_LABEL_FUNCTION_RESULT_CHECK   system_init_label_loop_entry  // 函数结果检查标签
-#define SYSTEM_INIT_LABEL_CONTINUE_PROCESS        system_init_label_loop_continue  // 继续处理标签
-#define SYSTEM_INIT_LABEL_INITIALIZE_COMPLETE     system_init_label_connection_setup  // 初始化完成标签
-#define SYSTEM_INIT_LABEL_INITIALIZATION_CHECK    system_init_label_connection_retry  // 初始化检查标签
-#define SYSTEM_INIT_LABEL_LOOP_CONTINUE           system_init_label_data_prepare  // 循环继续标签
+#define SYSTEM_INIT_LABEL_MAIN_ENTRY              system_init_label_parameter_check  // 参数检查标签
+#define SYSTEM_INIT_LABEL_STRING_TERMINATE_CHECK   system_init_label_string_process  // 字符串处理标签
+#define SYSTEM_INIT_LABEL_SIZE_VALIDATION         system_init_label_stack_validation  // 栈验证标签
+#define SYSTEM_INIT_LABEL_MEMORY_CHECK            system_init_label_loop_exit  // 循环退出标签
+#define SYSTEM_INIT_LABEL_FUNCTION_RESULT_CHECK   system_init_label_loop_entry  // 循环入口标签
+#define SYSTEM_INIT_LABEL_CONTINUE_PROCESS        system_init_label_loop_continue  // 循环继续标签
+#define SYSTEM_INIT_LABEL_INITIALIZE_COMPLETE     system_init_label_connection_setup  // 连接设置标签
+#define SYSTEM_INIT_LABEL_INITIALIZATION_CHECK    system_init_label_connection_retry  // 连接重试标签
+#define SYSTEM_INIT_LABEL_LOOP_CONTINUE           system_init_label_data_prepare  // 数据准备标签
 #define SYSTEM_INIT_LABEL_LOOP_CONDITION          system_init_label_loop_condition  // 循环条件标签
 #define SYSTEM_INIT_LABEL_LOOP_END                system_init_label_loop_end  // 循环结束标签
 #define SYSTEM_INIT_LABEL_DATA_PROCESS            system_init_label_data_process  // 数据处理标签
@@ -68,10 +68,10 @@
 #define SYSTEM_INIT_LABEL_CLEANUP_START           system_init_label_cleanup_start  // 清理开始标签
 
 // 全局变量声明
-extern system_context_t g_system_context;
-extern system_uint8_t system_global_initialized_flag;
-extern system_uint8_t system_initialized[];
-extern system_code system_register_input_r9;
+extern system_context_t g_system_context;           // 系统上下文全局变量
+extern system_uint8_t system_global_initialized_flag; // 系统全局初始化标志
+extern system_uint8_t system_initialized[];         // 系统初始化状态数组
+extern system_code system_register_input_r9;        // 系统寄存器输入R9
 
 // 函数前向声明
 longlong* system_allocate_memory(system_code* device_function);

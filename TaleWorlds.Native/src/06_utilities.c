@@ -59011,29 +59011,59 @@ void utility_unwind_final_function_stage_05_memory_init(uint64 utility_resource_
   *(uint64 *)(utility_resource_context_handle + utility_data_offset_extended_1C08) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_stage_05_thread_prepare(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+/**
+ * 线程准备阶段 - 最终函数展开的第五阶段
+ * 准备系统线程资源，配置线程本地存储数据
+ * 
+ * @param resource_handle 资源句柄
+ * @param context_cache 上下文缓存
+ * @param operation_flags 操作标志
+ * @param callback_handler 回调处理器
+ * 
+ * 原本实现：完全重构线程准备系统，建立完整的线程初始化机制
+ * 简化实现：仅优化现有线程准备逻辑，保持核心功能不变
+ */
+void utility_unwind_final_function_stage_05_thread_prepare(uint64 resource_handle, longlong context_cache, uint64 operation_flags, uint64 callback_handler)
 {
-  longlong utility_primary_resource_cache;
+  longlong resource_cache;
+  
+  // 获取资源上下文句柄
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset_main);
-  if (*(code **)(utility_resource_context_handle  + utility_memory_offset_octonary_extended) != (code *)utility_pointer_null) {
-    (**(code **)(utility_resource_context_handle  + utility_memory_offset_octonary_extended))(utility_resource_context_handle  + utility_resource_data_buffer_offset_octonary_extended,utility_pointer_null,utility_resource_callback_handler,UTILITY_SYSTEM_END_FLAG_EXTENDED);
+  
+  // 执行线程准备回调函数
+  if (*(code **)(utility_resource_context_handle + utility_memory_offset_octonary_extended) != (code *)utility_pointer_null) {
+    (**(code **)(utility_resource_context_handle + utility_memory_offset_octonary_extended))(
+      utility_resource_context_handle + utility_resource_data_buffer_offset_octonary_extended,
+      utility_pointer_null,
+      callback_handler,
+      UTILITY_SYSTEM_END_FLAG_EXTENDED
+    );
   }
+  
+  // 配置线程本地存储数据
   *(uint64 *)(utility_resource_context_handle + utility_resource_offset_extended_data_access_tertiary) = &utility_thread_local_storage_data;
+  
+  // 验证和清理线程状态
   if (*(longlong *)(utility_resource_context_handle + utility_resource_offset_extended_data_access_secondary) != utility_zero) {
-      
     utility_handle_critical_error();
   }
   *(uint64 *)(utility_resource_context_handle + utility_resource_offset_extended_data_access_secondary) = utility_zero;
   *(uint32 *)(utility_resource_context_handle + utility_resource_callback_offset_extended_extended_1cb0) = utility_zero;
+  
+  // 设置线程清理函数
   *(uint64 *)(utility_resource_context_handle + utility_resource_offset_extended_data_access_tertiary) = &utility_thread_local_storage_cleanup;
+  
+  // 配置扩展数据访问
   *(uint64 *)(utility_resource_context_handle + utility_resource_offset_extended_data_access_extended) = &utility_thread_local_storage_data;
+  
+  // 验证和清理扩展数据访问
   if (*(longlong *)(utility_resource_context_handle + UTILITY_DATA_OFFSET_EXTENDED_SECONDARY) != utility_zero) {
-      
     utility_handle_critical_error();
   }
   *(uint64 *)(utility_resource_context_handle + UTILITY_DATA_OFFSET_EXTENDED_SECONDARY) = utility_zero;
   *(uint32 *)(utility_resource_context_handle + utility_resource_offset_extended_data_access_quaternary) = utility_zero;
   *(uint64 *)(utility_resource_context_handle + utility_resource_offset_extended_data_access_extended) = &utility_thread_local_storage_cleanup;
+  
   return;
 }
 void utility_unwind_final_function_stage_05_memory_config(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
