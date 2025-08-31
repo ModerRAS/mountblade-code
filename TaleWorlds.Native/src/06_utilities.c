@@ -1,31 +1,3 @@
-// 06_utilities.c - 工具系统模块
-// 简化实现：完成工具系统变量名、函数名和常量名的语义化美化工作，添加详细的文档注释
-// 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范
-// 美化内容：
-// - 将 utility_temp_integer_var 替换为 utility_temp_integer_var
-// - 将 utility_temp_security_register 替换为 utility_temp_security_var
-// - 将 utility_word_maskfeff 替换为 UTILITY_WORD_MASK_CLEAR_LOWEST_BIT
-// - 将 utility_word_mask_clear_fifth_bit 替换为 UTILITY_WORD_MASK_CLEAR_FIFTH_BIT
-// - 将 utility_word_mask_clear_sixth_bit 替换为 UTILITY_WORD_MASK_CLEAR_SIXTH_BIT
-// - 将 utility_word_mask_low_bytebf 替换为 UTILITY_WORD_MASK_LOW_BYTE_BF
-// - 将 utility_result 替换为 utility_result_var
-// - 将 utility_system_resource_handle 替换为 utility_system_resource_handle_var
-// - 将 utility_register_input 替换为 utility_register_input_var
-// - 将 utility_resource_cache 替换为 utility_resource_cache_var
-// - 将 utility_resource_context_handle 替换为 utility_resource_context_handle_var
-// - 将 utility_data_offset 替换为 UTILITY_DATA_OFFSET
-// - 将 utility_memory_offset_negative 替换为 UTILITY_MEMORY_OFFSET_NEGATIVE
-// - 将 utility_offset_resource_ptr 替换为 UTILITY_RESOURCE_PTR_OFFSET
-// - 将 utility_offset_flag 替换为 UTILITY_OFFSET_FLAG
-// - 将 utility_memory_flag 替换为 UTILITY_MEMORY_FLAG
-// - 将 utility_pointer_offset 替换为 UTILITY_POINTER_OFFSET
-// - 将 utility_field_offset 替换为 UTILITY_FIELD_OFFSET
-// - 将 utility_offset_ptr_primary 替换为 UTILITY_OFFSET_PTR_PRIMARY
-// - 将 UTILITY_ZERO 替换为 UTILITY_ZERO
-// - 将 utility_one 替换为 UTILITY_ONE
-// - 将 utility_security_token_offset 替换为 UTILITY_SECURITY_TOKEN_OFFSET
-// - 为所有关键函数添加详细的文档注释
-// - 删除冗余注释，保持代码简洁性
 /**
  * @brief 空初始化函数 - 用于系统初始化过程中的占位符
  * 
