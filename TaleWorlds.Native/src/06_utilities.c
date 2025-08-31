@@ -28908,19 +28908,19 @@ void utility_unwind_advanced_function_system_exit_one(uint64 utility_resource_pr
   *(resource_data **)(utility_resource_context_handle + utility_resource_utility_data_pointer_primary_extended_array_offset_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_advanced_function_echo_two_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
+void utility_unwind_advanced_function_system_exit_two(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   *(resource_data **)(utility_resource_context_handle + utility_resource_status_offset_secondary) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_advanced_function_echo_three_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
+void utility_unwind_advanced_function_system_exit_three(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   if ((longlong *)**(longlong **)(utility_resource_context_handle + resource_config_id) != (longlong *)utility_pointer_null) {
     (**(code **)(*(longlong *)**(longlong **)(utility_resource_context_handle + resource_config_id) + utility_structure_size_offset))();
   }
   return;
 }
-void utility_unwind_advanced_function_echo_four_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_advanced_function_system_exit_four(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   uint64 *utility_operation_result_ptr;
   char utility_char_data;
@@ -28952,7 +28952,7 @@ void utility_unwind_advanced_function_echo_four_zero(uint64 utility_resource_pri
       
   terminate();
 }
-void utility_unwind_advanced_function_echo_five_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_advanced_function_system_exit_five(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   uint64 *utility_operation_result_ptr;
   uint64 *utility_iter_ptr;
@@ -32051,17 +32051,17 @@ void utility_unwind_function_resource_handle_system_exit_stage_foxtrot(uint64 ut
   }
   return;
 }
-void utility_unwind_function_initialize_foxtrot_zero_zero(void)
+void utility_unwind_function_initialize_resource_handler_stage_zero(void)
 {
   _Cnd_destroy_in_situ();
   return;
 }
-void utility_unwind_function_initialize_foxtrot_two_zero(void)
+void utility_unwind_function_initialize_resource_handler_stage_two(void)
 {
   _Mtx_destroy_in_situ();
   return;
 }
-void utility_unwind_function_initialize_foxtrot_four_zero(void)
+void utility_unwind_function_initialize_resource_handler_stage_four(void)
 {
   _Mtx_destroy_in_situ();
   return;
