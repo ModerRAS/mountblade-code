@@ -354,7 +354,6 @@ void *utility_buffer_extended_auxiliary;
 void *utility_buffer_extended_backup;
 void *utility_buffer_extended_reserve;
 void *utility_buffer_extended_septenary;
-// void *utility_system_data_primary; // 重复定义，已注释
 void *utility_system_data_auxiliary;        // 系统辅助数据
 void *utility_system_reserved_area;         // 系统保留数据区域
 void *utility_context_primary;
@@ -374,10 +373,6 @@ void *utility_control_tertiary;
 void *utility_control_quaternary;
 void *utility_control_auxiliary;
 void *utility_system_data_reserved;
-// void *utility_system_data_primary; // 重复定义，已注释
-// void *utility_system_data_secondary; // 重复定义，已注释
-// void *utility_system_data_tertiary; // 重复定义，已注释
-// void *utility_system_data_quaternary; // 重复定义，已注释
 void *utility_communication_reserved;
 void *utility_communication_primary;
 void *utility_communication_secondary;
