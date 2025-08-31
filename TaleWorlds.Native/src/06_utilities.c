@@ -48357,47 +48357,31 @@ int utility_context_activate(uint64_t resource_data, int activation_flag)
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
-/**
-/**
- * @brief 系统初始化函数
-/**
- *  * @param utility_context_ptr 可选的上下文句柄
- *  * @return 初始化状态
- */
-/**
+/** 
  * @brief Utility System Initialize
-/**
  *
- * 功能描述
+ * 功能描述：初始化工具系统，准备系统资源
  *
- *  * @param parameters 参数说明
- *  * @return 返回值说明
+ * @param utility_context_ptr 可选的上下文句柄
+ * @return 初始化状态
  *
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构系统初始化机制
+ * 简化实现：仅返回成功状态，保持代码结构不变
  */
 int utility_system_initialize(int64_t utility_context_ptr)
 {
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
-/**
-/**
- * @brief 系统初始化函数（无参数版本）
-/**
- *  * @return 初始化状态
- */
-/**
- * @brief Utility System Initialize
-/**
+/** 
+ * @brief Utility System Initialize (No Parameters)
  *
- * 功能描述
+ * 功能描述：初始化工具系统（无参数版本），准备系统资源
  *
- *  * @param parameters 参数说明
- *  * @return 返回值说明
+ * @return 初始化状态
  *
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构系统初始化机制
+ * 简化实现：仅返回成功状态，保持代码结构不变
  */
 int utility_system_initialize(void)
 {
