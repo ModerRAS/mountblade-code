@@ -5021,7 +5021,7 @@ void system_initialize_component_type21(void)
 void system_initialize_component_type22(void)
 {
   ulonglong unsigned_value_primary;
-  float *pfVar2;
+  float *float_ptr_2;
   int memory_comparison_result;
   ulonglong unsigned_value_count;
   uint unsigned_value_index;
@@ -5038,7 +5038,7 @@ void system_initialize_component_type22(void)
     if (0 < (longlong)unsigned_value_count) {
       memory_comparison_result = -3;
       unsigned_value_primary = uVar6;
-      pfVar2 = pfVar8;
+      float_ptr_2 = pfVar8;
       do {
         fVar9 = 0.0;
         if (-1 < (longlong)unsigned_value_primary) {
@@ -5050,9 +5050,9 @@ void system_initialize_component_type22(void)
             fVar9 = SQRT(fVar9) * fVar9;
           }
         }
-        *pfVar2 = fVar9;
+        *float_ptr_2 = fVar9;
         memory_comparison_result = memory_comparison_result + 1;
-        pfVar2 = pfVar2 + 1;
+        float_ptr_2 = float_ptr_2 + 1;
         unsigned_value_primary = unsigned_value_primary + 1;
       } while ((longlong)unsigned_value_primary < (longlong)unsigned_value_count);
     }
@@ -44887,7 +44887,7 @@ void system_180077dc6(void)
   byte bVar27;
   longlong unaff_RBX;
   byte bVar28;
-  float *pfVar29;
+  float *float_ptr_29;
   longlong unaff_R13;
   uint32_t uStack0000000000000030;
   uint64_t in_stack_00000060;
@@ -44927,7 +44927,7 @@ void system_180077dc6(void)
   
   uStack0000000000000030 = 0xffffffff;
   system_memory_180080e90(unaff_R13 + 0x3388,&stack0x00000030);
-  pfVar29 = in_stack_00000180;
+  float_ptr_29 = in_stack_00000180;
   if ((*(uint *)(unaff_RBX + 0x100) & 0x4000000) != 0) {
     fVar7 = *in_stack_00000180;
     fVar8 = in_stack_00000180[1];
@@ -44973,9 +44973,9 @@ void system_180077dc6(void)
          fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17 + in_stack_00000180[0xe];
     fStack00000000000000dc =
          fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18 + in_stack_00000180[0xf];
-    pfVar29 = &stack0x000000a0;
+    float_ptr_29 = &stack0x000000a0;
   }
-  system_memory_180085190(&stack0x00000060,unaff_R13 + 0x30,*(int32_t1 *)(unaff_RBX + 0xf7),pfVar29);
+  system_memory_180085190(&stack0x00000060,unaff_R13 + 0x30,*(int32_t1 *)(unaff_RBX + 0xf7),float_ptr_29);
   unsigned_value_secondary6 = in_stack_00000098;
   unsigned_value_secondary5 = in_stack_00000090;
   unsigned_value_secondary4 = in_stack_00000088;
@@ -50389,7 +50389,7 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
   uint32_t *pointer_primary7;
   byte *pbVar18;
   int32_t1 *pointer_primary9;
-  float *pfVar20;
+  float *float_ptr_20;
   longlong long_value_secondary1;
   longlong long_value_secondary2;
   uint unsigned_value_secondary3;
@@ -50450,13 +50450,13 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
   if (stack_long_pointer_20 != (longlong *)0x0) {
     (**(code **)(*stack_long_pointer_20 + 0x38))();
   }
-  pfVar20 = *(float **)(*param_3 + 0x10);
+  float_ptr_20 = *(float **)(*param_3 + 0x10);
   switch(param_1) {
   case 0:
     if (0 < integer_secondary) {
       do {
-        *pfVar20 = *(float *)(long_value_secondary1 + 0x54 + *(longlong *)(param_2 + 0x68));
-        pfVar20 = (float *)((longlong)pfVar20 + (longlong)integer_status);
+        *float_ptr_20 = *(float *)(long_value_secondary1 + 0x54 + *(longlong *)(param_2 + 0x68));
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + (longlong)integer_status);
         long_value_secondary1 = long_value_secondary1 + 0x5c;
         long_value_secondary7 = long_value_secondary7 + -1;
       } while (long_value_secondary7 != 0);
@@ -50465,8 +50465,8 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
   case 1:
     if (0 < integer_secondary) {
       do {
-        *pfVar20 = *(float *)(long_value_secondary1 + 0x58 + *(longlong *)(param_2 + 0x68));
-        pfVar20 = (float *)((longlong)pfVar20 + (longlong)integer_status);
+        *float_ptr_20 = *(float *)(long_value_secondary1 + 0x58 + *(longlong *)(param_2 + 0x68));
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + (longlong)integer_status);
         long_value_secondary1 = long_value_secondary1 + 0x5c;
         long_value_secondary7 = long_value_secondary7 + -1;
       } while (long_value_secondary7 != 0);
@@ -50480,18 +50480,18 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
       long_value_secondary2 = (long_value_secondary7 - 4U >> 2) + 1;
       long_value_secondary1 = long_value_secondary2 * 4;
       do {
-        *pfVar20 = pfVar15[-1];
-        pfVar20[1] = 1.0 - *pfVar15;
-        pfVar20 = (float *)((longlong)pfVar20 + long_value_secondary5);
-        *pfVar20 = pfVar15[0x16];
-        pfVar20[1] = 1.0 - pfVar15[0x17];
-        pfVar20 = (float *)((longlong)pfVar20 + long_value_secondary5);
-        *pfVar20 = pfVar13[-1];
-        pfVar20[1] = 1.0 - *pfVar13;
-        pfVar20 = (float *)((longlong)pfVar20 + long_value_secondary5);
-        *pfVar20 = pfVar13[0x16];
-        pfVar20[1] = 1.0 - pfVar13[0x17];
-        pfVar20 = (float *)((longlong)pfVar20 + long_value_secondary5);
+        *float_ptr_20 = pfVar15[-1];
+        float_ptr_20[1] = 1.0 - *pfVar15;
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + long_value_secondary5);
+        *float_ptr_20 = pfVar15[0x16];
+        float_ptr_20[1] = 1.0 - pfVar15[0x17];
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + long_value_secondary5);
+        *float_ptr_20 = pfVar13[-1];
+        float_ptr_20[1] = 1.0 - *pfVar13;
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + long_value_secondary5);
+        *float_ptr_20 = pfVar13[0x16];
+        float_ptr_20[1] = 1.0 - pfVar13[0x17];
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + long_value_secondary5);
         pfVar15 = pfVar15 + 0x5c;
         pfVar13 = pfVar13 + 0x5c;
         long_value_secondary2 = long_value_secondary2 + -1;
@@ -50501,9 +50501,9 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
       pfVar15 = (float *)(*(longlong *)(param_2 + 0x68) + 0x48 + long_value_secondary1 * 0x5c);
       long_value_secondary7 = long_value_secondary7 - long_value_secondary1;
       do {
-        *pfVar20 = pfVar15[-1];
-        pfVar20[1] = 1.0 - *pfVar15;
-        pfVar20 = (float *)((longlong)pfVar20 + (longlong)integer_status);
+        *float_ptr_20 = pfVar15[-1];
+        float_ptr_20[1] = 1.0 - *pfVar15;
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + (longlong)integer_status);
         pfVar15 = pfVar15 + 0x17;
         long_value_secondary7 = long_value_secondary7 + -1;
       } while (long_value_secondary7 != 0);
@@ -50517,18 +50517,18 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
       long_value_secondary2 = (long_value_secondary7 - 4U >> 2) + 1;
       long_value_secondary1 = long_value_secondary2 * 4;
       do {
-        *pfVar20 = pfVar15[-1];
-        pfVar20[1] = 1.0 - *pfVar15;
-        pfVar20 = (float *)((longlong)pfVar20 + long_value_secondary5);
-        *pfVar20 = pfVar15[0x16];
-        pfVar20[1] = 1.0 - pfVar15[0x17];
-        pfVar20 = (float *)((longlong)pfVar20 + long_value_secondary5);
-        *pfVar20 = pfVar13[-1];
-        pfVar20[1] = 1.0 - *pfVar13;
-        pfVar20 = (float *)((longlong)pfVar20 + long_value_secondary5);
-        *pfVar20 = pfVar13[0x16];
-        pfVar20[1] = 1.0 - pfVar13[0x17];
-        pfVar20 = (float *)((longlong)pfVar20 + long_value_secondary5);
+        *float_ptr_20 = pfVar15[-1];
+        float_ptr_20[1] = 1.0 - *pfVar15;
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + long_value_secondary5);
+        *float_ptr_20 = pfVar15[0x16];
+        float_ptr_20[1] = 1.0 - pfVar15[0x17];
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + long_value_secondary5);
+        *float_ptr_20 = pfVar13[-1];
+        float_ptr_20[1] = 1.0 - *pfVar13;
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + long_value_secondary5);
+        *float_ptr_20 = pfVar13[0x16];
+        float_ptr_20[1] = 1.0 - pfVar13[0x17];
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + long_value_secondary5);
         pfVar15 = pfVar15 + 0x5c;
         pfVar13 = pfVar13 + 0x5c;
         long_value_secondary2 = long_value_secondary2 + -1;
@@ -50538,9 +50538,9 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
       pfVar15 = (float *)(*(longlong *)(param_2 + 0x68) + 0x50 + long_value_secondary1 * 0x5c);
       long_value_secondary7 = long_value_secondary7 - long_value_secondary1;
       do {
-        *pfVar20 = pfVar15[-1];
-        pfVar20[1] = 1.0 - *pfVar15;
-        pfVar20 = (float *)((longlong)pfVar20 + (longlong)integer_status);
+        *float_ptr_20 = pfVar15[-1];
+        float_ptr_20[1] = 1.0 - *pfVar15;
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + (longlong)integer_status);
         pfVar15 = pfVar15 + 0x17;
         long_value_secondary7 = long_value_secondary7 + -1;
       } while (long_value_secondary7 != 0);
@@ -50565,10 +50565,10 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
       long_value_secondary2 = (long_value_secondary7 - 4U >> 2) + 1;
       long_value_secondary1 = long_value_secondary2 * 4;
       do {
-        *pfVar20 = *(float *)(long_value_secondary5 + (longlong)pinteger_primary1[-0x2e] * 0x10);
-        pfVar20[1] = *(float *)(long_value_secondary5 + 4 + (longlong)pinteger_primary1[-0x2e] * 0x10);
-        pfVar20[2] = *(float *)(long_value_secondary5 + 8 + (longlong)pinteger_primary1[-0x2e] * 0x10);
-        pointer_primary6 = (uint32_t *)((longlong)pfVar20 + long_value_secondary4);
+        *float_ptr_20 = *(float *)(long_value_secondary5 + (longlong)pinteger_primary1[-0x2e] * 0x10);
+        float_ptr_20[1] = *(float *)(long_value_secondary5 + 4 + (longlong)pinteger_primary1[-0x2e] * 0x10);
+        float_ptr_20[2] = *(float *)(long_value_secondary5 + 8 + (longlong)pinteger_primary1[-0x2e] * 0x10);
+        pointer_primary6 = (uint32_t *)((longlong)float_ptr_20 + long_value_secondary4);
         *pointer_primary6 = *(uint32_t *)(long_value_secondary5 + (longlong)pinteger_primary1[-0x17] * 0x10);
         pointer_primary6[1] = *(uint32_t *)(long_value_secondary5 + 4 + (longlong)pinteger_primary1[-0x17] * 0x10);
         pointer_primary6[2] = *(uint32_t *)(long_value_secondary5 + 8 + (longlong)pinteger_primary1[-0x17] * 0x10);
@@ -50580,21 +50580,21 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
         *pointer_primary6 = *(uint32_t *)(long_value_secondary5 + (longlong)pinteger_primary1[0x17] * 0x10);
         pointer_primary6[1] = *(uint32_t *)(long_value_secondary5 + 4 + (longlong)pinteger_primary1[0x17] * 0x10);
         pointer_primary6[2] = *(uint32_t *)(long_value_secondary5 + 8 + (longlong)pinteger_primary1[0x17] * 0x10);
-        pfVar20 = (float *)((longlong)pointer_primary6 + long_value_secondary4);
+        float_ptr_20 = (float *)((longlong)pointer_primary6 + long_value_secondary4);
         pinteger_primary1 = pinteger_primary1 + 0x5c;
         long_value_secondary2 = long_value_secondary2 + -1;
       } while (long_value_secondary2 != 0);
     }
     if (long_value_secondary1 < long_value_secondary7) {
       long_value_secondary5 = *(longlong *)(pinteger_primary2 + 2);
-      pfVar20 = pfVar20 + 2;
+      float_ptr_20 = float_ptr_20 + 2;
       pinteger_primary2 = (int *)(long_value_secondary1 * 0x5c + *(longlong *)(param_2 + 0x68));
       long_value_secondary7 = long_value_secondary7 - long_value_secondary1;
       do {
-        pfVar20[-2] = *(float *)(long_value_secondary5 + (longlong)*pinteger_primary2 * 0x10);
-        pfVar20[-1] = *(float *)(long_value_secondary5 + 4 + (longlong)*pinteger_primary2 * 0x10);
-        *pfVar20 = *(float *)(long_value_secondary5 + 8 + (longlong)*pinteger_primary2 * 0x10);
-        pfVar20 = (float *)((longlong)pfVar20 + (longlong)integer_status);
+        float_ptr_20[-2] = *(float *)(long_value_secondary5 + (longlong)*pinteger_primary2 * 0x10);
+        float_ptr_20[-1] = *(float *)(long_value_secondary5 + 4 + (longlong)*pinteger_primary2 * 0x10);
+        *float_ptr_20 = *(float *)(long_value_secondary5 + 8 + (longlong)*pinteger_primary2 * 0x10);
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + (longlong)integer_status);
         pinteger_primary2 = pinteger_primary2 + 0x17;
         long_value_secondary7 = long_value_secondary7 + -1;
       } while (long_value_secondary7 != 0);
@@ -50608,14 +50608,14 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
       long_value_secondary2 = (long_value_secondary7 - 4U >> 2) + 1;
       long_value_secondary1 = long_value_secondary2 * 4;
       do {
-        *pfVar20 = pfVar15[-1];
-        pfVar20[1] = *pfVar15;
-        pfVar20[2] = pfVar15[1];
-        pfVar20 = (float *)((longlong)pfVar20 + long_value_secondary5);
-        *pfVar20 = pfVar15[0x16];
-        pfVar20[1] = pfVar15[0x17];
-        pfVar20[2] = pfVar15[0x18];
-        pointer_primary7 = (uint32_t *)((longlong)pfVar20 + long_value_secondary5);
+        *float_ptr_20 = pfVar15[-1];
+        float_ptr_20[1] = *pfVar15;
+        float_ptr_20[2] = pfVar15[1];
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + long_value_secondary5);
+        *float_ptr_20 = pfVar15[0x16];
+        float_ptr_20[1] = pfVar15[0x17];
+        float_ptr_20[2] = pfVar15[0x18];
+        pointer_primary7 = (uint32_t *)((longlong)float_ptr_20 + long_value_secondary5);
         *pointer_primary7 = pointer_primary6[-1];
         pointer_primary7[1] = *pointer_primary6;
         pointer_primary7[2] = pointer_primary6[1];
@@ -50623,21 +50623,21 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
         *pointer_primary7 = pointer_primary6[0x16];
         pointer_primary7[1] = pointer_primary6[0x17];
         pointer_primary7[2] = pointer_primary6[0x18];
-        pfVar20 = (float *)((longlong)pointer_primary7 + long_value_secondary5);
+        float_ptr_20 = (float *)((longlong)pointer_primary7 + long_value_secondary5);
         pfVar15 = pfVar15 + 0x5c;
         pointer_primary6 = pointer_primary6 + 0x5c;
         long_value_secondary2 = long_value_secondary2 + -1;
       } while (long_value_secondary2 != 0);
     }
     if (long_value_secondary1 < long_value_secondary7) {
-      pfVar20 = pfVar20 + 2;
+      float_ptr_20 = float_ptr_20 + 2;
       pfVar15 = (float *)(*(longlong *)(param_2 + 0x68) + 0x38 + long_value_secondary1 * 0x5c);
       long_value_secondary7 = long_value_secondary7 - long_value_secondary1;
       do {
-        pfVar20[-2] = pfVar15[-1];
-        pfVar20[-1] = *pfVar15;
-        *pfVar20 = pfVar15[1];
-        pfVar20 = (float *)((longlong)pfVar20 + (longlong)integer_status);
+        float_ptr_20[-2] = pfVar15[-1];
+        float_ptr_20[-1] = *pfVar15;
+        *float_ptr_20 = pfVar15[1];
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + (longlong)integer_status);
         pfVar15 = pfVar15 + 0x17;
         long_value_secondary7 = long_value_secondary7 + -1;
       } while (long_value_secondary7 != 0);
@@ -50651,9 +50651,9 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
       long_value_secondary5 = (long_value_secondary7 - 4U >> 2) + 1;
       long_value_secondary1 = long_value_secondary5 * 4;
       do {
-        *pfVar20 = *pfVar15;
-        pfVar20[1] = pfVar15[1];
-        pfVar20[2] = pfVar15[2];
+        *float_ptr_20 = *pfVar15;
+        float_ptr_20[1] = pfVar15[1];
+        float_ptr_20[2] = pfVar15[2];
         if ((pfVar13[-0x2e] * pfVar13[-0x29] - pfVar13[-0x2d] * pfVar13[-0x2a]) * pfVar15[4] +
             (pfVar13[-0x2d] * *pfVar15 - pfVar15[-4] * pfVar13[-0x29]) * pfVar13[-0x26] +
             (pfVar15[-4] * pfVar13[-0x2a] - *pfVar15 * pfVar13[-0x2e]) * pfVar13[-0x25] <= 0.0) {
@@ -50662,11 +50662,11 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
         else {
           fVar28 = 1.0;
         }
-        pfVar20[3] = fVar28;
-        pfVar20 = (float *)((longlong)pfVar20 + long_value_secondary2);
-        *pfVar20 = pfVar15[0x17];
-        pfVar20[1] = pfVar15[0x18];
-        pfVar20[2] = pfVar15[0x19];
+        float_ptr_20[3] = fVar28;
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + long_value_secondary2);
+        *float_ptr_20 = pfVar15[0x17];
+        float_ptr_20[1] = pfVar15[0x18];
+        float_ptr_20[2] = pfVar15[0x19];
         if ((pfVar13[-0x17] * pfVar13[-0x12] - pfVar13[-0x16] * pfVar13[-0x13]) * pfVar15[0x1b] +
             (pfVar15[0x17] * pfVar13[-0x16] - pfVar15[0x13] * pfVar13[-0x12]) * pfVar13[-0xf] +
             (pfVar15[0x13] * pfVar13[-0x13] - pfVar15[0x17] * pfVar13[-0x17]) * pfVar13[-0xe] <= 0.0
@@ -50676,11 +50676,11 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
         else {
           fVar28 = 1.0;
         }
-        pfVar20[3] = fVar28;
-        pfVar20 = (float *)((longlong)pfVar20 + long_value_secondary2);
-        *pfVar20 = pfVar13[3];
-        pfVar20[1] = pfVar13[4];
-        pfVar20[2] = pfVar13[5];
+        float_ptr_20[3] = fVar28;
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + long_value_secondary2);
+        *float_ptr_20 = pfVar13[3];
+        float_ptr_20[1] = pfVar13[4];
+        float_ptr_20[2] = pfVar13[5];
         if ((pfVar13[1] * pfVar13[3] - pfVar13[5] * pfVar13[-1]) * pfVar13[8] +
             (pfVar13[5] * *pfVar13 - pfVar13[1] * pfVar13[4]) * pfVar13[7] +
             (pfVar13[4] * pfVar13[-1] - *pfVar13 * pfVar13[3]) * pfVar13[9] <= 0.0) {
@@ -50689,11 +50689,11 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
         else {
           fVar28 = 1.0;
         }
-        pfVar20[3] = fVar28;
-        pfVar20 = (float *)((longlong)pfVar20 + long_value_secondary2);
-        *pfVar20 = pfVar13[0x1a];
-        pfVar20[1] = pfVar13[0x1b];
-        pfVar20[2] = pfVar13[0x1c];
+        float_ptr_20[3] = fVar28;
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + long_value_secondary2);
+        *float_ptr_20 = pfVar13[0x1a];
+        float_ptr_20[1] = pfVar13[0x1b];
+        float_ptr_20[2] = pfVar13[0x1c];
         if ((pfVar13[0x1c] * pfVar13[0x17] - pfVar13[0x18] * pfVar13[0x1b]) * pfVar13[0x1e] +
             (pfVar13[0x1a] * pfVar13[0x18] - pfVar13[0x1c] * pfVar13[0x16]) * pfVar13[0x1f] +
             (pfVar13[0x16] * pfVar13[0x1b] - pfVar13[0x1a] * pfVar13[0x17]) * pfVar13[0x20] <= 0.0)
@@ -50703,21 +50703,21 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
         else {
           fVar28 = 1.0;
         }
-        pfVar20[3] = fVar28;
-        pfVar20 = (float *)((longlong)pfVar20 + long_value_secondary2);
+        float_ptr_20[3] = fVar28;
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + long_value_secondary2);
         pfVar15 = pfVar15 + 0x5c;
         pfVar13 = pfVar13 + 0x5c;
         long_value_secondary5 = long_value_secondary5 + -1;
       } while (long_value_secondary5 != 0);
     }
     if (long_value_secondary1 < long_value_secondary7) {
-      pfVar20 = pfVar20 + 2;
+      float_ptr_20 = float_ptr_20 + 2;
       pfVar15 = (float *)(*(longlong *)(param_2 + 0x68) + 8 + long_value_secondary1 * 0x5c);
       long_value_secondary7 = long_value_secondary7 - long_value_secondary1;
       do {
-        pfVar20[-2] = pfVar15[3];
-        pfVar20[-1] = pfVar15[4];
-        *pfVar20 = pfVar15[5];
+        float_ptr_20[-2] = pfVar15[3];
+        float_ptr_20[-1] = pfVar15[4];
+        *float_ptr_20 = pfVar15[5];
         if ((pfVar15[5] * *pfVar15 - pfVar15[1] * pfVar15[4]) * pfVar15[7] +
             (pfVar15[3] * pfVar15[1] - pfVar15[-1] * pfVar15[5]) * pfVar15[8] +
             (pfVar15[-1] * pfVar15[4] - pfVar15[3] * *pfVar15) * pfVar15[9] <= 0.0) {
@@ -50726,8 +50726,8 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
         else {
           fVar28 = 1.0;
         }
-        pfVar20[1] = fVar28;
-        pfVar20 = (float *)((longlong)pfVar20 + (longlong)integer_status);
+        float_ptr_20[1] = fVar28;
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + (longlong)integer_status);
         pfVar15 = pfVar15 + 0x17;
         long_value_secondary7 = long_value_secondary7 + -1;
       } while (long_value_secondary7 != 0);
@@ -50736,7 +50736,7 @@ void system_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t p
   case 8:
     if (*(int *)(param_2 + 200) < 1) {
 code_r0x00018007db1b:
-      memset(pfVar20,0,(longlong)(integer_secondary * 4));
+      memset(float_ptr_20,0,(longlong)(integer_secondary * 4));
     }
     long_value_secondary5 = long_value_secondary1;
     if (3 < long_value_secondary7) {
@@ -50745,17 +50745,17 @@ code_r0x00018007db1b:
       long_value_secondary5 = long_value_secondary2 * 4;
       do {
         long_value_offset = *(longlong *)(param_2 + 0x68);
-        *(char *)pfVar20 =
+        *(char *)float_ptr_20 =
              (char)(int)(*(float *)(*(longlong *)(param_2 + 0xd0) +
                                    (longlong)*(int *)(long_value_secondary1 + long_value_offset) * 0x14) * 255.0);
-        *(char *)((longlong)pfVar20 + 1) =
+        *(char *)((longlong)float_ptr_20 + 1) =
              (char)(int)(*(float *)(*(longlong *)(param_2 + 0xd0) + 4 +
                                    (longlong)*(int *)(long_value_secondary1 + long_value_offset) * 0x14) * 255.0);
         uVar9 = (uint)(*(float *)(*(longlong *)(param_2 + 0xd0) + 8 +
                                  (longlong)*(int *)(long_value_secondary1 + long_value_offset) * 0x14) * 255.0);
-        *(char *)((longlong)pfVar20 + 2) = (char)uVar9;
-        fVar28 = (float)((uVar9 & 0xff) + (uint)*(byte *)((longlong)pfVar20 + 1) +
-                        (uint)*(byte *)pfVar20);
+        *(char *)((longlong)float_ptr_20 + 2) = (char)uVar9;
+        fVar28 = (float)((uVar9 & 0xff) + (uint)*(byte *)((longlong)float_ptr_20 + 1) +
+                        (uint)*(byte *)float_ptr_20);
         if (0.0 <= fVar28) {
           if (1.0 <= fVar28) {
             fVar28 = 1.0;
@@ -50764,8 +50764,8 @@ code_r0x00018007db1b:
         else {
           fVar28 = 0.0;
         }
-        *(char *)((longlong)pfVar20 + 3) = (char)(int)(1.0 - fVar28);
-        pbVar18 = (byte *)((longlong)pfVar20 + long_value_secondary4);
+        *(char *)((longlong)float_ptr_20 + 3) = (char)(int)(1.0 - fVar28);
+        pbVar18 = (byte *)((longlong)float_ptr_20 + long_value_secondary4);
         long_value_offset = *(longlong *)(param_2 + 0x68);
         *pbVar18 = (byte)(int)(*(float *)(*(longlong *)(param_2 + 0xd0) +
                                          (longlong)*(int *)(long_value_secondary1 + 0x5c + long_value_offset) * 0x14) * 255.0);
@@ -50826,14 +50826,14 @@ code_r0x00018007db1b:
           fVar28 = 0.0;
         }
         pbVar18[3] = (byte)(int)(1.0 - fVar28);
-        pfVar20 = (float *)(pbVar18 + long_value_secondary4);
+        float_ptr_20 = (float *)(pbVar18 + long_value_secondary4);
         long_value_secondary1 = long_value_secondary1 + 0x170;
         long_value_secondary2 = long_value_secondary2 + -1;
       } while (long_value_secondary2 != 0);
     }
     if (long_value_secondary5 < long_value_secondary7) {
       long_value_secondary1 = long_value_secondary5 * 0x5c;
-      pointer_primary9 = (int32_t1 *)((longlong)pfVar20 + 2);
+      pointer_primary9 = (int32_t1 *)((longlong)float_ptr_20 + 2);
       long_value_secondary7 = long_value_secondary7 - long_value_secondary5;
       do {
         long_value_secondary5 = *(longlong *)(param_2 + 0x68);
@@ -50867,19 +50867,19 @@ code_r0x00018007db1b:
     if (0 < integer_secondary) {
       do {
         long_value_secondary5 = *(longlong *)(param_2 + 0x68);
-        *(int32_t1 *)pfVar20 =
+        *(int32_t1 *)float_ptr_20 =
              *(int32_t1 *)
               (*(longlong *)(param_2 + 0xd0) + 0x10 + (longlong)*(int *)(long_value_secondary1 + long_value_secondary5) * 0x14);
-        *(int32_t1 *)((longlong)pfVar20 + 1) =
+        *(int32_t1 *)((longlong)float_ptr_20 + 1) =
              *(int32_t1 *)
               (*(longlong *)(param_2 + 0xd0) + 0x11 + (longlong)*(int *)(long_value_secondary1 + long_value_secondary5) * 0x14);
-        *(int32_t1 *)((longlong)pfVar20 + 2) =
+        *(int32_t1 *)((longlong)float_ptr_20 + 2) =
              *(int32_t1 *)
               (*(longlong *)(param_2 + 0xd0) + 0x12 + (longlong)*(int *)(long_value_secondary1 + long_value_secondary5) * 0x14);
-        *(int32_t1 *)((longlong)pfVar20 + 3) =
+        *(int32_t1 *)((longlong)float_ptr_20 + 3) =
              *(int32_t1 *)
               (*(longlong *)(param_2 + 0xd0) + 0x13 + (longlong)*(int *)(long_value_secondary1 + long_value_secondary5) * 0x14);
-        pfVar20 = (float *)((longlong)pfVar20 + (longlong)integer_status);
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + (longlong)integer_status);
         long_value_secondary1 = long_value_secondary1 + 0x5c;
         long_value_secondary7 = long_value_secondary7 + -1;
       } while (long_value_secondary7 != 0);
@@ -50919,10 +50919,10 @@ code_r0x00018007db1b:
         else {
           fVar31 = 0.0;
         }
-        *pfVar20 = (float)(((uint)(longlong)(fVar32 * 2047.0) & 0x7ff |
+        *float_ptr_20 = (float)(((uint)(longlong)(fVar32 * 2047.0) & 0x7ff |
                            (int)(longlong)(fVar31 * 2047.0) << 0xb) << 10 |
                           (uint)(longlong)(fVar33 * 1023.0) & 0x3ff);
-        pfVar20 = (float *)((longlong)pfVar20 + (longlong)integer_status);
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + (longlong)integer_status);
         long_value_secondary1 = long_value_secondary1 + 0x5c;
         long_value_secondary7 = long_value_secondary7 + -1;
       } while (long_value_secondary7 != 0);
@@ -50941,17 +50941,17 @@ code_r0x00018007db1b:
         uVar7 = func_0x0001800840d0(*(uint32_t *)
                                      (*(longlong *)(long_value_secondary5 + param_2) +
                                      (longlong)*(int *)(long_value_secondary1 + long_value_secondary2) * 0x10));
-        *(int32_t2 *)pfVar20 = uVar7;
+        *(int32_t2 *)float_ptr_20 = uVar7;
         uVar7 = func_0x0001800840d0(*(uint32_t *)
                                      (*(longlong *)(long_value_secondary5 + param_2) + 4 +
                                      (longlong)*(int *)(long_value_secondary1 + long_value_secondary2) * 0x10));
-        *(int32_t2 *)((longlong)pfVar20 + 2) = uVar7;
+        *(int32_t2 *)((longlong)float_ptr_20 + 2) = uVar7;
         uVar7 = func_0x0001800840d0(*(uint32_t *)
                                      (*(longlong *)(long_value_secondary5 + param_2) + 8 +
                                      (longlong)*(int *)(long_value_secondary1 + long_value_secondary2) * 0x10));
-        *(int32_t2 *)(pfVar20 + 1) = uVar7;
-        *(short *)((longlong)pfVar20 + 6) = (short)unsigned_value_secondary6;
-        pfVar20 = (float *)((longlong)pfVar20 + (longlong)integer_status);
+        *(int32_t2 *)(float_ptr_20 + 1) = uVar7;
+        *(short *)((longlong)float_ptr_20 + 6) = (short)unsigned_value_secondary6;
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + (longlong)integer_status);
         long_value_secondary1 = long_value_secondary1 + 0x5c;
         long_value_secondary7 = long_value_secondary7 + -1;
       } while (long_value_secondary7 != 0);
@@ -51001,10 +51001,10 @@ code_r0x00018007db1b:
             *(float *)(long_value_secondary1 + 0x2c + long_value_secondary5) < 0.0) {
           uVar9 = 0x80000000;
         }
-        *pfVar20 = (float)((((uint)(longlong)(fVar34 * 1023.0) & 0x3ff) << 0xb |
+        *float_ptr_20 = (float)((((uint)(longlong)(fVar34 * 1023.0) & 0x3ff) << 0xb |
                            (uint)(longlong)(fVar29 * 2047.0) & 0x7ff) << 10 |
                            (uint)(longlong)(fVar30 * 1023.0) & 0x3ff | uVar9);
-        pfVar20 = (float *)((longlong)pfVar20 + (longlong)integer_status);
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + (longlong)integer_status);
         long_value_secondary1 = long_value_secondary1 + 0x5c;
         long_value_secondary7 = long_value_secondary7 + -1;
       } while (long_value_secondary7 != 0);
@@ -51094,11 +51094,11 @@ code_r0x00018007db1b:
           fStack_120 = fVar33;
           fStack_11c = fVar34;
         }
-        *(short *)pfVar20 = (short)(int)(fVar32 * 32767.0);
-        *(short *)((longlong)pfVar20 + 2) = (short)(int)(fVar33 * 32767.0);
-        *(short *)(pfVar20 + 1) = (short)(int)(fVar34 * 32767.0);
-        *(short *)((longlong)pfVar20 + 6) = (short)(int)(fVar31 * 32767.0);
-        pfVar20 = (float *)((longlong)pfVar20 + (longlong)integer_status);
+        *(short *)float_ptr_20 = (short)(int)(fVar32 * 32767.0);
+        *(short *)((longlong)float_ptr_20 + 2) = (short)(int)(fVar33 * 32767.0);
+        *(short *)(float_ptr_20 + 1) = (short)(int)(fVar34 * 32767.0);
+        *(short *)((longlong)float_ptr_20 + 6) = (short)(int)(fVar31 * 32767.0);
+        float_ptr_20 = (float *)((longlong)float_ptr_20 + (longlong)integer_status);
         long_value_secondary1 = long_value_secondary1 + 0x5c;
         long_value_secondary7 = long_value_secondary7 + -1;
       } while (long_value_secondary7 != 0);
@@ -54164,7 +54164,7 @@ uint64_t system_1807794dd(int param_1,uint64_t param_2,uint64_t param_3,uint par
 uint64_t system_180779635(int param_1,uint64_t param_2,uint64_t param_3,float param_4)
 {
   float fVar1;
-  float *pfVar2;
+  float *float_ptr_2;
   int unaff_EBX;
   longlong unaff_RDI;
   int memory_comparison_result;
@@ -54178,44 +54178,44 @@ uint64_t system_180779635(int param_1,uint64_t param_2,uint64_t param_3,float pa
     if (3 < in_R9D - param_1) {
       memory_comparison_result = param_1 + 2;
       fVar4 = (float)unaff_EBX;
-      pfVar2 = (float *)(unaff_RDI + ((longlong)param_1 + 2) * 4);
+      float_ptr_2 = (float *)(unaff_RDI + ((longlong)param_1 + 2) * 4);
       fVar5 = (float)in_R9D;
       do {
-        fVar1 = pfVar2[-2];
+        fVar1 = float_ptr_2[-2];
         if (0.0001 < fVar1) {
           param_4 = param_4 + fVar1;
           unaff_XMM6_Da = unaff_XMM6_Da + ((fVar4 * 0.5 * (float)param_1) / fVar5) * fVar1;
         }
-        fVar1 = pfVar2[-1];
+        fVar1 = float_ptr_2[-1];
         if (0.0001 < fVar1) {
           param_4 = param_4 + fVar1;
           unaff_XMM6_Da = unaff_XMM6_Da + (((float)(memory_comparison_result + -1) * fVar4 * 0.5) / fVar5) * fVar1;
         }
-        fVar1 = *pfVar2;
+        fVar1 = *float_ptr_2;
         if (0.0001 < fVar1) {
           param_4 = param_4 + fVar1;
           unaff_XMM6_Da = unaff_XMM6_Da + (((float)memory_comparison_result * fVar4 * 0.5) / fVar5) * fVar1;
         }
-        fVar1 = pfVar2[1];
+        fVar1 = float_ptr_2[1];
         if (0.0001 < fVar1) {
           param_4 = param_4 + fVar1;
           unaff_XMM6_Da = unaff_XMM6_Da + (((float)(memory_comparison_result + 1) * fVar4 * 0.5) / fVar5) * fVar1;
         }
-        pfVar2 = pfVar2 + 4;
+        float_ptr_2 = float_ptr_2 + 4;
         param_1 = param_1 + 4;
         memory_comparison_result = memory_comparison_result + 4;
       } while (param_1 < in_R9D + -3);
     }
     if (param_1 < in_R9D) {
-      pfVar2 = (float *)(unaff_RDI + (longlong)param_1 * 4);
+      float_ptr_2 = (float *)(unaff_RDI + (longlong)param_1 * 4);
       do {
-        fVar4 = *pfVar2;
+        fVar4 = *float_ptr_2;
         if (0.0001 < fVar4) {
           param_4 = param_4 + fVar4;
           unaff_XMM6_Da =
                unaff_XMM6_Da + (((float)unaff_EBX * 0.5 * (float)param_1) / (float)in_R9D) * fVar4;
         }
-        pfVar2 = pfVar2 + 1;
+        float_ptr_2 = float_ptr_2 + 1;
         param_1 = param_1 + 1;
       } while (param_1 < in_R9D);
     }

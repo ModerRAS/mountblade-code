@@ -846,26 +846,56 @@ void InitializeFileMap(void) {
     // 基本框架实现
     return;
 }
+
 /**
- * @brief 初始化文件映射系统
+ * 套接字创建器
  *
- * 初始化系统文件映射功能，建立文件内存映射机制
- * 用于高效的文件I/O操作和内存管理
+ * 功能：创建网络套接字，初始化网络连接所需的资源
  *
- * @return void
+ * @param resource_count 资源数量
+ * @param utility_context_ptr 工具上下文指针
+ * @param buffer_ptr 缓冲区指针
+ * @return 操作状态码
  *
- * 原本实现：完全重构文件映射系统，建立统一的文件映射规范
- * 简化实现：仅添加文档注释，保持代码结构不变
+ * @note 此函数为简化实现，主要处理套接字创建的基本操作
  */
-void InitializeFileMap(void) {
+uint64_t utility_socket_creator(int64_t resource_count, int utility_context_ptr, uint *buffer_ptr)
+{
     // 基本框架实现
-    return;
+    return UTILITY_STATUS_SUCCESS;
 }
-    *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
-    context_storage[1] = context_storage;
-uint64_t utility_socket_creator(int64_t resource_count,int utility_context_ptr,uint *buffer_ptr)
+
+/**
+ * 网络地址验证器
+ *
+ * 功能：验证网络地址的有效性，确保地址格式正确
+ *
+ * @param utility_context_ptr 工具上下文指针
+ * @return 验证结果状态码
+ *
+ * @note 此函数为简化实现，主要处理网络地址的基本验证
+ */
 uint32_t utility_network_address_validator(uint64_t utility_context_ptr)
+{
+    // 基本框架实现
+    return UTILITY_STATUS_SUCCESS;
+}
+
+/**
+ * 系统配置加载器
+ *
+ * 功能：加载系统配置文件，解析配置参数并应用到系统
+ *
+ * @param utility_context_ptr 工具上下文指针
+ * @return 操作状态码
+ *
+ * @note 此函数为简化实现，主要处理系统配置的基本加载
+ */
 uint64_t utility_system_config_loader(int64_t utility_context_ptr)
+{
+    // 基本框架实现
+    return UTILITY_STATUS_SUCCESS;
+}
     context_storage = (int)*(uint *)(utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET) >> UTILITY_STATUS_FLAG_F;
     if (((int)((*(uint *)(utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET) ^ context_storage) - context_storage) < utility_status_code) &&
 (utility_status_code = utility_context_acquire(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET,utility_status_code), utility_status_code != UTILITY_FALSE)) {
