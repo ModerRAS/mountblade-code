@@ -1236,7 +1236,7 @@ void *utility_system_segment_98bcb0;
 
 void *utility_function_9431a0;
 void * _tls_index;
-void *thread_utility_local_storage_base_ptr;
+void *utility_thread_local_storage_base_ptr;
 void * utility_global_data_resource_table_primary;
 void *utility_system_segment_a3e3d8;
 void * utility_context_global_offset;
@@ -81031,7 +81031,7 @@ void utility_system_cleanup_context(void)
 {
   long long context_handle;
   
-  context_handle = *(long long *)((long long)thread_utility_local_storage_base_ptr + (ulong long)thread_utility_local_storage_index * 8);
+  context_handle = *(long long *)((long long)utility_thread_local_storage_base_ptr + (ulong long)utility_thread_local_storage_index * 8);
   *(void **)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET) = &UTILITY_GLOBAL_CONTEXT_ADDRESS;
   if (*(long long *)(context_handle + UTILITY_THREAD_TLS_DATA_OFFSET) != 0) {
     utility_system_cleanup_context();

@@ -11220,7 +11220,7 @@ void system_initialize_ulonglong_pointer(ulonglong *system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                           system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -12214,7 +12214,7 @@ void system_initialize_ulonglong_ptr(ulonglong *system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                           system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -13945,7 +13945,7 @@ void system_initialize_buffer_type6(longlong system_context_ptr,uint64_t system_
   stack_uint_28 = system_config_data_35 ^ (ulonglong)astack_variable_uint_78;
   system_stack_value = system_size_param;
   stack_variable_unsigned_20 = system_allocator_param;
-  system_tertiary_ptr = (ulonglong *)func_0x00018004b9a0();
+  system_tertiary_ptr = (ulonglong *)SYSTEM_CONTEXT_INITIALIZER_ADDRESS();
   stack_variable_uint_58 = 0;
   system_ptr_uint_50 = &system_stack_value;
   __stdio_common_vsprintf(*system_tertiary_ptr | 1,asystem_stack_48,SYSTEM_CONFIG_BLOCK_SIZE,system_flags_var);
@@ -13982,7 +13982,7 @@ int system_initialize_config_validation_handler(uint64_t system_context_ptr,uint
   int integer_primary;
   ulonglong *system_config_primary_ptr;
   
-  system_config_primary_ptr = (ulonglong *)func_0x00018004b9a0();
+  system_config_primary_ptr = (ulonglong *)SYSTEM_CONTEXT_INITIALIZER_ADDRESS();
   integer_primary = __stdio_common_vsprintf(*system_config_primary_ptr | 1,system_context_ptr,system_flags_var,system_size_param,0,system_allocator_param);
   if (integer_primary < 0) {
     integer_primary = -1;
@@ -14252,7 +14252,7 @@ void system_initialize_memory_initializer_handler(longlong system_context_ptr)
         }
       }
       else {
-        func_0x00018064e870(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
                             system_tertiary_ptr,system_transform_iterations,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -14352,7 +14352,7 @@ void system_initialize_config_state_handler(longlong system_context_ptr)
         }
       }
       else {
-        func_0x00018064e870(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
                             system_tertiary_ptr,system_transform_iterations,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -14407,7 +14407,7 @@ void system_initialize_config_flag_handler(ulonglong *system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                           system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -15562,7 +15562,7 @@ void system_initialize_system_setup_handler(longlong system_context_ptr)
         }
       }
       else {
-        func_0x00018064e870(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
                             system_tertiary_ptr,system_transform_iterations,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -15610,7 +15610,7 @@ void system_initialize_system_configure_handler(longlong system_context_ptr)
         }
       }
       else {
-        func_0x00018064e870(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
                             system_tertiary_ptr,system_transform_iterations,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -16107,7 +16107,7 @@ void system_process_config_data(longlong system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                           system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -17147,7 +17147,7 @@ LAB_18005419d:
       unsigned_value_primary_var4 = unsigned_value_primary_var4 + 1;
     } while (texture_flag < stack_uint_60);
   }
-  transform_temp6 = func_0x0001800464d0(&system_ptr_uint_70);
+  transform_temp6 = SYSTEM_TRANSFORM_HANDLER_ADDRESS(&system_ptr_uint_70);
   pointer_primary6 = (uint64_t *)&system_unknown_data_112;
   do {
     pcVar7 = (char *)*pointer_primary6;
@@ -17934,7 +17934,7 @@ void system_config_180055f70(uint64_t system_context_ptr,uint32_t system_flags_v
   code *pconfig_status_flag;
   
   if (system_config_data_138 != 0) {
-    func_0x00018005a410(system_config_data_138 + 8);
+    SYSTEM_CONFIG_VALIDATOR_ADDRESS(system_config_data_138 + 8);
   }
   Sleep(2000);
   _Exit(system_flags_var);
@@ -18953,7 +18953,7 @@ void system_config_180057550(longlong system_context_ptr)
         }
       }
       else {
-        func_0x00018064e870(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
                             system_tertiary_ptr,system_transform_iterations,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -19001,7 +19001,7 @@ void system_config_180057556(longlong system_context_ptr)
         }
       }
       else {
-        func_0x00018064e870(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
                             system_tertiary_ptr,system_transform_iterations,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -19047,7 +19047,7 @@ void system_config_180057580(void)
         }
       }
       else {
-        func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                             system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -19082,7 +19082,7 @@ void system_config_1800575b6(void)
         }
       }
       else {
-        func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                             system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -19117,7 +19117,7 @@ void system_config_1800575d4(void)
       }
     }
     else {
-      func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                           system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -19228,7 +19228,7 @@ void system_config_180057790(longlong system_context_ptr)
         }
       }
       else {
-        func_0x00018064e870(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
                             system_tertiary_ptr,system_transform_iterations,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -19276,7 +19276,7 @@ void system_config_180057796(longlong system_context_ptr)
         }
       }
       else {
-        func_0x00018064e870(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_transform_iterations,CONCAT71(0xff000000,*(void ***)(system_transform_iterations + 0x70) == &ExceptionList),
                             system_tertiary_ptr,system_transform_iterations,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -19322,7 +19322,7 @@ void system_config_1800577c0(void)
         }
       }
       else {
-        func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                             system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -19357,7 +19357,7 @@ void system_config_1800577f6(void)
         }
       }
       else {
-        func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                             system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -19392,7 +19392,7 @@ void system_config_180057814(void)
       }
     }
     else {
-      func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                           system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -19459,7 +19459,7 @@ void system_config_1800578a0(void)
       }
     }
     else {
-      func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                           system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -19847,7 +19847,7 @@ void system_config_180058160(ulonglong *system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(system_transform_type,CONCAT71(0xff000000,*(void ***)(system_transform_type + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_transform_type,CONCAT71(0xff000000,*(void ***)(system_transform_type + 0x70) == &ExceptionList),
                           system_quaternary_ptr,system_transform_type,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -21448,7 +21448,7 @@ void system_config_180059ba0(uint64_t *system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(system_transform_result,CONCAT71(0xff000000,*(void ***)(system_transform_result + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_transform_result,CONCAT71(0xff000000,*(void ***)(system_transform_result + 0x70) == &ExceptionList),
                           system_context_ptr,system_transform_result,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -21615,7 +21615,7 @@ void system_config_180059ee0(longlong *system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
                           system_tertiary_ptr,system_vertex_offset,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -21667,7 +21667,7 @@ void system_config_180059ee4(longlong *system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
                           system_tertiary_ptr,system_vertex_offset,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -21721,7 +21721,7 @@ void system_config_180059f4f(void)
         }
       }
       else {
-        func_0x00018064e870(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
                             system_tertiary_ptr,system_vertex_offset,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -21750,7 +21750,7 @@ void system_config_180059fb0(uint64_t *system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(system_transform_result,CONCAT71(0xff000000,*(void ***)(system_transform_result + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_transform_result,CONCAT71(0xff000000,*(void ***)(system_transform_result + 0x70) == &ExceptionList),
                           system_context_ptr,system_transform_result,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -21804,7 +21804,7 @@ void system_config_180059fc0(longlong *system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
                           system_tertiary_ptr,system_vertex_offset,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -21836,7 +21836,7 @@ void system_config_18005a010(longlong system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                           system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -21896,7 +21896,7 @@ void system_config_18005a100(longlong system_context_ptr)
         }
       }
       else {
-        func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                             system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -21929,7 +21929,7 @@ void system_config_18005a130(longlong system_context_ptr)
         }
       }
       else {
-        func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                             system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -21962,7 +21962,7 @@ void system_config_18005a170(longlong system_context_ptr)
         }
       }
       else {
-        func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                             system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -23113,7 +23113,7 @@ void system_config_18005d0e0(ulonglong system_context_ptr,longlong system_flags_
   stack_variable_unsigned_20 = (ulonglong)(uint)(int)system_config_status;
   dStackX_18 = (double)(float_value_9 * rotation_cosine_temp10);
   stack_uint_38 = system_config_data_35 ^ (ulonglong)asystem_stack_uint_478;
-  system_quaternary_ptr = (ulonglong *)func_0x00018004b9a0();
+  system_quaternary_ptr = (ulonglong *)SYSTEM_CONTEXT_INITIALIZER_ADDRESS();
   system_memory_alloc_size = 0;
   stack_uint_458 = 0;
   pdStack_450 = &dStackX_18;
@@ -23223,7 +23223,7 @@ void system_config_18005d3a0(uint64_t system_context_ptr,uint64_t system_flags_v
   system_stack_value = system_size_param;
   stack_variable_unsigned_20 = system_allocator_param;
   unsigned_value_primary_var = __acrt_iob_func(1);
-  system_config_primary_ptr = (uint64_t *)func_0x00018004b9a0();
+  system_config_primary_ptr = (uint64_t *)SYSTEM_CONTEXT_INITIALIZER_ADDRESS();
   __stdio_common_vfprintf(*system_config_primary_ptr,unsigned_value_primary_var,system_context_ptr,0,&stack_unsigned_value_10);
   return;
 }
@@ -26145,7 +26145,7 @@ int system_util_180060680(uint64_t system_context_ptr,uint64_t system_flags_var,
   
   system_stack_value = system_size_param;
   stack_variable_unsigned_20 = system_allocator_param;
-  system_config_primary_ptr = (ulonglong *)func_0x00018004b9a0();
+  system_config_primary_ptr = (ulonglong *)SYSTEM_CONTEXT_INITIALIZER_ADDRESS();
   integer_primary = __stdio_common_vsprintf(*system_config_primary_ptr | 1,system_context_ptr,0xffffffffffffffff,system_flags_var,0,&system_stack_value);
   if (integer_primary < 0) {
     integer_primary = -1;
@@ -27400,7 +27400,7 @@ int system_util_1800634b0(uint64_t system_context_ptr,uint64_t system_flags_var,
   uint64_t stack_variable_unsigned_20;
   
   stack_variable_unsigned_20 = system_allocator_param;
-  system_config_primary_ptr = (uint64_t *)func_0x00018004b9a0();
+  system_config_primary_ptr = (uint64_t *)SYSTEM_CONTEXT_INITIALIZER_ADDRESS();
   integer_primary = __stdio_common_vsprintf_s(*system_config_primary_ptr,system_context_ptr,system_flags_var,system_size_param,0,&stack_variable_unsigned_20);
   if (integer_primary < 0) {
     integer_primary = -1;
@@ -27465,7 +27465,7 @@ int system_util_1800635e0(uint64_t system_context_ptr,uint64_t system_flags_var,
   int integer_primary;
   ulonglong *system_config_primary_ptr;
   
-  system_config_primary_ptr = (ulonglong *)func_0x00018004b9a0();
+  system_config_primary_ptr = (ulonglong *)SYSTEM_CONTEXT_INITIALIZER_ADDRESS();
   integer_primary = __stdio_common_vsprintf(*system_config_primary_ptr | 2,system_context_ptr,system_flags_var,system_size_param,0,system_allocator_param);
   if (integer_primary < 0) {
     integer_primary = -1;
@@ -33354,7 +33354,7 @@ void system_util_18006e4a0(longlong *system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
                           system_tertiary_ptr,system_vertex_offset,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -33406,7 +33406,7 @@ void system_util_18006e4a4(longlong *system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
                           system_tertiary_ptr,system_vertex_offset,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -33460,7 +33460,7 @@ void system_util_18006e50f(void)
         }
       }
       else {
-        func_0x00018064e870(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
+        SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
                             system_tertiary_ptr,system_vertex_offset,SYSTEM_INVALID_HANDLE_VALUE);
       }
     }
@@ -33489,7 +33489,7 @@ void system_util_18006e570(uint64_t *system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(system_transform_result,CONCAT71(0xff000000,*(void ***)(system_transform_result + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_transform_result,CONCAT71(0xff000000,*(void ***)(system_transform_result + 0x70) == &ExceptionList),
                           system_context_ptr,system_transform_result,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -33543,7 +33543,7 @@ void system_util_18006e580(longlong *system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(system_vertex_offset,CONCAT71(0xff000000,*(void ***)(system_vertex_offset + 0x70) == &ExceptionList),
                           system_tertiary_ptr,system_vertex_offset,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
@@ -34678,7 +34678,7 @@ void system_initialize_scene_object(uint64_t system_context_ptr,uint64_t system_
     system_function_1800f93e0();
   }
   else {
-    system_transform_type = func_0x0001800464d0(&system_ptr_uint_70);
+    system_transform_type = SYSTEM_TRANSFORM_HANDLER_ADDRESS(&system_ptr_uint_70);
     system_module_1806272a0(system_transform_type);
   }
   system_initialize_pointer_context(&SYSTEM_CONFIG_DATA_TYPE_142,1);
@@ -40149,7 +40149,7 @@ void system_validate_light_format(longlong system_context_ptr)
       }
     }
     else {
-      func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
+      SYSTEM_VERTEX_PROCESSOR_ADDRESS(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
                           system_config_primary_ptr,vertex_count_var,SYSTEM_INVALID_HANDLE_VALUE);
     }
   }
