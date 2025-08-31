@@ -9668,7 +9668,7 @@ ulong long utility_thread_scheduler_manage(long long utility_context_pointer)
               utility_temp_var = 0;
               utility_temp_var = 0;
               utility_context_pointerr_process_data(&psystem_temp_var,*(void **)(utility_context_pointer + 0x58));
-              psystem_temp_var = &UNK_1809843d0;
+              psystem_temp_var = &utility_system_data_processor0;
               utility_temp_var = *(void **)(utility_temp_long_var + 0xc + context_handle5 * 0x10);
               utility_temp_var = 0;
               utility_temp_var = utility_temp_var & 0xffffff00;
@@ -10195,7 +10195,7 @@ LAB_180896ce3:
         utility_result_int = utility_system_item_count;
         if (*(char *)(utility_temp_long_var + 0x29) != '\0') {
           utility_utility_stack_int_2f0 = 0;
-          psystem_temp_var8 = &UNK_1809843d0;
+          psystem_temp_var8 = &utility_system_data_processor0;
           system_temp_var8 = CONCAT44(system_temp_var8._4_4_,system_temp_var8);
           system_temp_var0 = CONCAT71(system_temp_var0._1_7_,1);
           utility_result_int = utility_thread_executor_run(utility_context_pointer,&psystem_temp_var8);
@@ -10242,7 +10242,7 @@ LAB_180896ce3:
         utility_result_int = utility_system_item_count;
         if (*(char *)(utility_temp_long_var + 0x29) != '\0') {
           utility_utility_stack_int_2f0 = 0;
-          psystem_temp_var8 = &UNK_1809843d0;
+          psystem_temp_var8 = &utility_system_data_processor0;
           system_temp_var8 = CONCAT44(system_temp_var8._4_4_,system_temp_var8);
           system_temp_var0 = CONCAT71(system_temp_var0._1_7_,1);
           utility_result_int = utility_thread_executor_run(utility_context_pointer,&psystem_temp_var8);
@@ -10289,7 +10289,7 @@ LAB_180896ce3:
         utility_result_int = utility_system_item_count;
         if (*(char *)(utility_temp_long_var + 0x29) != '\0') {
           utility_utility_stack_int_2f0 = 0;
-          psystem_temp_var8 = &UNK_1809843d0;
+          psystem_temp_var8 = &utility_system_data_processor0;
           system_temp_var8 = CONCAT44(system_temp_var8._4_4_,system_temp_var8);
           system_temp_var0 = CONCAT71(system_temp_var0._1_7_,1);
           utility_result_int = utility_thread_executor_run(utility_context_pointer,&psystem_temp_var8);
@@ -10336,7 +10336,7 @@ LAB_180896ce3:
         utility_result_int = utility_system_item_count;
         if (*(char *)(utility_temp_long_var + 0x29) != '\0') {
           utility_utility_stack_int_2f0 = 0;
-          psystem_temp_var8 = &UNK_1809843d0;
+          psystem_temp_var8 = &utility_system_data_processor0;
           system_temp_var8 = CONCAT44(system_temp_var8._4_4_,system_temp_var8);
           system_temp_var0 = CONCAT71(system_temp_var0._1_7_,1);
           utility_result_int = utility_thread_executor_run(utility_context_pointer,&psystem_temp_var8);
@@ -10467,7 +10467,7 @@ void utility_context_pointerr_process_data(void)
         }
         if (*(char *)(utility_temp_long_var + 0x29) != '\0') {
           utility_utility_stack_param = 0;
-          utility_buffer_ptr = &UNK_1809843d0;
+          utility_buffer_ptr = &utility_system_data_processor0;
           utility_utility_stack_param = system_temp_var_20;
           utility_utility_stack_param = (float)CONCAT31(utility_utility_stack_param._1_3_,1);
           utility_result_int = utility_thread_executor_run(utility_float_var0,&utility_stack_buffer);
@@ -10520,7 +10520,7 @@ void utility_context_pointerr_process_data(void)
         }
         if (*(char *)(utility_temp_long_var + 0x29) != '\0') {
           utility_utility_stack_param = 0;
-          utility_buffer_ptr = &UNK_1809843d0;
+          utility_buffer_ptr = &utility_system_data_processor0;
           utility_utility_stack_param = system_temp_var_20;
           utility_utility_stack_param = (float)CONCAT31(utility_utility_stack_param._1_3_,1);
           utility_result_int = utility_thread_executor_run(utility_float_var0,&utility_stack_buffer);
@@ -10573,7 +10573,7 @@ void utility_context_pointerr_process_data(void)
         }
         if (*(char *)(utility_temp_long_var + 0x29) != '\0') {
           utility_utility_stack_param = 0;
-          utility_buffer_ptr = &UNK_1809843d0;
+          utility_buffer_ptr = &utility_system_data_processor0;
           utility_utility_stack_param = system_temp_var_20;
           utility_utility_stack_param = (float)CONCAT31(utility_utility_stack_param._1_3_,1);
           utility_result_int = utility_thread_executor_run(utility_float_var0,&utility_stack_buffer);
@@ -10626,7 +10626,7 @@ void utility_context_pointerr_process_data(void)
         }
         if (*(char *)(utility_temp_long_var + 0x29) != '\0') {
           utility_utility_stack_param = 0;
-          utility_buffer_ptr = &UNK_1809843d0;
+          utility_buffer_ptr = &utility_system_data_processor0;
           utility_utility_stack_param = system_temp_var_20;
           utility_utility_stack_param = (float)CONCAT31(utility_utility_stack_param._1_3_,1);
           utility_result_int = utility_thread_executor_run(utility_float_var0,&utility_stack_buffer);
@@ -24631,7 +24631,7 @@ void utility_unwind_context_handler(void * utility_context_pointer,long long uti
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x48);
-  *process_data_ptr = &UNK_18098bdc8;
+  *process_data_ptr = &utility_system_buffer_manager8;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
   return;
@@ -27570,7 +27570,7 @@ void utility_unwind_tls_flag_clear_bit22_secondary(void * utility_context_pointe
   *process_data_ptr = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
-  *process_data_ptr = &UNK_18098bdc8;
+  *process_data_ptr = &utility_system_buffer_manager8;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
   return;
@@ -34471,7 +34471,7 @@ void Unwind_180904680(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x50);
-  *process_data_ptr = &UNK_18098bdc8;
+  *process_data_ptr = &utility_system_buffer_manager8;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
   return;
@@ -34845,7 +34845,7 @@ void Unwind_1809048a0(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + UTILITY_THREAD_TLS_DATA_OFFSET);
-  *process_data_ptr = &UNK_18098bdc8;
+  *process_data_ptr = &utility_system_buffer_manager8;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
   return;
@@ -38927,7 +38927,7 @@ void Unwind_180905b00(void * utility_context_pointer,long long utility_data_ptr)
   *process_data_ptr = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
-  *process_data_ptr = &UNK_18098bdc8;
+  *process_data_ptr = &utility_system_buffer_manager8;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
   return;
@@ -40122,7 +40122,7 @@ void Unwind_180905f90(void * utility_context_pointer,long long utility_data_ptr)
   *process_data_ptr = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
-  *process_data_ptr = &UNK_18098bdc8;
+  *process_data_ptr = &utility_system_buffer_manager8;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
   return;
@@ -48277,7 +48277,7 @@ void Unwind_1809088d0(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x28);
-  *process_data_ptr = &UNK_18098bdc8;
+  *process_data_ptr = &utility_system_buffer_manager8;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
   return;
@@ -52399,7 +52399,7 @@ void Unwind_180909b70(void * utility_context_pointer,long long utility_data_ptr)
   *process_data_ptr = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
-  *process_data_ptr = &UNK_18098bdc8;
+  *process_data_ptr = &utility_system_buffer_manager8;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
   return;
@@ -67036,7 +67036,7 @@ void Unwind_18090edd0(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x88);
-  *process_data_ptr = &UNK_18098bdc8;
+  *process_data_ptr = &utility_system_buffer_manager8;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
   return;
@@ -67114,7 +67114,7 @@ void Unwind_18090ee30(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x98);
-  *process_data_ptr = &UNK_18098bdc8;
+  *process_data_ptr = &utility_system_buffer_manager8;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
   return;
@@ -69361,7 +69361,7 @@ void Unwind_18090fa20(void * utility_context_pointer,long long utility_data_ptr)
   *process_data_ptr = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
-  *process_data_ptr = &UNK_18098bdc8;
+  *process_data_ptr = &utility_system_buffer_manager8;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
   return;
@@ -71214,7 +71214,7 @@ void Unwind_180910400(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x60);
-  *process_data_ptr = &UNK_18098bdc8;
+  *process_data_ptr = &utility_system_buffer_manager8;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
   return;

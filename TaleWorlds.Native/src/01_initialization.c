@@ -16107,6 +16107,20 @@ void system_process_config_data(longlong system_context_ptr)
   }
   return;
 }
+/**
+ * @brief 获取系统配置上下文
+ * 
+ * 该函数负责获取系统配置的上下文指针。
+ * 确保系统配置的正确访问和管理。
+ * 
+ * @param system_context_ptr 系统上下文指针
+ * @param system_flags_var 系统标志变量指针
+ * @return uint64_t* 配置上下文指针
+ * 
+ * @note 这是简化实现，主要处理配置上下文的获取工作
+ * 原本实现：完全重构配置上下文管理系统，建立统一的上下文管理规范
+ * 简化实现：仅获取基本的配置上下文，保持代码结构不变
+ */
 uint64_t * system_get_config_context(uint64_t *system_context_ptr,uint64_t *system_flags_var)
 {
   longlong *system_long_primary_ptr;

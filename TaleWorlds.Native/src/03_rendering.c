@@ -1257,12 +1257,6 @@ uint64_t *render_create_extended_context(uint64_t *render_context, uint64_t flag
 }
 
 /**
- * @brief 更新渲染标志状态
- * @param flags_ptr 指向渲染标志数组的指针
- * @details 此函数负责更新和同步渲染系统中的各种状态标志，
- * 包括缓冲区引用计数、内存对齐检查和异常处理
- */
-/**
  * @brief 更新渲染标志函数
  * 
  * 功能：更新渲染系统中的标志位状态，管理渲染缓冲区的引用计数
