@@ -2557,6 +2557,18 @@ void initialize_utility_system(long long context_pointer,long long data_ptr)
  * 简化实现：仅添加文档注释，保持代码结构不变
  */
 
+/**
+ * 清理工具系统资源
+ * 
+ * 该函数负责清理工具系统使用的所有资源，包括：
+ * - 释放内存缓冲区
+ * - 清理线程资源
+ * - 重置系统状态
+ * - 释放文件句柄
+ * 
+ * 原本实现：完全重构工具系统清理流程，建立统一的资源管理机制
+ * 简化实现：保持原有清理逻辑，为主要步骤添加文档注释
+ */
 void cleanup_utility_system(void)
 
 {
