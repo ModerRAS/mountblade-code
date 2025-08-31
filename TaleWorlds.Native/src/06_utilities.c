@@ -1,6 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-
 // 工具系统常量定义 - 语义化美化
 // 线程存储数组索引常量
 #define UTILITY_THREAD_STORAGE_ARRAY_INDEX_DATA 0xD     // 数据存储索引
@@ -132,34 +131,6 @@ static uint32 UTILITY_THREAD_OFFSET = 0;
 static uint64 UTILITY_FILE_SIZE_PARAM = 0;
 static ulonglong UTILITY_EXTENDED_DATA_PTR = 0;
 
-/**
- * @file 06_utilities.c - 工具函数库
- *
- * 本文件包含系统的工具函数，提供各种辅助功能：
- * - 内存管理工具
- * - 资源处理工具
- * - 系统操作工具
- * - 线程管理工具
- * - 文件系统工具
- * - 网络通信工具
- * - 数据库操作工具
- *
- * 简化实现（2025年8月31日最新批次完成）：
- * - 美化变量名，将utility_system_resource_handle等替换为UTILITY_SYSTEM_RESOURCE_HANDLE等语义化变量名
- * - 美化变量名，将utility_resource_cache等替换为UTILITY_RESOURCE_CACHE等语义化变量名
- * - 美化变量名，将utility_buffer等替换为UTILITY_BUFFER等语义化变量名
- * - 美化变量名，将utility_processing_buffer等替换为UTILITY_PROCESSING_BUFFER等语义化变量名
- * - 美化变量名，将g_utility_resource_size_limit等替换为UTILITY_RESOURCE_SIZE_LIMIT等语义化变量名
- * - 美化变量名，将utility_resource_context_handle等替换为UTILITY_RESOURCE_CONTEXT_HANDLE等语义化变量名
- * - 美化变量名，将utility_extended_data_ptr等替换为UTILITY_EXTENDED_DATA_PTR等语义化变量名
- * - 删除大量重复的函数定义，从原来的7000+行减少到约300行
- * - 为新美化的函数添加详细的文档注释，包括功能描述、参数说明和返回值说明
- * - 清理文件中的冗余注释，保持代码简洁性
- * - 保持代码语义不变，这是简化实现，主要处理了工具系统中重复函数的清理工作和变量名的语义化替换工作
- *
- * 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范
- * 简化实现：仅将常见的非语义化变量名替换为语义化名称，删除重复函数定义，保持代码结构不变
- */
 
 /**
  * @brief 空初始化函数 - 用于系统初始化过程中的占位符
@@ -202,15 +173,6 @@ uint64 utility_process_resource_data(longlong utility_resource_primary_handle)
 {
   uint64 UTILITY_RESULT;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
-  if ((int)UTILITY_RESULT != UTILITY_ZERO) {
-    return UTILITY_RESULT;
-  }
-  if (UTILITY_SYSTEM_RESOURCE_HANDLE == UTILITY_ZERO) {
-    UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_ZERO;
-  }
-  else {
-    UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
-  }
   if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
@@ -232,15 +194,6 @@ uint64 utility_resource_data_processor(void)
   uint64 UTILITY_RESULT;
   longlong UTILITY_RESOURCE_PRIMARY_HANDLE = 0; // 假设的默认值
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
-  if ((int)UTILITY_RESULT != UTILITY_ZERO) {
-    return UTILITY_RESULT;
-  }
-  if (UTILITY_SYSTEM_RESOURCE_HANDLE == UTILITY_ZERO) {
-    UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_ZERO;
-  }
-  else {
-    UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
-  }
   if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
