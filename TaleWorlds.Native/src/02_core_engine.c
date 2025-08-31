@@ -196,35 +196,49 @@ void* g_render_state_data;                        // 渲染状态数据指针
 
 void ShutdownRenderEngine(void);
 
-void* InitializeNetworkEngine;
-void* g_network_socket_data;                      // 网络套接字数据
-void* g_network_buffer_data;                      // 网络缓冲区数据
-void* g_network_config_data;                      // 网络配置数据
-void* g_network_state_data;                       // 网络状态数据
-void* g_network_timeout_data;                     // 网络超时数据
-void* g_network_connection_data;                  // 网络连接数据
-void* g_network_buffer_size;                      // 网络缓冲区大小
-void* g_network_packet_data;                      // 网络数据包数据
+// 网络系统数据
+void* InitializeNetworkEngine;                    // 网络引擎初始化函数指针
+void* g_network_socket_data;                      // 网络套接字数据指针
+void* g_network_buffer_data;                      // 网络缓冲区数据指针
+void* g_network_config_data;                      // 网络配置数据指针
+void* g_network_state_data;                       // 网络状态数据指针
+void* g_network_timeout_data;                     // 网络超时数据指针
+void* g_network_connection_data;                  // 网络连接数据指针
+void* g_network_buffer_size;                      // 网络缓冲区大小指针
+void* g_network_packet_data;                      // 网络数据包数据指针
 
-void* InitializeSubSystem;                        // 初始化子系统
-void* g_network_config_data_secondary;            // 网络配置数据(次要)
-void* g_system_memory_pool;                       // 系统内存池
-uint64_t g_system_main_engine_status;             // 系统主引擎状态
-void* g_system_state_data;                        // 系统状态数据
-void* g_system_config_data;                       // 系统配置数据
-void* g_system_error_data;                        // 系统错误数据
-void* g_system_debug_data;                        // 系统调试数据
+// 系统管理数据
+void* InitializeSubSystem;                        // 初始化子系统函数指针
+void* g_network_config_data_secondary;            // 网络配置数据(次要)指针
+void* g_system_memory_pool;                       // 系统内存池指针
+uint64_t g_system_main_engine_status;             // 系统主引擎状态标志
+void* g_system_state_data;                        // 系统状态数据指针
+void* g_system_config_data;                       // 系统配置数据指针
+void* g_system_error_data;                        // 系统错误数据指针
+void* g_system_debug_data;                        // 系统调试数据指针
 
-// 引擎主线程管理
+/**
+ * @brief 引擎主线程管理函数
+ * 
+ * 包含引擎主线程的启动和停止功能。
+ */
 void* StartEngineMainThread;                         // 启动引擎主线程函数指针
 void StopEngineMainThread(void);                     // 停止引擎主线程函数
 
-// 引擎消息处理系统
+/**
+ * @brief 引擎消息处理系统函数
+ * 
+ * 包含引擎消息处理、事件处理和状态更新功能。
+ */
 void* ProcessEngineMessages;                         // 处理引擎消息函数指针
 void HandleEngineEvents(void);                        // 处理引擎事件函数
 void UpdateEngineState(void);                         // 更新引擎状态函数
 
-// 引擎核心功能函数
+/**
+ * @brief 引擎核心功能函数
+ * 
+ * 包含引擎的核心功能实现，如渲染、输入处理、游戏逻辑等。
+ */
 void RenderEngineFrame(void);                         // 渲染引擎帧函数
 void ProcessInputEvents(void);                        // 处理输入事件函数
 void UpdateGameLogic(void);                           // 更新游戏逻辑函数
