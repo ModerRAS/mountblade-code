@@ -177,14 +177,63 @@ static void *primary_service_pointer;
  * 简化实现：仅初始化基本的组件功能，保持代码结构不变
  */
 int32_t system_initialize_components(void);
+/**
+ * @brief 初始化系统模块
+ * 
+ * 该函数负责初始化系统的各种模块，包括核心模块和扩展模块。
+ * 确保系统模块的正确加载和管理。
+ * 
+ * @return int32_t 初始化结果，0表示成功，非0表示失败
+ * 
+ * @note 这是简化实现，主要处理系统模块的初始化工作
+ * 原本实现：完全重构模块管理系统，建立统一的模块管理规范
+ * 简化实现：仅初始化基本的模块功能，保持代码结构不变
+ */
 int32_t system_initialize_modules(void);
 static uint32_t primary_module_data;
 static void *primary_module_pointer;
 static void *secondary_module_pointer;
 static void *tertiary_module_pointer;
 static void *quaternary_module_pointer;
+/**
+ * @brief 验证ICall目标
+ * 
+ * 该函数负责验证ICall目标的有效性和安全性。
+ * 确保ICall调用的目标地址是有效的。
+ * 
+ * @param target 要验证的目标指针
+ * @return int32_t 验证结果，0表示成功，非0表示失败
+ * 
+ * @note 这是简化实现，主要处理ICall目标的验证工作
+ * 原本实现：完全重构ICall验证系统，建立统一的验证规范
+ * 简化实现：仅进行基本的ICall目标验证，保持代码结构不变
+ */
 int32_t system_validate_icall_target(void *target);
+/**
+ * @brief 注册核心服务
+ * 
+ * 该函数负责注册系统的核心服务，包括系统服务和管理服务。
+ * 确保核心服务的正确注册和管理。
+ * 
+ * @return int32_t 注册结果，0表示成功，非0表示失败
+ * 
+ * @note 这是简化实现，主要处理核心服务的注册工作
+ * 原本实现：完全重构服务注册系统，建立统一的服务注册规范
+ * 简化实现：仅注册基本的核心服务，保持代码结构不变
+ */
 int32_t system_register_core_services(void);
+/**
+ * @brief 启动系统线程
+ * 
+ * 该函数负责启动系统的各种线程，包括主线程和工作线程。
+ * 确保系统线程的正确启动和管理。
+ * 
+ * @return int32_t 启动结果，0表示成功，非0表示失败
+ * 
+ * @note 这是简化实现，主要处理系统线程的启动工作
+ * 原本实现：完全重构线程启动系统，建立统一的线程启动规范
+ * 简化实现：仅启动基本的系统线程，保持代码结构不变
+ */
 int32_t system_start_system_threads(void);
 static void *thread_manager_pointer;
 static void *secondary_thread_pool_pointer;
@@ -218,6 +267,18 @@ static void *allocator_ptr;
 static int32_t initialization_status;
 static int64_t performance_counter;
 static void *deallocator_ptr;
+/**
+ * @brief 初始化平台
+ * 
+ * 该函数负责初始化系统平台，包括平台特定的设置和配置。
+ * 确保平台的正确初始化和配置。
+ * 
+ * @return int32_t 初始化结果，0表示成功，非0表示失败
+ * 
+ * @note 这是简化实现，主要处理平台的初始化工作
+ * 原本实现：完全重构平台初始化系统，建立统一的平台初始化规范
+ * 简化实现：仅初始化基本的平台功能，保持代码结构不变
+ */
 int32_t system_initialize_platform(void);
 static void *logger_ptr;
 static void *profiler_ptr;
@@ -664,17 +725,14 @@ static void *system_pointer_180a25ad0;
 static void *system_pointer_180a25a6c;
 int32_t system_initialize_cache(void);
 /**
- * @brief 初始化系统配置数据结构
+ * @brief 系统配置结构初始化函数
  * 
  * 该函数负责初始化系统的配置数据结构，设置关键的配置参数和函数指针。
  * 通过内存比较和指针操作，确保配置数据的正确性和完整性。
  * 
- * 原本实现：完全重构此函数的命名体系和实现逻辑
- * 简化实现：仅将变量名和函数名语义化，添加文档注释，保持代码逻辑不变
- */
-/**
- * @brief 系统配置结构初始化函数
- * 初始化系统配置的数据结构和内存布局
+ * @note 这是简化实现，主要处理系统配置结构的初始化工作
+ * 原本实现：完全重构配置结构系统，建立统一的配置管理规范
+ * 简化实现：仅初始化基本的配置结构，保持代码逻辑不变
  */
 void system_initialize_config_structure(void)
 {
