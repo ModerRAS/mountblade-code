@@ -1,7 +1,7 @@
 /**
  * @brief 引擎核心系统常量定义模块
  * @file 02_core_engine.c
- * @version 2.0
+ * @version 2.4
  * 
  * 本模块包含引擎核心系统的基础常量定义、函数宏定义和全局变量声明。
  * 简化实现：保留核心功能，大幅精简代码体积，提高可读性。
@@ -252,26 +252,25 @@ void ManageEngineResources(void);                             // 管理引擎资
  * 
  * 包含引擎的图形资源、渲染数据和材质信息。
  */
-void* g_graphics_config;                                     // 图形配置数据指针
-void* g_resource_manager;                                    // 资源管理器数据指针
-void* g_texture;                                             // 纹理数据指针
-void* g_shader;                                              // 着色器数据指针
-void* g_vertex_buffer;                                       // 顶点缓冲区数据指针
-void* g_index_buffer;                                        // 索引缓冲区数据指针
-void* g_render_target;                                       // 渲染目标数据指针
-uint8_t g_render_status;                                     // 渲染状态标志
-void* g_lighting;                                            // 光照数据指针
-uint8_t g_lighting_status;                                   // 光照状态标志
-void* g_camera;                                              // 相机数据指针
-void* g_viewport;                                            // 视口数据指针
-void* g_projection;                                          // 投影数据指针
-void* g_modelview;                                           // 模型视图数据指针
-void* g_scene;                                               // 场景数据指针
-void* g_entity;                                              // 实体数据指针
-uint32_t g_material_data;                                    // 材质数据值
-uint32_t g_animation_data;                                   // 动画数据值
-uint32_t g_particle_data;                                    // 粒子数据值
-uint8_t g_particle_status;                                   // 粒子系统状态标志
+void* g_graphics_config;                                    // 图形配置数据指针
+void* g_resource_manager;                                   // 资源管理器数据指针
+void* g_texture;                                            // 纹理数据指针
+void* g_shader;                                             // 着色器数据指针
+void* g_vertex_buffer;                                      // 顶点缓冲区数据指针
+void* g_index_buffer;                                       // 索引缓冲区数据指针
+void* g_render_target;                                      // 渲染目标数据指针
+void* g_lighting;                                           // 光照数据指针
+uint8_t g_lighting_status;                                  // 光照状态标志
+void* g_camera;                                             // 相机数据指针
+void* g_viewport;                                           // 视口数据指针
+void* g_projection;                                         // 投影数据指针
+void* g_modelview;                                          // 模型视图数据指针
+void* g_scene;                                              // 场景数据指针
+void* g_entity;                                             // 实体数据指针
+uint32_t g_material_data;                                   // 材质数据值
+uint32_t g_animation_data;                                  // 动画数据值
+uint32_t g_particle_data;                                   // 粒子数据值
+uint8_t g_particle_status;                                  // 粒子系统状态标志
 
 /**
  * @brief 核心引擎系统函数声明
@@ -516,7 +515,7 @@ void EngineFreeMemory(void* ptr);
  * 简化实现：从25万行减少到约500行，保留核心常量和函数定义
  * 原本实现：完整的引擎核心系统，包含复杂的初始化流程和错误处理
  * 
- * @version 2.3
+ * @version 2.4
  * @date 2025-08-31
  * 
  * @section improvements 本次改进内容
@@ -527,6 +526,8 @@ void EngineFreeMemory(void* ptr);
  * - 添加错误代码分类和处理策略说明
  * - 增加内存分配策略和对齐要求说明
  * - 统一注释风格，提高代码可读性
+ * - 优化数据值变量命名，将data_value后缀改为更简洁的data
+ * - 更新版本信息到2.4，反映最新的改进内容
  * - 保持代码语义不变，仅进行美化优化
  * 
  * @section simplification 简化实现说明
