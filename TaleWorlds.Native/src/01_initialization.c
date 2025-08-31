@@ -32857,7 +32857,7 @@ void system_init_subsystem_694(void)
   psystem_stack_frame_primary = system_init_buffer_pointer;
   system_initialization_flags_mask = system_validate_operation(system_init_buffer_pointer);
   system_stack_uint_nano_time = SYSTEM_INIT_CONCAT_TWO_UINT16(system_stack_uint_nano_time._4_4_,system_initialization_flags_mask);
-  *system_init_buffer_pointer = 0x601020726f74696445;
+  *system_init_buffer_pointer = SYSTEM_INIT_PATH_MODULE_ROOT;
   *(system_uint_standard_t *)(system_init_buffer_pointer + 1) = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_0x10;
   *(system_uint16_t *)((longlong)system_init_buffer_pointer + ) = SYSTEM_INIT_CONTEXT_INDEX_PROCESSOR;
   system_stack_uint_config = ;
@@ -33232,7 +33232,7 @@ void system_init_subsystem_707(void)
   psystem_stack_frame_primary = system_init_buffer_pointer;
   system_initialization_flags_mask = system_validate_operation(system_init_buffer_pointer);
   system_stack_uint_nano_time = SYSTEM_INIT_CONCAT_TWO_UINT16(system_stack_uint_nano_time._4_4_,system_initialization_flags_mask);
-  *system_init_buffer_pointer = SYSTEM_INIT_CONFIG_INDEX_SECONDARY6f60x10207265701055;
+  *system_init_buffer_pointer = SYSTEM_INIT_PATH_MODULE_SECONDARY;
   *(system_uint_standard_t *)(system_init_buffer_pointer + 1) = 0x676966;
   system_stack_uint_config = ;
   InitializeSystemCore(system_context_param,&psystem_stack_union_config_value);
@@ -38502,7 +38502,7 @@ void system_init_subsystem_829(void)
       system_init_stack_memory_key = system_ptr_pool;
       system_parameter_value = system_validate_operation(system_ptr_pool);
       system_stack_uint_size_field = SYSTEM_INIT_CONCAT_TWO_UINT16(system_stack_uint_size_field._4_4_,system_parameter_value);
-      *system_ptr_pool = 0x7010726f7272655f;
+      *system_ptr_pool = SYSTEM_INIT_STRING_MODULE_PREFIX;
       system_stack_uint_60 = 7;
       system_int_value = *(int *)(system_context_param + INIT_OFFSET_HEADER) + -1;
       if (-1 < system_int_value) {
