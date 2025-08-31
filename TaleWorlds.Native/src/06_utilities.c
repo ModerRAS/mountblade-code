@@ -250,28 +250,28 @@ uint8_t utility_context_system_extended;
  */
 void utility_process_thread_local_storage(int64_t thread_handle, int64_t context_data)
 {
-uint64_t utility_resource_value;
-int utility_operation_result;
-int64_t utility_loop_counter;
-int item_count;
-uint8_t utility_thread_buffer [32];
-int64_t utility_context_array [2];
-uint8_t *utility_buffer_ptr;
-int utility_resource_count;
-uint32_t utility_buffer_flags;
-uint8_t utility_large_buffer [512];
-uint64_t utility_checksum_value;
+uint64_t utility_resource_handle;
+int utility_system_status;
+int64_t utility_iteration_index;
+int utility_processed_items;
+uint8_t utility_thread_workspace [32];
+int64_t utility_context_storage [2];
+uint8_t *utility_buffer_pointer;
+int utility_resource_counter;
+uint32_t utility_buffer_attributes;
+uint8_t utility_large_workspace [512];
+uint64_t utility_checksum_result;
 
-utility_checksum_value = utility_system_reserved_data ^ (uint64_t)utility_thread_buffer;
-utility_operation_result = utility_system_service_manager(*(uint32_t *)(threadHandle + UTILITY_THREAD_HANDLE_OFFSET), utility_context_array);
+utility_checksum_result = utility_system_reserved_data ^ (uint64_t)utility_thread_workspace;
+utility_system_status = utility_system_service_manager(*(uint32_t *)(thread_handle + UTILITY_THREAD_HANDLE_OFFSET), utility_context_storage);
 
-if ((utility_operation_result == 0) && (*(int64_t *)(utility_context_array[0] + 8) != 0)) {
-utility_buffer_ptr = utility_large_buffer;
-item_count = 0;
-utility_resource_count = 0;
-utility_buffer_flags = UTILITY_BUFFER_FLAGS_DEFAULT;
+if ((utility_system_status == 0) && (*(int64_t *)(utility_context_storage[0] + 8) != 0)) {
+utility_buffer_pointer = utility_large_workspace;
+utility_processed_items = 0;
+utility_resource_counter = 0;
+utility_buffer_attributes = UTILITY_BUFFER_FLAGS_DEFAULT;
 
-utility_resource_data = utility_resource_manager_create(*(uint64_t *)(contextData + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(utility_context_array[0] + 8), &utility_buffer_ptr);
+utility_resource_handle = utility_resource_manager_create(*(uint64_t *)(context_data + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(utility_context_storage[0] + 8), &utility_buffer_pointer);
 
 if (utility_operation_result == 0) {
 if (0 < utility_resource_count) {
