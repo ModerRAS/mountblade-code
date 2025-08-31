@@ -367,80 +367,92 @@ void utility_validate_resource_state(void)
  */
 uint64_t utility_process_resource_pointer(int64_t context_handle)
 {
-int64_t utility_loop_counter;
-int64_t utility_process_counter;
-int utility_operation_status;
-uint64_t utility_resource_value;
-long long utility_context_data;
-int64_t *utility_resource_manager_ptr;
-uint64_t utility_resource_context;
-int64_t utility_buffer_ptr;
-char utility_character_array [16];
-utility_resource_value = utility_system_service_manager(*(uint32_t *)(context_handle + UTILITY_THREAD_HANDLE_OFFSET),&utility_buffer_workspace);
-if ((int)utility_resource_value != 0) {
-return utility_resource_value;
-}
-utility_loop_counter = *(int64_t *)(utility_buffer_pointer + UTILITY_MEMORY_POINTER_OFFSET_0);
-if ((utility_iteration_index == 0) || (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_BUFFER_OFFSET) != utility_buffer_ptr)) {
-return UTILITY_STATUS_THREAD_CREATED;
-}
-utility_loop_counter = *(int64_t *)(utility_iteration_index + UTILITY_THREAD_POINTER_OFFSET);
-if (utility_iteration_index == 0) {
-return UTILITY_STATUS_ENABLED_FLAG;
-}
-if (*(int *)(utility_iteration_index + UTILITY_MEMORY_STATUS_OFFSET) == -1) {
-utility_resource_context = utility_initialize_resource_context(utility_loop_counter,utility_character_array);
-if ((int)utility_resource_value != 0) {
-return utility_resource_value;
-}
-utility_resource_context = utility_system_initialize(utility_loop_counter);
-if ((int)utility_resource_value != 0) {
-return utility_resource_value;
-}
-if (utility_character_array[0] == (char)utility_resource_context) {
-context_handle = (int64_t *)(utility_iteration_index + UTILITY_DATA_CONTEXT_OFFSET);
-utility_operation_status = 0;
-utility_operation_status = *(int *)(utility_iteration_index + UTILITY_DATA_INDEX_OFFSET);
-if (0 < utility_operation_result) {
-context_handle = (int64_t *)*utility_buffer_ptr;
-do {
-if (*utility_buffer_ptr == utility_loop_counter) {
-if (-1 < (int)utility_resource_context) {
-return 0;
-}
-break;
-}
-utility_resource_context = utility_resource_data + 1;
-context_handle = context_handle + 1;
-} while ((int64_t)utility_resource_data < (int64_t)utility_operation_result);
-}
-utility_operation_status = utility_operation_result + 1;
-if (*(int *)(utility_iteration_index + UTILITY_CALC_MULTIPLIER_OFFSET) < utility_operation_result) {
-utility_operation_status = (int)((float)*(int *)(utility_iteration_index + UTILITY_CALC_MULTIPLIER_OFFSET) * 1.5);
-if (utility_operation_result < 8) {
-utility_operation_status = 8;
-}
-else if (utility_operation_result < 1024) {
-utility_operation_status = utility_operation_status;
-}
-utility_operation_status = utility_process_operation_result(context_handle,utility_operation_result);
-if (utility_operation_result != 0) {
-return 0;
-}
-}
-*(int64_t *)(*utility_buffer_ptr + (int64_t)*(int *)(utility_iteration_index + UTILITY_DATA_INDEX_OFFSET) * 8) = utility_loop_counter;
-*(int *)(utility_iteration_index + UTILITY_DATA_INDEX_OFFSET) = *(int *)(utility_iteration_index + UTILITY_DATA_INDEX_OFFSET) + 1;
-*(int *)(utility_iteration_index + UTILITY_DATA_COUNTER_OFFSET) = *(int *)(utility_iteration_index + UTILITY_DATA_COUNTER_OFFSET) + 1;
-}
-else {
-utility_resource_context = utility_create_resource_iterator(utility_iteration_index + UTILITY_CONTEXT_ITERATOR_OFFSET,utility_loop_counter);
-if ((int)utility_resource_data != 0) {
-return utility_resource_context;
-}
-}
-}
-}
-return 0;
+    int64_t utility_loop_counter;
+    int64_t utility_process_counter;
+    int utility_operation_status;
+    uint64_t utility_resource_value;
+    long long utility_context_data;
+    int64_t *utility_resource_manager_ptr;
+    uint64_t utility_resource_context;
+    int64_t utility_buffer_ptr;
+    char utility_character_array[16];
+    uint8_t utility_buffer_workspace[512];
+    int64_t utility_iteration_index;
+    int64_t utility_resource_data;
+    int utility_operation_result;
+    
+    utility_resource_value = utility_system_service_manager(*(uint32_t *)(context_handle + UTILITY_THREAD_HANDLE_OFFSET), &utility_buffer_workspace);
+    if ((int)utility_resource_value != 0) {
+        return utility_resource_value;
+    }
+    
+    utility_loop_counter = *(int64_t *)(utility_buffer_workspace + UTILITY_MEMORY_POINTER_OFFSET_0);
+    if ((utility_iteration_index == 0) || (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_BUFFER_OFFSET) != utility_buffer_ptr)) {
+        return UTILITY_STATUS_THREAD_CREATED;
+    }
+    
+    utility_loop_counter = *(int64_t *)(utility_iteration_index + UTILITY_THREAD_POINTER_OFFSET);
+    if (utility_iteration_index == 0) {
+        return UTILITY_STATUS_ENABLED_FLAG;
+    }
+    
+    if (*(int *)(utility_iteration_index + UTILITY_MEMORY_STATUS_OFFSET) == -1) {
+        utility_resource_context = utility_initialize_resource_context(utility_loop_counter, utility_character_array);
+        if ((int)utility_resource_value != 0) {
+            return utility_resource_value;
+        }
+        utility_resource_context = utility_system_initialize(utility_loop_counter);
+        if ((int)utility_resource_value != 0) {
+            return utility_resource_value;
+        }
+    }
+    
+    if (utility_character_array[0] == (char)utility_resource_context) {
+        context_handle = (int64_t *)(utility_iteration_index + UTILITY_DATA_CONTEXT_OFFSET);
+        utility_operation_status = 0;
+        utility_operation_status = *(int *)(utility_iteration_index + UTILITY_DATA_INDEX_OFFSET);
+        if (0 < utility_operation_result) {
+            context_handle = (int64_t *)*utility_buffer_ptr;
+            do {
+                if (*utility_buffer_ptr == utility_loop_counter) {
+                    if (-1 < (int)utility_resource_context) {
+                        return 0;
+                    }
+                    break;
+                }
+                utility_resource_context = utility_resource_data + 1;
+                context_handle = context_handle + 1;
+            } while ((int64_t)utility_resource_data < (int64_t)utility_operation_result);
+        }
+        utility_operation_status = utility_operation_result + 1;
+        if (*(int *)(utility_iteration_index + UTILITY_CALC_MULTIPLIER_OFFSET) < utility_operation_result) {
+            utility_operation_status = (int)((float)*(int *)(utility_iteration_index + UTILITY_CALC_MULTIPLIER_OFFSET) * 1.5);
+            if (utility_operation_result < 8) {
+                utility_operation_status = 8;
+            }
+                      else if (utility_operation_result < 1024) {
+                utility_operation_status = utility_operation_result;
+            }
+        }
+        utility_operation_status = utility_process_operation_result(context_handle, utility_operation_result);
+        if (utility_operation_result != 0) {
+            return 0;
+        }
+    }
+    
+    *(int64_t *)(*utility_buffer_ptr + (int64_t)*(int *)(utility_iteration_index + UTILITY_DATA_INDEX_OFFSET) * 8) = utility_loop_counter;
+    *(int *)(utility_iteration_index + UTILITY_DATA_INDEX_OFFSET) = *(int *)(utility_iteration_index + UTILITY_DATA_INDEX_OFFSET) + 1;
+    *(int *)(utility_iteration_index + UTILITY_DATA_COUNTER_OFFSET) = *(int *)(utility_iteration_index + UTILITY_DATA_COUNTER_OFFSET) + 1;
+    }
+    else {
+        utility_resource_context = utility_create_resource_iterator(utility_iteration_index + UTILITY_CONTEXT_ITERATOR_OFFSET, utility_loop_counter);
+        if ((int)utility_resource_data != 0) {
+            return utility_resource_context;
+        }
+    }
+    }
+    }
+    return 0;
 }
 /**
  * 处理主要资源请求
