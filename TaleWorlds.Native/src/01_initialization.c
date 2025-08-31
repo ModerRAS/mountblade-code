@@ -76,6 +76,16 @@
 #define SYSTEM_CONFIG_STATUS_OFFSET 0x00000020
 #define SYSTEM_CONFIG_SIGNATURE_SIZE 0x00000040
 #define SYSTEM_CONFIG_BLOCK_SIZE 0x00001000
+
+// 系统函数地址常量定义
+#define SYSTEM_MEMORY_ALLOCATOR_ADDRESS 0x00018066bd70     // 内存分配器函数地址
+#define SYSTEM_MEMORY_DEALLOCATOR_ADDRESS 0x00018066b9a0   // 内存释放器函数地址
+#define SYSTEM_CONTEXT_INITIALIZER_ADDRESS 0x00018004b9a0   // 上下文初始化器函数地址
+#define SYSTEM_VERTEX_PROCESSOR_ADDRESS 0x00018064e870    // 顶点处理器函数地址
+#define SYSTEM_TRANSFORM_HANDLER_ADDRESS 0x0001800464d0    // 变换处理器函数地址
+#define SYSTEM_CONFIG_VALIDATOR_ADDRESS 0x00018005a410     // 配置验证器函数地址
+#define SYSTEM_COMPONENT_INITIALIZER_ADDRESS 0x000180741c80 // 组件初始化器函数地址
+#define SYSTEM_THREAD_MANAGER_ADDRESS 0x000180767970       // 线程管理器函数地址
 // 系统初始化全局变量声明
 static uint32_t primary_context_data;
 static void *primary_system_context_ptr;
@@ -9898,7 +9908,7 @@ int system_validator_verify(void)
 {
   longlong system_memory_alloc_result;
   
-  func_0x000180741c80(0x180c0c340);
+  SYSTEM_COMPONENT_INITIALIZER_ADDRESS(0x180c0c340);
   system_memory_alloc_result = system_allocate_memory_block(&SYSTEM_DATABASE_SCHEMA_TYPE);
   return (system_memory_alloc_result != 0) - 1;
 }
