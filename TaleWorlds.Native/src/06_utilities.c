@@ -5991,7 +5991,7 @@ void * context_pointer_process_data(long long context_pointer,long long data_ptr
   int result_int;
   long long context_handle0;
   long long utility_utility_stack_parameter_array_8 [2];
-  uint system_temp_var_18;
+  uint system_temp_register_18;
   float fStackX_20;
   
   context_handle0 = 0;
@@ -6042,7 +6042,7 @@ void * context_pointer_process_data(long long context_pointer,long long data_ptr
   }
   utility_float_var = *(float *)(context_pointer + 0x44);
   result_int = 0;
-  system_temp_var_18 = *(uint *)(context_pointer + 0x40);
+  system_temp_register_18 = *(uint *)(context_pointer + 0x40);
   fStackX_20 = *(float *)(context_pointer + 0x3c);
   utility_utility_stack_parameter_array_8[0] = CONCAT44(utility_utility_stack_parameter_array_8[0]._4_4_,utility_float_var);
   result_int = result_int;
@@ -6050,7 +6050,7 @@ void * context_pointer_process_data(long long context_pointer,long long data_ptr
     result_int = 0x1d;
   }
   result_int = result_int;
-  if ((system_temp_var_18 & 0x7f800000) == 0x7f800000) {
+  if ((system_temp_register_18 & 0x7f800000) == 0x7f800000) {
     result_int = 0x1d;
   }
   if (((uint)fStackX_20 & 0x7f800000) == 0x7f800000) {
@@ -9774,7 +9774,7 @@ ulong long utility_thread_scheduler_manage(long long context_pointer)
   bool utility_bool_var7;
   int utility_stack_array_8 [2];
   uint temp_array [2];
-  void * system_temp_var_18;
+  void * system_temp_register_18;
   void * temp_array [8];
   ulong long system_temp_var8;
   void * system_temp_var0;
@@ -9825,11 +9825,11 @@ ulong long utility_thread_scheduler_manage(long long context_pointer)
           context_handle5 = (long long)utility_stack_array_8[0];
           utility_system_item_count = *(int *)(utility_temp_long_var + 8 + context_handle5 * 0x10);
           if (utility_system_item_count == 2) {
-            utility_system_item_count = system_call_function(*(void **)(utility_temp_long_var + 0xc + context_handle5 * 0x10),&system_temp_var_18);
-            utility_result_ptr = system_temp_var_18;
+            utility_system_item_count = system_call_function(*(void **)(utility_temp_long_var + 0xc + context_handle5 * 0x10),&system_temp_register_18);
+            utility_result_ptr = system_temp_register_18;
             context_data_pointer3 = putility_utility_stack_long_var_108;
             if ((utility_system_item_count == 0) &&
-               (utility_system_item_count = system_call_function(system_temp_var_18), context_data_pointer3 = putility_utility_stack_long_var_108, 0 < utility_system_item_count)) {
+               (utility_system_item_count = system_call_function(system_temp_register_18), context_data_pointer3 = putility_utility_stack_long_var_108, 0 < utility_system_item_count)) {
               do {
                 utility_temp_var = *(void **)(utility_temp_long_var + 0xc + context_handle5 * 0x10);
                 utility_temp_var = 0;
@@ -11981,16 +11981,16 @@ UTILITY_LABEL_LOG_WRITE:
 
 
 {
-  void * system_temp_var_18;
+  void * system_temp_register_18;
   void * temp_var_20;
   void * asystem_temp_var8 [32];
   void * asystem_temp_var8 [1024];
   ulong long utility_temp_var;
   
   utility_temp_var = system_security_seed ^ (ulong long)asystem_temp_var8;
-  system_temp_var_18 = param;
+  system_temp_register_18 = param;
   temp_var_20 = param;
-  context_pointer_process_data(asystem_temp_var8,0x400,data_ptr,&system_temp_var_18);
+  context_pointer_process_data(asystem_temp_var8,0x400,data_ptr,&system_temp_register_18);
   (**(code **)(*context_pointer + 8))(context_pointer,asystem_temp_var8);
   context_pointer_process_data(utility_temp_var ^ (ulong long)asystem_temp_var8);
 }
@@ -17782,7 +17782,7 @@ ulong long context_pointer_process_data(long long context_pointer,void **data_pt
   long long context_handle1;
   long long context_handle2;
   int result_int3;
-  void **psystem_temp_var_18;
+  void **psystem_temp_register_18;
   void **psystem_temp_var;
   void * utility_temp_var;
   void * utility_temp_var;
@@ -17917,17 +17917,17 @@ LAB_18089c40a:
       }
       for (; (result_int3 = (int)utility_temp_var, psystem_temp_var <= process_data_ptr0 &&
              (process_data_ptr0 < psystem_temp_var + (long long)result_int3 * 3)); process_data_ptr0 = process_data_ptr0 + 3) {
-        psystem_temp_var_18 = (void **)0x0;
-        utility_result_ptr = context_pointer_process_data(context_pointer + 0x48,&psystem_temp_var_18);
+        psystem_temp_register_18 = (void **)0x0;
+        utility_result_ptr = context_pointer_process_data(context_pointer + 0x48,&psystem_temp_register_18);
         utility_result_ptr = (ulong long)utility_result_ptr;
         if (utility_result_ptr != 0) goto LAB_18089c40a;
         return_value = process_data_ptr0[1];
-        *psystem_temp_var_18 = *process_data_ptr0;
-        psystem_temp_var_18[1] = return_value;
-        *(void **)(psystem_temp_var_18 + 2) = *(void **)(process_data_ptr0 + 2);
-        *(float *)((long long)psystem_temp_var_18 + 0x14) =
+        *psystem_temp_register_18 = *process_data_ptr0;
+        psystem_temp_register_18[1] = return_value;
+        *(void **)(psystem_temp_register_18 + 2) = *(void **)(process_data_ptr0 + 2);
+        *(float *)((long long)psystem_temp_register_18 + 0x14) =
              *(float *)((long long)process_data_ptr0 + 0x14) + *(float *)(process_data_ptr0 + 2);
-        *(void **)(psystem_temp_var_18 + 3) = 1;
+        *(void **)(psystem_temp_register_18 + 3) = 1;
       }
     }
     utility_result_ptr = utility_temp_var._4_4_;
