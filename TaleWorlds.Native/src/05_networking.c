@@ -372,64 +372,36 @@ void *network_data_transfer_quaternary;
 /** 第五数据传输对象 */
 void *network_data_transfer_quinary;
 
-/**
- * 扩展主网络配置
- * 扩展的主要网络配置
- */
+/* 扩展网络配置管理 */
+/** 扩展主网络配置 */
 void *network_config_extended_primary;
 
-/**
- * 扩展辅助网络配置
- * 扩展的辅助网络配置
- */
+/** 扩展辅助网络配置 */
 void *network_config_extended_secondary;
 
-/**
- * 扩展第三网络配置
- * 扩展的第三网络配置
- */
+/** 扩展第三网络配置 */
 void *network_config_extended_tertiary;
 
-/**
- * 扩展第四网络配置
- * 扩展的第四网络配置
- */
+/** 扩展第四网络配置 */
 void *network_config_extended_quaternary;
 
-/**
- * 扩展第五网络配置
- * 扩展的第五网络配置
- */
+/** 扩展第五网络配置 */
 void *network_config_extended_quinary;
 
-/**
- * 扩展第六网络配置
- * 扩展的第六网络配置
- */
+/** 扩展第六网络配置 */
 void *network_config_extended_senary;
 
-/**
- * 主协议处理器
- * 处理主要网络协议
- */
+/* 网络协议处理器 */
+/** 主协议处理器 */
 void *network_protocol_handler_primary;
 
-/**
- * 辅助协议处理器
- * 处理辅助网络协议
- */
+/** 辅助协议处理器 */
 void *network_protocol_handler_secondary;
 
-/**
- * 第三协议处理器
- * 处理第三网络协议
- */
+/** 第三协议处理器 */
 void *network_protocol_handler_tertiary;
 
-/**
- * 第四协议处理器
- * 处理第四网络协议
- */
+/** 第四协议处理器 */
 void *network_protocol_handler_quaternary;
 int network_socket_extended_primary;
 int network_socket_extended_secondary;
