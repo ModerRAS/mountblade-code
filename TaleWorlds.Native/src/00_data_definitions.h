@@ -653,7 +653,7 @@
 #define SYSTEM_OFFSET_INITIALIZATION_STRUCTURE_EXTENDED 0x1340
 #define SYSTEM_OFFSET_INITIALIZATION_STRUCTURE_TERTIARY 0x1344
 #define SYSTEM_OFFSET_INITIALIZATION_STRUCTURE_QUATERNARY 0x1348
-#define SYSTEM_OFFSET_INITIALIZATION_STRUCTURE_RESERVED2 0x134c  // 初始化结构保留偏移量2
+#define SYSTEM_OFFSET_INITIALIZATION_STRUCTURE_RESERVED_SECONDARY 0x134c  // 初始化结构保留偏移量2
 
 // 系统配置常量定义
 #define SYSTEM_CONFIG_DEFAULT_TIMEOUT SYSTEM_CONTROL_VALUE_LINE_FEED
@@ -790,9 +790,9 @@
 // 系统字符常量
 
 // 系统内存分配大小常量
-#define SYSTEM_ALLOC_SIZE_1C8 0x1c8  // 分配大小1C8
-#define SYSTEM_ALLOC_SIZE_F8 0xf8    // 分配大小F8
-#define SYSTEM_ALLOC_SIZE_B0 0xb0    // 分配大小B0
+#define SYSTEM_ALLOC_SIZE_MEMORY_BLOCK_LARGE 0x1c8  // 大内存块分配大小
+#define SYSTEM_ALLOC_SIZE_MEMORY_BLOCK_MEDIUM 0xf8    // 中等内存块分配大小
+#define SYSTEM_ALLOC_SIZE_MEMORY_BLOCK_SMALL 0xb0    // 小内存块分配大小
 
 // 系统特殊偏移量常量
 #define SYSTEM_MUTEX_OFFSET_THREAD_CONTROL 0x6e8    // 互斥量线程控制偏移量
@@ -818,9 +818,9 @@
 #define SYSTEM_CONFIG_OFFSET_PROCESS_FLAG 0x28         // 配置进程标志偏移量
 #define SYSTEM_CONFIG_OFFSET_VALID_FLAG 0x2d           // 配置有效标志偏移量
 #define SYSTEM_CONFIG_OFFSET_DATA_FLAG 0x23            // 配置数据标志偏移量
-#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE0 0x30       // 配置模块句柄0偏移量
-#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE4 0x34       // 配置模块句柄4偏移量
-#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLEc 0x3c       // 配置模块句柄c偏移量
+#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE_PRIMARY 0x30       // 主模块句柄偏移量
+#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE_SECONDARY 0x34       // 次要模块句柄偏移量
+#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE_TERTIARY 0x3c       // 第三模块句柄偏移量
 
 #define SYSTEM_VALIDATION_OFFSET_TYPE_CHECK 0x161c      // 验证类型检查偏移量
 #define SYSTEM_VALIDATION_OFFSET_DATA_INTEGRITY 0x167c    // 验证数据完整性偏移量
@@ -1387,7 +1387,7 @@
 #define THREAD_DATA_BUFFER_ADDR 0x180a03a80                // 线程数据缓冲区地址
 #define CONFIG_DATA_BUFFER_ADDR 0x180c95fe0                // 配置数据缓冲区地址
 #define CONSTANT_STRING_BUFFER_ADDR 0x180c8ece0           // 常量字符串缓冲区地址
-#define THREAD_DATA_BUFFER_ADDR_0 0x180c8f000              // 线程数据缓冲区地址0
+#define THREAD_DATA_BUFFER_ADDR_PRIMARY 0x180c8f000              // 主线程数据缓冲区地址
 #define SYSTEM_STRING_BUFFER_ADDR 0x180c8ed80               // 系统字符串缓冲区地址
 #define SYSTEM_DATA_BUFFER_BASE_ADDRESS 0x180329eb0        // 系统数据缓冲区基地址
 #define RESOURCE_DATA_BUFFER_ADDR 0x180d49130              // 资源数据缓冲区地址
@@ -1541,14 +1541,14 @@
 
 // 新增语义化常量定义 - 美化硬编码十六进制常量
 #define SYSTEM_FLOAT_ARRAY_TERTIARY_ADDRESS 0x180c8ed90    // 浮点数组第三级地址
-#define THREAD_CLEANUP_FUNCTION_2 0x18064ffd0                // 线程清理函数2地址
+#define THREAD_CLEANUP_FUNCTION_SECONDARY 0x18064ffd0                // 次要线程清理函数地址
 // 系统常量定义（美化硬编码数值）
 #define SYSTEM_CONSTANT_UNIT 1                           // 单位常量
 #define SYSTEM_CONSTANT_PAIR 2                           // 对常量
 #define SYSTEM_CONSTANT_TRIPLE 3                        // 三元组常量
 #define SYSTEM_CONSTANT_QUADRUPLE 0x2c                   // 四元组常量
 #define SYSTEM_CONSTANT_PAIR0 SYSTEM_CHAR_SPACE          // 对常量0
-#define SYSTEM_CONSTANT_PAIR8 0x28                       // 对常量8
+#define SYSTEM_CONSTANT_PAIR_SMALL 0x28                       // 小对常量
 #define SYSTEM_CONSTANT_PAIRC 0x2c                        // 对常量C
 #define SYSTEM_CONSTANT_PAIRFF SYSTEM_CHAR_SLASHf        // 对常量FF
 #define SYSTEM_CONSTANT_TRIPLE800000 0x3800000           // 三元组常量800000
@@ -1607,7 +1607,7 @@
 // 系统数据缓冲区地址
 #define THREAD_POOL_DATA_BUFFER_ADDR 0x180c8f010
 #define THREAD_OPERATION_FLAGS_ADDR 0x180c8f020
-#define THREAD_OPERATION_FLAGS_ADDR_0 0x180c8f030
+#define THREAD_OPERATION_FLAGS_ADDR_PRIMARY 0x180c8f030
 #define SYSTEM_CONTROL_FLAG_BUFFER_ADDR 0x180c8f040
 #define SYSTEM_INIT_FLAG_BUFFER_ADDR 0x180c8f050
 #define PTHREAD_OPERATION_FLAGS_ADDR 0x180c8f060
@@ -1846,10 +1846,10 @@ extern char system_cleanup_handler_flag_buffer;                            // �
 #define SYSTEM_BUFFER_ALLOC_RESULT_OPTIMAL_SUCCESS 0x26       // 缓冲区分配成功结果7
 #define SYSTEM_BUFFER_ALLOC_RESULT_MAXIMAL_SUCCESS 0x27       // 缓冲区分配成功结果8
 #define SYSTEM_BUFFER_ALLOC_RESULT_SUPERIOR_SUCCESS 0x29       // 缓冲区分配成功结果9
-#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS0 0x2a      // 缓冲区分配成功结果10
-#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS1 0x2b      // 缓冲区分配成功结果11
-#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS2 0x2d      // 缓冲区分配成功结果12
-#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS3 0x2e      // 缓冲区分配成功结果13
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS_FIRST 0x2a      // 缓冲区分配基本成功结果1
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS_SECOND 0x2b      // 缓冲区分配基本成功结果2
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS_THIRD 0x2d      // 缓冲区分配基本成功结果3
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS_FOURTH 0x2e      // 缓冲区分配基本成功结果4
 #define SYSTEM_BUFFER_ALLOC_RESULT_RESERVED_BASIC 0xb        // 缓冲区分配保留结果1
 #define SYSTEM_BUFFER_ALLOC_RESULT_RESERVED_STANDARD 0x11       // 缓冲区分配保留结果2
 #define SYSTEM_BUFFER_ALLOC_RESULT_RESERVED_EXTENDED 0x12       // 缓冲区分配保留结果3
