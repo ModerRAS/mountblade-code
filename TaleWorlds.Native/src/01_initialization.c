@@ -48,10 +48,10 @@
 #define INIT_SIZE_MEMORY_CHUNK 0x10
 #define INIT_STATUS_INITIALIZED 0x10458
 
-// 初始化系统值常量
-#define SYSTEM_INIT_MAGIC_COOKIE_STANDARD 0x10
-#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB 0x10
-#define SYSTEM_INIT_MAGIC_COOKIE_GENERAL 0x10
+// 系统值常量
+#define INIT_MAGIC_STANDARD 0x10
+#define INIT_MAGIC_PREFAB 0x10
+#define INIT_MAGIC_GENERAL 0x10
 
 void* system_core_initializer;
 uint8_t initialization_status_array[27];// 系统初始化状态数组（27个元素）
@@ -499,6 +499,17 @@ char system_initialized;
  * @return void
  * 
  * @note 这是简化实现，原本实现应该包含完整的错误处理和系统验证流程
+ */
+/**
+ * @brief 系统核心基础初始化函数
+ * 
+ * 执行系统核心的基础初始化流程，包括：
+ * - 验证系统上下文和缓冲区
+ * - 初始化核心系统组件
+ * - 设置系统配置数据
+ * - 建立系统全局上下文
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
 void initialize_system_core_basic(void)
 
@@ -1019,8 +1030,15 @@ void system_init_placeholder_function(void)
 /**
  * @brief 系统初始化状态检查函数
  * 
- * 这是简化实现，用于替代重复的system_init_check_status函数。
- * 原本实现应该为每个不同的状态检查创建特定的函数。
+ * 这是简化实现，用于检查系统各个模块的初始化状态。
+ * 原本实现应该包含更详细的状态验证逻辑。
+ * 
+ * 当前实现主要处理：
+ * - 物理系统状态检查
+ * - 输入管理器状态检查
+ * - UI系统状态检查
+ * - 脚本引擎状态检查
+ * - 内存系统状态检查
  * 
  * @return int 系统初始化状态码
  * 
@@ -1029,7 +1047,7 @@ void system_init_placeholder_function(void)
 int system_init_status_check_function(void)
 
 {
-  longlong system_allocation_result;
+  longlong system_allocation_result;      // 系统分配结果
   
   system_internal_physics_world = SYSTEM_INIT_VALUE_ZERO;
   system_internal_input_manager = SYSTEM_INIT_VALUE_ZERO;
