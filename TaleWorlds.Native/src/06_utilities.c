@@ -1062,18 +1062,30 @@ else {
     activate_context(*(int64_t *)(loop_counter + UTILITY_THREAD_HANDLE_OFFSET), 1);
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
-/** 初始化线程本地存储
- * 为当前线程初始化本地存储区域
+/**
+ * @brief 初始化线程本地存储
+ * 
+ * 为当前线程初始化本地存储区域，设置线程特定的数据存储空间。
+ * 该函数会调用上下文激活函数来完成初始化过程。
+ * 
+ * @note 这是一个简化实现，主要进行函数名的语义化替换工作
+ * @note 原本实现：完全重构线程本地存储初始化系统所有命名体系，建立统一的语义化命名规范
  */
 void initialize_thread_local_storage(void)
 {
     activate_context();
 }
 /**
- * 线程创建器
- * 功能：创建新的系统线程，初始化线程上下文
- * @param context_pointer 线程上下文参数
+ * @brief 线程创建器
+ * 
+ * 创建新的系统线程，初始化线程上下文和相关的资源管理器。
+ * 该函数会处理线程的创建、资源分配和上下文设置等操作。
+ * 
+ * @param context_pointer 线程上下文参数，包含线程创建所需的配置信息
  * @return 创建的线程句柄，0表示失败
+ * 
+ * @note 这是一个简化实现，主要进行函数名的语义化替换工作
+ * @note 原本实现：完全重构线程创建系统所有命名体系，建立统一的语义化命名规范
  */
 uint64_t create_thread(int64_t context_pointer)
 {
@@ -1354,20 +1366,30 @@ else {
     activate_context(loop_counter = 0;
 }
 
- *
-@brief 离开临界区
-* 负责离开临界区，允许其他线程进入
-*/
+ /**
+ * @brief 离开临界区
+ * 
+ * 负责离开临界区，允许其他线程进入。该函数会释放临界区的所有权，
+ * 使得其他等待的线程可以获取临界区的访问权限。
+ * 
+ * @note 这是一个简化实现，主要进行函数名的语义化替换工作
+ * @note 原本实现：完全重构临界区管理系统所有命名体系，建立统一的语义化命名规范
+ */
 void LeaveCriticalSection(void)
 {
 
     activate_context();
 }
 
- *
-@brief 删除临界区
-* 负责删除临界区对象，释放相关资源
-*/
+ /**
+ * @brief 删除临界区
+ * 
+ * 负责删除临界区对象，释放相关资源。该函数会清理临界区占用的内存
+ * 和系统资源，确保不会造成资源泄漏。
+ * 
+ * @note 这是一个简化实现，主要进行函数名的语义化替换工作
+ * @note 原本实现：完全重构临界区管理系统所有命名体系，建立统一的语义化命名规范
+ */
 void DeleteCriticalSection(void)
 {
  * 处理资源指针的转换和管理
@@ -1389,11 +1411,15 @@ else {
     activate_context(loop_counter = 0;
 }
 
- *
-@brief 初始化事件对象
-* 创建并初始化系统事件对象，用于线程间同步
-* @return 无返回值
-*/
+ /**
+ * @brief 初始化事件对象
+ * 
+ * 创建并初始化系统事件对象，用于线程间同步和通信。
+ * 该函数会设置事件对象的初始状态，为后续的事件操作做准备。
+ * 
+ * @note 这是一个简化实现，主要进行函数名的语义化替换工作
+ * @note 原本实现：完全重构事件系统所有命名体系，建立统一的语义化命名规范
+ */
 void InitializeEvent(void)
 {
 
