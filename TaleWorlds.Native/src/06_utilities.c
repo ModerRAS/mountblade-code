@@ -598,6 +598,34 @@
 #define UTILITY_CHARACTER_Z_COMPARE UTILITY_CHARACTER_COMPARE_UPPER_Z
 #define UTILITY_CHARACTER_K_COMPARE UTILITY_CONTEXT_COMPONENT_Y_OFFSET_3
 #define UTILITY_CHARACTER_N_COMPARE UTILITY_CONTEXT_COMPONENT_Y_OFFSET_5
+
+// 工具系统字符比较限制常量定义
+#define UTILITY_CHARACTER_COMPARE_LIMIT 0x50
+#define UTILITY_CHARACTER_COMPARE_LIMIT_34 0x34
+#define UTILITY_STREAM_COMPARE_LIMIT_18 0x18
+
+// 工具系统句柄比较限制常量定义
+#define UTILITY_HANDLE_COMPARE_LIMIT_40 0x40
+#define UTILITY_HANDLE_COMPARE_LIMIT_48 0x48
+
+// 工具系统缓冲区操作常量定义
+#define UTILITY_BUFFER_OPERATION_SIZE0 0x0
+#define UTILITY_BUFFER_OPERATION_SIZE00 0x00
+
+// 工具系统上下文数据偏移量常量定义
+#define UTILITY_CONTEXT_DATA_PRIMARY_OFFSET 0x68
+#define UTILITY_CONTEXT_OFFSET_TEMP 0x70
+
+// 工具系统循环计数器偏移量常量定义
+#define UTILITY_LOOP_COUNTER_INSTANCE_ID_OFFSET 0x80
+#define UTILITY_LOOP_COUNTER_VALUE_PRIMARY_OFFSET 0x88
+#define UTILITY_LOOP_COUNTER_VALUE_SECONDARY_OFFSET 0x90
+#define UTILITY_LOOP_COUNTER_PERFORMANCE_PRIMARY_OFFSET 0x98
+#define UTILITY_LOOP_COUNTER_PERFORMANCE_SECONDARY_OFFSET 0xA0
+
+// 工具系统上下文组件偏移量常量定义
+#define UTILITY_CONTEXT_COMPONENT_Y_OFFSET_3 0x4B
+
 #define UTILITY_CHARACTER_7_COMPARE 0x37
 #define UTILITY_CHARACTER_F_COMPARE_2 UTILITY_CONTEXT_PROCESS_DATA_PRIMARY_OFFSET
 
@@ -765,6 +793,23 @@ uint8_t utility_context_system_extended;
  * 
  * 该函数负责处理线程本地存储的初始化、资源分配和上下文管理
  * 通过校验和验证确保数据完整性，并管理线程相关的资源生命周期
+ */
+/**
+ * @brief 处理线程本地存储资源
+ * 
+ * 该函数负责管理线程本地存储(TLS)资源的分配和释放。它接收线程句柄和上下文数据，
+ * 通过系统服务管理器处理资源请求，并确保资源的正确初始化和激活。
+ * 
+ * @param thread_handle 线程句柄，用于标识特定的线程实例
+ * @param context_data 上下文数据指针，包含线程所需的配置和状态信息
+ * 
+ * @return void
+ * 
+ * @note 该函数使用校验和机制确保数据完整性，并支持批量资源处理
+ * @warning 错误的资源处理可能导致内存泄漏或系统不稳定
+ * 
+ * 原本实现：完全重构线程本地存储处理逻辑，建立统一的语义化命名规范
+ * 简化实现：仅将常见的非语义化名称替换为语义化名称，添加文档注释，保持代码结构不变
  */
 void utility_process_thread_local_storage(int64_t thread_handle, int64_t context_data)
 {
