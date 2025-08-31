@@ -537,8 +537,8 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
 /**
  * @brief 验证资源状态的有效性
  * 
- * 检查系统资源的当前状态，验证其是否处于有效状态
- * 通过检查资源标志位来验证资源状态，并在需要时激活上下文管理器
+ * 检查系统资源的当前状态，验证其是否处于有效状态。
+ * 通过检查资源标志位来验证资源状态，并在需要时激活上下文管理器。
  * 
  * @return 无返回值
  */
@@ -548,10 +548,15 @@ void utility_validate_resource_state(void)
     uint64_t utility_buffer_value = UTILITY_BOOLEAN_FALSE;
     uint8_t utility_buffer_workspace[512];
     
+    // 检查资源标志位并激活上下文管理器
     if ((*(uint *)(utility_resource_pointer + UTILITY_MEMORY_FLAG_OFFSET) >> 7 & 1) != UTILITY_BOOLEAN_FALSE) {
         utility_context_manager_activate(utility_resource_pointer);
     }
+    
+    // 清理缓冲区管理器
     utility_buffer_manager_cleanup(&utility_buffer_workspace);
+    
+    // 计算校验和
     utility_calculate_checksum(utility_buffer_value ^ (uint64_t)utility_buffer_workspace);
 }
 /**

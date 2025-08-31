@@ -2069,7 +2069,7 @@ label_:
       system_temp_pointer13 = system_buffer_pointer70;
     }
     system_temp_uint4 = system_string_to_integer(system_temp_pointer13);
-    *(uint32_t *)(system_data_pointer + 0x7b4) = system_temp_uint4;
+    *(uint32_t *)(system_data_pointer + SYSTEM_MEMORY_OFFSET_0X7B4) // 使用常量替换硬编码偏移量 = system_temp_uint4;
     system_buffer_pointer78 = &system_null_data_buffer;
     if (system_buffer_pointer70 != (void *)0x0) {
       system_event_handler();
@@ -12057,7 +12057,7 @@ label_:
               file_handle_primary = _wfsopen(system_temp_long4,system_local_pointer8,SYSTEM_BUFFER_SIZE_32);
               if (file_handle_primary != 0) {
                 system_local_pointer8 = &file_error_message_primary;
-                system_temp_uint5 = 0xeb;
+                system_temp_uint5 = SYSTEM_ERROR_CODE_0XEB; // 使用常量替换硬编码错误码
                 system_context = system_temp_long4;
                 goto label_;
               }
@@ -12065,7 +12065,7 @@ label_:
               system_temp_long2 = 0;
             } while (system_temp_int3 < 9);
             system_local_pointer8 = &file_error_message_secondary;
-            system_temp_uint5 = 0xef;
+            system_temp_uint5 = SYSTEM_ERROR_CODE_0XEF; // 使用常量替换硬编码错误码
 label_:
             system_handle_error(&file_error_handler,system_temp_uint5,&file_error_context,system_local_pointer8,system_context);
             free(data_definitions_system_local_long6);
@@ -12251,14 +12251,14 @@ label_:
       file_handle_primary = _wfsopen(system_temp_long4);
       if (file_handle_primary != 0) {
         system_local_pointer8 = &file_error_message_primary;
-        system_temp_uint5 = 0xeb;
+        system_temp_uint5 = SYSTEM_ERROR_CODE_0XEB; // 使用常量替换硬编码错误码
         goto label_;
       }
       data_definitions_system_local_int6 = data_definitions_system_local_int6 + 1;
       system_temp_long2 = 0;
     } while (data_definitions_system_local_int6 < 9);
     system_local_pointer8 = &file_error_message_secondary;
-    system_temp_uint5 = 0xef;
+    system_temp_uint5 = SYSTEM_ERROR_CODE_0XEF; // 使用常量替换硬编码错误码
 label_:
     system_handle_error(&file_error_handler,system_temp_uint5,&file_error_context,system_local_pointer8);
     free(system_temp_long3);
