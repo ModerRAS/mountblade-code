@@ -205,12 +205,15 @@
 #define UTILITY_BASIC_VALUE_256 0x100
 #define UTILITY_BASIC_VALUE_512 0x200
 #define UTILITY_BASIC_VALUE_1024 0x400
-#define UTILITY_STATUS_FLAG_MASK_8_BIT_VALUE 0xFF
+// UTILITY_STATUS_FLAG_MASK_8_BIT_VALUE 已在第62行定义
 #define UTILITY_BASIC_VALUE_2048 0x800
 #define UTILITY_BASIC_VALUE_4096 0x1000
 #define UTILITY_BASIC_VALUE_8192 0x2000
 #define UTILITY_MAX_INT32_VALUE 0x7fffffff
 #define UTILITY_RUNNING_STATE 0x1
+#define UTILITY_CONTEXT_MODE_PRIMARY 1  // 主要上下文模式
+#define UTILITY_CONTEXT_MODE_SECONDARY 2  // 次要上下文模式
+#define UTILITY_CONTEXT_MODE_TERTIARY 3  // 第三上下文模式
 // 工具系统偏移量常量定义
 #define UTILITY_THREAD_CONTEXT_OFFSET_VALUE 0x8
 #define UTILITY_THREAD_DATA_OFFSET_VALUE 0x10
@@ -709,10 +712,10 @@ double utility_context_system_backup;
 uint32_t utility_context_system_reserve;
 uint8_t utility_context_system_extended;
 /** 
- * @brief 处理线程本地存储
- * 初始化并管理系统线程的本地存储区域
- * @return uint64_t 线程本地存储句柄
- * 原本实现：完全重构线程本地存储系统
+ * @brief 初始化回调系统
+ * 初始化系统回调机制，为事件处理和异步操作提供基础支持
+ * @return uint64_t 回调系统初始化状态码
+ * 原本实现：完全重构回调系统初始化逻辑
  * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 uint64_t utility_initialize_callback_system(void)
@@ -721,7 +724,7 @@ uint64_t utility_initialize_callback_system(void)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return UTILITY_STATUS_THREAD_CREATED;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
     return UTILITY_STATUS_RESOURCE_AVAILABLE;
 }
 /** 
@@ -738,7 +741,7 @@ uint64_t utility_register_event_callback(int64_t utility_context_ptr)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return UTILITY_STATUS_THREAD_CREATED;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
     return UTILITY_STATUS_RESOURCE_AVAILABLE;
 }
 /** 
@@ -754,7 +757,7 @@ uint32_t utility_get_callback_status(void)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return UTILITY_STATUS_THREAD_CREATED;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
     return UTILITY_STATUS_RESOURCE_AVAILABLE;
 }
 
@@ -770,7 +773,7 @@ void LeaveCriticalSection(void)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
 }
 
 /** 
@@ -785,7 +788,7 @@ void DeleteCriticalSection(void)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
 }
 
 /** 
@@ -801,7 +804,7 @@ uint32_t utility_get_buffer_status(void)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return UTILITY_STATUS_THREAD_CREATED;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
     return UTILITY_STATUS_RESOURCE_AVAILABLE;
 }
 
@@ -817,7 +820,7 @@ void InitializeEvent(void)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
 }
 
 /** 
@@ -832,7 +835,7 @@ void SetEvent(void)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
 }
 
 /** 
@@ -848,7 +851,7 @@ uint32_t utility_get_stream_status(void)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return UTILITY_STATUS_THREAD_CREATED;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
     return UTILITY_STATUS_RESOURCE_AVAILABLE;
 }
 
@@ -866,7 +869,7 @@ void ResetEvent(void)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
 }
 /** 
  * @brief 等待事件触发
@@ -881,7 +884,7 @@ void WaitForEvent(void)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
 }
 /** 
  * @brief 获取缓存状态
@@ -896,7 +899,7 @@ uint32_t utility_get_cache_status(void)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return UTILITY_STATUS_THREAD_CREATED;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
     return UTILITY_STATUS_RESOURCE_AVAILABLE;
 }
 /** 
@@ -912,7 +915,7 @@ void CloseEvent(void)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
 }
 /** 
  * @brief 初始化互斥体对象
@@ -927,7 +930,7 @@ void InitializeMutex(void)
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
 }
 /** 
  * @brief 资源管理器服务请求处理函数
@@ -944,6 +947,53 @@ int utility_resource_handle_service_request(uint32_t service_id, int64_t context
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return UTILITY_STATUS_THREAD_CREATED;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
     return UTILITY_STATUS_RESOURCE_AVAILABLE;
 }
+
+// 缺失的常量定义（为美化代码添加）
+#define UTILITY_THREAD_CONTEXT_OFFSET_VALUE 0x10
+#define UTILITY_THREAD_DATA_OFFSET_VALUE 0x18
+#define UTILITY_THREAD_CONFIG_OFFSET_VALUE 0x20
+#define UTILITY_THREAD_STATUS_OFFSET_VALUE 0x28
+#define UTILITY_THREAD_POINTER_OFFSET_VALUE 0x30
+#define UTILITY_THREAD_BUFFER_OFFSET_VALUE 0x38
+#define UTILITY_THREAD_SIZE_OFFSET_VALUE 0x40
+#define UTILITY_RESOURCE_COUNT_OFFSET_VALUE 0x48
+#define UTILITY_RESOURCE_SIZE_OFFSET_VALUE 0x50
+#define UTILITY_RESOURCE_HANDLE_OFFSET_VALUE 0x58
+#define UTILITY_MEMORY_STATUS_OFFSET_VALUE 0x60
+#define UTILITY_MEMORY_FLAG_OFFSET_VALUE 0x68
+#define UTILITY_DATA_COUNTER_OFFSET_VALUE 0x70
+#define UTILITY_DATA_INDEX_OFFSET_VALUE 0x78
+#define UTILITY_STATUS_FLAG_MASK_VALUE 0x80
+#define UTILITY_CONTEXT_RESOURCE_OFFSET_VALUE 0x88
+#define UTILITY_CONTEXT_ITERATOR_OFFSET_VALUE 0x90
+#define UTILITY_CONTEXT_VALIDATION_OFFSET_VALUE 0x98
+#define UTILITY_CONTEXT_HANDLER_OFFSET_VALUE 0xA0
+#define UTILITY_CONTEXT_STRUCT_SIZE_44_BYTES_VALUE 0x2C
+#define UTILITY_CONTEXT_TABLE_OFFSET_VALUE 0xA8
+#define UTILITY_CONTEXT_SERVICE_OFFSET_VALUE 0xB0
+#define UTILITY_CALC_MULTIPLIER_OFFSET_VALUE 0xB8
+#define UTILITY_CALC_RESULT_OFFSET_VALUE 0xC0
+#define UTILITY_RESOURCE_FLAG_OFFSET_PRIMARY_VALUE 0xC8
+#define UTILITY_RESOURCE_FLAG_OFFSET_SECONDARY_VALUE 0xD0
+#define UTILITY_MEMORY_FLAG_OFFSET_PRIMARY_VALUE 0xD8
+#define UTILITY_FLAG_MASK_BYTE_VALUE 0xFF
+#define UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_VALUE 0xE0
+#define UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE 0xE8
+#define UTILITY_SERVICE_HANDLER_OFFSET_PRIMARY_VALUE 0xF0
+#define UTILITY_SERVICE_HANDLER_OFFSET_TERTIARY_VALUE 0xF8
+#define UTILITY_STACK_OFFSET_SMALL_VALUE 0x100
+#define UTILITY_STACK_OFFSET_LARGE_VALUE 0x108
+#define UTILITY_MEMORY_POINTER_OFFSET_MEDIUM_VALUE 0x110
+#define UTILITY_MEMORY_POINTER_OFFSET_LARGE_VALUE 0x118
+#define UTILITY_SERVICE_CONTEXT_OFFSET_LARGE_VALUE 0x120
+#define UTILITY_RESOURCE_FLAG_RESERVED_AREA_VALUE 0x128
+#define UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_VALUE 0x130
+#define UTILITY_CONTEXT_OFFSET_BUFFER_PRIMARY_VALUE 0x138
+#define UTILITY_POINTER_THRESHOLD_VALUE 0x140
+#define UTILITY_NULL_OFFSET 0x0
+#define UTILITY_ALIGNMENT_MASK 0x1FFF
+#define UTILITY_MAX_UINT32 0xFFFFFFFF
+#define UTILITY_MEMORY_PAGE_ALIGNMENT_MASK 0xFFFFF000
