@@ -122,12 +122,30 @@
 #define UTILITY_THREAD_DATA_OFFSET0 0x20
 #define UTILITY_CONTEXT_RESOURCE_OFFSET0 0x24
 
+/* 新增硬编码地址常量定义 - 2025年8月31日批次美化 */
+#define UTILITY_RESOURCE_FLAG_OFFSET0 UTILITY_RESOURCE_FLAG_OFFSET0
+#define UTILITY_RESOURCE_FLAG_OFFSET8 UTILITY_RESOURCE_FLAG_OFFSET8
+#define UTILITY_RESOURCE_FLAG_OFFSET0_B 0x4b8
+#define UTILITY_THREAD_BUFFER_OFFSET0 0x468
+#define UTILITY_THREAD_BUFFER_OFFSET8 0x470
+#define UTILITY_THREAD_BUFFER_OFFSET9 0x490
+#define UTILITY_RESOURCE_FLAG_OFFSET9 0x5e0
+#define UTILITY_CONTEXT_OFFSET_4A 0x4a
+#define UTILITY_CONTEXT_OFFSET_6C 0x6c
+#define UTILITY_CONTEXT_OFFSET_7C 0x7c
+#define UTILITY_SERVICE_CONTEXT_OFFSET_800 0x800
+#define UTILITY_SERVICE_HANDLER_OFFSET_600 0x600
+#define UTILITY_SERVICE_CONTEXT_OFFSET_2E8 0x2e8
+#define UTILITY_STATUS_ENABLED_FLAG1 0x37
+
+/* 新增硬编码数值常量定义 - 2025年8月31日批次美化 */
+#define UTILITY_STREAM_TYPE_ROOT 0x4a4f5250
+#define UTILITY_STREAM_TYPE_KNOWN 0x494b4e42
+
 /* 系统保留变量 */
 void *Excepointer_;
 
 /* 工具系统全局变量定义 */
-/* 全局数据管理 */
-// 全局数据管理 - 系统核心数据存储
 void *utility_global_data_primary;
 void *utility_global_data_secondary;
 void *utility_global_data_tertiary;
@@ -140,19 +158,15 @@ int utility_global_status_flag_secondary;
 void *utility_system_context;
 long long utility_configuration_data;
 long long utility_state_machine_data;
-// 缓冲区管理 - 系统内存缓冲区
 void *utility_buffer_primary;
 void *utility_buffer_secondary;
 void *utility_buffer_tertiary;
 void *utility_buffer_quaternary;
 void *utility_context_manager;
-/* 网络上下文管理 */
-// 网络上下文管理 - 网络通信相关数据
 void *utility_network_context_primary;
 void *utility_network_context_secondary;
 void *utility_network_context_tertiary;
 void *utility_network_context_quaternary;
-// 资源管理 - 系统资源分配和跟踪
 void *utility_resource_main;
 void *utility_resource_config;
 void *utility_resource_tertiary;
@@ -310,8 +324,7 @@ utility_calculate_checksum(utility_checksum_result ^ (uint64_t)utility_large_wor
  * @param context_pointer 线程上下文指针
  * @return 无返回值
  */
-void // 清理线程资源，释放线程相关内存
-  utility_cleanup_thread_resources(int64_t context_pointer)
+void utility_cleanup_thread_resources(int64_t context_pointer)
 {
     int64_t utility_iteration_index;
     int utility_processed_items;
@@ -713,27 +726,6 @@ if (context_handle != '\0') {
 utility_context_manager_activate();
 }
 return 0;
-}
-/**
-* @brief 初始化内存池
-* 创建并初始化系统内存池，用于管理动态内存分配
-* @return 无返回值
-*/
-/**
- * 初始化内存池系统
- * 创建和管理系统内存池，为后续的内存分配提供基础
- * 
- * @return 无返回值
- */
-void utility_initialize_memory_pool(void)
-/**
- * 处理资源指针的转换和管理
- * 将原始资源指针转换为系统可用的资源引用
- * 
- * @param context_handle 输入的原始资源指针值
- * @return 转换后的资源指针，0表示失败
- */
-uint64_t utility_process_resource_pointer(int64_t context_handle)
 {
 uint64_t utility_resource_value;
 int64_t utility_stack_context_value;
@@ -21497,13 +21489,13 @@ utility_system_initialize();
 *(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET8) = 0;
 *(uint32_t *)(utility_iteration_index + UTILITY_DATA_CONTEXT_OFFSET) = 0;
 *(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = &utility_system_reserved_data;
-*(uint64_t *)(utility_iteration_index + 0x4a0) = &utility_system_data;
-if (*(int64_t *)(utility_iteration_index + 0x4a8) != 0) {
+*(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = &utility_system_data;
+if (*(int64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET8) != 0) {
 utility_system_initialize();
 }
-*(uint64_t *)(utility_iteration_index + 0x4a8) = 0;
+*(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET8) = 0;
 *(uint32_t *)(utility_iteration_index + 0x4b8) = 0;
-*(uint64_t *)(utility_iteration_index + 0x4a0) = &utility_system_reserved_data;
+*(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = &utility_system_reserved_data;
 *(uint64_t *)(utility_iteration_index + UTILITY_THREAD_BUFFER_OFFSET0) = &utility_system_data;
 if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_BUFFER_OFFSET8) != 0) {
 utility_system_initialize();
@@ -21696,13 +21688,13 @@ utility_system_initialize();
 *(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET8) = 0;
 *(uint32_t *)(utility_iteration_index + UTILITY_DATA_CONTEXT_OFFSET) = 0;
 *(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = &utility_system_reserved_data;
-*(uint64_t *)(utility_iteration_index + 0x4a0) = &utility_system_data;
-if (*(int64_t *)(utility_iteration_index + 0x4a8) != 0) {
+*(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = &utility_system_data;
+if (*(int64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET8) != 0) {
 utility_system_initialize();
 }
-*(uint64_t *)(utility_iteration_index + 0x4a8) = 0;
+*(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET8) = 0;
 *(uint32_t *)(utility_iteration_index + 0x4b8) = 0;
-*(uint64_t *)(utility_iteration_index + 0x4a0) = &utility_system_reserved_data;
+*(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = &utility_system_reserved_data;
 *(uint64_t *)(utility_iteration_index + UTILITY_THREAD_BUFFER_OFFSET0) = &utility_system_data;
 if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_BUFFER_OFFSET8) != 0) {
 utility_system_initialize();
@@ -21754,7 +21746,7 @@ if (*(int64_t *)(utility_iteration_index + 0x490) != 0) {
 utility_system_initialize();
 }
 *(uint64_t *)(utility_iteration_index + 0x490) = 0;
-*(uint32_t *)(utility_iteration_index + 0x4a0) = 0;
+*(uint32_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = 0;
 *(uint64_t *)(utility_iteration_index + UTILITY_THREAD_BUFFER_OFFSET8) = &utility_system_reserved_data;
 *(uint64_t *)(utility_iteration_index + 0x468) = &utility_system_data;
 if (*(int64_t *)(utility_iteration_index + 0x470) != 0) {
@@ -21994,7 +21986,7 @@ if (*(int64_t *)(utility_iteration_index + 0x490) != 0) {
 utility_system_initialize();
 }
 *(uint64_t *)(utility_iteration_index + 0x490) = 0;
-*(uint32_t *)(utility_iteration_index + 0x4a0) = 0;
+*(uint32_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = 0;
 *(uint64_t *)(utility_iteration_index + UTILITY_THREAD_BUFFER_OFFSET8) = &utility_system_reserved_data;
 *(uint64_t *)(utility_iteration_index + 0x468) = &utility_system_data;
 if (*(int64_t *)(utility_iteration_index + 0x470) != 0) {
@@ -22438,13 +22430,13 @@ utility_system_initialize();
 *(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET8) = 0;
 *(uint32_t *)(utility_iteration_index + UTILITY_DATA_CONTEXT_OFFSET) = 0;
 *(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = &utility_system_reserved_data;
-*(uint64_t *)(utility_iteration_index + 0x4a0) = &utility_system_data;
-if (*(int64_t *)(utility_iteration_index + 0x4a8) != 0) {
+*(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = &utility_system_data;
+if (*(int64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET8) != 0) {
 utility_system_initialize();
 }
-*(uint64_t *)(utility_iteration_index + 0x4a8) = 0;
+*(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET8) = 0;
 *(uint32_t *)(utility_iteration_index + 0x4b8) = 0;
-*(uint64_t *)(utility_iteration_index + 0x4a0) = &utility_system_reserved_data;
+*(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = &utility_system_reserved_data;
 return;
 }
 *(uint64_t *)(utility_iteration_index + 0x5e0) = &utility_system_data;
@@ -23361,13 +23353,13 @@ utility_system_initialize();
 *(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET8) = 0;
 *(uint32_t *)(utility_iteration_index + UTILITY_DATA_CONTEXT_OFFSET) = 0;
 *(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = &utility_system_reserved_data;
-*(uint64_t *)(utility_iteration_index + 0x4a0) = &utility_system_data;
-if (*(int64_t *)(utility_iteration_index + 0x4a8) != 0) {
+*(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = &utility_system_data;
+if (*(int64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET8) != 0) {
 utility_system_initialize();
 }
-*(uint64_t *)(utility_iteration_index + 0x4a8) = 0;
+*(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET8) = 0;
 *(uint32_t *)(utility_iteration_index + 0x4b8) = 0;
-*(uint64_t *)(utility_iteration_index + 0x4a0) = &utility_system_reserved_data;
+*(uint64_t *)(utility_iteration_index + UTILITY_RESOURCE_FLAG_OFFSET0) = &utility_system_reserved_data;
 return;
 }
 *(uint64_t *)(utility_iteration_index + 0x5e0) = &utility_system_data;
