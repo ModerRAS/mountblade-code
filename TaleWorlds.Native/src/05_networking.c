@@ -47,28 +47,51 @@ void *network_connection_query_function;
 void *network_connection_data_function;
 void *network_connection_validate_function;
 
+/* 网络核心连接管理变量 */
 /**
  * @brief 网络连接主处理器
  * 负责管理主要的网络连接逻辑
  */
 void *network_connection_handler_primary;
+
+/** 主网络连接状态 */
 int network_connection_primary_state;
+
+/** 辅助网络连接状态 */
 int network_connection_secondary_state;
+
+/** 网络缓冲池管理器 */
 void *network_buffer_pool;
+
+/** 主网络配置对象 */
 void *network_config_primary;
+
+/** 辅助网络配置对象 */
 void *network_config_secondary;
+
+/* 网络套接字管理 */
 int network_socket_primary;
 int network_socket_secondary;
 int network_socket_tertiary;
+
+/** 网络连接句柄 */
 void *network_connection_handle;
+
+/** 网络线程ID */
 unsigned long network_thread_id;
+
+/** 网络错误代码 */
 int network_error_code;
+
+/* 网络缓冲区管理 */
 void *network_buffer_start;
 void *network_buffer_end;
 size_t network_buffer_size;
 void *network_buffer_pointer;
 size_t network_buffer_capacity;
 int network_buffer_flags;
+
+/* 网络数据包管理 */
 unsigned int network_packet_counter;
 size_t network_packet_size;
 int network_packet_type;
@@ -76,15 +99,20 @@ int network_packet_flags;
 unsigned int network_packet_checksum;
 unsigned int network_packet_sequence;
 unsigned long network_packet_timestamp;
+
+/* 网络配置参数 */
 int network_config_timeout;
 int network_config_retry_count;
 int network_config_max_connections;
 
+/* 网络连接处理器层次结构 */
 /**
  * @brief 网络连接次级处理器
  * 负责管理次要的网络连接逻辑
  */
 void *network_connection_handler_secondary;
+
+/** 网络配置缓冲区大小 */
 size_t network_config_buffer_size;
 
 /**
@@ -98,6 +126,8 @@ void *network_connection_handler_tertiary;
  * 负责管理扩展的网络连接逻辑
  */
 void *network_connection_handler_extended;
+
+/** 网络配置端口号 */
 unsigned short network_config_port;
 
 /**
