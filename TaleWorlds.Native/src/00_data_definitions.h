@@ -14856,10 +14856,11 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_BUFFER_ALLOC_RESULT_STACK_ALLOCATED 0xb0                      // 缓冲区分配结果0xb0
 #define SYSTEM_BUFFER_ALLOC_RESULT_STACK_RESERVED 0xb4                      // 缓冲区分配结果0xb4
 #define SYSTEM_BUFFER_ALLOC_RESULT_STACK_LOCKED 0xb5                      // 缓冲区分配结果0xb5
-// 路径缓冲区大小常量定义（2025年8月30日最终批次补充）
+// 路径缓冲区大小常量定义（2025年8月30日最终批次语义化美化）
 #define SYSTEM_PATH_BUFFER_SIZE_MAXIMAL 38                              // 路径缓冲区大小38（最大）
-// 指针偏移量常量定义（2025年8月30日最终批次补充）
-#define SYSTEM_POINTER_OFFSET_1 0x1                               // 指针偏移量1
+#define SYSTEM_PATH_BUFFER_SIZE_ZERO 0                                 // 路径缓冲区大小0（零）
+#define SYSTEM_PATH_BUFFER_SIZE_MINIMAL 8                                 // 路径缓冲区大小8（最小）
+#define SYSTEM_PATH_BUFFER_SIZE_EXTRA_LARGE 0x30                            // 路径缓冲区大小48（特大）
 // 寄存器偏移量常量定义（2025年8月30日最终批次补充）
 #define SYSTEM_OFFSET_REGISTER_1C 0x1c                             // 寄存器1C偏移量
 #define SYSTEM_OFFSET_REGISTER_1D 0x1d                             // 寄存器1D偏移量
