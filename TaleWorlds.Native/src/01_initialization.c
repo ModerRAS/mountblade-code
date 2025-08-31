@@ -1,7 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 #include <stdlib.h>
 #include <string.h>
-
 // 系统初始化全局变量声明
 static uint32_t primary_context_data;
 static void *primary_context_pointer;

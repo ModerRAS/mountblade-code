@@ -1165,17 +1165,6 @@
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了硬编码十六进制常量的语义化替换
 
-// 本次美化内容：修复循环定义的系统常量
-// - 将SYSTEM_CONSTANT_UNIT从循环定义改为实际值1
-// - 将SYSTEM_CONSTANT_PAIR从循环定义改为实际值2
-// - 将SYSTEM_CONSTANT_TRIPLE从循环定义改为实际值3
-// - 将SYSTEM_CONSTANT_QUADRUPLE从循环定义改为实际值0x2c
-// - 添加了SYSTEM_CONSTANT_PAIR0（SYSTEM_CHAR_SPACE）、SYSTEM_CONSTANT_PAIR8（0x28）等常量定义
-// - 添加了SYSTEM_CONSTANT_PAIRff（SYSTEM_CHAR_SLASHf）、SYSTEM_CONSTANT_TRIPLE800000（0x3800000）等常量定义
-// - 添加了SYSTEM_CONSTANT_TRIPLEf（0x3f）常量定义
-// - 添加了SYSTEM_CONSTANT_LOWERCASE_P（SYSTEM_CHAR_LOWERCASE_P）、SYSTEM_CONSTANT_SPECIAL_CHAR（SYSTEM_CHAR_LOWERCASE_X6）等常量定义
-// - 修复了循环引用问题，提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了系统常量的循环定义问题
 
 // 新增美化内容：将变量名替换为语义化名称
 // - 将global_data_ptr替换为system_global_data_pointer_variable等全局数据指针变量名
