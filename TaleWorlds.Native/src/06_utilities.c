@@ -2350,6 +2350,13 @@ void *utility_data_segment_bd80;
  * @note 原本实现：完全重构工具系统初始化流程，建立完整的组件初始化体系
  * @note 简化实现：仅处理基本的初始化流程，保持代码结构不变
  */
+/**
+ * 函数: initialize_utility_system
+ * 功能: 初始化工具系统，设置系统参数和安全机制
+ * 参数: utility_context_pointer - 系统上下文指针
+ *       utility_data_ptr - 数据指针
+ * 返回值: 无
+ */
 void initialize_utility_system(long long utility_context_pointer,long long utility_data_ptr)
 
 {
@@ -20107,42 +20114,42 @@ ulong long utility_context_data_handler(void)
       utility_result_code = utility_context_data_handler(*context_data_pointer,&utility_stack_buffer,1,4,0);
     }
 LAB_18089cd46:
-    if ((int)utility_result_ptr != 0) {
-      return utility_result_ptr;
+    if ((int)utility_result_code != 0) {
+      return utility_result_code;
     }
-    if (0x3ff < utility_utility_stack_param) {
+    if (0x3ff < utility_stack_param1) {
       return 0xd;
     }
-    utility_result_ptr = utility_context_pointerr_process_data(utility_global_register_rbp + 0x48);
-    if ((int)utility_result_ptr == 0) goto LAB_18089cd76;
+    utility_result_code = utility_context_data_handler(utility_global_register_rbp + 0x48);
+    if ((int)utility_result_code == 0) goto LAB_18089cd76;
   }
   else {
-    utility_result_ptr = 0x1c;
+    utility_result_code = 0x1c;
   }
-  if ((int)utility_result_ptr != 0) {
-    return utility_result_ptr;
+  if ((int)utility_result_code != 0) {
+    return utility_result_code;
   }
 LAB_18089cd76:
   utility_system_item_count = 0;
-  if (0 < (int)utility_utility_stack_param) {
+  if (0 < (int)utility_stack_param1) {
     do {
-      utility_result_ptr = utility_context_pointerr_process_data();
-      if ((int)utility_result_ptr != 0) {
-        return utility_result_ptr;
+      utility_result_code = utility_context_data_handler();
+      if ((int)utility_result_code != 0) {
+        return utility_result_code;
       }
       utility_system_item_count = utility_system_item_count + 1;
-    } while (utility_system_item_count < (int)utility_utility_stack_param);
+    } while (utility_system_item_count < (int)utility_stack_param1);
   }
   if (*(uint *)(utility_global_register_rsi + 8) < 0x6e) {
-    utility_result_ptr = 0;
+    utility_result_code = 0;
   }
   else if (*(int *)(utility_global_register_rsi[1] + UTILITY_THREAD_TLS_CONTEXT_OFFSET) == 0) {
-    utility_result_ptr = utility_context_pointerr_process_data(*utility_global_register_rsi,utility_global_register_rbp + 0x5c);
+    utility_result_code = utility_context_data_handler(*utility_global_register_rsi,utility_global_register_rbp + 0x5c);
   }
-  if (utility_result_ptr != 0) {
-    return (ulong long)utility_result_ptr;
+  if (utility_result_code != 0) {
+    return (ulong long)utility_result_code;
   }
-  utility_context_pointerr_process_data();
+  utility_context_data_handler();
 }
 
 
