@@ -72,9 +72,7 @@
 #define UTILITY_STATUS_FLAG_MASK_0X7C 0x7c
 #define UTILITY_STATUS_ENABLED_FLAG_9 0x9
 #define UTILITY_STATUS_ENABLED_FLAG_F 0xf
-#define UTILITY_STATUS_ENABLED_FLAG_A0 UTILITY_CONTEXT_OFFSET_A0
 #define UTILITY_STATUS_FLAG_MASK_8 0x8
-#define UTILITY_RESOURCE_FLAG_A0 UTILITY_CONTEXT_OFFSET_A0
 #define UTILITY_RESOURCE_FLAG_OFFSET_0XB8 0xb8
 #define UTILITY_RESOURCE_FLAG_OFFSET_0XE9 0xe9
 #define UTILITY_SERVICE_OFFSET_D0 (UTILITY_STATUS_INVALID_PARAMETER  + UTILITY_NULL_OFFSET)
@@ -105,7 +103,6 @@
 #define UTILITY_CONTEXT_SIZE_MULTIPLIER 0x44
 #define UTILITY_BUFFER_ELEMENT_SIZE 0xc
 #define UTILITY_STACK_OFFSET_SMALL 0x25
-#define UTILITY_STACK_OFFSET_MEDIUM UTILITY_CONTEXT_OFFSET_A0
 #define UTILITY_STACK_OFFSET_LARGE 0xa8
 #define UTILITY_MEMORY_POINTER_OFFSET_0 0x8
 #define UTILITY_STATUS_FLAG_MASK_0 0x10
@@ -123,6 +120,8 @@
 #define UTILITY_CONTEXT_OFFSET_29 0x29
 #define UTILITY_STATUS_FLAG_F 0xf
 #define UTILITY_CONTEXT_OFFSET_A0 0xa0
+#define UTILITY_CONTEXT_OFFSET_A8 0xa8
+#define UTILITY_BYTE_MASK_CLEAR_LAST_BIT 0xfe
 #define UTILITY_BOOLEAN_TRUE 1
 #define UTILITY_BOOLEAN_FALSE 0
 #define UTILITY_THREAD_DATA_OFFSET_0 0x20
@@ -136,7 +135,7 @@
 #define UTILITY_RESOURCE_FLAG_OFFSET9 0x5e0
 #define UTILITY_CONTEXT_OFFSET_4A 0x4a
 #define UTILITY_CONTEXT_OFFSET_C 0xc
-#define UTILITY_CONTEXT_OFFSET_6C 0x6c
+#define UTILITY_CONTEXT_OFFSET_6C UTILITY_CONTEXT_OFFSET_6C
 #define UTILITY_CONTEXT_OFFSET_7C 0x7c
 #define UTILITY_CONTEXT_OFFSET_C0 0xc0
 #define UTILITY_CHECKSUM_OFFSET_5F0 0x5f0
@@ -193,7 +192,6 @@
 #define UTILITY_FLAG_MASK_0XFFFF UTILITY_STATUS_FLAG_MASK_FFFf
 #define UTILITY_FLAG_MASK_0XFFFFFF UTILITY_FLAG_MASK_0XFFFFff
 #define UTILITY_FLAG_MASK_0XFFFFC000 UTILITY_FLAG_MASK_0xFFFFC000
-#define UTILITY_FLAG_MASK_THREAD_RUNNING 0x4000
 #define UTILITY_FLAG_MASK_NETWORK_ACTIVE 0x6000000
 #define UTILITY_FLAG_MASK_MEMORY_ALLOCATED 0x40000
 #define UTILITY_FLAG_MASK_0X3FFFFFFF 0x3FFFFFFF
@@ -225,7 +223,6 @@
 #define UTILITY_STREAM_TYPE_VRUC UTILITY_STREAM_TYPE_VRUC
 #define UTILITY_STREAM_TYPE_BDMC 0x42444d43
 #define UTILITY_STREAM_TYPE_IDMC 0x49444d43
-#define UTILITY_MEMORY_POINTER_OFFSET_1000 UTILITY_FLAG_MASK_THREAD_RUNNING
 #define UTILITY_RESOURCE_COUNT_OFFSET_DEFAULT 0x53494c
 
 #define UTILITY_CONTEXT_SIZE_MULTIPLIER_44 0x44
@@ -265,7 +262,8 @@
 #define UTILITY_CONNECTION_ID_OFFSET 0x6f4
 #define UTILITY_NETWORK_BUFFER_SIZE 0x738
 #define UTILITY_NEGATIVE_512MB00000000 -0x2000000000000000
-#define UTILITY_CONTEXT_OFFSET_A0 0xa0
+#define UTILITY_CONTEXT_OFFSET_A8 0xa8
+#define UTILITY_BYTE_MASK_CLEAR_LAST_BIT 0xfe
 #define UTILITY_STATUS_FLAG_F 0xf
 #define UTILITY_STATUS_ENABLED_FLAG_4 0x4
 
@@ -379,13 +377,6 @@ uint utility_context_system_auxiliary;
 double utility_context_system_backup;
 uint32_t utility_context_system_reserve;
 uint8_t utility_context_system_extended;
-/**
- * @brief 处理线程本地存储
- * 负责管理和处理线程的本地存储资源，包括资源创建、激活和清理
- * @param thread_handle 线程句柄，用于标识特定线程
- * @param context_data 上下文数据，包含线程的配置和状态信息
- * @return 无返回值
- */
 /**
  * @brief 处理线程本地存储
  * 
@@ -6234,7 +6225,7 @@ if (0 < *(int *)(utility_context_input_parameter + UTILITY_THREAD_DATA_OFFSET)) 
 do {
 utility_resource_context = (int)utility_resource_pointer + 1;
 utility_context_input_parameter = (uint8_t *)(utility_resource_pointer + 0xb + *(int64_t *)(utility_context_input_parameter + UTILITY_THREAD_CONTEXT_OFFSET));
-*utility_buffer_ptr = *utility_buffer_ptr & 0xfe;
+*utility_buffer_ptr = *utility_buffer_ptr & UTILITY_BYTE_MASK_CLEAR_LAST_BIT;
 utility_resource_context = utility_resource_pointer + 0xc;
 utility_resource_context = (uint64_t)utility_resource_context;
 } while ((int)utility_resource_pointer < *(int *)(utility_context_input_parameter + UTILITY_THREAD_DATA_OFFSET));
@@ -6244,7 +6235,7 @@ if ((utility_operation_result == UTILITY_BOOLEAN_FALSE) && (utility_operation_re
 *(uint32_t *)(utility_context_input_parameter + UTILITY_RESOURCE_HANDLE_OFFSET) = UTILITY_MAX_UINT32;
 *(uint32_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_94) = UTILITY_BOOLEAN_FALSE;
 }
-*(uint *)(utility_context_input_parameter + 0x6c) = *(uint *)(utility_context_input_parameter + 0x6c) & UTILITY_FLAG_MASK_DEBUG_BIT;
+*(uint *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_6C) = *(uint *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_6C) & UTILITY_FLAG_MASK_DEBUG_BIT;
 utility_resource_context = *(uint *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_6C);
 UTILITY_LABEL_VALIDATION_PASSED:
 if ((utility_resource_pointer >> UTILITY_STATUS_ENABLED_FLAG_9 & 1) != UTILITY_BOOLEAN_FALSE) {
@@ -6266,8 +6257,8 @@ return utility_resource_status_value;
 } while ((char)utility_stack_buffer_int_data[0] != (char)utility_resource_context);
 }
 else {
-*(uint64_t *)(utility_context_input_parameter + 0xa8) = UTILITY_BOOLEAN_FALSE;
-*(uint *)(utility_context_input_parameter + 0x6c) = *(uint *)(utility_context_input_parameter + 0x6c) | UTILITY_FLAG_MASK_NETWORK_ACTIVE;
+*(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8) = UTILITY_BOOLEAN_FALSE;
+*(uint *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_6C) = *(uint *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_6C) | UTILITY_FLAG_MASK_NETWORK_ACTIVE;
 *(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_SERVICE_OFFSET) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_context_input_parameter + UTILITY_RESOURCE_FLAG_A0) = UTILITY_BOOLEAN_FALSE;
 }
@@ -9703,7 +9694,7 @@ if (utility_operation_result == UTILITY_BOOLEAN_FALSE) {
 utility_resource_context_value = utility_resource_context_value;
 if (0 < utility_operation_result) {
 do {
-utility_operation_result = GlobalMemoryStatusEx(utility_context_input_parameter,(int64_t)(int)utility_resource_pointer * 0x6c + *(int64_t *)(utility_context_input_parameter + UTILITY_POINTER_OFFSET));
+utility_operation_result = GlobalMemoryStatusEx(utility_context_input_parameter,(int64_t)(int)utility_resource_pointer * UTILITY_CONTEXT_OFFSET_6C + *(int64_t *)(utility_context_input_parameter + UTILITY_POINTER_OFFSET));
 if (utility_operation_result != UTILITY_BOOLEAN_FALSE) {
 return;
 }
@@ -9850,7 +9841,7 @@ utility_resource_context_value = utility_resource_context_value;
 utility_resource_context_value = utility_primary_float_result;
 if (0 < utility_operation_result) {
 do {
-utility_operation_result = GlobalMemoryStatusEx(utility_resource_context_value,(int64_t)(int)utility_resource_pointer * 0x6c + *(int64_t *)(utility_aux_context_ptr + UTILITY_THREAD_DATA_OFFSET));
+utility_operation_result = GlobalMemoryStatusEx(utility_resource_context_value,(int64_t)(int)utility_resource_pointer * UTILITY_CONTEXT_OFFSET_6C + *(int64_t *)(utility_aux_context_ptr + UTILITY_THREAD_DATA_OFFSET));
 if (utility_operation_result != UTILITY_BOOLEAN_FALSE) {
 return;
 }
@@ -10345,7 +10336,7 @@ utility_parameter_value.component_y = utility_context_input_parameter[0x6e];
 utility_operation_result = (**(code **)**(uint64_t **)(utility_context_input_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_input_parameter + UTILITY_POINTER_OFFSET),&utility_parameter_value,4);
 if (utility_operation_result == UTILITY_BOOLEAN_FALSE) {
-utility_parameter_value.component_y = utility_context_input_parameter[0x6c];
+utility_parameter_value.component_y = utility_context_input_parameter[UTILITY_CONTEXT_OFFSET_6C];
 utility_operation_result = (**(code **)**(uint64_t **)(utility_context_input_parameter + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_context_input_parameter + UTILITY_POINTER_OFFSET),&utility_parameter_value,4);
 if (utility_operation_result == UTILITY_BOOLEAN_FALSE) {
@@ -11061,7 +11052,7 @@ if ((int)utility_resource_status_value == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_resource_context = get_file_time(*utility_buffer_ptr,utility_context_input_parameter + 0x6c);
+utility_resource_context = get_file_time(*utility_buffer_ptr,utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_6C);
 if ((int)utility_resource_status_value == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
@@ -12148,7 +12139,7 @@ if (((((int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE) &&
 (utility_resource_context = utility_resource_context, *(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) &&
 ((((utility_resource_context = GetLocalTime(*utility_buffer_ptr,utility_context_input_parameter + UTILITY_STATUS_FLAG_MASK_0), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE &&
 (utility_resource_context = utility_resource_context, *(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) &&
-(utility_resource_context = get_file_time(*utility_buffer_ptr,utility_context_input_parameter + 0xa8), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
+(utility_resource_context = get_file_time(*utility_buffer_ptr,utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
 (((utility_resource_context = utility_resource_context, *(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE &&
 (utility_resource_context = get_file_time(*utility_buffer_ptr,utility_context_input_parameter + 0x9c), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
 ((utility_resource_context = utility_resource_context, *(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE &&
@@ -12306,7 +12297,7 @@ if (((((int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE) &&
 (utility_resource_context = utility_resource_context, *(int *)(utility_resource_pointer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) &&
 ((((utility_resource_context = GetLocalTime(*utility_resource_pointer,utility_context_index_source + UTILITY_STATUS_FLAG_MASK_0), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE &&
 (utility_resource_context = utility_resource_context, *(int *)(utility_resource_pointer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) &&
-(utility_resource_context = get_file_time(*utility_resource_pointer,utility_context_index_source + 0xa8), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
+(utility_resource_context = get_file_time(*utility_resource_pointer,utility_context_index_source + UTILITY_CONTEXT_OFFSET_A8), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
 (((utility_resource_context = utility_resource_context, *(int *)(utility_resource_pointer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE &&
 (utility_resource_context = get_file_time(*utility_resource_pointer,utility_context_index_source + 0x9c), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
 ((utility_resource_context = utility_resource_context, *(int *)(utility_resource_pointer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE &&
@@ -12446,7 +12437,7 @@ if (((((int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE) &&
 (utility_resource_context = utility_resource_context, *(int *)(utility_resource_pointer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) &&
 ((((utility_resource_context = GetLocalTime(*utility_resource_pointer,utility_context_index_source + UTILITY_STATUS_FLAG_MASK_0), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE &&
 (utility_resource_context = utility_resource_context, *(int *)(utility_resource_pointer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) &&
-(utility_resource_context = get_file_time(*utility_resource_pointer,utility_context_index_source + 0xa8), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
+(utility_resource_context = get_file_time(*utility_resource_pointer,utility_context_index_source + UTILITY_CONTEXT_OFFSET_A8), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
 (((utility_resource_context = utility_resource_context, *(int *)(utility_resource_pointer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE &&
 (utility_resource_context = get_file_time(*utility_resource_pointer,utility_context_index_source + 0x9c), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
 ((utility_resource_context = utility_resource_context, *(int *)(utility_resource_pointer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE &&
@@ -12587,7 +12578,7 @@ if (((((int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE) &&
 (utility_resource_context = utility_resource_context, *(int *)(utility_resource_pointer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) &&
 ((((utility_resource_context = GetLocalTime(*utility_resource_pointer,utility_context_index_source + UTILITY_STATUS_FLAG_MASK_0), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE &&
 (utility_resource_context = utility_resource_context, *(int *)(utility_resource_pointer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE)) &&
-(utility_resource_context = get_file_time(*utility_resource_pointer,utility_context_index_source + 0xa8), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
+(utility_resource_context = get_file_time(*utility_resource_pointer,utility_context_index_source + UTILITY_CONTEXT_OFFSET_A8), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
 (((utility_resource_context = utility_resource_context, *(int *)(utility_resource_pointer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE &&
 (utility_resource_context = get_file_time(*utility_resource_pointer,utility_context_index_source + 0x9c), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
 ((utility_resource_context = utility_resource_context, *(int *)(utility_resource_pointer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE &&
@@ -16845,7 +16836,7 @@ if (((int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE) && (utility_resourc
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
 }
-utility_resource_context = utility_buffer_free(*utility_buffer_ptr,utility_context_input_parameter + 0x6c);
+utility_resource_context = utility_buffer_free(*utility_buffer_ptr,utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_6C);
 if (((int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE) && (utility_resource_context = utility_interface_renderer_draw(utility_context_input_parameter,utility_context_input_parameter + UTILITY_THREAD_BUFFER_OFFSET,0), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) {
 if ((*(int *)(utility_context_input_parameter + UTILITY_POINTER_OFFSET) - UTILITY_STATUS_RESOURCE_NOT_FOUND_U < UTILITY_STATUS_ENABLED_FLAG_1) &&
 (utility_resource_context = utility_audio_manager_control(utility_context_input_parameter,utility_context_input_parameter + UTILITY_CONTEXT_EXTENDED_OFFSET), (int)utility_resource_pointer != UTILITY_BOOLEAN_FALSE)) {
@@ -18531,7 +18522,7 @@ utility_resource_context = (**(code **)**(uint64_t **)(*utility_buffer_ptr + UTI
 (*(uint64_t **)(*utility_buffer_ptr + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 if (((((int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE) && (utility_resource_context = utility_environment_handle_manager(utility_context_input_parameter,utility_context_input_parameter + 100), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE))
 && (utility_resource_context = utility_environment_handle_manager(utility_context_input_parameter,utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_68), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
-(((utility_resource_context = utility_environment_handle_manager(utility_context_input_parameter,utility_context_input_parameter + 0x6c), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE &&
+(((utility_resource_context = utility_environment_handle_manager(utility_context_input_parameter,utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_6C), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE &&
 (utility_resource_context = utility_environment_handle_manager(utility_context_input_parameter,utility_context_input_parameter + UTILITY_STATUS_FLAG_MASK_0), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)) &&
 ((utility_resource_context = utility_environment_handle_manager(utility_context_input_parameter,utility_context_input_parameter + UTILITY_STATUS_FLAG_MASK4), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE &&
 (utility_resource_context = utility_environment_handle_manager(utility_context_input_parameter,utility_context_input_parameter + UTILITY_STATUS_FLAG_MASK_8), (int)utility_resource_pointer == UTILITY_BOOLEAN_FALSE)))))) {
@@ -19667,7 +19658,7 @@ return;
 }
 *(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_B0) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_context_input_parameter + 0xc0) = UTILITY_BOOLEAN_FALSE;
-*(uint64_t *)(utility_context_input_parameter + 0xa8) = &utility_system_reserved_area;
+*(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8) = &utility_system_reserved_area;
 return;
 }
 *(uint64_t *)(utility_context_input_parameter + UTILITY_STATUS_INVALID_PARAMETER8) = UTILITY_BOOLEAN_FALSE;
@@ -21679,10 +21670,10 @@ utility_system_initialize();
 return;
 }
 *(uint64_t *)(utility_iteration_index + UTILITY_CONTEXT_MULTIPLIER_OFFSET) = &utility_system_data;
-if (*(int64_t *)(utility_iteration_index + 0x6c0) != UTILITY_BOOLEAN_FALSE) {
+if (*(int64_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_6C0) != UTILITY_BOOLEAN_FALSE) {
 utility_system_initialize();
 }
-*(uint64_t *)(utility_iteration_index + 0x6c0) = UTILITY_BOOLEAN_FALSE;
+*(uint64_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_6C0) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_iteration_index + 0x6d0) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_iteration_index + UTILITY_CONTEXT_MULTIPLIER_OFFSET) = &utility_system_reserved_area;
 *(uint64_t *)(utility_iteration_index + 0x698) = &utility_system_data;
@@ -21919,10 +21910,10 @@ utility_system_initialize();
 return;
 }
 *(uint64_t *)(utility_iteration_index + UTILITY_CONTEXT_MULTIPLIER_OFFSET) = &utility_system_data;
-if (*(int64_t *)(utility_iteration_index + 0x6c0) != UTILITY_BOOLEAN_FALSE) {
+if (*(int64_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_6C0) != UTILITY_BOOLEAN_FALSE) {
 utility_system_initialize();
 }
-*(uint64_t *)(utility_iteration_index + 0x6c0) = UTILITY_BOOLEAN_FALSE;
+*(uint64_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_6C0) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_iteration_index + 0x6d0) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_iteration_index + UTILITY_CONTEXT_MULTIPLIER_OFFSET) = &utility_system_reserved_area;
 *(uint64_t *)(utility_iteration_index + 0x698) = &utility_system_data;
@@ -22814,7 +22805,7 @@ if (*(int64_t *)(utility_iteration_index + 0xfd8) != UTILITY_BOOLEAN_FALSE) {
 utility_system_initialize();
 }
 *(uint64_t *)(utility_iteration_index + 0xfd8) = UTILITY_BOOLEAN_FALSE;
-*(uint32_t *)(utility_iteration_index + 0xfe8) = UTILITY_BOOLEAN_FALSE;
+*(uint32_t *)(utility_iteration_index + UTILITY_BYTE_MASK_CLEAR_LAST_BIT8) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_iteration_index + 0xfd0) = &utility_system_reserved_area;
 *(uint64_t *)(utility_iteration_index + 0xfb0) = &utility_system_data;
 if (*(int64_t *)(utility_iteration_index + 0xfb8) != UTILITY_BOOLEAN_FALSE) {
@@ -23737,7 +23728,7 @@ if (*(int64_t *)(utility_iteration_index + 0xfd8) != UTILITY_BOOLEAN_FALSE) {
 utility_system_initialize();
 }
 *(uint64_t *)(utility_iteration_index + 0xfd8) = UTILITY_BOOLEAN_FALSE;
-*(uint32_t *)(utility_iteration_index + 0xfe8) = UTILITY_BOOLEAN_FALSE;
+*(uint32_t *)(utility_iteration_index + UTILITY_BYTE_MASK_CLEAR_LAST_BIT8) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_iteration_index + 0xfd0) = &utility_system_reserved_area;
 *(uint64_t *)(utility_iteration_index + 0xfb0) = &utility_system_data;
 if (*(int64_t *)(utility_iteration_index + 0xfb8) != UTILITY_BOOLEAN_FALSE) {
@@ -24011,7 +24002,7 @@ return;
 (**(code **)*utility_buffer_ptr)(utility_context_input_parameter,0);
 utility_system_initialize(utility_context_input_parameter);
 }
-if ((*(int64_t *)(utility_iteration_index + 0xa8) != UTILITY_BOOLEAN_FALSE) && (*(int64_t *)(*(int64_t *)(utility_iteration_index + 0xa8) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_BOOLEAN_FALSE)
+if ((*(int64_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_A8) != UTILITY_BOOLEAN_FALSE) && (*(int64_t *)(*(int64_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_A8) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_BOOLEAN_FALSE)
 ) {
 utility_system_initialize();
 }
@@ -24194,7 +24185,7 @@ return;
 (**(code **)*utility_buffer_ptr)(utility_context_input_parameter,0);
 utility_system_initialize(utility_context_input_parameter);
 }
-if ((*(int64_t *)(utility_iteration_index + 0xa8) != UTILITY_BOOLEAN_FALSE) && (*(int64_t *)(*(int64_t *)(utility_iteration_index + 0xa8) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_BOOLEAN_FALSE)
+if ((*(int64_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_A8) != UTILITY_BOOLEAN_FALSE) && (*(int64_t *)(*(int64_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_A8) + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_BOOLEAN_FALSE)
 ) {
 utility_system_initialize();
 }
@@ -24506,7 +24497,7 @@ utility_iteration_index = *(int64_t *)(utility_context_input_parameter + UTILITY
 utility_iteration_index = *(int64_t *)(utility_iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY);
 utility_resource_context_value = *(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_30);
 utility_iteration_index = *(int64_t *)(utility_context_input_parameter + UTILITY_RESOURCE_FLAG_A0);
-utility_iteration_index = *(int64_t *)(utility_context_input_parameter + 0xa8);
+utility_iteration_index = *(int64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8);
 if ((utility_resource_pointer & UTILITY_STATUS_FLAG_F) == UTILITY_BOOLEAN_FALSE) {
 }
 *(uint64_t *)(utility_context_input_parameter + UTILITY_THREAD_DATA_OFFSET) = utility_resource_context;
@@ -24548,7 +24539,7 @@ utility_resource_context = *(uint64_t *)(utility_context_input_parameter + UTILI
 }
 // 处理线程事件，管理线程状态变化
   utility_handle_thread_event(*(uint64_t *)(utility_iteration_index + UTILITY_THREAD_SIZE_OFFSET),utility_iteration_index);
-*(uint64_t *)(utility_iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY) = *(uint64_t *)(utility_context_input_parameter + 0xa8);
+*(uint64_t *)(utility_iteration_index + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY) = *(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8);
 _CxxThrowutility_exception_pointer(0,0);
 }
 return;
@@ -25040,12 +25031,12 @@ return;
 return;
 }
 *(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_SERVICE_OFFSET) = UTILITY_BOOLEAN_FALSE;
-*(uint32_t *)(utility_context_input_parameter + 0xa8) = UTILITY_BOOLEAN_FALSE;
+*(uint32_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_context_input_parameter + UTILITY_RESOURCE_HANDLE_OFFSET) = &utility_system_reserved_area;
 return;
 }
 *(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_SERVICE_OFFSET) = UTILITY_BOOLEAN_FALSE;
-*(uint32_t *)(utility_context_input_parameter + 0xa8) = UTILITY_BOOLEAN_FALSE;
+*(uint32_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_context_input_parameter + UTILITY_RESOURCE_HANDLE_OFFSET) = &utility_system_reserved_area;
 return;
 }
@@ -26500,8 +26491,8 @@ utility_compress_data(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_B
 if (*(int64_t **)(utility_context_input_parameter + 200) != (int64_t *)UTILITY_NULL_POINTER) {
 (**(code **)(**(int64_t **)(utility_context_input_parameter + 200) + UTILITY_THREAD_POINTER_OFFSET))();
 }
-if (*(int64_t **)(utility_context_input_parameter + 0xa8) != (int64_t *)UTILITY_NULL_POINTER) {
-(**(code **)(**(int64_t **)(utility_context_input_parameter + 0xa8) + UTILITY_THREAD_POINTER_OFFSET))();
+if (*(int64_t **)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8) != (int64_t *)UTILITY_NULL_POINTER) {
+(**(code **)(**(int64_t **)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8) + UTILITY_THREAD_POINTER_OFFSET))();
 }
 utility_context_input_parameter = *(int64_t **)(utility_context_input_parameter + UTILITY_RESOURCE_FLAG_A0);
 if (utility_context_input_parameter != (int64_t *)UTILITY_NULL_POINTER) {
@@ -28016,12 +28007,12 @@ utility_system_initialize();
 }
 utility_system_initialize(utility_context_input_parameter);
 }
-*(uint64_t *)(utility_context_input_parameter + 0xa8) = UTILITY_BOOLEAN_FALSE;
+*(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_context_input_parameter + UTILITY_RESOURCE_FLAG_B8) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_context_input_parameter + UTILITY_RESOURCE_FLAG_A0) = &utility_system_reserved_area;
 return;
 }
-*(uint64_t *)(utility_context_input_parameter + 0xa8) = UTILITY_BOOLEAN_FALSE;
+*(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_context_input_parameter + UTILITY_RESOURCE_FLAG_B8) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_context_input_parameter + UTILITY_RESOURCE_FLAG_A0) = &utility_system_reserved_area;
 return;
@@ -28689,13 +28680,13 @@ return;
 }
 return;
 }
-*(uint64_t *)(utility_context_input_parameter + 0xa8) = &utility_system_data;
+*(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8) = &utility_system_data;
 if (*(int64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_B0) != UTILITY_BOOLEAN_FALSE) {
 utility_system_initialize();
 }
 *(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_B0) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_context_input_parameter + 0xc0) = UTILITY_BOOLEAN_FALSE;
-*(uint64_t *)(utility_context_input_parameter + 0xa8) = &utility_system_reserved_area;
+*(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8) = &utility_system_reserved_area;
 if (*(int64_t **)(utility_context_input_parameter + UTILITY_RESOURCE_FLAG_A0) != (int64_t *)UTILITY_NULL_POINTER) {
 (**(code **)(**(int64_t **)(utility_context_input_parameter + UTILITY_RESOURCE_FLAG_A0) + UTILITY_THREAD_POINTER_OFFSET))();
 }
@@ -28731,7 +28722,7 @@ return;
 }
 *(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_B0) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_context_input_parameter + 0xc0) = UTILITY_BOOLEAN_FALSE;
-*(uint64_t *)(utility_context_input_parameter + 0xa8) = &utility_system_reserved_area;
+*(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8) = &utility_system_reserved_area;
 return;
 }
 return;
@@ -29353,7 +29344,7 @@ return;
 return;
 }
 *(int64_t *)(utility_context_input_parameter + UTILITY_RESOURCE_FLAG_A0) = UTILITY_BOOLEAN_FALSE;
-*(uint64_t *)(utility_context_input_parameter + 0xa8) = UTILITY_BOOLEAN_FALSE;
+*(uint64_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_A8) = UTILITY_BOOLEAN_FALSE;
 *(uint8_t *)(utility_context_input_parameter + UTILITY_CONTEXT_OFFSET_B0) = UTILITY_BOOLEAN_FALSE;
 }
 return;
@@ -35550,13 +35541,13 @@ utility_system_initialize();
 *(uint64_t *)(utility_iteration_index + 0xab0) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_AC0) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_iteration_index + 0xaa8) = &utility_system_reserved_area;
-*(uint64_t *)(utility_iteration_index + 0xa88) = &utility_system_data;
+*(uint64_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_A88) = &utility_system_data;
 if (*(int64_t *)(utility_iteration_index + 0xa90) != UTILITY_BOOLEAN_FALSE) {
 utility_system_initialize();
 }
 *(uint64_t *)(utility_iteration_index + 0xa90) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_iteration_index + 0xaa0) = UTILITY_BOOLEAN_FALSE;
-*(uint64_t *)(utility_iteration_index + 0xa88) = &utility_system_reserved_area;
+*(uint64_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_A88) = &utility_system_reserved_area;
 return;
 }
 *(uint64_t *)(utility_iteration_index + 0xb18) = &utility_system_data;
@@ -35735,19 +35726,19 @@ utility_system_initialize();
 *(uint64_t *)(utility_iteration_index + 0xf58) = &utility_system_reserved_area;
 return;
 }
-*(uint64_t *)(utility_iteration_index + 0xfe8) = &utility_system_data;
+*(uint64_t *)(utility_iteration_index + UTILITY_BYTE_MASK_CLEAR_LAST_BIT8) = &utility_system_data;
 if (*(int64_t *)(utility_iteration_index + 0xff0) != UTILITY_BOOLEAN_FALSE) {
 utility_system_initialize();
 }
 *(uint64_t *)(utility_iteration_index + 0xff0) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET_00) = UTILITY_BOOLEAN_FALSE;
-*(uint64_t *)(utility_iteration_index + 0xfe8) = &utility_system_reserved_area;
+*(uint64_t *)(utility_iteration_index + UTILITY_BYTE_MASK_CLEAR_LAST_BIT8) = &utility_system_reserved_area;
 *(uint64_t *)(utility_iteration_index + 0xfc8) = &utility_system_data;
 if (*(int64_t *)(utility_iteration_index + 0xfd0) != UTILITY_BOOLEAN_FALSE) {
 utility_system_initialize();
 }
 *(uint64_t *)(utility_iteration_index + 0xfd0) = UTILITY_BOOLEAN_FALSE;
-*(uint32_t *)(utility_iteration_index + 0xfe0) = UTILITY_BOOLEAN_FALSE;
+*(uint32_t *)(utility_iteration_index + UTILITY_BYTE_MASK_CLEAR_LAST_BIT0) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_iteration_index + 0xfc8) = &utility_system_reserved_area;
 return;
 }
@@ -36600,13 +36591,13 @@ utility_system_initialize();
 *(uint64_t *)(utility_iteration_index + 0xab0) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_AC0) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_iteration_index + 0xaa8) = &utility_system_reserved_area;
-*(uint64_t *)(utility_iteration_index + 0xa88) = &utility_system_data;
+*(uint64_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_A88) = &utility_system_data;
 if (*(int64_t *)(utility_iteration_index + 0xa90) != UTILITY_BOOLEAN_FALSE) {
 utility_system_initialize();
 }
 *(uint64_t *)(utility_iteration_index + 0xa90) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_iteration_index + 0xaa0) = UTILITY_BOOLEAN_FALSE;
-*(uint64_t *)(utility_iteration_index + 0xa88) = &utility_system_reserved_area;
+*(uint64_t *)(utility_iteration_index + UTILITY_CONTEXT_OFFSET_A88) = &utility_system_reserved_area;
 return;
 }
 *(uint64_t *)(utility_iteration_index + 0xb18) = &utility_system_data;
@@ -36785,19 +36776,19 @@ utility_system_initialize();
 *(uint64_t *)(utility_iteration_index + 0xf58) = &utility_system_reserved_area;
 return;
 }
-*(uint64_t *)(utility_iteration_index + 0xfe8) = &utility_system_data;
+*(uint64_t *)(utility_iteration_index + UTILITY_BYTE_MASK_CLEAR_LAST_BIT8) = &utility_system_data;
 if (*(int64_t *)(utility_iteration_index + 0xff0) != UTILITY_BOOLEAN_FALSE) {
 utility_system_initialize();
 }
 *(uint64_t *)(utility_iteration_index + 0xff0) = UTILITY_BOOLEAN_FALSE;
 *(uint32_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET_00) = UTILITY_BOOLEAN_FALSE;
-*(uint64_t *)(utility_iteration_index + 0xfe8) = &utility_system_reserved_area;
+*(uint64_t *)(utility_iteration_index + UTILITY_BYTE_MASK_CLEAR_LAST_BIT8) = &utility_system_reserved_area;
 *(uint64_t *)(utility_iteration_index + 0xfc8) = &utility_system_data;
 if (*(int64_t *)(utility_iteration_index + 0xfd0) != UTILITY_BOOLEAN_FALSE) {
 utility_system_initialize();
 }
 *(uint64_t *)(utility_iteration_index + 0xfd0) = UTILITY_BOOLEAN_FALSE;
-*(uint32_t *)(utility_iteration_index + 0xfe0) = UTILITY_BOOLEAN_FALSE;
+*(uint32_t *)(utility_iteration_index + UTILITY_BYTE_MASK_CLEAR_LAST_BIT0) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_iteration_index + 0xfc8) = &utility_system_reserved_area;
 return;
 }
