@@ -82302,8 +82302,8 @@ void FUN_180943070(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180943090(void)
-void FUN_180943090(void)
+ void InitializeGlobalResourcePointer(void)
+void InitializeGlobalResourcePointer(void)
 
 {
   g_180d49f80 = &g_18098bcb0;

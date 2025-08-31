@@ -75,28 +75,40 @@ undefined network_buffer_manager;
 undefined network_socket_manager;
 undefined network_handler_manager;
 undefined network_context_manager;
-undefined network_handler_ptr;
-undefined network_manager_ptr;
-undefined network_context_ptr;
-undefined network_control_ptr;
-undefined resource_loader_callback;
-undefined graphics_renderer_callback;
-undefined network_status_ptr;
-undefined8 UNK_180c96358;
-undefined engine_control_ptr;
-undefined engine_state_ptr;
-undefined engine_config_ptr;
-undefined engine_manager_ptr;
+undefined network_event_handler;
+undefined network_connection_manager;
+undefined network_state_controller;
+undefined network_config_controller;
+undefined resource_loading_handler;
+undefined graphics_rendering_handler;
+undefined network_status_monitor;
+undefined8 system_runtime_flags;
+undefined engine_main_controller;
+undefined engine_state_manager;
+undefined engine_configuration_manager;
+undefined engine_main_manager;
 
-// 函数: undefined FUN_180059ba0;
-undefined FUN_180059ba0;
-undefined UNK_180a092c4;
+/**
+ * @brief 图形系统初始化函数
+ * 初始化图形渲染和显示系统
+ * @return 图形初始化状态码
+ */
+undefined system_initialize_graphics;
+undefined graphics_device_manager;
 
-// 函数: undefined FUN_180059620;
-undefined FUN_180059620;
+/**
+ * @brief 音频系统初始化函数
+ * 初始化音频播放和处理系统
+ * @return 音频初始化状态码
+ */
+undefined system_initialize_audio;
 
-// 函数: undefined FUN_180044a30;
-undefined FUN_180044a30;
+/**
+ * @brief 资源系统初始化函数
+ * 初始化资源加载和管理系统
+ * @return 资源初始化状态码
+ */
+undefined system_initialize_resources;
 undefined DAT_180be0000;
 undefined UNK_1809fdd78;
 undefined UNK_1809fddc8;
@@ -104,8 +116,8 @@ undefined UNK_180a02968;
 undefined UNK_1809fde10;
 undefined _guard_check_icall;
 
-// 函数: undefined FUN_180046860;
-undefined FUN_180046860;
+// 函数: undefined system_function_046860;
+undefined system_function_046860;
 
 // 函数: undefined FUN_18005c060;
 undefined FUN_18005c060;
@@ -280,8 +292,8 @@ undefined DAT_180c8aa00;
 undefined UNK_1809ffae0;
 undefined DAT_180d49158;
 
-// 函数: undefined FUN_18004c030;
-undefined FUN_18004c030;
+// 函数: undefined system_function_04c030;
+undefined system_function_04c030;
 undefined UNK_180a02b98;
 
 // 函数: undefined FUN_180056e10;
@@ -337,11 +349,11 @@ undefined DAT_180a069a0;
 undefined DAT_180a069a8;
 undefined UNK_18014f7f0;
 
-// 函数: undefined FUN_180049b30;
-undefined FUN_180049b30;
+// 函数: undefined system_function_049b30;
+undefined system_function_049b30;
 
-// 函数: undefined FUN_18004ca00;
-undefined FUN_18004ca00;
+// 函数: undefined system_function_04ca00;
+undefined system_function_04ca00;
 undefined UNK_180a08fd0;
 undefined UNK_180a09008;
 undefined UNK_180a09048;
@@ -374,8 +386,8 @@ undefined UNK_1800830b0;
 undefined UNK_1800830c0;
 undefined UNK_180083130;
 
-// 函数: undefined FUN_18004a130;
-undefined FUN_18004a130;
+// 函数: undefined system_function_04a130;
+undefined system_function_04a130;
 undefined UNK_180a0c9a0;
 undefined UNK_180a0cb40;
 undefined UNK_180a0c808;
@@ -384,17 +396,17 @@ undefined UNK_180a0c7d8;
 undefined UNK_180a0c7f0;
 undefined UNK_180a0c508;
 
-// 函数: undefined FUN_180049cd0;
-undefined FUN_180049cd0;
+// 函数: undefined system_function_049cd0;
+undefined system_function_049cd0;
 
-// 函数: undefined FUN_180049970;
-undefined FUN_180049970;
+// 函数: undefined system_function_049970;
+undefined system_function_049970;
 
 // 函数: undefined FUN_1800586e0;
 undefined FUN_1800586e0;
 
-// 函数: undefined FUN_180046480;
-undefined FUN_180046480;
+// 函数: undefined system_function_046480;
+undefined system_function_046480;
 undefined UNK_180a13ad0;
 undefined DAT_180a0ba58;
 undefined DAT_180a0d580;
@@ -621,8 +633,8 @@ undefined UNK_180a25a6c;
 // 函数: undefined FUN_18006b8f0;
 undefined FUN_18006b8f0;
 
-// 函数: void FUN_18002c340(void)
-void FUN_18002c340(void)
+// 函数: void system_function_02c340(void)
+void system_function_02c340(void)
 
 {
   char cVar1;
@@ -671,8 +683,8 @@ void FUN_18002c340(void)
 
 
 
-// 函数: void FUN_18002c440(void)
-void FUN_18002c440(void)
+// 函数: void system_function_02c440(void)
+void system_function_02c440(void)
 
 {
   char cVar1;
@@ -721,8 +733,8 @@ void FUN_18002c440(void)
 
 
 
-// 函数: void FUN_18002c540(void)
-void FUN_18002c540(void)
+// 函数: void system_function_02c540(void)
+void system_function_02c540(void)
 
 {
   char cVar1;
@@ -771,8 +783,8 @@ void FUN_18002c540(void)
 
 
 
-// 函数: void FUN_18002c640(void)
-void FUN_18002c640(void)
+// 函数: void system_function_02c640(void)
+void system_function_02c640(void)
 
 {
   char cVar1;
@@ -821,8 +833,8 @@ void FUN_18002c640(void)
 
 
 
-// 函数: void FUN_18002c740(void)
-void FUN_18002c740(void)
+// 函数: void system_function_02c740(void)
+void system_function_02c740(void)
 
 {
   char cVar1;
@@ -871,8 +883,8 @@ void FUN_18002c740(void)
 
 
 
-// 函数: void FUN_18002c840(void)
-void FUN_18002c840(void)
+// 函数: void system_function_02c840(void)
+void system_function_02c840(void)
 
 {
   char cVar1;
@@ -921,8 +933,8 @@ void FUN_18002c840(void)
 
 
 
-// 函数: void FUN_18002c940(void)
-void FUN_18002c940(void)
+// 函数: void system_function_02c940(void)
+void system_function_02c940(void)
 
 {
   char cVar1;
@@ -971,8 +983,8 @@ void FUN_18002c940(void)
 
 
 
-// 函数: void FUN_18002ca40(void)
-void FUN_18002ca40(void)
+// 函数: void system_function_02ca40(void)
+void system_function_02ca40(void)
 
 {
   char cVar1;
@@ -1021,8 +1033,8 @@ void FUN_18002ca40(void)
 
 
 
-// 函数: void FUN_18002cb40(void)
-void FUN_18002cb40(void)
+// 函数: void system_function_02cb40(void)
+void system_function_02cb40(void)
 
 {
   char cVar1;
@@ -1071,8 +1083,8 @@ void FUN_18002cb40(void)
 
 
 
-// 函数: void FUN_18002cc40(void)
-void FUN_18002cc40(void)
+// 函数: void system_function_02cc40(void)
+void system_function_02cc40(void)
 
 {
   char cVar1;
@@ -1122,7 +1134,7 @@ void FUN_18002cc40(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18002cd40(void)
+int system_function_02cd40(void)
 
 {
   longlong lVar1;
@@ -1140,8 +1152,8 @@ int FUN_18002cd40(void)
   _DAT_180bf52c8 = 0;
   _DAT_180bf52d0 = 0;
 
-// 函数: void FUN_18002d150(void)
-void FUN_18002d150(void)
+// 函数: void system_function_02d150(void)
+void system_function_02d150(void)
 
 {
   char cVar1;
@@ -1189,7 +1201,7 @@ void FUN_18002d150(void)
 
 
 
-int FUN_18002d260(void)
+int system_function_02d260(void)
 
 {
   longlong lVar1;
@@ -1201,7 +1213,7 @@ int FUN_18002d260(void)
 
 
 
-int FUN_18002d2a0(void)
+int system_function_02d2a0(void)
 
 {
   longlong lVar1;
@@ -1215,7 +1227,7 @@ int FUN_18002d2a0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18002d2e0(void)
+int system_function_02d2e0(void)
 
 {
   longlong lVar1;
@@ -1228,8 +1240,8 @@ int FUN_18002d2e0(void)
 
 
 
-// 函数: void FUN_18002d320(void)
-void FUN_18002d320(void)
+// 函数: void system_function_02d320(void)
+void system_function_02d320(void)
 
 {
   char cVar1;
@@ -1278,8 +1290,8 @@ void FUN_18002d320(void)
 
 
 
-// 函数: void FUN_18002d420(void)
-void FUN_18002d420(void)
+// 函数: void system_function_02d420(void)
+void system_function_02d420(void)
 
 {
   char cVar1;
@@ -1327,7 +1339,7 @@ void FUN_18002d420(void)
 
 
 
-int FUN_18002d520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int system_function_02d520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -1342,8 +1354,8 @@ int FUN_18002d520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18002d550(void)
-void FUN_18002d550(void)
+// 函数: void system_function_02d550(void)
+void system_function_02d550(void)
 
 {
   undefined8 in_R9;
@@ -1364,8 +1376,8 @@ void FUN_18002d550(void)
 
 
 
-// 函数: void FUN_18002d5e0(void)
-void FUN_18002d5e0(void)
+// 函数: void system_function_02d5e0(void)
+void system_function_02d5e0(void)
 
 {
   char cVar1;
@@ -1414,8 +1426,8 @@ void FUN_18002d5e0(void)
 
 
 
-// 函数: void FUN_18002d6e0(void)
-void FUN_18002d6e0(void)
+// 函数: void system_function_02d6e0(void)
+void system_function_02d6e0(void)
 
 {
   char cVar1;
@@ -1464,8 +1476,8 @@ void FUN_18002d6e0(void)
 
 
 
-// 函数: void FUN_18002d7e0(void)
-void FUN_18002d7e0(void)
+// 函数: void system_function_02d7e0(void)
+void system_function_02d7e0(void)
 
 {
   char cVar1;
@@ -1514,8 +1526,8 @@ void FUN_18002d7e0(void)
 
 
 
-// 函数: void FUN_18002d8e0(void)
-void FUN_18002d8e0(void)
+// 函数: void system_function_02d8e0(void)
+void system_function_02d8e0(void)
 
 {
   char cVar1;
@@ -1564,8 +1576,8 @@ void FUN_18002d8e0(void)
 
 
 
-// 函数: void FUN_18002d9e0(void)
-void FUN_18002d9e0(void)
+// 函数: void system_function_02d9e0(void)
+void system_function_02d9e0(void)
 
 {
   char cVar1;
@@ -1614,8 +1626,8 @@ void FUN_18002d9e0(void)
 
 
 
-// 函数: void FUN_18002dae0(void)
-void FUN_18002dae0(void)
+// 函数: void system_function_02dae0(void)
+void system_function_02dae0(void)
 
 {
   char cVar1;
@@ -1664,8 +1676,8 @@ void FUN_18002dae0(void)
 
 
 
-// 函数: void FUN_18002dbe0(void)
-void FUN_18002dbe0(void)
+// 函数: void system_function_02dbe0(void)
+void system_function_02dbe0(void)
 
 {
   char cVar1;
@@ -1714,8 +1726,8 @@ void FUN_18002dbe0(void)
 
 
 
-// 函数: void FUN_18002dce0(void)
-void FUN_18002dce0(void)
+// 函数: void system_function_02dce0(void)
+void system_function_02dce0(void)
 
 {
   char cVar1;
@@ -1764,8 +1776,8 @@ void FUN_18002dce0(void)
 
 
 
-// 函数: void FUN_18002dde0(void)
-void FUN_18002dde0(void)
+// 函数: void system_function_02dde0(void)
+void system_function_02dde0(void)
 
 {
   char cVar1;
@@ -1814,8 +1826,8 @@ void FUN_18002dde0(void)
 
 
 
-// 函数: void FUN_18002dee0(void)
-void FUN_18002dee0(void)
+// 函数: void system_function_02dee0(void)
+void system_function_02dee0(void)
 
 {
   char cVar1;
@@ -1864,8 +1876,8 @@ void FUN_18002dee0(void)
 
 
 
-// 函数: void FUN_18002dfe0(void)
-void FUN_18002dfe0(void)
+// 函数: void system_function_02dfe0(void)
+void system_function_02dfe0(void)
 
 {
   char cVar1;
@@ -1914,8 +1926,8 @@ void FUN_18002dfe0(void)
 
 
 
-// 函数: void FUN_18002e0e0(void)
-void FUN_18002e0e0(void)
+// 函数: void system_function_02e0e0(void)
+void system_function_02e0e0(void)
 
 {
   char cVar1;
@@ -1964,8 +1976,8 @@ void FUN_18002e0e0(void)
 
 
 
-// 函数: void FUN_18002e1e0(void)
-void FUN_18002e1e0(void)
+// 函数: void system_function_02e1e0(void)
+void system_function_02e1e0(void)
 
 {
   char cVar1;
@@ -2014,8 +2026,8 @@ void FUN_18002e1e0(void)
 
 
 
-// 函数: void FUN_18002e2e0(void)
-void FUN_18002e2e0(void)
+// 函数: void system_function_02e2e0(void)
+void system_function_02e2e0(void)
 
 {
   char cVar1;
@@ -2065,7 +2077,7 @@ void FUN_18002e2e0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18002e3e0(void)
+int system_function_02e3e0(void)
 
 {
   longlong lVar1;
@@ -2074,8 +2086,8 @@ int FUN_18002e3e0(void)
   _DAT_180bf64d0 = &UNK_1809fdc18;
   _DAT_180bf64d8 = &DAT_180bf64e8;
 
-// 函数: void FUN_18002e8e0(void)
-void FUN_18002e8e0(void)
+// 函数: void system_function_02e8e0(void)
+void system_function_02e8e0(void)
 
 {
   undefined8 in_R9;
@@ -2096,8 +2108,8 @@ void FUN_18002e8e0(void)
 
 
 
-// 函数: void FUN_18002e970(void)
-void FUN_18002e970(void)
+// 函数: void system_function_02e970(void)
+void system_function_02e970(void)
 
 {
   char cVar1;
@@ -2146,8 +2158,8 @@ void FUN_18002e970(void)
 
 
 
-// 函数: void FUN_18002ea70(void)
-void FUN_18002ea70(void)
+// 函数: void system_function_02ea70(void)
+void system_function_02ea70(void)
 
 {
   char cVar1;
@@ -2196,8 +2208,8 @@ void FUN_18002ea70(void)
 
 
 
-// 函数: void FUN_18002eb70(void)
-void FUN_18002eb70(void)
+// 函数: void system_function_02eb70(void)
+void system_function_02eb70(void)
 
 {
   char cVar1;
@@ -2246,8 +2258,8 @@ void FUN_18002eb70(void)
 
 
 
-// 函数: void FUN_18002ec70(void)
-void FUN_18002ec70(void)
+// 函数: void system_function_02ec70(void)
+void system_function_02ec70(void)
 
 {
   char cVar1;
@@ -2296,8 +2308,8 @@ void FUN_18002ec70(void)
 
 
 
-// 函数: void FUN_18002ed70(void)
-void FUN_18002ed70(void)
+// 函数: void system_function_02ed70(void)
+void system_function_02ed70(void)
 
 {
   char cVar1;
@@ -2346,8 +2358,8 @@ void FUN_18002ed70(void)
 
 
 
-// 函数: void FUN_18002ee70(void)
-void FUN_18002ee70(void)
+// 函数: void system_function_02ee70(void)
+void system_function_02ee70(void)
 
 {
   char cVar1;
@@ -2396,8 +2408,8 @@ void FUN_18002ee70(void)
 
 
 
-// 函数: void FUN_18002ef70(void)
-void FUN_18002ef70(void)
+// 函数: void system_function_02ef70(void)
+void system_function_02ef70(void)
 
 {
   char cVar1;
@@ -2446,8 +2458,8 @@ void FUN_18002ef70(void)
 
 
 
-// 函数: void FUN_18002f070(void)
-void FUN_18002f070(void)
+// 函数: void system_function_02f070(void)
+void system_function_02f070(void)
 
 {
   char cVar1;
@@ -2496,8 +2508,8 @@ void FUN_18002f070(void)
 
 
 
-// 函数: void FUN_18002f170(void)
-void FUN_18002f170(void)
+// 函数: void system_function_02f170(void)
+void system_function_02f170(void)
 
 {
   char cVar1;
@@ -2546,8 +2558,8 @@ void FUN_18002f170(void)
 
 
 
-// 函数: void FUN_18002f270(void)
-void FUN_18002f270(void)
+// 函数: void system_function_02f270(void)
+void system_function_02f270(void)
 
 {
   char cVar1;
@@ -2596,8 +2608,8 @@ void FUN_18002f270(void)
 
 
 
-// 函数: void FUN_18002f370(void)
-void FUN_18002f370(void)
+// 函数: void system_function_02f370(void)
+void system_function_02f370(void)
 
 {
   char cVar1;
@@ -2646,8 +2658,8 @@ void FUN_18002f370(void)
 
 
 
-// 函数: void FUN_18002f470(void)
-void FUN_18002f470(void)
+// 函数: void system_function_02f470(void)
+void system_function_02f470(void)
 
 {
   char cVar1;
@@ -2696,8 +2708,8 @@ void FUN_18002f470(void)
 
 
 
-// 函数: void FUN_18002f570(void)
-void FUN_18002f570(void)
+// 函数: void system_function_02f570(void)
+void system_function_02f570(void)
 
 {
   char cVar1;
@@ -2746,8 +2758,8 @@ void FUN_18002f570(void)
 
 
 
-// 函数: void FUN_18002f670(void)
-void FUN_18002f670(void)
+// 函数: void system_function_02f670(void)
+void system_function_02f670(void)
 
 {
   char cVar1;
@@ -2796,8 +2808,8 @@ void FUN_18002f670(void)
 
 
 
-// 函数: void FUN_18002f770(void)
-void FUN_18002f770(void)
+// 函数: void system_function_02f770(void)
+void system_function_02f770(void)
 
 {
   char cVar1;
@@ -2846,8 +2858,8 @@ void FUN_18002f770(void)
 
 
 
-// 函数: void FUN_18002f870(void)
-void FUN_18002f870(void)
+// 函数: void system_function_02f870(void)
+void system_function_02f870(void)
 
 {
   char cVar1;
@@ -2896,8 +2908,8 @@ void FUN_18002f870(void)
 
 
 
-// 函数: void FUN_18002f970(void)
-void FUN_18002f970(void)
+// 函数: void system_function_02f970(void)
+void system_function_02f970(void)
 
 {
   char cVar1;
@@ -2946,8 +2958,8 @@ void FUN_18002f970(void)
 
 
 
-// 函数: void FUN_18002fa70(void)
-void FUN_18002fa70(void)
+// 函数: void system_function_02fa70(void)
+void system_function_02fa70(void)
 
 {
   char cVar1;
@@ -2996,8 +3008,8 @@ void FUN_18002fa70(void)
 
 
 
-// 函数: void FUN_18002fb70(void)
-void FUN_18002fb70(void)
+// 函数: void system_function_02fb70(void)
+void system_function_02fb70(void)
 
 {
   char cVar1;
@@ -3046,8 +3058,8 @@ void FUN_18002fb70(void)
 
 
 
-// 函数: void FUN_18002fc70(void)
-void FUN_18002fc70(void)
+// 函数: void system_function_02fc70(void)
+void system_function_02fc70(void)
 
 {
   char cVar1;
@@ -3096,8 +3108,8 @@ void FUN_18002fc70(void)
 
 
 
-// 函数: void FUN_18002fd70(void)
-void FUN_18002fd70(void)
+// 函数: void system_function_02fd70(void)
+void system_function_02fd70(void)
 
 {
   char cVar1;
@@ -3146,8 +3158,8 @@ void FUN_18002fd70(void)
 
 
 
-// 函数: void FUN_18002fe70(void)
-void FUN_18002fe70(void)
+// 函数: void system_function_02fe70(void)
+void system_function_02fe70(void)
 
 {
   char cVar1;
@@ -3196,8 +3208,8 @@ void FUN_18002fe70(void)
 
 
 
-// 函数: void FUN_18002ff70(void)
-void FUN_18002ff70(void)
+// 函数: void system_function_02ff70(void)
+void system_function_02ff70(void)
 
 {
   char cVar1;
@@ -3246,8 +3258,8 @@ void FUN_18002ff70(void)
 
 
 
-// 函数: void FUN_180030070(void)
-void FUN_180030070(void)
+// 函数: void system_function_030070(void)
+void system_function_030070(void)
 
 {
   char cVar1;
@@ -3296,8 +3308,8 @@ void FUN_180030070(void)
 
 
 
-// 函数: void FUN_180030170(void)
-void FUN_180030170(void)
+// 函数: void system_function_030170(void)
+void system_function_030170(void)
 
 {
   char cVar1;
@@ -3346,8 +3358,8 @@ void FUN_180030170(void)
 
 
 
-// 函数: void FUN_180030270(void)
-void FUN_180030270(void)
+// 函数: void system_function_030270(void)
+void system_function_030270(void)
 
 {
   char cVar1;
@@ -3396,8 +3408,8 @@ void FUN_180030270(void)
 
 
 
-// 函数: void FUN_180030370(void)
-void FUN_180030370(void)
+// 函数: void system_function_030370(void)
+void system_function_030370(void)
 
 {
   char cVar1;
@@ -3446,8 +3458,8 @@ void FUN_180030370(void)
 
 
 
-// 函数: void FUN_180030470(void)
-void FUN_180030470(void)
+// 函数: void system_function_030470(void)
+void system_function_030470(void)
 
 {
   char cVar1;
@@ -3496,8 +3508,8 @@ void FUN_180030470(void)
 
 
 
-// 函数: void FUN_180030570(void)
-void FUN_180030570(void)
+// 函数: void system_function_030570(void)
+void system_function_030570(void)
 
 {
   char cVar1;
@@ -3546,8 +3558,8 @@ void FUN_180030570(void)
 
 
 
-// 函数: void FUN_180030670(void)
-void FUN_180030670(void)
+// 函数: void system_function_030670(void)
+void system_function_030670(void)
 
 {
   char cVar1;
@@ -3596,8 +3608,8 @@ void FUN_180030670(void)
 
 
 
-// 函数: void FUN_180030770(void)
-void FUN_180030770(void)
+// 函数: void system_function_030770(void)
+void system_function_030770(void)
 
 {
   char cVar1;
@@ -3648,8 +3660,8 @@ void FUN_180030770(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180030870(void)
-void FUN_180030870(void)
+// 函数: void system_function_030870(void)
+void system_function_030870(void)
 
 {
   undefined8 in_R9;
@@ -3671,7 +3683,7 @@ void FUN_180030870(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180030900(void)
+int system_function_030900(void)
 
 {
   longlong lVar1;
@@ -3680,8 +3692,8 @@ int FUN_180030900(void)
   _DAT_180bf6750 = &UNK_1809fcc58;
   _DAT_180bf6758 = &DAT_180bf6768;
 
-// 函数: void FUN_180031a10(void)
-void FUN_180031a10(void)
+// 函数: void system_function_031a10(void)
+void system_function_031a10(void)
 
 {
   char cVar1;
@@ -3730,8 +3742,8 @@ void FUN_180031a10(void)
 
 
 
-// 函数: void FUN_180031b10(void)
-void FUN_180031b10(void)
+// 函数: void system_function_031b10(void)
+void system_function_031b10(void)
 
 {
   char cVar1;
@@ -3780,8 +3792,8 @@ void FUN_180031b10(void)
 
 
 
-// 函数: void FUN_180031c10(void)
-void FUN_180031c10(void)
+// 函数: void system_function_031c10(void)
+void system_function_031c10(void)
 
 {
   char cVar1;
@@ -3830,8 +3842,8 @@ void FUN_180031c10(void)
 
 
 
-// 函数: void FUN_180031d10(void)
-void FUN_180031d10(void)
+// 函数: void system_function_031d10(void)
+void system_function_031d10(void)
 
 {
   char cVar1;
@@ -3880,8 +3892,8 @@ void FUN_180031d10(void)
 
 
 
-// 函数: void FUN_180031e10(void)
-void FUN_180031e10(void)
+// 函数: void system_function_031e10(void)
+void system_function_031e10(void)
 
 {
   char cVar1;
@@ -3930,8 +3942,8 @@ void FUN_180031e10(void)
 
 
 
-// 函数: void FUN_180031f10(void)
-void FUN_180031f10(void)
+// 函数: void system_function_031f10(void)
+void system_function_031f10(void)
 
 {
   char cVar1;
@@ -3980,8 +3992,8 @@ void FUN_180031f10(void)
 
 
 
-// 函数: void FUN_180032010(void)
-void FUN_180032010(void)
+// 函数: void system_function_032010(void)
+void system_function_032010(void)
 
 {
   char cVar1;
@@ -4030,8 +4042,8 @@ void FUN_180032010(void)
 
 
 
-// 函数: void FUN_180032110(void)
-void FUN_180032110(void)
+// 函数: void system_function_032110(void)
+void system_function_032110(void)
 
 {
   char cVar1;
@@ -4080,8 +4092,8 @@ void FUN_180032110(void)
 
 
 
-// 函数: void FUN_180032210(void)
-void FUN_180032210(void)
+// 函数: void system_function_032210(void)
+void system_function_032210(void)
 
 {
   char cVar1;
@@ -4130,8 +4142,8 @@ void FUN_180032210(void)
 
 
 
-// 函数: void FUN_180032310(void)
-void FUN_180032310(void)
+// 函数: void system_function_032310(void)
+void system_function_032310(void)
 
 {
   char cVar1;
@@ -4180,8 +4192,8 @@ void FUN_180032310(void)
 
 
 
-// 函数: void FUN_180032410(void)
-void FUN_180032410(void)
+// 函数: void system_function_032410(void)
+void system_function_032410(void)
 
 {
   char cVar1;
@@ -4232,8 +4244,8 @@ void FUN_180032410(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180032510(void)
-void FUN_180032510(void)
+// 函数: void system_function_032510(void)
+void system_function_032510(void)
 
 {
   undefined8 in_R9;
@@ -4254,8 +4266,8 @@ void FUN_180032510(void)
 
 
 
-// 函数: void FUN_1800325a0(void)
-void FUN_1800325a0(void)
+// 函数: void system_function_0325a0(void)
+void system_function_0325a0(void)
 
 {
   char cVar1;
@@ -4304,8 +4316,8 @@ void FUN_1800325a0(void)
 
 
 
-// 函数: void FUN_1800326a0(void)
-void FUN_1800326a0(void)
+// 函数: void system_function_0326a0(void)
+void system_function_0326a0(void)
 
 {
   char cVar1;
@@ -4354,8 +4366,8 @@ void FUN_1800326a0(void)
 
 
 
-// 函数: void FUN_1800327a0(void)
-void FUN_1800327a0(void)
+// 函数: void system_function_0327a0(void)
+void system_function_0327a0(void)
 
 {
   char cVar1;
@@ -4404,8 +4416,8 @@ void FUN_1800327a0(void)
 
 
 
-// 函数: void FUN_1800328a0(void)
-void FUN_1800328a0(void)
+// 函数: void system_function_0328a0(void)
+void system_function_0328a0(void)
 
 {
   char cVar1;
@@ -4454,8 +4466,8 @@ void FUN_1800328a0(void)
 
 
 
-// 函数: void FUN_1800329a0(void)
-void FUN_1800329a0(void)
+// 函数: void system_function_0329a0(void)
+void system_function_0329a0(void)
 
 {
   char cVar1;
@@ -4504,8 +4516,8 @@ void FUN_1800329a0(void)
 
 
 
-// 函数: void FUN_180032aa0(void)
-void FUN_180032aa0(void)
+// 函数: void system_function_032aa0(void)
+void system_function_032aa0(void)
 
 {
   char cVar1;
@@ -4554,8 +4566,8 @@ void FUN_180032aa0(void)
 
 
 
-// 函数: void FUN_180032ba0(void)
-void FUN_180032ba0(void)
+// 函数: void system_function_032ba0(void)
+void system_function_032ba0(void)
 
 {
   char cVar1;
@@ -4606,8 +4618,8 @@ void FUN_180032ba0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180032ca0(void)
-void FUN_180032ca0(void)
+// 函数: void system_function_032ca0(void)
+void system_function_032ca0(void)
 
 {
   undefined8 in_R9;
@@ -4629,7 +4641,7 @@ void FUN_180032ca0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180032d30(void)
+int system_function_032d30(void)
 
 {
   longlong lVar1;
@@ -4638,8 +4650,8 @@ int FUN_180032d30(void)
   _DAT_180bf7e90 = &UNK_1809fcc58;
   _DAT_180bf7e98 = &DAT_180bf7ea8;
 
-// 函数: void FUN_180033780(void)
-void FUN_180033780(void)
+// 函数: void system_function_033780(void)
+void system_function_033780(void)
 
 {
   undefined8 in_R9;
@@ -4662,8 +4674,8 @@ void FUN_180033780(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180033810(void)
-void FUN_180033810(void)
+// 函数: void system_function_033810(void)
+void system_function_033810(void)
 
 {
   undefined8 in_R9;
@@ -4686,8 +4698,8 @@ void FUN_180033810(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800338a0(void)
-void FUN_1800338a0(void)
+// 函数: void system_function_0338a0(void)
+void system_function_0338a0(void)
 
 {
   undefined8 in_R9;
@@ -4710,8 +4722,8 @@ void FUN_1800338a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180033930(void)
-void FUN_180033930(void)
+// 函数: void system_function_033930(void)
+void system_function_033930(void)
 
 {
   undefined8 in_R9;
@@ -4734,8 +4746,8 @@ void FUN_180033930(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800339c0(void)
-void FUN_1800339c0(void)
+// 函数: void system_function_0339c0(void)
+void system_function_0339c0(void)
 
 {
   undefined8 in_R9;
@@ -4756,8 +4768,8 @@ void FUN_1800339c0(void)
 
 
 
-// 函数: void FUN_180033a50(void)
-void FUN_180033a50(void)
+// 函数: void system_function_033a50(void)
+void system_function_033a50(void)
 
 {
   char cVar1;
@@ -4806,8 +4818,8 @@ void FUN_180033a50(void)
 
 
 
-// 函数: void FUN_180033b50(void)
-void FUN_180033b50(void)
+// 函数: void system_function_033b50(void)
+void system_function_033b50(void)
 
 {
   char cVar1;
@@ -4856,8 +4868,8 @@ void FUN_180033b50(void)
 
 
 
-// 函数: void FUN_180033c50(void)
-void FUN_180033c50(void)
+// 函数: void system_function_033c50(void)
+void system_function_033c50(void)
 
 {
   char cVar1;
@@ -4906,8 +4918,8 @@ void FUN_180033c50(void)
 
 
 
-// 函数: void FUN_180033d50(void)
-void FUN_180033d50(void)
+// 函数: void system_function_033d50(void)
+void system_function_033d50(void)
 
 {
   char cVar1;
@@ -4956,8 +4968,8 @@ void FUN_180033d50(void)
 
 
 
-// 函数: void FUN_180033e50(void)
-void FUN_180033e50(void)
+// 函数: void system_function_033e50(void)
+void system_function_033e50(void)
 
 {
   char cVar1;
@@ -5006,8 +5018,8 @@ void FUN_180033e50(void)
 
 
 
-// 函数: void FUN_180033f50(void)
-void FUN_180033f50(void)
+// 函数: void system_function_033f50(void)
+void system_function_033f50(void)
 
 {
   char cVar1;
@@ -5056,8 +5068,8 @@ void FUN_180033f50(void)
 
 
 
-// 函数: void FUN_180034050(void)
-void FUN_180034050(void)
+// 函数: void system_function_034050(void)
+void system_function_034050(void)
 
 {
   char cVar1;
@@ -5106,8 +5118,8 @@ void FUN_180034050(void)
 
 
 
-// 函数: void FUN_180034150(void)
-void FUN_180034150(void)
+// 函数: void system_function_034150(void)
+void system_function_034150(void)
 
 {
   char cVar1;
@@ -5156,8 +5168,8 @@ void FUN_180034150(void)
 
 
 
-// 函数: void FUN_180034250(void)
-void FUN_180034250(void)
+// 函数: void system_function_034250(void)
+void system_function_034250(void)
 
 {
   char cVar1;
@@ -5206,8 +5218,8 @@ void FUN_180034250(void)
 
 
 
-// 函数: void FUN_180034350(void)
-void FUN_180034350(void)
+// 函数: void system_function_034350(void)
+void system_function_034350(void)
 
 {
   char cVar1;
@@ -5256,8 +5268,8 @@ void FUN_180034350(void)
 
 
 
-// 函数: void FUN_180034450(void)
-void FUN_180034450(void)
+// 函数: void system_function_034450(void)
+void system_function_034450(void)
 
 {
   char cVar1;
@@ -5306,8 +5318,8 @@ void FUN_180034450(void)
 
 
 
-// 函数: void FUN_180034550(void)
-void FUN_180034550(void)
+// 函数: void system_function_034550(void)
+void system_function_034550(void)
 
 {
   char cVar1;
@@ -5356,8 +5368,8 @@ void FUN_180034550(void)
 
 
 
-// 函数: void FUN_180034650(void)
-void FUN_180034650(void)
+// 函数: void system_function_034650(void)
+void system_function_034650(void)
 
 {
   char cVar1;
@@ -5406,8 +5418,8 @@ void FUN_180034650(void)
 
 
 
-// 函数: void FUN_180034750(void)
-void FUN_180034750(void)
+// 函数: void system_function_034750(void)
+void system_function_034750(void)
 
 {
   char cVar1;
@@ -5456,8 +5468,8 @@ void FUN_180034750(void)
 
 
 
-// 函数: void FUN_180034850(void)
-void FUN_180034850(void)
+// 函数: void system_function_034850(void)
+void system_function_034850(void)
 
 {
   char cVar1;
@@ -5506,8 +5518,8 @@ void FUN_180034850(void)
 
 
 
-// 函数: void FUN_180034950(void)
-void FUN_180034950(void)
+// 函数: void system_function_034950(void)
+void system_function_034950(void)
 
 {
   char cVar1;
@@ -5556,8 +5568,8 @@ void FUN_180034950(void)
 
 
 
-// 函数: void FUN_180034a50(void)
-void FUN_180034a50(void)
+// 函数: void system_function_034a50(void)
+void system_function_034a50(void)
 
 {
   ulonglong uVar1;
@@ -5613,8 +5625,8 @@ void FUN_180034a50(void)
 
 
 
-// 函数: void FUN_180034b40(void)
-void FUN_180034b40(void)
+// 函数: void system_function_034b40(void)
+void system_function_034b40(void)
 
 {
   char cVar1;
@@ -5663,8 +5675,8 @@ void FUN_180034b40(void)
 
 
 
-// 函数: void FUN_180034c40(void)
-void FUN_180034c40(void)
+// 函数: void system_function_034c40(void)
+void system_function_034c40(void)
 
 {
   char cVar1;
@@ -5713,8 +5725,8 @@ void FUN_180034c40(void)
 
 
 
-// 函数: void FUN_180034d40(void)
-void FUN_180034d40(void)
+// 函数: void system_function_034d40(void)
+void system_function_034d40(void)
 
 {
   char cVar1;
@@ -5763,8 +5775,8 @@ void FUN_180034d40(void)
 
 
 
-// 函数: void FUN_180034e40(void)
-void FUN_180034e40(void)
+// 函数: void system_function_034e40(void)
+void system_function_034e40(void)
 
 {
   char cVar1;
@@ -5813,8 +5825,8 @@ void FUN_180034e40(void)
 
 
 
-// 函数: void FUN_180034f40(void)
-void FUN_180034f40(void)
+// 函数: void system_function_034f40(void)
+void system_function_034f40(void)
 
 {
   char cVar1;
@@ -5863,8 +5875,8 @@ void FUN_180034f40(void)
 
 
 
-// 函数: void FUN_180035040(void)
-void FUN_180035040(void)
+// 函数: void system_function_035040(void)
+void system_function_035040(void)
 
 {
   char cVar1;
@@ -5913,8 +5925,8 @@ void FUN_180035040(void)
 
 
 
-// 函数: void FUN_180035140(void)
-void FUN_180035140(void)
+// 函数: void system_function_035140(void)
+void system_function_035140(void)
 
 {
   char cVar1;
@@ -5963,8 +5975,8 @@ void FUN_180035140(void)
 
 
 
-// 函数: void FUN_180035240(void)
-void FUN_180035240(void)
+// 函数: void system_function_035240(void)
+void system_function_035240(void)
 
 {
   char cVar1;
@@ -6013,8 +6025,8 @@ void FUN_180035240(void)
 
 
 
-// 函数: void FUN_180035340(void)
-void FUN_180035340(void)
+// 函数: void system_function_035340(void)
+void system_function_035340(void)
 
 {
   char cVar1;
@@ -6063,8 +6075,8 @@ void FUN_180035340(void)
 
 
 
-// 函数: void FUN_180035440(void)
-void FUN_180035440(void)
+// 函数: void system_function_035440(void)
+void system_function_035440(void)
 
 {
   char cVar1;
@@ -6113,8 +6125,8 @@ void FUN_180035440(void)
 
 
 
-// 函数: void FUN_180035540(void)
-void FUN_180035540(void)
+// 函数: void system_function_035540(void)
+void system_function_035540(void)
 
 {
   char cVar1;
@@ -6163,8 +6175,8 @@ void FUN_180035540(void)
 
 
 
-// 函数: void FUN_180035640(void)
-void FUN_180035640(void)
+// 函数: void system_function_035640(void)
+void system_function_035640(void)
 
 {
   char cVar1;
@@ -6213,8 +6225,8 @@ void FUN_180035640(void)
 
 
 
-// 函数: void FUN_180035740(void)
-void FUN_180035740(void)
+// 函数: void system_function_035740(void)
+void system_function_035740(void)
 
 {
   char cVar1;
@@ -6263,8 +6275,8 @@ void FUN_180035740(void)
 
 
 
-// 函数: void FUN_180035840(void)
-void FUN_180035840(void)
+// 函数: void system_function_035840(void)
+void system_function_035840(void)
 
 {
   char cVar1;
@@ -6313,8 +6325,8 @@ void FUN_180035840(void)
 
 
 
-// 函数: void FUN_180035940(void)
-void FUN_180035940(void)
+// 函数: void system_function_035940(void)
+void system_function_035940(void)
 
 {
   char cVar1;
@@ -6363,8 +6375,8 @@ void FUN_180035940(void)
 
 
 
-// 函数: void FUN_180035a40(void)
-void FUN_180035a40(void)
+// 函数: void system_function_035a40(void)
+void system_function_035a40(void)
 
 {
   char cVar1;
@@ -6413,8 +6425,8 @@ void FUN_180035a40(void)
 
 
 
-// 函数: void FUN_180035b40(void)
-void FUN_180035b40(void)
+// 函数: void system_function_035b40(void)
+void system_function_035b40(void)
 
 {
   char cVar1;
@@ -6463,8 +6475,8 @@ void FUN_180035b40(void)
 
 
 
-// 函数: void FUN_180035c40(void)
-void FUN_180035c40(void)
+// 函数: void system_function_035c40(void)
+void system_function_035c40(void)
 
 {
   char cVar1;
@@ -6513,8 +6525,8 @@ void FUN_180035c40(void)
 
 
 
-// 函数: void FUN_180035d40(void)
-void FUN_180035d40(void)
+// 函数: void system_function_035d40(void)
+void system_function_035d40(void)
 
 {
   char cVar1;
@@ -6563,8 +6575,8 @@ void FUN_180035d40(void)
 
 
 
-// 函数: void FUN_180035e40(void)
-void FUN_180035e40(void)
+// 函数: void system_function_035e40(void)
+void system_function_035e40(void)
 
 {
   char cVar1;
@@ -6613,8 +6625,8 @@ void FUN_180035e40(void)
 
 
 
-// 函数: void FUN_180035f50(void)
-void FUN_180035f50(void)
+// 函数: void system_function_035f50(void)
+void system_function_035f50(void)
 
 {
   char cVar1;
@@ -6663,8 +6675,8 @@ void FUN_180035f50(void)
 
 
 
-// 函数: void FUN_180036050(void)
-void FUN_180036050(void)
+// 函数: void system_function_036050(void)
+void system_function_036050(void)
 
 {
   char cVar1;
@@ -6713,8 +6725,8 @@ void FUN_180036050(void)
 
 
 
-// 函数: void FUN_180036150(void)
-void FUN_180036150(void)
+// 函数: void system_function_036150(void)
+void system_function_036150(void)
 
 {
   char cVar1;
@@ -6763,8 +6775,8 @@ void FUN_180036150(void)
 
 
 
-// 函数: void FUN_180036250(void)
-void FUN_180036250(void)
+// 函数: void system_function_036250(void)
+void system_function_036250(void)
 
 {
   char cVar1;
@@ -6813,8 +6825,8 @@ void FUN_180036250(void)
 
 
 
-// 函数: void FUN_180036350(void)
-void FUN_180036350(void)
+// 函数: void system_function_036350(void)
+void system_function_036350(void)
 
 {
   char cVar1;
@@ -6863,8 +6875,8 @@ void FUN_180036350(void)
 
 
 
-// 函数: void FUN_180036450(void)
-void FUN_180036450(void)
+// 函数: void system_function_036450(void)
+void system_function_036450(void)
 
 {
   char cVar1;
@@ -6913,8 +6925,8 @@ void FUN_180036450(void)
 
 
 
-// 函数: void FUN_180036550(void)
-void FUN_180036550(void)
+// 函数: void system_function_036550(void)
+void system_function_036550(void)
 
 {
   char cVar1;
@@ -6963,8 +6975,8 @@ void FUN_180036550(void)
 
 
 
-// 函数: void FUN_180036650(void)
-void FUN_180036650(void)
+// 函数: void system_function_036650(void)
+void system_function_036650(void)
 
 {
   char cVar1;
@@ -7013,8 +7025,8 @@ void FUN_180036650(void)
 
 
 
-// 函数: void FUN_180036750(void)
-void FUN_180036750(void)
+// 函数: void system_function_036750(void)
+void system_function_036750(void)
 
 {
   char cVar1;
@@ -7063,8 +7075,8 @@ void FUN_180036750(void)
 
 
 
-// 函数: void FUN_180036850(void)
-void FUN_180036850(void)
+// 函数: void system_function_036850(void)
+void system_function_036850(void)
 
 {
   char cVar1;
@@ -7113,8 +7125,8 @@ void FUN_180036850(void)
 
 
 
-// 函数: void FUN_180036950(void)
-void FUN_180036950(void)
+// 函数: void system_function_036950(void)
+void system_function_036950(void)
 
 {
   char cVar1;
@@ -7163,8 +7175,8 @@ void FUN_180036950(void)
 
 
 
-// 函数: void FUN_180036a50(void)
-void FUN_180036a50(void)
+// 函数: void system_function_036a50(void)
+void system_function_036a50(void)
 
 {
   char cVar1;
@@ -7215,8 +7227,8 @@ void FUN_180036a50(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180036b50(void)
-void FUN_180036b50(void)
+// 函数: void system_function_036b50(void)
+void system_function_036b50(void)
 
 {
   undefined8 in_R9;
@@ -7238,7 +7250,7 @@ void FUN_180036b50(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180036be0(void)
+int system_function_036be0(void)
 
 {
   longlong lVar1;
@@ -7247,8 +7259,8 @@ int FUN_180036be0(void)
   _DAT_180bf90b0 = &UNK_18098bc80;
   _DAT_180bf90b8 = &DAT_180bf90c8;
 
-// 函数: void FUN_180036cc0(void)
-void FUN_180036cc0(void)
+// 函数: void system_function_036cc0(void)
+void system_function_036cc0(void)
 
 {
   undefined8 in_R9;
@@ -7271,8 +7283,8 @@ void FUN_180036cc0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180036d50(void)
-void FUN_180036d50(void)
+// 函数: void system_function_036d50(void)
+void system_function_036d50(void)
 
 {
   undefined8 in_R9;
@@ -7293,8 +7305,8 @@ void FUN_180036d50(void)
 
 
 
-// 函数: void FUN_180036df0(void)
-void FUN_180036df0(void)
+// 函数: void system_function_036df0(void)
+void system_function_036df0(void)
 
 {
   char cVar1;
@@ -7343,8 +7355,8 @@ void FUN_180036df0(void)
 
 
 
-// 函数: void FUN_180036ef0(void)
-void FUN_180036ef0(void)
+// 函数: void system_function_036ef0(void)
+void system_function_036ef0(void)
 
 {
   char cVar1;
@@ -7393,8 +7405,8 @@ void FUN_180036ef0(void)
 
 
 
-// 函数: void FUN_180036ff0(void)
-void FUN_180036ff0(void)
+// 函数: void system_function_036ff0(void)
+void system_function_036ff0(void)
 
 {
   char cVar1;
@@ -7443,8 +7455,8 @@ void FUN_180036ff0(void)
 
 
 
-// 函数: void FUN_1800370f0(void)
-void FUN_1800370f0(void)
+// 函数: void system_function_0370f0(void)
+void system_function_0370f0(void)
 
 {
   char cVar1;
@@ -7493,8 +7505,8 @@ void FUN_1800370f0(void)
 
 
 
-// 函数: void FUN_1800371f0(void)
-void FUN_1800371f0(void)
+// 函数: void system_function_0371f0(void)
+void system_function_0371f0(void)
 
 {
   char cVar1;
@@ -7543,8 +7555,8 @@ void FUN_1800371f0(void)
 
 
 
-// 函数: void FUN_1800372f0(void)
-void FUN_1800372f0(void)
+// 函数: void system_function_0372f0(void)
+void system_function_0372f0(void)
 
 {
   char cVar1;
@@ -7593,8 +7605,8 @@ void FUN_1800372f0(void)
 
 
 
-// 函数: void FUN_1800373f0(void)
-void FUN_1800373f0(void)
+// 函数: void system_function_0373f0(void)
+void system_function_0373f0(void)
 
 {
   char cVar1;
@@ -7643,8 +7655,8 @@ void FUN_1800373f0(void)
 
 
 
-// 函数: void FUN_1800374f0(void)
-void FUN_1800374f0(void)
+// 函数: void system_function_0374f0(void)
+void system_function_0374f0(void)
 
 {
   char cVar1;
@@ -7695,8 +7707,8 @@ void FUN_1800374f0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800375f0(void)
-void FUN_1800375f0(void)
+// 函数: void system_function_0375f0(void)
+void system_function_0375f0(void)
 
 {
   undefined8 in_R9;
@@ -7717,8 +7729,8 @@ void FUN_1800375f0(void)
 
 
 
-// 函数: void FUN_180037680(void)
-void FUN_180037680(void)
+// 函数: void system_function_037680(void)
+void system_function_037680(void)
 
 {
   char cVar1;
@@ -7767,8 +7779,8 @@ void FUN_180037680(void)
 
 
 
-// 函数: void FUN_180037780(void)
-void FUN_180037780(void)
+// 函数: void system_function_037780(void)
+void system_function_037780(void)
 
 {
   char cVar1;
@@ -7817,8 +7829,8 @@ void FUN_180037780(void)
 
 
 
-// 函数: void FUN_180037880(void)
-void FUN_180037880(void)
+// 函数: void system_function_037880(void)
+void system_function_037880(void)
 
 {
   char cVar1;
@@ -7867,8 +7879,8 @@ void FUN_180037880(void)
 
 
 
-// 函数: void FUN_180037980(void)
-void FUN_180037980(void)
+// 函数: void system_function_037980(void)
+void system_function_037980(void)
 
 {
   char cVar1;
@@ -7917,8 +7929,8 @@ void FUN_180037980(void)
 
 
 
-// 函数: void FUN_180037a80(void)
-void FUN_180037a80(void)
+// 函数: void system_function_037a80(void)
+void system_function_037a80(void)
 
 {
   char cVar1;
@@ -7967,8 +7979,8 @@ void FUN_180037a80(void)
 
 
 
-// 函数: void FUN_180037b80(void)
-void FUN_180037b80(void)
+// 函数: void system_function_037b80(void)
+void system_function_037b80(void)
 
 {
   char cVar1;
@@ -8017,8 +8029,8 @@ void FUN_180037b80(void)
 
 
 
-// 函数: void FUN_180037c80(void)
-void FUN_180037c80(void)
+// 函数: void system_function_037c80(void)
+void system_function_037c80(void)
 
 {
   char cVar1;
@@ -8067,8 +8079,8 @@ void FUN_180037c80(void)
 
 
 
-// 函数: void FUN_180037d80(void)
-void FUN_180037d80(void)
+// 函数: void system_function_037d80(void)
+void system_function_037d80(void)
 
 {
   char cVar1;
@@ -8117,8 +8129,8 @@ void FUN_180037d80(void)
 
 
 
-// 函数: void FUN_180037e80(void)
-void FUN_180037e80(void)
+// 函数: void system_function_037e80(void)
+void system_function_037e80(void)
 
 {
   char cVar1;
@@ -8167,8 +8179,8 @@ void FUN_180037e80(void)
 
 
 
-// 函数: void FUN_180037f80(void)
-void FUN_180037f80(void)
+// 函数: void system_function_037f80(void)
+void system_function_037f80(void)
 
 {
   char cVar1;
@@ -8217,8 +8229,8 @@ void FUN_180037f80(void)
 
 
 
-// 函数: void FUN_180038080(void)
-void FUN_180038080(void)
+// 函数: void system_function_038080(void)
+void system_function_038080(void)
 
 {
   char cVar1;
@@ -8269,8 +8281,8 @@ void FUN_180038080(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180038180(void)
-void FUN_180038180(void)
+// 函数: void system_function_038180(void)
+void system_function_038180(void)
 
 {
   undefined8 in_R9;
@@ -8293,8 +8305,8 @@ void FUN_180038180(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180038210(void)
-void FUN_180038210(void)
+// 函数: void system_function_038210(void)
+void system_function_038210(void)
 
 {
   undefined8 in_R9;
@@ -8317,8 +8329,8 @@ void FUN_180038210(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800382a0(void)
-void FUN_1800382a0(void)
+// 函数: void system_function_0382a0(void)
+void system_function_0382a0(void)
 
 {
   undefined8 in_R9;
@@ -8341,8 +8353,8 @@ void FUN_1800382a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180038330(void)
-void FUN_180038330(void)
+// 函数: void system_function_038330(void)
+void system_function_038330(void)
 
 {
   undefined8 in_R9;
@@ -8365,8 +8377,8 @@ void FUN_180038330(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800383c0(void)
-void FUN_1800383c0(void)
+// 函数: void system_function_0383c0(void)
+void system_function_0383c0(void)
 
 {
   undefined8 in_R9;
@@ -8389,8 +8401,8 @@ void FUN_1800383c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180038450(void)
-void FUN_180038450(void)
+// 函数: void system_function_038450(void)
+void system_function_038450(void)
 
 {
   undefined8 in_R9;
@@ -8413,8 +8425,8 @@ void FUN_180038450(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800384e0(void)
-void FUN_1800384e0(void)
+// 函数: void system_function_0384e0(void)
+void system_function_0384e0(void)
 
 {
   undefined8 in_R9;
@@ -8437,8 +8449,8 @@ void FUN_1800384e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180038570(void)
-void FUN_180038570(void)
+// 函数: void system_function_038570(void)
+void system_function_038570(void)
 
 {
   undefined8 in_R9;
@@ -8461,8 +8473,8 @@ void FUN_180038570(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180038610(void)
-void FUN_180038610(void)
+// 函数: void system_function_038610(void)
+void system_function_038610(void)
 
 {
   undefined8 in_R9;
@@ -8483,8 +8495,8 @@ void FUN_180038610(void)
 
 
 
-// 函数: void FUN_1800386a0(void)
-void FUN_1800386a0(void)
+// 函数: void system_function_0386a0(void)
+void system_function_0386a0(void)
 
 {
   char cVar1;
@@ -8533,8 +8545,8 @@ void FUN_1800386a0(void)
 
 
 
-// 函数: void FUN_1800387a0(void)
-void FUN_1800387a0(void)
+// 函数: void system_function_0387a0(void)
+void system_function_0387a0(void)
 
 {
   char cVar1;
@@ -8583,8 +8595,8 @@ void FUN_1800387a0(void)
 
 
 
-// 函数: void FUN_1800388a0(void)
-void FUN_1800388a0(void)
+// 函数: void system_function_0388a0(void)
+void system_function_0388a0(void)
 
 {
   char cVar1;
@@ -8633,8 +8645,8 @@ void FUN_1800388a0(void)
 
 
 
-// 函数: void FUN_1800389a0(void)
-void FUN_1800389a0(void)
+// 函数: void system_function_0389a0(void)
+void system_function_0389a0(void)
 
 {
   char cVar1;
@@ -8683,8 +8695,8 @@ void FUN_1800389a0(void)
 
 
 
-// 函数: void FUN_180038aa0(void)
-void FUN_180038aa0(void)
+// 函数: void system_function_038aa0(void)
+void system_function_038aa0(void)
 
 {
   char cVar1;
@@ -8733,8 +8745,8 @@ void FUN_180038aa0(void)
 
 
 
-// 函数: void FUN_180038ba0(void)
-void FUN_180038ba0(void)
+// 函数: void system_function_038ba0(void)
+void system_function_038ba0(void)
 
 {
   char cVar1;
@@ -8783,8 +8795,8 @@ void FUN_180038ba0(void)
 
 
 
-// 函数: void FUN_180038ca0(void)
-void FUN_180038ca0(void)
+// 函数: void system_function_038ca0(void)
+void system_function_038ca0(void)
 
 {
   char cVar1;
@@ -8833,8 +8845,8 @@ void FUN_180038ca0(void)
 
 
 
-// 函数: void FUN_180038da0(void)
-void FUN_180038da0(void)
+// 函数: void system_function_038da0(void)
+void system_function_038da0(void)
 
 {
   char cVar1;
@@ -8883,8 +8895,8 @@ void FUN_180038da0(void)
 
 
 
-// 函数: void FUN_180038ea0(void)
-void FUN_180038ea0(void)
+// 函数: void system_function_038ea0(void)
+void system_function_038ea0(void)
 
 {
   char cVar1;
@@ -8933,8 +8945,8 @@ void FUN_180038ea0(void)
 
 
 
-// 函数: void FUN_180038fa0(void)
-void FUN_180038fa0(void)
+// 函数: void system_function_038fa0(void)
+void system_function_038fa0(void)
 
 {
   char cVar1;
@@ -8983,8 +8995,8 @@ void FUN_180038fa0(void)
 
 
 
-// 函数: void FUN_1800390a0(void)
-void FUN_1800390a0(void)
+// 函数: void system_function_0390a0(void)
+void system_function_0390a0(void)
 
 {
   char cVar1;
@@ -9033,8 +9045,8 @@ void FUN_1800390a0(void)
 
 
 
-// 函数: void FUN_1800391a0(void)
-void FUN_1800391a0(void)
+// 函数: void system_function_0391a0(void)
+void system_function_0391a0(void)
 
 {
   char cVar1;
@@ -9083,8 +9095,8 @@ void FUN_1800391a0(void)
 
 
 
-// 函数: void FUN_1800392a0(void)
-void FUN_1800392a0(void)
+// 函数: void system_function_0392a0(void)
+void system_function_0392a0(void)
 
 {
   char cVar1;
@@ -9133,8 +9145,8 @@ void FUN_1800392a0(void)
 
 
 
-// 函数: void FUN_1800393a0(void)
-void FUN_1800393a0(void)
+// 函数: void system_function_0393a0(void)
+void system_function_0393a0(void)
 
 {
   char cVar1;
@@ -9183,8 +9195,8 @@ void FUN_1800393a0(void)
 
 
 
-// 函数: void FUN_1800394a0(void)
-void FUN_1800394a0(void)
+// 函数: void system_function_0394a0(void)
+void system_function_0394a0(void)
 
 {
   char cVar1;
@@ -9233,8 +9245,8 @@ void FUN_1800394a0(void)
 
 
 
-// 函数: void FUN_1800395a0(void)
-void FUN_1800395a0(void)
+// 函数: void system_function_0395a0(void)
+void system_function_0395a0(void)
 
 {
   char cVar1;
@@ -9283,8 +9295,8 @@ void FUN_1800395a0(void)
 
 
 
-// 函数: void FUN_1800396a0(void)
-void FUN_1800396a0(void)
+// 函数: void system_function_0396a0(void)
+void system_function_0396a0(void)
 
 {
   char cVar1;
@@ -9333,8 +9345,8 @@ void FUN_1800396a0(void)
 
 
 
-// 函数: void FUN_1800397a0(void)
-void FUN_1800397a0(void)
+// 函数: void system_function_0397a0(void)
+void system_function_0397a0(void)
 
 {
   char cVar1;
@@ -9383,8 +9395,8 @@ void FUN_1800397a0(void)
 
 
 
-// 函数: void FUN_1800398a0(void)
-void FUN_1800398a0(void)
+// 函数: void system_function_0398a0(void)
+void system_function_0398a0(void)
 
 {
   char cVar1;
@@ -9433,8 +9445,8 @@ void FUN_1800398a0(void)
 
 
 
-// 函数: void FUN_1800399a0(void)
-void FUN_1800399a0(void)
+// 函数: void system_function_0399a0(void)
+void system_function_0399a0(void)
 
 {
   char cVar1;
@@ -9483,8 +9495,8 @@ void FUN_1800399a0(void)
 
 
 
-// 函数: void FUN_180039aa0(void)
-void FUN_180039aa0(void)
+// 函数: void system_function_039aa0(void)
+void system_function_039aa0(void)
 
 {
   char cVar1;
@@ -9533,8 +9545,8 @@ void FUN_180039aa0(void)
 
 
 
-// 函数: void FUN_180039bb0(void)
-void FUN_180039bb0(void)
+// 函数: void system_function_039bb0(void)
+void system_function_039bb0(void)
 
 {
   char cVar1;
@@ -9583,8 +9595,8 @@ void FUN_180039bb0(void)
 
 
 
-// 函数: void FUN_180039cb0(void)
-void FUN_180039cb0(void)
+// 函数: void system_function_039cb0(void)
+void system_function_039cb0(void)
 
 {
   char cVar1;
@@ -9633,8 +9645,8 @@ void FUN_180039cb0(void)
 
 
 
-// 函数: void FUN_180039db0(void)
-void FUN_180039db0(void)
+// 函数: void system_function_039db0(void)
+void system_function_039db0(void)
 
 {
   char cVar1;
@@ -9683,8 +9695,8 @@ void FUN_180039db0(void)
 
 
 
-// 函数: void FUN_180039eb0(void)
-void FUN_180039eb0(void)
+// 函数: void system_function_039eb0(void)
+void system_function_039eb0(void)
 
 {
   char cVar1;
@@ -9733,8 +9745,8 @@ void FUN_180039eb0(void)
 
 
 
-// 函数: void FUN_180039fb0(void)
-void FUN_180039fb0(void)
+// 函数: void system_function_039fb0(void)
+void system_function_039fb0(void)
 
 {
   char cVar1;
@@ -9783,8 +9795,8 @@ void FUN_180039fb0(void)
 
 
 
-// 函数: void FUN_18003a0b0(void)
-void FUN_18003a0b0(void)
+// 函数: void system_function_03a0b0(void)
+void system_function_03a0b0(void)
 
 {
   char cVar1;
@@ -9833,8 +9845,8 @@ void FUN_18003a0b0(void)
 
 
 
-// 函数: void FUN_18003a1b0(void)
-void FUN_18003a1b0(void)
+// 函数: void system_function_03a1b0(void)
+void system_function_03a1b0(void)
 
 {
   char cVar1;
@@ -9883,8 +9895,8 @@ void FUN_18003a1b0(void)
 
 
 
-// 函数: void FUN_18003a2b0(void)
-void FUN_18003a2b0(void)
+// 函数: void system_function_03a2b0(void)
+void system_function_03a2b0(void)
 
 {
   char cVar1;
@@ -9933,8 +9945,8 @@ void FUN_18003a2b0(void)
 
 
 
-// 函数: void FUN_18003a3b0(void)
-void FUN_18003a3b0(void)
+// 函数: void system_function_03a3b0(void)
+void system_function_03a3b0(void)
 
 {
   char cVar1;
@@ -9983,8 +9995,8 @@ void FUN_18003a3b0(void)
 
 
 
-// 函数: void FUN_18003a4b0(void)
-void FUN_18003a4b0(void)
+// 函数: void system_function_03a4b0(void)
+void system_function_03a4b0(void)
 
 {
   char cVar1;
@@ -10033,8 +10045,8 @@ void FUN_18003a4b0(void)
 
 
 
-// 函数: void FUN_18003a5b0(void)
-void FUN_18003a5b0(void)
+// 函数: void system_function_03a5b0(void)
+void system_function_03a5b0(void)
 
 {
   char cVar1;
@@ -10083,8 +10095,8 @@ void FUN_18003a5b0(void)
 
 
 
-// 函数: void FUN_18003a6b0(void)
-void FUN_18003a6b0(void)
+// 函数: void system_function_03a6b0(void)
+void system_function_03a6b0(void)
 
 {
   char cVar1;
@@ -10133,8 +10145,8 @@ void FUN_18003a6b0(void)
 
 
 
-// 函数: void FUN_18003a7b0(void)
-void FUN_18003a7b0(void)
+// 函数: void system_function_03a7b0(void)
+void system_function_03a7b0(void)
 
 {
   char cVar1;
@@ -10183,8 +10195,8 @@ void FUN_18003a7b0(void)
 
 
 
-// 函数: void FUN_18003a8b0(void)
-void FUN_18003a8b0(void)
+// 函数: void system_function_03a8b0(void)
+void system_function_03a8b0(void)
 
 {
   char cVar1;
@@ -10233,8 +10245,8 @@ void FUN_18003a8b0(void)
 
 
 
-// 函数: void FUN_18003a9b0(void)
-void FUN_18003a9b0(void)
+// 函数: void system_function_03a9b0(void)
+void system_function_03a9b0(void)
 
 {
   char cVar1;
@@ -10283,8 +10295,8 @@ void FUN_18003a9b0(void)
 
 
 
-// 函数: void FUN_18003aab0(void)
-void FUN_18003aab0(void)
+// 函数: void system_function_03aab0(void)
+void system_function_03aab0(void)
 
 {
   char cVar1;
@@ -10333,8 +10345,8 @@ void FUN_18003aab0(void)
 
 
 
-// 函数: void FUN_18003abb0(void)
-void FUN_18003abb0(void)
+// 函数: void system_function_03abb0(void)
+void system_function_03abb0(void)
 
 {
   char cVar1;
@@ -10385,8 +10397,8 @@ void FUN_18003abb0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003acb0(void)
-void FUN_18003acb0(void)
+// 函数: void system_function_03acb0(void)
+void system_function_03acb0(void)
 
 {
   undefined8 in_R9;
@@ -10408,7 +10420,7 @@ void FUN_18003acb0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18003ad40(void)
+int system_function_03ad40(void)
 
 {
   longlong lVar1;
@@ -10417,8 +10429,8 @@ int FUN_18003ad40(void)
   _DAT_180bf91b0 = &UNK_1809fcc58;
   _DAT_180bf91b8 = &DAT_180bf91c8;
 
-// 函数: void FUN_18003c1f0(void)
-void FUN_18003c1f0(void)
+// 函数: void system_function_03c1f0(void)
+void system_function_03c1f0(void)
 
 {
   char cVar1;
@@ -10467,8 +10479,8 @@ void FUN_18003c1f0(void)
 
 
 
-// 函数: void FUN_18003c2f0(void)
-void FUN_18003c2f0(void)
+// 函数: void system_function_03c2f0(void)
+void system_function_03c2f0(void)
 
 {
   char cVar1;
@@ -10517,8 +10529,8 @@ void FUN_18003c2f0(void)
 
 
 
-// 函数: void FUN_18003c3f0(void)
-void FUN_18003c3f0(void)
+// 函数: void system_function_03c3f0(void)
+void system_function_03c3f0(void)
 
 {
   char cVar1;
@@ -10567,8 +10579,8 @@ void FUN_18003c3f0(void)
 
 
 
-// 函数: void FUN_18003c4f0(void)
-void FUN_18003c4f0(void)
+// 函数: void system_function_03c4f0(void)
+void system_function_03c4f0(void)
 
 {
   char cVar1;
@@ -10617,8 +10629,8 @@ void FUN_18003c4f0(void)
 
 
 
-// 函数: void FUN_18003c5f0(void)
-void FUN_18003c5f0(void)
+// 函数: void system_function_03c5f0(void)
+void system_function_03c5f0(void)
 
 {
   char cVar1;
@@ -10667,8 +10679,8 @@ void FUN_18003c5f0(void)
 
 
 
-// 函数: void FUN_18003c6f0(void)
-void FUN_18003c6f0(void)
+// 函数: void system_function_03c6f0(void)
+void system_function_03c6f0(void)
 
 {
   char cVar1;
@@ -10717,8 +10729,8 @@ void FUN_18003c6f0(void)
 
 
 
-// 函数: void FUN_18003c7f0(void)
-void FUN_18003c7f0(void)
+// 函数: void system_function_03c7f0(void)
+void system_function_03c7f0(void)
 
 {
   char cVar1;
@@ -10767,8 +10779,8 @@ void FUN_18003c7f0(void)
 
 
 
-// 函数: void FUN_18003c8f0(void)
-void FUN_18003c8f0(void)
+// 函数: void system_function_03c8f0(void)
+void system_function_03c8f0(void)
 
 {
   char cVar1;
@@ -10817,8 +10829,8 @@ void FUN_18003c8f0(void)
 
 
 
-// 函数: void FUN_18003c9f0(void)
-void FUN_18003c9f0(void)
+// 函数: void system_function_03c9f0(void)
+void system_function_03c9f0(void)
 
 {
   char cVar1;
@@ -10867,8 +10879,8 @@ void FUN_18003c9f0(void)
 
 
 
-// 函数: void FUN_18003caf0(void)
-void FUN_18003caf0(void)
+// 函数: void system_function_03caf0(void)
+void system_function_03caf0(void)
 
 {
   char cVar1;
@@ -10919,8 +10931,8 @@ void FUN_18003caf0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003cbf0(void)
-void FUN_18003cbf0(void)
+// 函数: void system_function_03cbf0(void)
+void system_function_03cbf0(void)
 
 {
   undefined8 in_R9;
@@ -10943,8 +10955,8 @@ void FUN_18003cbf0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003cc80(void)
-void FUN_18003cc80(void)
+// 函数: void system_function_03cc80(void)
+void system_function_03cc80(void)
 
 {
   undefined8 in_R9;
@@ -10965,8 +10977,8 @@ void FUN_18003cc80(void)
 
 
 
-// 函数: void FUN_18003cd10(void)
-void FUN_18003cd10(void)
+// 函数: void system_function_03cd10(void)
+void system_function_03cd10(void)
 
 {
   char cVar1;
@@ -11015,8 +11027,8 @@ void FUN_18003cd10(void)
 
 
 
-// 函数: void FUN_18003ce10(void)
-void FUN_18003ce10(void)
+// 函数: void system_function_03ce10(void)
+void system_function_03ce10(void)
 
 {
   char cVar1;
@@ -11065,8 +11077,8 @@ void FUN_18003ce10(void)
 
 
 
-// 函数: void FUN_18003cf10(void)
-void FUN_18003cf10(void)
+// 函数: void system_function_03cf10(void)
+void system_function_03cf10(void)
 
 {
   char cVar1;
@@ -11115,8 +11127,8 @@ void FUN_18003cf10(void)
 
 
 
-// 函数: void FUN_18003d010(void)
-void FUN_18003d010(void)
+// 函数: void system_function_03d010(void)
+void system_function_03d010(void)
 
 {
   char cVar1;
@@ -11165,8 +11177,8 @@ void FUN_18003d010(void)
 
 
 
-// 函数: void FUN_18003d110(void)
-void FUN_18003d110(void)
+// 函数: void system_function_03d110(void)
+void system_function_03d110(void)
 
 {
   char cVar1;
@@ -11215,8 +11227,8 @@ void FUN_18003d110(void)
 
 
 
-// 函数: void FUN_18003d210(void)
-void FUN_18003d210(void)
+// 函数: void system_function_03d210(void)
+void system_function_03d210(void)
 
 {
   char cVar1;
@@ -11265,8 +11277,8 @@ void FUN_18003d210(void)
 
 
 
-// 函数: void FUN_18003d310(void)
-void FUN_18003d310(void)
+// 函数: void system_function_03d310(void)
+void system_function_03d310(void)
 
 {
   char cVar1;
@@ -11316,7 +11328,7 @@ void FUN_18003d310(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18003d410(void)
+int system_function_03d410(void)
 
 {
   longlong lVar1;
@@ -11325,8 +11337,8 @@ int FUN_18003d410(void)
   _DAT_180bfa350 = &UNK_1809fcc28;
   _DAT_180bfa358 = &DAT_180bfa368;
 
-// 函数: void FUN_18003de10(void)
-void FUN_18003de10(void)
+// 函数: void system_function_03de10(void)
+void system_function_03de10(void)
 
 {
   char cVar1;
@@ -11375,8 +11387,8 @@ void FUN_18003de10(void)
 
 
 
-// 函数: void FUN_18003df10(void)
-void FUN_18003df10(void)
+// 函数: void system_function_03df10(void)
+void system_function_03df10(void)
 
 {
   char cVar1;
@@ -11425,8 +11437,8 @@ void FUN_18003df10(void)
 
 
 
-// 函数: void FUN_18003e010(void)
-void FUN_18003e010(void)
+// 函数: void system_function_03e010(void)
+void system_function_03e010(void)
 
 {
   char cVar1;
@@ -11475,8 +11487,8 @@ void FUN_18003e010(void)
 
 
 
-// 函数: void FUN_18003e110(void)
-void FUN_18003e110(void)
+// 函数: void system_function_03e110(void)
+void system_function_03e110(void)
 
 {
   char cVar1;
@@ -11525,8 +11537,8 @@ void FUN_18003e110(void)
 
 
 
-// 函数: void FUN_18003e210(void)
-void FUN_18003e210(void)
+// 函数: void system_function_03e210(void)
+void system_function_03e210(void)
 
 {
   char cVar1;
@@ -11575,8 +11587,8 @@ void FUN_18003e210(void)
 
 
 
-// 函数: void FUN_18003e310(void)
-void FUN_18003e310(void)
+// 函数: void system_function_03e310(void)
+void system_function_03e310(void)
 
 {
   char cVar1;
@@ -11625,8 +11637,8 @@ void FUN_18003e310(void)
 
 
 
-// 函数: void FUN_18003e410(void)
-void FUN_18003e410(void)
+// 函数: void system_function_03e410(void)
+void system_function_03e410(void)
 
 {
   char cVar1;
@@ -11675,8 +11687,8 @@ void FUN_18003e410(void)
 
 
 
-// 函数: void FUN_18003e510(void)
-void FUN_18003e510(void)
+// 函数: void system_function_03e510(void)
+void system_function_03e510(void)
 
 {
   char cVar1;
@@ -11725,8 +11737,8 @@ void FUN_18003e510(void)
 
 
 
-// 函数: void FUN_18003e610(void)
-void FUN_18003e610(void)
+// 函数: void system_function_03e610(void)
+void system_function_03e610(void)
 
 {
   char cVar1;
@@ -11775,8 +11787,8 @@ void FUN_18003e610(void)
 
 
 
-// 函数: void FUN_18003e710(void)
-void FUN_18003e710(void)
+// 函数: void system_function_03e710(void)
+void system_function_03e710(void)
 
 {
   char cVar1;
@@ -11825,8 +11837,8 @@ void FUN_18003e710(void)
 
 
 
-// 函数: void FUN_18003e810(void)
-void FUN_18003e810(void)
+// 函数: void system_function_03e810(void)
+void system_function_03e810(void)
 
 {
   char cVar1;
@@ -11875,8 +11887,8 @@ void FUN_18003e810(void)
 
 
 
-// 函数: void FUN_18003e910(void)
-void FUN_18003e910(void)
+// 函数: void system_function_03e910(void)
+void system_function_03e910(void)
 
 {
   char cVar1;
@@ -11925,8 +11937,8 @@ void FUN_18003e910(void)
 
 
 
-// 函数: void FUN_18003ea10(void)
-void FUN_18003ea10(void)
+// 函数: void system_function_03ea10(void)
+void system_function_03ea10(void)
 
 {
   char cVar1;
@@ -11975,8 +11987,8 @@ void FUN_18003ea10(void)
 
 
 
-// 函数: void FUN_18003eb10(void)
-void FUN_18003eb10(void)
+// 函数: void system_function_03eb10(void)
+void system_function_03eb10(void)
 
 {
   char cVar1;
@@ -12025,8 +12037,8 @@ void FUN_18003eb10(void)
 
 
 
-// 函数: void FUN_18003ec10(void)
-void FUN_18003ec10(void)
+// 函数: void system_function_03ec10(void)
+void system_function_03ec10(void)
 
 {
   char cVar1;
@@ -12077,8 +12089,8 @@ void FUN_18003ec10(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003ed10(void)
-void FUN_18003ed10(void)
+// 函数: void system_function_03ed10(void)
+void system_function_03ed10(void)
 
 {
   undefined8 in_R9;
@@ -12098,7 +12110,7 @@ void FUN_18003ed10(void)
 
 
 
-int FUN_18003eda0(void)
+int system_function_03eda0(void)
 
 {
   longlong lVar1;
@@ -12110,7 +12122,7 @@ int FUN_18003eda0(void)
 
 
 
-int FUN_18003edc0(void)
+int system_function_03edc0(void)
 
 {
   longlong lVar1;
@@ -12124,7 +12136,7 @@ int FUN_18003edc0(void)
 
 
 
-int FUN_18003edf0(void)
+int system_function_03edf0(void)
 
 {
   longlong lVar1;
@@ -12138,7 +12150,7 @@ int FUN_18003edf0(void)
 
 
 
-int FUN_18003ee20(void)
+int system_function_03ee20(void)
 
 {
   longlong lVar1;
@@ -12149,7 +12161,7 @@ int FUN_18003ee20(void)
 
 
 
-int FUN_18003ee40(void)
+int system_function_03ee40(void)
 
 {
   longlong lVar1;
@@ -12162,8 +12174,8 @@ int FUN_18003ee40(void)
 
 
 
-// 函数: void FUN_18003ee90(void)
-void FUN_18003ee90(void)
+// 函数: void system_function_03ee90(void)
+void system_function_03ee90(void)
 
 {
   char cVar1;
@@ -12212,8 +12224,8 @@ void FUN_18003ee90(void)
 
 
 
-// 函数: void FUN_18003ef90(void)
-void FUN_18003ef90(void)
+// 函数: void system_function_03ef90(void)
+void system_function_03ef90(void)
 
 {
   char cVar1;
@@ -12262,8 +12274,8 @@ void FUN_18003ef90(void)
 
 
 
-// 函数: void FUN_18003f090(void)
-void FUN_18003f090(void)
+// 函数: void system_function_03f090(void)
+void system_function_03f090(void)
 
 {
   char cVar1;
@@ -12312,8 +12324,8 @@ void FUN_18003f090(void)
 
 
 
-// 函数: void FUN_18003f190(void)
-void FUN_18003f190(void)
+// 函数: void system_function_03f190(void)
+void system_function_03f190(void)
 
 {
   char cVar1;
@@ -12362,8 +12374,8 @@ void FUN_18003f190(void)
 
 
 
-// 函数: void FUN_18003f290(void)
-void FUN_18003f290(void)
+// 函数: void system_function_03f290(void)
+void system_function_03f290(void)
 
 {
   char cVar1;
@@ -12412,8 +12424,8 @@ void FUN_18003f290(void)
 
 
 
-// 函数: void FUN_18003f390(void)
-void FUN_18003f390(void)
+// 函数: void system_function_03f390(void)
+void system_function_03f390(void)
 
 {
   char cVar1;
@@ -12462,8 +12474,8 @@ void FUN_18003f390(void)
 
 
 
-// 函数: void FUN_18003f490(void)
-void FUN_18003f490(void)
+// 函数: void system_function_03f490(void)
+void system_function_03f490(void)
 
 {
   char cVar1;
@@ -12512,8 +12524,8 @@ void FUN_18003f490(void)
 
 
 
-// 函数: void FUN_18003f590(void)
-void FUN_18003f590(void)
+// 函数: void system_function_03f590(void)
+void system_function_03f590(void)
 
 {
   char cVar1;
@@ -12562,8 +12574,8 @@ void FUN_18003f590(void)
 
 
 
-// 函数: void FUN_18003f690(void)
-void FUN_18003f690(void)
+// 函数: void system_function_03f690(void)
+void system_function_03f690(void)
 
 {
   char cVar1;
@@ -12612,8 +12624,8 @@ void FUN_18003f690(void)
 
 
 
-// 函数: void FUN_18003f790(void)
-void FUN_18003f790(void)
+// 函数: void system_function_03f790(void)
+void system_function_03f790(void)
 
 {
   char cVar1;
@@ -12664,8 +12676,8 @@ void FUN_18003f790(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003f890(void)
-void FUN_18003f890(void)
+// 函数: void system_function_03f890(void)
+void system_function_03f890(void)
 
 {
   undefined8 in_R9;
@@ -12688,8 +12700,8 @@ void FUN_18003f890(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003f920(void)
-void FUN_18003f920(void)
+// 函数: void system_function_03f920(void)
+void system_function_03f920(void)
 
 {
   undefined8 in_R9;
@@ -12712,8 +12724,8 @@ void FUN_18003f920(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003f9b0(void)
-void FUN_18003f9b0(void)
+// 函数: void system_function_03f9b0(void)
+void system_function_03f9b0(void)
 
 {
   undefined8 in_R9;
@@ -12736,8 +12748,8 @@ void FUN_18003f9b0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003fa40(void)
-void FUN_18003fa40(void)
+// 函数: void system_function_03fa40(void)
+void system_function_03fa40(void)
 
 {
   undefined8 in_R9;
@@ -12759,7 +12771,7 @@ void FUN_18003fa40(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18003fad0(void)
+int system_function_03fad0(void)
 
 {
   longlong lVar1;
@@ -12768,8 +12780,8 @@ int FUN_18003fad0(void)
   _DAT_180bf6048 = &UNK_18098bc80;
   _DAT_180bf6050 = &DAT_180bf6060;
 
-// 函数: void FUN_18003fbb0(void)
-void FUN_18003fbb0(void)
+// 函数: void system_function_03fbb0(void)
+void system_function_03fbb0(void)
 
 {
   char cVar1;
@@ -12818,8 +12830,8 @@ void FUN_18003fbb0(void)
 
 
 
-// 函数: void FUN_18003fcb0(void)
-void FUN_18003fcb0(void)
+// 函数: void system_function_03fcb0(void)
+void system_function_03fcb0(void)
 
 {
   char cVar1;
@@ -12868,8 +12880,8 @@ void FUN_18003fcb0(void)
 
 
 
-// 函数: void FUN_18003fdb0(void)
-void FUN_18003fdb0(void)
+// 函数: void system_function_03fdb0(void)
+void system_function_03fdb0(void)
 
 {
   char cVar1;
@@ -12918,8 +12930,8 @@ void FUN_18003fdb0(void)
 
 
 
-// 函数: void FUN_18003feb0(void)
-void FUN_18003feb0(void)
+// 函数: void system_function_03feb0(void)
+void system_function_03feb0(void)
 
 {
   char cVar1;
@@ -12968,8 +12980,8 @@ void FUN_18003feb0(void)
 
 
 
-// 函数: void FUN_18003ffb0(void)
-void FUN_18003ffb0(void)
+// 函数: void system_function_03ffb0(void)
+void system_function_03ffb0(void)
 
 {
   char cVar1;
@@ -13018,8 +13030,8 @@ void FUN_18003ffb0(void)
 
 
 
-// 函数: void FUN_1800400b0(void)
-void FUN_1800400b0(void)
+// 函数: void system_function_0400b0(void)
+void system_function_0400b0(void)
 
 {
   char cVar1;
@@ -13068,8 +13080,8 @@ void FUN_1800400b0(void)
 
 
 
-// 函数: void FUN_1800401b0(void)
-void FUN_1800401b0(void)
+// 函数: void system_function_0401b0(void)
+void system_function_0401b0(void)
 
 {
   char cVar1;
@@ -13118,8 +13130,8 @@ void FUN_1800401b0(void)
 
 
 
-// 函数: void FUN_1800402b0(void)
-void FUN_1800402b0(void)
+// 函数: void system_function_0402b0(void)
+void system_function_0402b0(void)
 
 {
   char cVar1;
@@ -13168,8 +13180,8 @@ void FUN_1800402b0(void)
 
 
 
-// 函数: void FUN_1800403b0(void)
-void FUN_1800403b0(void)
+// 函数: void system_function_0403b0(void)
+void system_function_0403b0(void)
 
 {
   char cVar1;
@@ -13218,8 +13230,8 @@ void FUN_1800403b0(void)
 
 
 
-// 函数: void FUN_1800404b0(void)
-void FUN_1800404b0(void)
+// 函数: void system_function_0404b0(void)
+void system_function_0404b0(void)
 
 {
   char cVar1;
@@ -13268,8 +13280,8 @@ void FUN_1800404b0(void)
 
 
 
-// 函数: void FUN_1800405b0(void)
-void FUN_1800405b0(void)
+// 函数: void system_function_0405b0(void)
+void system_function_0405b0(void)
 
 {
   char cVar1;
@@ -13318,8 +13330,8 @@ void FUN_1800405b0(void)
 
 
 
-// 函数: void FUN_1800406b0(void)
-void FUN_1800406b0(void)
+// 函数: void system_function_0406b0(void)
+void system_function_0406b0(void)
 
 {
   char cVar1;
@@ -13368,8 +13380,8 @@ void FUN_1800406b0(void)
 
 
 
-// 函数: void FUN_1800408d0(void)
-void FUN_1800408d0(void)
+// 函数: void system_function_0408d0(void)
+void system_function_0408d0(void)
 
 {
   char cVar1;
@@ -13418,8 +13430,8 @@ void FUN_1800408d0(void)
 
 
 
-// 函数: void FUN_1800409d0(void)
-void FUN_1800409d0(void)
+// 函数: void system_function_0409d0(void)
+void system_function_0409d0(void)
 
 {
   char cVar1;
@@ -13468,8 +13480,8 @@ void FUN_1800409d0(void)
 
 
 
-// 函数: void FUN_180040ae0(void)
-void FUN_180040ae0(void)
+// 函数: void system_function_040ae0(void)
+void system_function_040ae0(void)
 
 {
   char cVar1;
@@ -13518,8 +13530,8 @@ void FUN_180040ae0(void)
 
 
 
-// 函数: void FUN_180040be0(void)
-void FUN_180040be0(void)
+// 函数: void system_function_040be0(void)
+void system_function_040be0(void)
 
 {
   char cVar1;
@@ -13568,8 +13580,8 @@ void FUN_180040be0(void)
 
 
 
-// 函数: void FUN_180040ce0(void)
-void FUN_180040ce0(void)
+// 函数: void system_function_040ce0(void)
+void system_function_040ce0(void)
 
 {
   char cVar1;
@@ -13618,8 +13630,8 @@ void FUN_180040ce0(void)
 
 
 
-// 函数: void FUN_180040de0(void)
-void FUN_180040de0(void)
+// 函数: void system_function_040de0(void)
+void system_function_040de0(void)
 
 {
   char cVar1;
@@ -13668,8 +13680,8 @@ void FUN_180040de0(void)
 
 
 
-// 函数: void FUN_180040ee0(void)
-void FUN_180040ee0(void)
+// 函数: void system_function_040ee0(void)
+void system_function_040ee0(void)
 
 {
   char cVar1;
@@ -13718,8 +13730,8 @@ void FUN_180040ee0(void)
 
 
 
-// 函数: void FUN_180040fe0(void)
-void FUN_180040fe0(void)
+// 函数: void system_function_040fe0(void)
+void system_function_040fe0(void)
 
 {
   char cVar1;
@@ -13768,8 +13780,8 @@ void FUN_180040fe0(void)
 
 
 
-// 函数: void FUN_1800410e0(void)
-void FUN_1800410e0(void)
+// 函数: void system_function_0410e0(void)
+void system_function_0410e0(void)
 
 {
   char cVar1;
@@ -13818,8 +13830,8 @@ void FUN_1800410e0(void)
 
 
 
-// 函数: void FUN_1800411e0(void)
-void FUN_1800411e0(void)
+// 函数: void system_function_0411e0(void)
+void system_function_0411e0(void)
 
 {
   char cVar1;
@@ -13868,8 +13880,8 @@ void FUN_1800411e0(void)
 
 
 
-// 函数: void FUN_1800412e0(void)
-void FUN_1800412e0(void)
+// 函数: void system_function_0412e0(void)
+void system_function_0412e0(void)
 
 {
   char cVar1;
@@ -13918,8 +13930,8 @@ void FUN_1800412e0(void)
 
 
 
-// 函数: void FUN_1800413e0(void)
-void FUN_1800413e0(void)
+// 函数: void system_function_0413e0(void)
+void system_function_0413e0(void)
 
 {
   char cVar1;
@@ -13968,8 +13980,8 @@ void FUN_1800413e0(void)
 
 
 
-// 函数: void FUN_1800414e0(void)
-void FUN_1800414e0(void)
+// 函数: void system_function_0414e0(void)
+void system_function_0414e0(void)
 
 {
   char cVar1;
@@ -14018,8 +14030,8 @@ void FUN_1800414e0(void)
 
 
 
-// 函数: void FUN_1800415e0(void)
-void FUN_1800415e0(void)
+// 函数: void system_function_0415e0(void)
+void system_function_0415e0(void)
 
 {
   char cVar1;
@@ -14068,8 +14080,8 @@ void FUN_1800415e0(void)
 
 
 
-// 函数: void FUN_1800416e0(void)
-void FUN_1800416e0(void)
+// 函数: void system_function_0416e0(void)
+void system_function_0416e0(void)
 
 {
   char cVar1;
@@ -14118,8 +14130,8 @@ void FUN_1800416e0(void)
 
 
 
-// 函数: void FUN_1800417e0(void)
-void FUN_1800417e0(void)
+// 函数: void system_function_0417e0(void)
+void system_function_0417e0(void)
 
 {
   char cVar1;
@@ -14169,7 +14181,7 @@ void FUN_1800417e0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1800418e0(void)
+int system_function_0418e0(void)
 
 {
   longlong lVar1;
@@ -14199,7 +14211,7 @@ int FUN_1800418e0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180041a10(void)
+int system_function_041a10(void)
 
 {
   longlong lVar1;
@@ -14208,8 +14220,8 @@ int FUN_180041a10(void)
   _DAT_180bf64f8 = &UNK_18098bc80;
   _DAT_180bf6500 = &engine_manager_ptr;
 
-// 函数: void FUN_180041af0(void)
-void FUN_180041af0(void)
+// 函数: void system_function_041af0(void)
+void system_function_041af0(void)
 
 {
   char cVar1;
@@ -14258,8 +14270,8 @@ void FUN_180041af0(void)
 
 
 
-// 函数: void FUN_180041bf0(void)
-void FUN_180041bf0(void)
+// 函数: void system_function_041bf0(void)
+void system_function_041bf0(void)
 
 {
   char cVar1;
@@ -14308,8 +14320,8 @@ void FUN_180041bf0(void)
 
 
 
-// 函数: void FUN_180041d10(void)
-void FUN_180041d10(void)
+// 函数: void system_function_041d10(void)
+void system_function_041d10(void)
 
 {
   char cVar1;
@@ -14358,8 +14370,8 @@ void FUN_180041d10(void)
 
 
 
-// 函数: void FUN_180041e10(void)
-void FUN_180041e10(void)
+// 函数: void system_function_041e10(void)
+void system_function_041e10(void)
 
 {
   char cVar1;
@@ -14410,8 +14422,8 @@ void FUN_180041e10(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180041f10(void)
-void FUN_180041f10(void)
+// 函数: void system_function_041f10(void)
+void system_function_041f10(void)
 
 {
   undefined8 in_R9;
@@ -14431,7 +14443,7 @@ void FUN_180041f10(void)
 
 
 
-int FUN_180041fa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int system_function_041fa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -14444,8 +14456,8 @@ int FUN_180041fa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_180041fd0(void)
-void FUN_180041fd0(void)
+// 函数: void system_function_041fd0(void)
+void system_function_041fd0(void)
 
 {
   char cVar1;
@@ -14494,8 +14506,8 @@ void FUN_180041fd0(void)
 
 
 
-// 函数: void FUN_1800420d0(void)
-void FUN_1800420d0(void)
+// 函数: void system_function_0420d0(void)
+void system_function_0420d0(void)
 
 {
   char cVar1;
@@ -14544,8 +14556,8 @@ void FUN_1800420d0(void)
 
 
 
-// 函数: void FUN_1800421d0(void)
-void FUN_1800421d0(void)
+// 函数: void system_function_0421d0(void)
+void system_function_0421d0(void)
 
 {
   char cVar1;
@@ -14594,8 +14606,8 @@ void FUN_1800421d0(void)
 
 
 
-// 函数: void FUN_1800422d0(void)
-void FUN_1800422d0(void)
+// 函数: void system_function_0422d0(void)
+void system_function_0422d0(void)
 
 {
   char cVar1;
@@ -14644,8 +14656,8 @@ void FUN_1800422d0(void)
 
 
 
-// 函数: void FUN_1800423d0(void)
-void FUN_1800423d0(void)
+// 函数: void system_function_0423d0(void)
+void system_function_0423d0(void)
 
 {
   char cVar1;
@@ -14694,8 +14706,8 @@ void FUN_1800423d0(void)
 
 
 
-// 函数: void FUN_1800424d0(void)
-void FUN_1800424d0(void)
+// 函数: void system_function_0424d0(void)
+void system_function_0424d0(void)
 
 {
   char cVar1;
@@ -14744,8 +14756,8 @@ void FUN_1800424d0(void)
 
 
 
-// 函数: void FUN_1800425d0(void)
-void FUN_1800425d0(void)
+// 函数: void system_function_0425d0(void)
+void system_function_0425d0(void)
 
 {
   char cVar1;
@@ -14794,8 +14806,8 @@ void FUN_1800425d0(void)
 
 
 
-// 函数: void FUN_1800426d0(void)
-void FUN_1800426d0(void)
+// 函数: void system_function_0426d0(void)
+void system_function_0426d0(void)
 
 {
   char cVar1;
@@ -14844,8 +14856,8 @@ void FUN_1800426d0(void)
 
 
 
-// 函数: void FUN_1800427d0(void)
-void FUN_1800427d0(void)
+// 函数: void system_function_0427d0(void)
+void system_function_0427d0(void)
 
 {
   char cVar1;
@@ -14894,8 +14906,8 @@ void FUN_1800427d0(void)
 
 
 
-// 函数: void FUN_1800428d0(void)
-void FUN_1800428d0(void)
+// 函数: void system_function_0428d0(void)
+void system_function_0428d0(void)
 
 {
   char cVar1;
@@ -14944,8 +14956,8 @@ void FUN_1800428d0(void)
 
 
 
-// 函数: void FUN_1800429d0(void)
-void FUN_1800429d0(void)
+// 函数: void system_function_0429d0(void)
+void system_function_0429d0(void)
 
 {
   char cVar1;
@@ -14994,8 +15006,8 @@ void FUN_1800429d0(void)
 
 
 
-// 函数: void FUN_180042ad0(void)
-void FUN_180042ad0(void)
+// 函数: void system_function_042ad0(void)
+void system_function_042ad0(void)
 
 {
   char cVar1;
@@ -15044,8 +15056,8 @@ void FUN_180042ad0(void)
 
 
 
-// 函数: void FUN_180042bd0(void)
-void FUN_180042bd0(void)
+// 函数: void system_function_042bd0(void)
+void system_function_042bd0(void)
 
 {
   char cVar1;
@@ -15094,8 +15106,8 @@ void FUN_180042bd0(void)
 
 
 
-// 函数: void FUN_180042cd0(void)
-void FUN_180042cd0(void)
+// 函数: void system_function_042cd0(void)
+void system_function_042cd0(void)
 
 {
   char cVar1;
@@ -15144,8 +15156,8 @@ void FUN_180042cd0(void)
 
 
 
-// 函数: void FUN_180042dd0(void)
-void FUN_180042dd0(void)
+// 函数: void system_function_042dd0(void)
+void system_function_042dd0(void)
 
 {
   char cVar1;
@@ -15194,8 +15206,8 @@ void FUN_180042dd0(void)
 
 
 
-// 函数: void FUN_180042ed0(void)
-void FUN_180042ed0(void)
+// 函数: void system_function_042ed0(void)
+void system_function_042ed0(void)
 
 {
   char cVar1;
@@ -15244,8 +15256,8 @@ void FUN_180042ed0(void)
 
 
 
-// 函数: void FUN_180042fd0(void)
-void FUN_180042fd0(void)
+// 函数: void system_function_042fd0(void)
+void system_function_042fd0(void)
 
 {
   char cVar1;
@@ -15294,8 +15306,8 @@ void FUN_180042fd0(void)
 
 
 
-// 函数: void FUN_1800430d0(void)
-void FUN_1800430d0(void)
+// 函数: void system_function_0430d0(void)
+void system_function_0430d0(void)
 
 {
   char cVar1;
@@ -15344,8 +15356,8 @@ void FUN_1800430d0(void)
 
 
 
-// 函数: void FUN_1800431d0(void)
-void FUN_1800431d0(void)
+// 函数: void system_function_0431d0(void)
+void system_function_0431d0(void)
 
 {
   char cVar1;
@@ -15394,8 +15406,8 @@ void FUN_1800431d0(void)
 
 
 
-// 函数: void FUN_1800432d0(void)
-void FUN_1800432d0(void)
+// 函数: void system_function_0432d0(void)
+void system_function_0432d0(void)
 
 {
   char cVar1;
@@ -15444,8 +15456,8 @@ void FUN_1800432d0(void)
 
 
 
-// 函数: void FUN_1800433d0(void)
-void FUN_1800433d0(void)
+// 函数: void system_function_0433d0(void)
+void system_function_0433d0(void)
 
 {
   char cVar1;
@@ -15496,8 +15508,8 @@ void FUN_1800433d0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800434d0(void)
-void FUN_1800434d0(void)
+// 函数: void system_function_0434d0(void)
+void system_function_0434d0(void)
 
 {
   undefined8 in_R9;
@@ -15520,8 +15532,8 @@ void FUN_1800434d0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043560(void)
-void FUN_180043560(void)
+// 函数: void system_function_043560(void)
+void system_function_043560(void)
 
 {
   _DAT_180c96218 = GetCurrentProcess();
@@ -15530,7 +15542,7 @@ void FUN_180043560(void)
 
 
 
-int FUN_180043580(void)
+int system_function_043580(void)
 
 {
   longlong lVar1;
@@ -15542,7 +15554,7 @@ int FUN_180043580(void)
 
 
 
-int FUN_1800435a0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int system_function_0435a0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -15554,7 +15566,7 @@ int FUN_1800435a0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-int FUN_1800435e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int system_function_0435e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -15568,7 +15580,7 @@ int FUN_1800435e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180043610(void)
+int system_function_043610(void)
 
 {
   longlong lVar1;
@@ -15588,8 +15600,8 @@ int FUN_180043610(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043690(void)
-void FUN_180043690(void)
+// 函数: void system_function_043690(void)
+void system_function_043690(void)
 
 {
   undefined8 in_R9;
@@ -15652,8 +15664,8 @@ LAB_1808fd14a:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043790(void)
-void FUN_180043790(void)
+// 函数: void system_function_043790(void)
+void system_function_043790(void)
 
 {
   undefined8 in_R9;
@@ -15676,8 +15688,8 @@ void FUN_180043790(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043820(void)
-void FUN_180043820(void)
+// 函数: void system_function_043820(void)
+void system_function_043820(void)
 
 {
   undefined8 in_R9;
@@ -15699,7 +15711,7 @@ void FUN_180043820(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1800438b0(void)
+int system_function_0438b0(void)
 
 {
   longlong lVar1;
@@ -15718,7 +15730,7 @@ int FUN_1800438b0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180043960(void)
+int system_function_043960(void)
 
 {
   longlong lVar1;
@@ -15738,7 +15750,7 @@ int FUN_180043960(void)
 
 
 
-int FUN_1800439c0(void)
+int system_function_0439c0(void)
 
 {
   longlong lVar1;
@@ -15753,8 +15765,8 @@ int FUN_1800439c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800439e0(void)
-void FUN_1800439e0(void)
+// 函数: void system_function_0439e0(void)
+void system_function_0439e0(void)
 
 {
   int iVar1;
@@ -15772,8 +15784,8 @@ void FUN_1800439e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043a10(void)
-void FUN_180043a10(void)
+// 函数: void system_function_043a10(void)
+void system_function_043a10(void)
 
 {
   int iVar1;
@@ -15796,8 +15808,8 @@ void FUN_180043a10(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043a90(void)
-void FUN_180043a90(void)
+// 函数: void system_function_043a90(void)
+void system_function_043a90(void)
 
 {
   int iVar1;
@@ -15815,8 +15827,8 @@ void FUN_180043a90(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043ac0(void)
-void FUN_180043ac0(void)
+// 函数: void system_function_043ac0(void)
+void system_function_043ac0(void)
 
 {
   int iVar1;
@@ -15834,8 +15846,8 @@ void FUN_180043ac0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043af0(void)
-void FUN_180043af0(void)
+// 函数: void system_function_043af0(void)
+void system_function_043af0(void)
 
 {
   int iVar1;
@@ -15853,8 +15865,8 @@ void FUN_180043af0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043b20(void)
-void FUN_180043b20(void)
+// 函数: void system_function_043b20(void)
+void system_function_043b20(void)
 
 {
   int iVar1;
@@ -15872,8 +15884,8 @@ void FUN_180043b20(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043b50(void)
-void FUN_180043b50(void)
+// 函数: void system_function_043b50(void)
+void system_function_043b50(void)
 
 {
   int iVar1;
@@ -15893,7 +15905,7 @@ void FUN_180043b50(void)
 
 
 
-int FUN_180043ba0(void)
+int system_function_043ba0(void)
 
 {
   undefined8 *puVar1;
@@ -15916,8 +15928,8 @@ int FUN_180043ba0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043c00(void)
-void FUN_180043c00(void)
+// 函数: void system_function_043c00(void)
+void system_function_043c00(void)
 
 {
   int iVar1;
@@ -15935,8 +15947,8 @@ void FUN_180043c00(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043c30(void)
-void FUN_180043c30(void)
+// 函数: void system_function_043c30(void)
+void system_function_043c30(void)
 
 {
   int iVar1;
@@ -15961,7 +15973,7 @@ void FUN_180043c30(void)
 
 
 
-int FUN_180043cc0(void)
+int system_function_043cc0(void)
 
 {
   longlong lVar1;
@@ -15973,7 +15985,7 @@ int FUN_180043cc0(void)
 
 
 
-int FUN_180043ce0(void)
+int system_function_043ce0(void)
 
 {
   longlong lVar1;
@@ -15992,8 +16004,8 @@ void WotsMainSDLL(undefined8 param_1)
   
                     // 0x43d20  31  WotsMainSDLL
 
-// 函数: void FUN_180043d40(longlong param_1)
-void FUN_180043d40(longlong param_1)
+// 函数: void system_function_043d40(longlong param_1)
+void system_function_043d40(longlong param_1)
 
 {
   longlong lVar1;
@@ -16092,8 +16104,8 @@ FUN_180043f30(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_180043f90(void)
-void FUN_180043f90(void)
+// 函数: void system_function_043f90(void)
+void system_function_043f90(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -16103,8 +16115,8 @@ void FUN_180043f90(void)
 
 
 
-// 函数: void FUN_180044a30(undefined8 *param_1)
-void FUN_180044a30(undefined8 *param_1)
+// 函数: void system_function_044a30(undefined8 *param_1)
+void system_function_044a30(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -16116,8 +16128,8 @@ void FUN_180044a30(undefined8 *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180044a50(void)
-void FUN_180044a50(void)
+// 函数: void system_function_044a50(void)
+void system_function_044a50(void)
 
 {
   undefined8 *puVar1;
@@ -16271,8 +16283,8 @@ LAB_180044db8:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180044dc0(undefined8 param_1,longlong param_2)
-void FUN_180044dc0(undefined8 param_1,longlong param_2)
+// 函数: void system_function_044dc0(undefined8 param_1,longlong param_2)
+void system_function_044dc0(undefined8 param_1,longlong param_2)
 
 {
   longlong **pplVar1;
@@ -16418,8 +16430,8 @@ LAB_180044faf:
   _DAT_180c8ed58 = 0;
   _DAT_180c8ed40 = lStackX_20;
 
-// 函数: void FUN_180045380(void)
-void FUN_180045380(void)
+// 函数: void system_function_045380(void)
+void system_function_045380(void)
 
 {
   undefined8 uVar1;
@@ -16621,8 +16633,8 @@ void WotsMain(undefined8 param_1)
   
                     // 0x45a00  27  WotsMain
 
-// 函数: void FUN_180045af0(longlong *param_1)
-void FUN_180045af0(longlong *param_1)
+// 函数: void system_function_045af0(longlong *param_1)
+void system_function_045af0(longlong *param_1)
 
 {
   if ((longlong *)*param_1 != (longlong *)0x0) {
@@ -16634,8 +16646,8 @@ void FUN_180045af0(longlong *param_1)
 
 
 
-// 函数: void FUN_180045b20(longlong param_1,longlong param_2)
-void FUN_180045b20(longlong param_1,longlong param_2)
+// 函数: void system_function_045b20(longlong param_1,longlong param_2)
+void system_function_045b20(longlong param_1,longlong param_2)
 
 {
   longlong lVar1;
@@ -16665,8 +16677,8 @@ void FUN_180045b20(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180045ba0(longlong param_1,undefined8 param_2,int param_3)
-void FUN_180045ba0(longlong param_1,undefined8 param_2,int param_3)
+// 函数: void system_function_045ba0(longlong param_1,undefined8 param_2,int param_3)
+void system_function_045ba0(longlong param_1,undefined8 param_2,int param_3)
 
 {
   if (param_3 + 1 < 0x1000) {
@@ -16681,8 +16693,8 @@ void FUN_180045ba0(longlong param_1,undefined8 param_2,int param_3)
 
 
 
-// 函数: void FUN_180045bc1(void)
-void FUN_180045bc1(void)
+// 函数: void system_function_045bc1(void)
+void system_function_045bc1(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -16692,8 +16704,8 @@ void FUN_180045bc1(void)
 
 
 
-// 函数: void FUN_180045be6(undefined1 *param_1)
-void FUN_180045be6(undefined1 *param_1)
+// 函数: void system_function_045be6(undefined1 *param_1)
+void system_function_045be6(undefined1 *param_1)
 
 {
   longlong unaff_RDI;
@@ -16706,8 +16718,8 @@ void FUN_180045be6(undefined1 *param_1)
 
 
 
-// 函数: void FUN_180045c00(void)
-void FUN_180045c00(void)
+// 函数: void system_function_045c00(void)
+void system_function_045c00(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -16772,8 +16784,8 @@ FUN_180045ea0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_180045ee0(longlong param_1,longlong param_2)
-void FUN_180045ee0(longlong param_1,longlong param_2)
+// 函数: void system_function_045ee0(longlong param_1,longlong param_2)
+void system_function_045ee0(longlong param_1,longlong param_2)
 
 {
   longlong lVar1;
@@ -16803,8 +16815,8 @@ void FUN_180045ee0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180045f60(longlong param_1,undefined8 param_2,int param_3)
-void FUN_180045f60(longlong param_1,undefined8 param_2,int param_3)
+// 函数: void system_function_045f60(longlong param_1,undefined8 param_2,int param_3)
+void system_function_045f60(longlong param_1,undefined8 param_2,int param_3)
 
 {
   if (param_3 + 1 < 0x400) {
@@ -16819,8 +16831,8 @@ void FUN_180045f60(longlong param_1,undefined8 param_2,int param_3)
 
 
 
-// 函数: void FUN_180045f81(void)
-void FUN_180045f81(void)
+// 函数: void system_function_045f81(void)
+void system_function_045f81(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -16830,8 +16842,8 @@ void FUN_180045f81(void)
 
 
 
-// 函数: void FUN_180045fa6(undefined1 *param_1)
-void FUN_180045fa6(undefined1 *param_1)
+// 函数: void system_function_045fa6(undefined1 *param_1)
+void system_function_045fa6(undefined1 *param_1)
 
 {
   longlong unaff_RDI;
@@ -16846,8 +16858,8 @@ void FUN_180045fa6(undefined1 *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180045fc0(longlong param_1,longlong param_2,longlong param_3)
-void FUN_180045fc0(longlong param_1,longlong param_2,longlong param_3)
+// 函数: void system_function_045fc0(longlong param_1,longlong param_2,longlong param_3)
+void system_function_045fc0(longlong param_1,longlong param_2,longlong param_3)
 
 {
   longlong lVar1;
@@ -16888,8 +16900,8 @@ void FUN_180045fc0(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-// 函数: void FUN_180046130(undefined8 *param_1,undefined4 param_2)
-void FUN_180046130(undefined8 *param_1,undefined4 param_2)
+// 函数: void system_function_046130(undefined8 *param_1,undefined4 param_2)
+void system_function_046130(undefined8 *param_1,undefined4 param_2)
 
 {
   int iVar1;
@@ -16903,8 +16915,8 @@ void FUN_180046130(undefined8 *param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_180046160(undefined8 *param_1)
-void FUN_180046160(undefined8 *param_1)
+// 函数: void system_function_046160(undefined8 *param_1)
+void system_function_046160(undefined8 *param_1)
 
 {
   int iVar1;
@@ -16987,8 +16999,8 @@ longlong FUN_180046240(undefined4 *param_1,undefined4 *param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800462c0(undefined8 param_1,undefined4 param_2)
-void FUN_1800462c0(undefined8 param_1,undefined4 param_2)
+// 函数: void system_function_0462c0(undefined8 param_1,undefined4 param_2)
+void system_function_0462c0(undefined8 param_1,undefined4 param_2)
 
 {
   longlong lVar1;
@@ -17030,8 +17042,8 @@ FUN_180046340(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_180046380(longlong param_1,longlong param_2)
-void FUN_180046380(longlong param_1,longlong param_2)
+// 函数: void system_function_046380(longlong param_1,longlong param_2)
+void system_function_046380(longlong param_1,longlong param_2)
 
 {
   longlong lVar1;
@@ -17061,8 +17073,8 @@ void FUN_180046380(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180046400(longlong param_1,undefined8 param_2,int param_3)
-void FUN_180046400(longlong param_1,undefined8 param_2,int param_3)
+// 函数: void system_function_046400(longlong param_1,undefined8 param_2,int param_3)
+void system_function_046400(longlong param_1,undefined8 param_2,int param_3)
 
 {
   if (param_3 + 1 < 0x20) {
@@ -17077,8 +17089,8 @@ void FUN_180046400(longlong param_1,undefined8 param_2,int param_3)
 
 
 
-// 函数: void FUN_18004641f(void)
-void FUN_18004641f(void)
+// 函数: void system_function_04641f(void)
+void system_function_04641f(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -17088,8 +17100,8 @@ void FUN_18004641f(void)
 
 
 
-// 函数: void FUN_180046444(undefined1 *param_1)
-void FUN_180046444(undefined1 *param_1)
+// 函数: void system_function_046444(undefined1 *param_1)
+void system_function_046444(undefined1 *param_1)
 
 {
   longlong unaff_RDI;
@@ -17119,8 +17131,8 @@ undefined8 * FUN_180046480(undefined8 *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800464f0(longlong param_1,longlong param_2,longlong param_3)
-void FUN_1800464f0(longlong param_1,longlong param_2,longlong param_3)
+// 函数: void system_function_0464f0(longlong param_1,longlong param_2,longlong param_3)
+void system_function_0464f0(longlong param_1,longlong param_2,longlong param_3)
 
 {
   longlong lVar1;
@@ -17173,8 +17185,8 @@ undefined8 * FUN_180046650(undefined8 *param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_1800466a0(undefined8 *param_1)
-void FUN_1800466a0(undefined8 *param_1)
+// 函数: void system_function_0466a0(undefined8 *param_1)
+void system_function_0466a0(undefined8 *param_1)
 
 {
   int iVar1;
@@ -17189,8 +17201,8 @@ void FUN_1800466a0(undefined8 *param_1)
 
 
 
-// 函数: void FUN_1800466d0(longlong param_1)
-void FUN_1800466d0(longlong param_1)
+// 函数: void system_function_0466d0(longlong param_1)
+void system_function_0466d0(longlong param_1)
 
 {
   int iVar1;
@@ -17214,8 +17226,8 @@ void FUN_1800466d0(longlong param_1)
 
 
 
-// 函数: void FUN_180046750(undefined8 *param_1)
-void FUN_180046750(undefined8 *param_1)
+// 函数: void system_function_046750(undefined8 *param_1)
+void system_function_046750(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bdc8;
@@ -17242,8 +17254,8 @@ FUN_180046790(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_180046820(longlong *param_1)
-void FUN_180046820(longlong *param_1)
+// 函数: void system_function_046820(longlong *param_1)
+void system_function_046820(longlong *param_1)
 
 {
   longlong lVar1;
@@ -17263,8 +17275,8 @@ void FUN_180046820(longlong *param_1)
 
 
 
-// 函数: void FUN_180046840(longlong *param_1)
-void FUN_180046840(longlong *param_1)
+// 函数: void system_function_046840(longlong *param_1)
+void system_function_046840(longlong *param_1)
 
 {
   undefined8 *puVar1;
@@ -17291,8 +17303,8 @@ void FUN_180046840(longlong *param_1)
 
 
 
-// 函数: void FUN_180046860(ulonglong *param_1)
-void FUN_180046860(ulonglong *param_1)
+// 函数: void system_function_046860(ulonglong *param_1)
+void system_function_046860(ulonglong *param_1)
 
 {
   int *piVar1;
@@ -17330,7 +17342,7 @@ void FUN_180046860(ulonglong *param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180046890(longlong param_1,longlong param_2)
+int system_function_046890(longlong param_1,longlong param_2)
 
 {
   undefined8 ***pppuVar1;
@@ -17474,8 +17486,8 @@ LAB_180046a90:
 
 
 
-// 函数: void FUN_180046b10(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180046b10(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_046b10(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_046b10(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180049fd0(param_1 + 0x1a,param_1[0x1c],param_3,param_4,0xfffffffffffffffe);
@@ -17570,8 +17582,8 @@ LAB_180046c5e:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180046ca0(longlong *param_1,undefined8 *param_2)
-void FUN_180046ca0(longlong *param_1,undefined8 *param_2)
+// 函数: void system_function_046ca0(longlong *param_1,undefined8 *param_2)
+void system_function_046ca0(longlong *param_1,undefined8 *param_2)
 
 {
   longlong *plVar1;
@@ -17619,8 +17631,8 @@ void FUN_180046ca0(longlong *param_1,undefined8 *param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180046e20(void)
-void FUN_180046e20(void)
+// 函数: void system_function_046e20(void)
+void system_function_046e20(void)
 
 {
   undefined8 uVar1;
@@ -17899,8 +17911,8 @@ FUN_180047d40(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
 
 
 
-// 函数: void FUN_180047e10(longlong param_1)
-void FUN_180047e10(longlong param_1)
+// 函数: void system_function_047e10(longlong param_1)
+void system_function_047e10(longlong param_1)
 
 {
   *(undefined **)(param_1 + 0x10) = &UNK_18098bcb0;
@@ -17910,8 +17922,8 @@ void FUN_180047e10(longlong param_1)
 
 
 
-// 函数: void FUN_180047e40(undefined8 *param_1)
-void FUN_180047e40(undefined8 *param_1)
+// 函数: void system_function_047e40(undefined8 *param_1)
+void system_function_047e40(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -17923,8 +17935,8 @@ void FUN_180047e40(undefined8 *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180047e70(undefined8 param_1,undefined8 param_2,longlong param_3,undefined8 param_4)
-void FUN_180047e70(undefined8 param_1,undefined8 param_2,longlong param_3,undefined8 param_4)
+// 函数: void system_function_047e70(undefined8 param_1,undefined8 param_2,longlong param_3,undefined8 param_4)
+void system_function_047e70(undefined8 param_1,undefined8 param_2,longlong param_3,undefined8 param_4)
 
 {
   byte bVar1;
@@ -18009,8 +18021,8 @@ LAB_180047f93:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180047fc0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180047fc0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_047fc0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_047fc0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   double dVar1;
@@ -18327,8 +18339,8 @@ void FUN_180047fc0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_180048910(longlong *param_1)
-void FUN_180048910(longlong *param_1)
+// 函数: void system_function_048910(longlong *param_1)
+void system_function_048910(longlong *param_1)
 
 {
   longlong lVar1;
@@ -18348,8 +18360,8 @@ void FUN_180048910(longlong *param_1)
 
 
 
-// 函数: void FUN_180048980(longlong *param_1)
-void FUN_180048980(longlong *param_1)
+// 函数: void system_function_048980(longlong *param_1)
+void system_function_048980(longlong *param_1)
 
 {
   undefined8 *puVar1;
@@ -18376,8 +18388,8 @@ void FUN_180048980(longlong *param_1)
 
 
 
-// 函数: void FUN_180048a20(ulonglong *param_1)
-void FUN_180048a20(ulonglong *param_1)
+// 函数: void system_function_048a20(ulonglong *param_1)
+void system_function_048a20(ulonglong *param_1)
 
 {
   int *piVar1;
@@ -18416,8 +18428,8 @@ void FUN_180048a20(ulonglong *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180048a50(longlong param_1)
-void FUN_180048a50(longlong param_1)
+// 函数: void system_function_048a50(longlong param_1)
+void system_function_048a50(longlong param_1)
 
 {
   if (param_1 != 0) {
@@ -18671,8 +18683,8 @@ LAB_180048e74:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180048ee0(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
-void FUN_180048ee0(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
+// 函数: void system_function_048ee0(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
+void system_function_048ee0(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
                   longlong param_5)
 
 {
@@ -18905,8 +18917,8 @@ FUN_1800491b0(undefined8 *param_1,longlong *param_2,longlong *param_3,undefined8
 
 
 
-// 函数: void FUN_180049470(undefined8 *param_1)
-void FUN_180049470(undefined8 *param_1)
+// 函数: void system_function_049470(undefined8 *param_1)
+void system_function_049470(undefined8 *param_1)
 
 {
   *param_1 = &UNK_1809fcb90;
@@ -18933,8 +18945,8 @@ undefined8 FUN_1800494f0(undefined8 param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_180049550(longlong param_1,undefined1 param_2)
-void FUN_180049550(longlong param_1,undefined1 param_2)
+// 函数: void system_function_049550(longlong param_1,undefined1 param_2)
+void system_function_049550(longlong param_1,undefined1 param_2)
 
 {
   int iVar1;
@@ -18956,8 +18968,8 @@ void FUN_180049550(longlong param_1,undefined1 param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800495d0(undefined8 param_1,undefined8 *param_2,longlong *param_3)
-void FUN_1800495d0(undefined8 param_1,undefined8 *param_2,longlong *param_3)
+// 函数: void system_function_0495d0(undefined8 param_1,undefined8 *param_2,longlong *param_3)
+void system_function_0495d0(undefined8 param_1,undefined8 *param_2,longlong *param_3)
 
 {
   int iVar1;
@@ -19032,8 +19044,8 @@ undefined1 FUN_1800496b0(longlong param_1,undefined8 param_2,undefined8 param_3,
 
 
 
-// 函数: void FUN_180049770(void)
-void FUN_180049770(void)
+// 函数: void system_function_049770(void)
+void system_function_049770(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -19043,8 +19055,8 @@ void FUN_180049770(void)
 
 
 
-// 函数: void FUN_180049790(void)
-void FUN_180049790(void)
+// 函数: void system_function_049790(void)
+void system_function_049790(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -19054,8 +19066,8 @@ void FUN_180049790(void)
 
 
 
-// 函数: void FUN_1800497b0(void)
-void FUN_1800497b0(void)
+// 函数: void system_function_0497b0(void)
+void system_function_0497b0(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -19065,8 +19077,8 @@ void FUN_1800497b0(void)
 
 
 
-// 函数: void FUN_1800497d0(void)
-void FUN_1800497d0(void)
+// 函数: void system_function_0497d0(void)
+void system_function_0497d0(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -19076,8 +19088,8 @@ void FUN_1800497d0(void)
 
 
 
-// 函数: void FUN_1800497f0(undefined8 param_1)
-void FUN_1800497f0(undefined8 param_1)
+// 函数: void system_function_0497f0(undefined8 param_1)
+void system_function_0497f0(undefined8 param_1)
 
 {
   _Mtx_destroy_in_situ();
@@ -19125,8 +19137,8 @@ FUN_1800498d0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_180049910(longlong param_1,undefined8 param_2,int param_3)
-void FUN_180049910(longlong param_1,undefined8 param_2,int param_3)
+// 函数: void system_function_049910(longlong param_1,undefined8 param_2,int param_3)
+void system_function_049910(longlong param_1,undefined8 param_2,int param_3)
 
 {
   if (param_3 + 1 < 0x80) {
@@ -19141,8 +19153,8 @@ void FUN_180049910(longlong param_1,undefined8 param_2,int param_3)
 
 
 
-// 函数: void FUN_180049931(void)
-void FUN_180049931(void)
+// 函数: void system_function_049931(void)
+void system_function_049931(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -19152,8 +19164,8 @@ void FUN_180049931(void)
 
 
 
-// 函数: void FUN_180049956(undefined1 *param_1)
-void FUN_180049956(undefined1 *param_1)
+// 函数: void system_function_049956(undefined1 *param_1)
+void system_function_049956(undefined1 *param_1)
 
 {
   longlong unaff_RDI;
@@ -19183,8 +19195,8 @@ undefined8 * FUN_180049970(undefined8 *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800499c0(longlong param_1,longlong param_2,longlong param_3)
-void FUN_1800499c0(longlong param_1,longlong param_2,longlong param_3)
+// 函数: void system_function_0499c0(longlong param_1,longlong param_2,longlong param_3)
+void system_function_0499c0(longlong param_1,longlong param_2,longlong param_3)
 
 {
   longlong lVar1;
@@ -19262,8 +19274,8 @@ FUN_180049bb0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_180049bf0(longlong param_1,longlong param_2)
-void FUN_180049bf0(longlong param_1,longlong param_2)
+// 函数: void system_function_049bf0(longlong param_1,longlong param_2)
+void system_function_049bf0(longlong param_1,longlong param_2)
 
 {
   longlong lVar1;
@@ -19293,8 +19305,8 @@ void FUN_180049bf0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180049c70(longlong param_1,undefined8 param_2,int param_3)
-void FUN_180049c70(longlong param_1,undefined8 param_2,int param_3)
+// 函数: void system_function_049c70(longlong param_1,undefined8 param_2,int param_3)
+void system_function_049c70(longlong param_1,undefined8 param_2,int param_3)
 
 {
   if (param_3 + 1 < 0x40) {
@@ -19309,8 +19321,8 @@ void FUN_180049c70(longlong param_1,undefined8 param_2,int param_3)
 
 
 
-// 函数: void FUN_180049c8f(void)
-void FUN_180049c8f(void)
+// 函数: void system_function_049c8f(void)
+void system_function_049c8f(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -19320,8 +19332,8 @@ void FUN_180049c8f(void)
 
 
 
-// 函数: void FUN_180049cb4(undefined1 *param_1)
-void FUN_180049cb4(undefined1 *param_1)
+// 函数: void system_function_049cb4(undefined1 *param_1)
+void system_function_049cb4(undefined1 *param_1)
 
 {
   longlong unaff_RDI;
@@ -19351,8 +19363,8 @@ undefined8 * FUN_180049cd0(undefined8 *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180049d20(longlong param_1,longlong param_2,longlong param_3)
-void FUN_180049d20(longlong param_1,longlong param_2,longlong param_3)
+// 函数: void system_function_049d20(longlong param_1,longlong param_2,longlong param_3)
+void system_function_049d20(longlong param_1,longlong param_2,longlong param_3)
 
 {
   longlong lVar1;
@@ -19419,8 +19431,8 @@ FUN_180049eb0(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
 
 
 
-// 函数: void FUN_180049f30(undefined8 *param_1)
-void FUN_180049f30(undefined8 *param_1)
+// 函数: void system_function_049f30(undefined8 *param_1)
+void system_function_049f30(undefined8 *param_1)
 
 {
   param_1[4] = &UNK_180a3c3e0;
@@ -19445,8 +19457,8 @@ void FUN_180049f30(undefined8 *param_1)
 
 
 
-// 函数: void FUN_180049fd0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180049fd0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_049fd0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+void system_function_049fd0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
   if (param_2 == (undefined8 *)0x0) {
@@ -19476,8 +19488,8 @@ void FUN_180049fd0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,und
 
 
 
-// 函数: void FUN_18004a0b0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004a0b0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04a0b0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04a0b0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180049fd0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -19487,8 +19499,8 @@ void FUN_18004a0b0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004a0d0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004a0d0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04a0d0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04a0d0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180049fd0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -19498,8 +19510,8 @@ void FUN_18004a0d0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004a100(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004a100(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04a100(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04a100(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180049fd0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -19509,8 +19521,8 @@ void FUN_18004a100(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004a130(undefined8 *param_1)
-void FUN_18004a130(undefined8 *param_1)
+// 函数: void system_function_04a130(undefined8 *param_1)
+void system_function_04a130(undefined8 *param_1)
 
 {
   *param_1 = &UNK_180a3c3e0;
@@ -19527,8 +19539,8 @@ void FUN_18004a130(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18004a180(longlong param_1,longlong param_2)
-void FUN_18004a180(longlong param_1,longlong param_2)
+// 函数: void system_function_04a180(longlong param_1,longlong param_2)
+void system_function_04a180(longlong param_1,longlong param_2)
 
 {
   longlong lVar1;
@@ -19558,8 +19570,8 @@ void FUN_18004a180(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18004a200(void)
-void FUN_18004a200(void)
+// 函数: void system_function_04a200(void)
+void system_function_04a200(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -19631,8 +19643,8 @@ LAB_18004a322:
 
 
 
-// 函数: void FUN_18004a360(undefined8 *param_1)
-void FUN_18004a360(undefined8 *param_1)
+// 函数: void system_function_04a360(undefined8 *param_1)
+void system_function_04a360(undefined8 *param_1)
 
 {
   *param_1 = &UNK_1809fcd00;
@@ -19660,8 +19672,8 @@ undefined8 FUN_18004a3c0(undefined8 param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_18004a400(undefined8 *param_1)
-void FUN_18004a400(undefined8 *param_1)
+// 函数: void system_function_04a400(undefined8 *param_1)
+void system_function_04a400(undefined8 *param_1)
 
 {
   *param_1 = &UNK_1809fccc0;
@@ -19688,8 +19700,8 @@ undefined8 FUN_18004a430(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18004a470(longlong param_1,longlong param_2)
-void FUN_18004a470(longlong param_1,longlong param_2)
+// 函数: void system_function_04a470(longlong param_1,longlong param_2)
+void system_function_04a470(longlong param_1,longlong param_2)
 
 {
   longlong lVar1;
@@ -19786,8 +19798,8 @@ bool FUN_18004a500(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004a640(void)
-void FUN_18004a640(void)
+// 函数: void system_function_04a640(void)
+void system_function_04a640(void)
 
 {
   char cVar1;
@@ -19862,8 +19874,8 @@ void FUN_18004a640(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004a850(void)
-void FUN_18004a850(void)
+// 函数: void system_function_04a850(void)
+void system_function_04a850(void)
 
 {
   undefined8 uVar1;
@@ -19882,8 +19894,8 @@ void FUN_18004a850(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004adc0(void)
-void FUN_18004adc0(void)
+// 函数: void system_function_04adc0(void)
+void system_function_04adc0(void)
 
 {
   char cVar1;
@@ -19952,8 +19964,8 @@ void FUN_18004adc0(void)
     *puVar2 = uVar4;
     iVar8 = GetLastError();
 
-// 函数: void FUN_18004afa0(void)
-void FUN_18004afa0(void)
+// 函数: void system_function_04afa0(void)
+void system_function_04afa0(void)
 
 {
   longlong *plVar1;
@@ -20163,8 +20175,8 @@ bool FUN_18004b390(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004b3f0(undefined8 *param_1)
-void FUN_18004b3f0(undefined8 *param_1)
+// 函数: void system_function_04b3f0(undefined8 *param_1)
+void system_function_04b3f0(undefined8 *param_1)
 
 {
   uint uVar1;
@@ -20255,8 +20267,8 @@ longlong * FUN_18004b560(longlong *param_1,undefined8 param_2,undefined8 param_3
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004b5f0(undefined4 *param_1)
-void FUN_18004b5f0(undefined4 *param_1)
+// 函数: void system_function_04b5f0(undefined4 *param_1)
+void system_function_04b5f0(undefined4 *param_1)
 
 {
   int iVar1;
@@ -20297,8 +20309,8 @@ FUN_18004b640(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
 
 
 
-// 函数: void FUN_18004b6b0(undefined8 *param_1)
-void FUN_18004b6b0(undefined8 *param_1)
+// 函数: void system_function_04b6b0(undefined8 *param_1)
+void system_function_04b6b0(undefined8 *param_1)
 
 {
   *param_1 = &UNK_1809fcca0;
@@ -20308,8 +20320,8 @@ void FUN_18004b6b0(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18004b6d0(undefined8 *param_1)
-void FUN_18004b6d0(undefined8 *param_1)
+// 函数: void system_function_04b6d0(undefined8 *param_1)
+void system_function_04b6d0(undefined8 *param_1)
 
 {
   *param_1 = &UNK_1809fcc88;
@@ -20319,8 +20331,8 @@ void FUN_18004b6d0(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18004b6f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004b6f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04b6f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04b6f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -20337,8 +20349,8 @@ void FUN_18004b6f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004b710(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004b710(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04b710(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04b710(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -20355,8 +20367,8 @@ void FUN_18004b710(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004b730(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004b730(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04b730(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04b730(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -20373,8 +20385,8 @@ void FUN_18004b730(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004b790(undefined8 param_1,undefined8 *param_2)
-void FUN_18004b790(undefined8 param_1,undefined8 *param_2)
+// 函数: void system_function_04b790(undefined8 param_1,undefined8 *param_2)
+void system_function_04b790(undefined8 param_1,undefined8 *param_2)
 
 {
   if (param_2 != (undefined8 *)0x0) {
@@ -20388,8 +20400,8 @@ void FUN_18004b790(undefined8 param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_18004b7a2(undefined8 param_1)
-void FUN_18004b7a2(undefined8 param_1)
+// 函数: void system_function_04b7a2(undefined8 param_1)
+void system_function_04b7a2(undefined8 param_1)
 
 {
   undefined8 *unaff_RBX;
@@ -20402,8 +20414,8 @@ void FUN_18004b7a2(undefined8 param_1)
 
 
 
-// 函数: void FUN_18004b7de(void)
-void FUN_18004b7de(void)
+// 函数: void system_function_04b7de(void)
+void system_function_04b7de(void)
 
 {
   return;
@@ -20438,8 +20450,8 @@ undefined8 * FUN_18004b820(undefined8 *param_1,ulonglong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004b860(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004b860(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04b860(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04b860(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong lVar1;
@@ -20502,7 +20514,7 @@ undefined8 * FUN_18004b960(undefined8 *param_1,ulonglong param_2)
 
 
 
-int FUN_18004b9b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int system_function_04b9b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   int iVar1;
@@ -20519,8 +20531,8 @@ int FUN_18004b9b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_18004ba30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004ba30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04ba30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04ba30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1800582b0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -20530,8 +20542,8 @@ void FUN_18004ba30(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004ba60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004ba60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04ba60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04ba60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1800582b0(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -20543,8 +20555,8 @@ void FUN_18004ba60(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004ba90(undefined8 *param_1)
-void FUN_18004ba90(undefined8 *param_1)
+// 函数: void system_function_04ba90(undefined8 *param_1)
+void system_function_04ba90(undefined8 *param_1)
 
 {
   int iVar1;
@@ -20560,8 +20572,8 @@ void FUN_18004ba90(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18004bad0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004bad0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04bad0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04bad0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058370(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -20571,8 +20583,8 @@ void FUN_18004bad0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004bb00(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004bb00(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04bb00(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04bb00(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058370(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -20582,8 +20594,8 @@ void FUN_18004bb00(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004bb30(longlong param_1)
-void FUN_18004bb30(longlong param_1)
+// 函数: void system_function_04bb30(longlong param_1)
+void system_function_04bb30(longlong param_1)
 
 {
   FUN_180057010(param_1 + 0x60);
@@ -20593,8 +20605,8 @@ void FUN_18004bb30(longlong param_1)
 
 
 
-// 函数: void FUN_18004bb60(longlong param_1)
-void FUN_18004bb60(longlong param_1)
+// 函数: void system_function_04bb60(longlong param_1)
+void system_function_04bb60(longlong param_1)
 
 {
   FUN_180057010(param_1 + 0x60);
@@ -20606,8 +20618,8 @@ void FUN_18004bb60(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004bb90(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004bb90(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04bb90(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04bb90(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -20659,8 +20671,8 @@ void FUN_18004bb90(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_18004bcb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004bcb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04bcb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04bcb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058420(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -20670,8 +20682,8 @@ void FUN_18004bcb0(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004bce0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004bce0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04bce0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04bce0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058420(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -20725,8 +20737,8 @@ undefined8 * FUN_18004bd10(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18004be50(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004be50(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04be50(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04be50(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -20748,8 +20760,8 @@ void FUN_18004be50(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_18004be70(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004be70(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04be70(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04be70(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -20771,8 +20783,8 @@ void FUN_18004be70(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_18004be90(longlong param_1)
-void FUN_18004be90(longlong param_1)
+// 函数: void system_function_04be90(longlong param_1)
+void system_function_04be90(longlong param_1)
 
 {
   int iVar1;
@@ -20813,8 +20825,8 @@ void FUN_18004be90(longlong param_1)
 
 
 
-// 函数: void FUN_18004bf50(longlong *param_1)
-void FUN_18004bf50(longlong *param_1)
+// 函数: void system_function_04bf50(longlong *param_1)
+void system_function_04bf50(longlong *param_1)
 
 {
   longlong lVar1;
@@ -20842,8 +20854,8 @@ void FUN_18004bf50(longlong *param_1)
 
 
 
-// 函数: void FUN_18004bff0(longlong param_1)
-void FUN_18004bff0(longlong param_1)
+// 函数: void system_function_04bff0(longlong param_1)
+void system_function_04bff0(longlong param_1)
 
 {
   int *piVar1;
@@ -20897,8 +20909,8 @@ void FUN_18004bff0(longlong param_1)
 
 
 
-// 函数: void FUN_18004c010(longlong *param_1)
-void FUN_18004c010(longlong *param_1)
+// 函数: void system_function_04c010(longlong *param_1)
+void system_function_04c010(longlong *param_1)
 
 {
   longlong lVar1;
@@ -20918,8 +20930,8 @@ void FUN_18004c010(longlong *param_1)
 
 
 
-// 函数: void FUN_18004c030(longlong *param_1)
-void FUN_18004c030(longlong *param_1)
+// 函数: void system_function_04c030(longlong *param_1)
+void system_function_04c030(longlong *param_1)
 
 {
   longlong *plVar1;
@@ -20953,8 +20965,8 @@ undefined8 * FUN_18004c050(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18004c090(longlong *param_1)
-void FUN_18004c090(longlong *param_1)
+// 函数: void system_function_04c090(longlong *param_1)
+void system_function_04c090(longlong *param_1)
 
 {
   longlong lVar1;
@@ -20974,8 +20986,8 @@ void FUN_18004c090(longlong *param_1)
 
 
 
-// 函数: void FUN_18004c0b0(longlong param_1)
-void FUN_18004c0b0(longlong param_1)
+// 函数: void system_function_04c0b0(longlong param_1)
+void system_function_04c0b0(longlong param_1)
 
 {
   int *piVar1;
@@ -21029,8 +21041,8 @@ void FUN_18004c0b0(longlong param_1)
 
 
 
-// 函数: void FUN_18004c0d0(longlong param_1)
-void FUN_18004c0d0(longlong param_1)
+// 函数: void system_function_04c0d0(longlong param_1)
+void system_function_04c0d0(longlong param_1)
 
 {
   undefined *puVar1;
@@ -21053,8 +21065,8 @@ void FUN_18004c0d0(longlong param_1)
   uStack_28 = 0xfffffffffffffffe;
   if (param_1 == 0) {
 
-// 函数: void FUN_18004c260(ulonglong *param_1)
-void FUN_18004c260(ulonglong *param_1)
+// 函数: void system_function_04c260(ulonglong *param_1)
+void system_function_04c260(ulonglong *param_1)
 
 {
   int *piVar1;
@@ -21091,8 +21103,8 @@ void FUN_18004c260(ulonglong *param_1)
 
 
 
-// 函数: void FUN_18004c290(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004c290(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void system_function_04c290(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void system_function_04c290(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -21114,8 +21126,8 @@ void FUN_18004c290(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
 
 
 
-// 函数: void FUN_18004c2b0(longlong param_1)
-void FUN_18004c2b0(longlong param_1)
+// 函数: void system_function_04c2b0(longlong param_1)
+void system_function_04c2b0(longlong param_1)
 
 {
   uint uVar1;
@@ -21123,8 +21135,8 @@ void FUN_18004c2b0(longlong param_1)
   
   if (param_1 == 0) {
 
-// 函数: void FUN_18004c2c4(longlong param_1)
-void FUN_18004c2c4(longlong param_1)
+// 函数: void system_function_04c2c4(longlong param_1)
+void system_function_04c2c4(longlong param_1)
 
 {
   uint uVar1;
@@ -21145,8 +21157,8 @@ void FUN_18004c2c4(longlong param_1)
 
 
 
-// 函数: void FUN_18004c31f(void)
-void FUN_18004c31f(void)
+// 函数: void system_function_04c31f(void)
+void system_function_04c31f(void)
 
 {
   code *pcVar1;
@@ -21463,8 +21475,8 @@ LAB_18004c7ef:
 
 
 
-// 函数: void FUN_18004ca00(longlong *param_1)
-void FUN_18004ca00(longlong *param_1)
+// 函数: void system_function_04ca00(longlong *param_1)
+void system_function_04ca00(longlong *param_1)
 
 {
   if ((longlong *)*param_1 != (longlong *)0x0) {
@@ -21494,8 +21506,8 @@ FUN_18004ca30(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_18004caa0(undefined8 *param_1)
-void FUN_18004caa0(undefined8 *param_1)
+// 函数: void system_function_04caa0(undefined8 *param_1)
+void system_function_04caa0(undefined8 *param_1)
 
 {
   if (param_1[2] != 0) {
@@ -21512,8 +21524,8 @@ void FUN_18004caa0(undefined8 *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004caf0(longlong param_1)
-void FUN_18004caf0(longlong param_1)
+// 函数: void system_function_04caf0(longlong param_1)
+void system_function_04caf0(longlong param_1)
 
 {
   longlong lVar1;
@@ -21558,8 +21570,8 @@ void FUN_18004caf0(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004cc20(longlong *param_1)
-void FUN_18004cc20(longlong *param_1)
+// 函数: void system_function_04cc20(longlong *param_1)
+void system_function_04cc20(longlong *param_1)
 
 {
   undefined8 *puVar1;
@@ -21749,8 +21761,8 @@ void FUN_18004cc20(longlong *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004d020(undefined8 param_1,longlong param_2)
-void FUN_18004d020(undefined8 param_1,longlong param_2)
+// 函数: void system_function_04d020(undefined8 param_1,longlong param_2)
+void system_function_04d020(undefined8 param_1,longlong param_2)
 
 {
   byte bVar1;
@@ -61289,14 +61301,14 @@ void FUN_18007fd60(undefined8 param_1,longlong param_2,undefined8 param_3,longlo
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: undefined FUN_18004b6f0;
-undefined FUN_18004b6f0;
+// 函数: undefined system_function_04b6f0;
+undefined system_function_04b6f0;
 
 // 函数: undefined FUN_18006f4c0;
 undefined FUN_18006f4c0;
 
-// 函数: undefined FUN_18004c090;
-undefined FUN_18004c090;
+// 函数: undefined system_function_04c090;
+undefined system_function_04c090;
 
 // 函数: undefined FUN_180055ed0;
 undefined FUN_180055ed0;
@@ -62391,8 +62403,8 @@ undefined8 FUN_180779d6c(void)
 // 函数: undefined FUN_180058c20;
 undefined FUN_180058c20;
 
-// 函数: undefined FUN_18004bb30;
-undefined FUN_18004bb30;
+// 函数: undefined system_function_04bb30;
+undefined system_function_04bb30;
 undefined DAT_180d49830;
 undefined8 UNK_180d498a0;
 undefined4 UNK_180d498a8;
