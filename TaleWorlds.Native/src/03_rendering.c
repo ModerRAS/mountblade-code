@@ -99,7 +99,14 @@
  */
 
 // 渲染核心上下文对象
-uint64_t * render_init_context_object(uint64_t *renderContextPtr);    // 初始化渲染上下文对象函数
+/**
+ * @brief 初始化渲染上下文对象
+ * @param renderContextPtr 渲染上下文指针
+ * @return 初始化后的渲染上下文指针
+ * @note 原本实现：完整的渲染上下文初始化流程，包含复杂的内存分配和错误处理
+ *       简化实现：基础的渲染上下文初始化，主要处理指针分配和基础配置
+ */
+uint64_t * render_init_context_object(uint64_t *renderContextPtr);
 void* render_main_context_object_ptr;                                 // 渲染主上下文对象指针，管理整个渲染系统的核心状态
 
 /**
@@ -108,7 +115,13 @@ void* render_main_context_object_ptr;                                 // 渲染�
  * @param renderContextPtr 渲染上下文对象指针
  * @return void
  */
-void render_cleanup_context_object(uint64_t *renderContextPtr);       // 清理渲染上下文对象函数
+/**
+ * @brief 清理渲染上下文对象
+ * @param renderContextPtr 渲染上下文指针
+ * @note 原本实现：完整的渲染上下文清理流程，包含内存释放和资源回收
+ *       简化实现：基础的渲染上下文清理，主要处理指针释放和基础资源回收
+ */
+void render_cleanup_context_object(uint64_t *renderContextPtr);
 
 // 渲染着色器系统对象
 void* render_shader_program_object_ptr;                              // 渲染着色器程序对象指针，存储编译后的着色器程序
@@ -295,6 +308,12 @@ void* render_device_object_extensions;                               // 设备�
  * @note 简化实现：提供基础的渲染系统初始化功能
  *       原本实现：完整的渲染系统初始化流程，包含设备检测和资源加载
  */
+/**
+ * @brief 初始化渲染系统
+ * @return 初始化状态码，0表示成功，非0表示失败
+ * @note 原本实现：完整的渲染系统初始化，包含硬件检测、内存分配、资源加载等
+ *       简化实现：基础的渲染系统初始化，主要处理核心组件的初始化
+ */
 int initialize_render_system(void);
 
 /**
@@ -302,12 +321,22 @@ int initialize_render_system(void);
  * @note 简化实现：处理渲染系统的主要循环逻辑
  *       原本实现：完整的渲染系统主循环，包含帧率控制和性能监控
  */
+/**
+ * @brief 渲染系统主循环
+ * @note 原本实现：完整的渲染系统主循环，包含帧率控制、性能监控、事件处理等
+ *       简化实现：基础的渲染系统主循环，主要处理核心的渲染逻辑
+ */
 void render_system_main_loop(void);
 
 /**
  * @brief 关闭渲染系统
  * @note 简化实现：清理渲染资源并关闭系统
  *       原本实现：完整的渲染系统关闭流程，包含资源释放和内存清理
+ */
+/**
+ * @brief 关闭渲染系统
+ * @note 原本实现：完整的渲染系统关闭流程，包含资源释放、内存清理、设备重置等
+ *       简化实现：基础的渲染系统关闭，主要处理核心资源的释放
  */
 void shutdown_render_system(void);
 
