@@ -415,14 +415,23 @@ system_uint64_t system_initialize_full_parameters_return_ulong(system_uint64_t c
 
 /**
  * @brief 使用完整参数返回字节的系统初始化函数
- * @param context_param 系统上下文参数
- * @param config_param 系统配置参数
- * @param memory_param 系统内存参数
- * @param thread_param 系统线程参数
- * @return system_uint8_t 初始化结果
+ * @param context_param 系统上下文参数，指向系统上下文结构的指针
+ * @param config_param 系统配置参数，包含系统配置信息
+ * @param memory_param 系统内存参数，指定内存管理相关设置
+ * @param thread_param 系统线程参数，包含线程管理相关设置
+ * @return system_uint8_t 初始化结果，0表示成功，1表示失败
  * 
- * 该函数使用完整参数初始化系统并返回字节结果。
- * 这是简化实现，提供基本的初始化功能。
+ * 该函数使用完整参数初始化系统并返回字节类型的结果。
+ * 它验证所有参数的有效性，设置系统上下文，并返回初始化状态。
+ * 
+ * @note 这是简化实现，提供基本的初始化功能
+ * @warning 所有参数都必须有效，否则初始化将失败
+ * @warning 该函数会修改全局系统状态
+ * @param context_param 必须为有效的指针，不能为NULL
+ * @param config_param 必须为非零值
+ * @param memory_param 必须为非零值
+ * @param thread_param 必须为非零值
+ * @return 返回状态码：0=成功，1=失败
  */
 system_uint8_t system_initialize_full_parameters_return_byte(int64_t context_param, system_uint64_t config_param, 
                                                   system_uint64_t memory_param, system_uint64_t thread_param)

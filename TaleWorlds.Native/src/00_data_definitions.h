@@ -3572,11 +3572,11 @@ system_section_processing_secondary_label:
   system_thread_global_context[SYSTEM_OFFSET_THREAD_CONFIG] = system_thread_operation_flags;
   system_thread_stack_secondary = system_thread_global_context;
   (**(code **)(*system_thread_global_context + SYSTEM_OFFSET_THREAD_CALLBACK))(system_thread_global_context);
-  system_data_ptr = system_global_context_pointer;
+  system_data_context = system_global_context_pointer;
   system_thread_stack_pointer_variable_18 = &system_thread_stack_primary;
   system_thread_stack_primary = system_thread_global_context;
   (**(code **)(*system_thread_global_context + SYSTEM_OFFSET_THREAD_CALLBACK))(system_thread_global_context);
-  register_event_callback(system_data_ptr,&system_thread_stack_primary);
+  register_event_callback(system_data_context,&system_thread_stack_primary);
   while( true ) {
     if ((void *)*system_thread_global_context == &system_global_thread_string_3) {
       system_char_result = (char)system_thread_global_context[SYSTEM_ARRAY_INDEX_SECOND] != '\0';
