@@ -89,10 +89,10 @@ void _Mtx_init_in_situ(system_uint64_t flag, int alignment, system_uint64_t memo
 
 // 系统初始化函数声明
 void InitializeSystemCore(void);
-int InitializeSystemCore(system_uint64_t system_context_param, system_uint64_t system_config_param, 
-                        system_uint64_t system_memory_param, system_uint64_t system_thread_param);
+int InitializeSystemCore(system_uint64_t context_param, system_uint64_t config_param, 
+                        system_uint64_t memory_param, system_uint64_t thread_param);
 void InitializeSystemStackMemory(void);
-int CheckSystemInitializationStatus(void** context_pointer);
+int CheckSystemInitializationStatus(void** context_ptr);
 void CleanupSystemResources(void);
 int SystemInitializationMain(void);
 
@@ -112,64 +112,64 @@ int SystemInitializationMain(void);
  */
 void InitializeSystemCore(void)
 {
-  char system_character_validation_flag;
-  system_uint64_t *system_buffer_pointer;
-  int system_comparison_result;
-  longlong *system_context_base_address;
-  longlong system_initialization_status;
-  system_uint64_t *system_module_data_address;
-  system_uint64_t *system_configuration_data_pointer;
-  system_uint64_t *system_temporary_data_pointer;
-  system_uint64_t *system_stack_frame_address;
-  system_code *system_core_init_function;
+  char validation_char;
+  system_uint64_t *buffer_ptr;
+  int compare_result;
+  longlong *context_base;
+  longlong init_status;
+  system_uint64_t *module_data;
+  system_uint64_t *config_ptr;
+  system_uint64_t *temp_ptr;
+  system_uint64_t *stack_frame;
+  system_code *core_init_func;
   
   // 获取系统上下文基地址
-  system_context_base_address = (longlong *)system_allocate_memory(GetAudioDevice);
-  system_buffer_pointer = (system_uint64_t *)*system_context_base_address;
+  context_base = (longlong *)system_allocate_memory(GetAudioDevice);
+  buffer_ptr = (system_uint64_t *)*context_base;
   
   // 验证系统字符标志
-  system_character_validation_flag = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  system_core_init_function = InitializeSystemCore;
-  system_configuration_data_pointer = system_buffer_pointer;
-  system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
+  validation_char = *(char *)((longlong)buffer_ptr[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
+  core_init_func = InitializeSystemCore;
+  config_ptr = buffer_ptr;
+  module_data = (system_uint64_t *)buffer_ptr[SYSTEM_ARRAY_INDEX_SECOND];
   
   // 系统初始化循环
-  while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE, &system_initialized, SYSTEM_INIT_SIZE_COMPARE);
-    if (system_comparison_result < 0) {
-      system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
-      system_module_data_address = system_configuration_data_pointer;
+  while (validation_char == '\0') {
+    compare_result = memcmp(module_data + SYSTEM_INIT_SIZE_COMPARE, &system_initialized, SYSTEM_INIT_SIZE_COMPARE);
+    if (compare_result < 0) {
+      temp_ptr = (system_uint64_t *)module_data[SYSTEM_ARRAY_INDEX_THIRD];
+      module_data = config_ptr;
     }
     else {
-      system_temporary_data_pointer = (system_uint64_t *)*system_module_data_address;
+      temp_ptr = (system_uint64_t *)*module_data;
     }
-    system_configuration_data_pointer = system_module_data_address;
-    system_module_data_address = system_temporary_data_pointer;
-    system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
+    config_ptr = module_data;
+    module_data = temp_ptr;
+    validation_char = *(char *)((longlong)temp_ptr + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
   
   // 配置系统参数
-  if ((system_configuration_data_pointer == system_buffer_pointer) || 
-      (system_comparison_result = memcmp(&system_initialized, system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE, SYSTEM_INIT_SIZE_COMPARE), 
-       system_comparison_result < 0)) {
-    system_initialization_status = InitializeSystemCore((system_uint64_t)system_context_base_address, 
-                                                       (system_uint64_t)system_configuration_data_pointer, 
-                                                       (system_uint64_t)system_module_data_address, 
-                                                       (system_uint64_t)system_temporary_data_pointer);
-    InitializeSystemCore((system_uint64_t)system_context_base_address, 
-                        (system_uint64_t)&system_stack_frame_address, 
-                        (system_uint64_t)system_configuration_data_pointer, 
-                        system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM, 
-                        system_initialization_status);
-    system_configuration_data_pointer = system_stack_frame_address;
+  if ((config_ptr == buffer_ptr) || 
+      (compare_result = memcmp(&system_initialized, config_ptr + SYSTEM_INIT_SIZE_COMPARE, SYSTEM_INIT_SIZE_COMPARE), 
+       compare_result < 0)) {
+    init_status = InitializeSystemCore((system_uint64_t)context_base, 
+                                      (system_uint64_t)config_ptr, 
+                                      (system_uint64_t)module_data, 
+                                      (system_uint64_t)temp_ptr);
+    InitializeSystemCore((system_uint64_t)context_base, 
+                        (system_uint64_t)&stack_frame, 
+                        (system_uint64_t)config_ptr, 
+                        init_status + SYSTEM_INIT_OFFSET_STACK_PARAM, 
+                        init_status);
+    config_ptr = stack_frame;
   }
   
   // 设置系统魔法cookie
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = (system_uint64_t)&g_system_context;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = (system_uint64_t)system_core_init_function;
+  config_ptr[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_PRIMARY;
+  config_ptr[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_SECONDARY;
+  config_ptr[SYSTEM_ARRAY_INDEX_NINTH] = (system_uint64_t)&g_system_context;
+  config_ptr[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
+  config_ptr[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = (system_uint64_t)core_init_func;
   
   return;
 }
@@ -191,20 +191,20 @@ void InitializeSystemCore(void)
  * 
  * @note 这是简化实现，原本实现完全重构了初始化系统所有命名体系
  */
-int InitializeSystemCore(system_uint64_t system_context_param, system_uint64_t system_config_param, 
-                        system_uint64_t system_memory_param, system_uint64_t system_thread_param)
+int InitializeSystemCore(system_uint64_t context_param, system_uint64_t config_param, 
+                        system_uint64_t memory_param, system_uint64_t thread_param)
 {
-  longlong system_allocation_result;
+  longlong alloc_result;
   
   // 初始化互斥体
   _Mtx_init_in_situ(SYSTEM_INIT_FLAG_ENABLED, SYSTEM_INIT_ALIGNMENT_MUTEX, 
-                   system_memory_param, system_thread_param, SYSTEM_INIT_VALUE_HANDLE_INVALID);
+                   memory_param, thread_param, SYSTEM_INIT_VALUE_HANDLE_INVALID);
   
   // 分配系统内存
-  system_allocation_result = system_allocate_memory(GetAudioDevice);
+  alloc_result = system_allocate_memory(GetAudioDevice);
   
   // 返回初始化状态
-  return (system_allocation_result != 0) - 1;
+  return (alloc_result != 0) - 1;
 }
 
 /**
@@ -221,23 +221,23 @@ int InitializeSystemCore(system_uint64_t system_context_param, system_uint64_t s
  */
 void InitializeSystemStackMemory(void)
 {
-  void* system_stack_memory_pointer_primary;
-  system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint8_t system_stack_buffer_main[SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
+  void* stack_ptr_primary;
+  system_uint8_t *stack_ptr_secondary;
+  system_uint8_t stack_buffer[SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   // 设置栈内存指针
-  system_stack_memory_pointer_primary = &g_system_context;
-  system_stack_memory_pointer_secondary = system_stack_buffer_main;
+  stack_ptr_primary = &g_system_context;
+  stack_ptr_secondary = stack_buffer;
   
   // 初始化栈缓冲区
-  system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
+  stack_buffer[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   
   // 复制系统上下文
-  strncpy_s(system_stack_buffer_main, SYSTEM_INIT_SIZE_BUFFER_SMALL, 
+  strncpy_s(stack_buffer, SYSTEM_INIT_SIZE_BUFFER_SMALL, 
             (const char*)&g_system_context, SYSTEM_INIT_SIZE_BUFFER_SMALL - 1);
   
   // 检查初始化状态
-  system_global_initialized_flag = system_check_initialization(&system_stack_memory_pointer_primary);
+  system_global_initialized_flag = system_check_initialization(&stack_ptr_primary);
   
   return;
 }
@@ -256,23 +256,23 @@ void InitializeSystemStackMemory(void)
  * 
  * @note 这是简化实现，原本实现完全重构了初始化系统所有命名体系
  */
-int CheckSystemInitializationStatus(void** context_pointer)
+int CheckSystemInitializationStatus(void** context_ptr)
 {
-  system_uint64_t* system_context_data;
-  int initialization_status;
+  system_uint64_t* context_data;
+  int init_status;
   
   // 验证上下文指针
-  if (context_pointer == NULL || *context_pointer == NULL) {
+  if (context_ptr == NULL || *context_ptr == NULL) {
     return SYSTEM_INIT_ERROR_INVALID_PARAM;
   }
   
   // 获取系统上下文数据
-  system_context_data = (system_uint64_t*)*context_pointer;
+  context_data = (system_uint64_t*)*context_ptr;
   
   // 检查初始化标志
-  initialization_status = (system_context_data[SYSTEM_INIT_CONTEXT_INDEX_INITIALIZATION_FLAG] & SYSTEM_INIT_FLAG_INITIALIZED) != 0;
+  init_status = (context_data[SYSTEM_INIT_CONTEXT_INDEX_INITIALIZATION_FLAG] & SYSTEM_INIT_FLAG_INITIALIZED) != 0;
   
-  return initialization_status;
+  return init_status;
 }
 
 /**
@@ -317,7 +317,7 @@ void CleanupSystemResources(void)
  */
 int SystemInitializationMain(void)
 {
-  int initialization_result;
+  int init_result;
   
   // 调用核心初始化函数
   InitializeSystemCore();
@@ -326,10 +326,10 @@ int SystemInitializationMain(void)
     InitializeSystemStackMemory();
     
     // 检查初始化状态
-    initialization_result = CheckSystemInitializationStatus((void**)&g_system_context);
+    init_result = CheckSystemInitializationStatus((void**)&g_system_context);
     
     // 处理初始化错误
-    if (initialization_result != SYSTEM_INIT_COMPLETE) {
+    if (init_result != SYSTEM_INIT_COMPLETE) {
       CleanupSystemResources();
       return SYSTEM_INIT_ERROR_GENERIC;
     }

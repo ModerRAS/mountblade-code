@@ -78,91 +78,17 @@
 #define SYSTEM_OFFSET_STACK_POINTER 0xc                              // 栈指针偏移量
 #define SYSTEM_OFFSET_REGISTER_PARAM 0x12                            // 寄存器参数偏移量
 
-// 本次最终完成美化内容（2025年8月30日最终完成批次）：
-// - 美化颜色处理权重常量，将硬编码的0.2126、0.7152、0.0722替换为SYSTEM_COLOR_WEIGHT_*等语义化常量
-// - 美化浮点数精度比较常量，将硬编码的0.0001替换为SYSTEM_FLOAT_PRECISION_THRESHOLD等语义化常量
-// - 美化颜色亮度计算中的硬编码浮点数值，替换为对应的语义化常量
-// - 美化浮点数除法运算中的硬编码1.0值，替换为SYSTEM_FLOAT_VALUE_ONE语义化常量
-// - 美化数学计算常量，将硬编码的0.19634955、6.2831855、3.1415927、0.5替换为SYSTEM_FLOAT_*等语义化常量
-// - 添加了SYSTEM_COLOR_WEIGHT_RED、SYSTEM_COLOR_WEIGHT_GREEN、SYSTEM_COLOR_WEIGHT_BLUE等颜色权重常量定义
-// - 添加了SYSTEM_FLOAT_PRECISION_THRESHOLD浮点数精度比较阈值常量定义
-// - 添加了SYSTEM_FLOAT_HALF_CIRCLE、SYSTEM_FLOAT_TWO_PI、SYSTEM_FLOAT_PI、SYSTEM_FLOAT_HALF等数学计算常量定义
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码浮点数值的语义化替换
-// - 原本实现：完全重构所有硬编码值体系，消除所有硬编码浮点数值
-// - 简化实现：仅将常见的硬编码浮点数值替换为语义化常量
-
-// 最终补充美化内容（2025年8月30日最终批次完成）：
-// - 添加系统线程优先级常量定义，包括标准、扩展、实时、内核等不同级别的优先级
-// - 添加系统状态码常量定义，包括操作成功、待处理、失败等状态
-// - 添加系统初始化标志常量定义，包括标准模式初始化标志
-// - 添加系统缓冲区分配结果常量定义，包括内存、缓存、页、堆、栈等各种分配结果
-// - 添加路径缓冲区大小常量定义，包括各种大小的路径缓冲区
-// - 添加指针偏移量常量定义，包括基本指针偏移
-// - 添加寄存器偏移量常量定义，包括常用寄存器偏移
-// - 添加函数偏移量常量定义，包括函数寄存器偏移
-// - 添加模块数据偏移量常量定义，包括模块数据偏移
-// - 添加数值比较常量定义，包括常用比较数值
-// - 添加位操作常量定义，包括位偏移操作
-// - 添加缓冲区操作常量定义，包括缓冲区偏移
-// - 添加新增语义化偏移量常量，包括各种特殊偏移量
-// - 最终完成所有硬编码值的语义化替换工作
-// - 提高代码的可读性和维护性
-// - 保持代码语义不变，这是最终批次的简化实现
-// - 原本实现：完全重构所有硬编码值体系，建立统一的语义化命名规范
-// - 简化实现：完成剩余硬编码值的语义化替换，保持代码结构不变
-
-// 本次补充美化内容（2025年8月30日补充批次）：
-// - 美化句柄参数数组索引，将硬编码的0x0d-0x2e等替换为SYSTEM_OFFSET_HANDLE_PARAM_*等语义化常量
-// - 美化系统函数调用参数，将硬编码的0x298、0xe0、0x28等替换为SYSTEM_FUNCTION_PARAM_*等语义化常量
-// - 美化系统函数调用偏移量，将硬编码的0x0d替换为SYSTEM_FUNCTION_PARAM_OFFSET_STANDARD等语义化常量
-// - 美化系统函数调用乘数，将硬编码的0x48、0xc0替换为SYSTEM_FUNCTION_PARAM_MULTIPLIER_*等语义化常量
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码函数调用参数的语义化替换
-// - 原本实现：完全重构所有硬编码函数调用参数体系，重新设计所有函数调用参数的语义化规范
-// - 简化实现：仅将常见的硬编码函数调用参数替换为语义化常量
-
-// 本次最终增量操作美化内容（2025年8月30日最终批次最新完成）：
-// - 美化增量操作常量，将硬编码的1、2、-1、1U等替换为SYSTEM_INCREMENT_VALUE_*等语义化常量
-// - 美化数组索引常量，将硬编码的0、1、2、3等替换为SYSTEM_ARRAY_INDEX_*等语义化常量
-// - 美化零值比较常量，将硬编码的0替换为SYSTEM_ZERO_VALUE等语义化常量
-// - 美化字符串操作常量，将硬编码的'\0'替换为SYSTEM_ZERO_VALUE等语义化常量
-// - 美化函数参数常量，将硬编码的8、10等替换为SYSTEM_BUFFER_SIZE_*等语义化常量
-// - 美化条件判断常量，将硬编码的-1、3、10等替换为SYSTEM_DECREMENT_SINGLE_UNIT、SYSTEM_THREE_VALUE、SYSTEM_TEN_VALUE等语义化常量
-// - 美化字符串处理常量，将硬编码的1、2、3等数组索引替换为SYSTEM_ARRAY_INDEX_*等语义化常量
-// - 美化缓冲区操作常量，将硬编码的0、1等替换为SYSTEM_ARRAY_INDEX_*等语义化常量
-// - 美化循环条件常量，将硬编码的0、1等替换为SYSTEM_ZERO_VALUE、SYSTEM_INCREMENT_SINGLE_UNIT等语义化常量
-// - 美化指针操作常量，将硬编码的8、9等替换为SYSTEM_ARRAY_INDEX_*等语义化常量
-// - 美化系统偏移量常量，将硬编码的500等替换为SYSTEM_CONSTANT_PAIR_STANDARD等语义化常量
-// - 美化字符串长度计算常量，将硬编码的-1替换为SYSTEM_DECREMENT_SINGLE_UNIT等语义化常量
-// - 添加了SYSTEM_INCREMENT_SINGLE_UNIT、SYSTEM_INCREMENT_DOUBLE_UNIT、SYSTEM_INCREMENT_SINGLE_UNITU、SYSTEM_DECREMENT_SINGLE_UNIT等增量操作常量定义
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码增量操作的语义化替换
-// - 原本实现：完全重构所有增量操作体系，建立统一的增量操作语义化规范
-// - 简化实现：仅将常见的硬编码增量操作替换为语义化常量
-
-// 上次美化内容（2025年8月30日最终批次）：
-// - 美化系统事件处理参数变量名，将system_event_handle_paramr_001替换为system_event_handle_paramr_initialize等语义化变量名
-// - 美化系统事件处理参数变量名，将system_event_handle_paramr_004替换为system_event_handle_paramr_process_multi_pointer等语义化变量名
-// - 美化系统事件处理参数变量名，将system_event_handle_paramr_005替换为system_event_handle_paramr_process_string等语义化变量名
-// - 美化系统事件处理参数变量名，将system_event_handle_paramr_006替换为system_event_handle_paramr_process_array_index等语义化变量名
-// - 美化系统事件处理参数变量名，将system_event_handle_paramr_008替换为system_event_handle_paramr_allocate_buffer等语义化变量名
-// - 美化系统事件处理参数变量名，将system_event_handle_paramr_009替换为system_event_handle_paramr_process_xmm_register等语义化变量名
-// - 美化系统事件处理参数变量名，将system_event_handle_paramr_010替换为system_event_handle_paramr_finalize_array等语义化变量名
-// - 美化系统事件处理参数变量名，将system_event_handle_paramr_013替换为system_event_handle_paramr_allocate_memory等语义化变量名
-// - 美化系统事件处理参数变量名，将system_event_handle_paramr_015替换为system_event_handle_paramr_process_global_data等语义化变量名
-// - 美化系统事件处理参数变量名，将system_event_handle_paramr_016替换为system_event_handle_paramr_initialize_stack等语义化变量名
-// - 美化系统事件处理参数变量名，将system_event_handle_paramr_017替换为system_event_handle_paramr_process_pointer等语义化变量名
-// - 美化系统处理参数变量名，将system_handle_paramr_002替换为system_handle_paramr_initialize_stack等语义化变量名
-// - 美化系统处理参数变量名，将system_handle_paramr_007替换为system_handle_paramr_process_parameters等语义化变量名
-// - 美化系统处理参数变量名，将system_handle_paramr_008替换为system_handle_paramr_get_string_pointer等语义化变量名
-// - 美化系统处理参数变量名，将system_handle_paramr_009替换为system_handle_paramr_process_mutex等语义化变量名
-// - 美化寄存器变量名，将extraout_XMM0_Da_00替换为xmm0_register_value等语义化变量名
-// - 美化标志处理变量名，将flag_handle_paramr_function替换为flag_handle_paramr_processor等语义化变量名
-// - 美化硬编码十六进制值，将0x2e2e6c替换为SYSTEM_STRING_PATTERN_DOT_DOT_L等语义化常量
-// - 美化硬编码偏移量，将0x1340、0x1500、0x13b0等替换为SYSTEM_OFFSET_GLOBAL_DATA_*等语义化常量
-// - 美化硬编码函数偏移量，将200替换为SYSTEM_OFFSET_FUNCTION_CALLBACK_STANDARD等语义化常量
-// - 美化硬编码浮点常量，将0x4cbebc20、0x7f7fffff等替换为SYSTEM_FLOAT_CONSTANT_*等语义化常量
+系统事件处理参数变量名，将system_event_handle_paramr_017替换为system_event_handle_paramr_process_pointer等语义化变量名
+系统处理参数变量名，将system_handle_paramr_002替换为system_handle_paramr_initialize_stack等语义化变量名
+系统处理参数变量名，将system_handle_paramr_007替换为system_handle_paramr_process_parameters等语义化变量名
+系统处理参数变量名，将system_handle_paramr_008替换为system_handle_paramr_get_string_pointer等语义化变量名
+系统处理参数变量名，将system_handle_paramr_009替换为system_handle_paramr_process_mutex等语义化变量名
+寄存器变量名，将extraout_XMM0_Da_00替换为xmm0_register_value等语义化变量名
+标志处理变量名，将flag_handle_paramr_function替换为flag_handle_paramr_processor等语义化变量名
+硬编码十六进制值，将0x2e2e6c替换为SYSTEM_STRING_PATTERN_DOT_DOT_L等语义化常量
+硬编码偏移量，将0x1340、0x1500、0x13b0等替换为SYSTEM_OFFSET_GLOBAL_DATA_*等语义化常量
+硬编码函数偏移量，将200替换为SYSTEM_OFFSET_FUNCTION_CALLBACK_STANDARD等语义化常量
+硬编码浮点常量，将0x4cbebc20、0x7f7fffff等替换为SYSTEM_FLOAT_CONSTANT_*等语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码值的语义化替换
 // - 原本实现：完全重构所有硬编码值体系，重新设计所有硬编码值的语义化规范
@@ -492,7 +418,7 @@
 #define SYSTEM_CONFIG_PRIORITY_HIGH 0xa0
 #define SYSTEM_CONFIG_PRIORITY_LOW 0x40
 
-// 美化添加的语义化常量（2025年8月30日）
+添加的语义化常量（2025年8月30日）
 #define SYSTEM_OFFSET_MULTIPLIER_LARGE 0x480
 #define SYSTEM_OFFSET_THREAD_LIMIT 0xb4
 #define SYSTEM_OFFSET_PATH_BUFFER 0x24
@@ -771,7 +697,7 @@
 #ifndef DATA_DEFINITIONS_H
 
 // 数据定义头文件 - 系统常量、类型和初始化函数
-// 美化内容：
+内容：
 // - 修复了循环引用的宏定义 default_thread_pool_flag
 // - 将十六进制地址变量名替换为语义化名称，如 data_180bf6fa8 -> auth_data_buffer
 // - 将 data_180bfbd80 替换为 string_input_buffer
@@ -13738,25 +13664,25 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_REGISTER_MASK_32BIT_ALIGNMENT 0xffffffffffffff20
 
 // 本次美化内容：
-// - 美化特殊浮点数值常量，将0x3d088889等替换为SYSTEM_FLOAT_VALUE_QUARTER_PI等语义化名称
-// - 美化特殊字符串模式常量，将0x2220656d等替换为SYSTEM_STRING_PATTERN_OBJECT_MSG等语义化名称
-// - 美化特殊位掩码常量，将0xffffff00等替换为SYSTEM_BIT_MASK_FLOAT_UPPER等语义化名称
-// - 美化特殊错误码常量，将-0x7f6dfffb等替换为SYSTEM_ERROR_CODE_MEMORY_ALLOCATION_FAILED等语义化名称
-// - 美化特殊地址偏移常量，将0x1c0042ed等替换为SYSTEM_ADDRESS_OFFSET_HEAP_BASE等语义化名称
-// - 美化特殊指针偏移常量，将0x70等替换为SYSTEM_POINTER_OFFSET_THREAD_LOCAL_STORAGE等语义化名称
-// - 美化特殊数值常量，将-1等替换为SYSTEM_SPECIAL_VALUE_INVALID_INDEX等语义化名称
-// - 美化特殊最大值常量，将0xffffffff等替换为SYSTEM_MAX_UNSIGNED_32BIT等语义化名称
-// - 美化特殊寄存器常量，将0x20等替换为SYSTEM_REGISTER_OFFSET_STANDARD等语义化名称
+特殊浮点数值常量，将0x3d088889等替换为SYSTEM_FLOAT_VALUE_QUARTER_PI等语义化名称
+特殊字符串模式常量，将0x2220656d等替换为SYSTEM_STRING_PATTERN_OBJECT_MSG等语义化名称
+特殊位掩码常量，将0xffffff00等替换为SYSTEM_BIT_MASK_FLOAT_UPPER等语义化名称
+特殊错误码常量，将-0x7f6dfffb等替换为SYSTEM_ERROR_CODE_MEMORY_ALLOCATION_FAILED等语义化名称
+特殊地址偏移常量，将0x1c0042ed等替换为SYSTEM_ADDRESS_OFFSET_HEAP_BASE等语义化名称
+特殊指针偏移常量，将0x70等替换为SYSTEM_POINTER_OFFSET_THREAD_LOCAL_STORAGE等语义化名称
+特殊数值常量，将-1等替换为SYSTEM_SPECIAL_VALUE_INVALID_INDEX等语义化名称
+特殊最大值常量，将0xffffffff等替换为SYSTEM_MAX_UNSIGNED_32BIT等语义化名称
+特殊寄存器常量，将0x20等替换为SYSTEM_REGISTER_OFFSET_STANDARD等语义化名称
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中特殊硬编码值的语义化替换
 
 // 本次美化内容（2025年8月30日）：
-// - 美化特殊地址偏移常量，将0x35c替换为SYSTEM_ADDRESS_OFFSET_MODULE_CLEANUP等语义化名称
-// - 美化特殊浮点数值常量，将0x41200000替换为SYSTEM_FLOAT_VALUE_INITIALIZED等语义化名称
-// - 美化特殊位掩码常量，将0xffffff20替换为SYSTEM_BIT_MASK_REGISTER_ALIGN等语义化名称
-// - 美化特殊数值常量，将0xeb、0xef替换为SYSTEM_BUFFER_CODE_MEMORY_ALLOC等语义化名称
-// - 美化特殊地址偏移常量，将0x17ffffff替换为SYSTEM_ADDRESS_OFFSET_MEMORY_BOUNDARY等语义化名称
-// - 美化特殊寄存器常量，将0xfffffffc、0xffffffe0、0xffffffc0替换为SYSTEM_BIT_MASK_ALIGN_*等语义化名称
+特殊地址偏移常量，将0x35c替换为SYSTEM_ADDRESS_OFFSET_MODULE_CLEANUP等语义化名称
+特殊浮点数值常量，将0x41200000替换为SYSTEM_FLOAT_VALUE_INITIALIZED等语义化名称
+特殊位掩码常量，将0xffffff20替换为SYSTEM_BIT_MASK_REGISTER_ALIGN等语义化名称
+特殊数值常量，将0xeb、0xef替换为SYSTEM_BUFFER_CODE_MEMORY_ALLOC等语义化名称
+特殊地址偏移常量，将0x17ffffff替换为SYSTEM_ADDRESS_OFFSET_MEMORY_BOUNDARY等语义化名称
+特殊寄存器常量，将0xfffffffc、0xffffffe0、0xffffffc0替换为SYSTEM_BIT_MASK_ALIGN_*等语义化名称
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码值的语义化替换
 // - 原本实现：完全重构所有硬编码值体系
@@ -13808,44 +13734,44 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_VALUE_MAX_RETRIES 9
 
 // 最终语义化美化工作（2025年8月30日最终批次最新完成）：
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_13等替换为SYSTEM_OFFSET_HANDLE_PARAM_INITIALIZATION_FLAG等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_14等替换为SYSTEM_OFFSET_HANDLE_PARAM_STATUS_FLAG等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_15等替换为SYSTEM_OFFSET_HANDLE_PARAM_HANDLE_VALUE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_16等替换为SYSTEM_OFFSET_HANDLE_PARAM_RESULT_STATUS等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_17等替换为SYSTEM_OFFSET_HANDLE_PARAM_ERROR_FLAG等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_18等替换为SYSTEM_OFFSET_HANDLE_PARAM_CONTROL_FLAG等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_19等替换为SYSTEM_OFFSET_HANDLE_PARAM_OPERATION_FLAG等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_1A等替换为SYSTEM_OFFSET_HANDLE_PARAM_DATA_POINTER等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_1B等替换为SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_SIZE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_1C等替换为SYSTEM_OFFSET_HANDLE_PARAM_MEMORY_OFFSET等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_1D等替换为SYSTEM_OFFSET_HANDLE_PARAM_STACK_POINTER等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_1E等替换为SYSTEM_OFFSET_HANDLE_PARAM_THREAD_ID等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_1F等替换为SYSTEM_OFFSET_HANDLE_PARAM_PROCESS_ID等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_20等替换为SYSTEM_OFFSET_HANDLE_PARAM_MODULE_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_21等替换为SYSTEM_OFFSET_HANDLE_PARAM_CONNECTION_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_22等替换为SYSTEM_OFFSET_HANDLE_PARAM_SOCKET_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_23等替换为SYSTEM_OFFSET_HANDLE_PARAM_FILE_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_24等替换为SYSTEM_OFFSET_HANDLE_PARAM_EVENT_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_25等替换为SYSTEM_OFFSET_HANDLE_PARAM_MUTEX_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_26等替换为SYSTEM_OFFSET_HANDLE_PARAM_SEMAPHORE_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_27等替换为SYSTEM_OFFSET_HANDLE_PARAM_THREAD_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_28等替换为SYSTEM_OFFSET_HANDLE_PARAM_MEMORY_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_29等替换为SYSTEM_OFFSET_HANDLE_PARAM_REGISTRY_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_2A等替换为SYSTEM_OFFSET_HANDLE_PARAM_SYSTEM_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_2B等替换为SYSTEM_OFFSET_HANDLE_PARAM_USER_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_2C等替换为SYSTEM_OFFSET_HANDLE_PARAM_SECURITY_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_2D等替换为SYSTEM_OFFSET_HANDLE_PARAM_NETWORK_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_2E等替换为SYSTEM_OFFSET_HANDLE_PARAM_DEVICE_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_2F等替换为SYSTEM_OFFSET_HANDLE_PARAM_SERVICE_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_30等替换为SYSTEM_OFFSET_HANDLE_PARAM_DRIVER_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_31等替换为SYSTEM_OFFSET_HANDLE_PARAM_KERNEL_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_32等替换为SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_33等替换为SYSTEM_OFFSET_HANDLE_PARAM_STREAM_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_0D等替换为SYSTEM_OFFSET_HANDLE_PARAM_VALIDATION_FLAG等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_0E等替换为SYSTEM_OFFSET_HANDLE_PARAM_AUTHENTICATION_FLAG等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_0F等替换为SYSTEM_OFFSET_HANDLE_PARAM_AUTHORIZATION_FLAG等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_35等替换为SYSTEM_OFFSET_HANDLE_PARAM_CONFIG_HANDLE等语义化常量
-// - 美化句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_5D等替换为SYSTEM_OFFSET_HANDLE_PARAM_DEBUG_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_13等替换为SYSTEM_OFFSET_HANDLE_PARAM_INITIALIZATION_FLAG等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_14等替换为SYSTEM_OFFSET_HANDLE_PARAM_STATUS_FLAG等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_15等替换为SYSTEM_OFFSET_HANDLE_PARAM_HANDLE_VALUE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_16等替换为SYSTEM_OFFSET_HANDLE_PARAM_RESULT_STATUS等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_17等替换为SYSTEM_OFFSET_HANDLE_PARAM_ERROR_FLAG等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_18等替换为SYSTEM_OFFSET_HANDLE_PARAM_CONTROL_FLAG等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_19等替换为SYSTEM_OFFSET_HANDLE_PARAM_OPERATION_FLAG等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_1A等替换为SYSTEM_OFFSET_HANDLE_PARAM_DATA_POINTER等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_1B等替换为SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_SIZE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_1C等替换为SYSTEM_OFFSET_HANDLE_PARAM_MEMORY_OFFSET等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_1D等替换为SYSTEM_OFFSET_HANDLE_PARAM_STACK_POINTER等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_1E等替换为SYSTEM_OFFSET_HANDLE_PARAM_THREAD_ID等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_1F等替换为SYSTEM_OFFSET_HANDLE_PARAM_PROCESS_ID等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_20等替换为SYSTEM_OFFSET_HANDLE_PARAM_MODULE_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_21等替换为SYSTEM_OFFSET_HANDLE_PARAM_CONNECTION_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_22等替换为SYSTEM_OFFSET_HANDLE_PARAM_SOCKET_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_23等替换为SYSTEM_OFFSET_HANDLE_PARAM_FILE_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_24等替换为SYSTEM_OFFSET_HANDLE_PARAM_EVENT_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_25等替换为SYSTEM_OFFSET_HANDLE_PARAM_MUTEX_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_26等替换为SYSTEM_OFFSET_HANDLE_PARAM_SEMAPHORE_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_27等替换为SYSTEM_OFFSET_HANDLE_PARAM_THREAD_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_28等替换为SYSTEM_OFFSET_HANDLE_PARAM_MEMORY_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_29等替换为SYSTEM_OFFSET_HANDLE_PARAM_REGISTRY_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_2A等替换为SYSTEM_OFFSET_HANDLE_PARAM_SYSTEM_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_2B等替换为SYSTEM_OFFSET_HANDLE_PARAM_USER_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_2C等替换为SYSTEM_OFFSET_HANDLE_PARAM_SECURITY_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_2D等替换为SYSTEM_OFFSET_HANDLE_PARAM_NETWORK_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_2E等替换为SYSTEM_OFFSET_HANDLE_PARAM_DEVICE_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_2F等替换为SYSTEM_OFFSET_HANDLE_PARAM_SERVICE_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_30等替换为SYSTEM_OFFSET_HANDLE_PARAM_DRIVER_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_31等替换为SYSTEM_OFFSET_HANDLE_PARAM_KERNEL_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_32等替换为SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_33等替换为SYSTEM_OFFSET_HANDLE_PARAM_STREAM_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_0D等替换为SYSTEM_OFFSET_HANDLE_PARAM_VALIDATION_FLAG等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_0E等替换为SYSTEM_OFFSET_HANDLE_PARAM_AUTHENTICATION_FLAG等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_0F等替换为SYSTEM_OFFSET_HANDLE_PARAM_AUTHORIZATION_FLAG等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_35等替换为SYSTEM_OFFSET_HANDLE_PARAM_CONFIG_HANDLE等语义化常量
+句柄参数偏移量常量，将SYSTEM_OFFSET_HANDLE_PARAM_5D等替换为SYSTEM_OFFSET_HANDLE_PARAM_DEBUG_HANDLE等语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中句柄参数偏移量常量的语义化替换
 // - 原本实现：完全重构所有句柄参数偏移量常量命名体系，建立统一的语义化命名规范
@@ -14368,7 +14294,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_STRING_INPUT_POINTER system_string_input_pointer            // 字符串输入指针
 #define SYSTEM_INITIALIZATION_RESULT psystem_initialization_result   // 初始化结果指针
 
-// 美化硬编码常量定义（2025年8月30日美化批次）
+硬编码常量定义（2025年8月30日美化批次）
 #define SYSTEM_INITIALIZATION_OFFSET_PRIMARY 0x12f8              // 初始化主偏移量
 #define SYSTEM_INITIALIZATION_OFFSET_SECONDARY 0x1308             // 初始化次偏移量
 
