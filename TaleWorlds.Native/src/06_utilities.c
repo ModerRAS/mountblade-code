@@ -27923,7 +27923,7 @@ void utility_unwind_advanced_function_eight_nine_zero(uint64 utility_resource_pr
   **(uint64 **)(utility_resource_context_handle + utility_list_head_offset_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_advanced_function_eight_alpha_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
+void utility_unwind_advanced_function_debug_handler_alpha(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   uint64 *utility_operation_result_ptr;
   utility_operation_result_ptr = *(uint64 **)(utility_resource_context_handle + utility_pointer_data_offset_tertiary);
@@ -27932,17 +27932,17 @@ void utility_unwind_advanced_function_eight_alpha_zero(uint64 utility_resource_p
   *utility_operation_result_ptr = &threadsyncobject;
   return;
 }
-void utility_unwind_advanced_function_eight_bravo_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
+void utility_unwind_advanced_function_debug_handler_bravo(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   *(resource_data **)(*(longlong *)(utility_resource_context_handle + utility_pointer_data_offset_tertiary) + utility_pointer_data_offset_tertiary) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_advanced_function_eight_charlie_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
+void utility_unwind_advanced_function_debug_handler_charlie(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   **(uint64 **)(utility_resource_context_handle + utility_secondary_byte_offset) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_advanced_function_eight_delta_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
+void utility_unwind_advanced_function_debug_handler_delta(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   int utility_operation_result;
   utility_operation_result = _Mtx_unlock(*(uint64 *)(utility_resource_context_handle + utility_sys_status_offset));
@@ -27951,7 +27951,7 @@ void utility_unwind_advanced_function_eight_delta_zero(uint64 utility_resource_p
   }
   return;
 }
-void utility_unwind_advanced_function_eight_echo_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
+void utility_unwind_advanced_function_debug_handler_echo(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   longlong utility_primary_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_data_offset_standard);
@@ -27965,7 +27965,7 @@ void utility_unwind_advanced_function_eight_echo_zero(uint64 utility_resource_pr
   *(uint64 *)(utility_resource_context_handle + utility_pointer_data_offset_tertiary) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_advanced_function_eight_foxtrot_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
+void utility_unwind_advanced_function_debug_handler_foxtrot(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   longlong utility_primary_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_list_handle_offset_standard);
@@ -32160,7 +32160,7 @@ void utility_unwind_function_resource_handle_stage_nine(uint64 utility_resource_
   *utility_operation_result_ptr = &threadsyncobject;
   return;
 }
-void utility_unwind_function_resource_handle_foxtrot_alpha_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
+void utility_unwind_function_resource_handle_stage_alpha(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   int *utility_status_pointer;
   char *character_pointer_secondary;
@@ -32219,7 +32219,7 @@ void utility_unwind_function_resource_handle_foxtrot_alpha_zero(uint64 utility_r
   }
   return;
 }
-void utility_unwind_function_resource_handle_foxtrot_charlie_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
+void utility_unwind_function_resource_handle_stage_charlie(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   longlong utility_primary_resource_cache;
   longlong *utility_data_pointer_primary_extended;
