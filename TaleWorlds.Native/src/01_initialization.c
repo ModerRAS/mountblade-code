@@ -29074,7 +29074,7 @@ void system_internal_function(uint64_t system_context_ptr,int64_t system_config_
     system_int_result = system_int_result + 1;
     system_uint_var_b = system_uint_var_b >> 1;
   } while (system_uint_var_b != 0);
-  system_initialization_status = (&system_unk_system_ptr_varfe050)[system_int_var_8 / system_int_result];
+  system_initialization_status = (&system_internal_context_ptr_array)[system_int_var_8 / system_int_result];
   system_stack_uint_value = 0x18005d147;
   system_float_var_i = (float)powf(0x44800000);
   system_float_var_j = (float)(int64_t)system_context_ptr;
@@ -29088,14 +29088,14 @@ void system_internal_function(uint64_t system_context_ptr,int64_t system_config_
   context_offset_value = 0;
   system_stack_uint_value = 0;
   pdStack_450 = &dStackX_18;
-  system_int_var_8 = __stdio_common_vsprintf(*system_byte_system_pointer_d | 1,0,0,&system_unk_system_ptr_varfe058);
+  system_int_var_8 = __stdio_common_vsprintf(*system_byte_system_pointer_d | 1,0,0,&system_internal_format_buffer_ptr);
   if (system_int_var_8 < 0) {
     system_int_var_8 = -1;
   }
   if (system_int_var_8 < 0x400) {
     system_stack_uint_value = 0;
     pdStack_450 = &dStackX_18;
-    __stdio_common_vsprintf(*system_byte_system_pointer_d | 1,acStack_438,0x400,&system_unk_system_ptr_varfe058);
+    __stdio_common_vsprintf(*system_byte_system_pointer_d | 1,acStack_438,0x400,&system_internal_format_buffer_ptr);
     context_offset_value = -1;
     do {
       system_long_var_f = context_offset_value;
@@ -29114,7 +29114,7 @@ void system_internal_function(uint64_t system_context_ptr,int64_t system_config_
     if (system_int_var_8 != 0) {
       context_offset_value = system_internal_function(system_global_data_ptr,(int64_t)system_int_var_8,3);
     }
-    system_internal_function(context_offset_value,(int64_t)system_int_var_8,&system_unk_system_ptr_varfe058,&dStackX_18);
+    system_internal_function(context_offset_value,(int64_t)system_int_var_8,&system_internal_format_buffer_ptr,&dStackX_18);
     system_internal_function(system_config_flags,context_offset_value);
     if (context_offset_value != 0) {
                     // WARNING: Subroutine does not return
@@ -29862,7 +29862,7 @@ void system_internal_function(void)
   system_stack_byte_ptr = auStack_148;
   auStack_148[0] = 0;
   system_stack_uint_value = 4;
-  system_strcpy_s(auStack_148,0x10,&system_unk_system_ptr_varfe188);
+  system_strcpy_s(auStack_148,0x10,&system_internal_string_buffer_1);
   system_stack_varlong_var = system_long_var + 0x78;
   system_stack_varlong_var = system_long_var + 0x548;
   system_stack_varlong_var = system_long_var + 0x68;
@@ -29875,12 +29875,12 @@ void system_internal_function(void)
   auStack_120[0] = 0;
   system_stack_uint_value = 6;
   system_stack_uint_value = system_byte_system_pointer_d;
-  system_strcpy_s(auStack_120,0x10,&system_unk_system_ptr_varfe190);
+  system_strcpy_s(auStack_120,0x10,&system_internal_string_buffer_2);
   system_stack_varlong_var = system_long_var + 0x78;
   system_stack_varlong_var = system_long_var + 0x548;
   system_stack_varlong_var = system_long_var + 0x68;
   system_internal_function(system_byte_system_pointer_d,&system_stack_byte_ptr,1);
-  *system_byte_system_pointer_d = &system_unk_system_ptr_varfe290;
+  *system_byte_system_pointer_d = &system_internal_output_buffer_ptr;
   *(uint8_t **)((int64_t)*psystem_context_ptr_15 + 8) = system_byte_system_pointer_d;
   system_stack_byte_ptr = &system_data_ptr;
   system_int_result = 2;
@@ -29892,7 +29892,7 @@ void system_internal_function(void)
       system_stack_byte_ptr = auStack_148;
       auStack_148[0] = 0;
       system_stack_uint_value = 7;
-      system_strcpy_s(auStack_148,0x10,&system_unk_system_ptr_varfe198);
+      system_strcpy_s(auStack_148,0x10,&system_internal_string_buffer_3);
       system_internal_function(&system_stack_uint_value,&system_data_ptr,system_int_result + -1);
       system_long_var_f = -1;
       do {
@@ -29933,7 +29933,7 @@ void system_internal_function(void)
       system_stack_byte_ptr = auStack_148;
       auStack_148[0] = 0;
       system_stack_uint_value = 10;
-      system_strcpy_s(auStack_148,0x10,&system_unk_system_ptr_varfe1a0);
+      system_strcpy_s(auStack_148,0x10,&system_internal_string_buffer_4);
       system_internal_function(acStack_48,&system_data_ptr,system_byte_var_8);
       system_long_var_f = -1;
       do {
@@ -29949,7 +29949,7 @@ void system_internal_function(void)
       system_stack_varlong_var = system_long_var + 0x70;
       system_stack_uint_value = system_byte_system_pointer_d;
       system_internal_function(system_byte_system_pointer_d,&system_stack_byte_ptr,4,system_stack_varlong_var + 0x2e0);
-      *system_byte_system_pointer_d = &system_unk_system_ptr_varfe258;
+      *system_byte_system_pointer_d = &system_internal_stream_buffer_ptr;
       *(uint8_t **)(*psystem_long_var_1 + system_long_result_14 * 8) = system_byte_system_pointer_d;
       system_stack_byte_ptr = &system_data_ptr;
       system_byte_var_8 = (uint64_t)((int)system_byte_var_8 + 1);
