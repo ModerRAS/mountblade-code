@@ -1866,43 +1866,64 @@ do {
     return 0;
 }
 
+/**
+ * 处理系统资源管理器的主要功能
+ * 该函数负责初始化和管理系统资源，处理资源分配和释放
+ * @return 操作结果，0表示成功
+ */
+int utility_process_resource_manager(void)
+{
     int64_t *resource_manager;
     int utility_operation_result;
-    int64_t *resource_manager;
-    int64_t *resource_manager;
-    int64_t *resource_manager;
-    uint64_t utility_stack_data_array [2];
+    uint64_t utility_stack_data_array[2];
+    int64_t *utility_context_ptr;
+    
     utility_context_ptr = (int64_t *)UTILITY_NULL;
     utility_stack_data_array[0] = UTILITY_STATUS_FALSE;
     utility_operation_result = utility_process_stack_main(utility_stack_data_array);
-    if ((utility_operation_result == UTILITY_STATUS_FALSE) && (utility_operation_result = utility_verify_resource_available(*(uint64_t *)(utility_context_ptr + UTILITY_RESOURCE_HANDLE_OFFSET)), utility_operation_result == UTILITY_STATUS_FALSE)) {
-    utility_context_ptr = (int64_t *)(*(int64_t *)(utility_context_ptr + UTILITY_THREAD_SIZE_OFFSET) + -8);
-    if (*(int64_t *)(utility_context_ptr + UTILITY_THREAD_SIZE_OFFSET) == UTILITY_STATUS_FALSE) {
-}
-    if (utility_context_ptr != (int64_t *)UTILITY_NULL) {
-    utility_context_ptr = utility_context_ptr + 1;
-}
-do {
-    if (utility_context_ptr == (int64_t *)(utility_context_ptr + UTILITY_THREAD_SIZE_OFFSET)) {
-    if (*(char *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET) != '\0') {
-    utility_setup_system_module(utility_context_ptr);
-}
-break;
-}
-    if (utility_context_ptr != (int64_t *)(utility_context_ptr + UTILITY_THREAD_SIZE_OFFSET)) {
-    utility_context_ptr = (int64_t *)(*utility_data_storage_ptr + -8);
-    if (*utility_data_storage_ptr == UTILITY_STATUS_FALSE) {
-}
-    if (utility_context_ptr != (int64_t *)UTILITY_NULL) {
-    utility_context_ptr = utility_context_ptr + 1;
-}
-}
-    utility_context_ptr = utility_context_ptr + 2;
-    if (utility_context_ptr == (int64_t *)UTILITY_NULL) {
-    utility_context_ptr = (int64_t *)&utility_global_context_pointer;
-}
-} while ((*utility_data_storage_ptr == UTILITY_STATUS_FALSE) || (utility_operation_result = utility_confirm_resource_connection(utility_context_ptr), utility_operation_result == UTILITY_STATUS_FALSE));
-}
+    
+    if ((utility_operation_result == UTILITY_STATUS_FALSE) && 
+        (utility_operation_result = utility_verify_resource_available(*(uint64_t *)(utility_context_ptr + UTILITY_RESOURCE_HANDLE_OFFSET)), 
+         utility_operation_result == UTILITY_STATUS_FALSE)) {
+        
+        utility_context_ptr = (int64_t *)(*(int64_t *)(utility_context_ptr + UTILITY_THREAD_SIZE_OFFSET) + -8);
+        if (*(int64_t *)(utility_context_ptr + UTILITY_THREAD_SIZE_OFFSET) == UTILITY_STATUS_FALSE) {
+            return UTILITY_STATUS_FALSE;
+        }
+        
+        if (utility_context_ptr != (int64_t *)UTILITY_NULL) {
+            utility_context_ptr = utility_context_ptr + 1;
+        }
+        
+        do {
+            if (utility_context_ptr == (int64_t *)(utility_context_ptr + UTILITY_THREAD_SIZE_OFFSET)) {
+                if (*(char *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET) != '\0') {
+                    utility_setup_system_module(utility_context_ptr);
+                }
+                break;
+            }
+            
+            if (utility_context_ptr != (int64_t *)(utility_context_ptr + UTILITY_THREAD_SIZE_OFFSET)) {
+                utility_context_ptr = (int64_t *)(*utility_data_storage_ptr + -8);
+                if (*utility_data_storage_ptr == UTILITY_STATUS_FALSE) {
+                    return UTILITY_STATUS_FALSE;
+                }
+                
+                if (utility_context_ptr != (int64_t *)UTILITY_NULL) {
+                    utility_context_ptr = utility_context_ptr + 1;
+                }
+            }
+            
+            utility_context_ptr = utility_context_ptr + 2;
+            if (utility_context_ptr == (int64_t *)UTILITY_NULL) {
+                utility_context_ptr = (int64_t *)&utility_global_context_pointer;
+            }
+        } while ((*utility_data_storage_ptr == UTILITY_STATUS_FALSE) || 
+                 (utility_operation_result = utility_confirm_resource_connection(utility_context_ptr), 
+                  utility_operation_result == UTILITY_STATUS_FALSE));
+    }
+    
     utility_clear_stack_handler(utility_stack_data_array);
+    return UTILITY_STATUS_SUCCESS;
 }
 
