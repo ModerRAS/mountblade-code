@@ -1025,12 +1025,6 @@ return utility_resource_value;
  * 
  * @return 事件系统初始化结果，0表示失败，非0表示成功
  */
-/**
- * 初始化事件系统
- * 创建和管理系统事件机制，用于线程间通信和同步
- * 
- * @return 事件系统初始化结果，0表示失败，非0表示成功
- */
 uint64_t utility_initialize_event_system(void)
 {
     int64_t utility_loop_counter;
@@ -1041,31 +1035,42 @@ uint64_t utility_initialize_event_system(void)
     uint64_t utility_resource_data;
     int64_t utility_register_rsi_value;
     uint utility_temp_data;
-utility_resource_data = 0;
-utility_resource_data = utility_context_pointer - 8;
-if (utility_context_pointer == 0) {
-utility_resource_data = utility_resource_data;
-}
-context_handle = (uint32_t *)(utility_register_rsi_value + UTILITY_THREAD_DATA_OFFSET + (int64_t)*(int *)(utility_register_rsi_value + UTILITY_THREAD_CONTEXT_OFFSET) * 4);
-if (0 < *(int *)(utility_register_rsi_value + UTILITY_THREAD_CONTEXT_OFFSET)) {
-utility_loop_counter = (utility_register_rsi_value + UTILITY_THREAD_DATA_OFFSET) - (int64_t)context_handle;
-do {
-utility_operation_result = *(int *)(utility_loop_counter + (int64_t)context_handle);
-if (utility_operation_result != -1) {
-utility_loop_counter = *(int64_t *)(utility_resource_data + UTILITY_THREAD_DATA_OFFSET) + (int64_t)utility_operation_result * UTILITY_THREAD_CONTEXT_OFFSET;
-if ((utility_loop_counter == 0) || (utility_loop_counter = *(int64_t *)(utility_loop_counter + 8), utility_loop_counter == 0)) {
-return UTILITY_STATUS_THREAD_CREATED;
-}
-utility_resource_data = utility_process_resource_operation(utility_loop_counter,*buffer_pointer,0);
-if ((int)utility_resource_value != 0) {
-return utility_resource_value;
-}
-}
-utility_resource_data = (int)utility_resource_data + 1;
-utility_resource_data = (uint64_t)utility_resource_data;
-context_handle = context_handle + 1;
-} while ((int)utility_resource_data < *(int *)(utility_register_rsi_value + UTILITY_THREAD_CONTEXT_OFFSET));
-}
+  // 简化实现：初始化资源数据
+    utility_resource_data = 0;
+    
+    // 简化实现：验证上下文指针
+    if (utility_context_pointer != 0) {
+        utility_temp_data = utility_context_pointer - 8;
+    }
+    
+    // 简化实现：处理线程数据偏移
+    context_handle = (uint32_t *)(utility_register_rsi_value + UTILITY_THREAD_DATA_OFFSET + 
+                                   (int64_t)*(int *)(utility_register_rsi_value + UTILITY_THREAD_CONTEXT_OFFSET) * 4);
+// 简化实现：处理线程上下文
+    if (0 < *(int *)(utility_register_rsi_value + UTILITY_THREAD_CONTEXT_OFFSET)) {
+        utility_loop_counter = (utility_register_rsi_value + UTILITY_THREAD_DATA_OFFSET) - (int64_t)context_handle;
+        
+        do {
+            utility_operation_result = *(int *)(utility_loop_counter + (int64_t)context_handle);
+            if (utility_operation_result != -1) {
+                utility_loop_counter = *(int64_t *)(utility_resource_data + UTILITY_THREAD_DATA_OFFSET) + 
+                                      (int64_t)utility_operation_result * UTILITY_THREAD_CONTEXT_OFFSET;
+                
+                if ((utility_loop_counter == 0) || 
+                    (utility_loop_counter = *(int64_t *)(utility_loop_counter + 8), utility_loop_counter == 0)) {
+                    return UTILITY_STATUS_THREAD_CREATED;
+                }
+                
+                utility_resource_data = utility_process_resource_operation(utility_loop_counter, *buffer_pointer, 0);
+                if ((int)utility_resource_value != 0) {
+                    return utility_resource_value;
+                }
+            }
+            
+            utility_resource_data++;
+            context_handle++;
+        } while ((int)utility_resource_data < *(int *)(utility_register_rsi_value + UTILITY_THREAD_CONTEXT_OFFSET));
+    }
 return 0;
 }
 /**
