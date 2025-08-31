@@ -147,7 +147,7 @@
 #define UTILITY_STATUS_FLAG_F0 0xf0
 #define UTILITY_STATUS_ENABLED_FLAG_ZERO 0
 #define UTILITY_STATUS_ENABLED_FLAG_EIGHT 8
-#define UTILITY_SERVICE_HANDLER_OFFSET_SECONDARY_HEX 0x600
+#define UTILITY_SERVICE_HANDLER_OFFSET_SECONDARY 0x600
 #define UTILITY_SERVICE_CONTEXT_OFFSET_MEDIUM 0x2e8
 #define UTILITY_STREAM_TYPE_ROOT 0x1
 #define UTILITY_STREAM_TYPE_KNOWN 0x2
@@ -200,8 +200,8 @@
 #define UTILITY_CONTEXT_SIZE_MULTIPLIER_44_BYTES 0x44
 #define UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY 0x3c
 #define UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY 0x40
-#define UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_HEX 0x5c
-#define UTILITY_CONTEXT_OFFSET_STACK_SMALL_HEX 0x25
+#define UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY 0x5c
+#define UTILITY_CONTEXT_OFFSET_STACK_SMALL 0x25
 #define UTILITY_SERVICE_HANDLER_OFFSET_PRIMARY 0x2b0
 #define UTILITY_SERVICE_HANDLER_OFFSET_TERTIARY 0x2f0
 #define UTILITY_SERVICE_CONTEXT_OFFSET_LARGE 0x800
@@ -5810,11 +5810,6 @@ void InitializeSocket(void)
 * 创建并初始化网络套接字，用于网络通信
 * @return 无返回值
 */
-void InitializeSocket(void)
-{
-int64_t utility_base_context_ptr;
-utility_checksum_compute(*(uint64_t *)(utility_base_context_ptr + UTILITY_CHECKSUM_OFFSET_PRIMARY) ^ (uint64_t)&utility_buffer_workspace_area);
-}
 {
 uint64_t utility_resource_id;
 int *utility_buffer_handle;
@@ -15371,36 +15366,6 @@ void InitializeEncryption(void)
 * 初始化系统加密功能模块
 * @return 无返回值
 */
-void InitializeEncryption(void)
-/**
-* @brief 处理资源操作
-* 执行资源相关的操作和处理
-* @param resource_count 输入参数值
-* @param utility_buffer_handle 参数指针
-* @return uint64_t 返回操作状态码
-*/
-uint64_t utility_handle_resource_operation(int64_t resource_count,int64_t *utility_buffer_handle)
-{
-int64_t *resource_manager;
-uint32_t utility_context_data_ptr_data;
-uint64_t utility_context_temp_storage;
-uint32_t utility_context_value_temp_value;
-uint32_t utility_context_data_ptr_data;
-uint32_t utility_context_data_ptr_data;
-uint32_t utility_context_data_ptr_data;
-uint32_t utility_context_data_ptr_data;
-uint32_t utility_stack_buffer [2];
-uint32_t utility_stack_buffer [2];
-uint utility_stack_tertiary_byte;
-uint32_t utility_stack_uint_data;
-uint8_t utility_stack_buffer_array_output [32];
-uint8_t utility_stack_buffer_array_input [40];
-uint64_t utility_context_temp_storage;
-utility_context_temp_storage = UTILITY_BOOLEAN_TRUE;
-utility_context_temp_storage = utility_stream_create(utility_context_parameter,utility_stack_buffer_array_input,1,UTILITY_STREAM_TYPE_MRAP);
-if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
-return utility_resource_id;
-}
     utility_context_data = utility_stream_create(utility_context_parameter,utility_stack_buffer_array_output,0,UTILITY_STREAM_TYPE_BMRP);
 if ((int)utility_resource_id != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_id;
@@ -43031,22 +42996,12 @@ void utility_destroy_mutex_in_situ(void)
 * 功能：销毁系统互斥体，释放同步资源
 * 功能描述：就地销毁互斥体对象，清理同步资源
 */
-void utility_destroy_mutex_in_situ(void)
-{
-utility_system_reserved_area = &utility_system_reserved_area;
-return;
-}
 void utility_initialize_global_pointer_(void)
 /**
 * 初始化全局指针函数
 * 功能：初始化系统全局指针，设置全局数据结构
 * 功能描述：设置系统全局指针，初始化全局数据结构
 */
-void utility_initialize_global_pointer_(void)
-{
-utility_system_reserved_area = &utility_system_reserved_area;
-return;
-}
 {
 utility_system_reserved_area = &utility_system_reserved_area;
 return;
@@ -43260,14 +43215,6 @@ void utility_free_resource_blocks(void)
 * 功能：释放系统资源块，回收内存资源
 * 功能描述：释放已分配的资源块，回收内存资源
 */
-void utility_free_resource_blocks(void)
-{
-uint64_t utility_context_temp_storage;
-int64_t utility_loop_counter;
-long long utility_register_r9;
-if (memory_location != UTILITY_BOOLEAN_FALSE) {
-    
-}
 utility_context_temp_storage = (memory_location - memory_location >> 3) * 8;
 utility_loop_counter = memory_location;
 if (UTILITY_STATUS_FLAG_MASK_SMALL < utility_context_temp_storage) {
