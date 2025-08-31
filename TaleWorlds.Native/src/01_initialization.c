@@ -12235,8 +12235,8 @@ int system_function_03eda0(void)
 {
   longlong lVar1;
   
-  FUN_1804777d0();
-  lVar1 = system_register_memory_pool(FUN_180942890);
+  system_module_initializer();
+  lVar1 = system_register_memory_pool(system_shader_manager_register);
   return (lVar1 != 0) - 1;
 }
 
@@ -12249,8 +12249,8 @@ int system_function_03edc0(void)
   uint8_t auStackX_8 [32];
   
   auStackX_8[0] = 1;
-  FUN_180477890(&system_data_180c92490,auStackX_8);
-  lVar1 = system_register_memory_pool(FUN_1809428e0);
+  system_texture_manager_register(&system_data_180c92490,auStackX_8);
+  lVar1 = system_register_memory_pool(system_material_manager_register);
   return (lVar1 != 0) - 1;
 }
 
@@ -12263,8 +12263,8 @@ int system_function_03edf0(void)
   uint8_t auStackX_8 [32];
   
   auStackX_8[0] = 0;
-  FUN_180477890(&system_data_180c92480,auStackX_8);
-  lVar1 = system_register_memory_pool(FUN_180942930);
+  system_texture_manager_register(&system_data_180c92480,auStackX_8);
+  lVar1 = system_register_memory_pool(system_mesh_manager_register);
   return (lVar1 != 0) - 1;
 }
 
@@ -12275,7 +12275,7 @@ int system_function_03ee20(void)
 {
   longlong lVar1;
   
-  lVar1 = system_register_memory_pool(FUN_180942a20);
+  lVar1 = system_register_memory_pool(system_animation_manager_register_extended);
   return (lVar1 != 0) - 1;
 }
 
