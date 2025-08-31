@@ -366,7 +366,7 @@ void utility_process_thread_local_storage(int64_t thread_handle, int64_t context
     uint8_t utility_large_buffer_area[512];
     uint64_t utility_checksum_value;
     int64_t utility_processed_count;      // 已处理的项目计数器
-    int64_t utility_loop_index;  // 临时迭代索引
+    int64_t utility_loop_counter;  // 临时迭代索引
     
     // 计算校验和结果，用于数据完整性验证
     utility_checksum_value = (uint64_t)utility_system_reserved_area ^ (uint64_t)utility_thread_workspace;
@@ -378,23 +378,19 @@ void utility_process_thread_local_storage(int64_t thread_handle, int64_t context
     if ((utility_operation_status == UTILITY_BOOLEAN_FALSE) && (*(int64_t *)(utility_context_storage[0] + UTILITY_POINTER_OFFSET) != UTILITY_BOOLEAN_FALSE)) {
         utility_buffer_handle = utility_large_buffer_area;
         utility_processed_count = UTILITY_BOOLEAN_FALSE;
-        utility_loop_index = UTILITY_BOOLEAN_FALSE;
+        utility_loop_counter = UTILITY_BOOLEAN_FALSE;
         utility_buffer_flags = UTILITY_BUFFER_FLAGS_DEFAULT;
         
         // 创建资源句柄
         utility_resource_id = utility_resource_create(*(uint64_t *)(context_data + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(utility_context_storage[0] + UTILITY_POINTER_OFFSET), &utility_buffer_handle);
         
         if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
-    
-}
             // 处理资源计数器大于0的情况
             if (0 < utility_resource_count) {
-    
-}
-                utility_loop_index = UTILITY_BOOLEAN_FALSE;
+                utility_loop_counter = UTILITY_BOOLEAN_FALSE;
                 do {
                     // 获取资源句柄
-                    utility_resource_id = *(uint64_t *)(utility_buffer_handle + utility_loop_index);
+                    utility_resource_id = *(uint64_t *)(utility_buffer_handle + utility_loop_counter);
                     
                     // 初始化上下文管理器
                     utility_operation_status = utility_context_init(utility_resource_id);
@@ -1191,10 +1187,8 @@ uint64_t utility_initialize_event_system(void)
     utility_operation_status = UTILITY_BOOLEAN_FALSE;
     
     if (utility_context_main != UTILITY_BOOLEAN_FALSE) {
-    
-}
         utility_context_offset = utility_context_main - UTILITY_POINTER_OFFSET;
-}
+    }
     
     utility_context_parameter = (uint32_t *)(utility_index_source + UTILITY_THREAD_DATA_OFFSET + 
                                    (int64_t)*(int *)(utility_index_source + UTILITY_THREAD_CONTEXT_OFFSET) * 4);
