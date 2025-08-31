@@ -125,7 +125,7 @@ int graphics_system_initialize(void)
  */
 int audio_system_initialize(void)
 {
-  long long init_result;
+  int64_t init_result;
   audio_system_data_ptr = &global_audio_data;
   audio_system_callback_ptr = &audio_system_callback;
   audio_system_state = 0;
@@ -142,7 +142,7 @@ int audio_system_initialize(void)
  */
 int input_system_initialize(void)
 {
-  long long init_result;
+  int64_t init_result;
   input_system_data_ptr = &global_input_data;
   input_system_callback_ptr = &input_system_callback;
   input_system_state = 0;
@@ -159,7 +159,7 @@ int input_system_initialize(void)
  */
 int network_system_initialize(void)
 {
-  long long init_result;
+  int64_t init_result;
   network_system_data_ptr = &global_network_data;
   network_system_callback_ptr = &network_system_callback;
   network_system_state = 0;
@@ -176,7 +176,7 @@ int network_system_initialize(void)
  */
 int physics_system_initialize(void)
 {
-  long long init_result;
+  int64_t init_result;
   physics_system_data_ptr = &global_physics_data;
   physics_system_callback_ptr = &physics_system_callback;
   physics_system_state = 0;
@@ -193,7 +193,7 @@ int physics_system_initialize(void)
  */
 int ai_system_initialize(void)
 {
-  long long init_result;
+  int64_t init_result;
   ai_system_data_ptr = &global_ai_data;
   ai_system_callback_ptr = &ai_system_callback;
   ai_system_state = 0;
@@ -213,7 +213,7 @@ int ai_system_initialize(void)
  */
 int thread_sync_system_initialize_primary(uint64_t system_context, uint64_t network_context, uint64_t thread_context, uint64_t memory_context)
 {
-  long long init_result;
+  int64_t init_result;
   uint64_t thread_sync_flags;
   thread_sync_flags = SYSTEM_FLAG_MASK;
   _Cnd_init_in_situ();
@@ -235,7 +235,7 @@ int thread_sync_system_initialize_primary(uint64_t system_context, uint64_t netw
  */
 int thread_sync_system_initialize_secondary(uint64_t system_context, uint64_t network_context, uint64_t thread_context, uint64_t memory_context)
 {
-  long long init_result;
+  int64_t init_result;
   uint64_t thread_sync_flags;
   thread_sync_flags = SYSTEM_FLAG_MASK;
   _Cnd_init_in_situ();
@@ -257,7 +257,7 @@ int thread_sync_system_initialize_secondary(uint64_t system_context, uint64_t ne
  */
 int thread_sync_system_initialize_tertiary(uint64_t system_context, uint64_t network_context, uint64_t thread_context, uint64_t memory_context)
 {
-  long long init_result;
+  int64_t init_result;
   uint64_t thread_sync_flags;
   thread_sync_flags = SYSTEM_FLAG_MASK;
   _Cnd_init_in_situ();
@@ -279,7 +279,7 @@ int thread_sync_system_initialize_tertiary(uint64_t system_context, uint64_t net
  */
 int thread_sync_system_initialize_quaternary(uint64_t system_context, uint64_t network_context, uint64_t thread_context, uint64_t memory_context)
 {
-  long long init_result;
+  int64_t init_result;
   uint64_t thread_sync_flags;
   thread_sync_flags = SYSTEM_FLAG_MASK;
   _Cnd_init_in_situ();
@@ -371,7 +371,7 @@ int system_initialize_config_input_buffer_standard(void)
  */
 int game_ui_string_initialize(void)
 {
-  long long init_result;
+  int64_t init_result;
   uint64_t string_param;
   ui_string_data_ptr = &global_string_data;
   ui_string_callback_ptr = &ui_string_callback;
@@ -390,7 +390,7 @@ int game_ui_string_initialize(void)
  */
 int game_script_string_initialize(void)
 {
-  long long init_result;
+  int64_t init_result;
   uint64_t string_param;
   script_string_data_ptr = &global_input_data;
   script_string_callback_ptr = &script_string_callback;
@@ -409,7 +409,7 @@ int game_script_string_initialize(void)
  */
 int game_logic_string_initialize(void)
 {
-  long long init_result;
+  int64_t init_result;
   uint64_t string_param;
   logic_string_data_ptr = &global_input_data;
   logic_string_callback_ptr = &logic_string_callback;
@@ -432,7 +432,7 @@ int game_logic_string_initialize(void)
  */
 int game_render_mutex_initialize(uint64_t system_context, uint64_t network_context, uint64_t thread_context, uint64_t memory_context)
 {
-  long long init_result;
+  int64_t init_result;
   _Mtx_init_in_situ(SYSTEM_MUTEX_ADDRESS_5, SYSTEM_BUFFER_SIZE_LARGE, thread_context, memory_context, SYSTEM_FLAG_MASK);
   init_result = system_initialize_callback(render_mutex_setup_function);
   return (init_result != 0) - 1;
