@@ -247,35 +247,35 @@
 #define UTILITY_STATUS_ENABLED_FLAG_QUATERNARY 0x4
 
 void *utility_exception_handler;
-void *utility_global_primary_context;
-void *utility_global_secondary_data;
-void *utility_global_tertiary_data;
-void *utility_global_quaternary_data;
-void *utility_global_context_data;
-void *utility_global_flag_data;
-void *utility_global_auxiliary_data;
-void *utility_global_backup_data;
+void *utility_global_context_primary_ptr;
+void *utility_global_data_secondary_ptr;
+void *utility_global_data_tertiary_ptr;
+void *utility_global_data_quaternary_ptr;
+void *utility_global_context_data_ptr;
+void *utility_global_flag_data_ptr;
+void *utility_global_auxiliary_data_ptr;
+void *utility_global_backup_data_ptr;
     int utility_global_status_primary;
 void *utility_global_pointer_secondary_ptr;
     int utility_global_status_secondary;
-void *utility_system_context;
+void *utility_system_context_ptr;
 long long utility_config_data;
 long long utility_state_value;
 void *utility_buffer_primary_ptr;
-void *utility_buffer_secondary;
+void *utility_buffer_secondary_ptr;
 void *utility_buffer_tertiary_ptr;
 void *utility_buffer_quaternary_ptr;
 void *utility_context_manager_ptr;
 void *utility_network_context_primary_ptr;
 void *utility_network_context_secondary_ptr;
-void *utility_network_tertiary_context;
-void *utility_network_quaternary_context;
-void *utility_resource_main;
-void *utility_resource_config_data;
-void *utility_resource_tertiary;
-void *utility_resource_quaternary;
-void *utility_resource_manager;
-void *utility_memory_primary;
+void *utility_network_context_tertiary_ptr;
+void *utility_network_context_quaternary_ptr;
+void *utility_resource_main_ptr;
+void *utility_resource_config_data_ptr;
+void *utility_resource_tertiary_ptr;
+void *utility_resource_quaternary_ptr;
+void *utility_resource_manager_ptr;
+void *utility_memory_primary_ptr;
 void *utility_memory_secondary;
 void *utility_memory_tertiary;
 void *utility_memory_quaternary;
@@ -305,7 +305,7 @@ void *utility_queue_manager;
 void *utility_cache_manager;
 void *utility_stream_manager;
 void *utility_buffer_primary_ptr_extended;
-void *utility_buffer_secondary_extended;
+void *utility_buffer_secondary_ptr_extended;
 void *utility_buffer_tertiary_ptr_extended;
 void *utility_buffer_quaternary_ptr_extended;
 void *utility_buffer_auxiliary_extended;
@@ -314,11 +314,11 @@ void *utility_buffer_reserve_extended;
 void *utility_buffer_septenary_extended;
 void *utility_system_data_auxiliary;        // 系统辅助数据
 void *utility_system_reserved_memory;         // 系统保留数据区域
-void *utility_context_primary;
-void *utility_context_secondary;
-void *utility_context_tertiary;
-void *utility_context_quaternary;
-void *utility_context_auxiliary;
+void *utility_context_primary_ptr;
+void *utility_context_secondary_ptr;
+void *utility_context_tertiary_ptr;
+void *utility_context_quaternary_ptr;
+void *utility_context_auxiliary_ptr;
 void *utility_data_stream_primary;
 void *utility_data_stream_secondary;
 void *utility_data_stream_tertiary;
@@ -517,7 +517,7 @@ uint64_t utility_process_resource_pointer(int64_t utility_context_ptr)
     int utility_operation_result;
     uint64_t utility_status;
     int64_t utility_resource_context;
-    int64_t *utility_resource_manager;
+    int64_t *utility_resource_manager_ptr;
     uint64_t utility_resource_context_status;
     int64_t utility_data_storage_ptr;
     char utility_character_buffer[16];
@@ -606,7 +606,7 @@ uint64_t utility_process_resource_pointer(int64_t utility_context_ptr)
   uint64_t utility_handle_resource(int64_t resource_count, int64_t utility_context_ptr)
 {
 
-    int64_t *utility_resource_manager;
+    int64_t *utility_resource_manager_ptr;
     int utility_operation_result;
     uint utility_resource_type;
     uint64_t utility_resource_result;
