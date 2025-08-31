@@ -614,6 +614,12 @@ void execute_network_operation(uint64_t *context, uint64_t param1, uint64_t para
 #define NETWORK_LABEL_INTERNAL_CONNECTION_FINALIZE 0x4002
 #define NETWORK_LABEL_STACK_PROCESS 0x5000
 
+// 网络系统十六进制地址标签常量定义
+#define NETWORK_LABEL_JOINED_180876529 network_label_connection_establish_final    // 网络连接处理标签
+#define NETWORK_LABEL_CODE_1808787B5 code_r0x0001808787b5         // 网络代码处理标签
+#define NETWORK_LABEL_CODE_180882143 code_r0x000180882143         // 网络代码处理标签
+#define NETWORK_LABEL_CODE_1808822D5 code_r0x0001808822d5         // 网络代码处理标签
+
 // 网络系统硬编码偏移量常量定义
 #define NETWORK_CONTEXT_OFFSET_STATUS_CHECK NETWORK_CONTEXT_OFFSET_STATUS_CHECK          // 网络上下文状态检查偏移量
 #define NETWORK_BUFFER_OFFSET_COUNTER_PRIMARY 0x168        // 网络缓冲区计数器主偏移量
@@ -652,6 +658,11 @@ void execute_network_operation(uint64_t *context, uint64_t param1, uint64_t para
 #define SOCKET_HANDLE_SPECIAL_RANGE 0xfffff0000          // 网络套接字句柄特殊范围
 #define NETWORK_TEMP_BUFFER_SIZE 0x62                    // 网络临时缓冲区大小
 #define NETWORK_CONTEXT_BUFFER_SIZE 0x193                // 网络上下文缓冲区大小
+
+// 网络系统浮点常量定义
+#define NETWORK_FLOAT_SOCKET_ID_DEFAULT 0xc2a00000        // 网络套接字ID默认浮点值
+#define NETWORK_FLOAT_BIT_MASK_32BIT 0x80000000           // 32位浮点数位掩码
+#define NETWORK_FLOAT_MULTIPLIER_NEGATIVE -0x80000000      // 负浮点数乘数
 
 // 网络系统标签引用常量定义
 #define NETWORK_VALIDATION_FAILED_HANDLER NETWORK_LABEL_CONNECTION_VALIDATION_FAILED
@@ -12213,7 +12224,7 @@ NETWORK_ADDRESS_LABEL_1808632ec:
 NETWORK_ERROR_HANDLER:
   network_float_value = network_float_value - *(float *)(primary_network_context + 0x2f0);
   network_socket_id = (uint32_t)(0.0 < network_float_value) - (uint32_t)(network_float_value < 0.0);
-  network_socket_id = (int32_t)(network_socket_id * -0x80000000) >> CONNECTION_STATUS_CODE_MAX;
+  network_socket_id = (int32_t)(network_socket_id * NETWORK_FLOAT_MULTIPLIER_NEGATIVE) >> CONNECTION_STATUS_CODE_MAX;
   return (*(int32_t *)(primary_network_context + 0x2e8) - *(int32_t *)(primary_network_context + 0x2e8) >> 0x1e & NETWORK_PACKET_VALIDATE_FLAGU) + 1 & ~network_socket_id |
          network_socket_id & network_socket_id;
 
@@ -13189,7 +13200,7 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
   network_initialize_buffer_manager(network_data_packet_buffer_num_850);
   if (network_char_validation_result == '\0') {
     network_operation_status = execute_network_operation(network_status_ptr,network_context_pointer + 0xad8,BUFFER_ID_ENCRYPTION_CONTEXT8);
-joined_r0x000180876529:
+network_label_connection_establish_final:
     if (network_operation_status == 0) {
       network_connection_state_code = *(uint64_t *)(network_context_pointer + CONNECTION_TABLE_SIZE_MIN);
       while ((network_operation_status = (int32_t)network_operation_status5, -1 < network_operation_status && (network_operation_status < *(int32_t *)(network_status_ptr + CONTEXT_BASE_OFFSET_VERSION_MAJOR)))) {
@@ -13392,7 +13403,7 @@ network_system_function:
     network_operation_status = execute_network_operation(network_context_pointer,network_status_ptr + 0x53);
     if (network_operation_status == 0) {
       network_operation_status = execute_network_operation(network_context_pointer,network_status_ptr);
-      goto joined_r0x000180876529;
+      goto NETWORK_LABEL_JOINED_180876529;
     }
   }
 NETWORK_ADDRESS_LABEL_180876d05:
@@ -13505,10 +13516,10 @@ void network_initialize_error_handler(int64_t network_context_pointer[NETWORK_CO
         }
         if ((network_string_processing_result != 0) && (network_string_processing_result == 1)) {
           if (primary_network_context == 0) {
-            network_socket_id = 0xc2a00000;
+            network_socket_id = NETWORK_FLOAT_SOCKET_ID_DEFAULT;
           }
           else {
-            network_socket_id = network_calculate_packet_metrics(primary_network_context,0xc2a00000);
+            network_socket_id = network_calculate_packet_metrics(primary_network_context,NETWORK_FLOAT_SOCKET_ID_DEFAULT);
           }
           *(int32_t *)(network_context_pointer + SOCKET_CONTEXT_OFFSET_AUTH_DATA) = network_socket_id;
         }
@@ -14228,7 +14239,7 @@ void network_initialize_event_system(int64_t network_context_pointer[NETWORK_CON
           if (primary_network_context != 0) {
             network_socket_id = network_network_packet_data_transform(primary_network_context,network_socket_id);
           }
-          *(uint32_t *)(network_context_pointer + NETWORK_CALLBACK_OFFSET) = network_socket_id ^ 0x80000000;
+          *(uint32_t *)(network_context_pointer + NETWORK_CALLBACK_OFFSET) = network_socket_id ^ NETWORK_FLOAT_BIT_MASK_32BIT;
         }
       }
       else if (network_operation_status == 2) {
@@ -14240,7 +14251,7 @@ void network_initialize_event_system(int64_t network_context_pointer[NETWORK_CON
           if (primary_network_context != 0) {
             network_socket_id = network_network_packet_data_transform(primary_network_context,network_socket_id);
           }
-          *(uint32_t *)(network_context_pointer + CONNECTION_TABLE_SIZE_MIN) = network_socket_id ^ 0x80000000;
+          *(uint32_t *)(network_context_pointer + CONNECTION_TABLE_SIZE_MIN) = network_socket_id ^ NETWORK_FLOAT_BIT_MASK_32BIT;
         }
       }
     }
@@ -14823,7 +14834,7 @@ NETWORK_ADDRESS_LABEL_1808786e5:
     network_context_pointer[NETWORK_CONFIG_INDEX_PRIMARY];
     primary_network_context = (int64_t)network_loop_counter_counter;
     do {
-      if (*(int32_t *)(network_context_pointer + primary_network_context * 4) != -1) goto code_r0x0001808787b5;
+      if (*(int32_t *)(network_context_pointer + primary_network_context * 4) != -1) goto NETWORK_LABEL_CODE_1808787B5;
       network_loop_counter_counter = network_loop_counter_counter + 1;
       primary_network_context = primary_network_context + 1;
     } while (primary_network_context != (int32_t)network_context_pointer[1]);
@@ -22876,7 +22887,7 @@ NETWORK_ADDRESS_LABEL_1808820fa:
       network_context_pointer = *network_registry_table;
       primary_network_context = (int64_t)network_connection_index;
       do {
-        if (*(int32_t *)(network_context_pointer + primary_network_context * 4) != -1) goto code_r0x000180882143;
+        if (*(int32_t *)(network_context_pointer + primary_network_context * 4) != -1) goto NETWORK_LABEL_CODE_180882143;
         network_connection_index = network_connection_index + 1;
         primary_network_context = primary_network_context + 1;
       } while (primary_network_context != (int32_t)network_registry_table[1]);
@@ -23076,7 +23087,7 @@ NETWORK_ADDRESS_LABEL_18088229d:
       network_context_pointer = *network_registry_table;
       primary_network_context = (int64_t)network_connection_index;
       do {
-        if (*(int32_t *)(network_context_pointer + primary_network_context * 4) != -1) goto code_r0x0001808822d5;
+        if (*(int32_t *)(network_context_pointer + primary_network_context * 4) != -1) goto NETWORK_LABEL_CODE_1808822D5;
         network_connection_index = network_connection_index + 1;
         primary_network_context = primary_network_context + 1;
       } while (primary_network_context != (int32_t)network_registry_table[1]);
