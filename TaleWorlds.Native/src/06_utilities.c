@@ -348,6 +348,11 @@ uint8_t utility_context_system_extended;
  * @param context_data 上下文数据，包含线程的配置和状态信息
  * @return 无返回值
  */
+/**
+ * 处理线程本地存储数据
+ * @param thread_handle 线程句柄
+ * @param context_data 上下文数据
+ */
 void utility_process_thread_local_storage(int64_t thread_handle, int64_t context_data)
 {
     uint64_t utility_resource_handle;
@@ -368,13 +373,13 @@ void utility_process_thread_local_storage(int64_t thread_handle, int64_t context
     if ((utility_system_status == UTILITY_BOOLEAN_FALSE) && (*(int64_t *)(utility_context_storage[0] + 8) != UTILITY_BOOLEAN_FALSE)) {
         utility_buffer_ptr = utility_large_workspace;
         utility_processed_count = UTILITY_BOOLEAN_FALSE;
-        utility_iteration_index = UTILITY_BOOLEAN_FALSE;
+        utility_loop_counter = UTILITY_BOOLEAN_FALSE;
         utility_buffer_attributes = UTILITY_BUFFER_FLAGS_DEFAULT;
         utility_resource_handle = utility_resource_manager_create(*(uint64_t *)(context_data + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(utility_context_storage[0] + 8), &utility_buffer_ptr);
         
         if (utility_system_status == UTILITY_BOOLEAN_FALSE) {
             if (0 < utility_resource_counter) {
-                utility_iteration_index = UTILITY_BOOLEAN_FALSE;
+                utility_loop_counter = UTILITY_BOOLEAN_FALSE;
                 do {
                     utility_resource_handle = *(uint64_t *)(utility_buffer_ptr + utility_loop_counter);
                     utility_system_status = utility_context_manager_initialize(utility_resource_handle);
@@ -404,6 +409,10 @@ void utility_process_thread_local_storage(int64_t thread_handle, int64_t context
  * 负责释放和清理线程相关的所有资源
  * @param context_pointer 线程上下文指针
  * @return 无返回值
+ */
+/**
+ * 清理线程资源
+ * @param context_pointer 上下文指针
  */
 void utility_cleanup_thread_resources(int64_t context_pointer)
 {
