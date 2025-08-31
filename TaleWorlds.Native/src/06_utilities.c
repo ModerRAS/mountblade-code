@@ -851,19 +851,14 @@ uint32_t utility_get_stream_status(void)
     utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
     return UTILITY_STATUS_RESOURCE_AVAILABLE;
 }
-    utility_iteration_index = UTILITY_FALSE;
-}
-    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-    return UTILITY_STATUS_THREAD_CREATED;
-}
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET),1);
-}
+
 /** 
  * @brief 重置事件状态
  * 将事件对象重置为无信号状态
  * 调用上下文管理器激活函数来重置事件
- * 简化实现：仅保留单个函数定义，删除重复声明
+ * @return void
  * 原本实现：完全重构事件相关机制
+ * 简化实现：仅保留单个函数定义，删除重复声明
  */
 void ResetEvent(void)
 {
