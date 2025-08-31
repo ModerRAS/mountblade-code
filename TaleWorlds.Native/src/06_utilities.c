@@ -361,16 +361,12 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
     utility_calculate_checksum(utility_buffer_pointer ^ (uint64_t)&utility_buffer_workspace);
 }
 /**
- * @brief 验证资源状态
- * 检查和验证系统资源的当前状态
+ * @brief 验证资源状态的有效性
+ * 
+ * 检查系统资源的当前状态，验证其是否处于有效状态
+ * 通过检查资源标志位来验证资源状态，并在需要时激活上下文管理器
+ * 
  * @return 无返回值
- */
-/**
- * 验证资源状态的有效性
- * 功能：检查系统资源的当前状态，验证其是否处于有效状态
- * 参数：无参数
- * 返回值：无返回值
- * 功能描述：通过检查资源标志位来验证资源状态，并在需要时激活上下文管理器
  */
 void utility_validate_resource_state(void)
 {
@@ -538,7 +534,7 @@ if (context_handle == (int64_t *)0x0) {
 context_handle = (int64_t *)UTILITY_THREAD_POINTER_OFFSET;
 }
 *(int64_t *)(context_handle[4] + 8 + (int64_t)context_handle) = *utility_buffer_ptr;
-// 简化实现：优化循环退出条件
+// 优化循环退出
 if (context_handle == 0) break;
 
 // 简化实现：处理上下文指针
@@ -547,7 +543,7 @@ if (*utility_buffer_ptr == 0) {
     return UTILITY_STATUS_THREAD_CREATED;
 }
 
-// 简化实现：处理上下文指针偏移
+// 处理上下文指针偏移
 if (context_handle != 0) {
     context_handle += 3;
 }
@@ -668,7 +664,7 @@ if ((int)utility_resource_value != 0) {
 return utility_resource_value;
 }
 if (utility_stack_buffer_array[0] != 0) {
-utility_stack_buffer_array[0] = utility_stack_buffer_array[0] + -8;
+utility_stack_buffer_array[0] -= 8;
 }
 utility_iteration_index = *(int64_t *)(utility_stack_buffer_array[0] + UTILITY_THREAD_HANDLE_OFFSET);
 if (utility_iteration_index != 0) {
@@ -860,7 +856,7 @@ if (utility_stack_buffer_array[0] == 0) {
 utility_stack_buffer_array[0] = 0;
 }
 else {
-utility_stack_buffer_array[0] = utility_stack_buffer_array[0] + -8;
+utility_stack_buffer_array[0] -= 8;
 }
 utility_stack_buffer_array[0] = 0;
 utility_resource_data = utility_create_context_instance(utility_stack_buffer_array[0],context_handle + UTILITY_THREAD_CONTEXT_OFFSET,utility_stack_buffer_array);
@@ -896,7 +892,7 @@ if (utility_stack_buffer_array[0] == 0) {
 utility_stack_buffer_array[0] = 0;
 }
 else {
-utility_stack_buffer_array[0] = utility_stack_buffer_array[0] + -8;
+utility_stack_buffer_array[0] -= 8;
 }
 utility_stack_buffer_array[0] = 0;
 utility_resource_data = utility_create_context_instance(utility_stack_buffer_array[0],context_handle + UTILITY_THREAD_DATA_OFFSET,utility_stack_buffer_array);
@@ -1557,30 +1553,11 @@ void CloseSemaphore(void)
 }
 /**
 * @brief 创建线程
-* 创建新的执行线程
-* @return 无返回值
-*/
-void CreateThread(void)
-/**
-* @brief 创建线程
-* 创建新的执行线程
-* @return 无返回值
-*/
 void CreateThread(void)
 {
 utility_context_manager_activate();
 }
 /**
-* @brief 退出线程
-* 终止当前线程的执行
-* @return 无返回值
-*/
-void ExitThread(void)
-/**
-* @brief 退出线程
-* 终止当前线程的执行
-* @return 无返回值
-*/
 void ExitThread(void)
 {
 int utility_operation_result;
@@ -2904,7 +2881,7 @@ if (utility_stack_buffer_array[0] == 0) {
 utility_stack_buffer_array[0] = 0;
 }
 else {
-utility_stack_buffer_array[0] = utility_stack_buffer_array[0] + -8;
+utility_stack_buffer_array[0] -= 8;
 }
 utility_stack_context_value = 0;
 utility_resource_data = utility_create_context_instance(utility_stack_buffer_array[0],context_handle + UTILITY_THREAD_CONTEXT_OFFSET,&utility_stack_context_value);
@@ -2945,7 +2922,7 @@ if (utility_stack_buffer_array[0] == 0) {
 utility_stack_buffer_array[0] = 0;
 }
 else {
-utility_stack_buffer_array[0] = utility_stack_buffer_array[0] + -8;
+utility_stack_buffer_array[0] -= 8;
 }
 utility_stack_context_value = 0;
 utility_resource_data = utility_create_context_instance(utility_stack_buffer_array[0],context_handle + UTILITY_THREAD_CONTEXT_OFFSET,&utility_stack_context_value);

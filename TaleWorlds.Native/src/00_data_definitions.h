@@ -3033,7 +3033,7 @@ label_:
           (**(code **)(*data_definitions_system_result + 0x38))();
         }
       }
-      func_0x00018005c480(_global_data);
+      data_definitions_initialize_system(_global_data);
       data_definitions_system_result = _global_data;
       if (*(code **)(*_global_data + 8) == (code *)&unknown_data) {
         *(uint32_t *)(_global_data + 9) = 0;
@@ -3142,7 +3142,7 @@ label_:
           (**(code **)(*data_definitions_system_result + 0x38))();
         }
       }
-      func_0x00018005c480(_global_data);
+      data_definitions_initialize_system(_global_data);
       data_definitions_system_result = _global_data;
       if (*(code **)(*_global_data + 8) == (code *)&unknown_data) {
         *(uint32_t *)(_global_data + 9) = 0;
@@ -3614,23 +3614,29 @@ function_(uint64_t *system_context,ulonglong network_context,uint64_t thread_con
 label_:
   function_(uStack_48 ^ (ulonglong)auStack_168);
 }
-uint function_(void)
+/**
+ * @brief 系统互斥锁处理函数
+ * @return 处理结果，低8位被清零
+ * 
+ * 该函数负责处理系统互斥锁的锁定和解锁操作
+ */
+uint system_mutex_handler(void)
 {
-  uint in_EAX;
-  int local_int1;
-  longlong local_long2;
+  uint handler_result;
+  int lock_status;
+  longlong mutex_address;
   if (_global_data != 0) {
-    local_long2 = _global_data + 0x110;
-    local_int1 = _Mtx_lock(local_long2);
-    if (local_int1 != 0) {
-      __Throw_C_error_std__YAXH_Z(local_int1);
+    mutex_address = _global_data + 0x110;
+    lock_status = _Mtx_lock(mutex_address);
+    if (lock_status != 0) {
+      __Throw_C_error_std__YAXH_Z(lock_status);
     }
-    in_EAX = _Mtx_unlock(local_long2);
-    if (in_EAX != 0) {
-      in_EAX = __Throw_C_error_std__YAXH_Z(in_EAX);
+    handler_result = _Mtx_unlock(mutex_address);
+    if (handler_result != 0) {
+      handler_result = __Throw_C_error_std__YAXH_Z(handler_result);
     }
   }
-  return in_EAX & 0xffffff00;
+  return handler_result & 0xffffff00;
 }
       global_data = 0;
       _global_data = 0;
@@ -3738,8 +3744,8 @@ label_:
     } while ((int)local_uint21 < (int)data_definitions_system_result8);
   }
   function_();
-  func_0x00018024f7f0();
-  local_uint24 = func_0x0001800e2850(data_definitions_system_result6);
+  data_definitions_initialize_module();
+  local_uint24 = data_definitions_process_result(data_definitions_system_result6);
   function_(local_uint24,1,0);
   if (*(char *)(data_definitions_system_result6 + 0xf18) != '\0') {
     function_(data_definitions_system_result6);
@@ -4369,23 +4375,23 @@ label_:
         ppppplocal_pointer12[1] = (uint64_t *****)0x0;
         ppppplocal_pointer12[2] = (uint64_t *****)0x0;
         *(uint32_t *)(ppppplocal_pointer12 + 3) = 3;
-        pppppplocal_pointer6 = &pppppppuStack_188;
-        pppppplocal_pointer9 = pppppppuStack_178;
-        while (pppppplocal_pointer9 != (uint64_t *******)0x0) {
-          if (*(int *)(pppppplocal_pointer9 + 4) < data_definitions_local_int21) {
-            pppppplocal_pointer9 = (uint64_t *******)*pppppplocal_pointer9;
+        data_definitions_nested_ptr = &pppppppuStack_188;
+        data_definitions_nested_ptr = pppppppuStack_178;
+        while (data_definitions_nested_ptr != (uint64_t *******)0x0) {
+          if (*(int *)(data_definitions_nested_ptr + 4) < data_definitions_local_int21) {
+            data_definitions_nested_ptr = (uint64_t *******)*data_definitions_nested_ptr;
           }
           else {
-            pppppplocal_pointer6 = pppppplocal_pointer9;
-            pppppplocal_pointer9 = (uint64_t *******)pppppplocal_pointer9[1];
+            data_definitions_nested_ptr = data_definitions_nested_ptr;
+            data_definitions_nested_ptr = (uint64_t *******)data_definitions_nested_ptr[1];
           }
         }
-        if (((uint64_t ********)pppppplocal_pointer6 == &pppppppuStack_188) ||
-           (data_definitions_local_int21 < *(int *)(pppppplocal_pointer6 + 4))) {
+        if (((uint64_t ********)data_definitions_nested_ptr == &pppppppuStack_188) ||
+           (data_definitions_local_int21 < *(int *)(data_definitions_nested_ptr + 4))) {
           local_pointer7 = (uint64_t *)function_(&pppppppuStack_188,auStack_90);
-          pppppplocal_pointer6 = (uint64_t *******)*local_pointer7;
+          data_definitions_nested_ptr = (uint64_t *******)*local_pointer7;
         }
-        pppppplocal_pointer6[5] = ppppplocal_pointer12;
+        data_definitions_nested_ptr[5] = ppppplocal_pointer12;
         local_int17 = (int)(data_definitions_system_result9 >> 5);
         data_definitions_system_result9 = (longlong)local_int17;
         pppplocal_pointer25 = pppplocal_pointer23;
@@ -4452,23 +4458,23 @@ label_:
             }
             else {
 label_:
-              pppppplocal_pointer6 = &pppppppuStack_188;
-              pppppplocal_pointer9 = pppppppuStack_178;
-              while (pppppplocal_pointer9 != (uint64_t *******)0x0) {
-                if (*(int *)(pppppplocal_pointer9 + 4) < data_definitions_local_int21) {
-                  pppppplocal_pointer9 = (uint64_t *******)*pppppplocal_pointer9;
+              data_definitions_nested_ptr = &pppppppuStack_188;
+              data_definitions_nested_ptr = pppppppuStack_178;
+              while (data_definitions_nested_ptr != (uint64_t *******)0x0) {
+                if (*(int *)(data_definitions_nested_ptr + 4) < data_definitions_local_int21) {
+                  data_definitions_nested_ptr = (uint64_t *******)*data_definitions_nested_ptr;
                 }
                 else {
-                  pppppplocal_pointer6 = pppppplocal_pointer9;
-                  pppppplocal_pointer9 = (uint64_t *******)pppppplocal_pointer9[1];
+                  data_definitions_nested_ptr = data_definitions_nested_ptr;
+                  data_definitions_nested_ptr = (uint64_t *******)data_definitions_nested_ptr[1];
                 }
               }
-              if (((uint64_t ********)pppppplocal_pointer6 == &pppppppuStack_188) ||
-                 (data_definitions_local_int21 < *(int *)(pppppplocal_pointer6 + 4))) {
+              if (((uint64_t ********)data_definitions_nested_ptr == &pppppppuStack_188) ||
+                 (data_definitions_local_int21 < *(int *)(data_definitions_nested_ptr + 4))) {
                 local_pointer7 = (uint64_t *)function_(&pppppppuStack_188,&ppppppuStack_a0);
-                pppppplocal_pointer6 = (uint64_t *******)*local_pointer7;
+                data_definitions_nested_ptr = (uint64_t *******)*local_pointer7;
               }
-              ppppplocal_pointer12 = pppppplocal_pointer6[5];
+              ppppplocal_pointer12 = data_definitions_nested_ptr[5];
               ppppplocal_pointer2 = (uint64_t ******)ppppplocal_pointer12[1];
               if (ppppplocal_pointer2 < ppppplocal_pointer12[2]) {
                 ppppplocal_pointer12[1] = ppppplocal_pointer2 + 4;
@@ -4539,82 +4545,82 @@ label_:
   pppppppuStack_128 = (uint64_t *******)0x0;
   uStack_120 = 0;
   uStack_118 = 0;
-  pppppplocal_pointer9 = pppppppuStack_180;
+  data_definitions_nested_ptr = pppppppuStack_180;
   if ((uint64_t ********)pppppppuStack_180 != &pppppppuStack_188) {
     do {
-      pppppplocal_pointer16 = (uint64_t *******)pppppplocal_pointer9[5];
-      pppppplocal_pointer6 = pppppplocal_pointer9 + 4;
-      pppppplocal_pointer8 = &pppppppuStack_138;
+      data_definitions_nested_ptr = (uint64_t *******)data_definitions_nested_ptr[5];
+      data_definitions_nested_ptr = data_definitions_nested_ptr + 4;
+      data_definitions_nested_ptr = &pppppppuStack_138;
       if (pppppppuStack_128 != (uint64_t *******)0x0) {
-        pppppplocal_pointer15 = pppppppuStack_128;
+        data_definitions_nested_ptr = pppppppuStack_128;
         do {
-          if (*(int *)(pppppplocal_pointer15 + 4) < *(int *)pppppplocal_pointer6) {
-            pppppplocal_pointer15 = (uint64_t *******)*pppppplocal_pointer15;
+          if (*(int *)(data_definitions_nested_ptr + 4) < *(int *)data_definitions_nested_ptr) {
+            data_definitions_nested_ptr = (uint64_t *******)*data_definitions_nested_ptr;
           }
           else {
-            pppppplocal_pointer8 = pppppplocal_pointer15;
-            pppppplocal_pointer15 = (uint64_t *******)pppppplocal_pointer15[1];
+            data_definitions_nested_ptr = data_definitions_nested_ptr;
+            data_definitions_nested_ptr = (uint64_t *******)data_definitions_nested_ptr[1];
           }
-        } while (pppppplocal_pointer15 != (uint64_t *******)0x0);
+        } while (data_definitions_nested_ptr != (uint64_t *******)0x0);
       }
-      if (((uint64_t ********)pppppplocal_pointer8 == &pppppppuStack_138) ||
-         (*(int *)pppppplocal_pointer6 < *(int *)(pppppplocal_pointer8 + 4))) {
+      if (((uint64_t ********)data_definitions_nested_ptr == &pppppppuStack_138) ||
+         (*(int *)data_definitions_nested_ptr < *(int *)(data_definitions_nested_ptr + 4))) {
         local_pointer7 = (uint64_t *)function_(&pppppppuStack_138,&pppppppuStackX_18);
-        pppppplocal_pointer8 = (uint64_t *******)*local_pointer7;
+        data_definitions_nested_ptr = (uint64_t *******)*local_pointer7;
       }
-      if (pppppplocal_pointer8 + 5 != pppppplocal_pointer16) {
-        function_(pppppplocal_pointer8 + 5,*pppppplocal_pointer16,pppppplocal_pointer16[1]);
+      if (data_definitions_nested_ptr + 5 != data_definitions_nested_ptr) {
+        function_(data_definitions_nested_ptr + 5,*data_definitions_nested_ptr,data_definitions_nested_ptr[1]);
       }
-      pppppplocal_pointer8 = &pppppppuStack_188;
+      data_definitions_nested_ptr = &pppppppuStack_188;
       if (pppppppuStack_178 != (uint64_t *******)0x0) {
-        pppppplocal_pointer16 = pppppppuStack_178;
+        data_definitions_nested_ptr = pppppppuStack_178;
         do {
-          if (*(int *)(pppppplocal_pointer16 + 4) < *(int *)pppppplocal_pointer6) {
-            pppppplocal_pointer16 = (uint64_t *******)*pppppplocal_pointer16;
+          if (*(int *)(data_definitions_nested_ptr + 4) < *(int *)data_definitions_nested_ptr) {
+            data_definitions_nested_ptr = (uint64_t *******)*data_definitions_nested_ptr;
           }
           else {
-            pppppplocal_pointer8 = pppppplocal_pointer16;
-            pppppplocal_pointer16 = (uint64_t *******)pppppplocal_pointer16[1];
+            data_definitions_nested_ptr = data_definitions_nested_ptr;
+            data_definitions_nested_ptr = (uint64_t *******)data_definitions_nested_ptr[1];
           }
-        } while (pppppplocal_pointer16 != (uint64_t *******)0x0);
+        } while (data_definitions_nested_ptr != (uint64_t *******)0x0);
       }
-      if (((uint64_t ********)pppppplocal_pointer8 == &pppppppuStack_188) ||
-         (*(int *)pppppplocal_pointer6 < *(int *)(pppppplocal_pointer8 + 4))) {
+      if (((uint64_t ********)data_definitions_nested_ptr == &pppppppuStack_188) ||
+         (*(int *)data_definitions_nested_ptr < *(int *)(data_definitions_nested_ptr + 4))) {
         local_pointer7 = (uint64_t *)function_(&pppppppuStack_188,&ppppppplStackX_8);
-        pppppplocal_pointer8 = (uint64_t *******)*local_pointer7;
+        data_definitions_nested_ptr = (uint64_t *******)*local_pointer7;
       }
-      ppppplocal_pointer12 = pppppplocal_pointer8[5];
+      ppppplocal_pointer12 = data_definitions_nested_ptr[5];
       ppppppuStack_a0 = ppppplocal_pointer12;
       if (ppppplocal_pointer12 != (uint64_t ******)0x0) {
         function_(ppppplocal_pointer12);
         function_(ppppplocal_pointer12);
       }
-      pppppplocal_pointer8 = &pppppppuStack_188;
+      data_definitions_nested_ptr = &pppppppuStack_188;
       if (pppppppuStack_178 != (uint64_t *******)0x0) {
-        pppppplocal_pointer16 = pppppppuStack_178;
+        data_definitions_nested_ptr = pppppppuStack_178;
         do {
-          if (*(int *)(pppppplocal_pointer16 + 4) < *(int *)pppppplocal_pointer6) {
-            pppppplocal_pointer16 = (uint64_t *******)*pppppplocal_pointer16;
+          if (*(int *)(data_definitions_nested_ptr + 4) < *(int *)data_definitions_nested_ptr) {
+            data_definitions_nested_ptr = (uint64_t *******)*data_definitions_nested_ptr;
           }
           else {
-            pppppplocal_pointer8 = pppppplocal_pointer16;
-            pppppplocal_pointer16 = (uint64_t *******)pppppplocal_pointer16[1];
+            data_definitions_nested_ptr = data_definitions_nested_ptr;
+            data_definitions_nested_ptr = (uint64_t *******)data_definitions_nested_ptr[1];
           }
-        } while (pppppplocal_pointer16 != (uint64_t *******)0x0);
+        } while (data_definitions_nested_ptr != (uint64_t *******)0x0);
       }
-      if (((uint64_t ********)pppppplocal_pointer8 == &pppppppuStack_188) ||
-         (*(int *)pppppplocal_pointer6 < *(int *)(pppppplocal_pointer8 + 4))) {
+      if (((uint64_t ********)data_definitions_nested_ptr == &pppppppuStack_188) ||
+         (*(int *)data_definitions_nested_ptr < *(int *)(data_definitions_nested_ptr + 4))) {
         local_pointer7 = (uint64_t *)function_(&pppppppuStack_188,&ppppppuStack_d8);
-        pppppplocal_pointer8 = (uint64_t *******)*local_pointer7;
+        data_definitions_nested_ptr = (uint64_t *******)*local_pointer7;
       }
-      pppppplocal_pointer8[5] = (uint64_t ******)0x0;
-      pppppplocal_pointer9 = (uint64_t *******)func_0x00018066bd70(pppppplocal_pointer9);
-    } while ((uint64_t ********)pppppplocal_pointer9 != &pppppppuStack_188);
+      data_definitions_nested_ptr[5] = (uint64_t ******)0x0;
+      data_definitions_nested_ptr = (uint64_t *******)data_definitions_transform_pointer(data_definitions_nested_ptr);
+    } while ((uint64_t ********)data_definitions_nested_ptr != &pppppppuStack_188);
   }
-  pppppplocal_pointer9 = pppppppuStack_178;
+  data_definitions_nested_ptr = pppppppuStack_178;
   if (pppppppuStack_178 != (uint64_t *******)0x0) {
     function_(&pppppppuStack_188,*pppppppuStack_178);
-    function_(pppppplocal_pointer9);
+    function_(data_definitions_nested_ptr);
   }
   pppppppuStack_188 = &pppppppuStack_188;
   pppppppuStack_180 = &pppppppuStack_188;
@@ -4669,13 +4675,13 @@ label_:
     (*(code *)(*pppppppuStackX_18)[5])();
   }
   function_(local_uint10,&pppppppuStackX_18);
-  pppppplocal_pointer6 = pppppppuStack_128;
-  pppppplocal_pointer9 = pppppppuStack_178;
+  data_definitions_nested_ptr = pppppppuStack_128;
+  data_definitions_nested_ptr = pppppppuStack_178;
   pppppppuStackX_18 = pppppppuStack_128;
   if (pppppppuStack_128 == (uint64_t *******)0x0) {
     if (pppppppuStack_178 != (uint64_t *******)0x0) {
       function_(&pppppppuStack_188,*pppppppuStack_178);
-      function_(pppppplocal_pointer9);
+      function_(data_definitions_nested_ptr);
     }
     puStack_158 = &unknown_data;
     if (puStack_150 == (void *)0x0) {
@@ -4684,10 +4690,10 @@ label_:
     function_();
   }
   function_(&pppppppuStack_138,*pppppppuStack_128);
-  pppppppuStackX_10 = pppppplocal_pointer6 + 4;
-  ppppppplStackX_8 = pppppplocal_pointer6 + 5;
+  pppppppuStackX_10 = data_definitions_nested_ptr + 4;
+  ppppppplStackX_8 = data_definitions_nested_ptr + 5;
   function_();
-  function_(pppppplocal_pointer6);
+  function_(data_definitions_nested_ptr);
 }
         global_data = 0;
         return plocal_long7;
@@ -4873,10 +4879,10 @@ code_r0x0001802a1528:
   case 0x1e:
     iStack_2c8 = memory_context;
     local_pointer8 = (uint16_t *)function_(data_definitions_system_result0,&uStack_2b0,system_context,&uStackX_18);
-    local_float16 = (float)func_0x0001800adf40(local_pointer8[2]);
-    local_float17 = (float)func_0x0001800adf40(local_pointer8[1]);
-    data_definitions_local_float14 = (float)func_0x0001800adf40(*local_pointer8);
-    local_float15 = (float)func_0x0001800adf40(local_pointer8[3]);
+    local_float16 = (float)data_definitions_convert_to_float(local_pointer8[2]);
+    local_float17 = (float)data_definitions_convert_to_float(local_pointer8[1]);
+    data_definitions_local_float14 = (float)data_definitions_convert_to_float(*local_pointer8);
+    local_float15 = (float)data_definitions_convert_to_float(local_pointer8[3]);
     network_context[3] = local_float15;
     *network_context = data_definitions_local_float14;
     network_context[1] = local_float17;
@@ -5109,7 +5115,7 @@ label_:
     *(uint64_t *)(thread_context + 0x3c) = 0;
     *(uint64_t *)(thread_context + 0x44) = 0;
     *(uint64_t *)(thread_context + 0x4c) = 0;
-    local_uint4 = func_0x000180220c90(*(uint32_t *)(thread_context + 0x54));
+    local_uint4 = data_definitions_validate_uint32(*(uint32_t *)(thread_context + 0x54));
     strcpy_s(thread_context + 0x14,0x40,local_uint4);
   }
 label_:
@@ -5156,7 +5162,7 @@ bool function_(uint64_t *system_context)
       }
       memcpy(local_uint2,*system_context,data_definitions_local_uint3);
     }
-    local_int1 = func_0x0001800ab000(*(uint32_t *)((longlong)system_context + 0x54));
+    local_int1 = data_definitions_process_context(*(uint32_t *)((longlong)system_context + 0x54));
     return local_int1 != 0;
   }
   if (system_context[1] == 0) {
@@ -6227,7 +6233,7 @@ function_(uint64_t system_context,uint64_t network_context,uint64_t thread_conte
   data_definitions_system_result = 0x180c95bf8;
   local_long2 = 0x17;
   do {
-    func_0x00018013d940(data_definitions_system_result);
+    data_definitions_execute_operation(data_definitions_system_result);
     data_definitions_system_result = data_definitions_system_result + 0x10;
     local_long2 = local_long2 + -1;
   } while (local_long2 != 0);
@@ -6429,7 +6435,7 @@ uint64_t * function_(uint64_t *system_context,int network_context)
   data_definitions_local_long8 = 8;
   function_(local_pointer6,0x28,8,&unknown_data,function_);
   _Mtx_init_in_situ(system_context + 0x5d,0x102);
-  data_definitions_local_int2 = func_0x0001804ca2d0(&global_data);
+  data_definitions_local_int2 = data_definitions_get_global_data(&global_data);
   if (network_context < data_definitions_local_int2) {
     data_definitions_local_int2 = network_context;
   }
@@ -7364,151 +7370,151 @@ function_(uint64_t system_context,uint64_t network_context,uint8_t thread_contex
               if (local_char1 == '\0') {
                 local_char1 = function_(auStack_30,&unknown_data,1);
                 if (local_char1 == '\0') {
-                  local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                  local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                   if (local_char1 == '\0') {
-                    local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                     if (local_char1 == '\0') {
-                      local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                      local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                       if (local_char1 == '\0') {
-                        local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                         if (local_char1 == '\0') {
-                          local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                          local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                           if (local_char1 == '\0') {
-                            local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                            local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                             if (local_char1 == '\0') {
-                              local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                               if (local_char1 == '\0') {
-                                local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                                local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                                 if (local_char1 == '\0') {
-                                  local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                                  local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                                   if (local_char1 == '\0') {
-                                    local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                                     if (local_char1 == '\0') {
-                                      local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                                      local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                                       if (local_char1 == '\0') {
-                                        local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                                        local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                                         if (local_char1 == '\0') {
-                                          local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                                          local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                                           if (local_char1 == '\0') {
-                                            local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data);
                                             if (local_char1 == '\0') {
-                                              local_char1 = func_0x0001800a1eb0(auStack_30,&unknown_data)
+                                              local_char1 = data_definitions_process_stack_data(auStack_30,&unknown_data)
                                               ;
                                               if (local_char1 == '\0') {
-                                                local_char1 = func_0x0001800a1eb0(auStack_30,
+                                                local_char1 = data_definitions_process_stack_data(auStack_30,
                                                                             &unknown_data);
                                                 if (local_char1 == '\0') {
-                                                  local_char1 = func_0x0001800a1eb0(auStack_30,
+                                                  local_char1 = data_definitions_process_stack_data(auStack_30,
                                                                               &unknown_data);
                                                   if (local_char1 == '\0') {
-                                                    local_char1 = func_0x0001800a1eb0(auStack_30,
+                                                    local_char1 = data_definitions_process_stack_data(auStack_30,
                                                                                 &unknown_data);
                                                     if (local_char1 == '\0') {
-                                                      local_char1 = func_0x0001800a1eb0(auStack_30,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_30,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_30,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_30,
                                                                                   &unknown_data);
                                                       if (local_char1 == '\0') {
-                                                        local_char1 = func_0x0001800a1eb0(auStack_30,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_30,
                                                                                     &unknown_data);
                                                         if (local_char1 == '\0') {
-                                                          local_char1 = func_0x0001800a1eb0(auStack_30,
+                                                          local_char1 = data_definitions_process_stack_data(auStack_30,
                                                                                       &unknown_data
                                                                                      );
                                                           if (local_char1 == '\0') {
-                                                            local_char1 = func_0x0001800a1eb0(auStack_30,
+                                                            local_char1 = data_definitions_process_stack_data(auStack_30,
                                                                                         &
                                                   unknown_data);
                                                   if (local_char1 == '\0') {
-                                                    local_char1 = func_0x0001800a1eb0(auStack_30,
+                                                    local_char1 = data_definitions_process_stack_data(auStack_30,
                                                                                 &unknown_data);
                                                     if (local_char1 != '\0') {
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 == '\0') {
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') goto label_;
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') goto label_;
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') goto label_;
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &global_data);
                                                         if (local_char1 != '\0') goto label_;
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') goto label_;
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') goto label_;
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') goto label_;
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') {
                                                           data_definitions_local_uint3 = 0x21c;
                                                           goto label_;
                                                         }
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') {
                                                           data_definitions_local_uint3 = 0x41c;
                                                           goto label_;
                                                         }
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') {
                                                           data_definitions_local_uint3 = 0x41d;
                                                           goto label_;
                                                         }
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') {
                                                           data_definitions_local_uint3 = 0x420;
                                                           goto label_;
                                                         }
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') {
                                                           data_definitions_local_uint3 = 0x424;
                                                           goto label_;
                                                         }
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') {
                                                           data_definitions_local_uint3 = 0x428;
                                                           goto label_;
                                                         }
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') {
                                                           data_definitions_local_uint3 = 0x430;
                                                           goto label_;
                                                         }
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') {
                                                           data_definitions_local_uint3 = 0x438;
                                                           goto label_;
                                                         }
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') {
                                                           data_definitions_local_uint3 = 0x439;
                                                           goto label_;
                                                         }
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') {
                                                           data_definitions_local_uint3 = 0x43c;
                                                           goto label_;
                                                         }
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') {
                                                           data_definitions_local_uint3 = 0x440;
@@ -7518,10 +7524,10 @@ function_(uint64_t system_context,uint64_t network_context,uint8_t thread_contex
                                                     }
                                                   }
                                                   else {
-                                                    local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                    local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                 &unknown_data);
                                                     if (local_char1 == '\0') {
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 == '\0') {
                                                         local_pointer2 = &unknown_data;
@@ -7532,7 +7538,7 @@ function_(uint64_t system_context,uint64_t network_context,uint8_t thread_contex
                                                   }
                                                   }
                                                   else {
-                                                    local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                    local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                 &unknown_data);
                                                     if (local_char1 == '\0') {
                                                       local_pointer2 = &unknown_data;
@@ -7541,252 +7547,252 @@ function_(uint64_t system_context,uint64_t network_context,uint8_t thread_contex
                                                   }
                                                   }
                                                   else {
-                                                    local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                    local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                 &unknown_data);
                                                     if (local_char1 == '\0') {
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 100;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
 label_:
                                                         data_definitions_local_uint3 = 0x6c;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x74;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x84;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x96;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
                                                     }
                                                   }
                                                   }
                                                   else {
-                                                    local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                    local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                 &unknown_data);
                                                     if (local_char1 == '\0') {
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') goto label_;
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0xf8;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0xfc;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x100;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x110;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x114;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x118;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x11c;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x11e;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x120;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x130;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x170;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x174;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x178;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x188;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x198;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x19c;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x1a0;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x220;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x230;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x234;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x238;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x23c;
                                                         goto label_;
                                                       }
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 0x240;
@@ -7796,10 +7802,10 @@ label_:
                                                   }
                                                   }
                                                   else {
-                                                    local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                    local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                 &unknown_data);
                                                     if (local_char1 == '\0') {
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 != '\0') {
                                                         data_definitions_local_uint3 = 4;
@@ -7810,40 +7816,40 @@ label_:
                                                   }
                                                   }
                                                   else {
-                                                    local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                    local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                 &unknown_data);
                                                     if (local_char1 == '\0') {
-                                                      local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                      local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                   &unknown_data);
                                                       if (local_char1 == '\0') {
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 != '\0') goto label_;
-                                                        local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                        local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                     &unknown_data);
                                                         if (local_char1 == '\0') {
-                                                          local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                          local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                       &unknown_data
                                                                                      );
                                                           if (local_char1 != '\0') goto label_;
-                                                          local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                          local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                       &unknown_data
                                                                                      );
                                                           if (local_char1 == '\0') {
-                                                            local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                            local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                         &
                                                   unknown_data);
                                                   if (local_char1 != '\0') goto label_;
-                                                  local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                  local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                               &unknown_data);
                                                   if (local_char1 != '\0') goto label_;
-                                                  local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                  local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                               &global_data);
                                                   if (local_char1 != '\0') goto label_;
-                                                  local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                  local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                               &unknown_data);
                                                   if (local_char1 == '\0') {
-                                                    local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                    local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                 &unknown_data);
                                                     if (local_char1 != '\0') goto label_;
                                                     local_pointer2 = &unknown_data;
@@ -7860,27 +7866,27 @@ label_:
                                                   }
                                                 }
                                                 else {
-                                                  local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                  local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                               &unknown_data);
                                                   if (local_char1 == '\0') {
-                                                    local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                    local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                 &unknown_data);
                                                     if (local_char1 != '\0') goto label_;
-                                                    local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                    local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                 &unknown_data);
                                                     if (local_char1 != '\0') {
 label_:
                                                       data_definitions_local_uint3 = 0xc;
                                                       goto label_;
                                                     }
-                                                    local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                    local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                 &unknown_data);
                                                     if (local_char1 != '\0') {
 label_:
                                                       data_definitions_local_uint3 = 0x14;
                                                       goto label_;
                                                     }
-                                                    local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                    local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                                 &unknown_data);
                                                     if (local_char1 != '\0') {
 label_:
@@ -7889,34 +7895,34 @@ label_:
                                                     }
                                                     local_pointer2 = &unknown_data;
 label_:
-                                                    local_char1 = func_0x0001800a1eb0(auStack_50,local_pointer2);
+                                                    local_char1 = data_definitions_process_stack_data(auStack_50,local_pointer2);
                                                     if (local_char1 != '\0') goto label_;
                                                   }
                                                 }
                                               }
                                               else {
-                                                local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                             &unknown_data);
                                                 if (local_char1 == '\0') {
-                                                  local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                  local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                               &unknown_data);
                                                   if (local_char1 != '\0') {
                                                     data_definitions_local_uint3 = 0x2000;
                                                     goto label_;
                                                   }
-                                                  local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                  local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                               &unknown_data);
                                                   if (local_char1 != '\0') {
                                                     data_definitions_local_uint3 = 0x2010;
                                                     goto label_;
                                                   }
-                                                  local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                  local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                               &unknown_data);
                                                   if (local_char1 != '\0') {
                                                     data_definitions_local_uint3 = 0x2020;
                                                     goto label_;
                                                   }
-                                                  local_char1 = func_0x0001800a1eb0(auStack_50,
+                                                  local_char1 = data_definitions_process_stack_data(auStack_50,
                                                                               &unknown_data);
                                                   if (local_char1 != '\0') {
                                                     data_definitions_local_uint3 = 0x2024;
@@ -7928,9 +7934,9 @@ label_:
                                           }
                                           else {
 label_:
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 == '\0') {
-                                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data)
+                                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data)
                                               ;
                                               if (local_char1 == '\0') {
                                                 local_pointer2 = &unknown_data;
@@ -7941,63 +7947,63 @@ label_:
                                           }
                                         }
                                         else {
-                                          local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                          local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                           if (local_char1 == '\0') {
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') goto label_;
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') goto label_;
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') {
 label_:
                                               data_definitions_local_uint3 = 0x24;
                                               goto label_;
                                             }
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') goto label_;
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') {
 label_:
                                               data_definitions_local_uint3 = 0x2c;
                                               goto label_;
                                             }
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') goto label_;
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') {
 label_:
                                               data_definitions_local_uint3 = 0x34;
                                               goto label_;
                                             }
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') goto label_;
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') {
 label_:
                                               data_definitions_local_uint3 = 0x3c;
                                               goto label_;
                                             }
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') {
 label_:
                                               data_definitions_local_uint3 = 0x50;
                                               goto label_;
                                             }
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') goto label_;
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') {
 label_:
                                               data_definitions_local_uint3 = 0x5c;
                                               goto label_;
                                             }
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') {
 label_:
                                               data_definitions_local_uint3 = 0x60;
                                               goto label_;
                                             }
-                                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                             if (local_char1 != '\0') {
                                               data_definitions_local_uint3 = 0x61;
                                               goto label_;
@@ -8006,9 +8012,9 @@ label_:
                                         }
                                       }
                                       else {
-                                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                         if (local_char1 == '\0') {
-                                          local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                          local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                           if (local_char1 == '\0') {
 label_:
                                             local_pointer2 = &unknown_data;
@@ -8019,128 +8025,128 @@ label_:
                                       }
                                     }
                                     else {
-                                      local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                      local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                       if (local_char1 == '\0') {
-                                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                         if (local_char1 != '\0') goto label_;
                                         local_pointer2 = &unknown_data;
 label_:
-                                        local_char1 = func_0x0001800a1eb0(auStack_50,local_pointer2);
+                                        local_char1 = data_definitions_process_stack_data(auStack_50,local_pointer2);
                                         if (local_char1 != '\0') goto label_;
                                       }
                                     }
                                   }
                                   else {
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 == '\0') {
-                                      local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                      local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                       if (local_char1 != '\0') goto label_;
-                                      local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                      local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                       if (local_char1 != '\0') goto label_;
-                                      local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                      local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                       if (local_char1 != '\0') goto label_;
                                     }
                                   }
                                 }
                                 else {
-                                  local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                  local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                   if (local_char1 == '\0') {
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') goto label_;
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x53c;
                                       goto label_;
                                     }
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x540;
                                       goto label_;
                                     }
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x544;
                                       goto label_;
                                     }
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x548;
                                       goto label_;
                                     }
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x54c;
                                       goto label_;
                                     }
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x550;
                                       goto label_;
                                     }
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x554;
                                       goto label_;
                                     }
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x558;
                                       goto label_;
                                     }
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x55c;
                                       goto label_;
                                     }
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x560;
                                       goto label_;
                                     }
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x564;
                                       goto label_;
                                     }
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x565;
                                       goto label_;
                                     }
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x566;
                                       goto label_;
                                     }
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 != '\0') {
                                       data_definitions_local_uint3 = 0x567;
                                       goto label_;
@@ -8149,29 +8155,29 @@ label_:
                                 }
                               }
                               else {
-                                local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                 if (local_char1 == '\0') {
-                                  local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                  local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                   if (local_char1 != '\0') goto label_;
-                                  local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                  local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                   if (local_char1 != '\0') goto label_;
-                                  local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                  local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                   if (local_char1 != '\0') goto label_;
-                                  local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                  local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                   if (local_char1 != '\0') goto label_;
-                                  local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                  local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                   if (local_char1 != '\0') goto label_;
                                 }
                               }
                             }
                             else {
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 == '\0') {
-                                local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                 if (local_char1 == '\0') {
-                                  local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                  local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                   if (local_char1 == '\0') {
-                                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                                     if (local_char1 == '\0') {
                                       local_pointer2 = &unknown_data;
                                       goto label_;
@@ -8185,131 +8191,131 @@ label_:
                             }
                           }
                           else {
-                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                             if (local_char1 == '\0') {
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') {
 label_:
                                 data_definitions_local_uint3 = 4;
                                 goto label_;
                               }
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') {
 label_:
                                 data_definitions_local_uint3 = 0x70;
                                 goto label_;
                               }
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') {
 label_:
                                 data_definitions_local_uint3 = 0x80;
                                 goto label_;
                               }
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
-                              local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                              local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                               if (local_char1 != '\0') goto label_;
                             }
                           }
                         }
                         else {
-                          local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                          local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                           if (local_char1 == '\0') {
-                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                             if (local_char1 != '\0') goto label_;
-                            local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                            local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                             if (local_char1 != '\0') goto label_;
                           }
                         }
                       }
                       else {
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 == '\0') {
-                          local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                          local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                           if (local_char1 != '\0') goto label_;
-                          local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                          local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                           if (local_char1 != '\0') goto label_;
-                          local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                          local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                           if (local_char1 != '\0') goto label_;
-                          local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                          local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                           if (local_char1 != '\0') {
 label_:
                             data_definitions_local_uint3 = 0x38;
                             goto label_;
                           }
-                          local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                          local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                           if (local_char1 != '\0') {
 label_:
                             data_definitions_local_uint3 = 0x40;
                             goto label_;
                           }
-                          local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                          local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                           if (local_char1 != '\0') {
 label_:
                             data_definitions_local_uint3 = 0x44;
                             goto label_;
                           }
-                          local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                          local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                           if (local_char1 != '\0') {
 label_:
                             data_definitions_local_uint3 = 0x48;
                             goto label_;
                           }
-                          local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                          local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                           if (local_char1 != '\0') {
 label_:
                             data_definitions_local_uint3 = 0x4c;
                             goto label_;
                           }
-                          local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                          local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                           if (local_char1 != '\0') goto label_;
-                          local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                          local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                           if (local_char1 != '\0') {
                             data_definitions_local_uint3 = 0x51;
                             goto label_;
@@ -8318,125 +8324,125 @@ label_:
                       }
                     }
                     else {
-                      local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                      local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                       if (local_char1 == '\0') {
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0x58;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0x68;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0x78;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0x88;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0x8c;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0x90;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0x94;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0x98;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0x9c;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0xa0;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0xa4;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0xa8;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0xac;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0xb0;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
                           data_definitions_local_uint3 = 0xb4;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
                           data_definitions_local_uint3 = 0xb5;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0xb8;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0xbc;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
                           data_definitions_local_uint3 = 0xbd;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
                           data_definitions_local_uint3 = 0xbe;
                           goto label_;
                         }
-                        local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                        local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                         if (local_char1 != '\0') {
 label_:
                           data_definitions_local_uint3 = 0xc0;
@@ -8446,17 +8452,17 @@ label_:
                     }
                   }
                   else {
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 == '\0') {
-                      local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                      local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                       if (local_char1 != '\0') goto label_;
-                      local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                      local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                       if (local_char1 != '\0') goto label_;
-                      local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                      local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                       if (local_char1 != '\0') goto label_;
                       local_pointer2 = &unknown_data;
 label_:
-                      local_char1 = func_0x0001800a1eb0(auStack_50,local_pointer2);
+                      local_char1 = data_definitions_process_stack_data(auStack_50,local_pointer2);
                       if (local_char1 != '\0') goto label_;
                     }
                   }
@@ -8464,125 +8470,125 @@ label_:
                 else {
                   local_char1 = function_(auStack_50,&unknown_data,1);
                   if (local_char1 == '\0') {
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') {
 label_:
                       data_definitions_local_uint3 = 1;
                       goto label_;
                     }
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') {
 label_:
                       data_definitions_local_uint3 = 2;
                       goto label_;
                     }
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') {
                       data_definitions_local_uint3 = 3;
                       goto label_;
                     }
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') {
                       data_definitions_local_uint3 = 5;
                       goto label_;
                     }
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') {
                       data_definitions_local_uint3 = 6;
                       goto label_;
                     }
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') {
                       data_definitions_local_uint3 = 0x1d;
                       goto label_;
                     }
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') {
                       data_definitions_local_uint3 = 0x1e;
                       goto label_;
                     }
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') {
 label_:
                       data_definitions_local_uint3 = 0x7c;
                       goto label_;
                     }
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') goto label_;
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') {
                       data_definitions_local_uint3 = 0xc4;
                       goto label_;
                     }
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') {
                       data_definitions_local_uint3 = 200;
                       goto label_;
                     }
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') {
                       data_definitions_local_uint3 = 0xcc;
                       goto label_;
                     }
-                    local_char1 = func_0x0001800a1eb0(auStack_50,&unknown_data);
+                    local_char1 = data_definitions_process_stack_data(auStack_50,&unknown_data);
                     if (local_char1 != '\0') {
                       data_definitions_local_uint3 = 0xd0;
                       goto label_;
