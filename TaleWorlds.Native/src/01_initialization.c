@@ -703,22 +703,22 @@ int32_t system_initialize_cache(void);
 void system_initialize_config_structure(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_config_callback_function;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_primary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -732,10 +732,10 @@ void system_initialize_config_structure(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4fc124d23d41985f;
   system_config_data_ptr[7] = 0xe2f4a30d6e6ae482;
@@ -766,22 +766,22 @@ void system_initialize_config_structure(void)
 void system_initialize_memory_pool(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_memory_pool_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -795,10 +795,10 @@ void system_initialize_memory_pool(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_memory_pool_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_memory_pool_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4770584fbb1df897;
   system_config_data_ptr[7] = 0x47f249e43f66f2ab;
@@ -829,22 +829,22 @@ void system_initialize_memory_pool(void)
 void system_load_modules(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_secondary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -858,10 +858,10 @@ void system_load_modules(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_secondary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_secondary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4666df49b97e0f10;
   system_config_data_ptr[7] = 0x4e4b0d63a6ad1d8f;
@@ -892,22 +892,22 @@ void system_load_modules(void)
 void system_register_components(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -921,10 +921,10 @@ void system_register_components(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x46ecbd4daf41613e;
   system_config_data_ptr[7] = 0xdc42c056bbde8482;
@@ -955,22 +955,22 @@ void system_register_components(void)
 void system_initialize_threads(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -984,10 +984,10 @@ void system_initialize_threads(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4c868a42644030f6;
   system_config_data_ptr[7] = 0xc29193aa9d9b35b9;
@@ -1009,22 +1009,22 @@ void system_initialize_threads(void)
 void system_start_threads(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1038,10 +1038,10 @@ void system_start_threads(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40ea3a798283cbbb;
   system_config_data_ptr[7] = 0x7f74eb2c5a7fadae;
@@ -1063,22 +1063,22 @@ void system_start_threads(void)
 void system_monitor_resources(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1092,10 +1092,10 @@ void system_monitor_resources(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45b8d074df27d12f;
   system_config_data_ptr[7] = 0x8d98f4c06880eda4;
@@ -1117,22 +1117,22 @@ void system_monitor_resources(void)
 void system_handle_events(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1146,10 +1146,10 @@ void system_handle_events(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x42d293584c8cf3e5;
   system_config_data_ptr[7] = 0x355ffeb2d29e668a;
@@ -1171,22 +1171,22 @@ void system_handle_events(void)
 void system_initialize_config_extensions(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_8,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1200,10 +1200,10 @@ void system_initialize_config_extensions(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4c22bb0c326587ce;
   system_config_data_ptr[7] = 0x5e3cf00ce2978287;
@@ -1231,22 +1231,22 @@ int system_initialize_config_validation(void)
 void system_initialize_config_cache(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_9,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1260,10 +1260,10 @@ void system_initialize_config_cache(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_9,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_9,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x42bea5b911d9c4bf;
   system_config_data_ptr[7] = 0x1aa83fc0020dc1b6;
@@ -1299,22 +1299,22 @@ int system_initialize_config_security(void)
 void system_initialize_config_finalization(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_debug_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1328,10 +1328,10 @@ void system_initialize_config_finalization(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x406be72011d07d37;
   system_config_data_ptr[7] = 0x71876af946c867ab;
@@ -1343,22 +1343,22 @@ void system_initialize_config_finalization(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_memory_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_MEMORY_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1372,10 +1372,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_MEMORY_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_MEMORY_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40afa5469b6ac06d;
   system_config_data_ptr[7] = 0x2f4bab01d34055a5;
@@ -1430,22 +1430,22 @@ void system_initialize_debug_context(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_thread_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_THREAD_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1459,10 +1459,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x43330a43fcdb3653;
   system_config_data_ptr[7] = 0xdcfdc333a769ec93;
@@ -1474,22 +1474,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1503,10 +1503,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x431d7c8d7c475be2;
   system_config_data_ptr[7] = 0xb97f048d2153e1b0;
@@ -1518,22 +1518,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1547,10 +1547,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -1562,22 +1562,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1591,10 +1591,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -1606,22 +1606,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1635,10 +1635,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -1650,22 +1650,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1679,10 +1679,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -1694,22 +1694,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1723,10 +1723,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -1738,22 +1738,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_monitor_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE7,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1767,10 +1767,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x449bafe9b77ddd3c;
   system_config_data_ptr[7] = 0xc160408bde99e59f;
@@ -1782,22 +1782,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_cache_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1811,10 +1811,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
@@ -1826,22 +1826,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_debug_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1855,10 +1855,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x406be72011d07d37;
   system_config_data_ptr[7] = 0x71876af946c867ab;
@@ -1870,22 +1870,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_memory_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_MEMORY_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1899,10 +1899,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_MEMORY_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_MEMORY_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40afa5469b6ac06d;
   system_config_data_ptr[7] = 0x2f4bab01d34055a5;
@@ -1914,22 +1914,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_9,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1943,10 +1943,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_9,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_9,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x42bea5b911d9c4bf;
   system_config_data_ptr[7] = 0x1aa83fc0020dc1b6;
@@ -1958,22 +1958,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_security_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CACHE_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -1987,10 +1987,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CACHE_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CACHE_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40db4257e97d3df8;
   system_config_data_ptr[7] = 0x81d539e33614429f;
@@ -2002,22 +2002,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_network_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE0,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2031,10 +2031,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE0,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE0,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4e33c4803e67a08f;
   system_config_data_ptr[7] = 0x703a29a844ce399;
@@ -2079,22 +2079,22 @@ void system_initialize_memory_pool(void)
 void system_initialize_memory_config(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_thread_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_THREAD_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2108,10 +2108,10 @@ void system_initialize_memory_config(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x43330a43fcdb3653;
   system_config_data_ptr[7] = 0xdcfdc333a769ec93;
@@ -2133,22 +2133,22 @@ void system_initialize_memory_config(void)
 void system_initialize_memory_manager(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2162,10 +2162,10 @@ void system_initialize_memory_manager(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x431d7c8d7c475be2;
   system_config_data_ptr[7] = 0xb97f048d2153e1b0;
@@ -2177,22 +2177,22 @@ void system_initialize_memory_manager(void)
 void system_initialize_memory_handler(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2206,10 +2206,10 @@ void system_initialize_memory_handler(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -2230,22 +2230,22 @@ void system_initialize_memory_handler(void)
 void system_config_search_and_insert_handler(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2259,10 +2259,10 @@ void system_config_search_and_insert_handler(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -2283,22 +2283,22 @@ void system_config_search_and_insert_handler(void)
 void system_config_node_pointer_initializer(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2312,10 +2312,10 @@ void system_config_node_pointer_initializer(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -2336,22 +2336,22 @@ void system_config_node_pointer_initializer(void)
 void system_config_tree_node_handler(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2365,10 +2365,10 @@ void system_config_tree_node_handler(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -2380,22 +2380,22 @@ void system_config_tree_node_handler(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2409,10 +2409,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -2424,22 +2424,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_cache_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2453,10 +2453,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
@@ -2468,22 +2468,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_thread_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_THREAD_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2497,10 +2497,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x43330a43fcdb3653;
   system_config_data_ptr[7] = 0xdcfdc333a769ec93;
@@ -2512,22 +2512,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2541,10 +2541,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x431d7c8d7c475be2;
   system_config_data_ptr[7] = 0xb97f048d2153e1b0;
@@ -2556,22 +2556,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2585,10 +2585,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -2600,22 +2600,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2629,10 +2629,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -2644,22 +2644,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2673,10 +2673,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -2688,22 +2688,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2717,10 +2717,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -2732,22 +2732,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2761,10 +2761,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -2776,22 +2776,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_thread_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_THREAD_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2805,10 +2805,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x43330a43fcdb3653;
   system_config_data_ptr[7] = 0xdcfdc333a769ec93;
@@ -2820,22 +2820,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2849,10 +2849,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x431d7c8d7c475be2;
   system_config_data_ptr[7] = 0xb97f048d2153e1b0;
@@ -2864,22 +2864,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2893,10 +2893,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -2908,22 +2908,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2937,10 +2937,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -2952,22 +2952,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -2981,10 +2981,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -2996,22 +2996,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3025,10 +3025,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -3040,22 +3040,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3069,10 +3069,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -3084,22 +3084,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_9,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3113,10 +3113,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_9,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_9,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x42bea5b911d9c4bf;
   system_config_data_ptr[7] = 0x1aa83fc0020dc1b6;
@@ -3128,22 +3128,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_cache_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3157,10 +3157,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
@@ -3172,22 +3172,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_thread_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_THREAD_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3201,10 +3201,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x43330a43fcdb3653;
   system_config_data_ptr[7] = 0xdcfdc333a769ec93;
@@ -3216,22 +3216,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3245,10 +3245,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x431d7c8d7c475be2;
   system_config_data_ptr[7] = 0xb97f048d2153e1b0;
@@ -3260,22 +3260,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3289,10 +3289,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -3304,22 +3304,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3333,10 +3333,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -3348,22 +3348,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3377,10 +3377,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -3392,22 +3392,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3421,10 +3421,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -3436,22 +3436,22 @@ void system_initialize_config_component(void)
 void system_initialize_config_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3465,10 +3465,10 @@ void system_initialize_config_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -3503,22 +3503,22 @@ int system_initialize_config_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_debug_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3532,10 +3532,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x406be72011d07d37;
   system_config_data_ptr[7] = 0x71876af946c867ab;
@@ -3547,22 +3547,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_memory_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_MEMORY_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3576,10 +3576,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_MEMORY_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_MEMORY_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40afa5469b6ac06d;
   system_config_data_ptr[7] = 0x2f4bab01d34055a5;
@@ -3591,22 +3591,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_debug_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3620,10 +3620,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x406be72011d07d37;
   system_config_data_ptr[7] = 0x71876af946c867ab;
@@ -3635,22 +3635,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_memory_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_MEMORY_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3664,10 +3664,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_MEMORY_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_MEMORY_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40afa5469b6ac06d;
   system_config_data_ptr[7] = 0x2f4bab01d34055a5;
@@ -3679,22 +3679,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_thread_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_THREAD_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3708,10 +3708,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x43330a43fcdb3653;
   system_config_data_ptr[7] = 0xdcfdc333a769ec93;
@@ -3723,22 +3723,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3752,10 +3752,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x431d7c8d7c475be2;
   system_config_data_ptr[7] = 0xb97f048d2153e1b0;
@@ -3767,22 +3767,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3796,10 +3796,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -3811,22 +3811,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3840,10 +3840,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -3855,22 +3855,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3884,10 +3884,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -3899,22 +3899,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3928,10 +3928,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -3943,22 +3943,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -3972,10 +3972,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -4003,22 +4003,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_thread_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_THREAD_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4032,10 +4032,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x43330a43fcdb3653;
   system_config_data_ptr[7] = 0xdcfdc333a769ec93;
@@ -4047,22 +4047,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4076,10 +4076,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x431d7c8d7c475be2;
   system_config_data_ptr[7] = 0xb97f048d2153e1b0;
@@ -4091,22 +4091,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4120,10 +4120,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -4135,22 +4135,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4164,10 +4164,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -4179,22 +4179,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4208,10 +4208,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -4223,22 +4223,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4252,10 +4252,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -4267,22 +4267,22 @@ void system_initialize_system_component(void)
 void system_initialize_system_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4296,10 +4296,10 @@ void system_initialize_system_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -4385,22 +4385,22 @@ int system_initialize_sub_component(void)
 void system_initialize_sub_component(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_9,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4414,9 +4414,9 @@ void system_initialize_sub_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_9,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_9,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_primary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4430,10 +4430,10 @@ void system_initialize_sub_component(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4fc124d23d41985f;
   system_config_data_ptr[7] = 0xe2f4a30d6e6ae482;
@@ -4445,22 +4445,22 @@ void system_initialize_sub_component(void)
 void system_initialize_service_type1(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_secondary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4474,10 +4474,10 @@ void system_initialize_service_type1(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_secondary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_secondary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4666df49b97e0f10;
   system_config_data_ptr[7] = 0x4e4b0d63a6ad1d8f;
@@ -4489,22 +4489,22 @@ void system_initialize_service_type1(void)
 void system_initialize_service_type3(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4518,10 +4518,10 @@ void system_initialize_service_type3(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4c868a42644030f6;
   system_config_data_ptr[7] = 0xc29193aa9d9b35b9;
@@ -4533,22 +4533,22 @@ void system_initialize_service_type3(void)
 void system_initialize_service_type5(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4562,10 +4562,10 @@ void system_initialize_service_type5(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45b8d074df27d12f;
   system_config_data_ptr[7] = 0x8d98f4c06880eda4;
@@ -4577,22 +4577,22 @@ void system_initialize_service_type5(void)
 void system_initialize_service_type7(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_7,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4606,10 +4606,10 @@ void system_initialize_service_type7(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x421c3cedd07d816d;
   system_config_data_ptr[7] = 0xbec25de793b7afa6;
@@ -4621,22 +4621,22 @@ void system_initialize_service_type7(void)
 void system_initialize_service_type9(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4650,10 +4650,10 @@ void system_initialize_service_type9(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
@@ -4723,20 +4723,20 @@ void system_initialize_service_type17(void)
   uint8_t system_stack_buffer [136];
   
   system_stack_primary_pointer = &SYSTEM_DEBUG_CONTEXT_TYPE;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_thread_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_THREAD_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4750,10 +4750,10 @@ void system_initialize_service_type17(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x43330a43fcdb3653;
   system_config_data_ptr[7] = 0xdcfdc333a769ec93;
@@ -4765,22 +4765,22 @@ void system_initialize_service_type17(void)
 void system_initialize_service_type21(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4794,10 +4794,10 @@ void system_initialize_service_type21(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -4809,22 +4809,22 @@ void system_initialize_service_type21(void)
 void system_initialize_service_type23(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4838,10 +4838,10 @@ void system_initialize_service_type23(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -4853,22 +4853,22 @@ void system_initialize_service_type23(void)
 void system_initialize_service_type25(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4882,10 +4882,10 @@ void system_initialize_service_type25(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -4897,22 +4897,22 @@ void system_initialize_service_type25(void)
 void system_initialize_service_type27(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4926,10 +4926,10 @@ void system_initialize_service_type27(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x431d7c8d7c475be2;
   system_config_data_ptr[7] = 0xb97f048d2153e1b0;
@@ -4941,22 +4941,22 @@ void system_initialize_service_type27(void)
 void system_initialize_service_type29(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -4970,10 +4970,10 @@ void system_initialize_service_type29(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -4985,22 +4985,22 @@ void system_initialize_service_type29(void)
 void system_initialize_service_type31(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5014,10 +5014,10 @@ void system_initialize_service_type31(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -5029,22 +5029,22 @@ void system_initialize_service_type31(void)
 void system_initialize_service_type33(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_thread_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_THREAD_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5058,10 +5058,10 @@ void system_initialize_service_type33(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x43330a43fcdb3653;
   system_config_data_ptr[7] = 0xdcfdc333a769ec93;
@@ -5073,22 +5073,22 @@ void system_initialize_service_type33(void)
 void system_initialize_service_type35(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5102,10 +5102,10 @@ void system_initialize_service_type35(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -5117,22 +5117,22 @@ void system_initialize_service_type35(void)
 void system_initialize_service_type37(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5146,10 +5146,10 @@ void system_initialize_service_type37(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -5161,22 +5161,22 @@ void system_initialize_service_type37(void)
 void system_initialize_service_type39(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5190,10 +5190,10 @@ void system_initialize_service_type39(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -5205,22 +5205,22 @@ void system_initialize_service_type39(void)
 void system_initialize_service_type41(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5234,10 +5234,10 @@ void system_initialize_service_type41(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x431d7c8d7c475be2;
   system_config_data_ptr[7] = 0xb97f048d2153e1b0;
@@ -5249,22 +5249,22 @@ void system_initialize_service_type41(void)
 void system_initialize_service_type43(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5278,10 +5278,10 @@ void system_initialize_service_type43(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -5293,22 +5293,22 @@ void system_initialize_service_type43(void)
 void system_initialize_service_type45(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5322,10 +5322,10 @@ void system_initialize_service_type45(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -5337,22 +5337,22 @@ void system_initialize_service_type45(void)
 void system_initialize_service_type47(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_config_callback_function;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_primary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5366,10 +5366,10 @@ void system_initialize_service_type47(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4fc124d23d41985f;
   system_config_data_ptr[7] = 0xe2f4a30d6e6ae482;
@@ -5381,22 +5381,22 @@ void system_initialize_service_type47(void)
 void system_initialize_service_type49(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_secondary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5410,10 +5410,10 @@ void system_initialize_service_type49(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x46ecbd4daf41613e;
   system_config_data_ptr[7] = 0xdc42c056bbde8482;
@@ -5425,22 +5425,22 @@ void system_initialize_service_type49(void)
 void system_initialize_service_type53(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5454,10 +5454,10 @@ void system_initialize_service_type53(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45b8d074df27d12f;
   system_config_data_ptr[7] = 0x8d98f4c06880eda4;
@@ -5469,22 +5469,22 @@ void system_initialize_service_type53(void)
 void system_initialize_service_type55(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_config_callback_function;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_7,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5498,10 +5498,10 @@ void system_initialize_service_type55(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x421c3cedd07d816d;
   system_config_data_ptr[7] = 0xbec25de793b7afa6;
@@ -5513,19 +5513,19 @@ void system_initialize_service_type55(void)
 void system_initialize_service_type57(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
 int system_initialize_service_type59(void)
 {
   longlong system_memory_allocation_result;
@@ -5536,22 +5536,22 @@ int system_initialize_service_type59(void)
 void system_initialize_module_type1(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_config_callback_function;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_primary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5565,10 +5565,10 @@ void system_initialize_module_type1(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4770584fbb1df897;
   system_config_data_ptr[7] = 0x47f249e43f66f2ab;
@@ -5580,22 +5580,22 @@ void system_initialize_module_type1(void)
 void system_initialize_module_type3(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_secondary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5609,10 +5609,10 @@ void system_initialize_module_type3(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_secondary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_secondary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x46ecbd4daf41613e;
   system_config_data_ptr[7] = 0xdc42c056bbde8482;
@@ -5624,22 +5624,22 @@ void system_initialize_module_type3(void)
 void system_initialize_module_type5(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5653,10 +5653,10 @@ void system_initialize_module_type5(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40ea3a798283cbbb;
   system_config_data_ptr[7] = 0x7f74eb2c5a7fadae;
@@ -5668,22 +5668,22 @@ void system_initialize_module_type5(void)
 void system_initialize_module_type7(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5697,10 +5697,10 @@ void system_initialize_module_type7(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x42d293584c8cf3e5;
   system_config_data_ptr[7] = 0x355ffeb2d29e668a;
@@ -5712,22 +5712,22 @@ void system_initialize_module_type7(void)
 void system_initialize_module_type9(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_config_callback_function;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_7,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5741,10 +5741,10 @@ void system_initialize_module_type9(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4c22bb0c326587ce;
   system_config_data_ptr[7] = 0x5e3cf00ce2978287;
@@ -5788,22 +5788,22 @@ void system_initialize_module_type12(void)
 void system_initialize_module_type13(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5817,10 +5817,10 @@ void system_initialize_module_type13(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -5832,22 +5832,22 @@ void system_initialize_module_type13(void)
 void system_initialize_module_type16(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5861,10 +5861,10 @@ void system_initialize_module_type16(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -5876,22 +5876,22 @@ void system_initialize_module_type16(void)
 void system_initialize_module_type17(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5905,10 +5905,10 @@ void system_initialize_module_type17(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -5920,22 +5920,22 @@ void system_initialize_module_type17(void)
 void system_initialize_module_type18(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5949,10 +5949,10 @@ void system_initialize_module_type18(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -5964,22 +5964,22 @@ void system_initialize_module_type18(void)
 void system_initialize_module_type19(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -5993,10 +5993,10 @@ void system_initialize_module_type19(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -6015,22 +6015,22 @@ int system_initialize_module_type20(void)
 void system_cleanup_handler_type1(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_cache_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6044,10 +6044,10 @@ void system_cleanup_handler_type1(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
@@ -6059,22 +6059,22 @@ void system_cleanup_handler_type1(void)
 void system_cleanup_handler_type2(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_thread_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_THREAD_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6088,10 +6088,10 @@ void system_cleanup_handler_type2(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x43330a43fcdb3653;
   system_config_data_ptr[7] = 0xdcfdc333a769ec93;
@@ -6103,22 +6103,22 @@ void system_cleanup_handler_type2(void)
 void system_cleanup_handler_type3(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6132,10 +6132,10 @@ void system_cleanup_handler_type3(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x431d7c8d7c475be2;
   system_config_data_ptr[7] = 0xb97f048d2153e1b0;
@@ -6147,22 +6147,22 @@ void system_cleanup_handler_type3(void)
 void system_cleanup_handler_type4(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6176,10 +6176,10 @@ void system_cleanup_handler_type4(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -6191,22 +6191,22 @@ void system_cleanup_handler_type4(void)
 void system_cleanup_handler_type5(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6220,10 +6220,10 @@ void system_cleanup_handler_type5(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -6235,22 +6235,22 @@ void system_cleanup_handler_type5(void)
 void system_cleanup_handler_type6(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6264,10 +6264,10 @@ void system_cleanup_handler_type6(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -6279,22 +6279,22 @@ void system_cleanup_handler_type6(void)
 void system_cleanup_handler_type7(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6308,10 +6308,10 @@ void system_cleanup_handler_type7(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -6323,22 +6323,22 @@ void system_cleanup_handler_type7(void)
 void system_cleanup_handler_type8(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6352,10 +6352,10 @@ void system_cleanup_handler_type8(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -6367,22 +6367,22 @@ void system_cleanup_handler_type8(void)
 void system_cleanup_handler_type9(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_thread_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_THREAD_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6396,10 +6396,10 @@ void system_cleanup_handler_type9(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x43330a43fcdb3653;
   system_config_data_ptr[7] = 0xdcfdc333a769ec93;
@@ -6411,22 +6411,22 @@ void system_cleanup_handler_type9(void)
 void system_cleanup_handler_type10(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6440,10 +6440,10 @@ void system_cleanup_handler_type10(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x431d7c8d7c475be2;
   system_config_data_ptr[7] = 0xb97f048d2153e1b0;
@@ -6455,22 +6455,22 @@ void system_cleanup_handler_type10(void)
 void system_cleanup_handler_type11(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6484,10 +6484,10 @@ void system_cleanup_handler_type11(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -6499,22 +6499,22 @@ void system_cleanup_handler_type11(void)
 void system_cleanup_handler_type12(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6528,10 +6528,10 @@ void system_cleanup_handler_type12(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -6543,22 +6543,22 @@ void system_cleanup_handler_type12(void)
 void system_cleanup_handler_type13(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6572,10 +6572,10 @@ void system_cleanup_handler_type13(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -6587,22 +6587,22 @@ void system_cleanup_handler_type13(void)
 void system_cleanup_handler_type14(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6616,10 +6616,10 @@ void system_cleanup_handler_type14(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -6631,22 +6631,22 @@ void system_cleanup_handler_type14(void)
 void system_cleanup_handler_type15(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6660,10 +6660,10 @@ void system_cleanup_handler_type15(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -6761,22 +6761,22 @@ int system_resource_manager_process(void)
 void system_resource_manager_cleanup(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_config_callback_function;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_primary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6790,10 +6790,10 @@ void system_resource_manager_cleanup(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4fc124d23d41985f;
   system_config_data_ptr[7] = 0xe2f4a30d6e6ae482;
@@ -6805,22 +6805,22 @@ void system_resource_manager_cleanup(void)
 void system_state_manager_init(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_memory_pool_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6834,10 +6834,10 @@ void system_state_manager_init(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_memory_pool_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_memory_pool_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4770584fbb1df897;
   system_config_data_ptr[7] = 0x47f249e43f66f2ab;
@@ -6849,22 +6849,22 @@ void system_state_manager_init(void)
 void system_state_manager_config(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_secondary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6878,10 +6878,10 @@ void system_state_manager_config(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_secondary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_secondary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4666df49b97e0f10;
   system_config_data_ptr[7] = 0x4e4b0d63a6ad1d8f;
@@ -6893,22 +6893,22 @@ void system_state_manager_config(void)
 void system_state_manager_setup(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6922,10 +6922,10 @@ void system_state_manager_setup(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x46ecbd4daf41613e;
   system_config_data_ptr[7] = 0xdc42c056bbde8482;
@@ -6937,22 +6937,22 @@ void system_state_manager_setup(void)
 void system_state_manager_handler(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -6966,10 +6966,10 @@ void system_state_manager_handler(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4c868a42644030f6;
   system_config_data_ptr[7] = 0xc29193aa9d9b35b9;
@@ -6981,22 +6981,22 @@ void system_state_manager_handler(void)
 void system_state_manager_process(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7010,10 +7010,10 @@ void system_state_manager_process(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40ea3a798283cbbb;
   system_config_data_ptr[7] = 0x7f74eb2c5a7fadae;
@@ -7025,22 +7025,22 @@ void system_state_manager_process(void)
 void system_state_manager_cleanup(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7054,10 +7054,10 @@ void system_state_manager_cleanup(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45b8d074df27d12f;
   system_config_data_ptr[7] = 0x8d98f4c06880eda4;
@@ -7069,22 +7069,22 @@ void system_state_manager_cleanup(void)
 void system_state_manager_update(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7098,10 +7098,10 @@ void system_state_manager_update(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x42d293584c8cf3e5;
   system_config_data_ptr[7] = 0x355ffeb2d29e668a;
@@ -7113,22 +7113,22 @@ void system_state_manager_update(void)
 void system_state_manager_validate(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_config_callback_function;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_7,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7142,10 +7142,10 @@ void system_state_manager_validate(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x421c3cedd07d816d;
   system_config_data_ptr[7] = 0xbec25de793b7afa6;
@@ -7157,22 +7157,22 @@ void system_state_manager_validate(void)
 void system_state_manager_reset(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_8,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7186,10 +7186,10 @@ void system_state_manager_reset(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4c22bb0c326587ce;
   system_config_data_ptr[7] = 0x5e3cf00ce2978287;
@@ -7272,22 +7272,22 @@ int system_event_manager_handler(void)
 void system_task_manager_init(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_DATA_TYPE_31,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7301,10 +7301,10 @@ void system_task_manager_init(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_31,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_31,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x46c54bc98fc3fc2a;
   system_config_data_ptr[7] = 0x727b256e3af32585;
@@ -7316,22 +7316,22 @@ void system_task_manager_init(void)
 void system_task_manager_config(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_DATA_TYPE_30,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7345,10 +7345,10 @@ void system_task_manager_config(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_30,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_30,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x41ffd0b76c1e136f;
   system_config_data_ptr[7] = 0x25db30365f277abb;
@@ -7360,22 +7360,22 @@ void system_task_manager_config(void)
 void system_task_manager_setup(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_config_callback_function;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_primary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7389,10 +7389,10 @@ void system_task_manager_setup(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4fc124d23d41985f;
   system_config_data_ptr[7] = 0xe2f4a30d6e6ae482;
@@ -7404,22 +7404,22 @@ void system_task_manager_setup(void)
 void system_task_manager_handler(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_memory_pool_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7433,10 +7433,10 @@ void system_task_manager_handler(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_memory_pool_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_memory_pool_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4770584fbb1df897;
   system_config_data_ptr[7] = 0x47f249e43f66f2ab;
@@ -7448,22 +7448,22 @@ void system_task_manager_handler(void)
 void system_task_manager_process(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_secondary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7477,10 +7477,10 @@ void system_task_manager_process(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_secondary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_secondary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4666df49b97e0f10;
   system_config_data_ptr[7] = 0x4e4b0d63a6ad1d8f;
@@ -7492,22 +7492,22 @@ void system_task_manager_process(void)
 void system_task_manager_cleanup(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7521,10 +7521,10 @@ void system_task_manager_cleanup(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x46ecbd4daf41613e;
   system_config_data_ptr[7] = 0xdc42c056bbde8482;
@@ -7536,22 +7536,22 @@ void system_task_manager_cleanup(void)
 void system_task_manager_update(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7565,10 +7565,10 @@ void system_task_manager_update(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4c868a42644030f6;
   system_config_data_ptr[7] = 0xc29193aa9d9b35b9;
@@ -7580,22 +7580,22 @@ void system_task_manager_update(void)
 void system_task_manager_validate(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7609,10 +7609,10 @@ void system_task_manager_validate(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40ea3a798283cbbb;
   system_config_data_ptr[7] = 0x7f74eb2c5a7fadae;
@@ -7624,22 +7624,22 @@ void system_task_manager_validate(void)
 void system_task_manager_reset(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7653,10 +7653,10 @@ void system_task_manager_reset(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45b8d074df27d12f;
   system_config_data_ptr[7] = 0x8d98f4c06880eda4;
@@ -7668,22 +7668,22 @@ void system_task_manager_reset(void)
 void system_task_manager_sync(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7697,10 +7697,10 @@ void system_task_manager_sync(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x42d293584c8cf3e5;
   system_config_data_ptr[7] = 0x355ffeb2d29e668a;
@@ -7712,22 +7712,22 @@ void system_task_manager_sync(void)
 void system_task_manager_schedule(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_config_callback_function;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_7,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7741,10 +7741,10 @@ void system_task_manager_schedule(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x421c3cedd07d816d;
   system_config_data_ptr[7] = 0xbec25de793b7afa6;
@@ -7756,22 +7756,22 @@ void system_task_manager_schedule(void)
 void system_task_manager_execute(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_8,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7785,10 +7785,10 @@ void system_task_manager_execute(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4c22bb0c326587ce;
   system_config_data_ptr[7] = 0x5e3cf00ce2978287;
@@ -7800,22 +7800,22 @@ void system_task_manager_execute(void)
 void system_task_manager_complete(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_DATA_TYPE_31,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7829,10 +7829,10 @@ void system_task_manager_complete(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_31,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_31,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x46c54bc98fc3fc2a;
   system_config_data_ptr[7] = 0x727b256e3af32585;
@@ -7844,22 +7844,22 @@ void system_task_manager_complete(void)
 void system_task_manager_cancel(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_DATA_TYPE_30,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7873,10 +7873,10 @@ void system_task_manager_cancel(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_30,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_30,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x41ffd0b76c1e136f;
   system_config_data_ptr[7] = 0x25db30365f277abb;
@@ -7888,22 +7888,22 @@ void system_task_manager_cancel(void)
 void system_task_manager_pause(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_cache_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7917,10 +7917,10 @@ void system_task_manager_pause(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
@@ -7932,22 +7932,22 @@ void system_task_manager_pause(void)
 void system_task_manager_resume(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_monitor_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE7,0x10);
     if (memory_comparison_result_var < 0) {
@@ -7961,10 +7961,10 @@ void system_task_manager_resume(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x449bafe9b77ddd3c;
   system_config_data_ptr[7] = 0xc160408bde99e59f;
@@ -7976,22 +7976,22 @@ void system_task_manager_resume(void)
 void system_config_manager_init(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_debug_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8005,10 +8005,10 @@ void system_config_manager_init(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x406be72011d07d37;
   system_config_data_ptr[7] = 0x71876af946c867ab;
@@ -8020,22 +8020,22 @@ void system_config_manager_init(void)
 void system_config_manager_config(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_memory_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_MEMORY_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8049,10 +8049,10 @@ void system_config_manager_config(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_MEMORY_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_MEMORY_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40afa5469b6ac06d;
   system_config_data_ptr[7] = 0x2f4bab01d34055a5;
@@ -8064,22 +8064,22 @@ void system_config_manager_config(void)
 void system_config_manager_setup(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_thread_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_THREAD_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8093,10 +8093,10 @@ void system_config_manager_setup(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x43330a43fcdb3653;
   system_config_data_ptr[7] = 0xdcfdc333a769ec93;
@@ -8108,22 +8108,22 @@ void system_config_manager_setup(void)
 void system_config_manager_handler(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8137,10 +8137,10 @@ void system_config_manager_handler(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x431d7c8d7c475be2;
   system_config_data_ptr[7] = 0xb97f048d2153e1b0;
@@ -8152,22 +8152,22 @@ void system_config_manager_handler(void)
 void system_config_manager_process(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8181,10 +8181,10 @@ void system_config_manager_process(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -8196,22 +8196,22 @@ void system_config_manager_process(void)
 void system_config_manager_cleanup(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8225,10 +8225,10 @@ void system_config_manager_cleanup(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -8240,22 +8240,22 @@ void system_config_manager_cleanup(void)
 void system_config_manager_update(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8269,10 +8269,10 @@ void system_config_manager_update(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -8284,22 +8284,22 @@ void system_config_manager_update(void)
 void system_config_manager_validate(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8313,10 +8313,10 @@ void system_config_manager_validate(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -8328,22 +8328,22 @@ void system_config_manager_validate(void)
 void system_config_manager_reset(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8357,10 +8357,10 @@ void system_config_manager_reset(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -8372,22 +8372,22 @@ void system_config_manager_reset(void)
 void system_config_manager_sync(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_9,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8401,10 +8401,10 @@ void system_config_manager_sync(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_9,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_9,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x42bea5b911d9c4bf;
   system_config_data_ptr[7] = 0x1aa83fc0020dc1b6;
@@ -8416,22 +8416,22 @@ void system_config_manager_sync(void)
 void system_config_manager_load(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_DATA_TYPE_31,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8445,10 +8445,10 @@ void system_config_manager_load(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_31,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_31,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x46c54bc98fc3fc2a;
   system_config_data_ptr[7] = 0x727b256e3af32585;
@@ -8460,22 +8460,22 @@ void system_config_manager_load(void)
 void system_config_manager_save(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_DATA_TYPE_30,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8489,10 +8489,10 @@ void system_config_manager_save(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_30,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_30,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x41ffd0b76c1e136f;
   system_config_data_ptr[7] = 0x25db30365f277abb;
@@ -8535,22 +8535,22 @@ int system_thread_manager_init(void)
 void system_thread_manager_config(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_DATA_TYPE_31,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8564,10 +8564,10 @@ void system_thread_manager_config(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_31,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_31,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x46c54bc98fc3fc2a;
   system_config_data_ptr[7] = 0x727b256e3af32585;
@@ -8579,22 +8579,22 @@ void system_thread_manager_config(void)
 void system_thread_manager_setup(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_DATA_TYPE_30,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8608,10 +8608,10 @@ void system_thread_manager_setup(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_30,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_30,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x41ffd0b76c1e136f;
   system_config_data_ptr[7] = 0x25db30365f277abb;
@@ -8623,22 +8623,22 @@ void system_thread_manager_setup(void)
 void system_thread_manager_handler(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_DATA_TYPE_31,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8652,10 +8652,10 @@ void system_thread_manager_handler(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_31,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_31,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x46c54bc98fc3fc2a;
   system_config_data_ptr[7] = 0x727b256e3af32585;
@@ -8667,22 +8667,22 @@ void system_thread_manager_handler(void)
 void system_thread_manager_process(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_DATA_TYPE_30,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8696,10 +8696,10 @@ void system_thread_manager_process(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_30,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_30,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x41ffd0b76c1e136f;
   system_config_data_ptr[7] = 0x25db30365f277abb;
@@ -8735,22 +8735,22 @@ int system_thread_manager_create(uint64_t context_pointer,uint64_t flags_var,uin
 void system_thread_manager_destroy(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_DATA_TYPE_31,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8764,10 +8764,10 @@ void system_thread_manager_destroy(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_31,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_31,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x46c54bc98fc3fc2a;
   system_config_data_ptr[7] = 0x727b256e3af32585;
@@ -8779,22 +8779,22 @@ void system_thread_manager_destroy(void)
 void system_thread_manager_start(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_DATA_TYPE_30,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8808,10 +8808,10 @@ void system_thread_manager_start(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_30,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_DATA_TYPE_30,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x41ffd0b76c1e136f;
   system_config_data_ptr[7] = 0x25db30365f277abb;
@@ -8823,22 +8823,22 @@ void system_thread_manager_start(void)
 void system_thread_manager_stop(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_debug_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8852,10 +8852,10 @@ void system_thread_manager_stop(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x406be72011d07d37;
   system_config_data_ptr[7] = 0x71876af946c867ab;
@@ -8867,22 +8867,22 @@ void system_thread_manager_stop(void)
 void system_init_complete_type1(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_memory_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_MEMORY_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8896,10 +8896,10 @@ void system_init_complete_type1(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_MEMORY_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_MEMORY_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40afa5469b6ac06d;
   system_config_data_ptr[7] = 0x2f4bab01d34055a5;
@@ -8911,22 +8911,22 @@ void system_init_complete_type1(void)
 void system_init_complete_type2(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_thread_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_THREAD_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8940,10 +8940,10 @@ void system_init_complete_type2(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_THREAD_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x43330a43fcdb3653;
   system_config_data_ptr[7] = 0xdcfdc333a769ec93;
@@ -8955,22 +8955,22 @@ void system_init_complete_type2(void)
 void system_init_complete_type3(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_resource_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE,0x10);
     if (memory_comparison_result_var < 0) {
@@ -8984,10 +8984,10 @@ void system_init_complete_type3(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x431d7c8d7c475be2;
   system_config_data_ptr[7] = 0xb97f048d2153e1b0;
@@ -8999,22 +8999,22 @@ void system_init_complete_type3(void)
 void system_init_complete_type4(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9028,10 +9028,10 @@ void system_init_complete_type4(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4b2d79e470ee4e2c;
   system_config_data_ptr[7] = 0x9c552acd3ed5548d;
@@ -9043,22 +9043,22 @@ void system_init_complete_type4(void)
 void system_init_complete_type5(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_service_config_handler;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9072,10 +9072,10 @@ void system_init_complete_type5(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
@@ -9087,22 +9087,22 @@ void system_init_complete_type5(void)
 void system_init_complete_type6(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9116,10 +9116,10 @@ void system_init_complete_type6(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
@@ -9131,22 +9131,22 @@ void system_init_complete_type6(void)
 void system_init_complete_type7(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   void *stack_config_ptr;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_config_ptr = &SYSTEM_DEBUG_CONTEXT_TYPE7;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9160,10 +9160,10 @@ void system_init_complete_type7(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
@@ -9175,22 +9175,22 @@ void system_init_complete_type7(void)
 void system_init_complete_type8(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9204,10 +9204,10 @@ void system_init_complete_type8(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
@@ -9219,22 +9219,22 @@ void system_init_complete_type8(void)
 void system_init_complete_type9(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_config_callback_function;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_primary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9248,10 +9248,10 @@ void system_init_complete_type9(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_primary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4fc124d23d41985f;
   system_config_data_ptr[7] = 0xe2f4a30d6e6ae482;
@@ -9263,22 +9263,22 @@ void system_init_complete_type9(void)
 void system_init_complete_type10(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_memory_pool_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9292,10 +9292,10 @@ void system_init_complete_type10(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_memory_pool_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_memory_pool_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4770584fbb1df897;
   system_config_data_ptr[7] = 0x47f249e43f66f2ab;
@@ -9307,22 +9307,22 @@ void system_init_complete_type10(void)
 void system_init_complete_type11(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_secondary_signature,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9336,10 +9336,10 @@ void system_init_complete_type11(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_secondary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_secondary_signature,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4666df49b97e0f10;
   system_config_data_ptr[7] = 0x4e4b0d63a6ad1d8f;
@@ -9351,22 +9351,22 @@ void system_init_complete_type11(void)
 void system_init_complete_type12(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_2,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9380,10 +9380,10 @@ void system_init_complete_type12(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_2,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x46ecbd4daf41613e;
   system_config_data_ptr[7] = 0xdc42c056bbde8482;
@@ -9395,22 +9395,22 @@ void system_init_complete_type12(void)
 void system_init_complete_type13(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_3,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9424,10 +9424,10 @@ void system_init_complete_type13(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_3,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4c868a42644030f6;
   system_config_data_ptr[7] = 0xc29193aa9d9b35b9;
@@ -9439,22 +9439,22 @@ void system_init_complete_type13(void)
 void system_init_complete_type14(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_4,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9468,10 +9468,10 @@ void system_init_complete_type14(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_4,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40ea3a798283cbbb;
   system_config_data_ptr[7] = 0x7f74eb2c5a7fadae;
@@ -9483,22 +9483,22 @@ void system_init_complete_type14(void)
 void system_init_complete_type15(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_5,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9512,10 +9512,10 @@ void system_init_complete_type15(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_5,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45b8d074df27d12f;
   system_config_data_ptr[7] = 0x8d98f4c06880eda4;
@@ -9527,22 +9527,22 @@ void system_init_complete_type15(void)
 void system_init_complete_type16(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_6,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9556,10 +9556,10 @@ void system_init_complete_type16(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_6,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x42d293584c8cf3e5;
   system_config_data_ptr[7] = 0x355ffeb2d29e668a;
@@ -9571,22 +9571,22 @@ void system_init_complete_type16(void)
 void system_init_complete_type17(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   code *system_config_callback_func;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_config_callback_func = system_config_callback_function;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_7,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9600,10 +9600,10 @@ void system_init_complete_type17(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_7,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x421c3cedd07d816d;
   system_config_data_ptr[7] = 0xbec25de793b7afa6;
@@ -9615,22 +9615,22 @@ void system_init_complete_type17(void)
 void system_init_complete_type18(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t system_stack_value;
   
-  system_root_table_pointer_var = (longlong *)system_get_root_table_function();
-  system_config_primary_pointer = (uint64_t *)*system_root_table_pointer_var;
-  configuration_status_var = *(char *)((longlong)system_config_primary_pointer[1] + 0x19);
+  system_root_table_ptr = (longlong *)system_get_root_table_function();
+  system_config_primary_ptr = (uint64_t *)*system_root_table_ptr;
+  configuration_status_var = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
   system_stack_value = 0;
-  system_config_data_ptr = system_config_primary_pointer;
-  system_config_node_pointer = (uint64_t *)system_config_primary_pointer[1];
+  system_config_data_ptr = system_config_primary_ptr;
+  system_config_node_pointer = (uint64_t *)system_config_primary_ptr[1];
   while (configuration_status_var == '\0') {
     memory_comparison_result_var = memcmp(system_config_node_pointer + 4,&system_config_signature_8,0x10);
     if (memory_comparison_result_var < 0) {
@@ -9644,10 +9644,10 @@ void system_init_complete_type18(void)
     system_config_node_pointer = system_config_next_ptr;
     configuration_status_var = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_pointer) || (memory_comparison_result_var = memcmp(&system_config_signature_8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
-    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_pointer_var);
-    system_setup_config_block_function(system_root_table_pointer_var,&system_config_temp_pointer,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
-    system_config_data_ptr = system_config_temp_pointer;
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_comparison_result_var = memcmp(&system_config_signature_8,system_config_data_ptr + 4,0x10), memory_comparison_result_var < 0)) {
+    memory_allocation_size_var = system_allocate_config_memory_function(system_root_table_ptr);
+    system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,memory_allocation_size_var + 0x20,memory_allocation_size_var);
+    system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4c22bb0c326587ce;
   system_config_data_ptr[7] = 0x5e3cf00ce2978287;
@@ -11098,17 +11098,17 @@ void system_initialize_longlong_pointer(longlong *context_pointer)
 void system_initialize_longlong_context(longlong *context_pointer)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   
   primary_pointer = (uint64_t *)context_pointer[1];
-  for (system_config_primary_pointer = (uint64_t *)*context_pointer; system_config_primary_pointer != primary_pointer; system_config_primary_pointer = system_config_primary_pointer + 5) {
-    *system_config_primary_pointer = &system_config_default_handler;
-    if (system_config_primary_pointer[1] != 0) {
+  for (system_config_primary_ptr = (uint64_t *)*context_pointer; system_config_primary_ptr != primary_pointer; system_config_primary_ptr = system_config_primary_ptr + 5) {
+    *system_config_primary_ptr = &system_config_default_handler;
+    if (system_config_primary_ptr[1] != 0) {
       system_processor_cleanup();
     }
-    system_config_primary_pointer[1] = 0;
-    *(uint32_t *)(system_config_primary_pointer + 3) = 0;
-    *system_config_primary_pointer = &SYSTEM_DATABASE_CURSOR_TYPE;
+    system_config_primary_ptr[1] = 0;
+    *(uint32_t *)(system_config_primary_ptr + 3) = 0;
+    *system_config_primary_ptr = &SYSTEM_DATABASE_CURSOR_TYPE;
   }
   if (*context_pointer != 0) {
     system_processor_cleanup();
@@ -11118,21 +11118,21 @@ void system_initialize_longlong_context(longlong *context_pointer)
 void system_initialize_ulonglong_pointer(ulonglong *context_pointer)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   ulonglong vertex_count_var;
   
-  system_config_primary_pointer = (uint64_t *)*context_pointer;
-  if (system_config_primary_pointer == (uint64_t *)0x0) {
+  system_config_primary_ptr = (uint64_t *)*context_pointer;
+  if (system_config_primary_ptr == (uint64_t *)0x0) {
     return;
   }
-  vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+  vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
   if (vertex_count_var != 0) {
-    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
     system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
     if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-      *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+      *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
       integer_primary_pointer = (int *)(system_memory_result + 0x18);
       *integer_primary_pointer = *integer_primary_pointer + -1;
       if (*integer_primary_pointer == 0) {
@@ -11142,7 +11142,7 @@ void system_initialize_ulonglong_pointer(ulonglong *context_pointer)
     }
     else {
       func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                          system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                          system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
     }
   }
   return;
@@ -11371,7 +11371,7 @@ void system_initialize_dual_pointer_param(longlong *context_pointer,uint64_t *fl
 {
   longlong *long_pointer_primary;
   longlong *stack_long_pointer_8;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   longlong *stack_long_pointer_18;
   longlong **pstack_long_pointer_20;
   uint32_t texture_secondary;
@@ -11380,7 +11380,7 @@ void system_initialize_dual_pointer_param(longlong *context_pointer,uint64_t *fl
   transform_result = 0xfffffffffffffffe;
   texture_secondary = 0;
   stack_long_pointer_8 = context_pointer;
-  system_config_temp_pointer = flags_var;
+  system_config_temp_ptr = flags_var;
   system_initialize_triple_pointer();
   long_pointer_primary = (longlong *)system_utility_create_object(system_memory_allocator_config,200,8,3,texture_secondary,transform_result);
   stack_long_pointer_8 = long_pointer_primary;
@@ -11410,7 +11410,7 @@ void system_main_preinit(void)
 {
   uint64_t unsigned_value_primary_var;
   char char_flag;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   longlong ***ppsystem_table_pointer;
   ulonglong vertex_buffer_offset;
   longlong transform_temp6;
@@ -11654,7 +11654,7 @@ void system_main_preinit(void)
   system_processor_cleanup(system_config_data_ptr);
 }
 uint64_t *
-system_init_180047d40(uint64_t *context_pointer,uint64_t *flags_var,uint64_t size_param,uint64_t allocator_param)
+system_initialize_basic_system_handler(uint64_t *context_pointer,uint64_t *flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   *context_pointer = *flags_var;
   *(uint32_t *)(context_pointer + 1) = *(uint32_t *)(flags_var + 1);
@@ -11685,7 +11685,7 @@ void system_initialize_quad_param(uint64_t context_pointer,uint64_t flags_var,lo
 {
   byte byte_temp1;
   bool byte_temp2;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   uint64_t *quaternary_pointer;
   uint vertex_buffer_offset;
   byte *pbyte_temp6;
@@ -12082,17 +12082,17 @@ void system_initialize_longlong_ptr(longlong *context_pointer)
 void system_initialize_longlong_context_ptr(longlong *context_pointer)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   
   primary_pointer = (uint64_t *)context_pointer[1];
-  for (system_config_primary_pointer = (uint64_t *)*context_pointer; system_config_primary_pointer != primary_pointer; system_config_primary_pointer = system_config_primary_pointer + 5) {
-    *system_config_primary_pointer = &system_config_default_handler;
-    if (system_config_primary_pointer[1] != 0) {
+  for (system_config_primary_ptr = (uint64_t *)*context_pointer; system_config_primary_ptr != primary_pointer; system_config_primary_ptr = system_config_primary_ptr + 5) {
+    *system_config_primary_ptr = &system_config_default_handler;
+    if (system_config_primary_ptr[1] != 0) {
       system_processor_cleanup();
     }
-    system_config_primary_pointer[1] = 0;
-    *(uint32_t *)(system_config_primary_pointer + 3) = 0;
-    *system_config_primary_pointer = &SYSTEM_DATABASE_CURSOR_TYPE;
+    system_config_primary_ptr[1] = 0;
+    *(uint32_t *)(system_config_primary_ptr + 3) = 0;
+    *system_config_primary_ptr = &SYSTEM_DATABASE_CURSOR_TYPE;
   }
   if (*context_pointer != 0) {
     system_processor_cleanup();
@@ -12102,21 +12102,21 @@ void system_initialize_longlong_context_ptr(longlong *context_pointer)
 void system_initialize_ulonglong_ptr(ulonglong *context_pointer)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   ulonglong vertex_count_var;
   
-  system_config_primary_pointer = (uint64_t *)*context_pointer;
-  if (system_config_primary_pointer == (uint64_t *)0x0) {
+  system_config_primary_ptr = (uint64_t *)*context_pointer;
+  if (system_config_primary_ptr == (uint64_t *)0x0) {
     return;
   }
-  vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+  vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
   if (vertex_count_var != 0) {
-    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
     system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
     if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-      *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+      *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
       integer_primary_pointer = (int *)(system_memory_result + 0x18);
       *integer_primary_pointer = *integer_primary_pointer + -1;
       if (*integer_primary_pointer == 0) {
@@ -12126,7 +12126,7 @@ void system_initialize_ulonglong_ptr(ulonglong *context_pointer)
     }
     else {
       func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                          system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                          system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
     }
   }
   return;
@@ -12152,7 +12152,7 @@ longlong system_initialize_buffer_type7(longlong context_pointer,longlong flags_
   uint32_t transform_result;
   uint32_t vertex_count_var;
   uint64_t vertex_buffer_offset;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
   uint64_t *nonary_ptr;
@@ -12206,7 +12206,7 @@ longlong system_initialize_buffer_type7(longlong context_pointer,longlong flags_
   *(int32_t1 *)(context_pointer + 0xe8) = 0;
   *(uint64_t *)(context_pointer + 0xf0) = 0;
   if (*(longlong *)(flags_var + 0xe0) != 0) {
-    nonary_ptr = (uint64_t *)system_init_180049010(primary_pointer,*(longlong *)(flags_var + 0xe0),primary_pointer,allocator_param,unsigned_value_primary_var0)
+    nonary_ptr = (uint64_t *)system_initialize_memory_allocator_handler(primary_pointer,*(longlong *)(flags_var + 0xe0),primary_pointer,allocator_param,unsigned_value_primary_var0)
     ;
     *(uint64_t **)(context_pointer + 0xe0) = nonary_ptr;
     system_config_next_ptr = (uint64_t *)*nonary_ptr;
@@ -12244,20 +12244,20 @@ system_buffer_initialize_type_complex(longlong *context_pointer,uint64_t *flags_
   byte byte_temp1;
   bool byte_temp2;
   longlong *long_pointer_result_var;
-  longlong *system_root_table_pointer_var;
+  longlong *system_root_table_ptr;
   byte *pbyte_temp5;
   uint transform_iteration_count;
   longlong system_transform_type;
   uint64_t texture_flag;
   longlong *stack_long_pointer_8;
   
-  system_root_table_pointer_var = (longlong *)*context_pointer;
-  if ((allocator_param == system_root_table_pointer_var) || (allocator_param == context_pointer)) {
+  system_root_table_ptr = (longlong *)*context_pointer;
+  if ((allocator_param == system_root_table_ptr) || (allocator_param == context_pointer)) {
     if ((context_pointer[4] != 0) && (*(int *)(param_5 + 0x10) != 0)) {
-      allocator_param = system_root_table_pointer_var;
-      if (*(int *)(system_root_table_pointer_var + 6) != 0) {
+      allocator_param = system_root_table_ptr;
+      if (*(int *)(system_root_table_ptr + 6) != 0) {
         pbyte_temp5 = *(byte **)(param_5 + 8);
-        system_transform_type = system_root_table_pointer_var[5] - (longlong)pbyte_temp5;
+        system_transform_type = system_root_table_ptr[5] - (longlong)pbyte_temp5;
         do {
           byte_temp1 = *pbyte_temp5;
           transform_iteration_count = (uint)pbyte_temp5[system_transform_type];
@@ -12276,7 +12276,7 @@ LAB_180048dba:
     }
   }
   else {
-    system_root_table_pointer_var = (longlong *)func_0x00018066bd70(allocator_param);
+    system_root_table_ptr = (longlong *)func_0x00018066bd70(allocator_param);
     if (*(int *)(param_5 + 0x10) != 0) {
       if ((int)allocator_param[6] != 0) {
         pbyte_temp5 = *(byte **)(param_5 + 8);
@@ -12289,8 +12289,8 @@ LAB_180048dba:
         } while (transform_iteration_count != 0);
         if ((int)(byte_temp1 - transform_iteration_count) < 1) goto LAB_180048dd7;
       }
-      if ((int)system_root_table_pointer_var[6] != 0) {
-        pbyte_temp5 = (byte *)system_root_table_pointer_var[5];
+      if ((int)system_root_table_ptr[6] != 0) {
+        pbyte_temp5 = (byte *)system_root_table_ptr[5];
         system_transform_type = *(longlong *)(param_5 + 8) - (longlong)pbyte_temp5;
         do {
           byte_temp1 = *pbyte_temp5;
@@ -12301,7 +12301,7 @@ LAB_180048dba:
         if (0 < (int)(byte_temp1 - transform_iteration_count)) {
           if (*allocator_param == 0) goto LAB_180048db7;
           texture_flag = 1;
-          allocator_param = system_root_table_pointer_var;
+          allocator_param = system_root_table_ptr;
           goto LAB_180048dba;
         }
       }
@@ -12309,21 +12309,21 @@ LAB_180048dba:
   }
 LAB_180048dd7:
   byte_temp2 = true;
-  system_root_table_pointer_var = (longlong *)context_pointer[2];
+  system_root_table_ptr = (longlong *)context_pointer[2];
   long_pointer_result_var = context_pointer;
-  while (system_root_table_pointer_var != (longlong *)0x0) {
-    long_pointer_result_var = system_root_table_pointer_var;
-    if ((int)system_root_table_pointer_var[6] == 0) {
+  while (system_root_table_ptr != (longlong *)0x0) {
+    long_pointer_result_var = system_root_table_ptr;
+    if ((int)system_root_table_ptr[6] == 0) {
       byte_temp2 = false;
 LAB_180048e00:
-      system_root_table_pointer_var = (longlong *)*system_root_table_pointer_var;
+      system_root_table_ptr = (longlong *)*system_root_table_ptr;
     }
     else {
       if (*(int *)(param_5 + 0x10) == 0) {
         byte_temp2 = true;
       }
       else {
-        pbyte_temp5 = (byte *)system_root_table_pointer_var[5];
+        pbyte_temp5 = (byte *)system_root_table_ptr[5];
         system_transform_type = *(longlong *)(param_5 + 8) - (longlong)pbyte_temp5;
         do {
           byte_temp1 = *pbyte_temp5;
@@ -12334,22 +12334,22 @@ LAB_180048e00:
         byte_temp2 = 0 < (int)(byte_temp1 - transform_iteration_count);
       }
       if (!byte_temp2) goto LAB_180048e00;
-      system_root_table_pointer_var = (longlong *)system_root_table_pointer_var[1];
+      system_root_table_ptr = (longlong *)system_root_table_ptr[1];
     }
   }
-  system_root_table_pointer_var = long_pointer_result_var;
+  system_root_table_ptr = long_pointer_result_var;
   if (byte_temp2) {
     if (long_pointer_result_var != (longlong *)context_pointer[1]) {
-      system_root_table_pointer_var = (longlong *)func_0x00018066b9a0(long_pointer_result_var);
+      system_root_table_ptr = (longlong *)func_0x00018066b9a0(long_pointer_result_var);
       goto LAB_180048e20;
     }
   }
   else {
 LAB_180048e20:
     if (*(int *)(param_5 + 0x10) == 0) goto LAB_180048e74;
-    if ((int)system_root_table_pointer_var[6] != 0) {
+    if ((int)system_root_table_ptr[6] != 0) {
       pbyte_temp5 = *(byte **)(param_5 + 8);
-      system_transform_type = system_root_table_pointer_var[5] - (longlong)pbyte_temp5;
+      system_transform_type = system_root_table_ptr[5] - (longlong)pbyte_temp5;
       do {
         byte_temp1 = *pbyte_temp5;
         transform_iteration_count = (uint)pbyte_temp5[system_transform_type];
@@ -12360,9 +12360,9 @@ LAB_180048e20:
     }
   }
   system_initialize_buffer_type9(context_pointer,&stack_long_pointer_8,long_pointer_result_var,0,param_5);
-  system_root_table_pointer_var = stack_long_pointer_8;
+  system_root_table_ptr = stack_long_pointer_8;
 LAB_180048e74:
-  *flags_var = system_root_table_pointer_var;
+  *flags_var = system_root_table_ptr;
   return flags_var;
 }
 void system_initialize_buffer_type9(longlong context_pointer,uint64_t flags_var,longlong size_param,uint64_t allocator_param,
@@ -12372,7 +12372,7 @@ void system_initialize_buffer_type9(longlong context_pointer,uint64_t flags_var,
   byte *pbyte_temp2;
   uint transform_result;
   uint64_t *quaternary_pointer;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   uint64_t transform_iteration_count;
   uint64_t system_transform_type;
   
@@ -12409,21 +12409,21 @@ LAB_180048f62:
   *(uint32_t *)(memory_allocation_size_var + 0x50) = 0;
   system_extended_initialize(memory_allocation_size_var,size_param,context_pointer,transform_iteration_count,system_transform_type,quaternary_pointer);
 }
-uint64_t * system_init_180049010(longlong context_pointer,longlong *flags_var,uint64_t size_param,uint64_t allocator_param)
+uint64_t * system_initialize_memory_allocator_handler(longlong context_pointer,longlong *flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   longlong *long_pointer_primary;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t *tertiary_pointer;
   uint64_t *quaternary_pointer;
   uint64_t vertex_buffer_offset;
   
   vertex_buffer_offset = 0xfffffffffffffffe;
-  tertiary_pointer = (uint64_t *)system_init_180049110();
+  tertiary_pointer = (uint64_t *)system_initialize_memory_manager_handler();
   if (*flags_var != 0) {
-    vertex_buffer_offset = system_init_180049010(context_pointer,*flags_var,tertiary_pointer,allocator_param,vertex_buffer_offset);
+    vertex_buffer_offset = system_initialize_memory_allocator_handler(context_pointer,*flags_var,tertiary_pointer,allocator_param,vertex_buffer_offset);
     *tertiary_pointer = vertex_buffer_offset;
   }
-  system_config_primary_pointer = tertiary_pointer;
+  system_config_primary_ptr = tertiary_pointer;
   for (long_pointer_primary = (longlong *)flags_var[1]; long_pointer_primary != (longlong *)0x0; long_pointer_primary = (longlong *)long_pointer_primary[1]) {
     quaternary_pointer = (uint64_t *)system_memory_allocate_buffer(system_memory_allocator_config,0x68,*(int32_t1 *)(context_pointer + 0x28));
     system_module_180627ae0(quaternary_pointer + 4,long_pointer_primary + 4);
@@ -12431,18 +12431,18 @@ uint64_t * system_init_180049010(longlong context_pointer,longlong *flags_var,ui
     quaternary_pointer[0xc] = long_pointer_primary[0xc];
     *quaternary_pointer = 0;
     quaternary_pointer[1] = 0;
-    quaternary_pointer[2] = system_config_primary_pointer;
+    quaternary_pointer[2] = system_config_primary_ptr;
     *(char *)(quaternary_pointer + 3) = (char)long_pointer_primary[3];
-    system_config_primary_pointer[1] = quaternary_pointer;
+    system_config_primary_ptr[1] = quaternary_pointer;
     if (*long_pointer_primary != 0) {
-      vertex_buffer_offset = system_init_180049010(context_pointer,*long_pointer_primary,quaternary_pointer);
+      vertex_buffer_offset = system_initialize_memory_allocator_handler(context_pointer,*long_pointer_primary,quaternary_pointer);
       *quaternary_pointer = vertex_buffer_offset;
     }
-    system_config_primary_pointer = quaternary_pointer;
+    system_config_primary_ptr = quaternary_pointer;
   }
   return tertiary_pointer;
 }
-uint64_t * system_init_180049110(longlong context_pointer,longlong flags_var,uint64_t size_param,uint64_t allocator_param)
+uint64_t * system_initialize_memory_manager_handler(longlong context_pointer,longlong flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint64_t *primary_pointer;
   
@@ -12750,7 +12750,7 @@ void system_initialize_int32_ptr(int32_t1 *context_pointer)
   *(uint32_t *)(system_register_di + 0x10) = 0;
   return;
 }
-uint64_t * system_init_180049970(uint64_t *context_pointer)
+uint64_t * system_initialize_primary_resource_handler(uint64_t *context_pointer)
 {
   *context_pointer = &SYSTEM_DATABASE_CURSOR_TYPE;
   context_pointer[1] = 0;
@@ -12868,7 +12868,7 @@ void system_initialize_int32_ptr_2(int32_t1 *context_pointer)
   *(uint32_t *)(system_register_di + 0x10) = 0;
   return;
 }
-uint64_t * system_init_180049cd0(uint64_t *context_pointer)
+uint64_t * system_initialize_secondary_resource_handler(uint64_t *context_pointer)
 {
   *context_pointer = &SYSTEM_DATABASE_CURSOR_TYPE;
   context_pointer[1] = 0;
@@ -13036,7 +13036,7 @@ uint64_t system_initialize_ulonglong_context_2(longlong context_pointer,uint32_t
   longlong system_memory_result;
   uint64_t *quaternary_pointer;
   uint64_t *quinary_pointer;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   uint64_t system_transform_type;
   
   system_transform_type = 0xfffffffffffffffe;
@@ -13141,7 +13141,7 @@ system_configuration_initialize_senary(uint64_t *context_pointer,ulonglong flags
 bool system_initialize_boolean_check(void)
 {
   char configuration_status_var;
-  uint32_t *system_config_primary_pointer;
+  uint32_t *system_config_primary_ptr;
   void *tertiary_pointer;
   int integer_value_var;
   bool byte_temp5;
@@ -13154,12 +13154,12 @@ bool system_initialize_boolean_check(void)
   system_control_1800ba940(&pstack_uint_30);
   integer_value_var = stack_uint_20 + 0x11;
   system_module_1806277c0(&pstack_uint_30,integer_value_var);
-  system_config_primary_pointer = (uint32_t *)(pstack_uint_28 + stack_uint_20);
-  *system_config_primary_pointer = 0x69676e65;
-  system_config_primary_pointer[1] = 0x635f656e;
-  system_config_primary_pointer[2] = 0x69666e6f;
-  system_config_primary_pointer[3] = 0x78742e67;
-  *(int32_t2 *)(system_config_primary_pointer + 4) = 0x74;
+  system_config_primary_ptr = (uint32_t *)(pstack_uint_28 + stack_uint_20);
+  *system_config_primary_ptr = 0x69676e65;
+  system_config_primary_ptr[1] = 0x635f656e;
+  system_config_primary_ptr[2] = 0x69666e6f;
+  system_config_primary_ptr[3] = 0x78742e67;
+  *(int32_t2 *)(system_config_primary_ptr + 4) = 0x74;
   system_stack_variable_uint_48 = 0;
   lStack_40 = 0;
   tertiary_pointer = &SYSTEM_CONFIG_DATA_TYPE_3;
@@ -13198,7 +13198,7 @@ bool system_initialize_boolean_check(void)
 void system_initialize_complex_operation(void)
 {
   char configuration_status_var;
-  uint32_t *system_config_primary_pointer;
+  uint32_t *system_config_primary_ptr;
   uint64_t *tertiary_pointer;
   void *quaternary_pointer;
   int integer_count_var_var;
@@ -13233,11 +13233,11 @@ void system_initialize_complex_operation(void)
   pstack_uint_38 = &SYSTEM_DATABASE_CURSOR_TYPE;
   integer_count_var_var = stack_uint_50 + 0xf;
   system_module_1806277c0(astack_uint_60,integer_count_var_var);
-  system_config_primary_pointer = (uint32_t *)(stack_uint_pointer_58 + stack_uint_50);
-  *system_config_primary_pointer = 0x72657375;
-  system_config_primary_pointer[1] = 0x6e6f635f;
-  system_config_primary_pointer[2] = 0x2e676966;
-  system_config_primary_pointer[3] = 0x747874;
+  system_config_primary_ptr = (uint32_t *)(stack_uint_pointer_58 + stack_uint_50);
+  *system_config_primary_ptr = 0x72657375;
+  system_config_primary_ptr[1] = 0x6e6f635f;
+  system_config_primary_ptr[2] = 0x2e676966;
+  system_config_primary_ptr[3] = 0x747874;
   stack_uint_50 = integer_count_var_var;
   tertiary_pointer = (uint64_t *)system_utility_create_object(system_memory_allocator_config,0x18,8,3);
   quaternary_pointer = &SYSTEM_CONFIG_DATA_TYPE_3;
@@ -13275,10 +13275,10 @@ void system_initialize_simple_operation(void)
 void system_initialize_basic_operation(void)
 {
   char configuration_status_var;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   char *string_result_pointer_var;
   uint64_t vertex_count_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong transform_temp6;
   void *system_config_data_ptr;
   int integer_status_var;
@@ -13310,34 +13310,34 @@ void system_initialize_basic_operation(void)
     } while (loop_bound_limit < stack_uint_20);
   }
   pstack_uint_28[integer_status_var] = 0;
-  system_config_primary_pointer = (uint64_t *)system_utility_create_object(system_memory_allocator_config,0x28,8,CONCAT71((int7)(unsigned_value_primary_var0 >> 8),3));
+  system_config_primary_ptr = (uint64_t *)system_utility_create_object(system_memory_allocator_config,0x28,8,CONCAT71((int7)(unsigned_value_primary_var0 >> 8),3));
   system_config_data_ptr = &SYSTEM_CONFIG_DATA_TYPE_3;
   if (pstack_uint_28 != (void *)0x0) {
     system_config_data_ptr = pstack_uint_28;
   }
-  system_module_180627910(system_config_primary_pointer + 1,system_config_data_ptr);
-  string_result_pointer_var = (char *)system_config_primary_pointer[2];
+  system_module_180627910(system_config_primary_ptr + 1,system_config_data_ptr);
+  string_result_pointer_var = (char *)system_config_primary_ptr[2];
   if (*string_result_pointer_var != '\0') {
     memory_allocation_size_var = 0;
     do {
       transform_temp6 = strchr(&SYSTEM_CONFIG_DATA_TYPE_9,(int)string_result_pointer_var[memory_allocation_size_var]);
       if (transform_temp6 != 0) {
-        *(int32_t1 *)(memory_allocation_size_var + system_config_primary_pointer[2]) = 0x2f;
+        *(int32_t1 *)(memory_allocation_size_var + system_config_primary_ptr[2]) = 0x2f;
       }
       memory_allocation_size_var = memory_allocation_size_var + 1;
-      string_result_pointer_var = (char *)system_config_primary_pointer[2];
+      string_result_pointer_var = (char *)system_config_primary_ptr[2];
     } while (string_result_pointer_var[memory_allocation_size_var] != '\0');
   }
-  *system_config_primary_pointer = 0;
-  _SYSTEM_CONFIG_DATA_TYPE_82 = system_config_primary_pointer;
+  *system_config_primary_ptr = 0;
+  _SYSTEM_CONFIG_DATA_TYPE_82 = system_config_primary_ptr;
   if (SYSTEM_CONFIG_DATA_TYPE_37 != '\0') {
     GetLastError();
     system_config_data_ptr = &SYSTEM_CONFIG_DATA_TYPE_3;
-    if ((void *)system_config_primary_pointer[2] != (void *)0x0) {
-      system_config_data_ptr = (void *)system_config_primary_pointer[2];
+    if ((void *)system_config_primary_ptr[2] != (void *)0x0) {
+      system_config_data_ptr = (void *)system_config_primary_ptr[2];
     }
     vertex_count_var = CreateMutexA(0,0,system_config_data_ptr);
-    *system_config_primary_pointer = vertex_count_var;
+    *system_config_primary_ptr = vertex_count_var;
     integer_status_var = GetLastError();
 void system_initialize_advanced_operation(void)
 {
@@ -13391,8 +13391,8 @@ uint64_t *
 system_configuration_initialize_septenary(uint64_t *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint32_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
-  int memory_comparison_result_var;
+  uint64_t *system_config_primary_ptr;
+  int system_memory_compare_status;
   int integer_value_var;
   uint64_t vertex_buffer_offset;
   
@@ -13419,13 +13419,13 @@ system_configuration_initialize_septenary(uint64_t *context_pointer,uint64_t fla
   *(int *)(context_pointer + 2) = memory_comparison_result_var;
   integer_value_var = integer_value_var + 0x2a;
   system_module_1806277c0(context_pointer,integer_value_var);
-  system_config_primary_pointer = (uint64_t *)((ulonglong)*(uint *)(context_pointer + 2) + context_pointer[1]);
-  *system_config_primary_pointer = 0x736c6f6f542f2e2e;
-  system_config_primary_pointer[1] = 0x747541747365542f;
-  system_config_primary_pointer[2] = 0x2f6e6f6974616d6f;
-  system_config_primary_pointer[3] = 0x656d686361747441;
-  *(uint32_t *)(system_config_primary_pointer + 4) = 0x2f73746e;
-  *(int32_t1 *)((longlong)system_config_primary_pointer + 0x24) = 0;
+  system_config_primary_ptr = (uint64_t *)((ulonglong)*(uint *)(context_pointer + 2) + context_pointer[1]);
+  *system_config_primary_ptr = 0x736c6f6f542f2e2e;
+  system_config_primary_ptr[1] = 0x747541747365542f;
+  system_config_primary_ptr[2] = 0x2f6e6f6974616d6f;
+  system_config_primary_ptr[3] = 0x656d686361747441;
+  *(uint32_t *)(system_config_primary_ptr + 4) = 0x2f73746e;
+  *(int32_t1 *)((longlong)system_config_primary_ptr + 0x24) = 0;
   *(int *)(context_pointer + 2) = integer_value_var;
   return context_pointer;
 }
@@ -13692,7 +13692,7 @@ void system_init_18004b7de(void)
 {
   return;
 }
-uint64_t * system_init_18004b7e0(uint64_t *context_pointer,ulonglong flags_var)
+uint64_t * system_initialize_config_memory_handler(uint64_t *context_pointer,ulonglong flags_var)
 {
   *context_pointer = &SYSTEM_STRING_ENTITY;
   if ((flags_var & 1) != 0) {
@@ -13700,7 +13700,7 @@ uint64_t * system_init_18004b7e0(uint64_t *context_pointer,ulonglong flags_var)
   }
   return context_pointer;
 }
-uint64_t * system_init_18004b820(uint64_t *context_pointer,ulonglong flags_var)
+uint64_t * system_initialize_config_data_handler(uint64_t *context_pointer,ulonglong flags_var)
 {
   *context_pointer = &SYSTEM_STRING_METADATA;
   if ((flags_var & 1) != 0) {
@@ -13741,7 +13741,7 @@ void system_initialize_buffer_type6(longlong context_pointer,uint64_t flags_var,
   }
   system_runtime_1808fc050(stack_uint_28 ^ (ulonglong)astack_variable_uint_78);
 }
-uint64_t * system_init_18004b920(uint64_t *context_pointer,ulonglong flags_var)
+uint64_t * system_initialize_config_table_handler(uint64_t *context_pointer,ulonglong flags_var)
 {
   *context_pointer = &SYSTEM_STRING_CONFIG_SECONDARY;
   if ((flags_var & 1) != 0) {
@@ -13749,7 +13749,7 @@ uint64_t * system_init_18004b920(uint64_t *context_pointer,ulonglong flags_var)
   }
   return context_pointer;
 }
-uint64_t * system_init_18004b960(uint64_t *context_pointer,ulonglong flags_var)
+uint64_t * system_initialize_config_index_handler(uint64_t *context_pointer,ulonglong flags_var)
 {
   *context_pointer = &SYSTEM_STRING_CONFIG_QUATERNARY;
   if ((flags_var & 1) != 0) {
@@ -13757,29 +13757,29 @@ uint64_t * system_init_18004b960(uint64_t *context_pointer,ulonglong flags_var)
   }
   return context_pointer;
 }
-int system_init_18004b9b0(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+int system_initialize_config_validation_handler(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   int integer_primary;
-  ulonglong *system_config_primary_pointer;
+  ulonglong *system_config_primary_ptr;
   
-  system_config_primary_pointer = (ulonglong *)func_0x00018004b9a0();
-  integer_primary = __stdio_common_vsprintf(*system_config_primary_pointer | 1,context_pointer,flags_var,size_param,0,allocator_param);
+  system_config_primary_ptr = (ulonglong *)func_0x00018004b9a0();
+  integer_primary = __stdio_common_vsprintf(*system_config_primary_ptr | 1,context_pointer,flags_var,size_param,0,allocator_param);
   if (integer_primary < 0) {
     integer_primary = -1;
   }
   return integer_primary;
 }
-void system_init_18004ba30(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+void system_initialize_memory_buffer_handler(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   system_config_1800582b0(context_pointer,*(uint64_t *)(context_pointer + 0x10),size_param,allocator_param,0xfffffffffffffffe);
   return;
 }
-void system_init_18004ba60(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+void system_initialize_memory_cache_handler(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   system_config_1800582b0(context_pointer,*(uint64_t *)(context_pointer + 0x10),size_param,allocator_param,0xfffffffffffffffe);
   return;
 }
-void system_init_18004ba90(uint64_t *context_pointer)
+void system_initialize_memory_pointer_handler(uint64_t *context_pointer)
 {
   int integer_primary;
   
@@ -13790,31 +13790,31 @@ void system_init_18004ba90(uint64_t *context_pointer)
   }
   return;
 }
-void system_init_18004bad0(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+void system_initialize_memory_block_handler(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   system_config_180058370(context_pointer,*(uint64_t *)(context_pointer + 0x10),size_param,allocator_param,0xfffffffffffffffe);
   return;
 }
-void system_init_18004bb00(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+void system_initialize_memory_pool_handler(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   system_config_180058370(context_pointer,*(uint64_t *)(context_pointer + 0x10),size_param,allocator_param,0xfffffffffffffffe);
   return;
 }
-void system_init_18004bb30(longlong context_pointer)
+void system_initialize_system_manager_handler(longlong context_pointer)
 {
   system_config_180057010(context_pointer + 0x60);
   return;
 }
-void system_init_18004bb60(longlong context_pointer)
+void system_initialize_system_controller_handler(longlong context_pointer)
 {
   system_config_180057010(context_pointer + 0x60);
   return;
 }
-void system_init_18004bb90(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+void system_initialize_system_monitor_handler(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint64_t *primary_pointer;
   longlong system_memory_secondary;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   longlong memory_buffer_ptr;
   
   system_memory_secondary = _SYSTEM_CONFIG_DATA_TYPE_121;
@@ -13854,17 +13854,17 @@ void system_init_18004bb90(uint64_t context_pointer,uint64_t flags_var,uint64_t 
   *(uint64_t *)(system_memory_secondary + 0x70) = 0;
   return;
 }
-void system_init_18004bcb0(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+void system_initialize_system_scheduler_handler(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   system_config_180058420(context_pointer,*(uint64_t *)(context_pointer + 0x10),size_param,allocator_param,0xfffffffffffffffe);
   return;
 }
-void system_init_18004bce0(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+void system_initialize_system_executor_handler(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   system_config_180058420(context_pointer,*(uint64_t *)(context_pointer + 0x10),size_param,allocator_param,0xfffffffffffffffe);
   return;
 }
-uint64_t * system_init_18004bd10(uint64_t *context_pointer)
+uint64_t * system_initialize_resource_manager_handler(uint64_t *context_pointer)
 {
   *context_pointer = &SYSTEM_DATABASE_CURSOR_TYPE;
   context_pointer[1] = 0;
@@ -13904,39 +13904,39 @@ uint64_t * system_init_18004bd10(uint64_t *context_pointer)
   *(uint32_t *)(context_pointer + 0x8f) = 3;
   return context_pointer;
 }
-void system_init_18004be50(longlong *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+void system_initialize_data_processor_handler(longlong *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t transform_result;
   
   transform_result = 0xfffffffffffffffe;
   primary_pointer = (uint64_t *)context_pointer[1];
-  for (system_config_primary_pointer = (uint64_t *)*context_pointer; system_config_primary_pointer != primary_pointer; system_config_primary_pointer = system_config_primary_pointer + 0x69) {
-    (**(code **)*system_config_primary_pointer)(system_config_primary_pointer,0,size_param,allocator_param,transform_result);
+  for (system_config_primary_ptr = (uint64_t *)*context_pointer; system_config_primary_ptr != primary_pointer; system_config_primary_ptr = system_config_primary_ptr + 0x69) {
+    (**(code **)*system_config_primary_ptr)(system_config_primary_ptr,0,size_param,allocator_param,transform_result);
   }
   if (*context_pointer == 0) {
     return;
   }
   system_processor_cleanup();
 }
-void system_init_18004be70(longlong *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+void system_initialize_data_manager_handler(longlong *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t transform_result;
   
   transform_result = 0xfffffffffffffffe;
   primary_pointer = (uint64_t *)context_pointer[1];
-  for (system_config_primary_pointer = (uint64_t *)*context_pointer; system_config_primary_pointer != primary_pointer; system_config_primary_pointer = system_config_primary_pointer + 0xb) {
-    (**(code **)*system_config_primary_pointer)(system_config_primary_pointer,0,size_param,allocator_param,transform_result);
+  for (system_config_primary_ptr = (uint64_t *)*context_pointer; system_config_primary_ptr != primary_pointer; system_config_primary_ptr = system_config_primary_ptr + 0xb) {
+    (**(code **)*system_config_primary_ptr)(system_config_primary_ptr,0,size_param,allocator_param,transform_result);
   }
   if (*context_pointer == 0) {
     return;
   }
   system_processor_cleanup();
 }
-void system_init_18004be90(longlong context_pointer)
+void system_initialize_data_allocator_handler(longlong context_pointer)
 {
   int integer_primary;
   longlong system_memory_secondary;
@@ -13971,7 +13971,7 @@ void system_init_18004be90(longlong context_pointer)
   }
   return;
 }
-void system_init_18004bf50(longlong *context_pointer)
+void system_initialize_data_cleanup_handler(longlong *context_pointer)
 {
   longlong system_memory_allocation_result;
   
@@ -13992,7 +13992,7 @@ void system_init_18004bf50(longlong *context_pointer)
   _Mtx_destroy_in_situ();
   system_processor_cleanup(system_memory_allocation_result);
 }
-void system_init_18004bff0(longlong context_pointer)
+void system_initialize_memory_initializer_handler(longlong context_pointer)
 {
   int *integer_primary_pointer;
   longlong system_memory_secondary;
@@ -14040,21 +14040,21 @@ void system_init_18004bff0(longlong context_pointer)
   }
   return;
 }
-void system_init_18004c010(longlong *context_pointer)
+void system_initialize_memory_setup_handler(longlong *context_pointer)
 {
   longlong system_memory_allocation_result;
   longlong system_memory_secondary;
   
   system_memory_allocation_result = context_pointer[1];
   for (system_memory_secondary = *context_pointer; system_memory_secondary != system_memory_allocation_result; system_memory_secondary = system_memory_secondary + 0x18) {
-    system_init_18004bf50(system_memory_secondary);
+    system_initialize_data_cleanup_handler(system_memory_secondary);
   }
   if (*context_pointer == 0) {
     return;
   }
   system_processor_cleanup();
 }
-void system_init_18004c030(longlong *context_pointer)
+void system_initialize_memory_config_handler(longlong *context_pointer)
 {
   longlong *long_pointer_primary;
   longlong *long_pointer_secondary_var;
@@ -14070,7 +14070,7 @@ void system_init_18004c030(longlong *context_pointer)
   }
   system_processor_cleanup();
 }
-uint64_t * system_init_18004c050(uint64_t *context_pointer)
+uint64_t * system_initialize_memory_allocator_secondary_handler(uint64_t *context_pointer)
 {
   *context_pointer = 0;
   context_pointer[1] = 0;
@@ -14078,21 +14078,21 @@ uint64_t * system_init_18004c050(uint64_t *context_pointer)
   *(uint32_t *)(context_pointer + 3) = 3;
   return context_pointer;
 }
-void system_init_18004c090(longlong *context_pointer)
+void system_initialize_memory_deallocator_handler(longlong *context_pointer)
 {
   longlong system_memory_allocation_result;
   longlong system_memory_secondary;
   
   system_memory_allocation_result = context_pointer[1];
   for (system_memory_secondary = *context_pointer; system_memory_secondary != system_memory_allocation_result; system_memory_secondary = system_memory_secondary + 0x18) {
-    system_init_18004bf50(system_memory_secondary);
+    system_initialize_data_cleanup_handler(system_memory_secondary);
   }
   if (*context_pointer == 0) {
     return;
   }
   system_processor_cleanup();
 }
-void system_init_18004c0b0(longlong context_pointer)
+void system_initialize_config_state_handler(longlong context_pointer)
 {
   int *integer_primary_pointer;
   longlong system_memory_secondary;
@@ -14140,7 +14140,7 @@ void system_init_18004c0b0(longlong context_pointer)
   }
   return;
 }
-void system_init_18004c0d0(longlong context_pointer)
+void system_initialize_config_status_handler(longlong context_pointer)
 {
   void *primary_pointer;
   uint8_t stack_array_a8 [8];
@@ -14161,24 +14161,24 @@ void system_init_18004c0d0(longlong context_pointer)
   
   stack_uint_28 = 0xfffffffffffffffe;
   if (context_pointer == 0) {
-void system_init_18004c260(ulonglong *context_pointer)
+void system_initialize_config_flag_handler(ulonglong *context_pointer)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   ulonglong vertex_count_var;
   
-  system_config_primary_pointer = (uint64_t *)*context_pointer;
-  if (system_config_primary_pointer == (uint64_t *)0x0) {
+  system_config_primary_ptr = (uint64_t *)*context_pointer;
+  if (system_config_primary_ptr == (uint64_t *)0x0) {
     return;
   }
-  vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+  vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
   if (vertex_count_var != 0) {
-    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
     system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
     if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-      *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+      *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
       integer_primary_pointer = (int *)(system_memory_result + 0x18);
       *integer_primary_pointer = *integer_primary_pointer + -1;
       if (*integer_primary_pointer == 0) {
@@ -14188,34 +14188,34 @@ void system_init_18004c260(ulonglong *context_pointer)
     }
     else {
       func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                          system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                          system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
     }
   }
   return;
 }
-void system_init_18004c290(longlong *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+void system_initialize_config_parameter_handler(longlong *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t transform_result;
   
   transform_result = 0xfffffffffffffffe;
   primary_pointer = (uint64_t *)context_pointer[1];
-  for (system_config_primary_pointer = (uint64_t *)*context_pointer; system_config_primary_pointer != primary_pointer; system_config_primary_pointer = system_config_primary_pointer + 4) {
-    (**(code **)*system_config_primary_pointer)(system_config_primary_pointer,0,size_param,allocator_param,transform_result);
+  for (system_config_primary_ptr = (uint64_t *)*context_pointer; system_config_primary_ptr != primary_pointer; system_config_primary_ptr = system_config_primary_ptr + 4) {
+    (**(code **)*system_config_primary_ptr)(system_config_primary_ptr,0,size_param,allocator_param,transform_result);
   }
   if (*context_pointer == 0) {
     return;
   }
   system_processor_cleanup();
 }
-void system_init_18004c2b0(longlong context_pointer)
+void system_initialize_config_processor_handler(longlong context_pointer)
 {
   uint unsigned_value_primary_var;
   longlong system_memory_secondary;
   
   if (context_pointer == 0) {
-void system_init_18004c2c4(longlong context_pointer)
+void system_initialize_system_cleaner_handler(longlong context_pointer)
 {
   uint unsigned_value_primary_var;
   longlong system_memory_secondary;
@@ -14230,7 +14230,7 @@ void system_init_18004c2c4(longlong context_pointer)
   }
   memcpy(&SYSTEM_CONFIG_DATA_TYPE_87,context_pointer,(longlong)(int)unsigned_value_primary_var);
 }
-void system_init_18004c31f(void)
+void system_initialize_system_finalizer_handler(void)
 {
   code *pconfig_status_flag;
   
@@ -14240,7 +14240,7 @@ void system_init_18004c31f(void)
   return;
 }
 int32_t1 *
-system_init_18004c330(int32_t1 *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+system_initialize_system_validator_handler(int32_t1 *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   longlong *long_pointer_primary;
   longlong *long_pointer_secondary_var;
@@ -14298,14 +14298,14 @@ system_init_18004c330(int32_t1 *context_pointer,uint64_t flags_var,uint64_t size
   *(uint64_t *)(context_pointer + 0xd0) = 0;
   return context_pointer;
 }
-uint64_t * system_init_18004c480(uint64_t *context_pointer)
+uint64_t * system_initialize_resource_allocator_handler(uint64_t *context_pointer)
 {
   longlong *long_pointer_primary;
   longlong *long_pointer_secondary_var;
   longlong *long_pointer_result_var;
   longlong memory_buffer_ptr;
   uint32_t *quinary_pointer;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   longlong *psystem_transform_type;
   uint32_t *system_config_next_ptr;
   uint32_t *nonary_ptr;
@@ -14530,7 +14530,7 @@ LAB_18004c7ef:
     }
   } while( true );
 }
-void system_init_18004ca00(longlong *context_pointer)
+void system_initialize_system_initializer_handler(longlong *context_pointer)
 {
   if ((longlong *)*context_pointer != (longlong *)0x0) {
     (**(code **)(*(longlong *)*context_pointer + 0x38))();
@@ -14538,7 +14538,7 @@ void system_init_18004ca00(longlong *context_pointer)
   return;
 }
 uint64_t *
-system_init_18004ca30(uint64_t *context_pointer,ulonglong flags_var,uint64_t size_param,uint64_t allocator_param)
+system_initialize_advanced_resource_handler(uint64_t *context_pointer,ulonglong flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   if (context_pointer[2] != 0) {
     system_processor_cleanup();
@@ -14550,7 +14550,7 @@ system_init_18004ca30(uint64_t *context_pointer,ulonglong flags_var,uint64_t siz
   }
   return context_pointer;
 }
-void system_init_18004caa0(uint64_t *context_pointer)
+void system_initialize_resource_pointer_handler(uint64_t *context_pointer)
 {
   if (context_pointer[2] != 0) {
     system_processor_cleanup();
@@ -14559,11 +14559,11 @@ void system_init_18004caa0(uint64_t *context_pointer)
   *context_pointer = &SYSTEM_DATABASE_ROW_TYPE;
   return;
 }
-void system_init_18004caf0(longlong context_pointer)
+void system_initialize_system_resource_handler(longlong context_pointer)
 {
   longlong system_memory_allocation_result;
   int integer_secondary_variable;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   float float_temp4;
   float float_temp5;
   float float_temp_6;
@@ -14597,7 +14597,7 @@ void system_init_18004caf0(longlong context_pointer)
   *(uint *)(context_pointer + 0x3ac) = (uint)(*(int *)(system_memory_allocation_result + 0xd90) == 0);
   return;
 }
-void system_init_18004cc20(longlong *context_pointer)
+void system_initialize_system_data_handler(longlong *context_pointer)
 {
   uint64_t *primary_pointer;
   longlong system_memory_secondary;
@@ -14748,7 +14748,7 @@ void system_init_18004cc20(longlong *context_pointer)
   }
   return;
 }
-void system_init_18004d020(uint64_t context_pointer,longlong flags_var)
+void system_initialize_system_operation_handler(uint64_t context_pointer,longlong flags_var)
 {
   byte byte_temp1;
   int32_t1 texture_secondary;
@@ -14927,11 +14927,11 @@ void system_init_18004d020(uint64_t context_pointer,longlong flags_var)
           byte_temp_31 = false;
         }
         if (byte_temp_31) {
-void system_init_18004e5f0(longlong context_pointer)
+void system_initialize_system_executor_primary_handler(longlong context_pointer)
 {
   int *integer_primary_pointer;
   uint32_t texture_secondary;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   bool byte_temp4;
   uint64_t vertex_buffer_offset;
   bool byte_temp6;
@@ -14984,7 +14984,7 @@ LAB_18004e721:
   }
   system_util_180062300(_SYSTEM_CONFIG_DATA_TYPE_104,&SYSTEM_STRING_ERROR,*(uint32_t *)(context_pointer + 0x3cc),*integer_primary_pointer);
 }
-uint32_t system_init_18004e7a0(void)
+uint32_t system_initialize_system_status_handler(void)
 {
   int32_t1 aunsigned_value_primary_var [16];
   longlong system_memory_secondary;
@@ -15086,7 +15086,7 @@ uint32_t system_init_18004e7a0(void)
   }
   return *(uint32_t *)(*(longlong *)(system_memory_result + 8) + 0x13c);
 }
-void system_init_18004eb00(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+void system_initialize_system_operation_advanced_handler(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint unsigned_value_primary_var;
   uint texture_secondary;
@@ -15152,14 +15152,14 @@ void system_init_18004eb00(uint64_t context_pointer,uint64_t flags_var,uint64_t 
   }
   return;
 }
-void system_init_18004ef60(void)
+void system_initialize_system_reset_handler(void)
 {
   int integer_primary;
   longlong system_memory_secondary;
   longlong system_memory_result;
   longlong memory_buffer_ptr;
   int *pinteger_count_var_var;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   uint32_t *system_config_data_ptr;
   void *system_config_next_ptr;
   char cVar9;
@@ -15302,7 +15302,7 @@ void system_init_18004ef60(void)
   lStack_1d0 = system_utility_create_object(system_memory_allocator_config,0x3878,8,3);
   memset(lStack_1d0,0,0x3878);
 }
-void system_init_18004f8e0(longlong context_pointer)
+void system_initialize_system_setup_handler(longlong context_pointer)
 {
   int *integer_primary_pointer;
   longlong system_memory_secondary;
@@ -15350,7 +15350,7 @@ void system_init_18004f8e0(longlong context_pointer)
   }
   return;
 }
-void system_init_18004f900(longlong context_pointer)
+void system_initialize_system_configure_handler(longlong context_pointer)
 {
   int *integer_primary_pointer;
   longlong system_memory_secondary;
@@ -15398,7 +15398,7 @@ void system_init_18004f900(longlong context_pointer)
   }
   return;
 }
-void system_init_18004f920(void)
+void system_initialize_system_complete_handler(void)
 {
   uint64_t *primary_pointer;
   char *string_flag_pointer;
@@ -15546,7 +15546,7 @@ void system_init_18004f920(void)
 void system_main_postinit(void)
 {
   longlong *long_pointer_primary;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   code *string_result_pointer_var;
   int32_t1 *quaternary_pointer;
   uint64_t vertex_buffer_offset;
@@ -15590,7 +15590,7 @@ void system_main_postinit(void)
     pointer_primary0 = pointer_primary0 + 0xc;
     transform_temp_8 = transform_temp_8 + -1;
   } while (transform_temp_8 != 0);
-  system_init_18004be90(_SYSTEM_CONFIG_DATA_TYPE_112 + 0x48);
+  system_initialize_data_allocator_handler(_SYSTEM_CONFIG_DATA_TYPE_112 + 0x48);
   _SYSTEM_CONFIG_DATA_TYPE_130 = 0;
   _SYSTEM_CONFIG_DATA_TYPE_40 = 0;
   if (SYSTEM_CONFIG_DATA_TYPE_79 != '\0') {
@@ -15610,12 +15610,12 @@ void system_main_postinit(void)
     pppstack_long_70 = (longlong ***)pploop_bound_limit;
     ppstack_long_60 = pploop_bound_limit;
     (*(code *)(*pploop_bound_limit)[5])(pploop_bound_limit);
-    system_config_primary_pointer = (uint64_t *)long_pointer_primary[0x28];
-    string_result_pointer_var = *(code **)*system_config_primary_pointer;
+    system_config_primary_ptr = (uint64_t *)long_pointer_primary[0x28];
+    string_result_pointer_var = *(code **)*system_config_primary_ptr;
     pppstack_long_70 = &pstack_long_pointer_8;
     pstack_long_pointer_8 = pploop_bound_limit;
     (*(code *)(*pploop_bound_limit)[5])(pploop_bound_limit);
-    (*string_result_pointer_var)(system_config_primary_pointer,&pstack_long_pointer_8);
+    (*string_result_pointer_var)(system_config_primary_ptr,&pstack_long_pointer_8);
     system_api_18020f150(long_pointer_primary[0x28]);
     (*(code *)(*pploop_bound_limit)[7])(pploop_bound_limit);
   }
@@ -15633,7 +15633,7 @@ void system_main_postinit(void)
   *(uint64_t *)(system_resource_config_data + 0x18) = *(uint64_t *)(system_resource_config_data + 0x10);
   *(int32_t1 *)(*(longlong *)(*(longlong *)(transform_temp6 + 8) + 0x140) + 0x208) = 1;
   if (*(char *)(transform_temp6 + 0x3c8) != '\0') {
-    system_init_18004e5f0(transform_temp6);
+    system_initialize_system_executor_primary_handler(transform_temp6);
     LOCK();
     *(int32_t1 *)(transform_temp6 + 0x3c8) = 0;
     UNLOCK();
@@ -15668,7 +15668,7 @@ void system_main_postinit(void)
 void system_config_180050b30(longlong context_pointer)
 {
   longlong *long_pointer_primary;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   code *string_result_pointer_var;
   int32_t1 *quaternary_pointer;
   uint64_t vertex_buffer_offset;
@@ -15706,7 +15706,7 @@ void system_config_180050b30(longlong context_pointer)
     nonary_ptr = nonary_ptr + 0xc;
     system_transform_type = system_transform_type + -1;
   } while (system_transform_type != 0);
-  system_init_18004be90(_SYSTEM_CONFIG_DATA_TYPE_112 + 0x48);
+  system_initialize_data_allocator_handler(_SYSTEM_CONFIG_DATA_TYPE_112 + 0x48);
   _SYSTEM_CONFIG_DATA_TYPE_130 = 0;
   _SYSTEM_CONFIG_DATA_TYPE_40 = 0;
   if (SYSTEM_CONFIG_DATA_TYPE_79 != '\0') {
@@ -15726,12 +15726,12 @@ void system_config_180050b30(longlong context_pointer)
     pppstack_long_70 = (longlong ***)pptransform_temp_8;
     ppstack_long_60 = pptransform_temp_8;
     (*(code *)(*pptransform_temp_8)[5])(pptransform_temp_8);
-    system_config_primary_pointer = (uint64_t *)long_pointer_primary[0x28];
-    string_result_pointer_var = *(code **)*system_config_primary_pointer;
+    system_config_primary_ptr = (uint64_t *)long_pointer_primary[0x28];
+    string_result_pointer_var = *(code **)*system_config_primary_ptr;
     pppstack_long_70 = &pstack_long_pointer_8;
     pstack_long_pointer_8 = pptransform_temp_8;
     (*(code *)(*pptransform_temp_8)[5])(pptransform_temp_8);
-    (*string_result_pointer_var)(system_config_primary_pointer,&pstack_long_pointer_8);
+    (*string_result_pointer_var)(system_config_primary_ptr,&pstack_long_pointer_8);
     system_api_18020f150(long_pointer_primary[0x28]);
     (*(code *)(*pptransform_temp_8)[7])(pptransform_temp_8);
   }
@@ -15749,7 +15749,7 @@ void system_config_180050b30(longlong context_pointer)
   *(uint64_t *)(system_resource_config_data + 0x18) = *(uint64_t *)(system_resource_config_data + 0x10);
   *(int32_t1 *)(*(longlong *)(*(longlong *)(context_pointer + 8) + 0x140) + 0x208) = 1;
   if (*(char *)(context_pointer + 0x3c8) != '\0') {
-    system_init_18004e5f0(context_pointer);
+    system_initialize_system_executor_primary_handler(context_pointer);
     LOCK();
     *(int32_t1 *)(context_pointer + 0x3c8) = 0;
     UNLOCK();
@@ -15839,21 +15839,21 @@ void system_config_180051150(longlong context_pointer,uint64_t flags_var)
 void system_config_180051d00(longlong context_pointer)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   ulonglong vertex_count_var;
   
-  system_config_primary_pointer = *(uint64_t **)(context_pointer + 0x218);
-  if (system_config_primary_pointer == (uint64_t *)0x0) {
+  system_config_primary_ptr = *(uint64_t **)(context_pointer + 0x218);
+  if (system_config_primary_ptr == (uint64_t *)0x0) {
     return;
   }
-  vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+  vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
   if (vertex_count_var != 0) {
-    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
     system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
     if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-      *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+      *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
       integer_primary_pointer = (int *)(system_memory_result + 0x18);
       *integer_primary_pointer = *integer_primary_pointer + -1;
       if (*integer_primary_pointer == 0) {
@@ -15863,7 +15863,7 @@ void system_config_180051d00(longlong context_pointer)
     }
     else {
       func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                          system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                          system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
     }
   }
   return;
@@ -15953,7 +15953,7 @@ void system_config_180051de4(longlong context_pointer)
   ulonglong vertex_count_var;
   longlong *system_register_si_var;
   longlong *system_register_di;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   ulonglong transform_iteration_count;
   
   system_memory_allocation_result = system_register_si_var[1];
@@ -16174,7 +16174,7 @@ void system_config_180052200(longlong context_pointer,longlong flags_var,uint64_
 {
   longlong *long_pointer_primary;
   uint32_t texture_secondary;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   uint64_t *quaternary_pointer;
   ulonglong vertex_buffer_offset;
   longlong transform_temp6;
@@ -16262,7 +16262,7 @@ uint64_t system_config_data_processor(uint64_t context_pointer,uint64_t flags_va
 {
   longlong system_memory_allocation_result;
   uint32_t texture_secondary;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   uint64_t *quaternary_pointer;
   void *stack_pointer_88;
   uint64_t *pstack_uint_80;
@@ -16521,7 +16521,7 @@ void system_config_180052ef0(longlong *context_pointer,uint64_t flags_var,uint64
   system_memory_secondary = _SYSTEM_CONFIG_DATA_TYPE_88;
   stack_long_pointer_8 = context_pointer;
   if (*(int *)(system_math_config_data + 0xd94) != *(int *)(system_math_config_data + 0xd90)) {
-    system_init_18004caf0(_SYSTEM_CONFIG_DATA_TYPE_88,flags_var,size_param,allocator_param,0xfffffffffffffffe);
+    system_initialize_system_resource_handler(_SYSTEM_CONFIG_DATA_TYPE_88,flags_var,size_param,allocator_param,0xfffffffffffffffe);
   }
   system_memory_result = system_resource_config_data;
   if (system_resource_config_data != 0) {
@@ -16621,7 +16621,7 @@ void system_config_180053200(uint64_t context_pointer,longlong flags_var)
 {
   uint32_t *primary_pointer;
   int integer_secondary_variable;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   uint8_t stack_array_1c8 [32];
   void **ppstack_uint_1a8;
   uint64_t stack_uint_1a0;
@@ -16636,7 +16636,7 @@ void system_config_180053200(uint64_t context_pointer,longlong flags_var)
   
   stack_uint_1a0 = 0xfffffffffffffffe;
   stack_uint_18 = _SYSTEM_CONFIG_DATA_TYPE_35 ^ (ulonglong)astack_uint_1c8;
-  system_init_180047d40(array_stack_uint_e8,
+  system_initialize_basic_system_handler(array_stack_uint_e8,
                 (longlong)*(int *)(_SYSTEM_CONFIG_DATA_TYPE_106 + 0x1d40) * 0xd0 +
                 *(longlong *)(_SYSTEM_CONFIG_DATA_TYPE_106 + 0x1d20));
   system_module_180623de0(&pstack_uint_198);
@@ -16931,7 +16931,7 @@ void system_config_180054360(longlong *context_pointer,longlong flags_var)
   uint unsigned_value_primary_var;
   int integer_secondary_variable;
   uint64_t transform_result;
-  longlong *system_root_table_pointer_var;
+  longlong *system_root_table_ptr;
   void *quinary_pointer;
   longlong transform_temp6;
   ulonglong system_transform_type;
@@ -17008,10 +17008,10 @@ void system_config_180054360(longlong *context_pointer,longlong flags_var)
   stack_uint_1a0 = 0;
   stack_uint_19c = stack_uint_19c & 0xffffff00;
   transform_result = system_utility_create_object(system_memory_allocator_config,0x60d30,0x10,0x1f);
-  system_root_table_pointer_var = (longlong *)system_create_root_table(transform_result,&stack_uint_1c0);
-  ppstack_uint_170 = (void **)system_root_table_pointer_var;
-  if (system_root_table_pointer_var != (longlong *)0x0) {
-    (**(code **)(*system_root_table_pointer_var + 0x28))(system_root_table_pointer_var);
+  system_root_table_ptr = (longlong *)system_create_root_table(transform_result,&stack_uint_1c0);
+  ppstack_uint_170 = (void **)system_root_table_ptr;
+  if (system_root_table_ptr != (longlong *)0x0) {
+    (**(code **)(*system_root_table_ptr + 0x28))(system_root_table_ptr);
   }
   stack_variable_148 = 0x3f800000;
   stack_uint_144 = 0;
@@ -17097,12 +17097,12 @@ void system_config_180054360(longlong *context_pointer,longlong flags_var)
   stack_uint_218 = 0xffffffff;
   stack_uint_1d0 = unsigned_value_primary_var;
   stack_uint_1c8._4_4_ = *(uint *)(transform_temp6 + 0x1c);
-  system_setup_table_entries(system_root_table_pointer_var,system_table_config_data,&stack_uint_1e0,&stack_variable_148);
-  system_cleanup_root_table(system_root_table_pointer_var);
-  (**(code **)(*(longlong *)context_pointer[0x56] + 0x138))((longlong *)context_pointer[0x56],system_root_table_pointer_var);
-  system_configure_table_settings(system_root_table_pointer_var,0x3d072b02,1);
-  system_finalize_table_setup(system_root_table_pointer_var);
-  (**(code **)(*(longlong *)context_pointer[0x56] + 0x140))((longlong *)context_pointer[0x56],system_root_table_pointer_var);
+  system_setup_table_entries(system_root_table_ptr,system_table_config_data,&stack_uint_1e0,&stack_variable_148);
+  system_cleanup_root_table(system_root_table_ptr);
+  (**(code **)(*(longlong *)context_pointer[0x56] + 0x138))((longlong *)context_pointer[0x56],system_root_table_ptr);
+  system_configure_table_settings(system_root_table_ptr,0x3d072b02,1);
+  system_finalize_table_setup(system_root_table_ptr);
+  (**(code **)(*(longlong *)context_pointer[0x56] + 0x140))((longlong *)context_pointer[0x56],system_root_table_ptr);
   Sleep(1000);
   stack_uint_1e0 = &system_config_default_handler;
   if (lStack_1d8 != 0) {
@@ -17118,8 +17118,8 @@ void system_config_180054360(longlong *context_pointer,longlong flags_var)
   lStack_188 = 0;
   stack_uint_178 = 0;
   stack_uint_190 = &SYSTEM_DATABASE_CURSOR_TYPE;
-  if (system_root_table_pointer_var != (longlong *)0x0) {
-    (**(code **)(*system_root_table_pointer_var + 0x38))(system_root_table_pointer_var);
+  if (system_root_table_ptr != (longlong *)0x0) {
+    (**(code **)(*system_root_table_ptr + 0x38))(system_root_table_ptr);
   }
   ppstack_uint_170 = &stack_uint_1c0;
   stack_uint_1c0 = &system_config_default_handler;
@@ -17506,32 +17506,32 @@ LAB_180054ec9:
 void system_config_180055050(void)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t transform_result;
   longlong memory_buffer_ptr;
   
-  system_config_primary_pointer = (uint64_t *)system_utility_create_object(system_memory_allocator_config,0x198,8,3);
-  primary_pointer = system_config_primary_pointer + 4;
+  system_config_primary_ptr = (uint64_t *)system_utility_create_object(system_memory_allocator_config,0x198,8,3);
+  primary_pointer = system_config_primary_ptr + 4;
   system_handler_180637560(primary_pointer);
   *primary_pointer = &SYSTEM_STRING_EMPTY87;
-  *(int32_t2 *)(system_config_primary_pointer + 0x1a) = 1;
-  *(uint32_t *)(system_config_primary_pointer + 9) = 0;
-  *(int32_t1 *)((longlong)system_config_primary_pointer + 0x54) = 0;
+  *(int32_t2 *)(system_config_primary_ptr + 0x1a) = 1;
+  *(uint32_t *)(system_config_primary_ptr + 9) = 0;
+  *(int32_t1 *)((longlong)system_config_primary_ptr + 0x54) = 0;
   *primary_pointer = &SYSTEM_UNKNOWN_DATA_TYPE_137;
-  primary_pointer = system_config_primary_pointer + 0x1b;
+  primary_pointer = system_config_primary_ptr + 0x1b;
   system_handler_180637560(primary_pointer);
   *primary_pointer = &SYSTEM_STRING_EMPTY87;
-  *(int32_t2 *)(system_config_primary_pointer + 0x31) = 1;
-  *(uint32_t *)(system_config_primary_pointer + 0x20) = 0;
-  *(int32_t1 *)((longlong)system_config_primary_pointer + 0x10c) = 0;
+  *(int32_t2 *)(system_config_primary_ptr + 0x31) = 1;
+  *(uint32_t *)(system_config_primary_ptr + 0x20) = 0;
+  *(int32_t1 *)((longlong)system_config_primary_ptr + 0x10c) = 0;
   *primary_pointer = &SYSTEM_UNKNOWN_DATA_TYPE_137;
-  *system_config_primary_pointer = 0;
-  *(int32_t1 *)(system_config_primary_pointer + 3) = 0;
-  system_config_primary_pointer[2] = 0xffffffff00000000;
-  *(uint32_t *)(system_config_primary_pointer + 1) = 0xe;
-  _SYSTEM_CONFIG_DATA_TYPE_104 = system_config_primary_pointer;
+  *system_config_primary_ptr = 0;
+  *(int32_t1 *)(system_config_primary_ptr + 3) = 0;
+  system_config_primary_ptr[2] = 0xffffffff00000000;
+  *(uint32_t *)(system_config_primary_ptr + 1) = 0xe;
+  _SYSTEM_CONFIG_DATA_TYPE_104 = system_config_primary_ptr;
   transform_result = system_utility_create_object(system_memory_allocator_config,0x480,8,3);
-  _SYSTEM_CONFIG_DATA_TYPE_122 = system_init_18004bd10(transform_result);
+  _SYSTEM_CONFIG_DATA_TYPE_122 = system_initialize_resource_manager_handler(transform_result);
   transform_result = system_utility_create_object(system_memory_allocator_config,0x10420,8,3);
   _SYSTEM_CONFIG_DATA_TYPE_94 = system_config_18005c090(transform_result);
   _SYSTEM_CONFIG_DATA_TYPE_96 = system_utility_create_object(system_memory_allocator_config,0x30,8,3);
@@ -17734,7 +17734,7 @@ void system_config_180056150(longlong context_pointer)
 {
   char configuration_status_var;
   char char_flag;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   uint64_t *quaternary_pointer;
   ulonglong vertex_buffer_offset;
   int integer_index_var_var_var;
@@ -17872,7 +17872,7 @@ LAB_180056228:
 void system_config_180056410(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   ulonglong *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   ulonglong transform_result;
   ulonglong vertex_count_var;
   ulonglong vertex_buffer_offset;
@@ -17891,22 +17891,22 @@ void system_config_180056410(longlong context_pointer,uint64_t flags_var,uint64_
   if ((longlong)(*(longlong *)(context_pointer + 0x50) - vertex_count_var) >> 3 != 0) {
     do {
       system_config_180056410(*(uint64_t *)(vertex_count_var + vertex_buffer_offset));
-      system_config_primary_pointer = *(uint64_t **)(*primary_pointer + vertex_buffer_offset);
-      if (system_config_primary_pointer != (uint64_t *)0x0) {
-        if (system_config_primary_pointer[9] != 0) {
+      system_config_primary_ptr = *(uint64_t **)(*primary_pointer + vertex_buffer_offset);
+      if (system_config_primary_ptr != (uint64_t *)0x0) {
+        if (system_config_primary_ptr[9] != 0) {
           system_processor_cleanup();
         }
-        system_config_primary_pointer[4] = &system_config_default_handler;
-        if (system_config_primary_pointer[5] == 0) {
-          system_config_primary_pointer[5] = 0;
-          *(uint32_t *)(system_config_primary_pointer + 7) = 0;
-          system_config_primary_pointer[4] = &SYSTEM_DATABASE_CURSOR_TYPE;
-          *system_config_primary_pointer = &system_config_default_handler;
-          if (system_config_primary_pointer[1] == 0) {
-            system_config_primary_pointer[1] = 0;
-            *(uint32_t *)(system_config_primary_pointer + 3) = 0;
-            *system_config_primary_pointer = &SYSTEM_DATABASE_CURSOR_TYPE;
-            system_processor_cleanup(system_config_primary_pointer);
+        system_config_primary_ptr[4] = &system_config_default_handler;
+        if (system_config_primary_ptr[5] == 0) {
+          system_config_primary_ptr[5] = 0;
+          *(uint32_t *)(system_config_primary_ptr + 7) = 0;
+          system_config_primary_ptr[4] = &SYSTEM_DATABASE_CURSOR_TYPE;
+          *system_config_primary_ptr = &system_config_default_handler;
+          if (system_config_primary_ptr[1] == 0) {
+            system_config_primary_ptr[1] = 0;
+            *(uint32_t *)(system_config_primary_ptr + 3) = 0;
+            *system_config_primary_ptr = &SYSTEM_DATABASE_CURSOR_TYPE;
+            system_processor_cleanup(system_config_primary_ptr);
           }
           system_processor_cleanup();
         }
@@ -17948,7 +17948,7 @@ void system_config_1800565f0(longlong *context_pointer)
   uint64_t *primary_pointer;
   code *string_flag_pointer;
   longlong system_memory_result;
-  longlong *system_root_table_pointer_var;
+  longlong *system_root_table_ptr;
   uint8_t stack_array_98 [32];
   longlong lStack_78;
   longlong *plStack_68;
@@ -17962,16 +17962,16 @@ void system_config_1800565f0(longlong *context_pointer)
   
   stack_variable_uint_58 = 0xfffffffffffffffe;
   stack_uint_28 = _SYSTEM_CONFIG_DATA_TYPE_35 ^ (ulonglong)astack_uint_98;
-  system_root_table_pointer_var = (longlong *)system_utility_create_object(system_memory_allocator_config,0xd0,8,3);
-  ppstack_long_60 = (longlong **)system_root_table_pointer_var;
-  system_thread_main_configure(system_root_table_pointer_var);
-  *system_root_table_pointer_var = (longlong)&SYSTEM_UNKNOWN_DATA_TYPE_108;
-  system_root_table_pointer_var[0x18] = 0;
-  *(uint32_t *)(system_root_table_pointer_var + 0x19) = 0;
-  plStack_68 = system_root_table_pointer_var;
-  (**(code **)(*system_root_table_pointer_var + 0x28))(system_root_table_pointer_var);
+  system_root_table_ptr = (longlong *)system_utility_create_object(system_memory_allocator_config,0xd0,8,3);
+  ppstack_long_60 = (longlong **)system_root_table_ptr;
+  system_thread_main_configure(system_root_table_ptr);
+  *system_root_table_ptr = (longlong)&SYSTEM_UNKNOWN_DATA_TYPE_108;
+  system_root_table_ptr[0x18] = 0;
+  *(uint32_t *)(system_root_table_ptr + 0x19) = 0;
+  plStack_68 = system_root_table_ptr;
+  (**(code **)(*system_root_table_ptr + 0x28))(system_root_table_ptr);
   plStack_68 = (longlong *)*context_pointer;
-  *context_pointer = (longlong)system_root_table_pointer_var;
+  *context_pointer = (longlong)system_root_table_ptr;
   if (plStack_68 != (longlong *)0x0) {
     (**(code **)(*plStack_68 + 0x38))();
   }
@@ -17981,15 +17981,15 @@ void system_config_1800565f0(longlong *context_pointer)
   astack_uint_38[0] = 0;
   stack_variable_uint_40 = 0xc;
   strcpy_s(astack_uint_38,0x10,&SYSTEM_UNKNOWN_DATA_TYPE_106);
-  system_root_table_pointer_var = (longlong *)system_utility_create_object(system_memory_allocator_config,0x208,8,3);
+  system_root_table_ptr = (longlong *)system_utility_create_object(system_memory_allocator_config,0x208,8,3);
   lStack_78 = system_memory_result + 0x70;
-  ppstack_long_60 = (longlong **)system_root_table_pointer_var;
-  system_api_18020e0e0(system_root_table_pointer_var,&pstack_uint_50,3,system_memory_result + 0x2e0);
-  *system_root_table_pointer_var = (longlong)&SYSTEM_UNKNOWN_DATA_TYPE_127;
-  plStack_68 = system_root_table_pointer_var;
-  system_api_18020e840(system_root_table_pointer_var);
+  ppstack_long_60 = (longlong **)system_root_table_ptr;
+  system_api_18020e0e0(system_root_table_ptr,&pstack_uint_50,3,system_memory_result + 0x2e0);
+  *system_root_table_ptr = (longlong)&SYSTEM_UNKNOWN_DATA_TYPE_127;
+  plStack_68 = system_root_table_ptr;
+  system_api_18020e840(system_root_table_ptr);
   system_config_18005ea90(system_memory_result + 0x48,&plStack_68);
-  context_pointer[1] = (longlong)system_root_table_pointer_var;
+  context_pointer[1] = (longlong)system_root_table_ptr;
   pstack_uint_50 = &SYSTEM_DATABASE_CURSOR_TYPE;
   primary_pointer = (uint64_t *)context_pointer[1];
   string_flag_pointer = *(code **)*primary_pointer;
@@ -18019,7 +18019,7 @@ void system_config_180056810(longlong context_pointer)
   uint transform_result;
   longlong memory_buffer_ptr;
   uint32_t *quinary_pointer;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   int integer_flag;
   longlong transform_temp_8;
   void *nonary_ptr;
@@ -18301,13 +18301,13 @@ longlong * system_config_180056f10(longlong *context_pointer,longlong *flags_var
 void system_config_180056f70(longlong context_pointer,longlong flags_var)
 {
   longlong system_memory_allocation_result;
-  void *system_config_primary_pointer;
+  void *system_config_primary_ptr;
   
-  system_config_primary_pointer = &SYSTEM_CONFIG_DATA_TYPE_3;
+  system_config_primary_ptr = &SYSTEM_CONFIG_DATA_TYPE_3;
   if (*(void **)(flags_var + 8) != (void *)0x0) {
-    system_config_primary_pointer = *(void **)(flags_var + 8);
+    system_config_primary_ptr = *(void **)(flags_var + 8);
   }
-  if (system_config_primary_pointer == (void *)0x0) {
+  if (system_config_primary_ptr == (void *)0x0) {
     *(uint32_t *)(context_pointer + 0x10) = 0;
     **(int32_t1 **)(context_pointer + 8) = 0;
     return;
@@ -18315,7 +18315,7 @@ void system_config_180056f70(longlong context_pointer,longlong flags_var)
   system_memory_allocation_result = -1;
   do {
     system_memory_allocation_result = system_memory_allocation_result + 1;
-  } while (system_config_primary_pointer[system_memory_allocation_result] != '\0');
+  } while (system_config_primary_ptr[system_memory_allocation_result] != '\0');
   if ((int)system_memory_allocation_result < 0x400) {
     *(int *)(context_pointer + 0x10) = (int)system_memory_allocation_result;
     strcpy_s(*(uint64_t *)(context_pointer + 8),0x400);
@@ -18403,31 +18403,31 @@ system_config_180057090(uint64_t *context_pointer,longlong flags_var,uint64_t si
 void system_config_180057110(longlong *context_pointer)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   
   primary_pointer = (uint64_t *)context_pointer[1];
-  system_config_primary_pointer = (uint64_t *)*context_pointer;
-  if (system_config_primary_pointer != primary_pointer) {
+  system_config_primary_ptr = (uint64_t *)*context_pointer;
+  if (system_config_primary_ptr != primary_pointer) {
     do {
-      (**(code **)*system_config_primary_pointer)(system_config_primary_pointer,0);
-      system_config_primary_pointer = system_config_primary_pointer + 4;
-    } while (system_config_primary_pointer != primary_pointer);
+      (**(code **)*system_config_primary_ptr)(system_config_primary_ptr,0);
+      system_config_primary_ptr = system_config_primary_ptr + 4;
+    } while (system_config_primary_ptr != primary_pointer);
     context_pointer[1] = *context_pointer;
     return;
   }
-  context_pointer[1] = (longlong)system_config_primary_pointer;
+  context_pointer[1] = (longlong)system_config_primary_ptr;
   return;
 }
 void system_config_180057170(longlong *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t transform_result;
   
   transform_result = 0xfffffffffffffffe;
   primary_pointer = (uint64_t *)context_pointer[1];
-  for (system_config_primary_pointer = (uint64_t *)*context_pointer; system_config_primary_pointer != primary_pointer; system_config_primary_pointer = system_config_primary_pointer + 0xb) {
-    (**(code **)*system_config_primary_pointer)(system_config_primary_pointer,0,size_param,allocator_param,transform_result);
+  for (system_config_primary_ptr = (uint64_t *)*context_pointer; system_config_primary_ptr != primary_pointer; system_config_primary_ptr = system_config_primary_ptr + 0xb) {
+    (**(code **)*system_config_primary_ptr)(system_config_primary_ptr,0,size_param,allocator_param,transform_result);
   }
   if (*context_pointer == 0) {
     return;
@@ -18437,7 +18437,7 @@ void system_config_180057170(longlong *context_pointer,uint64_t flags_var,uint64
 void system_config_1800571e0(longlong *context_pointer,uint32_t *flags_var)
 {
   longlong system_memory_allocation_result;
-  uint32_t *system_config_primary_pointer;
+  uint32_t *system_config_primary_ptr;
   uint32_t *tertiary_pointer;
   uint32_t *quaternary_pointer;
   
@@ -18455,24 +18455,24 @@ void system_config_1800571e0(longlong *context_pointer,uint32_t *flags_var)
   else {
     system_memory_allocation_result = system_memory_allocation_result * 2;
     if (system_memory_allocation_result == 0) {
-      system_config_primary_pointer = (uint32_t *)0x0;
+      system_config_primary_ptr = (uint32_t *)0x0;
       goto LAB_18005726e;
     }
   }
-  system_config_primary_pointer = (uint32_t *)system_memory_allocate_buffer(system_memory_allocator_config,system_memory_allocation_result * 4,(char)context_pointer[3]);
+  system_config_primary_ptr = (uint32_t *)system_memory_allocate_buffer(system_memory_allocator_config,system_memory_allocation_result * 4,(char)context_pointer[3]);
   tertiary_pointer = (uint32_t *)*context_pointer;
   quaternary_pointer = (uint32_t *)context_pointer[1];
 LAB_18005726e:
   if (tertiary_pointer != quaternary_pointer) {
-    memmove(system_config_primary_pointer,tertiary_pointer,(longlong)quaternary_pointer - (longlong)tertiary_pointer);
+    memmove(system_config_primary_ptr,tertiary_pointer,(longlong)quaternary_pointer - (longlong)tertiary_pointer);
   }
-  *system_config_primary_pointer = *flags_var;
+  *system_config_primary_ptr = *flags_var;
   if (*context_pointer != 0) {
     system_processor_cleanup();
   }
-  *context_pointer = (longlong)system_config_primary_pointer;
-  context_pointer[1] = (longlong)(system_config_primary_pointer + 1);
-  context_pointer[2] = (longlong)(system_config_primary_pointer + system_memory_allocation_result);
+  *context_pointer = (longlong)system_config_primary_ptr;
+  context_pointer[1] = (longlong)(system_config_primary_ptr + 1);
+  context_pointer[2] = (longlong)(system_config_primary_ptr + system_memory_allocation_result);
   return;
 }
 void system_config_1800572d0(longlong context_pointer)
@@ -18513,7 +18513,7 @@ void system_config_180057340(longlong *context_pointer,ulonglong flags_var)
   ulonglong texture_secondary;
   ulonglong transform_result;
   ulonglong vertex_count_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong transform_temp6;
   
   memory_allocation_size_var = context_pointer[1];
@@ -18753,7 +18753,7 @@ void system_config_180057556(longlong context_pointer)
 void system_config_180057580(void)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   longlong system_register_bp;
   ulonglong system_register_si_var;
@@ -18772,14 +18772,14 @@ void system_config_180057580(void)
   } while (system_register_di < system_register_si_var);
   *(uint64_t *)(system_register_bp + 0x18) = system_register_r15;
   if ((1 < *(ulonglong *)(system_register_bp + 0x10)) &&
-     (system_config_primary_pointer = *(uint64_t **)(system_register_bp + 8), system_config_primary_pointer != (uint64_t *)0x0)) {
-    vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+     (system_config_primary_ptr = *(uint64_t **)(system_register_bp + 8), system_config_primary_ptr != (uint64_t *)0x0)) {
+    vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
     if (vertex_count_var != 0) {
-      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
       system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
       if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-        *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+        *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
         integer_primary_pointer = (int *)(system_memory_result + 0x18);
         *integer_primary_pointer = *integer_primary_pointer + -1;
         if (*integer_primary_pointer == 0) {
@@ -18789,7 +18789,7 @@ void system_config_180057580(void)
       }
       else {
         func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                            system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                            system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
       }
     }
     return;
@@ -18799,7 +18799,7 @@ void system_config_180057580(void)
 void system_config_1800575b6(void)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   longlong system_register_bp;
   ulonglong system_register_si_var;
@@ -18807,14 +18807,14 @@ void system_config_1800575b6(void)
   uint64_t system_register_r15;
   
   *(uint64_t *)(system_register_bp + 0x18) = system_register_r15;
-  if ((1 < system_register_si_var) && (system_config_primary_pointer = *(uint64_t **)(system_register_bp + 8), system_config_primary_pointer != (uint64_t *)0x0)) {
-    vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+  if ((1 < system_register_si_var) && (system_config_primary_ptr = *(uint64_t **)(system_register_bp + 8), system_config_primary_ptr != (uint64_t *)0x0)) {
+    vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
     if (vertex_count_var != 0) {
-      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
       system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
       if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-        *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+        *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
         integer_primary_pointer = (int *)(system_memory_result + 0x18);
         *integer_primary_pointer = *integer_primary_pointer + -1;
         if (*integer_primary_pointer == 0) {
@@ -18824,7 +18824,7 @@ void system_config_1800575b6(void)
       }
       else {
         func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                            system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                            system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
       }
     }
     return;
@@ -18834,22 +18834,22 @@ void system_config_1800575b6(void)
 void system_config_1800575d4(void)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   longlong system_register_bp;
   ulonglong vertex_count_var;
   
-  system_config_primary_pointer = *(uint64_t **)(system_register_bp + 8);
-  if (system_config_primary_pointer == (uint64_t *)0x0) {
+  system_config_primary_ptr = *(uint64_t **)(system_register_bp + 8);
+  if (system_config_primary_ptr == (uint64_t *)0x0) {
     return;
   }
-  vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+  vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
   if (vertex_count_var != 0) {
-    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
     system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
     if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-      *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+      *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
       integer_primary_pointer = (int *)(system_memory_result + 0x18);
       *integer_primary_pointer = *integer_primary_pointer + -1;
       if (*integer_primary_pointer == 0) {
@@ -18859,7 +18859,7 @@ void system_config_1800575d4(void)
     }
     else {
       func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                          system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                          system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
     }
   }
   return;
@@ -18872,13 +18872,13 @@ void system_config_1800575f0(longlong context_pointer,uint64_t flags_var,uint64_
 void system_config_180057610(longlong *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t transform_result;
   
   transform_result = 0xfffffffffffffffe;
   primary_pointer = (uint64_t *)context_pointer[1];
-  for (system_config_primary_pointer = (uint64_t *)*context_pointer; system_config_primary_pointer != primary_pointer; system_config_primary_pointer = system_config_primary_pointer + 0x69) {
-    (**(code **)*system_config_primary_pointer)(system_config_primary_pointer,0,size_param,allocator_param,transform_result);
+  for (system_config_primary_ptr = (uint64_t *)*context_pointer; system_config_primary_ptr != primary_pointer; system_config_primary_ptr = system_config_primary_ptr + 0x69) {
+    (**(code **)*system_config_primary_ptr)(system_config_primary_ptr,0,size_param,allocator_param,transform_result);
   }
   if (*context_pointer == 0) {
     return;
@@ -18922,7 +18922,7 @@ void system_config_180057730(longlong *context_pointer)
   
   system_memory_allocation_result = context_pointer[1];
   for (system_memory_secondary = *context_pointer; system_memory_secondary != system_memory_allocation_result; system_memory_secondary = system_memory_secondary + 0x18) {
-    system_init_18004bf50(system_memory_secondary);
+    system_initialize_data_cleanup_handler(system_memory_secondary);
   }
   if (*context_pointer == 0) {
     return;
@@ -19028,7 +19028,7 @@ void system_config_180057796(longlong context_pointer)
 void system_config_1800577c0(void)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   longlong system_register_bp;
   ulonglong system_register_si_var;
@@ -19047,14 +19047,14 @@ void system_config_1800577c0(void)
   } while (system_register_di < system_register_si_var);
   *(uint64_t *)(system_register_bp + 0x18) = system_register_r15;
   if ((1 < *(ulonglong *)(system_register_bp + 0x10)) &&
-     (system_config_primary_pointer = *(uint64_t **)(system_register_bp + 8), system_config_primary_pointer != (uint64_t *)0x0)) {
-    vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+     (system_config_primary_ptr = *(uint64_t **)(system_register_bp + 8), system_config_primary_ptr != (uint64_t *)0x0)) {
+    vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
     if (vertex_count_var != 0) {
-      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
       system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
       if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-        *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+        *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
         integer_primary_pointer = (int *)(system_memory_result + 0x18);
         *integer_primary_pointer = *integer_primary_pointer + -1;
         if (*integer_primary_pointer == 0) {
@@ -19064,7 +19064,7 @@ void system_config_1800577c0(void)
       }
       else {
         func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                            system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                            system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
       }
     }
     return;
@@ -19074,7 +19074,7 @@ void system_config_1800577c0(void)
 void system_config_1800577f6(void)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   longlong system_register_bp;
   ulonglong system_register_si_var;
@@ -19082,14 +19082,14 @@ void system_config_1800577f6(void)
   uint64_t system_register_r15;
   
   *(uint64_t *)(system_register_bp + 0x18) = system_register_r15;
-  if ((1 < system_register_si_var) && (system_config_primary_pointer = *(uint64_t **)(system_register_bp + 8), system_config_primary_pointer != (uint64_t *)0x0)) {
-    vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+  if ((1 < system_register_si_var) && (system_config_primary_ptr = *(uint64_t **)(system_register_bp + 8), system_config_primary_ptr != (uint64_t *)0x0)) {
+    vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
     if (vertex_count_var != 0) {
-      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
       system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
       if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-        *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+        *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
         integer_primary_pointer = (int *)(system_memory_result + 0x18);
         *integer_primary_pointer = *integer_primary_pointer + -1;
         if (*integer_primary_pointer == 0) {
@@ -19099,7 +19099,7 @@ void system_config_1800577f6(void)
       }
       else {
         func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                            system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                            system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
       }
     }
     return;
@@ -19109,22 +19109,22 @@ void system_config_1800577f6(void)
 void system_config_180057814(void)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   longlong system_register_bp;
   ulonglong vertex_count_var;
   
-  system_config_primary_pointer = *(uint64_t **)(system_register_bp + 8);
-  if (system_config_primary_pointer == (uint64_t *)0x0) {
+  system_config_primary_ptr = *(uint64_t **)(system_register_bp + 8);
+  if (system_config_primary_ptr == (uint64_t *)0x0) {
     return;
   }
-  vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+  vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
   if (vertex_count_var != 0) {
-    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
     system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
     if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-      *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+      *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
       integer_primary_pointer = (int *)(system_memory_result + 0x18);
       *integer_primary_pointer = *integer_primary_pointer + -1;
       if (*integer_primary_pointer == 0) {
@@ -19134,7 +19134,7 @@ void system_config_180057814(void)
     }
     else {
       func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                          system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                          system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
     }
   }
   return;
@@ -19158,40 +19158,40 @@ void system_config_180057830(longlong *context_pointer)
 void system_config_1800578a0(void)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   ulonglong vertex_count_var;
   
-  system_config_primary_pointer = system_resource_config_data;
+  system_config_primary_ptr = system_resource_config_data;
   if (system_resource_config_data == (uint64_t *)0x0) {
     return;
   }
   system_config_180057830();
-  if ((longlong *)system_config_primary_pointer[0x30b] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)system_config_primary_pointer[0x30b] + 0x38))();
+  if ((longlong *)system_config_primary_ptr[0x30b] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)system_config_primary_ptr[0x30b] + 0x38))();
   }
   _Mtx_destroy_in_situ();
-  if ((longlong *)system_config_primary_pointer[0x300] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)system_config_primary_pointer[0x300] + 0x38))();
+  if ((longlong *)system_config_primary_ptr[0x300] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)system_config_primary_ptr[0x300] + 0x38))();
   }
-  if ((longlong *)system_config_primary_pointer[0x2d3] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)system_config_primary_pointer[0x2d3] + 0x38))();
+  if ((longlong *)system_config_primary_ptr[0x2d3] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)system_config_primary_ptr[0x2d3] + 0x38))();
   }
-  if ((longlong *)system_config_primary_pointer[0x2c0] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)system_config_primary_pointer[0x2c0] + 0x38))();
+  if ((longlong *)system_config_primary_ptr[0x2c0] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)system_config_primary_ptr[0x2c0] + 0x38))();
   }
-  system_process_180090420(system_config_primary_pointer + 0x116);
-  system_process_180090380(system_config_primary_pointer + 6);
-  if (system_config_primary_pointer[2] != 0) {
+  system_process_180090420(system_config_primary_ptr + 0x116);
+  system_process_180090380(system_config_primary_ptr + 6);
+  if (system_config_primary_ptr[2] != 0) {
     system_processor_cleanup();
   }
-  vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+  vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
   if (vertex_count_var != 0) {
-    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
     system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
     if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-      *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+      *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
       integer_primary_pointer = (int *)(system_memory_result + 0x18);
       *integer_primary_pointer = *integer_primary_pointer + -1;
       if (*integer_primary_pointer == 0) {
@@ -19201,7 +19201,7 @@ void system_config_1800578a0(void)
     }
     else {
       func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                          system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                          system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
     }
   }
   return;
@@ -19358,7 +19358,7 @@ uint64_t * system_config_180057cb0(uint64_t *context_pointer,uint flags_var,uint
 void system_config_180057d70(longlong *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t transform_result;
   
   transform_result = 0xfffffffffffffffe;
@@ -19380,8 +19380,8 @@ void system_config_180057d70(longlong *context_pointer,uint64_t flags_var,uint64
     context_pointer[4] = (longlong)&SYSTEM_DATABASE_CURSOR_TYPE;
     transform_result = 0xfffffffffffffffe;
     primary_pointer = (uint64_t *)context_pointer[1];
-    for (system_config_primary_pointer = (uint64_t *)*context_pointer; system_config_primary_pointer != primary_pointer; system_config_primary_pointer = system_config_primary_pointer + 4) {
-      (**(code **)*system_config_primary_pointer)(system_config_primary_pointer,0,size_param,allocator_param,transform_result);
+    for (system_config_primary_ptr = (uint64_t *)*context_pointer; system_config_primary_ptr != primary_pointer; system_config_primary_ptr = system_config_primary_ptr + 4) {
+      (**(code **)*system_config_primary_ptr)(system_config_primary_ptr,0,size_param,allocator_param,transform_result);
     }
     if (*context_pointer == 0) {
       return;
@@ -19658,17 +19658,17 @@ void system_config_180058420(uint64_t context_pointer,uint64_t *flags_var,uint64
 void system_config_1800584e0(uint64_t *context_pointer,longlong flags_var)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t *tertiary_pointer;
   uint64_t *quaternary_pointer;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong transform_temp6;
   uint64_t *system_config_data_ptr;
   
   system_config_data_ptr = (uint64_t *)context_pointer[1];
   quaternary_pointer = (uint64_t *)*context_pointer;
   memory_allocation_size_var = ((longlong)system_config_data_ptr - (longlong)quaternary_pointer) / 0x28;
-  system_config_primary_pointer = (uint64_t *)0x0;
+  system_config_primary_ptr = (uint64_t *)0x0;
   if (memory_allocation_size_var == 0) {
     memory_allocation_size_var = 1;
   }
@@ -19676,15 +19676,15 @@ void system_config_1800584e0(uint64_t *context_pointer,longlong flags_var)
     memory_allocation_size_var = memory_allocation_size_var * 2;
     if (memory_allocation_size_var == 0) goto LAB_18005856a;
   }
-  system_config_primary_pointer = (uint64_t *)
+  system_config_primary_ptr = (uint64_t *)
            system_memory_allocate_buffer(system_memory_allocator_config,memory_allocation_size_var * 0x28,*(int32_t1 *)(context_pointer + 3),quaternary_pointer,
                          0xfffffffffffffffe);
   system_config_data_ptr = (uint64_t *)context_pointer[1];
   quaternary_pointer = (uint64_t *)*context_pointer;
 LAB_18005856a:
-  tertiary_pointer = system_config_primary_pointer;
+  tertiary_pointer = system_config_primary_ptr;
   if (quaternary_pointer != system_config_data_ptr) {
-    transform_temp6 = (longlong)system_config_primary_pointer - (longlong)quaternary_pointer;
+    transform_temp6 = (longlong)system_config_primary_ptr - (longlong)quaternary_pointer;
     quaternary_pointer = quaternary_pointer + 1;
     do {
       *tertiary_pointer = &SYSTEM_DATABASE_CURSOR_TYPE;
@@ -19738,9 +19738,9 @@ LAB_18005856a:
     quaternary_pointer = (uint64_t *)*context_pointer;
   }
   if (quaternary_pointer == (uint64_t *)0x0) {
-    *context_pointer = system_config_primary_pointer;
+    *context_pointer = system_config_primary_ptr;
     context_pointer[1] = tertiary_pointer + 5;
-    context_pointer[2] = system_config_primary_pointer + memory_allocation_size_var * 5;
+    context_pointer[2] = system_config_primary_ptr + memory_allocation_size_var * 5;
     return;
   }
   system_processor_cleanup(quaternary_pointer);
@@ -19915,7 +19915,7 @@ void system_config_18005892b(void)
 {
   uint64_t *primary_pointer;
   longlong system_register_bx;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_register_si_var;
   longlong *system_register_di;
   longlong system_register_r12;
@@ -19928,16 +19928,16 @@ void system_config_18005892b(void)
     system_register_bx = system_register_bx + 0x20;
   } while (system_register_bx != system_register_r15);
   primary_pointer = (uint64_t *)system_register_di[1];
-  system_config_primary_pointer = (uint64_t *)*system_register_di;
-  if (system_config_primary_pointer != primary_pointer) {
+  system_config_primary_ptr = (uint64_t *)*system_register_di;
+  if (system_config_primary_ptr != primary_pointer) {
     do {
-      (**(code **)*system_config_primary_pointer)(system_config_primary_pointer,0);
-      system_config_primary_pointer = system_config_primary_pointer + 4;
-    } while (system_config_primary_pointer != primary_pointer);
-    system_config_primary_pointer = (uint64_t *)*system_register_di;
+      (**(code **)*system_config_primary_ptr)(system_config_primary_ptr,0);
+      system_config_primary_ptr = system_config_primary_ptr + 4;
+    } while (system_config_primary_ptr != primary_pointer);
+    system_config_primary_ptr = (uint64_t *)*system_register_di;
   }
-  if (system_config_primary_pointer != (uint64_t *)0x0) {
-    system_processor_cleanup(system_config_primary_pointer);
+  if (system_config_primary_ptr != (uint64_t *)0x0) {
+    system_processor_cleanup(system_config_primary_ptr);
   }
   *system_register_di = system_register_r12;
   system_memory_result = system_register_si_var * 0x20 + system_register_r12;
@@ -19948,19 +19948,19 @@ void system_config_18005892b(void)
 void system_config_18005895a(void)
 {
   longlong system_memory_allocation_result;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t *tertiary_pointer;
   longlong system_register_si_var;
   longlong *system_register_di;
   longlong system_register_r12;
   
-  system_config_primary_pointer = (uint64_t *)system_register_di[1];
+  system_config_primary_ptr = (uint64_t *)system_register_di[1];
   tertiary_pointer = (uint64_t *)*system_register_di;
-  if (tertiary_pointer != system_config_primary_pointer) {
+  if (tertiary_pointer != system_config_primary_ptr) {
     do {
       (**(code **)*tertiary_pointer)(tertiary_pointer,0);
       tertiary_pointer = tertiary_pointer + 4;
-    } while (tertiary_pointer != system_config_primary_pointer);
+    } while (tertiary_pointer != system_config_primary_ptr);
     tertiary_pointer = (uint64_t *)*system_register_di;
   }
   if (tertiary_pointer != (uint64_t *)0x0) {
@@ -19975,7 +19975,7 @@ void system_config_18005895a(void)
 void system_config_1800589a3(longlong context_pointer,uint64_t flags_var,longlong size_param)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t transform_result;
   longlong system_register_bx;
   uint64_t *quaternary_pointer;
@@ -19990,12 +19990,12 @@ void system_config_1800589a3(longlong context_pointer,uint64_t flags_var,longlon
     *(uint64_t *)(system_register_di + 8) = transform_result;
   }
   else {
-    system_config_primary_pointer = (uint64_t *)system_config_180059250();
+    system_config_primary_ptr = (uint64_t *)system_config_180059250();
     primary_pointer = *(uint64_t **)(system_register_di + 8);
-    for (quaternary_pointer = system_config_primary_pointer; quaternary_pointer != primary_pointer; quaternary_pointer = quaternary_pointer + 4) {
+    for (quaternary_pointer = system_config_primary_ptr; quaternary_pointer != primary_pointer; quaternary_pointer = quaternary_pointer + 4) {
       (**(code **)*quaternary_pointer)(quaternary_pointer,0);
     }
-    *(uint64_t **)(system_register_di + 8) = system_config_primary_pointer;
+    *(uint64_t **)(system_register_di + 8) = system_config_primary_ptr;
   }
   return;
 }
@@ -20228,11 +20228,11 @@ void system_config_180058f00(uint64_t context_pointer,uint64_t *flags_var)
 void system_config_180059000(longlong *context_pointer)
 {
   uint64_t *******pppppppointer_primary;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t *tertiary_pointer;
   uint64_t *quaternary_pointer;
   uint64_t *quinary_pointer;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   uint32_t system_transform_type;
   int integer_status_var;
   uint64_t loop_bound_limit;
@@ -20375,13 +20375,13 @@ void system_config_180059000(longlong *context_pointer)
       iStack_374 = 0;
       lStack_2c8 = 0;
       stack_uint_2c0 = (longlong)pstack_uint_300 - (longlong)pstack_uint_308 >> 5;
-      system_config_primary_pointer = pstack_uint_308;
+      system_config_primary_ptr = pstack_uint_308;
       tertiary_pointer = pstack_uint_308;
       quaternary_pointer = pstack_uint_300;
       if (stack_uint_2c0 != 0) {
         do {
           system_memory_allocation_result = lStack_2c8;
-          system_config_primary_pointer = pstack_uint_308;
+          system_config_primary_ptr = pstack_uint_308;
           integer_status_var = iStack_374;
           pointer_primary7 = &SYSTEM_CONFIG_DATA_TYPE_3;
           if ((void *)pstack_uint_308[lStack_2c8 * 4 + 1] != (void *)0x0) {
@@ -20390,8 +20390,8 @@ void system_config_180059000(longlong *context_pointer)
           system_memory_allocation_result2 = strrchr(pointer_primary7,0x2f);
           if (system_memory_allocation_result2 == 0) {
             pointer_primary7 = &SYSTEM_CONFIG_DATA_TYPE_3;
-            if ((void *)system_config_primary_pointer[system_memory_allocation_result * 4 + 1] != (void *)0x0) {
-              pointer_primary7 = (void *)system_config_primary_pointer[system_memory_allocation_result * 4 + 1];
+            if ((void *)system_config_primary_ptr[system_memory_allocation_result * 4 + 1] != (void *)0x0) {
+              pointer_primary7 = (void *)system_config_primary_ptr[system_memory_allocation_result * 4 + 1];
             }
           }
           else {
@@ -20400,10 +20400,10 @@ void system_config_180059000(longlong *context_pointer)
           pointer_primary3 = (void *)strchr(pointer_primary7,0x2e);
           if (pointer_primary3 == (void *)0x0) {
             pointer_primary3 = &SYSTEM_CONFIG_DATA_TYPE_3;
-            if ((void *)system_config_primary_pointer[system_memory_allocation_result * 4 + 1] != (void *)0x0) {
-              pointer_primary3 = (void *)system_config_primary_pointer[system_memory_allocation_result * 4 + 1];
+            if ((void *)system_config_primary_ptr[system_memory_allocation_result * 4 + 1] != (void *)0x0) {
+              pointer_primary3 = (void *)system_config_primary_ptr[system_memory_allocation_result * 4 + 1];
             }
-            pointer_primary3 = pointer_primary3 + *(int *)(system_config_primary_pointer + system_memory_allocation_result * 4 + 2);
+            pointer_primary3 = pointer_primary3 + *(int *)(system_config_primary_ptr + system_memory_allocation_result * 4 + 2);
           }
           if ((longlong)pointer_primary3 - (longlong)pointer_primary7 != 0) {
             memcpy(&stack_uint_268,pointer_primary7,(longlong)pointer_primary3 - (longlong)pointer_primary7);
@@ -20516,37 +20516,37 @@ void system_config_180059000(longlong *context_pointer)
               integer_status_var = iStack_374;
             }
           }
-          transform_offset_index = *(uint *)(system_config_primary_pointer + system_memory_allocation_result * 4 + 2);
+          transform_offset_index = *(uint *)(system_config_primary_ptr + system_memory_allocation_result * 4 + 2);
           texture_secondary2 = (ulonglong)transform_offset_index;
-          if (system_config_primary_pointer[system_memory_allocation_result * 4 + 1] != 0) {
+          if (system_config_primary_ptr[system_memory_allocation_result * 4 + 1] != 0) {
             system_module_1806277c0(pppppppointer_primary4 + 8,texture_secondary2);
           }
           if (transform_offset_index != 0) {
-            memcpy(pppppppointer_primary4[9],system_config_primary_pointer[system_memory_allocation_result * 4 + 1],texture_secondary2);
+            memcpy(pppppppointer_primary4[9],system_config_primary_ptr[system_memory_allocation_result * 4 + 1],texture_secondary2);
           }
           *(uint32_t *)(pppppppointer_primary4 + 10) = 0;
           if (pppppppointer_primary4[9] != (uint64_t ******)0x0) {
             *(int32_t1 *)(texture_secondary2 + (longlong)pppppppointer_primary4[9]) = 0;
           }
           *(uint32_t *)((longlong)pppppppointer_primary4 + 0x5c) =
-               *(uint32_t *)((longlong)system_config_primary_pointer + system_memory_allocation_result * 0x20 + 0x1c);
+               *(uint32_t *)((longlong)system_config_primary_ptr + system_memory_allocation_result * 0x20 + 0x1c);
           pstack_uint_328 = (void *)0x0;
           stack_uint_318 = stack_uint_318 & 0xffffffff00000000;
           pstack_uint_330 = &SYSTEM_DATABASE_CURSOR_TYPE;
           iStack_374 = integer_status_var + 1;
           lStack_2c8 = system_memory_allocation_result2 + 1;
-          system_config_primary_pointer = pstack_uint_308;
+          system_config_primary_ptr = pstack_uint_308;
           tertiary_pointer = pstack_uint_308;
           quaternary_pointer = pstack_uint_300;
           integer_status_var = iStack_370;
           system_memory_allocation_result2 = lStack_368;
         } while ((ulonglong)(longlong)iStack_374 < stack_uint_2c0);
       }
-      for (; system_config_node_pointer = pstack_uint_300, quinary_pointer = pstack_uint_308, system_config_primary_pointer != pstack_uint_300; system_config_primary_pointer = system_config_primary_pointer + 4)
+      for (; system_config_node_pointer = pstack_uint_300, quinary_pointer = pstack_uint_308, system_config_primary_ptr != pstack_uint_300; system_config_primary_ptr = system_config_primary_ptr + 4)
       {
         pstack_uint_308 = tertiary_pointer;
         pstack_uint_300 = quaternary_pointer;
-        (**(code **)*system_config_primary_pointer)(system_config_primary_pointer,0);
+        (**(code **)*system_config_primary_ptr)(system_config_primary_ptr,0);
         tertiary_pointer = pstack_uint_308;
         quaternary_pointer = pstack_uint_300;
         pstack_uint_300 = system_config_node_pointer;
@@ -21005,30 +21005,30 @@ void system_config_180059730(longlong context_pointer)
 uint64_t * system_config_180059780(uint64_t *context_pointer,uint64_t *flags_var,uint64_t *size_param)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   
   if (context_pointer != flags_var) {
     system_memory_result = (longlong)size_param - (longlong)context_pointer;
-    system_config_primary_pointer = context_pointer + 1;
+    system_config_primary_ptr = context_pointer + 1;
     do {
       *size_param = &SYSTEM_DATABASE_CURSOR_TYPE;
-      *(uint64_t *)(system_memory_result + (longlong)system_config_primary_pointer) = 0;
-      *(uint32_t *)(system_memory_result + 8 + (longlong)system_config_primary_pointer) = 0;
+      *(uint64_t *)(system_memory_result + (longlong)system_config_primary_ptr) = 0;
+      *(uint32_t *)(system_memory_result + 8 + (longlong)system_config_primary_ptr) = 0;
       *size_param = &system_config_default_handler;
-      *(uint64_t *)(system_memory_result + 0x10 + (longlong)system_config_primary_pointer) = 0;
-      *(uint64_t *)(system_memory_result + (longlong)system_config_primary_pointer) = 0;
-      *(uint32_t *)(system_memory_result + 8 + (longlong)system_config_primary_pointer) = 0;
-      *(uint32_t *)(system_memory_result + 8 + (longlong)system_config_primary_pointer) = *(uint32_t *)(system_config_primary_pointer + 1);
-      *(uint64_t *)(system_memory_result + (longlong)system_config_primary_pointer) = *system_config_primary_pointer;
-      *(uint32_t *)(system_memory_result + 0x14 + (longlong)system_config_primary_pointer) = *(uint32_t *)((longlong)system_config_primary_pointer + 0x14);
-      *(uint32_t *)(system_memory_result + 0x10 + (longlong)system_config_primary_pointer) = *(uint32_t *)(system_config_primary_pointer + 2);
-      *(uint32_t *)(system_config_primary_pointer + 1) = 0;
-      *system_config_primary_pointer = 0;
-      system_config_primary_pointer[2] = 0;
+      *(uint64_t *)(system_memory_result + 0x10 + (longlong)system_config_primary_ptr) = 0;
+      *(uint64_t *)(system_memory_result + (longlong)system_config_primary_ptr) = 0;
+      *(uint32_t *)(system_memory_result + 8 + (longlong)system_config_primary_ptr) = 0;
+      *(uint32_t *)(system_memory_result + 8 + (longlong)system_config_primary_ptr) = *(uint32_t *)(system_config_primary_ptr + 1);
+      *(uint64_t *)(system_memory_result + (longlong)system_config_primary_ptr) = *system_config_primary_ptr;
+      *(uint32_t *)(system_memory_result + 0x14 + (longlong)system_config_primary_ptr) = *(uint32_t *)((longlong)system_config_primary_ptr + 0x14);
+      *(uint32_t *)(system_memory_result + 0x10 + (longlong)system_config_primary_ptr) = *(uint32_t *)(system_config_primary_ptr + 2);
+      *(uint32_t *)(system_config_primary_ptr + 1) = 0;
+      *system_config_primary_ptr = 0;
+      system_config_primary_ptr[2] = 0;
       size_param = size_param + 4;
-      primary_pointer = system_config_primary_pointer + 3;
-      system_config_primary_pointer = system_config_primary_pointer + 4;
+      primary_pointer = system_config_primary_ptr + 3;
+      system_config_primary_ptr = system_config_primary_ptr + 4;
     } while (primary_pointer != flags_var);
   }
   return size_param;
@@ -21554,21 +21554,21 @@ void system_config_180059fc0(longlong *context_pointer)
 void system_config_18005a010(longlong context_pointer)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   ulonglong vertex_count_var;
   
-  system_config_primary_pointer = *(uint64_t **)(context_pointer + 0x18);
-  if (system_config_primary_pointer == (uint64_t *)0x0) {
+  system_config_primary_ptr = *(uint64_t **)(context_pointer + 0x18);
+  if (system_config_primary_ptr == (uint64_t *)0x0) {
     return;
   }
-  vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+  vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
   if (vertex_count_var != 0) {
-    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
     system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
     if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-      *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+      *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
       integer_primary_pointer = (int *)(system_memory_result + 0x18);
       *integer_primary_pointer = *integer_primary_pointer + -1;
       if (*integer_primary_pointer == 0) {
@@ -21578,7 +21578,7 @@ void system_config_18005a010(longlong context_pointer)
     }
     else {
       func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                          system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                          system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
     }
   }
   return;
@@ -21615,20 +21615,20 @@ void system_config_18005a050(longlong context_pointer)
 void system_config_18005a100(longlong context_pointer)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   ulonglong vertex_count_var;
   
   system_config_18005a050();
   if ((1 < *(ulonglong *)(context_pointer + 0x10)) &&
-     (system_config_primary_pointer = *(uint64_t **)(context_pointer + 8), system_config_primary_pointer != (uint64_t *)0x0)) {
-    vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+     (system_config_primary_ptr = *(uint64_t **)(context_pointer + 8), system_config_primary_ptr != (uint64_t *)0x0)) {
+    vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
     if (vertex_count_var != 0) {
-      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
       system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
       if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-        *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+        *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
         integer_primary_pointer = (int *)(system_memory_result + 0x18);
         *integer_primary_pointer = *integer_primary_pointer + -1;
         if (*integer_primary_pointer == 0) {
@@ -21638,7 +21638,7 @@ void system_config_18005a100(longlong context_pointer)
       }
       else {
         func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                            system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                            system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
       }
     }
     return;
@@ -21648,20 +21648,20 @@ void system_config_18005a100(longlong context_pointer)
 void system_config_18005a130(longlong context_pointer)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   ulonglong vertex_count_var;
   
   system_config_18005a050();
   if ((1 < *(ulonglong *)(context_pointer + 0x10)) &&
-     (system_config_primary_pointer = *(uint64_t **)(context_pointer + 8), system_config_primary_pointer != (uint64_t *)0x0)) {
-    vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+     (system_config_primary_ptr = *(uint64_t **)(context_pointer + 8), system_config_primary_ptr != (uint64_t *)0x0)) {
+    vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
     if (vertex_count_var != 0) {
-      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
       system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
       if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-        *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+        *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
         integer_primary_pointer = (int *)(system_memory_result + 0x18);
         *integer_primary_pointer = *integer_primary_pointer + -1;
         if (*integer_primary_pointer == 0) {
@@ -21671,7 +21671,7 @@ void system_config_18005a130(longlong context_pointer)
       }
       else {
         func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                            system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                            system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
       }
     }
     return;
@@ -21681,20 +21681,20 @@ void system_config_18005a130(longlong context_pointer)
 void system_config_18005a170(longlong context_pointer)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   ulonglong vertex_count_var;
   
   system_config_18005a050();
   if ((1 < *(ulonglong *)(context_pointer + 0x10)) &&
-     (system_config_primary_pointer = *(uint64_t **)(context_pointer + 8), system_config_primary_pointer != (uint64_t *)0x0)) {
-    vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+     (system_config_primary_ptr = *(uint64_t **)(context_pointer + 8), system_config_primary_ptr != (uint64_t *)0x0)) {
+    vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
     if (vertex_count_var != 0) {
-      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+      system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
       system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
       if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-        *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+        *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+        *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
         integer_primary_pointer = (int *)(system_memory_result + 0x18);
         *integer_primary_pointer = *integer_primary_pointer + -1;
         if (*integer_primary_pointer == 0) {
@@ -21704,7 +21704,7 @@ void system_config_18005a170(longlong context_pointer)
       }
       else {
         func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                            system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                            system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
       }
     }
     return;
@@ -21816,7 +21816,7 @@ uint64_t * system_config_18005a420(uint64_t *context_pointer,ulonglong flags_var
 void system_config_18005a500(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint32_t unsigned_value_primary_var;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   void *stack_pointer_50;
   uint64_t *psystem_stack_variable_uint_48;
   uint32_t stack_variable_uint_40;
@@ -21826,18 +21826,18 @@ void system_config_18005a500(uint64_t context_pointer,uint64_t flags_var,uint64_
   stack_uint_38 = 0;
   psystem_stack_variable_uint_48 = (uint64_t *)0x0;
   stack_variable_uint_40 = 0;
-  system_config_primary_pointer = (uint64_t *)system_memory_allocate_buffer(system_memory_allocator_config,0x10,0x13,allocator_param,0xfffffffffffffffe);
-  *(int32_t1 *)system_config_primary_pointer = 0;
-  psystem_stack_variable_uint_48 = system_config_primary_pointer;
-  unsigned_value_primary_var = system_processor_18064e990(system_config_primary_pointer);
+  system_config_primary_ptr = (uint64_t *)system_memory_allocate_buffer(system_memory_allocator_config,0x10,0x13,allocator_param,0xfffffffffffffffe);
+  *(int32_t1 *)system_config_primary_ptr = 0;
+  psystem_stack_variable_uint_48 = system_config_primary_ptr;
+  unsigned_value_primary_var = system_processor_18064e990(system_config_primary_ptr);
   stack_uint_38 = CONCAT44(stack_uint_38._4_4_,unsigned_value_primary_var);
-  *system_config_primary_pointer = 0x6320726f74696445;
-  *(uint32_t *)(system_config_primary_pointer + 1) = 0x69666e6f;
-  *(int32_t2 *)((longlong)system_config_primary_pointer + 0xc) = 0x67;
+  *system_config_primary_ptr = 0x6320726f74696445;
+  *(uint32_t *)(system_config_primary_ptr + 1) = 0x69666e6f;
+  *(int32_t2 *)((longlong)system_config_primary_ptr + 0xc) = 0x67;
   stack_variable_uint_40 = 0xd;
   system_manage_1800ae520(context_pointer,&pstack_uint_50);
   pstack_uint_50 = &system_config_default_handler;
-  system_processor_cleanup(system_config_primary_pointer);
+  system_processor_cleanup(system_config_primary_ptr);
 }
 uint64_t system_config_18005a960(uint64_t context_pointer,ulonglong flags_var)
 {
@@ -21933,7 +21933,7 @@ void system_config_18005ab50(longlong context_pointer,uint64_t flags_var,uint64_
 void system_config_18005ac00(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint32_t unsigned_value_primary_var;
-  uint32_t *system_config_primary_pointer;
+  uint32_t *system_config_primary_ptr;
   void *stack_pointer_50;
   uint32_t *psystem_stack_variable_uint_48;
   uint32_t stack_variable_uint_40;
@@ -21943,21 +21943,21 @@ void system_config_18005ac00(uint64_t context_pointer,uint64_t flags_var,uint64_
   stack_uint_38 = 0;
   psystem_stack_variable_uint_48 = (uint32_t *)0x0;
   stack_variable_uint_40 = 0;
-  system_config_primary_pointer = (uint32_t *)system_memory_allocate_buffer(system_memory_allocator_config,0x13,0x13,allocator_param,0xfffffffffffffffe);
-  *(int32_t1 *)system_config_primary_pointer = 0;
-  psystem_stack_variable_uint_48 = system_config_primary_pointer;
-  unsigned_value_primary_var = system_processor_18064e990(system_config_primary_pointer);
+  system_config_primary_ptr = (uint32_t *)system_memory_allocate_buffer(system_memory_allocator_config,0x13,0x13,allocator_param,0xfffffffffffffffe);
+  *(int32_t1 *)system_config_primary_ptr = 0;
+  psystem_stack_variable_uint_48 = system_config_primary_ptr;
+  unsigned_value_primary_var = system_processor_18064e990(system_config_primary_ptr);
   stack_uint_38 = CONCAT44(stack_uint_38._4_4_,unsigned_value_primary_var);
-  *system_config_primary_pointer = 0x65766544;
-  system_config_primary_pointer[1] = 0x6d706f6c;
-  system_config_primary_pointer[2] = 0x20746e65;
-  system_config_primary_pointer[3] = 0x666e6f63;
-  *(int32_t2 *)(system_config_primary_pointer + 4) = 0x6769;
-  *(int32_t1 *)((longlong)system_config_primary_pointer + 0x12) = 0;
+  *system_config_primary_ptr = 0x65766544;
+  system_config_primary_ptr[1] = 0x6d706f6c;
+  system_config_primary_ptr[2] = 0x20746e65;
+  system_config_primary_ptr[3] = 0x666e6f63;
+  *(int32_t2 *)(system_config_primary_ptr + 4) = 0x6769;
+  *(int32_t1 *)((longlong)system_config_primary_ptr + 0x12) = 0;
   stack_variable_uint_40 = 0x12;
   system_manage_1800ae520(context_pointer,&pstack_uint_50);
   pstack_uint_50 = &system_config_default_handler;
-  system_processor_cleanup(system_config_primary_pointer);
+  system_processor_cleanup(system_config_primary_ptr);
 }
 uint64_t system_config_18005b520(uint64_t context_pointer,ulonglong flags_var)
 {
@@ -22151,7 +22151,7 @@ void system_config_18005b960(uint64_t *context_pointer,uint64_t flags_var,uint64
 void system_config_18005ba80(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint32_t unsigned_value_primary_var;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   void *stack_pointer_50;
   uint64_t *psystem_stack_variable_uint_48;
   uint32_t stack_variable_uint_40;
@@ -22161,17 +22161,17 @@ void system_config_18005ba80(uint64_t context_pointer,uint64_t flags_var,uint64_
   stack_uint_38 = 0;
   psystem_stack_variable_uint_48 = (uint64_t *)0x0;
   stack_variable_uint_40 = 0;
-  system_config_primary_pointer = (uint64_t *)system_memory_allocate_buffer(system_memory_allocator_config,0x10,0x13,allocator_param,0xfffffffffffffffe);
-  *(int32_t1 *)system_config_primary_pointer = 0;
-  psystem_stack_variable_uint_48 = system_config_primary_pointer;
-  unsigned_value_primary_var = system_processor_18064e990(system_config_primary_pointer);
+  system_config_primary_ptr = (uint64_t *)system_memory_allocate_buffer(system_memory_allocator_config,0x10,0x13,allocator_param,0xfffffffffffffffe);
+  *(int32_t1 *)system_config_primary_ptr = 0;
+  psystem_stack_variable_uint_48 = system_config_primary_ptr;
+  unsigned_value_primary_var = system_processor_18064e990(system_config_primary_ptr);
   stack_uint_38 = CONCAT44(stack_uint_38._4_4_,unsigned_value_primary_var);
-  *system_config_primary_pointer = 0x6e6f632072657355;
-  *(uint32_t *)(system_config_primary_pointer + 1) = 0x676966;
+  *system_config_primary_ptr = 0x6e6f632072657355;
+  *(uint32_t *)(system_config_primary_ptr + 1) = 0x676966;
   stack_variable_uint_40 = 0xb;
   system_manage_1800ae520(context_pointer,&pstack_uint_50);
   pstack_uint_50 = &system_config_default_handler;
-  system_processor_cleanup(system_config_primary_pointer);
+  system_processor_cleanup(system_config_primary_ptr);
 }
 uint64_t * system_config_18005c060(uint64_t *context_pointer)
 {
@@ -22374,7 +22374,7 @@ void system_config_18005c650(longlong *context_pointer)
 {
   int integer_primary;
   longlong system_memory_secondary;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   uint64_t vertex_count_var;
   longlong *pallocation_size;
   code *pcVar6;
@@ -22467,17 +22467,17 @@ void system_config_18005c830(uint *context_pointer)
 uint64_t system_config_18005c8a0(longlong context_pointer,uint64_t flags_var)
 {
   char configuration_status_var;
-  void *system_config_primary_pointer;
+  void *system_config_primary_ptr;
   
   if (*(longlong *)(context_pointer + 0xb0) != 0) {
     configuration_status_var = (**(code **)(context_pointer + 0xb8))(flags_var);
     if (configuration_status_var == '\0') {
       if (SYSTEM_CONFIG_DATA_TYPE_83 == '\0') {
-        system_config_primary_pointer = &SYSTEM_CONFIG_DATA_TYPE_3;
+        system_config_primary_ptr = &SYSTEM_CONFIG_DATA_TYPE_3;
         if (*(void **)(context_pointer + 0x48) != (void *)0x0) {
-          system_config_primary_pointer = *(void **)(context_pointer + 0x48);
+          system_config_primary_ptr = *(void **)(context_pointer + 0x48);
         }
-        system_module_180626f80(&SYSTEM_STRING_NULL9,system_config_primary_pointer);
+        system_module_180626f80(&SYSTEM_STRING_NULL9,system_config_primary_ptr);
       }
       system_module_180627be0(context_pointer,context_pointer + 0x80);
       return 0;
@@ -22531,18 +22531,18 @@ LAB_18005c9be:
 void system_config_18005ca20(longlong context_pointer,uint32_t flags_var)
 {
   char configuration_status_var;
-  void *system_config_primary_pointer;
+  void *system_config_primary_ptr;
   uint32_t array_stack_unsigned_10 [6];
   
   if ((*(longlong *)(context_pointer + 0x1f00) != 0) &&
      (array_stack_unsigned_10[0] = flags_var, configuration_status_var = (**(code **)(context_pointer + 0x1f08))(array_stack_unsigned_10),
      flags_var = array_stack_unsigned_10[0], configuration_status_var == '\0')) {
     if (SYSTEM_CONFIG_DATA_TYPE_83 == '\0') {
-      system_config_primary_pointer = &SYSTEM_CONFIG_DATA_TYPE_3;
+      system_config_primary_ptr = &SYSTEM_CONFIG_DATA_TYPE_3;
       if (*(void **)(context_pointer + 0x1eb0) != (void *)0x0) {
-        system_config_primary_pointer = *(void **)(context_pointer + 0x1eb0);
+        system_config_primary_ptr = *(void **)(context_pointer + 0x1eb0);
       }
-      system_module_180626f80(&SYSTEM_STRING_NULL9,system_config_primary_pointer);
+      system_module_180626f80(&SYSTEM_STRING_NULL9,system_config_primary_ptr);
     }
     *(uint32_t *)(context_pointer + 0x1ea0) = *(uint32_t *)(context_pointer + 0x1ee8);
     return;
@@ -22771,7 +22771,7 @@ int system_config_18005cfc0(void)
 {
   longlong system_memory_allocation_result;
   longlong system_memory_secondary;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   int integer_value_var;
   int integer_count_var_var;
   int integer_index_var_var_var;
@@ -22815,7 +22815,7 @@ void system_config_18005d0e0(ulonglong context_pointer,longlong flags_var)
   uint texture_secondary;
   ulonglong transform_result;
   ulonglong *quaternary_pointer;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong transform_temp6;
   int integer_flag;
   int integer_status_var;
@@ -22883,7 +22883,7 @@ void system_config_18005d0e0(ulonglong context_pointer,longlong flags_var)
     if (integer_status_var != 0) {
       memory_allocation_size_var = system_memory_allocate_buffer(system_memory_allocator_config,(longlong)integer_status_var,3);
     }
-    system_init_18004b9b0(memory_allocation_size_var,(longlong)integer_status_var,&SYSTEM_UNKNOWN_DATA_TYPE_117,&dStackX_18);
+    system_initialize_config_validation_handler(memory_allocation_size_var,(longlong)integer_status_var,&SYSTEM_UNKNOWN_DATA_TYPE_117,&dStackX_18);
     system_module_1806281a0(flags_var,memory_allocation_size_var);
     if (memory_allocation_size_var != 0) {
       system_processor_cleanup(memory_allocation_size_var);
@@ -22955,7 +22955,7 @@ void system_config_18005d360(longlong context_pointer,uint64_t flags_var,uint64_
 void system_config_18005d3a0(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint64_t unsigned_value_primary_var;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t stack_unsigned_value_10;
   uint64_t system_stack_value;
   uint64_t stack_variable_unsigned_20;
@@ -22964,8 +22964,8 @@ void system_config_18005d3a0(uint64_t context_pointer,uint64_t flags_var,uint64_
   system_stack_value = size_param;
   stack_variable_unsigned_20 = allocator_param;
   unsigned_value_primary_var = __acrt_iob_func(1);
-  system_config_primary_pointer = (uint64_t *)func_0x00018004b9a0();
-  __stdio_common_vfprintf(*system_config_primary_pointer,unsigned_value_primary_var,context_pointer,0,&stack_unsigned_value_10);
+  system_config_primary_ptr = (uint64_t *)func_0x00018004b9a0();
+  __stdio_common_vfprintf(*system_config_primary_ptr,unsigned_value_primary_var,context_pointer,0,&stack_unsigned_value_10);
   return;
 }
 uint64_t * system_config_18005d400(longlong context_pointer,char *flags_var)
@@ -22974,7 +22974,7 @@ uint64_t * system_config_18005d400(longlong context_pointer,char *flags_var)
   char char_flag;
   uint64_t *tertiary_pointer;
   char *char_pointer_value;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   char *pcVar6;
   
   if (flags_var == (char *)0x0) {
@@ -23097,7 +23097,7 @@ uint64_t * system_config_18005d4b0(longlong context_pointer,char *flags_var,long
   char char_flag;
   uint64_t *tertiary_pointer;
   char *char_pointer_value;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   
   if (flags_var == (char *)0x0) {
     return *(uint64_t **)(context_pointer + 0x30);
@@ -23217,13 +23217,13 @@ uint64_t system_config_18005d548(longlong context_pointer)
 void system_config_18005d560(longlong *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t transform_result;
   
   transform_result = 0xfffffffffffffffe;
   primary_pointer = (uint64_t *)context_pointer[1];
-  for (system_config_primary_pointer = (uint64_t *)*context_pointer; system_config_primary_pointer != primary_pointer; system_config_primary_pointer = system_config_primary_pointer + 4) {
-    (**(code **)*system_config_primary_pointer)(system_config_primary_pointer,0,size_param,allocator_param,transform_result);
+  for (system_config_primary_ptr = (uint64_t *)*context_pointer; system_config_primary_ptr != primary_pointer; system_config_primary_ptr = system_config_primary_ptr + 4) {
+    (**(code **)*system_config_primary_ptr)(system_config_primary_ptr,0,size_param,allocator_param,transform_result);
   }
   if (*context_pointer == 0) {
     return;
@@ -23233,13 +23233,13 @@ void system_config_18005d560(longlong *context_pointer,uint64_t flags_var,uint64
 void system_config_18005d580(longlong *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t transform_result;
   
   transform_result = 0xfffffffffffffffe;
   primary_pointer = (uint64_t *)context_pointer[1];
-  for (system_config_primary_pointer = (uint64_t *)*context_pointer; system_config_primary_pointer != primary_pointer; system_config_primary_pointer = system_config_primary_pointer + 4) {
-    (**(code **)*system_config_primary_pointer)(system_config_primary_pointer,0,size_param,allocator_param,transform_result);
+  for (system_config_primary_ptr = (uint64_t *)*context_pointer; system_config_primary_ptr != primary_pointer; system_config_primary_ptr = system_config_primary_ptr + 4) {
+    (**(code **)*system_config_primary_ptr)(system_config_primary_ptr,0,size_param,allocator_param,transform_result);
   }
   if (*context_pointer == 0) {
     return;
@@ -23297,8 +23297,8 @@ void system_config_18005d790(longlong context_pointer,uint64_t flags_var,uint64_
   longlong *long_pointer_primary;
   longlong *long_pointer_secondary_var;
   longlong *long_pointer_result_var;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
   int integer_index_var_var_var;
   longlong system_transform_type;
   
@@ -23346,10 +23346,10 @@ void system_config_18005d790(longlong context_pointer,uint64_t flags_var,uint64_
   if (*(longlong *)(context_pointer + 0x10) - memory_allocation_size_var >> 3 != 0) {
     system_transform_type = 0;
     do {
-      system_root_table_pointer_var = *(longlong **)(system_transform_type + memory_allocation_size_var);
-      if (system_root_table_pointer_var != (longlong *)0x0) {
-        memory_allocation_size_var = __RTCastToVoid(system_root_table_pointer_var);
-        (**(code **)(*system_root_table_pointer_var + 0x28))(system_root_table_pointer_var,0);
+      system_root_table_ptr = *(longlong **)(system_transform_type + memory_allocation_size_var);
+      if (system_root_table_ptr != (longlong *)0x0) {
+        memory_allocation_size_var = __RTCastToVoid(system_root_table_ptr);
+        (**(code **)(*system_root_table_ptr + 0x28))(system_root_table_ptr,0);
         if (memory_allocation_size_var != 0) {
           system_processor_cleanup(memory_allocation_size_var);
         }
@@ -23365,10 +23365,10 @@ void system_config_18005d790(longlong context_pointer,uint64_t flags_var,uint64_
   if (*(longlong *)(context_pointer + 0x30) - memory_allocation_size_var >> 3 != 0) {
     system_transform_type = 0;
     do {
-      system_root_table_pointer_var = *(longlong **)(memory_allocation_size_var + system_transform_type);
-      if (system_root_table_pointer_var != (longlong *)0x0) {
-        memory_allocation_size_var = __RTCastToVoid(system_root_table_pointer_var);
-        (**(code **)(*system_root_table_pointer_var + 0x28))(system_root_table_pointer_var,0);
+      system_root_table_ptr = *(longlong **)(memory_allocation_size_var + system_transform_type);
+      if (system_root_table_ptr != (longlong *)0x0) {
+        memory_allocation_size_var = __RTCastToVoid(system_root_table_ptr);
+        (**(code **)(*system_root_table_ptr + 0x28))(system_root_table_ptr,0);
         if (memory_allocation_size_var != 0) {
           system_processor_cleanup(memory_allocation_size_var);
         }
@@ -23384,10 +23384,10 @@ void system_config_18005d790(longlong context_pointer,uint64_t flags_var,uint64_
   if (*(longlong *)(context_pointer + 0x50) - memory_allocation_size_var >> 3 != 0) {
     system_transform_type = 0;
     do {
-      system_root_table_pointer_var = *(longlong **)(memory_allocation_size_var + system_transform_type);
-      if (system_root_table_pointer_var != (longlong *)0x0) {
-        memory_allocation_size_var = __RTCastToVoid(system_root_table_pointer_var);
-        (**(code **)(*system_root_table_pointer_var + 0x28))(system_root_table_pointer_var,0);
+      system_root_table_ptr = *(longlong **)(memory_allocation_size_var + system_transform_type);
+      if (system_root_table_ptr != (longlong *)0x0) {
+        memory_allocation_size_var = __RTCastToVoid(system_root_table_ptr);
+        (**(code **)(*system_root_table_ptr + 0x28))(system_root_table_ptr,0);
         if (memory_allocation_size_var != 0) {
           system_processor_cleanup(memory_allocation_size_var);
         }
@@ -23418,7 +23418,7 @@ void system_config_18005dab0(longlong context_pointer)
 {
   longlong system_memory_allocation_result;
   longlong system_memory_secondary;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   longlong memory_buffer_ptr;
   
   system_memory_secondary = GetCurrentThread();
@@ -23461,7 +23461,7 @@ void system_config_18005db30(longlong context_pointer)
 {
   longlong system_memory_allocation_result;
   longlong system_memory_secondary;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   longlong memory_buffer_ptr;
   
   system_memory_secondary = GetCurrentThread();
@@ -23506,7 +23506,7 @@ void system_config_18005dbb0(void)
   int integer_secondary_variable;
   uint64_t transform_result;
   uint64_t *quaternary_pointer;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong system_transform_type;
   ulonglong texture_flag;
   ulonglong loop_bound_limit;
@@ -23872,17 +23872,17 @@ void system_config_18005e570(longlong context_pointer,longlong *flags_var)
   longlong *long_pointer_primary;
   ulonglong texture_secondary;
   longlong system_memory_result;
-  longlong *system_root_table_pointer_var;
+  longlong *system_root_table_ptr;
   int integer_count_var_var;
   ulonglong transform_iteration_count;
   
   integer_count_var_var = 0;
   long_pointer_primary = *(longlong **)(context_pointer + 0x48);
   transform_iteration_count = *(longlong *)(context_pointer + 0x50) - (longlong)long_pointer_primary >> 3;
-  system_root_table_pointer_var = long_pointer_primary;
+  system_root_table_ptr = long_pointer_primary;
   if (transform_iteration_count != 0) {
     do {
-      if ((longlong *)*system_root_table_pointer_var == flags_var) {
+      if ((longlong *)*system_root_table_ptr == flags_var) {
         system_api_18020e7b0(long_pointer_primary[integer_count_var_var]);
         texture_secondary = *(ulonglong *)(context_pointer + 0x50);
         system_memory_result = *(longlong *)(context_pointer + 0x48) + (longlong)integer_count_var_var * 8;
@@ -23894,7 +23894,7 @@ void system_config_18005e570(longlong context_pointer,longlong *flags_var)
         break;
       }
       integer_count_var_var = integer_count_var_var + 1;
-      system_root_table_pointer_var = system_root_table_pointer_var + 1;
+      system_root_table_ptr = system_root_table_ptr + 1;
     } while ((ulonglong)(longlong)integer_count_var_var < transform_iteration_count);
   }
   if (flags_var != (longlong *)0x0) {
@@ -23911,17 +23911,17 @@ void system_config_18005e57a(longlong context_pointer,longlong *flags_var)
   longlong *long_pointer_primary;
   ulonglong texture_secondary;
   longlong system_memory_result;
-  longlong *system_root_table_pointer_var;
+  longlong *system_root_table_ptr;
   int integer_count_var_var;
   ulonglong transform_iteration_count;
   
   integer_count_var_var = 0;
   long_pointer_primary = *(longlong **)(context_pointer + 0x48);
   transform_iteration_count = *(longlong *)(context_pointer + 0x50) - (longlong)long_pointer_primary >> 3;
-  system_root_table_pointer_var = long_pointer_primary;
+  system_root_table_ptr = long_pointer_primary;
   if (transform_iteration_count != 0) {
     do {
-      if ((longlong *)*system_root_table_pointer_var == flags_var) {
+      if ((longlong *)*system_root_table_ptr == flags_var) {
         system_api_18020e7b0(long_pointer_primary[integer_count_var_var]);
         texture_secondary = *(ulonglong *)(context_pointer + 0x50);
         system_memory_result = *(longlong *)(context_pointer + 0x48) + (longlong)integer_count_var_var * 8;
@@ -23933,7 +23933,7 @@ void system_config_18005e57a(longlong context_pointer,longlong *flags_var)
         break;
       }
       integer_count_var_var = integer_count_var_var + 1;
-      system_root_table_pointer_var = system_root_table_pointer_var + 1;
+      system_root_table_ptr = system_root_table_ptr + 1;
     } while ((ulonglong)(longlong)integer_count_var_var < transform_iteration_count);
   }
   if (flags_var != (longlong *)0x0) {
@@ -24015,7 +24015,7 @@ void system_config_18005e770(uint64_t context_pointer,longlong *flags_var,char s
   bool byte_temp2;
   longlong *long_pointer_result_var;
   ulonglong vertex_count_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong transform_temp6;
   char cVar7;
   
@@ -24102,7 +24102,7 @@ uint64_t * system_config_18005e950(uint64_t *context_pointer)
   uint64_t *tertiary_pointer;
   ulonglong vertex_count_var;
   ulonglong vertex_buffer_offset;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   longlong system_transform_type;
   longlong transform_temp_8;
   
@@ -24171,7 +24171,7 @@ uint64_t * system_config_18005e950(uint64_t *context_pointer)
 void system_config_18005ea90(ulonglong *context_pointer,uint64_t *flags_var)
 {
   longlong system_memory_allocation_result;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t *tertiary_pointer;
   uint64_t *quaternary_pointer;
   
@@ -24189,30 +24189,30 @@ void system_config_18005ea90(ulonglong *context_pointer,uint64_t *flags_var)
   else {
     system_memory_allocation_result = system_memory_allocation_result * 2;
     if (system_memory_allocation_result == 0) {
-      system_config_primary_pointer = (uint64_t *)0x0;
+      system_config_primary_ptr = (uint64_t *)0x0;
       goto LAB_18005eb20;
     }
   }
-  system_config_primary_pointer = (uint64_t *)system_memory_allocate_buffer(system_memory_allocator_config,system_memory_allocation_result * 8,(char)context_pointer[3]);
+  system_config_primary_ptr = (uint64_t *)system_memory_allocate_buffer(system_memory_allocator_config,system_memory_allocation_result * 8,(char)context_pointer[3]);
   tertiary_pointer = (uint64_t *)*context_pointer;
   quaternary_pointer = (uint64_t *)context_pointer[1];
 LAB_18005eb20:
   if (tertiary_pointer != quaternary_pointer) {
-    memmove(system_config_primary_pointer,tertiary_pointer,(longlong)quaternary_pointer - (longlong)tertiary_pointer);
+    memmove(system_config_primary_ptr,tertiary_pointer,(longlong)quaternary_pointer - (longlong)tertiary_pointer);
   }
-  *system_config_primary_pointer = *flags_var;
+  *system_config_primary_ptr = *flags_var;
   if (*context_pointer != 0) {
     system_processor_cleanup();
   }
-  *context_pointer = (ulonglong)system_config_primary_pointer;
-  context_pointer[1] = (ulonglong)(system_config_primary_pointer + 1);
-  context_pointer[2] = (ulonglong)(system_config_primary_pointer + system_memory_allocation_result);
+  *context_pointer = (ulonglong)system_config_primary_ptr;
+  context_pointer[1] = (ulonglong)(system_config_primary_ptr + 1);
+  context_pointer[2] = (ulonglong)(system_config_primary_ptr + system_memory_allocation_result);
   return;
 }
 longlong system_config_18005eb80(longlong context_pointer)
 {
   longlong *long_pointer_primary;
-  uint *system_config_primary_pointer;
+  uint *system_config_primary_ptr;
   ulonglong *tertiary_pointer;
   ulonglong vertex_count_var;
   uint vertex_buffer_offset;
@@ -24243,11 +24243,11 @@ longlong system_config_18005eb80(longlong context_pointer)
         do {
           unsigned_value_primary_var0 = unsigned_value_primary_var0 & *system_config_data_ptr - 1;
           if (*(int *)(system_config_data_ptr[1] + unsigned_value_primary_var0 * 0x10) == 0) {
-            system_config_primary_pointer = (uint *)(system_config_data_ptr[1] + unsigned_value_primary_var0 * 0x10);
+            system_config_primary_ptr = (uint *)(system_config_data_ptr[1] + unsigned_value_primary_var0 * 0x10);
             LOCK();
-            byte_temp12 = *system_config_primary_pointer == 0;
+            byte_temp12 = *system_config_primary_ptr == 0;
             if (byte_temp12) {
-              *system_config_primary_pointer = vertex_buffer_offset;
+              *system_config_primary_ptr = vertex_buffer_offset;
             }
             UNLOCK();
             if (byte_temp12) {
@@ -24271,9 +24271,9 @@ longlong system_config_18005eb80(longlong context_pointer)
   do {
     if (*system_config_data_ptr >> 1 <= transform_iteration_count) {
       LOCK();
-      system_config_primary_pointer = (uint *)(context_pointer + 600);
-      unsigned_value_primary_var1 = *system_config_primary_pointer;
-      *system_config_primary_pointer = *system_config_primary_pointer | 1;
+      system_config_primary_ptr = (uint *)(context_pointer + 600);
+      unsigned_value_primary_var1 = *system_config_primary_ptr;
+      *system_config_primary_ptr = *system_config_primary_ptr | 1;
       UNLOCK();
       if ((unsigned_value_primary_var1 & 1) == 0) {
         tertiary_pointer = *(ulonglong **)(context_pointer + 0x30);
@@ -24322,11 +24322,11 @@ longlong system_config_18005eb80(longlong context_pointer)
       do {
         unsigned_value_primary_var0 = unsigned_value_primary_var0 & *system_config_data_ptr - 1;
         if (*(int *)(system_config_data_ptr[1] + unsigned_value_primary_var0 * 0x10) == 0) {
-          system_config_primary_pointer = (uint *)(system_config_data_ptr[1] + unsigned_value_primary_var0 * 0x10);
+          system_config_primary_ptr = (uint *)(system_config_data_ptr[1] + unsigned_value_primary_var0 * 0x10);
           LOCK();
-          byte_temp12 = *system_config_primary_pointer == 0;
+          byte_temp12 = *system_config_primary_ptr == 0;
           if (byte_temp12) {
-            *system_config_primary_pointer = vertex_buffer_offset;
+            *system_config_primary_ptr = vertex_buffer_offset;
           }
           UNLOCK();
           if (byte_temp12) {
@@ -24343,7 +24343,7 @@ longlong system_config_18005eb80(longlong context_pointer)
 longlong system_config_18005ec11(void)
 {
   longlong *long_pointer_primary;
-  uint *system_config_primary_pointer;
+  uint *system_config_primary_ptr;
   int *memory_compare_result_pointer;
   uint vertex_count_var;
   ulonglong *quinary_pointer;
@@ -24367,9 +24367,9 @@ longlong system_config_18005ec11(void)
   while( true ) {
     if (*system_register_di >> 1 <= loop_bound_limit) {
       LOCK();
-      system_config_primary_pointer = (uint *)(system_register_r14 + 600);
-      vertex_count_var = *system_config_primary_pointer;
-      *system_config_primary_pointer = *system_config_primary_pointer | 1;
+      system_config_primary_ptr = (uint *)(system_register_r14 + 600);
+      vertex_count_var = *system_config_primary_ptr;
+      *system_config_primary_ptr = *system_config_primary_ptr | 1;
       UNLOCK();
       if ((vertex_count_var & 1) == 0) {
         quinary_pointer = *(ulonglong **)(system_register_r14 + 0x30);
@@ -24562,64 +24562,64 @@ longlong system_config_18005ed54(void)
 uint64_t * system_config_18005ee30(longlong *context_pointer,char flags_var,int32_t1 *size_param)
 {
   longlong *long_pointer_primary;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   longlong memory_buffer_ptr;
   uint64_t *quinary_pointer;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   ulonglong system_transform_type;
   ulonglong texture_flag;
   bool byte_temp9;
   
   system_config_node_pointer = (uint64_t *)0x0;
-  system_config_primary_pointer = (uint64_t *)*context_pointer;
+  system_config_primary_ptr = (uint64_t *)*context_pointer;
   do {
-    if (system_config_primary_pointer == (uint64_t *)0x0) {
+    if (system_config_primary_ptr == (uint64_t *)0x0) {
       *size_param = 0;
       if (flags_var == '\0') {
-        system_config_primary_pointer = (uint64_t *)system_memory_allocate_buffer(system_memory_allocator_config,0x68,10,0,0xfffffffffffffffe);
-        if (system_config_primary_pointer == (uint64_t *)0x0) {
+        system_config_primary_ptr = (uint64_t *)system_memory_allocate_buffer(system_memory_allocator_config,0x68,10,0,0xfffffffffffffffe);
+        if (system_config_primary_ptr == (uint64_t *)0x0) {
           return (uint64_t *)0x0;
         }
-        system_config_primary_pointer[1] = 0;
-        *(int32_t1 *)(system_config_primary_pointer + 2) = 0;
-        system_config_primary_pointer[3] = 0;
-        *system_config_primary_pointer = &SYSTEM_UNKNOWN_DATA_TYPE_126;
-        system_config_primary_pointer[4] = 0;
-        system_config_primary_pointer[5] = 0;
-        system_config_primary_pointer[6] = 0;
-        system_config_primary_pointer[7] = 0;
-        system_config_primary_pointer[8] = 0;
-        *(int32_t1 *)(system_config_primary_pointer + 9) = 0;
-        system_config_primary_pointer[10] = context_pointer;
-        *system_config_primary_pointer = &SYSTEM_UNKNOWN_DATA_TYPE_125;
-        system_config_primary_pointer[0xb] = 0x20;
-        system_config_primary_pointer[0xc] = 0;
-        system_validate_configuration_data(system_config_primary_pointer);
+        system_config_primary_ptr[1] = 0;
+        *(int32_t1 *)(system_config_primary_ptr + 2) = 0;
+        system_config_primary_ptr[3] = 0;
+        *system_config_primary_ptr = &SYSTEM_UNKNOWN_DATA_TYPE_126;
+        system_config_primary_ptr[4] = 0;
+        system_config_primary_ptr[5] = 0;
+        system_config_primary_ptr[6] = 0;
+        system_config_primary_ptr[7] = 0;
+        system_config_primary_ptr[8] = 0;
+        *(int32_t1 *)(system_config_primary_ptr + 9) = 0;
+        system_config_primary_ptr[10] = context_pointer;
+        *system_config_primary_ptr = &SYSTEM_UNKNOWN_DATA_TYPE_125;
+        system_config_primary_ptr[0xb] = 0x20;
+        system_config_primary_ptr[0xc] = 0;
+        system_validate_configuration_data(system_config_primary_ptr);
       }
       else {
-        system_config_primary_pointer = (uint64_t *)system_memory_allocate_buffer(system_memory_allocator_config,0x88,10,0,0xfffffffffffffffe);
-        if (system_config_primary_pointer == (uint64_t *)0x0) {
+        system_config_primary_ptr = (uint64_t *)system_memory_allocate_buffer(system_memory_allocator_config,0x88,10,0,0xfffffffffffffffe);
+        if (system_config_primary_ptr == (uint64_t *)0x0) {
           return (uint64_t *)0x0;
         }
-        system_config_primary_pointer[1] = 0;
-        *(int32_t1 *)(system_config_primary_pointer + 2) = 0;
-        system_config_primary_pointer[3] = 0;
-        *system_config_primary_pointer = &SYSTEM_UNKNOWN_DATA_TYPE_126;
-        system_config_primary_pointer[4] = 0;
-        system_config_primary_pointer[5] = 0;
-        system_config_primary_pointer[6] = 0;
-        system_config_primary_pointer[7] = 0;
-        system_config_primary_pointer[8] = 0;
-        *(int32_t1 *)(system_config_primary_pointer + 9) = 1;
-        system_config_primary_pointer[10] = context_pointer;
-        *system_config_primary_pointer = &SYSTEM_UNKNOWN_DATA_TYPE_124;
-        system_config_primary_pointer[0xb] = 0;
-        system_config_primary_pointer[0xc] = 0;
-        system_config_primary_pointer[0xd] = 0x10;
-        system_config_primary_pointer[0xe] = 0;
-        system_config_primary_pointer[0xf] = 0;
-        system_config_primary_pointer[0x10] = 0;
+        system_config_primary_ptr[1] = 0;
+        *(int32_t1 *)(system_config_primary_ptr + 2) = 0;
+        system_config_primary_ptr[3] = 0;
+        *system_config_primary_ptr = &SYSTEM_UNKNOWN_DATA_TYPE_126;
+        system_config_primary_ptr[4] = 0;
+        system_config_primary_ptr[5] = 0;
+        system_config_primary_ptr[6] = 0;
+        system_config_primary_ptr[7] = 0;
+        system_config_primary_ptr[8] = 0;
+        *(int32_t1 *)(system_config_primary_ptr + 9) = 1;
+        system_config_primary_ptr[10] = context_pointer;
+        *system_config_primary_ptr = &SYSTEM_UNKNOWN_DATA_TYPE_124;
+        system_config_primary_ptr[0xb] = 0;
+        system_config_primary_ptr[0xc] = 0;
+        system_config_primary_ptr[0xd] = 0x10;
+        system_config_primary_ptr[0xe] = 0;
+        system_config_primary_ptr[0xf] = 0;
+        system_config_primary_ptr[0x10] = 0;
         system_transform_type = context_pointer[4] - 1U | context_pointer[4] - 1U >> 1;
         system_transform_type = system_transform_type | system_transform_type >> 2;
         system_transform_type = system_transform_type | system_transform_type >> 4;
@@ -24629,13 +24629,13 @@ uint64_t * system_config_18005ee30(longlong *context_pointer,char flags_var,int3
           texture_flag = texture_flag * 2;
         } while (texture_flag < 8);
         texture_flag = system_transform_type + 1 >> 1;
-        if ((ulonglong)system_config_primary_pointer[0xd] < texture_flag) {
-          system_config_primary_pointer[0xd] = texture_flag;
+        if ((ulonglong)system_config_primary_ptr[0xd] < texture_flag) {
+          system_config_primary_ptr[0xd] = texture_flag;
         }
-        system_config_18005f340(system_config_primary_pointer,0);
+        system_config_18005f340(system_config_primary_ptr,0);
       }
       quinary_pointer = system_config_node_pointer;
-      if (system_config_primary_pointer != (uint64_t *)0x0) {
+      if (system_config_primary_ptr != (uint64_t *)0x0) {
         LOCK();
         *(int *)(context_pointer + 1) = (int)context_pointer[1] + 1;
         UNLOCK();
@@ -24645,37 +24645,37 @@ uint64_t * system_config_18005ee30(longlong *context_pointer,char flags_var,int3
           if (system_memory_result == 0) {
             quinary_pointer = system_config_node_pointer;
           }
-          system_config_primary_pointer[1] = quinary_pointer;
+          system_config_primary_ptr[1] = quinary_pointer;
           LOCK();
           memory_buffer_ptr = *context_pointer;
           byte_temp9 = system_memory_result == memory_buffer_ptr;
           if (byte_temp9) {
-            *context_pointer = (longlong)system_config_primary_pointer;
+            *context_pointer = (longlong)system_config_primary_ptr;
             memory_buffer_ptr = system_memory_result;
           }
           UNLOCK();
           system_memory_result = memory_buffer_ptr;
-          quinary_pointer = system_config_primary_pointer;
+          quinary_pointer = system_config_primary_ptr;
         } while (!byte_temp9);
       }
       return quinary_pointer;
     }
-    if ((*(char *)(system_config_primary_pointer + 2) != '\0') && (*(char *)(system_config_primary_pointer + 9) == flags_var)) {
+    if ((*(char *)(system_config_primary_ptr + 2) != '\0') && (*(char *)(system_config_primary_ptr + 9) == flags_var)) {
       LOCK();
-      byte_temp9 = *(char *)(system_config_primary_pointer + 2) == '\x01';
+      byte_temp9 = *(char *)(system_config_primary_ptr + 2) == '\x01';
       if (byte_temp9) {
-        *(char *)(system_config_primary_pointer + 2) = '\0';
+        *(char *)(system_config_primary_ptr + 2) = '\0';
       }
       UNLOCK();
       if (byte_temp9) {
         *size_param = 1;
-        return system_config_primary_pointer;
+        return system_config_primary_ptr;
       }
     }
-    long_pointer_primary = system_config_primary_pointer + 1;
-    system_config_primary_pointer = (uint64_t *)(*long_pointer_primary + -8);
+    long_pointer_primary = system_config_primary_ptr + 1;
+    system_config_primary_ptr = (uint64_t *)(*long_pointer_primary + -8);
     if (*long_pointer_primary == 0) {
-      system_config_primary_pointer = system_config_node_pointer;
+      system_config_primary_ptr = system_config_node_pointer;
     }
   } while( true );
 }
@@ -24852,7 +24852,7 @@ uint64_t * system_validate_configuration_data(longlong context_pointer)
   longlong system_memory_result;
   uint64_t *quaternary_pointer;
   uint64_t *quinary_pointer;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   ulonglong system_transform_type;
   longlong transform_temp_8;
   longlong loop_bound_limit;
@@ -24912,7 +24912,7 @@ uint64_t system_config_18005f490(void)
 {
   ulonglong unsigned_value_primary_var;
   longlong system_register_rax;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t *tertiary_pointer;
   ulonglong vertex_count_var;
   longlong system_register_bx;
@@ -24921,7 +24921,7 @@ uint64_t system_config_18005f490(void)
   longlong *system_register_di;
   uint64_t *system_register_parameter;
   uint64_t *quinary_pointer;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   
   system_config_node_pointer = (uint64_t *)((ulonglong)(-(int)system_register_rax & 7) + system_register_rax);
   quinary_pointer = (uint64_t *)
@@ -24938,12 +24938,12 @@ uint64_t system_config_18005f490(void)
   }
   if (system_register_bx != 0) {
     tertiary_pointer = quinary_pointer + system_register_bp;
-    system_config_primary_pointer = system_config_node_pointer;
+    system_config_primary_ptr = system_config_node_pointer;
     do {
-      *system_config_primary_pointer = 1;
-      *tertiary_pointer = system_config_primary_pointer;
+      *system_config_primary_ptr = 1;
+      *tertiary_pointer = system_config_primary_ptr;
       tertiary_pointer = tertiary_pointer + 1;
-      system_config_primary_pointer = system_config_primary_pointer + 2;
+      system_config_primary_ptr = system_config_primary_ptr + 2;
       system_register_bx = system_register_bx + -1;
     } while (system_register_bx != 0);
   }
@@ -24963,7 +24963,7 @@ void system_config_18005f54c(void)
 ulonglong system_config_18005f570(longlong context_pointer,longlong *flags_var,longlong size_param)
 {
   uint *primary_pointer;
-  uint32_t *system_config_primary_pointer;
+  uint32_t *system_config_primary_ptr;
   uint transform_result;
   uint vertex_count_var;
   longlong *pallocation_size;
@@ -25092,11 +25092,11 @@ joined_r0x00018005f6ef:
           transform_offset_index = *(longlong *)(context_pointer + 0x70) - *(longlong *)(context_pointer + 0x60) & system_memory_allocation_result1 - 1U;
           config_pointer_primary1 = config_pointer_primary2;
           do {
-            system_config_primary_pointer = (uint32_t *)(*(longlong *)(context_pointer + 0x78) + transform_offset_index * 0x10);
-            transform_iteration_count = system_config_primary_pointer[1];
-            system_transform_type = system_config_primary_pointer[2];
-            texture_flag = system_config_primary_pointer[3];
-            *config_pointer_primary1 = *system_config_primary_pointer;
+            system_config_primary_ptr = (uint32_t *)(*(longlong *)(context_pointer + 0x78) + transform_offset_index * 0x10);
+            transform_iteration_count = system_config_primary_ptr[1];
+            system_transform_type = system_config_primary_ptr[2];
+            texture_flag = system_config_primary_ptr[3];
+            *config_pointer_primary1 = *system_config_primary_ptr;
             config_pointer_primary1[1] = transform_iteration_count;
             config_pointer_primary1[2] = system_transform_type;
             config_pointer_primary1[3] = texture_flag;
@@ -25254,7 +25254,7 @@ LAB_18005f92b:
 ulonglong system_config_18005fb30(longlong context_pointer,longlong *flags_var,longlong size_param)
 {
   ulonglong *primary_pointer;
-  uint *system_config_primary_pointer;
+  uint *system_config_primary_ptr;
   uint transform_result;
   uint vertex_count_var;
   longlong *pallocation_size;
@@ -25362,17 +25362,17 @@ LAB_18005fd56:
 LAB_18005fc81:
   unsigned_value_primary_var4 = unsigned_value_primary_var1;
   if (unsigned_value_primary_var4 != 0) {
-    system_config_primary_pointer = (uint *)(unsigned_value_primary_var4 + 0x130);
-    vertex_count_var = *system_config_primary_pointer;
+    system_config_primary_ptr = (uint *)(unsigned_value_primary_var4 + 0x130);
+    vertex_count_var = *system_config_primary_ptr;
     if ((vertex_count_var & 0x7fffffff) == 0) {
 LAB_18005fcf9:
       unsigned_value_primary_var1 = *(ulonglong *)(transform_temp6 + 0x28);
     }
     else {
       LOCK();
-      transform_result = *system_config_primary_pointer;
+      transform_result = *system_config_primary_ptr;
       if (vertex_count_var == transform_result) {
-        *system_config_primary_pointer = vertex_count_var + 1;
+        *system_config_primary_ptr = vertex_count_var + 1;
       }
       UNLOCK();
       if (vertex_count_var != transform_result) goto LAB_18005fcf9;
@@ -25386,20 +25386,20 @@ LAB_18005fcf9:
       UNLOCK();
       if (byte_temp21) {
         LOCK();
-        *system_config_primary_pointer = *system_config_primary_pointer - 2;
+        *system_config_primary_ptr = *system_config_primary_ptr - 2;
         UNLOCK();
         if (unsigned_value_primary_var4 != 0) goto LAB_18005fd56;
         goto LAB_18005fd0d;
       }
       LOCK();
-      vertex_count_var = *system_config_primary_pointer;
-      *system_config_primary_pointer = *system_config_primary_pointer - 1;
+      vertex_count_var = *system_config_primary_ptr;
+      *system_config_primary_ptr = *system_config_primary_ptr - 1;
       UNLOCK();
       if (vertex_count_var == 0x80000001) {
         texture_processing_index = *(ulonglong *)(transform_temp6 + 0x28);
         do {
           *(ulonglong *)(unsigned_value_primary_var4 + 0x138) = texture_processing_index;
-          *system_config_primary_pointer = 1;
+          *system_config_primary_ptr = 1;
           LOCK();
           system_vertex_processing_index = *(ulonglong *)(transform_temp6 + 0x28);
           byte_temp21 = texture_processing_index == system_vertex_processing_index;
@@ -25410,8 +25410,8 @@ LAB_18005fcf9:
           UNLOCK();
           if (byte_temp21) break;
           LOCK();
-          vertex_count_var = *system_config_primary_pointer;
-          *system_config_primary_pointer = *system_config_primary_pointer + 0x7fffffff;
+          vertex_count_var = *system_config_primary_ptr;
+          *system_config_primary_ptr = *system_config_primary_ptr + 0x7fffffff;
           UNLOCK();
           texture_processing_index = system_vertex_processing_index;
         } while (vertex_count_var == 1);
@@ -25452,7 +25452,7 @@ joined_r0x00018005fdcd:
 longlong system_config_18005ff50(longlong context_pointer)
 {
   ulonglong *primary_pointer;
-  uint *system_config_primary_pointer;
+  uint *system_config_primary_ptr;
   uint transform_result;
   ulonglong vertex_count_var;
   uint vertex_buffer_offset;
@@ -25490,17 +25490,17 @@ LAB_180060026:
       *(int32_t2 *)(transform_temp6 + 0x140) = 0x100;
       return transform_temp6;
     }
-    system_config_primary_pointer = (uint *)(loop_bound_limit + 0x130);
-    vertex_buffer_offset = *system_config_primary_pointer;
+    system_config_primary_ptr = (uint *)(loop_bound_limit + 0x130);
+    vertex_buffer_offset = *system_config_primary_ptr;
     if ((vertex_buffer_offset & 0x7fffffff) == 0) {
 LAB_180060007:
       transform_temp6 = *(longlong *)(context_pointer + 0x28);
       goto LAB_18005ff87;
     }
     LOCK();
-    transform_result = *system_config_primary_pointer;
+    transform_result = *system_config_primary_ptr;
     if (vertex_buffer_offset == transform_result) {
-      *system_config_primary_pointer = vertex_buffer_offset + 1;
+      *system_config_primary_ptr = vertex_buffer_offset + 1;
     }
     UNLOCK();
     if (vertex_buffer_offset != transform_result) goto LAB_180060007;
@@ -25514,7 +25514,7 @@ LAB_180060007:
     UNLOCK();
     if (byte_temp10) {
       LOCK();
-      *system_config_primary_pointer = *system_config_primary_pointer - 2;
+      *system_config_primary_ptr = *system_config_primary_ptr - 2;
       UNLOCK();
       if (loop_bound_limit != 0) {
         return loop_bound_limit;
@@ -25522,14 +25522,14 @@ LAB_180060007:
       goto LAB_180060026;
     }
     LOCK();
-    vertex_buffer_offset = *system_config_primary_pointer;
-    *system_config_primary_pointer = *system_config_primary_pointer - 1;
+    vertex_buffer_offset = *system_config_primary_ptr;
+    *system_config_primary_ptr = *system_config_primary_ptr - 1;
     UNLOCK();
     if (vertex_buffer_offset == 0x80000001) {
       transform_temp_8 = *(longlong *)(context_pointer + 0x28);
       do {
         *(longlong *)(loop_bound_limit + 0x138) = transform_temp_8;
-        *system_config_primary_pointer = 1;
+        *system_config_primary_ptr = 1;
         LOCK();
         system_transform_type = *(longlong *)(context_pointer + 0x28);
         byte_temp10 = transform_temp_8 == system_transform_type;
@@ -25540,8 +25540,8 @@ LAB_180060007:
         UNLOCK();
         if (byte_temp10) break;
         LOCK();
-        vertex_buffer_offset = *system_config_primary_pointer;
-        *system_config_primary_pointer = *system_config_primary_pointer + 0x7fffffff;
+        vertex_buffer_offset = *system_config_primary_ptr;
+        *system_config_primary_ptr = *system_config_primary_ptr + 0x7fffffff;
         UNLOCK();
         transform_temp_8 = system_transform_type;
       } while (vertex_buffer_offset == 1);
@@ -25594,7 +25594,7 @@ void system_util_180060200(uint64_t *context_pointer)
 {
   longlong *long_pointer_primary;
   int *integer_secondary_variable_pointer;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   uint vertex_count_var;
   ulonglong vertex_buffer_offset;
   longlong transform_temp6;
@@ -25866,14 +25866,14 @@ uint64_t system_util_180060630(uint64_t context_pointer,ulonglong flags_var,uint
 int system_util_180060680(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   int integer_primary;
-  ulonglong *system_config_primary_pointer;
+  ulonglong *system_config_primary_ptr;
   uint64_t system_stack_value;
   uint64_t stack_variable_unsigned_20;
   
   system_stack_value = size_param;
   stack_variable_unsigned_20 = allocator_param;
-  system_config_primary_pointer = (ulonglong *)func_0x00018004b9a0();
-  integer_primary = __stdio_common_vsprintf(*system_config_primary_pointer | 1,context_pointer,0xffffffffffffffff,flags_var,0,&system_stack_value);
+  system_config_primary_ptr = (ulonglong *)func_0x00018004b9a0();
+  integer_primary = __stdio_common_vsprintf(*system_config_primary_ptr | 1,context_pointer,0xffffffffffffffff,flags_var,0,&system_stack_value);
   if (integer_primary < 0) {
     integer_primary = -1;
   }
@@ -25883,7 +25883,7 @@ void system_util_1800606e0(longlong *context_pointer)
 {
   longlong *long_pointer_primary;
   char char_flag;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   uint64_t stack_variable_unsigned_8;
   longlong *plStack_20;
   char cStack_18;
@@ -26124,10 +26124,10 @@ longlong * system_util_180060bd0(longlong *context_pointer)
 uint64_t system_util_180060c60(longlong context_pointer,uint64_t flags_var)
 {
   longlong *long_pointer_primary;
-  ulonglong *system_config_primary_pointer;
+  ulonglong *system_config_primary_ptr;
   longlong system_memory_result;
   ulonglong vertex_count_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong transform_temp6;
   ulonglong system_transform_type;
   
@@ -26145,9 +26145,9 @@ uint64_t system_util_180060c60(longlong context_pointer,uint64_t flags_var)
     if (0x8000000000000000 <
         (ulonglong)((system_memory_result - *(longlong *)(context_pointer + 0x20)) - *(longlong *)(context_pointer + 0x38))) {
       LOCK();
-      system_config_primary_pointer = (ulonglong *)(context_pointer + 0x28);
-      vertex_count_var = *system_config_primary_pointer;
-      *system_config_primary_pointer = *system_config_primary_pointer + 1;
+      system_config_primary_ptr = (ulonglong *)(context_pointer + 0x28);
+      vertex_count_var = *system_config_primary_ptr;
+      *system_config_primary_ptr = *system_config_primary_ptr + 1;
       UNLOCK();
       long_pointer_primary = *(longlong **)(context_pointer + 0x60);
       system_memory_result = *(longlong *)
@@ -26187,9 +26187,9 @@ uint64_t system_util_180060c60(longlong context_pointer,uint64_t flags_var)
     if (0x8000000000000000 <
         (ulonglong)((system_memory_result - *(longlong *)(context_pointer + 0x20)) - *(longlong *)(context_pointer + 0x38))) {
       LOCK();
-      system_config_primary_pointer = (ulonglong *)(context_pointer + 0x28);
-      vertex_count_var = *system_config_primary_pointer;
-      *system_config_primary_pointer = *system_config_primary_pointer + 1;
+      system_config_primary_ptr = (ulonglong *)(context_pointer + 0x28);
+      vertex_count_var = *system_config_primary_ptr;
+      *system_config_primary_ptr = *system_config_primary_ptr + 1;
       UNLOCK();
       long_pointer_primary = *(longlong **)(context_pointer + 0x58);
       system_transform_type = (ulonglong)((uint)vertex_count_var & 0x1f);
@@ -26217,8 +26217,8 @@ uint64_t system_util_180060d76(void)
   ulonglong *primary_pointer;
   ulonglong texture_secondary;
   longlong system_memory_result;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
   longlong transform_temp6;
   ulonglong system_register_si_var;
   longlong system_register_di;
@@ -26228,21 +26228,21 @@ uint64_t system_util_180060d76(void)
   texture_secondary = *primary_pointer;
   *primary_pointer = *primary_pointer + (system_register_si_var & 0xffffffff);
   UNLOCK();
-  system_root_table_pointer_var = *(longlong **)(system_register_di + 0x60);
+  system_root_table_ptr = *(longlong **)(system_register_di + 0x60);
   memory_allocation_size_var = *(longlong *)
-           (system_root_table_pointer_var[3] +
-           (((texture_secondary & 0xffffffffffffffe0) - **(longlong **)(system_root_table_pointer_var[3] + system_root_table_pointer_var[1] * 8) >> 5) +
-            system_root_table_pointer_var[1] & *system_root_table_pointer_var - 1U) * 8);
+           (system_root_table_ptr[3] +
+           (((texture_secondary & 0xffffffffffffffe0) - **(longlong **)(system_root_table_ptr[3] + system_root_table_ptr[1] * 8) >> 5) +
+            system_root_table_ptr[1] & *system_root_table_ptr - 1U) * 8);
   transform_temp6 = *(longlong *)(memory_allocation_size_var + 8);
   system_util_180060b80();
-  system_root_table_pointer_var = *(longlong **)(transform_temp6 + (ulonglong)((uint)texture_secondary & 0x1f) * 8);
-  if (system_root_table_pointer_var != (longlong *)0x0) {
-    (**(code **)(*system_root_table_pointer_var + 0x38))();
+  system_root_table_ptr = *(longlong **)(transform_temp6 + (ulonglong)((uint)texture_secondary & 0x1f) * 8);
+  if (system_root_table_ptr != (longlong *)0x0) {
+    (**(code **)(*system_root_table_ptr + 0x38))();
   }
   LOCK();
-  system_root_table_pointer_var = (longlong *)(transform_temp6 + 0x108);
-  system_memory_result = *system_root_table_pointer_var;
-  *system_root_table_pointer_var = *system_root_table_pointer_var + system_register_si_var;
+  system_root_table_ptr = (longlong *)(transform_temp6 + 0x108);
+  system_memory_result = *system_root_table_ptr;
+  *system_root_table_ptr = *system_root_table_ptr + system_register_si_var;
   UNLOCK();
   if (system_memory_result == 0x1f) {
     *(uint64_t *)(memory_allocation_size_var + 8) = 0;
@@ -26265,7 +26265,7 @@ uint64_t system_util_180060e40(uint64_t *context_pointer,longlong flags_var,uint
   char configuration_status_var;
   longlong *long_pointer_secondary_var;
   longlong system_memory_result;
-  longlong *system_root_table_pointer_var;
+  longlong *system_root_table_ptr;
   longlong *pallocation_size;
   longlong *long_ptr_6;
   
@@ -26274,13 +26274,13 @@ uint64_t system_util_180060e40(uint64_t *context_pointer,longlong flags_var,uint
     return 0;
   }
   long_ptr_6 = (longlong *)0x0;
-  system_root_table_pointer_var = (longlong *)(*(longlong *)(flags_var + 0x10) + -8);
+  system_root_table_ptr = (longlong *)(*(longlong *)(flags_var + 0x10) + -8);
   if (*(longlong *)(flags_var + 0x10) == 0) {
-    system_root_table_pointer_var = long_ptr_6;
+    system_root_table_ptr = long_ptr_6;
   }
-  configuration_status_var = system_util_180060c60(system_root_table_pointer_var,size_param);
+  configuration_status_var = system_util_180060c60(system_root_table_ptr,size_param);
   if (configuration_status_var == '\0') {
-    system_root_table_pointer_var = (longlong *)*context_pointer;
+    system_root_table_ptr = (longlong *)*context_pointer;
     long_pointer_secondary_var = *(longlong **)(flags_var + 0x10);
     if (long_pointer_secondary_var == (longlong *)0x0) {
       long_pointer_secondary_var = (longlong *)&#define SYSTEM_CONSTANT_00000008 0x00000008
@@ -26291,7 +26291,7 @@ uint64_t system_util_180060e40(uint64_t *context_pointer,longlong flags_var,uint
       if (system_memory_result == 0) {
         long_pointer_secondary_var = long_ptr_6;
       }
-      pallocation_size = system_root_table_pointer_var;
+      pallocation_size = system_root_table_ptr;
       if (long_pointer_secondary_var != (longlong *)0x0) {
         pallocation_size = long_pointer_secondary_var;
       }
@@ -26307,11 +26307,11 @@ uint64_t system_util_180060e40(uint64_t *context_pointer,longlong flags_var,uint
       system_memory_result = pallocation_size[1];
     }
     *(uint32_t *)(flags_var + 8) = 1;
-    system_root_table_pointer_var = pallocation_size + 1;
+    system_root_table_ptr = pallocation_size + 1;
     if (pallocation_size == (longlong *)0x0) {
-      system_root_table_pointer_var = long_ptr_6;
+      system_root_table_ptr = long_ptr_6;
     }
-    *(longlong **)(flags_var + 0x10) = system_root_table_pointer_var;
+    *(longlong **)(flags_var + 0x10) = system_root_table_ptr;
   }
   else {
     *(int *)(flags_var + 8) = *(int *)(flags_var + 8) + 1;
@@ -26424,7 +26424,7 @@ void system_util_1800611a0(longlong context_pointer,longlong *flags_var,uint64_t
   longlong system_memory_secondary;
   longlong system_memory_result;
   int integer_value_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   uint64_t transform_iteration_count;
   int32_t1 system_transform_type;
   
@@ -27123,12 +27123,12 @@ code_r0x0001800630e9:
 int system_util_1800634b0(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   int integer_primary;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t stack_variable_unsigned_20;
   
   stack_variable_unsigned_20 = allocator_param;
-  system_config_primary_pointer = (uint64_t *)func_0x00018004b9a0();
-  integer_primary = __stdio_common_vsprintf_s(*system_config_primary_pointer,context_pointer,flags_var,size_param,0,&stack_variable_unsigned_20);
+  system_config_primary_ptr = (uint64_t *)func_0x00018004b9a0();
+  integer_primary = __stdio_common_vsprintf_s(*system_config_primary_ptr,context_pointer,flags_var,size_param,0,&stack_variable_unsigned_20);
   if (integer_primary < 0) {
     integer_primary = -1;
   }
@@ -27190,10 +27190,10 @@ void system_util_1800635c0(void)
 int system_util_1800635e0(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   int integer_primary;
-  ulonglong *system_config_primary_pointer;
+  ulonglong *system_config_primary_ptr;
   
-  system_config_primary_pointer = (ulonglong *)func_0x00018004b9a0();
-  integer_primary = __stdio_common_vsprintf(*system_config_primary_pointer | 2,context_pointer,flags_var,size_param,0,allocator_param);
+  system_config_primary_ptr = (ulonglong *)func_0x00018004b9a0();
+  integer_primary = __stdio_common_vsprintf(*system_config_primary_ptr | 2,context_pointer,flags_var,size_param,0,allocator_param);
   if (integer_primary < 0) {
     integer_primary = -1;
   }
@@ -27278,10 +27278,10 @@ void system_util_180063820(uint64_t context_pointer)
 void system_util_180063b30(uint64_t context_pointer,longlong flags_var)
 {
   char *pconfig_status_flag;
-  void *system_config_primary_pointer;
+  void *system_config_primary_ptr;
   longlong system_memory_result;
   longlong memory_buffer_ptr;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong transform_temp6;
   uint64_t system_stack_variable_uint_48;
   longlong lStack_40;
@@ -27292,11 +27292,11 @@ void system_util_180063b30(uint64_t context_pointer,longlong flags_var)
   system_stack_variable_uint_48 = 0;
   lStack_40 = 0;
   system_module_180627e10(context_pointer,&pstack_uint_30,&SYSTEM_UNKNOWN_DATA_TYPE_139);
-  system_config_primary_pointer = &SYSTEM_CONFIG_DATA_TYPE_3;
+  system_config_primary_ptr = &SYSTEM_CONFIG_DATA_TYPE_3;
   if (pstack_uint_28 != (void *)0x0) {
-    system_config_primary_pointer = pstack_uint_28;
+    system_config_primary_ptr = pstack_uint_28;
   }
-  system_module_18062dee0(&system_stack_variable_uint_48,system_config_primary_pointer,&SYSTEM_UNKNOWN_DATA_TYPE_140);
+  system_module_18062dee0(&system_stack_variable_uint_48,system_config_primary_ptr,&SYSTEM_UNKNOWN_DATA_TYPE_140);
   transform_temp6 = lStack_40;
   memory_allocation_size_var = -1;
   system_memory_result = memory_allocation_size_var;
@@ -27445,7 +27445,7 @@ LAB_180063de9:
 void system_util_180064010(uint64_t context_pointer)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   void *tertiary_pointer;
   uint64_t *quaternary_pointer;
   uint8_t stack_array_358 [64];
@@ -27486,13 +27486,13 @@ void system_util_180064010(uint64_t context_pointer)
   stack_uint_2b0 = 0;
   stack_uint_2a8 = 3;
   system_module_18062d3b0(&pstack_uint_2a0,&pstack_uint_318,&pstack_uint_2c0);
-  system_config_primary_pointer = pstack_uint_2b8;
+  system_config_primary_ptr = pstack_uint_2b8;
   primary_pointer = pstack_uint_310;
   quaternary_pointer = pstack_uint_2c0;
   if ((int)((longlong)pstack_uint_310 - (longlong)pstack_uint_318 >> 5) != 0) {
     memset(astack_uint_238,0,0x200);
   }
-  for (; pstack_uint_310 = primary_pointer, quaternary_pointer != system_config_primary_pointer; quaternary_pointer = quaternary_pointer + 4) {
+  for (; pstack_uint_310 = primary_pointer, quaternary_pointer != system_config_primary_ptr; quaternary_pointer = quaternary_pointer + 4) {
     (**(code **)*quaternary_pointer)(quaternary_pointer,0);
     primary_pointer = pstack_uint_310;
   }
@@ -27585,8 +27585,8 @@ ulonglong system_util_1800649d0(uint64_t context_pointer)
   ulonglong texture_secondary;
   void *tertiary_pointer;
   uint64_t *quaternary_pointer;
-  longlong memory_allocation_size_var;
-  uint64_t *system_config_node_pointer;
+  longlong system_memory_alloc_size;
+  uint64_t *system_config_node_ptr;
   uint64_t *system_config_data_ptr;
   void *stack_pointer_b8;
   longlong lStack_b0;
@@ -27969,7 +27969,7 @@ void system_util_180065160(uint64_t context_pointer)
   bool byte_temp3;
   uint64_t *quaternary_pointer;
   uint64_t *quinary_pointer;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   char cVar7;
   int integer_status_var;
   longlong loop_bound_limit;
@@ -28905,7 +28905,7 @@ void system_util_1800669c0(uint64_t context_pointer,uint64_t flags_var,char size
 {
   longlong system_memory_allocation_result;
   char char_flag;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   uint32_t vertex_count_var;
   uint64_t *quinary_pointer;
   int integer_index_var_var_var;
@@ -29010,7 +29010,7 @@ void system_util_180066dd0(void)
 void system_util_180066df0(longlong *context_pointer,longlong flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   longlong system_memory_allocation_result;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   uint64_t *quaternary_pointer;
   uint64_t *quinary_pointer;
@@ -29049,18 +29049,18 @@ void system_util_180066df0(longlong *context_pointer,longlong flags_var,uint64_t
   quaternary_pointer = (uint64_t *)context_pointer[1];
   system_memory_result = *context_pointer;
 LAB_180066ec4:
-  system_config_primary_pointer = (uint64_t *)system_config_180059780(system_memory_result,quaternary_pointer,system_memory_allocation_result);
-  *system_config_primary_pointer = &SYSTEM_DATABASE_CURSOR_TYPE;
-  system_config_primary_pointer[1] = 0;
-  *(uint32_t *)(system_config_primary_pointer + 2) = 0;
-  *system_config_primary_pointer = &system_config_default_handler;
-  system_config_primary_pointer[3] = 0;
-  system_config_primary_pointer[1] = 0;
-  *(uint32_t *)(system_config_primary_pointer + 2) = 0;
-  *(uint32_t *)(system_config_primary_pointer + 2) = *(uint32_t *)(flags_var + 0x10);
-  system_config_primary_pointer[1] = *(uint64_t *)(flags_var + 8);
-  *(uint32_t *)((longlong)system_config_primary_pointer + 0x1c) = *(uint32_t *)(flags_var + 0x1c);
-  *(uint32_t *)(system_config_primary_pointer + 3) = *(uint32_t *)(flags_var + 0x18);
+  system_config_primary_ptr = (uint64_t *)system_config_180059780(system_memory_result,quaternary_pointer,system_memory_allocation_result);
+  *system_config_primary_ptr = &SYSTEM_DATABASE_CURSOR_TYPE;
+  system_config_primary_ptr[1] = 0;
+  *(uint32_t *)(system_config_primary_ptr + 2) = 0;
+  *system_config_primary_ptr = &system_config_default_handler;
+  system_config_primary_ptr[3] = 0;
+  system_config_primary_ptr[1] = 0;
+  *(uint32_t *)(system_config_primary_ptr + 2) = 0;
+  *(uint32_t *)(system_config_primary_ptr + 2) = *(uint32_t *)(flags_var + 0x10);
+  system_config_primary_ptr[1] = *(uint64_t *)(flags_var + 8);
+  *(uint32_t *)((longlong)system_config_primary_ptr + 0x1c) = *(uint32_t *)(flags_var + 0x1c);
+  *(uint32_t *)(system_config_primary_ptr + 3) = *(uint32_t *)(flags_var + 0x18);
   *(uint32_t *)(flags_var + 0x10) = 0;
   *(uint64_t *)(flags_var + 8) = 0;
   *(uint64_t *)(flags_var + 0x18) = 0;
@@ -29075,7 +29075,7 @@ LAB_180066ec4:
   }
   if (quinary_pointer == (uint64_t *)0x0) {
     *context_pointer = system_memory_allocation_result;
-    context_pointer[1] = (longlong)(system_config_primary_pointer + 4);
+    context_pointer[1] = (longlong)(system_config_primary_ptr + 4);
     context_pointer[2] = transform_temp6 * 0x20 + system_memory_allocation_result;
     return;
   }
@@ -29280,7 +29280,7 @@ void system_util_1800672c0(longlong context_pointer)
 {
   longlong system_memory_allocation_result;
   longlong system_memory_secondary;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   uint64_t vertex_count_var;
   uint64_t vertex_buffer_offset;
   longlong *long_ptr_6;
@@ -29365,14 +29365,14 @@ void system_util_1800672c0(longlong context_pointer)
 void system_util_180067480(uint64_t context_pointer,longlong flags_var)
 {
   void *primary_pointer;
-  void *system_config_primary_pointer;
+  void *system_config_primary_ptr;
   
   primary_pointer = *(void **)(*(longlong *)(flags_var + 0x1f8) + 0x10);
-  system_config_primary_pointer = &SYSTEM_CONFIG_DATA_TYPE_3;
+  system_config_primary_ptr = &SYSTEM_CONFIG_DATA_TYPE_3;
   if (primary_pointer != (void *)0x0) {
-    system_config_primary_pointer = primary_pointer;
+    system_config_primary_ptr = primary_pointer;
   }
-  system_util_180062300(_SYSTEM_CONFIG_DATA_TYPE_104,&SYSTEM_UNKNOWN_DATA_TYPE_175,system_config_primary_pointer);
+  system_util_180062300(_SYSTEM_CONFIG_DATA_TYPE_104,&SYSTEM_UNKNOWN_DATA_TYPE_175,system_config_primary_ptr);
 }
 void system_util_180067810(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
@@ -29393,7 +29393,7 @@ void system_util_180067840(longlong *context_pointer)
   longlong *ptransform_temp_8;
   int validation_code_var;
   longlong stack_long_value_8;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   longlong lStack_c8;
   longlong lStack_c0;
   uint64_t stack_uint_b8;
@@ -29442,9 +29442,9 @@ void system_util_180067840(longlong *context_pointer)
   if (validation_code_var != 0) {
     __Throw_C_error_std__YAXH_Z(validation_code_var);
   }
-  system_config_temp_pointer = *(uint64_t **)(context_pointer[1] + 0x1b0);
+  system_config_temp_ptr = *(uint64_t **)(context_pointer[1] + 0x1b0);
   system_memory_result = *context_pointer;
-  system_util_180069cc0(system_memory_result + 0x10,&system_config_temp_pointer);
+  system_util_180069cc0(system_memory_result + 0x10,&system_config_temp_ptr);
   validation_code_var = _Cnd_signal(system_memory_result + 0x278);
   if (validation_code_var != 0) {
     __Throw_C_error_std__YAXH_Z(validation_code_var);
@@ -29481,7 +29481,7 @@ void system_util_180067840(longlong *context_pointer)
   system_memory_result = memory_buffer_ptr + 0x200380;
   stack_variable_uint_40 = 0x180068808;
   stack_long_value_8 = system_memory_result;
-  system_config_temp_pointer = system_config_data_ptr;
+  system_config_temp_ptr = system_config_data_ptr;
   validation_code_var = _Mtx_lock(system_memory_result);
   if (validation_code_var != 0) {
     stack_variable_uint_40 = 0x180068815;
@@ -29620,10 +29620,10 @@ uint64_t system_util_180068250(longlong context_pointer,longlong flags_var,longl
 {
   ulonglong unsigned_value_primary_var;
   char char_flag;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   uint64_t vertex_count_var;
   ulonglong vertex_buffer_offset;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   ulonglong system_transform_type;
   ulonglong texture_flag;
   
@@ -29873,7 +29873,7 @@ system_util_180068860(longlong context_pointer,longlong *flags_var,uint64_t size
 uint64_t system_util_180068a90(ulonglong *context_pointer,uint64_t *flags_var)
 {
   longlong *long_pointer_primary;
-  ulonglong *system_config_primary_pointer;
+  ulonglong *system_config_primary_ptr;
   longlong system_memory_result;
   longlong memory_buffer_ptr;
   char cVar5;
@@ -29933,9 +29933,9 @@ uint64_t system_util_180068a90(ulonglong *context_pointer,uint64_t *flags_var)
           if ((ulonglong)((system_memory_result - *(longlong *)(unsigned_value_primary_var1 + 0x20)) - memory_buffer_ptr) < 0x8000000000000001)
           goto LAB_180068c87;
           LOCK();
-          system_config_primary_pointer = (ulonglong *)(unsigned_value_primary_var1 + 0x28);
-          texture_flag = *system_config_primary_pointer;
-          *system_config_primary_pointer = *system_config_primary_pointer + 1;
+          system_config_primary_ptr = (ulonglong *)(unsigned_value_primary_var1 + 0x28);
+          texture_flag = *system_config_primary_ptr;
+          *system_config_primary_ptr = *system_config_primary_ptr + 1;
           UNLOCK();
           long_pointer_primary = *(longlong **)(unsigned_value_primary_var1 + 0x60);
           system_memory_result = *(longlong *)
@@ -29965,9 +29965,9 @@ uint64_t system_util_180068a90(ulonglong *context_pointer,uint64_t *flags_var)
             UNLOCK();
             if (0x8000000000000000 < (ulonglong)((system_memory_result - *(longlong *)(unsigned_value_primary_var1 + 0x20)) - memory_buffer_ptr)) {
               LOCK();
-              system_config_primary_pointer = (ulonglong *)(unsigned_value_primary_var1 + 0x28);
-              texture_flag = *system_config_primary_pointer;
-              *system_config_primary_pointer = *system_config_primary_pointer + 1;
+              system_config_primary_ptr = (ulonglong *)(unsigned_value_primary_var1 + 0x28);
+              texture_flag = *system_config_primary_ptr;
+              *system_config_primary_ptr = *system_config_primary_ptr + 1;
               UNLOCK();
               long_pointer_primary = *(longlong **)(unsigned_value_primary_var1 + 0x58);
               system_vertex_processing_index = (ulonglong)((uint)texture_flag & 0x1f);
@@ -30005,10 +30005,10 @@ LAB_180068c94:
 uint64_t system_util_180068ce0(longlong context_pointer,uint64_t *flags_var)
 {
   longlong *long_pointer_primary;
-  ulonglong *system_config_primary_pointer;
+  ulonglong *system_config_primary_ptr;
   longlong system_memory_result;
   ulonglong vertex_count_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   ulonglong transform_iteration_count;
   
   if (*(char *)(context_pointer + 0x48) == '\0') {
@@ -30025,9 +30025,9 @@ uint64_t system_util_180068ce0(longlong context_pointer,uint64_t *flags_var)
     if (0x8000000000000000 <
         (ulonglong)((system_memory_result - *(longlong *)(context_pointer + 0x20)) - *(longlong *)(context_pointer + 0x38))) {
       LOCK();
-      system_config_primary_pointer = (ulonglong *)(context_pointer + 0x28);
-      vertex_count_var = *system_config_primary_pointer;
-      *system_config_primary_pointer = *system_config_primary_pointer + 1;
+      system_config_primary_ptr = (ulonglong *)(context_pointer + 0x28);
+      vertex_count_var = *system_config_primary_ptr;
+      *system_config_primary_ptr = *system_config_primary_ptr + 1;
       UNLOCK();
       long_pointer_primary = *(longlong **)(context_pointer + 0x60);
       memory_allocation_size_var = *(longlong *)
@@ -30062,9 +30062,9 @@ uint64_t system_util_180068ce0(longlong context_pointer,uint64_t *flags_var)
     if (0x8000000000000000 <
         (ulonglong)((system_memory_result - *(longlong *)(context_pointer + 0x20)) - *(longlong *)(context_pointer + 0x38))) {
       LOCK();
-      system_config_primary_pointer = (ulonglong *)(context_pointer + 0x28);
-      vertex_count_var = *system_config_primary_pointer;
-      *system_config_primary_pointer = *system_config_primary_pointer + 1;
+      system_config_primary_ptr = (ulonglong *)(context_pointer + 0x28);
+      vertex_count_var = *system_config_primary_ptr;
+      *system_config_primary_ptr = *system_config_primary_ptr + 1;
       UNLOCK();
       long_pointer_primary = *(longlong **)(context_pointer + 0x58);
       transform_iteration_count = (ulonglong)((uint)vertex_count_var & 0x1f);
@@ -30437,7 +30437,7 @@ LAB_180069842:
 uint64_t * system_util_180069920(longlong *context_pointer)
 {
   longlong *long_pointer_primary;
-  uint *system_config_primary_pointer;
+  uint *system_config_primary_ptr;
   ulonglong *tertiary_pointer;
   ulonglong vertex_count_var;
   uint vertex_buffer_offset;
@@ -30472,11 +30472,11 @@ uint64_t * system_util_180069920(longlong *context_pointer)
         do {
           vertex_transform_index = vertex_transform_index & *system_config_data_ptr - 1;
           if (*(int *)(system_config_data_ptr[1] + vertex_transform_index * 0x10) == 0) {
-            system_config_primary_pointer = (uint *)(system_config_data_ptr[1] + vertex_transform_index * 0x10);
+            system_config_primary_ptr = (uint *)(system_config_data_ptr[1] + vertex_transform_index * 0x10);
             LOCK();
-            byte_temp17 = *system_config_primary_pointer == 0;
+            byte_temp17 = *system_config_primary_ptr == 0;
             if (byte_temp17) {
-              *system_config_primary_pointer = vertex_buffer_offset;
+              *system_config_primary_ptr = vertex_buffer_offset;
             }
             UNLOCK();
             if (byte_temp17) {
@@ -30501,9 +30501,9 @@ uint64_t * system_util_180069920(longlong *context_pointer)
   while( true ) {
     if (*system_config_data_ptr >> 1 <= transform_iteration_count) {
       LOCK();
-      system_config_primary_pointer = (uint *)(context_pointer + 0x4b);
-      unsigned_value_primary_var4 = *system_config_primary_pointer;
-      *system_config_primary_pointer = *system_config_primary_pointer | 1;
+      system_config_primary_ptr = (uint *)(context_pointer + 0x4b);
+      unsigned_value_primary_var4 = *system_config_primary_ptr;
+      *system_config_primary_ptr = *system_config_primary_ptr | 1;
       UNLOCK();
       if ((unsigned_value_primary_var4 & 1) == 0) {
         tertiary_pointer = (ulonglong *)context_pointer[6];
@@ -30613,11 +30613,11 @@ LAB_180069c2b:
   do {
     vertex_transform_index = vertex_transform_index & *system_config_data_ptr - 1;
     if (*(int *)(system_config_data_ptr[1] + vertex_transform_index * 0x10) == 0) {
-      system_config_primary_pointer = (uint *)(system_config_data_ptr[1] + vertex_transform_index * 0x10);
+      system_config_primary_ptr = (uint *)(system_config_data_ptr[1] + vertex_transform_index * 0x10);
       LOCK();
-      byte_temp17 = *system_config_primary_pointer == 0;
+      byte_temp17 = *system_config_primary_ptr == 0;
       if (byte_temp17) {
-        *system_config_primary_pointer = vertex_buffer_offset;
+        *system_config_primary_ptr = vertex_buffer_offset;
       }
       UNLOCK();
       if (byte_temp17) {
@@ -30797,11 +30797,11 @@ void system_util_18006a130(longlong context_pointer)
   }
   transform_result = system_utility_create_object(system_memory_allocator_config,0x170,8,3);
   _SYSTEM_CONFIG_DATA_TYPE_108 = system_util_18006e870(transform_result);
-  system_init_18004c330(astack_uint_278);
+  system_initialize_system_validator_handler(astack_uint_278);
   transform_result = system_utility_create_object(system_memory_allocator_config,1000,8,3);
-  _SYSTEM_CONFIG_DATA_TYPE_88 = system_init_18004c480(transform_result);
+  _SYSTEM_CONFIG_DATA_TYPE_88 = system_initialize_resource_allocator_handler(transform_result);
   system_config_180055050();
-  system_init_18004d020();
+  system_initialize_system_operation_handler();
   if ((*(char *)(_SYSTEM_CONFIG_DATA_TYPE_114 + 0x20) == '\0') && (*(char *)(_SYSTEM_CONFIG_DATA_TYPE_114 + 0x21) == '\0')) {
     transform_result = system_runtime_1808fc418(0x428);
     stack_pointer_250 = (longlong *)system_create_transform_matrix(transform_result);
@@ -30903,7 +30903,7 @@ void system_util_18006b220(longlong context_pointer)
 longlong system_util_18006b350(longlong *context_pointer,longlong *flags_var,int size_param)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   
   if (size_param == 3) {
     return 0x180bfd730;
@@ -30918,13 +30918,13 @@ longlong system_util_18006b350(longlong *context_pointer,longlong *flags_var,int
   }
   else {
     if (size_param == 1) {
-      system_config_primary_pointer = (uint64_t *)system_utility_create_object(system_memory_allocator_config,0x20,8,SYSTEM_CONFIG_DATA_TYPE_55,0xfffffffffffffffe);
+      system_config_primary_ptr = (uint64_t *)system_utility_create_object(system_memory_allocator_config,0x20,8,SYSTEM_CONFIG_DATA_TYPE_55,0xfffffffffffffffe);
       primary_pointer = (uint64_t *)*flags_var;
-      *system_config_primary_pointer = *primary_pointer;
-      *(uint32_t *)(system_config_primary_pointer + 1) = *(uint32_t *)(primary_pointer + 1);
-      system_config_primary_pointer[2] = primary_pointer[2];
-      system_config_primary_pointer[3] = primary_pointer[3];
-      *context_pointer = (longlong)system_config_primary_pointer;
+      *system_config_primary_ptr = *primary_pointer;
+      *(uint32_t *)(system_config_primary_ptr + 1) = *(uint32_t *)(primary_pointer + 1);
+      system_config_primary_ptr[2] = primary_pointer[2];
+      system_config_primary_ptr[3] = primary_pointer[3];
+      *context_pointer = (longlong)system_config_primary_ptr;
       return 0;
     }
     if (size_param == 2) {
@@ -30938,18 +30938,18 @@ longlong system_util_18006b350(longlong *context_pointer,longlong *flags_var,int
 void system_util_18006b440(longlong context_pointer,uint32_t flags_var)
 {
   char configuration_status_var;
-  void *system_config_primary_pointer;
+  void *system_config_primary_ptr;
   uint32_t array_stack_unsigned_10 [6];
   
   if ((*(longlong *)(context_pointer + 0x1e20) != 0) &&
      (array_stack_unsigned_10[0] = flags_var, configuration_status_var = (**(code **)(context_pointer + 0x1e28))(array_stack_unsigned_10),
      flags_var = array_stack_unsigned_10[0], configuration_status_var == '\0')) {
     if (SYSTEM_CONFIG_DATA_TYPE_83 == '\0') {
-      system_config_primary_pointer = &SYSTEM_CONFIG_DATA_TYPE_3;
+      system_config_primary_ptr = &SYSTEM_CONFIG_DATA_TYPE_3;
       if (*(void **)(context_pointer + 0x1dd0) != (void *)0x0) {
-        system_config_primary_pointer = *(void **)(context_pointer + 0x1dd0);
+        system_config_primary_ptr = *(void **)(context_pointer + 0x1dd0);
       }
-      system_module_180626f80(&SYSTEM_STRING_NULL9,system_config_primary_pointer);
+      system_module_180626f80(&SYSTEM_STRING_NULL9,system_config_primary_ptr);
     }
     *(uint32_t *)(context_pointer + 0x1dc0) = *(uint32_t *)(context_pointer + 0x1e08);
     return;
@@ -30960,18 +30960,18 @@ void system_util_18006b440(longlong context_pointer,uint32_t flags_var)
 void system_util_18006b4c0(longlong context_pointer,uint32_t flags_var)
 {
   char configuration_status_var;
-  void *system_config_primary_pointer;
+  void *system_config_primary_ptr;
   uint32_t array_stack_unsigned_10 [6];
   
   if ((*(longlong *)(context_pointer + 0x1db0) != 0) &&
      (array_stack_unsigned_10[0] = flags_var, configuration_status_var = (**(code **)(context_pointer + 0x1db8))(array_stack_unsigned_10),
      flags_var = array_stack_unsigned_10[0], configuration_status_var == '\0')) {
     if (SYSTEM_CONFIG_DATA_TYPE_83 == '\0') {
-      system_config_primary_pointer = &SYSTEM_CONFIG_DATA_TYPE_3;
+      system_config_primary_ptr = &SYSTEM_CONFIG_DATA_TYPE_3;
       if (*(void **)(context_pointer + 0x1d60) != (void *)0x0) {
-        system_config_primary_pointer = *(void **)(context_pointer + 0x1d60);
+        system_config_primary_ptr = *(void **)(context_pointer + 0x1d60);
       }
-      system_module_180626f80(&SYSTEM_STRING_NULL9,system_config_primary_pointer);
+      system_module_180626f80(&SYSTEM_STRING_NULL9,system_config_primary_ptr);
     }
     *(uint32_t *)(context_pointer + 0x1d50) = *(uint32_t *)(context_pointer + 0x1d98);
     return;
@@ -31042,13 +31042,13 @@ system_util_18006b640(uint64_t *context_pointer,uint64_t *flags_var,uint64_t siz
 void system_util_18006b6f0(longlong *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t transform_result;
   
   transform_result = 0xfffffffffffffffe;
   primary_pointer = (uint64_t *)context_pointer[1];
-  for (system_config_primary_pointer = (uint64_t *)*context_pointer; system_config_primary_pointer != primary_pointer; system_config_primary_pointer = system_config_primary_pointer + 0x13) {
-    (**(code **)*system_config_primary_pointer)(system_config_primary_pointer,0,size_param,allocator_param,transform_result);
+  for (system_config_primary_ptr = (uint64_t *)*context_pointer; system_config_primary_ptr != primary_pointer; system_config_primary_ptr = system_config_primary_ptr + 0x13) {
+    (**(code **)*system_config_primary_ptr)(system_config_primary_ptr,0,size_param,allocator_param,transform_result);
   }
   if (*context_pointer == 0) {
     return;
@@ -31058,13 +31058,13 @@ void system_util_18006b6f0(longlong *context_pointer,uint64_t flags_var,uint64_t
 void system_util_18006b760(longlong *context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t transform_result;
   
   transform_result = 0xfffffffffffffffe;
   primary_pointer = (uint64_t *)context_pointer[1];
-  for (system_config_primary_pointer = (uint64_t *)*context_pointer; system_config_primary_pointer != primary_pointer; system_config_primary_pointer = system_config_primary_pointer + 0x13) {
-    (**(code **)*system_config_primary_pointer)(system_config_primary_pointer,0,size_param,allocator_param,transform_result);
+  for (system_config_primary_ptr = (uint64_t *)*context_pointer; system_config_primary_ptr != primary_pointer; system_config_primary_ptr = system_config_primary_ptr + 0x13) {
+    (**(code **)*system_config_primary_ptr)(system_config_primary_ptr,0,size_param,allocator_param,transform_result);
   }
   if (*context_pointer == 0) {
     return;
@@ -31186,7 +31186,7 @@ uint64_t system_util_18006bd20(uint64_t context_pointer,ulonglong flags_var)
 void system_util_18006bd60(longlong context_pointer)
 {
   longlong system_memory_allocation_result;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   ulonglong transform_result;
   ulonglong vertex_count_var;
   
@@ -31195,9 +31195,9 @@ void system_util_18006bd60(longlong context_pointer)
   vertex_count_var = 0;
   if (transform_result != 0) {
     do {
-      system_config_primary_pointer = *(uint64_t **)(system_memory_allocation_result + vertex_count_var * 8);
-      if (system_config_primary_pointer != (uint64_t *)0x0) {
-        *system_config_primary_pointer = &SYSTEM_DATABASE_CURSOR_TYPE;
+      system_config_primary_ptr = *(uint64_t **)(system_memory_allocation_result + vertex_count_var * 8);
+      if (system_config_primary_ptr != (uint64_t *)0x0) {
+        *system_config_primary_ptr = &SYSTEM_DATABASE_CURSOR_TYPE;
         system_processor_cleanup();
       }
       *(uint64_t *)(system_memory_allocation_result + vertex_count_var * 8) = 0;
@@ -31214,7 +31214,7 @@ void system_util_18006bd60(longlong context_pointer)
 void system_util_18006bd80(longlong context_pointer)
 {
   longlong system_memory_allocation_result;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   ulonglong transform_result;
   ulonglong vertex_count_var;
   
@@ -31223,9 +31223,9 @@ void system_util_18006bd80(longlong context_pointer)
   vertex_count_var = 0;
   if (transform_result != 0) {
     do {
-      system_config_primary_pointer = *(uint64_t **)(system_memory_allocation_result + vertex_count_var * 8);
-      if (system_config_primary_pointer != (uint64_t *)0x0) {
-        *system_config_primary_pointer = &SYSTEM_DATABASE_CURSOR_TYPE;
+      system_config_primary_ptr = *(uint64_t **)(system_memory_allocation_result + vertex_count_var * 8);
+      if (system_config_primary_ptr != (uint64_t *)0x0) {
+        *system_config_primary_ptr = &SYSTEM_DATABASE_CURSOR_TYPE;
         system_processor_cleanup();
       }
       *(uint64_t *)(system_memory_allocation_result + vertex_count_var * 8) = 0;
@@ -31349,7 +31349,7 @@ void system_util_18006c070(longlong context_pointer)
   byte *pbyte_temp3;
   uint64_t vertex_count_var;
   uint64_t *quinary_pointer;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   bool byte_temp7;
   longlong transform_temp_8;
   char cVar9;
@@ -31797,7 +31797,7 @@ LAB_18006ca95:
 void system_util_18006cb90(longlong context_pointer)
 {
   longlong system_memory_allocation_result;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   ulonglong transform_result;
   ulonglong vertex_count_var;
   
@@ -31806,9 +31806,9 @@ void system_util_18006cb90(longlong context_pointer)
   vertex_count_var = 0;
   if (transform_result != 0) {
     do {
-      system_config_primary_pointer = *(uint64_t **)(system_memory_allocation_result + vertex_count_var * 8);
-      if (system_config_primary_pointer != (uint64_t *)0x0) {
-        *system_config_primary_pointer = &SYSTEM_DATABASE_CURSOR_TYPE;
+      system_config_primary_ptr = *(uint64_t **)(system_memory_allocation_result + vertex_count_var * 8);
+      if (system_config_primary_ptr != (uint64_t *)0x0) {
+        *system_config_primary_ptr = &SYSTEM_DATABASE_CURSOR_TYPE;
         system_processor_cleanup();
       }
       *(uint64_t *)(system_memory_allocation_result + vertex_count_var * 8) = 0;
@@ -31914,7 +31914,7 @@ void system_util_18006cc8d(uint64_t context_pointer,uint64_t flags_var,longlong 
   longlong system_register_rax;
   longlong system_memory_result;
   longlong memory_buffer_ptr;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong *system_register_di;
   longlong system_register_r10;
   longlong stack_variable_char;
@@ -32103,7 +32103,7 @@ LAB_18006cfb1:
 uint64_t * system_util_18006d0b0(longlong *context_pointer)
 {
   longlong *long_pointer_primary;
-  uint *system_config_primary_pointer;
+  uint *system_config_primary_ptr;
   ulonglong *tertiary_pointer;
   ulonglong vertex_count_var;
   uint vertex_buffer_offset;
@@ -32138,11 +32138,11 @@ uint64_t * system_util_18006d0b0(longlong *context_pointer)
         do {
           vertex_transform_index = vertex_transform_index & *system_config_data_ptr - 1;
           if (*(int *)(system_config_data_ptr[1] + vertex_transform_index * 0x10) == 0) {
-            system_config_primary_pointer = (uint *)(system_config_data_ptr[1] + vertex_transform_index * 0x10);
+            system_config_primary_ptr = (uint *)(system_config_data_ptr[1] + vertex_transform_index * 0x10);
             LOCK();
-            byte_temp17 = *system_config_primary_pointer == 0;
+            byte_temp17 = *system_config_primary_ptr == 0;
             if (byte_temp17) {
-              *system_config_primary_pointer = vertex_buffer_offset;
+              *system_config_primary_ptr = vertex_buffer_offset;
             }
             UNLOCK();
             if (byte_temp17) {
@@ -32167,9 +32167,9 @@ uint64_t * system_util_18006d0b0(longlong *context_pointer)
   while( true ) {
     if (*system_config_data_ptr >> 1 <= transform_iteration_count) {
       LOCK();
-      system_config_primary_pointer = (uint *)(context_pointer + 0x4b);
-      unsigned_value_primary_var4 = *system_config_primary_pointer;
-      *system_config_primary_pointer = *system_config_primary_pointer | 1;
+      system_config_primary_ptr = (uint *)(context_pointer + 0x4b);
+      unsigned_value_primary_var4 = *system_config_primary_ptr;
+      *system_config_primary_ptr = *system_config_primary_ptr | 1;
       UNLOCK();
       if ((unsigned_value_primary_var4 & 1) == 0) {
         tertiary_pointer = (ulonglong *)context_pointer[6];
@@ -32279,11 +32279,11 @@ LAB_18006d3bb:
   do {
     vertex_transform_index = vertex_transform_index & *system_config_data_ptr - 1;
     if (*(int *)(system_config_data_ptr[1] + vertex_transform_index * 0x10) == 0) {
-      system_config_primary_pointer = (uint *)(system_config_data_ptr[1] + vertex_transform_index * 0x10);
+      system_config_primary_ptr = (uint *)(system_config_data_ptr[1] + vertex_transform_index * 0x10);
       LOCK();
-      byte_temp17 = *system_config_primary_pointer == 0;
+      byte_temp17 = *system_config_primary_ptr == 0;
       if (byte_temp17) {
-        *system_config_primary_pointer = vertex_buffer_offset;
+        *system_config_primary_ptr = vertex_buffer_offset;
       }
       UNLOCK();
       if (byte_temp17) {
@@ -32305,7 +32305,7 @@ uint64_t system_util_18006d450(uint64_t context_pointer,ulonglong flags_var)
 uint64_t system_util_18006d4e0(ulonglong *context_pointer,uint64_t flags_var)
 {
   longlong *long_pointer_primary;
-  ulonglong *system_config_primary_pointer;
+  ulonglong *system_config_primary_ptr;
   longlong system_memory_result;
   longlong memory_buffer_ptr;
   char cVar5;
@@ -32368,9 +32368,9 @@ uint64_t system_util_18006d4e0(ulonglong *context_pointer,uint64_t flags_var)
             if (0x8000000000000000 <
                 (ulonglong)((system_memory_result - *(longlong *)(system_transform_type + 0x20)) - *(longlong *)(system_transform_type + 0x38))) {
               LOCK();
-              system_config_primary_pointer = (ulonglong *)(system_transform_type + 0x28);
-              texture_flag = *system_config_primary_pointer;
-              *system_config_primary_pointer = *system_config_primary_pointer + 1;
+              system_config_primary_ptr = (ulonglong *)(system_transform_type + 0x28);
+              texture_flag = *system_config_primary_ptr;
+              *system_config_primary_ptr = *system_config_primary_ptr + 1;
               UNLOCK();
               long_pointer_primary = *(longlong **)(system_transform_type + 0x58);
               memory_buffer_ptr = *(longlong *)
@@ -32458,10 +32458,10 @@ LAB_18006d7fb:
 uint64_t system_util_18006d810(longlong context_pointer,uint64_t flags_var)
 {
   longlong *long_pointer_primary;
-  ulonglong *system_config_primary_pointer;
+  ulonglong *system_config_primary_ptr;
   longlong system_memory_result;
   ulonglong vertex_count_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong transform_temp6;
   uint64_t system_transform_type;
   ulonglong texture_flag;
@@ -32482,9 +32482,9 @@ uint64_t system_util_18006d810(longlong context_pointer,uint64_t flags_var)
       if (0x8000000000000000 <
           (ulonglong)((system_memory_result - *(longlong *)(context_pointer + 0x20)) - *(longlong *)(context_pointer + 0x38))) {
         LOCK();
-        system_config_primary_pointer = (ulonglong *)(context_pointer + 0x28);
-        vertex_count_var = *system_config_primary_pointer;
-        *system_config_primary_pointer = *system_config_primary_pointer + 1;
+        system_config_primary_ptr = (ulonglong *)(context_pointer + 0x28);
+        vertex_count_var = *system_config_primary_ptr;
+        *system_config_primary_ptr = *system_config_primary_ptr + 1;
         UNLOCK();
         long_pointer_primary = *(longlong **)(context_pointer + 0x58);
         memory_allocation_size_var = long_pointer_primary[2];
@@ -32510,7 +32510,7 @@ uint64_t system_util_18006d810(longlong context_pointer,uint64_t flags_var)
 longlong system_util_18006d920(longlong context_pointer)
 {
   ulonglong *primary_pointer;
-  uint *system_config_primary_pointer;
+  uint *system_config_primary_ptr;
   uint transform_result;
   ulonglong vertex_count_var;
   uint vertex_buffer_offset;
@@ -32548,17 +32548,17 @@ LAB_18006d9f6:
       *(int32_t2 *)(transform_temp6 + 0x3540) = 0x100;
       return transform_temp6;
     }
-    system_config_primary_pointer = (uint *)(loop_bound_limit + 0x3530);
-    vertex_buffer_offset = *system_config_primary_pointer;
+    system_config_primary_ptr = (uint *)(loop_bound_limit + 0x3530);
+    vertex_buffer_offset = *system_config_primary_ptr;
     if ((vertex_buffer_offset & 0x7fffffff) == 0) {
 LAB_18006d9d7:
       transform_temp6 = *(longlong *)(context_pointer + 0x28);
       goto LAB_18006d957;
     }
     LOCK();
-    transform_result = *system_config_primary_pointer;
+    transform_result = *system_config_primary_ptr;
     if (vertex_buffer_offset == transform_result) {
-      *system_config_primary_pointer = vertex_buffer_offset + 1;
+      *system_config_primary_ptr = vertex_buffer_offset + 1;
     }
     UNLOCK();
     if (vertex_buffer_offset != transform_result) goto LAB_18006d9d7;
@@ -32572,7 +32572,7 @@ LAB_18006d9d7:
     UNLOCK();
     if (byte_temp10) {
       LOCK();
-      *system_config_primary_pointer = *system_config_primary_pointer - 2;
+      *system_config_primary_ptr = *system_config_primary_ptr - 2;
       UNLOCK();
       if (loop_bound_limit != 0) {
         return loop_bound_limit;
@@ -32580,14 +32580,14 @@ LAB_18006d9d7:
       goto LAB_18006d9f6;
     }
     LOCK();
-    vertex_buffer_offset = *system_config_primary_pointer;
-    *system_config_primary_pointer = *system_config_primary_pointer - 1;
+    vertex_buffer_offset = *system_config_primary_ptr;
+    *system_config_primary_ptr = *system_config_primary_ptr - 1;
     UNLOCK();
     if (vertex_buffer_offset == 0x80000001) {
       transform_temp_8 = *(longlong *)(context_pointer + 0x28);
       do {
         *(longlong *)(loop_bound_limit + 0x3538) = transform_temp_8;
-        *system_config_primary_pointer = 1;
+        *system_config_primary_ptr = 1;
         LOCK();
         system_transform_type = *(longlong *)(context_pointer + 0x28);
         byte_temp10 = transform_temp_8 == system_transform_type;
@@ -32598,8 +32598,8 @@ LAB_18006d9d7:
         UNLOCK();
         if (byte_temp10) break;
         LOCK();
-        vertex_buffer_offset = *system_config_primary_pointer;
-        *system_config_primary_pointer = *system_config_primary_pointer + 0x7fffffff;
+        vertex_buffer_offset = *system_config_primary_ptr;
+        *system_config_primary_ptr = *system_config_primary_ptr + 0x7fffffff;
         UNLOCK();
         transform_temp_8 = system_transform_type;
       } while (vertex_buffer_offset == 1);
@@ -32615,10 +32615,10 @@ void system_util_18006da50(longlong *context_pointer)
 ulonglong system_util_18006da90(longlong context_pointer,uint64_t flags_var)
 {
   longlong *long_pointer_primary;
-  ulonglong *system_config_primary_pointer;
+  ulonglong *system_config_primary_ptr;
   uint *tertiary_pointer;
   uint vertex_count_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   ulonglong transform_iteration_count;
   longlong system_transform_type;
   ulonglong texture_flag;
@@ -32638,9 +32638,9 @@ ulonglong system_util_18006da90(longlong context_pointer,uint64_t flags_var)
     texture_flag = *(ulonglong *)(context_pointer + 0x20);
     if (0x8000000000000000 < (memory_allocation_size_var - texture_flag) - *(longlong *)(context_pointer + 0x38)) {
       LOCK();
-      system_config_primary_pointer = (ulonglong *)(context_pointer + 0x28);
-      texture_flag = *system_config_primary_pointer;
-      *system_config_primary_pointer = *system_config_primary_pointer + 1;
+      system_config_primary_ptr = (ulonglong *)(context_pointer + 0x28);
+      texture_flag = *system_config_primary_ptr;
+      *system_config_primary_ptr = *system_config_primary_ptr + 1;
       UNLOCK();
       long_pointer_primary = *(longlong **)(context_pointer + 0x60);
       unsigned_value_primary_var1 = (texture_flag & 0xffffffffffffffe0) - **(longlong **)(long_pointer_primary[3] + long_pointer_primary[1] * 8) >> 5;
@@ -32651,9 +32651,9 @@ ulonglong system_util_18006da90(longlong context_pointer,uint64_t flags_var)
       system_util_18006dcb0(flags_var,system_memory_allocation_result,unsigned_value_primary_var1,long_pointer_primary,0xfffffffffffffffe,transform_iteration_count,texture_flag,memory_allocation_size_var);
       system_util_180069530(system_memory_allocation_result);
       LOCK();
-      system_config_primary_pointer = (ulonglong *)(transform_iteration_count + 0x3508);
-      texture_flag = *system_config_primary_pointer;
-      *system_config_primary_pointer = *system_config_primary_pointer + 1;
+      system_config_primary_ptr = (ulonglong *)(transform_iteration_count + 0x3508);
+      texture_flag = *system_config_primary_ptr;
+      *system_config_primary_ptr = *system_config_primary_ptr + 1;
       UNLOCK();
       if (texture_flag == 0x1f) {
         *(uint64_t *)(memory_allocation_size_var + 8) = 0;
@@ -32668,12 +32668,12 @@ ulonglong system_util_18006da90(longlong context_pointer,uint64_t flags_var)
           do {
             *(ulonglong *)(transform_iteration_count + 0x3538) = unsigned_value_primary_var1;
             *(uint32_t *)(transform_iteration_count + 0x3530) = 1;
-            system_config_primary_pointer = (ulonglong *)(system_transform_type + 0x28);
+            system_config_primary_ptr = (ulonglong *)(system_transform_type + 0x28);
             LOCK();
-            loop_bound_limit = *system_config_primary_pointer;
+            loop_bound_limit = *system_config_primary_ptr;
             byte_temp12 = unsigned_value_primary_var1 == loop_bound_limit;
             if (byte_temp12) {
-              *system_config_primary_pointer = transform_iteration_count;
+              *system_config_primary_ptr = transform_iteration_count;
               loop_bound_limit = unsigned_value_primary_var1;
             }
             UNLOCK();
@@ -32701,9 +32701,9 @@ void system_util_18006dc10(longlong *context_pointer)
 {
   longlong *long_pointer_primary;
   int *integer_secondary_variable_pointer;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   longlong memory_buffer_ptr;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong transform_temp6;
   longlong system_transform_type;
   bool byte_temp8;
@@ -32754,14 +32754,14 @@ void system_util_18006dc10(longlong *context_pointer)
 longlong system_util_18006dcb0(longlong context_pointer,longlong flags_var)
 {
   longlong system_memory_allocation_result;
-  void *system_config_primary_pointer;
+  void *system_config_primary_ptr;
   
   *(uint32_t *)(context_pointer + 0x10) = *(uint32_t *)(flags_var + 0x10);
-  system_config_primary_pointer = &SYSTEM_CONFIG_DATA_TYPE_3;
+  system_config_primary_ptr = &SYSTEM_CONFIG_DATA_TYPE_3;
   if (*(void **)(flags_var + 8) != (void *)0x0) {
-    system_config_primary_pointer = *(void **)(flags_var + 8);
+    system_config_primary_ptr = *(void **)(flags_var + 8);
   }
-  strcpy_s(*(uint64_t *)(context_pointer + 8),0x100,system_config_primary_pointer);
+  strcpy_s(*(uint64_t *)(context_pointer + 8),0x100,system_config_primary_ptr);
   *(uint64_t *)(context_pointer + 0x118) = *(uint64_t *)(flags_var + 0x118);
   system_memory_allocation_result = context_pointer + 0x148;
   *(uint64_t *)(context_pointer + 0x120) = *(uint64_t *)(flags_var + 0x120);
@@ -33311,7 +33311,7 @@ uint64_t * system_util_18006e660(uint64_t *context_pointer,uint64_t flags_var,ui
   ulonglong transform_result;
   longlong memory_buffer_ptr;
   uint64_t *quinary_pointer;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   longlong system_transform_type;
   
   system_thread_main_configure();
@@ -33418,8 +33418,8 @@ void system_main_cleanup(void)
 {
   longlong system_memory_allocation_result;
   char char_flag;
-  int memory_comparison_result_var;
-  longlong *system_root_table_pointer_var;
+  int system_memory_compare_status;
+  longlong *system_root_table_ptr;
   
   system_memory_allocation_result = _SYSTEM_CONFIG_DATA_TYPE_108;
   system_util_18006f160(_SYSTEM_CONFIG_DATA_TYPE_108);
@@ -33428,11 +33428,11 @@ void system_main_cleanup(void)
   if (memory_comparison_result_var != 0) {
     __Throw_C_error_std__YAXH_Z(memory_comparison_result_var);
   }
-  system_root_table_pointer_var = *(longlong **)(system_memory_allocation_result + 0x78);
-  if ((system_root_table_pointer_var != (longlong *)(system_memory_allocation_result + 0x78)) && (*(uint *)(system_root_table_pointer_var + 2) < *(uint *)(system_memory_allocation_result + 0xec))) {
-    system_root_table_pointer_var = *(longlong **)(*system_root_table_pointer_var + 8);
-    *(longlong *)(*system_root_table_pointer_var + 8) = system_root_table_pointer_var[1];
-    *(longlong *)system_root_table_pointer_var[1] = *system_root_table_pointer_var;
+  system_root_table_ptr = *(longlong **)(system_memory_allocation_result + 0x78);
+  if ((system_root_table_ptr != (longlong *)(system_memory_allocation_result + 0x78)) && (*(uint *)(system_root_table_ptr + 2) < *(uint *)(system_memory_allocation_result + 0xec))) {
+    system_root_table_ptr = *(longlong **)(*system_root_table_ptr + 8);
+    *(longlong *)(*system_root_table_ptr + 8) = system_root_table_ptr[1];
+    *(longlong *)system_root_table_ptr[1] = *system_root_table_ptr;
     system_processor_cleanup();
   }
   memory_comparison_result_var = _Mtx_unlock(system_memory_allocation_result + 0x98);
@@ -33444,9 +33444,9 @@ void system_main_cleanup(void)
   if (memory_comparison_result_var != 0) {
     __Throw_C_error_std__YAXH_Z(memory_comparison_result_var);
   }
-  system_root_table_pointer_var = *(longlong **)(system_memory_allocation_result + 0xf0);
+  system_root_table_ptr = *(longlong **)(system_memory_allocation_result + 0xf0);
   do {
-    if (system_root_table_pointer_var == (longlong *)(system_memory_allocation_result + 0xf0)) {
+    if (system_root_table_ptr == (longlong *)(system_memory_allocation_result + 0xf0)) {
 LAB_18006f48d:
       memory_comparison_result_var = _Mtx_unlock(system_memory_allocation_result + 0x110);
       if (memory_comparison_result_var != 0) {
@@ -33454,24 +33454,24 @@ LAB_18006f48d:
       }
       return;
     }
-    char_flag = (**(code **)(*(longlong *)system_root_table_pointer_var[3] + 0x40))();
+    char_flag = (**(code **)(*(longlong *)system_root_table_ptr[3] + 0x40))();
     if (char_flag != '\0') {
-      if (*(uint *)(system_root_table_pointer_var + 2) < *(uint *)(system_memory_allocation_result + 0x164)) {
-        system_root_table_pointer_var = *(longlong **)(*system_root_table_pointer_var + 8);
-        *(longlong *)(*system_root_table_pointer_var + 8) = system_root_table_pointer_var[1];
-        *(longlong *)system_root_table_pointer_var[1] = *system_root_table_pointer_var;
+      if (*(uint *)(system_root_table_ptr + 2) < *(uint *)(system_memory_allocation_result + 0x164)) {
+        system_root_table_ptr = *(longlong **)(*system_root_table_ptr + 8);
+        *(longlong *)(*system_root_table_ptr + 8) = system_root_table_ptr[1];
+        *(longlong *)system_root_table_ptr[1] = *system_root_table_ptr;
         system_processor_cleanup();
       }
       goto LAB_18006f48d;
     }
-    system_root_table_pointer_var = (longlong *)*system_root_table_pointer_var;
+    system_root_table_ptr = (longlong *)*system_root_table_ptr;
   } while( true );
 }
 void system_util_18006eb30(uint64_t context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
 {
   longlong *long_pointer_primary;
   longlong system_memory_secondary;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   
   system_memory_secondary = _SYSTEM_CONFIG_DATA_TYPE_108;
   system_config_18005e630(_SYSTEM_CONFIG_DATA_TYPE_86,flags_var,size_param,allocator_param,0xfffffffffffffffe);
@@ -33798,7 +33798,7 @@ ulonglong system_util_18006f620(uint64_t context_pointer,uint64_t flags_var)
     system_config_next_ptr = psystem_stack_variable_uint_48;
   }
   OutputDebugStringA(system_config_next_ptr);
-  system_init_18004c2b0(flags_var);
+  system_initialize_config_processor_handler(flags_var);
   system_memory_result = system_resource_config_data;
   if (((byte_temp9) && (system_resource_config_data != 0)) && (*(char *)(system_resource_config_data + 0x1609) != '\x01')) {
     system_helper_1801723a0(*(uint64_t *)(_SYSTEM_CONFIG_DATA_TYPE_88 + 8),*(char *)(_SYSTEM_CONFIG_DATA_TYPE_95 + 0x2028) != '\0',
@@ -33940,7 +33940,7 @@ ulonglong system_util_18006f940(uint64_t context_pointer,uint64_t flags_var,char
       pointer_primary1 = system_stack_secondary_pointer;
     }
     OutputDebugStringA(pointer_primary1);
-    system_init_18004c2b0(flags_var);
+    system_initialize_config_processor_handler(flags_var);
     if (((SYSTEM_CONFIG_DATA_TYPE_83 != '\0') && (byte_temp3)) &&
        ((*(char *)(_SYSTEM_CONFIG_DATA_TYPE_88 + 0x25) != '\0' ||
         ((size_param == '\0' || (*(int *)(_SYSTEM_CONFIG_DATA_TYPE_88 + 0x340) == 2)))))) {
@@ -34158,7 +34158,7 @@ ulonglong system_util_18006ff80(uint64_t context_pointer,uint64_t flags_var,char
     pointer_primary0 = pstack_uint_a8;
   }
   OutputDebugStringA(pointer_primary0);
-  system_init_18004c2b0(flags_var);
+  system_initialize_config_processor_handler(flags_var);
   if ((SYSTEM_CONFIG_DATA_TYPE_83 != '\0') && (byte_temp15)) {
     if ((*(char *)(_SYSTEM_CONFIG_DATA_TYPE_88 + 0x25) == '\0') &&
        ((size_param != '\0' && (*(int *)(_SYSTEM_CONFIG_DATA_TYPE_88 + 0x340) != 2)))) {
@@ -34326,9 +34326,9 @@ void system_initialize_scene_object(uint64_t context_pointer,uint64_t flags_var)
 {
   bool byte_temp1;
   char char_flag;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   int integer_value_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   void *system_config_node_pointer;
   uint64_t system_transform_type;
   void *system_config_next_ptr;
@@ -34850,7 +34850,7 @@ LAB_18007113f:
     pointer_primary2 = pstack_uint_138;
   }
   OutputDebugStringA(pointer_primary2);
-  system_init_18004c2b0(system_memory_allocation_result5);
+  system_initialize_config_processor_handler(system_memory_allocation_result5);
   if (SYSTEM_CONFIG_DATA_TYPE_83 != '\0') {
     if (byte_temp13 != 0) {
       if (((cStack_147 == '\0') && (param_6 != '\0')) && (*(int *)(_SYSTEM_CONFIG_DATA_TYPE_88 + 0x340) != 2)) {
@@ -35278,7 +35278,7 @@ void system_update_object_state(uint64_t context_pointer,longlong flags_var,uint
 {
   code *pconfig_status_flag;
   char char_flag;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   uint vertex_count_var;
   int integer_count_var_var;
   uint transform_iteration_count;
@@ -35735,7 +35735,7 @@ LAB_1800729bd:
         pointer_primary4 = pstack_uint_130;
       }
       OutputDebugStringA(pointer_primary4);
-      system_init_18004c2b0(allocator_param);
+      system_initialize_config_processor_handler(allocator_param);
       pointer_primary5 = &SYSTEM_CONFIG_DATA_TYPE_3;
       if (system_stack_primary_pointer != (void *)0x0) {
         pointer_primary5 = system_stack_primary_pointer;
@@ -35848,10 +35848,10 @@ bool system_validate_object_handle(uint64_t context_pointer,uint64_t *flags_var)
 {
   uint32_t unsigned_value_primary_var;
   int integer_secondary_variable;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   longlong memory_buffer_ptr;
   uint64_t *quinary_pointer;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   uint64_t **pconfig_data_pointer;
   int32_t1 *system_config_next_ptr;
   uint64_t loop_bound_limit;
@@ -36637,7 +36637,7 @@ void system_validate_texture_format(uint *context_pointer)
   uint32_t *tertiary_pointer;
   uint *quaternary_pointer;
   longlong *system_register_bx;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   ulonglong transform_iteration_count;
   longlong system_register_r12;
   uint system_iteration_count;
@@ -36782,7 +36782,7 @@ void system_initialize_shader_data(uint32_t *context_pointer)
   uint64_t texture_secondary;
   uint32_t *tertiary_pointer;
   uint *quaternary_pointer;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong *system_register_bx;
   ulonglong transform_iteration_count;
   uint32_t system_iteration_count;
@@ -36858,7 +36858,7 @@ void system_setup_shader_parameters(void)
   uint64_t texture_secondary;
   uint32_t *tertiary_pointer;
   uint *quaternary_pointer;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong *system_register_bx;
   ulonglong transform_iteration_count;
   uint32_t system_iteration_count;
@@ -36964,7 +36964,7 @@ void system_initialize_render_context(longlong *context_pointer,longlong flags_v
   int *integer_secondary_variable_pointer;
   uint transform_result;
   int integer_value_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   ulonglong transform_iteration_count;
   longlong system_transform_type;
   longlong transform_temp_8;
@@ -37123,7 +37123,7 @@ void system_process_context_data(longlong *context_pointer)
   uint transform_result;
   int integer_value_var;
   uint *system_register_rax;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   ulonglong transform_iteration_count;
   longlong system_transform_type;
   longlong transform_temp_8;
@@ -37526,7 +37526,7 @@ void system_configure_context_flags_var(longlong context_pointer,longlong flags_
   int integer_secondary_variable;
   uint transform_result;
   int *pinteger_value_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   int integer_index_var_var_var;
   int integer_flag;
   int integer_status_var;
@@ -37599,38 +37599,38 @@ void system_configure_context_flags_var(longlong context_pointer,longlong flags_
 uint64_t * system_get_context_handle(uint64_t context_pointer,longlong flags_var)
 {
   uint64_t unsigned_value_primary_var;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   
-  system_config_primary_pointer = (uint64_t *)system_utility_create_object(system_memory_allocator_config,0x38,8,3,0xfffffffffffffffe);
-  *system_config_primary_pointer = &SYSTEM_DATABASE_TABLE_TYPE0;
-  *system_config_primary_pointer = &SYSTEM_DATABASE_SCHEMA_TYPE9;
-  *(uint64_t *)((longlong)system_config_primary_pointer + 0x2c) = 0;
-  *(uint32_t *)((longlong)system_config_primary_pointer + 0x34) = 0;
-  *(int32_t1 *)(system_config_primary_pointer + 5) = 0;
-  system_config_primary_pointer[3] = 0;
-  system_config_primary_pointer[4] = 0;
-  system_config_primary_pointer[1] = 0;
-  system_config_primary_pointer[2] = 0;
+  system_config_primary_ptr = (uint64_t *)system_utility_create_object(system_memory_allocator_config,0x38,8,3,0xfffffffffffffffe);
+  *system_config_primary_ptr = &SYSTEM_DATABASE_TABLE_TYPE0;
+  *system_config_primary_ptr = &SYSTEM_DATABASE_SCHEMA_TYPE9;
+  *(uint64_t *)((longlong)system_config_primary_ptr + 0x2c) = 0;
+  *(uint32_t *)((longlong)system_config_primary_ptr + 0x34) = 0;
+  *(int32_t1 *)(system_config_primary_ptr + 5) = 0;
+  system_config_primary_ptr[3] = 0;
+  system_config_primary_ptr[4] = 0;
+  system_config_primary_ptr[1] = 0;
+  system_config_primary_ptr[2] = 0;
   if (flags_var != 0) {
     unsigned_value_primary_var = *(uint64_t *)(flags_var + 0x10);
-    system_config_primary_pointer[1] = *(uint64_t *)(flags_var + 8);
-    system_config_primary_pointer[2] = unsigned_value_primary_var;
+    system_config_primary_ptr[1] = *(uint64_t *)(flags_var + 8);
+    system_config_primary_ptr[2] = unsigned_value_primary_var;
     unsigned_value_primary_var = *(uint64_t *)(flags_var + 0x20);
-    system_config_primary_pointer[3] = *(uint64_t *)(flags_var + 0x18);
-    system_config_primary_pointer[4] = unsigned_value_primary_var;
-    *(int32_t1 *)(system_config_primary_pointer + 5) = *(int32_t1 *)(flags_var + 0x28);
-    *(uint32_t *)((longlong)system_config_primary_pointer + 0x2c) = *(uint32_t *)(flags_var + 0x2c);
-    *(uint32_t *)(system_config_primary_pointer + 6) = *(uint32_t *)(flags_var + 0x30);
-    *(uint32_t *)((longlong)system_config_primary_pointer + 0x34) = *(uint32_t *)(flags_var + 0x34);
+    system_config_primary_ptr[3] = *(uint64_t *)(flags_var + 0x18);
+    system_config_primary_ptr[4] = unsigned_value_primary_var;
+    *(int32_t1 *)(system_config_primary_ptr + 5) = *(int32_t1 *)(flags_var + 0x28);
+    *(uint32_t *)((longlong)system_config_primary_ptr + 0x2c) = *(uint32_t *)(flags_var + 0x2c);
+    *(uint32_t *)(system_config_primary_ptr + 6) = *(uint32_t *)(flags_var + 0x30);
+    *(uint32_t *)((longlong)system_config_primary_ptr + 0x34) = *(uint32_t *)(flags_var + 0x34);
   }
-  return system_config_primary_pointer;
+  return system_config_primary_ptr;
 }
 void system_release_context_resources(longlong context_pointer)
 {
   longlong system_memory_allocation_result;
   int integer_secondary_variable;
   longlong *long_pointer_result_var;
-  longlong *system_root_table_pointer_var;
+  longlong *system_root_table_ptr;
   void *quinary_pointer;
   
   if (*(char *)(*(longlong *)(context_pointer + 0x20) + 0x28) == '\0') {
@@ -37654,24 +37654,24 @@ void system_release_context_resources(longlong context_pointer)
     long_pointer_result_var[0x15] = 0;
     *(int32_t1 *)(long_pointer_result_var + 0x17) = 0;
     (**(code **)(*long_pointer_result_var + 0x28))(long_pointer_result_var);
-    system_root_table_pointer_var = *(longlong **)(context_pointer + 0xb0);
+    system_root_table_ptr = *(longlong **)(context_pointer + 0xb0);
     *(longlong **)(context_pointer + 0xb0) = long_pointer_result_var;
-    if (system_root_table_pointer_var != (longlong *)0x0) {
-      (**(code **)(*system_root_table_pointer_var + 0x38))();
+    if (system_root_table_ptr != (longlong *)0x0) {
+      (**(code **)(*system_root_table_ptr + 0x38))();
     }
     *(longlong *)(*(longlong *)(context_pointer + 0xb0) + 0xa8) = context_pointer;
-    system_root_table_pointer_var = (longlong *)(*(longlong *)(context_pointer + 0xb0) + 0x10);
+    system_root_table_ptr = (longlong *)(*(longlong *)(context_pointer + 0xb0) + 0x10);
     quinary_pointer = &SYSTEM_CONFIG_DATA_TYPE_3;
     if (*(void **)(context_pointer + 0x70) != (void *)0x0) {
       quinary_pointer = *(void **)(context_pointer + 0x70);
     }
-    (**(code **)(*system_root_table_pointer_var + 0x10))(system_root_table_pointer_var,quinary_pointer);
+    (**(code **)(*system_root_table_ptr + 0x10))(system_root_table_ptr,quinary_pointer);
     *(int32_t1 *)(*(longlong *)(context_pointer + 0xb0) + 0xb1) = 1;
     system_memory_allocation_result = _SYSTEM_CONFIG_DATA_TYPE_105;
-    system_root_table_pointer_var = *(longlong **)(context_pointer + 0xb0);
-    integer_secondary_variable = (**(code **)(*system_root_table_pointer_var + 0x60))(system_root_table_pointer_var);
-    *(int32_t1 *)((longlong)system_root_table_pointer_var + 0xb2) = 1;
-    system_process_context_allocation((longlong)integer_secondary_variable * 0x98 + system_memory_allocation_result + 8,system_root_table_pointer_var);
+    system_root_table_ptr = *(longlong **)(context_pointer + 0xb0);
+    integer_secondary_variable = (**(code **)(*system_root_table_ptr + 0x60))(system_root_table_ptr);
+    *(int32_t1 *)((longlong)system_root_table_ptr + 0xb2) = 1;
+    system_process_context_allocation((longlong)integer_secondary_variable * 0x98 + system_memory_allocation_result + 8,system_root_table_ptr);
   }
   return;
 }
@@ -37813,7 +37813,7 @@ void system_setup_buffer_parameters(longlong *context_pointer,ulonglong flags_va
   ulonglong texture_secondary;
   longlong *long_pointer_result_var;
   longlong memory_buffer_ptr;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   
   long_pointer_primary = (longlong *)context_pointer[1];
   memory_allocation_size_var = *context_pointer;
@@ -37855,7 +37855,7 @@ void system_configure_buffer_layout(uint64_t *context_pointer,ulonglong flags_va
   longlong *long_pointer_primary;
   longlong *long_pointer_secondary_var;
   uint64_t *tertiary_pointer;
-  longlong *system_root_table_pointer_var;
+  longlong *system_root_table_ptr;
   longlong *pallocation_size;
   ulonglong transform_iteration_count;
   uint64_t *system_config_data_ptr;
@@ -37884,43 +37884,43 @@ void system_configure_buffer_layout(uint64_t *context_pointer,ulonglong flags_va
     long_pointer_secondary_var = long_pointer_primary;
     if (tertiary_pointer != system_config_data_ptr) {
       transform_temp_8 = (longlong)long_pointer_primary - (longlong)tertiary_pointer;
-      system_root_table_pointer_var = (longlong *)((longlong)tertiary_pointer + 0x1a);
+      system_root_table_ptr = (longlong *)((longlong)tertiary_pointer + 0x1a);
       do {
-        *(int32_t2 *)(transform_temp_8 + -10 + (longlong)system_root_table_pointer_var) = *(int32_t2 *)((longlong)system_root_table_pointer_var + -10);
-        if (*(longlong *)((longlong)system_root_table_pointer_var + -0x12) == 0) {
-          *(uint64_t *)(transform_temp_8 + -0x12 + (longlong)system_root_table_pointer_var) = 0;
+        *(int32_t2 *)(transform_temp_8 + -10 + (longlong)system_root_table_ptr) = *(int32_t2 *)((longlong)system_root_table_ptr + -10);
+        if (*(longlong *)((longlong)system_root_table_ptr + -0x12) == 0) {
+          *(uint64_t *)(transform_temp_8 + -0x12 + (longlong)system_root_table_ptr) = 0;
         }
         else {
-          *(longlong *)(transform_temp_8 + -0x12 + (longlong)system_root_table_pointer_var) = *(longlong *)((longlong)system_root_table_pointer_var + -0x12);
-          *(uint64_t *)((longlong)system_root_table_pointer_var + -0x12) = 0;
+          *(longlong *)(transform_temp_8 + -0x12 + (longlong)system_root_table_ptr) = *(longlong *)((longlong)system_root_table_ptr + -0x12);
+          *(uint64_t *)((longlong)system_root_table_ptr + -0x12) = 0;
         }
-        if (*(longlong *)((longlong)system_root_table_pointer_var + -0x1a) == 0) {
+        if (*(longlong *)((longlong)system_root_table_ptr + -0x1a) == 0) {
           *long_pointer_secondary_var = 0;
         }
         else {
-          *long_pointer_secondary_var = *(longlong *)((longlong)system_root_table_pointer_var + -0x1a);
-          *(uint64_t *)((longlong)system_root_table_pointer_var + -0x1a) = 0;
+          *long_pointer_secondary_var = *(longlong *)((longlong)system_root_table_ptr + -0x1a);
+          *(uint64_t *)((longlong)system_root_table_ptr + -0x1a) = 0;
         }
-        *(int32_t2 *)((longlong)system_root_table_pointer_var + -10) = 0;
-        *(short *)(transform_temp_8 + 8 + (longlong)system_root_table_pointer_var) = (short)system_root_table_pointer_var[1];
-        if (*system_root_table_pointer_var == 0) {
-          *(uint64_t *)((longlong)system_root_table_pointer_var + transform_temp_8) = 0;
-        }
-        else {
-          *(longlong *)((longlong)system_root_table_pointer_var + transform_temp_8) = *system_root_table_pointer_var;
-          *system_root_table_pointer_var = 0;
-        }
-        if (system_root_table_pointer_var[-1] == 0) {
-          *(uint64_t *)(transform_temp_8 + -8 + (longlong)system_root_table_pointer_var) = 0;
+        *(int32_t2 *)((longlong)system_root_table_ptr + -10) = 0;
+        *(short *)(transform_temp_8 + 8 + (longlong)system_root_table_ptr) = (short)system_root_table_ptr[1];
+        if (*system_root_table_ptr == 0) {
+          *(uint64_t *)((longlong)system_root_table_ptr + transform_temp_8) = 0;
         }
         else {
-          *(longlong *)(transform_temp_8 + -8 + (longlong)system_root_table_pointer_var) = system_root_table_pointer_var[-1];
-          system_root_table_pointer_var[-1] = 0;
+          *(longlong *)((longlong)system_root_table_ptr + transform_temp_8) = *system_root_table_ptr;
+          *system_root_table_ptr = 0;
         }
-        *(int32_t2 *)(system_root_table_pointer_var + 1) = 0;
+        if (system_root_table_ptr[-1] == 0) {
+          *(uint64_t *)(transform_temp_8 + -8 + (longlong)system_root_table_ptr) = 0;
+        }
+        else {
+          *(longlong *)(transform_temp_8 + -8 + (longlong)system_root_table_ptr) = system_root_table_ptr[-1];
+          system_root_table_ptr[-1] = 0;
+        }
+        *(int32_t2 *)(system_root_table_ptr + 1) = 0;
         long_pointer_secondary_var = (longlong *)((longlong)long_pointer_secondary_var + 0x24);
-        tertiary_pointer = (uint64_t *)((longlong)system_root_table_pointer_var + 10);
-        system_root_table_pointer_var = (longlong *)((longlong)system_root_table_pointer_var + 0x24);
+        tertiary_pointer = (uint64_t *)((longlong)system_root_table_ptr + 10);
+        system_root_table_ptr = (longlong *)((longlong)system_root_table_ptr + 0x24);
       } while (tertiary_pointer != system_config_data_ptr);
     }
     if (flags_var != 0) {
@@ -37940,9 +37940,9 @@ void system_configure_buffer_layout(uint64_t *context_pointer,ulonglong flags_va
         transform_iteration_count = transform_iteration_count - 1;
       } while (transform_iteration_count != 0);
     }
-    system_root_table_pointer_var = (longlong *)context_pointer[1];
+    system_root_table_ptr = (longlong *)context_pointer[1];
     pallocation_size = (longlong *)*context_pointer;
-    if (pallocation_size != system_root_table_pointer_var) {
+    if (pallocation_size != system_root_table_ptr) {
       do {
         if (*(longlong *)((longlong)pallocation_size + 0x12) != 0) {
           system_processor_cleanup();
@@ -37961,7 +37961,7 @@ void system_configure_buffer_layout(uint64_t *context_pointer,ulonglong flags_va
         }
         pallocation_size[1] = 0;
         pallocation_size = (longlong *)((longlong)pallocation_size + 0x24);
-      } while (pallocation_size != system_root_table_pointer_var);
+      } while (pallocation_size != system_root_table_ptr);
       pallocation_size = (longlong *)*context_pointer;
     }
     if (pallocation_size != (longlong *)0x0) {
@@ -38043,7 +38043,7 @@ uint64_t * system_setup_vertex_buffer(uint64_t *context_pointer,char flags_var,c
   longlong *long_pointer_primary;
   byte byte_temp2;
   longlong *long_pointer_result_var;
-  longlong *system_root_table_pointer_var;
+  longlong *system_root_table_ptr;
   
   *context_pointer = &SYSTEM_DATABASE_ROW_TYPE;
   *context_pointer = &SYSTEM_DATABASE_FIELD_TYPE;
@@ -38104,10 +38104,10 @@ uint64_t * system_setup_vertex_buffer(uint64_t *context_pointer,char flags_var,c
   *(uint32_t *)((longlong)context_pointer + 0xc4) = 0;
   *(byte *)((longlong)context_pointer + 0xfe) = *(byte *)((longlong)context_pointer + 0xfe) & 0xfe;
   *(int32_t1 *)((longlong)context_pointer + 0xfc) = 0;
-  system_root_table_pointer_var = (longlong *)context_pointer[0x36];
+  system_root_table_ptr = (longlong *)context_pointer[0x36];
   context_pointer[0x36] = 0;
-  if (system_root_table_pointer_var != (longlong *)0x0) {
-    (**(code **)(*system_root_table_pointer_var + 0x38))();
+  if (system_root_table_ptr != (longlong *)0x0) {
+    (**(code **)(*system_root_table_ptr + 0x38))();
   }
   context_pointer[0x39] = 0;
   context_pointer[0x3c] = 0;
@@ -38119,10 +38119,10 @@ uint64_t * system_setup_vertex_buffer(uint64_t *context_pointer,char flags_var,c
   }
   *(byte *)((longlong)context_pointer + 0xfd) = *(byte *)((longlong)context_pointer + 0xfd) & 0xbf;
   *(int32_t1 *)((longlong)context_pointer + 0xff) = 1;
-  system_root_table_pointer_var = (longlong *)context_pointer[0x37];
+  system_root_table_ptr = (longlong *)context_pointer[0x37];
   context_pointer[0x37] = 0;
-  if (system_root_table_pointer_var != (longlong *)0x0) {
-    (**(code **)(*system_root_table_pointer_var + 0x38))();
+  if (system_root_table_ptr != (longlong *)0x0) {
+    (**(code **)(*system_root_table_ptr + 0x38))();
   }
   *(int32_t1 *)((longlong)context_pointer + 0xf4) = 0;
   *(uint32_t *)(context_pointer + 0x20) = 0;
@@ -38194,7 +38194,7 @@ uint64_t * system_setup_vertex_buffer(uint64_t *context_pointer,char flags_var,c
   *(uint32_t *)(context_pointer + 0x35) = 0x3f800000;
   *(uint32_t *)((longlong)context_pointer + 0x1ac) = 0x7f7fffff;
   *(uint32_t *)(context_pointer + 0x3a) = 0xffffffff;
-  long_pointer_result_var = (longlong *)system_utility_create_object(system_memory_allocator_config,0x70,8,9,system_root_table_pointer_var,long_pointer_result_var);
+  long_pointer_result_var = (longlong *)system_utility_create_object(system_memory_allocator_config,0x70,8,9,system_root_table_ptr,long_pointer_result_var);
   *long_pointer_result_var = (longlong)&SYSTEM_DATABASE_ROW_TYPE;
   *long_pointer_result_var = (longlong)&SYSTEM_DATABASE_FIELD_TYPE;
   *(uint32_t *)(long_pointer_result_var + 1) = 0;
@@ -38223,10 +38223,10 @@ uint64_t * system_setup_vertex_buffer(uint64_t *context_pointer,char flags_var,c
   *(int32_t2 *)(long_pointer_result_var + 3) = 0;
   *(int32_t1 *)((longlong)long_pointer_result_var + 0x1a) = 0;
   (**(code **)(*long_pointer_result_var + 0x28))(long_pointer_result_var);
-  system_root_table_pointer_var = (longlong *)context_pointer[0x4d];
+  system_root_table_ptr = (longlong *)context_pointer[0x4d];
   context_pointer[0x4d] = long_pointer_result_var;
-  if (system_root_table_pointer_var != (longlong *)0x0) {
-    (**(code **)(*system_root_table_pointer_var + 0x38))();
+  if (system_root_table_ptr != (longlong *)0x0) {
+    (**(code **)(*system_root_table_ptr + 0x38))();
   }
   *(byte *)((longlong)context_pointer + 0xfe) = *(byte *)((longlong)context_pointer + 0xfe) & 0xf3;
   context_pointer[0x3b] = 0;
@@ -39316,7 +39316,7 @@ void system_process_material_data(longlong context_pointer)
 {
   char *pconfig_status_flag;
   longlong *long_pointer_secondary_var;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   bool byte_temp4;
   
   memory_comparison_result_var = _Mtx_lock(0x180c91910);
@@ -39409,7 +39409,7 @@ int system_validate_material_handle(longlong context_pointer,longlong *flags_var
   uint32_t extraout_XMM0_Da;
   uint32_t texture_processing_index;
   uint64_t stack_variable_unsigned_8;
-  uint64_t *system_config_temp_pointer;
+  uint64_t *system_config_temp_ptr;
   uint64_t *system_stack_config_ptr;
   uint in_stack_ffffffffffffff38;
   uint64_t transform_offset_index;
@@ -39461,11 +39461,11 @@ int system_validate_material_handle(longlong context_pointer,longlong *flags_var
   stack_variable_uint_58 = 0;
   stack_uint_50 = 0;
   system_stack_variable_uint_48 = 3;
-  system_config_temp_pointer = *(uint64_t **)(context_pointer + 0x1b8);
+  system_config_temp_ptr = *(uint64_t **)(context_pointer + 0x1b8);
   vertex_transform_index = *(uint *)(context_pointer + 0x100) >> 0x16;
   pcVar8 = "";
-  if ((char *)system_config_temp_pointer[3] != (char *)0x0) {
-    pcVar8 = (char *)system_config_temp_pointer[3];
+  if ((char *)system_config_temp_ptr[3] != (char *)0x0) {
+    pcVar8 = (char *)system_config_temp_ptr[3];
   }
   transform_iteration_count = 0x1505;
   cVar4 = *pcVar8;
@@ -39510,9 +39510,9 @@ int system_validate_material_handle(longlong context_pointer,longlong *flags_var
   }
   system_stack_config_ptr = &stack_variable_unsigned_8;
   stack_variable_unsigned_8 = 0;
-  texture_processing_index = system_create_texture_handle(loop_bound_limit,system_config_temp_pointer,&stack_uint_60,0,in_stack_ffffffffffffff38 & 0xffffff00,0,
+  texture_processing_index = system_create_texture_handle(loop_bound_limit,system_config_temp_ptr,&stack_uint_60,0,in_stack_ffffffffffffff38 & 0xffffff00,0,
                          (byte)vertex_transform_index & 1,long_pointer_primary,1,0,0,&stack_variable_unsigned_8,transform_offset_index);
-  system_config_temp_pointer = &stack_variable_unsigned_8;
+  system_config_temp_ptr = &stack_variable_unsigned_8;
   stack_variable_unsigned_8 = 0;
   cVar4 = system_validate_texture_handle(texture_processing_index,long_pointer_primary,&stack_variable_unsigned_8);
   if (cVar4 == '\0') {
@@ -39547,17 +39547,17 @@ LAB_180076feb:
 void system_release_material_resources(longlong *context_pointer)
 {
   uint64_t *primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   
   primary_pointer = (uint64_t *)context_pointer[1];
-  for (system_config_primary_pointer = (uint64_t *)*context_pointer; system_config_primary_pointer != primary_pointer; system_config_primary_pointer = system_config_primary_pointer + 6) {
-    *system_config_primary_pointer = &system_config_default_handler;
-    if (system_config_primary_pointer[1] != 0) {
+  for (system_config_primary_ptr = (uint64_t *)*context_pointer; system_config_primary_ptr != primary_pointer; system_config_primary_ptr = system_config_primary_ptr + 6) {
+    *system_config_primary_ptr = &system_config_default_handler;
+    if (system_config_primary_ptr[1] != 0) {
       system_processor_cleanup();
     }
-    system_config_primary_pointer[1] = 0;
-    *(uint32_t *)(system_config_primary_pointer + 3) = 0;
-    *system_config_primary_pointer = &SYSTEM_DATABASE_CURSOR_TYPE;
+    system_config_primary_ptr[1] = 0;
+    *(uint32_t *)(system_config_primary_ptr + 3) = 0;
+    *system_config_primary_ptr = &SYSTEM_DATABASE_CURSOR_TYPE;
   }
   if (*context_pointer != 0) {
     system_processor_cleanup();
@@ -39570,7 +39570,7 @@ ulonglong system_cleanup_material_data(longlong context_pointer)
   byte byte_temp2;
   longlong system_memory_result;
   ulonglong vertex_count_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   longlong transform_temp6;
   
   if (*(longlong *)(context_pointer + 0x1b8) != 0) {
@@ -39618,10 +39618,10 @@ ulonglong system_cleanup_material_data(longlong context_pointer)
 void system_initialize_light_data(longlong *context_pointer)
 {
   uint64_t unsigned_value_primary_var;
-  ulonglong *system_config_primary_pointer;
+  ulonglong *system_config_primary_ptr;
   ulonglong transform_result;
-  longlong *system_root_table_pointer_var;
-  longlong memory_allocation_size_var;
+  longlong *system_root_table_ptr;
+  longlong system_memory_alloc_size;
   byte byte_temp6;
   uint8_t system_stack_buffer [32];
   ulonglong *pstack_variable_uint_68;
@@ -39650,11 +39650,11 @@ void system_initialize_light_data(longlong *context_pointer)
     memory_allocation_size_var = context_pointer[0x37];
     if ((*(ulonglong *)(memory_allocation_size_var + 0x140) & transform_result) != 0) {
       byte_temp6 = *(byte *)((longlong)context_pointer + 0xfd) & 0x20;
-      system_root_table_pointer_var = context_pointer;
+      system_root_table_ptr = context_pointer;
       if (byte_temp6 == 0) {
-        system_root_table_pointer_var = (longlong *)func_0x000180085de0(context_pointer[0x36]);
+        system_root_table_ptr = (longlong *)func_0x000180085de0(context_pointer[0x36]);
       }
-      if (((*(uint *)(system_root_table_pointer_var + 0x20) & 0x8000000) == 0) && (byte_temp6 != 0)) {
+      if (((*(uint *)(system_root_table_ptr + 0x20) & 0x8000000) == 0) && (byte_temp6 != 0)) {
         pstack_variable_uint_68 = (ulonglong *)context_pointer;
         (**(code **)(*context_pointer + 0x28))(context_pointer);
         stack_uint_pointer_58 = (void *)0x0;
@@ -39672,11 +39672,11 @@ void system_initialize_light_data(longlong *context_pointer)
       }
       if ((*(ulonglong *)(memory_allocation_size_var + 0x140) & transform_result) != 0) goto LAB_18007738d;
     }
-    system_root_table_pointer_var = context_pointer;
+    system_root_table_ptr = context_pointer;
     if ((*(byte *)((longlong)context_pointer + 0xfd) & 0x20) == 0) {
-      system_root_table_pointer_var = (longlong *)func_0x000180085de0(context_pointer[0x36]);
+      system_root_table_ptr = (longlong *)func_0x000180085de0(context_pointer[0x36]);
     }
-    if ((*(uint *)(system_root_table_pointer_var + 0x20) & 0x8000000) != 0) {
+    if ((*(uint *)(system_root_table_ptr + 0x20) & 0x8000000) != 0) {
       pstack_variable_uint_68 = (ulonglong *)context_pointer;
       (**(code **)(*context_pointer + 0x28))(context_pointer);
       stack_uint_pointer_58 = (void *)0x0;
@@ -39699,11 +39699,11 @@ void system_initialize_light_data(longlong *context_pointer)
         if (cStack_27 != '\0') {
           system_initialize_ui_data(stack_uint_pointer_58);
         }
-        system_config_primary_pointer = pstack_uint_50;
+        system_config_primary_ptr = pstack_uint_50;
         pstack_variable_uint_68 = pstack_uint_50;
         pstack_uint_50 = (ulonglong *)0x0;
-        if (system_config_primary_pointer != (ulonglong *)0x0) {
-          (**(code **)(*system_config_primary_pointer + 0x38))();
+        if (system_config_primary_ptr != (ulonglong *)0x0) {
+          (**(code **)(*system_config_primary_ptr + 0x38))();
         }
       }
       system_cleanup_render_stack(&stack_uint_pointer_58);
@@ -39853,21 +39853,21 @@ uint64_t system_setup_light_properties(longlong context_pointer,longlong flags_v
 void system_validate_light_format(longlong context_pointer)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   longlong system_memory_result;
   ulonglong vertex_count_var;
   
-  system_config_primary_pointer = *(uint64_t **)(context_pointer + 0x28);
-  if (system_config_primary_pointer == (uint64_t *)0x0) {
+  system_config_primary_ptr = *(uint64_t **)(context_pointer + 0x28);
+  if (system_config_primary_ptr == (uint64_t *)0x0) {
     return;
   }
-  vertex_count_var = (ulonglong)system_config_primary_pointer & 0xffffffffffc00000;
+  vertex_count_var = (ulonglong)system_config_primary_ptr & 0xffffffffffc00000;
   if (vertex_count_var != 0) {
-    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_pointer - vertex_count_var >> 0x10) * 0x50;
+    system_memory_result = vertex_count_var + 0x80 + ((longlong)system_config_primary_ptr - vertex_count_var >> 0x10) * 0x50;
     system_memory_result = system_memory_result - (ulonglong)*(uint *)(system_memory_result + 4);
     if ((*(void ***)(vertex_count_var + 0x70) == &ExceptionList) && (*(char *)(system_memory_result + 0xe) == '\0')) {
-      *system_config_primary_pointer = *(uint64_t *)(system_memory_result + 0x20);
-      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_pointer;
+      *system_config_primary_ptr = *(uint64_t *)(system_memory_result + 0x20);
+      *(uint64_t **)(system_memory_result + 0x20) = system_config_primary_ptr;
       integer_primary_pointer = (int *)(system_memory_result + 0x18);
       *integer_primary_pointer = *integer_primary_pointer + -1;
       if (*integer_primary_pointer == 0) {
@@ -39877,7 +39877,7 @@ void system_validate_light_format(longlong context_pointer)
     }
     else {
       func_0x00018064e870(vertex_count_var,CONCAT71(0xff000000,*(void ***)(vertex_count_var + 0x70) == &ExceptionList),
-                          system_config_primary_pointer,vertex_count_var,0xfffffffffffffffe);
+                          system_config_primary_ptr,vertex_count_var,0xfffffffffffffffe);
     }
   }
   return;
@@ -39922,7 +39922,7 @@ ulonglong system_process_light_data(longlong context_pointer,uint *flags_var,flo
   uint *pointer_tertiary5;
   bool byte_temp36;
   uint32_t astack_variable_unsigned_8 [2];
-  uint *system_config_temp_pointer;
+  uint *system_config_temp_ptr;
   float *pfStackX_18;
   longlong stack_long_value_20;
   uint32_t array_stack_uint_138 [2];
@@ -39954,7 +39954,7 @@ ulonglong system_process_light_data(longlong context_pointer,uint *flags_var,flo
   float fStack_90;
   float fStack_8c;
   
-  system_config_temp_pointer = flags_var;
+  system_config_temp_ptr = flags_var;
   pfStackX_18 = size_param;
   stack_long_value_20 = allocator_param;
   if (*(char *)(context_pointer + 0xf9) == '\0') {
@@ -40107,7 +40107,7 @@ LAB_180077879:
               byte_temp_31 = func_0x00018022d300();
               *(byte *)(system_memory_secondary8 + 0x38c) = byte_temp_31;
             }
-            flags_var = system_config_temp_pointer;
+            flags_var = system_config_temp_ptr;
             system_memory_secondary7 = *(longlong *)(system_memory_secondary7 + 0x1e0);
             *config_pointer_primary6 = *(uint64_t *)(system_memory_secondary7 + (ulonglong)byte_temp_31 * 0x18);
             config_pointer_primary6[1] = *(uint64_t *)(system_memory_secondary7 + 8 + (ulonglong)byte_temp_31 * 0x18);
@@ -40173,15 +40173,15 @@ LAB_180077879:
                (0 < *(int *)(*(longlong *)(context_pointer + 600) + 0x1c))) {
               *(int32_t1 *)((longlong)apstack_uint_128[0] + 0x4d) = 0;
             }
-            if (*(uint **)(system_config_temp_pointer + 10) == (uint *)0x0) {
+            if (*(uint **)(system_config_temp_ptr + 10) == (uint *)0x0) {
               array_stack_uint_138[0] = 0xffffffff;
               config_pointer_primary9 = array_stack_uint_138;
-              pointer_tertiary5 = system_config_temp_pointer;
+              pointer_tertiary5 = system_config_temp_ptr;
             }
             else {
               astack_variable_unsigned_8[0] = 0xffffffff;
               config_pointer_primary9 = astack_variable_unsigned_8;
-              pointer_tertiary5 = *(uint **)(system_config_temp_pointer + 10);
+              pointer_tertiary5 = *(uint **)(system_config_temp_ptr + 10);
             }
             system_memory_180080e90(pointer_tertiary5 + 0xce2,config_pointer_primary9,apstack_uint_128);
             size_param = pfStackX_18;
@@ -42370,188 +42370,188 @@ void system_process_audio_data(longlong context_pointer)
 void system_update_audio_state(uint32_t *context_pointer,longlong *flags_var)
 {
   uint32_t unsigned_value_primary_var;
-  uint32_t *system_config_primary_pointer;
+  uint32_t *system_config_primary_ptr;
   
   unsigned_value_primary_var = *context_pointer;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[1];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[2];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[3];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = 0x3f800000;
+  *system_config_primary_ptr = 0x3f800000;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[5];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[6];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[7];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = 0x3f800000;
+  *system_config_primary_ptr = 0x3f800000;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[9];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[10];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[0xb];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = 0x3f800000;
+  *system_config_primary_ptr = 0x3f800000;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[0xd];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[0xe];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[0xf];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = 0x3f800000;
+  *system_config_primary_ptr = 0x3f800000;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[0x11];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[0x12];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[0x13];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[0x14];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[0x15];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
-    system_config_primary_pointer = (uint32_t *)flags_var[1];
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
+    system_config_primary_ptr = (uint32_t *)flags_var[1];
   }
-  *system_config_primary_pointer = unsigned_value_primary_var;
+  *system_config_primary_ptr = unsigned_value_primary_var;
   flags_var[1] = flags_var[1] + 4;
-  system_config_primary_pointer = (uint32_t *)flags_var[1];
+  system_config_primary_ptr = (uint32_t *)flags_var[1];
   unsigned_value_primary_var = context_pointer[0x16];
-  if ((ulonglong)((*flags_var - (longlong)system_config_primary_pointer) + flags_var[2]) < 5) {
-    system_handler_180639bf0(flags_var,(longlong)system_config_primary_pointer + (4 - *flags_var));
+  if ((ulonglong)((*flags_var - (longlong)system_config_primary_ptr) + flags_var[2]) < 5) {
+    system_handler_180639bf0(flags_var,(longlong)system_config_primary_ptr + (4 - *flags_var));
     *(uint32_t *)flags_var[1] = unsigned_value_primary_var;
   }
   else {
-    *system_config_primary_pointer = unsigned_value_primary_var;
+    *system_config_primary_ptr = unsigned_value_primary_var;
   }
   flags_var[1] = flags_var[1] + 4;
   return;
@@ -43744,7 +43744,7 @@ void system_update_input_state(void)
   longlong *long_pointer_secondary_var;
   byte *pbyte_temp3;
   char cVar4;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   uint32_t transform_iteration_count;
   uint system_transform_type;
   longlong *ptransform_temp_8;
@@ -43983,7 +43983,7 @@ int32_t1 system_setup_ui_properties(void)
   longlong system_memory_result;
   longlong system_register_bx;
   int integer_value_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   
   integer_value_var = 0;
   memory_allocation_size_var = 0;
@@ -44285,7 +44285,7 @@ LAB_180075f4f:
 void system_cleanup_ui_data(longlong context_pointer)
 {
   int *integer_primary_pointer;
-  uint *system_config_primary_pointer;
+  uint *system_config_primary_ptr;
   uint64_t *tertiary_pointer;
   uint64_t *quaternary_pointer;
   float float_temp5;
@@ -44764,8 +44764,8 @@ LAB_18007a5ac:
                   transform_result3 = *pointer_tertiary2;
                   if ((*(uint *)(*(longlong *)(piStack_218 + (ulonglong)transform_result3 * 8) + system_memory_result1) &
                       unsigned_value_primary_var9) != 0) {
-                    system_config_primary_pointer = (uint *)(system_memory_result1 + *(longlong *)(piStack_218 + (ulonglong)transform_result3 * 8));
-                    *system_config_primary_pointer = *system_config_primary_pointer | unsigned_value_primary_var9;
+                    system_config_primary_ptr = (uint *)(system_memory_result1 + *(longlong *)(piStack_218 + (ulonglong)transform_result3 * 8));
+                    *system_config_primary_ptr = *system_config_primary_ptr | unsigned_value_primary_var9;
                     system_memory_secondary2 = *long_pointer_result_var9;
                     float_temp48 = *(float *)(system_memory_secondary3 + 8 + system_memory_secondary2);
                     float_temp52 = *(float *)(system_memory_secondary3 + 4 + system_memory_secondary2);
@@ -44779,9 +44779,9 @@ LAB_18007a5ac:
                   }
                   if ((*(uint *)(*(longlong *)(piStack_218 + (ulonglong)transform_result3 * 8) + 0x14 + system_memory_result1)
                       & unsigned_value_primary_var9) != 0) {
-                    system_config_primary_pointer = (uint *)(*(longlong *)(piStack_218 + (ulonglong)transform_result3 * 8) + 0x14 +
+                    system_config_primary_ptr = (uint *)(*(longlong *)(piStack_218 + (ulonglong)transform_result3 * 8) + 0x14 +
                                      system_memory_result1);
-                    *system_config_primary_pointer = *system_config_primary_pointer | unsigned_value_primary_var9;
+                    *system_config_primary_ptr = *system_config_primary_ptr | unsigned_value_primary_var9;
                     system_memory_secondary2 = *long_pointer_result_var9;
                     float_temp48 = *(float *)(system_memory_secondary3 + 8 + system_memory_secondary2);
                     float_temp52 = *(float *)(system_memory_secondary3 + 4 + system_memory_secondary2);
@@ -44797,9 +44797,9 @@ LAB_18007a5ac:
                   }
                   if ((*(uint *)(*(longlong *)(piStack_218 + (ulonglong)transform_result3 * 8) + 0x28 + system_memory_result1)
                       & unsigned_value_primary_var9) != 0) {
-                    system_config_primary_pointer = (uint *)(*(longlong *)(piStack_218 + (ulonglong)transform_result3 * 8) + 0x28 +
+                    system_config_primary_ptr = (uint *)(*(longlong *)(piStack_218 + (ulonglong)transform_result3 * 8) + 0x28 +
                                      system_memory_result1);
-                    *system_config_primary_pointer = *system_config_primary_pointer | unsigned_value_primary_var9;
+                    *system_config_primary_ptr = *system_config_primary_ptr | unsigned_value_primary_var9;
                     system_memory_secondary2 = *long_pointer_result_var9;
                     float_temp48 = *(float *)(system_memory_secondary3 + 8 + system_memory_secondary2);
                     float_temp52 = *(float *)(system_memory_secondary3 + 4 + system_memory_secondary2);
@@ -45481,7 +45481,7 @@ ulonglong system_process_network_data(longlong context_pointer,longlong *flags_v
 {
   byte *pbyte_temp1;
   char char_flag;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   int integer_value_var;
   byte byte_temp5;
   longlong transform_temp6;
@@ -46205,7 +46205,7 @@ void system_process_file_data(longlong *context_pointer,byte flags_var,longlong 
   char *pconfig_status_flag;
   longlong *long_pointer_secondary_var;
   longlong *long_pointer_result_var;
-  longlong *system_root_table_pointer_var;
+  longlong *system_root_table_ptr;
   code *character_variable5;
   char cVar6;
   void *system_config_data_ptr;
@@ -46253,8 +46253,8 @@ void system_process_file_data(longlong *context_pointer,byte flags_var,longlong 
     (**(code **)((void *)*context_pointer + 0x28))(context_pointer);
   }
   if (param_5 == '\0') {
-    system_root_table_pointer_var = *(longlong **)(context_pointer[0x15] + 0x88);
-    character_variable5 = *(code **)(*system_root_table_pointer_var + 0x70);
+    system_root_table_ptr = *(longlong **)(context_pointer[0x15] + 0x88);
+    character_variable5 = *(code **)(*system_root_table_ptr + 0x70);
     pcStack_f0 = (code *)&#define SYSTEM_UNKNOWN_180083180 0x180083180
     stack_uint_e8 = &#define SYSTEM_UNKNOWN_180083170 0x180083170
     stack_variable_uint_100 = (uint32_t)stack_uint_e0;
@@ -46272,7 +46272,7 @@ void system_process_file_data(longlong *context_pointer,byte flags_var,longlong 
       (**(code **)(*long_pointer_result_var + 0x28))(long_pointer_result_var);
     }
     system_memory_180081120(astack_uint_60,&plStack_b0);
-    (*character_variable5)(system_root_table_pointer_var,&system_memory_pool_signature,context_pointer + 0x17,0,astack_uint_60,&stack_variable_uint_100);
+    (*character_variable5)(system_root_table_ptr,&system_memory_pool_signature,context_pointer + 0x17,0,astack_uint_60,&stack_variable_uint_100);
     if (pcStack_50 != (code *)0x0) {
       (*pcStack_50)(astack_uint_60,0,0);
     }
@@ -46281,8 +46281,8 @@ void system_process_file_data(longlong *context_pointer,byte flags_var,longlong 
     }
   }
   else {
-    system_root_table_pointer_var = *(longlong **)(context_pointer[0x15] + 0x88);
-    character_variable5 = *(code **)(*system_root_table_pointer_var + 0x60);
+    system_root_table_ptr = *(longlong **)(context_pointer[0x15] + 0x88);
+    character_variable5 = *(code **)(*system_root_table_ptr + 0x60);
     pplStack_88 = &stack_pointer_d0;
     stack_pointer_d0 = context_pointer;
     bStack_c8 = flags_var;
@@ -46295,7 +46295,7 @@ void system_process_file_data(longlong *context_pointer,byte flags_var,longlong 
       (**(code **)(*long_pointer_result_var + 0x28))(long_pointer_result_var);
     }
     system_memory_180081120(astack_uint_80,&stack_pointer_d0);
-    cVar6 = (*character_variable5)(system_root_table_pointer_var,&system_memory_pool_signature,context_pointer + 0x17,0,astack_uint_80);
+    cVar6 = (*character_variable5)(system_root_table_ptr,&system_memory_pool_signature,context_pointer + 0x17,0,astack_uint_80);
     if (pcStack_70 != (code *)0x0) {
       (*pcStack_70)(astack_uint_80,0,0);
     }
@@ -46331,13 +46331,13 @@ void system_process_file_data(longlong *context_pointer,byte flags_var,longlong 
 void system_update_file_state(longlong *context_pointer)
 {
   char *pconfig_status_flag;
-  void *system_config_primary_pointer;
+  void *system_config_primary_ptr;
   
-  system_config_primary_pointer = &SYSTEM_CONFIG_DATA_TYPE_3;
+  system_config_primary_ptr = &SYSTEM_CONFIG_DATA_TYPE_3;
   if (*(void **)(*context_pointer + 0x18) != (void *)0x0) {
-    system_config_primary_pointer = *(void **)(*context_pointer + 0x18);
+    system_config_primary_ptr = *(void **)(*context_pointer + 0x18);
   }
-  system_module_180626f80(&SYSTEM_DATABASE_TABLE_TYPE6,system_config_primary_pointer);
+  system_module_180626f80(&SYSTEM_DATABASE_TABLE_TYPE6,system_config_primary_ptr);
   pconfig_status_flag = (char *)(*(longlong *)(*context_pointer + 0x1e0) + 0x15 +
                    (ulonglong)*(byte *)(context_pointer + 1) * 0x18);
   LOCK();
@@ -46393,7 +46393,7 @@ void system_setup_database_properties(longlong context_pointer,byte flags_var,lo
 {
   longlong system_memory_allocation_result;
   char *string_flag_pointer;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   int integer_value_var;
   uint64_t vertex_buffer_offset;
   longlong *long_ptr_6;
@@ -47294,9 +47294,9 @@ void system_update_database_state(longlong context_pointer,ulonglong flags_var,l
 {
   longlong system_memory_allocation_result;
   int *integer_secondary_variable_pointer;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   int integer_value_var;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   int integer_index_var_var_var;
   longlong stack_long_70;
   uint32_t stack_variable_uint_68;
@@ -47629,7 +47629,7 @@ code * system_setup_thread_properties(longlong context_pointer,char flags_var)
   code *system_register_rax;
   uint64_t texture_secondary;
   code *string_result_pointer_var;
-  longlong *system_root_table_pointer_var;
+  longlong *system_root_table_ptr;
   longlong stack_long_30;
   uint32_t stack_uint_28;
   code *pcStack_20;
@@ -47661,13 +47661,13 @@ code * system_setup_thread_properties(longlong context_pointer,char flags_var)
     if (*(longlong *)(context_pointer + 0xa8) == 0) {
       if ((*(byte *)(context_pointer + 0xfd) & 4) != 0) {
         texture_secondary = system_utility_create_object(system_memory_allocator_config,0xf0,8,3);
-        system_root_table_pointer_var = (longlong *)system_validate_system_format(texture_secondary);
+        system_root_table_ptr = (longlong *)system_validate_system_format(texture_secondary);
         pcStack_18 = (code *)0xfffffffffffffffe;
-        if (system_root_table_pointer_var != (longlong *)0x0) {
-          (**(code **)(*system_root_table_pointer_var + 0x28))(system_root_table_pointer_var);
+        if (system_root_table_ptr != (longlong *)0x0) {
+          (**(code **)(*system_root_table_ptr + 0x28))(system_root_table_ptr);
         }
         long_pointer_primary = *(longlong **)string_result_pointer_var;
-        *(longlong **)string_result_pointer_var = system_root_table_pointer_var;
+        *(longlong **)string_result_pointer_var = system_root_table_ptr;
         if (long_pointer_primary != (longlong *)0x0) {
           (**(code **)(*long_pointer_primary + 0x38))();
         }
@@ -47677,11 +47677,11 @@ code * system_setup_thread_properties(longlong context_pointer,char flags_var)
       system_register_rax = (code *)system_module_180626f80(&SYSTEM_DATABASE_TABLE_TYPE2);
     }
     else {
-      system_root_table_pointer_var = *(longlong **)(*(longlong *)(context_pointer + 0xa8) + 0x88);
+      system_root_table_ptr = *(longlong **)(*(longlong *)(context_pointer + 0xa8) + 0x88);
       pcStack_20 = (code *)&#define SYSTEM_UNKNOWN_180083070 0x180083070
       pcStack_18 = system_memory_180082fd0;
       stack_long_30 = context_pointer;
-      (**(code **)(*system_root_table_pointer_var + 0x60))(system_root_table_pointer_var,&system_config_primary_signature,context_pointer + 0xb8,0,&stack_long_30);
+      (**(code **)(*system_root_table_ptr + 0x60))(system_root_table_ptr,&system_config_primary_signature,context_pointer + 0xb8,0,&stack_long_30);
       system_register_rax = pcStack_20;
       if (pcStack_20 != (code *)0x0) {
         string_result_pointer_var = (code *)(*pcStack_20)(&stack_long_30,0,0);
@@ -47819,7 +47819,7 @@ void system_process_thread_data(longlong context_pointer,int flags_var,int size_
 {
   uint unsigned_value_primary_var;
   uint64_t texture_secondary;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   uint vertex_count_var;
   uint vertex_buffer_offset;
   int integer_index_var_var_var;
@@ -47987,7 +47987,7 @@ void system_validate_process_format(longlong context_pointer)
 void system_process_process_data(longlong context_pointer,longlong flags_var,int size_param)
 {
   int *integer_primary_pointer;
-  uint64_t *system_config_primary_pointer;
+  uint64_t *system_config_primary_ptr;
   uint64_t *tertiary_pointer;
   uint64_t *quaternary_pointer;
   uint vertex_buffer_offset;
@@ -47995,7 +47995,7 @@ void system_process_process_data(longlong context_pointer,longlong flags_var,int
   longlong transform_temp_8;
   ulonglong loop_bound_limit;
   longlong system_memory_allocation_result;
-  uint64_t *system_config_node_pointer;
+  uint64_t *system_config_node_ptr;
   
   loop_bound_limit = (ulonglong)size_param;
   if (**(longlong **)(context_pointer + 0x2d0) != 0) {
@@ -48004,10 +48004,10 @@ void system_process_process_data(longlong context_pointer,longlong flags_var,int
   quaternary_pointer = (uint64_t *)0x0;
   **(longlong **)(context_pointer + 0x2d0) = 0;
   if (0 < size_param) {
-    system_config_primary_pointer = quaternary_pointer;
+    system_config_primary_ptr = quaternary_pointer;
     if (size_param != 0) {
-      system_config_primary_pointer = (uint64_t *)system_memory_allocate_buffer(system_memory_allocator_config,loop_bound_limit * 8,3);
-      tertiary_pointer = system_config_primary_pointer;
+      system_config_primary_ptr = (uint64_t *)system_memory_allocate_buffer(system_memory_allocator_config,loop_bound_limit * 8,3);
+      tertiary_pointer = system_config_primary_ptr;
       system_config_node_pointer = quaternary_pointer;
       do {
         vertex_buffer_offset = (int)system_config_node_pointer + 1;
@@ -48016,7 +48016,7 @@ void system_process_process_data(longlong context_pointer,longlong flags_var,int
         tertiary_pointer = tertiary_pointer + 1;
       } while ((ulonglong)(longlong)(int)vertex_buffer_offset < loop_bound_limit);
     }
-    **(uint64_t **)(context_pointer + 0x2d0) = system_config_primary_pointer;
+    **(uint64_t **)(context_pointer + 0x2d0) = system_config_primary_ptr;
     if (3 < (longlong)loop_bound_limit) {
       system_memory_allocation_result = -8 - flags_var;
       transform_temp_8 = (loop_bound_limit - 4 >> 2) + 1;
@@ -48055,7 +48055,7 @@ void system_process_process_data(longlong context_pointer,longlong flags_var,int
 void system_update_process_state(void)
 {
   int *integer_primary_pointer;
-  ulonglong *system_config_primary_pointer;
+  ulonglong *system_config_primary_ptr;
   ulonglong *tertiary_pointer;
   ulonglong system_register_bx;
   longlong system_register_bp;
@@ -48069,12 +48069,12 @@ void system_update_process_state(void)
   bool in_ZF;
   
   if (in_ZF) {
-    system_config_primary_pointer = (ulonglong *)(system_register_bx & 0xffffffff);
+    system_config_primary_ptr = (ulonglong *)(system_register_bx & 0xffffffff);
   }
   else {
-    system_config_primary_pointer = (ulonglong *)system_memory_allocate_buffer(system_memory_allocator_config,system_register_r14 * 8,3);
+    system_config_primary_ptr = (ulonglong *)system_memory_allocate_buffer(system_memory_allocator_config,system_register_r14 * 8,3);
     vertex_buffer_offset = system_register_bx & 0xffffffff;
-    tertiary_pointer = system_config_primary_pointer;
+    tertiary_pointer = system_config_primary_ptr;
     do {
       vertex_count_var = (int)vertex_buffer_offset + 1;
       vertex_buffer_offset = (ulonglong)vertex_count_var;
@@ -48082,7 +48082,7 @@ void system_update_process_state(void)
       tertiary_pointer = tertiary_pointer + 1;
     } while ((ulonglong)(longlong)(int)vertex_count_var < system_register_r14);
   }
-  **(longlong **)(system_register_di + 0x2d0) = (longlong)system_config_primary_pointer;
+  **(longlong **)(system_register_di + 0x2d0) = (longlong)system_config_primary_ptr;
   if (3 < (longlong)system_register_r14) {
     transform_temp_8 = -8 - system_register_bp;
     system_transform_type = (system_register_r14 - 4 >> 2) + 1;
@@ -48123,7 +48123,7 @@ void system_cleanup_process_data(void)
   int *memory_compare_result_pointer;
   longlong memory_buffer_ptr;
   longlong system_register_r14;
-  longlong memory_allocation_size_var;
+  longlong system_memory_alloc_size;
   
   memory_allocation_size_var = -8 - system_register_bp;
   memory_buffer_ptr = (system_register_r14 - 4U >> 2) + 1;
@@ -48390,7 +48390,7 @@ void system_setup_config_properties(longlong *context_pointer)
 {
   longlong system_memory_allocation_result;
   char char_flag;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   bool byte_temp4;
   
   system_memory_allocation_result = *context_pointer;
@@ -50307,7 +50307,7 @@ uint64_t system_create_empty_buffer(int context_pointer,uint64_t flags_var,uint6
   float *float_ptr_2;
   int unaff_EBX;
   longlong system_register_di;
-  int memory_comparison_result_var;
+  int system_memory_compare_status;
   int system_register_parameterD;
   float *system_context_pointer;
   float unaff_XMM6_Da;
