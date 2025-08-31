@@ -431,22 +431,22 @@ void* system_memory_ptr_ad;
 void* system_memory_ptr_ae;
 void* system_memory_ptr_af;
 
-void* FUN_18007bb70;
+void* system_initialize_module_a;
 void* system_memory_ptr_ag;
 void* system_memory_ptr_ah;
 void* system_memory_ptr_ai;
-void* DAT_180c8aa00;
+void* system_global_data_ptr_aa;
 void* system_memory_ptr_aj;
-void* DAT_180d49158;
+void* system_global_data_ptr_ab;
 
-void* FUN_18004c030;
+void* system_initialize_module_b;
 void* system_memory_ptr_ak;
 
-void* FUN_180056e10;
+void* system_initialize_module_c;
 
-void* FUN_180051cc0;
+void* system_initialize_module_d;
 
-void* FUN_180051d00;
+void* system_initialize_module_e;
 void* system_handler_ptr_a;
 void* system_handler_ptr_b;
 void* system_handler_ptr_c;
@@ -454,7 +454,7 @@ void* system_handler_ptr_d;
 void* system_handler_ptr_e;
 void* system_handler_ptr_f;
 
-void* FUN_1800596a0;
+void* system_initialize_module_f;
 void* system_resource_ptr_a;
 void* system_resource_ptr_b;
 void* system_resource_ptr_c;
@@ -462,21 +462,21 @@ void* system_resource_ptr_d;
 char system_data_buffer_ptr_b;
 void* system_resource_ptr_e;
 void* system_resource_ptr_f;
-void* DAT_18098c090;
+void* system_global_data_ptr_ac;
 void* system_resource_ptr_g;
 void* system_resource_ptr_h;
 void* system_resource_ptr_i;
 void* system_resource_ptr_j;
-void* DAT_180d49288;
-void* DAT_180d49290;
-void* DAT_180d49298;
-void* DAT_180d492a0;
-void* DAT_180d492a8;
-void* DAT_180d492e8;
-void* DAT_180d492f0;
-void* DAT_180d492f8;
-void* DAT_180d49300;
-void* DAT_180d49340;
+void* system_global_data_ptr_ad;
+void* system_global_data_ptr_ae;
+void* system_global_data_ptr_af;
+void* system_global_data_ptr_ag;
+void* system_global_data_ptr_ah;
+void* system_global_data_ptr_ai;
+void* system_global_data_ptr_aj;
+void* system_global_data_ptr_ak;
+void* system_global_data_ptr_al;
+void* system_global_data_ptr_am;
 void* DAT_180d49348;
 void* DAT_180d49350;
 void* DAT_180d49358;
@@ -526,242 +526,242 @@ void* system_network_ptr_a;
 void* system_network_ptr_b;
 void* system_network_ptr_c;
 
-void* FUN_18004a130;
-void* UNK_180a0c9a0;
-void* UNK_180a0cb40;
-void* UNK_180a0c808;
-void* UNK_180a0c9b0;
-void* UNK_180a0c7d8;
-void* UNK_180a0c7f0;
-void* UNK_180a0c508;
+void* system_function_initialize_main;
+void* system_data_ptr_network_a;
+void* system_data_ptr_network_b;
+void* system_data_ptr_network_c;
+void* system_data_ptr_network_d;
+void* system_data_ptr_network_e;
+void* system_data_ptr_network_f;
+void* system_data_ptr_network_g;
 
-void* FUN_180049cd0;
+void* system_function_initialize_subsystem;
 
-void* FUN_180049970;
+void* system_function_initialize_memory;
 
-void* FUN_1800586e0;
+void* system_function_initialize_graphics;
 
-void* FUN_180046480;
-void* UNK_180a13ad0;
-void* DAT_180a0ba58;
-void* DAT_180a0d580;
-void* UNK_180a13aa8;
-void* UNK_180a13ab8;
-void* UNK_180a13ae8;
-void* UNK_180a13bb8;
-void* UNK_180a13b30;
-void* UNK_180a13b70;
+void* system_function_initialize_network;
+void* system_data_ptr_graphics_a;
+void* system_data_graphics_a;
+void* system_data_graphics_b;
+void* system_data_ptr_graphics_b;
+void* system_data_ptr_graphics_c;
+void* system_data_ptr_graphics_d;
+void* system_data_ptr_graphics_e;
+void* system_data_ptr_graphics_f;
+void* system_data_ptr_graphics_g;
 void* DAT_180a13c30;
-void* UNK_180a03108;
-void* UNK_180a13c08;
-void* UNK_180a13c48;
-void* UNK_180a12ea0;
+void* system_data_ptr_graphics_h;
+void* system_data_ptr_graphics_i;
+void* system_data_ptr_graphics_j;
+void* system_data_ptr_graphics_k;
 void* DAT_180a1388c;
-void* UNK_180a13c2c;
-void* UNK_180a13c70;
-void* UNK_180a13c88;
-void* UNK_180a13c94;
-void* UNK_180a13ca0;
-void* UNK_180a13cac;
-void* UNK_180239520;
+void* system_data_ptr_graphics_l;
+void* system_data_ptr_graphics_m;
+void* system_data_ptr_graphics_n;
+void* system_data_ptr_graphics_o;
+void* system_data_ptr_graphics_p;
+void* system_data_ptr_graphics_q;
+void* system_data_ptr_graphics_r;
 
 void* FUN_180056de0;
-void* UNK_180a172e0;
-void* UNK_180a17308;
-void* UNK_180a17398;
-void* UNK_180a173f0;
-void* UNK_180a17400;
-void* UNK_1802a11b8;
+void* system_audio_ptr_a;
+void* system_audio_ptr_b;
+void* system_audio_ptr_c;
+void* system_audio_ptr_d;
+void* system_audio_ptr_e;
+void* system_audio_ptr_f;
 char UNK_180d48da9;
-char DAT_180d48da8;
-void* UNK_1802a1b10;
-void* UNK_180a17770;
-void* UNK_180a17798;
-void* UNK_180a177c8;
-void* UNK_180a177f0;
-uint8_t* DAT_180d48da8;
-void* UNK_1802a1d4c;
+char system_audio_data_a;
+void* system_audio_ptr_g;
+void* system_audio_ptr_h;
+void* system_audio_ptr_i;
+void* system_audio_ptr_j;
+void* system_audio_ptr_k;
+uint8_t* system_audio_data_a;
+void* system_audio_ptr_l;
 void* DAT_180bf5c18;
 void* DAT_180bf5c28;
-void* UNK_180a02b03;
-void* UNK_180a17818;
-void* UNK_180a27cb0;
+void* system_audio_ptr_m;
+void* system_audio_ptr_n;
+void* system_audio_ptr_o;
 uint32_t* UNK_180bf5c1c;
 uint32_t* UNK_180bf5c20;
 uint32_t* UNK_180bf5c24;
 void* DAT_180c8ecd0;
-char DAT_180d48dac;
-void* UNK_18042d5d0;
-void* UNK_180a17830;
-void* UNK_180a17880;
+char system_audio_data_c;
+void* system_audio_ptr_p;
+void* system_audio_ptr_q;
+void* system_audio_ptr_r;
 void* DAT_180c8ecb0;
 void* DAT_180c8eca8;
-void* UNK_180a178bc;
-void* UNK_180a178f8;
-void* UNK_180a17900;
-void* UNK_180a17a18;
-void* UNK_180a17a68;
-char DAT_180d48daa;
-void* UNK_180a178c8;
-void* UNK_180a178f0;
-void* UNK_180a17910;
-void* UNK_180a17940;
-void* UNK_180a17960;
-void* UNK_180a17980;
-void* UNK_180a179a8;
-char DAT_180d48dab;
-void* UNK_180a179d0;
-void* UNK_180a17a38;
-void* UNK_180a17ab0;
-void* UNK_180a17b38;
-void* UNK_180a06428;
-void* UNK_180a06438;
-void* UNK_180a17b78;
-void* UNK_180a17b88;
-void* UNK_180a17b98;
-void* UNK_180a17ba0;
-void* UNK_180a17bb0;
-void* UNK_180a17bc0;
-void* UNK_180a17bd8;
-void* UNK_180a17be8;
-void* UNK_180a17bf8;
-void* UNK_180a17d90;
-void* UNK_180a17c48;
-void* UNK_180a17c60;
-void* UNK_180a17c80;
-void* UNK_180a17c90;
-void* UNK_180a17cb8;
-void* UNK_180a17cc8;
-void* UNK_180a17cd8;
-void* UNK_180a17d00;
-void* UNK_180a17d28;
-void* UNK_180a17d50;
-void* UNK_180a17da8;
-void* UNK_180a17e18;
-void* UNK_180a18648;
-void* UNK_180a17e68;
-void* UNK_180a17e78;
-void* UNK_180a17ea8;
-void* UNK_180a17eb0;
-void* UNK_180a17ec0;
-void* UNK_180a17f00;
-void* UNK_180a17f58;
-void* UNK_180a17f90;
+void* system_audio_ptr_s;
+void* system_audio_ptr_t;
+void* system_audio_ptr_u;
+void* system_audio_ptr_v;
+void* system_audio_ptr_w;
+char system_audio_data_d;
+void* system_audio_ptr_x;
+void* system_audio_ptr_y;
+void* system_audio_ptr_z;
+void* system_audio_ptr_aa;
+void* system_audio_ptr_ab;
+void* system_audio_ptr_ac;
+void* system_audio_ptr_ad;
+char system_audio_data_e;
+void* system_audio_ptr_ae;
+void* system_audio_ptr_af;
+void* system_audio_ptr_ag;
+void* system_audio_ptr_ah;
+void* system_resource_ptr_aa;
+void* system_resource_ptr_ab;
+void* system_resource_ptr_ac;
+void* system_resource_ptr_ad;
+void* system_resource_ptr_ae;
+void* system_resource_ptr_af;
+void* system_resource_ptr_ag;
+void* system_resource_ptr_ah;
+void* system_resource_ptr_ai;
+void* system_resource_ptr_aj;
+void* system_resource_ptr_ak;
+void* system_resource_ptr_al;
+void* system_resource_ptr_am;
+void* system_resource_ptr_an;
+void* system_resource_ptr_ao;
+void* system_resource_ptr_ap;
+void* system_resource_ptr_aq;
+void* system_resource_ptr_ar;
+void* system_resource_ptr_as;
+void* system_resource_ptr_at;
+void* system_resource_ptr_au;
+void* system_resource_ptr_av;
+void* system_resource_ptr_aw;
+void* system_resource_ptr_ax;
+void* system_resource_ptr_ay;
+void* system_resource_ptr_az;
+void* system_resource_ptr_ba;
+void* system_resource_ptr_bb;
+void* system_resource_ptr_bc;
+void* system_resource_ptr_bd;
+void* system_resource_ptr_be;
+void* system_resource_ptr_bf;
+void* system_resource_ptr_bg;
 void* DAT_180a09dc0;
-void* UNK_180a17fe0;
-void* UNK_180a15728;
-void* UNK_180a15748;
-void* UNK_180a17fe8;
-void* UNK_180a157f0;
-void* UNK_180a15828;
-void* UNK_180a15830;
-void* UNK_180a18010;
-void* UNK_180a157a8;
-void* UNK_180a157c8;
-void* UNK_180a04c44;
-void* UNK_180a06420;
-void* UNK_180a15750;
-void* DAT_180a157e0;
-void* DAT_180a157e4;
-void* UNK_180a157e8;
-void* UNK_180a157f4;
-void* UNK_180a157fc;
-void* UNK_180a18048;
-void* UNK_180a18590;
-void* UNK_180a18050;
-void* UNK_180a18060;
-void* UNK_180a18088;
-void* UNK_180a18098;
-void* UNK_180a180d0;
-void* UNK_180a18038;
-void* UNK_180a18528;
-void* UNK_180a18120;
-void* DAT_180d48db0;
-void* DAT_180d48db8;
-void* DAT_180d48dc0;
-void* DAT_180d48dc8;
-void* DAT_180d48dd0;
+void* system_resource_ptr_bh;
+void* system_resource_ptr_bi;
+void* system_resource_ptr_bj;
+void* system_resource_ptr_bk;
+void* system_resource_ptr_bl;
+void* system_resource_ptr_bm;
+void* system_resource_ptr_bn;
+void* system_resource_ptr_bo;
+void* system_resource_ptr_bp;
+void* system_resource_ptr_bq;
+void* system_resource_ptr_br;
+void* system_resource_ptr_bs;
+void* system_resource_ptr_bt;
+void* system_data_resource_a;
+void* system_data_resource_b;
+void* system_resource_ptr_bu;
+void* system_resource_ptr_bv;
+void* system_resource_ptr_bw;
+void* system_resource_ptr_bx;
+void* system_resource_ptr_by;
+void* system_resource_ptr_bz;
+void* system_resource_ptr_ca;
+void* system_resource_ptr_cb;
+void* system_resource_ptr_cc;
+void* system_resource_ptr_cd;
+void* system_resource_ptr_ce;
+void* system_resource_ptr_cf;
+void* system_resource_ptr_cg;
+void* system_data_resource_c;
+void* system_data_resource_d;
+void* system_data_resource_e;
+void* system_data_resource_f;
+void* system_data_resource_g;
 
 void* FUN_1800670d0;
-void* UNK_180a25980;
-void* DAT_180bfc170;
-void* UNK_180a258e0;
-void* UNK_180a258ec;
-void* UNK_180a258f8;
-void* UNK_180a259c0;
-void* UNK_180a259c8;
-void* UNK_180a259e0;
-void* UNK_180a25a10;
-void* DAT_180a0af70;
-void* UNK_180a25998;
-void* UNK_180a259a8;
-void* UNK_180a25a74;
-void* UNK_180a25a28;
-void* UNK_180a25a80;
-void* UNK_180a25a98;
-void* DAT_180c92498;
-void* UNK_180a25a50;
-void* UNK_180a25a60;
-void* UNK_180a25aa0;
-void* UNK_180a25ab0;
-void* UNK_180a25ae8;
-void* UNK_180a25af0;
-void* UNK_180a25b00;
-void* UNK_180a25ab8;
-void* UNK_180a25ac8;
-void* UNK_180a25b10;
-void* UNK_180a25b20;
-void* UNK_180a25b30;
-void* UNK_180a25b40;
-void* UNK_180a25b48;
-void* UNK_180a25b60;
-void* UNK_180a25b6c;
-void* UNK_180a25b80;
-void* UNK_180a25b88;
-void* UNK_180a25bc8;
-void* UNK_180a25bd4;
-void* UNK_180a25be0;
-void* UNK_180a25c58;
-void* UNK_180a25c84;
-void* UNK_180a25c90;
-void* UNK_180a2b468;
-void* UNK_180a25c04;
-void* UNK_180a25c10;
-void* UNK_180a25c20;
-void* UNK_180a25ca0;
-void* UNK_180a25cdc;
-void* UNK_180a0dcf8;
-void* UNK_180a25bfc;
-void* UNK_180a25ce8;
-void* UNK_180a25cf8;
-void* DAT_180a25d28;
-void* DAT_180a0209c;
-void* DAT_180a022f0;
-void* DAT_180a02320;
-void* UNK_180a25ca8;
-void* DAT_180a25cb4;
-void* UNK_180a25cc0;
-void* UNK_180a25cd0;
-void* UNK_180a25d78;
-void* UNK_180a25d90;
-void* UNK_180a25d98;
-void* UNK_180a25da8;
-void* DAT_180a02030;
-void* DAT_180a0206c;
-void* DAT_180a02080;
-void* UNK_180a25e58;
-void* UNK_180a25e70;
-void* UNK_180a25e80;
-void* UNK_180a25e90;
-void* UNK_180a25ebc;
-void* UNK_180a25ec4;
-void* UNK_180a25ed0;
-void* UNK_180a25ee0;
-void* UNK_180a25ef0;
-void* UNK_180a25ef8;
-void* UNK_180a25900;
-void* UNK_180a25ad0;
-void* UNK_180a25a6c;
+void* system_resource_ptr_ch;
+void* system_data_resource_h;
+void* system_resource_ptr_ci;
+void* system_resource_ptr_cj;
+void* system_resource_ptr_ck;
+void* system_resource_ptr_cl;
+void* system_resource_ptr_cm;
+void* system_resource_ptr_cn;
+void* system_resource_ptr_co;
+void* system_data_resource_i;
+void* system_resource_ptr_cp;
+void* system_resource_ptr_cq;
+void* system_resource_ptr_cr;
+void* system_resource_ptr_cs;
+void* system_resource_ptr_ct;
+void* system_resource_ptr_cu;
+void* system_data_resource_j;
+void* system_resource_ptr_cv;
+void* system_resource_ptr_cw;
+void* system_resource_ptr_cx;
+void* system_resource_ptr_cy;
+void* system_resource_ptr_cz;
+void* system_resource_ptr_da;
+void* system_resource_ptr_db;
+void* system_resource_ptr_dc;
+void* system_resource_ptr_dd;
+void* system_resource_ptr_de;
+void* system_resource_ptr_df;
+void* system_resource_ptr_dg;
+void* system_resource_ptr_dh;
+void* system_resource_ptr_di;
+void* system_resource_ptr_dj;
+void* system_resource_ptr_dk;
+void* system_resource_ptr_dl;
+void* system_resource_ptr_dm;
+void* system_resource_ptr_dn;
+void* system_resource_ptr_do;
+void* system_resource_ptr_dp;
+void* system_resource_ptr_dq;
+void* system_resource_ptr_dr;
+void* system_resource_ptr_ds;
+void* system_resource_ptr_dt;
+void* system_resource_ptr_du;
+void* system_resource_ptr_dv;
+void* system_resource_ptr_dw;
+void* system_resource_ptr_dx;
+void* system_resource_ptr_dy;
+void* system_resource_ptr_dz;
+void* system_resource_ptr_ea;
+void* system_resource_ptr_eb;
+void* system_resource_ptr_ec;
+void* system_data_resource_k;
+void* system_data_resource_l;
+void* system_data_resource_m;
+void* system_data_resource_n;
+void* system_resource_ptr_ed;
+void* system_data_resource_o;
+void* system_resource_ptr_ee;
+void* system_resource_ptr_ef;
+void* system_resource_ptr_eg;
+void* system_resource_ptr_eh;
+void* system_resource_ptr_ei;
+void* system_resource_ptr_ej;
+void* system_data_resource_p;
+void* system_data_resource_q;
+void* system_data_resource_r;
+void* system_resource_ptr_ek;
+void* system_resource_ptr_el;
+void* system_resource_ptr_em;
+void* system_resource_ptr_en;
+void* system_resource_ptr_eo;
+void* system_resource_ptr_ep;
+void* system_resource_ptr_eq;
+void* system_resource_ptr_er;
+void* system_resource_ptr_es;
+void* system_resource_ptr_et;
+void* system_resource_ptr_eu;
+void* system_resource_ptr_ev;
+void* system_resource_ptr_ew;
 
 void* system_get_init_function;
 
@@ -16898,7 +16898,7 @@ void FUN_180046444(uint8_t* *param_1)
 
 
 
-uint8_t * FUN_180046480(uint8_t *param_1)
+uint8_t * system_function_initialize_network(uint8_t *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -18932,7 +18932,7 @@ void FUN_180049956(uint8_t* *param_1)
 
 
 
-uint8_t * FUN_180049970(uint8_t *param_1)
+uint8_t * system_function_initialize_memory(uint8_t *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -19095,7 +19095,7 @@ void FUN_180049cb4(uint8_t* *param_1)
 
 
 
-uint8_t * FUN_180049cd0(uint8_t *param_1)
+uint8_t * system_function_initialize_subsystem(uint8_t *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -19265,7 +19265,7 @@ void FUN_18004a100(int64_t param_1,uint8_t param_2,uint8_t param_3,uint8_t param
 
 
 
-void FUN_18004a130(uint8_t *param_1)
+void system_function_initialize_main(uint8_t *param_1)
 
 {
   *param_1 = &UNK_180a3c3e0;
@@ -20637,7 +20637,7 @@ void FUN_18004c010(int64_t *param_1)
 
 
 
-void FUN_18004c030(int64_t *param_1)
+void system_initialize_module_b(int64_t *param_1)
 
 {
   int64_t *plVar1;
@@ -22652,7 +22652,7 @@ void FUN_180051150(int64_t param_1,uint8_t param_2)
   }
   else {
 
-void FUN_180051d00(int64_t param_1)
+void system_initialize_module_e(int64_t param_1)
 
 {
   int *piVar1;
@@ -25485,7 +25485,7 @@ uint8_t * FUN_180056de0(uint8_t *param_1)
 
 
 
-uint8_t * FUN_180056e10(uint8_t *param_1)
+uint8_t * system_initialize_module_c(uint8_t *param_1)
 
 {
   *param_1 = 0;
@@ -27343,7 +27343,7 @@ LAB_18005856a:
 
 
 
-void FUN_1800586e0(int64_t param_1)
+void system_function_initialize_graphics(int64_t param_1)
 
 {
   if (*(int64_t **)(param_1 + 0x10) != (int64_t *)0x0) {
@@ -28881,7 +28881,7 @@ void system_initialize_graphics(int64_t *param_1)
   
   lVar1 = param_1[1];
   for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x50) {
-    FUN_1800596a0(lVar2);
+    system_initialize_module_f(lVar2);
   }
   if (*param_1 == 0) {
     return;
@@ -28901,7 +28901,7 @@ void FUN_180059640(int64_t *param_1)
   
   lVar1 = param_1[1];
   for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x50) {
-    FUN_1800596a0(lVar2);
+    system_initialize_module_f(lVar2);
   }
   if (*param_1 == 0) {
     return;
@@ -28913,7 +28913,7 @@ void FUN_180059640(int64_t *param_1)
 
 
 
-void FUN_1800596a0(uint8_t *param_1)
+void system_initialize_module_f(uint8_t *param_1)
 
 {
   param_1[4] = &UNK_180a3c3e0;
@@ -48631,7 +48631,7 @@ void FUN_1800756e0(uint8_t *param_1)
   }
   lVar3 = param_1[0x3c];
   if (lVar3 != 0) {
-    FUN_1808fc8a8(lVar3,0x18,0x10,FUN_18007bb70,uVar4,lVar3);
+    FUN_1808fc8a8(lVar3,0x18,0x10,system_initialize_module_a,uVar4,lVar3);
                     // WARNING: Subroutine does not return
     FUN_18064e900(lVar3);
   }
@@ -52213,8 +52213,8 @@ void FUN_180078550(uint8_t *param_1,uint8_t param_2,uint8_t param_3,uint8_t para
   uint8_t uVar5;
   
   uVar5 = 0xfffffffffffffffe;
-  if (0 < *(int *)(_DAT_180c8aa00 + 0x40)) {
-    param_1[0x26] = *(uint8_t *)(_DAT_180c8aa00 + 0x38);
+  if (0 < *(int *)(_system_global_data_ptr_aa + 0x40)) {
+    param_1[0x26] = *(uint8_t *)(_system_global_data_ptr_aa + 0x38);
   }
   plVar2 = param_1 + 1;
   lVar3 = 7;
@@ -52350,8 +52350,8 @@ void FUN_1800786e0(uint8_t *param_1,int64_t param_2)
     plVar8 = plVar8 + 1;
   } while (iVar9 < 7);
   uVar4 = FUN_1801fc6c0(param_2,&uStack_58);
-  lVar1 = _DAT_180c8aa00;
-  iVar9 = FUN_180191c00(_DAT_180c8aa00,uVar4);
+  lVar1 = _system_global_data_ptr_aa;
+  iVar9 = FUN_180191c00(_system_global_data_ptr_aa,uVar4);
   if ((iVar9 == -1) || (lVar7 = (int64_t)iVar9 * 0x68 + *(int64_t *)(lVar1 + 0x38), lVar7 == 0)) {
     lVar7 = *(int64_t *)(lVar1 + 0x28);
   }
@@ -52364,7 +52364,7 @@ void FUN_1800786e0(uint8_t *param_1,int64_t param_2)
   uStack_40 = 0;
   uStack_58 = &UNK_18098bcb0;
   if (lVar7 == 0) {
-    lVar7 = *(int64_t *)(_DAT_180c8aa00 + 0x38);
+    lVar7 = *(int64_t *)(_system_global_data_ptr_aa + 0x38);
   }
   param_1[0x26] = lVar7;
   if ((*(char *)(param_2 + 0x248) == '\0') && (*(int64_t *)(param_2 + 0x3c8) != 0)) {
@@ -54358,9 +54358,9 @@ void* * FUN_180079430(int64_t param_1,uint8_t param_2,uint8_t param_3,uint8_t pa
     return (void* *)(*(int64_t *)(param_1 + 0x1b8) + 0x10);
   }
   if (*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
-              0x48) < _DAT_180d49158) {
-    FUN_1808fcb90(&DAT_180d49158);
-    if (_DAT_180d49158 == -1) {
+              0x48) < _system_global_data_ptr_ab) {
+    FUN_1808fcb90(&system_global_data_ptr_ab);
+    if (_system_global_data_ptr_ab == -1) {
       _DAT_180d49160 = &UNK_1809fcc28;
       _DAT_180d49168 = &DAT_180d49178;
 
@@ -56331,7 +56331,7 @@ void FUN_18007baa0(int64_t param_1)
 
 
 
-void FUN_18007bb70(int64_t *param_1)
+void system_initialize_module_a(int64_t *param_1)
 
 {
   if ((int64_t *)param_1[1] != (int64_t *)0x0) {
@@ -60574,8 +60574,8 @@ void* FUN_18004c090;
 
 void* FUN_180055ed0;
 uint32_t* UNK_180d49150;
-void* UNK_1800a0f67;
-void* UNK_1800a127e;
+void* system_resource_ptr_ex;
+void* system_resource_ptr_ey;
 
 uint8_t FUN_180779434(void)
 
