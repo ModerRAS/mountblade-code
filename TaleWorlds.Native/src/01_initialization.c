@@ -10007,7 +10007,7 @@ int system_validator_status(void)
   system_primary_ptr = (uint64_t *)0x180c35590;
   system_memory_secondary_ptr = SYSTEM_CONFIG_SIGNATURE_SIZE;
   do {
-    func_0x000180767970(system_primary_ptr);
+    SYSTEM_THREAD_MANAGER_ADDRESS(system_primary_ptr);
     *system_primary_ptr = &SYSTEM_DATABASE_CACHE_TYPE;
     system_primary_ptr = system_primary_ptr + 0x2b;
     system_memory_secondary_ptr = system_memory_secondary_ptr + -1;
@@ -12094,7 +12094,7 @@ void system_initialize_triple_pointer(uint64_t system_context_ptr,uint64_t syste
         psystem_stack_a0 = (char *)0x0;
         system_stack_control_flag = system_stack_control_flag & 0xffffffff00000000;
         system_ptr_uint_a8 = &SYSTEM_DATABASE_CURSOR_TYPE;
-        system_memory_alloc_result1 = func_0x00018066bd70(system_memory_alloc_result1);
+        system_memory_alloc_result1 = SYSTEM_MEMORY_ALLOCATOR_ADDRESS(system_memory_alloc_result1);
         vertex_count_var = system_transform_offset;
       }
       system_module_format_string(system_quinary_ptr,&SYSTEM_CONFIG_DATA_TYPE_8);
@@ -12365,7 +12365,7 @@ LAB_MEMORY_CLEANUP_CONTINUE:
     }
   }
   else {
-    system_root_table_ptr = (longlong *)func_0x00018066bd70(system_allocator_param);
+    system_root_table_ptr = (longlong *)SYSTEM_MEMORY_ALLOCATOR_ADDRESS(system_allocator_param);
     if (*(int *)(param_5 + SYSTEM_CONFIG_SIGNATURE_SIZE) != 0) {
       if ((int)system_allocator_param[6] != 0) {
         pbyte_temp5 = *(byte **)(param_5 + 8);
@@ -12429,7 +12429,7 @@ LAB_MEMORY_VALIDATION_START:
   system_root_table_ptr = long_pointer_result_var;
   if (system_byte_temp2) {
     if (long_pointer_result_var != (longlong *)system_context_ptr[1]) {
-      system_root_table_ptr = (longlong *)func_0x00018066b9a0(long_pointer_result_var);
+      system_root_table_ptr = (longlong *)SYSTEM_MEMORY_DEALLOCATOR_ADDRESS(long_pointer_result_var);
       goto LAB_MEMORY_VALIDATION_DONE;
     }
   }
@@ -17970,11 +17970,11 @@ void system_config_180055fa0(void)
     system_set_config_parameter(&system_unknown_data_99,*(uint32_t *)(string_result_pointer_var + 0x14));
     system_set_config_parameter(&system_unknown_data_100,*(uint32_t *)(string_result_pointer_var + 0x18));
     for (character_variable5 = *(char **)(string_result_pointer_var + 0x28); character_variable5 != string_result_pointer_var + SYSTEM_CONFIG_BLOCK_SIZE;
-        character_variable5 = (char *)func_0x00018066bd70(character_variable5)) {
+        character_variable5 = (char *)SYSTEM_MEMORY_ALLOCATOR_ADDRESS(character_variable5)) {
       system_set_config_parameter(&system_unknown_data_101,*(uint32_t *)(character_variable5 + SYSTEM_CONFIG_BLOCK_SIZE),*(uint32_t *)(character_variable5 + 0x24));
     }
     for (character_variable5 = *(char **)(string_result_pointer_var + 0x58); character_variable5 != string_result_pointer_var + 0x50;
-        character_variable5 = (char *)func_0x00018066bd70(character_variable5)) {
+        character_variable5 = (char *)SYSTEM_MEMORY_ALLOCATOR_ADDRESS(character_variable5)) {
       system_set_config_parameter(&system_unknown_data_102,*(uint32_t *)(character_variable5 + SYSTEM_CONFIG_BLOCK_SIZE),*(uint32_t *)(character_variable5 + 0x24));
     }
     system_set_config_parameter(&system_unknown_data_103,*(uint32_t *)(string_result_pointer_var + SYSTEM_STACK_BUFFER_SIZE));
@@ -20727,7 +20727,7 @@ void system_config_180059000(longlong *system_context_ptr)
              (system_memory_alloc_result2 = system_memory_alloc_result, *(int *)(pppppppointer_primary4 + 6) != 0)) {
             if ((pppppppointer_primary4 != (uint64_t *******)pppppsystem_ptr_uint_360) &&
                (pppppppointer_primary4 != &pppppsystem_ptr_uint_360)) {
-              func_0x00018066bd70(pppppppointer_primary4);
+              SYSTEM_MEMORY_ALLOCATOR_ADDRESS(pppppppointer_primary4);
             }
             system_byte_temp26 = true;
             pppppppointer_primary4 = &pppppsystem_ptr_uint_360;
@@ -20770,7 +20770,7 @@ void system_config_180059000(longlong *system_context_ptr)
                 *(uint32_t *)(system_memory_alloc_result + 0x50) = 0;
                 system_extended_initialize(system_memory_alloc_result,pppppppointer_primary4,&pppppsystem_ptr_uint_360,system_transform_type);
               }
-              pppppppointer_primary4 = (uint64_t *******)func_0x00018066b9a0(pppppppointer_primary4);
+              pppppppointer_primary4 = (uint64_t *******)SYSTEM_MEMORY_DEALLOCATOR_ADDRESS(pppppppointer_primary4);
               system_memory_alloc_result2 = lStack_2c8;
               integer_status_var = iStack_374;
             }
@@ -20962,7 +20962,7 @@ void system_config_180059000(longlong *system_context_ptr)
           system_ptr_uint_330 = &SYSTEM_DATABASE_CURSOR_TYPE;
         }
       }
-      pppppppointer_primary4 = (uint64_t *******)func_0x00018066bd70(pppppppointer_primary4);
+      pppppppointer_primary4 = (uint64_t *******)SYSTEM_MEMORY_ALLOCATOR_ADDRESS(pppppppointer_primary4);
     } while (pppppppointer_primary4 != &pppppsystem_ptr_uint_360);
   }
   system_config_180058020(&pppppsystem_ptr_uint_360);
@@ -21013,7 +21013,7 @@ LAB_1800590e2:
       *system_flags_var = 1;
       return system_tertiary_ptr;
     }
-    system_quaternary_ptr = (uint64_t *)func_0x00018066b9a0(system_tertiary_ptr);
+    system_quaternary_ptr = (uint64_t *)SYSTEM_MEMORY_DEALLOCATOR_ADDRESS(system_tertiary_ptr);
   }
   if (*(int *)(system_size_param + SYSTEM_CONFIG_SIGNATURE_SIZE) != 0) {
     if (*(int *)(system_quaternary_ptr + 6) != 0) {
@@ -22773,7 +22773,7 @@ void system_config_18005c930(uint64_t *system_context_ptr,uint64_t system_flags_
   system_quinary_ptr = system_tertiary_ptr;
   if (system_byte_temp2) {
     if (system_tertiary_ptr == (uint64_t *)system_context_ptr[1]) goto LAB_18005c9be;
-    system_quinary_ptr = (uint64_t *)func_0x00018066b9a0(system_tertiary_ptr);
+    system_quinary_ptr = (uint64_t *)SYSTEM_MEMORY_DEALLOCATOR_ADDRESS(system_tertiary_ptr);
   }
   if (*(int *)(system_memory_buffer_ptr + SYSTEM_CONFIG_BLOCK_SIZE) <= *(int *)(system_quinary_ptr + 4)) {
     system_processor_cleanup(system_memory_buffer_ptr);
