@@ -1373,6 +1373,16 @@ uint64 utility_get_file_position(longlong utility_resource_primary_handle)
   }
   return utility_offset_flag_byte;
 }
+/**
+ * @brief 获取文件数据大小 - 获取文件数据大小
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @return int 文件数据大小
+ * 
+ * 该函数负责获取文件数据大小。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 int utility_get_file_data_size(longlong utility_resource_primary_handle)
 {
   int utility_operation_result;
@@ -1398,6 +1408,17 @@ int utility_get_file_data_size(longlong utility_resource_primary_handle)
   }
   return utility_operation_result;
 }
+/**
+ * @brief 截断文件 - 截断文件
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_resource_utility_data_pointer_primary_extended_main_primary 扩展数据指针
+ * @return 无返回值
+ * 
+ * 该函数负责截断文件。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 void truncate_file(longlong utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary)
 {
   uint64 utility_stack_utility_resource_data_buffer;
@@ -1410,6 +1431,17 @@ void truncate_file(longlong utility_resource_primary_handle,uint64 utility_resou
   }
   return;
 }
+/**
+ * @brief 创建文件系统目录 - 创建文件系统目录
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_resource_utility_data_pointer_primary_extended_main_primary 扩展数据指针
+ * @return ulonglong 创建结果状态码
+ * 
+ * 该函数负责创建文件系统目录。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 ulonglong utility_create_file_system_directory(longlong utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary)  
 {
   uint utility_operation_result;
