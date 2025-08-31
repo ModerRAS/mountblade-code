@@ -118,22 +118,40 @@ void *network_validate_connection_parameters;
  */
 void *network_establish_secure_connection;
 
-// 函数: void *network_send_packet_data;
+/**
+ * @brief 网络数据包发送函数
+ * 负责发送网络数据包
+ */
 void *network_send_packet_data;
 
-// 函数: void *network_receive_packet_data;
+/**
+ * @brief 网络数据包接收函数
+ * 负责接收网络数据包
+ */
 void *network_receive_packet_data;
 
-// 函数: void *network_handle_connection_error;
+/**
+ * @brief 网络连接错误处理函数
+ * 负责处理网络连接错误
+ */
 void *network_handle_connection_error;
 
-// 函数: void *network_process_connection_state;
+/**
+ * @brief 网络连接状态处理函数
+ * 负责处理网络连接状态变化
+ */
 void *network_process_connection_state;
 
-// 函数: void *network_configure_socket_options;
+/**
+ * @brief 网络套接字选项配置函数
+ * 负责配置网络套接字选项
+ */
 void *network_configure_socket_options;
 
-// 函数: void *network_initialize_socket_layer;
+/**
+ * @brief 网络套接字层初始化函数
+ * 负责初始化网络套接字层
+ */
 void *network_initialize_socket_layer;
 int network_status_primary;
 int network_status_secondary;
@@ -172,7 +190,10 @@ void *network_connection_context_quinary_extended;
 void *network_connection_context_senary_extended;
 void *network_connection_context_septenary_extended;
 
-// 函数: void *network_initialize_data_transfer;
+/**
+ * @brief 网络数据传输初始化函数
+ * 负责初始化网络数据传输
+ */
 void *network_initialize_data_transfer;
 void *network_buffer_primary;
 void *network_buffer_secondary;
