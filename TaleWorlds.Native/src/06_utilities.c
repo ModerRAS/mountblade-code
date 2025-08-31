@@ -12109,28 +12109,48 @@ void utility_initialize_global_pointer_(void)
 * 功能描述：设置系统全局指针，初始化全局数据结构
  */
 void utility_initialize_pointer(void)
+{
+    return;
+}
+
 void utility_setup_pointer(void)
+{
+    return;
+}
+
 void utility_cleanup_pointer(void)
+{
+    return;
+}
+
 void utility_release_pointer(void)
 {
     return;
+}
+
 void utility_process_resource(uint64_t resource_count, uint64_t context_pointer, uint64_t context_pointer, uint64_t context_pointer)
 {
     return;
-* 初始化线程管理器函数
-* 功能：初始化系统线程管理器，设置线程本地存储
-* 功能描述：设置线程本地存储指针，初始化线程管理数据结构
+}
+
+/**
+ * 初始化线程管理器函数
+ * 功能：初始化系统线程管理器，设置线程本地存储
+ * 功能描述：设置线程本地存储指针，初始化线程管理数据结构
  */
 void InitializeThreadManager(void)
 {
     return;
-* 处理线程队列函数
-* 功能：处理系统线程队列，管理线程任务的调度和执行
-* 参数：queueHandle - 队列句柄
-*       processData - 处理数据
-*       callbackData - 回调数据
-*       userData - 用户数据
-* 功能描述：处理线程队列中的任务，管理线程的执行状态
+}
+
+/**
+ * 处理线程队列函数
+ * 功能：处理系统线程队列，管理线程任务的调度和执行
+ * 参数：queueHandle - 队列句柄
+ *       processData - 处理数据
+ *       callbackData - 回调数据
+ *       userData - 用户数据
+ * 功能描述：处理线程队列中的任务，管理线程的执行状态
  */
 void ProcessThreadQueue(uint64_t queueHandle, uint64_t context_pointer, uint64_t callbackData, uint64_t userData)
 {
