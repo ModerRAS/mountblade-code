@@ -27,7 +27,7 @@
 #define SYSTEM_RESOURCE_MANAGER_MAGIC 0x04123456030102abcdef0
 #define SYSTEM_RESOURCE_MANAGER_MAGIC_SECONDARY 0x03123456030102abcdef0
 #define SYSTEM_CALLBACK_SYSTEM_MAGIC 0x046ecbd4daf41613e
-#define SYSTEM_CALLBACK_SYSTEM_MAGIC_2 0x06c42c056bbde014012
+#define SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC 0x06c42c056bbde014012
 #define SYSTEM_EVENT_SYSTEM_MAGIC 0x04c01601a42644030f6
 #define SYSTEM_EVENT_SYSTEM_MAGIC_SECONDARY 0x042021023aa02d02b35b02
 #define SYSTEM_MESSAGE_QUEUE_MAGIC 0x040301020123456030102ab
@@ -104,7 +104,7 @@
 
 /* 系统缓冲区大小常量 */
 #define SYSTEM_HEADER_BUFFER_SIZE 0x040
-#define SYSTEM_STANDARD_BUFFER_SIZE_64 0x040
+#define SYSTEM_STANDARD_BUFFER_SIZE_MEDIUM 0x040
 #define SYSTEM_LARGE_BUFFER_SIZE 0x0400
 
 /* 系统配置常量 */
@@ -163,25 +163,25 @@
 #define SYSTEM_CONTEXT_OFFSET_DATABASE_CONNECTION 0x0A0
 #define SYSTEM_CONTEXT_OFFSET_CACHE_SYSTEM 0x0A001
 #define SYSTEM_CONTEXT_OFFSET_CACHE_STORAGE 0x01d0
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_1D1 0x01d001
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_1E0 0x01e0
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_1E1 0x01e001
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_1F0 0x01f0
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_1F1 0x01f001
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_200 0x0200
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_0x020001 0x020001
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_210 0x0210
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_0x021001 0x0B
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_220 0x0220
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_0x022001 0x022001
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_230 0x0230
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_0x023001 0x023001
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_240 0x0240
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_0x024001 0x024001
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_250 0x0250
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_0x025001 0x025001
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_260 0x0260
-#define SYSTEM_CONTEXT_OFFSET_RESERVED_0x026001 0x026001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_DEBUG_1 0x01d001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_DEBUG_0 0x01e0
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_DEBUG_1 0x01e001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_TEST_0 0x01f0
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_TEST_1 0x01f001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_BASE_0 0x0200
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_BASE_1 0x020001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_EXTENDED_0 0x0210
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_EXTENDED_1 0x0B
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_EXTRA_0 0x0220
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_EXTRA_1 0x022001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_SPECIAL_0 0x0230
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_SPECIAL_1 0x023001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_CUSTOM_0 0x0240
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_CUSTOM_1 0x024001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_USER_0 0x0250
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_USER_1 0x025001
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_APP_0 0x0260
+#define SYSTEM_CONTEXT_OFFSET_RESERVED_APP_1 0x026001
 #define SYSTEM_CONTEXT_OFFSET_RESERVED_0x020030 0x020030
 #define SYSTEM_CONTEXT_OFFSET_RESERVED_0x02003001 0x02003001
 #define SYSTEM_MEMORY_POOL_BASE_OFFSET_PRIMARY 0x020010
@@ -1497,6 +1497,18 @@ void *system_initialize_graphics_system;
  *
  * @return void
  */
+/**
+ * @brief 初始化系统内存管理器
+ * @return 无返回值
+ * 
+ * 该函数负责初始化系统的内存管理器，包括：
+ * 1. 设置内存池和分配器
+ * 2. 初始化内存跟踪和统计
+ * 3. 配置内存保护机制
+ * 4. 建立内存管理的数据结构
+ *
+ * 这是系统启动过程中的关键步骤，确保后续的内存操作能够正常进行。
+ */
 void system_initialize_memory_manager(void)
 {
   char memory_init_status;
@@ -1553,6 +1565,18 @@ void system_initialize_memory_manager(void)
  * 能够有效管理和复用线程资源，提高系统性能。
  *
  * @return void
+ */
+/**
+ * @brief 初始化系统线程池
+ * @return 无返回值
+ * 
+ * 该函数负责初始化系统的线程池管理器，包括：
+ * 1. 创建线程池和任务队列
+ * 2. 初始化线程同步机制
+ * 3. 设置线程调度策略
+ * 4. 配置线程池参数
+ *
+ * 线程池的初始化对系统的并发性能至关重要。
  */
 void system_initialize_thread_pool(void)
 {
@@ -1611,6 +1635,18 @@ void system_initialize_thread_pool(void)
  * 为系统提供统一的资源管理服务，支持资源的动态加载和释放。
  *
  * @return void
+ */
+/**
+ * @brief 初始化系统资源管理器
+ * @return 无返回值
+ * 
+ * 该函数负责初始化系统的资源管理器，包括：
+ * 1. 建立资源分配和释放机制
+ * 2. 初始化资源跟踪系统
+ * 3. 设置资源访问控制
+ * 4. 配置资源缓存策略
+ *
+ * 资源管理器确保系统资源的高效使用和管理。
  */
 void system_initialize_resource_manager(void)
 {
@@ -1682,6 +1718,18 @@ void system_initialize_resource_manager(void)
  *
  * @return 无返回值
  */
+/**
+ * @brief 初始化系统回调机制
+ * @return 无返回值
+ * 
+ * 该函数负责初始化系统的回调机制，包括：
+ * 1. 建立回调函数注册表
+ * 2. 初始化回调队列和调度器
+ * 3. 设置回调执行策略
+ * 4. 配置回调参数传递机制
+ *
+ * 回调系统是系统组件间通信的重要机制。
+ */
 void system_initialize_callback_system(void)
 
 {
@@ -1721,7 +1769,7 @@ void system_initialize_callback_system(void)
     callback_parent_pointer = new_callback_pointer;
   }
   callback_parent_pointer[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  callback_parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_MAGIC_2;
+  callback_parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
   callback_parent_pointer[0x01] = &system_handler_state;
   callback_parent_pointer[0x02] = 0;
   callback_parent_pointer[10] = component_initialization_flag_temp;
@@ -1749,6 +1797,18 @@ void system_initialize_callback_system(void)
  * 为系统提供事件驱动的架构支持
  *
  * @return 无返回值
+ */
+/**
+ * @brief 初始化系统事件系统
+ * @return 无返回值
+ * 
+ * 该函数负责初始化系统的事件处理系统，包括：
+ * 1. 建立事件队列和分发机制
+ * 2. 初始化事件监听器注册
+ * 3. 设置事件优先级系统
+ * 4. 配置事件处理策略
+ *
+ * 事件系统负责处理系统内部和外部的事件通知。
  */
 void system_initialize_event_system(void)
 
@@ -6881,7 +6941,7 @@ void system_initialize_resource_management_stage_5(void)
     parent_pointer = temp_pointer;
   }
   parent_pointer[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_MAGIC_2;
+  parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
   parent_pointer[0x01] = &system_handler_state;
   parent_pointer[0x02] = 0;
   parent_pointer[10] = system_initialization_flag_temp;
@@ -8807,7 +8867,7 @@ void system_initialize_system_components_stage_3(void)
     parent_pointer = temp_pointer;
   }
   parent_pointer[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_MAGIC_2;
+  parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
   parent_pointer[0x01] = &system_handler_state;
   parent_pointer[0x02] = 0;
   parent_pointer[10] = system_initialization_flag_temp;
@@ -9288,7 +9348,7 @@ void system_setup_input_pipeline(void)
     parent_pointer = temp_pointer;
   }
   parent_pointer[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_MAGIC_2;
+  parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
   parent_pointer[0x01] = &system_handler_state;
   parent_pointer[0x02] = 0;
   parent_pointer[10] = system_initialization_flag_temp;
@@ -10856,7 +10916,7 @@ void system_create_audio_context(void)
     parent_pointer = temp_pointer;
   }
   parent_pointer[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_MAGIC_2;
+  parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
   parent_pointer[0x01] = &system_handler_state;
   parent_pointer[0x02] = 0;
   parent_pointer[10] = system_initialization_flag_temp;
@@ -11395,7 +11455,7 @@ void system_create_display_surface(void)
     parent_pointer = temp_pointer;
   }
   parent_pointer[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_MAGIC_2;
+  parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
   parent_pointer[0x01] = &system_handler_state;
   parent_pointer[0x02] = 0;
   parent_pointer[10] = system_initialization_flag_temp;
@@ -12794,7 +12854,7 @@ void system_initialize_connection_pool(void)
     parent_pointer = temp_pointer;
   }
   parent_pointer[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_MAGIC_2;
+  parent_pointer[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
   parent_pointer[0x01] = &system_handler_state;
   parent_pointer[0x02] = 0;
   parent_pointer[10] = system_initialization_flag_temp;
