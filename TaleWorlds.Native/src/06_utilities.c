@@ -483,7 +483,8 @@ uint64_t utility_error_handler(void)
  *
  * 该函数负责验证系统安全性，包括权限检查和安全策略验证。
  *
- * 简化实现：提供基本的安全验证功能。
+ * @note 简化实现：提供基本的安全验证功能，原本实现应包含完整的安全验证逻辑。
+ * @return UTILITY_ZERO 表示安全验证通过，其他值表示验证失败
  */
 uint64_t utility_security_validator(void)
 {
@@ -496,7 +497,8 @@ uint64_t utility_security_validator(void)
  *
  * 该函数负责管理系统备份，包括备份创建和恢复。
  *
- * 简化实现：提供基本的备份管理功能。
+ * @note 简化实现：提供基本的备份管理功能，原本实现应包含完整的备份和恢复逻辑。
+ * @return UTILITY_ZERO 表示备份管理完成，其他值表示操作状态码
  */
 uint64_t utility_backup_manager(void)
 {
