@@ -186,7 +186,7 @@
 // - 美化缓冲区操作常量，将硬编码的0、1等替换为SYSTEM_ARRAY_INDEX_*等语义化常量
 // - 美化循环条件常量，将硬编码的0、1等替换为SYSTEM_ZERO_VALUE、SYSTEM_INCREMENT_SINGLE_UNIT等语义化常量
 // - 美化指针操作常量，将硬编码的8、9等替换为SYSTEM_ARRAY_INDEX_*等语义化常量
-// - 美化系统偏移量常量，将硬编码的500等替换为SYSTEM_CONSTANT_PAIR8等语义化常量
+// - 美化系统偏移量常量，将硬编码的500等替换为SYSTEM_CONSTANT_PAIR_STANDARD等语义化常量
 // - 美化字符串长度计算常量，将硬编码的-1替换为SYSTEM_DECREMENT_SINGLE_UNIT等语义化常量
 // - 添加了SYSTEM_INCREMENT_SINGLE_UNIT、SYSTEM_INCREMENT_DOUBLE_UNIT、SYSTEM_INCREMENT_SINGLE_UNITU、SYSTEM_DECREMENT_SINGLE_UNIT等增量操作常量定义
 // - 提高了代码的可读性和维护性
@@ -557,18 +557,18 @@
 #define SYSTEM_ERROR_NOT_SUPPORTED 0x0f
 
 // 系统配置常量定义
-#define SYSTEM_BUFFER_SIZE_1M 0x100000
+#define SYSTEM_BUFFER_SIZE_ONE_MEGABYTE 0x100000
 #define SYSTEM_OFFSET_MODULE_FUNCTION 0x2b0
 #define SYSTEM_OFFSET_FLOAT_VALUE 0x268
 #define SYSTEM_OFFSET_AUDIO_FLAG 0x264
-#define SYSTEM_BUFFER_SIZE_32K 0x8000
+#define SYSTEM_BUFFER_SIZE_THIRTY_TWO_KILOBYTES 0x8000
 #define SYSTEM_OFFSET_AUDIO_DATA 0x26c
 #define SYSTEM_OFFSET_RENDER_COUNTER 0xe0
 #define SYSTEM_OFFSET_MUTEX_PTR 0x3d8
 #define SYSTEM_OFFSET_MEMORY_MANAGER 0x3a8
 #define SYSTEM_OFFSET_FLOAT_DATA 0x220
 #define SYSTEM_OFFSET_NETWORK_DATA_PTR 0x228
-#define SYSTEM_BUFFER_SIZE_4K 0x1000
+#define SYSTEM_BUFFER_SIZE_FOUR_KILOBYTES 0x1000
 #define SYSTEM_OFFSET_CLEANUP_FUNCTION 0x38
 #define SYSTEM_OFFSET_FUNCTION_TABLE 0x30
 #define SYSTEM_OFFSET_RENDER_LIMIT 0xbd0
@@ -622,7 +622,7 @@
 
 // 最新美化内容（2025年8月30日）：
 // - 删除了重复的SYSTEM_ONE_VALUE到SYSTEM_TEN_VALUE常量定义
-// - 将SYSTEM_SPECIAL_VALUE_*常量美化成语义化名称，如SYSTEM_CHAR_SLASH、SYSTEM_CONTROL_VALUE_B0等
+// - 将SYSTEM_SPECIAL_VALUE_*常量美化成语义化名称，如SYSTEM_CHAR_SLASH、SYSTEM_CONTROL_VALUE_MEMORY_BLOCK_SIZE等
 // - 为ASCII字符值添加了明确的字符语义，如SYSTEM_CHAR_SLASH->'/'，SYSTEM_CHAR_LOWERCASE_E->'a'等
 // - 为控制值添加了CONTROL_VALUE前缀，便于区分字符常量和控制常量
 // - 标记了重复定义的常量，如SYSTEM_CHAR_LOWERCASE_A_2等
@@ -716,9 +716,9 @@
 // 系统字符常量
 
 // 系统内存分配大小常量
-#define SYSTEM_ALLOC_SIZE_1C8 0x1c8  // 分配大小1C8
-#define SYSTEM_ALLOC_SIZE_F8 0xf8    // 分配大小F8
-#define SYSTEM_ALLOC_SIZE_B0 0xb0    // 分配大小B0
+#define SYSTEM_ALLOC_SIZE_MEMORY_BLOCK_STANDARD 0x1c8  // 分配大小1C8
+#define SYSTEM_ALLOC_SIZE_MEMORY_BLOCK_SMALL 0xf8    // 分配大小F8
+#define SYSTEM_ALLOC_SIZE_MEMORY_BLOCK_MINIMAL 0xb0    // 分配大小B0
 
 // 系统特殊偏移量常量
 #define SYSTEM_MUTEX_OFFSET_THREAD_CONTROL 0x6e8    // 互斥量线程控制偏移量
@@ -744,8 +744,8 @@
 #define SYSTEM_CONFIG_OFFSET_PROCESS_FLAG 0x28         // 配置进程标志偏移量
 #define SYSTEM_CONFIG_OFFSET_VALID_FLAG 0x2d           // 配置有效标志偏移量
 #define SYSTEM_CONFIG_OFFSET_DATA_FLAG 0x23            // 配置数据标志偏移量
-#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE0 0x30       // 配置模块句柄0偏移量
-#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE4 0x34       // 配置模块句柄4偏移量
+#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE_PRIMARY 0x30       // 配置模块句柄0偏移量
+#define SYSTEM_CONFIG_OFFSET_MODULE_HANDLE_SECONDARY 0x34       // 配置模块句柄4偏移量
 #define SYSTEM_CONFIG_OFFSET_MODULE_HANDLEc 0x3c       // 配置模块句柄c偏移量
 
 #define SYSTEM_VALIDATION_OFFSET_TYPE_CHECK 0x161c      // 验证类型检查偏移量
@@ -1111,8 +1111,8 @@
 // - 将SYSTEM_CONSTANT_PAIR从循环定义改为实际值2
 // - 将SYSTEM_CONSTANT_TRIPLE从循环定义改为实际值3
 // - 将SYSTEM_CONSTANT_QUADRUPLE从循环定义改为实际值0x2c
-// - 添加了SYSTEM_CONSTANT_PAIR0（SYSTEM_CHAR_SPACE）、SYSTEM_CONSTANT_PAIR8（0x28）等常量定义
-// - 添加了SYSTEM_CONSTANT_PAIRff（SYSTEM_CHAR_SLASHf）、SYSTEM_CONSTANT_TRIPLE800000（0x3800000）等常量定义
+// - 添加了SYSTEM_CONSTANT_PAIR0（SYSTEM_CHAR_SPACE）、SYSTEM_CONSTANT_PAIR_STANDARD（0x28）等常量定义
+// - 添加了SYSTEM_CONSTANT_PAIRff（SYSTEM_CHAR_SLASHf）、SYSTEM_CONSTANT_TRIPLE_LARGE（0x3800000）等常量定义
 // - 添加了SYSTEM_CONSTANT_TRIPLEf（0x3f）常量定义
 // - 添加了SYSTEM_CONSTANT_LOWERCASE_P（SYSTEM_CHAR_LOWERCASE_P）、SYSTEM_CONSTANT_SPECIAL_CHAR（SYSTEM_CHAR_LOWERCASE_X6）等常量定义
 // - 修复了循环引用问题，提高了代码的可读性和维护性
@@ -1469,10 +1469,10 @@
 #define SYSTEM_CONSTANT_TRIPLE 3                        // 三元组常量
 #define SYSTEM_CONSTANT_QUADRUPLE 0x2c                   // 四元组常量
 #define SYSTEM_CONSTANT_PAIR0 SYSTEM_CHAR_SPACE          // 对常量0
-#define SYSTEM_CONSTANT_PAIR8 0x28                       // 对常量8
+#define SYSTEM_CONSTANT_PAIR_STANDARD 0x28                       // 对常量8
 #define SYSTEM_CONSTANT_PAIRC 0x2c                        // 对常量C
 #define SYSTEM_CONSTANT_PAIRFF SYSTEM_CHAR_SLASHf        // 对常量FF
-#define SYSTEM_CONSTANT_TRIPLE800000 0x3800000           // 三元组常量800000
+#define SYSTEM_CONSTANT_TRIPLE_LARGE 0x3800000           // 三元组常量800000
 #define SYSTEM_CONSTANT_TRIPLEF 0x3f                     // 三元组常量F
 #define SYSTEM_CONSTANT_LOWERCASE_P SYSTEM_CHAR_LOWERCASE_P  // 小写P常量
 #define SYSTEM_CONSTANT_SPECIAL_CHAR SYSTEM_CHAR_LOWERCASE_X6  // 特殊字符常量
@@ -1758,10 +1758,10 @@ extern char system_cleanup_handler_flag_buffer;                            // �
 #define SYSTEM_BUFFER_ALLOC_RESULT_OPTIMAL_SUCCESS 0x26       // 缓冲区分配成功结果7
 #define SYSTEM_BUFFER_ALLOC_RESULT_MAXIMAL_SUCCESS 0x27       // 缓冲区分配成功结果8
 #define SYSTEM_BUFFER_ALLOC_RESULT_SUPERIOR_SUCCESS 0x29       // 缓冲区分配成功结果9
-#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS0 0x2a      // 缓冲区分配成功结果10
-#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS1 0x2b      // 缓冲区分配成功结果11
-#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS2 0x2d      // 缓冲区分配成功结果12
-#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS3 0x2e      // 缓冲区分配成功结果13
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS_FIRST 0x2a      // 缓冲区分配成功结果10
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS_SECOND 0x2b      // 缓冲区分配成功结果11
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS_THIRD 0x2d      // 缓冲区分配成功结果12
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASIC_SUCCESS_FOURTH 0x2e      // 缓冲区分配成功结果13
 #define SYSTEM_BUFFER_ALLOC_RESULT_RESERVED_BASIC 0xb        // 缓冲区分配保留结果1
 #define SYSTEM_BUFFER_ALLOC_RESULT_RESERVED_STANDARD 0x11       // 缓冲区分配保留结果2
 #define SYSTEM_BUFFER_ALLOC_RESULT_RESERVED_EXTENDED 0x12       // 缓冲区分配保留结果3
@@ -1868,20 +1868,20 @@ extern char system_cleanup_handler_flag_buffer;                            // �
 #define SYSTEM_ERROR_ADAP_HDW_ERR 0x1f
 
 // 系统特殊常量定义 - 美化为语义化名称
-#define SYSTEM_CHAR_DC2 0x12          // DC2 控制字符
+#define SYSTEM_CHAR_DEVICE_CONTROL_TWO 0x12          // DC2 控制字符
 #define SYSTEM_CHAR_DIGIT_ZERO 0x30   // '0' 字符
-#define SYSTEM_CONTROL_VALUE_B0 0xb0    // 控制值 B0
-#define SYSTEM_CONTROL_VALUE_D4 0xd4    // 控制值 D4  
+#define SYSTEM_CONTROL_VALUE_MEMORY_BLOCK_SIZE 0xb0    // 控制值 B0
+#define SYSTEM_CONTROL_VALUE_DATA_ALIGNMENT 0xd4    // 控制值 D4  
 #define SYSTEM_CHAR_DIGIT_ONE 0x48     // '1' 字符
 #define SYSTEM_CONTROL_VALUE_STANDARD_SIZE 0x14   // 控制值 14
 #define SYSTEM_CONTROL_VALUE_EXTENDED_SIZE 0x28   // 控制值 28
 #define SYSTEM_CHAR_DIGIT_FIVE 0x58    // '5' 字符
 #define SYSTEM_CONTROL_VALUE_C 0xc     // 控制值 C
-#define SYSTEM_CONTROL_VALUE_A8 0xa8   // 控制值 A8
+#define SYSTEM_CONTROL_VALUE_ALTERNATE_MODE 0xa8   // 控制值 A8
 #define SYSTEM_CONTROL_VALUE_MEDIUM_SIZE 0x18  // 控制值 18
-#define SYSTEM_CONTROL_VALUE_A0 0xa0   // 控制值 A0
+#define SYSTEM_CONTROL_VALUE_ADDRESS_MODE 0xa0   // 控制值 A0
 #define SYSTEM_CONTROL_VALUE_LARGE_SIZE 0x96   // 控制值 96
-#define SYSTEM_CONTROL_VALUE_F8 0xf8   // 控制值 F8
+#define SYSTEM_CONTROL_VALUE_FUNCTION_POINTER 0xf8   // 控制值 F8
 #define SYSTEM_CONTROL_VALUE_FC 0xfc   // 控制值 FC
 #define SYSTEM_CHAR_DOLLAR_SIGN 0x24   // '$' 字符
 #define SYSTEM_CHAR_DIGIT_FOUR 0x34    // '4' 字符
@@ -1889,18 +1889,18 @@ extern char system_cleanup_handler_flag_buffer;                            // �
 #define SYSTEM_CHAR_DIGIT_EIGHT 0x38    // '8' 字符
 #define SYSTEM_CONTROL_VALUE_COMPRESSED_SIZE 0x94    // 控制值 94
 #define SYSTEM_CONTROL_VALUE_FUNCTION_POINTER 0x98    // 控制值 98
-#define SYSTEM_CONTROL_VALUE_9C 0x9c    // 控制值 9C
-#define SYSTEM_CONTROL_VALUE_A4 0xa4    // 控制值 A4
+#define SYSTEM_CONTROL_VALUE_DISPATCH_TABLE 0x9c    // 控制值 9C
+#define SYSTEM_CONTROL_VALUE_ADDRESS_ALIGNMENT 0xa4    // 控制值 A4
 #define SYSTEM_CONTROL_VALUE_AC 0xac    // 控制值 AC
-#define SYSTEM_CONTROL_VALUE_B4 0xb4    // 控制值 B4
-#define SYSTEM_CONTROL_VALUE_B5 0xb5    // 控制值 B5
-#define SYSTEM_CONTROL_VALUE_B8 0xb8    // 控制值 B8
+#define SYSTEM_CONTROL_VALUE_BUFFER_SIZE 0xb4    // 控制值 B4
+#define SYSTEM_CONTROL_VALUE_BUFFER_SIZE_EXTENDED 0xb5    // 控制值 B5
+#define SYSTEM_CONTROL_VALUE_BUFFER_SIZE_LARGE 0xb8    // 控制值 B8
 #define SYSTEM_CONTROL_VALUE_BC 0xbc    // 控制值 BC
 #define SYSTEM_CONTROL_VALUE_BD 0xbd    // 控制值 BD
 #define SYSTEM_CONTROL_VALUE_BE 0xbe    // 控制值 BE
-#define SYSTEM_CONTROL_VALUE_C0 0xc0    // 控制值 C0
-#define SYSTEM_CONTROL_VALUE_1D 0x1d    // 控制值 1D
-#define SYSTEM_CONTROL_VALUE_C4 0xc4    // 控制值 C4
+#define SYSTEM_CONTROL_VALUE_CACHE_SIZE 0xc0    // 控制值 C0
+#define SYSTEM_CONTROL_VALUE_INITIALIZATION_OFFSET 0x1d    // 控制值 1D
+#define SYSTEM_CONTROL_VALUE_CACHE_EXTENDED 0xc4    // 控制值 C4
 #define SYSTEM_CONTROL_VALUE_CC 0xcc    // 控制值 CC
 #define SYSTEM_CONTROL_VALUE_D0 0xd0    // 控制值 D0
 #define SYSTEM_CHAR_DIGIT_TWO 0x32      // '2' 字符
@@ -4531,10 +4531,10 @@ section_processing_jump_label_27:
     system_global_data_pointer_variable = system_global_data_pointer_variable + 1;
     system_performance_counter_diff = system_performance_counter_prev - system_global_data_pointer_variable;
     if (SYSTEM_FLOAT_PERFORMANCE_COMPARE_THRESHOLD < system_performance_counter_diff) {
-      *(float *)(system_string_length_counter + SYSTEM_CONSTANT_PAIR8) = (float)((double)system_global_data_pointer_variable / system_performance_counter_diff);
+      *(float *)(system_string_length_counter + SYSTEM_CONSTANT_PAIR_STANDARD) = (float)((double)system_global_data_pointer_variable / system_performance_counter_diff);
       system_global_data_pointer_variable = SYSTEM_ZERO_VALUE;
       system_global_data_pointer_variable = system_performance_counter_prev;
-      *(float *)(system_string_length_counter + SYSTEM_CONSTANT_PAIR8) = (float)(SYSTEM_FLOAT_CONVERSION_FACTOR_1000 / *(double *)(system_string_length_counter + SYSTEM_CHAR_LOWERCASE_P));
+      *(float *)(system_string_length_counter + SYSTEM_CONSTANT_PAIR_STANDARD) = (float)(SYSTEM_FLOAT_CONVERSION_FACTOR_1000 / *(double *)(system_string_length_counter + SYSTEM_CHAR_LOWERCASE_P));
     }
     if (SYSTEM_FLOAT_VALUE_ZERO_CHECK < *(double *)(system_global_data_pointer_variable + SYSTEM_OFFSET_DOUBLE_VALUE)) {
       system_handle_param_manager_005(system_string_length_counter,(float)*(double *)(system_global_data_pointer_variable + SYSTEM_OFFSET_DOUBLE_VALUE));
@@ -4640,10 +4640,10 @@ section_processing_jump_label_27:
     system_global_data_pointer_variable = system_global_data_pointer_variable + 1;
     system_performance_diff = system_performance_base - system_global_data_pointer_variable;
     if (SYSTEM_FLOAT_PERFORMANCE_COMPARE_THRESHOLD < system_performance_diff) {
-      *(float *)(handle_param + SYSTEM_CONSTANT_PAIR8) = (float)((double)system_global_data_pointer_variable / system_performance_diff);
+      *(float *)(handle_param + SYSTEM_CONSTANT_PAIR_STANDARD) = (float)((double)system_global_data_pointer_variable / system_performance_diff);
       system_global_data_pointer_variable = SYSTEM_ZERO_VALUE;
       system_global_data_pointer_variable = system_performance_base;
-      *(float *)(handle_param + SYSTEM_CONSTANT_PAIR8) = (float)(SYSTEM_FLOAT_CONVERSION_FACTOR_1000 / *(double *)(handle_param + SYSTEM_CHAR_LOWERCASE_P));
+      *(float *)(handle_param + SYSTEM_CONSTANT_PAIR_STANDARD) = (float)(SYSTEM_FLOAT_CONVERSION_FACTOR_1000 / *(double *)(handle_param + SYSTEM_CHAR_LOWERCASE_P));
     }
     if (SYSTEM_FLOAT_VALUE_ZERO_CHECK < *(double *)(system_global_data_pointer_variable + SYSTEM_OFFSET_DOUBLE_VALUE)) {
       system_handle_param_manager_005(handle_param,(float)*(double *)(system_global_data_pointer_variable + SYSTEM_OFFSET_DOUBLE_VALUE));
@@ -4886,16 +4886,16 @@ section_processing_jump_label_28:
   system_maximum_stack_size = system_initialization_result_pointer;
   system_finalizer_001();
   system_finalizer_002();
-  if (((*(int *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE0) != 0) && (system_global_data_pointer_variable != (long long *)SYSTEM_NULL_POINTER)) &&
+  if (((*(int *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE_PRIMARY) != 0) && (system_global_data_pointer_variable != (long long *)SYSTEM_NULL_POINTER)) &&
      (system_char_variable = (**(code **)(*system_global_data_pointer_variable + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))(), system_char_variable != '\0')) {
     (**(code **)(system_global_data_pointer_variable + SYSTEM_OFFSET_FUNCTION_CALLBACK_STANDARD))();
   }
   (**(code **)(**(long long **)(handle_param + SYSTEM_OFFSET_MODULE_FUNCTION) + SYSTEM_OFFSET_FUNCTION_TABLE))(*(long long **)(handle_param + SYSTEM_OFFSET_MODULE_FUNCTION),system_thread_operation_flags);
-  if (((*(int *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE0) != 0) && (system_global_data_pointer_variable != (long long *)SYSTEM_NULL_POINTER)) &&
+  if (((*(int *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE_PRIMARY) != 0) && (system_global_data_pointer_variable != (long long *)SYSTEM_NULL_POINTER)) &&
      (system_char_variable = (**(code **)(*system_global_data_pointer_variable + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))(), system_char_variable != '\0')) {
     (*(code *)system_global_data_pointer_variable[SYSTEM_GLOBAL_DATA_INDEX_MODULE_HANDLE])();
   }
-  if (((*(int *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE0) != 0) && (system_global_data_pointer_variable != (long long *)SYSTEM_NULL_POINTER)) &&
+  if (((*(int *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE_PRIMARY) != 0) && (system_global_data_pointer_variable != (long long *)SYSTEM_NULL_POINTER)) &&
      (system_char_variable = (**(code **)(*system_global_data_pointer_variable + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))(), system_char_variable != '\0')) {
     *(unsigned long long *)(*(long long *)(handle_param + SYSTEM_OFFSET_HANDLE_PARAM_ALT) + SYSTEM_OFFSET_GLOBAL_DATA_PTR) =
          *(unsigned long long *)(*(long long *)(handle_param + SYSTEM_OFFSET_HANDLE_PARAM_ALT) + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
@@ -5158,7 +5158,7 @@ section_processing_jump_label_30:
       do {
         system_data_value_1 = *(double *)(*(long long *)(system_buffer_allocation_result + *(long long *)(system_character_scan_pointer + 8)) + SYSTEM_PATH_BUFFER_SIZE_ZERO);
         system_sum_accumulator_2 = system_sum_accumulator_1 + system_data_value_1;
-        system_data_value_2 = *(double *)(*(long long *)(system_buffer_allocation_result + *(long long *)(system_character_scan_pointer + 8)) + SYSTEM_CONSTANT_PAIR8);
+        system_data_value_2 = *(double *)(*(long long *)(system_buffer_allocation_result + *(long long *)(system_character_scan_pointer + 8)) + SYSTEM_CONSTANT_PAIR_STANDARD);
         system_sum_accumulator_4 = system_sum_accumulator_3 + system_data_value_2;
         system_config_001(&systemInitData2,system_thread_operation_flags,system_data_value_1 / system_data_value_2);
         system_thread_operation_flags = (int)system_thread_operation_flags + 1;
@@ -7278,18 +7278,18 @@ long long allocate_system_buffer(unsigned long long handle_param,long long *syst
               SYSTEM_THREAD_LOCAL_STORAGE_OFFSET) < system_global_data_pointer_variable) {
     system_crypto_004(&render_data_buffer);
     if (system_global_data_pointer_variable == -1) {
-      system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,SYSTEM_ALLOC_SIZE_1C8,8,3);
+      system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,SYSTEM_ALLOC_SIZE_MEMORY_BLOCK_STANDARD,8,3);
       system_global_data_pointer_variable = system_memory_manager_001(system_buffer_allocation_result);
       system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,SYSTEM_PATH_BUFFER_SIZE_ZERO,8,3);
       system_global_data_pointer_variable = system_allocate_memory_buffer(system_buffer_allocation_result);
-      system_string_input_pointer = (unsigned long long *)system_execution_function(system_global_data_pointer_variable,SYSTEM_ALLOC_SIZE_F8,8,3);
+      system_string_input_pointer = (unsigned long long *)system_execution_function(system_global_data_pointer_variable,SYSTEM_ALLOC_SIZE_MEMORY_BLOCK_SMALL,8,3);
       system_memory_003(system_string_input_pointer);
       // Original name: system_180a1b368
       *system_string_input_pointer = &g_handle_param_manager_address;
       system_register_memory_pointer(system_string_input_pointer);
       system_global_data_pointer_variable = system_string_input_pointer;
       system_global_data_pointer_variable = system_execution_function();
-      system_string_input_pointer = (unsigned long long *)system_execution_function(system_global_data_pointer_variable,SYSTEM_ALLOC_SIZE_B0,8,3);
+      system_string_input_pointer = (unsigned long long *)system_execution_function(system_global_data_pointer_variable,SYSTEM_ALLOC_SIZE_MEMORY_BLOCK_MINIMAL,8,3);
       system_memory_003(system_string_input_pointer);
       // Original name: system_180a1b3f0
       *system_string_input_pointer = &g_memory_manager_address;
@@ -8008,7 +8008,7 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
       system_float_variable = system_float_variable * SYSTEM_FLOAT_VALUE_THIRTY_SEVEN_POINT_FIVE + SYSTEM_FLOAT_VALUE_TWELVE_POINT_FIVE + system_float_variable;
       system_float_variable = system_float_variable * SYSTEM_FLOAT_VALUE_FORTY_FIVE_POINT_ZERO + SYSTEM_FLOAT_VALUE_FIFTEEN_POINT_ZERO + system_float_variable;
       *(float *)(handle_param + SYSTEM_CHAR_LOWERCASE_H) = system_float_variable * system_float_variable;
-      *(float *)((long long)handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE4) = system_float_variable * system_float_variable;
+      *(float *)((long long)handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE_SECONDARY) = system_float_variable * system_float_variable;
       *(float *)(handle_param + SYSTEM_CHAR_LOWERCASE_I) = system_float_variable * system_float_variable;
       *(float *)((long long)handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLEc) = system_float_variable * system_float_variable;
       *(float *)(handle_param + SYSTEM_CHAR_LOWERCASE_J) = system_float_variable * system_float_variable;
@@ -10055,7 +10055,7 @@ goto section_processing_jump_label_396;
 goto section_processing_jump_label_397;
                     system_char_variable = string_system_processor(system_auxiliary_stack_primary,&g_system_handle_flag_driver);
                     if (system_char_variable != SYSTEM_ZERO_VALUE) {
-                      system_buffer_allocation_result = SYSTEM_CONTROL_VALUE_C4;
+                      system_buffer_allocation_result = SYSTEM_CONTROL_VALUE_CACHE_EXTENDED;
 goto section_processing_jump_label_398;
                     }
                     system_char_variable = string_system_processor(system_auxiliary_stack_primary,&g_system_handle_flag_device);
@@ -11809,7 +11809,7 @@ long long validate_thread_configuration(unsigned long long handle_param,unsigned
   system_thread_result_status = system_execution_function(system_character_scan_pointer,&system_thread_handler_8,mutex_attr,mutex_attr + SYSTEM_OFFSET_HANDLE_PARAM,mutex_attr + 8,
                         (unsigned int *)(mutex_attr + SYSTEM_OFFSET_STACK_POINTER),system_buffer_allocation_result);
   if (system_thread_result_status == SYSTEM_THREE_VALUE) {
-    *(unsigned int *)(mutex_attr + SYSTEM_OFFSET_STACK_POINTER) = SYSTEM_CONSTANT_TRIPLE800000;
+    *(unsigned int *)(mutex_attr + SYSTEM_OFFSET_STACK_POINTER) = SYSTEM_CONSTANT_TRIPLE_LARGE;
   }
   system_thread_stack_pointer_variable = &system_global_thread_string_2;
   if (pcStack_28 != (char *)0x0) {
