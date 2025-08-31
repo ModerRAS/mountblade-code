@@ -1292,7 +1292,7 @@ uint8_t system_audio_initialization_flag;
 void *system_interrupt_vector_table;
 void *system_runtime_config_table;
 void *system_memory_context_primary;
-void *system_config_handler_a;
+void *system_config_handler_primary;
 uint32_t system_config_primary_flag;
 uint32_t system_config_secondary_flag;
 uint32_t system_config_tertiary_flag;

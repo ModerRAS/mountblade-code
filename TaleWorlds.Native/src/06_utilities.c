@@ -16095,7 +16095,7 @@ utility_stream_close();
 if ((int)utility_resource_status_value != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_status_value;
 }
-if (utility_stack_int_b0_data < 1) goto UTILITY_LABEL_ARRAY_CHECK;
+if (utility_stack_buffer_size_data < 1) goto UTILITY_LABEL_ARRAY_CHECK;
 utility_resource_context_value = utility_stream_create();
 if ((int)utility_resource_status_value != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_status_value;
