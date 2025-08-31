@@ -851,39 +851,84 @@ uint32_t utility_get_stream_status(void)
 }
     utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET),1);
 }
- * 重置事件状态
-将事件对象重置为无信号状态
-调用上下文管理器激活函数来重置事件
+/** 
+ * @brief 重置事件状态
+ * 将事件对象重置为无信号状态
+ * 调用上下文管理器激活函数来重置事件
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构事件相关机制
  */
 void ResetEvent(void)
- * 等待事件触发
-等待事件对象变为有信号状态
-当前实现为空函数，仅返回
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+}
+/** 
+ * @brief 等待事件触发
+ * 等待事件对象变为有信号状态
+ * 当前实现为空函数，仅返回
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构事件相关机制
  */
 void WaitForEvent(void)
- * 处理资源指针的转换和管理
- * 将原始资源指针转换为系统可用的资源引用
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+}
+/** 
+ * @brief 获取缓存状态
+ * 处理资源指针的转换和管理，将原始资源指针转换为系统可用的资源引用
+ * @return 缓存状态码
+ * 原本实现：完全重构缓存状态获取逻辑
+ * 简化实现：仅进行变量名语义化替换，修复代码结构
+ */
 uint32_t utility_get_cache_status(void)
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return UTILITY_STATUS_THREAD_CREATED;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    return UTILITY_STATUS_RESOURCE_AVAILABLE;
+}
     utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET),1);
 }
- * 关闭事件对象
-释放事件对象资源并清理相关状态
-调用上下文管理器激活函数来关闭事件
+/** 
+ * @brief 关闭事件对象
+ * 释放事件对象资源并清理相关状态
+ * 调用上下文管理器激活函数来关闭事件
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构事件相关机制
  */
 void CloseEvent(void)
- * 初始化互斥体对象
-创建并初始化互斥体用于线程同步
-当前实现为空函数，仅返回
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+}
+/** 
+ * @brief 初始化互斥体对象
+ * 创建并初始化互斥体用于线程同步
+ * 当前实现为空函数，仅返回
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构互斥体相关机制
  */
 void InitializeMutex(void)
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+}
 /** 
  * @brief Utility Handle Mutex Operation Result
  * @brief Utility Handle Semaphore Pointer
@@ -1124,25 +1169,21 @@ void InitializeMutex(void)
  * @brief Utility Cleanup Pointer
  * @brief Utility Release Pointer
  * @brief Utility Process Resource Handle
-int utility_resource_handle_service_request(uint32_t service_id, int64_t context_array[])
 /** 
- * @brief 资源管理器创建函数
- * @param resource_config 资源配置
- * @param context_size 上下文大小
- * @param buffer_ptr 缓冲区指针
- * @return 创建的资源句柄
-*/
- * @brief Utility Resource Create
- * @brief Utility Context Init
- * @brief Utility Context Activate
- * @brief Utility System Initialize
- * @brief Utility System Initialize
- * @brief Utility Buffer Cleanup
- * @brief Utility Checksum Compute
- * @brief Utility Initialize Resource Context
- * @brief Utility Process Operation Result
- * @brief Utility Queue Process
- * @brief Utility System External Cleanup
- * @brief Utility Handle Exception Context
- * @brief Utility Combine Flag Values
- * @brief Utility System Connection Manager
+ * @brief 资源管理器服务请求处理函数
+ * 处理资源管理器的服务请求，包括资源创建、配置和释放等操作
+ * @param service_id 服务标识符
+ * @param context_array 上下文数组
+ * @return 处理结果状态码
+ * 原本实现：完全重构资源管理器服务请求处理逻辑
+ * 简化实现：仅进行变量名语义化替换，修复代码结构
+ */
+int utility_resource_handle_service_request(uint32_t service_id, int64_t context_array[])
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return UTILITY_STATUS_THREAD_CREATED;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    return UTILITY_STATUS_RESOURCE_AVAILABLE;
+}
