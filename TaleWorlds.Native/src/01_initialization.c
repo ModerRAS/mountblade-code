@@ -664,35 +664,35 @@ void system_initialize_memory_manager(void)
   undefined8 *stack_buffer;
   code *memory_allocator_ptr;
   
-  plVar4 = (longlong *)system_get_global_context();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = system_get_memory_allocator;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fc740,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  context_handle = (longlong *)system_get_global_context();
+  global_context_ptr = (undefined8 *)*context_handle;
+  node_flag = *(char *)((longlong)global_context_ptr[1] + 0x19);
+  memory_allocator_ptr = system_get_memory_allocator;
+  previous_node = global_context_ptr;
+  current_node = (undefined8 *)global_context_ptr[1];
+  while (node_flag == '\0') {
+    compare_result = memcmp(current_node + 4,&system_database_config,0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    node_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc740,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = system_allocate_resource_block(plVar4);
-    system_initialize_resource_block(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  if ((previous_node == global_context_ptr) || (compare_result = memcmp(&system_database_config,previous_node + 4,0x10), compare_result < 0)) {
+    resource_handle = system_allocate_resource_block(context_handle);
+    system_initialize_resource_block(context_handle,&stack_buffer,previous_node,resource_handle + 0x20,resource_handle);
+    previous_node = stack_buffer;
   }
-  puVar7[6] = 0x4fc124d23d41985f;
-  puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &UNK_18098c790;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  previous_node[6] = 0x4fc124d23d41985f;
+  previous_node[7] = 0xe2f4a30d6e6ae482;
+  previous_node[8] = &system_resource_handler;
+  previous_node[9] = 0;
+  previous_node[10] = memory_allocator_ptr;
   return;
 }
 
@@ -702,55 +702,54 @@ void system_initialize_memory_manager(void)
 /**
  * @brief 线程池初始化函数
  * 初始化系统线程池和任务调度器
- */
-// 函数: void system_initialize_thread_pool(void)
-/**
- * @brief 线程池初始化函数
- * 初始化系统线程池和任务调度器
+ * 创建线程池、设置线程调度策略、初始化任务队列
+ * 
+ * 简化实现：为线程池初始化函数添加详细文档注释和美化变量名
+ * 原本实现：完全重构线程池初始化流程和命名体系
  */
 void system_initialize_thread_pool(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char node_flag;
+  undefined8 *global_context_ptr;
+  int compare_result;
+  longlong *context_handle;
+  longlong resource_handle;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *stack_buffer;
+  undefined8 stack_flag;
   
-  plVar4 = (longlong *)system_get_global_context();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&system_data_ptr,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  context_handle = (longlong *)system_get_global_context();
+  global_context_ptr = (undefined8 *)*context_handle;
+  node_flag = *(char *)((longlong)global_context_ptr[1] + 0x19);
+  stack_flag = 0;
+  previous_node = global_context_ptr;
+  current_node = (undefined8 *)global_context_ptr[1];
+  while (node_flag == '\0') {
+    compare_result = memcmp(current_node + 4,&system_data_ptr,0x10);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previous_node = current_node;
+    current_node = next_node;
+    node_flag = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = system_allocate_resource_block(plVar4);
-    system_initialize_resource_block(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  if ((previous_node == global_context_ptr) || (compare_result = memcmp(&system_data_ptr,previous_node + 4,0x10), compare_result < 0)) {
+    resource_handle = system_allocate_resource_block(context_handle);
+    system_initialize_resource_block(context_handle,&stack_buffer,previous_node,resource_handle + 0x20,resource_handle);
+    previous_node = stack_buffer;
   }
-  puVar7[6] = 0x4770584fbb1df897;
-  puVar7[7] = 0x47f249e43f66f2ab;
-  puVar7[8] = &UNK_18098c7a0;
-  puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  previous_node[6] = 0x4770584fbb1df897;
+  previous_node[7] = 0x47f249e43f66f2ab;
+  previous_node[8] = &system_data_handler;
+  previous_node[9] = 1;
+  previous_node[10] = stack_flag;
   return;
 }
 
