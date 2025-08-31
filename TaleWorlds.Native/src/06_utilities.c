@@ -267,15 +267,11 @@ uint64_t utility_process_pointer(longlong utility_parameter)
 {
 longlong utility_iteration_count_primary;
 longlong utility_iteration_count_secondary;
-int utility_operation_result;;
+int utility_operation_result;
 long long utility_resource_context_primary;
 long long utility_resource_context_secondary;
-longlong *resource_manager;
-int utility_operation_result;;
+longlong *resource_manager_ptr;
 ulonglong utility_resource_context;
-int utility_operation_result;;
-ulonglong utility_resource_context;
-longlong *resource_manager;
 longlong utility_stack_pointer;
 char utility_stack_array_char [16];
 utility_resource_context = utility_system_service_manager(*(uint32_t *)(utility_parameter + 0x10),&utility_stack_buffer);
@@ -2516,8 +2512,12 @@ utility_release_context_resources(*(uint64_t *)(utility_parameter + 0x98),utilit
 }
 utility_calculate_checksum(stack_uint_18 ^ (ulonglong)stack_buffer_68);
 }
-void GetSharedMemoryInfo(longlong *utility_parameter,longlong utility_parameter)
-void GetSharedMemoryInfo(longlong *utility_parameter,longlong utility_parameter)
+/**
+ * 获取共享内存信息
+ * @param utility_parameter 工具参数指针
+ * @param utility_parameter 工具参数值
+ */
+void utility_get_shared_memory_info(longlong *utility_parameter, longlong utility_parameter)
 {
 longlong utility_iteration_count;
 longlong *resource_manager;
