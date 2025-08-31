@@ -493,9 +493,20 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
                         utility_context_activate(utility_resource_id, 1);
                     
                     }
-                utility_loop_index = utility_loop_index + UTILITY_POINTER_OFFSET;
+                }
                     }
+                utility_loop_index = UTILITY_BOOLEAN_FALSE;
+                utility_loop_index = utility_loop_index + UTILITY_POINTER_OFFSET;
+            } while (utility_loop_index < utility_iteration_maximum_limit);
             utility_buffer_cleanup(&utility_buffer_handle);
+        }
+        else {
+            utility_buffer_cleanup(&utility_buffer_handle);
+        }
+    }
+    
+    // 计算校验和
+    utility_checksum_compute((uint64_t)utility_buffer_handle ^ (uint64_t)utility_buffer_workspace_area);
 }
 /**
  * @brief 验证资源状态的有效性
@@ -517,20 +528,14 @@ void utility_validate_resource_state(void)
     // 检查资源标志位并激活上下文管理器
     if ((*(uint *)(utility_resource_handle + UTILITY_MEMORY_FLAG_OFFSET) >> 7 & 1) != UTILITY_BOOLEAN_FALSE) {
         utility_context_activate(utility_resource_handle);
-}
     
+    }
     // 清理缓冲区管理器
     utility_buffer_cleanup(&utility_buffer_workspace_area);
     
     // 计算校验和
     utility_checksum_compute(utility_buffer_value ^ (uint64_t)utility_buffer_workspace_area);
 }
-/**
- * @brief 处理资源指针
- * 功能：将原始资源指针转换为系统可用的资源引用
- * @param utility_context_parameter 输入的上下文参数
- * @return 处理后的资源指针，0表示失败
- */
 /**
  * @brief 处理资源指针的工具函数
  * @param utility_context_parameter 工具上下文参数
@@ -859,27 +864,6 @@ return utility_resource_id;
 return 0;
 }
 return UTILITY_STATUS_THREAD_CREATED;
-}
-uint64_t utility_activate_context_data(int64_t utility_context_parameter)
-{
-uint64_t utility_resource_id;
-int64_t utility_stack_context;
-utility_resource_id = utility_handle_service_request(*(uint32_t *)(utility_context_parameter + UTILITY_THREAD_HANDLE_OFFSET),&utility_stack_context);
-if ((int)utility_resource_id == UTILITY_BOOLEAN_FALSE) {
-if (utility_stack_context == UTILITY_BOOLEAN_FALSE) {
-    
-}
-utility_stack_context = UTILITY_BOOLEAN_FALSE;
-}
-else {
-utility_stack_context = utility_stack_context + -8;
-}
-if (*(int64_t *)(utility_stack_context + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_BOOLEAN_FALSE) {
-utility_context_activate(*(int64_t *)(utility_stack_context + UTILITY_THREAD_HANDLE_OFFSET),1);
-}
-utility_operation_status = UTILITY_BOOLEAN_FALSE;
-}
-return utility_resource_id;
 }
 /**
  * @brief 资源上下文去激活器
@@ -8884,9 +8868,9 @@ if (utility_operation_status != UTILITY_BOOLEAN_TRUE) {
     
 }
 utility_stack_large_memory_value = utility_stack_large_memory_value & UTILITY_MAX_UINT32_MASK;
-pointer_340 = (int64_t *)&utility_system_reserved_area;
-apointer_330[0] = (int64_t *)utility_combine_values(apointer_330[0].component_x,utility_operation_status);
-utility_operation_status = utility_initialize_registry(utility_context_parameter,&pointer_340);
+utility_system_data_pointer = (int64_t *)&utility_system_reserved_area;
+utility_context_array[0] = (int64_t *)utility_combine_values(utility_context_array[0].component_x,utility_operation_status);
+utility_operation_status = utility_initialize_registry(utility_context_parameter,&utility_system_data_pointer);
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_REGISTRY_DONE;
 }
 utility_stack_buffer_array_tertiary[0] = (int64_t)utility_operation_status;
@@ -8976,16 +8960,16 @@ goto UTILITY_LABEL_REGISTRY_DONE;
     utility_context_data = (uint64_t)(utility_stack_long_primary * 48000) /
 (uint64_t)*(uint *)((int64_t)utility_context_parameter + UTILITY_STATUS_THREAD_CREATED);
 utility_loop_index = utility_context_data[2];
-pointer_340 = (int64_t *)&utility_system_reserved_area;
+utility_system_data_pointer = (int64_t *)&utility_system_reserved_area;
 utility_stack_large_memory_value = utility_stack_large_memory_value & UTILITY_MAX_UINT32_MASK;
 utility_context_data[2] = utility_context_data;
-apointer_330[0] = utility_context_parameter;
+utility_context_array[0] = utility_context_parameter;
 if (utility_loop_index != UTILITY_BOOLEAN_FALSE) {
     
 }
-apointer_330[0] = (int64_t *)(utility_resource_handle - utility_loop_index);
+utility_context_array[0] = (int64_t *)(utility_resource_handle - utility_loop_index);
 }
-utility_operation_status = utility_initialize_registry(utility_context_parameter,&pointer_340);
+utility_operation_status = utility_initialize_registry(utility_context_parameter,&utility_system_data_pointer);
 if (utility_operation_status != UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_REGISTRY_DONE;
 }
 utility_operation_status = (**(code **)(utility_stack_buffer_array_handle + UTILITY_THREAD_HANDLE_OFFSET))(&utility_stack_buffer_array_handle,utility_large_buffer,UTILITY_THREAD_DATA_OFFSET_PRIMARY_HEX);
@@ -9016,13 +9000,13 @@ do {
 do {
 utility_loop_index = (int64_t)(int)utility_stack_buffer_array_primary[0] * UTILITY_THREAD_DATA_OFFSET;
 utility_stack_large_memory_value = UTILITY_MAX_UINT32ffffffff;
-apointer_330[0] = (int64_t *)utility_combine_values(apointer_330[0].component_x,UTILITY_MAX_UINT32);
-pointer_340 = *(int64_t **)(utility_context_data[2] + UTILITY_THREAD_CONTEXT_OFFSET + utility_loop_index);
+utility_context_array[0] = (int64_t *)utility_combine_values(utility_context_array[0].component_x,UTILITY_MAX_UINT32);
+utility_system_data_pointer = *(int64_t **)(utility_context_data[2] + UTILITY_THREAD_CONTEXT_OFFSET + utility_loop_index);
 utility_stack_long_primary = utility_loop_index;
-utility_data_transform(pointer_340,&utility_stack_large_memory_value,apointer_330);
-utility_context_parameter = pointer_340;
-if ((int)apointer_330[0] != -1) {
-utility_operation_status = (int)apointer_330[0];
+utility_data_transform(utility_system_data_pointer,&utility_stack_large_memory_value,utility_context_array);
+utility_context_parameter = utility_system_data_pointer;
+if ((int)utility_context_array[0] != -1) {
+utility_operation_status = (int)utility_context_array[0];
 utility_operation_status = (int)utility_stack_large_memory_value;
 do {
 do {
