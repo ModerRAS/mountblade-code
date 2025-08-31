@@ -522,8 +522,10 @@ uint64_t utility_logger(void)
  * @return uint64_t 性能监控结果状态码
  *
  * 该函数负责监控系统性能指标，包括CPU使用率和内存使用率。
+ * 主要用于系统性能分析和性能瓶颈识别。
  *
- * 简化实现：提供基本的性能监控功能。
+ * @note 简化实现：提供基本的性能监控功能，原本实现应包含完整的性能指标收集、性能分析报告、性能预警等功能。
+ * @return UTILITY_ZERO 表示性能监控成功，其他值表示监控失败
  */
 uint64_t utility_performance_monitor(void)
 {
@@ -535,8 +537,10 @@ uint64_t utility_performance_monitor(void)
  * @return uint64_t 错误处理结果状态码
  *
  * 该函数负责处理系统错误，包括错误捕获和错误恢复。
+ * 主要用于系统错误管理和故障恢复。
  *
- * 简化实现：提供基本的错误处理功能。
+ * @note 简化实现：提供基本的错误处理功能，原本实现应包含完整的错误分类、错误处理策略、错误恢复机制等。
+ * @return UTILITY_ZERO 表示错误处理成功，其他值表示处理失败
  */
 uint64_t utility_error_handler(void)
 {
