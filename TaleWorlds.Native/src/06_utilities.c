@@ -229,7 +229,7 @@ uint32 utility_get_system_info(void)
 void utility_emergency_memory_release(void)
 {
 
-  utility_free_memory(); // Memory block release function
+  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
 }
 
 /**
@@ -753,7 +753,7 @@ uint32 utility_get_cpu_usage(void)
 void utility_free_system_memory_block(void)
 {
 
-  utility_free_memory(); // Memory block release function
+  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
 }
 
 /**
@@ -845,7 +845,7 @@ uint32 utility_get_thread_count(void)
 void utility_destroy_thread_pool(void)
 {
 
-  utility_free_memory(); // Memory block release function
+  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
 }
 
 /**
@@ -917,7 +917,7 @@ uint32 utility_unlock_mutex(void)
 void utility_destroy_mutex(void)
 {
 
-  utility_free_memory(); // Memory block release function
+  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
 }
 
 /**
@@ -990,7 +990,7 @@ uint32 utility_release_semaphore(void)
 void utility_destroy_semaphore(void)
 {
 
-  utility_free_memory(); // Memory block release function
+  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
 }
 
 /**
@@ -1089,7 +1089,7 @@ uint32 utility_set_event(void)
 void utility_reset_event(void)
 {
 
-  utility_free_memory(); // Memory block release function
+  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
 }
 
 /**
@@ -1178,7 +1178,7 @@ uint32 utility_start_timer(void)
 void utility_stop_timer(void)
 {
 
-  utility_free_memory(); // Memory block release function
+  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
 }
 
 /**
@@ -1260,7 +1260,7 @@ uint32 utility_get_system_time(void)
 void utility_initialize_file_system(void)
 {
 
-  utility_free_memory(); // Memory block release function
+  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
 }
 
 /**
@@ -1282,7 +1282,7 @@ void utility_initialize_file_system(void)
 void utility_mount_file_system(void)
 {
 
-  utility_free_memory(); // Memory block release function
+  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
 }
 
 /**
@@ -1384,7 +1384,7 @@ uint32 utility_close_file_resource_handle(void)
 void utility_read_file_data(void)
 {
 
-  utility_free_memory(); // Memory block release function
+  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
 }
 
 /**
@@ -1399,7 +1399,7 @@ void utility_read_file_data(void)
 void utility_write_file_data(void)
 {
 
-  utility_free_memory(); // Memory block release function
+  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
 }
 
 /**
