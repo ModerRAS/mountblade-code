@@ -16,6 +16,9 @@ typedef uint16_t system_uint16_t;
 typedef int16_t system_int16_t;
 typedef uint8_t system_uint8_t;
 typedef int8_t system_int8_t;
+typedef void* system_code;
+typedef void* system_handle;
+typedef void* system_context;
 
 // 系统浮点转换常量
 #define INIT_FLOAT_CONVERSION_FACTOR 9.50106740101640625e-07
@@ -755,7 +758,6 @@ void system_init_placeholder_function(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_placeholder_function_auto(void)
 void system_init_anonymous_function_1(void)
 {
   char system_validation_flag;
