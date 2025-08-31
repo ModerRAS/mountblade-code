@@ -1397,15 +1397,22 @@ void* g_stack_data_primary_address = (void*)STACK_DATA_PRIMARY_ADDR;
 // 原始名称: system_stack_data_secondary - 栈数据地址2
 void* g_stack_data_secondary_address = (void*)STACK_DATA_SECONDARY_ADDR;
 
-// 初始化系统配置
-int initialize_system_configuration(void)
+/**
+ * @brief 初始化系统配置
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统的基本配置参数，包括系统状态、操作计数等。
+ * 这是简化实现，仅处理基本的系统配置初始化。
+ * 原本实现：完整的系统配置初始化流程
+ */
+int system_initialize_config(void)
 {
-  int is_system_enabled = SYSTEM_STATUS_ENABLED;
-  int operation_count = SYSTEM_ZERO_VALUE;
-  long long max_allowed_value = MAX_SYSTEM_VALUE;
-  int system_status = SYSTEM_STATUS_SUCCESS;
-  int system_initialization_result = system_initialize(system_init_config_function);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  int system_enabled_flag = SYSTEM_STATUS_ENABLED;
+  int operation_counter = SYSTEM_ZERO_VALUE;
+  long long max_allowed_system_value = MAX_SYSTEM_VALUE;
+  int system_status_code = SYSTEM_STATUS_SUCCESS;
+  int initialization_result = system_initialize(system_init_config_function);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
 // 初始化核心数据结构
 int initialize_core_data_structure(void)
