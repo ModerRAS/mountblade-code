@@ -47976,13 +47976,11 @@ int utility_resource_handle_service_request(uint32_t service_id, int64_t context
 }
         return UTILITY_ERROR_INVALID_PARAM;
 }
-
-    // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
 /** 
  * @brief 资源管理器创建函数
-/**
+ *
  * @param resource_config 资源配置
  * @param context_size 上下文大小
  * @param buffer_ptr 缓冲区指针
