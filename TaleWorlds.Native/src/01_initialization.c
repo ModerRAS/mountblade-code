@@ -2415,21 +2415,24 @@ void system_initialize_audio_system(void)
 
 /**
  * @brief 初始化网络系统
- * 设置网络连接、数据传输和协议处理
- * @param param1 网络配置参数1
- * @param param1 网络配置参数2
- * @param param1 网络配置参数3
- * @param param1 网络配置参数4
- * @return 初始化状态码，0表示成功
+ * 
+ * 设置网络连接、数据传输和协议处理。
+ * 该函数会初始化网络互斥锁，并注册线程池内存。
+ * 
+ * @param network_config_param1 网络配置参数1
+ * @param network_config_param2 网络配置参数2
+ * @param network_config_param3 网络配置参数3
+ * @param network_config_param4 网络配置参数4
+ * @return 初始化状态码，0表示成功，-1表示失败
  */
-int system_initialize_network_system(uint64_t param1,uint64_t param1,uint64_t param1,uint64_t param1)
+int system_initialize_network_system(uint64_t network_config_param1, uint64_t network_config_param2, uint64_t network_config_param3, uint64_t network_config_param4)
 
 {
-  longlong system_audio_long_value;
+  longlong thread_pool_registration_result;
   
-  _Mtx_init_in_situ(SYSTEM_MUTEX_BASE_ADDRESS,2,param1,param1,SYSTEM_INVALID_HANDLE_VALUE);
-  system_audio_long_value = system_audio_register_value_memory_pool(system_thread_pool_register);
-  return (system_audio_long_value != 0) - 1;
+  _Mtx_init_in_situ(SYSTEM_MUTEX_BASE_ADDRESS, 2, network_config_param1, network_config_param2, SYSTEM_INVALID_HANDLE_VALUE);
+  thread_pool_registration_result = system_audio_register_value_memory_pool(system_thread_pool_register);
+  return (thread_pool_registration_result != 0) - 1;
 }
 
 
@@ -2439,23 +2442,27 @@ int system_initialize_network_system(uint64_t param1,uint64_t param1,uint64_t pa
 
 /**
  * @brief 初始化输入系统
- * 设置键盘、鼠标和控制器输入处理
+ * 
+ * 设置键盘、鼠标和控制器输入处理。
+ * 该函数会创建线程上下文，初始化输入设备配置。
+ * 
+ * @return void
  */
 void system_initialize_input_system(void)
 
 {
-  uint64_t system_audio_register_value_r9;
-  void **system_stack_unsigned_int_pointer;
-  uint8_t *system_stack_pointer;
-  uint32_t system_stack_unsigned_int;
-  uint8_t system_stack_char_buffer [136];
+  uint64_t runtime_config_value;
+  void **thread_context_pointer;
+  uint8_t *stack_pointer;
+  uint32_t stack_buffer_size;
+  uint8_t config_buffer[136];
   
-  system_stack_unsigned_int_pointer = &system_thread_context_workeronfig;
-  system_stack_pointer = system_stack_char_buffer;
-  system_stack_char_buffer[0] = 0;
-  system_stack_unsigned_int = 7;
-  strcpy_s(system_stack_char_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_runtime_config_path,system_audio_register_value_r9,SYSTEM_INVALID_HANDLE_VALUE);
-  system_runtime_data_190c = system_create_thread_context(&system_stack_unsigned_int_pointer);
+  thread_context_pointer = &system_thread_context_workeronfig;
+  stack_pointer = config_buffer;
+  config_buffer[0] = 0;
+  stack_buffer_size = 7;
+  strcpy_s(config_buffer, SYSTEM_STANDARD_BUFFER_SIZE, &system_runtime_config_path, runtime_config_value, SYSTEM_INVALID_HANDLE_VALUE);
+  system_runtime_data_190c = system_create_thread_context(&thread_context_pointer);
   return;
 }
 
@@ -2464,16 +2471,20 @@ void system_initialize_input_system(void)
 
 /**
  * @brief 初始化用户界面系统
- * 创建UI组件、事件处理和界面布局
+ * 
+ * 创建UI组件、事件处理和界面布局。
+ * 该函数会初始化UI上下文，分配资源块，并设置UI系统参数。
+ * 
+ * @return void
  */
 void system_initialize_ui_system(void)
 
 {
-  char system_initialization_status;
+  char initialization_status;
   uint64_t *data_pointer;
-  int comparison_status;
+  int comparison_result;
   longlong *context_pointer;
-  longlong audio_resource_id;
+  longlong resource_id;
   uint64_t *node_pointer;
   uint64_t *parent_pointer;
   uint64_t *child_pointer;
@@ -2482,13 +2493,13 @@ void system_initialize_ui_system(void)
   
   context_pointer = (longlong *)system_get_global_context();
   data_pointer = (uint64_t *)*context_pointer;
-  system_initialization_status = *(char *)((longlong)data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
+  initialization_status = *(char *)((longlong)data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
   allocator_pointer = system_get_network_context;
   parent_pointer = data_pointer;
   node_pointer = (uint64_t *)data_pointer[1];
-  while (system_initialization_status == '\0') {
-    comparison_status = memcmp(node_pointer + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (comparison_status < 0) {
+  while (initialization_status == '\0') {
+    comparison_result = memcmp(node_pointer + 4, &system_data_shader_config, SYSTEM_CONFIG_DATA_SIZE_16);
+    if (comparison_result < 0) {
       child_pointer = (uint64_t *)node_pointer[2];
       node_pointer = parent_pointer;
     }
@@ -2497,11 +2508,11 @@ void system_initialize_ui_system(void)
     }
     parent_pointer = node_pointer;
     node_pointer = child_pointer;
-    system_initialization_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
+    initialization_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == data_pointer) || (comparison_status = memcmp(&system_data_shader_config,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), comparison_status < 0)) {
-    audio_resource_id = system_allocate_resource_block(context_pointer);
-    system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
+  if ((parent_pointer == data_pointer) || (comparison_result = memcmp(&system_data_shader_config, parent_pointer + 4, SYSTEM_CONFIG_DATA_SIZE_16), comparison_result < 0)) {
+    resource_id = system_allocate_resource_block(context_pointer);
+    system_initialize_resource_block(context_pointer, &temp_pointer, parent_pointer, resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20, resource_id);
     parent_pointer = temp_pointer;
   }
   parent_pointer[6] = SYSTEM_MESH_PRIMARY_MAGIC;
