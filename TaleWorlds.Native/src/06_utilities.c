@@ -38190,7 +38190,7 @@ void Unwind_1809057b0(void * context_pointer,long long data_ptr)
   ulong long utility_result_ptr0;
   
   ptr_var = *(void ***)(data_ptr + 0x40);
-  *ptr_var = &UNK_180a07cd0;
+  *ptr_var = &utility_system_task_scheduler0;
   *(void **)((long long)ptr_var + 0x162) = 1;
   utility_temp_long_pointer = ptr_var + 0x1a;
   putility_utility_stack_long_variable_var = utility_temp_long_pointer;
@@ -38767,7 +38767,7 @@ void Unwind_180905950(void * context_pointer,long long data_ptr)
   ulong long utility_result_ptr0;
   
   ptr_var = *(void ***)(data_ptr + 0x2e8);
-  *ptr_var = &UNK_180a07cd0;
+  *ptr_var = &utility_system_task_scheduler0;
   *(void **)((long long)ptr_var + 0x162) = 1;
   utility_temp_long_pointer = ptr_var + 0x1a;
   putility_utility_stack_long_variable_var = utility_temp_long_pointer;
