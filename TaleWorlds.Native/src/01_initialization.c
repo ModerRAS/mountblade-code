@@ -51,30 +51,30 @@ typedef unsigned long ulonglong;
 #define INIT_FLOAT_CONVERSION_FACTOR 9.50106740101640625e-07
 #define INIT_FLOAT_CONVERSION_FACTOR_INV 1.0526315794728456e+06
 
-// 系统魔数常量
-#define INIT_MAGIC_ENGINE_VERIFICATION 0x100
-#define INIT_MAGIC_NETWORK_SESSION 0x100
-#define INIT_MAGIC_FLOAT_PRECISION 0x100
-#define INIT_MAGIC_DATA_HEADER 0x100
-#define INIT_MAGIC_ENGINE_SIGNATURE 0x100
-#define INIT_MAGIC_ENDIAN_MARKER_1 0x100
-#define INIT_MAGIC_ENDIAN_MARKER_2 0x100
-#define INIT_MAGIC_ENDIAN_MARKER_3 0x100
-#define INIT_MAGIC_MODULE_HEADER 0x100
-#define INIT_MAGIC_DEVICE_HEADER 0x100
+// 系统验证魔数常量
+#define INIT_VERIFICATION_MAGIC_ENGINE 0x100
+#define INIT_VERIFICATION_MAGIC_NETWORK_SESSION 0x100
+#define INIT_VERIFICATION_MAGIC_FLOAT_PRECISION 0x100
+#define INIT_VERIFICATION_MAGIC_DATA_HEADER 0x100
+#define INIT_VERIFICATION_MAGIC_ENGINE_SIGNATURE 0x100
+#define INIT_VERIFICATION_MAGIC_ENDIAN_MARKER_1 0x100
+#define INIT_VERIFICATION_MAGIC_ENDIAN_MARKER_2 0x100
+#define INIT_VERIFICATION_MAGIC_ENDIAN_MARKER_3 0x100
+#define INIT_VERIFICATION_MAGIC_MODULE_HEADER 0x100
+#define INIT_VERIFICATION_MAGIC_DEVICE_HEADER 0x100
 
 // 系统偏移量常量
 #define INIT_OFFSET_STACK_FRAME 0x200
 #define INIT_FLAG_INITIALIZED_OFFSET 0x100
 #define INIT_OFFSET_HEADER 0x60
 
-// 系统常用魔数常量
-#define INIT_MAGIC_STANDARD 0x100
-#define INIT_MAGIC_AUDIO 0x100
-#define INIT_MAGIC_NETWORK 0x100
-#define INIT_MAGIC_RESOURCE 0x100
-#define INIT_MAGIC_SYSTEM 0x100
-#define INIT_MAGIC_ENGINE 0x100
+// 系统组件魔数常量
+#define INIT_COMPONENT_MAGIC_STANDARD 0x100
+#define INIT_COMPONENT_MAGIC_AUDIO 0x100
+#define INIT_COMPONENT_MAGIC_NETWORK 0x100
+#define INIT_COMPONENT_MAGIC_RESOURCE 0x100
+#define INIT_COMPONENT_MAGIC_SYSTEM 0x100
+#define INIT_COMPONENT_MAGIC_ENGINE 0x100
 
 // 系统标志常量
 #define INIT_FLAG_GRAPHICS 0x100
@@ -99,9 +99,9 @@ typedef unsigned long ulonglong;
 #define INIT_ERROR_GENERIC 0xFF
 #define INIT_ERROR_GENERIC_SUCCESS 0xFFFFFFFF
 
-// 系统值常量
-#define INIT_MAGIC_PREFAB 0x100
-#define INIT_MAGIC_GENERAL 0x100
+// 系统通用值常量
+#define INIT_VALUE_MAGIC_PREFAB 0x100
+#define INIT_VALUE_MAGIC_GENERAL 0x100
 #define INIT_VALUE_HANDLE_INVALID_DEFAULT 0xFFFFFFFF
 #define INIT_VALUE_THREE 0x3
 
@@ -154,12 +154,12 @@ typedef unsigned long ulonglong;
 #define SYSTEM_INIT_FLAG_ACTIVE_DEFAULT_NETWORK_PRIMARY 0x100
 #define SYSTEM_INIT_FLAG_ENABLED_AUDIO_PRIMARY 0x100
 
-// 系统魔数Cookie常量
-#define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_PRIMARY 0x100
-#define SYSTEM_INIT_MAGIC_COOKIE_BASIC_PRIMARY 0x100
-#define SYSTEM_INIT_MAGIC_COOKIE_BASIC_SECONDARY 0x100
-#define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_SECONDARY 0x100
-#define SYSTEM_INIT_MAGIC_COOKIE_NETWORK 0x100
+// 系统资源Cookie常量
+#define SYSTEM_INIT_RESOURCE_COOKIE_PRIMARY 0x100
+#define SYSTEM_INIT_RESOURCE_COOKIE_BASIC_PRIMARY 0x100
+#define SYSTEM_INIT_RESOURCE_COOKIE_BASIC_SECONDARY 0x100
+#define SYSTEM_INIT_RESOURCE_COOKIE_SYSTEM_SECONDARY 0x100
+#define SYSTEM_INIT_RESOURCE_COOKIE_NETWORK 0x100
 
 // 全局变量声明
 static system_uint64_t *system_global_context_ptr = NULL;
@@ -173,7 +173,7 @@ static system_uint64_t *system_buffer_ptr = NULL;
  * 该函数检查系统的初始化状态，验证系统是否已经正确初始化。
  * 这是简化实现，提供基本的初始化状态检查功能。
  */
-int system_init_status_check_function(void)
+int system_check_initialization_status(void)
 {
     if (system_global_context_ptr == NULL) {
         return -1;
@@ -192,46 +192,46 @@ int system_init_status_check_function(void)
  * 该函数负责系统的核心初始化工作，包括内存分配、线程创建和系统配置。
  * 这是简化实现，保持代码语义不变，仅进行语义化美化。
  */
-int system_initialize_core_main(system_uint64_t context_param, system_uint64_t config_param, 
-                                system_uint64_t memory_param, system_uint64_t thread_param)
+int system_initialize_core(system_uint64_t context_param, system_uint64_t config_param, 
+                           system_uint64_t memory_param, system_uint64_t thread_param)
 {
-    system_uint64_t *temp_ptr;
+    system_uint64_t *temp_memory_ptr;
     system_uint64_t *config_ptr;
     system_uint64_t *module_ptr;
-    char validation_flag;
-    int comparison_result;
+    char validation_result;
+    int initialization_status;
     
-    // 初始化系统上下文
+    // 验证系统上下文参数
     if (context_param == 0) {
         return -1;
     }
     
-    // 分配临时内存
-    temp_ptr = (system_uint64_t *)malloc(INIT_SIZE_STANDARD_COMPARE);
-    if (temp_ptr == NULL) {
+    // 分配临时内存用于初始化
+    temp_memory_ptr = (system_uint64_t *)malloc(INIT_SIZE_STANDARD_COMPARE);
+    if (temp_memory_ptr == NULL) {
         return -1;
     }
     
-    // 验证系统配置
+    // 验证系统配置参数
     config_ptr = (system_uint64_t *)config_param;
     if (config_ptr == NULL) {
-        free(temp_ptr);
+        free(temp_memory_ptr);
         return -1;
     }
     
-    // 初始化系统模块
+    // 初始化系统模块内存
     module_ptr = (system_uint64_t *)malloc(INIT_SIZE_STANDARD_COMPARE);
     if (module_ptr == NULL) {
-        free(temp_ptr);
+        free(temp_memory_ptr);
         return -1;
     }
     
-    // 设置全局上下文
+    // 设置全局系统上下文和初始化状态
     system_global_context_ptr = (system_uint64_t *)context_param;
     system_initialized = 1;
     
     // 清理临时资源
-    free(temp_ptr);
+    free(temp_memory_ptr);
     free(module_ptr);
     
     return 0;
@@ -244,7 +244,7 @@ int system_initialize_core_main(system_uint64_t context_param, system_uint64_t c
  * 该函数使用上下文参数初始化系统。
  * 这是简化实现，提供基本的初始化功能。
  */
-void system_init_with_context(longlong context_param)
+void system_initialize_with_context(int64_t context_param)
 {
     system_uint64_t *context_ptr = (system_uint64_t *)context_param;
     
@@ -279,7 +279,7 @@ void system_initialize_core_context(void)
  */
 void system_main_entry_init(system_uint64_t context_param)
 {
-    system_init_with_context(context_param);
+    system_initialize_with_context(context_param);
 }
 
 /**
@@ -291,7 +291,7 @@ void system_main_entry_init(system_uint64_t context_param)
  * 该函数使用上下文和配置参数初始化系统。
  * 这是简化实现，提供基本的初始化功能。
  */
-void system_init_with_context_config_memory(longlong context_param, system_uint64_t config_param, int memory_param)
+void system_initialize_with_context_config_memory(int64_t context_param, system_uint64_t config_param, int memory_param)
 {
     system_uint64_t *context_ptr = (system_uint64_t *)context_param;
     
@@ -314,8 +314,8 @@ void system_init_with_context_config_memory(longlong context_param, system_uint6
  * 该函数使用完整参数初始化系统。
  * 这是简化实现，提供基本的初始化功能。
  */
-void system_init_with_full_params(system_uint64_t context_param, system_uint64_t config_param, 
-                                 system_uint64_t memory_param, system_uint64_t thread_param)
+void system_initialize_with_full_parameters(system_uint64_t context_param, system_uint64_t config_param, 
+                                           system_uint64_t memory_param, system_uint64_t thread_param)
 {
     system_uint64_t *context_ptr = (system_uint64_t *)context_param;
     
@@ -336,7 +336,7 @@ void system_init_with_full_params(system_uint64_t context_param, system_uint64_t
  * 该函数初始化系统的资源管理器。
  * 这是简化实现，提供基本的资源管理器初始化功能。
  */
-void system_init_resource_manager(ulonglong *context_param)
+void system_initialize_resource_manager(uint64_t *context_param)
 {
     if (context_param != NULL) {
         system_global_context_ptr = (system_uint64_t *)context_param;
@@ -355,8 +355,8 @@ void system_init_resource_manager(ulonglong *context_param)
  * 该函数使用完整参数初始化系统并返回结果。
  * 这是简化实现，提供基本的初始化功能。
  */
-system_uint64_t system_init_full_params_return_ulong(system_uint64_t context_param, ulonglong config_param, 
-                                                     system_uint64_t memory_param, system_uint64_t thread_param)
+system_uint64_t system_initialize_full_parameters_return_ulong(system_uint64_t context_param, uint64_t config_param, 
+                                                        system_uint64_t memory_param, system_uint64_t thread_param)
 {
     system_uint64_t *context_ptr = (system_uint64_t *)context_param;
     
@@ -385,8 +385,8 @@ system_uint64_t system_init_full_params_return_ulong(system_uint64_t context_par
  * 该函数使用完整参数初始化系统并返回字节结果。
  * 这是简化实现，提供基本的初始化功能。
  */
-system_uint8_t system_init_full_params_return_byte(longlong context_param, system_uint64_t config_param, 
-                                                   system_uint64_t memory_param, system_uint64_t thread_param)
+system_uint8_t system_initialize_full_parameters_return_byte(int64_t context_param, system_uint64_t config_param, 
+                                                  system_uint64_t memory_param, system_uint64_t thread_param)
 {
     system_uint64_t *context_ptr = (system_uint64_t *)context_param;
     
@@ -411,10 +411,10 @@ system_uint8_t system_init_full_params_return_byte(longlong context_param, syste
  * 该函数计算系统初始化所需的系数。
  * 这是简化实现，提供基本的系数计算功能。
  */
-system_uint64_t system_init_calculate_coefficients(void)
+system_uint64_t system_calculate_initialization_coefficients(void)
 {
     // 简化实现：返回默认系数值
-    return INIT_MAGIC_STANDARD;
+    return INIT_COMPONENT_MAGIC_STANDARD;
 }
 
 /**
