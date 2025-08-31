@@ -4437,6 +4437,18 @@ void utility_system_cleanup_empty_handler(void)
  * 
  * @note 这是简化实现，主要处理基本的状态查询流程
  */
+/**
+ * @brief 获取系统状态信息
+ * 
+ * 该函数负责获取当前系统的状态信息，通过调用系统函数并处理返回值来获取状态。
+ * 
+ * @param context_pointer 上下文指针，包含系统状态相关的信息
+ * @return void* 系统状态信息，0表示失败，非0表示成功获取的状态
+ * 
+ * @note 这是简化实现，主要处理系统状态获取工作
+ * 原本实现：完全重构状态管理系统，建立统一的状态获取规范
+ * 简化实现：仅获取基本的系统状态信息，保持代码结构不变
+ */
 void * utility_status_manager_get_system_status(long long context_pointer)
 
 {
@@ -4849,6 +4861,20 @@ void * utility_status_manager_configure_subsystem(void)
 
 
 
+/**
+ * @brief 执行系统状态管理操作
+ * 
+ * 该函数负责执行系统的状态管理操作，包括数据同步、状态验证和结果处理。
+ * 通过遍历系统项目并调用相应的工具函数来完成操作执行。
+ * 
+ * @param context_pointer 上下文指针，包含线程局部存储和系统状态信息
+ * @param data_ptr 数据指针，包含操作所需的数据
+ * @return void* 操作结果，0表示成功，非0表示失败
+ * 
+ * @note 这是简化实现，主要处理状态管理操作的执行工作
+ * 原本实现：完全重构状态管理系统，建立统一的操作执行规范
+ * 简化实现：仅执行基本的状态管理操作，保持代码结构不变
+ */
 void * utility_status_manager_execute_operation(long long context_pointer,long long data_ptr)
 
 {
