@@ -13722,12 +13722,21 @@ void system_start_timer_countdown(uint64_t *system_context_parameter)
   return;
 }
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/**
+ * @brief 停止系统倒计时器
+ * 
+ * 此函数用于停止系统中的倒计时器，并执行相关的清理工作。
+ * 该函数会释放定时器资源，停止相关的计时线程，并重置定时器状态。
+ * 
+ * @note 这是简化实现，主要处理了系统倒计时器的停止逻辑和资源释放
+ * 原本实现：完整的定时器管理系统，包括复杂的同步机制和错误处理
+ * 简化实现：仅保留核心的停止逻辑和基本的资源清理
+ */
 void system_stop_timer_countdown(void)
 
 {
   uint64_t *data_context;
-  code *system_code_ptr_2;
+  code *system_initialization_function_ptr;
   longlong system_long_handle;
   int system_buffer_size;
   uint64_t system_audio_config_value;
