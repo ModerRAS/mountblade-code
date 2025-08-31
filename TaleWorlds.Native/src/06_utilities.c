@@ -83,11 +83,11 @@
 #define UTILITY_ADDRESS_RESOURCE_MANAGER_3 0x0001808d74b1
 #define UTILITY_MAX_OPERATION_RANGE_VALUE 0x1000
 /* 硬编码数值常量 - 简化实现 */
-#define UTILITY_RESOURCE_FLAG_A0 UTILITY_RESOURCE_FLAG_A0
-#define UTILITY_RESOURCE_FLAG_B8 UTILITY_RESOURCE_FLAG_B8
-#define UTILITY_RESOURCE_FLAG_E9 UTILITY_RESOURCE_FLAG_E9
-#define UTILITY_SERVICE_OFFSET_D0 UTILITY_SERVICE_OFFSET_D0
-#define UTILITY_MEMORY_FLAG_F4 UTILITY_MEMORY_FLAG_F4
+#define UTILITY_RESOURCE_FLAG_A0 0xa0
+#define UTILITY_RESOURCE_FLAG_B8 0xb8
+#define UTILITY_RESOURCE_FLAG_E9 0xe9
+#define UTILITY_SERVICE_OFFSET_D0 0xd0
+#define UTILITY_MEMORY_FLAG_F4 0xf4
 #define UTILITY_FLAG_MASK_BYTE 0xff
 #define UTILITY_FLAG_MASK_WORD 0xffff
 #define UTILITY_FLAG_MASK_DWORD 0xffffffff
@@ -101,6 +101,15 @@
 #define UTILITY_MEMORY_BLOCK_SIZE_LARGE UTILITY_MEMORY_FLAG_F4
 #define UTILITY_MEMORY_BLOCK_SIZE_EXTRA_LARGE 0x315
 #define UTILITY_MEMORY_BLOCK_SIZE_HUGE 0xdd
+#define UTILITY_BUFFER_FLAGS_DEFAULT 0xffffffc0
+#define UTILITY_FLOAT_ARRAY_OFFSET_30 0x30
+#define UTILITY_FLOAT_ARRAY_OFFSET_3C 0x3c
+#define UTILITY_FLOAT_ARRAY_OFFSET_40 0x40
+#define UTILITY_CONTEXT_STRUCT_SIZE_44 0x44
+#define UTILITY_SERVICE_HANDLER_OFFSET_2B0 0x2b0
+#define UTILITY_SERVICE_HANDLER_OFFSET_2F0 0x2f0
+#define UTILITY_SERVICE_HANDLER_OFFSET_2F8 0x2f8
+#define UTILITY_NETWORK_CONTEXT_OFFSET_D8 0xd8
 /* 工具系统全局变量定义 */
 /* 全局数据管理 */
 // 全局数据管理 - 系统核心数据存储
@@ -8100,25 +8109,17 @@ return utility_resource_value;
  */
 void utility_network_context_manager(void)
 {
-float utility_float_data;
-uint64_t *buffer_pointer;
-uint32_t *buffer_pointer;
-int64_t utility_loop_counter;
-char utility_char_data;
-int utility_operation_result;;
-int utility_operation_result;;
-int utility_operation_result;;
-uint64_t utility_resource_data;
-int64_t *resource_manager;
-int64_t utility_loop_counter;
-void *utility_param_ptr_ptr;
-int64_t *resource_manager;
-int64_t *resource_manager;
-int64_t utility_loop_counter;
-int64_t *resource_manager;
-uint utility_resource_data;
-float utility_float_data;
-int64_t *resource_manager;
+float utility_network_float_data;
+uint64_t *utility_network_buffer_ptr;
+uint32_t *utility_network_buffer_uint32_ptr;
+int64_t utility_network_loop_counter;
+char utility_network_char_data;
+int utility_network_operation_result;
+uint64_t utility_network_resource_data;
+int64_t *utility_network_resource_manager;
+void *utility_network_param_ptr_ptr;
+uint utility_network_resource_uint;
+float utility_network_float_data2;
 bool utility_bool_variable;
 uint8_t utility_stack_buffer_368 [32];
 float utility_stack_buffer_array_348 [2];
