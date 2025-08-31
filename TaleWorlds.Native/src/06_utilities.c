@@ -135,6 +135,7 @@
 #define UTILITY_CONTEXT_OFFSET_6C 0x6c
 #define UTILITY_CONTEXT_OFFSET_7C 0x7c
 #define UTILITY_CONTEXT_OFFSET_C0 0xc0
+#define UTILITY_CHECKSUM_OFFSET_5F0 0x5f0
 #define UTILITY_SERVICE_CONTEXT_OFFSET_800 0x800
 #define UTILITY_STATUS_ENABLED_FLAG_HEXA_E 0xe
 #define UTILITY_STATUS_ENABLED_FLAG_HEXA_E0 0xe0
@@ -5398,7 +5399,7 @@ goto UTILITY_LABEL_WAIT_STATE;
 }
 *utility_context_resource_handle = UTILITY_BOOLEAN_FALSE;
 UTILITY_LABEL_PROCESS_NEXT:
-utility_calculate_checksum(*(uint64_t *)(utility_context_base_pointer + 0x5f0) ^ (uint64_t)&utility_buffer_workspace);
+utility_calculate_checksum(*(uint64_t *)(utility_context_base_pointer + UTILITY_CHECKSUM_OFFSET_5F0) ^ (uint64_t)&utility_buffer_workspace);
 }
 /**
 * @brief 初始化套接字
@@ -5414,7 +5415,7 @@ void InitializeSocket(void)
 void InitializeSocket(void)
 {
 int64_t utility_context_base_pointer;
-utility_calculate_checksum(*(uint64_t *)(utility_context_base_pointer + 0x5f0) ^ (uint64_t)&utility_buffer_workspace);
+utility_calculate_checksum(*(uint64_t *)(utility_context_base_pointer + UTILITY_CHECKSUM_OFFSET_5F0) ^ (uint64_t)&utility_buffer_workspace);
 }
 {
 uint64_t utility_resource_value;
