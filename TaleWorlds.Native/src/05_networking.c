@@ -615,8 +615,8 @@ void execute_network_operation(uint64_t *context, uint64_t param1, uint64_t para
 #define NETWORK_LABEL_STACK_PROCESS 0x5000
 
 // 网络系统十六进制地址标签常量定义
-#define NETWORK_LABEL_JOINED_180876529 network_label_connection_establish_final    // 网络连接处理标签
-#define NETWORK_LABEL_CODE_1808787B5 network_label_code_processing_primary         // 网络代码处理标签
+#define NETWORK_LABEL_CONNECTION_ESTABLISH_FINAL network_label_connection_establish_final    // 网络连接处理标签
+#define NETWORK_LABEL_CODE_PROCESSING_PRIMARY network_label_code_processing_primary         // 网络代码处理标签
 #define NETWORK_LABEL_CODE_180882143 network_label_code_processing_secondary         // 网络代码处理标签
 #define NETWORK_LABEL_CODE_1808822D5 network_label_code_processing_tertiary         // 网络代码处理标签
 
@@ -12420,7 +12420,7 @@ uint64_t network_create_network_socket_handle_ptr_handle,config_data)
   float network_scale_factor_six;
   uint64_t network_operation_status7;
   uint32_t network_connection_context_buffer_length;
-  int8_t cStack000000000000002c;
+  int8_t network_stack_validation_char;
   uint8_t network_default_input_buffer;
   uint32_t network_packet_input_buffer;
   uint32_t network_operation_status5;
@@ -12435,7 +12435,7 @@ uint64_t network_create_network_socket_handle_ptr_handle,config_data)
     network_operation_status7 = network_registry_table;
   }
   else {
-    cStack000000000000002c = network_char_validation_result;
+    network_stack_validation_char = network_char_validation_result;
     network_buffer_flush(&data_processing_buffer);
     network_socket_id = NETWORK_CONNECTION_ID_BASE;
     network_result_secondary = SOCKET_VALIDATE_MASK;
@@ -12568,7 +12568,7 @@ NETWORK_ERROR_HANDLER:
     }
     network_buffer_flush(&data_processing_buffer);
     if (network_connection_context_buffer_length <= network_packet_input_buffer) {
-      if (cStack000000000000002c != network_char_validation_result) {
+      if (network_stack_validation_char != network_char_validation_result) {
         *(int32_t *)(network_operation_status7 + 0x488) =
              *(int32_t *)(network_operation_status7 + 0x488) + (network_packet_input_buffer - network_connection_context_buffer_length);
         return network_packet_count;
@@ -13420,7 +13420,7 @@ network_system_function:
     network_operation_status = execute_network_operation(network_context_pointer,network_status_ptr + 0x53);
     if (network_operation_status == 0) {
       network_operation_status = execute_network_operation(network_context_pointer,network_status_ptr);
-      goto NETWORK_LABEL_JOINED_180876529;
+      goto NETWORK_LABEL_CONNECTION_ESTABLISH_FINAL;
     }
   }
 network_label_security_check_failed:
@@ -14851,7 +14851,7 @@ network_label_connection_reset:
     network_context_pointer[NETWORK_CONFIG_INDEX_PRIMARY];
     primary_network_context = (int64_t)network_loop_counter_counter;
     do {
-      if (*(int32_t *)(network_context_pointer + primary_network_context * 4) != -1) goto NETWORK_LABEL_CODE_1808787B5;
+      if (*(int32_t *)(network_context_pointer + primary_network_context * 4) != -1) goto NETWORK_LABEL_CODE_PROCESSING_PRIMARY;
       network_loop_counter_counter = network_loop_counter_counter + 1;
       primary_network_context = primary_network_context + 1;
     } while (primary_network_context != (int32_t)network_context_pointer[1]);

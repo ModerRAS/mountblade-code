@@ -252,13 +252,13 @@ int32_t system_register_core_services(void);
  * 简化实现：仅启动基本的系统线程，保持代码结构不变
  */
 int32_t system_start_system_threads(void);
-static void *thread_manager_pointer;
-static void *secondary_thread_pool_pointer;
-static void *primary_semaphore_pointer;
-static void *primary_mutex_pointer;
-static void *secondary_mutex_pointer;
-static void *event_handler_pointer;
-static void *event_queue_pointer;
+static void *thread_mgr_ptr;
+static void *thread_pool_ptr_secondary;
+static void *semaphore_ptr_primary;
+static void *mutex_ptr_primary;
+static void *mutex_ptr_secondary;
+static void *event_handler_ptr;
+static void *event_queue_ptr;
 static void *event_dispatcher_ptr;
 static void *event_processor_ptr;
 static void *memory_allocator_ptr;
