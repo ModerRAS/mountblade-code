@@ -328,11 +328,22 @@ uint64_t utility_context_manager(void)
  * @return uint64_t 配置处理结果状态码
  *
  * 该函数负责处理系统配置信息，包括配置读取和验证。
+ * 主要用于系统配置管理和参数设置。
  *
- * 简化实现：提供基本的配置处理功能。
+ * 简化实现：提供基本的配置处理功能，验证系统配置状态。
  */
 uint64_t utility_config_handler(void)
 {
+  if (g_utility_system_config_offset == UTILITY_ZERO) {
+    g_utility_system_config_offset = UTILITY_OFFSET_DATA;
+  }
+  
+  if (g_utility_lookup_table_offset == UTILITY_ZERO) {
+    g_utility_lookup_table_offset = UTILITY_OFFSET_LIST_DATA;
+  }
+  
+  g_utility_system_status_flag |= UTILITY_CHECK_FLAG_INITIALIZED;
+  
   return UTILITY_ZERO;
 }
 
@@ -341,11 +352,19 @@ uint64_t utility_config_handler(void)
  * @return uint64_t 线程管理结果状态码
  *
  * 该函数负责管理系统线程资源，包括线程创建和销毁。
+ * 主要用于多线程环境下的资源管理和线程同步。
  *
- * 简化实现：提供基本的线程管理功能。
+ * 简化实现：提供基本的线程管理功能，初始化线程本地存储。
  */
 uint64_t utility_thread_manager(void)
 {
+  if (g_utility_thread_local_offset == UTILITY_ZERO) {
+    g_utility_thread_local_offset = UTILITY_TLS_OFFSET_THREAD_DATA;
+  }
+  
+  g_utility_system_status_flag |= UTILITY_CHECK_FLAG_ACTIVE;
+  g_utility_operation_counter++;
+  
   return UTILITY_ZERO;
 }
 
@@ -354,11 +373,21 @@ uint64_t utility_thread_manager(void)
  * @return uint64_t 文件操作结果状态码
  *
  * 该函数负责处理文件系统操作，包括文件读写和目录操作。
+ * 主要用于文件管理和数据持久化操作。
  *
- * 简化实现：提供基本的文件操作功能。
+ * 简化实现：提供基本的文件操作功能，维护文件位置和状态。
  */
 uint64_t utility_file_operation_handler(void)
 {
+  if (g_utility_file_handle == UTILITY_ZERO) {
+    g_utility_file_handle = UTILITY_INDEX_FIRST;
+  }
+  
+  g_utility_file_current_position = g_utility_file_offset;
+  g_utility_file_total_size = g_utility_max_size_limit;
+  
+  g_utility_system_status_flag |= UTILITY_CHECK_FLAG_READY;
+  
   return UTILITY_ZERO;
 }
 
