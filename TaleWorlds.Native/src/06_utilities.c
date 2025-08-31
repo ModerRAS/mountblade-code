@@ -359,13 +359,9 @@ uint8_t context_system_extended;
  * 
  * @param thread_handle 线程句柄，用于标识特定的线程
  * @param context_data 上下文数据指针，包含线程相关的配置信息
- * 
- * 该函数负责处理线程本地存储的数据，包括线程句柄的管理、
- * 上下文数据的处理以及资源的分配和释放。函数会验证数据完整性，
- * 并确保所有操作都在安全的范围内执行。
- * 
- * @param thread_handle 线程句柄，用于标识和管理特定线程
- * @param context_data 上下文数据指针，包含线程相关的配置和状态信息
+ */
+void handle_thread_local_storage(void *thread_handle, void *context_data)
+{
     uint64_t resource_handle_value;
     int thread_status = UTILITY_STATUS_FALSE;
     int64_t loop_counter = 0;
@@ -405,12 +401,16 @@ uint8_t context_system_extended;
     compute_checksum(data_checksum ^ (uint64_t)large_temp_buffer);
 }
 
+ /** 清理线程资源
  * 
  * 该函数负责清理和释放线程相关的所有资源，包括内存缓冲区、
  * 资源句柄、安全密钥等。函数会验证上下文指针的有效性，
  * 并确保所有清理操作都在安全的范围内执行。
  * 
  * @param context_pointer 上下文指针，指向需要清理的线程数据结构
+ */
+void cleanup_thread_resources(void *context_pointer)
+{
     int64_t loop_counter = 0;
     int items_processed;
     uint8_t *data_storage_pointer;
@@ -463,6 +463,7 @@ uint8_t context_system_extended;
     compute_checksum((uint64_t)data_storage_pointer ^ (uint64_t)working_buffer);
 }
 
+ /** 验证系统资源状态
  * 
  * 该函数负责验证系统中所有资源的状态，检查资源标志位，
  * 并在需要时激活上下文管理器。函数会确保所有资源都处于
