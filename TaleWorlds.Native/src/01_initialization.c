@@ -3,57 +3,63 @@
 #include <string.h>
 
 // 系统配置数据初始化常量定义
-#define SYSTEM_CONFIG_DATA_INITIALIZER_1 0x0000001
-#define SYSTEM_CONFIG_DATA_INITIALIZER_2 0x0000002
-#define SYSTEM_CONFIG_DATA_INITIALIZER_3 0x0000003
-#define SYSTEM_CONFIG_DATA_INITIALIZER_4 0x0000004
-#define SYSTEM_CONFIG_DATA_INITIALIZER_5 0x0000005
-#define SYSTEM_CONFIG_DATA_INITIALIZER_6 0x0000006
-#define SYSTEM_CONFIG_DATA_INITIALIZER_7 0x0000007
-#define SYSTEM_CONFIG_DATA_INITIALIZER_8 0x0000008
-#define SYSTEM_CONFIG_DATA_INITIALIZER_9 0x0000009
-#define SYSTEM_CONFIG_DATA_INITIALIZER_10 0x00000010
-#define SYSTEM_CONFIG_DATA_INITIALIZER_11 0x00000011
-#define SYSTEM_CONFIG_DATA_INITIALIZER_12 0x00000012
-#define SYSTEM_CONFIG_DATA_INITIALIZER_13 0x00000013
-#define SYSTEM_CONFIG_DATA_INITIALIZER_14 0x00000014
-#define SYSTEM_CONFIG_DATA_INITIALIZER_15 0x00000015
-#define SYSTEM_CONFIG_DATA_INITIALIZER_16 0x00000016
-#define SYSTEM_CONFIG_DATA_INITIALIZER_17 0x00000017
-#define SYSTEM_CONFIG_DATA_INITIALIZER_18 0x00000018
-#define SYSTEM_CONFIG_DATA_INITIALIZER_19 0x00000019
-#define SYSTEM_CONFIG_DATA_INITIALIZER_20 0x00000020
-#define SYSTEM_CONFIG_DATA_INITIALIZER_21 0x00000021
-#define SYSTEM_CONFIG_DATA_INITIALIZER_22 0x00000022
-#define SYSTEM_CONFIG_DATA_INITIALIZER_23 0x00000023
-#define SYSTEM_CONFIG_DATA_INITIALIZER_24 0x00000024
-#define SYSTEM_CONFIG_DATA_INITIALIZER_25 0x00000025
-#define SYSTEM_CONFIG_DATA_INITIALIZER_26 0x00000026
-#define SYSTEM_CONFIG_DATA_INITIALIZER_27 0x00000027
-#define SYSTEM_CONFIG_DATA_INITIALIZER_28 0x00000028
-#define SYSTEM_CONFIG_DATA_INITIALIZER_29 0x00000029
-#define SYSTEM_CONFIG_DATA_INITIALIZER_30 0x00000030
-#define SYSTEM_CONFIG_DATA_INITIALIZER_31 0x00000031
-#define SYSTEM_CONFIG_DATA_INITIALIZER_32 0x00000032
-#define SYSTEM_CONFIG_DATA_INITIALIZER_33 0x00000033
-#define SYSTEM_CONFIG_DATA_INITIALIZER_34 0x00000034
-#define SYSTEM_CONFIG_DATA_INITIALIZER_35 0x00000035
-#define SYSTEM_CONFIG_DATA_INITIALIZER_36 0x00000036
-#define SYSTEM_CONFIG_DATA_INITIALIZER_37 0x00000037
-#define SYSTEM_CONFIG_DATA_INITIALIZER_38 0x00000038
-#define SYSTEM_CONFIG_DATA_INITIALIZER_39 0x00000039
-#define SYSTEM_CONFIG_DATA_INITIALIZER_40 0x00000040
-#define SYSTEM_CONFIG_DATA_INITIALIZER_41 0x00000041
-#define SYSTEM_CONFIG_DATA_INITIALIZER_42 0x00000042
-#define SYSTEM_CONFIG_DATA_INITIALIZER_43 0x00000043
-#define SYSTEM_CONFIG_DATA_INITIALIZER_44 0x00000044
-#define SYSTEM_CONFIG_DATA_INITIALIZER_45 0x00000045
-#define SYSTEM_CONFIG_DATA_INITIALIZER_46 0x00000046
-#define SYSTEM_CONFIG_DATA_INITIALIZER_47 0x00000047
-#define SYSTEM_CONFIG_DATA_INITIALIZER_48 0x00000048
-#define SYSTEM_CONFIG_DATA_INITIALIZER_49 0x00000049
-#define SYSTEM_CONFIG_DATA_INITIALIZER_50 0x00000050
-#define SYSTEM_CONFIG_DATA_INITIALIZER_51 0x00000051
+
+// 系统配置数据初始化常量定义（按功能分类）
+// 基础系统配置：包含内存、线程、进程等核心系统组件配置
+// 扩展系统配置：包含各种管理器和池化配置
+// 高级系统配置：包含高级功能模块配置
+// 专用系统配置：包含特定用途和平台相关配置
+#define SYSTEM_CONFIG_BASE_MEMORY 0x0000001
+#define SYSTEM_CONFIG_BASE_THREAD 0x0000002
+#define SYSTEM_CONFIG_BASE_PROCESS 0x0000003
+#define SYSTEM_CONFIG_BASE_SERVICE 0x0000004
+#define SYSTEM_CONFIG_BASE_COMPONENT 0x0000005
+#define SYSTEM_CONFIG_BASE_MODULE 0x0000006
+#define SYSTEM_CONFIG_BASE_RESOURCE 0x0000007
+#define SYSTEM_CONFIG_BASE_CACHE 0x0000008
+#define SYSTEM_CONFIG_EXT_MEMORY_POOL 0x0000009
+#define SYSTEM_CONFIG_EXT_THREAD_POOL 0x00000010
+#define SYSTEM_CONFIG_EXT_PROCESS_MGR 0x00000011
+#define SYSTEM_CONFIG_EXT_SERVICE_MGR 0x00000012
+#define SYSTEM_CONFIG_EXT_COMPONENT_MGR 0x00000013
+#define SYSTEM_CONFIG_EXT_MODULE_MGR 0x00000014
+#define SYSTEM_CONFIG_EXT_RESOURCE_MGR 0x00000015
+#define SYSTEM_CONFIG_EXT_CACHE_MGR 0x00000016
+#define SYSTEM_CONFIG_ADV_SECURITY 0x00000017
+#define SYSTEM_CONFIG_ADV_NETWORK 0x00000018
+#define SYSTEM_CONFIG_ADV_RENDERING 0x00000019
+#define SYSTEM_CONFIG_BASE_THREAD0 0x00000020
+#define SYSTEM_CONFIG_BASE_THREAD1 0x00000021
+#define SYSTEM_CONFIG_BASE_THREAD2 0x00000022
+#define SYSTEM_CONFIG_BASE_THREAD3 0x00000023
+#define SYSTEM_CONFIG_BASE_THREAD4 0x00000024
+#define SYSTEM_CONFIG_BASE_THREAD5 0x00000025
+#define SYSTEM_CONFIG_BASE_THREAD6 0x00000026
+#define SYSTEM_CONFIG_BASE_THREAD7 0x00000027
+#define SYSTEM_CONFIG_BASE_THREAD8 0x00000028
+#define SYSTEM_CONFIG_BASE_THREAD9 0x00000029
+#define SYSTEM_CONFIG_ADV_OPTIMIZATION 0x00000030
+#define SYSTEM_CONFIG_SPEC_GAMESTATE 0x00000031
+#define SYSTEM_CONFIG_SPEC_MULTIPLAYER 0x00000032
+#define SYSTEM_CONFIG_SPEC_SINGLEPLAYER 0x00000033
+#define SYSTEM_CONFIG_SPEC_EDITOR 0x00000034
+#define SYSTEM_CONFIG_SPEC_MODDING 0x00000035
+#define SYSTEM_CONFIG_SPEC_STREAMING 0x00000036
+#define SYSTEM_CONFIG_SPEC_LOCALIZATION 0x00000037
+#define SYSTEM_CONFIG_BASE_PROCESS8 0x00000038
+#define SYSTEM_CONFIG_BASE_PROCESS9 0x00000039
+#define SYSTEM_CONFIG_SPEC_COMPATIBILITY 0x00000040
+#define SYSTEM_CONFIG_SPEC_PLATFORM 0x00000041
+#define SYSTEM_CONFIG_SPEC_HARDWARE 0x00000042
+#define SYSTEM_CONFIG_SPEC_DRIVER 0x00000043
+#define SYSTEM_CONFIG_SPEC_API 0x00000044
+#define SYSTEM_CONFIG_SPEC_VENDOR 0x00000045
+#define SYSTEM_CONFIG_SPEC_VERSION 0x00000046
+#define SYSTEM_CONFIG_SPEC_BUILD 0x00000047
+#define SYSTEM_CONFIG_SPEC_BRANCH 0x00000048
+#define SYSTEM_CONFIG_SPEC_REVISION 0x00000049
+#define SYSTEM_CONFIG_BASE_COMPONENT0 0x00000050
+#define SYSTEM_CONFIG_BASE_COMPONENT1 0x00000051
 
 // 系统特殊值常量定义
 #define SYSTEM_MAX_SEMAPHORE_COUNT 0x000000FF
@@ -798,8 +804,8 @@ void system_initialize_config_structure(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_1;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_2;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_MEMORY;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD;
   system_config_data_ptr[8] = &system_config_handler_table;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -861,8 +867,8 @@ void system_initialize_memory_pool(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_3;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_4;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_SERVICE;
   system_config_data_ptr[8] = &system_memory_pool_handler_table;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_stack_value;
@@ -924,8 +930,8 @@ void system_load_modules(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_5;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_6;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_COMPONENT;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_MODULE;
   system_config_data_ptr[8] = &system_config_handler_1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -997,8 +1003,8 @@ void system_register_components(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_7;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_8;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_RESOURCE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_CACHE;
   system_config_data_ptr[8] = &system_config_handler_2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -1060,8 +1066,8 @@ void system_initialize_threads(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_9;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_10;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_MEMORY_POOL;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_THREAD_POOL;
   system_config_data_ptr[8] = &system_config_handler_3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -1115,8 +1121,8 @@ void system_start_threads(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_11;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_12;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_PROCESS_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_SERVICE_MGR;
   system_config_data_ptr[8] = &system_config_handler_4;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_stack_value;
@@ -1170,8 +1176,8 @@ void system_monitor_resources(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_13;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_14;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_COMPONENT_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_MODULE_MGR;
   system_config_data_ptr[8] = &system_config_handler_5;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_stack_value;
@@ -1224,8 +1230,8 @@ void system_handle_events(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_15;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_16;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_RESOURCE_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_CACHE_MGR;
   system_config_data_ptr[8] = &system_config_handler_6;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -1278,8 +1284,8 @@ void system_initialize_config_extensions(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_17;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_18;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_ADV_SECURITY;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_NETWORK;
   system_config_data_ptr[8] = &system_config_handler_8;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_stack_value;
@@ -1338,8 +1344,8 @@ void system_initialize_config_cache(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_43;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_44;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_DRIVER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_API;
   system_config_data_ptr[8] = &system_config_handler_9;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -1406,8 +1412,8 @@ void system_initialize_config_finalization(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_23;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_24;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD3;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD4;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -1450,8 +1456,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_25;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_26;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD5;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD6;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -1537,8 +1543,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_27;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_28;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD7;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD8;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -1581,8 +1587,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_29;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_30;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_OPTIMIZATION;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -1625,8 +1631,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -1669,8 +1675,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -1713,8 +1719,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -1757,8 +1763,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -1801,8 +1807,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -1845,8 +1851,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_21;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_22;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD1;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD2;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -1889,8 +1895,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_41;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_42;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_PLATFORM;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_HARDWARE;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -1933,8 +1939,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_23;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_24;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD3;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD4;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -1977,8 +1983,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_25;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_26;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD5;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD6;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -2021,8 +2027,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_43;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_44;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_DRIVER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_API;
   system_config_data_ptr[8] = &system_config_handler_9;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -2065,8 +2071,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_45;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_46;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_VENDOR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_VERSION;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -2109,7 +2115,7 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_47;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_BUILD;
   system_config_data_ptr[7] = 0x703a29a844ce399;
   system_config_data_ptr[8] = &SYSTEM_CACHE_HANDLER_TYPE;
   system_config_data_ptr[9] = 3;
@@ -2186,8 +2192,8 @@ void system_initialize_memory_config(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_27;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_28;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD7;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD8;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -2240,8 +2246,8 @@ void system_initialize_memory_manager(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_29;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_30;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_OPTIMIZATION;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -2284,8 +2290,8 @@ void system_initialize_memory_handler(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -2337,8 +2343,8 @@ void system_config_search_and_insert_handler(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -2390,8 +2396,8 @@ void system_config_node_ptr_initializer(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -2443,8 +2449,8 @@ void system_config_tree_node_handler(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -2487,8 +2493,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -2531,8 +2537,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_41;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_42;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_PLATFORM;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_HARDWARE;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -2575,8 +2581,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_27;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_28;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD7;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD8;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -2619,8 +2625,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_29;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_30;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_OPTIMIZATION;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -2663,8 +2669,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -2707,8 +2713,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -2751,8 +2757,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -2795,8 +2801,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -2839,8 +2845,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -2883,8 +2889,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_27;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_28;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD7;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD8;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -2927,8 +2933,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_29;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_30;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_OPTIMIZATION;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -2971,8 +2977,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -3015,8 +3021,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -3059,8 +3065,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -3103,8 +3109,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -3147,8 +3153,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -3191,8 +3197,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_43;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_44;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_DRIVER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_API;
   system_config_data_ptr[8] = &system_config_handler_9;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -3235,8 +3241,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_41;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_42;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_PLATFORM;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_HARDWARE;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -3279,8 +3285,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_27;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_28;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD7;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD8;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -3323,8 +3329,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_29;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_30;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_OPTIMIZATION;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -3367,8 +3373,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -3411,8 +3417,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -3455,8 +3461,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -3499,8 +3505,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -3543,8 +3549,8 @@ void system_initialize_config_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -3610,8 +3616,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_23;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_24;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD3;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD4;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -3654,8 +3660,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_25;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_26;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD5;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD6;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -3698,8 +3704,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_23;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_24;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD3;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD4;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -3742,8 +3748,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_25;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_26;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD5;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD6;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -3786,8 +3792,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_27;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_28;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD7;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD8;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -3830,8 +3836,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_29;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_30;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_OPTIMIZATION;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -3874,8 +3880,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -3918,8 +3924,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -3962,8 +3968,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -4006,8 +4012,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -4050,8 +4056,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -4110,8 +4116,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_27;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_28;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD7;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD8;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -4154,8 +4160,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_29;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_30;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_OPTIMIZATION;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -4198,8 +4204,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -4242,8 +4248,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -4286,8 +4292,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -4330,8 +4336,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -4374,8 +4380,8 @@ void system_initialize_system_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -4508,8 +4514,8 @@ void system_initialize_sub_component(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_1;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_2;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_MEMORY;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD;
   system_config_data_ptr[8] = &system_config_handler_table;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -4552,8 +4558,8 @@ void system_initialize_service_type1(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_5;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_6;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_COMPONENT;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_MODULE;
   system_config_data_ptr[8] = &system_config_handler_1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -4596,8 +4602,8 @@ void system_initialize_service_type3(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_9;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_10;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_MEMORY_POOL;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_THREAD_POOL;
   system_config_data_ptr[8] = &system_config_handler_3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -4640,8 +4646,8 @@ void system_initialize_service_type5(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_13;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_14;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_COMPONENT_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_MODULE_MGR;
   system_config_data_ptr[8] = &system_config_handler_5;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_stack_value;
@@ -4684,8 +4690,8 @@ void system_initialize_service_type7(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_19;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_20;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_ADV_RENDERING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD0;
   system_config_data_ptr[8] = &system_config_handler_7;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -4728,8 +4734,8 @@ void system_initialize_service_type9(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_41;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_42;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_PLATFORM;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_HARDWARE;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -4828,8 +4834,8 @@ void system_initialize_service_type17(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_27;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_28;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD7;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD8;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -4872,8 +4878,8 @@ void system_initialize_service_type21(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -4916,8 +4922,8 @@ void system_initialize_service_type23(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -4960,8 +4966,8 @@ void system_initialize_service_type25(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -5004,8 +5010,8 @@ void system_initialize_service_type27(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_29;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_30;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_OPTIMIZATION;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -5048,8 +5054,8 @@ void system_initialize_service_type29(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -5092,8 +5098,8 @@ void system_initialize_service_type31(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -5136,8 +5142,8 @@ void system_initialize_service_type33(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_27;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_28;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD7;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD8;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -5180,8 +5186,8 @@ void system_initialize_service_type35(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -5224,8 +5230,8 @@ void system_initialize_service_type37(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -5268,8 +5274,8 @@ void system_initialize_service_type39(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -5312,8 +5318,8 @@ void system_initialize_service_type41(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_29;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_30;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_OPTIMIZATION;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -5356,8 +5362,8 @@ void system_initialize_service_type43(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -5400,8 +5406,8 @@ void system_initialize_service_type45(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -5444,8 +5450,8 @@ void system_initialize_service_type47(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_1;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_2;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_MEMORY;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD;
   system_config_data_ptr[8] = &system_config_handler_table;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -5488,8 +5494,8 @@ void system_initialize_service_type49(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_7;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_8;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_RESOURCE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_CACHE;
   system_config_data_ptr[8] = &system_config_handler_2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -5532,8 +5538,8 @@ void system_initialize_service_type53(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_13;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_14;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_COMPONENT_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_MODULE_MGR;
   system_config_data_ptr[8] = &system_config_handler_5;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_stack_value;
@@ -5576,8 +5582,8 @@ void system_initialize_service_type55(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_19;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_20;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_ADV_RENDERING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD0;
   system_config_data_ptr[8] = &system_config_handler_7;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -5643,8 +5649,8 @@ void system_initialize_module_type1(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_3;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_4;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_SERVICE;
   system_config_data_ptr[8] = &system_memory_pool_handler_table;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_stack_value;
@@ -5687,8 +5693,8 @@ void system_initialize_module_type3(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_7;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_8;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_RESOURCE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_CACHE;
   system_config_data_ptr[8] = &system_config_handler_2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -5731,8 +5737,8 @@ void system_initialize_module_type5(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_11;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_12;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_PROCESS_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_SERVICE_MGR;
   system_config_data_ptr[8] = &system_config_handler_4;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_stack_value;
@@ -5775,8 +5781,8 @@ void system_initialize_module_type7(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_15;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_16;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_RESOURCE_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_CACHE_MGR;
   system_config_data_ptr[8] = &system_config_handler_6;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -5819,8 +5825,8 @@ void system_initialize_module_type9(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_17;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_18;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_ADV_SECURITY;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_NETWORK;
   system_config_data_ptr[8] = &system_config_handler_8;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_stack_value;
@@ -5895,8 +5901,8 @@ void system_initialize_module_type13(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -5939,8 +5945,8 @@ void system_initialize_module_type16(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -5983,8 +5989,8 @@ void system_initialize_module_type17(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -6027,8 +6033,8 @@ void system_initialize_module_type18(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -6071,8 +6077,8 @@ void system_initialize_module_type19(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -6122,8 +6128,8 @@ void system_cleanup_handler_type1(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_41;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_42;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_PLATFORM;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_HARDWARE;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -6166,8 +6172,8 @@ void system_cleanup_handler_type2(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_27;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_28;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD7;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD8;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -6210,8 +6216,8 @@ void system_cleanup_handler_type3(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_29;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_30;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_OPTIMIZATION;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -6254,8 +6260,8 @@ void system_cleanup_handler_type4(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -6298,8 +6304,8 @@ void system_cleanup_handler_type5(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -6342,8 +6348,8 @@ void system_cleanup_handler_type6(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -6386,8 +6392,8 @@ void system_cleanup_handler_type7(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -6430,8 +6436,8 @@ void system_cleanup_handler_type8(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -6474,8 +6480,8 @@ void system_cleanup_handler_type9(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_27;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_28;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD7;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD8;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -6518,8 +6524,8 @@ void system_cleanup_handler_type10(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_29;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_30;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_OPTIMIZATION;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -6562,8 +6568,8 @@ void system_cleanup_handler_type11(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -6606,8 +6612,8 @@ void system_cleanup_handler_type12(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -6650,8 +6656,8 @@ void system_cleanup_handler_type13(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -6694,8 +6700,8 @@ void system_cleanup_handler_type14(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -6738,8 +6744,8 @@ void system_cleanup_handler_type15(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -6868,8 +6874,8 @@ void system_resource_manager_cleanup(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_1;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_2;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_MEMORY;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD;
   system_config_data_ptr[8] = &system_config_handler_table;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -6912,8 +6918,8 @@ void system_state_manager_init(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_3;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_4;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_SERVICE;
   system_config_data_ptr[8] = &system_memory_pool_handler_table;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_stack_value;
@@ -6956,8 +6962,8 @@ void system_state_manager_config(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_5;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_6;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_COMPONENT;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_MODULE;
   system_config_data_ptr[8] = &system_config_handler_1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -7000,8 +7006,8 @@ void system_state_manager_setup(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_7;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_8;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_RESOURCE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_CACHE;
   system_config_data_ptr[8] = &system_config_handler_2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -7044,8 +7050,8 @@ void system_state_manager_handler(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_9;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_10;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_MEMORY_POOL;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_THREAD_POOL;
   system_config_data_ptr[8] = &system_config_handler_3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -7088,8 +7094,8 @@ void system_state_manager_process(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_11;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_12;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_PROCESS_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_SERVICE_MGR;
   system_config_data_ptr[8] = &system_config_handler_4;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_stack_value;
@@ -7132,8 +7138,8 @@ void system_state_manager_cleanup(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_13;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_14;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_COMPONENT_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_MODULE_MGR;
   system_config_data_ptr[8] = &system_config_handler_5;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_stack_value;
@@ -7176,8 +7182,8 @@ void system_state_manager_update(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_15;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_16;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_RESOURCE_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_CACHE_MGR;
   system_config_data_ptr[8] = &system_config_handler_6;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -7220,8 +7226,8 @@ void system_state_manager_validate(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_19;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_20;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_ADV_RENDERING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD0;
   system_config_data_ptr[8] = &system_config_handler_7;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -7264,8 +7270,8 @@ void system_state_manager_reset(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_17;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_18;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_ADV_SECURITY;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_NETWORK;
   system_config_data_ptr[8] = &system_config_handler_8;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_stack_value;
@@ -7379,8 +7385,8 @@ void system_task_manager_init(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_48;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_49;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_BRANCH;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_REVISION;
   system_config_data_ptr[8] = &SYSTEM_DATABASE_RECORD_TYPE;
   system_config_data_ptr[9] = 2;
   system_config_data_ptr[10] = system_stack_value;
@@ -7423,8 +7429,8 @@ void system_task_manager_config(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_50;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_51;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_COMPONENT0;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_COMPONENT1;
   system_config_data_ptr[8] = &SYSTEM_DATABASE_ENTITY_TYPE;
   system_config_data_ptr[9] = 2;
   system_config_data_ptr[10] = system_stack_value;
@@ -7467,8 +7473,8 @@ void system_task_manager_setup(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_1;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_2;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_MEMORY;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD;
   system_config_data_ptr[8] = &system_config_handler_table;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -7511,8 +7517,8 @@ void system_task_manager_handler(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_3;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_4;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_SERVICE;
   system_config_data_ptr[8] = &system_memory_pool_handler_table;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_stack_value;
@@ -7555,8 +7561,8 @@ void system_task_manager_process(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_5;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_6;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_COMPONENT;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_MODULE;
   system_config_data_ptr[8] = &system_config_handler_1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -7599,8 +7605,8 @@ void system_task_manager_cleanup(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_7;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_8;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_RESOURCE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_CACHE;
   system_config_data_ptr[8] = &system_config_handler_2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -7643,8 +7649,8 @@ void system_task_manager_update(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_9;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_10;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_MEMORY_POOL;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_THREAD_POOL;
   system_config_data_ptr[8] = &system_config_handler_3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -7687,8 +7693,8 @@ void system_task_manager_validate(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_11;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_12;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_PROCESS_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_SERVICE_MGR;
   system_config_data_ptr[8] = &system_config_handler_4;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_stack_value;
@@ -7731,8 +7737,8 @@ void system_task_manager_reset(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_13;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_14;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_COMPONENT_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_MODULE_MGR;
   system_config_data_ptr[8] = &system_config_handler_5;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_stack_value;
@@ -7775,8 +7781,8 @@ void system_task_manager_sync(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_15;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_16;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_RESOURCE_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_CACHE_MGR;
   system_config_data_ptr[8] = &system_config_handler_6;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -7819,8 +7825,8 @@ void system_task_manager_schedule(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_19;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_20;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_ADV_RENDERING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD0;
   system_config_data_ptr[8] = &system_config_handler_7;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -7863,8 +7869,8 @@ void system_task_manager_execute(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_17;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_18;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_ADV_SECURITY;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_NETWORK;
   system_config_data_ptr[8] = &system_config_handler_8;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_stack_value;
@@ -7907,8 +7913,8 @@ void system_task_manager_complete(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_48;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_49;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_BRANCH;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_REVISION;
   system_config_data_ptr[8] = &SYSTEM_DATABASE_RECORD_TYPE;
   system_config_data_ptr[9] = 2;
   system_config_data_ptr[10] = system_stack_value;
@@ -7951,8 +7957,8 @@ void system_task_manager_cancel(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_50;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_51;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_COMPONENT0;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_COMPONENT1;
   system_config_data_ptr[8] = &SYSTEM_DATABASE_ENTITY_TYPE;
   system_config_data_ptr[9] = 2;
   system_config_data_ptr[10] = system_stack_value;
@@ -7995,8 +8001,8 @@ void system_task_manager_pause(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_41;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_42;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_PLATFORM;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_HARDWARE;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -8039,8 +8045,8 @@ void system_task_manager_resume(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_21;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_22;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD1;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD2;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -8083,8 +8089,8 @@ void system_config_manager_init(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_23;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_24;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD3;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD4;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -8127,8 +8133,8 @@ void system_config_manager_config(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_25;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_26;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD5;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD6;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -8171,8 +8177,8 @@ void system_config_manager_setup(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_27;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_28;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD7;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD8;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -8215,8 +8221,8 @@ void system_config_manager_handler(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_29;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_30;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_OPTIMIZATION;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -8259,8 +8265,8 @@ void system_config_manager_process(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -8303,8 +8309,8 @@ void system_config_manager_cleanup(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -8347,8 +8353,8 @@ void system_config_manager_update(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -8391,8 +8397,8 @@ void system_config_manager_validate(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -8435,8 +8441,8 @@ void system_config_manager_reset(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -8479,8 +8485,8 @@ void system_config_manager_sync(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_43;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_44;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_DRIVER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_API;
   system_config_data_ptr[8] = &system_config_handler_9;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -8523,8 +8529,8 @@ void system_config_manager_load(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_48;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_49;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_BRANCH;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_REVISION;
   system_config_data_ptr[8] = &SYSTEM_DATABASE_RECORD_TYPE;
   system_config_data_ptr[9] = 2;
   system_config_data_ptr[10] = system_stack_value;
@@ -8567,8 +8573,8 @@ void system_config_manager_save(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_50;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_51;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_COMPONENT0;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_COMPONENT1;
   system_config_data_ptr[8] = &SYSTEM_DATABASE_ENTITY_TYPE;
   system_config_data_ptr[9] = 2;
   system_config_data_ptr[10] = system_stack_value;
@@ -8642,8 +8648,8 @@ void system_thread_manager_config(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_48;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_49;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_BRANCH;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_REVISION;
   system_config_data_ptr[8] = &SYSTEM_DATABASE_RECORD_TYPE;
   system_config_data_ptr[9] = 2;
   system_config_data_ptr[10] = system_stack_value;
@@ -8686,8 +8692,8 @@ void system_thread_manager_setup(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_50;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_51;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_COMPONENT0;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_COMPONENT1;
   system_config_data_ptr[8] = &SYSTEM_DATABASE_ENTITY_TYPE;
   system_config_data_ptr[9] = 2;
   system_config_data_ptr[10] = system_stack_value;
@@ -8730,8 +8736,8 @@ void system_thread_manager_handler(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_48;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_49;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_BRANCH;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_REVISION;
   system_config_data_ptr[8] = &SYSTEM_DATABASE_RECORD_TYPE;
   system_config_data_ptr[9] = 2;
   system_config_data_ptr[10] = system_stack_value;
@@ -8774,8 +8780,8 @@ void system_thread_manager_process(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_50;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_51;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_COMPONENT0;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_COMPONENT1;
   system_config_data_ptr[8] = &SYSTEM_DATABASE_ENTITY_TYPE;
   system_config_data_ptr[9] = 2;
   system_config_data_ptr[10] = system_stack_value;
@@ -8842,8 +8848,8 @@ void system_thread_manager_destroy(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_48;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_49;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_BRANCH;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_REVISION;
   system_config_data_ptr[8] = &SYSTEM_DATABASE_RECORD_TYPE;
   system_config_data_ptr[9] = 2;
   system_config_data_ptr[10] = system_stack_value;
@@ -8886,8 +8892,8 @@ void system_thread_manager_start(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_50;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_51;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_COMPONENT0;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_COMPONENT1;
   system_config_data_ptr[8] = &SYSTEM_DATABASE_ENTITY_TYPE;
   system_config_data_ptr[9] = 2;
   system_config_data_ptr[10] = system_stack_value;
@@ -8930,8 +8936,8 @@ void system_thread_manager_stop(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_23;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_24;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD3;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD4;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -8974,8 +8980,8 @@ void system_init_complete_type1(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_25;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_26;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD5;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD6;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -9018,8 +9024,8 @@ void system_init_complete_type2(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_27;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_28;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD7;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD8;
   system_config_data_ptr[8] = &SYSTEM_THREAD_HANDLER_TYPE;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -9062,8 +9068,8 @@ void system_init_complete_type3(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_29;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_30;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_THREAD9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_OPTIMIZATION;
   system_config_data_ptr[8] = &SYSTEM_RESOURCE_HANDLER_TYPE;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -9106,8 +9112,8 @@ void system_init_complete_type4(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_31;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_32;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_GAMESTATE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_MULTIPLAYER;
   system_config_data_ptr[8] = &SYSTEM_SERVICE_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -9150,8 +9156,8 @@ void system_init_complete_type5(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_33;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_34;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_SINGLEPLAYER;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_EDITOR;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_CONTEXT_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -9194,8 +9200,8 @@ void system_init_complete_type6(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_35;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_36;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_MODDING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_STREAMING;
   system_config_data_ptr[8] = &SYSTEM_DEBUG_SIGNATURE_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -9238,8 +9244,8 @@ void system_init_complete_type7(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_37;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_38;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_SPEC_LOCALIZATION;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_PROCESS8;
   system_config_data_ptr[8] = &SYSTEM_CONFIG_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_config_ptr;
@@ -9282,8 +9288,8 @@ void system_init_complete_type8(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_39;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_40;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS9;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_SPEC_COMPATIBILITY;
   system_config_data_ptr[8] = &SYSTEM_MEMORY_HANDLER_TYPE;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -9326,8 +9332,8 @@ void system_init_complete_type9(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_1;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_2;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_MEMORY;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD;
   system_config_data_ptr[8] = &system_config_handler_table;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -9370,8 +9376,8 @@ void system_init_complete_type10(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_3;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_4;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_PROCESS;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_SERVICE;
   system_config_data_ptr[8] = &system_memory_pool_handler_table;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_stack_value;
@@ -9414,8 +9420,8 @@ void system_init_complete_type11(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_5;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_6;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_COMPONENT;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_MODULE;
   system_config_data_ptr[8] = &system_config_handler_1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -9458,8 +9464,8 @@ void system_init_complete_type12(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_7;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_8;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_BASE_RESOURCE;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_CACHE;
   system_config_data_ptr[8] = &system_config_handler_2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -9502,8 +9508,8 @@ void system_init_complete_type13(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_9;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_10;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_MEMORY_POOL;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_THREAD_POOL;
   system_config_data_ptr[8] = &system_config_handler_3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -9546,8 +9552,8 @@ void system_init_complete_type14(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_11;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_12;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_PROCESS_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_SERVICE_MGR;
   system_config_data_ptr[8] = &system_config_handler_4;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_stack_value;
@@ -9590,8 +9596,8 @@ void system_init_complete_type15(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_13;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_14;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_COMPONENT_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_MODULE_MGR;
   system_config_data_ptr[8] = &system_config_handler_5;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_stack_value;
@@ -9634,8 +9640,8 @@ void system_init_complete_type16(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_15;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_16;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_EXT_RESOURCE_MGR;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_EXT_CACHE_MGR;
   system_config_data_ptr[8] = &system_config_handler_6;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value;
@@ -9678,8 +9684,8 @@ void system_init_complete_type17(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_19;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_20;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_ADV_RENDERING;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_BASE_THREAD0;
   system_config_data_ptr[8] = &system_config_handler_7;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
@@ -9722,8 +9728,8 @@ void system_init_complete_type18(void)
     system_setup_config_block_function(system_root_table_ptr,&system_config_temp_ptr,system_config_data_ptr,system_memory_alloc_size + SYSTEM_CONFIG_BLOCK_SIZE,system_memory_alloc_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
-  system_config_data_ptr[6] = SYSTEM_CONFIG_DATA_INITIALIZER_17;
-  system_config_data_ptr[7] = SYSTEM_CONFIG_DATA_INITIALIZER_18;
+  system_config_data_ptr[6] = SYSTEM_CONFIG_ADV_SECURITY;
+  system_config_data_ptr[7] = SYSTEM_CONFIG_ADV_NETWORK;
   system_config_data_ptr[8] = &system_config_handler_8;
   system_config_data_ptr[9] = 1;
   system_config_data_ptr[10] = system_stack_value;

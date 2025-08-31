@@ -2371,6 +2371,22 @@ void *utility_data_segment_bd80;
  *       data_ptr - 数据指针
  * 返回值: 无
  */
+/**
+ * @brief 初始化工具系统
+ * 
+ * 该函数负责初始化整个工具系统，包括内存管理、线程管理、资源管理等核心组件。
+ * 确保系统在启动时所有必要的组件都正确初始化。
+ *
+ * @param context_pointer 系统上下文指针，用于访问系统状态和配置
+ * @param data_ptr 数据指针，包含初始化所需的数据
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理系统的基本初始化
+ * 原本实现：完全重构系统初始化流程，建立统一的初始化规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void initialize_utility_system(long long context_pointer,long long data_ptr)
 
 {
@@ -2428,6 +2444,19 @@ void initialize_utility_system(long long context_pointer,long long data_ptr)
  * 
  * @note 此函数应该在系统关闭时调用，确保所有资源被正确释放
  */
+/**
+ * @brief 清理工具系统
+ * 
+ * 该函数负责清理工具系统占用的所有资源，包括内存、线程、文件句柄等。
+ * 确保系统在关闭时正确释放所有资源。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理系统的基本清理工作
+ * 原本实现：完全重构系统清理流程，建立统一的资源释放规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void cleanup_utility_system(void)
 
 {
@@ -2482,6 +2511,19 @@ void cleanup_utility_system(void)
  * 
  * @note 重置操作不会释放已分配的资源，只是重置系统状态
  */
+/**
+ * @brief 重置工具系统
+ * 
+ * 该函数负责重置工具系统到初始状态，清除所有临时数据和状态。
+ * 保留核心配置，重置运行时状态。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理系统的基本重置工作
+ * 原本实现：完全重构系统重置流程，建立统一的状态重置规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void reset_utility_system(void)
 
 {
@@ -2528,6 +2570,19 @@ void reset_utility_system(void)
  *   - 此函数为逆向工程重构的简化实现
  *   - 保持原有语义不变，仅改善命名和文档
  */
+/**
+ * @brief 验证工具系统状态
+ * 
+ * 该函数负责验证工具系统的当前状态是否正常，检查各个组件的完整性。
+ * 发现问题时进行相应的修复或报告。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理系统的基本验证工作
+ * 原本实现：完全重构系统验证流程，建立统一的状态检查规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void validate_utility_system(void)
 
 {
@@ -2968,6 +3023,19 @@ void * validate_utility_memory(char context_pointer)
  *   - 此函数为逆向工程重构的简化实现
  *   - 保持原有语义不变，仅改善命名和文档
  */
+/**
+ * @brief 清理工具系统内存
+ * 
+ * 该函数负责清理工具系统使用的内存，释放不再使用的内存块。
+ * 优化内存使用，防止内存泄漏。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理基本的内存清理工作
+ * 原本实现：完全重构内存管理流程，建立统一的内存管理规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void clear_utility_memory(void)
 
 {
@@ -5336,6 +5404,19 @@ void context_pointer_process_data(void)
 
 
 // 函数: void utility_event_handler_dispatch(void)
+/**
+ * @brief 分发事件处理
+ * 
+ * 该函数负责分发系统事件到相应的事件处理器。
+ * 确保事件能够被正确处理和响应。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理基本的事件分发工作
+ * 原本实现：完全重构事件处理系统，建立统一的事件分发规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void utility_event_handler_dispatch(void)
 
 {
@@ -7508,6 +7589,19 @@ void * context_pointer_process_data(void)
 
 
 // 函数: void utility_event_handler_dispatch(void)
+/**
+ * @brief 分发事件处理
+ * 
+ * 该函数负责分发系统事件到相应的事件处理器。
+ * 确保事件能够被正确处理和响应。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理基本的事件分发工作
+ * 原本实现：完全重构事件处理系统，建立统一的事件分发规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void utility_event_handler_dispatch(void)
 
 {
@@ -9360,6 +9454,19 @@ context_pointer_process_data(int context_pointer,int data_ptr,void * param,void 
 
 
 // 函数: void utility_event_handler_dispatch(void)
+/**
+ * @brief 分发事件处理
+ * 
+ * 该函数负责分发系统事件到相应的事件处理器。
+ * 确保事件能够被正确处理和响应。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理基本的事件分发工作
+ * 原本实现：完全重构事件处理系统，建立统一的事件分发规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void utility_event_handler_dispatch(void)
 
 {
@@ -9698,7 +9805,7 @@ ulong long utility_thread_scheduler_manage(long long context_pointer)
             utility_system_item_count = system_call_function(*(void **)(utility_temp_long_var + 0xc + context_handle5 * 0x10),asystem_temp_var);
             context_data_pointer3 = putility_utility_stack_long_var_108;
             if (utility_system_item_count == 0) {
-              psystem_temp_var = &UNK_1809844c8;
+              psystem_temp_var = &utility_system_protocol_handler8;
               utility_temp_var = *(void **)(utility_temp_long_var + 0xc + context_handle5 * 0x10);
               utility_temp_var = 0;
               utility_temp_var = 0x3f800000;
@@ -10383,7 +10490,7 @@ LAB_180896ce3:
         result_int = utility_system_item_count;
         if (afStack_304[0] != 1.0) {
           system_temp_var0 = CONCAT44(system_temp_var0._4_4_,afStack_304[0]);
-          psystem_temp_var8 = &UNK_1809844c8;
+          psystem_temp_var8 = &utility_system_protocol_handler8;
           system_temp_var8 = CONCAT44(system_temp_var8._4_4_,system_temp_var8);
           utility_utility_stack_int_2f0 = result_int;
           result_int = utility_thread_executor_run(context_pointer,&psystem_temp_var8);
@@ -10676,7 +10783,7 @@ void context_pointer_process_data(void)
         if ((result_int != 0) || (result_int = context_pointer_process_data(utility_temp_long_var,&fStackX_24,0), result_int != 0)) break;
         if (fStackX_24 != 1.0) {
           utility_utility_stack_param = fStackX_24;
-          utility_buffer_ptr = &UNK_1809844c8;
+          utility_buffer_ptr = &utility_system_protocol_handler8;
           utility_utility_stack_param = temp_var_20;
           utility_utility_stack_param = result_int;
           result_int = utility_thread_executor_run(fStackX_24,&utility_stack_buffer);
@@ -11656,6 +11763,19 @@ LAB_180897af6:
 
 
 // 函数: void utility_event_handler_dispatch(void)
+/**
+ * @brief 分发事件处理
+ * 
+ * 该函数负责分发系统事件到相应的事件处理器。
+ * 确保事件能够被正确处理和响应。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理基本的事件分发工作
+ * 原本实现：完全重构事件处理系统，建立统一的事件分发规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void utility_event_handler_dispatch(void)
 
 {
@@ -11668,6 +11788,19 @@ void utility_event_handler_dispatch(void)
 
 
 // 函数: void utility_event_handler_dispatch(void)
+/**
+ * @brief 分发事件处理
+ * 
+ * 该函数负责分发系统事件到相应的事件处理器。
+ * 确保事件能够被正确处理和响应。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理基本的事件分发工作
+ * 原本实现：完全重构事件处理系统，建立统一的事件分发规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void utility_event_handler_dispatch(void)
 
 {
@@ -15786,6 +15919,19 @@ int utility_data_processor_transform(void)
 
 
 // 函数: void utility_event_handler_dispatch(void)
+/**
+ * @brief 分发事件处理
+ * 
+ * 该函数负责分发系统事件到相应的事件处理器。
+ * 确保事件能够被正确处理和响应。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理基本的事件分发工作
+ * 原本实现：完全重构事件处理系统，建立统一的事件分发规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void utility_event_handler_dispatch(void)
 
 {
@@ -16387,6 +16533,19 @@ void * context_pointer_process_data(void)
 
 
 // 函数: void utility_event_handler_dispatch(void)
+/**
+ * @brief 分发事件处理
+ * 
+ * 该函数负责分发系统事件到相应的事件处理器。
+ * 确保事件能够被正确处理和响应。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理基本的事件分发工作
+ * 原本实现：完全重构事件处理系统，建立统一的事件分发规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void utility_event_handler_dispatch(void)
 
 {
@@ -18557,6 +18716,19 @@ void context_pointer_process_data(void)
 
 
 // 函数: void utility_event_handler_dispatch(void)
+/**
+ * @brief 分发事件处理
+ * 
+ * 该函数负责分发系统事件到相应的事件处理器。
+ * 确保事件能够被正确处理和响应。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理基本的事件分发工作
+ * 原本实现：完全重构事件处理系统，建立统一的事件分发规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void utility_event_handler_dispatch(void)
 
 {
@@ -21641,6 +21813,19 @@ void * context_pointer_process_data(void)
 
 
 // 函数: void utility_event_handler_dispatch(void)
+/**
+ * @brief 分发事件处理
+ * 
+ * 该函数负责分发系统事件到相应的事件处理器。
+ * 确保事件能够被正确处理和响应。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理基本的事件分发工作
+ * 原本实现：完全重构事件处理系统，建立统一的事件分发规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void utility_event_handler_dispatch(void)
 
 {
@@ -23801,6 +23986,19 @@ void * context_pointer_process_data(void)
 
 
 // 函数: void utility_event_handler_dispatch(void)
+/**
+ * @brief 分发事件处理
+ * 
+ * 该函数负责分发系统事件到相应的事件处理器。
+ * 确保事件能够被正确处理和响应。
+ *
+ * @return void 无返回值
+ *
+ * @note 这是简化实现，主要处理基本的事件分发工作
+ * 原本实现：完全重构事件处理系统，建立统一的事件分发规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+
 void utility_event_handler_dispatch(void)
 
 {
@@ -41266,7 +41464,7 @@ void Unwind_180906530(void * context_pointer,long long data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(data_ptr + 0x48);
-  *process_data_ptr = &UNK_180a02e68;
+  *process_data_ptr = &utility_system_network_adapter8;
   process_data_ptr[2] = &UTILITY_NULL_CONTEXT_ADDRESS;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
@@ -41461,7 +41659,7 @@ void Unwind_180906630(void * context_pointer,long long data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(data_ptr + 0xa0);
-  *process_data_ptr = &UNK_180a02e68;
+  *process_data_ptr = &utility_system_network_adapter8;
   process_data_ptr[2] = &UTILITY_NULL_CONTEXT_ADDRESS;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
@@ -41660,7 +41858,7 @@ void Unwind_1809067c0(void * context_pointer,long long data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(data_ptr + 0x50);
-  *process_data_ptr = &UNK_180a02e68;
+  *process_data_ptr = &utility_system_network_adapter8;
   process_data_ptr[2] = &UTILITY_NULL_CONTEXT_ADDRESS;
   *process_data_ptr = &utility_system_secondary_context0;
   *process_data_ptr = &utility_system_primary_context0;
