@@ -13357,8 +13357,6 @@ void system_data_initialization_cleanup(void)
   system_data_initialization_flag = '\0';
 }
 
-#endif // DATA_DEFINITIONS_H
-
 // 新增语义化常量定义 - 特殊硬编码值美化（2025年8月30日）
 // 简化实现：仅将常见的硬编码值替换为语义化常量
 // 原本实现：完全重构硬编码值体系

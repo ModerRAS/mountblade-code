@@ -5373,8 +5373,25 @@ uint64 utility_allocate_memory_region(longlong utility_resource_primary_handle,u
   *(uint64 *)(utility_operation_flags + utility_memory_offset_standard + utility_resource_primary_handle * utility_memory_size_standard) = *utility_cpu_context;
   return utility_zero;
 }
-uint64
-utility_allocate_resource(int utility_resource_primary_handle, int utility_primary_resource_cache, uint64 utility_operation_flags, uint64 utility_resource_callback_handler, uint64 utility_additional_resource_parameter)
+/**
+ * @brief 资源分配函数 - 分配并初始化资源
+ * 
+ * 该函数负责分配系统资源，包括：
+ * - 执行资源分配操作
+ * - 初始化资源数据
+ * - 设置资源回调处理器
+ * 
+ * @param utility_resource_primary_handle 资源主句柄
+ * @param utility_primary_resource_cache 主资源缓存大小
+ * @param utility_operation_flags 操作标志
+ * @param utility_resource_callback_handler 资源回调处理器
+ * @param utility_additional_resource_parameter 额外资源参数
+ * @return uint64 分配结果或错误码
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
+uint64 utility_allocate_resource(int utility_resource_primary_handle, int utility_primary_resource_cache, uint64 utility_operation_flags, uint64 utility_resource_callback_handler, uint64 utility_additional_resource_parameter)
 {
   uint64 utility_allocation_result;
   uint64 *utility_resource_data_ptr;
