@@ -1,8 +1,6 @@
 /**
  * @brief 引擎核心系统常量定义模块
  * @file 02_core_engine.c
- * @author Mount & Blade Code Team
- * @date 2025-08-31
  * @version 2.0
  * 
  * 本模块包含引擎核心系统的基础常量定义、函数宏定义和全局变量声明。
