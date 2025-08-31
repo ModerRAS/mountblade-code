@@ -9,9 +9,9 @@
 #define NETWORK_OFFSET_EXTENDED_B0 NETWORK_OFFSET_EXTENDED_INFO  // 扩展偏移量B0
 #define NETWORK_OFFSET_EXTENDED_C0 NETWORK_OFFSET_PROTOCOL_DATA  // 扩展偏移量C0
 #define NETWORK_POINTER_NULL NETWORK_VALUE_ZERO  // 空指针
-#define NETWORK_SIZE_SMALL_PACKET NETWORK_SIZE_SMALL_PACKET  // 标准大小16字节
-#define NETWORK_SIZE_MEDIUM_PACKET NETWORK_SIZE_STANDARD_BUFFER  // 标准大小32字节
-#define NETWORK_SIZE_LARGE_PACKET NETWORK_SIZE_LARGE_BUFFER  // 标准大小64字节
+#define NETWORK_SIZE_SMALL_PACKET 0x18  // 标准大小16字节
+#define NETWORK_SIZE_MEDIUM_PACKET 0x14  // 标准大小32字节
+#define NETWORK_SIZE_LARGE_PACKET 0x10  // 标准大小64字节
 #define NETWORK_SIZE_HUGE_PACKET NETWORK_FLAG_CONNECTION_ACTIVE  // 标准大小128字节
 #define NETWORK_SIZE_EXTRA_LARGE_PACKET NETWORK_SIZE_SMALL_PACKET0  // 标准大小256字节
 #define NETWORK_SIZE_MASSIVE_PACKET NETWORK_SIZE_STANDARD_BUFFER0  // 标准大小512字节
@@ -143,7 +143,7 @@ size_t network_buffer_size;
 void *network_buffer_pointer;
 size_t network_buffer_capacity;
 int network_buffer_flags;
-unsigned int network_packet_count_valueer;
+unsigned int network_packet_counter;
 size_t network_packet_size;
 int network_packet_type;
 int network_packet_flags;
