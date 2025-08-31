@@ -12033,6 +12033,19 @@ void InitializeThreadManager(void)
 void ProcessThreadQueue(uint64_t queueHandle, uint64_t utility_context_ptr, uint64_t callbackData, uint64_t userData)
 {
     return;
+}
+
+/**
+ * 资源处理服务请求函数
+ * 
+ * 功能：处理系统服务请求，管理服务资源的分配和释放
+ * 
+ * @param service_id 服务标识符，用于标识特定的服务类型
+ * @param context_array 上下文数组，包含服务处理的上下文信息
+ * @return 操作结果状态码，成功返回UTILITY_STATUS_OPERATION_SUCCESS
+ * 
+ * @note 此函数为简化实现，主要处理服务请求的基本操作
+ */
 int resource_handle_service_request(uint32_t service_id, int64_t context_array[])
 {
     if (service_id == 0 || context_array == NULL) {
@@ -12041,3 +12054,8 @@ int resource_handle_service_request(uint32_t service_id, int64_t context_array[]
     
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
+}
+
+// ============================================================================
+// 工具系统文件结束
+// ============================================================================
