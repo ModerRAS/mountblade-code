@@ -5905,14 +5905,14 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_036;
         system_multi_level_pointer_node[2] = (unsigned long long *****)0x0;
         *(unsigned int *)(system_multi_level_pointer_node + 3) = SYSTEM_THREE_VALUE;
         system_multi_level_pointer_current = &system_multi_level_stack_root;
-        multi_level_pointer_array_nine = system_multi_level_stack_pointer_second;
-        while (multi_level_pointer_array_nine != (unsigned long long *******)0x0) {
-          if (*(int *)(multi_level_pointer_array_nine + SYSTEM_OFFSET_HANDLE_PARAM) < system_thread_result_status) {
-            multi_level_pointer_array_nine = (unsigned long long *******)*multi_level_pointer_array_nine;
+        system_multi_level_pointer_traverse = system_multi_level_stack_pointer_second;
+        while (system_multi_level_pointer_traverse != (unsigned long long *******)0x0) {
+          if (*(int *)(system_multi_level_pointer_traverse + SYSTEM_OFFSET_HANDLE_PARAM) < system_thread_result_status) {
+            system_multi_level_pointer_traverse = (unsigned long long *******)*system_multi_level_pointer_traverse;
           }
           else {
-            system_multi_level_pointer_current = multi_level_pointer_array_nine;
-            multi_level_pointer_array_nine = (unsigned long long *******)multi_level_pointer_array_nine[1];
+            system_multi_level_pointer_current = system_multi_level_pointer_traverse;
+            system_multi_level_pointer_traverse = (unsigned long long *******)system_multi_level_pointer_traverse[1];
           }
         }
         if (((unsigned long long ********)system_multi_level_pointer_current == &system_multi_level_stack_root) ||
@@ -5988,14 +5988,14 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_037;
             else {
 LABEL_SYSTEM_SECTION_PROCESSING_033:
               system_multi_level_pointer_current = &system_multi_level_stack_root;
-              multi_level_pointer_array_nine = system_multi_level_stack_pointer_second;
-              while (multi_level_pointer_array_nine != (unsigned long long *******)0x0) {
-                if (*(int *)(multi_level_pointer_array_nine + SYSTEM_OFFSET_HANDLE_PARAM) < system_thread_result_status) {
-                  multi_level_pointer_array_nine = (unsigned long long *******)*multi_level_pointer_array_nine;
+              system_multi_level_pointer_traverse = system_multi_level_stack_pointer_second;
+              while (system_multi_level_pointer_traverse != (unsigned long long *******)0x0) {
+                if (*(int *)(system_multi_level_pointer_traverse + SYSTEM_OFFSET_HANDLE_PARAM) < system_thread_result_status) {
+                  system_multi_level_pointer_traverse = (unsigned long long *******)*system_multi_level_pointer_traverse;
                 }
                 else {
-                  system_multi_level_pointer_current = multi_level_pointer_array_nine;
-                  multi_level_pointer_array_nine = (unsigned long long *******)multi_level_pointer_array_nine[1];
+                  system_multi_level_pointer_current = system_multi_level_pointer_traverse;
+                  system_multi_level_pointer_traverse = (unsigned long long *******)system_multi_level_pointer_traverse[1];
                 }
               }
               if (((unsigned long long ********)system_multi_level_pointer_current == &system_multi_level_stack_root) ||
@@ -6074,11 +6074,11 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
   system_multi_level_stack_pointer_third = (unsigned long long *******)0x0;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
-  multi_level_pointer_array_nine = system_sextuple_stack_root;
+  system_multi_level_pointer_traverse = system_sextuple_stack_root;
   if ((unsigned long long ********)system_sextuple_stack_root != &system_multi_level_stack_root) {
     do {
-      system_multi_level_pointer_secondary = (unsigned long long *******)multi_level_pointer_array_nine[5];
-      system_multi_level_pointer_current = multi_level_pointer_array_nine + SYSTEM_OFFSET_HANDLE_PARAM;
+      system_multi_level_pointer_secondary = (unsigned long long *******)system_multi_level_pointer_traverse[5];
+      system_multi_level_pointer_current = system_multi_level_pointer_traverse + SYSTEM_OFFSET_HANDLE_PARAM;
       system_multi_level_pointer_current = &system_multi_level_stack_primary;
       if (system_multi_level_stack_pointer_third != (unsigned long long *******)0x0) {
         system_multi_level_pointer_primary = system_multi_level_stack_pointer_third;
@@ -6143,13 +6143,13 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
         system_multi_level_pointer_current = (unsigned long long *******)*system_string_input_pointer;
       }
       system_multi_level_pointer_current[5] = (unsigned long long ******)0x0;
-      multi_level_pointer_array_nine = (unsigned long long *******)memory_alloc_function(multi_level_pointer_array_nine);
-    } while ((unsigned long long ********)multi_level_pointer_array_nine != &system_multi_level_stack_root);
+      system_multi_level_pointer_traverse = (unsigned long long *******)memory_alloc_function(system_multi_level_pointer_traverse);
+    } while ((unsigned long long ********)system_multi_level_pointer_traverse != &system_multi_level_stack_root);
   }
-  multi_level_pointer_array_nine = system_multi_level_stack_pointer_second;
+  system_multi_level_pointer_traverse = system_multi_level_stack_pointer_second;
   if (system_multi_level_stack_pointer_second != (unsigned long long *******)0x0) {
     system_execution_function(&system_multi_level_stack_root,*system_multi_level_stack_pointer_second);
-    system_handle_param_system_error(multi_level_pointer_array_nine);
+    system_handle_param_system_error(system_multi_level_pointer_traverse);
   }
   system_multi_level_stack_root = &system_multi_level_stack_root;
   system_sextuple_stack_root = &system_multi_level_stack_root;
@@ -6205,12 +6205,12 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
   }
   system_event_system_handle_paramr_allocate_memory(system_buffer_allocation_result,&system_multi_level_stack_temp);
   system_multi_level_pointer_current = system_multi_level_stack_pointer_third;
-  multi_level_pointer_array_nine = system_multi_level_stack_pointer_second;
+  system_multi_level_pointer_traverse = system_multi_level_stack_pointer_second;
   system_multi_level_stack_temp = system_multi_level_stack_pointer_third;
   if (system_multi_level_stack_pointer_third == (unsigned long long *******)0x0) {
     if (system_multi_level_stack_pointer_second != (unsigned long long *******)0x0) {
       system_execution_function(&system_multi_level_stack_root,*system_multi_level_stack_pointer_second);
-      system_handle_param_system_error(multi_level_pointer_array_nine);
+      system_handle_param_system_error(system_multi_level_pointer_traverse);
     }
     system_thread_stack_pointer_variable = &system_global_thread_string_2;
     if (system_thread_stack_pointer_variable == (void *)SYSTEM_NULL_POINTER) {
@@ -7934,7 +7934,7 @@ unsigned long long * system_execution_function(unsigned long long *system_handle
   unsigned long long *system_string_input_pointer;
   ulong long system_buffer_allocation_result;
   long long system_string_length_counter;
-  float temp_float_value;
+  float float_temp_value;
   float calculation_float_value;
   float result_float_value;
   float conversion_float_value;
@@ -8554,7 +8554,7 @@ LABEL_SYSTEM_SECTION_PROCESSING_048:
 goto LABEL_SYSTEM_SECTION_PROCESSING_054;
       }
 LABEL_SYSTEM_SECTION_PROCESSING_049:
-      system_thread_result_status = strcmp(system_string_length_counter,&g_temp_path_string);
+      system_thread_result_status = strcmp(system_string_length_counter,&g_temp_path_buffer);
       if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
         system_thread_result_status = SYSTEM_THREAD_STATUS_PROCESSING;
 goto LABEL_SYSTEM_SECTION_PROCESSING_055;
@@ -8926,7 +8926,7 @@ system_execution_function(unsigned long long system_handle_param,unsigned long l
             if (system_char_result == '\0') {
               system_char_result = validate_system_handle_param_parameters(system_auxiliary_stack_secondary,&g_data_path_string,SYSTEM_PARAM_SINGLE_VALIDATE);
               if (system_char_result == '\0') {
-                system_char_result = validate_system_handle_param_parameters(system_auxiliary_stack_secondary,&g_temp_path_string,SYSTEM_PARAM_SINGLE_VALIDATE);
+                system_char_result = validate_system_handle_param_parameters(system_auxiliary_stack_secondary,&g_temp_path_buffer,SYSTEM_PARAM_SINGLE_VALIDATE);
                 if (system_char_result == '\0') {
                   system_char_result = string_system_processor(system_auxiliary_stack_secondary,&g_system_string_version);
                   if (system_char_result == '\0') {
