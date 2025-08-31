@@ -14626,11 +14626,11 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_OFFSET_NEGATIVE_LARGE_BUFFER -0x400                        // 负大缓冲区偏移量
 
 // 补充缺失的偏移量常量定义（2025年8月31日美化批次）
-#define SYSTEM_OFFSET_E8 0xe8                                             // 偏移量E8
-#define SYSTEM_OFFSET_C8 0xc8                                             // 偏移量C8
-#define SYSTEM_OFFSET_D8 0xd8                                             // 偏移量D8
-#define SYSTEM_OFFSET_13 0x13                                             // 偏移量13
-#define SYSTEM_OFFSET_24 0x24                                             // 偏移量24
-#define SYSTEM_OFFSET_28 0x28                                             // 偏移量28
+#define SYSTEM_OFFSET_JUMP_INSTRUCTION_ALT 0xe8                           // 跳转指令偏移量(替代)
+#define SYSTEM_OFFSET_CACHE_CONTROL_PRIMARY 0xc8                          // 缓存控制主偏移量
+#define SYSTEM_OFFSET_CACHE_CONTROL_SECONDARY 0xd8                        // 缓存控制次偏移量
+#define SYSTEM_OFFSET_STANDARD_PARAM_ALT 0x13                            // 标准参数偏移量(替代)
+#define SYSTEM_OFFSET_EXTENDED_CONTROL_ALT 0x24                          // 扩展控制偏移量(替代)
+#define SYSTEM_OFFSET_CONFIG_ALIGNMENT_ALT 0x28                          // 配置对齐偏移量(替代)
 
 #endif // DATA_DEFINITIONS_H

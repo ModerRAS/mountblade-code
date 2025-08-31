@@ -3,17 +3,6 @@
 // 这是简化实现，主要处理了初始化系统中变量名和函数名的语义化替换
 // 原本实现：完全重构初始化系统所有命名体系，建立统一的语义化命名规范
 // 简化实现：仅将常见的非语义化名称替换为语义化名称，保持代码结构不变
-//
-// 主要功能：
-// - 系统核心初始化
-// - 内存管理和分配
-// - 线程和同步机制初始化
-// - 配置数据加载和验证
-// - 系统状态检查和设置
-
-// ================================================
-// 以下为实际代码内容
-// ================================================
 
 #define SYSTEM_INIT_CONTEXT_INDEX_PROCESSOR 0x67
 #define SYSTEM_INIT_CONTEXT_INDEX_COUNTER 0x65
@@ -229,25 +218,7 @@
 #define SYSTEM_INIT_DOUBLE_VALUE_1_0        0x3ff0000000000000  // 双精度浮点数1.0的十六进制表示
 #define SYSTEM_INIT_DOUBLE_FLOAT_PAIR_1_0   0x3f8000003f800000  // 两个单精度1.0组合的十六进制表示
 
-// 补充硬编码值语义化常量（2025年8月30日最终批次补充）
-// 栈值常量（2025年8月30日最终批次补充）
-#define SYSTEM_INIT_STACK_VALUE_11            0xb     // 栈值11
-#define SYSTEM_INIT_STACK_VALUE_12            0xc     // 栈值12
-#define SYSTEM_INIT_STACK_VALUE_10x10            0xd     // 栈值10x10
-#define SYSTEM_INIT_STACK_VALUE_14            0xe     // 栈值14
-#define SYSTEM_INIT_STACK_VALUE_15            0xf     // 栈值15
-// 偏移量常量（2025年8月30日最终批次补充）
-#define SYSTEM_INIT_OFFSET_0X100               0x100    // 偏移量
-#define SYSTEM_INIT_OFFSET_0X50               0x50    // 偏移量
-#define SYSTEM_INIT_OFFSET_0X60               0x60    // 偏移量
-#define SYSTEM_INIT_SIZE_0X108                 0x108    // 大小0x108
-#define SYSTEM_INIT_OFFSET_0XD                0xd     // 偏移量
-#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_1     0x69676e65 // 引擎魔法cookie 1
-#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_2     0x60105f656e // 引擎魔法cookie 2
-#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_0x10     0x69666e6f // 引擎魔法cookie 0x10
-#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_4     0x78742e67 // 引擎魔法cookie SYSTEM_INIT_SIZE_COMPARE
-#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5     0x74     // 引擎魔法cookie 5
-#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_1     0x7010676f6c // 预制体魔法cookie 1
+// 注意：以下常量已在前面定义，此处删除重复定义
 
 // 系统初始化浮点系数常量（2025年8月30日最终批次补充）
 #define SYSTEM_INIT_FLOAT_COEFFICIENT_1        1.6750001  // 系统初始化浮点系数1 - 用于计算system_offset_value
@@ -277,24 +248,7 @@
 #define SYSTEM_INIT_FLOAT_COEFFICIENT_SCALING_2   19.800001  // 缩放系数2 - 用于计算system_float_transform_a
 #define SYSTEM_INIT_FLOAT_COEFFICIENT_SCALING_0x10   17.866667  // 缩放系数0x10 - 用于计算system_float_transform_b
 #define SYSTEM_INIT_FLOAT_COEFFICIENT_SCALING_4   26.400002  // 缩放系数4 - 用于计算system_float_transform_b
-#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2     0x66726570 // 预制体魔法cookie 2
-#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_0x10     0x616d726f // 预制体魔法cookie 0x10
-#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4     0x5f6560106e // 预制体魔法cookie SYSTEM_INIT_SIZE_COMPARE
-#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_5     0x747874 // 预制体魔法cookie 5
-#define SYSTEM_INIT_VALUE_STRING_TERMINATOR   0x5f    // 字符串终止符SYSTEM_INIT_VALUE_STRING_TERMINATOR
-#define SYSTEM_INIT_SIZE_0X50                  0x50    // 大小常量
-#define SYSTEM_INIT_OFFSET_STACK_5C            0x5c    // 栈偏移量5C
-#define SYSTEM_INIT_OFFSET_GLOBAL_0x10F000000    0x3f000000 // 全局偏移量0x3F000000
-#define SYSTEM_INIT_OFFSET_STACK_7D            0x7d    // 栈偏移量7D
-#define SYSTEM_INIT_OFFSET_STACK_54            0x54    // 栈偏移量54
-#define SYSTEM_INIT_VALUE_CHAR_NULL           0x0     // 空字符SYSTEM_INIT_VALUE_CHAR_NULL
-#define SYSTEM_INIT_MAGIC_COOKIE_REVERSE_1    0x7265747261745010 // 反向魔法cookie 1SYSTEM_INIT_MAGIC_COOKIE_REVERSE_1
-#define SYSTEM_INIT_OFFSET_STRUCT_0X100_REPLACEMENT    0x100    // 偏移量
-#define SYSTEM_INIT_VALUE_SPECIAL_BB8007010_FIX     0xbb8007010     // 特殊值BB8007010修复
-#define SYSTEM_INIT_OFFSET_STRUCT_0X60_REPLACEMENT    0x60    // 偏移量
-#define SYSTEM_INIT_OFFSET_STRUCT_0X50_REPLACEMENT    0x50    // 偏移量
-#define SYSTEM_INIT_OFFSET_STRUCT_0X100_REPLACEMENT2    0x100    // 偏移量
-#define SYSTEM_INIT_SIZE_0X108_REPLACEMENT    0x108    // 偏移量0x108
+// 注意：以下预制体相关常量已在前面定义，此处删除重复定义
 
 #define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_PRIMARY       SYSTEM_INIT_CONTEXT_INDEX_SECONDARY5950x1054454d5f0101 // 系统魔法cookie 1
 #define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_SECONDARY       SYSTEM_INIT_CONTEXT_INDEX_SECONDARY5950x1054454d5f0102 // 系统魔法cookie 2
@@ -16524,11 +16478,23 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeScriptSystem(system_uint64_t *system_context_param)
+/**
+ * @brief 初始化脚本系统
+ * 
+ * 此函数负责初始化脚本系统的上下文参数，将系统全局上下文指针
+ * 赋值给传入的上下文参数。这是简化实现，主要处理脚本系统的基本初始化。
+ * 
+ * @param system_context_param 脚本系统上下文参数指针，用于存储初始化结果
+ * @return void 无返回值
+ * 
+ * @note 这是简化实现，原本实现应包含完整的脚本系统初始化流程
+ * @note 函数仅设置上下文指针，可能是逆向工程中的简化版本
+ */
 void InitializeScriptSystem(system_uint64_t *system_context_param)
-
 {
+  // 设置系统全局上下文指针到脚本系统上下文中
   *system_context_param = &g_system_context;
+  
   return;
 }
 
@@ -19754,16 +19720,41 @@ void InitializeSystemCore(system_uint8_t *system_context_param)
 
 
 
+/**
+ * @brief 初始化用户界面系统
+ * 
+ * 此函数负责初始化UI系统的上下文参数，设置系统全局上下文指针，
+ * 并初始化相关的内存区域。这是简化实现，主要处理UI系统的基本初始化。
+ * 
+ * @param system_context_param 系统上下文参数指针，用于存储UI系统的初始化结果
+ * @return system_uint64_t* 返回初始化后的系统上下文参数指针
+ * 
+ * @note 这是简化实现，原本实现应包含完整的UI系统初始化流程
+ * @note 函数会重复设置系统上下文，可能是逆向工程中的多版本代码
+ */
 system_uint64_t * InitializeUISystem(system_uint64_t *system_context_param)
-
 {
+  // 设置系统全局上下文指针
   *system_context_param = &g_system_context;
+  
+  // 初始化第二个数组索引位置为零值
   system_context_param[SYSTEM_ARRAY_INDEX_SECOND] = SYSTEM_INIT_VALUE_ZERO;
+  
+  // 初始化偏移量2处的102位类型为零值
   *(system_uint0x102_t *)(system_context_param + 2) = SYSTEM_INIT_VALUE_ZERO;
+  
+  // 重新设置系统全局上下文指针（重复操作）
   *system_context_param = &g_system_context;
+  
+  // 设置第二个数组索引位置为偏移量0x10处的指针
   system_context_param[SYSTEM_ARRAY_INDEX_SECOND] = system_context_param + 0x10;
+  
+  // 再次初始化偏移量2处的102位类型为零值
   *(system_uint0x102_t *)(system_context_param + 2) = SYSTEM_INIT_VALUE_ZERO;
+  
+  // 初始化偏移量0x10处的8位类型为零值
   *(system_uint8_t *)(system_context_param + 0x10) = SYSTEM_INIT_VALUE_ZERO;
+  
   return system_context_param;
 }
 
