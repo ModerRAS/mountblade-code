@@ -322,6 +322,7 @@ uint64_t utility_resource_data_processor_duplicate(void)
  *
  * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
+uint32_t utility_get_memory_usage_duplicate(void)
 {
   return UTILITY_ZERO;
 }
@@ -15772,6 +15773,7 @@ uint32_t utility_get_memory_usage(void)
  * 简化实现：提供基本的上下文管理功能。
  */
 uint64_t utility_context_manager(void)
+uint32_t utility_get_memory_usage_extended(void)
 {
   return UTILITY_ZERO;
 }
