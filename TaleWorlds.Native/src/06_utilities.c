@@ -220,7 +220,7 @@
 #define UTILITY_STREAM_TYPE_BNLT 0x424e4c54
 #define UTILITY_STREAM_TYPE_BNRT UTILITY_STREAM_TYPE_BNRT
 #define UTILITY_STREAM_TYPE_BIAW 0x42494157
-#define UTILITY_STREAM_TYPE_BTVE 0x42545645
+#define UTILITY_STREAM_TYPE_BTVE UTILITY_STREAM_TYPE_BTVE
 #define UTILITY_STREAM_TYPE_BIFE 0x42494645
 #define UTILITY_STREAM_TYPE_VRUC UTILITY_STREAM_TYPE_VRUC
 #define UTILITY_STREAM_TYPE_BDMC 0x42444d43
@@ -19452,7 +19452,7 @@ utility_operation_result = UTILITY_BOOLEAN_FALSE;
 else {
 utility_created_resource_handle = utility_resource_create(utility_context_input_parameter,utility_stack_medium_buffer,1,UTILITY_RESOURCE_COUNT_OFFSET_DEFAULT,UTILITY_RESOURCE_COUNT_OFFSET4e5645);
 if ((int)utility_resource_status_value == UTILITY_BOOLEAN_FALSE) {
-utility_resource_context = utility_resource_handler_manager(utility_context_input_parameter,utility_context_input_parameter,0x42545645);
+utility_resource_context = utility_resource_handler_manager(utility_context_input_parameter,utility_context_input_parameter,UTILITY_STREAM_TYPE_BTVE);
 if ((int)utility_resource_status_value == UTILITY_BOOLEAN_FALSE) {
 utility_resource_context = utility_resource_handler_cleanup(utility_context_input_parameter,utility_context_input_parameter);
 if ((int)utility_resource_status_value == UTILITY_BOOLEAN_FALSE) {
