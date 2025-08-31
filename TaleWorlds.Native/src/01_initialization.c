@@ -160,7 +160,7 @@ void* system_subsystem_sync_manager;
 // 系统子系统性能管理器
 void* system_subsystem_performance_manager;
 // 系统子系统错误管理器
-void* system_subsystem_system_error_varmanager;
+void* system_subsystem_error_manager;
 // 系统子系统统计管理器
 void* system_subsystem_statistics_manager;
 // 系统子系统配置数据
@@ -180,12 +180,12 @@ int64_t system_subsystem_runsystem_time_data;
 // 系统子系统清理管理器
 
 // 系统模块管理初始化函数
-void* system_module_system_init_function;
+void* system_module_init_function;
 // 系统模块加载器
 // 系统模块管理器
 void* system_module_manager;
 // 系统模块配置数据
-void* system_module_system_config_data;
+void* system_module_config_data;
 // 系统模块缓存管理器
 void* system_module_cache_manager;
 // 系统模块注册表
@@ -193,7 +193,7 @@ void* system_module_registry;
 // 系统模块依赖管理器
 void* system_module_dependency_manager;
 // 系统模块事件管理器
-void* system_module_system_event_manager;
+void* system_module_event_manager;
 // 系统模块安全管理器
 void* system_module_security_manager;
 // 系统模块性能管理器
@@ -201,9 +201,9 @@ void* system_module_performance_manager;
 // 系统模块统计管理器
 void* system_module_statistics_manager;
 // 系统模块日志管理器
-void* system_module_system_log_manager;
+void* system_module_log_manager;
 // 系统模块调试管理器
-void* system_module_system_debug_manager;
+void* system_module_debug_manager;
 // 系统模块监控管理器
 void* system_module_monitor_manager;
 // 系统模块备份管理器
@@ -229,7 +229,7 @@ void* system_module_sync_manager;
 // 系统模块恢复管理器
 // 系统模块清理管理器
 // 系统模块全局配置数据
-void* system_module_system_global_varsystem_config_data;
+void* system_module_global_config_data;
 // 系统模块本地配置数据
 void* system_module_system_local_system_config_data;
 // 系统模块状态标志1
@@ -2009,7 +2009,18 @@ void system_initialize_func_fe0(void)
 
 
 
-void system_internal_function(void)
+/*
+ * @brief 系统上下文管理器初始化函数
+ * 
+ * 该函数负责初始化系统上下文管理器，包括：
+ * - 获取全局上下文句柄
+ * - 设置上下文基指针
+ * - 初始化内存比较和分配
+ * - 配置上下文偏移值
+ * 
+ * 简化实现：提供基本的上下文管理器初始化功能
+ */
+void system_initialize_context_manager(void)
 
 {
   uint8_t *system_context_base_ptr;
@@ -2054,7 +2065,17 @@ void system_internal_function(void)
 
 
 
-void system_internal_function(void)
+/*
+ * @brief 系统内存池初始化函数
+ * 
+ * 该函数负责初始化系统内存池，包括：
+ * - 分配内存池空间
+ * - 设置内存池管理器
+ * - 初始化内存分配策略
+ * 
+ * 简化实现：提供基本的内存池初始化功能
+ */
+void system_initialize_memory_pool(void)
 
 {
   uint8_t *system_context_base_ptr;
@@ -2100,7 +2121,17 @@ void system_internal_function(void)
 
 
 
-void system_internal_function(void)
+/*
+ * @brief 系统线程调度器初始化函数
+ * 
+ * 该函数负责初始化系统线程调度器，包括：
+ * - 创建线程池
+ * - 设置调度策略
+ * - 初始化线程同步机制
+ * 
+ * 简化实现：提供基本的线程调度器初始化功能
+ */
+void system_initialize_thread_scheduler(void)
 
 {
   uint8_t *system_context_base_ptr;
@@ -2144,7 +2175,17 @@ void system_internal_function(void)
 }
 
 
-
+/*
+ * @brief 系统配置管理器初始化函数
+ * 
+ * 该函数负责初始化系统配置管理器，包括：
+ * - 加载配置文件
+ * - 设置配置参数
+ * - 初始化配置验证机制
+ * 
+ * 简化实现：提供基本的配置管理器初始化功能
+ */
+void system_initialize_config_manager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_internal_function(void)
@@ -2153,7 +2194,17 @@ int system_internal_function(void)
   
   system_global_data_ptr = &system_data_ptr;
   system_global_data_ptr = &system_data_bf64e8;
-
+/*
+ * @brief 系统资源管理器初始化函数
+ * 
+ * 该函数负责初始化系统资源管理器，包括：
+ * - 初始化资源池
+ * - 设置资源分配策略
+ * - 配置资源缓存机制
+ * 
+ * 简化实现：提供基本的资源管理器初始化功能
+ */
+void system_initialize_resource_manager(void)
 void system_internal_function(void)
 
 {
