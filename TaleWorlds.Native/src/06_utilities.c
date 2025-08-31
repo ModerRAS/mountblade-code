@@ -1905,6 +1905,14 @@ return utility_resource_context;
  * @param utility_parameter 定时器上下文参数
  * @return 初始化结果状态码
  */
+/**
+ * 高级定时器初始化函数
+ * 初始化系统定时器并配置相关参数
+ * 
+ * @param utility_parameter 定时器配置参数1
+ * @param utility_parameter 定时器配置参数2
+ * @return 初始化结果状态码
+ */
 uint64_t utility_timer_initializer_advanced(longlong utility_parameter,longlong utility_parameter)
 {
 long long utility_resource_context;
@@ -2345,6 +2353,12 @@ utility_resource_context = 0x4a;
 }
 return utility_resource_context;
 }
+/**
+ * 高级资源上下文清理函数
+ * 清理系统资源上下文并释放相关内存
+ * 
+ * @return 清理结果状态码
+ */
 uint64_t utility_resource_context_cleaner_advanced(void)
 {
 longlong utility_iteration_count;
@@ -2410,6 +2424,14 @@ utility_update_context_resources(*(uint64_t *)(unaff_R13 + 0x98));
 }
 return;
 }
+/**
+ * 共享内存分配器函数
+ * 分配系统共享内存区域
+ * 
+ * @param utility_parameter 内存配置参数1
+ * @param utility_parameter 内存配置参数2
+ * @return 内存分配结果状态码
+ */
 uint64_t utility_shared_memory_allocator(longlong utility_parameter,longlong utility_parameter)
 {
 int utility_operation_result;;
