@@ -1,17 +1,29 @@
-// 核心引擎系统 - 简化实现
-// 简化实现：将非语义化名称替换为语义化名称，为关键函数添加文档注释，保持代码结构不变
-// 原本实现：完全重构核心引擎系统所有命名体系，建立统一的语义化命名规范
-// 简化实现：仅将常见的包含数字和十六进制的函数名替换为语义化名称，为关键函数添加文档注释，保持代码结构不变
+/**
+ * @brief 引擎核心系统常量定义模块
+ * @file 02_core_engine.c
+ * @author Mount & Blade Code Team
+ * @date 2025-08-31
+ * @version 2.0
+ * 
+ * 本模块包含引擎核心系统的基础常量定义、函数宏定义和全局变量声明。
+ * 简化实现：保留核心功能，大幅精简代码体积，提高可读性。
+ */
 
 #include <stdint.h>
 #include <stddef.h>
 
 // 核心引擎基础常量定义
-#define ENGINE_INVALID_HANDLE 0xFFFFFFFF              // 无效句柄
-#define ENGINE_ERROR_CODE 0xFFFFFFFE                 // 错误代码
-#define ENGINE_ZERO_VALUE 0x0                        // 零值
+#define ENGINE_INVALID_HANDLE 0xFFFFFFFF              // 无效句柄值
+#define ENGINE_ERROR_CODE 0xFFFFFFFE                 // 错误代码标识
+#define ENGINE_ZERO_VALUE 0x0                        // 零值常量
 #define ENGINE_INT_MAX_SIGNED 0x7fffffff                // 32位有符号整数最大值
 #define ENGINE_INT64_MAX 0x7fffffffffffffff             // 64位有符号整数最大值
+
+// 内存管理常量
+#define ENGINE_MEMORY_PAGE_SIZE 4096                 // 内存页大小
+#define ENGINE_MEMORY_ALIGNMENT 16                   // 内存对齐大小
+#define ENGINE_MEMORY_POOL_MIN_SIZE 1024              // 内存池最小大小
+#define ENGINE_MEMORY_POOL_MAX_SIZE 1048576          // 内存池最大大小
 
 // 标准偏移量常量定义
 #define ENGINE_OFFSET_STANDARD_100 0x100              // 标准偏移量100
@@ -64,9 +76,13 @@
 #define ENGINE_MATH_HALF_PI 1.57079632679489661923    // 半圆周率
 #define ENGINE_MATH_E 2.71828182845904523536           // 自然常数
 
-// 核心引擎计算函数宏定义（简化实现）
-// 原本实现：完全重构所有计算函数，建立完整的函数调用体系
-// 简化实现：使用宏定义替换函数调用，保持原有代码结构
+/**
+ * @brief 核心引擎计算函数宏定义模块
+ * 
+ * 本模块使用宏定义简化实现，避免复杂的函数调用开销。
+ * 简化实现：使用宏定义替换原有函数调用，保持原有代码结构。
+ * 原本实现：完全重构所有计算函数，建立完整的函数调用体系。
+ */
 
 /**
  * @brief 计算栈值 - 引擎栈操作函数
