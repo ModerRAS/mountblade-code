@@ -57,6 +57,22 @@
 #define INIT_FLAG_PRIMARY_ENABLED_BASE 0x40
 #define INIT_FLAG_INITIALIZED_PRIMARY_BASE 0x50
 #define INIT_OFFSET_HEADER 0x60
+
+// 网络初始化常量
+#define INIT_FLAG_OCTONARY_ENABLED_STANDARD_NETWORK_QUINARY 0x70
+#define INIT_FLAG_OCTONARY_ENABLED_STANDARD_NETWORK_SENARY 0x80
+
+// 系统初始化标志常量
+#define INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_PRIMARY 0x90
+#define INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_SECONDARY 0xA0
+#define INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_TERTIARY 0xB0
+#define INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_QUATERNARY 0xC0
+#define INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_QUINARY 0xD0
+#define INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_SENARY 0xE0
+#define INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_SEPTENARY 0xF0
+#define INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_OCTONARY 0x100
+#define INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_NONARY 0x110
+#define INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_DENARY 0x120
 #define INIT_OFFSET_STACK_PARAM4 0x70
 #define INIT_OFFSET_STACK_PARAM8 0x80
 #define INIT_SIZE_COMPARE 0x90
@@ -6211,13 +6227,13 @@ return;
     }
     system_offset_value = system_offset_value + 1;
     system_max_iterations = system_max_iterations + 1;
-    system_float_buffer = system_float_buffer + INIT_OFFSET_HEADER;
-  } while ((longlong)system_float_buffer < SYSTEM_INIT_FLAG_ENABLED_MEMORY_END);
-  system_float_buffer = (float *)SYSTEM_INIT_FLAG_ENABLED_MEMORY_PRIMARY;
+    system_float_buffer_primary = system_float_buffer_primary + INIT_OFFSET_HEADER;
+  } while ((longlong)system_float_buffer_primary < SYSTEM_INIT_FLAG_ENABLED_MEMORY_END);
+  system_float_buffer_primary = (float *)SYSTEM_INIT_FLAG_ENABLED_MEMORY_PRIMARY;
   do {
     system_calculation_result = (int)system_initialization_primary_flag + 1;
-    *system_float_buffer = SYSTEM_INIT_FLOAT_VALUE_RECIPROCAL / SQRT((float)system_initialization_primary_flag) + SYSTEM_INIT_FLOAT_VALUE_RECIPROCAL / SQRT((float)system_initialization_primary_flag);
-    system_float_buffer = system_float_buffer + 1;
+    *system_float_buffer_primary = SYSTEM_INIT_FLOAT_VALUE_RECIPROCAL / SQRT((float)system_initialization_primary_flag) + SYSTEM_INIT_FLOAT_VALUE_RECIPROCAL / SQRT((float)system_initialization_primary_flag);
+    system_float_buffer_primary = system_float_buffer_primary + 1;
     system_initialization_primary_flag = (ulonglong)system_calculation_result;
   } while (system_calculation_result < INIT_OFFSET_HEADER);
   return;
@@ -17273,7 +17289,7 @@ return;
 {
   longlong system_memory_allocation_result;
   
-  _Mtx_init_in_situ(INIT_FLAG_OCTONARY_ENABLED_STANDARD_NETWORK_5,2,system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
+  _Mtx_init_in_situ(INIT_FLAG_OCTONARY_ENABLED_STANDARD_NETWORK_QUINARY,2,system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   system_memory_allocation_result = system_allocate_memory(GetSystemConfigG);
   return (system_memory_allocation_result != 0) - 1;
 
@@ -17300,7 +17316,7 @@ return;
 {
   longlong system_memory_allocation_result;
   
-  _Mtx_init_in_situ(INIT_FLAG_OCTONARY_ENABLED_STANDARD_NETWORK_6,2,system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
+  _Mtx_init_in_situ(INIT_FLAG_OCTONARY_ENABLED_STANDARD_NETWORK_SENARY,2,system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   system_memory_allocation_result = system_allocate_memory(GetSystemConfigH);
   return (system_memory_allocation_result != 0) - 1;
 
@@ -17552,9 +17568,9 @@ return;
   int system_initialization_parameter;
   
   system_initialization_parameter = system_get_parameter(0);
-  system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_1;
+  system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_PRIMARY;
   if (system_initialization_parameter != 0) {
-    system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_2;
+    system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_SECONDARY;
   }
   return;
 
@@ -17575,13 +17591,13 @@ return;
   
   system_initialization_parameter = system_get_parameter(1);
   if (system_initialization_parameter != 0) {
-    system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_3;
+    system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_TERTIARY;
     return;
   }
   system_initialization_parameter = system_get_parameter(0);
-  system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_4;
+  system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_QUATERNARY;
   if (system_initialization_parameter != 0) {
-    system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_5;
+    system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_QUINARY;
   }
   return;
 
@@ -17601,9 +17617,9 @@ return;
   int system_initialization_parameter;
   
   system_initialization_parameter = system_get_parameter(0);
-  system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_6;
+  system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_SENARY;
   if (system_initialization_parameter != 0) {
-    system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_7;
+    system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_SEPTENARY;
   }
   return;
 
@@ -17645,9 +17661,9 @@ return;
   int system_initialization_parameter;
   
   system_initialization_parameter = system_get_parameter(0);
-  system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_8;
+  system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_OCTONARY;
   if (system_initialization_parameter != 0) {
-    system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_9;
+    system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_NONARY;
   }
   return;
 
@@ -17667,7 +17683,7 @@ return;
   int system_initialization_parameter;
   
   system_initialization_parameter = system_get_parameter(0);
-  system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_10;
+  system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_DENARY;
   if (system_initialization_parameter != 0) {
     system_initialization_flag = INIT_FLAG_OCTONARY_ENABLED_STANDARD_SYSTEM_INIT_11;
   }
