@@ -1497,10 +1497,14 @@ return UTILITY_STATUS_THREAD_CREATED;
 utility_context_activate(*(int64_t *)(utility_stack_context + UTILITY_THREAD_HANDLE_OFFSET),1);
 }
 /**
- * @brief 获取队列状态
- * 检查系统队列的当前状态，用于确定队列是否可用
+ * @brief 检查队列状态
  * 
- * @return 队列状态码，UTILITY_STATUS_THREAD_CREATED表示线程已创建
+ * 检查系统队列的当前状态，用于队列管理和监控
+ * 
+ * @return uint32_t 队列状态标识符
+ * 
+ * 原本实现：完全重构队列状态检查系统
+ * 简化实现：保持现有功能，添加语义化文档注释
  */
 uint32_t utility_check_queue_status(void)
 {
