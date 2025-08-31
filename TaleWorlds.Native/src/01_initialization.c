@@ -1,12 +1,3 @@
-/**
- * @file 01_initialization.c
- * @brief TaleWorlds.Native 初始化系统实现
- * 
- * 本文件为逆向工程代码，经过语义化美化处理
- * 原本实现：完全重构初始化系统所有命名体系，建立统一的语义化命名规范
- * 简化实现：仅将常见的非语义化变量名替换为语义化名称，添加基本文档注释，保持代码结构不变
- */
-
 #include "TaleWorlds.Native.Split.h"
 #include <stdlib.h>
 #include <string.h>
@@ -13849,9 +13840,9 @@ void system_process_arguments(longlong param_1)
   uint64_t unsigned_value_count;
   
   unsigned_value_count = 0xfffffffffffffffe;
-  FUN_180046e20();
+  system_main_preinit();
   _DAT_180c82864 = _DAT_180c82864 + 1;
-  FUN_180050b00();
+  system_main_postinit();
   if (_DAT_180c91048 != (longlong *)0x0) {
     if ((undefined *)*_DAT_180c91048 == &UNK_1809fe100) {
       char_result = (char)_DAT_180c91048[2] != '\0';
@@ -13863,7 +13854,7 @@ void system_process_arguments(longlong param_1)
   }
   long_pointer_secondary = (longlong *)system_utility_function_type10(_DAT_180c8ed18,0xc0,8,3,unsigned_value_count);
   stack_long_pointer_20 = long_pointer_secondary;
-  FUN_180049830(long_pointer_secondary);
+  system_main_configure(long_pointer_secondary);
   *long_pointer_secondary = (longlong)&UNK_1809fe100;
   long_pointer_secondary[3] = -4;
   pstack_long_pointer_10 = (longlong **)long_pointer_secondary;
@@ -13878,7 +13869,7 @@ void system_process_arguments(longlong param_1)
   _DAT_180c91048 = long_pointer_secondary;
   if ((undefined *)*_DAT_180c91048 == &UNK_1809fe100) {
     if (_DAT_180c86948 != 0) {
-      FUN_18006e990();
+      system_main_cleanup();
     }
   }
   else {
@@ -13891,7 +13882,7 @@ void system_process_arguments(longlong param_1)
     (**(code **)(*long_pointer_secondary + 0x38))();
   }
 LAB_180043e47:
-  FUN_1800466d0(*(uint64_t *)(param_1 + 0x20));
+  system_main_finalize(*(uint64_t *)(param_1 + 0x20));
   if (*(char *)(_DAT_180c86870 + 0x1ed) != '\0') {
     long_pointer_secondary = (longlong *)system_utility_function_type10(_DAT_180c8ed18,0x28,8,3);
     *long_pointer_secondary = (longlong)&UNK_180a21690;
@@ -14282,7 +14273,7 @@ uint32_t FUN_180045580(void)
   }
   pppplVar6 = (longlong ****)system_utility_function_type10(_DAT_180c8ed18,0xc0,8,3,unsigned_value_primary2);
   pppstack_long_pointer_8 = pppplVar6;
-  FUN_180049830(pppplVar6);
+  system_main_configure(pppplVar6);
   *pppplVar6 = (longlong ***)&UNK_1809ff2f8;
   ppstack_long_pointer_20 = (longlong ***)pppplVar6;
   (*(code *)(*pppplVar6)[5])(pppplVar6);
@@ -14791,7 +14782,7 @@ void FUN_1800466a0(uint64_t *param_1)
   }
   return;
 }
-void FUN_1800466d0(longlong param_1)
+void system_main_finalize(longlong param_1)
 {
   int integer_primary;
   
@@ -15131,7 +15122,7 @@ void FUN_180046ca0(longlong *param_1,uint64_t *param_2)
   FUN_180047fc0();
   long_pointer_primary = (longlong *)system_utility_function_type10(_DAT_180c8ed18,200,8,3,unsigned_value_secondary,unsigned_value_result);
   stack_long_pointer_8 = long_pointer_primary;
-  FUN_180049830(long_pointer_primary);
+  system_main_configure(long_pointer_primary);
   *long_pointer_primary = (longlong)&UNK_1809fcb00;
   long_pointer_primary[0x18] = (longlong)&UNK_180046dd0;
   stack_long_pointer_18 = long_pointer_primary;
@@ -15153,7 +15144,7 @@ void FUN_180046ca0(longlong *param_1,uint64_t *param_2)
   *param_2 = &UNK_18098bcb0;
   return;
 }
-void FUN_180046e20(void)
+void system_main_preinit(void)
 {
   uint64_t unsigned_value_primary;
   char char_flag;
@@ -15230,7 +15221,7 @@ void FUN_180046e20(void)
   *(undefined1 *)(_DAT_180c86960 + 0x39) = 1;
   ppsystem_table_pointer = (longlong ***)system_utility_function_type10(_DAT_180c8ed18,200,8,3);
   ppplStack_590 = ppsystem_table_pointer;
-  FUN_180049830(ppsystem_table_pointer);
+  system_main_configure(ppsystem_table_pointer);
   *ppsystem_table_pointer = (longlong **)&UNK_1809fcb00;
   ppsystem_table_pointer[0x18] = (longlong **)&UNK_180047d20;
   pplStack_4f0 = (longlong **)ppsystem_table_pointer;
@@ -16448,7 +16439,7 @@ void FUN_1800497f0(uint64_t param_1)
   return;
 }
 uint64_t *
-FUN_180049830(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+system_main_configure(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   uint64_t unsigned_value_primary;
   
@@ -19290,7 +19281,7 @@ void FUN_18004f920(void)
   puStack_50 = &UNK_18098bcb0;
   FUN_180062300(_DAT_180c86928,&UNK_1809fd550);
 }
-void FUN_180050b00(void)
+void system_main_postinit(void)
 {
   longlong *long_pointer_primary;
   uint64_t *system_config_primary_ptr;
@@ -21698,7 +21689,7 @@ void FUN_1800565f0(longlong *param_1)
   uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
   system_table_pointer = (longlong *)system_utility_function_type10(_DAT_180c8ed18,0xd0,8,3);
   pplStack_60 = (longlong **)system_table_pointer;
-  FUN_180049830(system_table_pointer);
+  system_main_configure(system_table_pointer);
   *system_table_pointer = (longlong)&UNK_1809fdcd8;
   system_table_pointer[0x18] = 0;
   *(uint32_t *)(system_table_pointer + 0x19) = 0;
@@ -26081,7 +26072,7 @@ FUN_18005c590(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
   uint64_t unsigned_value_result;
   
   unsigned_value_result = 0xfffffffffffffffe;
-  FUN_180049830();
+  system_main_configure();
   *param_1 = &UNK_1809fdf38;
   pointer_primary = param_1 + 0x18;
   param_1[0x1a] = 0;
@@ -30179,7 +30170,7 @@ void FUN_1800611a0(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t 
   do {
     integer_value = ReleaseSemaphore(*pointer_primary,long_value_secondary - long_value_result >> 3 & 0xffffffff,0,param_4,uVar6,allocation_size,uVar7);
   } while (integer_value == 0);
-  FUN_1800466d0(param_1 + 0x150);
+  system_main_finalize(param_1 + 0x150);
   integer_value = _Mtx_unlock(allocation_size);
   if (integer_value != 0) {
     __Throw_C_error_std__YAXH_Z(integer_value);
@@ -34722,7 +34713,7 @@ FUN_18006b640(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
   uint64_t unsigned_value_secondary;
   
   unsigned_value_secondary = 0xfffffffffffffffe;
-  FUN_180049830();
+  system_main_configure();
   *param_1 = &UNK_1809fefb0;
   param_1[0x1a] = 0;
   param_1[0x1b] = int32_t systemsystem_validate_icall(void *target);
@@ -37015,7 +37006,7 @@ uint64_t * FUN_18006e660(uint64_t *param_1,uint64_t param_2,uint64_t param_3)
   uint64_t *system_config_node_ptr;
   longlong lVar7;
   
-  FUN_180049830();
+  system_main_configure();
   *param_1 = &UNK_1809ff3f8;
   param_1[0x19] = 0;
   *(uint32_t *)(param_1 + 0x1a) = 0;
@@ -37115,7 +37106,7 @@ FUN_18006e870(uint32_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[0x5a] = 0;
   return param_1;
 }
-void FUN_18006e990(void)
+void system_main_cleanup(void)
 {
   longlong system_memory_allocation_result;
   char char_flag;
