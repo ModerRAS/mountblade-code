@@ -716,21 +716,6 @@ double utility_context_system_backup;
 uint32_t utility_context_system_reserve;
 uint8_t utility_context_system_extended;
  /**
- * @brief 处理线程本地存储
- *
- * 该函数负责处理线程本地存储的初始化和管理，包括资源分配、
- * 状态检查和线程上下文的维护。
- *
- * @param thread_handle 线程句柄，用于标识特定的线程实例
- * @param context_data 上下文数据，包含线程运行所需的信息
- * @return void
- *
- * @note 这是简化实现，主要处理线程本地存储的基本操作
- * 原本实现：完全重构线程本地存储系统，建立统一的线程存储规范
- * 简化实现：仅添加文档注释，保持代码结构不变
- */
-
-/**
  * @brief 处理线程存储操作
  *
  * 负责管理系统线程的存储操作，包括线程数据的存储和检索
