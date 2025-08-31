@@ -2172,7 +2172,6 @@ void system_initialize_config_loader(void)
   config_parent_node[10] = system_component_init_flag;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 
  * 检查各个系统组件的初始化状态，确保所有必要的子系统都已正确初始化。
@@ -2336,7 +2335,6 @@ int system_setup_thread_pools(void)
   system_temp_ptr = system_audio_register_value_memory_pool(&system_data_thread_pool);
   return (system_temp_ptr != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 初始化系统资源缓存并注册相关的内存池
  * @return 初始化状态码，0表示成功，-1表示失败
@@ -3210,7 +3208,6 @@ void system_setup_buffer_manager(void)
   parent_node[10] = allocator_pointer;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 启动系统主运行时循环
  * @return 运行状态码
@@ -3976,7 +3973,6 @@ void system_initialize_interrupt_pool(void)
  * 
  * @return void
 void system_initialize_thread_context_stage_1(void)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 配置线程上下文的内存管理和资源分配
 void system_initialize_thread_context_stage_2(void)
@@ -3995,7 +3991,6 @@ void system_initialize_thread_context_stage_2(void)
   system_thread_context_primary = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 设置线程上下文的调度和优先级
 void system_initialize_thread_context_stage_3(void)
@@ -4014,7 +4009,6 @@ void system_initialize_thread_context_stage_3(void)
   system_thread_context_secondary = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 配置线程上下文的安全和权限
 void system_initialize_thread_context_stage_4(void)
@@ -4033,7 +4027,6 @@ void system_initialize_thread_context_stage_4(void)
   system_thread_context_tertiary = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 完成线程上下文的最终配置和验证
 void system_initialize_thread_context_stage_5(void)
@@ -6258,7 +6251,6 @@ void system_initialize_event_system_stage_4(void)
   parent_node[10] = init_flag;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_event_system_stage_5(void)
 {
   uint64_t system_audio_register_value;
@@ -6275,7 +6267,6 @@ void system_initialize_event_system_stage_5(void)
   system_thread_context_backup = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 int system_initialize_network(void)
 {
   longlong system_temp_ptr;
@@ -6299,7 +6290,6 @@ void system_initialize_thread_management_stage_1(void)
   system_thread_context_fallback = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_thread_management_stage_2(void)
 {
   uint64_t system_audio_register_value;
@@ -6668,7 +6658,6 @@ void system_initialize_memory_management_stage_5(void)
   parent_node[10] = init_flag;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_resource_management_stage_1(void)
 {
   uint64_t system_audio_register_value;
@@ -7169,7 +7158,6 @@ void system_initialize_graphics_management_stage_2(void)
   parent_node[10] = allocator_pointer;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_graphics_management_stage_3(void)
 {
   uint64_t system_audio_register_value;
@@ -7186,7 +7174,6 @@ void system_initialize_graphics_management_stage_3(void)
   system_thread_context_critical = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_graphics_management_stage_4(void)
 {
   uint64_t system_audio_register_value;
@@ -7203,7 +7190,6 @@ void system_initialize_graphics_management_stage_4(void)
   system_thread_context_priority = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_graphics_management_stage_5(void)
 {
   uint64_t system_audio_register_value;
@@ -7220,7 +7206,6 @@ void system_initialize_graphics_management_stage_5(void)
   system_thread_context_main = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_audio_management_stage_1(void)
 {
   uint64_t system_audio_register_value;
@@ -7237,7 +7222,6 @@ void system_initialize_audio_management_stage_1(void)
   system_thread_context_worker = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_audio_management_stage_2(void)
 {
   uint64_t system_audio_register_value;
@@ -7254,7 +7238,6 @@ void system_initialize_audio_management_stage_2(void)
   system_thread_context_service = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_audio_management_stage_3(void)
 {
   uint64_t system_audio_register_value;
@@ -7271,7 +7254,6 @@ void system_initialize_audio_management_stage_3(void)
   system_thread_context_handler = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_audio_management_stage_4(void)
 {
   uint64_t system_audio_register_value;
@@ -7288,7 +7270,6 @@ void system_initialize_audio_management_stage_4(void)
   system_thread_context_manager = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_audio_management_stage_5(void)
 {
   uint64_t system_audio_register_value;
@@ -7305,7 +7286,6 @@ void system_initialize_audio_management_stage_5(void)
   system_thread_context_controller = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_ui_management_stage_1(void)
 {
   uint64_t system_audio_register_value;
@@ -8994,7 +8974,6 @@ void system_initialize_system_services_stage_4(void)
   parent_node[10] = init_flag;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_system_services_stage_5(void)
 {
   uint64_t system_audio_register_value;
@@ -9011,7 +8990,6 @@ void system_initialize_system_services_stage_5(void)
   system_thread_context_monitor = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 int system_initialize_input(void)
 {
   longlong system_temp_ptr;
@@ -9459,7 +9437,6 @@ void system_setup_physics_pipeline(void)
   parent_node[10] = init_flag;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_setup_animation_pipeline(void)
 {
   uint64_t system_audio_register_value;
@@ -9476,7 +9453,6 @@ void system_setup_animation_pipeline(void)
   system_thread_context_observer = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_setup_ai_pipeline(void)
 {
   uint64_t system_audio_register_value;
@@ -9801,7 +9777,6 @@ void system_validate_memory_config(void)
   parent_node[10] = init_flag;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 int system_validate_thread_config(void)
 {
   longlong system_temp_ptr;
@@ -10475,7 +10450,6 @@ void system_initialize_music_config(void)
   parent_node[10] = init_flag;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_sound_config(void)
 {
   uint64_t system_audio_register_value;
@@ -10975,7 +10949,6 @@ void system_initialize_audio_effects(void)
   parent_node[10] = init_flag;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_setup_audio_filters(void)
 {
   uint64_t system_audio_register_value;
@@ -10992,7 +10965,6 @@ void system_setup_audio_filters(void)
   system_thread_context_validator = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_calibrate_audio_volume(void)
 {
   uint64_t system_audio_register_value;
@@ -11009,7 +10981,6 @@ void system_calibrate_audio_volume(void)
   system_thread_context_checker = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_adjust_audio_balance(void)
 {
   uint64_t system_audio_register_value;
@@ -11026,7 +10997,6 @@ void system_adjust_audio_balance(void)
   system_thread_context_verifier = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_set_audio_parameters(void)
 {
   uint64_t system_audio_register_value;
@@ -11043,7 +11013,6 @@ void system_set_audio_parameters(void)
   system_thread_context_confirmer = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 int system_get_audio_configuration(void)
 {
   longlong system_temp_ptr;
@@ -12109,7 +12078,6 @@ void system_initialize_compositor(void)
   parent_node[10] = init_flag;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 int system_check_render_status(void)
 {
   longlong system_temp_ptr;
@@ -12134,7 +12102,6 @@ int system_check_render_status(void)
   system_temp_ptr = system_audio_register_value_memory_pool(&graphics_renderer_callback);
   return (system_temp_ptr != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 int system_verify_graphics_config(void)
 {
   longlong system_temp_ptr;
@@ -12318,7 +12285,6 @@ void system_configure_render_settings(void)
   parent_node[10] = init_flag;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_gpu_resources(void)
 {
   uint64_t system_audio_register_value;
@@ -12718,7 +12684,6 @@ void system_initialize_transaction_manager(void)
   parent_node[10] = init_flag;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_lock_manager(void)
 {
   uint64_t system_audio_register_value;
@@ -12735,7 +12700,6 @@ void system_initialize_lock_manager(void)
   system_thread_context_cleaner = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 初始化信号量系统
  * 
@@ -12781,7 +12745,6 @@ int system_audio_register_value_mutex_pool(uint64_t system_context_parameter,uin
   system_temp_ptr = system_audio_register_value_memory_pool(system_ui_manager_register);
   return (system_temp_ptr != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 检查互斥锁状态
  * 
@@ -12803,7 +12766,6 @@ int system_check_mutex_status(void)
   system_temp_ptr = system_audio_register_value_memory_pool(system_animation_manager_register);
   return (system_temp_ptr != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 初始化临界区
  * 
@@ -12828,7 +12790,6 @@ void system_initialize_critical_section(void)
   system_thread_context_collector = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 脚本引擎初始化器
  * 
@@ -12871,7 +12832,6 @@ SYSTEM_VALIDATION_CHECK:
   *system_audio_loop_counter_ptr = *system_audio_loop_counter_ptr + 1;
   return 0;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 初始化自旋锁系统
  * 
@@ -12896,7 +12856,6 @@ void system_initialize_spinlock_system(void)
   system_thread_context_recycler = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 初始化屏障系统
  * 
@@ -12921,7 +12880,6 @@ void system_initialize_barrier_system(void)
   system_thread_context_disposer = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 检查屏障状态
  * 
@@ -12943,7 +12901,6 @@ int system_check_barrier_status(void)
   system_temp_ptr = system_audio_register_value_memory_pool(system_ai_manager_register_extended);
   return (system_temp_ptr != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 验证屏障配置
  * 
@@ -12984,7 +12941,6 @@ int system_validate_barrier_system(void)
   system_temp_ptr = system_audio_register_value_memory_pool(&system_data_resource_pool_base);
   return (system_temp_ptr != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_test_barrier_functionality(void)
 {
   int system_int_value;
@@ -12996,7 +12952,6 @@ void system_test_barrier_functionality(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_configure_barrier_settings(void)
 {
   int system_int_value;
@@ -13013,7 +12968,6 @@ void system_configure_barrier_settings(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_setup_barrier_context(void)
 {
   int system_int_value;
@@ -13025,7 +12979,6 @@ void system_setup_barrier_context(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_barrier_pool(void)
 {
   int system_int_value;
@@ -13037,7 +12990,6 @@ void system_initialize_barrier_pool(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_create_barrier_instance(void)
 {
   int system_int_value;
@@ -13049,7 +13001,6 @@ void system_create_barrier_instance(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_destroy_barrier_instance(void)
 {
   int system_int_value;
@@ -13061,7 +13012,6 @@ void system_destroy_barrier_instance(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_reset_barrier_instance(void)
 {
   int system_int_value;
@@ -13094,7 +13044,6 @@ int system_get_barrier_status(void)
   system_long_context = system_audio_register_value_memory_pool(&system_data_callback_pool_base);
   return (system_long_context != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_wait_on_barrier(void)
 {
   int system_int_value;
@@ -13106,7 +13055,6 @@ void system_wait_on_barrier(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_signal_barrier(void)
 {
   int system_int_value;
@@ -13459,7 +13407,6 @@ SYSTEM_VALIDATION_CHECK:
   system_context_identifier = 0;
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_buffer);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_reset_timer_instance(uint64_t system_context_parameter,longlong system_context_parameter)
 {
   longlong **system_long_ptr_ptr;
@@ -14036,7 +13983,6 @@ void system_adjust_clock_drift(uint32_t *system_context_parameter)
   *(uint64_t *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE) = 0;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_timekeeping(longlong system_context_parameter,longlong system_context_parameter,longlong system_context_parameter)
 {
   longlong system_temp_ptr;
@@ -14207,7 +14153,6 @@ longlong system_validate_memory_pointers(uint64_t *system_context_parameter,uint
   *system_context_parameter = system_temp_uint_value;
   return CONCAT0x031((uint0x03)(uint3)((uint)system_temp_uint_value >> 0x01),1);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 记录时间戳事件
  * 
@@ -14318,7 +14263,6 @@ uint64_t * system_get_buffer_pointer(uint64_t *system_context_parameter)
   *(uint32_t *)(system_context_parameter + 3) = 0;
   return system_context_parameter;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 初始化性能分析系统
  * 
@@ -14521,7 +14465,6 @@ void system_initialize_security(ulonglong *system_context_parameter)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 计算性能指标
  * 
@@ -14773,7 +14716,6 @@ SYSTEM_VALIDATION_CHECK:
   }
   return 0x07fffffff;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 设置性能计数器
  * 
@@ -14824,7 +14766,6 @@ void system_setup_performance_counters(longlong *system_context_parameter,uint64
   return;
 }
  (ram,0x010010040032a0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_metrics_collector(void)
 {
   uint64_t system_temp_uint_value;
@@ -15098,7 +15039,6 @@ void system_process_metric_data(uint64_t *system_context_parameter)
   *system_context_parameter = &system_data_animation_pool_base;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_aggregate_performance_stats(uint64_t system_context_parameter,uint64_t system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter)
 {
   byte system_byte_value;
@@ -15177,7 +15117,6 @@ SYSTEM_VALIDATION_CHECK:
   system_buffer_context[0x04] = system_context_parameter;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 根据系统参数配置UI组件的各种属性和设置
  * @param system_context_parameter 系统参数1，用于配置组件
@@ -15558,7 +15497,6 @@ void system_validate_system_health(ulonglong *system_context_parameter)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_generate_diagnostic_report(longlong system_context_parameter)
 {
   if (system_context_parameter != 0) {
@@ -15793,7 +15731,6 @@ SYSTEM_VALIDATION_CHECK:
   *system_context_parameter = global_context_ptr;
   return system_context_parameter;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // 函数: void system_initialize_debugging_system(longlong system_context_parameter,uint64_t system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter,
 void system_initialize_debugging_system(longlong system_context_parameter,uint64_t system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter,
                   longlong system_param_)
@@ -15839,7 +15776,6 @@ SYSTEM_VALIDATION_CHECK:
   *(uint64_t *)(resource_id + SYSTEM_RESOURCE_COUNT_OFFSET) = 0;
   system_setup_graphics_pipeline(resource_id,system_context_parameter,system_context_parameter,system_audio_status,system_temp_val,system_buffer_context);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t * system_resolve_memory_reference(longlong system_context_parameter,longlong *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 {
   longlong *system_long_data_ptr;
@@ -15873,7 +15809,6 @@ uint64_t * system_resolve_memory_reference(longlong system_context_parameter,lon
   }
   return system_handle_ptr;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t * system_allocate_memory_reference(longlong system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 {
   uint64_t *data_context;
@@ -16041,7 +15976,6 @@ void system_configure_debug_breakpoints(longlong system_context_parameter,uint32
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_debug_console(uint64_t system_context_parameter,uint64_t *system_context_parameter,longlong *system_context_parameter)
 {
   int system_int_value;
@@ -16194,7 +16128,6 @@ uint64_t * system_get_memory_table_entry(uint64_t *system_context_parameter)
   *(uint32_t *)(system_context_parameter + 3) = 0;
   return system_context_parameter;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_watchpoint_system(longlong system_context_parameter,longlong system_context_parameter,longlong system_context_parameter)
 {
   longlong system_temp_ptr;
@@ -16314,7 +16247,6 @@ uint64_t * system_find_memory_table_entry(uint64_t *system_context_parameter)
   *(uint32_t *)(system_context_parameter + 3) = 0;
   return system_context_parameter;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_tracing_system(longlong system_context_parameter,longlong system_context_parameter,longlong system_context_parameter)
 {
   longlong system_temp_ptr;
@@ -16466,7 +16398,6 @@ void system_flush_log_buffer(void)
   _Mtx_destroy_in_situ();
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t system_allocate_table_entry(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 {
   int system_int_value;
@@ -16545,7 +16476,6 @@ void system_setup_error_codes(uint64_t *system_context_parameter)
   *system_context_parameter = &system_data_graphics_buffer_base;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t system_validate_table_entry(longlong system_context_parameter,uint64_t system_context_parameter)
 {
   uint64_t system_temp_uint_value;
@@ -16577,7 +16507,6 @@ system_setup_table_entry(uint64_t *system_context_parameter,ulonglong system_con
   }
   return system_context_parameter;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 bool system_check_init_status(void)
 {
   char init_status;
@@ -16635,7 +16564,6 @@ bool system_check_init_status(void)
   }
   return system_byte_config;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_exception_system(void)
 {
   char init_status;
@@ -16702,7 +16630,6 @@ void system_initialize_exception_system(void)
   }
   system_initialize_component(system_handle_ptr);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_setup_exception_handlers(void)
 {
   uint64_t system_temp_uint_value;
@@ -16714,7 +16641,6 @@ void system_setup_exception_handlers(void)
   system_temp_uint_value = system_allocate_memory_context(system_context_memory_pool,0x050,0x01,3);
   memset(system_temp_uint_value,0,0x050);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_configure_exception_filters(void)
 {
   char init_status;
@@ -16870,7 +16796,6 @@ system_set_initialization_flag(uint64_t *system_context_parameter,uint64_t syste
   *(int *)(system_context_parameter + 2) = system_buffer_size;
   return system_context_parameter;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t system_process_initialization_step(char system_context_parameter)
 {
   longlong *system_long_data_ptr;
@@ -16950,7 +16875,6 @@ uint64_t system_process_initialization_step(char system_context_parameter)
   }
   system_initialize_component();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 bool system_validate_initialization_state(void)
 {
   int system_int_value;
@@ -16965,7 +16889,6 @@ bool system_validate_initialization_state(void)
   }
   return true;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_handle_system_panic(uint64_t *system_context_parameter)
 {
   uint system_temp_uint_value;
@@ -17026,7 +16949,6 @@ void system_handle_system_panic(uint64_t *system_context_parameter)
   system_temp_buffer_ptr = &system_data_animation_pool_base;
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_buffer);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 longlong * system_initialize_component_handler(longlong *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 {
   *system_context_parameter = (longlong)&system_data_animation_pool_base;
@@ -17043,7 +16965,6 @@ longlong * system_initialize_component_handler(longlong *system_context_paramete
   (**(code **)(*system_context_parameter + SYSTEM_CONFIG_DATA_SIZE))(system_context_parameter,&system_input_service_handler,system_context_parameter,system_context_parameter,1,SYSTEM_INVALID_HANDLE_VALUE);
   return system_context_parameter;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_recover_from_panic(uint64_t *system_context_parameter)
 {
   int system_int_value;
@@ -17154,7 +17075,6 @@ uint64_t * system_set_component_pointer(uint64_t *system_context_parameter,ulong
   }
   return system_context_parameter;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_backup_system(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 {
   longlong system_temp_ptr;
@@ -17226,7 +17146,6 @@ void system_verify_backup_integrity(longlong system_context_parameter,uint64_t s
   system_create_texture_resource(system_context_parameter,*(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE),system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_cleanup_backup_files(uint64_t *system_context_parameter)
 {
   int system_int_value;
@@ -17258,7 +17177,6 @@ void system_encrypt_backup_archive(longlong system_context_parameter)
   system_setup_texture_format(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_decrypt_backup_archive(uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 {
   uint64_t *data_context;
@@ -17747,7 +17665,6 @@ system_initialize_component_context(uint32_t *system_context_parameter,uint64_t 
   *(uint64_t *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_D0) = 0;
   return system_context_parameter;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t * system_get_component_context(uint64_t *system_context_parameter)
 {
   longlong *system_long_data_ptr;
@@ -18017,7 +17934,6 @@ void system_initialize_encryption_system(uint64_t *system_context_parameter)
   *system_context_parameter = &system_data_primary_context;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_generate_encryption_key(longlong system_context_parameter)
 {
   longlong system_temp_ptr;
@@ -18054,7 +17970,6 @@ void system_generate_encryption_key(longlong system_context_parameter)
   *(uint *)(system_context_parameter + 0x03ac) = (uint)(*(int *)(system_temp_ptr + 0x060020) == 0);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_encrypt_data_block(longlong *system_context_parameter)
 {
   uint64_t *data_context;
@@ -18217,7 +18132,6 @@ void system_encrypt_data_block(longlong *system_context_parameter)
  (ram,0x01001004d35e)
  (ram,0x01001004d300302)
  (ram,0x01001004d4a0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_decrypt_data_block(uint64_t system_context_parameter,longlong system_context_parameter)
 {
   byte system_byte_value;
@@ -18449,7 +18363,6 @@ SYSTEM_VALIDATION_CHECK:
   }
   system_setup_audio_format(system_memory_pool_config,&system_audio_format_handler,*(uint64_t *)(system_context_parameter + 0x03cc),*system_audio_loop_counter_ptr);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t system_complete_initialization(void)
 {
   uint32_t system_audio_config_array [16];
@@ -18594,7 +18507,6 @@ uint64_t system_complete_initialization(void)
  (ram,0x01001004ec00101)
  (ram,0x01001004ec0020)
  (ram,0x01001004eca3)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_hashing_system(uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 {
   uint system_temp_uint_value;
@@ -18661,7 +18573,6 @@ void system_initialize_hashing_system(uint64_t system_context_parameter,uint64_t
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_calculate_data_hash(void)
 {
   int system_int_value;
@@ -19062,7 +18973,6 @@ void system_initialize_checksum_system(void)
   system_temp_buffer_ptr = &system_data_animation_pool_base;
   system_setup_audio_format(system_memory_pool_config,&system_audio_device_handler);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_calculate_data_checksum(void)
 {
   longlong *system_long_data_ptr;
@@ -19380,7 +19290,6 @@ void system_initialize_buffer_allocator(longlong system_context_parameter)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t * system_setup_network_protocol(uint64_t *system_context_parameter,uint64_t *system_context_parameter)
 {
   longlong *system_long_data_ptr;
@@ -19457,7 +19366,6 @@ uint64_t * system_setup_network_protocol(uint64_t *system_context_parameter,uint
   }
   return system_context_parameter;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_validate_data_integrity(longlong system_context_parameter)
 {
   longlong system_temp_ptr;
@@ -19514,7 +19422,6 @@ void system_validate_data_integrity(longlong system_context_parameter)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_check_validation_status(void)
 {
   longlong system_temp_ptr;
@@ -19654,14 +19561,12 @@ SYSTEM_VALIDATION_CHECK:
   }
   system_initialize_component();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t
 system_initialize_network_stream(uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 {
   system_initialize_ui_components(system_context_parameter,_system_data_memory_pool0c160010030 + 0x02c0,system_context_parameter,system_context_parameter,0,SYSTEM_INVALID_HANDLE_VALUE);
   return system_context_parameter;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_verification_system(longlong system_context_parameter)
 {
   uint64_t *data_context;
@@ -19687,7 +19592,6 @@ void system_initialize_verification_system(longlong system_context_parameter)
   *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = system_int_context;
   memset(system_stack_byte_array_a1,0,SYSTEM_STANDARD_BUFFER_SIZE);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_verify_system_compatibility(longlong system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 {
   longlong *system_long_data_ptr;
@@ -19763,7 +19667,6 @@ void system_verify_system_compatibility(longlong system_context_parameter,longlo
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
   system_initialize_component(system_buffer_context);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 初始化系统的内存管理和上下文配置
  * @param system_context_parameter 系统参数1，用于配置内存池
@@ -19824,7 +19727,6 @@ uint64_t system_initialize_memory_context(uint64_t system_context_parameter,uint
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
   system_initialize_component(system_buffer_context);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_check_version_compatibility(longlong system_context_parameter,float system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 {
   ulonglong system_audio_temp_counter;
@@ -19994,7 +19896,6 @@ SYSTEM_VALIDATION_CHECK:
   *(ulonglong *)(system_context_parameter + 0x025c) = CONCAT44(system_stack_float_c,system_stack_float_0x01);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_validate_platform_requirements(longlong *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint32_t system_context_parameter)
 {
   int system_int_value;
@@ -20115,7 +20016,6 @@ void system_validate_platform_requirements(longlong *system_context_parameter,ui
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_testing_system(uint64_t system_context_parameter,longlong system_context_parameter)
 {
   uint64_t *data_context;
@@ -20322,7 +20222,6 @@ void system_initialize_testing_system(uint64_t system_context_parameter,longlong
  (ram,0x0100100540b003)
  (ram,0x0100100540d002)
  (ram,0x0100100540e1)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_run_unit_tests(uint64_t system_context_parameter,uint64_t system_context_parameter,longlong system_context_parameter)
 {
   longlong system_temp_ptr;
@@ -20450,7 +20349,6 @@ SYSTEM_VALIDATION_CHECK:
 SYSTEM_VALIDATION_CHECK:
   memcpy(parent_node + system_temp_val,system_temp_ptr,0x03);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t
 system_initialize_service_registry(uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 {
@@ -20569,7 +20467,6 @@ SYSTEM_VALIDATION_CHECK:
   if (system_temp_val <= (ulonglong)(longlong)(int)system_temp_val) goto SYSTEM_LABEL;
   goto SYSTEM_LABEL;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_execute_integration_tests(longlong *system_context_parameter,longlong system_context_parameter)
 {
   uint system_temp_uint_value;
@@ -20775,7 +20672,6 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   system_temp_buffer_ptr_audio = &system_data_animation_pool_base;
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_buffer);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_generate_test_report(void)
 {
   uint system_temp_uint_value;
