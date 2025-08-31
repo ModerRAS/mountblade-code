@@ -5949,23 +5949,23 @@ system_processor_initialize(unsigned long long *system_handle_param,long long sy
     do {
       if (system_thread_operation_result < 0) {
 LABEL_SYSTEM_SECTION_PROCESSING_032:
-        system_initialization_result9 = system_thread_manager_get_status();
+        system_initialization_result_nine = system_thread_manager_get_status();
       }
       else {
-        system_initialization_result9 = *(long long *)(*system_initialization_result_ptr3 + SYSTEM_POINTER_OFFSET88);
-        if ((ulong long)(*(long long *)(*system_initialization_result_ptr3 + SYSTEM_POINTER_OFFSET90) - system_initialization_result9 >> 5) <=
+        system_initialization_result_nine = *(long long *)(*system_initialization_result_ptr3 + SYSTEM_POINTER_OFFSET88);
+        if ((ulong long)(*(long long *)(*system_initialization_result_ptr3 + SYSTEM_POINTER_OFFSET90) - system_initialization_result_nine >> 5) <=
 goto LABEL_SYSTEM_SECTION_PROCESSING_036;
-        system_initialization_result9 = (long long)system_thread_operation_result * path_buffer_size + system_initialization_result9;
+        system_initialization_result_nine = (long long)system_thread_operation_result * path_buffer_size + system_initialization_result_nine;
       }
       system_thread_stack_pointer = &system_global_thread_string_2;
       system_maximum_stack_size = SYSTEM_ZERO_VALUE;
       system_thread_stack_pointer = (unsigned char *)SYSTEM_NULL_POINTER;
       system_maximum_stack_size = SYSTEM_ZERO_VALUE;
-      system_thread_manager_create(&system_thread_stack_pointer,*(unsigned int *)(system_initialization_result9 + SYSTEM_OFFSET_STRING_BUFFER_SIZE));
-      if (*(int *)(system_initialization_result9 + SYSTEM_OFFSET_STRING_BUFFER_SIZE) != 0) {
-        memcpy(system_thread_stack_pointer,*(unsigned long long *)(system_initialization_result9 + 8),*(int *)(system_initialization_result9 + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + 1);
+      system_thread_manager_create(&system_thread_stack_pointer,*(unsigned int *)(system_initialization_result_nine + SYSTEM_OFFSET_STRING_BUFFER_SIZE));
+      if (*(int *)(system_initialization_result_nine + SYSTEM_OFFSET_STRING_BUFFER_SIZE) != 0) {
+        memcpy(system_thread_stack_pointer,*(unsigned long long *)(system_initialization_result_nine + 8),*(int *)(system_initialization_result_nine + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + 1);
       }
-      if (*(long long *)(system_initialization_result9 + 8) != 0) {
+      if (*(long long *)(system_initialization_result_nine + 8) != 0) {
         system_maximum_stack_size = SYSTEM_ZERO_VALUE;
         if (system_thread_stack_pointer != (unsigned char *)SYSTEM_NULL_POINTER) {
           *system_thread_stack_pointer = SYSTEM_ZERO_VALUE;
@@ -5992,32 +5992,32 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_036;
         system_execution_function(&system_thread_stack_pointer,&system_quintuple_stack_data);
         pppppsystem_thread_control_flags = system_quintuple_stack_control;
         pppppsystem_thread_control_flags = system_quintuple_stack_data;
-        system_initialization_result9 = (long long)system_quintuple_stack_control - (long long)system_quintuple_stack_data;
-        system_multi_level_pointer_node = (unsigned long long ******)system_execution_function(system_global_context_pointer,path_buffer_size,8,3);
-        system_multi_level_stack_data = system_multi_level_pointer_node;
-        *system_multi_level_pointer_node = (unsigned long long *****)0x0;
-        system_multi_level_pointer_node[1] = (unsigned long long *****)0x0;
-        system_multi_level_pointer_node[2] = (unsigned long long *****)0x0;
-        *(unsigned int *)(system_multi_level_pointer_node + 3) = SYSTEM_THREE_VALUE;
-        system_multi_level_pointer_current = &system_multi_level_stack_root;
+        system_initialization_result_nine = (long long)system_quintuple_stack_control - (long long)system_quintuple_stack_data;
+        system_multi_level_pointer_array = (unsigned long long ******)system_execution_function(system_global_context_pointer,path_buffer_size,8,3);
+        system_multi_level_stack_data = system_multi_level_pointer_array;
+        *system_multi_level_pointer_array = (unsigned long long *****)0x0;
+        system_multi_level_pointer_array[1] = (unsigned long long *****)0x0;
+        system_multi_level_pointer_array[2] = (unsigned long long *****)0x0;
+        *(unsigned int *)(system_multi_level_pointer_array + 3) = SYSTEM_THREE_VALUE;
+        system_multi_level_pointer_current_level = &system_multi_level_stack_root;
         system_multi_level_pointer_traverse = system_multi_level_stack_pointer_second;
         while (system_multi_level_pointer_traverse != (unsigned long long *******)0x0) {
           if (*(int *)(system_multi_level_pointer_traverse + SYSTEM_OFFSET_HANDLE_PARAM) < system_thread_operation_result) {
             system_multi_level_pointer_traverse = (unsigned long long *******)*system_multi_level_pointer_traverse;
           }
           else {
-            system_multi_level_pointer_current = system_multi_level_pointer_traverse;
+            system_multi_level_pointer_current_level = system_multi_level_pointer_traverse;
             system_multi_level_pointer_traverse = (unsigned long long *******)system_multi_level_pointer_traverse[1];
           }
         }
-        if (((unsigned long long ********)system_multi_level_pointer_current == &system_multi_level_stack_root) ||
-           (system_thread_operation_result < *(int *)(system_multi_level_pointer_current + SYSTEM_OFFSET_HANDLE_PARAM))) {
+        if (((unsigned long long ********)system_multi_level_pointer_current_level == &system_multi_level_stack_root) ||
+           (system_thread_operation_result < *(int *)(system_multi_level_pointer_current_level + SYSTEM_OFFSET_HANDLE_PARAM))) {
           system_string_input_context = (unsigned long long *)system_execution_function(&system_multi_level_stack_root,system_stack_buffer_string_input);
-          system_multi_level_pointer_current = (unsigned long long *******)*system_string_input_context;
+          system_multi_level_pointer_current_level = (unsigned long long *******)*system_string_input_context;
         }
-        system_multi_level_pointer_current[5] = system_multi_level_pointer_node;
-        system_thread_operation_result = (int)(system_initialization_result9 >> 5);
-        system_initialization_result9 = (long long)system_thread_operation_result;
+        system_multi_level_pointer_current_level[5] = system_multi_level_pointer_array;
+        system_thread_operation_result = (int)(system_initialization_result_nine >> 5);
+        system_initialization_result_nine = (long long)system_thread_operation_result;
         pppppsystem_thread_control_flags = pppppsystem_thread_control_flags;
         if (0 < system_thread_operation_result) {
           pppppsystem_thread_control_flags = pppppsystem_thread_control_flags + 1;
@@ -6082,48 +6082,48 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_037;
             }
             else {
 LABEL_SYSTEM_SECTION_PROCESSING_033:
-              system_multi_level_pointer_current = &system_multi_level_stack_root;
+              system_multi_level_pointer_current_level = &system_multi_level_stack_root;
               system_multi_level_pointer_traverse = system_multi_level_stack_pointer_second;
               while (system_multi_level_pointer_traverse != (unsigned long long *******)0x0) {
                 if (*(int *)(system_multi_level_pointer_traverse + SYSTEM_OFFSET_HANDLE_PARAM) < system_thread_operation_result) {
                   system_multi_level_pointer_traverse = (unsigned long long *******)*system_multi_level_pointer_traverse;
                 }
                 else {
-                  system_multi_level_pointer_current = system_multi_level_pointer_traverse;
+                  system_multi_level_pointer_current_level = system_multi_level_pointer_traverse;
                   system_multi_level_pointer_traverse = (unsigned long long *******)system_multi_level_pointer_traverse[1];
                 }
               }
-              if (((unsigned long long ********)system_multi_level_pointer_current == &system_multi_level_stack_root) ||
-                 (system_thread_operation_result < *(int *)(system_multi_level_pointer_current + SYSTEM_OFFSET_HANDLE_PARAM))) {
-                system_string_input_context = (unsigned long long *)system_execution_function(&system_multi_level_stack_root,&psystem_quintuple_stack_temp);
-                system_multi_level_pointer_current = (unsigned long long *******)*system_string_input_context;
+              if (((unsigned long long ********)system_multi_level_pointer_current_level == &system_multi_level_stack_root) ||
+                 (system_thread_operation_result < *(int *)(system_multi_level_pointer_current_level + SYSTEM_OFFSET_HANDLE_PARAM))) {
+                system_string_input_context = (unsigned long long *)system_execution_function(&system_multi_level_stack_root,&system_quintuple_stack_temp_ptr);
+                system_multi_level_pointer_current_level = (unsigned long long *******)*system_string_input_context;
               }
-              system_multi_level_pointer_node = system_multi_level_pointer_current[5];
-              multi_level_system_thread_control_flags = (unsigned long long ******)system_multi_level_pointer_node[1];
-              if (multi_level_system_thread_control_flags < system_multi_level_pointer_node[2]) {
-                system_multi_level_pointer_node[1] = multi_level_system_thread_control_flags + SYSTEM_OFFSET_HANDLE_PARAM;
-                *multi_level_system_thread_control_flags = (unsigned long long *****)&system_global_thread_string_4;
-                multi_level_system_thread_control_flags[1] = (unsigned long long *****)0x0;
-                *(unsigned int *)(multi_level_system_thread_control_flags + 2) = SYSTEM_ZERO_VALUE;
-                *multi_level_system_thread_control_flags = (unsigned long long *****)&system_global_thread_string_2;
-                multi_level_system_thread_control_flags[3] = (unsigned long long *****)0x0;
-                multi_level_system_thread_control_flags[1] = (unsigned long long *****)0x0;
-                *(unsigned int *)(multi_level_system_thread_control_flags + 2) = SYSTEM_ZERO_VALUE;
-                system_multi_level_stack_data = multi_level_system_thread_control_flags;
-                system_thread_manager_create(multi_level_system_thread_control_flags,system_maximum_stack_size);
+              system_multi_level_pointer_array = system_multi_level_pointer_current_level[5];
+              multi_level_thread_control_flags = (unsigned long long ******)system_multi_level_pointer_array[1];
+              if (multi_level_thread_control_flags < system_multi_level_pointer_array[2]) {
+                system_multi_level_pointer_array[1] = multi_level_thread_control_flags + SYSTEM_OFFSET_HANDLE_PARAM;
+                *multi_level_thread_control_flags = (unsigned long long *****)&system_global_thread_string_4;
+                multi_level_thread_control_flags[1] = (unsigned long long *****)0x0;
+                *(unsigned int *)(multi_level_thread_control_flags + 2) = SYSTEM_ZERO_VALUE;
+                *multi_level_thread_control_flags = (unsigned long long *****)&system_global_thread_string_2;
+                multi_level_thread_control_flags[3] = (unsigned long long *****)0x0;
+                multi_level_thread_control_flags[1] = (unsigned long long *****)0x0;
+                *(unsigned int *)(multi_level_thread_control_flags + 2) = SYSTEM_ZERO_VALUE;
+                system_multi_level_stack_data = multi_level_thread_control_flags;
+                system_thread_manager_create(multi_level_thread_control_flags,system_maximum_stack_size);
                 if (system_maximum_stack_size != SYSTEM_ZERO_VALUE) {
-                  memcpy(multi_level_system_thread_control_flags[1],system_thread_stack_pointer,system_maximum_stack_size + 1);
+                  memcpy(multi_level_thread_control_flags[1],system_thread_stack_pointer,system_maximum_stack_size + 1);
                 }
                 if (system_thread_stack_pointer != (unsigned char *)SYSTEM_NULL_POINTER) {
-                  *(unsigned int *)(multi_level_system_thread_control_flags + 2) = SYSTEM_ZERO_VALUE;
-                  if (multi_level_system_thread_control_flags[1] != (unsigned long long *****)0x0) {
-                    *(unsigned char *)multi_level_system_thread_control_flags[1] = SYSTEM_ZERO_VALUE;
+                  *(unsigned int *)(multi_level_thread_control_flags + 2) = SYSTEM_ZERO_VALUE;
+                  if (multi_level_thread_control_flags[1] != (unsigned long long *****)0x0) {
+                    *(unsigned char *)multi_level_thread_control_flags[1] = SYSTEM_ZERO_VALUE;
                   }
-                  *(unsigned int *)((long long)multi_level_system_thread_control_flags + SYSTEM_OFFSET_PATH_SIZE) = SYSTEM_ZERO_VALUE;
+                  *(unsigned int *)((long long)multi_level_thread_control_flags + SYSTEM_OFFSET_PATH_SIZE) = SYSTEM_ZERO_VALUE;
                 }
               }
               else {
-                system_event_system_handle_paramr_process_array_index(system_multi_level_pointer_node,&system_thread_stack_pointer);
+                system_event_handle_param_process_array_index(system_multi_level_pointer_array,&system_thread_stack_pointer);
               }
               system_thread_stack_pointer = &system_global_thread_string_2;
               if (system_thread_stack_pointer != (unsigned char *)SYSTEM_NULL_POINTER) {
@@ -6134,12 +6134,12 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
             system_thread_stack_pointer = (unsigned char *)SYSTEM_NULL_POINTER;
             system_thread_stack_pointer = &system_global_thread_string_4;
             pppppsystem_thread_control_flags = pppppsystem_thread_control_flags + SYSTEM_OFFSET_HANDLE_PARAM;
-            system_initialization_result9 = system_initialization_result9 + -1;
+            system_initialization_result_nine = system_initialization_result_nine + -1;
             pppppsystem_thread_control_flags = system_quintuple_stack_data;
             pppppsystem_thread_control_flags = system_quintuple_stack_control;
             pppppsystem_thread_control_flags = system_quintuple_stack_data;
             system_string_length_tracker = system_thread_stack_base;
-          } while (system_initialization_result9 != 0);
+          } while (system_initialization_result_nine != 0);
         }
         for (; pppppsystem_thread_control_flags != pppppsystem_thread_control_flags; pppppsystem_thread_control_flags = pppppsystem_thread_control_flags + SYSTEM_OFFSET_HANDLE_PARAM) {
           (*(code *)**pppppsystem_thread_control_flags)(pppppsystem_thread_control_flags,0);
@@ -6159,7 +6159,7 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
       multi_level_stack_pointer = (long long *******)merge_32bit_values(multi_level_stack_pointer_low_half_extended,system_thread_operation_result);
       system_initialization_result_ptr3 = system_global_context_pointer;
       mutex_attr = system_multi_level_stack_temp;
-      system_initialization_result9 = system_thread_stack_base;
+      system_initialization_result_nine = system_thread_stack_base;
       mutex_type = system_stack_uint_20;
     } while (system_thread_operation_result < (int)system_string_length_tracker);
   }
@@ -6173,71 +6173,71 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
   if ((unsigned long long ********)system_sextuple_stack_root != &system_multi_level_stack_root) {
     do {
       system_multi_level_pointer_secondary = (unsigned long long *******)system_multi_level_pointer_traverse[5];
-      system_multi_level_pointer_current = system_multi_level_pointer_traverse + SYSTEM_OFFSET_HANDLE_PARAM;
-      system_multi_level_pointer_current = &system_multi_level_stack_primary;
+      system_multi_level_pointer_current_level = system_multi_level_pointer_traverse + SYSTEM_OFFSET_HANDLE_PARAM;
+      system_multi_level_pointer_current_level = &system_multi_level_stack_primary;
       if (system_multi_level_stack_pointer_third != (unsigned long long *******)0x0) {
         system_multi_level_pointer_primary = system_multi_level_stack_pointer_third;
         do {
-          if (*(int *)(system_multi_level_pointer_primary + SYSTEM_OFFSET_HANDLE_PARAM) < *(int *)system_multi_level_pointer_current) {
+          if (*(int *)(system_multi_level_pointer_primary + SYSTEM_OFFSET_HANDLE_PARAM) < *(int *)system_multi_level_pointer_current_level) {
             system_multi_level_pointer_primary = (unsigned long long *******)*system_multi_level_pointer_primary;
           }
           else {
-            system_multi_level_pointer_current = system_multi_level_pointer_primary;
+            system_multi_level_pointer_current_level = system_multi_level_pointer_primary;
             system_multi_level_pointer_primary = (unsigned long long *******)system_multi_level_pointer_primary[1];
           }
         } while (system_multi_level_pointer_primary != (unsigned long long *******)0x0);
       }
-      if (((unsigned long long ********)system_multi_level_pointer_current == &system_multi_level_stack_primary) ||
-         (*(int *)system_multi_level_pointer_current < *(int *)(system_multi_level_pointer_current + SYSTEM_OFFSET_HANDLE_PARAM))) {
+      if (((unsigned long long ********)system_multi_level_pointer_current_level == &system_multi_level_stack_primary) ||
+         (*(int *)system_multi_level_pointer_current_level < *(int *)(system_multi_level_pointer_current_level + SYSTEM_OFFSET_HANDLE_PARAM))) {
         system_string_input_context = (unsigned long long *)system_execution_function(&system_multi_level_stack_primary,&system_multi_level_stack_temp);
-        system_multi_level_pointer_current = (unsigned long long *******)*system_string_input_context;
+        system_multi_level_pointer_current_level = (unsigned long long *******)*system_string_input_context;
       }
-      if (system_multi_level_pointer_current + SYSTEM_COMPARE_VALUE_5 != system_multi_level_pointer_secondary) {
-        system_event_system_handle_paramr_process_multi_pointer(system_multi_level_pointer_current + SYSTEM_COMPARE_VALUE_5,*system_multi_level_pointer_secondary,system_multi_level_pointer_secondary[1]);
+      if (system_multi_level_pointer_current_level + SYSTEM_COMPARE_VALUE_5 != system_multi_level_pointer_secondary) {
+        system_event_system_handle_paramr_process_multi_pointer(system_multi_level_pointer_current_level + SYSTEM_COMPARE_VALUE_5,*system_multi_level_pointer_secondary,system_multi_level_pointer_secondary[1]);
       }
-      system_multi_level_pointer_current = &system_multi_level_stack_root;
+      system_multi_level_pointer_current_level = &system_multi_level_stack_root;
       if (system_multi_level_stack_pointer_second != (unsigned long long *******)0x0) {
         system_multi_level_pointer_secondary = system_multi_level_stack_pointer_second;
         do {
-          if (*(int *)(system_multi_level_pointer_secondary + SYSTEM_OFFSET_HANDLE_PARAM) < *(int *)system_multi_level_pointer_current) {
+          if (*(int *)(system_multi_level_pointer_secondary + SYSTEM_OFFSET_HANDLE_PARAM) < *(int *)system_multi_level_pointer_current_level) {
             system_multi_level_pointer_secondary = (unsigned long long *******)*system_multi_level_pointer_secondary;
           }
           else {
-            system_multi_level_pointer_current = system_multi_level_pointer_secondary;
+            system_multi_level_pointer_current_level = system_multi_level_pointer_secondary;
             system_multi_level_pointer_secondary = (unsigned long long *******)system_multi_level_pointer_secondary[1];
           }
         } while (system_multi_level_pointer_secondary != (unsigned long long *******)0x0);
       }
-      if (((unsigned long long ********)system_multi_level_pointer_current == &system_multi_level_stack_root) ||
-         (*(int *)system_multi_level_pointer_current < *(int *)(system_multi_level_pointer_current + SYSTEM_OFFSET_HANDLE_PARAM))) {
+      if (((unsigned long long ********)system_multi_level_pointer_current_level == &system_multi_level_stack_root) ||
+         (*(int *)system_multi_level_pointer_current_level < *(int *)(system_multi_level_pointer_current_level + SYSTEM_OFFSET_HANDLE_PARAM))) {
         system_string_input_context = (unsigned long long *)system_execution_function(&system_multi_level_stack_root,&multi_level_stack_pointer);
-        system_multi_level_pointer_current = (unsigned long long *******)*system_string_input_context;
+        system_multi_level_pointer_current_level = (unsigned long long *******)*system_string_input_context;
       }
-      system_multi_level_pointer_node = system_multi_level_pointer_current[5];
-      psystem_quintuple_stack_temp = system_multi_level_pointer_node;
-      if (system_multi_level_pointer_node != (unsigned long long ******)0x0) {
-        system_event_system_handle_paramr_finalize_array(system_multi_level_pointer_node);
-        system_handle_param_system_error(system_multi_level_pointer_node);
+      system_multi_level_pointer_array = system_multi_level_pointer_current_level[5];
+      system_quintuple_stack_temp_ptr = system_multi_level_pointer_array;
+      if (system_multi_level_pointer_array != (unsigned long long ******)0x0) {
+        system_event_handle_param_finalize_array(system_multi_level_pointer_array);
+        system_handle_param_system_error(system_multi_level_pointer_array);
       }
-      system_multi_level_pointer_current = &system_multi_level_stack_root;
+      system_multi_level_pointer_current_level = &system_multi_level_stack_root;
       if (system_multi_level_stack_pointer_second != (unsigned long long *******)0x0) {
         system_multi_level_pointer_secondary = system_multi_level_stack_pointer_second;
         do {
-          if (*(int *)(system_multi_level_pointer_secondary + SYSTEM_OFFSET_HANDLE_PARAM) < *(int *)system_multi_level_pointer_current) {
+          if (*(int *)(system_multi_level_pointer_secondary + SYSTEM_OFFSET_HANDLE_PARAM) < *(int *)system_multi_level_pointer_current_level) {
             system_multi_level_pointer_secondary = (unsigned long long *******)*system_multi_level_pointer_secondary;
           }
           else {
-            system_multi_level_pointer_current = system_multi_level_pointer_secondary;
+            system_multi_level_pointer_current_level = system_multi_level_pointer_secondary;
             system_multi_level_pointer_secondary = (unsigned long long *******)system_multi_level_pointer_secondary[1];
           }
         } while (system_multi_level_pointer_secondary != (unsigned long long *******)0x0);
       }
-      if (((unsigned long long ********)system_multi_level_pointer_current == &system_multi_level_stack_root) ||
-         (*(int *)system_multi_level_pointer_current < *(int *)(system_multi_level_pointer_current + SYSTEM_OFFSET_HANDLE_PARAM))) {
+      if (((unsigned long long ********)system_multi_level_pointer_current_level == &system_multi_level_stack_root) ||
+         (*(int *)system_multi_level_pointer_current_level < *(int *)(system_multi_level_pointer_current_level + SYSTEM_OFFSET_HANDLE_PARAM))) {
         system_string_input_context = (unsigned long long *)system_execution_function(&system_multi_level_stack_root,&system_multi_level_stack_data);
-        system_multi_level_pointer_current = (unsigned long long *******)*system_string_input_context;
+        system_multi_level_pointer_current_level = (unsigned long long *******)*system_string_input_context;
       }
-      system_multi_level_pointer_current[5] = (unsigned long long ******)0x0;
+      system_multi_level_pointer_current_level[5] = (unsigned long long ******)0x0;
       system_multi_level_pointer_traverse = (unsigned long long *******)memory_alloc_function(system_multi_level_pointer_traverse);
     } while ((unsigned long long ********)system_multi_level_pointer_traverse != &system_multi_level_stack_root);
   }
@@ -6254,23 +6254,23 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
   system_buffer_allocation_result = system_execution_function(system_global_context_pointer,SYSTEM_OFFSET_RESOURCE_HANDLE,SYSTEM_OFFSET_RESOURCE_SIZE,SYSTEM_OFFSET_RESOURCE_PARAM);
   system_multi_level_stack_temp = (unsigned long long *******)&system_quintuple_stack_data;
   system_buffer_allocation_result = system_thread_manager_create_thread(&system_quintuple_stack_data,mutex_type);
-  multi_level_stack_pointer = (long long *******)&psystem_chain_node_backup_1;
+  multi_level_stack_pointer = (long long *******)&system_chain_node_backup_ptr;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = system_maximum_stack_size;
-  psystem_chain_node_backup_1 = (long long *******)&psystem_chain_node_backup_1;
-  psystem_chain_node_backup_2 = (long long *******)&psystem_chain_node_backup_1;
+  system_chain_node_backup_ptr = (long long *******)&system_chain_node_backup_ptr;
+  psystem_chain_node_backup_2 = (long long *******)&system_chain_node_backup_ptr;
   system_sextuple_long_stack = (long long *******)0x0;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
   if (system_multi_level_stack_pointer_third != (unsigned long long *******)0x0) {
     system_sextuple_long_stack =
-         (long long *******)system_processor_009(&psystem_chain_node_backup_1,system_multi_level_stack_pointer_third,&psystem_chain_node_backup_1);
+         (long long *******)system_processor_009(&system_chain_node_backup_ptr,system_multi_level_stack_pointer_third,&system_chain_node_backup_ptr);
     system_chain_next_ptr = (long long *******)*system_sextuple_long_stack;
-    psystem_chain_node_backup_1 = system_sextuple_long_stack;
+    system_chain_node_backup_ptr = system_sextuple_long_stack;
     while (ppppsystem_thread_manager_ptr = system_chain_next_ptr, ppppsystem_thread_manager_ptr != (long long *******)0x0) {
-      psystem_chain_node_backup_1 = ppppsystem_thread_manager_ptr;
+      system_chain_node_backup_ptr = ppppsystem_thread_manager_ptr;
       system_chain_next_ptr = (long long *******)*ppppsystem_thread_manager_ptr;
     }
     system_chain_next_ptr = (long long *******)system_sextuple_long_stack[1];
@@ -6281,25 +6281,25 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
     }
     system_maximum_stack_size = system_maximum_stack_size;
   }
-  system_multi_level_pointer_node = (unsigned long long ******)
-                 system_processor_010(system_buffer_allocation_result,&psystem_chain_node_backup_1,system_buffer_allocation_result,system_stack_param_pointer_10,mutex_attr);
-  if (system_multi_level_pointer_node != (unsigned long long ******)0x0) {
-    system_multi_level_stack_temp = (unsigned long long *******)system_multi_level_pointer_node;
-    (*(code *)(*system_multi_level_pointer_node)[5])(system_multi_level_pointer_node);
+  system_multi_level_pointer_array = (unsigned long long ******)
+                 system_processor_010(system_buffer_allocation_result,&system_chain_node_backup_ptr,system_buffer_allocation_result,system_stack_parameter_pointer_10,mutex_attr);
+  if (system_multi_level_pointer_array != (unsigned long long ******)0x0) {
+    system_multi_level_stack_temp = (unsigned long long *******)system_multi_level_pointer_array;
+    (*(code *)(*system_multi_level_pointer_array)[5])(system_multi_level_pointer_array);
   }
-  system_multi_level_stack_temp = *(unsigned long long ********)(system_initialization_result9 + SYSTEM_CONFIG_BUFFER_SIZE);
-  *(unsigned long long *******)(system_initialization_result9 + SYSTEM_CONFIG_BUFFER_SIZE) = system_multi_level_pointer_node;
+  system_multi_level_stack_temp = *(unsigned long long ********)(system_initialization_result_nine + SYSTEM_CONFIG_BUFFER_SIZE);
+  *(unsigned long long *******)(system_initialization_result_nine + SYSTEM_CONFIG_BUFFER_SIZE) = system_multi_level_pointer_array;
   if (system_multi_level_stack_temp != (unsigned long long *******)0x0) {
     (*(code *)(*system_multi_level_stack_temp)[7])();
   }
   system_buffer_allocation_result = system_global_context_pointer;
-  system_stack_param_pointer_10 = &system_multi_level_stack_temp;
-  system_multi_level_stack_temp = *(unsigned long long ********)(system_initialization_result9 + SYSTEM_CONFIG_BUFFER_SIZE);
+  system_stack_parameter_pointer_10 = &system_multi_level_stack_temp;
+  system_multi_level_stack_temp = *(unsigned long long ********)(system_initialization_result_nine + SYSTEM_CONFIG_BUFFER_SIZE);
   if (system_multi_level_stack_temp != (unsigned long long *******)0x0) {
     (*(code *)(*system_multi_level_stack_temp)[5])();
   }
   system_event_system_handle_paramr_allocate_memory(system_buffer_allocation_result,&system_multi_level_stack_temp);
-  system_multi_level_pointer_current = system_multi_level_stack_pointer_third;
+  system_multi_level_pointer_current_level = system_multi_level_stack_pointer_third;
   system_multi_level_pointer_traverse = system_multi_level_stack_pointer_second;
   system_multi_level_stack_temp = system_multi_level_stack_pointer_third;
   if (system_multi_level_stack_pointer_third == (unsigned long long *******)0x0) {
@@ -6314,10 +6314,10 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
     system_handle_param_system_error();
   }
   system_processor_011(&system_multi_level_stack_primary,*system_multi_level_stack_pointer_third);
-  system_stack_param_pointer_10 = system_multi_level_pointer_current + SYSTEM_OFFSET_HANDLE_PARAM;
-  multi_level_stack_pointer = system_multi_level_pointer_current + 5;
-  system_event_system_handle_paramr_finalize_array();
-  system_handle_param_system_error(system_multi_level_pointer_current);
+  system_stack_parameter_pointer_10 = system_multi_level_pointer_current_level + SYSTEM_OFFSET_HANDLE_PARAM;
+  multi_level_stack_pointer = system_multi_level_pointer_current_level + 5;
+  system_event_handle_param_finalize_array();
+  system_handle_param_system_error(system_multi_level_pointer_current_level);
 }
         g_data_buffer_status = SYSTEM_ZERO_VALUE;
         return data_pointer_seventh;
@@ -11625,7 +11625,7 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_499;
       }
     }
     else {
-      system_event_system_handle_paramr_process_array_index(mutex_type,&system_thread_stack_pointer);
+      system_event_handle_param_process_array_index(mutex_type,&system_thread_stack_pointer);
     }
     system_thread_stack_pointer = &system_global_thread_string_2;
     if (system_thread_stack_base != SYSTEM_ZERO_VALUE) {
