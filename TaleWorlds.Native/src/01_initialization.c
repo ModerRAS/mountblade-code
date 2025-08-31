@@ -1553,83 +1553,62 @@ void system_initialize_memory_manager(void)
  * @return 无返回值
  */
 void system_initialize_thread_pool(void)
-
 {
-  char thread_system_init_status;
-  uint64_t *thread_system_data_context;
-  int thread_system_comparison_result;
-  longlong *thread_context_pointer;
-  longlong thread_resource_identifier;
-  uint64_t *thread_node_pointer;
-  uint64_t *thread_parent_pointer;
-  uint64_t *thread_child_pointer;
-  uint64_t *thread_temp_pointer;
-  uint64_t thread_component_initialization_flag_temp;
+  char thread_init_status;
+  uint64_t *thread_context;
+  int thread_compare_result;
+  longlong *global_context;
+  longlong thread_resource_id;
+  uint64_t *thread_node;
+  uint64_t *thread_parent;
+  uint64_t *thread_child;
+  uint64_t *thread_temp;
+  uint64_t thread_init_flag;
   
-  thread_context_pointer = (longlong *)system_get_global_context();
-  thread_system_data_context = (uint64_t *)*thread_context_pointer;
-  thread_system_init_status = *(char *)((longlong)thread_system_data_context[1] + SYSTEM_STATUS_FLAG_OFFSET);
-  thread_component_initialization_flag_temp = 0;
-  thread_parent_pointer = thread_system_data_context;
-  thread_node_pointer = (uint64_t *)thread_system_data_context[1];
-  while (thread_system_init_status == '\0') {
-    thread_system_comparison_result = memcmp(thread_node_pointer + 4,&thread_system_data_context,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (thread_system_comparison_result < 0) {
-      thread_child_pointer = (uint64_t *)thread_node_pointer[2];
-      thread_node_pointer = thread_parent_pointer;
+  global_context = (longlong *)system_get_global_context();
+  thread_context = (uint64_t *)*global_context;
+  thread_init_status = *(char *)((longlong)thread_context[1] + SYSTEM_STATUS_FLAG_OFFSET);
+  thread_init_flag = 0;
+  thread_parent = thread_context;
+  thread_node = (uint64_t *)thread_context[1];
+  
+  while (thread_init_status == '\0') {
+    thread_compare_result = memcmp(thread_node + 4, &thread_context, SYSTEM_CONFIG_DATA_SIZE_16);
+    if (thread_compare_result < 0) {
+      thread_child = (uint64_t *)thread_node[2];
+      thread_node = thread_parent;
     }
     else {
-      thread_child_pointer = (uint64_t *)*thread_node_pointer;
+      thread_child = (uint64_t *)*thread_node;
     }
-    thread_parent_pointer = thread_node_pointer;
-    thread_node_pointer = thread_child_pointer;
-    thread_system_init_status = *(char *)((longlong)thread_child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
+    thread_parent = thread_node;
+    thread_node = thread_child;
+    thread_init_status = *(char *)((longlong)thread_child + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((thread_parent_pointer == thread_system_data_context) || (thread_system_comparison_result = memcmp(&thread_system_data_context,thread_parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), thread_system_comparison_result < 0)) {
-    thread_resource_identifier = system_allocate_resource_block(thread_context_pointer);
-    system_initialize_resource_block(thread_context_pointer,&thread_temp_pointer,thread_parent_pointer,thread_resource_identifier + SYSTEM_RESOURCE_BLOCK_OFFSET_20,thread_resource_identifier);
-    thread_parent_pointer = thread_temp_pointer;
+  
+  if ((thread_parent == thread_context) || (thread_compare_result = memcmp(&thread_context, thread_parent + 4, SYSTEM_CONFIG_DATA_SIZE_16), thread_compare_result < 0)) {
+    thread_resource_id = system_allocate_resource_block(global_context);
+    system_initialize_resource_block(global_context, &thread_temp, thread_parent, thread_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20, thread_resource_id);
+    thread_parent = thread_temp;
   }
-  thread_parent_pointer[6] = SYSTEM_THREAD_POOL_MAGIC;
-  thread_parent_pointer[0x03] = SYSTEM_THREAD_POOL_MAGIC_SECONDARY;
-  thread_parent_pointer[0x01] = &system_handler_database;
-  thread_parent_pointer[0x02] = 1;
-  thread_parent_pointer[10] = thread_component_initialization_flag_temp;
+  
+  thread_parent[6] = SYSTEM_THREAD_POOL_MAGIC;
+  thread_parent[0x03] = SYSTEM_THREAD_POOL_MAGIC_SECONDARY;
+  thread_parent[0x01] = &system_handler_database;
+  thread_parent[0x02] = 1;
+  thread_parent[10] = thread_init_flag;
   return;
 }
 /**
- * 设置资源加载、缓存和管理机制，管理游戏资源的加载、缓存和释放
+ * @brief 初始化系统资源管理器
  * 
- * @return void
-/**
- * 
- * 初始化系统的资源管理器，设置资源分配和回收机制。
- * 该函数负责创建和配置资源管理所需的核心数据结构。
- *
- * @return 无返回值
-
-/**
- * 
- * 初始化系统资源管理器，负责管理游戏中的各种资源（音频、纹理、模型等）。
- * 该函数创建资源管理器的核心数据结构，设置资源分配和释放机制。
- * 资源管理器是游戏引擎的核心组件，确保资源的高效加载和内存管理。
- *
- * @return 无返回值
-/**
- * 
- * 设置系统资源管理器，包括资源分配、释放和跟踪机制。
- * 为系统资源提供统一的管理接口。
+ * 初始化系统的资源管理器，设置资源加载、缓存和释放机制。
+ * 该函数负责创建和配置资源管理所需的核心数据结构，
+ * 包括资源分配、跟踪和回收等功能。资源管理器是游戏引擎的核心组件，
+ * 管理游戏中的各种资源（音频、纹理、模型等），确保资源的高效加载和内存管理。
+ * 为系统提供统一的资源管理服务，支持资源的动态加载和释放。
  *
  * @return void
-/**
- * @return 无返回值
-/**
- * 初始化系统资源管理器
- * 
- * 设置资源加载、缓存和释放机制
- * 为系统提供统一的资源管理服务
- *
- * @return 无返回值
  */
 void system_initialize_resource_manager(void)
 
