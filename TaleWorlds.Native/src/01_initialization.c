@@ -602,6 +602,10 @@ void *system_initialize_graphics_system;
  * 
  * @return 无返回值
  */
+/**
+ * @brief 初始化内存管理系统
+ * 设置内存分配器、缓存和管理器
+ */
 void system_initialize_memory_manager(void)
 
 {
@@ -658,6 +662,10 @@ void system_initialize_memory_manager(void)
 /**
  * @brief 线程池初始化函数
  * 初始化系统线程池和任务调度器
+ */
+/**
+ * @brief 初始化线程池系统
+ * 创建线程池并设置线程调度器
  */
 void system_initialize_thread_pool(void)
 
@@ -716,6 +724,10 @@ void system_initialize_thread_pool(void)
  * @brief 资源管理器初始化函数
  * 初始化系统资源管理和加载器
  */
+/**
+ * @brief 初始化资源管理系统
+ * 设置资源加载、缓存和管理机制
+ */
 void system_initialize_resource_manager(void)
 
 {
@@ -772,6 +784,10 @@ void system_initialize_resource_manager(void)
 /**
  * @brief 回调系统初始化函数
  * 初始化系统回调机制和事件处理
+ */
+/**
+ * @brief 初始化回调系统
+ * 设置事件回调和异步处理机制
  */
 void system_initialize_callback_system(void)
 
@@ -830,6 +846,10 @@ void system_initialize_callback_system(void)
  * @brief 事件系统初始化函数
  * 初始化系统事件队列和分发器
  */
+/**
+ * @brief 初始化事件系统
+ * 设置事件队列和事件分发机制
+ */
 void system_initialize_event_system(void)
 
 {
@@ -886,6 +906,10 @@ void system_initialize_event_system(void)
 /**
  * @brief 消息队列初始化函数
  * 初始化系统消息队列和处理器
+ */
+/**
+ * @brief 初始化消息队列系统
+ * 设置消息缓冲区和消息处理机制
  */
 void system_initialize_message_queue(void)
 
@@ -944,6 +968,10 @@ void system_initialize_message_queue(void)
  * @brief 信号处理器初始化函数
  * 初始化系统信号处理机制
  */
+/**
+ * @brief 初始化信号处理器
+ * 设置系统信号捕获和处理机制
+ */
 void system_initialize_signal_handler(void)
 
 {
@@ -1000,6 +1028,10 @@ void system_initialize_signal_handler(void)
 /**
  * @brief 中断处理器初始化函数
  * 初始化系统中断处理机制
+ */
+/**
+ * @brief 初始化中断处理器
+ * 设置硬件中断和异常处理机制
  */
 void system_initialize_interrupt_handler(void)
 
@@ -1058,6 +1090,10 @@ void system_initialize_interrupt_handler(void)
  * @brief 安全系统初始化函数
  * 初始化系统安全检查和验证
  */
+/**
+ * @brief 初始化安全系统
+ * 设置权限检查和安全防护机制
+ */
 void system_initialize_security_system(void)
 
 {
@@ -1114,6 +1150,10 @@ void system_initialize_security_system(void)
 /**
  * @brief 配置加载器初始化函数
  * 初始化系统配置文件加载和解析
+ */
+/**
+ * @brief 初始化配置加载器
+ * 设置配置文件读取和解析机制
  */
 void system_initialize_config_loader(void)
 
@@ -2919,6 +2959,10 @@ void system_initialize_database(void)
 
 
 
+/**
+ * @brief 初始化线程池系统
+ * 创建线程池并设置线程调度器
+ */
 void system_initialize_thread_pool(void)
 
 {
@@ -3311,6 +3355,10 @@ void system_initialize_interrupt_pool(void)
 
 
 
+/**
+ * @brief 初始化内存管理系统
+ * 设置内存分配器、缓存和管理器
+ */
 void system_initialize_memory_manager(void)
 
 {
@@ -3360,6 +3408,10 @@ void system_initialize_memory_manager(void)
 
 
 
+/**
+ * @brief 初始化线程池系统
+ * 创建线程池并设置线程调度器
+ */
 void system_initialize_thread_pool(void)
 
 {
@@ -3409,6 +3461,10 @@ void system_initialize_thread_pool(void)
 
 
 
+/**
+ * @brief 初始化资源管理系统
+ * 设置资源加载、缓存和管理机制
+ */
 void system_initialize_resource_manager(void)
 
 {
@@ -3458,6 +3514,10 @@ void system_initialize_resource_manager(void)
 
 
 
+/**
+ * @brief 初始化回调系统
+ * 设置事件回调和异步处理机制
+ */
 void system_initialize_callback_system(void)
 
 {
@@ -3507,6 +3567,10 @@ void system_initialize_callback_system(void)
 
 
 
+/**
+ * @brief 初始化事件系统
+ * 设置事件队列和事件分发机制
+ */
 void system_initialize_event_system(void)
 
 {
@@ -3556,6 +3620,10 @@ void system_initialize_event_system(void)
 
 
 
+/**
+ * @brief 初始化消息队列系统
+ * 设置消息缓冲区和消息处理机制
+ */
 void system_initialize_message_queue(void)
 
 {
@@ -3605,6 +3673,10 @@ void system_initialize_message_queue(void)
 
 
 
+/**
+ * @brief 初始化信号处理器
+ * 设置系统信号捕获和处理机制
+ */
 void system_initialize_signal_handler(void)
 
 {
@@ -3656,6 +3728,10 @@ void system_initialize_signal_handler(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
+/**
+ * @brief 初始化中断处理器
+ * 设置硬件中断和异常处理机制
+ */
 void system_initialize_interrupt_handler(void)
 
 {
@@ -3687,6 +3763,10 @@ int system_function_030900(void)
   _system_data_180bf6750 = &system_unknown_1809fcc58;
   _system_data_180bf6758 = &system_data_180bf6768;
 
+/**
+ * @brief 初始化安全系统
+ * 设置权限检查和安全防护机制
+ */
 void system_initialize_security_system(void)
 
 {
@@ -3736,6 +3816,10 @@ void system_initialize_security_system(void)
 
 
 
+/**
+ * @brief 初始化配置加载器
+ * 设置配置文件读取和解析机制
+ */
 void system_initialize_config_loader(void)
 
 {
