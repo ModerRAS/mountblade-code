@@ -1,6 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 
-/* 网络系统常量定义 */
+/* 网络系统核心常量定义 */
 #define NETWORK_OFFSET_STANDARD_B 0xb
 #define NETWORK_OFFSET_STANDARD_C 0xc
 #define NETWORK_OFFSET_STANDARD_D 0xd
@@ -14,12 +14,12 @@
 #define NETWORK_OFFSET_STANDARD_1024 0x400
 #define NETWORK_OFFSET_STANDARD_2048 0x800
 
-// 网络数据包大小常量
+/* 网络数据包大小常量 */
 #define NETWORK_SIZE_SMALL_PACKET 0x18
 #define NETWORK_SIZE_MEDIUM_PACKET 0x14
 #define NETWORK_SIZE_LARGE_PACKET 0x10
 
-// 网络偏移量常量
+/* 网络偏移量常量 */
 #define NETWORK_OFFSET_HEADER_PACKET 0x90
 #define NETWORK_OFFSET_DATA_CONNECTION 0x58
 #define NETWORK_OFFSET_CONFIG_SOCKET 0x50
@@ -27,19 +27,19 @@
 #define NETWORK_OFFSET_CONNECTION_ENCRYPTION_DATA NETWORK_OFFSET_ENCRYPTION_DATA
 #define NETWORK_OFFSET_CONNECTION_VALIDATION_DATA NETWORK_OFFSET_VALIDATION_DATA
 
-// 网络标志和状态常量
+/* 网络标志和状态常量 */
 #define NETWORK_FLAG_CONNECTION_ACTIVE_VALUE 0x80
 #define NETWORK_ERROR_TIMEOUT_VALUE 0x1f
 #define NETWORK_ERROR_DISCONNECT_VALUE 0x1c
 #define NETWORK_MASK_ALIGNMENT_ADDRESS 0xfffffffc
 #define NETWORK_MASK_PACKET_SIZE_VALUE 0x1f
 
-// 网络魔术字标识符
+/* 网络魔术字标识符 */
 #define NETWORK_MAGIC_IDENTIFIER_TSIL NETWORK_STATUS_DISCONNECTED_TSIL
 #define NETWORK_MAGIC_IDENTIFIER_TNVE NETWORK_STATUS_DISCONNECTED_TNVE
 #define NETWORK_MAGIC_IDENTIFIER_BTVE NETWORK_FLAG_NONBLOCKING_MODE
 
-// 网络函数别名定义
+/* 网络函数别名定义 */
 #define network_packet_function_initialize network_packet_function_initialize_primary
 #define network_packet_function_process network_packet_function_process_primary
 #define network_packet_function_decompress network_packet_function_decompress_primary
