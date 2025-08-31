@@ -1592,16 +1592,23 @@ int initialize_io_thread_pool(void* handle_param, void* system_thread_operation_
   system_initialization_result = system_execution_function(io_thread_pool_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
-// 初始化基础资源管理器
-int initialize_base_resource_manager(void)
+/**
+ * @brief 初始化基础资源管理器
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统的基础资源管理器，包括资源字符串和管理器ID。
+ * 这是简化实现，仅处理基础资源管理器的基本初始化。
+ * 原本实现：完整的基础资源管理器初始化流程
+ */
+int system_initialize_base_resource_manager(void)
 {
-  long long system_initialization_result;
-  unsigned long long base_resource_system_string_length;
+  long long initialization_result;
+  unsigned long long base_resource_string_length;
   resource_string_base = SYSTEM_ZERO_VALUE;
   base_resource_manager_id = SYSTEM_SIX_VALUE;
-  strcpy_s(&resource_string_base, STRING_BUFFER_SIZE, &base_resource_string, base_resource_system_string_length, default_thread_pool_flag);
-  system_initialization_result = system_execution_function(base_resource_manager_initialization_function);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  strcpy_s(&resource_string_base, STRING_BUFFER_SIZE, &base_resource_string, base_resource_string_length, default_thread_pool_flag);
+  initialization_result = system_execution_function(base_resource_manager_initialization_function);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
 // 初始化纹理资源管理器
 int initialize_texture_resource_manager(void)
@@ -1901,17 +1908,25 @@ int initialize_data_buffer_system(void)
   system_initialization_result = system_execution_function(&system_init_function_primary);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
 }
-int initialize_audio_module(void)
+/**
+ * @brief 初始化音频模块
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统的音频处理模块，包括着色器系统缓冲区。
+ * 这是简化实现，仅处理音频模块的基本初始化。
+ * 原本实现：完整的音频模块初始化流程
+ */
+int system_initialize_audio_module(void)
 {
-  long long system_initialization_result;
+  long long initialization_result;
   unsigned long long system_string_length;
   resource_template_pointer = &system_default_resource_template;
   system_global_data_pointer_variable = &shader_system_buffer;
   shader_system_buffer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer_variable = SYSTEM_OPCODE_SHADER_INIT;
   strcpy_s(&shader_system_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&system_string_primary,system_string_length_parameter,default_thread_pool_flag);
-  system_initialization_result = system_execution_function(data_buffer_system_initialization_callback);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  initialization_result = system_execution_function(data_buffer_system_initialization_callback);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
 int initialize_video_module(void)
 {
