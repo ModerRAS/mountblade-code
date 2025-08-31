@@ -538,9 +538,6 @@
 #define LABEL_SYSTEM_SECTION_PROCESSING_527  section_processing_jump_label_527
 #define LABEL_SYSTEM_SECTION_PROCESSING_528  section_processing_jump_label_528
 #define LABEL_SYSTEM_SECTION_PROCESSING_529  section_processing_jump_label_529
-// 系统数据定义文件 - 语义化常量定义头文件
-// 简化实现：将硬编码值替换为语义化常量，提高代码可读性
-// 原本实现：完全重构硬编码值体系，建立统一的语义化命名规范
 // 系统缓冲区分配结果常量
 #define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_BASE 0xb8              // 堆内存分配基址
 #define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_READY 0xbc             // 堆内存就绪状态
