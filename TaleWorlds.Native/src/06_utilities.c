@@ -469,6 +469,10 @@ void cleanup_thread_resources(void *context_pointer)
  * 并在需要时激活上下文管理器。函数会确保所有资源都处于
  * 正确的状态，并执行必要的清理操作。
  * 
+ * @param resource_handle 资源句柄，用于标识要验证的资源
+ */
+void validate_system_resource_status(int64_t resource_handle)
+{
     int64_t resource_handle_value = UTILITY_STATUS_FALSE;
     uint64_t buffer_value = UTILITY_STATUS_FALSE;
     uint8_t working_buffer[512];
