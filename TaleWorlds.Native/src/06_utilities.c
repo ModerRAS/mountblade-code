@@ -40303,12 +40303,12 @@ void utility_cleanup_state_configuration_handler(void)
   _Mtx_destroy_in_situ();
   return;
 }
-void utility_cleanup_stage_53(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_cleanup_mutex_destruction(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   _Mtx_destroy_in_situ(*(uint64 *)(utility_resource_context_handle + UTILITY_MEMORY_EXTENDED_OFFSET));
   return;
 }
-void utility_cleanup_stage_54(uint64 utility_resource_primary_handle,uint *memory_block_size)
+void utility_cleanup_memory_block_flags(uint64 utility_resource_primary_handle,uint *memory_block_size)
 {
   if ((*memory_block_size & (UTILITY_INDEX_INCREMENT_STANDARD << UTILITY_BIT_MASK)) != UTILITY_ZERO) {
     *memory_block_size = *memory_block_size & UTILITY_WORD_MASK_CLEAR_LAST_BIT;
@@ -40316,7 +40316,7 @@ void utility_cleanup_stage_54(uint64 utility_resource_primary_handle,uint *memor
   }
   return;
 }
-void utility_cleanup_stage_57(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+void utility_cleanup_callback_handler_execution(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   code *character_value_pointer;
   character_value_pointer = *(code **)(*(longlong *)(utility_resource_context_handle + utility_offset_resource_ptr) + utility_offset_resource_ptr);
@@ -40325,7 +40325,7 @@ void utility_cleanup_stage_57(uint64 utility_resource_primary_handle,longlong ut
   }
   return;
 }
-void utility_cleanup_stage_58(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+void utility_cleanup_callback_handler_release(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   code *character_value_pointer;
   character_value_pointer = *(code **)(*(longlong *)(utility_resource_context_handle + utility_offset_resource_ptr) + utility_offset_resource_ptr);
