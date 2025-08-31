@@ -916,20 +916,9 @@ else {
     utility_context_activate(*(int64_t *)(utility_iteration_count + UTILITY_THREAD_HANDLE_OFFSET), 1);
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- /**
 /** 分配内存块
  * 
  * 该函数负责分配内存块资源，确保系统能够获得所需的内存空间。
- * 
- * 分配指定大小的内存块用于系统操作
-    utility_context_activate();
-}
-/** 释放内存块
- * 释放之前分配的内存块，归还给内存池
-    utility_context_activate();
-}
-/** 处理内存分配操作
- * 管理内存分配的整个生命周期，包括验证、分配和激活
  * 
  * @param utility_context_ptr 上下文句柄，包含内存分配的相关信息
  * @return 操作结果状态码
