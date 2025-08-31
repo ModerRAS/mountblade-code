@@ -843,25 +843,6 @@ utility_activate_context();
 }
 return 0;
 }
-uint64_t utility_resource_context_handle_activator(int64_t utility_context_input_data)
-{
-uint64_t utility_status_code;
-int64_t utility_stack_frame_pointer;
-utility_status_code = utility_handle_service_request(*(uint32_t *)(utility_context_input_data + UTILITY_THREAD_HANDLE_OFFSET),&utility_stack_frame_pointer);
-if ((int)utility_status_code != UTILITY_FALSE) {
-return utility_status_code;
-}
-if (utility_stack_frame_pointer == UTILITY_FALSE) {
-utility_stack_frame_pointer = UTILITY_FALSE;
-}
-else {
-utility_stack_frame_pointer = utility_stack_frame_pointer + -8;
-}
-if (*(int64_t *)(utility_stack_frame_pointer + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-return UTILITY_STATUS_THREAD_CREATED;
-}
-utility_activate_context(*(int64_t *)(utility_stack_frame_pointer + UTILITY_THREAD_HANDLE_OFFSET),1);
-}
  * @brief 获取队列状态
  * 检查系统队列的当前状态，用于确定队列是否可用
  * 
