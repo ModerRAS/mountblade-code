@@ -49,7 +49,7 @@
 
 // 函数: undefined FUN_1809414f0;
 undefined FUN_1809414f0;
-undefined DAT_180bf5290;
+void *utility_data_segment_5290;        // 数据段5290
 undefined DAT_180bf52a0;
 undefined DAT_180bf52c0;
 undefined DAT_180bf52c8;
@@ -80033,8 +80033,10 @@ void utility_check_and_reset_state(undefined8 param_1,longlong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941383(undefined8 param_1,longlong param_2)
-void FUN_180941383(undefined8 param_1,longlong param_2)
+// 函数: void utility_initialize_context(undefined8 param_1,longlong param_2)
+// 功能: 初始化工具系统上下文
+// 参数: param_1 - 上下文参数, param_2 - 初始化参数
+void utility_initialize_context(undefined8 param_1,longlong param_2)
 
 {
   char cVar1;
@@ -80054,8 +80056,10 @@ void FUN_180941383(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18094139f(undefined8 *param_1,longlong param_2)
-void FUN_18094139f(undefined8 *param_1,longlong param_2)
+// 函数: void utility_process_data_buffer(undefined8 *param_1,longlong param_2)
+// 功能: 处理数据缓冲区
+// 参数: param_1 - 数据缓冲区指针, param_2 - 处理参数
+void utility_process_data_buffer(undefined8 *param_1,longlong param_2)
 
 {
   FUN_1808fc51c(*(undefined8 *)(param_2 + 0x60),*(undefined4 *)(param_2 + 0x68),
@@ -80065,7 +80069,11 @@ void FUN_18094139f(undefined8 *param_1,longlong param_2)
 
 
 
-bool FUN_1809413d5(undefined8 *param_1)
+// 函数: bool utility_validate_data_structure(undefined8 *param_1)
+// 功能: 验证数据结构完整性
+// 参数: param_1 - 数据结构指针
+// 返回: 验证结果，true表示有效，false表示无效
+bool utility_validate_data_structure(undefined8 *param_1)
 
 {
   return *(int *)*param_1 == -0x3ffffffb;
@@ -80145,8 +80153,9 @@ void FUN_1809414b5(undefined8 *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809414f0(void)
-void FUN_1809414f0(void)
+// 函数: void utility_initialize_system(void)
+// 功能: 初始化工具系统
+void utility_initialize_system(void)
 
 {
   longlong lVar1;

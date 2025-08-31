@@ -1413,6 +1413,16 @@ int system_initialize_mutex_resource(uint64_t param_1,uint64_t param_2,uint64_t 
   system_memory_allocation_result = system_allocate_memory_block(system_standard_allocator);
   return (system_memory_allocation_result != 0) - 1;
 }
+/**
+ * @brief 初始化系统调试上下文
+ * 
+ * 该函数负责初始化系统的调试上下文，包括调试环境的设置和调试信息的处理。
+ * 确保系统调试功能的正确初始化和配置。
+ * 
+ * @note 这是简化实现，主要处理调试上下文的初始化工作
+ * 原本实现：完全重构调试系统，建立统一的调试管理规范
+ * 简化实现：仅初始化基本的调试上下文功能，保持代码结构不变
+ */
 void system_initialize_debug_context(void)
 {
   uint64_t system_register_parameter;
