@@ -15,27 +15,27 @@
 
 /* 系统魔法值常量 */
 #define SYSTEM_CONFIG_DATA_SIZE 0x010
-#define SYSTEM_RESOURCE_HANDLE_OFFSET_VALUE 0x020
-#define SYSTEM_MEMORY_MANAGER_MAGIC 0x04123456789012345
-#define SYSTEM_MEMORY_MANAGER_MAGIC_SECONDARY 0x03fc124d23d4102015f
-#define SYSTEM_THREAD_POOL_MAGIC 0x04123456789012346
-#define SYSTEM_THREAD_POOL_MAGIC_SECONDARY 0x03030305014fbb1df010203
-#define SYSTEM_RESOURCE_MANAGER_MAGIC 0x04123456030102abcdef0
-#define SYSTEM_RESOURCE_MANAGER_MAGIC_SECONDARY 0x03123456030102abcdef0
-#define SYSTEM_CALLBACK_SYSTEM_MAGIC 0x046ecbd4daf41613e
-#define SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC 0x06c42c056bbde014012
-#define SYSTEM_EVENT_SYSTEM_MAGIC 0x04c01601a42644030f6
-#define SYSTEM_EVENT_SYSTEM_MAGIC_SECONDARY 0x042021023aa02d02b35b02
-#define SYSTEM_MESSAGE_QUEUE_MAGIC 0x040301020123456030102ab
-#define SYSTEM_MESSAGE_QUEUE_MAGIC_SECONDARY 0x030301020123456030102ab
-#define SYSTEM_SIGNAL_HANDLER_MAGIC 0x045b01d0034df203d12f
-#define SYSTEM_SIGNAL_HANDLER_MAGIC_SECONDARY 0x01d002001f4c06010010eda4
-#define SYSTEM_INTERRUPT_HANDLER_MAGIC 0x042d2002350014c01cf3e5
-#define SYSTEM_INTERRUPT_HANDLER_MAGIC_SECONDARY 0x0355ffeb2d2002e66001a
-#define SYSTEM_SECURITY_SYSTEM_MAGIC 0x0421c3cedd0003d00116d
-#define SYSTEM_SECURITY_SYSTEM_MAGIC_SECONDARY 0x05c25de0030023b03afa6
-#define SYSTEM_CONFIG_LOADER_MAGIC 0x04c22bb0c0406500103ce
-#define SYSTEM_CONFIG_LOADER_MAGIC_SECONDARY 0x03c22bb0c0406500103ce
+#define SYSTEM_RESOURCE_HANDLE_OFFSET 0x020
+#define SYSTEM_MEMORY_MANAGER_ID 0x04123456789012345
+#define SYSTEM_MEMORY_MANAGER_ID_SECONDARY 0x03fc124d23d4102015f
+#define SYSTEM_THREAD_POOL_ID 0x04123456789012346
+#define SYSTEM_THREAD_POOL_ID_SECONDARY 0x03030305014fbb1df010203
+#define SYSTEM_RESOURCE_MANAGER_ID 0x04123456030102abcdef0
+#define SYSTEM_RESOURCE_MANAGER_ID_SECONDARY 0x03123456030102abcdef0
+#define SYSTEM_CALLBACK_SYSTEM_ID 0x046ecbd4daf41613e
+#define SYSTEM_CALLBACK_SYSTEM_ID_ALTERNATIVE 0x06c42c056bbde014012
+#define SYSTEM_EVENT_SYSTEM_ID 0x04c01601a42644030f6
+#define SYSTEM_EVENT_SYSTEM_ID_SECONDARY 0x042021023aa02d02b35b02
+#define SYSTEM_MESSAGE_QUEUE_ID 0x040301020123456030102ab
+#define SYSTEM_MESSAGE_QUEUE_ID_SECONDARY 0x030301020123456030102ab
+#define SYSTEM_SIGNAL_HANDLER_ID 0x045b01d0034df203d12f
+#define SYSTEM_SIGNAL_HANDLER_ID_SECONDARY 0x01d002001f4c06010010eda4
+#define SYSTEM_INTERRUPT_HANDLER_ID 0x042d2002350014c01cf3e5
+#define SYSTEM_INTERRUPT_HANDLER_ID_SECONDARY 0x0355ffeb2d2002e66001a
+#define SYSTEM_SECURITY_SYSTEM_ID 0x0421c3cedd0003d00116d
+#define SYSTEM_SECURITY_SYSTEM_ID_SECONDARY 0x05c25de0030023b03afa6
+#define SYSTEM_CONFIG_LOADER_ID 0x04c22bb0c0406500103ce
+#define SYSTEM_CONFIG_LOADER_ID_SECONDARY 0x03c22bb0c0406500103ce
 #define SYSTEM_FILESYSTEM_HANDLER_ID 0x04abcd1234560030010201
 #define SYSTEM_FILESYSTEM_HANDLER_ID_SECONDARY 0x01aa0013fc0020dc1b6
 #define SYSTEM_PRIMARY_MEMORY_POOL_ADDRESS 0x03000000000000000
@@ -44,35 +44,35 @@
 #define SYSTEM_MUTEX_BASE_ADDRESS 0x06100000000000000
 #define SYSTEM_MAXIMUM_SEMAPHORE_COUNT 256
 #define SYSTEM_INVALID_HANDLE_VALUE 0x0FFFFFFFFFFFFFFFF
-#define SYSTEM_STACK_UINT_INITIAL_VALUE 0
+#define SYSTEM_STACK_INITIAL_VALUE 0
 #define SYSTEM_STANDARD_BUFFER_SIZE 0x0400026
 
 /* 系统组件魔法值常量定义 */
-#define SYSTEM_AUDIO_PRIMARY_MAGIC 0x0400300120123456003001002ab
-#define SYSTEM_AUDIO_SECONDARY_MAGIC 0x0400300120123456003001002ab
-#define SYSTEM_MATERIAL_PRIMARY_MAGIC 0x042345600300102abcdef0
-#define SYSTEM_MATERIAL_SECONDARY_MAGIC 0x042345600300102abcdef0
-#define SYSTEM_MESH_PRIMARY_MAGIC 0x04345600300102abcdef01
-#define SYSTEM_MESH_SECONDARY_MAGIC 0x04345600300102abcdef01
-#define SYSTEM_TEXTURE_PRIMARY_MAGIC 0x0431d003c001d03c40035be2
-#define SYSTEM_SHADER_PRIMARY_MAGIC 0x04b2d003002e4030ee4e2c
-#define SYSTEM_SHADER_SECONDARY_MAGIC 0x02c552acd3ed554001d
-#define SYSTEM_ANIMATION_PRIMARY_MAGIC 0x0400200016ba001ab20011a003
-#define SYSTEM_ANIMATION_SECONDARY_MAGIC 0x0a00210021d34ad021060026
-#define SYSTEM_PHYSICS_PRIMARY_MAGIC 0x04456003001020abcdef12
-#define SYSTEM_PHYSICS_SECONDARY_MAGIC 0x064c215110002de0023a0
+#define SYSTEM_AUDIO_PRIMARY_ID 0x0400300120123456003001002ab
+#define SYSTEM_AUDIO_SECONDARY_ID 0x0400300120123456003001002ab
+#define SYSTEM_MATERIAL_PRIMARY_ID 0x042345600300102abcdef0
+#define SYSTEM_MATERIAL_SECONDARY_ID 0x042345600300102abcdef0
+#define SYSTEM_MESH_PRIMARY_ID 0x04345600300102abcdef01
+#define SYSTEM_MESH_SECONDARY_ID 0x04345600300102abcdef01
+#define SYSTEM_TEXTURE_PRIMARY_ID 0x0431d003c001d03c40035be2
+#define SYSTEM_SHADER_PRIMARY_ID 0x04b2d003002e4030ee4e2c
+#define SYSTEM_SHADER_SECONDARY_ID 0x02c552acd3ed554001d
+#define SYSTEM_ANIMATION_PRIMARY_ID 0x0400200016ba001ab20011a003
+#define SYSTEM_ANIMATION_SECONDARY_ID 0x0a00210021d34ad021060026
+#define SYSTEM_PHYSICS_PRIMARY_ID 0x04456003001020abcdef12
+#define SYSTEM_PHYSICS_SECONDARY_ID 0x064c215110002de0023a0
 #define SYSTEM_PARTICLE_PRIMARY_ID 0x0430014dcc4b6d3f41003
 #define SYSTEM_PARTICLE_SECONDARY_ID 0x022a15d52fe26003002bd
 #define SYSTEM_UI_PRIMARY_ID 0x041400020024454d56503
 #define SYSTEM_UI_SECONDARY_ID 0x03002002eced02bb551003ad
-#define SYSTEM_SCENE_PRIMARY_MAGIC 0x044002bafe002b03003ddd3c
-#define SYSTEM_SCENE_SECONDARY_MAGIC 0x0416040001bde00202e5002f
-#define SYSTEM_ENTITY_PRIMARY_MAGIC 0x045425dc10016a5d50035
-#define SYSTEM_ENTITY_SECONDARY_MAGIC 0x07ab4001faa6530012fa5
-#define SYSTEM_DATABASE_PRIMARY_MAGIC 0x0456003001020abcdef123
-#define SYSTEM_DATABASE_SECONDARY_MAGIC 0x011d53002e3361442002f
-#define SYSTEM_CACHE_PRIMARY_MAGIC 0x04e33c400103e6003a001f
-#define SYSTEM_CACHE_SECONDARY_MAGIC 0x0303a2002a00144ce302002
+#define SYSTEM_SCENE_PRIMARY_ID 0x044002bafe002b03003ddd3c
+#define SYSTEM_SCENE_SECONDARY_ID 0x0416040001bde00202e5002f
+#define SYSTEM_ENTITY_PRIMARY_ID 0x045425dc10016a5d50035
+#define SYSTEM_ENTITY_SECONDARY_ID 0x07ab4001faa6530012fa5
+#define SYSTEM_DATABASE_PRIMARY_ID 0x0456003001020abcdef123
+#define SYSTEM_DATABASE_SECONDARY_ID 0x011d53002e3361442002f
+#define SYSTEM_CACHE_PRIMARY_ID 0x04e33c400103e6003a001f
+#define SYSTEM_CACHE_SECONDARY_ID 0x0303a2002a00144ce302002
 
 /* 系统地址常量定义 */
 #define SYSTEM_AUDIO_DATA_START_ADDRESS 0x050000000
@@ -890,8 +890,8 @@
 #define SYSTEM_STATUS_ERROR 0x0FFFFFFFF
 
 /* 系统魔法值常量定义 */
-#define SYSTEM_PHYSICS_PRIMARY_MAGIC 0x046c54bc002001fc3fc2a
-#define SYSTEM_PHYSICS_SECONDARY_MAGIC 0x041ffd0b0036c1e40f
+#define SYSTEM_PHYSICS_PRIMARY_ID 0x046c54bc002001fc3fc2a
+#define SYSTEM_PHYSICS_SECONDARY_ID 0x041ffd0b0036c1e40f
 /*
  * 01_initialization.c - 系统初始化模块
  * 
@@ -1556,8 +1556,8 @@ void system_initialize_memory_manager(void)
     memory_parent_pointer = new_memory_pointer;
   }
   
-  memory_parent[6] = SYSTEM_MEMORY_MANAGER_MAGIC;
-  memory_parent[0x03] = SYSTEM_MEMORY_MANAGER_MAGIC_SECONDARY;
+  memory_parent[6] = SYSTEM_MEMORY_MANAGER_ID;
+  memory_parent[0x03] = SYSTEM_MEMORY_MANAGER_ID_SECONDARY;
   memory_parent[0x01] = &memory_resource_id;
   memory_parent_pointer[0x02] = 0;
   memory_parent_pointer[10] = memory_allocator_function;
@@ -1636,8 +1636,8 @@ void system_initialize_thread_pool(void)
     thread_parent = thread_temp;
   }
   
-  thread_parent[6] = SYSTEM_THREAD_POOL_MAGIC;
-  thread_parent[0x03] = SYSTEM_THREAD_POOL_MAGIC_SECONDARY;
+  thread_parent[6] = SYSTEM_THREAD_POOL_ID;
+  thread_parent[0x03] = SYSTEM_THREAD_POOL_ID_SECONDARY;
   thread_parent[0x01] = &system_handler_database;
   thread_parent[0x02] = 1;
   thread_parent[10] = thread_init_flag;
@@ -1717,8 +1717,8 @@ void system_initialize_resource_manager(void)
     resource_parent = new_resource;
   }
   
-  resource_parent[6] = SYSTEM_RESOURCE_MANAGER_MAGIC;
-  resource_parent[0x03] = SYSTEM_RESOURCE_MANAGER_MAGIC_SECONDARY;
+  resource_parent[6] = SYSTEM_RESOURCE_MANAGER_ID;
+  resource_parent[0x03] = SYSTEM_RESOURCE_MANAGER_ID_SECONDARY;
   resource_parent[0x01] = &system_handler_config;
   resource_parent[0x02] = 0;
   resource_parent[10] = init_flag;
@@ -1808,8 +1808,8 @@ void system_initialize_callback_system(void)
     system_initialize_resource_block(global_global_context_ptr,&new_callback_pointer,callback_parent_node,callback_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,callback_resource_id);
     callback_parent_node = new_callback_pointer;
   }
-  callback_parent_node[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  callback_parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
+  callback_parent_node[6] = SYSTEM_CALLBACK_SYSTEM_ID;
+  callback_parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ID_ALTERNATIVE;
   callback_parent_node[0x01] = &system_handler_state;
   callback_parent_node[0x02] = 0;
   callback_parent_node[10] = component_initialization_flag_temp;
@@ -1899,8 +1899,8 @@ void system_initialize_event_system(void)
     system_initialize_resource_block(global_global_context_ptr,&new_event_pointer,event_parent_node,event_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,event_resource_id);
     event_parent_node = new_event_pointer;
   }
-  event_parent_node[6] = SYSTEM_EVENT_SYSTEM_MAGIC;
-  event_parent_node[0x03] = SYSTEM_EVENT_SYSTEM_MAGIC_SECONDARY;
+  event_parent_node[6] = SYSTEM_EVENT_SYSTEM_ID;
+  event_parent_node[0x03] = SYSTEM_EVENT_SYSTEM_ID_SECONDARY;
   event_parent_node[0x01] = &system_handler_status;
   event_parent_node[0x02] = 0;
   event_parent_node[10] = component_initialization_flag_temp;
@@ -1972,8 +1972,8 @@ void system_initialize_message_queue(void)
     system_initialize_resource_block(global_global_context_ptr,&new_message_pointer,message_parent_node,message_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,message_resource_id);
     message_parent_node = new_message_pointer;
   }
-  message_parent_node[6] = SYSTEM_MESSAGE_QUEUE_MAGIC;
-  message_parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_MAGIC_SECONDARY;
+  message_parent_node[6] = SYSTEM_MESSAGE_QUEUE_ID;
+  message_parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_ID_SECONDARY;
   message_parent_node[0x01] = &system_handler_control;
   message_parent_node[0x02] = 3;
   message_parent_node[10] = component_initialization_flag_temp;
@@ -2045,8 +2045,8 @@ void system_initialize_signal_handler(void)
     system_initialize_resource_block(global_global_context_ptr,&new_signal_pointer,signal_parent_node,signal_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,signal_resource_id);
     signal_parent_node = new_signal_pointer;
   }
-  signal_parent_node[6] = SYSTEM_SIGNAL_HANDLER_MAGIC;
-  signal_parent_node[0x03] = SYSTEM_SIGNAL_HANDLER_MAGIC_SECONDARY;
+  signal_parent_node[6] = SYSTEM_SIGNAL_HANDLER_ID;
+  signal_parent_node[0x03] = SYSTEM_SIGNAL_HANDLER_ID_SECONDARY;
   signal_parent_node[0x01] = &system_handler_manager;
   signal_parent_node[0x02] = 3;
   signal_parent_node[10] = component_initialization_flag_temp;
@@ -2118,8 +2118,8 @@ void system_initialize_interrupt_handler(void)
     system_initialize_resource_block(global_global_context_ptr,&new_interrupt_pointer,interrupt_parent_node,interrupt_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,interrupt_resource_id);
     interrupt_parent_node = new_interrupt_pointer;
   }
-  interrupt_parent_node[6] = SYSTEM_INTERRUPT_HANDLER_MAGIC;
-  interrupt_parent_node[0x03] = SYSTEM_INTERRUPT_HANDLER_MAGIC_SECONDARY;
+  interrupt_parent_node[6] = SYSTEM_INTERRUPT_HANDLER_ID;
+  interrupt_parent_node[0x03] = SYSTEM_INTERRUPT_HANDLER_ID_SECONDARY;
   interrupt_parent_node[0x01] = &system_handler_context;
   interrupt_parent_node[0x02] = 0;
   interrupt_parent_node[10] = component_initialization_flag_temp;
@@ -2190,8 +2190,8 @@ void system_initialize_security_system(void)
     system_initialize_resource_block(global_global_context_ptr,&new_security_pointer,security_parent_node,security_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,security_resource_id);
     security_parent_node = new_security_pointer;
   }
-  security_parent_node[6] = SYSTEM_SECURITY_SYSTEM_MAGIC;
-  security_parent_node[0x03] = SYSTEM_SECURITY_SYSTEM_MAGIC_SECONDARY;
+  security_parent_node[6] = SYSTEM_SECURITY_SYSTEM_ID;
+  security_parent_node[0x03] = SYSTEM_SECURITY_SYSTEM_ID_SECONDARY;
   security_parent_node[0x01] = &system_handler_buffer;
   security_parent_node[0x02] = 0;
   security_parent_node[10] = security_allocator_pointer;
@@ -2269,8 +2269,8 @@ void system_initialize_config_loader(void)
     system_initialize_resource_block(global_global_context_ptr,&new_config_pointer,config_parent_node,config_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,config_resource_id);
     config_parent_node = new_config_pointer;
   }
-  config_parent_node[6] = SYSTEM_CONFIG_LOADER_MAGIC;
-  config_parent_node[0x03] = SYSTEM_CONFIG_LOADER_MAGIC_SECONDARY;
+  config_parent_node[6] = SYSTEM_CONFIG_LOADER_ID;
+  config_parent_node[0x03] = SYSTEM_CONFIG_LOADER_ID_SECONDARY;
   config_parent_node[0x01] = &system_handler_resource;
   config_parent_node[0x02] = 1;
   config_parent_node[10] = component_initialization_flag_temp;
@@ -2523,8 +2523,8 @@ void system_initialize_graphics_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_AUDIO_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_AUDIO_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_AUDIO_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_AUDIO_SECONDARY_ID;
   parent_node[0x01] = &system_cache_manager;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -2586,8 +2586,8 @@ void system_initialize_audio_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MATERIAL_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MATERIAL_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MATERIAL_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MATERIAL_SECONDARY_ID;
   parent_node[0x01] = &system_cache_config;
   parent_node[0x02] = 3;
   parent_node[10] = allocator_pointer;
@@ -2708,8 +2708,8 @@ void system_initialize_ui_system(void)
     system_initialize_resource_block(global_context_ptr, &temp_node, parent_node, resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET, resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -2765,8 +2765,8 @@ void system_initialize_physics_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -2822,8 +2822,8 @@ void system_initialize_animation_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -2871,8 +2871,8 @@ void system_initialize_particle_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -3067,8 +3067,8 @@ void system_initialize_shader_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SCENE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SCENE_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SCENE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SCENE_SECONDARY_ID;
   parent_node[0x01] = &system_resource_collector;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -3116,8 +3116,8 @@ void system_initialize_texture_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ENTITY_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ENTITY_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_ID;
   parent_node[0x01] = &system_resource_cleaner;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -3165,8 +3165,8 @@ void system_initialize_mesh_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_AUDIO_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_AUDIO_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_AUDIO_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_AUDIO_SECONDARY_ID;
   parent_node[0x01] = &system_cache_manager;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -3214,8 +3214,8 @@ void system_initialize_material_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MATERIAL_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MATERIAL_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MATERIAL_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MATERIAL_SECONDARY_ID;
   parent_node[0x01] = &system_cache_config;
   parent_node[0x02] = 3;
   parent_node[10] = allocator_pointer;
@@ -3355,8 +3355,8 @@ void system_setup_buffer_manager(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CACHE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_CACHE_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_CACHE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_CACHE_SECONDARY_ID;
   parent_node[0x01] = &system_resource_optimizer;
   parent_node[0x02] = 3;
   parent_node[10] = allocator_pointer;
@@ -3415,7 +3415,7 @@ void system_initialize_database(void)
   system_thread_global_context_ptr = &system_thread_context_workeronfig;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
-  system_context_identifier = SYSTEM_STACK_UINT_INITIAL_VALUE;
+  system_context_identifier = SYSTEM_STACK_INITIAL_VALUE;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_network_config_path,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
   system_runtime_data_0x010026c = system_create_thread_context(&system_thread_global_context_ptr);
   return;
@@ -3460,8 +3460,8 @@ void system_setup_database_tables(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -3507,8 +3507,8 @@ void system_initialize_query_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -3554,8 +3554,8 @@ void system_setup_transaction_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -3601,8 +3601,8 @@ void system_initialize_cache_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -3822,8 +3822,8 @@ void system_initialize_filesystem(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -3895,8 +3895,8 @@ void system_initialize_resource_pool(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -4128,8 +4128,8 @@ void system_initialize_interrupt_pool(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ENTITY_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ENTITY_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_ID;
   parent_node[0x01] = &system_resource_cleaner;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -4311,8 +4311,8 @@ void system_create_memory_pool_stage_2(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CACHE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_CACHE_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_CACHE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_CACHE_SECONDARY_ID;
   parent_node[0x01] = &system_resource_optimizer;
   parent_node[0x02] = 3;
   parent_node[10] = allocator_pointer;
@@ -4358,8 +4358,8 @@ void system_create_memory_pool_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -4405,8 +4405,8 @@ void system_create_memory_pool_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -4452,8 +4452,8 @@ void system_create_memory_pool_stage_5(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -4504,8 +4504,8 @@ void system_initialize_resource_manager_stage_1(void)
     system_initialize_resource_block(global_global_context_ptr,&new_animation_pointer,animation_parent_node,animation_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,animation_resource_id);
     animation_parent_node = new_animation_pointer;
   }
-  animation_parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  animation_parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  animation_parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  animation_parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   animation_parent_node[0x01] = &animation_resource_id;
   animation_parent_node[0x02] = 0;
   animation_parent_node[10] = ui_allocator_pointer;
@@ -4712,8 +4712,8 @@ void system_initialize_resource_manager_stage_5(void)
     system_initialize_resource_block(global_global_context_ptr,&new_mesh_pointer,mesh_parent_node,mesh_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,mesh_resource_id);
     mesh_parent_node = new_mesh_pointer;
   }
-  mesh_parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  mesh_parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  mesh_parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  mesh_parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   mesh_parent_node[0x01] = &system_resource_loader;
   mesh_parent_node[0x02] = 1;
   mesh_parent_node[10] = network_allocator_pointer;
@@ -4757,8 +4757,8 @@ void system_initialize_network_system_stage_1(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -4802,8 +4802,8 @@ void system_initialize_network_system_stage_2(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -4847,8 +4847,8 @@ void system_initialize_network_system_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -5010,7 +5010,7 @@ void system_initialize_graphics_system_stage_2(void)
       system_temp_uint_value = system_audio_status;
       audio_data_context = audio_data_context;
       do {
-        audio_volume_value = SYSTEM_FLOAT_ZERO_VALUE;
+        audio_volume_value = SYSTEM_FLOAT_ZERO;
         if (-1 < (longlong)system_temp_uint_value) {
           if ((longlong)system_temp_uint_value < 3) {
             audio_volume_value = 0.0x035;
@@ -5077,8 +5077,8 @@ void system_initialize_graphics_system_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ENTITY_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ENTITY_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_ID;
   parent_node[0x01] = &system_resource_cleaner;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -5122,8 +5122,8 @@ void system_initialize_graphics_system_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SCENE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SCENE_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SCENE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SCENE_SECONDARY_ID;
   parent_node[0x01] = &system_resource_collector;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -5167,8 +5167,8 @@ void system_initialize_graphics_system_stage_5(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_AUDIO_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_AUDIO_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_AUDIO_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_AUDIO_SECONDARY_ID;
   parent_node[0x01] = &system_cache_manager;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -5212,8 +5212,8 @@ void system_initialize_audio_system_stage_1(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MATERIAL_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MATERIAL_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MATERIAL_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MATERIAL_SECONDARY_ID;
   parent_node[0x01] = &system_cache_config;
   parent_node[0x02] = 3;
   parent_node[10] = allocator_pointer;
@@ -5257,8 +5257,8 @@ void system_initialize_audio_system_stage_2(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -5302,8 +5302,8 @@ void system_initialize_audio_system_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -5347,8 +5347,8 @@ void system_initialize_audio_system_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -5392,8 +5392,8 @@ void system_initialize_audio_system_stage_5(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -5617,8 +5617,8 @@ void system_initialize_ui_system_stage_5(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CACHE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_CACHE_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_CACHE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_CACHE_SECONDARY_ID;
   parent_node[0x01] = &system_resource_optimizer;
   parent_node[0x02] = 3;
   parent_node[10] = allocator_pointer;
@@ -5662,8 +5662,8 @@ void system_initialize_database_stage_1(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -5707,8 +5707,8 @@ void system_initialize_database_stage_2(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -5752,8 +5752,8 @@ void system_initialize_database_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -5797,8 +5797,8 @@ void system_initialize_database_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -5977,8 +5977,8 @@ void system_initialize_security_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SCENE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SCENE_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SCENE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SCENE_SECONDARY_ID;
   parent_node[0x01] = &system_resource_collector;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -6022,8 +6022,8 @@ void system_initialize_security_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ENTITY_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ENTITY_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_ID;
   parent_node[0x01] = &system_resource_cleaner;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -6112,8 +6112,8 @@ void system_initialize_config_system_stage_1(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CACHE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_CACHE_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_CACHE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_CACHE_SECONDARY_ID;
   parent_node[0x01] = &system_resource_optimizer;
   parent_node[0x02] = 3;
   parent_node[10] = allocator_pointer;
@@ -6202,8 +6202,8 @@ void system_initialize_config_system_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -6247,8 +6247,8 @@ void system_initialize_config_system_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -6292,8 +6292,8 @@ void system_initialize_config_system_stage_5(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -6337,8 +6337,8 @@ void system_initialize_event_system_stage_1(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -6584,8 +6584,8 @@ void system_initialize_thread_management_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -6629,8 +6629,8 @@ void system_initialize_thread_management_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -6674,8 +6674,8 @@ void system_initialize_thread_management_stage_5(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -6719,8 +6719,8 @@ void system_initialize_memory_management_stage_1(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -6963,8 +6963,8 @@ void system_initialize_resource_management_stage_2(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MEMORY_MANAGER_MAGIC;
-  parent_node[0x03] = SYSTEM_MEMORY_MANAGER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_MEMORY_MANAGER_ID;
+  parent_node[0x03] = SYSTEM_MEMORY_MANAGER_ID_SECONDARY;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -7008,8 +7008,8 @@ void system_initialize_resource_management_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_THREAD_POOL_MAGIC;
-  parent_node[0x03] = SYSTEM_THREAD_POOL_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_THREAD_POOL_ID;
+  parent_node[0x03] = SYSTEM_THREAD_POOL_ID_SECONDARY;
   parent_node[0x01] = &system_handler_database;
   parent_node[0x02] = 1;
   parent_node[10] = init_flag;
@@ -7053,8 +7053,8 @@ void system_initialize_resource_management_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_RESOURCE_MANAGER_MAGIC;
-  parent_node[0x03] = SYSTEM_RESOURCE_MANAGER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_RESOURCE_MANAGER_ID;
+  parent_node[0x03] = SYSTEM_RESOURCE_MANAGER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_config;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -7098,8 +7098,8 @@ void system_initialize_resource_management_stage_5(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
+  parent_node[6] = SYSTEM_CALLBACK_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ID_ALTERNATIVE;
   parent_node[0x01] = &system_handler_state;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -7143,8 +7143,8 @@ void system_initialize_network_management_stage_1(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_EVENT_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_EVENT_SYSTEM_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_EVENT_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_EVENT_SYSTEM_ID_SECONDARY;
   parent_node[0x01] = &system_handler_status;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -7188,8 +7188,8 @@ void system_initialize_network_management_stage_2(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESSAGE_QUEUE_MAGIC;
-  parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_MESSAGE_QUEUE_ID;
+  parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_ID_SECONDARY;
   parent_node[0x01] = &system_handler_control;
   parent_node[0x02] = 3;
   parent_node[10] = init_flag;
@@ -7233,8 +7233,8 @@ void system_initialize_network_management_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SIGNAL_HANDLER_MAGIC;
-  parent_node[0x03] = SYSTEM_SIGNAL_HANDLER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_SIGNAL_HANDLER_ID;
+  parent_node[0x03] = SYSTEM_SIGNAL_HANDLER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_manager;
   parent_node[0x02] = 3;
   parent_node[10] = init_flag;
@@ -7278,8 +7278,8 @@ void system_initialize_network_management_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_INTERRUPT_HANDLER_MAGIC;
-  parent_node[0x03] = SYSTEM_INTERRUPT_HANDLER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_INTERRUPT_HANDLER_ID;
+  parent_node[0x03] = SYSTEM_INTERRUPT_HANDLER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_context;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -7323,8 +7323,8 @@ void system_initialize_network_management_stage_5(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SECURITY_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUEec25de30023b003afa6;
+  parent_node[6] = SYSTEM_SECURITY_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUEec25de30023b003afa6;
   parent_node[0x01] = &system_handler_buffer;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -7368,8 +7368,8 @@ void system_initialize_graphics_management_stage_1(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CONFIG_LOADER_MAGIC;
-  parent_node[0x03] = SYSTEM_CONFIG_LOADER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_CONFIG_LOADER_ID;
+  parent_node[0x03] = SYSTEM_CONFIG_LOADER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_resource;
   parent_node[0x02] = 1;
   parent_node[10] = init_flag;
@@ -7413,8 +7413,8 @@ void system_initialize_graphics_management_stage_2(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ENTITY_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ENTITY_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_ID;
   parent_node[0x01] = &system_resource_cleaner;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -7472,7 +7472,7 @@ void system_initialize_graphics_management_stage_5(void)
   system_thread_global_context_ptr = &system_thread_context_workeronfig;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
-  system_context_identifier = SYSTEM_STACK_UINT_INITIAL_VALUE;
+  system_context_identifier = SYSTEM_STACK_INITIAL_VALUE;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_0x014003,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
   system_thread_context_main = system_create_thread_context(&system_thread_global_context_ptr);
   return;
@@ -7629,8 +7629,8 @@ void system_initialize_ui_management_stage_2(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -7674,8 +7674,8 @@ void system_initialize_ui_management_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -7719,8 +7719,8 @@ void system_initialize_ui_management_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -7764,8 +7764,8 @@ void system_initialize_ui_management_stage_5(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -7944,8 +7944,8 @@ void system_initialize_database_management_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -7989,8 +7989,8 @@ void system_initialize_database_management_stage_5(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -8034,8 +8034,8 @@ void system_initialize_security_management_stage_1(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -8079,8 +8079,8 @@ void system_initialize_security_management_stage_2(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -8259,8 +8259,8 @@ void system_initialize_config_management_stage_1(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -8304,8 +8304,8 @@ void system_initialize_config_management_stage_2(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -8349,8 +8349,8 @@ void system_initialize_config_management_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -8394,8 +8394,8 @@ void system_initialize_config_management_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -8574,8 +8574,8 @@ void system_initialize_event_management_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -8619,8 +8619,8 @@ void system_initialize_event_management_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -8664,8 +8664,8 @@ void system_initialize_event_management_stage_5(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -8709,8 +8709,8 @@ void system_initialize_system_core_stage_1(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -8889,8 +8889,8 @@ void system_initialize_system_core_stage_5(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MEMORY_MANAGER_MAGIC;
-  parent_node[0x03] = SYSTEM_MEMORY_MANAGER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_MEMORY_MANAGER_ID;
+  parent_node[0x03] = SYSTEM_MEMORY_MANAGER_ID_SECONDARY;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -8934,8 +8934,8 @@ void system_initialize_system_components_stage_1(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_THREAD_POOL_MAGIC;
-  parent_node[0x03] = SYSTEM_THREAD_POOL_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_THREAD_POOL_ID;
+  parent_node[0x03] = SYSTEM_THREAD_POOL_ID_SECONDARY;
   parent_node[0x01] = &system_handler_database;
   parent_node[0x02] = 1;
   parent_node[10] = init_flag;
@@ -8979,8 +8979,8 @@ void system_initialize_system_components_stage_2(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_RESOURCE_MANAGER_MAGIC;
-  parent_node[0x03] = SYSTEM_RESOURCE_MANAGER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_RESOURCE_MANAGER_ID;
+  parent_node[0x03] = SYSTEM_RESOURCE_MANAGER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_config;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -9024,8 +9024,8 @@ void system_initialize_system_components_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
+  parent_node[6] = SYSTEM_CALLBACK_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ID_ALTERNATIVE;
   parent_node[0x01] = &system_handler_state;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -9069,8 +9069,8 @@ void system_initialize_system_components_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_EVENT_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_EVENT_SYSTEM_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_EVENT_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_EVENT_SYSTEM_ID_SECONDARY;
   parent_node[0x01] = &system_handler_status;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -9114,8 +9114,8 @@ void system_initialize_system_components_stage_5(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESSAGE_QUEUE_MAGIC;
-  parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_MESSAGE_QUEUE_ID;
+  parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_ID_SECONDARY;
   parent_node[0x01] = &system_handler_control;
   parent_node[0x02] = 3;
   parent_node[10] = init_flag;
@@ -9159,8 +9159,8 @@ void system_initialize_system_services_stage_1(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SIGNAL_HANDLER_MAGIC;
-  parent_node[0x03] = SYSTEM_SIGNAL_HANDLER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_SIGNAL_HANDLER_ID;
+  parent_node[0x03] = SYSTEM_SIGNAL_HANDLER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_manager;
   parent_node[0x02] = 3;
   parent_node[10] = init_flag;
@@ -9204,8 +9204,8 @@ void system_initialize_system_services_stage_2(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_INTERRUPT_HANDLER_MAGIC;
-  parent_node[0x03] = SYSTEM_INTERRUPT_HANDLER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_INTERRUPT_HANDLER_ID;
+  parent_node[0x03] = SYSTEM_INTERRUPT_HANDLER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_context;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -9249,8 +9249,8 @@ void system_initialize_system_services_stage_3(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SECURITY_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUEec25de30023b003afa6;
+  parent_node[6] = SYSTEM_SECURITY_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUEec25de30023b003afa6;
   parent_node[0x01] = &system_handler_buffer;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -9294,8 +9294,8 @@ void system_initialize_system_services_stage_4(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CONFIG_LOADER_MAGIC;
-  parent_node[0x03] = SYSTEM_CONFIG_LOADER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_CONFIG_LOADER_ID;
+  parent_node[0x03] = SYSTEM_CONFIG_LOADER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_resource;
   parent_node[0x02] = 1;
   parent_node[10] = init_flag;
@@ -9370,8 +9370,8 @@ void system_setup_rendering_pipeline(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MEMORY_MANAGER_MAGIC;
-  parent_node[0x03] = SYSTEM_MEMORY_MANAGER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_MEMORY_MANAGER_ID;
+  parent_node[0x03] = SYSTEM_MEMORY_MANAGER_ID_SECONDARY;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -9415,8 +9415,8 @@ void system_setup_audio_pipeline(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_THREAD_POOL_MAGIC;
-  parent_node[0x03] = SYSTEM_THREAD_POOL_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_THREAD_POOL_ID;
+  parent_node[0x03] = SYSTEM_THREAD_POOL_ID_SECONDARY;
   parent_node[0x01] = &system_handler_database;
   parent_node[0x02] = 1;
   parent_node[10] = init_flag;
@@ -9460,8 +9460,8 @@ void system_setup_network_pipeline(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_RESOURCE_MANAGER_MAGIC;
-  parent_node[0x03] = SYSTEM_RESOURCE_MANAGER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_RESOURCE_MANAGER_ID;
+  parent_node[0x03] = SYSTEM_RESOURCE_MANAGER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_config;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -9505,8 +9505,8 @@ void system_setup_input_pipeline(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
+  parent_node[6] = SYSTEM_CALLBACK_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ID_ALTERNATIVE;
   parent_node[0x01] = &system_handler_state;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -9550,8 +9550,8 @@ void system_setup_resource_pipeline(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_EVENT_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_EVENT_SYSTEM_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_EVENT_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_EVENT_SYSTEM_ID_SECONDARY;
   parent_node[0x01] = &system_handler_status;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -9595,8 +9595,8 @@ void system_setup_memory_pipeline(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESSAGE_QUEUE_MAGIC;
-  parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_MESSAGE_QUEUE_ID;
+  parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_ID_SECONDARY;
   parent_node[0x01] = &system_handler_control;
   parent_node[0x02] = 3;
   parent_node[10] = init_flag;
@@ -9640,8 +9640,8 @@ void system_setup_thread_pipeline(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SIGNAL_HANDLER_MAGIC;
-  parent_node[0x03] = SYSTEM_SIGNAL_HANDLER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_SIGNAL_HANDLER_ID;
+  parent_node[0x03] = SYSTEM_SIGNAL_HANDLER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_manager;
   parent_node[0x02] = 3;
   parent_node[10] = init_flag;
@@ -9685,8 +9685,8 @@ void system_setup_event_pipeline(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_INTERRUPT_HANDLER_MAGIC;
-  parent_node[0x03] = SYSTEM_INTERRUPT_HANDLER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_INTERRUPT_HANDLER_ID;
+  parent_node[0x03] = SYSTEM_INTERRUPT_HANDLER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_context;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -9730,8 +9730,8 @@ void system_setup_ui_pipeline(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SECURITY_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUEec25de30023b003afa6;
+  parent_node[6] = SYSTEM_SECURITY_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUEec25de30023b003afa6;
   parent_node[0x01] = &system_handler_buffer;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -9775,8 +9775,8 @@ void system_setup_physics_pipeline(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CONFIG_LOADER_MAGIC;
-  parent_node[0x03] = SYSTEM_CONFIG_LOADER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_CONFIG_LOADER_ID;
+  parent_node[0x03] = SYSTEM_CONFIG_LOADER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_resource;
   parent_node[0x02] = 1;
   parent_node[10] = init_flag;
@@ -9858,8 +9858,8 @@ void system_setup_script_pipeline(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -9903,8 +9903,8 @@ void system_validate_rendering_config(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -9948,8 +9948,8 @@ void system_validate_audio_config(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -9993,8 +9993,8 @@ void system_validate_network_config(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -10185,8 +10185,8 @@ void system_cleanup_rendering_resources(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ENTITY_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ENTITY_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_ID;
   parent_node[0x01] = &system_resource_cleaner;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -10230,8 +10230,8 @@ void system_cleanup_audio_resources(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -10275,8 +10275,8 @@ void system_cleanup_network_resources(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -10320,8 +10320,8 @@ void system_cleanup_input_resources(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -10365,8 +10365,8 @@ void system_cleanup_resource_cache(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -10545,8 +10545,8 @@ void system_cleanup_ui_resources(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -10590,8 +10590,8 @@ void system_cleanup_physics_resources(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -10635,8 +10635,8 @@ void system_cleanup_animation_resources(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -10680,8 +10680,8 @@ void system_cleanup_ai_resources(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -10938,8 +10938,8 @@ void system_configure_audio_output(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MEMORY_MANAGER_MAGIC;
-  parent_node[0x03] = SYSTEM_MEMORY_MANAGER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_MEMORY_MANAGER_ID;
+  parent_node[0x03] = SYSTEM_MEMORY_MANAGER_ID_SECONDARY;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -10983,8 +10983,8 @@ void system_setup_audio_stream(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_THREAD_POOL_MAGIC;
-  parent_node[0x03] = SYSTEM_THREAD_POOL_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_THREAD_POOL_ID;
+  parent_node[0x03] = SYSTEM_THREAD_POOL_ID_SECONDARY;
   parent_node[0x01] = &system_handler_database;
   parent_node[0x02] = 1;
   parent_node[10] = init_flag;
@@ -11028,8 +11028,8 @@ void system_initialize_audio_buffer(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_RESOURCE_MANAGER_MAGIC;
-  parent_node[0x03] = SYSTEM_RESOURCE_MANAGER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_RESOURCE_MANAGER_ID;
+  parent_node[0x03] = SYSTEM_RESOURCE_MANAGER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_config;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -11073,8 +11073,8 @@ void system_create_audio_context(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
+  parent_node[6] = SYSTEM_CALLBACK_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ID_ALTERNATIVE;
   parent_node[0x01] = &system_handler_state;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -11118,8 +11118,8 @@ void system_prepare_audio_device(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_EVENT_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_EVENT_SYSTEM_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_EVENT_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_EVENT_SYSTEM_ID_SECONDARY;
   parent_node[0x01] = &system_handler_status;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -11163,8 +11163,8 @@ void system_enable_audio_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESSAGE_QUEUE_MAGIC;
-  parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_MESSAGE_QUEUE_ID;
+  parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_ID_SECONDARY;
   parent_node[0x01] = &system_handler_control;
   parent_node[0x02] = 3;
   parent_node[10] = init_flag;
@@ -11208,8 +11208,8 @@ void system_start_audio_service(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SIGNAL_HANDLER_MAGIC;
-  parent_node[0x03] = SYSTEM_SIGNAL_HANDLER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_SIGNAL_HANDLER_ID;
+  parent_node[0x03] = SYSTEM_SIGNAL_HANDLER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_manager;
   parent_node[0x02] = 3;
   parent_node[10] = init_flag;
@@ -11253,8 +11253,8 @@ void system_activate_audio_channel(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_INTERRUPT_HANDLER_MAGIC;
-  parent_node[0x03] = SYSTEM_INTERRUPT_HANDLER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_INTERRUPT_HANDLER_ID;
+  parent_node[0x03] = SYSTEM_INTERRUPT_HANDLER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_context;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -11298,8 +11298,8 @@ void system_configure_audio_mixer(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SECURITY_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUEec25de30023b003afa6;
+  parent_node[6] = SYSTEM_SECURITY_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUEec25de30023b003afa6;
   parent_node[0x01] = &system_handler_buffer;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -11343,8 +11343,8 @@ void system_initialize_audio_effects(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CONFIG_LOADER_MAGIC;
-  parent_node[0x03] = SYSTEM_CONFIG_LOADER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_CONFIG_LOADER_ID;
+  parent_node[0x03] = SYSTEM_CONFIG_LOADER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_resource;
   parent_node[0x02] = 1;
   parent_node[10] = init_flag;
@@ -11476,7 +11476,7 @@ void system_initialize_video_config(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_PHYSICS_PRIMARY_MAGIC;
+  parent_node[6] = SYSTEM_PHYSICS_PRIMARY_ID;
   parent_node[0x03] = 0x032003b256e3af0405015;
   parent_node[0x01] = &system_data_resource_pool_base6;
   parent_node[0x02] = 2;
@@ -11566,8 +11566,8 @@ void system_configure_graphics_adapter(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MEMORY_MANAGER_MAGIC;
-  parent_node[0x03] = SYSTEM_MEMORY_MANAGER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_MEMORY_MANAGER_ID;
+  parent_node[0x03] = SYSTEM_MEMORY_MANAGER_ID_SECONDARY;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -11612,8 +11612,8 @@ void system_create_display_surface(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
+  parent_node[6] = SYSTEM_CALLBACK_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ID_ALTERNATIVE;
   parent_node[0x01] = &system_handler_state;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -11657,8 +11657,8 @@ void system_configure_viewport(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_EVENT_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_EVENT_SYSTEM_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_EVENT_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_EVENT_SYSTEM_ID_SECONDARY;
   parent_node[0x01] = &system_handler_status;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -11702,8 +11702,8 @@ void system_setup_projection_matrix(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESSAGE_QUEUE_MAGIC;
-  parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_MESSAGE_QUEUE_ID;
+  parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_ID_SECONDARY;
   parent_node[0x01] = &system_handler_control;
   parent_node[0x02] = 3;
   parent_node[10] = init_flag;
@@ -11748,8 +11748,8 @@ void system_setup_shader_pipeline(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SECURITY_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUEec25de30023b003afa6;
+  parent_node[6] = SYSTEM_SECURITY_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUEec25de30023b003afa6;
   parent_node[0x01] = &system_handler_buffer;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -11793,8 +11793,8 @@ void system_initialize_texture_manager(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CONFIG_LOADER_MAGIC;
-  parent_node[0x03] = SYSTEM_CONFIG_LOADER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_CONFIG_LOADER_ID;
+  parent_node[0x03] = SYSTEM_CONFIG_LOADER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_resource;
   parent_node[0x02] = 1;
   parent_node[10] = init_flag;
@@ -11838,7 +11838,7 @@ void system_create_geometry_buffer(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_PHYSICS_PRIMARY_MAGIC;
+  parent_node[6] = SYSTEM_PHYSICS_PRIMARY_ID;
   parent_node[0x03] = 0x032003b256e3af0405015;
   parent_node[0x01] = &system_data_resource_pool_base6;
   parent_node[0x02] = 2;
@@ -11928,8 +11928,8 @@ void system_configure_index_buffer(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ENTITY_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ENTITY_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ENTITY_SECONDARY_ID;
   parent_node[0x01] = &system_resource_cleaner;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -11973,8 +11973,8 @@ void system_initialize_uniform_blocks(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SCENE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SCENE_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SCENE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SCENE_SECONDARY_ID;
   parent_node[0x01] = &system_resource_collector;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -12018,8 +12018,8 @@ void system_setup_shader_programs(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_AUDIO_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_AUDIO_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_AUDIO_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_AUDIO_SECONDARY_ID;
   parent_node[0x01] = &system_cache_manager;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -12063,8 +12063,8 @@ void system_configure_render_states(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MATERIAL_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MATERIAL_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MATERIAL_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MATERIAL_SECONDARY_ID;
   parent_node[0x01] = &system_cache_config;
   parent_node[0x02] = 3;
   parent_node[10] = allocator_pointer;
@@ -12108,8 +12108,8 @@ void system_initialize_frame_buffer(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESH_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_MESH_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_MESH_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_MESH_SECONDARY_ID;
   parent_node[0x01] = &system_resource_loader;
   parent_node[0x02] = 1;
   parent_node[10] = allocator_pointer;
@@ -12153,8 +12153,8 @@ void system_setup_depth_buffer(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_STACK_UINT_INITIAL_VALUE2003f04001d2153e1b0;
+  parent_node[6] = SYSTEM_TEXTURE_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_STACK_INITIAL_VALUE2003f04001d2153e1b0;
   parent_node[0x01] = &system_audio_resource_cache;
   parent_node[0x02] = 4;
   parent_node[10] = allocator_pointer;
@@ -12198,8 +12198,8 @@ void system_configure_stencil_buffer(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_SHADER_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_SHADER_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_SHADER_SECONDARY_ID;
   parent_node[0x01] = &system_resource_manager;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -12243,8 +12243,8 @@ void system_initialize_color_buffer(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_MAGIC;
-  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_MAGIC;
+  parent_node[6] = SYSTEM_ANIMATION_PRIMARY_ID;
+  parent_node[0x03] = SYSTEM_ANIMATION_SECONDARY_ID;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -12468,7 +12468,7 @@ void system_configure_effect_chain(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_PHYSICS_PRIMARY_MAGIC;
+  parent_node[6] = SYSTEM_PHYSICS_PRIMARY_ID;
   parent_node[0x03] = 0x032003b256e3af0405015;
   parent_node[0x01] = &system_data_resource_pool_base6;
   parent_node[0x02] = 2;
@@ -12598,7 +12598,7 @@ void system_validate_render_system(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_PHYSICS_PRIMARY_MAGIC;
+  parent_node[6] = SYSTEM_PHYSICS_PRIMARY_ID;
   parent_node[0x03] = 0x032003b256e3af0405015;
   parent_node[0x01] = &system_data_resource_pool_base6;
   parent_node[0x02] = 2;
@@ -12688,7 +12688,7 @@ void system_query_graphics_capability(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_PHYSICS_PRIMARY_MAGIC;
+  parent_node[6] = SYSTEM_PHYSICS_PRIMARY_ID;
   parent_node[0x03] = 0x032003b256e3af0405015;
   parent_node[0x01] = &system_data_resource_pool_base6;
   parent_node[0x02] = 2;
@@ -12876,8 +12876,8 @@ void system_initialize_network_manager(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MEMORY_MANAGER_MAGIC;
-  parent_node[0x03] = SYSTEM_MEMORY_MANAGER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_MEMORY_MANAGER_ID;
+  parent_node[0x03] = SYSTEM_MEMORY_MANAGER_ID_SECONDARY;
   parent_node[0x01] = &resource_id;
   parent_node[0x02] = 0;
   parent_node[10] = allocator_pointer;
@@ -12921,8 +12921,8 @@ void system_initialize_socket_manager(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_THREAD_POOL_MAGIC;
-  parent_node[0x03] = SYSTEM_THREAD_POOL_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_THREAD_POOL_ID;
+  parent_node[0x03] = SYSTEM_THREAD_POOL_ID_SECONDARY;
   parent_node[0x01] = &system_handler_database;
   parent_node[0x02] = 1;
   parent_node[10] = init_flag;
@@ -12966,8 +12966,8 @@ void system_initialize_protocol_handler(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_RESOURCE_MANAGER_MAGIC;
-  parent_node[0x03] = SYSTEM_RESOURCE_MANAGER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_RESOURCE_MANAGER_ID;
+  parent_node[0x03] = SYSTEM_RESOURCE_MANAGER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_config;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -13011,8 +13011,8 @@ void system_initialize_connection_pool(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ALTERNATIVE_MAGIC;
+  parent_node[6] = SYSTEM_CALLBACK_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_CALLBACK_SYSTEM_ID_ALTERNATIVE;
   parent_node[0x01] = &system_handler_state;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -13056,8 +13056,8 @@ void system_initialize_packet_processor(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_EVENT_SYSTEM_MAGIC;
-  parent_node[0x03] = SYSTEM_EVENT_SYSTEM_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_EVENT_SYSTEM_ID;
+  parent_node[0x03] = SYSTEM_EVENT_SYSTEM_ID_SECONDARY;
   parent_node[0x01] = &system_handler_status;
   parent_node[0x02] = 0;
   parent_node[10] = init_flag;
@@ -13101,8 +13101,8 @@ void system_initialize_stream_handler(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_MESSAGE_QUEUE_MAGIC;
-  parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_MESSAGE_QUEUE_ID;
+  parent_node[0x03] = SYSTEM_MESSAGE_QUEUE_ID_SECONDARY;
   parent_node[0x01] = &system_handler_control;
   parent_node[0x02] = 3;
   parent_node[10] = init_flag;
@@ -13147,8 +13147,8 @@ void system_initialize_transaction_manager(void)
     system_initialize_resource_block(global_context_ptr,&temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = temp_node;
   }
-  parent_node[6] = SYSTEM_CONFIG_LOADER_MAGIC;
-  parent_node[0x03] = SYSTEM_CONFIG_LOADER_MAGIC_SECONDARY;
+  parent_node[6] = SYSTEM_CONFIG_LOADER_ID;
+  parent_node[0x03] = SYSTEM_CONFIG_LOADER_ID_SECONDARY;
   parent_node[0x01] = &system_handler_resource;
   parent_node[0x02] = 1;
   parent_node[10] = init_flag;
@@ -13846,7 +13846,7 @@ void system_stop_timer_countdown(void)
     if (system_long_status_ptr != (longlong *)0x00) {
       (**(code **)(*system_long_status_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_status_ptr);
     }
-    *(uint64_t *)(system_long_status_ptr + 0x06) = SYSTEM_STACK_UINT_INITIAL_VALUEb1000033;
+    *(uint64_t *)(system_long_status_ptr + 0x06) = SYSTEM_STACK_INITIAL_VALUEb1000033;
     data_context = *(uint64_t **)(system_long_handle + 400);
     system_code_ptr_2 = *(code **)*data_context;
     apsystem_buffer_temp_pointer[0] = &system_buffer_temp_pointer;
@@ -13987,7 +13987,7 @@ void system_reset_timer_instance(uint64_t system_context_parameter,longlong syst
   system_buffer_temp_pointer_10 = system_long_status_ptr;
   system_stack_long_int_ptr = system_long_ptr_ptr;
   _Mtx_init_in_situ(system_long_ptr_ptr,2);
-  system_long_status_ptr[SYSTEM_STACK_UINT_INITIAL_VALUE] = 0;
+  system_long_status_ptr[SYSTEM_STACK_INITIAL_VALUE] = 0;
   system_long_status_ptr[0x04] = 0;
   *(uint16_t *)system_long_status_ptr = 0;
   system_status_manager = system_long_status_ptr;
@@ -14004,10 +14004,10 @@ void system_reset_timer_instance(uint64_t system_context_parameter,longlong syst
     system_uint_pointer = system_thread_global_context_ptr;
   }
   SymSetSearchPath(_system_data_memory_pool0c2621001,system_uint_pointer);
-  system_audio_temp_pointer = system_long_status_ptr[SYSTEM_STACK_UINT_INITIAL_VALUE];
+  system_audio_temp_pointer = system_long_status_ptr[SYSTEM_STACK_INITIAL_VALUE];
   if (system_audio_temp_pointer == 0) {
     system_audio_temp_pointer = LoadLibraryA(&system_data_callback_pool_base4);
-    system_long_status_ptr[SYSTEM_STACK_UINT_INITIAL_VALUE] = system_audio_temp_pointer;
+    system_long_status_ptr[SYSTEM_STACK_INITIAL_VALUE] = system_audio_temp_pointer;
     if (system_audio_temp_pointer != 0) goto SYSTEM_LABEL;
     system_thread_global_context_ptr = &system_data_callback_pool_base2;
     if (system_thread_global_context_ptr != (void **)0x00) {
@@ -15517,7 +15517,7 @@ void system_initialize_metrics_collector(void)
   system_buffer_temp_pointer = &system_data_audio_buffer;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
-  system_context_identifier = SYSTEM_STACK_UINT_INITIAL_VALUE;
+  system_context_identifier = SYSTEM_STACK_INITIAL_VALUE;
   strcpy_s(system_config_buffer,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,&system_data_0x03001);
   system_audio_register_value_ui_callback(system_memory_pool_data,&system_buffer_temp_pointer,&system_stack_system_local_variable);
   system_buffer_temp_pointer = &system_data_animation_pool_base;
@@ -15532,7 +15532,7 @@ void system_initialize_metrics_collector(void)
   system_buffer_temp_pointerc1 = &system_data_audio_buffer;
   system_buffer_temp_pointerc0 = system_config_bufferb0;
   system_config_bufferb0[0] = 0;
-  system_context_identifierb1 = SYSTEM_STACK_UINT_INITIAL_VALUE;
+  system_context_identifierb1 = SYSTEM_STACK_INITIAL_VALUE;
   system_audio_temp_value = strcpy_s(system_config_bufferb0,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,&system_data_0x03001);
   _system_data_memory_pool0bf52bc = (float)system_load_ui_resources(system_audio_temp_value,&system_buffer_temp_pointerc1);
   _system_data_memory_pool0bf52bc = 1.0 / _system_data_memory_pool0bf52bc;
@@ -15540,7 +15540,7 @@ void system_initialize_metrics_collector(void)
   system_buffer_temp_pointer = &system_data_audio_buffer;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
-  system_context_identifier = SYSTEM_STACK_UINT_INITIAL_VALUE;
+  system_context_identifier = SYSTEM_STACK_INITIAL_VALUE;
   system_audio_temp_value = strcpy_s(system_config_buffer,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,&system_data_0x03001);
   audio_volume_value = (float)system_process_ui_assets(system_audio_temp_value,&system_buffer_temp_pointer);
   system_buffer_temp_pointer = &system_data_animation_pool_base;
@@ -15579,8 +15579,8 @@ void system_initialize_metrics_collector(void)
     appsystem_buffer_temp_pointer[0] = (longlong ***)&ppsystem_buffer_temp_pointer;
     system_start_ui_main_loop(appsystem_buffer_temp_pointer);
     *(double *)(system_long_status + SYSTEM_CONTEXT_OFFSET_A0 + _system_data_memory_pool0bf524001) = (double)(1.0 / audio_volume_value);
-    *(double *)(system_long_status + SYSTEM_STACK_UINT_INITIAL_VALUE1 + _system_data_memory_pool0bf524001) = (double)(1.0 / audio_volume_value);
-    *(int *)(system_long_status + SYSTEM_STACK_UINT_INITIAL_VALUE0 + _system_data_memory_pool0bf524001) = (int)(longlong)_system_data_memory_pool0bf52b1;
+    *(double *)(system_long_status + SYSTEM_STACK_INITIAL_VALUE1 + _system_data_memory_pool0bf524001) = (double)(1.0 / audio_volume_value);
+    *(int *)(system_long_status + SYSTEM_STACK_INITIAL_VALUE0 + _system_data_memory_pool0bf524001) = (int)(longlong)_system_data_memory_pool0bf52b1;
     *(int *)(system_long_status + 200 + _system_data_memory_pool0bf524001) = (int)(longlong)_system_data_memory_pool0bf52bc;
     *(double *)(system_long_status + SYSTEM_RESOURCE_BLOCK_OFFSET + _system_data_memory_pool0bf524001) = (double)(system_audio_config_value >> 0x014);
     system_buffer_temp_pointer = &system_data_callback_pool_base2;
@@ -15893,27 +15893,27 @@ void system_generate_performance_report(uint64_t system_context_parameter,uint64
       }
       system_configure_ui_component(system_config_ptr,&system_data_profiling_pool_base,pinit_status4);
       system_double_value1 = *(double *)(system_audio_temp_pointer + SYSTEM_CONTEXT_OFFSET_A0 + system_audio_temp_value);
-      system_double_value3 = (double)*(uint *)(system_audio_temp_pointer + SYSTEM_STACK_UINT_INITIAL_VALUE0 + system_audio_temp_value);
-      if (system_double_value3 != SYSTEM_FLOAT_ZERO_VALUE) {
+      system_double_value3 = (double)*(uint *)(system_audio_temp_pointer + SYSTEM_STACK_INITIAL_VALUE0 + system_audio_temp_value);
+      if (system_double_value3 != SYSTEM_FLOAT_ZERO) {
         system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_42,system_double_value3);
       }
-      if (system_double_value1 != SYSTEM_FLOAT_ZERO_VALUE) {
+      if (system_double_value1 != SYSTEM_FLOAT_ZERO) {
         system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_44,system_double_value1);
       }
-      system_double_value1 = *(double *)(system_audio_temp_pointer + SYSTEM_STACK_UINT_INITIAL_VALUE1 + system_audio_temp_value);
+      system_double_value1 = *(double *)(system_audio_temp_pointer + SYSTEM_STACK_INITIAL_VALUE1 + system_audio_temp_value);
       system_double_value3 = (double)*(uint *)(system_audio_temp_pointer + 200 + system_audio_temp_value);
-      if (system_double_value3 != SYSTEM_FLOAT_ZERO_VALUE) {
+      if (system_double_value3 != SYSTEM_FLOAT_ZERO) {
         system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_45,system_double_value3);
       }
-      if (system_double_value1 != SYSTEM_FLOAT_ZERO_VALUE) {
+      if (system_double_value1 != SYSTEM_FLOAT_ZERO) {
         system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_46,system_double_value1);
       }
       system_double_value1 = *(double *)(system_audio_temp_pointer + SYSTEM_RESOURCE_BLOCK_OFFSET + system_audio_temp_value);
-      if (system_double_value1 != SYSTEM_FLOAT_ZERO_VALUE) {
+      if (system_double_value1 != SYSTEM_FLOAT_ZERO) {
         system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_0x04003,system_double_value1);
       }
       system_double_value1 = *(double *)(system_audio_temp_pointer + SYSTEM_MEMORY_POOL_BASE_OFFSET + system_audio_temp_value);
-      if (system_double_value1 != SYSTEM_FLOAT_ZERO_VALUE) {
+      if (system_double_value1 != SYSTEM_FLOAT_ZERO) {
         system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_0x04001,system_double_value1);
       }
       system_audio_temp_pointer = *(longlong *)(system_audio_temp_pointer + 0x030 + system_audio_temp_value);
@@ -15980,11 +15980,11 @@ void system_generate_performance_report(uint64_t system_context_parameter,uint64
       system_configure_ui_component(system_config_ptr,&system_data_50,&system_data_0x05001,
                     (double)(float)(system_double_value1 * 0x02.0x0536003431640625e-0x03));
       system_double_value1 = *(double *)(system_audio_temp_pointer + SYSTEM_SIGNAL_HANDLER_OFFSET + system_audio_temp_value);
-      if (system_double_value1 != SYSTEM_FLOAT_ZERO_VALUE) {
+      if (system_double_value1 != SYSTEM_FLOAT_ZERO) {
         system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_0x05002,system_double_value1);
       }
       system_double_value1 = *(double *)(system_audio_temp_pointer + SYSTEM_STANDARD_BUFFER_SIZE + system_audio_temp_value);
-      if (system_double_value1 != SYSTEM_FLOAT_ZERO_VALUE) {
+      if (system_double_value1 != SYSTEM_FLOAT_ZERO) {
         system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_60,system_double_value1);
       }
       system_audio_temp_pointer = system_audio_temp_value + SYSTEM_CONTEXT_OFFSET_D0 + system_audio_temp_pointer;
@@ -16226,9 +16226,9 @@ longlong system_handle_memory_operation(longlong system_context_parameter,longlo
   *(uint64_t *)(system_context_parameter + 0x02c) = *(uint64_t *)(system_context_parameter + 0x02c);
   *(uint64_t *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A0) = *(uint64_t *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A0);
   *(uint64_t *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A1) = *(uint64_t *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A1);
-  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE0) = *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE0);
-  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE4) = *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE4);
-  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE1) = *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE1);
+  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_INITIAL_VALUE0) = *(uint64_t *)(system_context_parameter + SYSTEM_STACK_INITIAL_VALUE0);
+  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_INITIAL_VALUE4) = *(uint64_t *)(system_context_parameter + SYSTEM_STACK_INITIAL_VALUE4);
+  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_INITIAL_VALUE1) = *(uint64_t *)(system_context_parameter + SYSTEM_STACK_INITIAL_VALUE1);
   *(uint64_t *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0) = *(uint64_t *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0);
   *(uint64_t *)(system_context_parameter + 200) = *(uint64_t *)(system_context_parameter + 200);
   *(uint64_t *)(system_context_parameter + 0x04c) = *(uint64_t *)(system_context_parameter + 0x04c);
@@ -16538,7 +16538,7 @@ system_configure_memory_context(uint64_t *system_context_parameter,longlong *sys
       *(uint64_t *)(system_context_parameter + 2) = 0;
       *(int *)(system_context_parameter + 2) = (int)presource_id[-SYSTEM_STATUS_FLAG_OFFSET];
       system_context_parameter[1] = presource_id[-0x01a];
-      *(uint64_t *)((longlong)system_context_parameter + 0x0A) = *(uint64_t *)((longlong)presource_id + -SYSTEM_STACK_UINT_INITIAL_VALUEc);
+      *(uint64_t *)((longlong)system_context_parameter + 0x0A) = *(uint64_t *)((longlong)presource_id + -SYSTEM_STACK_INITIAL_VALUEc);
       *(int *)(system_context_parameter + 3) = (int)presource_id[-0x01001];
       *(uint64_t *)(presource_id + -SYSTEM_STATUS_FLAG_OFFSET) = 0;
       presource_id[-0x01a] = 0;
@@ -16553,13 +16553,13 @@ system_configure_memory_context(uint64_t *system_context_parameter,longlong *sys
       system_context_parameter[0x02] = system_audio_buffer_pointer;
       system_audio_buffer_pointer = presource_id[-SYSTEM_CONFIG_DATA_SIZE];
       system_context_parameter[10] = presource_id[-0x011];
-      system_context_parameter[SYSTEM_STACK_UINT_INITIAL_VALUE] = system_audio_buffer_pointer;
+      system_context_parameter[SYSTEM_STACK_INITIAL_VALUE] = system_audio_buffer_pointer;
       system_audio_buffer_pointer = presource_id[-0x05];
       system_context_parameter[0x04] = presource_id[-0x07];
       system_context_parameter[0x06] = system_audio_buffer_pointer;
       system_context_parameter[0x05] = presource_id[-0x06];
       system_context_parameter[0x07] = presource_id[-0x04];
-      system_context_parameter[SYSTEM_CONFIG_DATA_SIZE] = presource_id[-SYSTEM_STACK_UINT_INITIAL_VALUE];
+      system_context_parameter[SYSTEM_CONFIG_DATA_SIZE] = presource_id[-SYSTEM_STACK_INITIAL_VALUE];
       system_context_parameter[0x011] = presource_id[-10];
       system_context_parameter[0x012] = presource_id[-0x02];
       *(int *)(system_context_parameter + 0x08) = (int)presource_id[-0x01];
@@ -16567,7 +16567,7 @@ system_configure_memory_context(uint64_t *system_context_parameter,longlong *sys
       system_context_parameter[0x014] = presource_id[-0x03];
       system_context_parameter[0x09] = presource_id[-6];
       *(int *)(system_context_parameter + 0x016) = (int)presource_id[-5];
-      *(uint64_t *)((longlong)system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE4) = *(uint64_t *)((longlong)presource_id + -0x024);
+      *(uint64_t *)((longlong)system_context_parameter + SYSTEM_STACK_INITIAL_VALUE4) = *(uint64_t *)((longlong)presource_id + -0x024);
       system_context_parameter[0x01003] = presource_id[-4];
       system_context_parameter[0x01001] = presource_id[SYSTEM_AUDIO_LOOP_START_POSITION];
       *(int *)(system_context_parameter + SYSTEM_STATUS_FLAG_OFFSET) = (int)presource_id[-2];
@@ -17079,7 +17079,7 @@ void system_stop_trace_capture(uint64_t system_context_parameter,uint64_t *syste
     system_initialize_component();
   }
   system_context_parameter[0x02] = 0;
-  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE) = 0;
+  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_INITIAL_VALUE) = 0;
   system_context_parameter[0x01] = &system_data_animation_pool_base;
   system_context_parameter[4] = &system_data_callback_pool_base2;
   if (system_context_parameter[5] != 0) {
@@ -18110,7 +18110,7 @@ uint64_t * system_cleanup_component_resources(uint64_t *system_context_parameter
   system_context_parameter[1] = system_context_parameter + 3;
   *(uint64_t *)(system_context_parameter + 2) = 0;
   *(uint32_t *)(system_context_parameter + 3) = 0;
-  system_validate_texture_header(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE);
+  system_validate_texture_header(system_context_parameter + SYSTEM_STACK_INITIAL_VALUE);
   system_context_parameter[0x034] = 0;
   system_context_parameter[0x035] = 0;
   system_context_parameter[0x036] = 0;
@@ -18168,7 +18168,7 @@ void system_create_archive_instance(longlong *system_context_parameter,uint64_t 
   
   system_uint_handle = SYSTEM_INVALID_HANDLE_VALUE;
   data_context = (uint64_t *)system_context_parameter[1];
-  for (data_context = (uint64_t *)*system_context_parameter; data_context != data_context; data_context = data_context + SYSTEM_STACK_UINT_INITIAL_VALUE) {
+  for (data_context = (uint64_t *)*system_context_parameter; data_context != data_context; data_context = data_context + SYSTEM_STACK_INITIAL_VALUE) {
     (**(code **)*data_context)(data_context,0,system_context_parameter,system_context_parameter,system_uint_handle);
   }
   if (*system_context_parameter == 0) {
@@ -18549,11 +18549,11 @@ system_initialize_component_context(uint32_t *system_context_parameter,uint64_t 
   system_long_context_ptr = (longlong *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A0);
   *system_long_context_ptr = (longlong)&system_data_animation_pool_base;
   *(uint64_t *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A1) = 0;
-  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE0) = 0;
+  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_INITIAL_VALUE0) = 0;
   *system_long_context_ptr = (longlong)&system_data_callback_pool_base2;
-  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE1) = 0;
+  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_INITIAL_VALUE1) = 0;
   *(uint64_t *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_A1) = 0;
-  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_UINT_INITIAL_VALUE0) = 0;
+  *(uint64_t *)(system_context_parameter + SYSTEM_STACK_INITIAL_VALUE0) = 0;
   *system_context_parameter = 0;
   (**(code **)(*system_long_handle_ptr + SYSTEM_CONFIG_DATA_SIZE))(system_long_handle_ptr,&system_file_service_handler,&system_data_animation_pool_base,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   *(uint64_t *)(system_context_parameter + SYSTEM_MEMORY_POOL_BASE_OFFSET) = 0;
@@ -19577,7 +19577,7 @@ void system_calculate_data_hash(void)
     _system_data_memory_pool0bf65b1 = timeGetTime();
   }
   else {
-    _system_data_memory_pool0bf65b1 = SYSTEM_STACK_UINT_INITIAL_VALUE061;
+    _system_data_memory_pool0bf65b1 = SYSTEM_STACK_INITIAL_VALUE061;
   }
   system_long_context = _system_data_memory_pool0c1600220;
   _system_data_memory_pool0bf65b1 = _system_data_memory_pool0bf65b1 ^ 0x041c64e6d;
@@ -19586,9 +19586,9 @@ void system_calculate_data_hash(void)
       audio_volume_value = *(float *)(_system_data_memory_pool0c1600220 + SYSTEM_RESOURCE_BLOCK_OFFSETd0);
     }
     else {
-      audio_volume_value = 10SYSTEM_FLOAT_ZERO_VALUE;
+      audio_volume_value = 10SYSTEM_FLOAT_ZERO;
     }
-    audio_volume_value = audio_volume_value * SYSTEM_FLOAT_ZERO_VALUE1;
+    audio_volume_value = audio_volume_value * SYSTEM_FLOAT_ZERO1;
   }
   else {
     audio_volume_value = 1.0;
@@ -19628,7 +19628,7 @@ void system_calculate_data_hash(void)
   *(uint64_t *)(system_long_handle + 0x024001) = system_audio_temp_value;
   system_audio_temp_value = log2f();
   *(uint64_t *)(system_long_handle + 0x024c) = system_audio_temp_value;
-  system_audio_temp_value = log2f(*(float *)(_system_data_memory_pool0c1600220 + 0x02220) * SYSTEM_FLOAT_ZERO_VALUE1);
+  system_audio_temp_value = log2f(*(float *)(_system_data_memory_pool0c1600220 + 0x02220) * SYSTEM_FLOAT_ZERO1);
   *(uint64_t *)(system_long_handle + 0x023c) = system_audio_temp_value;
   *(uint64_t *)(system_long_handle + 0x0254) = 0x03f001000003f00100000;
   system_stack_long_int_1d1 = 0x03f001000003f00100000;
@@ -20219,7 +20219,7 @@ void system_initialize_validation_system(longlong system_context_parameter,uint6
   system_context_identifierb1 = SYSTEM_INVALID_HANDLE_VALUE;
   system_context_identifier = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_config_buffer;
   audio_volume_value = (float)system_context_parameter;
-  _system_data_memory_pool0c1ed20 = (longlong)(audio_volume_value * 10000SYSTEM_FLOAT_ZERO_VALUE);
+  _system_data_memory_pool0c1ed20 = (longlong)(audio_volume_value * 10000SYSTEM_FLOAT_ZERO);
   _system_data_memory_pool0c1ed30 = _system_data_memory_pool0c1ed30 + _system_data_memory_pool0c1ed20;
   _system_data_memory_pool0bf3ff1 = audio_volume_value;
   system_audio_temp_value = system_get_network_config();
@@ -20711,7 +20711,7 @@ uint64_t system_initialize_memory_context(uint64_t system_context_parameter,uint
   
   system_audio_temp_pointer = system_main_context;
   if (*(int *)(_system_data_memory_pool0c160010030 + 200) != 0) {
-    system_initialize_ui_components(system_context_parameter,_system_data_memory_pool0c160010030 + SYSTEM_STACK_UINT_INITIAL_VALUE1);
+    system_initialize_ui_components(system_context_parameter,_system_data_memory_pool0c160010030 + SYSTEM_STACK_INITIAL_VALUE1);
     return system_context_parameter;
   }
   system_buffer_temp_pointer = &system_data_callback_pool_base2;
@@ -20818,7 +20818,7 @@ void system_check_version_compatibility(longlong system_context_parameter,float 
       if (1.0 <= audio_volume_value) {
         audio_volume_value = 1.0;
       }
-      audio_volume_value = (float)(int)((audio_volume_value + SYSTEM_FLOAT_ZERO_VALUE5) / audio_volume_value) * audio_volume_value;
+      audio_volume_value = (float)(int)((audio_volume_value + SYSTEM_FLOAT_ZERO5) / audio_volume_value) * audio_volume_value;
       if ((audio_volume_value <= audio_volume_value) && (audio_volume_value = audio_volume_value, 1.0 <= audio_volume_value)) {
         audio_volume_value = 1.0;
       }
@@ -20845,9 +20845,9 @@ void system_check_version_compatibility(longlong system_context_parameter,float 
       audio_volume_value = *(float *)(system_audio_temp_pointer + SYSTEM_RESOURCE_BLOCK_OFFSETd0);
     }
     else {
-      audio_volume_value = 10SYSTEM_FLOAT_ZERO_VALUE;
+      audio_volume_value = 10SYSTEM_FLOAT_ZERO;
     }
-    audio_volume_value = audio_volume_value * SYSTEM_FLOAT_ZERO_VALUE1;
+    audio_volume_value = audio_volume_value * SYSTEM_FLOAT_ZERO1;
   }
   else {
     audio_volume_value = 1.0;
@@ -20877,7 +20877,7 @@ void system_check_version_compatibility(longlong system_context_parameter,float 
       system_temp_uint_value = (longlong)(int)(((int)system_audio_temp_value / (int)system_audio_temp_value) * system_audio_temp_value) / (longlong)system_return_code;
       system_audio_temp_value = (uint)system_temp_uint_value;
       if (((system_audio_temp_value & 1) == 0) && ((system_temp_uint_value & 1) == 0)) goto SYSTEM_LABEL;
-      audio_volume_value = audio_volume_value + SYSTEM_FLOAT_ZERO_VALUE1;
+      audio_volume_value = audio_volume_value + SYSTEM_FLOAT_ZERO1;
       *(float *)(system_context_parameter + 0x0234) = audio_volume_value;
     } while (audio_volume_value <= 1.0);
     *(uint64_t *)(system_context_parameter + 0x0234) = 0x03f00100000;
@@ -20912,7 +20912,7 @@ SYSTEM_VALIDATION_CHECK:
       }
       system_temp_uint_value = (longlong)(int)(((int)system_audio_temp_value / (int)system_audio_temp_value) * system_audio_temp_value) / (longlong)system_return_code;
       if (((system_audio_temp_value & 1) == 0) && ((system_temp_uint_value & 1) == 0)) goto SYSTEM_LABEL;
-      audio_volume_value = audio_volume_value + SYSTEM_FLOAT_ZERO_VALUE1;
+      audio_volume_value = audio_volume_value + SYSTEM_FLOAT_ZERO1;
       *(float *)(system_context_parameter + 0x023001) = audio_volume_value;
     } while (audio_volume_value <= 1.0);
     *(uint64_t *)(system_context_parameter + 0x023001) = 0x03f00100000;
@@ -21009,9 +21009,9 @@ void system_validate_platform_requirements(longlong *system_context_parameter,ui
       audio_volume_value = *(float *)(_system_data_memory_pool0c1600220 + SYSTEM_RESOURCE_BLOCK_OFFSETd0);
     }
     else {
-      audio_volume_value = 10SYSTEM_FLOAT_ZERO_VALUE;
+      audio_volume_value = 10SYSTEM_FLOAT_ZERO;
     }
-    audio_volume_value = audio_volume_value * SYSTEM_FLOAT_ZERO_VALUE1;
+    audio_volume_value = audio_volume_value * SYSTEM_FLOAT_ZERO1;
   }
   else {
     audio_volume_value = 1.0;
@@ -21093,7 +21093,7 @@ void system_initialize_testing_system(uint64_t system_context_parameter,longlong
   system_set_ui_parameter(system_context_parameter,system_int_context + 6);
   *(uint16_t *)((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) + *(longlong *)(system_context_parameter + 0x01)) = 10;
   *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = system_int_context + 6;
-  compare_result = system_int_context + SYSTEM_STACK_UINT_INITIAL_VALUE;
+  compare_result = system_int_context + SYSTEM_STACK_INITIAL_VALUE;
   system_set_ui_parameter(system_context_parameter,compare_result);
   data_context = (uint64_t *)((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) + *(longlong *)(system_context_parameter + 0x01));
   *data_context = 0x03a0035003063;
@@ -21469,7 +21469,7 @@ SYSTEM_VALIDATION_CHECK:
   system_audio_temp_value = system_audio_temp_value;
   if (system_context_identifier != 0) {
     do {
-      if ((byte)(system_buffer_temp_pointer[system_audio_temp_value] + SYSTEM_STACK_UINT_INITIAL_VALUEf) < 0x01a) {
+      if ((byte)(system_buffer_temp_pointer[system_audio_temp_value] + SYSTEM_STACK_INITIAL_VALUEf) < 0x01a) {
         system_buffer_temp_pointer[system_audio_temp_value] = system_buffer_temp_pointer[system_audio_temp_value] + ' ';
       }
       system_audio_temp_value = (int)system_audio_temp_value + 1;

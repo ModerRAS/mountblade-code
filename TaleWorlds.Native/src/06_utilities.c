@@ -511,7 +511,7 @@ uint64_t process_resource_pointer(int64_t context_pointer)
     uint8_t working_buffer[512];
     int64_t resource_handle_value;
     
-    utility_status_code = UTILITY_STATUS_OPERATION_FAILED;
+    status_code = UTILITY_STATUS_OPERATION_FAILED;
     
     status = handle_service_request(*(uint32_t *)(context_pointer + UTILITY_THREAD_HANDLE_OFFSET), &working_buffer);
     if ((int)status != UTILITY_STATUS_OPERATION_FAILED) {
@@ -523,63 +523,63 @@ uint64_t process_resource_pointer(int64_t context_pointer)
         return UTILITY_STATUS_THREAD_CREATED;
     }
     
-    resource_current_counter = *(int64_t *)(resource_current_counter + UTILITY_THREAD_POINTER_OFFSET);
+    resource_current_counter = *(int64_t *)(current_counter + UTILITY_THREAD_POINTER_OFFSET);
     if (resource_current_counter == UTILITY_STATUS_OPERATION_FAILED) {
         return UTILITY_STATUS_ENABLED_FLAG;
     }
     
     if (*(int *)(resource_current_counter + UTILITY_MEMORY_STATUS_OFFSET) == -1) {
-        resource_context_data_ptr_status = utility_resource_context_initialize(resource_current_counter, resource_char_buffer);
+        resource_context_status = initialize_resource_context(resource_current_counter, temp_char_buffer);
         if ((int)status != UTILITY_STATUS_OPERATION_FAILED) {
             return status;
         }
-        resource_context_data_ptr_status = utility_system_initialize(resource_current_counter);
+        resource_context_status = initialize_system_resource(resource_current_counter);
         if ((int)status != UTILITY_STATUS_OPERATION_FAILED) {
             return status;
         }
     }
     
-    if (resource_char_buffer[0] == (char)resource_context_data_ptr_status) {
-        resource_context_data_ptr = resource_current_counter + UTILITY_DATA_CONTEXT_OFFSET;
-        utility_status_code = UTILITY_STATUS_OPERATION_FAILED;
-        utility_status_code = *(int *)(resource_current_counter + UTILITY_DATA_INDEX_OFFSET);
-        if (0 < utility_status_code) {
-            resource_context_data_ptr = *data_storage_pointer;
+    if (temp_char_buffer[0] == (char)resource_context_status) {
+        resource_context_data = resource_current_counter + UTILITY_DATA_CONTEXT_OFFSET;
+        status_code = UTILITY_STATUS_OPERATION_FAILED;
+        status_code = *(int *)(resource_current_counter + UTILITY_DATA_INDEX_OFFSET);
+        if (0 < status_code) {
+            resource_context_data = *data_storage_ptr;
             do {
-                if (*data_storage_pointer == resource_current_counter) {
-                    if (-1 < (int)resource_context_data_ptr_status) {
+                if (*data_storage_ptr == resource_current_counter) {
+                    if (-1 < (int)resource_context_status) {
                         return 0;
                     }
                     break;
                 }
-                resource_context_data_ptr_status = resource_handle_value + 1;
-                resource_context_data_ptr = resource_context_data_ptr + 1;
-            } while ((int64_t)resource_handle_value < (int64_t)utility_status_code);
+                resource_context_status = resource_handle_value + 1;
+                resource_context_data = resource_context_data + 1;
+            } while ((int64_t)resource_handle_value < (int64_t)status_code);
         }
-        utility_status_code = utility_status_code + 1;
-        if (*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) < utility_status_code) {
-            utility_status_code = (int)((float)*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) * 1.5);
-            if (utility_status_code < 8) {
-                utility_status_code = 8;
+        status_code = status_code + 1;
+        if (*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) < status_code) {
+            status_code = (int)((float)*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) * 1.5);
+            if (status_code < 8) {
+                status_code = 8;
             }
-            else if (utility_status_code < 1024) {
-                utility_status_code = utility_status_code;
+            else if (status_code < 1024) {
+                status_code = status_code;
             }
         }
-        utility_status_code = utility_process_operation_result(resource_context_data_ptr, utility_status_code);
-        if (utility_status_code != UTILITY_STATUS_OPERATION_FAILED) {
+        status_code = process_operation_result(resource_context_data, status_code);
+        if (status_code != UTILITY_STATUS_OPERATION_FAILED) {
             return 0;
         }
     }
     
-    *(int64_t *)(*data_storage_pointer + (int64_t)*(int *)(resource_current_counter + UTILITY_DATA_INDEX_OFFSET) * 8) = resource_current_counter;
+    *(int64_t *)(*data_storage_ptr + (int64_t)*(int *)(resource_current_counter + UTILITY_DATA_INDEX_OFFSET) * 8) = resource_current_counter;
     *(int *)(resource_current_counter + UTILITY_DATA_INDEX_OFFSET) = *(int *)(resource_current_counter + UTILITY_DATA_INDEX_OFFSET) + 1;
     *(int *)(resource_current_counter + UTILITY_DATA_COUNTER_OFFSET) = *(int *)(resource_current_counter + UTILITY_DATA_COUNTER_OFFSET) + 1;
     }
     else {
-        resource_context_data_ptr_status = utility_resource_iterator_create(resource_current_counter + UTILITY_CONTEXT_ITERATOR_OFFSET, resource_current_counter);
+        resource_context_status = create_resource_iterator(resource_current_counter + UTILITY_CONTEXT_ITERATOR_OFFSET, resource_current_counter);
         if ((int)resource_handle_value != UTILITY_STATUS_OPERATION_FAILED) {
-            return resource_context_data_ptr_status;
+            return resource_context_status;
         }
     }
     return 0;
