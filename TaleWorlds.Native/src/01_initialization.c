@@ -114,7 +114,7 @@ static void *system_context_secondary_pointer;
 static uint32_t system_context_tertiary_data;
 static void *system_context_tertiary_pointer;
 static uint32_t system_context_quaternary_data;
-static void *quaternary_system_context_ptr;
+static void *system_context_quaternary_pointer;
 static uint32_t quinary_context_data;
 static void *quinary_system_context_ptr;
 static uint32_t senary_context_data;
