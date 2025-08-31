@@ -184,31 +184,31 @@ void* g_engine_audio_context_data;                 // 引擎音频上下文数�
 
 // 音频系统数据
 void* InitializeAudioEngine;                       // 音频引擎初始化函数指针
-void* g_audio_config_data;                        // 音频配置数据指针
+void* g_audio_config_data_value;                    // 音频配置数据指针
 
 // 输入系统数据
 void* InitializeInputEngine;                       // 输入引擎初始化函数指针
-void* g_input_system_data;                        // 输入系统数据指针
+void* g_input_system_data_value;                   // 输入系统数据指针
 
 // 渲染系统数据
 void* InitializeRenderEngine;                      // 渲染引擎初始化函数指针
-void* g_render_config_data;                       // 渲染配置数据指针
-void* g_render_context_data;                      // 渲染上下文数据指针
-void* g_render_buffer_data;                       // 渲染缓冲区数据指针
-void* g_render_state_data;                        // 渲染状态数据指针
+void* g_render_config_data_value;                   // 渲染配置数据指针
+void* g_render_context_data_value;                 // 渲染上下文数据指针
+void* g_render_buffer_data_value;                  // 渲染缓冲区数据指针
+void* g_render_state_data_value;                   // 渲染状态数据指针
 
 void ShutdownRenderEngine(void);
 
 // 网络系统数据
 void* InitializeNetworkEngine;                    // 网络引擎初始化函数指针
-void* g_network_socket_data;                      // 网络套接字数据指针
-void* g_network_buffer_data;                      // 网络缓冲区数据指针
-void* g_network_config_data;                      // 网络配置数据指针
-void* g_network_state_data;                       // 网络状态数据指针
-void* g_network_timeout_data;                     // 网络超时数据指针
-void* g_network_connection_data;                  // 网络连接数据指针
-void* g_network_buffer_size_data;                   // 网络缓冲区大小数据指针
-void* g_network_packet_data;                      // 网络数据包数据指针
+void* g_network_socket_data_value;                 // 网络套接字数据指针
+void* g_network_buffer_data_value;                 // 网络缓冲区数据指针
+void* g_network_config_data_value;                 // 网络配置数据指针
+void* g_network_state_data_value;                  // 网络状态数据指针
+void* g_network_timeout_data_value;                // 网络超时数据指针
+void* g_network_connection_data_value;             // 网络连接数据指针
+void* g_network_buffer_size_data_value;             // 网络缓冲区大小数据指针
+void* g_network_packet_data_value;                 // 网络数据包数据指针
 
 // 系统管理数据
 void* InitializeSubSystem;                        // 初始化子系统函数指针

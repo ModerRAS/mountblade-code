@@ -295,22 +295,29 @@ uint64_t utility_system_cleaner(void)
 
 /**
  * @brief 获取内存使用情况 - 监控系统内存使用状态
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，包含系统状态标志位
  *
- * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
+ * 该函数用于获取当前系统的内存使用情况，包括资源句柄状态、系统初始化状态和错误状态。
+ * 返回值是一个状态码，通过位标志表示不同的系统状态。
+ *
+ * @note 简化实现：提供基本的内存状态监控功能，原本实现应包含详细的内存使用统计。
+ * @return 状态码包含 UTILITY_CHECK_FLAG_ACTIVE, UTILITY_CHECK_FLAG_INITIALIZED, UTILITY_CHECK_FLAG_ERROR 等标志位
  */
 uint32_t utility_get_memory_usage(void)
 {
   uint32_t memory_usage_status = UTILITY_ZERO;
   
+  // 检查系统资源句柄是否活跃
   if (g_utility_system_resource_handle != UTILITY_ZERO) {
     memory_usage_status |= UTILITY_CHECK_FLAG_ACTIVE;
   }
   
+  // 检查系统是否已初始化
   if (g_utility_system_status_flag & UTILITY_CHECK_FLAG_INITIALIZED) {
     memory_usage_status |= UTILITY_CHECK_FLAG_INITIALIZED;
   }
   
+  // 检查是否有系统错误
   if (g_utility_system_error_flag != UTILITY_ZERO) {
     memory_usage_status |= UTILITY_CHECK_FLAG_ERROR;
   }
