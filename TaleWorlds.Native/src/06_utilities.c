@@ -395,6 +395,16 @@ uint8_t utility_context_system_extended;
  * @param context_data 上下文数据，包含线程的配置和状态信息
  * @return 无返回值
  */
+/**
+ * @brief 处理线程本地存储
+ * 
+ * 该函数负责处理和管理线程的本地存储数据，包括资源句柄的创建、
+ * 上下文管理器的初始化和激活，以及缓冲区的清理工作。
+ * 
+ * @param thread_handle 线程句柄，用于标识特定的线程
+ * @param context_data 上下文数据指针，包含线程相关的配置信息
+ * @return 无返回值
+ */
 void utility_process_thread_local_storage(int64_t thread_handle, int64_t context_data)
 {
     uint64_t utility_resource_handle;
@@ -409,35 +419,51 @@ void utility_process_thread_local_storage(int64_t thread_handle, int64_t context
     uint8_t utility_large_workspace[512];
     uint64_t utility_checksum_result;
     
+    // 计算校验和结果，用于数据完整性验证
     utility_checksum_result = (uint64_t)utility_reserved_memory ^ (uint64_t)utility_thread_workspace;
+    
+    // 调用系统服务管理器处理线程句柄和上下文存储
     utility_system_status = utility_system_service_manager(*(uint32_t *)(thread_handle + UTILITY_THREAD_HANDLE_OFFSET), utility_context_storage);
     
+    // 检查系统状态和上下文存储的有效性
     if ((utility_system_status == UTILITY_BOOLEAN_FALSE) && (*(int64_t *)(utility_context_storage[0] + 8) != UTILITY_BOOLEAN_FALSE)) {
         utility_buffer_ptr = utility_large_workspace;
         utility_processed_count = UTILITY_BOOLEAN_FALSE;
         utility_loop_counter = UTILITY_BOOLEAN_FALSE;
         utility_buffer_attributes = UTILITY_BUFFER_FLAGS_DEFAULT;
+        
+        // 创建资源句柄
         utility_resource_handle = utility_resource_manager_create(*(uint64_t *)(context_data + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(utility_context_storage[0] + 8), &utility_buffer_ptr);
         
         if (utility_system_status == UTILITY_BOOLEAN_FALSE) {
+            // 处理资源计数器大于0的情况
             if (0 < utility_resource_counter) {
                 utility_loop_counter = UTILITY_BOOLEAN_FALSE;
                 do {
+                    // 获取资源句柄
                     utility_resource_handle = *(uint64_t *)(utility_buffer_ptr + utility_loop_counter);
+                    
+                    // 初始化上下文管理器
                     utility_system_status = utility_context_manager_initialize(utility_resource_handle);
                     if (utility_system_status != 2) {
+                        // 激活上下文管理器
                         utility_context_manager_activate(utility_resource_handle, 1);
                     }
+                    
                     utility_processed_count = utility_processed_count + 1;
                     utility_loop_counter = utility_loop_counter + 8;
                 } while (utility_processed_count < utility_resource_counter);
             }
+            // 清理缓冲区管理器
             utility_buffer_manager_cleanup(&utility_buffer_ptr);
         }
         else {
+            // 清理缓冲区管理器
             utility_buffer_manager_cleanup(&utility_buffer_ptr);
         }
     }
+    
+    // 计算最终校验和
     utility_calculate_checksum(utility_checksum_result ^ (uint64_t)utility_large_workspace);
 }
 /**
@@ -446,44 +472,66 @@ void utility_process_thread_local_storage(int64_t thread_handle, int64_t context
  * @param context_pointer 线程上下文指针
  * @return 无返回值
  */
+/**
+ * @brief 清理线程资源
+ * 
+ * 该函数负责释放和清理线程相关的所有资源，包括资源句柄的释放、
+ * 上下文管理器的清理，以及缓冲区的清理工作。
+ * 
+ * @param context_pointer 线程上下文指针，包含需要清理的资源信息
+ * @return 无返回值
+ */
 void utility_cleanup_thread_resources(int64_t context_pointer)
 {
-    int64_t utility_loop_counter_primary;
+    int64_t utility_loop_counter;
     int utility_processed_count;
     uint8_t *utility_buffer_ptr;
     int utility_process_count;
     uint32_t utility_buffer_flags;
     uint64_t utility_security_key;
-    int utility_operation_status_secondary;
+    int utility_operation_status;
     uint64_t utility_resource_value;
     int64_t utility_resource_pointer;
     uint8_t utility_buffer_workspace[512];
     
+    // 检查上下文指针的有效性
     if (*(int64_t *)(context_pointer + 8) != UTILITY_BOOLEAN_FALSE) {
         utility_buffer_ptr = utility_buffer_workspace;
         utility_operation_status = UTILITY_BOOLEAN_FALSE;
-        utility_loop_index = UTILITY_BOOLEAN_FALSE;
+        utility_loop_counter = UTILITY_BOOLEAN_FALSE;
         utility_buffer_flags = UTILITY_BUFFER_FLAGS_DEFAULT;
+        
+        // 创建资源管理器
         utility_resource_value = utility_resource_manager_create(*(uint64_t *)(context_pointer + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(context_pointer + 8), &utility_buffer_ptr);
         
         if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
+            // 处理进程计数大于0的情况
             if (0 < utility_process_count) {
-                utility_loop_index = UTILITY_BOOLEAN_FALSE;
+                utility_loop_counter = UTILITY_BOOLEAN_FALSE;
                 do {
+                    // 获取资源值
                     utility_resource_value = *(uint64_t *)(utility_buffer_ptr + utility_loop_counter);
+                    
+                    // 初始化上下文管理器
                     utility_operation_status = utility_context_manager_initialize(utility_resource_value);
                     if (utility_operation_status != 2) {
+                        // 激活上下文管理器
                         utility_context_manager_activate(utility_resource_value, 1);
                     }
+                    
                     utility_loop_counter = utility_loop_counter + 8;
                 } while (utility_loop_counter < utility_process_count);
             }
+            // 清理缓冲区管理器
             utility_buffer_manager_cleanup(&utility_buffer_ptr);
         }
         else {
+            // 清理缓冲区管理器
             utility_buffer_manager_cleanup(&utility_buffer_ptr);
         }
     }
+    
+    // 计算校验和
     utility_calculate_checksum((uint64_t)utility_buffer_ptr ^ (uint64_t)utility_buffer_workspace);
 }
 /**

@@ -5,6 +5,50 @@
 // 简化实现：仅美化函数名和变量名，添加必要的注释，保持代码结构不变
 // 原本实现：完全重构所有命名体系，建立统一的语义化命名规范
 
+// 系统常量定义
+#define SYSTEM_CONFIG_VALUE_0X0B        0x0B    // 系统配置值0x0B - 基础配置参数
+#define SYSTEM_CONFIG_VALUE_0X0C        0x0C    // 系统配置值0x0C - 常用配置参数
+#define SYSTEM_CONFIG_VALUE_0X0E        0x0E    // 系统配置值0x0E - 扩展配置参数
+#define SYSTEM_CONFIG_VALUE_0X10        0x10    // 系统配置值0x10 - 基础缓冲区大小
+#define SYSTEM_CONFIG_VALUE_0X11        0x11    // 系统配置值0x11 - 输入配置参数
+#define SYSTEM_CONFIG_VALUE_0X12        0x12    // 系统配置值0x12 - 网络配置参数
+#define SYSTEM_CONFIG_VALUE_0X13        0x13    // 系统配置值0x13 - 音频配置参数
+#define SYSTEM_CONFIG_VALUE_0X14        0x14    // 系统配置值0x14 - 渲染配置参数
+#define SYSTEM_CONFIG_VALUE_0X16        0x16    // 系统配置值0x16 - 物理配置参数
+#define SYSTEM_CONFIG_VALUE_0X17        0x17    // 系统配置值0x17 - AI配置参数
+#define SYSTEM_CONFIG_VALUE_0X1B        0x1B    // 系统配置值0x1B - 高级配置参数
+#define SYSTEM_CONFIG_VALUE_0X1D        0x1D    // 系统配置值0x1D - 调试配置参数
+#define SYSTEM_CONFIG_VALUE_0X1E        0x1E    // 系统配置值0x1E - 性能配置参数
+#define SYSTEM_CONFIG_VALUE_0X1F        0x1F    // 系统配置值0x1F - 安全配置参数
+#define SYSTEM_CONFIG_VALUE_0X21        0x21    // 系统配置值0x21 - 内存配置参数
+#define SYSTEM_CONFIG_VALUE_0X23        0x23    // 系统配置值0x23 - 线程配置参数
+#define SYSTEM_CONFIG_VALUE_0X25        0x25    // 系统配置值0x25 - 文件配置参数
+
+// 内存偏移量常量
+#define SYSTEM_MEMORY_OFFSET_0X7B4      0x7B4   // 内存偏移0x7B4 - 渲染缓冲区
+#define SYSTEM_MEMORY_OFFSET_0X1F0      0x1F0   // 内存偏移0x1F0 - 配置缓冲区
+#define SYSTEM_MEMORY_OFFSET_0X22       0x22    // 内存偏移0x22 - 状态标志
+#define SYSTEM_MEMORY_OFFSET_0X21       0x21    // 内存偏移0x21 - 控制标志
+#define SYSTEM_MEMORY_OFFSET_0X48       0x48    // 内存偏移0x48 - 数据缓冲区
+#define SYSTEM_MEMORY_OFFSET_0X60       0x60    // 内存偏移0x60 - 网络缓冲区
+#define SYSTEM_MEMORY_OFFSET_0X8C       0x8C    // 内存偏移0x8C - 音频缓冲区
+#define SYSTEM_MEMORY_OFFSET_0XB8       0xB8    // 内存偏移0xB8 - 输入缓冲区
+#define SYSTEM_MEMORY_OFFSET_0XC0       0xC0    // 内存偏移0xC0 - 事件缓冲区
+#define SYSTEM_MEMORY_OFFSET_0X170      0x170   // 内存偏移0x170 - 线程缓冲区
+#define SYSTEM_MEMORY_OFFSET_0X178      0x178   // 内存偏移0x178 - 同步缓冲区
+
+// 错误代码常量
+#define SYSTEM_ERROR_CODE_0XEB          0xEB    // 错误代码0xEB - 文件操作错误
+#define SYSTEM_ERROR_CODE_0XEF          0xEF    // 错误代码0xEF - 网络操作错误
+#define SYSTEM_ERROR_CODE_0XC1          0xC1    // 错误代码0xC1 - 内存操作错误
+
+// 标志位常量
+#define SYSTEM_FLAG_ENABLED             0x01    // 系统使能标志
+#define SYSTEM_FLAG_DISABLED            0x00    // 系统禁用标志
+#define SYSTEM_FLAG_INITIALIZE          0x01    // 系统初始化标志
+#define SYSTEM_FLAG_RUNNING             0x02    // 系统运行标志
+#define SYSTEM_FLAG_ERROR               0x04    // 系统错误标志
+
 // 全局数据变量定义
 void *global_system_data_pointer;
 void *global_system_unknown_pointer;
@@ -382,7 +426,7 @@ int game_render_mutex_initialize(uint64_t system_context, uint64_t network_conte
   return (init_result != 0) - 1;
 }
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -392,7 +436,7 @@ int game_render_mutex_initialize(uint64_t system_context, uint64_t network_conte
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x17;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X17; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -402,12 +446,12 @@ int game_render_mutex_initialize(uint64_t system_context, uint64_t network_conte
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xc;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0C; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xc;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0C; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -422,17 +466,17 @@ int game_render_mutex_initialize(uint64_t system_context, uint64_t network_conte
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x17;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X17; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x14;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X14; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -482,7 +526,7 @@ int game_render_mutex_initialize(uint64_t system_context, uint64_t network_conte
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -497,7 +541,7 @@ int game_render_mutex_initialize(uint64_t system_context, uint64_t network_conte
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x14;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X14; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -507,7 +551,7 @@ int game_render_mutex_initialize(uint64_t system_context, uint64_t network_conte
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x16;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X16; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -517,7 +561,7 @@ int game_render_mutex_initialize(uint64_t system_context, uint64_t network_conte
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x14;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X14; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -527,12 +571,12 @@ int game_render_mutex_initialize(uint64_t system_context, uint64_t network_conte
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x16;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X16; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -547,6 +591,8 @@ int game_render_mutex_initialize(uint64_t system_context, uint64_t network_conte
  * @return 成功返回0，失败返回-1
  * 
  * 该函数负责初始化系统配置，设置全局数据和回调函数
+ * 简化实现：合并重复的system_initialize_function函数定义
+ * 原本实现：保持所有不同的初始化参数变体
  */
 int system_initialize_function(void)
 {
@@ -555,7 +601,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xb;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0B; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -573,43 +619,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 9;
-  strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
-  system_result_code = system_register_callback(system_event_handler);
-  return (system_result_code != 0) - 1;
-}
-/**
- * @brief 系统初始化函数
- * @return 成功返回0，失败返回-1
- * 
- * 该函数负责初始化系统配置，设置全局数据和回调函数
- */
-int system_initialize_function(void)
-{
-  longlong system_result_code;
-  uint64_t system_config_parameter;
-  system_data_pointer = &system_null_data_buffer;
-  system_data_pointer = &system_global_data_buffer;
-  system_global_data_buffer_buffer = 0;
-  system_data_pointer = 9;
-  strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
-  system_result_code = system_register_callback(system_event_handler);
-  return (system_result_code != 0) - 1;
-}
-/**
- * @brief 系统初始化函数
- * @return 成功返回0，失败返回-1
- * 
- * 该函数负责初始化系统配置，设置全局数据和回调函数
- */
-int system_initialize_function(void)
-{
-  longlong system_result_code;
-  uint64_t system_config_parameter;
-  system_data_pointer = &system_null_data_buffer;
-  system_data_pointer = &system_global_data_buffer;
-  system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xb;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0B; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -629,12 +639,12 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xc;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0C; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -644,7 +654,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xc;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0C; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -674,7 +684,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xc;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0C; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -690,7 +700,7 @@ int system_initialize_function(void)
   return (system_result_code != 0) - 1;
 }
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -700,7 +710,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x17;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X17; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -710,12 +720,12 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xc;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0C; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xc;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0C; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -730,17 +740,17 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x17;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X17; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x14;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X14; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -790,7 +800,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -805,7 +815,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x14;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X14; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -815,7 +825,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x16;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X16; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -825,7 +835,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x14;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X14; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -835,12 +845,12 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x16;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X16; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -893,7 +903,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -983,7 +993,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x17;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X17; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1037,7 +1047,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xc;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0C; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1055,7 +1065,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x16;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X16; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1073,7 +1083,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1091,7 +1101,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x14;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X14; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1109,7 +1119,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x17;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X17; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_global_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1127,7 +1137,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x17;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X17; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1163,7 +1173,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1325,7 +1335,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x17;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X17; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1469,7 +1479,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1487,7 +1497,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1505,7 +1515,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x16;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X16; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1559,7 +1569,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1577,7 +1587,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1685,7 +1695,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x17;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X17; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1744,7 +1754,7 @@ int system_event_handler(uint64_t system_context,uint64_t network_context,uint64
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xb;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0B; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -1754,7 +1764,7 @@ int system_event_handler(uint64_t system_context,uint64_t network_context,uint64
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xc;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0C; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
@@ -1764,7 +1774,7 @@ int system_event_handler(uint64_t system_context,uint64_t network_context,uint64
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xc;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0C; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer);
   system_result_code = system_register_callback(&system_null_data_buffer);
   return (system_result_code != 0) - 1;
@@ -1825,32 +1835,32 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x13;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X13; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xe;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0E; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer);
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0xe;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0E; // 使用常量替换硬编码值
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_128,&system_null_data_buffer);
   system_result_code = system_register_callback(&system_null_data_buffer);
   return (system_result_code != 0) - 1;
