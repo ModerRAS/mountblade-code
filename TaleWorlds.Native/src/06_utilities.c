@@ -9658,12 +9658,12 @@ ulong long utility_thread_scheduler_manage(long long utility_context_pointer)
             utility_system_item_count = system_call_function(*(void **)(utility_temp_long_var + 0xc + context_handle5 * 0x10),asystem_temp_var);
             context_data_pointer3 = putility_utility_stack_long_var_108;
             if (utility_system_item_count == 0) {
-              psystem_temp_var = &UNK_1809842e0;
+              psystem_temp_var = &utility_system_error_handler0;
               utility_temp_var = *(void **)(utility_temp_long_var + 0xc + context_handle5 * 0x10);
               utility_temp_var = 0;
               utility_temp_var = 0x3f800000;
               utility_status_manager_set_operation_parameter(&psystem_temp_var,*(void **)(utility_context_pointer + 0x58));
-              psystem_temp_var = &UNK_180984358;
+              psystem_temp_var = &utility_system_memory_allocator8;
               utility_temp_var = *(void **)(utility_temp_long_var + 0xc + context_handle5 * 0x10);
               utility_temp_var = 0;
               utility_temp_var = 0;
@@ -10167,7 +10167,7 @@ LAB_180896ce3:
         system_temp_var8 = *(uint *)(context_handle + 0x14);
         system_temp_var4 = *(void **)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
         system_temp_var0 = *(void **)(context_handle + 0x1c);
-        psystem_temp_var8 = &UNK_1809830b8;
+        psystem_temp_var8 = &utility_system_config_validator8;
         utility_system_item_count = utility_result_int + 1;
         system_temp_varc = system_temp_var8;
         utility_utility_stack_int_2a0 = utility_result_int;
@@ -10178,7 +10178,7 @@ LAB_180896ce3:
         goto utility_system_operation_perform;
         if (afStack_304[0] != 1.0) {
           system_temp_var0 = CONCAT44(system_temp_var0._4_4_,afStack_304[0]);
-          psystem_temp_var8 = &UNK_1809842e0;
+          psystem_temp_var8 = &utility_system_error_handler0;
           system_temp_var8 = CONCAT44(system_temp_var8._4_4_,system_temp_var8);
           utility_utility_stack_int_2f0 = utility_result_int;
           utility_result_int = utility_thread_executor_run(utility_context_pointer,&psystem_temp_var8);
@@ -10186,7 +10186,7 @@ LAB_180896ce3:
         }
         if (*(char *)(utility_temp_long_var + 0x28) != '\0') {
           utility_utility_stack_int_2f0 = 0;
-          psystem_temp_var8 = &UNK_180984358;
+          psystem_temp_var8 = &utility_system_memory_allocator8;
           system_temp_var8 = CONCAT44(system_temp_var8._4_4_,system_temp_var8);
           system_temp_var0 = CONCAT71(system_temp_var0._1_7_,1);
           utility_result_int = utility_thread_executor_run(utility_context_pointer,&psystem_temp_var8);
@@ -10214,7 +10214,7 @@ LAB_180896ce3:
         system_temp_var8 = *(uint *)(context_handle + 0x14);
         system_temp_var4 = *(void **)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
         system_temp_var0 = *(void **)(context_handle + 0x1c);
-        psystem_temp_var8 = &UNK_1809830b8;
+        psystem_temp_var8 = &utility_system_config_validator8;
         utility_system_item_count = utility_result_int + 1;
         system_temp_varc = system_temp_var8;
         utility_utility_stack_int_2a0 = utility_result_int;
@@ -10225,7 +10225,7 @@ LAB_180896ce3:
         goto utility_system_operation_perform;
         if (afStack_304[0] != 1.0) {
           system_temp_var0 = CONCAT44(system_temp_var0._4_4_,afStack_304[0]);
-          psystem_temp_var8 = &UNK_1809842e0;
+          psystem_temp_var8 = &utility_system_error_handler0;
           system_temp_var8 = CONCAT44(system_temp_var8._4_4_,system_temp_var8);
           utility_utility_stack_int_2f0 = utility_result_int;
           utility_result_int = utility_thread_executor_run(utility_context_pointer,&psystem_temp_var8);
@@ -10233,7 +10233,7 @@ LAB_180896ce3:
         }
         if (*(char *)(utility_temp_long_var + 0x28) != '\0') {
           utility_utility_stack_int_2f0 = 0;
-          psystem_temp_var8 = &UNK_180984358;
+          psystem_temp_var8 = &utility_system_memory_allocator8;
           system_temp_var8 = CONCAT44(system_temp_var8._4_4_,system_temp_var8);
           system_temp_var0 = CONCAT71(system_temp_var0._1_7_,1);
           utility_result_int = utility_thread_executor_run(utility_context_pointer,&psystem_temp_var8);
@@ -10261,7 +10261,7 @@ LAB_180896ce3:
         system_temp_var8 = *(uint *)(context_handle + 0x14);
         system_temp_var4 = *(void **)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
         system_temp_var0 = *(void **)(context_handle + 0x1c);
-        psystem_temp_var8 = &UNK_1809830b8;
+        psystem_temp_var8 = &utility_system_config_validator8;
         utility_system_item_count = utility_result_int + 1;
         system_temp_varc = system_temp_var8;
         utility_utility_stack_int_2a0 = utility_result_int;
@@ -10272,7 +10272,7 @@ LAB_180896ce3:
         goto utility_system_operation_perform;
         if (afStack_304[0] != 1.0) {
           system_temp_var0 = CONCAT44(system_temp_var0._4_4_,afStack_304[0]);
-          psystem_temp_var8 = &UNK_1809842e0;
+          psystem_temp_var8 = &utility_system_error_handler0;
           system_temp_var8 = CONCAT44(system_temp_var8._4_4_,system_temp_var8);
           utility_utility_stack_int_2f0 = utility_result_int;
           utility_result_int = utility_thread_executor_run(utility_context_pointer,&psystem_temp_var8);
@@ -10280,7 +10280,7 @@ LAB_180896ce3:
         }
         if (*(char *)(utility_temp_long_var + 0x28) != '\0') {
           utility_utility_stack_int_2f0 = 0;
-          psystem_temp_var8 = &UNK_180984358;
+          psystem_temp_var8 = &utility_system_memory_allocator8;
           system_temp_var8 = CONCAT44(system_temp_var8._4_4_,system_temp_var8);
           system_temp_var0 = CONCAT71(system_temp_var0._1_7_,1);
           utility_result_int = utility_thread_executor_run(utility_context_pointer,&psystem_temp_var8);
@@ -10308,7 +10308,7 @@ LAB_180896ce3:
         system_temp_var8 = *(uint *)(context_handle + 0x14);
         system_temp_var4 = *(void **)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
         system_temp_var0 = *(void **)(context_handle + 0x1c);
-        psystem_temp_var8 = &UNK_1809830b8;
+        psystem_temp_var8 = &utility_system_config_validator8;
         utility_system_item_count = utility_result_int + 1;
         system_temp_varc = system_temp_var8;
         utility_utility_stack_int_2a0 = utility_result_int;
@@ -10319,7 +10319,7 @@ LAB_180896ce3:
         goto utility_system_operation_perform;
         if (afStack_304[0] != 1.0) {
           system_temp_var0 = CONCAT44(system_temp_var0._4_4_,afStack_304[0]);
-          psystem_temp_var8 = &UNK_1809842e0;
+          psystem_temp_var8 = &utility_system_error_handler0;
           system_temp_var8 = CONCAT44(system_temp_var8._4_4_,system_temp_var8);
           utility_utility_stack_int_2f0 = utility_result_int;
           utility_result_int = utility_thread_executor_run(utility_context_pointer,&psystem_temp_var8);
@@ -10327,7 +10327,7 @@ LAB_180896ce3:
         }
         if (*(char *)(utility_temp_long_var + 0x28) != '\0') {
           utility_utility_stack_int_2f0 = 0;
-          psystem_temp_var8 = &UNK_180984358;
+          psystem_temp_var8 = &utility_system_memory_allocator8;
           system_temp_var8 = CONCAT44(system_temp_var8._4_4_,system_temp_var8);
           system_temp_var0 = CONCAT71(system_temp_var0._1_7_,1);
           utility_result_int = utility_thread_executor_run(utility_context_pointer,&psystem_temp_var8);
@@ -10435,7 +10435,7 @@ void utility_context_pointerr_process_data(void)
         utility_result_ptr = *(void **)(context_handle + 0x1c);
         *(void **)(utility_global_register_rbp + -0x78) = 0;
         *(int *)(utility_global_register_rbp + -0x68) = unaff_R12D;
-        *(void ***)(utility_global_register_rbp + -0x80) = &UNK_1809830b8;
+        *(void ***)(utility_global_register_rbp + -0x80) = &utility_system_config_validator8;
         unaff_R12D = unaff_R12D + 1;
         *(void **)(utility_global_register_rbp + -0x54) = system_temp_var_20;
         *(void **)(utility_global_register_rbp + -0x70) = utility_temp_register_ebx;
@@ -10449,7 +10449,7 @@ void utility_context_pointerr_process_data(void)
         utility_float_var0 = fStackX_24;
         if (fStackX_24 != 1.0) {
           utility_utility_stack_param = fStackX_24;
-          utility_buffer_ptr = &UNK_1809842e0;
+          utility_buffer_ptr = &utility_system_error_handler0;
           utility_utility_stack_param = system_temp_var_20;
           utility_utility_stack_param = utility_result_int;
           utility_result_int = utility_thread_executor_run(fStackX_24,&utility_stack_buffer);
@@ -10458,7 +10458,7 @@ void utility_context_pointerr_process_data(void)
         }
         if (*(char *)(utility_temp_long_var + 0x28) != '\0') {
           utility_utility_stack_param = 0;
-          utility_buffer_ptr = &UNK_180984358;
+          utility_buffer_ptr = &utility_system_memory_allocator8;
           utility_utility_stack_param = system_temp_var_20;
           utility_utility_stack_param = (float)CONCAT31(utility_utility_stack_param._1_3_,1);
           utility_result_int = utility_thread_executor_run(utility_float_var0,&utility_stack_buffer);
@@ -10488,7 +10488,7 @@ void utility_context_pointerr_process_data(void)
         utility_result_ptr = *(void **)(context_handle + 0x1c);
         *(void **)(utility_global_register_rbp + -0x78) = 0;
         *(int *)(utility_global_register_rbp + -0x68) = unaff_R12D;
-        *(void ***)(utility_global_register_rbp + -0x80) = &UNK_1809830b8;
+        *(void ***)(utility_global_register_rbp + -0x80) = &utility_system_config_validator8;
         unaff_R12D = unaff_R12D + 1;
         *(void **)(utility_global_register_rbp + -0x54) = system_temp_var_20;
         *(void **)(utility_global_register_rbp + -0x70) = utility_temp_register_ebx;
@@ -10502,7 +10502,7 @@ void utility_context_pointerr_process_data(void)
         utility_float_var0 = fStackX_24;
         if (fStackX_24 != 1.0) {
           utility_utility_stack_param = fStackX_24;
-          utility_buffer_ptr = &UNK_1809842e0;
+          utility_buffer_ptr = &utility_system_error_handler0;
           utility_utility_stack_param = system_temp_var_20;
           utility_utility_stack_param = utility_result_int;
           utility_result_int = utility_thread_executor_run(fStackX_24,&utility_stack_buffer);
@@ -10511,7 +10511,7 @@ void utility_context_pointerr_process_data(void)
         }
         if (*(char *)(utility_temp_long_var + 0x28) != '\0') {
           utility_utility_stack_param = 0;
-          utility_buffer_ptr = &UNK_180984358;
+          utility_buffer_ptr = &utility_system_memory_allocator8;
           utility_utility_stack_param = system_temp_var_20;
           utility_utility_stack_param = (float)CONCAT31(utility_utility_stack_param._1_3_,1);
           utility_result_int = utility_thread_executor_run(utility_float_var0,&utility_stack_buffer);
@@ -10541,7 +10541,7 @@ void utility_context_pointerr_process_data(void)
         utility_result_ptr = *(void **)(context_handle + 0x1c);
         *(void **)(utility_global_register_rbp + -0x78) = 0;
         *(int *)(utility_global_register_rbp + -0x68) = unaff_R12D;
-        *(void ***)(utility_global_register_rbp + -0x80) = &UNK_1809830b8;
+        *(void ***)(utility_global_register_rbp + -0x80) = &utility_system_config_validator8;
         unaff_R12D = unaff_R12D + 1;
         *(void **)(utility_global_register_rbp + -0x54) = system_temp_var_20;
         *(void **)(utility_global_register_rbp + -0x70) = utility_temp_register_ebx;
@@ -10555,7 +10555,7 @@ void utility_context_pointerr_process_data(void)
         utility_float_var0 = fStackX_24;
         if (fStackX_24 != 1.0) {
           utility_utility_stack_param = fStackX_24;
-          utility_buffer_ptr = &UNK_1809842e0;
+          utility_buffer_ptr = &utility_system_error_handler0;
           utility_utility_stack_param = system_temp_var_20;
           utility_utility_stack_param = utility_result_int;
           utility_result_int = utility_thread_executor_run(fStackX_24,&utility_stack_buffer);
@@ -10564,7 +10564,7 @@ void utility_context_pointerr_process_data(void)
         }
         if (*(char *)(utility_temp_long_var + 0x28) != '\0') {
           utility_utility_stack_param = 0;
-          utility_buffer_ptr = &UNK_180984358;
+          utility_buffer_ptr = &utility_system_memory_allocator8;
           utility_utility_stack_param = system_temp_var_20;
           utility_utility_stack_param = (float)CONCAT31(utility_utility_stack_param._1_3_,1);
           utility_result_int = utility_thread_executor_run(utility_float_var0,&utility_stack_buffer);
@@ -10594,7 +10594,7 @@ void utility_context_pointerr_process_data(void)
         utility_result_ptr = *(void **)(context_handle + 0x1c);
         *(void **)(utility_global_register_rbp + -0x78) = 0;
         *(int *)(utility_global_register_rbp + -0x68) = unaff_R12D;
-        *(void ***)(utility_global_register_rbp + -0x80) = &UNK_1809830b8;
+        *(void ***)(utility_global_register_rbp + -0x80) = &utility_system_config_validator8;
         unaff_R12D = unaff_R12D + 1;
         *(void **)(utility_global_register_rbp + -0x54) = system_temp_var_20;
         *(void **)(utility_global_register_rbp + -0x70) = utility_temp_register_ebx;
@@ -10608,7 +10608,7 @@ void utility_context_pointerr_process_data(void)
         utility_float_var0 = fStackX_24;
         if (fStackX_24 != 1.0) {
           utility_utility_stack_param = fStackX_24;
-          utility_buffer_ptr = &UNK_1809842e0;
+          utility_buffer_ptr = &utility_system_error_handler0;
           utility_utility_stack_param = system_temp_var_20;
           utility_utility_stack_param = utility_result_int;
           utility_result_int = utility_thread_executor_run(fStackX_24,&utility_stack_buffer);
@@ -10617,7 +10617,7 @@ void utility_context_pointerr_process_data(void)
         }
         if (*(char *)(utility_temp_long_var + 0x28) != '\0') {
           utility_utility_stack_param = 0;
-          utility_buffer_ptr = &UNK_180984358;
+          utility_buffer_ptr = &utility_system_memory_allocator8;
           utility_utility_stack_param = system_temp_var_20;
           utility_utility_stack_param = (float)CONCAT31(utility_utility_stack_param._1_3_,1);
           utility_result_int = utility_thread_executor_run(utility_float_var0,&utility_stack_buffer);
