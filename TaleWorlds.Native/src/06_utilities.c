@@ -476,6 +476,14 @@ uint64 utility_get_utility_result_var_pointer(void)
  * - 网络资源初始化
  * 
  */
+/**
+ * @brief 初始化系统资源 - 初始化系统资源模块
+ * @return 无返回值
+ *
+ * 该函数负责初始化系统资源模块，确保系统资源正确加载。
+ *
+ * 简化实现：空函数，原本实现应包含完整的系统资源初始化逻辑。
+ */
 void utility_initialize_system_resources(void)
 {
   return;
@@ -601,6 +609,14 @@ uint64 utility_release_system_resources(void)
   }
   return UTILITY_ZERO;
 }
+/**
+ * @brief 清理临时数据 - 清理系统运行过程中产生的临时数据
+ * @return 无返回值
+ *
+ * 该函数负责清理系统运行过程中产生的临时数据，释放内存空间。
+ *
+ * 简化实现：空函数，原本实现应包含完整的临时数据清理逻辑。
+ */
 
 /**
  * @brief 清理临时数据 - 清理系统中的临时数据
@@ -653,6 +669,14 @@ uint32 utility_get_cpu_usage(void)
   }
   else {
     utility_resource_context_handle = utility_register_input + utility_memory_offset_negative;
+/**
+ * @brief 释放系统内存块 - 释放系统分配的内存块
+ * @return 无返回值
+ *
+ * 该函数负责释放系统分配的内存块，确保内存资源被正确回收。
+ *
+ * 简化实现：空函数，原本实现应包含完整的内存块释放逻辑。
+ */
   }
   if (*(longlong *)(utility_resource_context_handle + utility_offset_resource_ptr) == UTILITY_ZERO) {
     return utility_offset_flag;
@@ -8012,7 +8036,7 @@ byte utility_temp_integer_value;
   utility_temp_security_token = utility_initialize_resource(utility_local_array + UTILITY_INDEX_INCREMENT_STANDARD,utility_resource_primary_handle[UTILITY_INDEX_INCREMENT_STANDARD]);
   if ((utility_temp_security_token == UTILITY_ZERO) && (utility_temp_cache_standard = utility_validate_resource_buffer(utility_resource_primary_handle,UTILITY_INDEX_INCREMENT_STANDARD), utility_temp_cache_standard == UTILITY_ZERO)) {
     (**(code **)(*utility_resource_primary_handle + UTILITY_SIZE_OFFSET))(utility_resource_primary_handle,&g_system_data_cleanup_handler);
-    if (((*(uint *)(utility_resource_primary_handle + UTILITY_SIZE_MULTIPLIER & UTILITY_RESOURCE_PTR_OFFSET_primary_zero0000) == UTILITY_ZERO) ||
+    if (((*(uint *)(utility_resource_primary_handle + UTILITY_SIZE_MULTIPLIER & UTILITY_RESOURCE_PTR_OFFSET_PRIMARY_ZERO) == UTILITY_ZERO) ||
        (utility_temp_security_token = utility_setup_memory_configuration(utility_resource_primary_handle,*(uint64 *)(utility_resource_primary_handle[UTILITY_INDEX_INCREMENT_STANDARD] + utility_offset_data_array),UTILITY_ZERO,UTILITY_INDEX_INCREMENT_STANDARD), utility_temp_cache_standard == UTILITY_ZERO)) {
       utility_data_main_ptr = utility_resource_primary_handle[UTILITY_INDEX_INCREMENT_STANDARD];
       utility_quad_buffer_ptr = (longlong *)(utility_data_main_ptr + UTILITY_LIST_DATA_OFFSET);
