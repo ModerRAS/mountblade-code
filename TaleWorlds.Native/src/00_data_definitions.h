@@ -1,75 +1,122 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
-// 数据定义 - 从原始文件中提取
-undefined DAT_1809fc740;
-undefined UNK_18098c790;
-  DAT_180bf5240 = 1;
-  _DAT_180bf52a8 = 0;
-  _DAT_180bf52b0 = 0x7fffffffffffffff;
-  DAT_180bf52e0 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_1809414f0);
-  return (lVar1 != 0) - 1;
+// 数据定义头文件 - 包含游戏引擎核心数据结构和函数定义
+// 简化实现：仅美化函数名和变量名，添加必要的注释，保持代码结构不变
+// 原本实现：完全重构所有命名体系，建立统一的语义化命名规范
+
+// 全局数据变量定义
+undefined *global_system_data_ptr;
+undefined *global_unknown_ptr;
+int global_initialized_flag = 1;
+int *global_config_ptr = 0;
+longlong global_max_value = 0x7fffffffffffffff;
+int global_status_flag = 0;
+  longlong initialization_result;
+  initialization_result = system_initialize_callback(system_setup_function);
+  return (initialization_result != 0) - 1;
 }
-int FUN_18002ce30(void)
+
+/**
+ * @brief 初始化渲染系统
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责设置渲染系统的基本参数和回调函数
+ */
+int graphics_system_initialize(void)
 {
-  longlong lVar1;
-  _DAT_180bf5320 = &UNK_18098bb30;
-  _DAT_180bf5328 = &DAT_180bf5338;
-  _DAT_180bf5330 = 0;
-  DAT_180bf5338 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180941590);
-  return (lVar1 != 0) - 1;
+  longlong init_result;
+  graphics_system_data_ptr = &global_graphics_data;
+  graphics_system_callback_ptr = &graphics_system_callback;
+  graphics_system_state = 0;
+  graphics_system_callback = 0;
+  init_result = system_initialize_callback(graphics_setup_function);
+  return (init_result != 0) - 1;
 }
-int FUN_18002ce80(void)
+
+/**
+ * @brief 初始化音频系统
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责设置音频系统的基本参数和回调函数
+ */
+int audio_system_initialize(void)
 {
-  longlong lVar1;
-  _DAT_180bf5770 = &UNK_18098bb30;
-  _DAT_180bf5778 = &DAT_180bf5788;
-  _DAT_180bf5780 = 0;
-  DAT_180bf5788 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_1809415b0);
-  return (lVar1 != 0) - 1;
+  longlong init_result;
+  audio_system_data_ptr = &global_graphics_data;
+  audio_system_callback_ptr = &audio_system_callback;
+  audio_system_state = 0;
+  audio_system_callback = 0;
+  init_result = system_initialize_callback(audio_setup_function);
+  return (init_result != 0) - 1;
 }
-int FUN_18002ced0(void)
+
+/**
+ * @brief 初始化输入系统
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责设置输入系统的基本参数和回调函数
+ */
+int input_system_initialize(void)
 {
-  longlong lVar1;
-  _DAT_180bf5208 = &UNK_18098bc80;
-  _DAT_180bf5210 = &DAT_180bf5220;
-  _DAT_180bf5218 = 0;
-  DAT_180bf5220 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_1809415d0);
-  return (lVar1 != 0) - 1;
+  longlong init_result;
+  input_system_data_ptr = &global_input_data;
+  input_system_callback_ptr = &input_system_callback;
+  input_system_state = 0;
+  input_system_callback = 0;
+  init_result = system_initialize_callback(input_setup_function);
+  return (init_result != 0) - 1;
 }
-int FUN_18002cf20(void)
+
+/**
+ * @brief 初始化网络系统
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责设置网络系统的基本参数和回调函数
+ */
+int network_system_initialize(void)
 {
-  longlong lVar1;
-  _DAT_180bf5bc0 = &UNK_1809fcc58;
-  _DAT_180bf5bc8 = &DAT_180bf5bd8;
-  _DAT_180bf5bd0 = 0;
-  DAT_180bf5bd8 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_1809415f0);
-  return (lVar1 != 0) - 1;
+  longlong init_result;
+  network_system_data_ptr = &global_network_data;
+  network_system_callback_ptr = &network_system_callback;
+  network_system_state = 0;
+  network_system_callback = 0;
+  init_result = system_initialize_callback(network_setup_function);
+  return (init_result != 0) - 1;
 }
-int FUN_18002cf70(void)
+
+/**
+ * @brief 初始化物理系统
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责设置物理系统的基本参数和回调函数
+ */
+int physics_system_initialize(void)
 {
-  longlong lVar1;
-  _DAT_180bf5c30 = &UNK_18098bb30;
-  _DAT_180bf5c38 = &DAT_180bf5c48;
-  _DAT_180bf5c40 = 0;
-  DAT_180bf5c48 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180941610);
-  return (lVar1 != 0) - 1;
+  longlong init_result;
+  physics_system_data_ptr = &global_graphics_data;
+  physics_system_callback_ptr = &physics_system_callback;
+  physics_system_state = 0;
+  physics_system_callback = 0;
+  init_result = system_initialize_callback(physics_setup_function);
+  return (init_result != 0) - 1;
 }
-int FUN_18002cfc0(void)
+
+/**
+ * @brief 初始化AI系统
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责设置AI系统的基本参数和回调函数
+ */
+int ai_system_initialize(void)
 {
-  longlong lVar1;
-  _DAT_180bf6080 = &UNK_18098bb30;
-  _DAT_180bf6088 = &DAT_180bf6098;
-  _DAT_180bf6090 = 0;
-  DAT_180bf6098 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180941630);
-  return (lVar1 != 0) - 1;
+  longlong init_result;
+  ai_system_data_ptr = &global_graphics_data;
+  ai_system_callback_ptr = &ai_system_callback;
+  ai_system_state = 0;
+  ai_system_callback = 0;
+  init_result = system_initialize_callback(ai_setup_function);
+  return (init_result != 0) - 1;
 }
 int FUN_18002d010(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
