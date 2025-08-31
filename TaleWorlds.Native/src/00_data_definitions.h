@@ -12934,7 +12934,7 @@ unsigned long long system_initialize_mutex(unsigned long long *system_handle_par
   uint *system_string_input_pointer;
   unsigned long long system_buffer_allocation_result;
   unsigned char system_buffer_allocation_result;
-  unsigned long long system_stack_uint_variable_10;
+  unsigned long long system_stack_size_limit;
   uint stack_temp_buffer [2];
   ulong long system_maximum_stack_size;
   if (*(int *)(system_thread_operation_flags + SYSTEM_OFFSET_GLOBAL_DATA_PTR) < *(int *)(*(long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + SYSTEM_OFFSET_THREAD_LIMIT)) {
@@ -12951,16 +12951,16 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_517;
   }
   system_string_input_pointer = (uint *)system_execution_function();
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
-  system_stack_uint_variable_10 = system_stack_uint_variable_10 & INVALID_HANDLE_VALUEffffff00;
+  system_stack_size_limit = system_stack_size_limit & INVALID_HANDLE_VALUEffffff00;
   stack_temp_buffer[0] = *system_string_input_pointer;
-  system_buffer_allocation_result = system_execution_function(system_handle_param,*(unsigned long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE),stack_temp_buffer,&system_maximum_stack_size,&system_stack_uint_variable_10);
+  system_buffer_allocation_result = system_execution_function(system_handle_param,*(unsigned long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE),stack_temp_buffer,&system_maximum_stack_size,&system_stack_size_limit);
   if ((int)system_buffer_allocation_result != 0) {
     return system_buffer_allocation_result;
   }
-  if ((char)system_stack_uint_variable_10 == (char)system_buffer_allocation_result) {
+  if ((char)system_stack_size_limit == (char)system_buffer_allocation_result) {
     return 0;
   }
-  system_stack_uint_variable_10 = SYSTEM_ZERO_VALUE;
+  system_stack_size_limit = SYSTEM_ZERO_VALUE;
   system_string_input_pointer = (uint *)system_execution_function();
   system_thread_operation_flags = *(uint *)((long long)system_handle_param + SYSTEM_OFFSET_STACK_POINTER);
   if (((system_thread_operation_flags != *system_string_input_pointer) && (*(uint *)(system_handle_param + SYSTEM_OFFSET_HANDLE_PARAM) <= system_thread_operation_flags)) &&
@@ -12969,14 +12969,14 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_517;
       return 0x1c;
     }
     system_thread_operation_flags = network_operation_processor(*system_handle_param,system_thread_operation_flags - *(int *)(system_handle_param + 1));
-    system_stack_uint_variable_10 = system_thread_operation_flags + system_maximum_stack_size;
-    if (system_stack_uint_variable_10 == system_maximum_stack_size) {
-      system_stack_uint_variable_10 = system_maximum_stack_size + 1;
+    system_stack_size_limit = system_thread_operation_flags + system_maximum_stack_size;
+    if (system_stack_size_limit == system_maximum_stack_size) {
+      system_stack_size_limit = system_maximum_stack_size + 1;
     }
   }
   system_execution_function();
   if (mutex_attr != '\0') {
-    system_buffer_allocation_result = system_execution_function(system_handle_param,system_thread_operation_flags,system_thread_operation_flags + path_buffer_size,&system_maximum_stack_size,&system_stack_uint_variable_10,system_buffer_allocation_result,0);
+    system_buffer_allocation_result = system_execution_function(system_handle_param,system_thread_operation_flags,system_thread_operation_flags + path_buffer_size,&system_maximum_stack_size,&system_stack_size_limit,system_buffer_allocation_result,0);
     if ((int)system_buffer_allocation_result != 0) {
       return system_buffer_allocation_result;
     }
@@ -12999,7 +12999,7 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_518;
     system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
   }
 LABEL_SYSTEM_SECTION_PROCESSING_154:
-  system_buffer_allocation_result = system_execution_function(system_handle_param,system_thread_operation_flags,system_thread_operation_flags + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG,&system_maximum_stack_size,&system_stack_uint_variable_10,system_buffer_allocation_result,SYSTEM_PARAM_SINGLE_VALIDATE);
+  system_buffer_allocation_result = system_execution_function(system_handle_param,system_thread_operation_flags,system_thread_operation_flags + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG,&system_maximum_stack_size,&system_stack_size_limit,system_buffer_allocation_result,SYSTEM_PARAM_SINGLE_VALIDATE);
   if ((int)system_buffer_allocation_result == SYSTEM_ZERO_VALUE) {
     *(int *)(system_thread_operation_flags + SYSTEM_OFFSET_GLOBAL_DATA_PTR) = *(int *)(system_thread_operation_flags + SYSTEM_OFFSET_GLOBAL_DATA_PTR) + 1;
     return 0;
