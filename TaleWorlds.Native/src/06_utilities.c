@@ -2544,7 +2544,7 @@ if (*(int64_t *)(utility_stack_context_value + UTILITY_THREAD_HANDLE_OFFSET) == 
 return UTILITY_STATUS_RESOURCE_AVAILABLE;
 }
 *(uint64_t *)(context_handle + UTILITY_THREAD_CONTEXT_OFFSET) =
-*(uint64_t *)(*(int64_t *)(*(int64_t *)(utility_stack_context_value + UTILITY_THREAD_HANDLE_OFFSET) + 0x2b0) + UTILITY_STATUS_FLAG_MASK8);
+*(uint64_t *)(*(int64_t *)(*(int64_t *)(utility_stack_context_value + UTILITY_THREAD_HANDLE_OFFSET) + UTILITY_SERVICE_HANDLER_OFFSET_2B0) + UTILITY_STATUS_FLAG_MASK8);
 utility_resource_context = utility_update_context_resources(*(uint64_t *)(context_handle + UTILITY_CONTEXT_SERVICE_OFFSET),context_handle);
 }
 return utility_resource_value;
@@ -2918,7 +2918,7 @@ utility_resource_context = *(uint32_t *)(context_handle + UTILITY_THREAD_STATUS_
 *(uint32_t *)(utility_loop_counter + UTILITY_RESOURCE_FLAG_OFFSET) = utility_resource_context;
 *(uint32_t *)(utility_loop_counter + UTILITY_THREAD_SIZE_OFFSET) = utility_resource_context;
 *(uint32_t *)(utility_loop_counter + UTILITY_RESOURCE_COUNT_OFFSET) = utility_resource_context;
-utility_resource_context = *(uint32_t *)(context_handle + 0x3c);
+utility_resource_context = *(uint32_t *)(context_handle + UTILITY_FLOAT_ARRAY_OFFSET_3C);
 utility_resource_context = *(uint32_t *)(context_handle + UTILITY_FLOAT_ARRAY_OFFSET_40);
 utility_resource_context = *(uint32_t *)(context_handle + UTILITY_CONTEXT_EXTENDED_OFFSET);
 *(uint32_t *)(utility_loop_counter + UTILITY_RESOURCE_SIZE_OFFSET) = *(uint32_t *)(context_handle + UTILITY_THREAD_POINTER_OFFSET);
@@ -3240,7 +3240,7 @@ utility_loop_counter = (int64_t)utility_stack_buffer_array_int_data[0];
 utility_loop_counter = *(int64_t *)(utility_loop_counter + UTILITY_THREAD_DATA_OFFSET);
 utility_loop_counter = *(int64_t *)(utility_loop_counter + UTILITY_THREAD_HANDLE_OFFSET + utility_loop_counter * UTILITY_THREAD_CONTEXT_OFFSET);
 if ((*(uint8_t *)(utility_loop_counter + UTILITY_THREAD_STATUS_OFFSET) & UTILITY_STATUS_ENABLED_FLAG1) == UTILITY_BOOLEAN_FALSE) {
-utility_resource_context = utility_process_resource_data(utility_loop_counter,context_handle + 0xa8,context_handle + UTILITY_THREAD_CONTEXT_OFFSET);
+utility_resource_context = utility_process_resource_data(utility_loop_counter,context_handle + UTILITY_STACK_OFFSET_LARGE,context_handle + UTILITY_THREAD_CONTEXT_OFFSET);
 if ((int)utility_resource_value != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_value;
 }
@@ -3493,7 +3493,7 @@ if (utility_network_bool_flag) {
 utility_stack_buffer_medium[0] = UTILITY_BOOLEAN_FALSE;
 }
 utility_loop_counter = (int64_t)*(int *)(context_handle + UTILITY_THREAD_CONTEXT_OFFSET);
-utility_resource_context = utility_loop_counter * 4 + 0xf;
+utility_resource_context = utility_loop_counter * 4 + UTILITY_STATUS_ENABLED_FLAG_HEXA_F;
 utility_stack_offset_large = context_handle + UTILITY_THREAD_DATA_OFFSET + utility_loop_counter * 8;
 if (utility_resource_data <= (uint64_t)(utility_loop_counter * 4)) {
 utility_resource_context = UTILITY_MAX_UINT32ffffff0;
@@ -3878,7 +3878,7 @@ utility_operation_status = UTILITY_STATUS_ENABLED_FLAG_HEXA_F;
 }
 else {
 utility_loop_counter = utility_allocate_buffer_memory(*(uint64_t *)(utility_reserved_memory + UTILITY_STATUS_ENABLED_FLAG_HEXA_A0),*(int *)(context_handle + UTILITY_THREAD_DATA_OFFSET),
-&utility_reserved_memory,0x315,0,0,1);
+&utility_reserved_memory,UTILITY_MEMORY_BLOCK_SIZE_EXTRA_LARGE,0,0,1);
 if (utility_loop_counter != UTILITY_BOOLEAN_FALSE) {
 memory_copy_pointer(utility_loop_counter,*(uint64_t *)(context_handle + UTILITY_THREAD_CONTEXT_OFFSET),(int64_t)*(int *)(context_handle + UTILITY_THREAD_DATA_OFFSET));
 }
@@ -3911,7 +3911,7 @@ else if (*(int64_t *)(context_handle + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY
 utility_operation_status = UTILITY_STATUS_ENABLED_FLAG_HEXA_F;
 }
 else {
-utility_loop_counter = utility_allocate_buffer_memory(*(uint64_t *)(utility_reserved_memory + UTILITY_STATUS_ENABLED_FLAG_HEXA_A0),context_handle,&utility_reserved_memory,0x315,0);
+utility_loop_counter = utility_allocate_buffer_memory(*(uint64_t *)(utility_reserved_memory + UTILITY_STATUS_ENABLED_FLAG_HEXA_A0),context_handle,&utility_reserved_memory,UTILITY_MEMORY_BLOCK_SIZE_EXTRA_LARGE,0);
 if (utility_loop_counter != UTILITY_BOOLEAN_FALSE) {
 memory_copy_pointer(utility_loop_counter,*(uint64_t *)(utility_input_context + UTILITY_THREAD_CONTEXT_OFFSET),(int64_t)*(int *)(utility_input_context + UTILITY_THREAD_DATA_OFFSET));
 }
@@ -21239,7 +21239,7 @@ utility_system_initialize();
 *(uint32_t *)(utility_loop_counter + 0x2e0) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_loop_counter + UTILITY_CONTEXT_CONFIG_OFFSET8) = &utility_reserved_memory;
 *(uint64_t *)(utility_loop_counter + 0x2a8) = &utility_system_data;
-if (*(int64_t *)(utility_loop_counter + 0x2b0) != UTILITY_BOOLEAN_FALSE) {
+if (*(int64_t *)(utility_loop_counter + UTILITY_SERVICE_HANDLER_OFFSET_2B0) != UTILITY_BOOLEAN_FALSE) {
 utility_system_initialize();
 }
 *(uint64_t *)(utility_loop_counter + 0x2b0) = UTILITY_BOOLEAN_FALSE;
@@ -21438,7 +21438,7 @@ utility_system_initialize();
 *(uint32_t *)(utility_loop_counter + 0x2e0) = UTILITY_BOOLEAN_FALSE;
 *(uint64_t *)(utility_loop_counter + UTILITY_CONTEXT_CONFIG_OFFSET8) = &utility_reserved_memory;
 *(uint64_t *)(utility_loop_counter + 0x2a8) = &utility_system_data;
-if (*(int64_t *)(utility_loop_counter + 0x2b0) != UTILITY_BOOLEAN_FALSE) {
+if (*(int64_t *)(utility_loop_counter + UTILITY_SERVICE_HANDLER_OFFSET_2B0) != UTILITY_BOOLEAN_FALSE) {
 utility_system_initialize();
 }
 *(uint64_t *)(utility_loop_counter + 0x2b0) = UTILITY_BOOLEAN_FALSE;
