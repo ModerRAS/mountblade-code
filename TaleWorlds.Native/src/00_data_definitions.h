@@ -12,6 +12,15 @@ int global_initialized_flag = 1;
 int *global_config_ptr = 0;
 longlong global_max_value = 0x7fffffffffffffff;
 int global_status_flag = 0;
+
+/**
+ * @brief 初始化核心系统
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责设置核心系统的基本参数和回调函数
+ */
+int core_system_initialize(void)
+{
   longlong initialization_result;
   initialization_result = system_initialize_callback(system_setup_function);
   return (initialization_result != 0) - 1;
