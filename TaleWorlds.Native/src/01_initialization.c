@@ -2227,6 +2227,19 @@ void system_initialize_thread_scheduler(void)
 void system_initialize_config_manager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 系统初始化入口点函数
+ * 
+ * 该函数是系统初始化的主要入口点，负责：
+ * - 初始化全局数据指针
+ * - 设置系统基础配置
+ * - 准备系统运行环境
+ * 
+ * @return int 初始化状态码，0表示成功，非0表示失败
+ * 
+ * 简化实现：提供基本的系统初始化入口功能
+ * 原本实现：完全重构系统初始化流程，添加完整的错误处理和日志记录
+ */
 int system_internal_call(void)
 
 {
