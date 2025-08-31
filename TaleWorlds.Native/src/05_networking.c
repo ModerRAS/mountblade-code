@@ -140,4 +140,3 @@
 
 // 网络系统十六进制标签语义化定义
 // 注意：以下标签在代码中使用，具体的十六进制值在其他地方定义
-#define LAB_NETWORK_ERROR_HANDLER_PROCESS_C LAB_NETWORK_ERROR_HANDLER_PROCESS_C_START
