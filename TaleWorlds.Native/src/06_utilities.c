@@ -92,43 +92,43 @@
 #define UTILITY_STRUCTURE_OFFSET 0x10                             // 结构体偏移量
 #define UTILITY_LIST_DATA_OFFSET 0x14                              // 列表数据偏移量
 
-// 全局变量声明
-static longlong utility_system_resource_handle = 0;
-static uint32 UTILITY_STACK_PROCESSING_BUFFER[16] = {0};
-static uint32 UTILITY_STACK_BUFFER_ARRAY[16] = {0};
-static uint32 UTILITY_STACK_DATA[16] = {0};
-static float UTILITY_FLOAT_PRIMARY_VALUE = 0.0f;
-static uint32 UTILITY_STATUS_VALUE = 0;
-static int UTILITY_COUNTER = 0;
-static uint32 UTILITY_STATE = 0;
-static uint32 *UTILITY_PTR_BUFFER = NULL;
-static longlong UTILITY_TEMPORARY_LONG_STORAGE = 0;
-static uint32 *UTILITY_GENERIC_DATA_POINTER = NULL;
-static int *UTILITY_RESULT_POINTER = NULL;
-static uint32 *UTILITY_CPU_REGISTER_RAX = NULL;
-static longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED = 0;
-static uint32 *UTILITY_SYSTEM_MEMORY_HANDLE = NULL;
-static longlong utility_resource_cache = 0;
-static uint32 utility_buffer[1024] = {0};
-static uint32 utility_processing_buffer[1024] = {0};
-static uint32 g_utility_resource_size_limit = 1024;
-static longlong utility_resource_context_handle = 0;
-static uint32 UTILITY_RESOURCE_BUFFER = 0;
-static uint32 UTILITY_BOUNDARY_TWO = 2;
-static uint32 UTILITY_RESOURCE_CONFIG_OFFSET = 0;
-static uint32 UTILITY_RESOURCE_TABLE_OFFSET = 0;
-static longlong UTILITY_FRAME_PTR = 0;
-static longlong UTILITY_FILE_DATA_OFFSET = 0;
-static uint32 UTILITY_FILE_HANDLE_OFFSET = 0;
-static uint64 UTILITY_FILE_POSITION_OFFSET = 0;
-static float UTILITY_RESOURCE_DATA_BUFFER_POSITION = 0.0f;
-static longlong UTILITY_DATA_BUFFER_PRIMARY = 0;
-static uint32 UTILITY_LOCAL_INTEGER_VALUE = 0;
-static longlong UTILITY_BUFFER_POSITION = 0;
-static uint64 UTILITY_RESULT = 0;
-static uint32 UTILITY_THREAD_OFFSET = 0;
-static uint64 UTILITY_FILE_SIZE_PARAM = 0;
-static ulonglong utility_extended_data_ptr = 0;
+// 全局变量声明 - 语义化美化（2025年8月31日最新批次完成）
+static longlong utility_system_resource_handle = 0;                    // 系统资源句柄
+static uint32 utility_stack_processing_buffer[16] = {0};                // 栈处理缓冲区
+static uint32 utility_stack_buffer_array[16] = {0};                     // 栈缓冲区数组
+static uint32 utility_stack_data[16] = {0};                              // 栈数据
+static float utility_primary_float_value = 0.0f;                        // 主要浮点值
+static uint32 utility_status_value = 0;                                  // 状态值
+static int utility_counter = 0;                                          // 计数器
+static uint32 utility_state = 0;                                         // 状态
+static uint32 *utility_pointer_buffer = NULL;                            // 指针缓冲区
+static longlong utility_temporary_long_storage = 0;                     // 临时长整型存储
+static uint32 *utility_generic_data_pointer = NULL;                     // 通用数据指针
+static int *utility_result_pointer = NULL;                               // 结果指针
+static uint32 *utility_cpu_register_rax = NULL;                         // CPU寄存器RAX
+static longlong utility_primary_data_pointer_extended = 0;             // 主要数据指针扩展
+static uint32 *utility_system_memory_handle = NULL;                     // 系统内存句柄
+static longlong utility_resource_cache = 0;                             // 资源缓存
+static uint32 utility_buffer[1024] = {0};                                // 缓冲区
+static uint32 utility_processing_buffer[1024] = {0};                    // 处理缓冲区
+static uint32 utility_resource_size_limit = 1024;                       // 资源大小限制
+static longlong utility_resource_context_handle = 0;                    // 资源上下文句柄
+static uint32 utility_resource_buffer = 0;                              // 资源缓冲区
+static uint32 utility_boundary_value = 2;                               // 边界值
+static uint32 utility_resource_config_offset = 0;                        // 资源配置偏移量
+static uint32 utility_resource_table_offset = 0;                         // 资源表偏移量
+static longlong utility_frame_pointer = 0;                              // 帧指针
+static longlong utility_file_data_offset = 0;                           // 文件数据偏移量
+static uint32 utility_file_handle_offset = 0;                           // 文件句柄偏移量
+static uint64 utility_file_position_offset = 0;                         // 文件位置偏移量
+static float utility_resource_data_buffer_position = 0.0f;              // 资源数据缓冲区位置
+static longlong utility_primary_data_buffer = 0;                        // 主要数据缓冲区
+static uint32 utility_local_integer_value = 0;                          // 本地整数值
+static longlong utility_buffer_position = 0;                            // 缓冲区位置
+static uint64 utility_result_value = 0;                                // 结果值
+static uint32 utility_thread_offset = 0;                                // 线程偏移量
+static uint64 utility_file_size_parameter = 0;                          // 文件大小参数
+static ulonglong utility_extended_data_pointer = 0;                      // 扩展数据指针
 
 
 /**
@@ -139,13 +139,24 @@ static ulonglong utility_extended_data_ptr = 0;
  * - 资源处理工具
  * - 系统操作工具
  *
+ * @version 2.3
+ * @date 2025年8月31日
+ * 
  * 简化实现：仅保留基本的工具函数，删除重复代码
  * 简化实现（2025年8月31日最新批次完成）：
  * - 删除大量重复的函数定义，从原来的15000+行减少到约300行
  * - 修复所有缺少函数名的函数定义
  * - 清理重复的代码块，保持代码简洁性
  * - 为所有函数添加详细的文档注释，包括功能描述、参数说明和返回值说明
+ * - 美化变量名和常量名，使用语义化命名规范
  * - 保持代码语义不变，这是简化实现，主要处理了工具系统中重复函数的清理工作和语法错误修复工作
+ */
+/**
+ * @brief 初始化空函数 - 系统初始化占位函数
+ * @return 无返回值
+ * 
+ * 这是一个占位函数，用于系统初始化时的空操作。
+ * 保持代码语义不变，这是简化实现。
  */
 void utility_initialize_empty_function(void)
 {
@@ -155,6 +166,9 @@ void utility_initialize_empty_function(void)
 /**
  * @brief 内存清理处理器 - 清理系统内存资源
  * @return 无返回值
+ * 
+ * 该函数负责清理系统内存资源，包括内存释放和资源回收。
+ * 简化实现：提供基本的内存清理功能。
  */
 void utility_memory_cleanup_handler(void)
 {
