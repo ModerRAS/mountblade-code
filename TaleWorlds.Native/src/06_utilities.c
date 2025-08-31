@@ -58326,7 +58326,6 @@ void utility_unwind_final_thread_callback(uint64 utility_resource_primary_handle
  * 该函数负责释放系统内存资源，确保内存被正确回收。
  * 
  * 添加基本内存释放逻辑
- * 完全重构内存管理系统，建立完整的内存管理规范
  */
 uint64 utility_free_memory(void *memory_block_ptr, uint32 release_flag)
 {
@@ -58350,8 +58349,6 @@ uint64 utility_free_memory(void *memory_block_ptr, uint32 release_flag)
  * 
  * 该函数负责执行底层系统内存操作，包括内存分配、释放和查询。
  * 
- * 添加基本内存操作逻辑
- * 完全重构系统内存操作接口，建立完整的内存操作规范
  */
 uint64 system_memory_operation(uint32 operation_type, void *result_ptr)
 {
