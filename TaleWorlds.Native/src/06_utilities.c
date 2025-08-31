@@ -2880,7 +2880,7 @@ uint64_t utility_resource_operation_executor(int64_t resource_count, int64_t con
 utility_network_float_value = *(float *)(context_handle + UTILITY_CONTEXT_EXTENDED_OFFSET);
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 utility_param_value = *(uint *)(context_handle + UTILITY_FLOAT_ARRAY_OFFSET_40);
-utility_float_buffer_var = *(float *)(context_handle + 0x3c);
+utility_float_buffer_var = *(float *)(context_handle + UTILITY_FLOAT_ARRAY_OFFSET_3C);
 utility_stack_buffer_array[0] = utility_combine_values(utility_stack_buffer_array[0].component_x,utility_network_float_value);
 utility_operation_status = utility_operation_status;
 if (((uint)utility_network_float_value & UTILITY_STATUS_FLAG_MASK_F800000) == UTILITY_STATUS_FLAG_MASK_F800000) {
