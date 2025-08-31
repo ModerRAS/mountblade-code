@@ -6,7 +6,6 @@
  * 简化实现：整理网络系统常量、变量和函数指针的声明，添加清晰的分组注释
  * 原本实现：完全重构网络系统所有声明体系，建立统一的语义化命名规范
  */
-
 /* 网络系统核心常量定义 */
 #define NETWORK_OFFSET_STANDARD_B 0xb
 #define NETWORK_OFFSET_STANDARD_C 0xc
@@ -50,8 +49,22 @@
 #define network_packet_function_initialize network_packet_function_initialize_primary
 #define network_packet_function_process network_packet_function_process_primary
 #define network_packet_function_decompress network_packet_function_decompress_primary
+/**
+ * @brief 网络连接查询函数
+ * 负责查询网络连接状态和信息
+ */
 void *network_connection_query_function;
+
+/**
+ * @brief 网络连接数据处理函数
+ * 负责处理网络连接数据
+ */
 void *network_connection_data_function;
+
+/**
+ * @brief 网络连接验证函数
+ * 负责验证网络连接的有效性
+ */
 void *network_connection_validate_function;
 
 /* 网络核心连接管理变量 */
