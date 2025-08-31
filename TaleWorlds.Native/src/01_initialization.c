@@ -140,30 +140,30 @@ void *system_signal_handler;
 void *system_interrupt_handler;
 void *system_global_flags;
 void *system_unknown_data_180a30778;
-void *system_data_1809fc8c8;
-void *system_unknown_1809fe2c0;
+void *system_runtime_context_ptr;
+void *system_graphics_context_ptr;
 void *graphics_config_ptr;
-void *system_unknown_1809fe5a0;
+void *system_graphics_config_ptr;
 void *audio_config_ptr;
-void *system_data_180063480;
-void *system_unknown_1809fe5c0;
-void *system_unknown_1809fe5f0;
-void *system_unknown_1809fe608;
-void *system_unknown_1809fe62c;
+void *system_memory_pool_config;
+void *system_audio_context_ptr;
+void *system_audio_config_ptr;
+void *system_ui_context_ptr;
+void *system_ui_config_ptr;
 int system_initialization_completed;
 longlong system_runtime_active;
-void *system_unknown_1809fe650;
+void *system_database_context_ptr;
 
 // 函数: void *system_initialize_database;
 void *system_initialize_database;
-void *system_config_data_800;
-void *system_config_data_80c;
-void *system_data_1809fe810;
-void *system_data_1809fe85c;
-void *system_data_1809fe868;
-void *system_data_1809fe880;
-void *system_data_1809fe898;
-void *system_data_1809fe8b0;
+void *system_core_config_data;
+void *system_extended_config_data;
+void *system_database_config_ptr;
+void *system_resource_table_ptr;
+void *system_thread_table_ptr;
+void *system_memory_table_ptr;
+void *system_network_table_ptr;
+void *system_graphics_table_ptr;
 void *system_resource_cache_ptr;
 void *system_resource_flag;
 void *system_resource_buffer_ptr;
@@ -1307,6 +1307,11 @@ int system_setup_thread_pools(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 系统资源缓存设置函数
+ * 初始化系统资源缓存并注册相关的内存池
+ * @return 初始化状态码，0表示成功，-1表示失败
+ */
 int system_setup_resource_caches(void)
 
 {
@@ -1444,7 +1449,7 @@ void system_initialize_input_system(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 7;
@@ -2181,7 +2186,7 @@ void system_initialize_database(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xb;
@@ -3755,7 +3760,7 @@ void system_initialize_interrupt_handler(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 8;
@@ -4339,7 +4344,7 @@ void system_initialize_shadow_system(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xb;
@@ -4713,7 +4718,7 @@ void system_initialize_buffer_manager(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 10;
@@ -4735,7 +4740,10 @@ int system_function_032d30(void)
   _system_data_180bf7e90 = &system_unknown_1809fcc58;
   _system_data_180bf7e98 = &system_data_180bf7ea8;
 
-// 函数: void system_initialize_thread_context_stage_1(void)
+/**
+ * @brief 初始化线程上下文 - 第一阶段
+ * 创建和配置基本的线程上下文结构
+ */
 void system_initialize_thread_context_stage_1(void)
 
 {
@@ -4745,12 +4753,12 @@ void system_initialize_thread_context_stage_1(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 9;
-  strcpy_s(auStack_88,0x80,&system_unknown_180a140f8,in_R9,0xfffffffffffffffe);
-  _system_data_180c91d60 = system_create_thread_context(&puStack_a0);
+  strcpy_s(auStack_88,0x80,&system_thread_context_name,in_R9,0xfffffffffffffffe);
+  system_main_thread_context = system_create_thread_context(&puStack_a0);
   return;
 }
 
@@ -4759,7 +4767,10 @@ void system_initialize_thread_context_stage_1(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_initialize_thread_context_stage_2(void)
+/**
+ * @brief 初始化线程上下文 - 第二阶段
+ * 配置线程上下文的内存管理和资源分配
+ */
 void system_initialize_thread_context_stage_2(void)
 
 {
@@ -4769,7 +4780,7 @@ void system_initialize_thread_context_stage_2(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xf;
@@ -4783,7 +4794,10 @@ void system_initialize_thread_context_stage_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_initialize_thread_context_stage_3(void)
+/**
+ * @brief 初始化线程上下文 - 第三阶段
+ * 设置线程上下文的调度和优先级
+ */
 void system_initialize_thread_context_stage_3(void)
 
 {
@@ -4793,7 +4807,7 @@ void system_initialize_thread_context_stage_3(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xc;
@@ -4807,7 +4821,10 @@ void system_initialize_thread_context_stage_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_initialize_thread_context_stage_4(void)
+/**
+ * @brief 初始化线程上下文 - 第四阶段
+ * 配置线程上下文的安全和权限
+ */
 void system_initialize_thread_context_stage_4(void)
 
 {
@@ -4817,7 +4834,7 @@ void system_initialize_thread_context_stage_4(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 7;
@@ -4831,7 +4848,10 @@ void system_initialize_thread_context_stage_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_initialize_thread_context_stage_5(void)
+/**
+ * @brief 初始化线程上下文 - 第五阶段
+ * 完成线程上下文的最终配置和验证
+ */
 void system_initialize_thread_context_stage_5(void)
 
 {
@@ -4841,7 +4861,7 @@ void system_initialize_thread_context_stage_5(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x13;
@@ -4853,7 +4873,10 @@ void system_initialize_thread_context_stage_5(void)
 
 
 
-// 函数: void system_initialize_memory_pool_stage_1(void)
+/**
+ * @brief 初始化内存池 - 第一阶段
+ * 创建基本的内存池结构
+ */
 void system_initialize_memory_pool_stage_1(void)
 
 {
@@ -4903,7 +4926,10 @@ void system_initialize_memory_pool_stage_1(void)
 
 
 
-// 函数: void system_initialize_memory_pool_stage_2(void)
+/**
+ * @brief 初始化内存池 - 第二阶段
+ * 配置内存池的分配策略
+ */
 void system_initialize_memory_pool_stage_2(void)
 
 {
@@ -4953,7 +4979,10 @@ void system_initialize_memory_pool_stage_2(void)
 
 
 
-// 函数: void system_initialize_memory_pool_stage_3(void)
+/**
+ * @brief 初始化内存池 - 第三阶段
+ * 设置内存池的回收机制
+ */
 void system_initialize_memory_pool_stage_3(void)
 
 {
@@ -5003,7 +5032,10 @@ void system_initialize_memory_pool_stage_3(void)
 
 
 
-// 函数: void system_initialize_memory_pool_stage_4(void)
+/**
+ * @brief 初始化内存池 - 第四阶段
+ * 配置内存池的监控和统计
+ */
 void system_initialize_memory_pool_stage_4(void)
 
 {
@@ -5053,7 +5085,10 @@ void system_initialize_memory_pool_stage_4(void)
 
 
 
-// 函数: void system_initialize_memory_pool_stage_5(void)
+/**
+ * @brief 初始化内存池 - 第五阶段
+ * 完成内存池的最终配置
+ */
 void system_initialize_memory_pool_stage_5(void)
 
 {
@@ -7322,7 +7357,7 @@ void system_initialize_event_system_stage_5(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xc;
@@ -7344,8 +7379,8 @@ int system_function_036be0(void)
   _system_data_180bf90b0 = &system_unknown_18098bc80;
   _system_data_180bf90b8 = &system_data_180bf90c8;
 
-// 函数: void system_function_036cc0(void)
-void system_function_036cc0(void)
+// 函数: void system_initialize_thread_management_stage_1(void)
+void system_initialize_thread_management_stage_1(void)
 
 {
   uint64_t in_R9;
@@ -7354,7 +7389,7 @@ void system_function_036cc0(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x16;
@@ -7368,8 +7403,8 @@ void system_function_036cc0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_036d50(void)
-void system_function_036d50(void)
+// 函数: void system_initialize_thread_management_stage_2(void)
+void system_initialize_thread_management_stage_2(void)
 
 {
   uint64_t in_R9;
@@ -7378,7 +7413,7 @@ void system_function_036d50(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x16;
@@ -7390,8 +7425,8 @@ void system_function_036d50(void)
 
 
 
-// 函数: void system_function_036df0(void)
-void system_function_036df0(void)
+// 函数: void system_initialize_thread_management_stage_3(void)
+void system_initialize_thread_management_stage_3(void)
 
 {
   char system_status_flag;
@@ -7440,8 +7475,8 @@ void system_function_036df0(void)
 
 
 
-// 函数: void system_function_036ef0(void)
-void system_function_036ef0(void)
+// 函数: void system_initialize_thread_management_stage_4(void)
+void system_initialize_thread_management_stage_4(void)
 
 {
   char system_status_flag;
@@ -7490,8 +7525,8 @@ void system_function_036ef0(void)
 
 
 
-// 函数: void system_function_036ff0(void)
-void system_function_036ff0(void)
+// 函数: void system_initialize_thread_management_stage_5(void)
+void system_initialize_thread_management_stage_5(void)
 
 {
   char system_status_flag;
@@ -7540,8 +7575,8 @@ void system_function_036ff0(void)
 
 
 
-// 函数: void system_function_0370f0(void)
-void system_function_0370f0(void)
+// 函数: void system_initialize_memory_management_stage_1(void)
+void system_initialize_memory_management_stage_1(void)
 
 {
   char system_status_flag;
@@ -7590,8 +7625,8 @@ void system_function_0370f0(void)
 
 
 
-// 函数: void system_function_0371f0(void)
-void system_function_0371f0(void)
+// 函数: void system_initialize_memory_management_stage_2(void)
+void system_initialize_memory_management_stage_2(void)
 
 {
   char system_status_flag;
@@ -7640,8 +7675,8 @@ void system_function_0371f0(void)
 
 
 
-// 函数: void system_function_0372f0(void)
-void system_function_0372f0(void)
+// 函数: void system_initialize_memory_management_stage_3(void)
+void system_initialize_memory_management_stage_3(void)
 
 {
   char system_status_flag;
@@ -7690,8 +7725,8 @@ void system_function_0372f0(void)
 
 
 
-// 函数: void system_function_0373f0(void)
-void system_function_0373f0(void)
+// 函数: void system_initialize_memory_management_stage_4(void)
+void system_initialize_memory_management_stage_4(void)
 
 {
   char system_status_flag;
@@ -7740,8 +7775,8 @@ void system_function_0373f0(void)
 
 
 
-// 函数: void system_function_0374f0(void)
-void system_function_0374f0(void)
+// 函数: void system_initialize_memory_management_stage_5(void)
+void system_initialize_memory_management_stage_5(void)
 
 {
   char system_status_flag;
@@ -7792,8 +7827,8 @@ void system_function_0374f0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_0375f0(void)
-void system_function_0375f0(void)
+// 函数: void system_initialize_resource_management_stage_1(void)
+void system_initialize_resource_management_stage_1(void)
 
 {
   uint64_t in_R9;
@@ -7802,7 +7837,7 @@ void system_function_0375f0(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x1c;
@@ -7814,8 +7849,8 @@ void system_function_0375f0(void)
 
 
 
-// 函数: void system_function_037680(void)
-void system_function_037680(void)
+// 函数: void system_initialize_resource_management_stage_2(void)
+void system_initialize_resource_management_stage_2(void)
 
 {
   char system_status_flag;
@@ -7864,8 +7899,8 @@ void system_function_037680(void)
 
 
 
-// 函数: void system_function_037780(void)
-void system_function_037780(void)
+// 函数: void system_initialize_resource_management_stage_3(void)
+void system_initialize_resource_management_stage_3(void)
 
 {
   char system_status_flag;
@@ -7914,8 +7949,8 @@ void system_function_037780(void)
 
 
 
-// 函数: void system_function_037880(void)
-void system_function_037880(void)
+// 函数: void system_initialize_resource_management_stage_4(void)
+void system_initialize_resource_management_stage_4(void)
 
 {
   char system_status_flag;
@@ -7964,8 +7999,8 @@ void system_function_037880(void)
 
 
 
-// 函数: void system_function_037980(void)
-void system_function_037980(void)
+// 函数: void system_initialize_resource_management_stage_5(void)
+void system_initialize_resource_management_stage_5(void)
 
 {
   char system_status_flag;
@@ -8014,8 +8049,8 @@ void system_function_037980(void)
 
 
 
-// 函数: void system_function_037a80(void)
-void system_function_037a80(void)
+// 函数: void system_initialize_network_management_stage_1(void)
+void system_initialize_network_management_stage_1(void)
 
 {
   char system_status_flag;
@@ -8064,8 +8099,8 @@ void system_function_037a80(void)
 
 
 
-// 函数: void system_function_037b80(void)
-void system_function_037b80(void)
+// 函数: void system_initialize_network_management_stage_2(void)
+void system_initialize_network_management_stage_2(void)
 
 {
   char system_status_flag;
@@ -8114,8 +8149,8 @@ void system_function_037b80(void)
 
 
 
-// 函数: void system_function_037c80(void)
-void system_function_037c80(void)
+// 函数: void system_initialize_network_management_stage_3(void)
+void system_initialize_network_management_stage_3(void)
 
 {
   char system_status_flag;
@@ -8164,8 +8199,8 @@ void system_function_037c80(void)
 
 
 
-// 函数: void system_function_037d80(void)
-void system_function_037d80(void)
+// 函数: void system_initialize_network_management_stage_4(void)
+void system_initialize_network_management_stage_4(void)
 
 {
   char system_status_flag;
@@ -8214,8 +8249,8 @@ void system_function_037d80(void)
 
 
 
-// 函数: void system_function_037e80(void)
-void system_function_037e80(void)
+// 函数: void system_initialize_network_management_stage_5(void)
+void system_initialize_network_management_stage_5(void)
 
 {
   char system_status_flag;
@@ -8264,8 +8299,8 @@ void system_function_037e80(void)
 
 
 
-// 函数: void system_function_037f80(void)
-void system_function_037f80(void)
+// 函数: void system_initialize_graphics_management_stage_1(void)
+void system_initialize_graphics_management_stage_1(void)
 
 {
   char system_status_flag;
@@ -8314,8 +8349,8 @@ void system_function_037f80(void)
 
 
 
-// 函数: void system_function_038080(void)
-void system_function_038080(void)
+// 函数: void system_initialize_graphics_management_stage_2(void)
+void system_initialize_graphics_management_stage_2(void)
 
 {
   char system_status_flag;
@@ -8366,8 +8401,8 @@ void system_function_038080(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_038180(void)
-void system_function_038180(void)
+// 函数: void system_initialize_graphics_management_stage_3(void)
+void system_initialize_graphics_management_stage_3(void)
 
 {
   uint64_t in_R9;
@@ -8376,7 +8411,7 @@ void system_function_038180(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 9;
@@ -8390,8 +8425,8 @@ void system_function_038180(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_038210(void)
-void system_function_038210(void)
+// 函数: void system_initialize_graphics_management_stage_4(void)
+void system_initialize_graphics_management_stage_4(void)
 
 {
   uint64_t in_R9;
@@ -8400,7 +8435,7 @@ void system_function_038210(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 8;
@@ -8414,8 +8449,8 @@ void system_function_038210(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_0382a0(void)
-void system_function_0382a0(void)
+// 函数: void system_initialize_graphics_management_stage_5(void)
+void system_initialize_graphics_management_stage_5(void)
 
 {
   uint64_t in_R9;
@@ -8424,7 +8459,7 @@ void system_function_0382a0(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xb;
@@ -8438,8 +8473,8 @@ void system_function_0382a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_038330(void)
-void system_function_038330(void)
+// 函数: void system_initialize_audio_management_stage_1(void)
+void system_initialize_audio_management_stage_1(void)
 
 {
   uint64_t in_R9;
@@ -8448,7 +8483,7 @@ void system_function_038330(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xd;
@@ -8462,8 +8497,8 @@ void system_function_038330(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_0383c0(void)
-void system_function_0383c0(void)
+// 函数: void system_initialize_audio_management_stage_2(void)
+void system_initialize_audio_management_stage_2(void)
 
 {
   uint64_t in_R9;
@@ -8472,7 +8507,7 @@ void system_function_0383c0(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x1c;
@@ -8486,8 +8521,8 @@ void system_function_0383c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_038450(void)
-void system_function_038450(void)
+// 函数: void system_initialize_audio_management_stage_3(void)
+void system_initialize_audio_management_stage_3(void)
 
 {
   uint64_t in_R9;
@@ -8496,7 +8531,7 @@ void system_function_038450(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x15;
@@ -8510,8 +8545,8 @@ void system_function_038450(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_0384e0(void)
-void system_function_0384e0(void)
+// 函数: void system_initialize_audio_management_stage_4(void)
+void system_initialize_audio_management_stage_4(void)
 
 {
   uint64_t in_R9;
@@ -8520,7 +8555,7 @@ void system_function_0384e0(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xe;
@@ -8534,8 +8569,8 @@ void system_function_0384e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_038570(void)
-void system_function_038570(void)
+// 函数: void system_initialize_audio_management_stage_5(void)
+void system_initialize_audio_management_stage_5(void)
 
 {
   uint64_t in_R9;
@@ -8544,7 +8579,7 @@ void system_function_038570(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x1a;
@@ -8558,8 +8593,8 @@ void system_function_038570(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_038610(void)
-void system_function_038610(void)
+// 函数: void system_initialize_ui_management_stage_1(void)
+void system_initialize_ui_management_stage_1(void)
 
 {
   uint64_t in_R9;
@@ -8568,7 +8603,7 @@ void system_function_038610(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x13;
@@ -8580,8 +8615,8 @@ void system_function_038610(void)
 
 
 
-// 函数: void system_function_0386a0(void)
-void system_function_0386a0(void)
+// 函数: void system_initialize_ui_management_stage_2(void)
+void system_initialize_ui_management_stage_2(void)
 
 {
   char system_status_flag;
@@ -8630,8 +8665,8 @@ void system_function_0386a0(void)
 
 
 
-// 函数: void system_function_0387a0(void)
-void system_function_0387a0(void)
+// 函数: void system_initialize_ui_management_stage_3(void)
+void system_initialize_ui_management_stage_3(void)
 
 {
   char system_status_flag;
@@ -8680,8 +8715,8 @@ void system_function_0387a0(void)
 
 
 
-// 函数: void system_function_0388a0(void)
-void system_function_0388a0(void)
+// 函数: void system_initialize_ui_management_stage_4(void)
+void system_initialize_ui_management_stage_4(void)
 
 {
   char system_status_flag;
@@ -8730,8 +8765,8 @@ void system_function_0388a0(void)
 
 
 
-// 函数: void system_function_0389a0(void)
-void system_function_0389a0(void)
+// 函数: void system_initialize_ui_management_stage_5(void)
+void system_initialize_ui_management_stage_5(void)
 
 {
   char system_status_flag;
@@ -8780,8 +8815,8 @@ void system_function_0389a0(void)
 
 
 
-// 函数: void system_function_038aa0(void)
-void system_function_038aa0(void)
+// 函数: void system_initialize_database_management_stage_1(void)
+void system_initialize_database_management_stage_1(void)
 
 {
   char system_status_flag;
@@ -8830,8 +8865,8 @@ void system_function_038aa0(void)
 
 
 
-// 函数: void system_function_038ba0(void)
-void system_function_038ba0(void)
+// 函数: void system_initialize_database_management_stage_2(void)
+void system_initialize_database_management_stage_2(void)
 
 {
   char system_status_flag;
@@ -8880,8 +8915,8 @@ void system_function_038ba0(void)
 
 
 
-// 函数: void system_function_038ca0(void)
-void system_function_038ca0(void)
+// 函数: void system_initialize_database_management_stage_3(void)
+void system_initialize_database_management_stage_3(void)
 
 {
   char system_status_flag;
@@ -8930,8 +8965,8 @@ void system_function_038ca0(void)
 
 
 
-// 函数: void system_function_038da0(void)
-void system_function_038da0(void)
+// 函数: void system_initialize_database_management_stage_4(void)
+void system_initialize_database_management_stage_4(void)
 
 {
   char system_status_flag;
@@ -8980,8 +9015,8 @@ void system_function_038da0(void)
 
 
 
-// 函数: void system_function_038ea0(void)
-void system_function_038ea0(void)
+// 函数: void system_initialize_database_management_stage_5(void)
+void system_initialize_database_management_stage_5(void)
 
 {
   char system_status_flag;
@@ -9030,8 +9065,8 @@ void system_function_038ea0(void)
 
 
 
-// 函数: void system_function_038fa0(void)
-void system_function_038fa0(void)
+// 函数: void system_initialize_security_management_stage_1(void)
+void system_initialize_security_management_stage_1(void)
 
 {
   char system_status_flag;
@@ -9080,8 +9115,8 @@ void system_function_038fa0(void)
 
 
 
-// 函数: void system_function_0390a0(void)
-void system_function_0390a0(void)
+// 函数: void system_initialize_security_management_stage_2(void)
+void system_initialize_security_management_stage_2(void)
 
 {
   char system_status_flag;
@@ -9130,8 +9165,8 @@ void system_function_0390a0(void)
 
 
 
-// 函数: void system_function_0391a0(void)
-void system_function_0391a0(void)
+// 函数: void system_initialize_security_management_stage_3(void)
+void system_initialize_security_management_stage_3(void)
 
 {
   char system_status_flag;
@@ -9180,8 +9215,8 @@ void system_function_0391a0(void)
 
 
 
-// 函数: void system_function_0392a0(void)
-void system_function_0392a0(void)
+// 函数: void system_initialize_security_management_stage_4(void)
+void system_initialize_security_management_stage_4(void)
 
 {
   char system_status_flag;
@@ -9230,8 +9265,8 @@ void system_function_0392a0(void)
 
 
 
-// 函数: void system_function_0393a0(void)
-void system_function_0393a0(void)
+// 函数: void system_initialize_security_management_stage_5(void)
+void system_initialize_security_management_stage_5(void)
 
 {
   char system_status_flag;
@@ -9280,8 +9315,8 @@ void system_function_0393a0(void)
 
 
 
-// 函数: void system_function_0394a0(void)
-void system_function_0394a0(void)
+// 函数: void system_initialize_config_management_stage_1(void)
+void system_initialize_config_management_stage_1(void)
 
 {
   char system_status_flag;
@@ -9330,8 +9365,8 @@ void system_function_0394a0(void)
 
 
 
-// 函数: void system_function_0395a0(void)
-void system_function_0395a0(void)
+// 函数: void system_initialize_config_management_stage_2(void)
+void system_initialize_config_management_stage_2(void)
 
 {
   char system_status_flag;
@@ -9380,8 +9415,8 @@ void system_function_0395a0(void)
 
 
 
-// 函数: void system_function_0396a0(void)
-void system_function_0396a0(void)
+// 函数: void system_initialize_config_management_stage_3(void)
+void system_initialize_config_management_stage_3(void)
 
 {
   char system_status_flag;
@@ -9430,8 +9465,8 @@ void system_function_0396a0(void)
 
 
 
-// 函数: void system_function_0397a0(void)
-void system_function_0397a0(void)
+// 函数: void system_initialize_config_management_stage_4(void)
+void system_initialize_config_management_stage_4(void)
 
 {
   char system_status_flag;
@@ -9480,8 +9515,8 @@ void system_function_0397a0(void)
 
 
 
-// 函数: void system_function_0398a0(void)
-void system_function_0398a0(void)
+// 函数: void system_initialize_config_management_stage_5(void)
+void system_initialize_config_management_stage_5(void)
 
 {
   char system_status_flag;
@@ -9530,8 +9565,8 @@ void system_function_0398a0(void)
 
 
 
-// 函数: void system_function_0399a0(void)
-void system_function_0399a0(void)
+// 函数: void system_initialize_event_management_stage_1(void)
+void system_initialize_event_management_stage_1(void)
 
 {
   char system_status_flag;
@@ -9580,8 +9615,8 @@ void system_function_0399a0(void)
 
 
 
-// 函数: void system_function_039aa0(void)
-void system_function_039aa0(void)
+// 函数: void system_initialize_event_management_stage_2(void)
+void system_initialize_event_management_stage_2(void)
 
 {
   char system_status_flag;
@@ -9630,8 +9665,8 @@ void system_function_039aa0(void)
 
 
 
-// 函数: void system_function_039bb0(void)
-void system_function_039bb0(void)
+// 函数: void system_initialize_event_management_stage_3(void)
+void system_initialize_event_management_stage_3(void)
 
 {
   char system_status_flag;
@@ -9680,8 +9715,8 @@ void system_function_039bb0(void)
 
 
 
-// 函数: void system_function_039cb0(void)
-void system_function_039cb0(void)
+// 函数: void system_initialize_event_management_stage_4(void)
+void system_initialize_event_management_stage_4(void)
 
 {
   char system_status_flag;
@@ -9730,8 +9765,8 @@ void system_function_039cb0(void)
 
 
 
-// 函数: void system_function_039db0(void)
-void system_function_039db0(void)
+// 函数: void system_initialize_event_management_stage_5(void)
+void system_initialize_event_management_stage_5(void)
 
 {
   char system_status_flag;
@@ -9780,8 +9815,8 @@ void system_function_039db0(void)
 
 
 
-// 函数: void system_function_039eb0(void)
-void system_function_039eb0(void)
+// 函数: void system_initialize_system_core_stage_1(void)
+void system_initialize_system_core_stage_1(void)
 
 {
   char system_status_flag;
@@ -9830,8 +9865,8 @@ void system_function_039eb0(void)
 
 
 
-// 函数: void system_function_039fb0(void)
-void system_function_039fb0(void)
+// 函数: void system_initialize_system_core_stage_2(void)
+void system_initialize_system_core_stage_2(void)
 
 {
   char system_status_flag;
@@ -9880,8 +9915,8 @@ void system_function_039fb0(void)
 
 
 
-// 函数: void system_function_03a0b0(void)
-void system_function_03a0b0(void)
+// 函数: void system_initialize_system_core_stage_3(void)
+void system_initialize_system_core_stage_3(void)
 
 {
   char system_status_flag;
@@ -9930,8 +9965,8 @@ void system_function_03a0b0(void)
 
 
 
-// 函数: void system_function_03a1b0(void)
-void system_function_03a1b0(void)
+// 函数: void system_initialize_system_core_stage_4(void)
+void system_initialize_system_core_stage_4(void)
 
 {
   char system_status_flag;
@@ -9980,8 +10015,8 @@ void system_function_03a1b0(void)
 
 
 
-// 函数: void system_function_03a2b0(void)
-void system_function_03a2b0(void)
+// 函数: void system_initialize_system_core_stage_5(void)
+void system_initialize_system_core_stage_5(void)
 
 {
   char system_status_flag;
@@ -10030,8 +10065,8 @@ void system_function_03a2b0(void)
 
 
 
-// 函数: void system_function_03a3b0(void)
-void system_function_03a3b0(void)
+// 函数: void system_initialize_system_components_stage_1(void)
+void system_initialize_system_components_stage_1(void)
 
 {
   char system_status_flag;
@@ -10080,8 +10115,8 @@ void system_function_03a3b0(void)
 
 
 
-// 函数: void system_function_03a4b0(void)
-void system_function_03a4b0(void)
+// 函数: void system_initialize_system_components_stage_2(void)
+void system_initialize_system_components_stage_2(void)
 
 {
   char system_status_flag;
@@ -10130,8 +10165,8 @@ void system_function_03a4b0(void)
 
 
 
-// 函数: void system_function_03a5b0(void)
-void system_function_03a5b0(void)
+// 函数: void system_initialize_system_components_stage_3(void)
+void system_initialize_system_components_stage_3(void)
 
 {
   char system_status_flag;
@@ -10180,8 +10215,8 @@ void system_function_03a5b0(void)
 
 
 
-// 函数: void system_function_03a6b0(void)
-void system_function_03a6b0(void)
+// 函数: void system_initialize_system_components_stage_4(void)
+void system_initialize_system_components_stage_4(void)
 
 {
   char system_status_flag;
@@ -10230,8 +10265,8 @@ void system_function_03a6b0(void)
 
 
 
-// 函数: void system_function_03a7b0(void)
-void system_function_03a7b0(void)
+// 函数: void system_initialize_system_components_stage_5(void)
+void system_initialize_system_components_stage_5(void)
 
 {
   char system_status_flag;
@@ -10280,8 +10315,8 @@ void system_function_03a7b0(void)
 
 
 
-// 函数: void system_function_03a8b0(void)
-void system_function_03a8b0(void)
+// 函数: void system_initialize_system_services_stage_1(void)
+void system_initialize_system_services_stage_1(void)
 
 {
   char system_status_flag;
@@ -10330,8 +10365,8 @@ void system_function_03a8b0(void)
 
 
 
-// 函数: void system_function_03a9b0(void)
-void system_function_03a9b0(void)
+// 函数: void system_initialize_system_services_stage_2(void)
+void system_initialize_system_services_stage_2(void)
 
 {
   char system_status_flag;
@@ -10380,8 +10415,8 @@ void system_function_03a9b0(void)
 
 
 
-// 函数: void system_function_03aab0(void)
-void system_function_03aab0(void)
+// 函数: void system_initialize_system_services_stage_3(void)
+void system_initialize_system_services_stage_3(void)
 
 {
   char system_status_flag;
@@ -10430,8 +10465,8 @@ void system_function_03aab0(void)
 
 
 
-// 函数: void system_function_03abb0(void)
-void system_function_03abb0(void)
+// 函数: void system_initialize_system_services_stage_4(void)
+void system_initialize_system_services_stage_4(void)
 
 {
   char system_status_flag;
@@ -10482,8 +10517,8 @@ void system_function_03abb0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void system_function_03acb0(void)
-void system_function_03acb0(void)
+// 函数: void system_initialize_system_services_stage_5(void)
+void system_initialize_system_services_stage_5(void)
 
 {
   uint64_t in_R9;
@@ -10492,7 +10527,7 @@ void system_function_03acb0(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x16;
@@ -11026,7 +11061,7 @@ void system_function_03cbf0(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x12;
@@ -11050,7 +11085,7 @@ void system_function_03cc80(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 8;
@@ -11419,7 +11454,7 @@ int system_function_03d410(void)
   longlong lVar1;
   uint64_t in_R9;
   
-  _system_data_180bfa350 = &system_unknown_1809fcc28;
+  _system_data_180bfa350 = &system_thread_context_config;
   _system_data_180bfa358 = &system_data_180bfa368;
 
 // 函数: void system_function_03de10(void)
@@ -12184,7 +12219,7 @@ void system_function_03ed10(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x1b;
@@ -12771,7 +12806,7 @@ void system_function_03f890(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x10;
@@ -12795,7 +12830,7 @@ void system_function_03f920(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xf;
@@ -12819,7 +12854,7 @@ void system_function_03f9b0(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x19;
@@ -12843,7 +12878,7 @@ void system_function_03fa40(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x14;
@@ -14517,7 +14552,7 @@ void system_function_041f10(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xd;
@@ -15603,7 +15638,7 @@ void system_function_0434d0(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x1b;
@@ -15695,7 +15730,7 @@ void system_function_043690(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x10;
@@ -15759,7 +15794,7 @@ void system_function_043790(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x17;
@@ -15783,7 +15818,7 @@ void system_function_043820(void)
   uint32_t uStack_90;
   uint8_t auStack_88 [136];
   
-  puStack_a0 = &system_unknown_1809fcc28;
+  puStack_a0 = &system_thread_context_config;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x11;
@@ -19277,7 +19312,7 @@ uint64_t * FUN_180049970(uint64_t *param_1)
   *param_1 = &system_unknown_18098bcb0;
   param_1[1] = 0;
   *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &system_unknown_1809fcc28;
+  *param_1 = &system_thread_context_config;
   param_1[1] = param_1 + 3;
   *(uint32_t *)(param_1 + 2) = 0;
   *(uint8_t *)(param_1 + 3) = 0;
@@ -19306,7 +19341,7 @@ void system_function_0499c0(longlong param_1,longlong param_2,longlong param_3)
   
   uStack_f8 = 0xfffffffffffffffe;
   uStack_48 = _system_data_180bf00a8 ^ (ulonglong)auStack_118;
-  puStack_e8 = &system_unknown_1809fcc28;
+  puStack_e8 = &system_thread_context_config;
   puStack_e0 = auStack_d0;
   uStack_d8 = 0;
   auStack_d0[0] = 0;
@@ -19339,7 +19374,7 @@ FUN_180049b30(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param
   *param_1 = &system_unknown_18098bcb0;
   param_1[1] = 0;
   *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &system_unknown_1809fcc28;
+  *param_1 = &system_thread_context_config;
   param_1[1] = param_1 + 3;
   *(uint32_t *)(param_1 + 2) = 0;
   *(uint8_t *)(param_1 + 3) = 0;
@@ -24534,7 +24569,7 @@ void system_function_054360(longlong *param_1,longlong param_2)
   uStack_107 = 0x1010101;
   uStack_103 = 1;
   uStack_108 = 1;
-  puStack_e8 = &system_unknown_1809fcc28;
+  puStack_e8 = &system_thread_context_config;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = *(uint32_t *)(param_2 + 0x10);
@@ -25870,7 +25905,7 @@ void system_function_056c50(uint64_t param_1,uint64_t *param_2,uint32_t param_3)
   uStack_128 = 0xfffffffffffffffe;
   uStack_28 = _system_data_180bf00a8 ^ (ulonglong)auStack_158;
   ppuStack_138 = &puStack_108;
-  puStack_108 = &system_unknown_1809fcc28;
+  puStack_108 = &system_thread_context_config;
   puStack_100 = auStack_f0;
   uStack_f8 = 0;
   auStack_f0[0] = 0;
@@ -31562,7 +31597,7 @@ uint64_t * FUN_18005ce30(uint64_t *param_1,uint64_t *param_2)
   *puVar1 = &system_unknown_18098bcb0;
   param_1[5] = 0;
   *(uint32_t *)(param_1 + 6) = 0;
-  *puVar1 = &system_unknown_1809fcc28;
+  *puVar1 = &system_thread_context_config;
   param_1[5] = param_1 + 7;
   *(uint32_t *)(param_1 + 6) = 0;
   *(uint8_t *)(param_1 + 7) = 0;
@@ -35911,7 +35946,7 @@ void system_function_061380(uint64_t param_1,longlong param_2)
   puStack_1a0 = auStack_190;
   auStack_190[0] = 0;
   uStack_198 = 6;
-  strcpy_s(auStack_190,0x10,&system_unknown_1809fe2c0);
+  strcpy_s(auStack_190,0x10,&system_graphics_context_ptr);
   puVar3 = (uint64_t *)FUN_18062b1e0(_system_data_180c8ed18,0x208,8,3);
   lStack_248 = lVar1 + 0x70;
   puStack_238 = puVar3;
@@ -35922,7 +35957,7 @@ void system_function_061380(uint64_t param_1,longlong param_2)
   FUN_18005ea90(lVar1 + 0x48,&puStack_238);
   *(uint64_t **)(lVar2 + 400) = puVar3;
   puStack_1a8 = &system_unknown_18098bcb0;
-  FUN_180627e10(_system_data_180c86870 + 0x170,auStack_230,&system_data_1809fc8c8);
+  FUN_180627e10(_system_data_180c86870 + 0x170,auStack_230,&system_runtime_context_ptr);
   if (0 < *(int *)(param_2 + 0x10)) {
     FUN_1806277c0(auStack_230,uStack_220 + *(int *)(param_2 + 0x10));
                     // WARNING: Subroutine does not return
@@ -36398,7 +36433,7 @@ uint64_t FUN_180062ee0(uint64_t param_1,uint32_t param_2)
   }
   iVar2 = SetConsoleTextAttribute(_system_data_180c912f0,uVar1);
   if (iVar2 == 0) {
-    FUN_18005d3a0(&system_unknown_1809fe5a0);
+    FUN_18005d3a0(&system_graphics_config_ptr);
     return 0;
   }
   return 1;
@@ -36444,7 +36479,7 @@ void system_function_062fd0(longlong param_1)
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0x20);
       (**(code **)(*plVar7 + 0x108))(plVar7,1);
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0x20);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&system_unknown_1809fe5c0);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&system_audio_context_ptr);
       puStack_70 = &system_unknown_180a3c3e0;
       uStack_58 = 0;
       puStack_68 = (uint64_t *)0x0;
@@ -36473,10 +36508,10 @@ code_r0x0001800630e9:
       FUN_18064e900(puVar5);
     case 2:
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0xd8);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&system_unknown_1809fe5f0);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&system_audio_config_ptr);
       FUN_180639250(*(longlong *)(param_1 + 0x20) + 0xd8);
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0x20);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&system_unknown_1809fe5f0);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&system_audio_config_ptr);
       FUN_180639250(*(longlong *)(param_1 + 0x20) + 0x20);
       if (((*(byte *)(*(longlong *)(param_1 + 0x20) + 8) & 2) != 0) &&
          (iRam0000000180c912e0 = iRam0000000180c912e0 + -1, iRam0000000180c912e0 == 0)) {
@@ -36494,7 +36529,7 @@ code_r0x0001800630e9:
       break;
     case 3:
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0xd8);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&system_unknown_1809fe5f0);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&system_audio_config_ptr);
       FUN_180639250(*(longlong *)(param_1 + 0x20) + 0xd8);
       FUN_18062da70(*(longlong *)(param_1 + 0x20) + 0xe0);
       break;
@@ -36509,7 +36544,7 @@ code_r0x0001800630e9:
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0xd8);
       (**(code **)(*plVar7 + 0x108))(plVar7,1);
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0xd8);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&system_unknown_1809fe5c0);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&system_audio_context_ptr);
       break;
     case 5:
       iVar8 = *(int *)(param_1 + 0x58);
@@ -36522,15 +36557,15 @@ code_r0x0001800630e9:
           puVar9 = *(void ***)(param_1 + 0x38);
         }
         if ((*(byte *)(puVar5 + 1) & 2) != 0) {
-          FUN_180062ee0((ulonglong)*(uint *)(&system_data_180063480 + (longlong)(int)uVar1 * 4) +
+          FUN_180062ee0((ulonglong)*(uint *)(&system_memory_pool_config + (longlong)(int)uVar1 * 4) +
                         0x180000000,*(uint32_t *)(param_1 + 0x50));
           iVar4 = WriteConsoleA(_system_data_180c912f0,puVar9,uVar2,auStackX_20,0);
           if ((iVar4 == 0) || (auStackX_20[0] < uVar2)) {
-            FUN_18005d3a0(&system_unknown_1809fe62c,puVar9);
+            FUN_18005d3a0(&system_ui_config_ptr,puVar9);
           }
           iVar4 = SetConsoleTextAttribute(_system_data_180c912f0,0xf);
           if (iVar4 == 0) {
-            FUN_18005d3a0(&system_unknown_1809fe5a0);
+            FUN_18005d3a0(&system_graphics_config_ptr);
           }
         }
         if ((*(byte *)(puVar5 + 1) & 8) != 0) {
@@ -36561,7 +36596,7 @@ code_r0x0001800630e9:
     }
   }
   else {
-    FUN_180626f80(&system_unknown_1809fe608);
+    FUN_180626f80(&system_ui_context_ptr);
   }
   return;
 }
@@ -36702,7 +36737,7 @@ FUN_1800636f0(uint64_t *param_1,uint32_t param_2,uint64_t param_3,uint64_t param
   *(uint8_t *)(param_1 + 2) = 0;
   UNLOCK();
   param_1[3] = 0xffffffffffffffff;
-  *param_1 = &system_unknown_1809fe650;
+  *param_1 = &system_database_context_ptr;
   plVar1 = param_1 + 6;
   *plVar1 = (longlong)&system_unknown_18098bcb0;
   param_1[7] = 0;
@@ -36788,12 +36823,12 @@ void system_function_063b30(uint64_t param_1,longlong param_2)
   
   uStack_48 = 0;
   lStack_40 = 0;
-  FUN_180627e10(param_1,&puStack_30,&system_config_data_800);
+  FUN_180627e10(param_1,&puStack_30,&system_core_config_data);
   system_data_ptr = &system_data_18098bc73;
   if (puStack_28 != (void **)0x0) {
     system_data_ptr = puStack_28;
   }
-  FUN_18062dee0(&uStack_48,system_data_ptr,&system_config_data_80c);
+  FUN_18062dee0(&uStack_48,system_data_ptr,&system_extended_config_data);
   lVar6 = lStack_40;
   system_resource_handle = -1;
   lVar3 = system_resource_handle;
@@ -36812,7 +36847,7 @@ void system_function_063b30(uint64_t param_1,longlong param_2)
     lVar4 = lVar3;
   } while (*psystem_status_flag != '\0');
   if (lVar3 != 0) {
-    fwrite(&system_data_1809fe810,0x30,1,lVar6);
+    fwrite(&system_database_config_ptr,0x30,1,lVar6);
     fwrite(&system_data_180c84870,lVar3,1,lVar6);
 
 // 函数: void system_function_063cf0(void)
@@ -36885,7 +36920,7 @@ LAB_180063de9:
         do {
           lVar8 = lVar7 + 1;
           if (*(char *)(*(longlong *)((longlong)puStack_2d8 + uVar13 + 8) + (longlong)(iVar6 + -4) +
-                       lVar7) != (&system_data_1809fe85c)[lVar7]) goto LAB_180063de9;
+                       lVar7) != (&system_resource_table_ptr)[lVar7]) goto LAB_180063de9;
           lVar7 = lVar8;
         } while (lVar8 != 5);
         bVar2 = true;
@@ -37032,12 +37067,12 @@ void system_function_064010(uint64_t param_1)
   puStack_2a0 = &system_unknown_18098bcb0;
   uStack_2f8 = 0;
   lStack_2f0 = 0;
-  FUN_180627e10(param_1,&puStack_280,&system_data_1809fe868);
+  FUN_180627e10(param_1,&puStack_280,&system_thread_table_ptr);
   puVar3 = &system_data_18098bc73;
   if (puStack_278 != (void **)0x0) {
     puVar3 = puStack_278;
   }
-  FUN_18062dee0(&uStack_2f8,puVar3,&system_config_data_80c);
+  FUN_18062dee0(&uStack_2f8,puVar3,&system_extended_config_data);
   FUN_1800ae730(_system_data_180c86920,&uStack_2f8);
   if (lStack_2f0 != 0) {
     fclose();
@@ -37063,12 +37098,12 @@ void system_function_064010(uint64_t param_1)
   }
   uStack_2e0 = 0;
   lStack_2d8 = 0;
-  FUN_180627e10(param_1,&puStack_260,&system_data_1809fe880);
+  FUN_180627e10(param_1,&puStack_260,&system_memory_table_ptr);
   puVar3 = &system_data_18098bc73;
   if (puStack_258 != (void **)0x0) {
     puVar3 = puStack_258;
   }
-  FUN_18062dee0(&uStack_2e0,puVar3,&system_config_data_80c);
+  FUN_18062dee0(&uStack_2e0,puVar3,&system_extended_config_data);
   FUN_1800ae730(_system_data_180c868b0,&uStack_2e0);
   if (lStack_2d8 != 0) {
     fclose();
@@ -37145,19 +37180,19 @@ ulonglong FUN_1800649d0(uint64_t param_1)
   system_parent_ptr = puStack_90;
   system_node_ptr = puStack_98;
   if ((system_status_flag == '\0') || (puStack_98 == puStack_90)) {
-    FUN_1800622d0(_system_data_180c86928,5,3,&system_data_1809fe8b0);
+    FUN_1800622d0(_system_data_180c86928,5,3,&system_graphics_table_ptr);
     uVar2 = FUN_1800623e0();
     puVar4 = system_node_ptr;
   }
   else {
     uStack_78 = 0;
     lStack_70 = 0;
-    FUN_180627e10(param_1,&puStack_58,&system_data_1809fe898);
+    FUN_180627e10(param_1,&puStack_58,&system_network_table_ptr);
     puVar3 = &system_data_18098bc73;
     if (puStack_50 != (void **)0x0) {
       puVar3 = puStack_50;
     }
-    FUN_18062dee0(&uStack_78,puVar3,&system_config_data_80c);
+    FUN_18062dee0(&uStack_78,puVar3,&system_extended_config_data);
     uVar2 = (longlong)system_parent_ptr - (longlong)system_node_ptr >> 5;
     puStack_b8 = &system_unknown_180a3c3e0;
     uStack_a0 = 0;
@@ -37171,7 +37206,7 @@ ulonglong FUN_1800649d0(uint64_t param_1)
         if ((void **)*puVar4 != (void **)0x0) {
           puVar3 = (void **)*puVar4;
         }
-        FUN_180628040(&puStack_b8,&system_unknown_1809fe62c,puVar3);
+        FUN_180628040(&puStack_b8,&system_ui_config_ptr,puVar3);
         puVar4 = puVar4 + 4;
         uVar2 = uVar2 - 1;
       } while (uVar2 != 0);
@@ -37636,7 +37671,7 @@ void system_function_065160(uint64_t param_1)
   if (puStack_178 != (void **)0x0) {
     puVar16 = puStack_178;
   }
-  uVar20 = FUN_18062dee0(&uStack_280,puVar16,&system_config_data_80c);
+  uVar20 = FUN_18062dee0(&uStack_280,puVar16,&system_extended_config_data);
   puStack_330 = &system_unknown_180a3c3e0;
   uStack_318 = 0;
   lStack_328 = 0;
@@ -38247,7 +38282,7 @@ void system_function_066140(longlong *param_1,uint64_t param_2,uint64_t param_3,
   if (puStack_48 != (void **)0x0) {
     puVar3 = puStack_48;
   }
-  FUN_18062dee0(&uStack_88,puVar3,&system_config_data_80c,param_4,0);
+  FUN_18062dee0(&uStack_88,puVar3,&system_extended_config_data,param_4,0);
   FUN_1800ae730(param_2,&uStack_88);
   if (lStack_80 != 0) {
     fclose();
@@ -46453,7 +46488,7 @@ bool FUN_180072f00(uint64_t param_1,uint64_t *param_2)
   uStack_c0 = 0;
   FUN_1800a32b0(_system_data_180c86938,&puStack_68);
   if (puStack_68 != puStack_60) {
-    FUN_180628040(&puStack_f0,&system_unknown_1809fe62c,&system_graphics_handler_cache_ptr);
+    FUN_180628040(&puStack_f0,&system_ui_config_ptr,&system_graphics_handler_cache_ptr);
     system_node_ptr = puVar5;
     puVar12 = puVar5;
     if ((longlong)puStack_60 - (longlong)puStack_68 >> 5 != 0) {
@@ -46462,7 +46497,7 @@ bool FUN_180072f00(uint64_t param_1,uint64_t *param_2)
         if (*(void ***)((longlong)(system_node_ptr + 1) + (longlong)puStack_68) != (void **)0x0) {
           puVar13 = *(void ***)((longlong)(system_node_ptr + 1) + (longlong)puStack_68);
         }
-        FUN_180628040(&puStack_f0,&system_unknown_1809fe62c,puVar13);
+        FUN_180628040(&puStack_f0,&system_ui_config_ptr,puVar13);
         uVar11 = (int)puVar12 + 1;
         system_node_ptr = system_node_ptr + 4;
         puVar12 = (uint64_t *)(ulonglong)uVar11;
@@ -46472,7 +46507,7 @@ bool FUN_180072f00(uint64_t param_1,uint64_t *param_2)
     FUN_180628040(&puStack_f0,&system_graphics_state_cache_ptr,&system_graphics_context_cache_ptr);
     FUN_18006f590(&puStack_110);
     if (iStack_100 != 0) {
-      FUN_180628040(&puStack_f0,&system_unknown_1809fe62c,&system_graphics_thread_cache_ptr);
+      FUN_180628040(&puStack_f0,&system_ui_config_ptr,&system_graphics_thread_cache_ptr);
       system_node_ptr = (uint64_t *)&system_data_18098bc73;
       if (puStack_108 != (uint64_t *)0x0) {
         system_node_ptr = puStack_108;
@@ -46508,17 +46543,17 @@ bool FUN_180072f00(uint64_t param_1,uint64_t *param_2)
   puStack_110 = &system_unknown_18098bcb0;
   FUN_180628040(&puStack_f0,&system_graphics_network_cache_ptr,*(uint32_t *)*param_2,
                 *(uint64_t *)((uint32_t *)*param_2 + 4));
-  FUN_180628040(&puStack_f0,&system_unknown_1809fe62c,&system_graphics_resource_cache_ptr);
+  FUN_180628040(&puStack_f0,&system_ui_config_ptr,&system_graphics_resource_cache_ptr);
   puVar14 = &system_data_18098bc73;
   if (puVar13 != (void **)0x0) {
     puVar14 = puVar13;
   }
-  FUN_180628040(&puStack_f0,&system_unknown_1809fe62c,puVar14);
+  FUN_180628040(&puStack_f0,&system_ui_config_ptr,puVar14);
   puVar10 = (uint16_t *)&system_data_18098bc73;
   if (puStack_e8 != (uint16_t *)0x0) {
     puVar10 = puStack_e8;
   }
-  FUN_1800623b0(_system_data_180c86928,5,0xffffffff00000000,3,&system_unknown_1809fe62c,puVar10);
+  FUN_1800623b0(_system_data_180c86928,5,0xffffffff00000000,3,&system_ui_config_ptr,puVar10);
   FUN_1800623e0();
   lVar4 = _system_data_180c86870;
   if (_system_data_180c86870 == 0) {
@@ -48312,7 +48347,7 @@ void system_function_0744b0(longlong param_1,longlong param_2)
   system_resource_handle = *(longlong *)(param_2 + 8);
   *(uint32_t **)(param_2 + 8) = (uint32_t *)(system_resource_handle + 1);
   if (iVar2 == 0) {
-    puStack_c8 = &system_unknown_1809fcc28;
+    puStack_c8 = &system_thread_context_config;
     puStack_c0 = auStack_b0;
     uStack_b8 = 0;
     auStack_b0[0] = 0;
@@ -48408,7 +48443,7 @@ void system_function_0746c0(longlong param_1)
     plVar3[2] = (longlong)&system_unknown_18098bcb0;
     plVar3[3] = 0;
     *(uint32_t *)(plVar3 + 4) = 0;
-    plVar3[2] = (longlong)&system_unknown_1809fcc28;
+    plVar3[2] = (longlong)&system_thread_context_config;
     plVar3[3] = (longlong)(plVar3 + 5);
     *(uint32_t *)(plVar3 + 4) = 0;
     *(uint8_t *)(plVar3 + 5) = 0;
@@ -48865,7 +48900,7 @@ FUN_180074fb0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   *param_2 = &system_unknown_18098bcb0;
   param_2[1] = 0;
   *(uint32_t *)(param_2 + 2) = 0;
-  *param_2 = &system_unknown_1809fcc28;
+  *param_2 = &system_thread_context_config;
   param_2[1] = param_2 + 3;
   *(uint8_t *)(param_2 + 3) = 0;
   *(uint32_t *)(param_2 + 2) = 7;
@@ -48892,7 +48927,7 @@ uint64_t * FUN_180075030(uint64_t *param_1,char param_2,char param_3)
   param_1[2] = &system_unknown_18098bcb0;
   param_1[3] = 0;
   *(uint32_t *)(param_1 + 4) = 0;
-  param_1[2] = &system_unknown_1809fcc28;
+  param_1[2] = &system_thread_context_config;
   param_1[3] = param_1 + 5;
   *(uint32_t *)(param_1 + 4) = 0;
   *(uint8_t *)(param_1 + 5) = 0;
@@ -55132,7 +55167,7 @@ void ** FUN_180079430(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_
               0x48) < _system_filesystem_config_flag) {
     FUN_1808fcb90(&system_filesystem_config_flag);
     if (_system_filesystem_config_flag == -1) {
-      _system_data_180d49160 = &system_unknown_1809fcc28;
+      _system_data_180d49160 = &system_thread_context_config;
       _system_data_180d49168 = &system_data_180d49178;
 
 // 函数: void system_function_079520(longlong param_1)
