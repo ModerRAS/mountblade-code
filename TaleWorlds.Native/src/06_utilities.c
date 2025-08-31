@@ -39897,7 +39897,7 @@ void utility_unwind_handler_cleanup_thirteen_primary(uint64 utility_resource_pri
   }
   return;
 }
-void utilityunwindhandler15Cleanup(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_handler_cleanup_stage_1(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   utility_resource_data_ptr = *(longlong **)(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset) + UTILITY_DATA_OFFSET_PRIMARY);
@@ -39906,7 +39906,7 @@ void utilityunwindhandler15Cleanup(uint64 utility_resource_primary_handle,longlo
   }
   return;
 }
-void utilityunwindhandler17Cleanup(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_handler_cleanup_stage_2(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   utility_resource_data_ptr = *(longlong **)(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset) + utility_data_access_offset_thread_handler_tertiary);
@@ -39915,7 +39915,7 @@ void utilityunwindhandler17Cleanup(uint64 utility_resource_primary_handle,longlo
   }
   return;
 }
-void utilityunwindhandler19Cleanup(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_handler_cleanup_stage_3(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   utility_resource_data_ptr = *(longlong **)(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset) + utility_data_access_offset_thread_handler_quaternary);
@@ -39924,7 +39924,7 @@ void utilityunwindhandler19Cleanup(uint64 utility_resource_primary_handle,longlo
   }
   return;
 }
-void utilityunwindhandler1bCleanup(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_handler_cleanup_stage_4(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   utility_resource_data_ptr = *(longlong **)(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset) + utility_data_access_offset_thread_handler_extended);
@@ -39933,7 +39933,7 @@ void utilityunwindhandler1bCleanup(uint64 utility_resource_primary_handle,longlo
   }
   return;
 }
-void utilityunwindhandler1dCleanup(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_handler_cleanup_stage_5(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   utility_resource_data_ptr = *(longlong **)(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset) + utility_data_access_offset_thread_handler_alternate);
@@ -39942,7 +39942,7 @@ void utilityunwindhandler1dCleanup(uint64 utility_resource_primary_handle,longlo
   }
   return;
 }
-void utilityunwindhandler1fCleanup(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_handler_cleanup_stage_6(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   utility_resource_data_ptr = *(longlong **)(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset) + utility_resource_callback_offset_quaternary);
@@ -39951,7 +39951,7 @@ void utilityunwindhandler1fCleanup(uint64 utility_resource_primary_handle,longlo
   }
   return;
 }
-void utilityunwindhandler21Cleanup(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_handler_cleanup_stage_7(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   utility_resource_data_ptr = *(longlong **)(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset) + utility_resource_callback_offset_tertiary);
@@ -39960,7 +39960,7 @@ void utilityunwindhandler21Cleanup(uint64 utility_resource_primary_handle,longlo
   }
   return;
 }
-void utilityunwindhandler23Cleanup(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_handler_cleanup_stage_8(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   utility_resource_data_ptr = *(longlong **)(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset) + utility_resource_callback_offset_secondary);
@@ -39969,7 +39969,7 @@ void utilityunwindhandler23Cleanup(uint64 utility_resource_primary_handle,longlo
   }
   return;
 }
-void utilityunwindhandler25Cleanup(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_handler_cleanup_stage_9(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   utility_resource_data_ptr = *(longlong **)(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset) + utility_resource_callback_offset_primary);
@@ -39978,7 +39978,7 @@ void utilityunwindhandler25Cleanup(uint64 utility_resource_primary_handle,longlo
   }
   return;
 }
-void utilityunwindhandler27Cleanup(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_handler_cleanup_stage_10(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   utility_resource_data_ptr = *(longlong **)(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset)  + utility_memory_offset_octonary_extended);
