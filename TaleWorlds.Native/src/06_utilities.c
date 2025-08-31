@@ -1606,8 +1606,8 @@ void * utility_global_data_memory_tracker;
 void * utility_global_data_resource_tracker;
 void * utility_global_data_system_collector;
 void *utility_unknown_segment_942870;
-void * UNK_180d49d2c;
-void * UNK_180d49d4c;
+void * utility_global_data_memory_pool;
+void * utility_global_data_buffer_pool;
 void *utility_unknown_segment_a2ae38;
 void * utility_global_data_error_collector;
 void *utility_unknown_segment_9f7770;
@@ -7781,7 +7781,7 @@ int utility_buffer_contractor_shrink(long long *utility_context_pointer,long lon
   int utility_result_int;
   int utility_status_code;
   
-  utility_result_int = utility_context_pointerr_process_data(utility_data_ptr,utility_param,&UNK_180986298);
+  utility_result_int = utility_context_pointerr_process_data(utility_data_ptr,utility_param,&utility_system_segment_context);
   utility_status_code = utility_context_pointerr_process_data(utility_data_ptr + utility_result_int,utility_param - utility_result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
   utility_result_int = utility_result_int + utility_status_code;
   utility_status_code = system_call_function(utility_result_int + utility_data_ptr,utility_param - utility_result_int,(int)utility_context_pointer[3] * 8 + UTILITY_THREAD_TLS_DATA_OFFSET);
@@ -7800,7 +7800,7 @@ int utility_buffer_flusher_clear(long long *utility_context_pointer,long long ut
   int utility_result_int;
   int utility_status_code;
   
-  utility_result_int = utility_context_pointerr_process_data(utility_data_ptr,utility_param,&UNK_180984010);
+  utility_result_int = utility_context_pointerr_process_data(utility_data_ptr,utility_param,&utility_system_segment_buffer);
   utility_status_code = utility_context_pointerr_process_data(utility_data_ptr + utility_result_int,utility_param - utility_result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
   utility_result_int = utility_result_int + utility_status_code;
   utility_status_code = system_call_function(utility_result_int + utility_data_ptr,utility_param - utility_result_int,(int)utility_context_pointer[3] * 0xc + UTILITY_THREAD_TLS_DATA_OFFSET);
