@@ -10977,7 +10977,7 @@ void context_pointer_process_data(long long context_pointer,long long data_ptr)
             process_data_ptr6 = psystem_temp_var0;
             if ((utility_char_var == '\0') && (*(float *)(utility_loop_counter + 0x4c) != *(float *)(utility_temp_long_var + 0x28))) {
               utility_temp_var = *(void **)(context_handle4 + 4 + utility_temp_long_var);
-              psystem_temp_var8 = &UNK_180984038;
+              psystem_temp_var8 = &utility_system_stream_processor8;
               utility_temp_var = system_temp_var8;
               system_temp_var0 = 0;
               utility_temp_long_var = (**(code **)*psystem_temp_var0)(psystem_temp_var0);
@@ -11012,7 +11012,7 @@ void context_pointer_process_data(long long context_pointer,long long data_ptr)
               system_temp_varc = *(void **)(utility_temp_long_var + 0x4c);
               system_temp_var8 = *(void **)(utility_temp_long_var + 0x50);
               system_temp_var4 = *(void **)(utility_temp_long_var + 0x54);
-              psystem_temp_var8 = &UNK_180983840;
+              psystem_temp_var8 = &utility_system_data_serializer0;
               system_temp_var0 = 0;
               system_temp_var0 = *(void **)(utility_temp_long_var + 0x58);
               system_temp_varc = *(void **)(utility_temp_long_var + 0x5c);
@@ -11215,7 +11215,7 @@ void utility_thread_resumer_resume(void)
           ptr_var2 = psystem_temp_var;
           if ((utility_char_var2 == '\0') && (*(float *)(utility_temp_long_var + 0x4c) != *(float *)(utility_loop_counter + 0x28))) {
             utility_result_ptr4 = *(void **)(utility_result_ptr0 + 4 + context_handle5);
-            utility_global_register_rbp[-4] = &UNK_180984038;
+            utility_global_register_rbp[-4] = &utility_system_stream_processor8;
             *(void **)(utility_global_register_rbp + -2) = temp_var_20;
             ptr_var = (void **)*psystem_temp_var;
             *(void **)(utility_global_register_rbp + -1) = utility_result_ptr4;
@@ -11255,7 +11255,7 @@ void utility_thread_resumer_resume(void)
             utility_result_ptr = *(void **)(utility_global_register_r15 + 0x4c);
             utility_result_ptr = *(void **)(utility_global_register_r15 + 0x50);
             utility_result_ptr = *(void **)(utility_global_register_r15 + 0x54);
-            utility_global_register_rbp[-0xe] = &UNK_180983840;
+            utility_global_register_rbp[-0xe] = &utility_system_data_serializer0;
             utility_global_register_rbp[-0xb] = utility_result_ptr7;
             utility_global_register_rbp[-10] = utility_result_ptr6;
             *(float *)(utility_global_register_rbp + -0xd) = utility_global_register_r13D;
@@ -11460,7 +11460,7 @@ void context_pointer_process_data(void)
       unaff_R12 = utility_utility_stack_param;
       if ((utility_char_var2 == '\0') && (*(float *)(utility_temp_long_var + 0x4c) != *(float *)(utility_loop_counter + 0x28))) {
         utility_result_ptr3 = *(void **)(utility_result_ptr0 + 4 + context_handle5);
-        utility_global_register_rbp[-4] = &UNK_180984038;
+        utility_global_register_rbp[-4] = &utility_system_stream_processor8;
         *(void **)(utility_global_register_rbp + -2) = temp_var_20;
         ptr_var = (void **)*utility_utility_stack_param;
         *(void **)(utility_global_register_rbp + -1) = utility_result_ptr3;
@@ -11500,7 +11500,7 @@ void context_pointer_process_data(void)
         utility_result_ptr = *(void **)(utility_global_register_r15 + 0x4c);
         utility_result_ptr = *(void **)(utility_global_register_r15 + 0x50);
         utility_result_ptr = *(void **)(utility_global_register_r15 + 0x54);
-        utility_global_register_rbp[-0xe] = &UNK_180983840;
+        utility_global_register_rbp[-0xe] = &utility_system_data_serializer0;
         utility_global_register_rbp[-0xb] = utility_result_ptr7;
         utility_global_register_rbp[-10] = utility_result_ptr6;
         *(float *)(utility_global_register_rbp + -0xd) = utility_global_register_r13D;
@@ -45194,7 +45194,7 @@ void Unwind_180907710(void * context_pointer,long long data_ptr)
   long long utility_loop_counter;
   
   ptr_var = *(void ***)(data_ptr + 0x50);
-  *ptr_var = &UNK_180a14bb8;
+  *ptr_var = &utility_system_event_dispatcher8;
   process_data_ptr = (void **)ptr_var[0x11];
   if (process_data_ptr != (void **)0x0) {
     utility_loop_counter = __RTCastToVoid(process_data_ptr);
@@ -45215,7 +45215,7 @@ void Unwind_180907710(void * context_pointer,long long data_ptr)
   *(void **)(ptr_var + 0x10) = 0;
   ptr_var[0xd] = &UTILITY_NULL_CONTEXT_ADDRESS;
   context_pointer_process_data(ptr_var + 7,ptr_var[9]);
-  *ptr_var = &UNK_180a14c60;
+  *ptr_var = &utility_system_message_queue0;
   return;
 }
 
@@ -45243,7 +45243,7 @@ void Unwind_180907740(void * context_pointer,long long data_ptr)
   long long utility_loop_counter;
   
   ptr_var = *(void ***)(data_ptr + 0x40);
-  *ptr_var = &UNK_180a14bb8;
+  *ptr_var = &utility_system_event_dispatcher8;
   process_data_ptr = (void **)ptr_var[0x11];
   if (process_data_ptr != (void **)0x0) {
     utility_loop_counter = __RTCastToVoid(process_data_ptr);
@@ -45264,7 +45264,7 @@ void Unwind_180907740(void * context_pointer,long long data_ptr)
   *(void **)(ptr_var + 0x10) = 0;
   ptr_var[0xd] = &UTILITY_NULL_CONTEXT_ADDRESS;
   context_pointer_process_data(ptr_var + 7,ptr_var[9]);
-  *ptr_var = &UNK_180a14c60;
+  *ptr_var = &utility_system_message_queue0;
   return;
 }
 

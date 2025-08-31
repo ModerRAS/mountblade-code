@@ -5113,7 +5113,13 @@ void network_reset_network_connection_state_code(void)
   network_security_handle_operation(network_security_context_temp ^ (uint64_t)&network_data_packet_buffer_);
 }
 
-void network_manage_connection_timeout(uint64_t connection_handle, int32_t *timeout_result){
+/**
+ * @brief 网络连接超时管理函数
+ * 管理网络连接的超时处理和状态更新
+ * @param connection_handle 连接句柄
+ * @param timeout_result 超时结果指针
+ */
+void network_manage_connection_timeout(uint64_t connection_handle, int32_t *timeout_result)
 {
   int32_t network_operation_status;
   uint8_t network_security_extended_buffer [32];

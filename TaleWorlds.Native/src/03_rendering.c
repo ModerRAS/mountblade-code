@@ -19353,7 +19353,7 @@ void render_init_texture_arrays_enhanced4(uint64_t render_context,uint64_t rende
                   float render_context_object_pointer0,uint64_t render_context_ptr1)
   uint64_t u_stack_primary;
   uint32_t RENDER_STACK_POINTER;
-  uint64_t render_stack_pointer_fe98;
+  uint64_t render_texture_processing_stack_pointer;
   uint32_t render_texture_computed_id_novenary;
   int render_buffer_write_count;
   render_texture_validation_flag = (int64_t)(int)render_config;
@@ -19370,9 +19370,9 @@ void render_init_texture_arrays_enhanced4(uint64_t render_context,uint64_t rende
   render_stack_long_variable_twenty = render_texture_handle_parameter;
   if (render_string_pointer == "") {
     rendering_alpha_normalized_value = RENDER_FLOAT_VALUE_ZERO;
-    render_stack_pointer_fe98 =
-         RENDER_CONCAT_INT4_INT4((int)((uint64_t)render_stack_pointer_fe98 >> RENDER_VERTEX_BUFFER_OFFSET),RENDER_FLOAT_VALUE_MAX_NORMALbf800000);
-    render_initialize_texture_arrays(render_float_pointer,&u_stack_primary,RENDER_ALPHA_VALUE_TWO,RENDER_FLOAT_VALUE_MAX_NORMAL,render_stack_pointer_fe98,&render_default_string,
+    render_texture_processing_stack_pointer =
+         RENDER_CONCAT_INT4_INT4((int)((uint64_t)render_texture_processing_stack_pointer >> RENDER_VERTEX_BUFFER_OFFSET),RENDER_FLOAT_VALUE_MAX_NORMALbf800000);
+    render_initialize_texture_arrays(render_float_pointer,&u_stack_primary,RENDER_ALPHA_VALUE_TWO,RENDER_FLOAT_VALUE_MAX_NORMAL,render_texture_processing_stack_pointer,&render_default_string,
                   render_string_pointer,0);
     rendering_alpha_normalized_value = (float)u_stack_primary;
     if (RENDER_FLOAT_VALUE_ZERO < (float)u_stack_primary) {
@@ -19418,7 +19418,7 @@ void render_init_texture_arrays_enhanced4(uint64_t render_context,uint64_t rende
        (*(float *)(render_texture_identifier + RENDER_CONTEXT_OFFSET_TEXTURE_POINTER) <= render_temp_float_value)))) && (*(char *)(render_character_offset + 0x2e38) == '\0')) {
   render_temp_float_storage = rendering_alpha_normalized_value;
   render_char_variable_primary = render_initialize_texture_arrays(&render_stack_context,&render_temp_float_storage,1);
-  render_texture_object_id9 = (uint32_t)((uint64_t)render_stack_pointer_fe98 >> RENDER_VERTEX_BUFFER_OFFSET);
+  render_texture_computed_id_novenary = (uint32_t)((uint64_t)render_texture_processing_stack_pointer >> RENDER_VERTEX_BUFFER_OFFSET);
   if (render_char_variable_primary != '\0') {
     *(uint32_t *)(render_current_array_index + RENDER_CONTEXT_OFFSET_RESERVE_TEXTURE_ARRAY) = *(uint32_t *)(render_current_array_index + RENDER_CONTEXT_OFFSET_RESERVE_TEXTURE_ARRAY) | 1;
   if ((render_config_parameter == RENDER_FLOAT_INFINITY) || (render_context_object_pointer0 == RENDER_FLOAT_INFINITY)) {
@@ -19435,7 +19435,7 @@ void render_init_texture_arrays_enhanced4(uint64_t render_context,uint64_t rende
               RENDER_ALPHA_VALUE_TWO = render_temp_float_value;
             render_batch_current_size = render_batch_current_size + 1;
           } while (render_batch_current_size < render_config_parameter);
-        render_texture_object_id9 = (uint32_t)((uint64_t)render_stack_pointer_fe98 >> RENDER_VERTEX_BUFFER_OFFSET);
+        render_texture_computed_id_novenary = (uint32_t)((uint64_t)render_texture_processing_stack_pointer >> RENDER_VERTEX_BUFFER_OFFSET);
         render_character_offset = _render_global_legacy_float_zero;
         render_device_data_pointer_primary = render_device_data_pointer_primary + 1;
         render_temp_shader_ptr = render_stack_long_primary;
