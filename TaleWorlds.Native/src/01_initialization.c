@@ -2063,7 +2063,7 @@ void system_initialize_security_system(void)
     security_parent_pointer = new_security_pointer;
   }
   security_parent_pointer[6] = SYSTEM_SECURITY_SYSTEM_MAGIC;
-  security_parent_pointer[7] = SYSTEM_STACK_UINT_INITIAL_VALUEec25de793b7afa6;
+  security_parent_pointer[7] = SYSTEM_SECURITY_SYSTEM_MAGIC_SECONDARY;
   security_parent_pointer[8] = &system_handler_buffer;
   security_parent_pointer[9] = 0;
   security_parent_pointer[10] = security_allocator_pointer;
