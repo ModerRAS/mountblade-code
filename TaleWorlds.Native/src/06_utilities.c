@@ -216,13 +216,13 @@
 #define UTILITY_STREAM_TYPE_BFES 0x42464553
 #define UTILITY_STREAM_TYPE_FFCS 0x46464353
 #define UTILITY_STREAM_TYPE_FECS UTILITY_STREAM_TYPE_FECS
-#define UTILITY_STREAM_TYPE_BANS 0x42414e53
+#define UTILITY_STREAM_TYPE_BANS UTILITY_STREAM_TYPE_BANS
 #define UTILITY_STREAM_TYPE_BNLT 0x424e4c54
-#define UTILITY_STREAM_TYPE_BNRT 0x424e5254
+#define UTILITY_STREAM_TYPE_BNRT UTILITY_STREAM_TYPE_BNRT
 #define UTILITY_STREAM_TYPE_BIAW 0x42494157
 #define UTILITY_STREAM_TYPE_BTVE 0x42545645
 #define UTILITY_STREAM_TYPE_BIFE 0x42494645
-#define UTILITY_STREAM_TYPE_VRUC 0x56525543
+#define UTILITY_STREAM_TYPE_VRUC UTILITY_STREAM_TYPE_VRUC
 #define UTILITY_STREAM_TYPE_BDMC 0x42444d43
 #define UTILITY_STREAM_TYPE_IDMC 0x49444d43
 #define UTILITY_MEMORY_POINTER_OFFSET_1000 UTILITY_FLAG_MASK_THREAD_RUNNING
@@ -16888,7 +16888,7 @@ utility_resource_context_value = utility_stream_create(utility_context_input_par
 if ((int)utility_resource_status_value != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_status_value;
 }
-utility_resource_context = utility_stream_create(utility_context_input_parameter,utility_stack_buffer,0,0x42414e53);
+utility_resource_context = utility_stream_create(utility_context_input_parameter,utility_stack_buffer,0,UTILITY_STREAM_TYPE_BANS);
 if ((int)utility_resource_status_value != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_status_value;
 }
@@ -17549,7 +17549,7 @@ utility_resource_context_value = utility_stream_create(utility_context_input_par
 if ((int)utility_resource_status_value != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_status_value;
 }
-utility_resource_context = utility_stream_create(utility_context_input_parameter,utility_stack_network_buffer_primary,0,0x424e5254);
+utility_resource_context = utility_stream_create(utility_context_input_parameter,utility_stack_network_buffer_primary,0,UTILITY_STREAM_TYPE_BNRT);
 if ((int)utility_resource_status_value != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_status_value;
 }
@@ -19296,7 +19296,7 @@ uint64_t utility_resource_handler_validator(int64_t resource_count,uint64_t *uti
 {
 uint64_t utility_resource_status_value;
 uint8_t utility_stack_medium_buffer [32];
-utility_created_resource_handle = utility_resource_create(utility_context_input_parameter,utility_stack_medium_buffer,0,0x56525543,0);
+utility_created_resource_handle = utility_resource_create(utility_context_input_parameter,utility_stack_medium_buffer,0,UTILITY_STREAM_TYPE_VRUC,0);
 if ((int)utility_resource_status_value == UTILITY_BOOLEAN_FALSE) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
