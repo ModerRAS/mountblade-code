@@ -144,8 +144,7 @@ uint32 utility_get_memory_usage(void)
  */
 void utility_release_memory_and_exit(void)
 {
-
-  utility_free_memory(); // Memory block release function
+  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
 }
 
 /**
@@ -58413,6 +58412,19 @@ void utility_unwind_function_resource_handle_cleanup(uint64 utility_resource_pri
 }
 void utility_unwind_final_handler_cleanup(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
+
+/**
+ * @brief 最终处理器清理函数 - 清理系统处理器相关的资源
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_resource_cache 资源缓存
+ * @param utility_operation_flags 操作标志
+ * @param utility_resource_callback_handler 资源回调处理器
+ * @return 无返回值
+ * 
+ * 该函数负责清理系统处理器相关的资源，确保系统安全退出。
+ * 
+ * 简化实现：主要处理处理器清理的基本逻辑
+ */
   longlong utility_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_handler_offset);
   if (*(code **)(utility_resource_context_handle + UTILITY_RESOURCE_PTR_OFFSET_callback_primary) != (code *)utility_null_pointer) {
