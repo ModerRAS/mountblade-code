@@ -5292,12 +5292,12 @@ void context_pointer_process_data(void)
     if (result_int < 8) {
       result_int = 8;
     }
-    if (result_int < *(int *)(system_data_pointer + 0x28)) goto LAB_180891fc0;
+    if (result_int < *(int *)(system_data_pointer + 0x28)) goto UTILITY_LABEL_STACK_CLEANUP_3;
     if (result_int != 0) {
-      if (0x3ffffffe < result_int * 8 - 1U) goto LAB_180891fc0;
+      if (0x3ffffffe < result_int * 8 - 1U) goto UTILITY_LABEL_STACK_CLEANUP_3;
       utility_loop_counter = utility_file_flush_buffer(*(void **)(UTILITY_GLOBAL_DATA_CONTEXT_HANDLER + 0x1a0),result_int * 8,&UTILITY_GLOBAL_DATA_FILE_BUFFER2,0xf4,0)
       ;
-      if (utility_loop_counter == 0) goto LAB_180891fc0;
+      if (utility_loop_counter == 0) goto UTILITY_LABEL_STACK_CLEANUP_3;
       if (*(int *)(system_data_pointer + 0x28) != 0) {
         memcpy(utility_loop_counter,*(void **)(system_data_pointer + UTILITY_THREAD_TLS_DATA_OFFSET),(long long)*(int *)(system_data_pointer + 0x28) << 3);
       }
