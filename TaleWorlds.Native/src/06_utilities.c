@@ -198,7 +198,10 @@ void utility_memory_cleanup_handler(void)
  * 该函数负责管理系统资源的分配和释放，包括内存操作和资源清理。
  * 主要用于资源生命周期管理。
  * 
- * 简化实现：提供基本的资源管理功能。
+ * @note 简化实现：提供基本的资源管理功能，原本实现应包含完整的资源分配和释放逻辑。
+ * @see utility_system_validator, utility_system_cleaner
+ * 
+ * @return UTILITY_ZERO 表示成功，其他值表示错误状态码
  */
 uint64_t utility_resource_manager(void)
 {
@@ -232,7 +235,10 @@ uint64_t utility_resource_manager(void)
  * 该函数负责处理系统资源数据，包括数据验证和资源操作。
  * 主要用于数据管理和资源处理。
  *
- * 简化实现：与资源管理器共享相同的实现逻辑。
+ * @note 简化实现：与资源管理器共享相同的实现逻辑，原本实现应包含独立的数据处理逻辑。
+ * @see utility_resource_manager
+ *
+ * @return UTILITY_ZERO 表示成功，其他值表示错误状态码
  */
 uint64_t utility_resource_data_processor(void)
 {
