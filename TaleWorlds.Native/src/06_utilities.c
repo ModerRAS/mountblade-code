@@ -19,6 +19,14 @@
  * @return 无返回值
  */
 void utility_initialize_empty_function(void)
+
+/*
+ * @brief 空初始化函数 - 用于系统初始化过程中的占位符
+ * @return 无返回值
+ *
+ * 这是一个空函数，用于系统初始化过程中的占位符。
+ */
+void utility_initialize_empty_function(void)
 {
   return;
 }
