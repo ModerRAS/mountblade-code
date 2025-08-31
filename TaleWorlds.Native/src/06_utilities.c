@@ -511,7 +511,8 @@ uint64_t utility_backup_manager(void)
  *
  * 该函数负责管理系统恢复，包括系统恢复和数据恢复。
  *
- * 简化实现：提供基本的恢复管理功能。
+ * @note 简化实现：提供基本的恢复管理功能，原本实现应包含完整的系统恢复逻辑。
+ * @return UTILITY_ZERO 表示恢复管理完成，其他值表示恢复状态码
  */
 uint64_t utility_recovery_manager(void)
 {
