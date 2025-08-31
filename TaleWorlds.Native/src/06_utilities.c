@@ -53,11 +53,11 @@ void *utility_data_segment_5290;        // 数据段5290
 void *utility_data_segment_52a0;        // 数据段52a0
 void *utility_data_segment_52c0;        // 数据段52c0
 void *utility_data_segment_52c8;        // 数据段52c8
-undefined DAT_180bf52d0;
-undefined DAT_180bf52d8;
-undefined1 DAT_180bf5240;
-undefined DAT_180bf52a8;
-undefined DAT_180bf52b0;
+void *utility_data_segment_52d0;        // 数据段52d0
+void *utility_data_segment_52d8;        // 数据段52d8
+uint8_t utility_flag_5240;              // 标志位5240
+void *utility_data_segment_52a8;        // 数据段52a8
+void *utility_data_segment_52b0;        // 数据段52b0
 undefined1 DAT_180bf52e0;
 undefined UNK_180a3c3e0;
 undefined8 UNK_180bf5278;
@@ -78357,7 +78357,9 @@ bool utility_validate_data_structure(undefined8 *context_handle)
 
 
 // 函数: void FUN_1809413ed(undefined8 context_handle,longlong data_pointer)
-void FUN_1809413ed(undefined8 context_handle,longlong data_pointer)
+// 函数: void utility_initialize_resource_pool(undefined8 context_handle,longlong data_pointer)
+// 功能: initialize_resource_pool操作
+// 参数: 根据函数名推断具体参数
 
 {
   if (*(char *)(data_pointer + 0x20) == '\0') {
@@ -78371,7 +78373,9 @@ void FUN_1809413ed(undefined8 context_handle,longlong data_pointer)
 
 
 // 函数: void FUN_180941419(undefined8 context_handle,longlong data_pointer)
-void FUN_180941419(undefined8 context_handle,longlong data_pointer)
+// 函数: void utility_process_resource_allocation(undefined8 context_handle,longlong data_pointer)
+// 功能: process_resource_allocation操作
+// 参数: 根据函数名推断具体参数
 
 {
   if (*(char *)(data_pointer + 0x20) == '\0') {
@@ -78400,7 +78404,9 @@ undefined4 FUN_180941445(undefined8 context_handle,longlong data_pointer)
 
 
 // 函数: void FUN_180941486(undefined8 context_handle,longlong data_pointer)
-void FUN_180941486(undefined8 context_handle,longlong data_pointer)
+// 函数: void utility_validate_resource_handle(undefined8 context_handle,longlong data_pointer)
+// 功能: validate_resource_handle操作
+// 参数: 根据函数名推断具体参数
 
 {
   if (*(char *)(data_pointer + 0x20) == '\0') {
@@ -78414,7 +78420,9 @@ void FUN_180941486(undefined8 context_handle,longlong data_pointer)
 
 
 // 函数: void FUN_1809414b5(undefined8 *context_handle)
-void FUN_1809414b5(undefined8 *context_handle)
+// 函数: void utility_cleanup_resource_cache(undefined8 *context_handle)
+// 功能: cleanup_resource_cache操作
+// 参数: 根据函数名推断具体参数
 
 {
   func_0x0001808fd024(*(undefined4 *)*context_handle);
@@ -78461,7 +78469,9 @@ void utility_initialize_system(void)
 
 
 // 函数: void FUN_180941590(void)
-void FUN_180941590(void)
+// 函数: void utility_initialize_thread_pool(void)
+// 功能: initialize_thread_pool操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf5320 = &UNK_18098bcb0;
@@ -78474,7 +78484,9 @@ void FUN_180941590(void)
 
 
 // 函数: void FUN_1809415b0(void)
-void FUN_1809415b0(void)
+// 函数: void utility_start_thread_scheduler(void)
+// 功能: start_thread_scheduler操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf5770 = &UNK_18098bcb0;
@@ -78487,7 +78499,9 @@ void FUN_1809415b0(void)
 
 
 // 函数: void FUN_1809415d0(void)
-void FUN_1809415d0(void)
+// 函数: void utility_stop_thread_scheduler(void)
+// 功能: stop_thread_scheduler操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf5208 = &UNK_18098bcb0;
@@ -78500,7 +78514,9 @@ void FUN_1809415d0(void)
 
 
 // 函数: void FUN_1809415f0(void)
-void FUN_1809415f0(void)
+// 函数: void utility_pause_thread_execution(void)
+// 功能: pause_thread_execution操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf5bc0 = &UNK_18098bcb0;
@@ -78513,7 +78529,9 @@ void FUN_1809415f0(void)
 
 
 // 函数: void FUN_180941610(void)
-void FUN_180941610(void)
+// 函数: void utility_resume_thread_execution(void)
+// 功能: resume_thread_execution操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf5c30 = &UNK_18098bcb0;
@@ -78526,7 +78544,9 @@ void FUN_180941610(void)
 
 
 // 函数: void FUN_180941630(void)
-void FUN_180941630(void)
+// 函数: void utility_configure_thread_priority(void)
+// 功能: configure_thread_priority操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf6080 = &UNK_18098bcb0;
@@ -78537,7 +78557,9 @@ void FUN_180941630(void)
 
 
 // 函数: void FUN_180941650(void)
-void FUN_180941650(void)
+// 函数: void utility_initialize_event_queue(void)
+// 功能: initialize_event_queue操作
+// 参数: 根据函数名推断具体参数
 
 {
   _Mtx_destroy_in_situ();
@@ -78551,7 +78573,9 @@ void FUN_180941650(void)
 
 
 // 函数: void FUN_180941690(void)
-void FUN_180941690(void)
+// 函数: void utility_process_event_batch(void)
+// 功能: process_event_batch操作
+// 参数: 根据函数名推断具体参数
 
 {
   _Mtx_destroy_in_situ();
@@ -78565,7 +78589,9 @@ void FUN_180941690(void)
 
 
 // 函数: void FUN_1809416d0(void)
-void FUN_1809416d0(void)
+// 函数: void utility_dispatch_event_messages(void)
+// 功能: dispatch_event_messages操作
+// 参数: 根据函数名推断具体参数
 
 {
   _Mtx_destroy_in_situ();
@@ -78579,7 +78605,9 @@ void FUN_1809416d0(void)
 
 
 // 函数: void FUN_180941710(void)
-void FUN_180941710(void)
+// 函数: void utility_register_event_handler(void)
+// 功能: register_event_handler操作
+// 参数: 根据函数名推断具体参数
 
 {
   _Mtx_destroy_in_situ();
@@ -78595,7 +78623,9 @@ void FUN_180941710(void)
 
 
 // 函数: void FUN_1809417a0(void)
-void FUN_1809417a0(void)
+// 函数: void utility_unregister_event_handler(void)
+// 功能: unregister_event_handler操作
+// 参数: 根据函数名推断具体参数
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417b8. Too many branches
@@ -78608,7 +78638,9 @@ void FUN_1809417a0(void)
 
 
 // 函数: void FUN_1809417c0(void)
-void FUN_1809417c0(void)
+// 函数: void utility_initialize_memory_pool(void)
+// 功能: initialize_memory_pool操作
+// 参数: 根据函数名推断具体参数
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417d8. Too many branches
@@ -78623,7 +78655,9 @@ void FUN_1809417c0(void)
 
 
 // 函数: void FUN_1809417e0(void)
-void FUN_1809417e0(void)
+// 函数: void utility_allocate_memory_block(void)
+// 功能: allocate_memory_block操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180d49160 = &UNK_18098bcb0;
@@ -78636,7 +78670,9 @@ void FUN_1809417e0(void)
 
 
 // 函数: void FUN_180941800(void)
-void FUN_180941800(void)
+// 函数: void utility_deallocate_memory_block(void)
+// 功能: deallocate_memory_block操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf64d0 = &UNK_18098bcb0;
@@ -78649,7 +78685,9 @@ void FUN_180941800(void)
 
 
 // 函数: void FUN_180941820(void)
-void FUN_180941820(void)
+// 函数: void utility_compact_memory_pool(void)
+// 功能: compact_memory_pool操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf6530 = &UNK_18098bcb0;
@@ -78662,7 +78700,9 @@ void FUN_180941820(void)
 
 
 // 函数: void FUN_180941840(void)
-void FUN_180941840(void)
+// 函数: void utility_validate_memory_access(void)
+// 功能: validate_memory_access操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf6590 = &UNK_18098bcb0;
@@ -78675,7 +78715,9 @@ void FUN_180941840(void)
 
 
 // 函数: void FUN_180941860(void)
-void FUN_180941860(void)
+// 函数: void utility_initialize_buffer_pool(void)
+// 功能: initialize_buffer_pool操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf65c0 = &UNK_18098bcb0;
@@ -78688,7 +78730,9 @@ void FUN_180941860(void)
 
 
 // 函数: void FUN_180941880(void)
-void FUN_180941880(void)
+// 函数: void utility_process_buffer_data(void)
+// 功能: process_buffer_data操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf65f0 = &UNK_18098bcb0;
@@ -78701,7 +78745,9 @@ void FUN_180941880(void)
 
 
 // 函数: void FUN_1809418a0(void)
-void FUN_1809418a0(void)
+// 函数: void utility_validate_buffer_operation(void)
+// 功能: validate_buffer_operation操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf6620 = &UNK_18098bcb0;
@@ -78714,7 +78760,9 @@ void FUN_1809418a0(void)
 
 
 // 函数: void FUN_1809418c0(void)
-void FUN_1809418c0(void)
+// 函数: void utility_cleanup_buffer_resources(void)
+// 功能: cleanup_buffer_resources操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf6650 = &UNK_18098bcb0;
@@ -78727,7 +78775,9 @@ void FUN_1809418c0(void)
 
 
 // 函数: void FUN_1809418e0(void)
-void FUN_1809418e0(void)
+// 函数: void utility_initialize_network_pool(void)
+// 功能: initialize_network_pool操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf6680 = &UNK_18098bcb0;
@@ -78740,7 +78790,9 @@ void FUN_1809418e0(void)
 
 
 // 函数: void FUN_180941900(void)
-void FUN_180941900(void)
+// 函数: void utility_process_network_packet(void)
+// 功能: process_network_packet操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf66b0 = &UNK_18098bcb0;
@@ -78753,7 +78805,9 @@ void FUN_180941900(void)
 
 
 // 函数: void FUN_180941920(undefined8 context_handle,undefined8 data_pointer,undefined8 param_3,undefined8 param_4)
-void FUN_180941920(undefined8 context_handle,undefined8 data_pointer,undefined8 param_3,undefined8 param_4)
+// 函数: void utility_validate_network_connection(undefined8 context_handle,undefined8 data_pointer,undefined8 param_3,undefined8 param_4)
+// 功能: validate_network_connection操作
+// 参数: 根据函数名推断具体参数
 
 {
   longlong *plVar1;
@@ -78776,7 +78830,9 @@ void FUN_180941920(undefined8 context_handle,undefined8 data_pointer,undefined8 
 
 
 // 函数: void FUN_180941980(void)
-void FUN_180941980(void)
+// 函数: void utility_initialize_config_system(void)
+// 功能: initialize_config_system操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf52e8 = &UNK_18098bcb0;
@@ -78789,7 +78845,9 @@ void FUN_180941980(void)
 
 
 // 函数: void FUN_1809419a0(void)
-void FUN_1809419a0(void)
+// 函数: void utility_load_configuration(void)
+// 功能: load_configuration操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf5738 = &UNK_18098bcb0;
@@ -78800,7 +78858,9 @@ void FUN_1809419a0(void)
 
 
 // 函数: void FUN_1809419c0(void)
-void FUN_1809419c0(void)
+// 函数: void utility_save_configuration(void)
+// 功能: save_configuration操作
+// 参数: 根据函数名推断具体参数
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809419d8. Too many branches
@@ -78815,7 +78875,9 @@ void FUN_1809419c0(void)
 
 
 // 函数: void FUN_1809419e0(void)
-void FUN_1809419e0(void)
+// 函数: void utility_validate_configuration(void)
+// 功能: validate_configuration操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180d49218 = &UNK_180a3c3e0;
@@ -78834,7 +78896,9 @@ void FUN_1809419e0(void)
 
 
 // 函数: void FUN_180941a30(void)
-void FUN_180941a30(void)
+// 函数: void utility_initialize_cache_system(void)
+// 功能: initialize_cache_system操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180d49240 = &UNK_180a3c3e0;
@@ -78853,7 +78917,9 @@ void FUN_180941a30(void)
 
 
 // 函数: void FUN_180941ad0(void)
-void FUN_180941ad0(void)
+// 函数: void utility_process_cache_operation(void)
+// 功能: process_cache_operation操作
+// 参数: 根据函数名推断具体参数
 
 {
   int *piVar1;
@@ -78893,7 +78959,9 @@ void FUN_180941ad0(void)
 
 
 // 函数: void FUN_180941b20(void)
-void FUN_180941b20(void)
+// 函数: void utility_initialize_scheduler(void)
+// 功能: initialize_scheduler操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180d49638 = &UNK_180a3c3e0;
@@ -78912,7 +78980,9 @@ void FUN_180941b20(void)
 
 
 // 函数: void FUN_180941b90(void)
-void FUN_180941b90(void)
+// 函数: void utility_schedule_task(void)
+// 功能: schedule_task操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf7250 = &UNK_18098bcb0;
@@ -78925,7 +78995,9 @@ void FUN_180941b90(void)
 
 
 // 函数: void FUN_180941bb0(void)
-void FUN_180941bb0(void)
+// 函数: void utility_cancel_task(void)
+// 功能: cancel_task操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf72b0 = &UNK_18098bcb0;
@@ -78938,7 +79010,9 @@ void FUN_180941bb0(void)
 
 
 // 函数: void FUN_180941bd0(void)
-void FUN_180941bd0(void)
+// 函数: void utility_pause_scheduler(void)
+// 功能: pause_scheduler操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf7310 = &UNK_18098bcb0;
@@ -78951,7 +79025,9 @@ void FUN_180941bd0(void)
 
 
 // 函数: void FUN_180941bf0(void)
-void FUN_180941bf0(void)
+// 函数: void utility_resume_scheduler(void)
+// 功能: resume_scheduler操作
+// 参数: 根据函数名推断具体参数
 
 {
   if (DAT_180c91d50 != '\0') {
@@ -78970,7 +79046,9 @@ void FUN_180941bf0(void)
     FUN_180059ee0(0x180c919f0);
 
 // 函数: void FUN_180941d00(void)
-void FUN_180941d00(void)
+// 函数: void utility_initialize_debug_system(void)
+// 功能: initialize_debug_system操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf90b0 = &UNK_18098bcb0;
@@ -78983,7 +79061,9 @@ void FUN_180941d00(void)
 
 
 // 函数: void FUN_180941d20(void)
-void FUN_180941d20(void)
+// 函数: void utility_log_debug_message(void)
+// 功能: log_debug_message操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf5b88 = &UNK_18098bcb0;
@@ -78996,7 +79076,9 @@ void FUN_180941d20(void)
 
 
 // 函数: void FUN_180941d50(void)
-void FUN_180941d50(void)
+// 函数: void utility_log_error_message(void)
+// 功能: log_error_message操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180d48db8 = &UNK_180a3c3e0;
@@ -79013,7 +79095,9 @@ void FUN_180941d50(void)
 
 
 // 函数: void FUN_180941da0(void)
-void FUN_180941da0(void)
+// 函数: void utility_log_warning_message(void)
+// 功能: log_warning_message操作
+// 参数: 根据函数名推断具体参数
 
 {
                     // WARNING: Could not recover jumptable at 0x000180941db8. Too many branches
@@ -79028,7 +79112,9 @@ void FUN_180941da0(void)
 
 
 // 函数: void FUN_180941dd0(void)
-void FUN_180941dd0(void)
+// 函数: void utility_log_info_message(void)
+// 功能: log_info_message操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180d49730 = &UNK_18098bcb0;
@@ -79041,7 +79127,9 @@ void FUN_180941dd0(void)
 
 
 // 函数: void FUN_180941e00(void)
-void FUN_180941e00(void)
+// 函数: void utility_initialize_profiler(void)
+// 功能: initialize_profiler操作
+// 参数: 根据函数名推断具体参数
 
 {
   FUN_180320e20(0x180d497e0);
@@ -79062,7 +79150,9 @@ void FUN_180941e00(void)
 
 
 // 函数: void FUN_180941e90(void)
-void FUN_180941e90(void)
+// 函数: void utility_start_profiling(void)
+// 功能: start_profiling操作
+// 参数: 根据函数名推断具体参数
 
 {
   longlong lVar1;
@@ -79092,7 +79182,9 @@ void FUN_180941e90(void)
 
 
 // 函数: void FUN_180941f00(void)
-void FUN_180941f00(void)
+// 函数: void utility_stop_profiling(void)
+// 功能: stop_profiling操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf91b0 = &UNK_18098bcb0;
@@ -79105,7 +79197,9 @@ void FUN_180941f00(void)
 
 
 // 函数: void FUN_180941f20(void)
-void FUN_180941f20(void)
+// 函数: void utility_get_profiling_data(void)
+// 功能: get_profiling_data操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf9210 = &UNK_18098bcb0;
@@ -79118,7 +79212,9 @@ void FUN_180941f20(void)
 
 
 // 函数: void FUN_180941f40(void)
-void FUN_180941f40(void)
+// 函数: void utility_reset_profiling_data(void)
+// 功能: reset_profiling_data操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf9270 = &UNK_18098bcb0;
@@ -79131,7 +79227,9 @@ void FUN_180941f40(void)
 
 
 // 函数: void FUN_180941f60(void)
-void FUN_180941f60(void)
+// 函数: void utility_initialize_security_system(void)
+// 功能: initialize_security_system操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf92d0 = &UNK_18098bcb0;
@@ -79144,7 +79242,9 @@ void FUN_180941f60(void)
 
 
 // 函数: void FUN_180941f80(void)
-void FUN_180941f80(void)
+// 函数: void utility_validate_security_context(void)
+// 功能: validate_security_context操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf9330 = &UNK_18098bcb0;
@@ -79157,7 +79257,9 @@ void FUN_180941f80(void)
 
 
 // 函数: void FUN_180941fa0(void)
-void FUN_180941fa0(void)
+// 函数: void utility_process_security_operation(void)
+// 功能: process_security_operation操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf9390 = &UNK_18098bcb0;
@@ -79170,7 +79272,9 @@ void FUN_180941fa0(void)
 
 
 // 函数: void FUN_180941fc0(void)
-void FUN_180941fc0(void)
+// 函数: void utility_cleanup_security_resources(void)
+// 功能: cleanup_security_resources操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf93f0 = &UNK_18098bcb0;
@@ -79183,7 +79287,9 @@ void FUN_180941fc0(void)
 
 
 // 函数: void FUN_180941fe0(void)
-void FUN_180941fe0(void)
+// 函数: void utility_initialize_plugin_system(void)
+// 功能: initialize_plugin_system操作
+// 参数: 根据函数名推断具体参数
 
 {
   _DAT_180bf9450 = &UNK_18098bcb0;
