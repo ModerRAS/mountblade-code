@@ -1621,7 +1621,20 @@ ulonglong utility_create_file_system_directory(longlong utility_resource_primary
   }
   return utility_counter;
 }
-int delete_file(uint32 utility_resource_primary_handle)
+/**
+ * @brief 删除文件工具函数
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @return int 操作结果状态码
+ * 
+ * 该函数用于删除指定文件，包括：
+ * - 验证资源句柄有效性
+ * - 执行文件删除操作
+ * - 返回操作结果状态
+ * 
+ * 简化实现：仅添加文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
+int utility_delete_file(uint32 utility_resource_primary_handle)
 {
   int utility_accumulator;
   int utility_result;
