@@ -111,7 +111,7 @@ void *utility_data_buffer_secondary;
 #define UTILITY_GLOBAL_DATA_CONTEXT_5 0x180986470
 #define UTILITY_GLOBAL_DATA_TEMP_VAR_3 0x180982508
 #define UTILITY_GLOBAL_DATA_TEMP_VAR_4 0x180982608
-#define UTILITY_GLOBAL_DATA_TEMP_VAR_180982588 0x180982588
+#define UTILITY_GLOBAL_DATA_TEMP_VAR_5 0x180982588
 #define UTILITY_GLOBAL_DATA_TEMP_VAR_180985a80 0x180985a80
 #define UTILITY_GLOBAL_DATA_TEMP_VAR_180982cc0 0x180982cc0
 #define UTILITY_GLOBAL_DATA_TEMP_VAR_180983238 0x180983238
@@ -10332,7 +10332,7 @@ UTILITY_LABEL_TIMER_EXPIRE:
         system_temp_varc = param;
         goto UTILITY_LABEL_TIMER_EXPIRE;
       }
-      psystem_temp_var8 = &UTILITY_GLOBAL_DATA_TEMP_VAR_180982588;
+      psystem_temp_var8 = &UTILITY_GLOBAL_DATA_TEMP_VAR_5;
       utility_utility_stack_long_var_2d8 = (ulong long)param << UTILITY_THREAD_TLS_DATA_OFFSET;
       system_temp_var8 = *(void **)(data_ptr + 0x228);
       system_temp_var0 = (ulong long)CONCAT14(result_int != 1,*(void **)(data_ptr + 0x230));

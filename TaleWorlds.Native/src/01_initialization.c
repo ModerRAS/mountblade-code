@@ -11420,10 +11420,10 @@ ulonglong system_initialize_ulonglong_return(longlong system_context_ptr,longlon
         system_transform_temp_8 = *(longlong *)(system_flags_var + 8) - (longlong)system_byte_temporary_pointer_four;
         do {
           system_byte_temporary_pointer_one = system_byte_temporary_pointer_four + system_transform_temp_8;
-          integer_count_var_var = (uint)*pbyte_temp4 - (uint)*psystem_byte_temp1;
+          integer_count_var_var = (uint)*system_byte_temporary_pointer_four - (uint)*system_byte_temporary_pointer_one;
           if (integer_count_var_var != 0) break;
-          pbyte_temp4 = pbyte_temp4 + 1;
-        } while (*psystem_byte_temp1 != 0);
+          system_byte_temporary_pointer_four = system_byte_temporary_pointer_four + 1;
+        } while (*system_byte_temporary_pointer_one != 0);
       }
     }
     else if (integer_secondary_variable != 0) goto LAB_MODULE_VALIDATION_START;
@@ -11443,14 +11443,14 @@ LAB_MODULE_VALIDATION_START:
       integer_index_var_var_var = integer_count_var_var;
       if (integer_secondary_variable == integer_count_var_var) {
         if (integer_secondary_variable != 0) {
-          pbyte_temp4 = *(byte **)(unsigned_value_primary_var1 + 8 + system_memory_result);
+          system_byte_temporary_pointer_four = *(byte **)(unsigned_value_primary_var1 + 8 + system_memory_result);
           system_transform_temp_8 = *(longlong *)(system_flags_var + 8) - (longlong)system_byte_temporary_pointer_four;
           do {
             system_byte_temporary_pointer_one = system_byte_temporary_pointer_four + system_transform_temp_8;
-            integer_index_var_var_var = (uint)*pbyte_temp4 - (uint)*psystem_byte_temp1;
+            integer_index_var_var_var = (uint)*system_byte_temporary_pointer_four - (uint)*system_byte_temporary_pointer_one;
             if (integer_index_var_var_var != 0) break;
-            pbyte_temp4 = pbyte_temp4 + 1;
-          } while (*psystem_byte_temp1 != 0);
+            system_byte_temporary_pointer_four = system_byte_temporary_pointer_four + 1;
+          } while (*system_byte_temporary_pointer_one != 0);
         }
 LAB_MODULE_SKIP_VALIDATION:
         if (integer_index_var_var_var == 0) {
@@ -11966,7 +11966,7 @@ void system_initialize_triple_pointer(uint64_t system_context_ptr,uint64_t syste
       }
       system_char_flag = *psystem_stack_80;
       while (system_char_flag != '\0') {
-        transform_temp6 = strchr(&SYSTEM_CONFIG_DATA_TYPE_7,(int)psystem_stack_80[system_memory_alloc_result1]);
+        system_transform_temporary_six = strchr(&SYSTEM_CONFIG_DATA_TYPE_7,(int)psystem_stack_80[system_memory_alloc_result1]);
         if (system_transform_temporary_six != 0) {
           psystem_stack_80[system_memory_alloc_result1] = '_';
         }
@@ -12077,7 +12077,7 @@ void system_initialize_triple_pointer(uint64_t system_context_ptr,uint64_t syste
       system_memory_alloc_result1 = *(longlong *)(system_memory_alloc_result3 + 8);
       vertex_count_var = (uint)system_vertex_processing_index;
       while (system_memory_alloc_result1 != system_memory_alloc_result3) {
-        transform_temp6 = 0;
+        system_transform_temporary_six = 0;
         system_ptr_uint_a8 = &system_config_default_handler;
         system_stack_control_flag = 0;
         psystem_stack_a0 = (char *)0x0;
@@ -12095,11 +12095,11 @@ void system_initialize_triple_pointer(uint64_t system_context_ptr,uint64_t syste
         }
         system_char_flag = *psystem_stack_a0;
         while (system_char_flag != '\0') {
-          system_transform_type = strchr(&SYSTEM_CONFIG_DATA_TYPE_7,(int)psystem_stack_a0[transform_temp6]);
+          system_transform_type = strchr(&SYSTEM_CONFIG_DATA_TYPE_7,(int)psystem_stack_a0[system_transform_temporary_six]);
           if (system_transform_type != 0) {
-            psystem_stack_a0[transform_temp6] = '_';
+            psystem_stack_a0[system_transform_temporary_six] = '_';
           }
-          transform_temp6 = transform_temp6 + 1;
+          system_transform_temporary_six = system_transform_temporary_six + 1;
           system_char_flag = psystem_stack_a0[transform_temp6];
         }
         pconfig_status_flag4 = "";
@@ -16184,7 +16184,7 @@ uint64_t * system_get_config_context(uint64_t *system_context_ptr,uint64_t *syst
     loop_bound_limit = system_transform_temp_8 >> 2;
     if ((ulonglong)(system_context_ptr[0x45] - transform_temp6 >> 2) < loop_bound_limit) {
       if (loop_bound_limit == 0) {
-        transform_temp6 = 0;
+        system_transform_temporary_six = 0;
       }
       else {
         transform_temp6 = system_memory_allocate_buffer(system_memory_allocator_config,loop_bound_limit * 4,*(int32_t *)(system_context_ptr + 0x46));
@@ -16377,7 +16377,7 @@ bool system_config_180051f00(longlong system_context_ptr)
             system_vertex_offset = (uint)pbyte_temp4[system_config_next_ptr[5] - (longlong)pbStack_28];
             integer_index_var_var_var = *pbyte_temp4 - system_vertex_offset;
             if (*pbyte_temp4 != system_vertex_offset) break;
-            pbyte_temp4 = pbyte_temp4 + 1;
+            system_byte_temporary_pointer_four = system_byte_temporary_pointer_four + 1;
           } while (system_vertex_offset != 0);
           byte_temp3 = 0 < integer_index_var_var_var;
           if (integer_index_var_var_var < 1) {
@@ -16404,7 +16404,7 @@ LAB_180051f8b:
           system_byte_temp2 = *pbyte_temp4;
           system_vertex_offset = (uint)pbyte_temp4[system_transform_type];
           if (system_byte_temp2 != system_vertex_offset) break;
-          pbyte_temp4 = pbyte_temp4 + 1;
+          system_byte_temporary_pointer_four = system_byte_temporary_pointer_four + 1;
         } while (system_vertex_offset != 0);
         if ((int)(system_byte_temp2 - system_vertex_offset) < 1) goto LAB_180051fc9;
       }
@@ -27460,7 +27460,7 @@ ulonglong system_util_180063510(longlong *system_context_ptr,longlong system_fla
             system_transform_iterations = (uint)*pbyte_temp5 - (uint)*psystem_byte_temp1;
             if (system_transform_iterations != 0) break;
             pbyte_temp5 = pbyte_temp5 + 1;
-          } while (*psystem_byte_temp1 != 0);
+          } while (*system_byte_temporary_pointer_one != 0);
         }
 LAB_18006357e:
         if (system_transform_iterations == 0) {
@@ -28612,7 +28612,7 @@ void system_util_180065160(uint64_t system_context_ptr)
                     integer_primary5 = (uint)*psystem_byte_temp13 - (uint)*psystem_byte_temp1;
                     if (integer_primary5 != 0) break;
                     psystem_byte_temp13 = psystem_byte_temp13 + 1;
-                  } while (*psystem_byte_temp1 != 0);
+                  } while (*system_byte_temporary_pointer_one != 0);
                 }
 LAB_180065a3e:
                 if (integer_primary5 == 0) {
