@@ -176,33 +176,61 @@ void utility_memory_cleanup_handler(void)
 }
 
 /**
- * @brief 处理资源数据
- * @param utility_resource_primary_handle 主要资源句柄
- * @return uint64 操作结果状态码
+ * @brief 处理资源数据 - 管理系统资源数据的处理和释放
+ * @param resource_primary_handle 主要资源句柄，用于标识要处理的资源
+ * @return uint64 操作结果状态码，返回0表示成功，非0表示错误
+ * 
+ * 该函数负责处理系统资源数据，包括资源验证、内存分配和释放操作。
+ * 主要功能包括：
+ * 1. 执行系统内存操作
+ * 2. 验证资源句柄有效性
+ * 3. 处理资源引用计数
+ * 4. 释放相关内存资源
+ * 
+ * @note 这是简化实现，主要处理基本的资源数据处理功能。
  */
-uint64 utility_process_resource_data(longlong utility_resource_primary_handle)
+uint64 utility_process_resource_data(longlong resource_primary_handle)
 {
-  uint64 utility_result;
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
-  if ((int)utility_result != UTILITY_ZERO) {
-    return utility_result;
+  uint64 operation_result;
+  
+  // 执行系统内存操作
+  operation_result = system_memory_operation(
+    *(uint32 *)(resource_primary_handle + UTILITY_PRIMARY_DATA_OFFSET), 
+    &utility_system_resource_handle
+  );
+  
+  // 检查操作结果
+  if ((int)operation_result != UTILITY_ZERO) {
+    return operation_result;
   }
+  
+  // 处理资源句柄
   if (utility_system_resource_handle == UTILITY_ZERO) {
     utility_system_resource_handle = UTILITY_ZERO;
   }
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
-    return UTILITY_ERROR_FLAG;
+  
+  // 验证资源指针并释放内存
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_RESOURCE_POINTER_OFFSET) == UTILITY_ZERO) {
+    return UTILITY_ERROR_CODE_INVALID;
   }
-  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  
+  utility_free_memory(
+    *(longlong *)(utility_system_resource_handle + UTILITY_RESOURCE_POINTER_OFFSET), 
+    UTILITY_MEMORY_OPERATION_FLAG
+  );
+  
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 获取内存使用情况 - 监控系统内存使用状态
- * @return uint32 内存使用状态码
+ * @return uint32 内存使用状态码，返回0表示正常
+ * 
+ * 该函数负责监控系统内存使用状态，提供内存使用情况的统计信息。
+ * 简化实现：提供基本的内存监控功能。
  */
 uint32 utility_get_memory_usage(void)
 {
@@ -211,7 +239,10 @@ uint32 utility_get_memory_usage(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码，返回0表示成功
+ * 
+ * 该函数负责管理系统资源上下文，包括上下文创建、切换和销毁操作。
+ * 简化实现：提供基本的上下文管理功能。
  */
 uint64 utility_context_manager(void)
 {
