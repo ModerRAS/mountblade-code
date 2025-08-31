@@ -56,7 +56,6 @@ void *network_socket_manager;
 void *network_handler_manager;
 void *network_context_manager;
 void *network_event_handler;
-void *network_connection_manager;
 void *network_state_controller;
 void *network_config_controller;
 void *resource_loading_handler;
@@ -112,7 +111,6 @@ void *system_message_handler;
 void *system_signal_handler;
 void *system_interrupt_handler;
 void *system_global_flags;
-void *system_runtime_context_handler;
 void *system_runtime_context_ptr;
 void *system_graphics_context_ptr;
 void *graphics_config_ptr;
@@ -170,13 +168,10 @@ char network_system_ready;
 void *system_memory_config_ptr;
 void *system_thread_config_ptr;
 void *system_network_config_ptr;
-void *system_graphics_config_ptr;
 void *system_audio_flag;
-void *system_audio_config_ptr;
 void *system_audio_buffer_ptr;
 void *system_audio_manager_ptr;
 void *system_audio_handler_ptr;
-void *system_audio_context_ptr;
 void *system_audio_state_ptr;
 void *system_audio_thread_ptr;
 void *system_audio_memory_ptr;
@@ -217,7 +212,6 @@ uint8_t system_error_flag;
 void *system_graphics_buffer_ptr;
 void *system_graphics_manager_ptr;
 void *system_graphics_handler_ptr;
-void *system_graphics_context_ptr;
 char system_graphics_flag;
 void *system_network_buffer_ptr;
 void *system_network_manager_ptr;
@@ -262,14 +256,11 @@ void *system_filesystem_flag;
 void *system_filesystem_state_ptr;
 void *system_filesystem_config_flag;
 
-void *system_data_180d48dab;
 void *system_initialize_input;
 void *system_graphics_buffer_config_ptr;
 
-void *system_data_180d48dab;
 void *system_initialize_physics;
 
-void *system_data_180d48dab;
 /**
  * @brief 内存系统初始化函数
  * 初始化内存管理和分配系统
@@ -277,7 +268,6 @@ void *system_data_180d48dab;
  */
 void *system_initialize_memory_manager;
 
-void *system_data_180d48dab;
 void *system_initialize_buffer_allocator;
 void *system_buffer_internal_1;
 void *system_buffer_internal_2;
@@ -286,7 +276,6 @@ void *system_buffer_internal_4;
 void *system_buffer_internal_5;
 void *system_buffer_internal_6;
 
-void *system_data_180d48dab;
 void *system_initialize_thread_scheduler;
 void *system_thread_internal_1;
 void *system_thread_internal_2;
@@ -323,10 +312,8 @@ void *system_thread_config_3;
 void *system_thread_config_4;
 void *system_data_internal_2;
 
-void *system_data_180d48dab;
 void *system_initialize_resource_cache;
 
-void *system_data_180d48dab;
 void *system_initialize_callback_system;
 void *system_callback_internal_1;
 void *system_callback_internal_2;
@@ -360,7 +347,6 @@ void *system_event_internal_1;
 void *system_event_internal_2;
 void *system_event_internal_3;
 
-void *system_data_180d48dab;
 void *system_initialize_event_system;
 void *system_event_internal_4;
 void *system_event_internal_5;
@@ -370,16 +356,12 @@ void *system_event_internal_8;
 void *system_event_internal_9;
 void *system_event_internal_10;
 
-void *system_data_180d48dab;
 void *system_initialize_message_queue;
 
-void *system_data_180d48dab;
 void *system_initialize_signal_handler;
 
-void *system_data_180d48dab;
 void *system_initialize_interrupt_handler;
 
-void *system_data_180d48dab;
 /**
  * @brief 安全系统初始化函数
  * 初始化安全检查和权限管理
@@ -387,20 +369,16 @@ void *system_data_180d48dab;
  */
 void *system_initialize_security_system;
 void *system_unknown_180a13ad0;
-void *system_memory_allocator_context;
-void *system_thread_management_context;
 void *system_unknown_180a13aa8;
 void *system_unknown_180a13ab8;
 void *system_unknown_180a13ae8;
 void *system_unknown_180a13bb8;
 void *system_unknown_180a13b30;
 void *system_unknown_180a13b70;
-void *system_configuration_database;
 void *system_unknown_180a03108;
 void *system_unknown_180a13c08;
 void *system_unknown_180a13c48;
 void *system_unknown_180a12ea0;
-void *system_network_context_manager;
 void *system_unknown_180a13c2c;
 void *system_unknown_180a13c70;
 void *system_unknown_180a13c88;
@@ -409,7 +387,6 @@ void *system_unknown_180a13ca0;
 void *system_unknown_180a13cac;
 void *system_unknown_180239520;
 
-void *system_data_180d48dab;
 /**
  * @brief 配置系统初始化函数
  * 初始化系统配置和参数管理
@@ -431,15 +408,12 @@ void *system_unknown_180a177c8;
 void *system_unknown_180a177f0;
 uint8_t system_audio_initialization_flag;
 void *system_unknown_1802a1d4c;
-void *system_resource_cache_manager;
-void *system_security_context_handler;
 void *system_unknown_180a02b03;
 void *system_unknown_180a17818;
 void *system_unknown_180a27cb0;
 uint32_t system_unknown_180bf5c1c;
 uint32_t system_unknown_180bf5c20;
 uint32_t system_unknown_180bf5c24;
-void *system_ui_context_manager;
 char system_database_initialization_flag;
 void *system_unknown_18042d5d0;
 void *system_unknown_180a17830;
@@ -532,7 +506,6 @@ void *system_data_180d48dc0;
 void *system_data_180d48dc8;
 void *system_data_180d48dd0;
 
-void *system_data_180d48dab;
 void *system_initialize_state_manager;
 void *system_unknown_180a25980;
 void *system_data_180bfc170;
@@ -614,7 +587,6 @@ void *system_unknown_180a25900;
 void *system_unknown_180a25ad0;
 void *system_unknown_180a25a6c;
 
-void *system_data_180d48dab;
 /**
  * @brief 图形系统初始化函数
  * 初始化图形渲染和显示系统
@@ -683,7 +655,6 @@ void system_initialize_memory_manager(void)
  * @brief 线程池初始化函数
  * 初始化系统线程池和任务调度器
  */
-void *system_data_180a09dc0;
 /**
  * @brief 线程池初始化函数
  * 初始化系统线程池和任务调度器
@@ -741,7 +712,6 @@ void system_initialize_thread_pool(void)
  * @brief 资源管理器初始化函数
  * 初始化系统资源管理和加载器
  */
-void *system_data_180a09dc0;
 /**
  * @brief 资源管理器初始化函数
  * 初始化系统资源管理和加载器
@@ -799,7 +769,6 @@ void system_initialize_resource_manager(void)
  * @brief 回调系统初始化函数
  * 初始化系统回调机制和事件处理
  */
-void *system_data_180a09dc0;
 /**
  * @brief 回调系统初始化函数
  * 初始化系统回调机制和事件处理
@@ -857,7 +826,6 @@ void system_initialize_callback_system(void)
  * @brief 事件系统初始化函数
  * 初始化系统事件队列和分发器
  */
-void *system_data_180a09dc0;
 /**
  * @brief 事件系统初始化函数
  * 初始化系统事件队列和分发器
@@ -915,7 +883,6 @@ void system_initialize_event_system(void)
  * @brief 消息队列初始化函数
  * 初始化系统消息队列和处理器
  */
-void *system_data_180a09dc0;
 /**
  * @brief 消息队列初始化函数
  * 初始化系统消息队列和处理器
@@ -973,7 +940,6 @@ void system_initialize_message_queue(void)
  * @brief 信号处理器初始化函数
  * 初始化系统信号处理机制
  */
-void *system_data_180a09dc0;
 /**
  * @brief 信号处理器初始化函数
  * 初始化系统信号处理机制
@@ -1031,7 +997,6 @@ void system_initialize_signal_handler(void)
  * @brief 中断处理器初始化函数
  * 初始化系统中断处理机制
  */
-void *system_data_180a09dc0;
 /**
  * @brief 中断处理器初始化函数
  * 初始化系统中断处理机制
@@ -1089,7 +1054,6 @@ void system_initialize_interrupt_handler(void)
  * @brief 安全系统初始化函数
  * 初始化系统安全检查和验证
  */
-void *system_data_180a09dc0;
 /**
  * @brief 安全系统初始化函数
  * 初始化系统安全检查和验证
@@ -1147,7 +1111,6 @@ void system_initialize_security_system(void)
  * @brief 配置加载器初始化函数
  * 初始化系统配置文件加载和解析
  */
-void *system_data_180a09dc0;
 /**
  * @brief 配置加载器初始化函数
  * 初始化系统配置文件加载和解析
@@ -1225,7 +1188,6 @@ int system_check_initialization_status(void)
   _system_data_180bf52c8 = 0;
   _system_data_180bf52d0 = 0;
 
-void *system_data_180a09dc0;
 void system_initialize_state_manager(void)
 
 {
@@ -1318,7 +1280,6 @@ int system_setup_resource_caches(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_graphics_system(void)
 
 {
@@ -1368,7 +1329,6 @@ void system_initialize_graphics_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_audio_system(void)
 
 {
@@ -1432,7 +1392,6 @@ int system_initialize_network_system(uint64_t param_1,uint64_t param_2,uint64_t 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_input_system(void)
 
 {
@@ -1454,7 +1413,6 @@ void system_initialize_input_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_ui_system(void)
 
 {
@@ -1504,7 +1462,6 @@ void system_initialize_ui_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_physics_system(void)
 
 {
@@ -1554,7 +1511,6 @@ void system_initialize_physics_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_animation_system(void)
 
 {
@@ -1604,7 +1560,6 @@ void system_initialize_animation_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_particle_system(void)
 
 {
@@ -1654,7 +1609,6 @@ void system_initialize_particle_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_lighting_system(void)
 
 {
@@ -1704,7 +1658,6 @@ void system_initialize_lighting_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_shadow_system(void)
 
 {
@@ -1754,7 +1707,6 @@ void system_initialize_shadow_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_post_processing(void)
 
 {
@@ -1804,7 +1756,6 @@ void system_initialize_post_processing(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_shader_system(void)
 
 {
@@ -1854,7 +1805,6 @@ void system_initialize_shader_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_texture_system(void)
 
 {
@@ -1904,7 +1854,6 @@ void system_initialize_texture_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_mesh_system(void)
 
 {
@@ -1954,7 +1903,6 @@ void system_initialize_mesh_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_material_system(void)
 
 {
@@ -2004,7 +1952,6 @@ void system_initialize_material_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_camera_system(void)
 
 {
@@ -2054,7 +2001,6 @@ void system_initialize_camera_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_render_pipeline(void)
 
 {
@@ -2104,7 +2050,6 @@ void system_initialize_render_pipeline(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_buffer_manager(void)
 
 {
@@ -2169,7 +2114,6 @@ int system_start_runtime_loop(void)
   _system_data_180bf64d0 = &system_unknown_1809fdc18;
   _system_data_180bf64d8 = &system_data_180bf64e8;
 
-void *system_data_180a09dc0;
 void system_initialize_database(void)
 
 {
@@ -2191,7 +2135,6 @@ void system_initialize_database(void)
 
 
 
-void *system_data_180a09dc0;
 void system_setup_database_tables(void)
 
 {
@@ -2241,7 +2184,6 @@ void system_setup_database_tables(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_query_system(void)
 
 {
@@ -2291,7 +2233,6 @@ void system_initialize_query_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_setup_transaction_system(void)
 
 {
@@ -2341,7 +2282,6 @@ void system_setup_transaction_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_cache_system(void)
 
 {
@@ -2391,7 +2331,6 @@ void system_initialize_cache_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_setup_index_system(void)
 
 {
@@ -2441,7 +2380,6 @@ void system_setup_index_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_locking_system(void)
 
 {
@@ -2491,7 +2429,6 @@ void system_initialize_locking_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_setup_backup_system(void)
 
 {
@@ -2541,7 +2478,6 @@ void system_setup_backup_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_audio_system(void)
 
 {
@@ -2591,7 +2527,6 @@ void system_initialize_audio_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_resource_system(void)
 
 {
@@ -2641,7 +2576,6 @@ void system_initialize_resource_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_filesystem(void)
 
 {
@@ -2691,7 +2625,6 @@ void system_initialize_filesystem(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_input_system(void)
 
 {
@@ -2741,7 +2674,6 @@ void system_initialize_input_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_physics_system(void)
 
 {
@@ -2791,7 +2723,6 @@ void system_initialize_physics_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_animation_system(void)
 
 {
@@ -2841,7 +2772,6 @@ void system_initialize_animation_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_network_system(void)
 
 {
@@ -2891,7 +2821,6 @@ void system_initialize_network_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_ui_system(void)
 
 {
@@ -2941,7 +2870,6 @@ void system_initialize_ui_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_database(void)
 
 {
@@ -2991,7 +2919,6 @@ void system_initialize_database(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_thread_pool(void)
 
 {
@@ -3041,7 +2968,6 @@ void system_initialize_thread_pool(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_memory_pool(void)
 
 {
@@ -3091,7 +3017,6 @@ void system_initialize_memory_pool(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_resource_pool(void)
 
 {
@@ -3141,7 +3066,6 @@ void system_initialize_resource_pool(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_callback_pool(void)
 
 {
@@ -3191,7 +3115,6 @@ void system_initialize_callback_pool(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_event_pool(void)
 
 {
@@ -3241,7 +3164,6 @@ void system_initialize_event_pool(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_message_pool(void)
 
 {
@@ -3291,7 +3213,6 @@ void system_initialize_message_pool(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_signal_pool(void)
 
 {
@@ -3341,7 +3262,6 @@ void system_initialize_signal_pool(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_interrupt_pool(void)
 
 {
@@ -3391,7 +3311,6 @@ void system_initialize_interrupt_pool(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_memory_manager(void)
 
 {
@@ -3441,7 +3360,6 @@ void system_initialize_memory_manager(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_thread_pool(void)
 
 {
@@ -3491,7 +3409,6 @@ void system_initialize_thread_pool(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_resource_manager(void)
 
 {
@@ -3541,7 +3458,6 @@ void system_initialize_resource_manager(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_callback_system(void)
 
 {
@@ -3591,7 +3507,6 @@ void system_initialize_callback_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_event_system(void)
 
 {
@@ -3641,7 +3556,6 @@ void system_initialize_event_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_message_queue(void)
 
 {
@@ -3691,7 +3605,6 @@ void system_initialize_message_queue(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_signal_handler(void)
 
 {
@@ -3743,7 +3656,6 @@ void system_initialize_signal_handler(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_interrupt_handler(void)
 
 {
@@ -3775,7 +3687,6 @@ int system_function_030900(void)
   _system_data_180bf6750 = &system_unknown_1809fcc58;
   _system_data_180bf6758 = &system_data_180bf6768;
 
-void *system_data_180a09dc0;
 void system_initialize_security_system(void)
 
 {
@@ -3825,7 +3736,6 @@ void system_initialize_security_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_config_loader(void)
 
 {
@@ -3875,7 +3785,6 @@ void system_initialize_config_loader(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_state_manager(void)
 
 {
@@ -3925,7 +3834,6 @@ void system_initialize_state_manager(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_graphics_system(void)
 
 {
@@ -3975,7 +3883,6 @@ void system_initialize_graphics_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_audio_system(void)
 
 {
@@ -4025,7 +3932,6 @@ void system_initialize_audio_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_input_system(void)
 
 {
@@ -4075,7 +3981,6 @@ void system_initialize_input_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_ui_system(void)
 
 {
@@ -4125,7 +4030,6 @@ void system_initialize_ui_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_physics_system(void)
 
 {
@@ -4175,7 +4079,6 @@ void system_initialize_physics_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_animation_system(void)
 
 {
@@ -4225,7 +4128,6 @@ void system_initialize_animation_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_particle_system(void)
 
 {
@@ -4275,7 +4177,6 @@ void system_initialize_particle_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_lighting_system(void)
 
 {
@@ -4327,7 +4228,6 @@ void system_initialize_lighting_system(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_shadow_system(void)
 
 {
@@ -4349,7 +4249,6 @@ void system_initialize_shadow_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_post_processing(void)
 
 {
@@ -4399,7 +4298,6 @@ void system_initialize_post_processing(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_shader_system(void)
 
 {
@@ -4449,7 +4347,6 @@ void system_initialize_shader_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_texture_system(void)
 
 {
@@ -4499,7 +4396,6 @@ void system_initialize_texture_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_mesh_system(void)
 
 {
@@ -4549,7 +4445,6 @@ void system_initialize_mesh_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_material_system(void)
 
 {
@@ -4599,7 +4494,6 @@ void system_initialize_material_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_camera_system(void)
 
 {
@@ -4649,7 +4543,6 @@ void system_initialize_camera_system(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_render_pipeline(void)
 
 {
@@ -4701,7 +4594,6 @@ void system_initialize_render_pipeline(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_buffer_manager(void)
 
 {
@@ -5131,7 +5023,6 @@ void system_initialize_memory_pool_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_resource_manager_stage_1(void)
 
 {
@@ -5181,7 +5072,6 @@ void system_initialize_resource_manager_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_resource_manager_stage_2(void)
 
 {
@@ -5231,7 +5121,6 @@ void system_initialize_resource_manager_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_resource_manager_stage_3(void)
 
 {
@@ -5281,7 +5170,6 @@ void system_initialize_resource_manager_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_resource_manager_stage_4(void)
 
 {
@@ -5331,7 +5219,6 @@ void system_initialize_resource_manager_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_resource_manager_stage_5(void)
 
 {
@@ -5381,7 +5268,6 @@ void system_initialize_resource_manager_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_network_system_stage_1(void)
 
 {
@@ -5431,7 +5317,6 @@ void system_initialize_network_system_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_network_system_stage_2(void)
 
 {
@@ -5481,7 +5366,6 @@ void system_initialize_network_system_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_network_system_stage_3(void)
 
 {
@@ -5531,7 +5415,6 @@ void system_initialize_network_system_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_network_system_stage_4(void)
 
 {
@@ -5581,7 +5464,6 @@ void system_initialize_network_system_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_network_system_stage_5(void)
 
 {
@@ -5631,7 +5513,6 @@ void system_initialize_network_system_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_graphics_system_stage_1(void)
 
 {
@@ -5681,7 +5562,6 @@ void system_initialize_graphics_system_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_graphics_system_stage_2(void)
 
 {
@@ -5738,7 +5618,6 @@ void system_initialize_graphics_system_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_graphics_system_stage_3(void)
 
 {
@@ -5788,7 +5667,6 @@ void system_initialize_graphics_system_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_graphics_system_stage_4(void)
 
 {
@@ -5838,7 +5716,6 @@ void system_initialize_graphics_system_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_graphics_system_stage_5(void)
 
 {
@@ -5888,7 +5765,6 @@ void system_initialize_graphics_system_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_audio_system_stage_1(void)
 
 {
@@ -5938,7 +5814,6 @@ void system_initialize_audio_system_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_audio_system_stage_2(void)
 
 {
@@ -5988,7 +5863,6 @@ void system_initialize_audio_system_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_audio_system_stage_3(void)
 
 {
@@ -6038,7 +5912,6 @@ void system_initialize_audio_system_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_audio_system_stage_4(void)
 
 {
@@ -6088,7 +5961,6 @@ void system_initialize_audio_system_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_audio_system_stage_5(void)
 
 {
@@ -6138,7 +6010,6 @@ void system_initialize_audio_system_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_ui_system_stage_1(void)
 
 {
@@ -6188,7 +6059,6 @@ void system_initialize_ui_system_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_ui_system_stage_2(void)
 
 {
@@ -6238,7 +6108,6 @@ void system_initialize_ui_system_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_ui_system_stage_3(void)
 
 {
@@ -6288,7 +6157,6 @@ void system_initialize_ui_system_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_ui_system_stage_4(void)
 
 {
@@ -6338,7 +6206,6 @@ void system_initialize_ui_system_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_ui_system_stage_5(void)
 
 {
@@ -6388,7 +6255,6 @@ void system_initialize_ui_system_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_database_stage_1(void)
 
 {
@@ -6438,7 +6304,6 @@ void system_initialize_database_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_database_stage_2(void)
 
 {
@@ -6488,7 +6353,6 @@ void system_initialize_database_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_database_stage_3(void)
 
 {
@@ -6538,7 +6402,6 @@ void system_initialize_database_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_database_stage_4(void)
 
 {
@@ -6588,7 +6451,6 @@ void system_initialize_database_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_database_stage_5(void)
 
 {
@@ -6638,7 +6500,6 @@ void system_initialize_database_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_security_stage_1(void)
 
 {
@@ -6688,7 +6549,6 @@ void system_initialize_security_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_security_stage_2(void)
 
 {
@@ -6738,7 +6598,6 @@ void system_initialize_security_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_security_stage_3(void)
 
 {
@@ -6788,7 +6647,6 @@ void system_initialize_security_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_security_stage_4(void)
 
 {
@@ -6838,7 +6696,6 @@ void system_initialize_security_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_security_stage_5(void)
 
 {
@@ -6888,7 +6745,6 @@ void system_initialize_security_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_config_system_stage_1(void)
 
 {
@@ -6938,7 +6794,6 @@ void system_initialize_config_system_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_config_system_stage_2(void)
 
 {
@@ -6988,7 +6843,6 @@ void system_initialize_config_system_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_config_system_stage_3(void)
 
 {
@@ -7038,7 +6892,6 @@ void system_initialize_config_system_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_config_system_stage_4(void)
 
 {
@@ -7088,7 +6941,6 @@ void system_initialize_config_system_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_config_system_stage_5(void)
 
 {
@@ -7138,7 +6990,6 @@ void system_initialize_config_system_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_event_system_stage_1(void)
 
 {
@@ -7188,7 +7039,6 @@ void system_initialize_event_system_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_event_system_stage_2(void)
 
 {
@@ -7238,7 +7088,6 @@ void system_initialize_event_system_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_event_system_stage_3(void)
 
 {
@@ -7288,7 +7137,6 @@ void system_initialize_event_system_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_event_system_stage_4(void)
 
 {
@@ -7340,7 +7188,6 @@ void system_initialize_event_system_stage_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_event_system_stage_5(void)
 
 {
@@ -7372,7 +7219,6 @@ int system_function_036be0(void)
   _system_data_180bf90b0 = &system_unknown_18098bc80;
   _system_data_180bf90b8 = &system_data_180bf90c8;
 
-void *system_data_180a09dc0;
 void system_initialize_thread_management_stage_1(void)
 
 {
@@ -7396,7 +7242,6 @@ void system_initialize_thread_management_stage_1(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_thread_management_stage_2(void)
 
 {
@@ -7418,7 +7263,6 @@ void system_initialize_thread_management_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_thread_management_stage_3(void)
 
 {
@@ -7468,7 +7312,6 @@ void system_initialize_thread_management_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_thread_management_stage_4(void)
 
 {
@@ -7518,7 +7361,6 @@ void system_initialize_thread_management_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_thread_management_stage_5(void)
 
 {
@@ -7568,7 +7410,6 @@ void system_initialize_thread_management_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_memory_management_stage_1(void)
 
 {
@@ -7618,7 +7459,6 @@ void system_initialize_memory_management_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_memory_management_stage_2(void)
 
 {
@@ -7668,7 +7508,6 @@ void system_initialize_memory_management_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_memory_management_stage_3(void)
 
 {
@@ -7718,7 +7557,6 @@ void system_initialize_memory_management_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_memory_management_stage_4(void)
 
 {
@@ -7768,7 +7606,6 @@ void system_initialize_memory_management_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_memory_management_stage_5(void)
 
 {
@@ -7820,7 +7657,6 @@ void system_initialize_memory_management_stage_5(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_resource_management_stage_1(void)
 
 {
@@ -7842,7 +7678,6 @@ void system_initialize_resource_management_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_resource_management_stage_2(void)
 
 {
@@ -7892,7 +7727,6 @@ void system_initialize_resource_management_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_resource_management_stage_3(void)
 
 {
@@ -7942,7 +7776,6 @@ void system_initialize_resource_management_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_resource_management_stage_4(void)
 
 {
@@ -7992,7 +7825,6 @@ void system_initialize_resource_management_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_resource_management_stage_5(void)
 
 {
@@ -8042,7 +7874,6 @@ void system_initialize_resource_management_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_network_management_stage_1(void)
 
 {
@@ -8092,7 +7923,6 @@ void system_initialize_network_management_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_network_management_stage_2(void)
 
 {
@@ -8142,7 +7972,6 @@ void system_initialize_network_management_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_network_management_stage_3(void)
 
 {
@@ -8192,7 +8021,6 @@ void system_initialize_network_management_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_network_management_stage_4(void)
 
 {
@@ -8242,7 +8070,6 @@ void system_initialize_network_management_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_network_management_stage_5(void)
 
 {
@@ -8292,7 +8119,6 @@ void system_initialize_network_management_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_graphics_management_stage_1(void)
 
 {
@@ -8342,7 +8168,6 @@ void system_initialize_graphics_management_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_graphics_management_stage_2(void)
 
 {
@@ -8394,7 +8219,6 @@ void system_initialize_graphics_management_stage_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_graphics_management_stage_3(void)
 
 {
@@ -8418,7 +8242,6 @@ void system_initialize_graphics_management_stage_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_graphics_management_stage_4(void)
 
 {
@@ -8442,7 +8265,6 @@ void system_initialize_graphics_management_stage_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_graphics_management_stage_5(void)
 
 {
@@ -8466,7 +8288,6 @@ void system_initialize_graphics_management_stage_5(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_audio_management_stage_1(void)
 
 {
@@ -8490,7 +8311,6 @@ void system_initialize_audio_management_stage_1(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_audio_management_stage_2(void)
 
 {
@@ -8514,7 +8334,6 @@ void system_initialize_audio_management_stage_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_audio_management_stage_3(void)
 
 {
@@ -8538,7 +8357,6 @@ void system_initialize_audio_management_stage_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_audio_management_stage_4(void)
 
 {
@@ -8562,7 +8380,6 @@ void system_initialize_audio_management_stage_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_audio_management_stage_5(void)
 
 {
@@ -8586,7 +8403,6 @@ void system_initialize_audio_management_stage_5(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_ui_management_stage_1(void)
 
 {
@@ -8608,7 +8424,6 @@ void system_initialize_ui_management_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_ui_management_stage_2(void)
 
 {
@@ -8658,7 +8473,6 @@ void system_initialize_ui_management_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_ui_management_stage_3(void)
 
 {
@@ -8708,7 +8522,6 @@ void system_initialize_ui_management_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_ui_management_stage_4(void)
 
 {
@@ -8758,7 +8571,6 @@ void system_initialize_ui_management_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_ui_management_stage_5(void)
 
 {
@@ -8808,7 +8620,6 @@ void system_initialize_ui_management_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_database_management_stage_1(void)
 
 {
@@ -8858,7 +8669,6 @@ void system_initialize_database_management_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_database_management_stage_2(void)
 
 {
@@ -8908,7 +8718,6 @@ void system_initialize_database_management_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_database_management_stage_3(void)
 
 {
@@ -8958,7 +8767,6 @@ void system_initialize_database_management_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_database_management_stage_4(void)
 
 {
@@ -9008,7 +8816,6 @@ void system_initialize_database_management_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_database_management_stage_5(void)
 
 {
@@ -9058,7 +8865,6 @@ void system_initialize_database_management_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_security_management_stage_1(void)
 
 {
@@ -9108,7 +8914,6 @@ void system_initialize_security_management_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_security_management_stage_2(void)
 
 {
@@ -9158,7 +8963,6 @@ void system_initialize_security_management_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_security_management_stage_3(void)
 
 {
@@ -9208,7 +9012,6 @@ void system_initialize_security_management_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_security_management_stage_4(void)
 
 {
@@ -9258,7 +9061,6 @@ void system_initialize_security_management_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_security_management_stage_5(void)
 
 {
@@ -9308,7 +9110,6 @@ void system_initialize_security_management_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_config_management_stage_1(void)
 
 {
@@ -9358,7 +9159,6 @@ void system_initialize_config_management_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_config_management_stage_2(void)
 
 {
@@ -9408,7 +9208,6 @@ void system_initialize_config_management_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_config_management_stage_3(void)
 
 {
@@ -9458,7 +9257,6 @@ void system_initialize_config_management_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_config_management_stage_4(void)
 
 {
@@ -9508,7 +9306,6 @@ void system_initialize_config_management_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_config_management_stage_5(void)
 
 {
@@ -9558,7 +9355,6 @@ void system_initialize_config_management_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_event_management_stage_1(void)
 
 {
@@ -9608,7 +9404,6 @@ void system_initialize_event_management_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_event_management_stage_2(void)
 
 {
@@ -9658,7 +9453,6 @@ void system_initialize_event_management_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_event_management_stage_3(void)
 
 {
@@ -9708,7 +9502,6 @@ void system_initialize_event_management_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_event_management_stage_4(void)
 
 {
@@ -9758,7 +9551,6 @@ void system_initialize_event_management_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_event_management_stage_5(void)
 
 {
@@ -9808,7 +9600,6 @@ void system_initialize_event_management_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_core_stage_1(void)
 
 {
@@ -9858,7 +9649,6 @@ void system_initialize_system_core_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_core_stage_2(void)
 
 {
@@ -9908,7 +9698,6 @@ void system_initialize_system_core_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_core_stage_3(void)
 
 {
@@ -9958,7 +9747,6 @@ void system_initialize_system_core_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_core_stage_4(void)
 
 {
@@ -10008,7 +9796,6 @@ void system_initialize_system_core_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_core_stage_5(void)
 
 {
@@ -10058,7 +9845,6 @@ void system_initialize_system_core_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_components_stage_1(void)
 
 {
@@ -10108,7 +9894,6 @@ void system_initialize_system_components_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_components_stage_2(void)
 
 {
@@ -10158,7 +9943,6 @@ void system_initialize_system_components_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_components_stage_3(void)
 
 {
@@ -10208,7 +9992,6 @@ void system_initialize_system_components_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_components_stage_4(void)
 
 {
@@ -10258,7 +10041,6 @@ void system_initialize_system_components_stage_4(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_components_stage_5(void)
 
 {
@@ -10308,7 +10090,6 @@ void system_initialize_system_components_stage_5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_services_stage_1(void)
 
 {
@@ -10358,7 +10139,6 @@ void system_initialize_system_services_stage_1(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_services_stage_2(void)
 
 {
@@ -10408,7 +10188,6 @@ void system_initialize_system_services_stage_2(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_services_stage_3(void)
 
 {
@@ -10458,7 +10237,6 @@ void system_initialize_system_services_stage_3(void)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_services_stage_4(void)
 
 {
@@ -10510,7 +10288,6 @@ void system_initialize_system_services_stage_4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_initialize_system_services_stage_5(void)
 
 {
@@ -10542,7 +10319,6 @@ int system_function_03ad40(void)
   _system_data_180bf91b0 = &system_unknown_1809fcc58;
   _system_data_180bf91b8 = &system_data_180bf91c8;
 
-void *system_data_180a09dc0;
 void system_function_03c1f0(void)
 
 {
@@ -10592,7 +10368,6 @@ void system_function_03c1f0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03c2f0(void)
 
 {
@@ -10642,7 +10417,6 @@ void system_function_03c2f0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03c3f0(void)
 
 {
@@ -10692,7 +10466,6 @@ void system_function_03c3f0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03c4f0(void)
 
 {
@@ -10742,7 +10515,6 @@ void system_function_03c4f0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03c5f0(void)
 
 {
@@ -10792,7 +10564,6 @@ void system_function_03c5f0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03c6f0(void)
 
 {
@@ -10842,7 +10613,6 @@ void system_function_03c6f0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03c7f0(void)
 
 {
@@ -10892,7 +10662,6 @@ void system_function_03c7f0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03c8f0(void)
 
 {
@@ -10942,7 +10711,6 @@ void system_function_03c8f0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03c9f0(void)
 
 {
@@ -10992,7 +10760,6 @@ void system_function_03c9f0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03caf0(void)
 
 {
@@ -11044,7 +10811,6 @@ void system_function_03caf0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_03cbf0(void)
 
 {
@@ -11068,7 +10834,6 @@ void system_function_03cbf0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_03cc80(void)
 
 {
@@ -11090,7 +10855,6 @@ void system_function_03cc80(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03cd10(void)
 
 {
@@ -11140,7 +10904,6 @@ void system_function_03cd10(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03ce10(void)
 
 {
@@ -11190,7 +10953,6 @@ void system_function_03ce10(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03cf10(void)
 
 {
@@ -11240,7 +11002,6 @@ void system_function_03cf10(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03d010(void)
 
 {
@@ -11290,7 +11051,6 @@ void system_function_03d010(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03d110(void)
 
 {
@@ -11340,7 +11100,6 @@ void system_function_03d110(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03d210(void)
 
 {
@@ -11390,7 +11149,6 @@ void system_function_03d210(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03d310(void)
 
 {
@@ -11450,7 +11208,6 @@ int system_function_03d410(void)
   _system_data_180bfa350 = &system_thread_context_config;
   _system_data_180bfa358 = &system_data_180bfa368;
 
-void *system_data_180a09dc0;
 void system_function_03de10(void)
 
 {
@@ -11500,7 +11257,6 @@ void system_function_03de10(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03df10(void)
 
 {
@@ -11550,7 +11306,6 @@ void system_function_03df10(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03e010(void)
 
 {
@@ -11600,7 +11355,6 @@ void system_function_03e010(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03e110(void)
 
 {
@@ -11650,7 +11404,6 @@ void system_function_03e110(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03e210(void)
 
 {
@@ -11700,7 +11453,6 @@ void system_function_03e210(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03e310(void)
 
 {
@@ -11750,7 +11502,6 @@ void system_function_03e310(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03e410(void)
 
 {
@@ -11800,7 +11551,6 @@ void system_function_03e410(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03e510(void)
 
 {
@@ -11850,7 +11600,6 @@ void system_function_03e510(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03e610(void)
 
 {
@@ -11900,7 +11649,6 @@ void system_function_03e610(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03e710(void)
 
 {
@@ -11950,7 +11698,6 @@ void system_function_03e710(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03e810(void)
 
 {
@@ -12000,7 +11747,6 @@ void system_function_03e810(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03e910(void)
 
 {
@@ -12050,7 +11796,6 @@ void system_function_03e910(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03ea10(void)
 
 {
@@ -12100,7 +11845,6 @@ void system_function_03ea10(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03eb10(void)
 
 {
@@ -12150,7 +11894,6 @@ void system_function_03eb10(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03ec10(void)
 
 {
@@ -12202,7 +11945,6 @@ void system_function_03ec10(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_03ed10(void)
 
 {
@@ -12287,7 +12029,6 @@ int system_function_03ee40(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03ee90(void)
 
 {
@@ -12337,7 +12078,6 @@ void system_function_03ee90(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03ef90(void)
 
 {
@@ -12387,7 +12127,6 @@ void system_function_03ef90(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03f090(void)
 
 {
@@ -12437,7 +12176,6 @@ void system_function_03f090(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03f190(void)
 
 {
@@ -12487,7 +12225,6 @@ void system_function_03f190(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03f290(void)
 
 {
@@ -12537,7 +12274,6 @@ void system_function_03f290(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03f390(void)
 
 {
@@ -12587,7 +12323,6 @@ void system_function_03f390(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03f490(void)
 
 {
@@ -12637,7 +12372,6 @@ void system_function_03f490(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03f590(void)
 
 {
@@ -12687,7 +12421,6 @@ void system_function_03f590(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03f690(void)
 
 {
@@ -12737,7 +12470,6 @@ void system_function_03f690(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03f790(void)
 
 {
@@ -12789,7 +12521,6 @@ void system_function_03f790(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_03f890(void)
 
 {
@@ -12813,7 +12544,6 @@ void system_function_03f890(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_03f920(void)
 
 {
@@ -12837,7 +12567,6 @@ void system_function_03f920(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_03f9b0(void)
 
 {
@@ -12861,7 +12590,6 @@ void system_function_03f9b0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_03fa40(void)
 
 {
@@ -12893,7 +12621,6 @@ int system_function_03fad0(void)
   _system_data_180bf6048 = &system_unknown_18098bc80;
   _system_data_180bf6050 = &system_data_180bf6060;
 
-void *system_data_180a09dc0;
 void system_function_03fbb0(void)
 
 {
@@ -12943,7 +12670,6 @@ void system_function_03fbb0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03fcb0(void)
 
 {
@@ -12993,7 +12719,6 @@ void system_function_03fcb0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03fdb0(void)
 
 {
@@ -13043,7 +12768,6 @@ void system_function_03fdb0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03feb0(void)
 
 {
@@ -13093,7 +12817,6 @@ void system_function_03feb0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_03ffb0(void)
 
 {
@@ -13143,7 +12866,6 @@ void system_function_03ffb0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0400b0(void)
 
 {
@@ -13193,7 +12915,6 @@ void system_function_0400b0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0401b0(void)
 
 {
@@ -13243,7 +12964,6 @@ void system_function_0401b0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0402b0(void)
 
 {
@@ -13293,7 +13013,6 @@ void system_function_0402b0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0403b0(void)
 
 {
@@ -13343,7 +13062,6 @@ void system_function_0403b0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0404b0(void)
 
 {
@@ -13393,7 +13111,6 @@ void system_function_0404b0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0405b0(void)
 
 {
@@ -13443,7 +13160,6 @@ void system_function_0405b0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0406b0(void)
 
 {
@@ -13493,7 +13209,6 @@ void system_function_0406b0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0408d0(void)
 
 {
@@ -13543,7 +13258,6 @@ void system_function_0408d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0409d0(void)
 
 {
@@ -13593,7 +13307,6 @@ void system_function_0409d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_040ae0(void)
 
 {
@@ -13643,7 +13356,6 @@ void system_function_040ae0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_040be0(void)
 
 {
@@ -13693,7 +13405,6 @@ void system_function_040be0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_040ce0(void)
 
 {
@@ -13743,7 +13454,6 @@ void system_function_040ce0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_040de0(void)
 
 {
@@ -13793,7 +13503,6 @@ void system_function_040de0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_040ee0(void)
 
 {
@@ -13843,7 +13552,6 @@ void system_function_040ee0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_040fe0(void)
 
 {
@@ -13893,7 +13601,6 @@ void system_function_040fe0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0410e0(void)
 
 {
@@ -13943,7 +13650,6 @@ void system_function_0410e0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0411e0(void)
 
 {
@@ -13993,7 +13699,6 @@ void system_function_0411e0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0412e0(void)
 
 {
@@ -14043,7 +13748,6 @@ void system_function_0412e0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0413e0(void)
 
 {
@@ -14093,7 +13797,6 @@ void system_function_0413e0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0414e0(void)
 
 {
@@ -14143,7 +13846,6 @@ void system_function_0414e0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0415e0(void)
 
 {
@@ -14193,7 +13895,6 @@ void system_function_0415e0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0416e0(void)
 
 {
@@ -14243,7 +13944,6 @@ void system_function_0416e0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0417e0(void)
 
 {
@@ -14333,7 +14033,6 @@ int system_function_041a10(void)
   _system_data_180bf64f8 = &system_unknown_18098bc80;
   _system_data_180bf6500 = &engine_manager_ptr;
 
-void *system_data_180a09dc0;
 void system_function_041af0(void)
 
 {
@@ -14383,7 +14082,6 @@ void system_function_041af0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_041bf0(void)
 
 {
@@ -14433,7 +14131,6 @@ void system_function_041bf0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_041d10(void)
 
 {
@@ -14483,7 +14180,6 @@ void system_function_041d10(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_041e10(void)
 
 {
@@ -14535,7 +14231,6 @@ void system_function_041e10(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_041f10(void)
 
 {
@@ -14569,7 +14264,6 @@ int system_function_041fa0(uint64_t param_1,uint64_t param_2,uint64_t param_3,ui
 
 
 
-void *system_data_180a09dc0;
 void system_function_041fd0(void)
 
 {
@@ -14619,7 +14313,6 @@ void system_function_041fd0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0420d0(void)
 
 {
@@ -14669,7 +14362,6 @@ void system_function_0420d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0421d0(void)
 
 {
@@ -14719,7 +14411,6 @@ void system_function_0421d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0422d0(void)
 
 {
@@ -14769,7 +14460,6 @@ void system_function_0422d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0423d0(void)
 
 {
@@ -14819,7 +14509,6 @@ void system_function_0423d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0424d0(void)
 
 {
@@ -14869,7 +14558,6 @@ void system_function_0424d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0425d0(void)
 
 {
@@ -14919,7 +14607,6 @@ void system_function_0425d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0426d0(void)
 
 {
@@ -14969,7 +14656,6 @@ void system_function_0426d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0427d0(void)
 
 {
@@ -15019,7 +14705,6 @@ void system_function_0427d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0428d0(void)
 
 {
@@ -15069,7 +14754,6 @@ void system_function_0428d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0429d0(void)
 
 {
@@ -15119,7 +14803,6 @@ void system_function_0429d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_042ad0(void)
 
 {
@@ -15169,7 +14852,6 @@ void system_function_042ad0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_042bd0(void)
 
 {
@@ -15219,7 +14901,6 @@ void system_function_042bd0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_042cd0(void)
 
 {
@@ -15269,7 +14950,6 @@ void system_function_042cd0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_042dd0(void)
 
 {
@@ -15319,7 +14999,6 @@ void system_function_042dd0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_042ed0(void)
 
 {
@@ -15369,7 +15048,6 @@ void system_function_042ed0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_042fd0(void)
 
 {
@@ -15419,7 +15097,6 @@ void system_function_042fd0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0430d0(void)
 
 {
@@ -15469,7 +15146,6 @@ void system_function_0430d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0431d0(void)
 
 {
@@ -15519,7 +15195,6 @@ void system_function_0431d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0432d0(void)
 
 {
@@ -15569,7 +15244,6 @@ void system_function_0432d0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0433d0(void)
 
 {
@@ -15621,7 +15295,6 @@ void system_function_0433d0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_0434d0(void)
 
 {
@@ -15645,7 +15318,6 @@ void system_function_0434d0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_043560(void)
 
 {
@@ -15713,7 +15385,6 @@ int system_function_043610(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_043690(void)
 
 {
@@ -15777,7 +15448,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_043790(void)
 
 {
@@ -15801,7 +15471,6 @@ void system_function_043790(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_043820(void)
 
 {
@@ -15878,7 +15547,6 @@ int system_function_0439c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_0439e0(void)
 
 {
@@ -15897,7 +15565,6 @@ void system_function_0439e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_043a10(void)
 
 {
@@ -15921,7 +15588,6 @@ void system_function_043a10(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_043a90(void)
 
 {
@@ -15940,7 +15606,6 @@ void system_function_043a90(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_043ac0(void)
 
 {
@@ -15959,7 +15624,6 @@ void system_function_043ac0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_043af0(void)
 
 {
@@ -15978,7 +15642,6 @@ void system_function_043af0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_043b20(void)
 
 {
@@ -15997,7 +15660,6 @@ void system_function_043b20(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_043b50(void)
 
 {
@@ -16041,7 +15703,6 @@ int system_function_043ba0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_043c00(void)
 
 {
@@ -16060,7 +15721,6 @@ void system_function_043c00(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_043c30(void)
 
 {
@@ -16117,7 +15777,6 @@ void WotsMainSDLL(uint64_t param_1)
   
                     // 0x43d20  31  WotsMainSDLL
 
-void *system_data_180a157e0;
 void system_function_043d40(longlong param_1)
 
 {
@@ -16226,7 +15885,6 @@ system_initialize_core_components(uint64_t *param_1,ulonglong param_2,uint64_t p
 
 
 
-void *system_data_180a09dc0;
 void system_function_043f90(void)
 
 {
@@ -16237,7 +15895,6 @@ void system_function_043f90(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_044a30(uint64_t *param_1)
 
 {
@@ -16250,7 +15907,6 @@ void system_function_044a30(uint64_t *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_044a50(void)
 
 {
@@ -16405,7 +16061,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_044dc0(uint64_t param_1,longlong param_2)
 
 {
@@ -16552,7 +16207,6 @@ SYSTEM_LABEL:
   _system_data_180c8ed58 = 0;
   _system_data_180c8ed40 = lStackX_20;
 
-void *system_data_180a09dc0;
 void system_function_045380(void)
 
 {
@@ -16755,7 +16409,6 @@ void WotsMain(uint64_t param_1)
   
                     // 0x45a00  27  WotsMain
 
-void *system_data_180a157e0;
 void system_function_045af0(longlong *param_1)
 
 {
@@ -16768,7 +16421,6 @@ void system_function_045af0(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_045b20(longlong param_1,longlong param_2)
 
 {
@@ -16799,7 +16451,6 @@ void system_function_045b20(longlong param_1,longlong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_045ba0(longlong param_1,uint64_t param_2,int param_3)
 
 {
@@ -16815,7 +16466,6 @@ void system_function_045ba0(longlong param_1,uint64_t param_2,int param_3)
 
 
 
-void *system_data_180a09dc0;
 void system_function_045bc1(void)
 
 {
@@ -16826,7 +16476,6 @@ void system_function_045bc1(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_045be6(uint8_t *param_1)
 
 {
@@ -16840,7 +16489,6 @@ void system_function_045be6(uint8_t *param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_045c00(void)
 
 {
@@ -16906,7 +16554,6 @@ system_initialize_memory_pool(uint64_t *param_1,ulonglong param_2,uint64_t param
 
 
 
-void *system_data_180a157e0;
 void system_function_045ee0(longlong param_1,longlong param_2)
 
 {
@@ -16937,7 +16584,6 @@ void system_function_045ee0(longlong param_1,longlong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_045f60(longlong param_1,uint64_t param_2,int param_3)
 
 {
@@ -16953,7 +16599,6 @@ void system_function_045f60(longlong param_1,uint64_t param_2,int param_3)
 
 
 
-void *system_data_180a09dc0;
 void system_function_045f81(void)
 
 {
@@ -16964,7 +16609,6 @@ void system_function_045f81(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_045fa6(uint8_t *param_1)
 
 {
@@ -16980,7 +16624,6 @@ void system_function_045fa6(uint8_t *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_045fc0(longlong param_1,longlong param_2,longlong param_3)
 
 {
@@ -17022,7 +16665,6 @@ void system_function_045fc0(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-void *system_data_180a157e0;
 void system_function_046130(uint64_t *param_1,uint32_t param_2)
 
 {
@@ -17037,7 +16679,6 @@ void system_function_046130(uint64_t *param_1,uint32_t param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_046160(uint64_t *param_1)
 
 {
@@ -17121,7 +16762,6 @@ longlong system_validate_memory_pointers(uint32_t *param_1,uint32_t *param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0462c0(uint64_t param_1,uint32_t param_2)
 
 {
@@ -17164,7 +16804,6 @@ system_initialize_buffer_manager(uint64_t *param_1,ulonglong param_2,uint64_t pa
 
 
 
-void *system_data_180a157e0;
 void system_function_046380(longlong param_1,longlong param_2)
 
 {
@@ -17195,7 +16834,6 @@ void system_function_046380(longlong param_1,longlong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_046400(longlong param_1,uint64_t param_2,int param_3)
 
 {
@@ -17211,7 +16849,6 @@ void system_function_046400(longlong param_1,uint64_t param_2,int param_3)
 
 
 
-void *system_data_180a09dc0;
 void system_function_04641f(void)
 
 {
@@ -17222,7 +16859,6 @@ void system_function_04641f(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_046444(uint8_t *param_1)
 
 {
@@ -17253,7 +16889,6 @@ uint64_t * system_get_buffer_pointer(uint64_t *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0464f0(longlong param_1,longlong param_2,longlong param_3)
 
 {
@@ -17307,7 +16942,6 @@ uint64_t * system_resize_buffer(uint64_t *param_1,ulonglong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_0466a0(uint64_t *param_1)
 
 {
@@ -17323,7 +16957,6 @@ void system_function_0466a0(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_0466d0(longlong param_1)
 
 {
@@ -17348,7 +16981,6 @@ void system_function_0466d0(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_046750(uint64_t *param_1)
 
 {
@@ -17376,7 +17008,6 @@ system_process_buffer_operation(uint64_t *param_1,ulonglong param_2,uint64_t par
 
 
 
-void *system_data_180a157e0;
 void system_function_046820(longlong *param_1)
 
 {
@@ -17397,7 +17028,6 @@ void system_function_046820(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_046840(longlong *param_1)
 
 {
@@ -17425,7 +17055,6 @@ void system_function_046840(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_initialize_security(ulonglong *param_1)
 
 {
@@ -17608,7 +17237,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_046b10(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -17704,7 +17332,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_046ca0(longlong *param_1,uint64_t *param_2)
 
 {
@@ -17753,7 +17380,6 @@ void system_function_046ca0(longlong *param_1,uint64_t *param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_046e20(void)
 
 {
@@ -18033,7 +17659,6 @@ system_copy_memory_data(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uin
 
 
 
-void *system_data_180a157e0;
 void system_function_047e10(longlong param_1)
 
 {
@@ -18044,7 +17669,6 @@ void system_function_047e10(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_047e40(uint64_t *param_1)
 
 {
@@ -18057,7 +17681,6 @@ void system_function_047e40(uint64_t *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_047e70(uint64_t param_1,uint64_t param_2,longlong param_3,uint64_t param_4)
 
 {
@@ -18143,7 +17766,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -18461,7 +18083,6 @@ void system_function_047fc0(uint64_t param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_048910(longlong *param_1)
 
 {
@@ -18482,7 +18103,6 @@ void system_function_048910(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_048980(longlong *param_1)
 
 {
@@ -18510,7 +18130,6 @@ void system_function_048980(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_048a20(ulonglong *param_1)
 
 {
@@ -18550,7 +18169,6 @@ void system_function_048a20(ulonglong *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_048a50(longlong param_1)
 
 {
@@ -19039,7 +18657,6 @@ system_setup_memory_context(uint64_t *param_1,longlong *param_2,longlong *param_
 
 
 
-void *system_data_180a157e0;
 void system_function_049470(uint64_t *param_1)
 
 {
@@ -19067,7 +18684,6 @@ uint64_t system_get_memory_status(uint64_t param_1,ulonglong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_049550(longlong param_1,uint8_t param_2)
 
 {
@@ -19090,7 +18706,6 @@ void system_function_049550(longlong param_1,uint8_t param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0495d0(uint64_t param_1,uint64_t *param_2,longlong *param_3)
 
 {
@@ -19166,7 +18781,6 @@ uint8_t system_validate_memory_access(longlong param_1,uint64_t param_2,uint64_t
 
 
 
-void *system_data_180a09dc0;
 void system_function_049770(void)
 
 {
@@ -19177,7 +18791,6 @@ void system_function_049770(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_049790(void)
 
 {
@@ -19188,7 +18801,6 @@ void system_function_049790(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0497b0(void)
 
 {
@@ -19199,7 +18811,6 @@ void system_function_0497b0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0497d0(void)
 
 {
@@ -19210,7 +18821,6 @@ void system_function_0497d0(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_0497f0(uint64_t param_1)
 
 {
@@ -19259,7 +18869,6 @@ system_cleanup_memory_table(uint64_t *param_1,ulonglong param_2,uint64_t param_3
 
 
 
-void *system_data_180a157e0;
 void system_function_049910(longlong param_1,uint64_t param_2,int param_3)
 
 {
@@ -19275,7 +18884,6 @@ void system_function_049910(longlong param_1,uint64_t param_2,int param_3)
 
 
 
-void *system_data_180a09dc0;
 void system_function_049931(void)
 
 {
@@ -19286,7 +18894,6 @@ void system_function_049931(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_049956(uint8_t *param_1)
 
 {
@@ -19317,7 +18924,6 @@ uint64_t * system_get_memory_table_entry(uint64_t *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0499c0(longlong param_1,longlong param_2,longlong param_3)
 
 {
@@ -19396,7 +19002,6 @@ system_remove_memory_table_entry(uint64_t *param_1,ulonglong param_2,uint64_t pa
 
 
 
-void *system_data_180a157e0;
 void system_function_049bf0(longlong param_1,longlong param_2)
 
 {
@@ -19427,7 +19032,6 @@ void system_function_049bf0(longlong param_1,longlong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_049c70(longlong param_1,uint64_t param_2,int param_3)
 
 {
@@ -19443,7 +19047,6 @@ void system_function_049c70(longlong param_1,uint64_t param_2,int param_3)
 
 
 
-void *system_data_180a09dc0;
 void system_function_049c8f(void)
 
 {
@@ -19454,7 +19057,6 @@ void system_function_049c8f(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_049cb4(uint8_t *param_1)
 
 {
@@ -19485,7 +19087,6 @@ uint64_t * system_find_memory_table_entry(uint64_t *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_049d20(longlong param_1,longlong param_2,longlong param_3)
 
 {
@@ -19553,7 +19154,6 @@ system_process_memory_table_operation(uint64_t *param_1,longlong param_2,uint64_
 
 
 
-void *system_data_180a157e0;
 void system_function_049f30(uint64_t *param_1)
 
 {
@@ -19579,7 +19179,6 @@ void system_function_049f30(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_049fd0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -19610,7 +19209,6 @@ void system_function_049fd0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_04a0b0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -19621,7 +19219,6 @@ void system_function_04a0b0(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_04a0d0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -19632,7 +19229,6 @@ void system_function_04a0d0(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_04a100(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -19643,7 +19239,6 @@ void system_function_04a100(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_initialize_event_system(uint64_t *param_1)
 
 {
@@ -19661,7 +19256,6 @@ void system_initialize_event_system(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04a180(longlong param_1,longlong param_2)
 
 {
@@ -19692,7 +19286,6 @@ void system_function_04a180(longlong param_1,longlong param_2)
 
 
 
-void *system_data_180a09dc0;
 void system_function_04a200(void)
 
 {
@@ -19765,7 +19358,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_04a360(uint64_t *param_1)
 
 {
@@ -19794,7 +19386,6 @@ uint64_t system_free_table_entry(uint64_t param_1,ulonglong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_04a400(uint64_t *param_1)
 
 {
@@ -19822,7 +19413,6 @@ uint64_t system_validate_table_entry(longlong param_1,uint64_t param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_04a470(longlong param_1,longlong param_2)
 
 {
@@ -19920,7 +19510,6 @@ bool system_check_initialization_status(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_04a640(void)
 
 {
@@ -19996,7 +19585,6 @@ void system_function_04a640(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_04a850(void)
 
 {
@@ -20016,7 +19604,6 @@ void system_function_04a850(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_04adc0(void)
 
 {
@@ -20086,7 +19673,6 @@ void system_function_04adc0(void)
     *system_data_ptr = system_uint_buffer;
     system_local_int = GetLastError();
 
-void *system_data_180a09dc0;
 void system_function_04afa0(void)
 
 {
@@ -20297,7 +19883,6 @@ bool system_validate_initialization_state(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_04b3f0(uint64_t *param_1)
 
 {
@@ -20389,7 +19974,6 @@ longlong * system_initialize_component_handler(longlong *param_1,uint64_t param_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_04b5f0(uint32_t *param_1)
 
 {
@@ -20431,7 +20015,6 @@ system_process_component_operation(uint64_t *param_1,longlong param_2,uint64_t p
 
 
 
-void *system_data_180a157e0;
 void system_function_04b6b0(uint64_t *param_1)
 
 {
@@ -20442,7 +20025,6 @@ void system_function_04b6b0(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04b6d0(uint64_t *param_1)
 
 {
@@ -20453,7 +20035,6 @@ void system_function_04b6d0(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04b6f0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -20471,7 +20052,6 @@ void system_function_04b6f0(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_04b710(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -20489,7 +20069,6 @@ void system_function_04b710(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_04b730(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -20507,7 +20086,6 @@ void system_function_04b730(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_04b790(uint64_t param_1,uint64_t *param_2)
 
 {
@@ -20522,7 +20100,6 @@ void system_function_04b790(uint64_t param_1,uint64_t *param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_04b7a2(uint64_t param_1)
 
 {
@@ -20536,7 +20113,6 @@ void system_function_04b7a2(uint64_t param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_04b7de(void)
 
 {
@@ -20572,7 +20148,6 @@ uint64_t * system_set_component_pointer(uint64_t *param_1,ulonglong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_04b860(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -20653,7 +20228,6 @@ int system_function_04b9b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,ui
 
 
 
-void *system_data_180a157e0;
 void system_function_04ba30(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -20664,7 +20238,6 @@ void system_function_04ba30(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_04ba60(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -20677,7 +20250,6 @@ void system_function_04ba60(longlong param_1,uint64_t param_2,uint64_t param_3,u
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_04ba90(uint64_t *param_1)
 
 {
@@ -20694,7 +20266,6 @@ void system_function_04ba90(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04bad0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -20705,7 +20276,6 @@ void system_function_04bad0(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_04bb00(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -20716,7 +20286,6 @@ void system_function_04bb00(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_cleanup_resource_manager(longlong param_1)
 
 {
@@ -20727,7 +20296,6 @@ void system_cleanup_resource_manager(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04bb60(longlong param_1)
 
 {
@@ -20740,7 +20308,6 @@ void system_function_04bb60(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_04bb90(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -20793,7 +20360,6 @@ void system_function_04bb90(uint64_t param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_04bcb0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -20804,7 +20370,6 @@ void system_function_04bcb0(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_04bce0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -20859,7 +20424,6 @@ uint64_t * system_cleanup_component_resources(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04be50(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -20882,7 +20446,6 @@ void system_function_04be50(longlong *param_1,uint64_t param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_04be70(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -20905,7 +20468,6 @@ void system_function_04be70(longlong *param_1,uint64_t param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_04be90(longlong param_1)
 
 {
@@ -20947,7 +20509,6 @@ void system_function_04be90(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04bf50(longlong *param_1)
 
 {
@@ -20976,7 +20537,6 @@ void system_function_04bf50(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04bff0(longlong param_1)
 
 {
@@ -21031,7 +20591,6 @@ void system_function_04bff0(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04c010(longlong *param_1)
 
 {
@@ -21052,7 +20611,6 @@ void system_function_04c010(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_initialize_input(longlong *param_1)
 
 {
@@ -21087,7 +20645,6 @@ uint64_t * system_release_component_resources(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04c090(longlong *param_1)
 
 {
@@ -21108,7 +20665,6 @@ void system_function_04c090(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04c0b0(longlong param_1)
 
 {
@@ -21163,7 +20719,6 @@ void system_function_04c0b0(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04c0d0(longlong param_1)
 
 {
@@ -21187,7 +20742,6 @@ void system_function_04c0d0(longlong param_1)
   system_stack_uint = 0xfffffffffffffffe;
   if (param_1 == 0) {
 
-void *system_data_180a157e0;
 void system_function_04c260(ulonglong *param_1)
 
 {
@@ -21225,7 +20779,6 @@ void system_function_04c260(ulonglong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04c290(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -21248,7 +20801,6 @@ void system_function_04c290(longlong *param_1,uint64_t param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_04c2b0(longlong param_1)
 
 {
@@ -21257,7 +20809,6 @@ void system_function_04c2b0(longlong param_1)
   
   if (param_1 == 0) {
 
-void *system_data_180a157e0;
 void system_function_04c2c4(longlong param_1)
 
 {
@@ -21279,7 +20830,6 @@ void system_function_04c2c4(longlong param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_04c31f(void)
 
 {
@@ -21597,7 +21147,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_initialize_callback_system(longlong *param_1)
 
 {
@@ -21628,7 +21177,6 @@ system_process_component_initialization(uint64_t *param_1,ulonglong param_2,uint
 
 
 
-void *system_data_180a157e0;
 void system_function_04caa0(uint64_t *param_1)
 
 {
@@ -21646,7 +21194,6 @@ void system_function_04caa0(uint64_t *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_04caf0(longlong param_1)
 
 {
@@ -21692,7 +21239,6 @@ void system_function_04caf0(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_04cc20(longlong *param_1)
 
 {
@@ -21883,7 +21429,6 @@ void system_function_04cc20(longlong *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_04d020(uint64_t param_1,longlong param_2)
 
 {
@@ -22065,7 +21610,6 @@ void system_function_04d020(uint64_t param_1,longlong param_2)
         }
         if (bVar31) {
 
-void *system_data_180a157e0;
 void system_function_04e5f0(longlong param_1)
 
 {
@@ -22285,7 +21829,6 @@ uint32_t system_complete_initialization(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_04eb00(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -22363,7 +21906,6 @@ void system_function_04eb00(uint64_t param_1,uint64_t param_2,uint64_t param_3,u
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_04ef60(void)
 
 {
@@ -22520,7 +22062,6 @@ void system_function_04ef60(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_04f8e0(longlong param_1)
 
 {
@@ -22575,7 +22116,6 @@ void system_function_04f8e0(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_04f900(longlong param_1)
 
 {
@@ -22632,7 +22172,6 @@ void system_function_04f900(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_04f920(void)
 
 {
@@ -22788,7 +22327,6 @@ void system_function_04f920(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_050b00(void)
 
 {
@@ -22913,7 +22451,6 @@ void system_function_050b00(void)
       __Throw_C_error_std__YAXH_Z(system_local_int);
     }
 
-void *system_data_180a157e0;
 void system_function_050b30(longlong param_1)
 
 {
@@ -23032,7 +22569,6 @@ void system_function_050b30(longlong param_1)
       __Throw_C_error_std__YAXH_Z(system_int_status);
     }
 
-void *system_data_180a157e0;
 void system_function_051150(longlong param_1,uint64_t param_2)
 
 {
@@ -23090,7 +22626,6 @@ void system_function_051150(longlong param_1,uint64_t param_2)
   }
   else {
 
-void *system_data_180a157e0;
 void system_initialize_buffer_allocator(longlong param_1)
 
 {
@@ -23217,7 +22752,6 @@ uint64_t * FUN_180051d40(uint64_t *param_1,uint64_t *param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_051de4(longlong param_1)
 
 {
@@ -23286,7 +22820,6 @@ void system_function_051de4(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_051e13(void)
 
 {
@@ -23321,7 +22854,6 @@ void system_function_051e13(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_051e74(longlong param_1)
 
 {
@@ -23360,7 +22892,6 @@ void system_function_051e74(longlong param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_051eef(void)
 
 {
@@ -23467,7 +22998,6 @@ FUN_180052020(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_052070(longlong param_1)
 
 {
@@ -23501,7 +23031,6 @@ void system_function_052070(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_052200(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -23649,7 +23178,6 @@ uint64_t FUN_1800524c0(uint64_t param_1,uint64_t param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_052940(longlong param_1,float param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -23838,7 +23366,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_052ef0(longlong *param_1,uint64_t param_2,uint64_t param_3,uint8_t param_4)
 
 {
@@ -23969,7 +23496,6 @@ void system_function_052ef0(longlong *param_1,uint64_t param_2,uint64_t param_3,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_053200(uint64_t param_1,longlong param_2)
 
 {
@@ -24186,7 +23712,6 @@ void system_function_053200(uint64_t param_1,longlong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0533d0(uint64_t param_1,uint64_t param_2,longlong param_3)
 
 {
@@ -24454,7 +23979,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_054360(longlong *param_1,longlong param_2)
 
 {
@@ -24674,7 +24198,6 @@ void system_function_054360(longlong *param_1,longlong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_0547b0(void)
 
 {
@@ -25072,7 +24595,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_055050(void)
 
 {
@@ -25140,7 +24662,6 @@ void system_function_055050(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_055e10(longlong *param_1)
 
 {
@@ -25161,7 +24682,6 @@ void system_function_055e10(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_055e30(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -25172,7 +24692,6 @@ void system_function_055e30(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_055e60(longlong param_1)
 
 {
@@ -25225,7 +24744,6 @@ longlong FUN_180055e80(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_055ed0(longlong param_1)
 
 {
@@ -25243,7 +24761,6 @@ void system_function_055ed0(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_055f20(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -25254,7 +24771,6 @@ void system_function_055f20(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_055f50(longlong param_1)
 
 {
@@ -25294,7 +24810,6 @@ void system_function_055f50(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_055f70(uint64_t param_1,uint32_t param_2)
 
 {
@@ -25315,7 +24830,6 @@ void system_function_055f70(uint64_t param_1,uint32_t param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_055fa0(void)
 
 {
@@ -25368,7 +24882,6 @@ void system_function_055fa0(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_056150(longlong param_1)
 
 {
@@ -25520,7 +25033,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_056410(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -25608,7 +25120,6 @@ void system_function_056410(longlong param_1,uint64_t param_2,uint64_t param_3,u
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0565f0(longlong *param_1)
 
 {
@@ -25690,7 +25201,6 @@ uint64_t FUN_1800567c0(uint64_t param_1,ulonglong param_2,uint64_t param_3,uint6
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_056810(longlong param_1)
 
 {
@@ -25829,7 +25339,6 @@ void system_function_056810(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_056b30(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -25874,7 +25383,6 @@ void system_function_056b30(uint64_t param_1,uint64_t param_2,uint64_t param_3,u
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_056c50(uint64_t param_1,uint64_t *param_2,uint32_t param_3)
 
 {
@@ -25964,7 +25472,6 @@ uint64_t * FUN_180056e10(uint64_t *param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_056e40(void)
 
 {
@@ -26029,7 +25536,6 @@ longlong * FUN_180056f10(longlong *param_1,longlong *param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_056f70(longlong param_1,longlong param_2)
 
 {
@@ -26065,7 +25571,6 @@ void system_function_056f70(longlong param_1,longlong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_057010(longlong *param_1)
 
 {
@@ -26093,7 +25598,6 @@ void system_function_057010(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_057029(longlong param_1)
 
 {
@@ -26119,7 +25623,6 @@ void system_function_057029(longlong param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_057062(void)
 
 {
@@ -26161,7 +25664,6 @@ FUN_180057090(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64_t param
 
 
 
-void *system_data_180a157e0;
 void system_function_057110(longlong *param_1)
 
 {
@@ -26185,7 +25687,6 @@ void system_function_057110(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_057170(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -26210,7 +25711,6 @@ void system_function_057170(longlong *param_1,uint64_t param_2,uint64_t param_3,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0571e0(longlong *param_1,uint32_t *param_2)
 
 {
@@ -26259,7 +25759,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_0572d0(longlong param_1)
 
 {
@@ -26282,7 +25781,6 @@ void system_function_0572d0(longlong param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0572e6(void)
 
 {
@@ -26294,7 +25792,6 @@ void system_function_0572e6(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_057314(void)
 
 {
@@ -26313,7 +25810,6 @@ void system_function_057314(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_057340(longlong *param_1,ulonglong param_2)
 
 {
@@ -26378,7 +25874,6 @@ void system_function_057340(longlong *param_1,ulonglong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_05736b(longlong param_1,ulonglong param_2,uint64_t param_3,longlong param_4)
 
 {
@@ -26434,7 +25929,6 @@ void system_function_05736b(longlong param_1,ulonglong param_2,uint64_t param_3,
 
 
 
-void *system_data_180a09dc0;
 void system_function_057446(void)
 
 {
@@ -26453,7 +25947,6 @@ void system_function_057446(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_057479(uint64_t param_1,longlong param_2,uint64_t param_3,longlong param_4)
 
 {
@@ -26466,7 +25959,6 @@ void system_function_057479(uint64_t param_1,longlong param_2,uint64_t param_3,l
 
 
 
-void *system_data_180a157e0;
 void system_function_057490(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -26477,7 +25969,6 @@ void system_function_057490(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_0574b0(longlong *param_1)
 
 {
@@ -26498,7 +25989,6 @@ void system_function_0574b0(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_057510(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -26509,7 +25999,6 @@ void system_function_057510(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_057530(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -26520,7 +26009,6 @@ void system_function_057530(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_057550(longlong param_1)
 
 {
@@ -26575,7 +26063,6 @@ void system_function_057550(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_057556(longlong param_1)
 
 {
@@ -26630,7 +26117,6 @@ void system_function_057556(longlong param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_057580(void)
 
 {
@@ -26683,7 +26169,6 @@ void system_function_057580(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0575b6(void)
 
 {
@@ -26724,7 +26209,6 @@ void system_function_0575b6(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0575d4(void)
 
 {
@@ -26763,7 +26247,6 @@ void system_function_0575d4(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_0575f0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -26774,7 +26257,6 @@ void system_function_0575f0(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_057610(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -26797,7 +26279,6 @@ void system_function_057610(longlong *param_1,uint64_t param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_057680(longlong param_1)
 
 {
@@ -26835,7 +26316,6 @@ void system_function_057680(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_057730(longlong *param_1)
 
 {
@@ -26856,7 +26336,6 @@ void system_function_057730(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_057790(longlong param_1)
 
 {
@@ -26911,7 +26390,6 @@ void system_function_057790(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_057796(longlong param_1)
 
 {
@@ -26966,7 +26444,6 @@ void system_function_057796(longlong param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0577c0(void)
 
 {
@@ -27019,7 +26496,6 @@ void system_function_0577c0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0577f6(void)
 
 {
@@ -27060,7 +26536,6 @@ void system_function_0577f6(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_057814(void)
 
 {
@@ -27099,7 +26574,6 @@ void system_function_057814(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_057830(longlong *param_1)
 
 {
@@ -27124,7 +26598,6 @@ void system_function_057830(longlong *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_0578a0(void)
 
 {
@@ -27182,7 +26655,6 @@ void system_function_0578a0(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_057980(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -27304,7 +26776,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_057bf0(uint64_t *param_1)
 
 {
@@ -27363,7 +26834,6 @@ uint64_t * FUN_180057cb0(uint64_t *param_1,uint param_2,uint64_t param_3,uint64_
 
 
 
-void *system_data_180a157e0;
 void system_function_057d70(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -27407,7 +26877,6 @@ void system_function_057d70(longlong *param_1,uint64_t param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_057e90(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -27418,7 +26887,6 @@ void system_function_057e90(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_057ec0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -27437,7 +26905,6 @@ void system_function_057ec0(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_057ee0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -27448,7 +26915,6 @@ void system_function_057ee0(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_057f10(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -27467,7 +26933,6 @@ void system_function_057f10(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_057f30(longlong *param_1)
 
 {
@@ -27507,7 +26972,6 @@ void system_function_057f30(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_058000(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -27518,7 +26982,6 @@ void system_function_058000(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_058020(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -27613,7 +27076,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_058160(ulonglong *param_1)
 
 {
@@ -27667,7 +27129,6 @@ void system_function_058160(ulonglong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_058210(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -27686,7 +27147,6 @@ void system_function_058210(uint64_t param_1,uint64_t *param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_0582b0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -27710,7 +27170,6 @@ void system_function_0582b0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_058370(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -27733,7 +27192,6 @@ void system_function_058370(uint64_t param_1,uint64_t *param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_058420(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -27762,7 +27220,6 @@ void system_function_058420(uint64_t param_1,uint64_t *param_2,uint64_t param_3,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0584e0(uint64_t *param_1,longlong param_2)
 
 {
@@ -27860,7 +27317,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_initialize_interrupt_handler(longlong param_1)
 
 {
@@ -27873,7 +27329,6 @@ void system_initialize_interrupt_handler(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_058710(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -27900,7 +27355,6 @@ void system_function_058710(uint64_t param_1,uint64_t *param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_0587d0(uint64_t param_1,uint64_t *param_2)
 
 {
@@ -27916,7 +27370,6 @@ void system_function_0587d0(uint64_t param_1,uint64_t *param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_0587e2(uint64_t param_1)
 
 {
@@ -27931,7 +27384,6 @@ void system_function_0587e2(uint64_t param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_058826(void)
 
 {
@@ -27941,7 +27393,6 @@ void system_function_058826(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_058830(uint64_t param_1,longlong param_2)
 
 {
@@ -27969,7 +27420,6 @@ void system_function_058830(uint64_t param_1,longlong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0588c0(longlong *param_1,longlong param_2,longlong param_3)
 
 {
@@ -28039,7 +27489,6 @@ void system_function_0588c0(longlong *param_1,longlong param_2,longlong param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0588fc(longlong param_1)
 
 {
@@ -28088,7 +27537,6 @@ void system_function_0588fc(longlong param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_05892b(void)
 
 {
@@ -28129,7 +27577,6 @@ void system_function_05892b(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_05895a(void)
 
 {
@@ -28163,7 +27610,6 @@ void system_function_05895a(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_0589a3(longlong param_1,uint64_t param_2,longlong param_3)
 
 {
@@ -28198,7 +27644,6 @@ void system_function_0589a3(longlong param_1,uint64_t param_2,longlong param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_058a20(longlong *param_1,longlong param_2,longlong param_3,longlong param_4)
 
 {
@@ -28265,7 +27710,6 @@ void system_function_058a20(longlong *param_1,longlong param_2,longlong param_3,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_058a31(longlong *param_1,longlong param_2,longlong param_3,longlong param_4)
 
 {
@@ -28329,7 +27773,6 @@ void system_function_058a31(longlong *param_1,longlong param_2,longlong param_3,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_058b3e(longlong param_1,longlong param_2)
 
 {
@@ -28365,7 +27808,6 @@ void system_function_058b3e(longlong param_1,longlong param_2)
 
 
 
-void *system_data_180a09dc0;
 void system_function_058bfa(void)
 
 {
@@ -28375,7 +27817,6 @@ void system_function_058bfa(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_058c16(void)
 
 {
@@ -28385,7 +27826,6 @@ void system_function_058c16(void)
 
 
 
-void *system_data_180a157e0;
 void system_cleanup_memory_manager(longlong param_1)
 
 {
@@ -28404,7 +27844,6 @@ void system_cleanup_memory_manager(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_058c80(uint64_t *param_1)
 
 {
@@ -28418,7 +27857,6 @@ void system_function_058c80(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_058cc0(uint64_t *param_1)
 
 {
@@ -28437,7 +27875,6 @@ void system_function_058cc0(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_058d20(uint64_t *param_1)
 
 {
@@ -28459,7 +27896,6 @@ void system_function_058d20(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_058d90(longlong *param_1)
 
 {
@@ -28480,7 +27916,6 @@ void system_function_058d90(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_058db0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -28500,7 +27935,6 @@ void system_function_058db0(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_058e60(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -28511,7 +27945,6 @@ void system_function_058e60(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_058e90(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -28522,7 +27955,6 @@ void system_function_058e90(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_058f00(uint64_t param_1,uint64_t *param_2)
 
 {
@@ -28605,7 +28037,6 @@ void system_function_058f00(uint64_t param_1,uint64_t *param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_059000(longlong *param_1)
 
 {
@@ -29179,7 +28610,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_0591c0(longlong *param_1)
 
 {
@@ -29200,7 +28630,6 @@ void system_function_0591c0(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_059230(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -29283,7 +28712,6 @@ longlong FUN_18005926c(longlong param_1,uint64_t param_2,longlong param_3)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0592e4(void)
 
 {
@@ -29308,7 +28736,6 @@ longlong FUN_180059300(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-void *system_data_180a157e0;
 void system_function_059350(longlong param_1,longlong param_2,uint64_t param_3)
 
 {
@@ -29322,7 +28749,6 @@ void system_function_059350(longlong param_1,longlong param_2,uint64_t param_3)
 
 
 
-void *system_data_180a157e0;
 void system_function_059380(uint64_t *param_1)
 
 {
@@ -29344,7 +28770,6 @@ void system_function_059380(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_0593f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -29368,7 +28793,6 @@ void system_function_0593f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_0594b0(uint64_t *param_1)
 
 {
@@ -29405,7 +28829,6 @@ void system_function_0594b0(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_0595c0(uint64_t *param_1)
 
 {
@@ -29424,7 +28847,6 @@ void system_function_0595c0(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_059620(longlong *param_1)
 
 {
@@ -29445,7 +28867,6 @@ void system_function_059620(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_059640(longlong *param_1)
 
 {
@@ -29466,7 +28887,6 @@ void system_function_059640(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_initialize_thread_scheduler(uint64_t *param_1)
 
 {
@@ -29492,7 +28912,6 @@ void system_initialize_thread_scheduler(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_059730(longlong param_1)
 
 {
@@ -29544,7 +28963,6 @@ uint64_t * FUN_180059780(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_059820(longlong *param_1,uint64_t param_2)
 
 {
@@ -29609,7 +29027,6 @@ FUN_180059900(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
 
 
 
-void *system_data_180a157e0;
 void system_function_059940(longlong param_1,longlong param_2)
 
 {
@@ -29640,7 +29057,6 @@ void system_function_059940(longlong param_1,longlong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_0599c0(longlong param_1,uint64_t param_2,int param_3)
 
 {
@@ -29656,7 +29072,6 @@ void system_function_0599c0(longlong param_1,uint64_t param_2,int param_3)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0599df(void)
 
 {
@@ -29667,7 +29082,6 @@ void system_function_0599df(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_059a04(uint8_t *param_1)
 
 {
@@ -29683,7 +29097,6 @@ void system_function_059a04(uint8_t *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_059a20(longlong param_1,longlong param_2,longlong param_3)
 
 {
@@ -29725,7 +29138,6 @@ void system_function_059a20(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-void *system_data_180a157e0;
 void system_function_059ba0(uint64_t *param_1)
 
 {
@@ -29763,7 +29175,6 @@ void system_function_059ba0(uint64_t *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_059bc0(void)
 
 {
@@ -29884,7 +29295,6 @@ void system_function_059bc0(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_059ee0(longlong *param_1)
 
 {
@@ -29945,7 +29355,6 @@ void system_function_059ee0(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_059ee4(longlong *param_1)
 
 {
@@ -30006,7 +29415,6 @@ void system_function_059ee4(longlong *param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_059ef9(void)
 
 {
@@ -30023,7 +29431,6 @@ void system_function_059ef9(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_059f4f(void)
 
 {
@@ -30077,7 +29484,6 @@ void system_function_059f4f(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_059fb0(uint64_t *param_1)
 
 {
@@ -30110,7 +29516,6 @@ void system_function_059fb0(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_059fc0(longlong *param_1)
 
 {
@@ -30173,7 +29578,6 @@ void system_function_059fc0(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_05a010(longlong param_1)
 
 {
@@ -30211,7 +29615,6 @@ void system_function_05a010(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_05a050(longlong param_1)
 
 {
@@ -30248,7 +29651,6 @@ void system_function_05a050(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_05a100(longlong param_1)
 
 {
@@ -30287,7 +29689,6 @@ void system_function_05a100(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_05a130(longlong param_1)
 
 {
@@ -30326,7 +29727,6 @@ void system_function_05a130(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_05a170(longlong param_1)
 
 {
@@ -30382,7 +29782,6 @@ uint64_t FUN_18005a1b0(uint64_t param_1,ulonglong param_2,uint64_t param_3,uint6
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_05a200(uint64_t *param_1)
 
 {
@@ -30486,7 +29885,6 @@ uint64_t * FUN_18005a420(uint64_t *param_1,ulonglong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_05a500(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -30531,7 +29929,6 @@ uint64_t FUN_18005a960(uint64_t param_1,ulonglong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_05a9a0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -30590,7 +29987,6 @@ void system_function_05a9a0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_05aaf0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -30603,7 +29999,6 @@ void system_function_05aaf0(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_05ab20(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -30616,7 +30011,6 @@ void system_function_05ab20(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_05ab50(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -30647,7 +30041,6 @@ void system_function_05ab50(longlong param_1,uint64_t param_2,uint64_t param_3,u
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_05ac00(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -30695,7 +30088,6 @@ uint64_t FUN_18005b520(uint64_t param_1,ulonglong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_05b560(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -30787,7 +30179,6 @@ longlong FUN_18005b730(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_05b7c0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -30861,7 +30252,6 @@ uint64_t * FUN_18005b870(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_05b960(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -30916,7 +30306,6 @@ void system_function_05b960(uint64_t *param_1,uint64_t param_2,uint64_t param_3,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_05ba80(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -31067,7 +30456,6 @@ FUN_18005c2a0(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
 
 
 
-void *system_data_180a157e0;
 void system_function_05c380(longlong param_1)
 
 {
@@ -31085,7 +30473,6 @@ void system_function_05c380(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_05c3d0(longlong *param_1)
 
 {
@@ -31132,7 +30519,6 @@ longlong FUN_18005c4f0(longlong param_1,uint param_2,uint64_t param_3,uint64_t p
 
 
 
-void *system_data_180a157e0;
 void system_function_05c560(longlong param_1)
 
 {
@@ -31197,7 +30583,6 @@ FUN_18005c590(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_05c650(longlong *param_1)
 
 {
@@ -31281,7 +30666,6 @@ void system_function_05c650(longlong *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_05c830(uint *param_1)
 
 {
@@ -31334,7 +30718,6 @@ uint64_t FUN_18005c8a0(longlong param_1,uint64_t param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_05c930(uint64_t *param_1,uint64_t param_2,int *param_3)
 
 {
@@ -31384,7 +30767,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_05ca20(longlong param_1,uint32_t param_2)
 
 {
@@ -31474,7 +30856,6 @@ longlong FUN_18005cb60(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_05cc00(void ***param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -31713,7 +31094,6 @@ int system_function_05cfc0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_05d0e0(ulonglong param_1,longlong param_2)
 
 {
@@ -31826,7 +31206,6 @@ longlong FUN_18005d190(longlong param_1,longlong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_05d1f0(uint64_t param_1,longlong param_2)
 
 {
@@ -31848,7 +31227,6 @@ void system_function_05d1f0(uint64_t param_1,longlong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_05d260(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -31871,7 +31249,6 @@ void system_function_05d260(uint64_t param_1,uint64_t *param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_05d310(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -31882,7 +31259,6 @@ void system_function_05d310(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_05d330(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -31893,7 +31269,6 @@ void system_function_05d330(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_05d360(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -31904,7 +31279,6 @@ void system_function_05d360(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_05d3a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -32204,7 +31578,6 @@ uint64_t FUN_18005d548(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_05d560(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -32227,7 +31600,6 @@ void system_function_05d560(longlong *param_1,uint64_t param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_05d580(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -32299,7 +31671,6 @@ uint8_t * FUN_18005d660(uint8_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void FUN_18005d760(uint64_t *param_1)
 
 {
@@ -32312,7 +31683,6 @@ void FUN_18005d760(uint64_t *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void FUN_18005d790(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -32446,7 +31816,6 @@ void FUN_18005d790(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 
 
 
-void *system_data_180a157e0;
 void FUN_18005dab0(longlong param_1)
 
 {
@@ -32473,7 +31842,6 @@ void FUN_18005dab0(longlong param_1)
 
 
 
-void *system_data_180a09dc0;
 void FUN_18005dade(void)
 
 {
@@ -32497,7 +31865,6 @@ void FUN_18005dade(void)
 
 
 
-void *system_data_180a09dc0;
 void FUN_18005db19(void)
 
 {
@@ -32507,7 +31874,6 @@ void FUN_18005db19(void)
 
 
 
-void *system_data_180a157e0;
 void FUN_18005db30(longlong param_1)
 
 {
@@ -32534,7 +31900,6 @@ void FUN_18005db30(longlong param_1)
 
 
 
-void *system_data_180a09dc0;
 void FUN_18005db5e(void)
 
 {
@@ -32558,7 +31923,6 @@ void FUN_18005db5e(void)
 
 
 
-void *system_data_180a09dc0;
 void FUN_18005db99(void)
 
 {
@@ -32570,7 +31934,6 @@ void FUN_18005db99(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void FUN_18005dbb0(void)
 
 {
@@ -32760,7 +32123,6 @@ void FUN_18005dbb0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void FUN_18005e110(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -32800,7 +32162,6 @@ void FUN_18005e110(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t 
 
 
 
-void *system_data_180a157e0;
 void FUN_18005e1d0(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -32828,7 +32189,6 @@ void FUN_18005e1d0(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void FUN_18005e250(longlong param_1,uint64_t param_2,int param_3)
 
 {
@@ -32862,7 +32222,6 @@ void FUN_18005e250(longlong param_1,uint64_t param_2,int param_3)
 
 
 
-void *system_data_180a157e0;
 void system_process_resource_request(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -32892,7 +32251,6 @@ void system_process_resource_request(longlong param_1,longlong *param_2,uint64_t
 
 
 
-void *system_data_180a157e0;
 void FUN_18005e370(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -32922,7 +32280,6 @@ void FUN_18005e370(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t 
 
 
 
-void *system_data_180a157e0;
 void FUN_18005e3e0(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -32952,7 +32309,6 @@ void FUN_18005e3e0(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t 
 
 
 
-void *system_data_180a157e0;
 void system_function_05e450(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -32998,7 +32354,6 @@ uint64_t * FUN_18005e4d0(longlong param_1,uint64_t param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_05e570(longlong param_1,longlong *param_2)
 
 {
@@ -33045,7 +32400,6 @@ void system_function_05e570(longlong param_1,longlong *param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_05e57a(longlong param_1,longlong *param_2)
 
 {
@@ -33092,7 +32446,6 @@ void system_function_05e57a(longlong param_1,longlong *param_2)
 
 
 
-void *system_data_180a09dc0;
 void system_function_05e5ff(void)
 
 {
@@ -33113,7 +32466,6 @@ void system_function_05e5ff(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_05e630(longlong param_1)
 
 {
@@ -33139,7 +32491,6 @@ void system_function_05e630(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_05e6a0(uint64_t param_1,longlong *param_2,uint8_t param_3,uint64_t param_4)
 
 {
@@ -33179,7 +32530,6 @@ void system_function_05e6a0(uint64_t param_1,longlong *param_2,uint8_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_05e770(uint64_t param_1,longlong *param_2,char param_3)
 
 {
@@ -33356,7 +32706,6 @@ uint64_t * FUN_18005e950(uint64_t *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_05ea90(ulonglong *param_1,uint64_t *param_2)
 
 {
@@ -34204,7 +33553,6 @@ uint64_t FUN_18005f490(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_05f54c(void)
 
 {
@@ -34870,7 +34218,6 @@ uint64_t FUN_1800601c0(uint64_t param_1,ulonglong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_060200(uint64_t *param_1)
 
 {
@@ -35004,7 +34351,6 @@ uint64_t FUN_1800603e0(uint64_t param_1,ulonglong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_060420(uint64_t *param_1)
 
 {
@@ -35126,7 +34472,6 @@ uint64_t * FUN_1800605d0(uint64_t *param_1,ulonglong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_060610(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -35200,7 +34545,6 @@ int system_function_060680(uint64_t param_1,uint64_t param_2,uint64_t param_3,ui
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0606e0(longlong *param_1)
 
 {
@@ -35712,7 +35056,6 @@ bool FUN_180060f50(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_060fc0(longlong *param_1,longlong *param_2)
 
 {
@@ -35798,7 +35141,6 @@ void system_function_060fc0(longlong *param_1,longlong *param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0611a0(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -35841,7 +35183,6 @@ void system_function_0611a0(longlong param_1,longlong *param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_061290(uint64_t *param_1)
 
 {
@@ -35852,7 +35193,6 @@ void system_function_061290(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_0612b0(uint64_t *param_1)
 
 {
@@ -35907,7 +35247,6 @@ FUN_180061300(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_061380(uint64_t param_1,longlong param_2)
 
 {
@@ -35968,7 +35307,6 @@ void system_function_061380(uint64_t param_1,longlong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_061be0(longlong *param_1)
 
 {
@@ -36048,7 +35386,6 @@ void system_function_061be0(longlong *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_061db0(longlong *param_1)
 
 {
@@ -36126,7 +35463,6 @@ void system_function_061db0(longlong *param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_061f80(void)
 
 {
@@ -36137,7 +35473,6 @@ void system_function_061f80(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_0622d0(uint64_t param_1,uint64_t param_2,uint32_t param_3,uint64_t param_4)
 
 {
@@ -36148,7 +35483,6 @@ void system_function_0622d0(uint64_t param_1,uint64_t param_2,uint32_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_062300(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -36164,7 +35498,6 @@ void system_function_062300(uint64_t param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_062340(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -36178,7 +35511,6 @@ void system_function_062340(uint64_t param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a09dc0;
 void system_function_062380(void)
 
 {
@@ -36189,7 +35521,6 @@ void system_function_062380(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0623b0(void)
 
 {
@@ -36202,7 +35533,6 @@ void system_function_0623b0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0623e0(longlong *param_1)
 
 {
@@ -36245,7 +35575,6 @@ void system_function_0623e0(longlong *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_0624c0(void)
 
 {
@@ -36273,7 +35602,6 @@ void system_function_0624c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_062920(int *param_1)
 
 {
@@ -36437,7 +35765,6 @@ uint64_t FUN_180062ee0(uint64_t param_1,uint32_t param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_062fd0(longlong param_1)
 
 {
@@ -36667,7 +35994,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a09dc0;
 void system_function_0635c0(void)
 
 {
@@ -36774,7 +36100,6 @@ longlong system_memory_pool_initializer(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_063820(uint64_t param_1)
 
 {
@@ -36798,7 +36123,6 @@ void system_function_063820(uint64_t param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_063b30(uint64_t param_1,longlong param_2)
 
 {
@@ -36843,7 +36167,6 @@ void system_function_063b30(uint64_t param_1,longlong param_2)
     fwrite(&system_database_config_ptr,0x30,1,system_long_status);
     fwrite(&system_data_180c84870,system_long_handle,1,system_long_status);
 
-void *system_data_180a09dc0;
 void system_function_063cf0(void)
 
 {
@@ -36981,7 +36304,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_064010(uint64_t param_1)
 
 {
@@ -37127,7 +36449,6 @@ void system_function_064010(uint64_t param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_064400(void)
 
 {
@@ -37260,7 +36581,6 @@ ulonglong FUN_1800649d0(uint64_t param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_064c00(longlong *param_1,longlong param_2,longlong param_3)
 
 {
@@ -37550,7 +36870,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_065160(uint64_t param_1)
 
 {
@@ -38089,7 +37408,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_065d50(void)
 
 {
@@ -38131,7 +37449,6 @@ void system_function_065d50(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_065f00(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -38220,7 +37537,6 @@ void system_function_065f00(uint64_t param_1,longlong param_2,uint64_t param_3,u
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_066140(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -38675,7 +37991,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_database(void)
 
 {
@@ -38687,7 +38002,6 @@ void system_initialize_database(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_066df0(longlong *param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -38796,7 +38110,6 @@ longlong FUN_180066f90(longlong param_1,ulonglong param_2,uint64_t param_3,char 
 
 
 
-void *system_data_180a09dc0;
 void system_function_067050(void)
 
 {
@@ -38811,7 +38124,6 @@ void system_function_067050(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_067070(longlong *param_1)
 
 {
@@ -38841,7 +38153,6 @@ void system_function_067070(longlong *param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_initialize_state_manager(void)
 
 {
@@ -38852,7 +38163,6 @@ void system_initialize_state_manager(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0670f0(void)
 
 {
@@ -38867,7 +38177,6 @@ void system_function_0670f0(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_067110(ulonglong param_1)
 
 {
@@ -38914,7 +38223,6 @@ void system_function_067110(ulonglong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_067170(longlong param_1,ulonglong param_2)
 
 {
@@ -38937,7 +38245,6 @@ void system_function_067170(longlong param_1,ulonglong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_0671b0(uint64_t *param_1,uint64_t param_2,ulonglong param_3)
 
 {
@@ -38980,7 +38287,6 @@ void system_function_0671b0(uint64_t *param_1,uint64_t param_2,ulonglong param_3
 
 
 
-void *system_data_180a157e0;
 void system_function_06720b(ulonglong param_1)
 
 {
@@ -39006,7 +38312,6 @@ void system_function_06720b(ulonglong param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_06729a(void)
 
 {
@@ -39016,7 +38321,6 @@ void system_function_06729a(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0672b0(void)
 
 {
@@ -39027,7 +38331,6 @@ void system_function_0672b0(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_0672b7(void)
 
 {
@@ -39044,7 +38347,6 @@ void system_function_0672b7(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0672c0(longlong param_1)
 
 {
@@ -39139,7 +38441,6 @@ void system_function_0672c0(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_067480(uint64_t param_1,longlong param_2)
 
 {
@@ -39158,7 +38459,6 @@ void system_function_067480(uint64_t param_1,longlong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_067810(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -39173,7 +38473,6 @@ void system_function_067810(longlong param_1,uint64_t param_2,uint64_t param_3,u
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_067840(longlong *param_1)
 
 {
@@ -39303,7 +38602,6 @@ void system_function_067840(longlong *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_067bc0(uint64_t *param_1)
 
 {
@@ -39326,7 +38624,6 @@ void system_function_067bc0(uint64_t *param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_067f00(void)
 
 {
@@ -39337,7 +38634,6 @@ void system_function_067f00(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_067f30(void)
 
 {
@@ -39350,7 +38646,6 @@ void system_function_067f30(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_067f60(longlong param_1,longlong param_2)
 
 {
@@ -39583,7 +38878,6 @@ longlong FUN_180068490(longlong param_1,longlong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_068620(longlong param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -39609,7 +38903,6 @@ void system_function_068620(longlong param_1,uint64_t *param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_0686b0(longlong param_1)
 
 {
@@ -39673,7 +38966,6 @@ void system_function_0686b0(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_0687d0(longlong param_1,uint64_t *param_2)
 
 {
@@ -40069,7 +39361,6 @@ uint64_t * FUN_180069070(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_069130(longlong param_1,longlong param_2)
 
 {
@@ -40115,7 +39406,6 @@ FUN_1800691e0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t para
 
 
 
-void *system_data_180a157e0;
 void system_function_069220(longlong param_1,uint64_t param_2,int param_3)
 
 {
@@ -40131,7 +39421,6 @@ void system_function_069220(longlong param_1,uint64_t param_2,int param_3)
 
 
 
-void *system_data_180a09dc0;
 void system_function_069241(void)
 
 {
@@ -40142,7 +39431,6 @@ void system_function_069241(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_069266(uint8_t *param_1)
 
 {
@@ -40158,7 +39446,6 @@ void system_function_069266(uint8_t *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_069280(longlong param_1,longlong param_2,longlong param_3)
 
 {
@@ -40200,7 +39487,6 @@ void system_function_069280(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-void *system_data_180a157e0;
 void system_function_0693f0(longlong param_1,longlong param_2)
 
 {
@@ -40243,7 +39529,6 @@ longlong FUN_180069470(longlong param_1,ulonglong param_2,uint64_t param_3,uint6
 
 
 
-void *system_data_180a157e0;
 void system_function_069530(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -40260,7 +39545,6 @@ void system_function_069530(uint64_t *param_1,uint64_t param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_0695a0(longlong param_1)
 
 {
@@ -40310,7 +39594,6 @@ uint64_t FUN_180069760(uint64_t param_1,ulonglong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_0697a0(uint64_t *param_1)
 
 {
@@ -40802,7 +40085,6 @@ uint64_t * FUN_18006a090(uint64_t *param_1,ulonglong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_06a130(longlong param_1)
 
 {
@@ -40894,7 +40176,6 @@ void system_function_06a130(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_06b220(longlong param_1)
 
 {
@@ -40986,7 +40267,6 @@ longlong FUN_18006b350(longlong *param_1,longlong *param_2,int param_3)
 
 
 
-void *system_data_180a157e0;
 void system_function_06b440(longlong param_1,uint32_t param_2)
 
 {
@@ -41014,7 +40294,6 @@ void system_function_06b440(longlong param_1,uint32_t param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_06b4c0(longlong param_1,uint32_t param_2)
 
 {
@@ -41044,7 +40323,6 @@ void system_function_06b4c0(longlong param_1,uint32_t param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_06b540(uint64_t param_1,uint32_t param_2)
 
 {
@@ -41118,7 +40396,6 @@ FUN_18006b640(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
 
 
 
-void *system_data_180a157e0;
 void system_function_06b6f0(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -41141,7 +40418,6 @@ void system_function_06b6f0(longlong *param_1,uint64_t param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_06b760(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -41166,7 +40442,6 @@ void system_function_06b760(longlong *param_1,uint64_t param_2,uint64_t param_3,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_06b780(void)
 
 {
@@ -41178,7 +40453,6 @@ void system_function_06b780(void)
     (**(code **)(_system_data_180c8f008 + 0x88))(1);
   }
 
-void *system_data_180a157e0;
 void system_initialize_graphics_system(longlong param_1)
 
 {
@@ -41198,7 +40472,6 @@ void system_initialize_graphics_system(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_06b940(uint64_t *param_1)
 
 {
@@ -41301,7 +40574,6 @@ uint64_t FUN_18006bd20(uint64_t param_1,ulonglong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_06bd60(longlong param_1)
 
 {
@@ -41337,7 +40609,6 @@ void system_function_06bd60(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_06bd80(longlong param_1)
 
 {
@@ -41470,7 +40741,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_06bfe0(uint64_t *param_1)
 
 {
@@ -41490,7 +40760,6 @@ void system_function_06bfe0(uint64_t *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_06c070(longlong param_1)
 
 {
@@ -41952,7 +41221,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_06cb90(longlong param_1)
 
 {
@@ -42082,7 +41350,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_06cc8d(uint64_t param_1,uint64_t param_2,longlong param_3)
 
 {
@@ -42137,7 +41404,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a09dc0;
 void system_function_06cd43(void)
 
 {
@@ -42193,7 +41459,6 @@ longlong FUN_18006cd80(longlong param_1,longlong param_2,uint64_t param_3,uint64
 
 
 
-void *system_data_180a157e0;
 void system_function_06cf00(uint64_t *param_1)
 
 {
@@ -42834,7 +42099,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_06da50(longlong *param_1)
 
 {
@@ -42935,7 +42199,6 @@ ulonglong FUN_18006da90(longlong param_1,uint64_t param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_06dc10(longlong *param_1)
 
 {
@@ -43174,7 +42437,6 @@ longlong FUN_18006e0b0(longlong param_1,ulonglong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_06e140(void)
 
 {
@@ -43307,7 +42569,6 @@ uint64_t * FUN_18006e460(uint64_t *param_1,ulonglong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_06e4a0(longlong *param_1)
 
 {
@@ -43368,7 +42629,6 @@ void system_function_06e4a0(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_06e4a4(longlong *param_1)
 
 {
@@ -43429,7 +42689,6 @@ void system_function_06e4a4(longlong *param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_06e4b9(void)
 
 {
@@ -43446,7 +42705,6 @@ void system_function_06e4b9(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_06e50f(void)
 
 {
@@ -43500,7 +42758,6 @@ void system_function_06e50f(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_06e570(uint64_t *param_1)
 
 {
@@ -43533,7 +42790,6 @@ void system_function_06e570(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_06e580(longlong *param_1)
 
 {
@@ -43596,7 +42852,6 @@ void system_function_06e580(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_06e5d0(longlong *param_1)
 
 {
@@ -43617,7 +42872,6 @@ void system_function_06e5d0(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_06e640(longlong *param_1)
 
 {
@@ -43758,7 +43012,6 @@ FUN_18006e870(uint32_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_06e990(void)
 
 {
@@ -43821,7 +43074,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_06eb30(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -43870,7 +43122,6 @@ void system_function_06eb30(uint64_t param_1,uint64_t param_2,uint64_t param_3,u
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_06edf0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -43942,7 +43193,6 @@ uint64_t FUN_18006eec0(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_06ef20(longlong *param_1)
 
 {
@@ -43957,7 +43207,6 @@ void system_function_06ef20(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_06ef80(longlong *param_1)
 
 {
@@ -43971,7 +43220,6 @@ void system_function_06ef80(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_06efc0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -43999,7 +43247,6 @@ void system_function_06efc0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_06f160(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -44029,7 +43276,6 @@ void system_function_06f160(longlong *param_1,uint64_t param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_06f310(longlong *param_1)
 
 {
@@ -44043,7 +43289,6 @@ void system_function_06f310(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_06f340(longlong *param_1)
 
 {
@@ -44084,7 +43329,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_06f4c0(uint64_t *param_1)
 
 {
@@ -44104,7 +43348,6 @@ void system_function_06f4c0(uint64_t *param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_06f4cd(void)
 
 {
@@ -44123,7 +43366,6 @@ void system_function_06f4cd(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_06f4fc(void)
 
 {
@@ -44133,7 +43375,6 @@ void system_function_06f4fc(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_06f500(longlong param_1)
 
 {
@@ -44146,7 +43387,6 @@ void system_function_06f500(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_06f530(longlong param_1)
 
 {
@@ -44813,7 +44053,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_070680(uint64_t param_1,uint64_t param_2)
 
 {
@@ -45529,7 +44768,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_071940(uint64_t param_1,longlong param_2,uint32_t param_3,longlong param_4)
 
 {
@@ -46385,7 +45623,6 @@ SYSTEM_LABEL:
         }
       }
 
-void *system_data_180a157e0;
 void system_function_072e80(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -46703,7 +45940,6 @@ bool FUN_180072f00(uint64_t param_1,uint64_t *param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_073630(uint64_t param_1,uint64_t param_2)
 
 {
@@ -46742,7 +45978,6 @@ void system_function_073630(uint64_t param_1,uint64_t param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_073730(uint64_t param_1,uint64_t param_2)
 
 {
@@ -46781,7 +46016,6 @@ void system_function_073730(uint64_t param_1,uint64_t param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_073830(uint64_t param_1,uint32_t param_2,uint64_t param_3)
 
 {
@@ -46818,7 +46052,6 @@ void system_function_073830(uint64_t param_1,uint32_t param_2,uint64_t param_3)
 
 
 
-void *system_data_180a157e0;
 void system_function_073930(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -46862,7 +46095,6 @@ void system_function_073930(uint64_t param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_0739f0(uint64_t *param_1)
 
 {
@@ -46901,7 +46133,6 @@ void system_function_0739f0(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_073ab0(longlong *param_1)
 
 {
@@ -46944,7 +46175,6 @@ void system_function_073ab0(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_073ad0(longlong param_1,longlong *param_2)
 
 {
@@ -47115,7 +46345,6 @@ void system_function_073ad0(longlong param_1,longlong *param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_073adc(longlong param_1)
 
 {
@@ -47287,7 +46516,6 @@ void system_function_073adc(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_073b64(uint *param_1)
 
 {
@@ -47608,7 +46836,6 @@ void FUN_180073e23(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_073f90(void)
 
 {
@@ -47650,7 +46877,6 @@ void system_function_073f90(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_074090(longlong *param_1,longlong param_2)
 
 {
@@ -47828,7 +47054,6 @@ void system_function_074090(longlong *param_1,longlong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0740a2(longlong *param_1)
 
 {
@@ -48009,7 +47234,6 @@ void system_function_0740a2(longlong *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0740f5(longlong param_1)
 
 {
@@ -48169,7 +47393,6 @@ void system_function_0740f5(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0742ea(longlong param_1)
 
 {
@@ -48251,7 +47474,6 @@ void system_function_0742ea(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_074309(void)
 
 {
@@ -48297,7 +47519,6 @@ void system_function_074309(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0744b0(longlong param_1,longlong param_2)
 
 {
@@ -48417,7 +47638,6 @@ uint64_t * FUN_1800745f0(uint64_t param_1,longlong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0746c0(longlong param_1)
 
 {
@@ -48473,7 +47693,6 @@ void system_function_0746c0(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_074840(longlong param_1)
 
 {
@@ -48503,7 +47722,6 @@ void system_function_074840(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_0748d0(longlong param_1,longlong *param_2)
 
 {
@@ -48587,7 +47805,6 @@ void system_function_0748d0(longlong param_1,longlong *param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_074a80(longlong *param_1)
 
 {
@@ -48630,7 +47847,6 @@ void system_function_074a80(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_074b30(longlong *param_1,ulonglong param_2)
 
 {
@@ -48685,7 +47901,6 @@ void system_function_074b30(longlong *param_1,ulonglong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_074c20(uint64_t *param_1,ulonglong param_2)
 
 {
@@ -48842,7 +48057,6 @@ void system_function_074c20(uint64_t *param_1,ulonglong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_074ed0(longlong *param_1)
 
 {
@@ -49145,7 +48359,6 @@ uint8_t FUN_1800755c0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_
 // WARNING: Removing unreachable block (ram,0x000180276fbd)
 
 
-void *system_data_180a157e0;
 void system_function_075630(longlong param_1,uint64_t *param_2)
 
 {
@@ -49320,7 +48533,6 @@ void system_function_075630(longlong param_1,uint64_t *param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_0756e0(uint64_t *param_1)
 
 {
@@ -49438,7 +48650,6 @@ void system_function_0756e0(uint64_t *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_075990(longlong param_1,longlong *param_2)
 
 {
@@ -49741,7 +48952,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_075ff0(longlong *param_1)
 
 {
@@ -50104,7 +49314,6 @@ longlong * FUN_1800763c0(longlong *param_1,longlong *param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_076760(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -50184,7 +49393,6 @@ void system_function_076760(longlong *param_1,uint64_t param_2,uint64_t param_3,
 
 
 
-void *system_data_180a157e0;
 void system_function_076910(longlong param_1,longlong *param_2)
 
 {
@@ -50240,7 +49448,6 @@ void system_function_076910(longlong param_1,longlong *param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_076a20(longlong param_1)
 
 {
@@ -50261,7 +49468,6 @@ void system_function_076a20(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_076a80(longlong param_1)
 
 {
@@ -50511,7 +49717,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_077020(longlong *param_1)
 
 {
@@ -50599,7 +49804,6 @@ ulonglong FUN_180077040(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_077150(longlong *param_1)
 
 {
@@ -50850,7 +50054,6 @@ uint64_t FUN_180077420(longlong param_1,longlong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_077710(longlong param_1)
 
 {
@@ -51286,7 +50489,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_07799c(void)
 
 {
@@ -51617,7 +50819,6 @@ void system_function_07799c(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_077ad8(void)
 
 {
@@ -51882,7 +51083,6 @@ void system_function_077ad8(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_077c96(void)
 
 {
@@ -52036,7 +51236,6 @@ void system_function_077c96(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_077dc6(void)
 
 {
@@ -52208,7 +51407,6 @@ void system_function_077dc6(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_077dec(void)
 
 {
@@ -52421,7 +51619,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_078051(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
 
 {
@@ -52502,7 +51699,6 @@ void system_function_078051(uint64_t param_1,uint64_t param_2,float param_3,floa
 
 
 
-void *system_data_180a09dc0;
 void system_function_078143(void)
 
 {
@@ -52542,7 +51738,6 @@ void system_function_078143(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0781e0(longlong param_1)
 
 {
@@ -52645,7 +51840,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0781f4(longlong param_1)
 
 {
@@ -52747,7 +51941,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_078239(float param_1,float param_2,float param_3,float param_4)
 
 {
@@ -52850,7 +52043,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0782a8(longlong param_1)
 
 {
@@ -52943,7 +52135,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_0783b0(void)
 
 {
@@ -52992,7 +52183,6 @@ uint64_t * FUN_1800784e0(uint64_t *param_1,ulonglong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_078550(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -53074,7 +52264,6 @@ void system_function_078550(uint64_t *param_1,uint64_t param_2,uint64_t param_3,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0786e0(uint64_t *param_1,longlong param_2)
 
 {
@@ -53394,7 +52583,6 @@ void system_function_0786e0(uint64_t *param_1,longlong param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_078c10(longlong param_1)
 
 {
@@ -53508,7 +52696,6 @@ void system_function_078c10(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_078c70(uint32_t *param_1,longlong *param_2)
 
 {
@@ -53703,7 +52890,6 @@ void system_function_078c70(uint32_t *param_1,longlong *param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_0791a0(longlong param_1)
 
 {
@@ -53733,7 +52919,6 @@ void system_function_0791a0(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_079270(longlong param_1,longlong param_2)
 
 {
@@ -54043,7 +53228,6 @@ void system_function_079270(longlong param_1,longlong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_079284(longlong param_1)
 
 {
@@ -54355,7 +53539,6 @@ void system_function_079284(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_0792ea(void)
 
 {
@@ -54648,7 +53831,6 @@ void system_function_0792ea(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_079309(longlong param_1,uint param_2,uint64_t param_3,float *param_4)
 
 {
@@ -54937,7 +54119,6 @@ void system_function_079309(longlong param_1,uint param_2,uint64_t param_3,float
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_07940e(void)
 
 {
@@ -55163,7 +54344,6 @@ void ** FUN_180079430(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_
       _system_data_180d49160 = &system_thread_context_config;
       _system_data_180d49168 = &system_data_180d49178;
 
-void *system_data_180a157e0;
 void system_function_079520(longlong param_1)
 
 {
@@ -55224,7 +54404,6 @@ uint8_t FUN_18007953e(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_07959e(void)
 
 {
@@ -55526,7 +54705,6 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_0796b0(longlong param_1)
 
 {
@@ -56705,7 +55883,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_07b1a0(longlong *param_1)
 
 {
@@ -56727,7 +55904,6 @@ void system_function_07b1a0(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_07b1c0(longlong *param_1)
 
 {
@@ -57038,7 +56214,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_07b930(longlong *param_1)
 
 {
@@ -57103,7 +56278,6 @@ void system_function_07b930(longlong *param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_07ba60(longlong param_1)
 
 {
@@ -57121,7 +56295,6 @@ void system_function_07ba60(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07baa0(longlong param_1)
 
 {
@@ -57138,7 +56311,6 @@ void system_function_07baa0(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_initialize_filesystem(longlong *param_1)
 
 {
@@ -57158,7 +56330,6 @@ void system_initialize_filesystem(longlong *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07bbb0(longlong param_1,longlong param_2,longlong param_3)
 
 {
@@ -57542,7 +56713,6 @@ void system_function_07bbb0(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-void *system_data_180a157e0;
 void system_function_07c490(longlong *param_1,byte param_2,longlong *param_3,longlong *param_4,char param_5)
 
 {
@@ -57676,7 +56846,6 @@ void system_function_07c490(longlong *param_1,byte param_2,longlong *param_3,lon
 
 
 
-void *system_data_180a157e0;
 void system_function_07c790(longlong *param_1)
 
 {
@@ -57726,7 +56895,6 @@ uint64_t * FUN_18007c7f0(uint64_t *param_1,uint64_t *param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_07c860(longlong param_1,uint8_t param_2)
 
 {
@@ -57758,7 +56926,6 @@ void system_function_07c860(longlong param_1,uint8_t param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07c8e0(longlong param_1,byte param_2,longlong *param_3,longlong *param_4)
 
 {
@@ -57885,7 +57052,6 @@ void system_function_07c8e0(longlong param_1,byte param_2,longlong *param_3,long
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t param_4)
 
 {
@@ -58630,7 +57796,6 @@ code_r0x00018007db1b:
 
 
 
-void *system_data_180a157e0;
 void system_function_07df50(longlong param_1,longlong *param_2,char param_3,uint64_t param_4)
 
 {
@@ -58685,7 +57850,6 @@ void system_function_07df50(longlong param_1,longlong *param_2,char param_3,uint
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07e080(longlong param_1,ulonglong param_2,longlong *param_3,longlong *param_4)
 
 {
@@ -58775,7 +57939,6 @@ void system_function_07e080(longlong param_1,ulonglong param_2,longlong *param_3
 
 
 
-void *system_data_180a157e0;
 void system_function_07e2b0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -58814,7 +57977,6 @@ void system_function_07e2b0(longlong param_1,longlong param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a157e0;
 void system_function_07e5b0(longlong param_1,longlong *param_2)
 
 {
@@ -58921,7 +58083,6 @@ void system_function_07e5b0(longlong param_1,longlong *param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07e880(longlong param_1,char param_2,uint64_t param_3)
 
 {
@@ -58956,7 +58117,6 @@ void system_function_07e880(longlong param_1,char param_2,uint64_t param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07e930(longlong param_1)
 
 {
@@ -58974,7 +58134,6 @@ void system_function_07e930(longlong param_1)
 
 
 
-void *system_data_180a09dc0;
 void system_function_07e95f(void)
 
 {
@@ -58988,7 +58147,6 @@ void system_function_07e95f(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_07e988(void)
 
 {
@@ -59000,7 +58158,6 @@ void system_function_07e988(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07e990(longlong param_1,int param_2)
 
 {
@@ -59027,7 +58184,6 @@ void system_function_07e990(longlong param_1,int param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_07ea10(longlong param_1,char param_2)
 
 {
@@ -59160,7 +58316,6 @@ code * FUN_18007eb80(longlong param_1,char param_2)
 
 
 
-void *system_data_180a157e0;
 void system_function_07edd0(longlong param_1,char param_2)
 
 {
@@ -59193,7 +58348,6 @@ void system_function_07edd0(longlong param_1,char param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07ee70(longlong param_1)
 
 {
@@ -59304,7 +58458,6 @@ void system_function_07ee70(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07eea1(longlong param_1,int param_2,int param_3)
 
 {
@@ -59409,7 +58562,6 @@ void system_function_07eea1(longlong param_1,int param_2,int param_3)
 
 
 
-void *system_data_180a157e0;
 void system_function_07ef9a(longlong param_1,longlong param_2)
 
 {
@@ -59475,7 +58627,6 @@ void system_function_07ef9a(longlong param_1,longlong param_2)
 
 
 
-void *system_data_180a09dc0;
 void system_function_07f0b5(void)
 
 {
@@ -59485,7 +58636,6 @@ void system_function_07f0b5(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_07f0bf(void)
 
 {
@@ -59495,7 +58645,6 @@ void system_function_07f0bf(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_07f0ca(longlong param_1)
 
 {
@@ -59508,7 +58657,6 @@ void system_function_07f0ca(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07f0e0(longlong param_1,longlong param_2,int param_3)
 
 {
@@ -59585,7 +58733,6 @@ void system_function_07f0e0(longlong param_1,longlong param_2,int param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_07f11f(void)
 
 {
@@ -59653,7 +58800,6 @@ void system_function_07f11f(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_07f176(void)
 
 {
@@ -59698,7 +58844,6 @@ void system_function_07f176(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_07f27a(void)
 
 {
@@ -59723,7 +58868,6 @@ void system_function_07f27a(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_07f2cf(void)
 
 {
@@ -59815,7 +58959,6 @@ uint64_t * FUN_18007f3b0(uint64_t *param_1,ulonglong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07f4c0(uint8_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -59901,7 +59044,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a157e0;
 void system_function_07f660(longlong param_1)
 
 {
@@ -59915,7 +59057,6 @@ void system_function_07f660(longlong param_1)
 
 
 
-void *system_data_180a157e0;
 void system_function_07f6a0(char *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -59978,7 +59119,6 @@ void system_function_07f6a0(char *param_1,uint64_t param_2,uint64_t param_3,uint
 
 
 
-void *system_data_180a157e0;
 void system_function_07f770(longlong *param_1)
 
 {
@@ -60022,7 +59162,6 @@ SYSTEM_LABEL:
 
 
 
-void *system_data_180a09dc0;
 void system_function_07f820(void)
 
 {
@@ -60033,7 +59172,6 @@ void system_function_07f820(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_07f840(longlong *param_1)
 
 {
@@ -60155,7 +59293,6 @@ uint8_t FUN_18007f8bb(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07f8f0(longlong param_1)
 
 {
@@ -60360,7 +59497,6 @@ void system_function_07f8f0(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07f90f(uint32_t param_1)
 
 {
@@ -60565,7 +59701,6 @@ void system_function_07f90f(uint32_t param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07f933(uint64_t param_1,longlong param_2)
 
 {
@@ -60765,7 +59900,6 @@ void system_function_07f933(uint64_t param_1,longlong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_07f976(void)
 
 {
@@ -60948,7 +60082,6 @@ void system_function_07f976(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_07f983(void)
 
 {
@@ -61132,7 +60265,6 @@ void system_function_07f983(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a09dc0;
 void system_function_07fb5f(void)
 
 {
@@ -61224,7 +60356,6 @@ void system_function_07fb5f(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_07fc19(void)
 
 {
@@ -61264,7 +60395,6 @@ void system_function_07fc19(void)
 
 
 
-void *system_data_180a157e0;
 void system_function_07fc35(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -61281,7 +60411,6 @@ void system_function_07fc35(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-void *system_data_180a09dc0;
 void system_function_07fc63(void)
 
 {
@@ -61291,7 +60420,6 @@ void system_function_07fc63(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_07fc68(void)
 
 {
@@ -61301,7 +60429,6 @@ void system_function_07fc68(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_07fc6d(void)
 
 {
@@ -61311,7 +60438,6 @@ void system_function_07fc6d(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_07fc73(void)
 
 {
@@ -61340,7 +60466,6 @@ void system_function_07fc73(void)
 
 
 
-void *system_data_180a09dc0;
 void system_function_07fca8(void)
 
 {
@@ -61358,7 +60483,6 @@ void system_function_07fca8(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07fcd0(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 
 {
@@ -61383,7 +60507,6 @@ void system_function_07fcd0(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180a157e0;
 void system_function_07fd60(uint64_t param_1,longlong param_2,uint64_t param_3,longlong param_4)
 
 {
@@ -61423,16 +60546,12 @@ void system_function_07fd60(uint64_t param_1,longlong param_2,uint64_t param_3,l
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void *system_data_180d48dab;
 void *system_function_04b6f0;
 
-void *system_data_180d48dab;
 void *system_function_06f4c0;
 
-void *system_data_180d48dab;
 void *system_function_04c090;
 
-void *system_data_180d48dab;
 void *system_function_055ed0;
 uint32_t system_unknown_180d49150;
 void *system_unknown_1800a0f67;
@@ -62522,10 +61641,8 @@ uint64_t system_cleanup_final(void)
 
 
 
-void *system_data_180c8ecb0;
 void *system_cleanup_memory_manager;
 
-void *system_data_180c8eca8;
 void *system_cleanup_resource_manager;
 void *system_memory_pool_handle;
 uint64_t system_memory_pool_size;
