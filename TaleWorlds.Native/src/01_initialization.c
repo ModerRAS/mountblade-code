@@ -48,8 +48,8 @@ typedef unsigned int uint;
 typedef unsigned long ulonglong;
 
 // 系统浮点转换常量
-#define INIT_FLOAT_CONVERSION_FACTOR 9.50106740101640625e-07
-#define INIT_FLOAT_CONVERSION_FACTOR_INV 1.0526315794728456e+06
+#define INIT_FLOAT_CONVERSION_FACTOR 9.50106740101640625e-07    // 浮点数转换因子 (1/1048576)
+#define INIT_FLOAT_CONVERSION_FACTOR_INV 1.0526315794728456e+06    // 浮点数转换因子逆值 (1048576)
 
 // 系统基础值常量（统一使用0x100作为基础值）
 #define INIT_BASE_VALUE_STANDARD 0x100                           // 标准基础值
@@ -115,35 +115,35 @@ typedef unsigned long ulonglong;
 #define INIT_VALUE_THREE 0x3
 
 // 系统初始化常量
-#define INIT_OFFSET_BASE 0x00
-#define INIT_FLAG_OCTONARY_ENABLED_STANDARD INIT_BASE_VALUE_FLAG
-#define INIT_FLAG_OCTONARY_ENABLED_CONFIG_SECONDARY 0x20
-#define INIT_FLAG_OCTONARY_ENABLED_CONFIG_TERTIARY 0x30
-#define INIT_FLAG_PRIMARY_ENABLED_BASE 0x40
-#define INIT_FLAG_INITIALIZED_PRIMARY_BASE 0x50
+#define INIT_OFFSET_BASE 0x00                                      // 基础偏移量
+#define INIT_FLAG_OCTONARY_ENABLED_STANDARD INIT_BASE_VALUE_FLAG   // 标准八进制启用标志
+#define INIT_FLAG_OCTONARY_ENABLED_CONFIG_SECONDARY 0x20          // 次要配置八进制启用标志
+#define INIT_FLAG_OCTONARY_ENABLED_CONFIG_TERTIARY 0x30           // 第三配置八进制启用标志
+#define INIT_FLAG_PRIMARY_ENABLED_BASE 0x40                        // 主要启用基础标志
+#define INIT_FLAG_INITIALIZED_PRIMARY_BASE 0x50                   // 主要初始化基础标志
 
 // 系统栈常量
-#define SYSTEM_INIT_STACK_FRAME_SIZE 0x200
-#define SYSTEM_INIT_STACK_BUFFER_SIZE 0x200
-#define SYSTEM_INIT_STACK_ARRAY_SIZE 0x200
-#define SYSTEM_INIT_STACK_EXTENDED_BUFFER_SIZE 272
+#define SYSTEM_INIT_STACK_FRAME_SIZE 0x200                     // 栈帧大小 (512字节)
+#define SYSTEM_INIT_STACK_BUFFER_SIZE 0x200                    // 栈缓冲区大小 (512字节)
+#define SYSTEM_INIT_STACK_ARRAY_SIZE 0x200                      // 栈数组大小 (512字节)
+#define SYSTEM_INIT_STACK_EXTENDED_BUFFER_SIZE 272             // 扩展栈缓冲区大小 (272字节)
 
 // 系统偏移量常量
-#define SYSTEM_INIT_OFFSET_STACK_PARAMETER INIT_BASE_VALUE_OFFSET
-#define SYSTEM_INIT_OFFSET_STACK_PARAMETER17 0x110
-#define SYSTEM_INIT_OFFSET_STACK_A4 0xa4
-#define SYSTEM_INIT_OFFSET_STACK_62 0x62
-#define SYSTEM_INIT_OFFSET_STACK_9A 0x9a
-#define SYSTEM_INIT_OFFSET_STACK_7D 0x7d
+#define SYSTEM_INIT_OFFSET_STACK_PARAMETER INIT_BASE_VALUE_OFFSET     // 栈参数偏移量
+#define SYSTEM_INIT_OFFSET_STACK_PARAMETER17 0x110                   // 栈参数17偏移量 (272字节)
+#define SYSTEM_INIT_OFFSET_STACK_A4 0xa4                             // 栈A4偏移量 (164字节)
+#define SYSTEM_INIT_OFFSET_STACK_62 0x62                             // 栈62偏移量 (98字节)
+#define SYSTEM_INIT_OFFSET_STACK_9A 0x9a                             // 栈9A偏移量 (154字节)
+#define SYSTEM_INIT_OFFSET_STACK_7D 0x7d                             // 栈7D偏移量 (125字节)
 
 // 系统数组索引常量
-#define SYSTEM_INIT_ARRAY_INDEX_TERTIARY 2
-#define SYSTEM_ARRAY_INDEX_SIXTH 5
-#define SYSTEM_ARRAY_INDEX_SEVENTH 6
-#define SYSTEM_ARRAY_INDEX_EIGHTH 7
-#define SYSTEM_INIT_ARRAY_INDEX_SECONDARY 1
-#define SYSTEM_ARRAY_INDEX_NINTH 8
-#define SYSTEM_ARRAY_INDEX_TENTH 9
+#define SYSTEM_INIT_ARRAY_INDEX_TERTIARY 2                    // 第三数组索引
+#define SYSTEM_ARRAY_INDEX_SIXTH 5                            // 第六数组索引
+#define SYSTEM_ARRAY_INDEX_SEVENTH 6                          // 第七数组索引
+#define SYSTEM_ARRAY_INDEX_EIGHTH 7                           // 第八数组索引
+#define SYSTEM_INIT_ARRAY_INDEX_SECONDARY 1                   // 次要数组索引
+#define SYSTEM_ARRAY_INDEX_NINTH 8                            // 第九数组索引
+#define SYSTEM_ARRAY_INDEX_TENTH 9                            // 第十数组索引
 
 // 系统魔数Cookie常量
 #define SYSTEM_INIT_MAGIC_COOKIE_GENERAL 0x12345678
