@@ -1372,12 +1372,12 @@ void *utility_unknown_segment_a18a78;
 void *utility_unknown_segment_1527b4;
 void *utility_unknown_segment_a07340;
 void *utility_unknown_segment_a07378;
-long long UNK_180c961a8;
-uint UNK_180d48d44;
-double UNK_180d48d48;
-double UNK_180d48d50;
-int UNK_180d49260;
-double UNK_180d49268;
+long long utility_global_data_thread_context;
+uint utility_global_data_system_status;
+double utility_global_data_precision_factor;
+double utility_global_data_timing_value;
+int utility_global_data_error_code;
+double utility_global_data_calculation_result;
 void *utility_unknown_segment_a073d8;
 void *utility_unknown_segment_a073b8;
 void *utility_unknown_segment_155fc0;
@@ -78733,7 +78733,7 @@ void Unwind_180912970(void * utility_context_pointer,long long utility_data_ptr)
 }
 
 
-void * UNK_180d49260;
+void * utility_global_data_error_code;
 
 // 函数: void utility_check_and_reset_state(void * utility_context_pointer,long long utility_data_ptr)
 // 功能: 检查状态并在必要时重置系统状态
