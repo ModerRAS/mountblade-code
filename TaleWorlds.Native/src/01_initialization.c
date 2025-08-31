@@ -15860,13 +15860,13 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   longlong **system_longlong_pointer_pointer_primary;
   longlong system_longlong_stack_counter_primary;
   void* *system_stack_pointer_buffer_b8;   // 栈指针缓冲区b8
-  void* *system_void*_stack_pointer_b0;
+  void* *system_stack_pointer_buffer_b0;   // 栈指针缓冲区b0
   system_uint0x102_t system_unsigned_stack_a0;
-  void* *system_void*_stack_pointer_98;
+  void* *system_stack_pointer_buffer_98;   // 栈指针缓冲区98
   longlong system_longlong_stack_counter_secondary;
   uint system_unsigned_stack_buffer;
-  void* *system_void*_stack_pointer_78;
-  void* *system_void*_stack_pointer_70;
+  void* *system_stack_pointer_buffer_78;   // 栈指针缓冲区78
+  void* *system_stack_pointer_buffer_70;   // 栈指针缓冲区70
   system_uint0x102_t system_unsigned_stack_context_primary;
   system_uint64_t system_unsigned_stack_context_secondary;
   longlong **system_longlong_pointer_pointer_secondary;
@@ -15891,10 +15891,10 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
     __Throw_C_error_std__YAXH_Z(system_loop_counter);
   }
   SymSetOptions(SYSTEM_INIT_OFFSET_STACK_PARAM17);
-  system_prepare_operation(&system_void*_stack_pointer_b8);
+  system_prepare_operation(&system_stack_pointer_buffer_b8);
   psystem_ulong_primary_main = &system_initialized;
-  if (system_void*_stack_pointer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-    psystem_ulong_primary_main = system_void*_stack_pointer_b0;
+  if (system_stack_pointer_buffer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+    psystem_ulong_primary_main = system_stack_pointer_buffer_b0;
   }
   SymSetSearchPath(system_global_initialized_flag,psystem_ulong_primary_main);
   system_function_result = system_memory_longptr[];
@@ -15903,7 +15903,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
     system_memory_longptr[] = system_function_result;
     if (system_function_result != 0) goto SYSTEM_INIT_LABEL_FUNCTION_RESULT_CHECK;
     stack_memory_pointer_ternary = &system_global_contextsystem_global_context;
-    if (system_void*_stack_pointer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+    if (system_stack_pointer_buffer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     // WARNING: Subroutine does not return
       system_execute_operation();
     }
@@ -15915,7 +15915,7 @@ system_init_label_thread_start:
       system_memory_longptr[] = system_function_result;
       if (system_function_result == 0) {
         stack_memory_pointer_ternary = &system_global_contextsystem_global_context;
-        if (system_void*_stack_pointer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+        if (system_stack_pointer_buffer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     // WARNING: Subroutine does not return
           system_execute_operation();
         }
@@ -15923,13 +15923,13 @@ system_init_label_thread_start:
       }
     }
     psystem_ulong_primary_main = &system_initialized;
-    if (system_void*_stack_pointer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-      psystem_ulong_primary_main = system_void*_stack_pointer_b0;
+    if (system_stack_pointer_buffer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+      psystem_ulong_primary_main = system_stack_pointer_buffer_b0;
     }
     system_loop_counter = SymInitialize(system_global_initialized_flag,psystem_ulong_primary_main,1);
     if (system_loop_counter == 0) {
       stack_memory_pointer_ternary = &system_global_contextsystem_global_context;
-      if (system_void*_stack_pointer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+      if (system_stack_pointer_buffer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     // WARNING: Subroutine does not return
         system_execute_operation();
       }
@@ -15937,7 +15937,7 @@ system_init_label_thread_start:
     else {
       *(char *)system_memory_longptr = '\x01';
       stack_memory_pointer_ternary = &system_global_contextsystem_global_context;
-      if (system_void*_stack_pointer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+      if (system_stack_pointer_buffer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     // WARNING: Subroutine does not return
         system_execute_operation();
       }
