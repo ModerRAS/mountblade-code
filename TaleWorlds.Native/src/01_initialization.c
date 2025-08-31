@@ -732,7 +732,7 @@ void initialize_system_core_basic(void)
   longlong initialization_status;          // 系统初始化状态
   system_uint64_t *module_data_address;    // 系统模块数据地址
   system_uint64_t *config_data_pointer;    // 系统配置数据指针
-  system_uint64_t *temp_data_pointer;      // 系统临时数据指针
+  system_uint64_t *system_temp_data_ptr;      // 系统临时数据指针
   system_uint64_t *stack_frame_address;    // 系统栈帧地址
   system_code *core_init_function;         // 系统核心初始化函数指针
   
@@ -745,15 +745,15 @@ void initialize_system_core_basic(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -802,7 +802,7 @@ void system_init_placeholder_function(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -815,15 +815,15 @@ void system_init_placeholder_function(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -853,7 +853,7 @@ void system_init_anonymous_function_1(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -866,15 +866,15 @@ void system_init_anonymous_function_1(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_memory_pool_base,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_memory_pool_base,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -905,7 +905,7 @@ void system_init_anonymous_function_2(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -918,15 +918,15 @@ void system_init_anonymous_function_2(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_active_thread_count,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_active_thread_count,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -957,7 +957,7 @@ void system_init_anonymous_function_3(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -970,15 +970,15 @@ void system_init_anonymous_function_3(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_resource_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_resource_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1009,7 +1009,7 @@ void system_init_anonymous_function_4(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -1022,15 +1022,15 @@ void system_init_anonymous_function_4(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_graphics_context,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_graphics_context,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1061,7 +1061,7 @@ void system_init_anonymous_function_5(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -1074,15 +1074,15 @@ void system_init_anonymous_function_5(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_audio_device,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_audio_device,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1113,7 +1113,7 @@ void system_init_anonymous_function_6(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -1126,15 +1126,15 @@ void system_init_anonymous_function_6(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_config_primary_buffer,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_config_primary_buffer,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1165,7 +1165,7 @@ void system_init_anonymous_function_7(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -1178,15 +1178,15 @@ void system_init_anonymous_function_7(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_configuration_data_buffer_secondary,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_configuration_data_buffer_secondary,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1217,7 +1217,7 @@ void system_init_anonymous_function_8(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -1230,15 +1230,15 @@ void system_init_anonymous_function_8(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_network_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_network_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1303,7 +1303,7 @@ void system_init_anonymous_function_10(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -1316,15 +1316,15 @@ void system_init_anonymous_function_10(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1412,7 +1412,7 @@ void system_init_anonymous_function_14(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -1425,15 +1425,15 @@ void system_init_anonymous_function_14(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1464,7 +1464,7 @@ void system_init_anonymous_function_15(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -1477,15 +1477,15 @@ void system_init_anonymous_function_15(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1584,7 +1584,7 @@ void system_init_anonymous_function_18(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -1597,15 +1597,15 @@ void system_init_anonymous_function_18(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1636,7 +1636,7 @@ void system_init_anonymous_function_19(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -1649,15 +1649,15 @@ void system_init_anonymous_function_19(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1688,7 +1688,7 @@ void system_init_anonymous_function_20(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -1701,15 +1701,15 @@ void system_init_anonymous_function_20(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1740,7 +1740,7 @@ void system_init_anonymous_function_21(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -1753,15 +1753,15 @@ void system_init_anonymous_function_21(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1792,7 +1792,7 @@ void system_init_anonymous_function_22(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -1805,15 +1805,15 @@ void system_init_anonymous_function_22(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1844,7 +1844,7 @@ void system_init_anonymous_function_23(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -1857,15 +1857,15 @@ void system_init_anonymous_function_23(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1896,7 +1896,7 @@ void system_init_anonymous_function_24(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -1909,15 +1909,15 @@ void system_init_anonymous_function_24(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -1948,7 +1948,7 @@ void system_init_anonymous_function_25(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -1961,15 +1961,15 @@ void system_init_anonymous_function_25(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2000,7 +2000,7 @@ void system_init_anonymous_function_26(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -2013,15 +2013,15 @@ void system_init_anonymous_function_26(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2052,7 +2052,7 @@ void system_init_anonymous_function_27(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -2065,15 +2065,15 @@ void system_init_anonymous_function_27(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2104,7 +2104,7 @@ void system_init_anonymous_function_28(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -2117,15 +2117,15 @@ void system_init_anonymous_function_28(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2156,7 +2156,7 @@ void system_init_anonymous_function_29(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -2169,15 +2169,15 @@ void system_init_anonymous_function_29(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2208,7 +2208,7 @@ void system_init_anonymous_function_30(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -2221,15 +2221,15 @@ void system_init_anonymous_function_30(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2260,7 +2260,7 @@ void system_init_anonymous_function_31(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -2273,15 +2273,15 @@ void system_init_anonymous_function_31(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2353,7 +2353,7 @@ void system_init_anonymous_function_34(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -2366,15 +2366,15 @@ void system_init_anonymous_function_34(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2405,7 +2405,7 @@ void system_init_anonymous_function_35(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -2418,15 +2418,15 @@ void system_init_anonymous_function_35(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2457,7 +2457,7 @@ void system_init_anonymous_function_36(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -2470,15 +2470,15 @@ void system_init_anonymous_function_36(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2509,7 +2509,7 @@ void system_init_anonymous_function_37(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -2522,15 +2522,15 @@ void system_init_anonymous_function_37(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2561,7 +2561,7 @@ void system_init_anonymous_function_38(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -2574,15 +2574,15 @@ void system_init_anonymous_function_38(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2613,7 +2613,7 @@ void system_init_anonymous_function_39(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -2626,15 +2626,15 @@ void system_init_anonymous_function_39(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2665,7 +2665,7 @@ void system_init_anonymous_function_40(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -2678,15 +2678,15 @@ void system_init_anonymous_function_40(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2717,7 +2717,7 @@ void system_init_anonymous_function_41(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -2730,15 +2730,15 @@ void system_init_anonymous_function_41(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2769,7 +2769,7 @@ void system_init_anonymous_function_42(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -2782,15 +2782,15 @@ void system_init_anonymous_function_42(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2821,7 +2821,7 @@ void system_init_anonymous_function_43(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -2834,15 +2834,15 @@ void system_init_anonymous_function_43(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2873,7 +2873,7 @@ void system_init_anonymous_function_44(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -2886,15 +2886,15 @@ void system_init_anonymous_function_44(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2925,7 +2925,7 @@ void system_init_anonymous_function_45(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -2938,15 +2938,15 @@ void system_init_anonymous_function_45(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -2977,7 +2977,7 @@ void system_init_anonymous_function_46(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -2990,15 +2990,15 @@ void system_init_anonymous_function_46(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3029,7 +3029,7 @@ void system_init_anonymous_function_47(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -3042,15 +3042,15 @@ void system_init_anonymous_function_47(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3081,7 +3081,7 @@ void system_init_anonymous_function_48(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -3094,15 +3094,15 @@ void system_init_anonymous_function_48(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3133,7 +3133,7 @@ void system_init_anonymous_function_49(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -3146,15 +3146,15 @@ void system_init_anonymous_function_49(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3185,7 +3185,7 @@ void system_init_anonymous_function_50(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -3198,15 +3198,15 @@ void system_init_anonymous_function_50(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3237,7 +3237,7 @@ void system_init_anonymous_function_51(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -3250,15 +3250,15 @@ void system_init_anonymous_function_51(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3289,7 +3289,7 @@ void system_init_anonymous_function_52(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -3302,15 +3302,15 @@ void system_init_anonymous_function_52(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3341,7 +3341,7 @@ void system_init_anonymous_function_53(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -3354,15 +3354,15 @@ void system_init_anonymous_function_53(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3393,7 +3393,7 @@ void system_init_anonymous_function_54(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -3406,15 +3406,15 @@ void system_init_anonymous_function_54(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3445,7 +3445,7 @@ void system_init_anonymous_function_55(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -3458,15 +3458,15 @@ void system_init_anonymous_function_55(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3497,7 +3497,7 @@ void system_init_anonymous_function_56(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -3510,15 +3510,15 @@ void system_init_anonymous_function_56(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3549,7 +3549,7 @@ void system_init_anonymous_function_57(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -3562,15 +3562,15 @@ void system_init_anonymous_function_57(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3601,7 +3601,7 @@ void system_init_anonymous_function_58(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -3614,15 +3614,15 @@ void system_init_anonymous_function_58(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3653,7 +3653,7 @@ void system_init_anonymous_function_59(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -3666,15 +3666,15 @@ void system_init_anonymous_function_59(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3705,7 +3705,7 @@ void system_init_anonymous_function_60(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -3718,15 +3718,15 @@ void system_init_anonymous_function_60(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3757,7 +3757,7 @@ void system_init_anonymous_function_61(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -3770,15 +3770,15 @@ void system_init_anonymous_function_61(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3809,7 +3809,7 @@ void system_init_anonymous_function_62(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -3822,15 +3822,15 @@ void system_init_anonymous_function_62(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3861,7 +3861,7 @@ void system_init_anonymous_function_63(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -3874,15 +3874,15 @@ void system_init_anonymous_function_63(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -3913,7 +3913,7 @@ void system_init_anonymous_function_64(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -3926,15 +3926,15 @@ void system_init_anonymous_function_64(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4006,7 +4006,7 @@ void system_init_anonymous_function_67(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -4019,15 +4019,15 @@ void system_init_anonymous_function_67(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4058,7 +4058,7 @@ void system_init_anonymous_function_68(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -4071,15 +4071,15 @@ void system_init_anonymous_function_68(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4110,7 +4110,7 @@ void system_init_anonymous_function_69(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -4123,15 +4123,15 @@ void system_init_anonymous_function_69(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4162,7 +4162,7 @@ void system_init_anonymous_function_70(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -4175,15 +4175,15 @@ void system_init_anonymous_function_70(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4214,7 +4214,7 @@ void system_init_anonymous_function_71(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -4227,15 +4227,15 @@ void system_init_anonymous_function_71(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4266,7 +4266,7 @@ void system_init_anonymous_function_72(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -4279,15 +4279,15 @@ void system_init_anonymous_function_72(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4318,7 +4318,7 @@ void system_init_anonymous_function_73(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -4331,15 +4331,15 @@ void system_init_anonymous_function_73(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4370,7 +4370,7 @@ void system_init_anonymous_function_74(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -4383,15 +4383,15 @@ void system_init_anonymous_function_74(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4422,7 +4422,7 @@ void system_init_anonymous_function_75(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -4435,15 +4435,15 @@ void system_init_anonymous_function_75(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4474,7 +4474,7 @@ void system_init_anonymous_function_76(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -4487,15 +4487,15 @@ void system_init_anonymous_function_76(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4526,7 +4526,7 @@ void system_init_anonymous_function_77(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -4539,15 +4539,15 @@ void system_init_anonymous_function_77(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4602,7 +4602,7 @@ void system_init_anonymous_function_79(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -4615,15 +4615,15 @@ void system_init_anonymous_function_79(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4654,7 +4654,7 @@ void system_init_anonymous_function_80(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -4667,15 +4667,15 @@ void system_init_anonymous_function_80(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4706,7 +4706,7 @@ void system_init_anonymous_function_81(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -4719,15 +4719,15 @@ void system_init_anonymous_function_81(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4758,7 +4758,7 @@ void system_init_anonymous_function_82(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -4771,15 +4771,15 @@ void system_init_anonymous_function_82(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4810,7 +4810,7 @@ void system_init_anonymous_function_83(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -4823,15 +4823,15 @@ void system_init_anonymous_function_83(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4862,7 +4862,7 @@ void system_init_anonymous_function_84(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -4875,15 +4875,15 @@ void system_init_anonymous_function_84(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -4914,7 +4914,7 @@ void system_init_anonymous_function_85(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -4927,15 +4927,15 @@ void system_init_anonymous_function_85(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5127,7 +5127,7 @@ void system_init_anonymous_function_93(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -5140,15 +5140,15 @@ void system_init_anonymous_function_93(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5179,7 +5179,7 @@ void system_init_anonymous_function_94(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -5192,15 +5192,15 @@ void system_init_anonymous_function_94(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5231,7 +5231,7 @@ void system_init_anonymous_function_95(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -5244,15 +5244,15 @@ void system_init_anonymous_function_95(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5283,7 +5283,7 @@ void system_init_anonymous_function_96(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -5296,15 +5296,15 @@ void system_init_anonymous_function_96(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5335,7 +5335,7 @@ void system_init_anonymous_function_97(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -5348,15 +5348,15 @@ void system_init_anonymous_function_97(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5387,7 +5387,7 @@ void system_init_anonymous_function_98(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -5400,15 +5400,15 @@ void system_init_anonymous_function_98(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5439,7 +5439,7 @@ void system_init_anonymous_function_99(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -5452,15 +5452,15 @@ void system_init_anonymous_function_99(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5491,7 +5491,7 @@ void system_init_anonymous_function_100(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -5504,15 +5504,15 @@ void system_init_anonymous_function_100(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5543,7 +5543,7 @@ void system_init_anonymous_function_101(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -5556,15 +5556,15 @@ void system_init_anonymous_function_101(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5595,7 +5595,7 @@ void system_init_anonymous_function_102(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -5608,15 +5608,15 @@ void system_init_anonymous_function_102(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5647,7 +5647,7 @@ void system_init_anonymous_function_103(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -5660,15 +5660,15 @@ void system_init_anonymous_function_103(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5699,7 +5699,7 @@ void system_init_anonymous_function_104(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -5712,15 +5712,15 @@ void system_init_anonymous_function_104(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5751,7 +5751,7 @@ void system_init_anonymous_function_105(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -5764,15 +5764,15 @@ void system_init_anonymous_function_105(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5803,7 +5803,7 @@ void system_init_anonymous_function_106(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -5816,15 +5816,15 @@ void system_init_anonymous_function_106(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5855,7 +5855,7 @@ void system_init_anonymous_function_107(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -5868,15 +5868,15 @@ void system_init_anonymous_function_107(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -5907,7 +5907,7 @@ void system_init_anonymous_function_108(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -5920,15 +5920,15 @@ void system_init_anonymous_function_108(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6018,7 +6018,7 @@ void system_init_anonymous_function_110(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -6031,15 +6031,15 @@ void system_init_anonymous_function_110(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6070,7 +6070,7 @@ void system_init_anonymous_function_111(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -6083,15 +6083,15 @@ void system_init_anonymous_function_111(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6122,7 +6122,7 @@ void system_init_anonymous_function_112(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -6135,15 +6135,15 @@ void system_init_anonymous_function_112(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6174,7 +6174,7 @@ void system_init_anonymous_function_113(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -6187,15 +6187,15 @@ void system_init_anonymous_function_113(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6226,7 +6226,7 @@ void system_init_anonymous_function_114(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -6239,15 +6239,15 @@ void system_init_anonymous_function_114(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6278,7 +6278,7 @@ void system_init_anonymous_function_115(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -6291,15 +6291,15 @@ void system_init_anonymous_function_115(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6330,7 +6330,7 @@ void system_init_anonymous_function_116(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -6343,15 +6343,15 @@ void system_init_anonymous_function_116(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6382,7 +6382,7 @@ void system_init_anonymous_function_117(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -6395,15 +6395,15 @@ void system_init_anonymous_function_117(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6434,7 +6434,7 @@ void system_init_anonymous_function_118(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -6447,15 +6447,15 @@ void system_init_anonymous_function_118(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6486,7 +6486,7 @@ void system_init_anonymous_function_119(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -6499,15 +6499,15 @@ void system_init_anonymous_function_119(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6538,7 +6538,7 @@ void system_init_anonymous_function_120(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -6551,15 +6551,15 @@ void system_init_anonymous_function_120(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6590,7 +6590,7 @@ void system_init_anonymous_function_121(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -6603,15 +6603,15 @@ void system_init_anonymous_function_121(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6642,7 +6642,7 @@ void system_init_anonymous_function_122(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -6655,15 +6655,15 @@ void system_init_anonymous_function_122(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6694,7 +6694,7 @@ void system_init_anonymous_function_123(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -6707,15 +6707,15 @@ void system_init_anonymous_function_123(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6746,7 +6746,7 @@ void system_init_anonymous_function_124(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -6759,15 +6759,15 @@ void system_init_anonymous_function_124(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6798,7 +6798,7 @@ void system_init_anonymous_function_125(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -6811,15 +6811,15 @@ void system_init_anonymous_function_125(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6850,7 +6850,7 @@ void system_init_anonymous_function_126(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -6863,15 +6863,15 @@ void system_init_anonymous_function_126(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6902,7 +6902,7 @@ void system_init_anonymous_function_127(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -6915,15 +6915,15 @@ void system_init_anonymous_function_127(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -6954,7 +6954,7 @@ void system_init_anonymous_function_128(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -6967,15 +6967,15 @@ void system_init_anonymous_function_128(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7006,7 +7006,7 @@ void system_init_anonymous_function_129(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -7019,15 +7019,15 @@ void system_init_anonymous_function_129(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7058,7 +7058,7 @@ void system_init_anonymous_function_130(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -7071,15 +7071,15 @@ void system_init_anonymous_function_130(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7110,7 +7110,7 @@ void system_init_anonymous_function_131(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -7123,15 +7123,15 @@ void system_init_anonymous_function_131(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7162,7 +7162,7 @@ void system_init_anonymous_function_132(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -7175,15 +7175,15 @@ void system_init_anonymous_function_132(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7214,7 +7214,7 @@ void system_init_anonymous_function_133(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -7227,15 +7227,15 @@ void system_init_anonymous_function_133(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7266,7 +7266,7 @@ void system_init_anonymous_function_134(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -7279,15 +7279,15 @@ void system_init_anonymous_function_134(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7318,7 +7318,7 @@ void system_init_anonymous_function_135(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -7331,15 +7331,15 @@ void system_init_anonymous_function_135(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7370,7 +7370,7 @@ void system_init_anonymous_function_136(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -7383,15 +7383,15 @@ void system_init_anonymous_function_136(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7422,7 +7422,7 @@ void system_init_anonymous_function_137(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -7435,15 +7435,15 @@ void system_init_anonymous_function_137(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7474,7 +7474,7 @@ void system_init_anonymous_function_138(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -7487,15 +7487,15 @@ void system_init_anonymous_function_138(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7526,7 +7526,7 @@ void system_init_anonymous_function_139(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -7539,15 +7539,15 @@ void system_init_anonymous_function_139(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7578,7 +7578,7 @@ void system_init_anonymous_function_140(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -7591,15 +7591,15 @@ void system_init_anonymous_function_140(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7630,7 +7630,7 @@ void system_init_anonymous_function_141(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -7643,15 +7643,15 @@ void system_init_anonymous_function_141(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7771,7 +7771,7 @@ void system_init_anonymous_function_146(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -7784,15 +7784,15 @@ void system_init_anonymous_function_146(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7823,7 +7823,7 @@ void system_init_anonymous_function_147(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -7836,15 +7836,15 @@ void system_init_anonymous_function_147(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7875,7 +7875,7 @@ void system_init_anonymous_function_148(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -7888,15 +7888,15 @@ void system_init_anonymous_function_148(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7927,7 +7927,7 @@ void system_init_anonymous_function_149(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -7940,15 +7940,15 @@ void system_init_anonymous_function_149(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -7979,7 +7979,7 @@ void system_init_anonymous_function_150(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -7992,15 +7992,15 @@ void system_init_anonymous_function_150(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8031,7 +8031,7 @@ void system_init_anonymous_function_151(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -8044,15 +8044,15 @@ void system_init_anonymous_function_151(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8083,7 +8083,7 @@ void system_init_anonymous_function_152(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -8096,15 +8096,15 @@ void system_init_anonymous_function_152(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8135,7 +8135,7 @@ void system_init_anonymous_function_153(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -8148,15 +8148,15 @@ void system_init_anonymous_function_153(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8211,7 +8211,7 @@ void system_init_anonymous_function_155(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -8224,15 +8224,15 @@ void system_init_anonymous_function_155(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8263,7 +8263,7 @@ void system_init_anonymous_function_156(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -8276,15 +8276,15 @@ void system_init_anonymous_function_156(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8315,7 +8315,7 @@ void system_init_anonymous_function_157(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -8328,15 +8328,15 @@ void system_init_anonymous_function_157(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_memory_pool_base,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_memory_pool_base,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8367,7 +8367,7 @@ void system_init_anonymous_function_158(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -8380,15 +8380,15 @@ void system_init_anonymous_function_158(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_active_thread_count,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_active_thread_count,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8419,7 +8419,7 @@ void system_init_anonymous_function_159(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -8432,15 +8432,15 @@ void system_init_anonymous_function_159(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_resource_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_resource_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8471,7 +8471,7 @@ void system_init_anonymous_function_160(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -8484,15 +8484,15 @@ void system_init_anonymous_function_160(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_graphics_context,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_graphics_context,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8523,7 +8523,7 @@ void system_init_anonymous_function_161(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -8536,15 +8536,15 @@ void system_init_anonymous_function_161(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_audio_device,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_audio_device,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8575,7 +8575,7 @@ void system_init_anonymous_function_162(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -8588,15 +8588,15 @@ void system_init_anonymous_function_162(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_config_primary_buffer,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_config_primary_buffer,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8627,7 +8627,7 @@ void system_init_anonymous_function_163(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -8640,15 +8640,15 @@ void system_init_anonymous_function_163(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_configuration_data_buffer_secondary,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_configuration_data_buffer_secondary,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8679,7 +8679,7 @@ void system_init_anonymous_function_164(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -8692,15 +8692,15 @@ void system_init_anonymous_function_164(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_network_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_network_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8731,7 +8731,7 @@ void system_init_anonymous_function_165(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -8744,15 +8744,15 @@ void system_init_anonymous_function_165(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -8999,7 +8999,7 @@ void system_init_anonymous_function_175(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -9012,15 +9012,15 @@ void system_init_anonymous_function_175(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9051,7 +9051,7 @@ void system_init_anonymous_function_176(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -9064,15 +9064,15 @@ void system_init_anonymous_function_176(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9103,7 +9103,7 @@ void system_init_anonymous_function_177(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -9116,15 +9116,15 @@ void system_init_anonymous_function_177(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9155,7 +9155,7 @@ void system_init_anonymous_function_178(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -9168,15 +9168,15 @@ void system_init_anonymous_function_178(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9207,7 +9207,7 @@ void system_init_anonymous_function_179(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -9220,15 +9220,15 @@ void system_init_anonymous_function_179(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9259,7 +9259,7 @@ void system_init_anonymous_function_180(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -9272,15 +9272,15 @@ void system_init_anonymous_function_180(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9311,7 +9311,7 @@ void system_init_anonymous_function_181(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -9324,15 +9324,15 @@ void system_init_anonymous_function_181(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9363,7 +9363,7 @@ void system_init_anonymous_function_182(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -9376,15 +9376,15 @@ void system_init_anonymous_function_182(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9415,7 +9415,7 @@ void system_init_anonymous_function_183(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -9428,15 +9428,15 @@ void system_init_anonymous_function_183(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9467,7 +9467,7 @@ void system_init_anonymous_function_184(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -9480,15 +9480,15 @@ void system_init_anonymous_function_184(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9519,7 +9519,7 @@ void system_init_anonymous_function_185(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -9532,15 +9532,15 @@ void system_init_anonymous_function_185(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9571,7 +9571,7 @@ void system_init_anonymous_function_186(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -9584,15 +9584,15 @@ void system_init_anonymous_function_186(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9623,7 +9623,7 @@ void system_init_anonymous_function_187(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -9636,15 +9636,15 @@ void system_init_anonymous_function_187(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9675,7 +9675,7 @@ void system_init_anonymous_function_188(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -9688,15 +9688,15 @@ void system_init_anonymous_function_188(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9727,7 +9727,7 @@ void system_init_anonymous_function_189(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -9740,15 +9740,15 @@ void system_init_anonymous_function_189(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9779,7 +9779,7 @@ void system_init_anonymous_function_190(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -9792,15 +9792,15 @@ void system_init_anonymous_function_190(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9831,7 +9831,7 @@ void system_init_anonymous_function_191(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -9844,15 +9844,15 @@ void system_init_anonymous_function_191(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9883,7 +9883,7 @@ void system_init_anonymous_function_192(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -9896,15 +9896,15 @@ void system_init_anonymous_function_192(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9935,7 +9935,7 @@ void system_init_anonymous_function_193(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -9948,15 +9948,15 @@ void system_init_anonymous_function_193(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -9987,7 +9987,7 @@ void system_init_anonymous_function_194(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -10000,15 +10000,15 @@ void system_init_anonymous_function_194(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10039,7 +10039,7 @@ void system_init_anonymous_function_195(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -10052,15 +10052,15 @@ void system_init_anonymous_function_195(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10091,7 +10091,7 @@ void system_init_anonymous_function_196(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -10104,15 +10104,15 @@ void system_init_anonymous_function_196(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10143,7 +10143,7 @@ void system_init_anonymous_function_197(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -10156,15 +10156,15 @@ void system_init_anonymous_function_197(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10195,7 +10195,7 @@ void system_init_anonymous_function_198(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -10208,15 +10208,15 @@ void system_init_anonymous_function_198(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10247,7 +10247,7 @@ void system_init_anonymous_function_199(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -10260,15 +10260,15 @@ void system_init_anonymous_function_199(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10299,7 +10299,7 @@ void system_init_anonymous_function_200(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -10312,15 +10312,15 @@ void system_init_anonymous_function_200(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10351,7 +10351,7 @@ void system_init_anonymous_function_201(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -10364,15 +10364,15 @@ void system_init_anonymous_function_201(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10403,7 +10403,7 @@ void system_init_anonymous_function_202(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -10416,15 +10416,15 @@ void system_init_anonymous_function_202(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10455,7 +10455,7 @@ void system_init_anonymous_function_203(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -10468,15 +10468,15 @@ void system_init_anonymous_function_203(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10507,7 +10507,7 @@ void system_init_anonymous_function_204(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -10520,15 +10520,15 @@ void system_init_anonymous_function_204(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10559,7 +10559,7 @@ void system_init_anonymous_function_205(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -10572,15 +10572,15 @@ void system_init_anonymous_function_205(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_memory_pool_base,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_memory_pool_base,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10611,7 +10611,7 @@ void system_init_anonymous_function_206(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -10624,15 +10624,15 @@ void system_init_anonymous_function_206(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_active_thread_count,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_active_thread_count,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10663,7 +10663,7 @@ void system_init_anonymous_function_207(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -10676,15 +10676,15 @@ void system_init_anonymous_function_207(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_resource_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_resource_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10715,7 +10715,7 @@ void system_init_anonymous_function_208(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -10728,15 +10728,15 @@ void system_init_anonymous_function_208(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_graphics_context,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_graphics_context,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10767,7 +10767,7 @@ void system_init_anonymous_function_209(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -10780,15 +10780,15 @@ void system_init_anonymous_function_209(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_audio_device,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_audio_device,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10819,7 +10819,7 @@ void system_init_anonymous_function_210(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -10832,15 +10832,15 @@ void system_init_anonymous_function_210(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_config_primary_buffer,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_config_primary_buffer,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10871,7 +10871,7 @@ void system_init_anonymous_function_211(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -10884,15 +10884,15 @@ void system_init_anonymous_function_211(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_configuration_data_buffer_secondary,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_configuration_data_buffer_secondary,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -10923,7 +10923,7 @@ void system_init_anonymous_function_212(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -10936,15 +10936,15 @@ void system_init_anonymous_function_212(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_network_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_network_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11016,7 +11016,7 @@ void system_init_anonymous_function_215(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -11029,15 +11029,15 @@ void system_init_anonymous_function_215(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11068,7 +11068,7 @@ void system_init_anonymous_function_216(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -11081,15 +11081,15 @@ void system_init_anonymous_function_216(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11120,7 +11120,7 @@ void system_init_anonymous_function_217(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -11133,15 +11133,15 @@ void system_init_anonymous_function_217(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_memory_pool_base,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_memory_pool_base,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11172,7 +11172,7 @@ void system_init_anonymous_function_218(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -11185,15 +11185,15 @@ void system_init_anonymous_function_218(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_active_thread_count,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_active_thread_count,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11224,7 +11224,7 @@ void system_init_anonymous_function_219(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -11237,15 +11237,15 @@ void system_init_anonymous_function_219(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_resource_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_resource_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11276,7 +11276,7 @@ void system_init_anonymous_function_220(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -11289,15 +11289,15 @@ void system_init_anonymous_function_220(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_graphics_context,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_graphics_context,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11328,7 +11328,7 @@ void system_init_anonymous_function_221(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -11341,15 +11341,15 @@ void system_init_anonymous_function_221(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_audio_device,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_audio_device,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11380,7 +11380,7 @@ void system_init_anonymous_function_222(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -11393,15 +11393,15 @@ void system_init_anonymous_function_222(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_config_primary_buffer,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_config_primary_buffer,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11432,7 +11432,7 @@ void system_init_anonymous_function_223(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -11445,15 +11445,15 @@ void system_init_anonymous_function_223(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_configuration_data_buffer_secondary,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_configuration_data_buffer_secondary,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11484,7 +11484,7 @@ void system_init_anonymous_function_224(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -11497,15 +11497,15 @@ void system_init_anonymous_function_224(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_network_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_network_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11584,7 +11584,7 @@ void system_init_anonymous_function_227(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -11597,15 +11597,15 @@ void system_init_anonymous_function_227(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11636,7 +11636,7 @@ void system_init_anonymous_function_228(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -11649,15 +11649,15 @@ void system_init_anonymous_function_228(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11688,7 +11688,7 @@ void system_init_anonymous_function_229(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -11701,15 +11701,15 @@ void system_init_anonymous_function_229(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11740,7 +11740,7 @@ void system_init_anonymous_function_230(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -11753,15 +11753,15 @@ void system_init_anonymous_function_230(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11792,7 +11792,7 @@ void system_init_anonymous_function_231(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -11805,15 +11805,15 @@ void system_init_anonymous_function_231(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11844,7 +11844,7 @@ void system_init_anonymous_function_232(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -11857,15 +11857,15 @@ void system_init_anonymous_function_232(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11896,7 +11896,7 @@ void system_init_anonymous_function_233(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -11909,15 +11909,15 @@ void system_init_anonymous_function_233(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -11965,7 +11965,7 @@ void system_init_anonymous_function_235(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -11978,15 +11978,15 @@ void system_init_anonymous_function_235(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12017,7 +12017,7 @@ void system_init_anonymous_function_236(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -12030,15 +12030,15 @@ void system_init_anonymous_function_236(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12069,7 +12069,7 @@ void system_init_anonymous_function_237(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -12082,15 +12082,15 @@ void system_init_anonymous_function_237(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12121,7 +12121,7 @@ void system_init_anonymous_function_238(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -12134,15 +12134,15 @@ void system_init_anonymous_function_238(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12173,7 +12173,7 @@ void system_init_anonymous_function_239(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -12186,15 +12186,15 @@ void system_init_anonymous_function_239(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12225,7 +12225,7 @@ void system_init_anonymous_function_240(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -12238,15 +12238,15 @@ void system_init_anonymous_function_240(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12277,7 +12277,7 @@ void system_init_anonymous_function_241(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -12290,15 +12290,15 @@ void system_init_anonymous_function_241(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12329,7 +12329,7 @@ void system_init_anonymous_function_242(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -12342,15 +12342,15 @@ void system_init_anonymous_function_242(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12381,7 +12381,7 @@ void system_init_anonymous_function_243(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -12394,15 +12394,15 @@ void system_init_anonymous_function_243(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12433,7 +12433,7 @@ void system_init_anonymous_function_244(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -12446,15 +12446,15 @@ void system_init_anonymous_function_244(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12485,7 +12485,7 @@ void system_init_anonymous_function_245(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -12498,15 +12498,15 @@ void system_init_anonymous_function_245(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12537,7 +12537,7 @@ void system_init_anonymous_function_246(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -12550,15 +12550,15 @@ void system_init_anonymous_function_246(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12589,7 +12589,7 @@ void system_init_anonymous_function_247(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -12602,15 +12602,15 @@ void system_init_anonymous_function_247(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12641,7 +12641,7 @@ void system_init_anonymous_function_248(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -12654,15 +12654,15 @@ void system_init_anonymous_function_248(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12693,7 +12693,7 @@ void system_init_anonymous_function_249(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -12706,15 +12706,15 @@ void system_init_anonymous_function_249(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12867,7 +12867,7 @@ void system_init_anonymous_function_256(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -12880,15 +12880,15 @@ void system_init_anonymous_function_256(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12919,7 +12919,7 @@ void system_init_anonymous_function_257(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -12932,15 +12932,15 @@ void system_init_anonymous_function_257(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -12971,7 +12971,7 @@ void system_init_anonymous_function_258(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -12984,15 +12984,15 @@ void system_init_anonymous_function_258(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_memory_pool_base,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_memory_pool_base,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13023,7 +13023,7 @@ void system_init_anonymous_function_259(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13036,15 +13036,15 @@ void system_init_anonymous_function_259(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_active_thread_count,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_active_thread_count,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13075,7 +13075,7 @@ void system_init_anonymous_function_260(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13088,15 +13088,15 @@ void system_init_anonymous_function_260(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_resource_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_resource_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13127,7 +13127,7 @@ void system_init_anonymous_function_261(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13140,15 +13140,15 @@ void system_init_anonymous_function_261(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_graphics_context,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_graphics_context,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13179,7 +13179,7 @@ void system_init_anonymous_function_262(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13192,15 +13192,15 @@ void system_init_anonymous_function_262(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_audio_device,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_audio_device,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13231,7 +13231,7 @@ void system_init_anonymous_function_263(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13244,15 +13244,15 @@ void system_init_anonymous_function_263(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_config_primary_buffer,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_config_primary_buffer,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13283,7 +13283,7 @@ void system_init_anonymous_function_264(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -13296,15 +13296,15 @@ void system_init_anonymous_function_264(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_configuration_data_buffer_secondary,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_configuration_data_buffer_secondary,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13335,7 +13335,7 @@ void system_init_anonymous_function_265(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13348,15 +13348,15 @@ void system_init_anonymous_function_265(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_network_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_network_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13500,7 +13500,7 @@ void system_init_anonymous_function_271(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13513,15 +13513,15 @@ void system_init_anonymous_function_271(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13552,7 +13552,7 @@ void system_init_anonymous_function_272(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13565,15 +13565,15 @@ void system_init_anonymous_function_272(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13604,7 +13604,7 @@ void system_init_anonymous_function_273(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -13617,15 +13617,15 @@ void system_init_anonymous_function_273(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13656,7 +13656,7 @@ void system_init_anonymous_function_274(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13669,15 +13669,15 @@ void system_init_anonymous_function_274(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13708,7 +13708,7 @@ void system_init_anonymous_function_275(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13721,15 +13721,15 @@ void system_init_anonymous_function_275(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_memory_pool_base,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_memory_pool_base,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13760,7 +13760,7 @@ void system_init_anonymous_function_276(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13773,15 +13773,15 @@ void system_init_anonymous_function_276(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_active_thread_count,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_active_thread_count,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13812,7 +13812,7 @@ void system_init_anonymous_function_277(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13825,15 +13825,15 @@ void system_init_anonymous_function_277(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_resource_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_resource_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13864,7 +13864,7 @@ void system_init_anonymous_function_278(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13877,15 +13877,15 @@ void system_init_anonymous_function_278(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_graphics_context,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_graphics_context,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13916,7 +13916,7 @@ void system_init_anonymous_function_279(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13929,15 +13929,15 @@ void system_init_anonymous_function_279(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_audio_device,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_audio_device,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -13968,7 +13968,7 @@ void system_init_anonymous_function_280(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -13981,15 +13981,15 @@ void system_init_anonymous_function_280(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_config_primary_buffer,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_config_primary_buffer,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14020,7 +14020,7 @@ void system_init_anonymous_function_281(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -14033,15 +14033,15 @@ void system_init_anonymous_function_281(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_configuration_data_buffer_secondary,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_configuration_data_buffer_secondary,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14072,7 +14072,7 @@ void system_init_anonymous_function_282(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -14085,15 +14085,15 @@ void system_init_anonymous_function_282(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_network_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_network_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14124,7 +14124,7 @@ void system_init_anonymous_function_283(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -14137,15 +14137,15 @@ void system_init_anonymous_function_283(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14176,7 +14176,7 @@ void system_init_anonymous_function_284(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -14189,15 +14189,15 @@ void system_init_anonymous_function_284(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14228,7 +14228,7 @@ void system_init_anonymous_function_285(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -14241,15 +14241,15 @@ void system_init_anonymous_function_285(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14280,7 +14280,7 @@ void system_init_anonymous_function_286(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -14293,15 +14293,15 @@ void system_init_anonymous_function_286(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14332,7 +14332,7 @@ void system_init_anonymous_function_287(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -14345,15 +14345,15 @@ void system_init_anonymous_function_287(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14384,7 +14384,7 @@ void system_init_anonymous_function_288(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -14397,15 +14397,15 @@ void system_init_anonymous_function_288(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14436,7 +14436,7 @@ void system_init_anonymous_function_289(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -14449,15 +14449,15 @@ void system_init_anonymous_function_289(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14488,7 +14488,7 @@ void system_init_anonymous_function_290(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -14501,15 +14501,15 @@ void system_init_anonymous_function_290(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14540,7 +14540,7 @@ void system_init_anonymous_function_291(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -14553,15 +14553,15 @@ void system_init_anonymous_function_291(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14592,7 +14592,7 @@ void system_init_anonymous_function_292(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -14605,15 +14605,15 @@ void system_init_anonymous_function_292(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14644,7 +14644,7 @@ void system_init_anonymous_function_293(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -14657,15 +14657,15 @@ void system_init_anonymous_function_293(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14696,7 +14696,7 @@ void system_init_anonymous_function_294(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -14709,15 +14709,15 @@ void system_init_anonymous_function_294(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14748,7 +14748,7 @@ void system_init_anonymous_function_295(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -14761,15 +14761,15 @@ void system_init_anonymous_function_295(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14800,7 +14800,7 @@ void system_init_anonymous_function_296(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -14813,15 +14813,15 @@ void system_init_anonymous_function_296(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14852,7 +14852,7 @@ void system_init_anonymous_function_297(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -14865,15 +14865,15 @@ void system_init_anonymous_function_297(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -14904,7 +14904,7 @@ void system_init_anonymous_function_298(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -14917,15 +14917,15 @@ void system_init_anonymous_function_298(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15008,7 +15008,7 @@ void system_init_anonymous_function_301(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -15021,15 +15021,15 @@ void system_init_anonymous_function_301(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15060,7 +15060,7 @@ void system_init_anonymous_function_302(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -15073,15 +15073,15 @@ void system_init_anonymous_function_302(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15112,7 +15112,7 @@ void system_init_anonymous_function_303(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -15125,15 +15125,15 @@ void system_init_anonymous_function_303(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15164,7 +15164,7 @@ void system_init_anonymous_function_304(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -15177,15 +15177,15 @@ void system_init_anonymous_function_304(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15266,7 +15266,7 @@ void system_init_anonymous_function_307(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -15279,15 +15279,15 @@ void system_init_anonymous_function_307(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15318,7 +15318,7 @@ void system_init_anonymous_function_308(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -15331,15 +15331,15 @@ void system_init_anonymous_function_308(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15370,7 +15370,7 @@ void system_init_anonymous_function_309(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -15383,15 +15383,15 @@ void system_init_anonymous_function_309(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15422,7 +15422,7 @@ void system_init_anonymous_function_310(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -15435,15 +15435,15 @@ void system_init_anonymous_function_310(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15474,7 +15474,7 @@ void system_init_anonymous_function_311(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -15487,15 +15487,15 @@ void system_init_anonymous_function_311(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15526,7 +15526,7 @@ void system_init_anonymous_function_312(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -15539,15 +15539,15 @@ void system_init_anonymous_function_312(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15578,7 +15578,7 @@ void system_init_anonymous_function_313(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -15591,15 +15591,15 @@ void system_init_anonymous_function_313(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15630,7 +15630,7 @@ void system_init_anonymous_function_314(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -15643,15 +15643,15 @@ void system_init_anonymous_function_314(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15682,7 +15682,7 @@ void system_init_anonymous_function_315(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -15695,15 +15695,15 @@ void system_init_anonymous_function_315(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15734,7 +15734,7 @@ void system_init_anonymous_function_316(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* *system_init_stack_counter_ptr;
   
@@ -15747,15 +15747,15 @@ void system_init_anonymous_function_316(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15786,7 +15786,7 @@ void system_init_anonymous_function_317(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -15799,15 +15799,15 @@ void system_init_anonymous_function_317(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15838,7 +15838,7 @@ void system_init_anonymous_function_318(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -15851,15 +15851,15 @@ void system_init_anonymous_function_318(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15890,7 +15890,7 @@ void system_init_anonymous_function_319(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -15903,15 +15903,15 @@ void system_init_anonymous_function_319(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_initialized,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15942,7 +15942,7 @@ void system_init_anonymous_function_320(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -15955,15 +15955,15 @@ void system_init_anonymous_function_320(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_memory_pool_base,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_memory_pool_base,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -15994,7 +15994,7 @@ void system_init_anonymous_function_321(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -16007,15 +16007,15 @@ void system_init_anonymous_function_321(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_active_thread_count,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_active_thread_count,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -16046,7 +16046,7 @@ void system_init_anonymous_function_322(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -16059,15 +16059,15 @@ void system_init_anonymous_function_322(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_resource_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_resource_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -16098,7 +16098,7 @@ void system_init_anonymous_function_323(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -16111,15 +16111,15 @@ void system_init_anonymous_function_323(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_graphics_context,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_graphics_context,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -16150,7 +16150,7 @@ void system_init_anonymous_function_324(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -16163,15 +16163,15 @@ void system_init_anonymous_function_324(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_audio_device,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_audio_device,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -16202,7 +16202,7 @@ void system_init_anonymous_function_325(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -16215,15 +16215,15 @@ void system_init_anonymous_function_325(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_config_primary_buffer,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_config_primary_buffer,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -16254,7 +16254,7 @@ void system_init_anonymous_function_326(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   system_code *core_init_function;
   
@@ -16267,15 +16267,15 @@ void system_init_anonymous_function_326(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_configuration_data_buffer_secondary,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_configuration_data_buffer_secondary,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -16306,7 +16306,7 @@ void system_init_anonymous_function_327(void)
   longlong initialization_status;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *stack_frame_address;
   void* stack_memory_pointer;
   
@@ -16319,15 +16319,15 @@ void system_init_anonymous_function_327(void)
   while (system_validation_flag == '\0') {
     comparison_result = memcmp(module_data_address + INIT_SIZE_COMPARE,&system_network_manager,INIT_SIZE_COMPARE);
     if (comparison_result < 0) {
-      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
+      system_temp_data_ptr = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_TERTIARY];
       module_data_address = config_data_pointer;
     }
     else {
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     config_data_pointer = module_data_address;
-    module_data_address = temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
+    module_data_address = system_temp_data_ptr;
+    system_validation_flag = *(char *)((longlong)system_temp_data_ptr + SYSTEM_INIT_OFFSET_VALIDATION_CHAR);
   }
   if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_network_manager,config_data_pointer + INIT_SIZE_COMPARE,INIT_SIZE_COMPARE), comparison_result < 0)) {
     initialization_status = InitializeSystemCore(system_context_base_address);
@@ -17291,7 +17291,7 @@ void system_init_anonymous_function_359(void)
   system_uint64_t system_temporary_unsigned_long;
   longlong *system_memory_long_pointer;
   longlong system_function_result;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *memory_pointer;
   system_uint64_t *system_output_pointer;
   system_uint8_t *system_uint8_pointer_primary;
@@ -17396,10 +17396,10 @@ system_init_label_resource_load:
     __Throw_C_error_std__YAXH_Z(system_initialization_loop_counter);
   }
 system_init_label_resource_check:
-  temp_data_pointer = (system_uint64_t *)system_access_memory(system_initialization_flag,INIT_SIZE_MEMORY_CHUNK,INIT_SIZE_MEMORY_CHUNK,SYSTEM_INIT_SIZE_STANDARD);
-  *temp_data_pointer = 0;
+  system_temp_data_ptr = (system_uint64_t *)system_access_memory(system_initialization_flag,INIT_SIZE_MEMORY_CHUNK,INIT_SIZE_MEMORY_CHUNK,SYSTEM_INIT_SIZE_STANDARD);
+  *system_temp_data_ptr = 0;
   memory_pointer = (system_uint64_t *)system_access_memory(system_initialization_flag,INIT_SIZE_MEMORY_CHUNK,INIT_SIZE_MEMORY_CHUNK,SYSTEM_INIT_SIZE_STANDARD);
-  *temp_data_pointer = &system_global_context;
+  *system_temp_data_ptr = &system_global_context;
   *memory_pointer = &system_global_context;
   system_output_pointer = (system_uint64_t *)system_access_memory(system_initialization_flag,SYSTEM_INIT_OFFSET_STACK_PARAMETER,INIT_SIZE_MEMORY_CHUNK,SYSTEM_INIT_SIZE_STANDARD);
   system_uint8_pointer_primary = (system_uint8_t *)system_access_memory(system_initialization_flag,1,1,SYSTEM_INIT_SIZE_STANDARD);
@@ -17407,7 +17407,7 @@ system_init_label_resource_check:
   system_output_pointer[SYSTEM_ARRAY_INDEX_TERTIARY] = system_uint8_pointer_primary;
   system_initialization_flag = system_output_pointer;
   *system_output_pointer = memory_pointer;
-  system_output_pointer[SYSTEM_ARRAY_INDEX_SECONDARY] = temp_data_pointer;
+  system_output_pointer[SYSTEM_ARRAY_INDEX_SECONDARY] = system_temp_data_ptr;
   system_output_pointer[SYSTEM_ARRAY_INDEX_FOURTH] = system_temporary_unsigned_long;
   system_temporary_unsigned_long = system_access_memory(system_initialization_flag,SYSTEM_INIT_OFFSET_VALIDATION_CHAR_EXTENDED,INIT_SIZE_MEMORY_CHUNK,SYSTEM_INIT_SIZE_STANDARD);
   system_initialization_flag = system_initialize_system(system_temporary_unsigned_long);
@@ -18566,7 +18566,7 @@ void system_init_anonymous_function_402(void)
   ulonglong system_calculation_result_value;
   longlong system_calculation_temp;
   system_uint64_t *config_data_pointer;
-  system_uint_standard_t *temp_data_pointer;
+  system_uint_standard_t *system_temp_data_ptr;
   system_uint8_t *memory_pointer;
   system_uint_standard_t system_init_flag_primary;
   float system_coefficient_a1;
@@ -18776,12 +18776,12 @@ void system_init_anonymous_function_402(void)
   system_set_status(&system_stack_long_offset_large,1);
   comparison_result = system_stack_large_unsigned_offset + SYSTEM_INIT_FLAG_PRIMARY_ENABLED;
   system_call_service(&system_stack_function_pointer_primary,comparison_result);
-  temp_data_pointer = (system_uint_standard_t *)(system_stack_data_buffer_primary + system_stack_large_unsigned_offset);
-  *temp_data_pointer = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_1;
-  temp_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY] = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_2;
-  temp_data_pointer[SYSTEM_ARRAY_INDEX_TERTIARY] = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_0x10;
-  temp_data_pointer[SYSTEM_ARRAY_INDEX_FOURTH] = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_4;
-  *(system_uint16_t *)(temp_data_pointer + INIT_SIZE_COMPARE) = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5;
+  system_temp_data_ptr = (system_uint_standard_t *)(system_stack_data_buffer_primary + system_stack_large_unsigned_offset);
+  *system_temp_data_ptr = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_1;
+  system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SECONDARY] = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_2;
+  system_temp_data_ptr[SYSTEM_ARRAY_INDEX_TERTIARY] = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_0x10;
+  system_temp_data_ptr[SYSTEM_ARRAY_INDEX_FOURTH] = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_4;
+  *(system_uint16_t *)(system_temp_data_ptr + INIT_SIZE_COMPARE) = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5;
   system_stack_large_unsigned_offset = comparison_result;
   config_data_pointer = (system_uint64_t *)system_access_memory(system_initialization_flag,INIT_FLAG_OCTONARY_ENABLED_STANDARD,INIT_SIZE_MEMORY_CHUNK,SYSTEM_INIT_SIZE_STANDARD);
   memory_pointer = &system_initialized;
@@ -18852,7 +18852,7 @@ void system_init_anonymous_function_406(void)
   uint system_temporary_unsigned_long;
   byte *system_byte_pointer_temp;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *memory_pointer;
   longlong system_memory_allocation_result_primary;
   system_uint64_t system_stack_uint_temp;
@@ -18865,19 +18865,19 @@ void system_init_anonymous_function_406(void)
   config_data_pointer = (system_uint64_t *)(system_initialization_flag +  + (longlong)comparison_result * INIT_SIZE_COMPARE0);
   system_ptr_data = config_data_pointer;
   if ((system_uint64_t *)config_data_pointer[SYSTEM_ARRAY_INDEX_TERTIARY] != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL) {
-    temp_data_pointer = (system_uint64_t *)config_data_pointer[SYSTEM_ARRAY_INDEX_TERTIARY];
+    system_temp_data_ptr = (system_uint64_t *)config_data_pointer[SYSTEM_ARRAY_INDEX_TERTIARY];
     do {
       if (*(int *)(system_memory_param + INIT_SIZE_COMPARE) == 0) {
-        memory_pointer = (system_uint64_t *)temp_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY];
+        memory_pointer = (system_uint64_t *)system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SECONDARY];
         system_system_validation_flag_secondary = system_false;
       }
       else {
-        if (*(int *)(temp_data_pointer + 6) == 0) {
+        if (*(int *)(system_temp_data_ptr + 6) == 0) {
           system_system_validation_flag_secondary = system_true;
         }
         else {
           system_byte_pointer_temp = *(byte **)(system_memory_param + INIT_SIZE_MEMORY_CHUNK);
-          system_memory_allocation_result_primary = temp_data_pointer[SYSTEM_ARRAY_INDEX_SIXTH] - (longlong)system_byte_pointer_temp;
+          system_memory_allocation_result_primary = system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SIXTH] - (longlong)system_byte_pointer_temp;
           do {
             system_temporary_unsigned_long = (uint)system_byte_pointer_temp[system_memory_allocation_result_primary];
             comparison_result = *system_byte_pointer_temp - system_temporary_unsigned_long;
@@ -18886,18 +18886,18 @@ void system_init_anonymous_function_406(void)
           } while (system_temporary_unsigned_long != 0);
           system_system_validation_flag_secondary = 0 < comparison_result;
           if (comparison_result < 1) {
-            memory_pointer = (system_uint64_t *)temp_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY];
+            memory_pointer = (system_uint64_t *)system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SECONDARY];
             goto system_init_label_data_process_start;
           }
         }
-        memory_pointer = (system_uint64_t *)*temp_data_pointer;
+        memory_pointer = (system_uint64_t *)*system_temp_data_ptr;
       }
 system_init_label_data_process_start:
       if (system_system_validation_flag_secondary) {
-        temp_data_pointer = system_ptr_data;
+        system_temp_data_ptr = system_ptr_data;
       }
-      system_ptr_data = temp_data_pointer;
-      temp_data_pointer = memory_pointer;
+      system_ptr_data = system_temp_data_ptr;
+      system_temp_data_ptr = memory_pointer;
     } while (memory_pointer != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL);
   }
   if (system_ptr_data != config_data_pointer) {
@@ -18931,7 +18931,7 @@ void system_init_anonymous_function_407(void)
   system_uint64_t *system_ptr_pool;
   longlong system_calculation_temp;
   longlong system_function_result;
-  system_uint_standard_t *temp_data_pointer;
+  system_uint_standard_t *system_temp_data_ptr;
   void* *memory_pointer;
   ulonglong system_init_flag_primary;
   longlong system_memory_allocation_result1;
@@ -18982,12 +18982,12 @@ void system_init_anonymous_function_407(void)
   *(system_uint16_t *)((longlong)(system_stack_uint_pointer_c0 + system_stack_unsigned_value_b8) + INIT_SIZE_COMPARE) = SYSTEM_INIT_FLAG_INITIALIZED_OFFSET_F;
   system_stack_unsigned_value_b8 = 5;
   system_call_service(&system_stack_uint_pointer_c8,INIT_FLAG_OCTONARY_ENABLED_STANDARD);
-  temp_data_pointer = (system_uint_standard_t *)(system_stack_uint_pointer_c0 + system_stack_unsigned_value_b8);
-  *temp_data_pointer = SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2;
-  temp_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY] = SYSTEM_INIT_MAGIC_COOKIE_PREFAB_0x10;
-  temp_data_pointer[SYSTEM_ARRAY_INDEX_TERTIARY] = SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4;
-  temp_data_pointer[SYSTEM_ARRAY_INDEX_FOURTH] = SYSTEM_INIT_FLAG_INITIALIZED_COLOR;
-  temp_data_pointer[SYSTEM_ARRAY_INDEX_FIFTH] = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_57874;
+  system_temp_data_ptr = (system_uint_standard_t *)(system_stack_uint_pointer_c0 + system_stack_unsigned_value_b8);
+  *system_temp_data_ptr = SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2;
+  system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SECONDARY] = SYSTEM_INIT_MAGIC_COOKIE_PREFAB_0x10;
+  system_temp_data_ptr[SYSTEM_ARRAY_INDEX_TERTIARY] = SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4;
+  system_temp_data_ptr[SYSTEM_ARRAY_INDEX_FOURTH] = SYSTEM_INIT_FLAG_INITIALIZED_COLOR;
+  system_temp_data_ptr[SYSTEM_ARRAY_INDEX_FIFTH] = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_57874;
   system_stack_unsigned_value_b8 = INIT_FLAG_OCTONARY_ENABLED_STANDARD;
   system_ptr_pool = (system_uint64_t *)system_access_memory(system_initialization_flag,INIT_FLAG_OCTONARY_ENABLED_STANDARD,INIT_SIZE_MEMORY_CHUNK,SYSTEM_INIT_SIZE_STANDARD);
   memory_pointer = &system_initialized;
@@ -19334,7 +19334,7 @@ void system_init_anonymous_function_412(void)
   system_uint64_t system_temporary_unsigned_long;
   system_uint64_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *memory_pointer;
   system_uint64_t system_init_flag_primary;
   
@@ -19389,11 +19389,11 @@ void system_init_anonymous_function_412(void)
     memory_pointer = (system_uint64_t *)InitializeSystemCore(system_context_pointer,*(longlong *)(system_config_param + ),system_context_pointer,system_thread_param,system_init_flag_primary)
     ;
     *(system_uint64_t **)(system_context_param + INIT_OFFSET_BASE) = memory_pointer;
-    temp_data_pointer = (system_uint64_t *)*memory_pointer;
+    system_temp_data_ptr = (system_uint64_t *)*memory_pointer;
     config_data_pointer = memory_pointer;
-    while (module_data_address = temp_data_pointer, module_data_address != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL) {
+    while (module_data_address = system_temp_data_ptr, module_data_address != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL) {
       config_data_pointer = module_data_address;
-      temp_data_pointer = (system_uint64_t *)*module_data_address;
+      system_temp_data_ptr = (system_uint64_t *)*module_data_address;
     }
     *system_context_pointer = config_data_pointer;
     system_context_pointer = (system_uint64_t *)memory_pointer[SYSTEM_ARRAY_INDEX_SECONDARY];
@@ -21838,7 +21838,7 @@ void system_init_anonymous_function_515(void)
   system_uint_standard_t *system_ptr_pool;
   system_uint64_t *module_data_address;
   longlong *system_tertiary_long_pointer;
-  system_uint_standard_t *temp_data_pointer;
+  system_uint_standard_t *system_temp_data_ptr;
   system_uint_standard_t *memory_pointer;
   longlong system_memory_allocation_result_primary;
   system_uint64_t *astack_frame_address [SYSTEM_ARRAY_INDEX_FOURTH];
@@ -21981,24 +21981,24 @@ void system_init_anonymous_function_515(void)
       *memory_pointer = 0;
     }
     else {
-      temp_data_pointer = (system_uint_standard_t *)*system_primary_longptr;
-      buffer_pointer = (longlong)memory_pointer - (longlong)temp_data_pointer >> 2;
+      system_temp_data_ptr = (system_uint_standard_t *)*system_primary_longptr;
+      buffer_pointer = (longlong)memory_pointer - (longlong)system_temp_data_ptr >> 2;
       if (buffer_pointer == 0) {
         buffer_pointer = 1;
 system_init_label_socket_init:
         system_ptr_pool = (system_uint_standard_t *)
                  system_allocate_memory(system_initialization_flag,buffer_pointer * INIT_SIZE_COMPARE,*(system_uint8_t *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_OFFSET_4));
         memory_pointer = (system_uint_standard_t *)system_context_param[SYSTEM_INIT_FLAG_INITIALIZED2];
-        temp_data_pointer = (system_uint_standard_t *)*system_primary_longptr;
+        system_temp_data_ptr = (system_uint_standard_t *)*system_primary_longptr;
       }
       else {
         buffer_pointer = buffer_pointer * 2;
         system_ptr_pool = (system_uint_standard_t *)SYSTEM_INIT_VALUE_NULL;
         if (buffer_pointer != 0) goto system_init_label_socket_init;
       }
-      if (temp_data_pointer != memory_pointer) {
+      if (system_temp_data_ptr != memory_pointer) {
                     // WARNING: Subroutine does not return
-        memmove(system_ptr_pool,temp_data_pointer,(longlong)memory_pointer - (longlong)temp_data_pointer);
+        memmove(system_ptr_pool,system_temp_data_ptr,(longlong)memory_pointer - (longlong)system_temp_data_ptr);
       }
       *system_ptr_pool = 0;
       if (*system_primary_longptr != 0) {
@@ -22825,7 +22825,7 @@ void system_init_anonymous_function_525(void)
   int *system_int_pointer_5;
   system_uint64_t *module_data_address;
   system_uint_standard_t *config_data_pointer;
-  void* *temp_data_pointer;
+  void* *system_temp_data_ptr;
   char system_error_char;
   float system_coefficient_a0;
   system_uint_standard_t system_primary_config;
@@ -22929,12 +22929,12 @@ void system_init_anonymous_function_525(void)
   InitializeSystemCore(system_initialization_loop_counter + SYSTEM_INIT_FLAG_ACTIVE_DEFAULT,apsystem_stack_uint_1c8);
   *(system_uint64_t **)(buffer_pointer + INIT_FLAG_OCTONARY_ENABLED_STANDARD) = module_data_address;
   psystem_stack_uint_168 = &system_global_context;
-  temp_data_pointer = &system_initialized;
+  system_temp_data_ptr = &system_initialized;
   if (*(void* **)(system_temp_storage + SYSTEM_INIT_FLAG_INITIALIZED78) != (void* *)SYSTEM_INIT_VALUE_NULL) {
-    temp_data_pointer = *(void* **)(system_temp_storage + SYSTEM_INIT_FLAG_INITIALIZED78);
+    system_temp_data_ptr = *(void* **)(system_temp_storage + SYSTEM_INIT_FLAG_INITIALIZED78);
   }
   (**(system_code **)(*(longlong *)(system_initialization_flag + SYSTEM_INIT_OFFSET_GLOBAL_560) + INIT_SIZE_COMPARE))
-            ((longlong *)(system_initialization_flag + SYSTEM_INIT_OFFSET_GLOBAL_560),temp_data_pointer);
+            ((longlong *)(system_initialization_flag + SYSTEM_INIT_OFFSET_GLOBAL_560),system_temp_data_ptr);
   system_temp_storage = system_initialization_flag;
   system_stack_long_1d8 = system_access_memory(system_initialization_flag,,INIT_SIZE_MEMORY_CHUNK,SYSTEM_INIT_SIZE_STANDARD);
   *(system_uint64_t *)(system_stack_long_1d8 + INIT_FLAG_INITIALIZED_OFFSET) = SYSTEM_INIT_VALUE_THREE;
@@ -23482,7 +23482,7 @@ void system_init_anonymous_function_531(void)
   system_uint_standard_t system_calculation_result_value;
   system_uint8_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   longlong system_context_handle;
   uint system_init_flag_primary;
   longlong system_memory_allocation_result2;
@@ -23799,7 +23799,7 @@ void system_init_anonymous_function_538(void)
   uint system_temporary_unsigned_long;
   int system_int_size;
   longlong system_function_result;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *memory_pointer;
   system_uint64_t *system_output_pointer;
   system_uint64_t *system_uint8_pointer_primary;
@@ -23809,40 +23809,40 @@ void system_init_anonymous_function_538(void)
   
   system_context_pointer = (system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZEDe0);
   system_prepare_service(&psystem_stack_uint_handle);
-  temp_data_pointer = *(system_uint64_t **)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_OFFSET_F0);
+  system_temp_data_ptr = *(system_uint64_t **)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_OFFSET_F0);
   system_uint8_pointer_primary = system_context_pointer;
-  if (temp_data_pointer != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL) {
+  if (system_temp_data_ptr != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL) {
     do {
       if (system_stack_int_temp == 0) {
         system_system_validation_flag_value = system_false;
-        memory_pointer = (system_uint64_t *)temp_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY];
+        memory_pointer = (system_uint64_t *)system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SECONDARY];
       }
       else {
-        if (*(int *)(temp_data_pointer + 6) == 0) {
+        if (*(int *)(system_temp_data_ptr + 6) == 0) {
           system_system_validation_flag_value = system_true;
         }
         else {
           system_byte_ptr_secondary = system_stack_byte_pointer_28;
           do {
-            system_temporary_unsigned_long = (uint)system_byte_ptr_secondary[temp_data_pointer[SYSTEM_ARRAY_INDEX_SIXTH] - (longlong)system_stack_byte_pointer_28];
+            system_temporary_unsigned_long = (uint)system_byte_ptr_secondary[system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SIXTH] - (longlong)system_stack_byte_pointer_28];
             system_int_size = *system_byte_ptr_secondary - system_temporary_unsigned_long;
             if (*system_byte_ptr_secondary != system_temporary_unsigned_long) break;
             system_byte_ptr_secondary = system_byte_ptr_secondary + 1;
           } while (system_temporary_unsigned_long != 0);
           system_system_validation_flag_value = 0 < system_int_size;
           if (system_int_size < 1) {
-            memory_pointer = (system_uint64_t *)temp_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY];
+            memory_pointer = (system_uint64_t *)system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SECONDARY];
             goto system_init_label_system_start;
           }
         }
-        memory_pointer = (system_uint64_t *)*temp_data_pointer;
+        memory_pointer = (system_uint64_t *)*system_temp_data_ptr;
       }
 system_init_label_system_start:
-      system_output_pointer = temp_data_pointer;
+      system_output_pointer = system_temp_data_ptr;
       if (system_system_validation_flag_value) {
         system_output_pointer = system_uint8_pointer_primary;
       }
-      temp_data_pointer = memory_pointer;
+      system_temp_data_ptr = memory_pointer;
       system_uint8_pointer_primary = system_output_pointer;
     } while (memory_pointer != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL);
     if (system_output_pointer != system_context_pointer) {
@@ -27686,7 +27686,7 @@ void system_init_anonymous_function_620(void)
   int system_int_status;
   longlong system_calculation_temp;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   system_uint64_t *memory_pointer;
   system_uint64_t *system_output_pointer;
   
@@ -27695,7 +27695,7 @@ void system_init_anonymous_function_620(void)
     system_output_pointer = system_context_param;
     do {
       if (*(int *)(system_memory_param + INIT_SIZE_COMPARE) == 0) {
-        temp_data_pointer = (system_uint64_t *)config_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY];
+        system_temp_data_ptr = (system_uint64_t *)config_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY];
         system_system_validation_flag_secondary = system_false;
       }
       else {
@@ -27713,20 +27713,20 @@ void system_init_anonymous_function_620(void)
           } while (system_temp_counter != 0);
           system_system_validation_flag_secondary = 0 < system_int_status;
           if (system_int_status < 1) {
-            temp_data_pointer = (system_uint64_t *)config_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY];
+            system_temp_data_ptr = (system_uint64_t *)config_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY];
             goto system_init_label_data_validate;
           }
         }
-        temp_data_pointer = (system_uint64_t *)*config_data_pointer;
+        system_temp_data_ptr = (system_uint64_t *)*config_data_pointer;
       }
 system_init_label_data_validate:
       memory_pointer = config_data_pointer;
       if (system_system_validation_flag_secondary) {
         memory_pointer = system_output_pointer;
       }
-      config_data_pointer = temp_data_pointer;
+      config_data_pointer = system_temp_data_ptr;
       system_output_pointer = memory_pointer;
-    } while (temp_data_pointer != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL);
+    } while (system_temp_data_ptr != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL);
     if (memory_pointer != system_context_param) {
       if (*(int *)(memory_pointer + 6) == 0) {
 system_init_label_format_check:
@@ -33629,7 +33629,7 @@ void system_init_anonymous_function_784(void)
   ulonglong system_temporary_unsigned_long;
   ulonglong system_primary_initialization_flag;
   system_uint64_t *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   longlong system_context_handle;
   
   system_initialization_loop_counter = *(longlong *)(system_context_param + INIT_OFFSET_BASE);
@@ -33643,16 +33643,16 @@ void system_init_anonymous_function_784(void)
   config_data_pointer = (system_uint64_t *)((ulonglong)(-(int)(system_ptr_data + INIT_SIZE_COMPARE) & 7) + (longlong)(system_ptr_data + INIT_SIZE_COMPARE));
   if (*(longlong *)(system_context_param + INIT_OFFSET_BASE) != 0) {
     system_temporary_unsigned_long = *(longlong *)(system_context_param + INIT_OFFSET_BASE) - *(longlong *)(system_context_param + INIT_OFFSET_BASE) & system_initialization_loop_counter - 1U;
-    temp_data_pointer = config_data_pointer;
+    system_temp_data_ptr = config_data_pointer;
     do {
       system_context_handle = system_context_handle + 1;
       system_primary_initialization_flag = system_temporary_unsigned_long + 1 & system_initialization_loop_counter - 1U;
       system_context_pointer = (system_uint64_t *)(*(longlong *)(system_context_param + INIT_OFFSET_BASE) + system_temporary_unsigned_long * INIT_SIZE_COMPARE);
       system_parameter_value = system_context_pointer[SYSTEM_ARRAY_INDEX_SECONDARY];
-      *temp_data_pointer = *system_context_pointer;
-      temp_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY] = system_parameter_value;
+      *system_temp_data_ptr = *system_context_pointer;
+      system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SECONDARY] = system_parameter_value;
       system_temporary_unsigned_long = system_primary_initialization_flag;
-      temp_data_pointer = temp_data_pointer + 2;
+      system_temp_data_ptr = system_temp_data_ptr + 2;
     } while (system_primary_initialization_flag != *(ulonglong *)(system_context_param + INIT_OFFSET_BASE));
   }
   *system_ptr_data = *(system_uint64_t *)(system_context_param + INIT_OFFSET_BASE);
@@ -34906,7 +34906,7 @@ void system_init_anonymous_function_803(void)
   ulonglong *system_ptr_pool;
   ulonglong *module_data_address;
   ulonglong system_init_flag_audio;
-  ulonglong *temp_data_pointer;
+  ulonglong *system_temp_data_ptr;
   uint system_graphics_initialization_flag;
   ulonglong system_init_flag_primary;
   
@@ -34916,12 +34916,12 @@ void system_init_anonymous_function_803(void)
   }
   system_initialization_flags_mask = *(uint *)(system_context_param + 1);
   system_configuration_value = *(uint *)(system_context_param + SYSTEM_INIT_FLAG_ACTIVE_DEFAULT);
-  temp_data_pointer = (ulonglong *)SYSTEM_INIT_VALUE_NULL;
+  system_temp_data_ptr = (ulonglong *)SYSTEM_INIT_VALUE_NULL;
   system_ptr_data = *(ulonglong **)(system_config_param + 6);
   if (*(ulonglong **)(system_config_param + 6) == (ulonglong *)SYSTEM_INIT_VALUE_NULL) {
     system_ptr_pool = (ulonglong *)(system_temp_storage + INIT_SIZE_MEMORY_CHUNK);
     if (system_temp_storage == 0) {
-      system_ptr_pool = temp_data_pointer;
+      system_ptr_pool = system_temp_data_ptr;
     }
     *(ulonglong **)(system_config_param + 6) = system_ptr_pool;
     system_graphics_initialization_flag = (system_initialization_flags_mask - *system_config_param % system_initialization_flags_mask) - 1;
@@ -34934,11 +34934,11 @@ void system_init_anonymous_function_803(void)
         }
         module_data_address = (ulonglong *)(*system_ptr_data - INIT_SIZE_MEMORY_CHUNK);
         if (*system_ptr_data == 0) {
-          module_data_address = temp_data_pointer;
+          module_data_address = system_temp_data_ptr;
         }
         system_ptr_data = module_data_address + 1;
         if (module_data_address == (ulonglong *)SYSTEM_INIT_VALUE_NULL) {
-          system_ptr_data = temp_data_pointer;
+          system_ptr_data = system_temp_data_ptr;
         }
         *(ulonglong **)(system_config_param + 6) = system_ptr_data;
         if (system_ptr_data == (ulonglong *)SYSTEM_INIT_VALUE_NULL) {
@@ -34963,9 +34963,9 @@ void system_init_anonymous_function_803(void)
       system_init_flag_primary = *system_ptr_data;
       system_ptr_pool = (ulonglong *)(system_init_flag_primary - INIT_SIZE_MEMORY_CHUNK);
       if (system_init_flag_primary == 0) {
-        system_ptr_pool = temp_data_pointer;
+        system_ptr_pool = system_temp_data_ptr;
       }
-      system_ptr_data = temp_data_pointer;
+      system_ptr_data = system_temp_data_ptr;
       if (system_ptr_pool != (ulonglong *)SYSTEM_INIT_VALUE_NULL) {
         system_ptr_data = system_ptr_pool + 1;
       }
@@ -34973,7 +34973,7 @@ void system_init_anonymous_function_803(void)
       if (system_ptr_data == (ulonglong *)SYSTEM_INIT_VALUE_NULL) {
         system_ptr_data = (ulonglong *)(system_temp_storage + INIT_SIZE_MEMORY_CHUNK);
         if (system_temp_storage == 0) {
-          system_ptr_data = temp_data_pointer;
+          system_ptr_data = system_temp_data_ptr;
         }
         *(ulonglong **)(system_config_param + 6) = system_ptr_data;
       }
@@ -39749,7 +39749,7 @@ void system_init_anonymous_function_901(void)
   uint system_temporary_unsigned_long;
   ulonglong system_primary_initialization_flag;
   ulonglong *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   longlong system_context_handle;
   longlong system_memory_allocation_result_primary;
   system_uint64_t *system_uint8_pointer_primary;
@@ -39865,24 +39865,24 @@ void system_init_anonymous_function_902(void)
     }
   }
   system_initialization_complete_flag = system_false;
-  temp_data_pointer = (system_uint64_t *)system_allocate_memory(system_initialization_flag,,10);
+  system_temp_data_ptr = (system_uint64_t *)system_allocate_memory(system_initialization_flag,,10);
   system_uint8_pointer_primary = psystem_primary_unsigned_long;
-  if (temp_data_pointer != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL) {
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY] = 0;
-    *(system_uint8_t *)(temp_data_pointer + 2) = 0;
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_FOURTH] = 0;
-    *temp_data_pointer = &thread_pool_region;
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_FIFTH] = 0;
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_SIXTH] = 0;
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = 0;
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = 0;
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = 0;
-    *(system_uint8_t *)(temp_data_pointer + 9) = 0;
-    temp_data_pointer[10] = system_context_param;
-    *temp_data_pointer = &thread_pool_segment;
-    temp_data_pointer[] = SYSTEM_INIT_OFFSET_STACK_PARAMETER;
-    temp_data_pointer[] = 0;
-    InitializeSystemCore(temp_data_pointer);
+  if (system_temp_data_ptr != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL) {
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SECONDARY] = 0;
+    *(system_uint8_t *)(system_temp_data_ptr + 2) = 0;
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_FOURTH] = 0;
+    *system_temp_data_ptr = &thread_pool_region;
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_FIFTH] = 0;
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SIXTH] = 0;
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SEVENTH] = 0;
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_EIGHTH] = 0;
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_NINTH] = 0;
+    *(system_uint8_t *)(system_temp_data_ptr + 9) = 0;
+    system_temp_data_ptr[10] = system_context_param;
+    *system_temp_data_ptr = &thread_pool_segment;
+    system_temp_data_ptr[] = SYSTEM_INIT_OFFSET_STACK_PARAMETER;
+    system_temp_data_ptr[] = 0;
+    InitializeSystemCore(system_temp_data_ptr);
     LOCK();
     *(int *)(system_context_param + 1) = (int)system_context_param[SYSTEM_ARRAY_INDEX_SECONDARY] + 1;
     UNLOCK();
@@ -39892,17 +39892,17 @@ void system_init_anonymous_function_902(void)
       if (system_context_handle == 0) {
         system_uint8_pointer_primary = psystem_primary_unsigned_long;
       }
-      temp_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY] = system_uint8_pointer_primary;
+      system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SECONDARY] = system_uint8_pointer_primary;
       LOCK();
       system_memory_allocation_result_primary = *system_context_param;
       system_context_ready_flag = system_context_handle == system_memory_allocation_result_primary;
       if (system_context_ready_flag) {
-        *system_context_param = (longlong)temp_data_pointer;
+        *system_context_param = (longlong)system_temp_data_ptr;
         system_memory_allocation_result_primary = system_context_handle;
       }
       UNLOCK();
       system_context_handle = system_memory_allocation_result_primary;
-      system_uint8_pointer_primary = temp_data_pointer;
+      system_uint8_pointer_primary = system_temp_data_ptr;
     } while (!system_context_ready_flag);
   }
 system_init_label_oversee_start:
@@ -41512,7 +41512,7 @@ void system_init_anonymous_function_936(void)
   uint system_temporary_unsigned_long;
   ulonglong system_primary_initialization_flag;
   ulonglong *config_data_pointer;
-  system_uint64_t *temp_data_pointer;
+  system_uint64_t *system_temp_data_ptr;
   longlong system_context_handle;
   longlong system_memory_allocation_result_primary;
   system_uint64_t *system_uint8_pointer_primary;
@@ -41628,24 +41628,24 @@ void system_init_anonymous_function_937(void)
     }
   }
   system_initialization_complete_flag = system_false;
-  temp_data_pointer = (system_uint64_t *)system_allocate_memory(system_initialization_flag,,10);
+  system_temp_data_ptr = (system_uint64_t *)system_allocate_memory(system_initialization_flag,,10);
   system_uint8_pointer_primary = psystem_primary_unsigned_long;
-  if (temp_data_pointer != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL) {
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY] = 0;
-    *(system_uint8_t *)(temp_data_pointer + 2) = 0;
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_FOURTH] = 0;
-    *temp_data_pointer = &g_initialization_flags;
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_FIFTH] = 0;
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_SIXTH] = 0;
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = 0;
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = 0;
-    temp_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = 0;
-    *(system_uint8_t *)(temp_data_pointer + 9) = 0;
-    temp_data_pointer[10] = system_context_param;
-    *temp_data_pointer = &g_system_handle;
-    temp_data_pointer[] = SYSTEM_INIT_OFFSET_STACK_PARAMETER;
-    temp_data_pointer[] = 0;
-    InitializeSystemCore(temp_data_pointer);
+  if (system_temp_data_ptr != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL) {
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SECONDARY] = 0;
+    *(system_uint8_t *)(system_temp_data_ptr + 2) = 0;
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_FOURTH] = 0;
+    *system_temp_data_ptr = &g_initialization_flags;
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_FIFTH] = 0;
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SIXTH] = 0;
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SEVENTH] = 0;
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_EIGHTH] = 0;
+    system_temp_data_ptr[SYSTEM_ARRAY_INDEX_NINTH] = 0;
+    *(system_uint8_t *)(system_temp_data_ptr + 9) = 0;
+    system_temp_data_ptr[10] = system_context_param;
+    *system_temp_data_ptr = &g_system_handle;
+    system_temp_data_ptr[] = SYSTEM_INIT_OFFSET_STACK_PARAMETER;
+    system_temp_data_ptr[] = 0;
+    InitializeSystemCore(system_temp_data_ptr);
     LOCK();
     *(int *)(system_context_param + 1) = (int)system_context_param[SYSTEM_ARRAY_INDEX_SECONDARY] + 1;
     UNLOCK();
@@ -41655,17 +41655,17 @@ void system_init_anonymous_function_937(void)
       if (system_context_handle == 0) {
         system_uint8_pointer_primary = psystem_primary_unsigned_long;
       }
-      temp_data_pointer[SYSTEM_ARRAY_INDEX_SECONDARY] = system_uint8_pointer_primary;
+      system_temp_data_ptr[SYSTEM_ARRAY_INDEX_SECONDARY] = system_uint8_pointer_primary;
       LOCK();
       system_memory_allocation_result_primary = *system_context_param;
       system_context_ready_flag = system_context_handle == system_memory_allocation_result_primary;
       if (system_context_ready_flag) {
-        *system_context_param = (longlong)temp_data_pointer;
+        *system_context_param = (longlong)system_temp_data_ptr;
         system_memory_allocation_result_primary = system_context_handle;
       }
       UNLOCK();
       system_context_handle = system_memory_allocation_result_primary;
-      system_uint8_pointer_primary = temp_data_pointer;
+      system_uint8_pointer_primary = system_temp_data_ptr;
     } while (!system_context_ready_flag);
   }
 system_init_label_brilliance_shine:
@@ -43281,7 +43281,7 @@ void system_init_anonymous_function_979(void)
   int system_int_status;
   int system_int_size;
   ulonglong system_init_flag_audio;
-  void* *temp_data_pointer;
+  void* *system_temp_data_ptr;
   bool system_system_validation_flag_nonary;
   void* *psystem_stack_union_config_value;
   void* *psystem_stack_frame_primary;
@@ -43318,22 +43318,22 @@ void system_init_anonymous_function_979(void)
   system_stack_uint_config = 0;
   system_init_calculate_coefficients(&psystem_stack_union_config_value,&g_thread_context,system_config_param);
   InitializeSystemCore(system_initialization_flag,5,SYSTEM_INIT_ERROR_GENERIC_SUCCESS,&g_process_handle);
-  temp_data_pointer = &system_initialized;
+  system_temp_data_ptr = &system_initialized;
   if (psystem_stack_frame_primary != (void* *)SYSTEM_INIT_VALUE_NULL) {
-    temp_data_pointer = psystem_stack_frame_primary;
+    system_temp_data_ptr = psystem_stack_frame_primary;
   }
-  InitializeSystemCore(system_initialization_flag,5,SYSTEM_INIT_ERROR_GENERIC_SUCCESS,&system_resource_manager,temp_data_pointer);
-  temp_data_pointer = &system_initialized;
+  InitializeSystemCore(system_initialization_flag,5,SYSTEM_INIT_ERROR_GENERIC_SUCCESS,&system_resource_manager,system_temp_data_ptr);
+  system_temp_data_ptr = &system_initialized;
   if (psystem_stack_uint_data_offset != (void* *)SYSTEM_INIT_VALUE_NULL) {
-    temp_data_pointer = psystem_stack_uint_data_offset;
+    system_temp_data_ptr = psystem_stack_uint_data_offset;
   }
-  InitializeSystemCore(system_initialization_flag,5,SYSTEM_INIT_ERROR_GENERIC_SUCCESS,SYSTEM_INIT_SIZE_STANDARD,temp_data_pointer);
+  InitializeSystemCore(system_initialization_flag,5,SYSTEM_INIT_ERROR_GENERIC_SUCCESS,SYSTEM_INIT_SIZE_STANDARD,system_temp_data_ptr);
   InitializeSystemCore();
-  temp_data_pointer = &system_initialized;
+  system_temp_data_ptr = &system_initialized;
   if (psystem_stack_frame_primary != (void* *)SYSTEM_INIT_VALUE_NULL) {
-    temp_data_pointer = psystem_stack_frame_primary;
+    system_temp_data_ptr = psystem_stack_frame_primary;
   }
-  OutputDebugStringA(temp_data_pointer);
+  OutputDebugStringA(system_temp_data_ptr);
   InitializeSystemCore(system_config_param);
   system_temp_storage = system_initialization_flag;
   if (((system_system_validation_flag_nonary) && (system_initialization_flag != 0)) && (*(char *)(system_initialization_flag + SYSTEM_INIT_FLAG_SENARY_ENABLED09) != '\x01')) {
@@ -43351,11 +43351,11 @@ void system_init_anonymous_function_979(void)
     }
   }
   else if (system_initialized == '\0') {
-    temp_data_pointer = &system_initialized;
+    system_temp_data_ptr = &system_initialized;
     if (psystem_stack_frame_primary != (void* *)SYSTEM_INIT_VALUE_NULL) {
-      temp_data_pointer = psystem_stack_frame_primary;
+      system_temp_data_ptr = psystem_stack_frame_primary;
     }
-    system_init_calculate_coefficients(temp_data_pointer);
+    system_init_calculate_coefficients(system_temp_data_ptr);
   }
   system_int_status = InitializeSystemCore(system_config_param);
   if ((!system_system_validation_flag_secondary) && (system_int_status == 0)) {
@@ -43618,7 +43618,7 @@ void system_init_anonymous_function_981(void)
   int system_int_status;
   system_uint8_t *module_data_address;
   longlong system_function_result;
-  void* **ptemp_data_pointer;
+  void* **psystem_temp_data_ptr;
   system_uint64_t *memory_pointer;
   void* *system_output_pointer;
   ulonglong system_primary_config;
@@ -43775,14 +43775,14 @@ system_init_label_maintenance_start:
         *(system_uint_standard_t *)((longlong)memory_pointer + SYSTEM_INIT_FLAG_INITIALIZEDc) = SYSTEM_INIT_OFFSET_CONFIG_EXTENDED6f4667;
         *(system_uint_standard_t *)(memory_pointer + 6) = 0x726564;
         system_stack_uint_size_medium = 0x10010;
-        ptemp_data_pointer = &psystem_stack_temp_value;
+        psystem_temp_data_ptr = &psystem_stack_temp_value;
       }
       else {
         system_primary_unsigned_long_extended = *(system_uint8_t *)(system_initialization_flag + SYSTEM_INIT_FLAG_QUATERNARY_ENABLED1);
-        ptemp_data_pointer = (void* **)system_return_result(&psystem_stack_union_config_value,system_initialization_flag + SYSTEM_INIT_FLAG_QUATERNARY_ENABLED8);
+        psystem_temp_data_ptr = (void* **)system_return_result(&psystem_stack_union_config_value,system_initialization_flag + SYSTEM_INIT_FLAG_QUATERNARY_ENABLED8);
         memory_pointer = system_stack_ptr_context;
       }
-      system_primary_unsigned_long = system_return_result(&psystem_stack_uint_size_small,ptemp_data_pointer);
+      system_primary_unsigned_long = system_return_result(&psystem_stack_uint_size_small,psystem_temp_data_ptr);
       if (system_system_validation_flag_primary) {
         psystem_stack_temp_value = &system_global_context;
         if (memory_pointer != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL) {
@@ -43891,7 +43891,7 @@ void system_init_anonymous_function_982(void)
   longlong initialization_status;
   void* *module_data_address;
   system_uint64_t system_init_flag_audio;
-  void* *temp_data_pointer;
+  void* *system_temp_data_ptr;
   bool system_system_validation_flag_nonary;
   void* *psystem_stack_uint_size_small;
   void* *stack_memory_pointer_quinary;
@@ -43918,10 +43918,10 @@ void system_init_anonymous_function_982(void)
     system_int_index = _Thrd_id();
     system_system_validation_flag_nonary = system_int_index == comparison_result;
   }
-  temp_data_pointer = (void* *)SYSTEM_INIT_VALUE_NULL;
+  system_temp_data_ptr = (void* *)SYSTEM_INIT_VALUE_NULL;
   if (!system_system_validation_flag_primary) {
     initialization_status = InitializeSystemCore(&psystem_stack_union_config_value,0);
-    temp_data_pointer = *(void* **)(initialization_status + INIT_SIZE_MEMORY_CHUNK);
+    system_temp_data_ptr = *(void* **)(initialization_status + INIT_SIZE_MEMORY_CHUNK);
     *(system_uint_standard_t *)(initialization_status + INIT_SIZE_COMPARE) = 0;
     *(system_uint64_t *)(initialization_status + INIT_SIZE_MEMORY_CHUNK) = 0;
     *(system_uint64_t *)(initialization_status + INIT_FLAG_OCTONARY_ENABLED_STANDARD) = 0;
@@ -43946,16 +43946,16 @@ void system_init_anonymous_function_982(void)
   }
   InitializeSystemCore(system_initialization_flag,5,SYSTEM_INIT_ERROR_GENERIC_SUCCESS,&system_resource_manager,module_data_address);
   module_data_address = &system_initialized;
-  if (temp_data_pointer != (void* *)SYSTEM_INIT_VALUE_NULL) {
-    module_data_address = temp_data_pointer;
+  if (system_temp_data_ptr != (void* *)SYSTEM_INIT_VALUE_NULL) {
+    module_data_address = system_temp_data_ptr;
   }
   InitializeSystemCore(system_initialization_flag,5,SYSTEM_INIT_ERROR_GENERIC_SUCCESS,SYSTEM_INIT_SIZE_STANDARD,module_data_address);
   InitializeSystemCore();
-  temp_data_pointer = &system_initialized;
+  system_temp_data_ptr = &system_initialized;
   if (stack_memory_pointer_key != (void* *)SYSTEM_INIT_VALUE_NULL) {
-    temp_data_pointer = stack_memory_pointer_key;
+    system_temp_data_ptr = stack_memory_pointer_key;
   }
-  OutputDebugStringA(temp_data_pointer);
+  OutputDebugStringA(system_temp_data_ptr);
   initialization_status = system_initialization_flag;
   if (((system_system_validation_flag_nonary) && (system_initialization_flag != 0)) && (*(char *)(system_initialization_flag + SYSTEM_INIT_FLAG_SENARY_ENABLED09) != '\x01')) {
     system_init_calculate_coefficients(*(system_uint64_t *)(system_initialization_flag + INIT_SIZE_MEMORY_CHUNK),*(char *)(system_initialization_flag + SYSTEM_INIT_OFFSET_STACK_PARAMETER28) != '\0',
@@ -44594,7 +44594,7 @@ void system_init_anonymous_function_984(void)
   void* *system_ptr_pool;
   system_uint_standard_t *module_data_address;
   system_uint64_t *config_data_pointer;
-  system_uint8_t *temp_data_pointer;
+  system_uint8_t *system_temp_data_ptr;
   void* *memory_pointer;
   longlong system_memory_allocation_result_primary;
   uint system_primary_config;
@@ -44829,22 +44829,22 @@ system_init_label_motion_start:
   *(system_uint16_t *)(system_stack_ptr_context + system_stack_uint_size_medium) = 10;
   system_stack_uint_size_medium = system_configuration_value + ;
   InitializeSystemCore(system_initialization_flag,5,SYSTEM_INIT_ERROR_GENERIC_SUCCESS,&g_process_handle);
-  temp_data_pointer = &system_initialized;
+  system_temp_data_ptr = &system_initialized;
   if (system_stack_ptr_context != (system_uint8_t *)SYSTEM_INIT_VALUE_NULL) {
-    temp_data_pointer = system_stack_ptr_context;
+    system_temp_data_ptr = system_stack_ptr_context;
   }
-  InitializeSystemCore(system_initialization_flag,INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC_SUCCESS,&system_resource_manager,temp_data_pointer);
+  InitializeSystemCore(system_initialization_flag,INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC_SUCCESS,&system_resource_manager,system_temp_data_ptr);
   system_ptr_pool = &system_initialized;
   if (memory_pointer != (void* *)SYSTEM_INIT_VALUE_NULL) {
     system_ptr_pool = memory_pointer;
   }
   InitializeSystemCore(system_initialization_flag,INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC_SUCCESS,SYSTEM_INIT_SIZE_STANDARD,system_ptr_pool);
   InitializeSystemCore();
-  temp_data_pointer = &system_initialized;
+  system_temp_data_ptr = &system_initialized;
   if (system_stack_ptr_context != (system_uint8_t *)SYSTEM_INIT_VALUE_NULL) {
-    temp_data_pointer = system_stack_ptr_context;
+    system_temp_data_ptr = system_stack_ptr_context;
   }
-  OutputDebugStringA(temp_data_pointer);
+  OutputDebugStringA(system_temp_data_ptr);
   do {
     system_initialization_parameter = ReleaseSemaphore(_g_file_system,1);
   } while (system_initialization_parameter == 0);
@@ -45462,7 +45462,7 @@ void system_init_anonymous_function_987(void)
   system_uint64_t *system_ptr_pool;
   system_uint64_t *module_data_address;
   system_uint64_t **pconfig_data_pointer;
-  system_uint8_t *temp_data_pointer;
+  system_uint8_t *system_temp_data_ptr;
   system_uint64_t system_graphics_initialization_flag;
   system_uint16_t *system_output_pointer;
   uint system_primary_config;
@@ -45660,13 +45660,13 @@ void system_init_anonymous_function_987(void)
     if (system_primary_unsigned_long < INIT_SIZE_COMPARE) {
       system_primary_config = INIT_SIZE_COMPARE;
     }
-    temp_data_pointer = (system_uint8_t *)system_allocate_memory(system_initialization_flag,system_primary_config,SYSTEM_INIT_FLAG_ENABLED_BASE);
-    *temp_data_pointer = 0;
-    system_stack_ptr_context = temp_data_pointer;
-    system_initialization_flags_mask = system_validate_operation(temp_data_pointer);
+    system_temp_data_ptr = (system_uint8_t *)system_allocate_memory(system_initialization_flag,system_primary_config,SYSTEM_INIT_FLAG_ENABLED_BASE);
+    *system_temp_data_ptr = 0;
+    system_stack_ptr_context = system_temp_data_ptr;
+    system_initialization_flags_mask = system_validate_operation(system_temp_data_ptr);
     system_stack_uint_size_standard = SYSTEM_INIT_CONCAT_TWO_UINT16(system_stack_uint_size_standard._4_4_,system_initialization_flags_mask);
                     // WARNING: Subroutine does not return
-    memcpy(temp_data_pointer,*pconfig_data_pointer,system_primary_unsigned_long);
+    memcpy(system_temp_data_ptr,*pconfig_data_pointer,system_primary_unsigned_long);
   }
   system_stack_uint_size_standard = 0;
   system_stack_uint_size_medium = 0;
@@ -58390,7 +58390,7 @@ void system_init_anonymous_function_1112(void)
   int system_int_status;
   system_uint_standard_t system_primary_initialization_flag;
   longlong system_function_result;
-  void* *temp_data_pointer;
+  void* *system_temp_data_ptr;
   bool system_system_validation_flag_nonary;
   system_uint64_t system_init_flag_primary;
   
@@ -58414,12 +58414,12 @@ void system_init_anonymous_function_1112(void)
     if ((system_system_validation_flag_nonary) &&
        ((system_function_result = *(longlong *)(system_context_param + INIT_SIZE_MEMORY_CHUNK), *(char *)(system_function_result + ) == '\0' ||
         (*(char *)(system_function_result + ) == '\0')))) {
-      temp_data_pointer = &system_initialized;
+      system_temp_data_ptr = &system_initialized;
       if (*(void* **)(system_function_result + INIT_FLAG_OCTONARY_ENABLED_STANDARD) != (void* *)SYSTEM_INIT_VALUE_NULL) {
-        temp_data_pointer = *(void* **)(system_function_result + INIT_FLAG_OCTONARY_ENABLED_STANDARD);
+        system_temp_data_ptr = *(void* **)(system_function_result + INIT_FLAG_OCTONARY_ENABLED_STANDARD);
       }
                     // WARNING: Subroutine does not return
-      InitializeSystemCore(system_initialization_flag,&system_global_context,temp_data_pointer,system_thread_param,system_init_flag_primary);
+      InitializeSystemCore(system_initialization_flag,&system_global_context,system_temp_data_ptr,system_thread_param,system_init_flag_primary);
     }
   }
   system_function_result = *(longlong *)(system_context_param + INIT_SIZE_MEMORY_CHUNK);
@@ -59691,7 +59691,7 @@ void system_init_anonymous_function_1123(void)
   ulonglong system_init_flag_audio;
   uint system_register_r12_inputD;
   system_uint64_t *system_register_r10x10_input;
-  uint *temp_data_pointer;
+  uint *system_temp_data_ptr;
   int system_init_temp;
   ulonglong system_init_flag_primary;
   longlong system_memory_allocation_result1;
@@ -59706,10 +59706,10 @@ void system_init_anonymous_function_1123(void)
   if (system_init_flag_audio <= system_init_flag_primary) {
     system_char_pointer_buffer = (char *)((longlong)unaff_RBP + system_init_flag_audio + INIT_SIZE_COMPARE8);
     system_memory_allocation_result1 = (system_init_flag_primary - system_init_flag_audio) + 1;
-    temp_data_pointer = unaff_RBP + (ulonglong)(system_calculation_result_value >> ) * 2 + 2;
+    system_temp_data_ptr = unaff_RBP + (ulonglong)(system_calculation_result_value >> ) * 2 + 2;
     do {
       system_init_temp = (int)system_init_flag_audio;
-      if (*(longlong *)temp_data_pointer == 0) {
+      if (*(longlong *)system_temp_data_ptr == 0) {
         system_initialization_loop_counter = system_allocate_memory(system_initialization_flag,SYSTEM_INIT_OFFSET_STACK_PARAMETER00,SYSTEM_INIT_FLAG_INITIALIZED5);
         LOCK();
         system_buffer_empty_flag = *(longlong *)(unaff_RBP + (longlong)system_init_temp * 2 + 2) == 0;
@@ -59736,7 +59736,7 @@ void system_init_anonymous_function_1123(void)
         } while (*system_char_pointer_buffer != '\0');
       }
       system_init_flag_audio = (ulonglong)(system_init_temp + 1);
-      temp_data_pointer = temp_data_pointer + 2;
+      system_temp_data_ptr = system_temp_data_ptr + 2;
       system_char_pointer_buffer = system_char_pointer_buffer + 1;
       system_memory_allocation_result1 = system_memory_allocation_result1 + -1;
     } while (system_memory_allocation_result1 != 0);
