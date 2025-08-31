@@ -734,12 +734,14 @@ while( true ) {
     return status;
 }
 /** 验证资源上下文
+ * 
  * 验证主要资源上下文的有效性和状态
+ * 
  * @param resource_count 资源数量参数
  * @param context_pointer 上下文句柄
  * @return 验证结果状态码，0表示成功，非0表示失败
  */
-    uint64_t validate_resource_context(int64_t resource_count,int64_t context_pointer)
+uint64_t validate_resource_context(int64_t resource_count, int64_t context_pointer)
 {
 
 int64_t loop_counter = 0;
