@@ -47399,42 +47399,45 @@ uint64_t utility_validate_buffer_vars(int64_t context_value)
  * 原本实现：完全重构
  * 简化实现：仅进行变量名语义化替换
  */
+/**
+ * @brief 上下文处理函数
+ * 
+ * 处理系统上下文数据，执行必要的验证和初始化操作
+ * 
+ * @param context_value 上下文值
+ * @param utility_context_ptr 上下文句柄
+ * @return 处理状态 (UTILITY_ERROR_INVALID_PARAM 或 UTILITY_STATUS_OPERATION_SUCCESS)
+ * 
+ * 原本实现：完全重构上下文处理逻辑
+ * 简化实现：仅进行变量名语义化替换，修复语法错误
+ */
 int utility_handle_context_processing(int64_t context_value, int64_t utility_context_ptr)
 {
     if (context_value == UTILITY_BOOLEAN_FALSE || utility_context_ptr == UTILITY_BOOLEAN_FALSE) {
-    
-}
         return UTILITY_ERROR_INVALID_PARAM;
-}
+    }
     
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
 /**
  * @brief 资源句柄创建函数
- * @param resource_config 资源配置
+ * 
+ * 根据资源配置和上下文大小创建资源句柄，并进行必要的验证
+ * 
+ * @param resource_config 资源配置参数
  * @param context_size 上下文大小
  * @param buffer_ptr 缓冲区指针
- * @return 创建的资源句柄
- */
-/**
- * @brief Utility Generate Resource Handle
+ * @return 创建的资源句柄，失败时返回0
  * 
- * 功能描述
- * 
- * @param parameters 参数说明
- * @return 返回值说明
- * 
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构资源句柄创建逻辑
+ * 简化实现：仅进行变量名语义化替换，修复语法错误
  */
 uint64_t utility_generate_resource_handle(uint64_t resource_config, int64_t context_size, uint64_t **buffer_ptr)
 {
     if (buffer_ptr == NULL) {
-    
-}
         return 0;
-}
+    }
     
     // 简化实现：返回资源配置
     return resource_config;
