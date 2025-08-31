@@ -100,17 +100,17 @@ void *utility_data_buffer_secondary;
 #define UTILITY_CLEANUP_FLAG UTILITY_CLEANUP_FLAG
 
 // 全局数据地址常量
-#define UTILITY_GLOBAL_DATA_PROCESS_CONTEXT_180982240 0x180982240
-#define UTILITY_GLOBAL_DATA_TEMP_VAR_180983588 0x180983588
-#define UTILITY_GLOBAL_DATA_TEMP_VAR_1809841e0 0x1809841e0
-#define UTILITY_GLOBAL_DATA_STACK_LONG_180982dc0 0x180982dc0
-#define UTILITY_GLOBAL_DATA_CONTEXT_180986350 0x180986350
-#define UTILITY_GLOBAL_DATA_CONTEXT_180986370 0x180986370
-#define UTILITY_GLOBAL_DATA_CONTEXT_1809868b0 0x1809868b0
-#define UTILITY_GLOBAL_DATA_CONTEXT_1809863f8 0x1809863f8
-#define UTILITY_GLOBAL_DATA_CONTEXT_180986470 0x180986470
-#define UTILITY_GLOBAL_DATA_TEMP_VAR_180982508 0x180982508
-#define UTILITY_GLOBAL_DATA_TEMP_VAR_180982608 0x180982608
+#define UTILITY_GLOBAL_DATA_PROCESS_CONTEXT_PRIMARY 0x180982240
+#define UTILITY_GLOBAL_DATA_TEMP_VAR_1 0x180983588
+#define UTILITY_GLOBAL_DATA_TEMP_VAR_2 0x1809841e0
+#define UTILITY_GLOBAL_DATA_STACK_LONG_PRIMARY 0x180982dc0
+#define UTILITY_GLOBAL_DATA_CONTEXT_1 0x180986350
+#define UTILITY_GLOBAL_DATA_CONTEXT_2 0x180986370
+#define UTILITY_GLOBAL_DATA_CONTEXT_3 0x1809868b0
+#define UTILITY_GLOBAL_DATA_CONTEXT_4 0x1809863f8
+#define UTILITY_GLOBAL_DATA_CONTEXT_5 0x180986470
+#define UTILITY_GLOBAL_DATA_TEMP_VAR_3 0x180982508
+#define UTILITY_GLOBAL_DATA_TEMP_VAR_4 0x180982608
 #define UTILITY_GLOBAL_DATA_TEMP_VAR_180982588 0x180982588
 #define UTILITY_GLOBAL_DATA_TEMP_VAR_180985a80 0x180985a80
 #define UTILITY_GLOBAL_DATA_TEMP_VAR_180982cc0 0x180982cc0
@@ -277,30 +277,30 @@ void *utility_buffer_data_primary;
 void *utility_buffer_data_secondary;
 void *utility_buffer_data_tertiary;
 void *utility_buffer_data_quaternary;
-void *utility_system_segment_67a8;
-void *utility_system_segment_67b0;
-void *utility_system_segment_67b8;
-void *utility_system_segment_67c0;
-void *utility_system_segment_6800;
-void *utility_system_segment_6808;
-void *utility_system_segment_6810;
-void *utility_system_segment_6818;
-void *utility_system_segment_6858;
-void *utility_system_segment_6860;
-void *utility_system_segment_6868;
-void *utility_system_segment_6870;
-void *utility_system_segment_68b0;
-void *utility_system_segment_68b8;
-void *utility_system_segment_68c0;
-void *utility_system_segment_68c8;
+void *utility_system_segment_context_manager;
+void *utility_system_segment_memory_allocator;
+void *utility_system_segment_resource_pool;
+void *utility_system_segment_thread_controller;
+void *utility_system_segment_event_handler;
+void *utility_system_segment_sync_manager;
+void *utility_system_segment_network_handler;
+void *utility_system_segment_security_manager;
+void *utility_system_segment_debug_system;
+void *utility_system_segment_performance_monitor;
+void *utility_system_segment_config_manager;
+void *utility_system_segment_data_processor;
+void *utility_system_segment_thread_pool;
+void *utility_system_segment_file_system;
+void *utility_system_segment_socket_manager;
+void *utility_system_segment_protocol_handler;
 void *utility_system_segment_6908;
-void *utility_system_segment_6910;
-void *utility_system_segment_6918;
-void *utility_system_segment_6920;
-void *utility_system_segment_6960;
-void *utility_system_segment_6968;
-void *utility_system_segment_6970;
-void *utility_system_segment_6978;
+void *utility_system_segment_key_manager;
+void *utility_system_segment_certificate_handler;
+void *utility_system_segment_auth_system;
+void *utility_system_segment_log_manager;
+void *utility_system_segment_error_handler;
+void *utility_system_segment_timer_system;
+void *utility_system_segment_mutex_manager;
 void *utility_system_segment_69b8;
 void *utility_system_segment_69c0;
 void *utility_system_segment_69c8;
@@ -376,11 +376,11 @@ void *utility_system_segment_6fa8;
 void *utility_system_segment_semaphore_secondary;
 void *utility_system_segment_semaphore_tertiary;
 void *utility_system_segment_semaphore_quaternary;
-void *utility_system_segment_7000;
+void *utility_system_segment_semaphore_handler;
 void *utility_system_segment_condition_secondary;
 void *utility_system_segment_condition_tertiary;
 void *utility_system_segment_condition_quaternary;
-void *utility_system_segment_7058;
+void *utility_system_segment_condition_variable;
 void *utility_system_segment_barrier_secondary;
 void *utility_system_segment_barrier_tertiary;
 void *utility_system_segment_barrier_quaternary;
@@ -388,11 +388,11 @@ void *utility_system_segment_70b0;
 void *utility_system_segment_completion_secondary;
 void *utility_system_segment_completion_tertiary;
 void *utility_system_segment_completion_quaternary;
-void *utility_system_segment_7108;
+void *utility_system_segment_barrier_handler;
 void *utility_system_segment_io_secondary;
 void *utility_system_segment_io_tertiary;
 void *utility_system_segment_io_quaternary;
-void *utility_system_segment_7160;
+void *utility_system_segment_completion_port;
 void *utility_system_segment_thread_pool_secondary;
 void *utility_system_segment_thread_pool_tertiary;
 void *utility_system_segment_thread_pool_quaternary;
@@ -8036,7 +8036,7 @@ int context_pointer_process_data(long long *context_pointer,long long data_ptr,i
   int result_int;
   int utility_status_code;
   
-  result_int = context_pointer_process_data(data_ptr,param,&UTILITY_GLOBAL_DATA_PROCESS_CONTEXT_180982240);
+  result_int = context_pointer_process_data(data_ptr,param,&UTILITY_GLOBAL_DATA_PROCESS_CONTEXT_PRIMARY);
   utility_status_code = context_pointer_process_data(data_ptr + result_int,param - result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
   result_int = result_int + utility_status_code;
   // 调用系统函数获取初始化参数
@@ -9839,7 +9839,7 @@ ulong long utility_thread_scheduler_manage(long long context_pointer)
               do {
                 utility_temp_var = *(void **)(utility_temp_long_var + 0xc + context_handle5 * UTILITY_OFFSET_16_BYTES);
                 utility_temp_var = 0;
-                psystem_temp_var = &UTILITY_GLOBAL_DATA_TEMP_VAR_180983588;
+                psystem_temp_var = &UTILITY_GLOBAL_DATA_TEMP_VAR_1;
                 utility_data_converter_format(&psystem_temp_var,*(void **)(context_pointer + 0x58));
                 utility_system_item_count = system_call_function(utility_result_ptr);
               } while (0 < utility_system_item_count);
@@ -9882,7 +9882,7 @@ ulong long utility_thread_scheduler_manage(long long context_pointer)
               utility_temp_var = 0;
               utility_temp_var = utility_temp_var & 0xffffff00;
               context_pointer_process_data(&psystem_temp_var,*(void **)(context_pointer + 0x58));
-              psystem_temp_var = &UTILITY_GLOBAL_DATA_TEMP_VAR_1809841e0;
+              psystem_temp_var = &UTILITY_GLOBAL_DATA_TEMP_VAR_2;
               utility_temp_var = *(void **)(utility_temp_long_var + 0xc + context_handle5 * UTILITY_OFFSET_16_BYTES);
               utility_temp_var = 0;
               utility_status_manager_cleanup_operation(&psystem_temp_var,*(void **)(context_pointer + 0x58));
@@ -10009,7 +10009,7 @@ UTILITY_LABEL_CONFIG_LOAD:
     if (-1 < result_int6 + -1) {
       do {
         system_temp_var0 = system_temp_var0 & 0xffffffff00000000;
-        putility_utility_stack_long_var_108 = (long long *)&UTILITY_GLOBAL_DATA_STACK_LONG_180982dc0;
+        putility_utility_stack_long_var_108 = (long long *)&UTILITY_GLOBAL_DATA_STACK_LONG_PRIMARY;
         autility_utility_stack_int_f8[0] = *(int *)(utility_result_ptr + utility_temp_long_var * 4);
         context_pointer_process_data(&putility_utility_stack_long_var_108,*(void **)(context_pointer + 0x58));
         utility_temp_long_var = utility_temp_long_var + -1;
@@ -10105,7 +10105,7 @@ UTILITY_LABEL_CACHE_UPDATE:
 void ** utility_thread_context_getter(void **context_pointer,ulong long data_ptr)
 
 {
-  *context_pointer = &UTILITY_GLOBAL_DATA_CONTEXT_180986350;
+  *context_pointer = &UTILITY_GLOBAL_DATA_CONTEXT_1;
   if ((data_ptr & 1) != 0) {
     free(context_pointer,0x28);
   }
@@ -10117,9 +10117,9 @@ void ** utility_thread_context_getter(void **context_pointer,ulong long data_ptr
 void ** utility_thread_context_setter(void **context_pointer,ulong long data_ptr)
 
 {
-  *context_pointer = &UTILITY_GLOBAL_DATA_CONTEXT_180986370;
+  *context_pointer = &UTILITY_GLOBAL_DATA_CONTEXT_2;
   context_pointer_process_data(context_pointer + 5);
-  *context_pointer = &UTILITY_GLOBAL_DATA_CONTEXT_180986350;
+  *context_pointer = &UTILITY_GLOBAL_DATA_CONTEXT_1;
   if ((data_ptr & 1) != 0) {
     free(context_pointer,0x38);
   }
@@ -10163,7 +10163,7 @@ void * context_pointer_process_data(long long context_pointer)
       }
     }
     presult_int = (int *)utility_file_flush_buffer(*(void **)(UTILITY_GLOBAL_DATA_CONTEXT_HANDLER + 0x1a0),result_int + 0x19,
-                                  &UTILITY_GLOBAL_DATA_CONTEXT_1809868b0,0x278,0,0,1);
+                                  &UTILITY_GLOBAL_DATA_CONTEXT_3,0x278,0,0,1);
     presult_int[0] = 0;
     presult_int[1] = 0;
     presult_int[2] = 0;
@@ -10210,7 +10210,7 @@ int context_pointer_process_data(long long context_pointer,long long data_ptr,in
   int result_int;
   
   return_value = *(void **)(context_pointer + UTILITY_OFFSET_16_BYTES);
-  utility_status_code = context_pointer_process_data(data_ptr,param,&UTILITY_GLOBAL_DATA_CONTEXT_1809863f8);
+  utility_status_code = context_pointer_process_data(data_ptr,param,&UTILITY_GLOBAL_DATA_CONTEXT_4);
   result_int = context_pointer_process_data(data_ptr + utility_status_code,param - utility_status_code,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
   utility_status_code = utility_status_code + result_int;
   result_int = system_call_function(utility_status_code + data_ptr,param - utility_status_code,return_value);
@@ -10229,7 +10229,7 @@ int context_pointer_process_data(long long context_pointer,long long data_ptr,in
   
   return_value = *(void **)(context_pointer + 0x14);
   utility_result_ptr = *(void **)(context_pointer + UTILITY_OFFSET_16_BYTES);
-  result_int = context_pointer_process_data(data_ptr,param,&UTILITY_GLOBAL_DATA_CONTEXT_180986470);
+  result_int = context_pointer_process_data(data_ptr,param,&UTILITY_GLOBAL_DATA_CONTEXT_5);
   utility_system_item_count = context_pointer_process_data(result_int + data_ptr,param - result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
   result_int = result_int + utility_system_item_count;
   utility_system_item_count = system_call_function(result_int + data_ptr,param - result_int,utility_result_ptr);
@@ -10307,7 +10307,7 @@ void * context_pointer_process_data(long long context_pointer,void * data_ptr,vo
   if (param != 0) {
     result_int = *(int *)(data_ptr + 0x220);
     if (result_int == 0) {
-      psystem_temp_var8 = &UTILITY_GLOBAL_DATA_TEMP_VAR_180982508;
+      psystem_temp_var8 = &UTILITY_GLOBAL_DATA_TEMP_VAR_3;
       system_temp_var0 = 0;
       system_temp_var4 = 0;
       system_temp_var8 = param;
@@ -10319,7 +10319,7 @@ UTILITY_LABEL_TIMER_EXPIRE:
     else {
       utility_utility_stack_int_2f0 = 0;
       if (1 < result_int - 1U) {
-        psystem_temp_var8 = &UTILITY_GLOBAL_DATA_TEMP_VAR_180982608;
+        psystem_temp_var8 = &UTILITY_GLOBAL_DATA_TEMP_VAR_4;
         pptr_var = &psystem_temp_var8;
         system_temp_var0 = 0;
         system_temp_var8 = 0;
