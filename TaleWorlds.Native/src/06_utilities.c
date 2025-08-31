@@ -40,8 +40,8 @@
 #define UTILITY_FLAG_MASK_DWORD 0xFFFFFFFF
 
 void *utility_system_initializer;
-void *utility_data_buffer_5290;
-void *utility_data_buffer_52a0;
+void *utility_data_buffer_primary;
+void *utility_data_buffer_secondary;
 
 // 线程局部存储常量
 #define UTILITY_THREAD_TLS_CONTEXT_OFFSET UTILITY_THREAD_TLS_CONTEXT_OFFSET
@@ -64,165 +64,165 @@ void *utility_data_buffer_52a0;
 
 // 操作标志常量
 #define UTILITY_CLEANUP_FLAG UTILITY_CLEANUP_FLAG
-void *utility_resource_pool_52c0;
-void *utility_resource_cache_52c8;
-void *utility_memory_manager_52d0;
+void *utility_resource_pool_primary;
+void *utility_resource_cache_secondary;
+void *utility_memory_manager_main;
 void *utility_memory_allocator_52d8;
 uint8_t utility_system_initialized;              // 5240
-void *utility_config_storage_52a8;
-void *utility_config_loader_52b0;
+void *utility_config_storage_primary;
+void *utility_config_loader_main;
 uint8_t utility_debug_mode_enabled;              // 52e0
 void *utility_global_context_a3c3e0;
 uint64_t utility_performance_counter_bf5278;            // bf5278
 uint64_t utility_system_time_bf5298;            // bf5298
-void *utility_thread_pool_5320;
-void *utility_task_queue_5328;
-void *utility_event_handler_5330;
-void *utility_message_bus_5338;
-void *utility_error_handler_98bb30;
+void *utility_thread_pool_primary;
+void *utility_task_queue_main;
+void *utility_event_handler_main;
+void *utility_message_bus_main;
+void *utility_error_handler_main;
 
 void *utility_memory_manager;
-void *utility_heap_allocator_5770;
-void *utility_stack_allocator_5778;
-void *utility_memory_pool_5780;
-void *utility_gc_collector_5788;
+void *utility_heap_allocator_primary;
+void *utility_stack_allocator_primary;
+void *utility_memory_pool_primary;
+void *utility_gc_collector_main;
 
-void *utility_file_system_manager;
-void *utility_file_cache_5208;
-void *utility_directory_monitor_5210;
-void *utility_file_indexer_5218;
-void *utility_path_resolver_5220;
-void *utility_file_system_context_98bc80;
+void *utility_file_system_manager_main;
+void *utility_file_cache_primary;
+void *utility_directory_monitor_main;
+void *utility_file_indexer_main;
+void *utility_path_resolver_main;
+void *utility_file_system_context_main;
 
-void *utility_network_manager;
-void *utility_socket_pool_5bc0;
-void *utility_connection_cache_5bc8;
-void *utility_packet_buffer_5bd0;
-void *utility_protocol_handler_5bd8;
-void *utility_network_context_9fcc58;
+void *utility_network_manager_main;
+void *utility_socket_pool_primary;
+void *utility_connection_cache_main;
+void *utility_packet_buffer_main;
+void *utility_protocol_handler_main;
+void *utility_network_context_main;
 
-void *utility_security_manager;
-void *utility_crypto_engine_5c30;
-void *utility_key_store_5c38;
-void *utility_certificate_cache_5c40;
-void *utility_auth_handler_5c48;
+void *utility_security_manager_main;
+void *utility_crypto_engine_primary;
+void *utility_key_store_main;
+void *utility_certificate_cache_primary;
+void *utility_auth_handler_main;
 
 void *utility_thread_manager;
-void *utility_data_segment_6080;
-void *utility_data_segment_6088;
-void *utility_data_segment_6090;
-void *utility_data_segment_6098;
+void *utility_thread_data_primary;
+void *utility_thread_data_secondary;
+void *utility_thread_data_tertiary;
+void *utility_thread_data_quaternary;
 
-void *utility_process_manager;
+void *utility_process_manager_main;
 utility_global_data_structure_t UTILITY_GLOBAL_DATA_THREAD_CONTEXT;
 
-void *utility_resource_manager;
+void *utility_resource_manager_main;
 utility_global_data_structure_t UTILITY_GLOBAL_DATA_MEMORY_POOL;
 
-void *utility_config_manager;
+void *utility_config_manager_main;
 utility_global_data_structure_t UTILITY_GLOBAL_DATA_RESOURCE_TABLE;
 
-void *utility_log_manager;
+void *utility_log_manager_main;
 utility_global_data_structure_t UTILITY_GLOBAL_DATA_FILE_HANDLE;
 
-void *utility_performance_monitor;
+void *utility_performance_monitor_main;
 utility_local_data_structure_t UTILITY_LOCAL_DATA_SYSTEM_CONFIG;
-void *utility_security_context_9fd0d8;
+void *utility_security_context_main;
 
-void *utility_debug_manager;
+void *utility_debug_manager_main;
 
-void *utility_event_system;
+void *utility_event_system_main;
 utility_local_data_structure_t UTILITY_LOCAL_DATA_NETWORK_CONTEXT;
-void *utility_crypto_context_9fcc28;
-void *utility_performance_context_9ffa30;
+void *utility_crypto_context_main;
+void *utility_performance_context_main;
 utility_local_data_structure_t UTILITY_LOCAL_DATA_SECURITY_CONTEXT;
-void *utility_debug_context_a00370;
+void *utility_debug_context_main;
 
-void *utility_message_system;
-void *utility_data_segment_64e0;
-void *utility_data_segment_64e8;
+void *utility_message_system_main;
+void *utility_process_data_primary;
+void *utility_process_data_secondary;
 void *utility_thread_context_9fdc18;
 void *utility_sync_context_a004dc;
 void *utility_data_segment_6530;
 void *utility_data_segment_6538;
 void *utility_data_segment_6540;
 
-void *utility_task_scheduler;
+void *utility_task_scheduler_main;
 void *utility_data_segment_6548;
-void *utility_process_context_a004e8;
+void *utility_process_context_main;
 void *utility_data_segment_6590;
 void *utility_data_segment_6598;
 void *utility_data_segment_65a0;
 void *utility_data_segment_65a8;
 
-void *utility_timer_system;
+void *utility_timer_system_main;
 void *utility_resource_context_a004f8;
-void *utility_data_segment_65c0;
-void *utility_data_segment_65c8;
-void *utility_data_segment_65d0;
-void *utility_data_segment_65d8;
+void *utility_timer_data_primary;
+void *utility_timer_data_secondary;
+void *utility_timer_data_tertiary;
+void *utility_timer_data_quaternary;
 
-void *utility_sync_manager;
-void *utility_event_context_a00508;
-void *utility_data_segment_65f0;
-void *utility_data_segment_65f8;
-void *utility_data_segment_6600;
-void *utility_data_segment_6608;
+void *utility_sync_manager_main;
+void *utility_event_context_main;
+void *utility_sync_data_primary;
+void *utility_sync_data_secondary;
+void *utility_sync_data_tertiary;
+void *utility_sync_data_quaternary;
 
-void *utility_lock_manager;
-void *utility_message_context_a00518;
-void *utility_data_segment_6620;
-void *utility_data_segment_6628;
-void *utility_data_segment_6630;
-void *utility_data_segment_6638;
-void *utility_task_context_a00528;
+void *utility_lock_manager_main;
+void *utility_message_context_main;
+void *utility_lock_data_primary;
+void *utility_lock_data_secondary;
+void *utility_lock_data_tertiary;
+void *utility_lock_data_quaternary;
+void *utility_task_context_main;
 
-void *utility_semaphore_manager;
-void *utility_data_segment_6650;
-void *utility_data_segment_6658;
-void *utility_data_segment_6660;
-void *utility_data_segment_6668;
-void *utility_timer_context_a00538;
+void *utility_semaphore_manager_main;
+void *utility_semaphore_data_primary;
+void *utility_semaphore_data_secondary;
+void *utility_semaphore_data_tertiary;
+void *utility_semaphore_data_quaternary;
+void *utility_timer_context_main;
 
-void *utility_mutex_manager;
-void *utility_data_segment_6680;
-void *utility_data_segment_6688;
-void *utility_data_segment_6690;
-void *utility_data_segment_6698;
-void *utility_lock_context_a00540;
+void *utility_mutex_manager_main;
+void *utility_mutex_data_primary;
+void *utility_mutex_data_secondary;
+void *utility_mutex_data_tertiary;
+void *utility_mutex_data_quaternary;
+void *utility_lock_context_main;
 
-void *utility_condition_manager;
-void *utility_data_segment_66b0;
-void *utility_data_segment_66b8;
-void *utility_data_segment_66c0;
-void *utility_data_segment_66c8;
-void *utility_unknown_segment_a00548;
+void *utility_condition_manager_main;
+void *utility_condition_data_primary;
+void *utility_condition_data_secondary;
+void *utility_condition_data_tertiary;
+void *utility_condition_data_quaternary;
+void *utility_unknown_segment_main;
 
-void *utility_barrier_manager;
-void *utility_data_segment_52e8;
-void *utility_data_segment_52f0;
-void *utility_data_segment_52f8;
-void *utility_data_segment_5300;
-void *utility_unknown_segment_a01300;
+void *utility_barrier_manager_main;
+void *utility_barrier_data_primary;
+void *utility_barrier_data_secondary;
+void *utility_barrier_data_tertiary;
+void *utility_barrier_data_quaternary;
+void *utility_unknown_segment_barrier;
 
-void *utility_atomic_manager;
-void *utility_data_segment_5738;
-void *utility_data_segment_5740;
-void *utility_data_segment_5748;
-void *utility_data_segment_5750;
-void *utility_unknown_segment_a01330;
+void *utility_atomic_manager_main;
+void *utility_atomic_data_primary;
+void *utility_atomic_data_secondary;
+void *utility_atomic_data_tertiary;
+void *utility_atomic_data_quaternary;
+void *utility_unknown_segment_atomic;
 
-void *utility_cache_manager;
+void *utility_cache_manager_main;
 
-void *utility_buffer_manager;
+void *utility_buffer_manager_main;
 utility_global_data_structure_t UTILITY_GLOBAL_DATA_PERFORMANCE_COUNTER;
-void *utility_unknown_segment_a02998;
+void *utility_unknown_segment_buffer;
 utility_global_data_structure_t UTILITY_GLOBAL_DATA_ERROR_HANDLER;
 void *utility_unknown_segment_a0b1c8;
-void *utility_data_segment_6750;
-void *utility_data_segment_6758;
-void *utility_data_segment_6760;
-void *utility_data_segment_6768;
+void *utility_buffer_data_primary;
+void *utility_buffer_data_secondary;
+void *utility_buffer_data_tertiary;
+void *utility_buffer_data_quaternary;
 void *utility_data_segment_67a8;
 void *utility_data_segment_67b0;
 void *utility_data_segment_67b8;
@@ -384,27 +384,27 @@ void *utility_data_segment_7250;
 void *utility_data_segment_7258;
 void *utility_data_segment_7260;
 
-void *utility_pool_manager;
-void *utility_data_segment_7268;
-void *utility_unknown_segment_a03098;
+void *utility_pool_manager_main;
+void *utility_pool_data_primary;
+void *utility_unknown_segment_pool;
 void *utility_data_segment_72b0;
 void *utility_data_segment_72b8;
 void *utility_data_segment_72c0;
 void *utility_data_segment_72c8;
 
-void *utility_allocator_manager;
-void *utility_unknown_segment_a03060;
-void *utility_data_segment_7310;
-void *utility_data_segment_7318;
-void *utility_data_segment_7320;
-void *utility_data_segment_7328;
+void *utility_allocator_manager_main;
+void *utility_unknown_segment_allocator;
+void *utility_allocator_data_primary;
+void *utility_allocator_data_secondary;
+void *utility_allocator_data_tertiary;
+void *utility_allocator_data_quaternary;
 
-void *utility_collector_manager;
-void *utility_unknown_segment_a030a8;
-void *utility_data_segment_7370;
-void *utility_data_segment_7378;
-void *utility_data_segment_7380;
-void *utility_data_segment_7388;
+void *utility_collector_manager_main;
+void *utility_unknown_segment_collector;
+void *utility_collector_data_primary;
+void *utility_collector_data_secondary;
+void *utility_collector_data_tertiary;
+void *utility_collector_data_quaternary;
 void *utility_data_segment_7408;
 void *utility_data_segment_7410;
 void *utility_data_segment_7418;
@@ -2323,6 +2323,18 @@ void *utility_data_segment_bd80;
  *
  * @note 这是简化实现，主要处理基本的初始化流程
  */
+/**
+ * 初始化工具系统
+ * 
+ * 初始化工具系统的核心组件，包括内存管理器、线程池、事件系统等。
+ * 设置系统初始状态并分配必要的资源。
+ * 
+ * @param utility_context_handle 工具系统上下文句柄
+ * @param utility_data_ptr 工具系统数据指针
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的初始化流程
+ */
 // 函数: void initialize_utility_system(longlong utility_context_handle,longlong utility_data_ptr)
 void initialize_utility_system(long long utility_context_handle,long long utility_data_ptr)
 
@@ -2456,6 +2468,16 @@ void reset_utility_system(void)
  *
  * @note 这是简化实现，主要处理基本的验证流程
  */
+/**
+ * 验证工具系统状态
+ * 
+ * 检查工具系统的各个组件是否处于正常状态，验证系统完整性。
+ * 如果发现问题会进行相应的处理。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的验证流程
+ */
 // 函数: void validate_utility_system(void)
 void validate_utility_system(void)
 
@@ -2472,6 +2494,14 @@ void validate_utility_system(void)
 
 
 
+/**
+ * 获取工具系统状态
+ * 
+ * 此函数用于获取指定工具系统上下文的当前状态信息
+ * 
+ * @param utility_context_handle 工具系统上下文句柄
+ * @return 返回状态信息指针，失败时返回错误代码
+ */
 void * get_utility_status(long long utility_context_handle)
 
 {
@@ -2656,6 +2686,15 @@ ulong long utility_system_process_context(long long utility_context_handle,long 
 
 
 
+/**
+ * 分配工具系统内存
+ * 
+ * 此函数用于在工具系统中分配指定大小的内存块
+ * 
+ * @param utility_context_handle 工具系统上下文句柄
+ * @param utility_data_ptr 包含内存分配参数的数据指针
+ * @return 返回分配的内存指针，失败时返回错误代码
+ */
 void * allocate_utility_memory(long long utility_context_handle,long long utility_data_ptr)
 
 {
@@ -2675,7 +2714,7 @@ void * allocate_utility_memory(long long utility_context_handle,long long utilit
     autility_stack_longX_8[0] = 0;
     system_status_code = utility_system_call_init(autility_stack_longX_8);
     if (system_status_code == 0) {
-      system_status_code = utility_resource_manager_allocate(context_handle,*(void **)(context_handle + 8),*(void **)(utility_data_ptr + 0x90),
+      system_status_code = utility_resource_manager_main_allocate(context_handle,*(void **)(context_handle + 8),*(void **)(utility_data_ptr + 0x90),
                             *(void **)(utility_data_ptr + 800));
       if (system_status_code == 0) {
         utility_system_call_cleanup(autility_stack_longX_8);
@@ -2741,7 +2780,7 @@ void * reallocate_utility_memory(long long utility_context_handle,void * utility
   autility_stack_longX_8[0] = 0;
   iVar3 = utility_system_call_init(autility_stack_longX_8);
   if (iVar3 == 0) {
-    iVar3 = utility_resource_manager_validate(context_handle,0);
+    iVar3 = utility_resource_manager_main_validate(context_handle,0);
     if (iVar3 == 0) {
       iVar3 = utility_system_call_process(utility_data_ptr);
       if (iVar3 == 0) {
@@ -2847,6 +2886,16 @@ void * validate_utility_memory(char utility_context_handle)
  *
  * @note 这是简化实现，主要处理基本的内存清理流程
  */
+/**
+ * 清理工具系统内存
+ * 
+ * 释放工具系统分配的所有内存资源，清理内存池和缓存。
+ * 确保系统资源被正确释放，避免内存泄漏。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的内存清理流程
+ */
 // 函数: void clear_utility_memory(void)
 void clear_utility_memory(void)
 
@@ -2901,6 +2950,16 @@ void * get_utility_memory_flags(void)
 
 
 
+/**
+ * 设置工具系统内存标志
+ * 
+ * 配置工具系统的内存管理标志，控制内存分配策略。
+ * 设置内存保护模式和访问权限。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的内存标志设置流程
+ */
 // 函数: void set_utility_memory_flags(void)
 void set_utility_memory_flags(void)
 
@@ -2911,6 +2970,16 @@ void set_utility_memory_flags(void)
 
 
 
+/**
+ * 初始化工具系统线程
+ * 
+ * 创建并初始化工具系统的工作线程，设置线程参数和优先级。
+ * 为异步任务处理准备线程资源。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的线程初始化流程
+ */
 /**
  * 初始化工具系统线程
  * 
@@ -2975,6 +3044,16 @@ void * get_utility_thread_status(void)
 
 
 
+/**
+ * 销毁工具系统线程
+ * 
+ * 终止并清理工具系统的工作线程，释放线程相关资源。
+ * 确保线程被正确终止，避免资源泄漏。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的线程销毁流程
+ */
 // 函数: void destroy_utility_thread(void)
 void destroy_utility_thread(void)
 
@@ -2985,6 +3064,16 @@ void destroy_utility_thread(void)
 
 
 
+/**
+ * 恢复工具系统线程
+ * 
+ * 恢复被暂停的工具系统线程，重新开始线程执行。
+ * 处理线程状态转换和同步问题。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的线程恢复流程
+ */
 // 函数: void resume_utility_thread(void)
 void resume_utility_thread(void)
 
@@ -3220,6 +3309,16 @@ void * create_utility_mutex(void)
 
 
 
+/**
+ * 销毁工具系统互斥锁
+ * 
+ * 释放工具系统使用的互斥锁资源，清理同步对象。
+ * 确保互斥锁被正确销毁，避免资源泄漏。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的互斥锁销毁流程
+ */
 // 函数: void destroy_utility_mutex(void)
 void destroy_utility_mutex(void)
 
@@ -3342,6 +3441,16 @@ void * try_lock_utility_mutex(void)
 
 
 
+/**
+ * 初始化工具系统信号量
+ * 
+ * 创建并初始化工具系统的信号量对象，用于线程同步。
+ * 设置信号量的初始值和最大值。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的信号量初始化流程
+ */
 // 函数: void initialize_utility_semaphore(void)
 void initialize_utility_semaphore(void)
 
@@ -3404,6 +3513,16 @@ void * post_utility_semaphore(void)
 
 
 
+/**
+ * 销毁工具系统信号量
+ * 
+ * 释放工具系统使用的信号量资源，清理同步对象。
+ * 确保信号量被正确销毁，避免资源泄漏。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的信号量销毁流程
+ */
 // 函数: void destroy_utility_semaphore(void)
 void destroy_utility_semaphore(void)
 
@@ -3414,6 +3533,16 @@ void destroy_utility_semaphore(void)
 
 
 
+/**
+ * 获取工具系统信号量值
+ * 
+ * 查询工具系统信号量的当前值，用于状态监控。
+ * 返回信号量的计数值和状态信息。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的信号量值获取流程
+ */
 // 函数: void get_utility_semaphore_value(void)
 void get_utility_semaphore_value(void)
 
@@ -3468,6 +3597,16 @@ void * create_utility_event(void)
 
 
 
+/**
+ * 销毁工具系统事件
+ * 
+ * 释放工具系统使用的事件对象，清理事件资源。
+ * 确保事件被正确销毁，避免资源泄漏。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的事件销毁流程
+ */
 // 函数: void destroy_utility_event(void)
 void destroy_utility_event(void)
 
@@ -3478,6 +3617,16 @@ void destroy_utility_event(void)
 
 
 
+/**
+ * 等待工具系统事件
+ * 
+ * 等待工具系统事件的发生，支持超时设置。
+ * 用于线程间的同步和通信。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的事件等待流程
+ */
 // 函数: void wait_utility_event(void)
 void wait_utility_event(void)
 
@@ -3529,6 +3678,16 @@ void * reset_utility_event(void)
 
 
 
+/**
+ * 获取工具系统事件状态
+ * 
+ * 查询工具系统事件的当前状态，用于状态监控。
+ * 返回事件的触发状态和相关信息。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的事件状态获取流程
+ */
 // 函数: void get_utility_event_status(void)
 void get_utility_event_status(void)
 
@@ -3539,6 +3698,16 @@ void get_utility_event_status(void)
 
 
 
+/**
+ * 初始化工具系统定时器
+ * 
+ * 创建并初始化工具系统的定时器对象，用于定时任务。
+ * 设置定时器的精度和分辨率。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的定时器初始化流程
+ */
 // 函数: void initialize_utility_timer(void)
 void initialize_utility_timer(void)
 
@@ -3593,6 +3762,16 @@ void * destroy_utility_timer(void)
 
 
 
+/**
+ * 启动工具系统定时器
+ * 
+ * 启动工具系统的定时器，开始计时。
+ * 设置定时器的触发间隔和回调函数。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的定时器启动流程
+ */
 // 函数: void start_utility_timer(void)
 void start_utility_timer(void)
 
@@ -3603,6 +3782,16 @@ void start_utility_timer(void)
 
 
 
+/**
+ * 停止工具系统定时器
+ * 
+ * 停止工具系统的定时器，结束计时。
+ * 清理定时器相关资源。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的定时器停止流程
+ */
 // 函数: void stop_utility_timer(void)
 void stop_utility_timer(void)
 
@@ -3657,6 +3846,16 @@ void * reset_utility_timer(void)
 
 
 
+/**
+ * 获取工具系统定时器信息
+ * 
+ * 查询工具系统定时器的当前状态和信息。
+ * 返回定时器的运行时间、剩余时间等信息。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的定时器信息获取流程
+ */
 // 函数: void get_utility_timer_info(void)
 void get_utility_timer_info(void)
 
@@ -3667,6 +3866,16 @@ void get_utility_timer_info(void)
 
 
 
+/**
+ * 初始化工具系统文件
+ * 
+ * 初始化工具系统的文件管理功能，设置文件操作参数。
+ * 为文件读写操作准备资源。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的文件初始化流程
+ */
 /**
  * 初始化工具系统文件
  * 
@@ -3731,6 +3940,16 @@ void * close_utility_file(void)
 
 
 
+/**
+ * 读取工具系统文件
+ * 
+ * 从文件中读取数据到缓冲区，支持同步和异步读取。
+ * 处理文件指针和读取进度。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的文件读取流程
+ */
 // 函数: void read_utility_file(void)
 void read_utility_file(void)
 
@@ -3741,6 +3960,16 @@ void read_utility_file(void)
 
 
 
+/**
+ * 写入工具系统文件
+ * 
+ * 将缓冲区数据写入文件，支持同步和异步写入。
+ * 处理文件指针和写入进度。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的文件写入流程
+ */
 // 函数: void write_utility_file(void)
 void write_utility_file(void)
 
@@ -3788,6 +4017,16 @@ void * get_utility_file_size(void)
 
 
 
+/**
+ * 刷新工具系统文件
+ * 
+ * 将文件缓冲区的数据强制写入磁盘，确保数据持久化。
+ * 处理文件缓存和同步问题。
+ * 
+ * @return void
+ *
+ * @note 这是简化实现，主要处理基本的文件刷新流程
+ */
 // 函数: void flush_utility_file(void)
 void flush_utility_file(void)
 
