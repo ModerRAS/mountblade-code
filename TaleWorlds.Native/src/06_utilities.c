@@ -217,23 +217,23 @@ uint64 utility_process_resource_data(longlong resource_handle)
  */
 uint64 utility_resource_data_processor(void)
 {
-  uint64 utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
-  if ((int)utility_result != UTILITY_ZERO) {
-    return utility_result;
+  uint64 result;
+  longlong resource_handle = 0; // 默认资源句柄
+  result = system_memory_operation(*(uint32 *)(resource_handle + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
+  if ((int)result != UTILITY_MEMORY_ZERO) {
+    return result;
   }
-  if (utility_system_resource_handle == UTILITY_ZERO) {
-    utility_system_resource_handle = UTILITY_ZERO;
+  if (utility_system_resource_handle == UTILITY_MEMORY_ZERO) {
+    utility_system_resource_handle = UTILITY_MEMORY_ZERO;
   }
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
-    return UTILITY_ERROR_FLAG;
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_RESOURCE_POINTER_OFFSET) == UTILITY_MEMORY_ZERO) {
+    return UTILITY_ERROR_GENERAL;
   }
-  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
-  return UTILITY_ZERO;
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_RESOURCE_POINTER_OFFSET), UTILITY_MEMORY_OPERATION_FLAG);
+  return UTILITY_MEMORY_ZERO;
 }
 
 /**
