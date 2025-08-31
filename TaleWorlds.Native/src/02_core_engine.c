@@ -519,7 +519,7 @@ void EngineFreeMemoryFunction(void* ptr);
  * @date 2025-08-31
  * 
  * @section improvements 本次改进内容
- * - 统一变量命名规范，移除冗余的pointer后缀
+ * - 统一变量命名规范，移除冗余的pointer后缀，改为ptr后缀
  * - 优化状态标志变量命名，将flag后缀改为更简洁的status
  * - 为所有核心函数添加详细的@details说明文档
  * - 完善函数参数说明和返回值说明
@@ -527,6 +527,7 @@ void EngineFreeMemoryFunction(void* ptr);
  * - 增加内存分配策略和对齐要求说明
  * - 统一注释风格，提高代码可读性
  * - 优化数据值变量命名，将data_value后缀改为更简洁的data
+ * - 统一函数指针命名规范，添加Function后缀
  * - 更新版本信息到2.4，反映最新的改进内容
  * - 保持代码语义不变，仅进行美化优化
  * 
