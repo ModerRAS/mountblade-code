@@ -23114,6 +23114,13 @@ void system_function_052200(longlong system_param_1,longlong system_param_2,uint
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 系统内存上下文初始化函数
+ * 初始化系统的内存管理和上下文配置
+ * @param system_param_1 系统参数1，用于配置内存池
+ * @param system_param_2 系统参数2，用于配置上下文
+ * @return 初始化成功后的内存上下文指针
+ */
 uint64_t system_initialize_memory_context(uint64_t system_param_1,uint64_t system_param_2)
 
 {
@@ -25183,6 +25190,15 @@ void system_function_0565f0(longlong *system_param_1)
 
 
 
+/**
+ * @brief 系统资源管理器创建函数
+ * 创建并初始化系统资源管理器
+ * @param system_param_1 资源管理器基础配置
+ * @param system_param_2 资源管理器类型标志
+ * @param system_param_3 资源管理器大小参数
+ * @param system_param_4 资源管理器选项参数
+ * @return 创建成功后的资源管理器指针
+ */
 uint64_t system_create_resource_manager(uint64_t system_param_1,ulonglong system_param_2,uint64_t system_param_3,uint64_t system_param_4)
 
 {
@@ -25447,7 +25463,7 @@ void system_function_056c50(uint64_t system_param_1,uint64_t *system_param_2,uin
 
 
 
-uint64_t * FUN_180056de0(uint64_t *system_param_1)
+uint64_t * system_allocate_resource_buffer(uint64_t *system_param_1)
 
 {
   *system_param_1 = 0;
@@ -25459,7 +25475,7 @@ uint64_t * FUN_180056de0(uint64_t *system_param_1)
 
 
 
-uint64_t * FUN_180056e10(uint64_t *system_param_1)
+uint64_t * system_create_resource_handle(uint64_t *system_param_1)
 
 {
   *system_param_1 = 0;
@@ -25481,7 +25497,7 @@ void system_function_056e40(void)
 
 
 
-uint64_t * FUN_180056e60(uint64_t *system_param_1)
+uint64_t * system_initialize_resource_data(uint64_t *system_param_1)
 
 {
   *system_param_1 = 0;
@@ -25493,7 +25509,7 @@ uint64_t * FUN_180056e60(uint64_t *system_param_1)
 
 
 
-uint64_t * FUN_180056e90(uint64_t *system_param_1)
+uint64_t * system_setup_resource_index(uint64_t *system_param_1)
 
 {
   uint64_t *system_data_ptr;
@@ -25517,7 +25533,7 @@ uint64_t * FUN_180056e90(uint64_t *system_param_1)
 
 
 
-longlong * FUN_180056f10(longlong *system_param_1,longlong *system_param_2)
+longlong * system_create_resource_context(longlong *system_param_1,longlong *system_param_2)
 
 {
   longlong *system_long_data_ptr;
@@ -26728,7 +26744,7 @@ void system_function_057980(longlong system_param_1,longlong system_param_2,uint
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_180057b00(longlong system_param_1,longlong *system_param_2,uint64_t system_param_3)
+longlong * system_initialize_resource_table(longlong system_param_1,longlong *system_param_2,uint64_t system_param_3)
 
 {
   byte system_byte_value;
@@ -26810,7 +26826,7 @@ void system_function_057bf0(uint64_t *system_param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_180057cb0(uint64_t *system_param_1,uint system_param_2,uint64_t system_param_3,uint64_t system_param_4)
+uint64_t * system_allocate_resource_memory(uint64_t *system_param_1,uint system_param_2,uint64_t system_param_3,uint64_t system_param_4)
 
 {
   *system_param_1 = &system_unknown_180a08db0;
