@@ -16205,6 +16205,21 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
   return;
 }
 
+/**
+ * @brief 系统初始化获取上下文函数
+ * 
+ * 这是简化实现，用于获取系统初始化所需的上下文信息。
+ * 原本实现应该包含更复杂的上下文管理和验证逻辑。
+ * 
+ * 当前实现主要处理：
+ * - 线程本地存储访问
+ * - 上下文指针获取
+ * - 内存分配结果处理
+ * 
+ * @return system_uint64_t 系统上下文指针
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
 system_uint64_t system_init_get_context(void)
 
 {
@@ -17547,7 +17562,21 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint_stan
   return;
 }
 
-// 函数: void InitializeSystemCore(system_uint64_t *system_context_param)
+/**
+ * @brief 系统核心初始化函数
+ * 
+ * 这是简化实现，用于初始化系统的核心组件。
+ * 原本实现应该包含更复杂的初始化逻辑和错误处理。
+ * 
+ * 当前实现主要处理：
+ * - 系统信号量管理
+ * - 核心组件初始化
+ * - 参数验证和处理
+ * 
+ * @param system_context_param 系统上下文参数指针
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
 void InitializeSystemCore(system_uint64_t *system_context_param)
 
 {
