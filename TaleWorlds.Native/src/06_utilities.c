@@ -1108,20 +1108,33 @@ uint64_t utility_handle_event_dispatch(int64_t context_handle)
     uint64_t utility_resource_handle;
     int64_t utility_stack_context_value;
     uint64_t utility_operation_result;
-utility_resource_value = utility_system_service_manager(*(uint32_t *)(context_handle + UTILITY_THREAD_HANDLE_OFFSET),&utility_stack_context_value);
-if ((int)utility_resource_data == 0) {
-utility_resource_data = 0;
-utility_resource_data = utility_stack_context_value - 8;
-if (utility_stack_context_value == 0) {
-utility_resource_data = utility_resource_data;
-}
-context_handle = (uint32_t *)(context_handle + UTILITY_THREAD_DATA_OFFSET + (int64_t)*(int *)(context_handle + UTILITY_THREAD_CONTEXT_OFFSET) * 8);
-context_handle = (int *)(context_handle + UTILITY_THREAD_DATA_OFFSET);
-if (0 < *(int *)(context_handle + UTILITY_THREAD_CONTEXT_OFFSET)) {
-do {
-if ((*buffer_pointer != utility_system_reserved_data) || (context_handle[1] != utility_system_reserved_data)) {
-utility_stack_context_value = 0;
-utility_resource_data = utility_create_context_instance(utility_resource_data,(int *)(context_handle + UTILITY_THREAD_DATA_OFFSET) + (int64_t)(int)utility_resource_data * 2,&utility_stack_context_value)
+    
+    // 简化实现：调用系统服务管理器
+    utility_resource_value = utility_system_service_manager(*(uint32_t *)(context_handle + UTILITY_THREAD_HANDLE_OFFSET), &utility_stack_context_value);
+// 简化实现：处理资源数据
+    if ((int)utility_resource_data == 0) {
+        utility_resource_data = 0;
+        utility_resource_data = utility_stack_context_value - 8;
+        
+        if (utility_stack_context_value == 0) {
+            utility_resource_data = utility_resource_data;
+        }
+        
+        // 简化实现：处理上下文偏移
+        context_handle = (uint32_t *)(context_handle + UTILITY_THREAD_DATA_OFFSET + 
+                                       (int64_t)*(int *)(context_handle + UTILITY_THREAD_CONTEXT_OFFSET) * 8);
+        context_handle = (int *)(context_handle + UTILITY_THREAD_DATA_OFFSET);
+        
+        // 简化实现：处理事件循环
+        if (0 < *(int *)(context_handle + UTILITY_THREAD_CONTEXT_OFFSET)) {
+            do {
+                if ((*buffer_pointer != utility_system_reserved_data) || 
+                    (context_handle[1] != utility_system_reserved_data)) {
+                    utility_stack_context_value = 0;
+                    utility_resource_data = utility_create_context_instance(
+                        utility_resource_data,
+                        (int *)(context_handle + UTILITY_THREAD_DATA_OFFSET) + (int64_t)(int)utility_resource_data * 2,
+                        &utility_stack_context_value);
 ;
 if ((int)utility_resource_value != 0) {
 return utility_resource_value;
