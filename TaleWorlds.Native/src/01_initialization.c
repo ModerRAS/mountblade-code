@@ -1205,6 +1205,12 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
+/**
+ * @brief 空参数系统初始化函数
+ * @details 这是简化实现，原本实现应该包含更复杂的初始化逻辑
+ * 使用默认参数进行系统初始化，主要用于快速启动场景
+ * 初始化系统全局上下文并设置基本的内存和栈配置
+ */
 void system_init_empty(void)
 
 {
@@ -18921,7 +18927,15 @@ system_uint64_t * InitializeUISystem(system_uint64_t *system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong system_memory_param)
+/**
+ * @brief 带三个长整型参数的系统初始化函数
+ * @param system_context_param 系统上下文参数（长整型）
+ * @param system_config_param 系统配置参数（长整型）
+ * @param system_memory_param 系统内存参数（长整型）
+ * @details 这是简化实现，原本实现应该包含完整的参数验证和错误处理
+ * 使用三个长整型参数进行系统初始化，主要用于内存管理相关的初始化场景
+ * 处理系统内存分配、配置验证和数据初始化
+ */
 void InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong system_memory_param)
 
 {
