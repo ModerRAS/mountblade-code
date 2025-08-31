@@ -2335,7 +2335,20 @@ void *utility_data_segment_bd80;
  *
  * @note 这是简化实现，主要处理基本的初始化流程
  */
-// 函数: void initialize_utility_system(longlong utility_context_handle,longlong utility_data_ptr)
+/**
+ * 初始化工具系统，包括内存管理、线程同步和资源分配
+ * 
+ * 参数:
+ *   - utility_context_handle - 系统上下文句柄
+ *   - utility_data_ptr - 系统数据指针
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void initialize_utility_system(long long utility_context_handle,long long utility_data_ptr)
 
 {
@@ -2478,7 +2491,21 @@ void reset_utility_system(void)
  *
  * @note 这是简化实现，主要处理基本的验证流程
  */
-// 函数: void validate_utility_system(void)
+/**
+ * 验证工具系统的完整性和状态
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 检查系统组件状态
+ *   - 验证内存分配情况
+ *   - 确认线程同步机制
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void validate_utility_system(void)
 
 {
@@ -2904,7 +2931,21 @@ void * validate_utility_memory(char utility_context_handle)
  *
  * @note 这是简化实现，主要处理基本的内存清理流程
  */
-// 函数: void clear_utility_memory(void)
+/**
+ * 清理工具系统内存，释放分配的资源
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 释放内存缓冲区
+ *   - 清理资源池
+ *   - 重置内存管理器
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void clear_utility_memory(void)
 
 {
@@ -2968,7 +3009,21 @@ void * get_utility_memory_flags(void)
  *
  * @note 这是简化实现，主要处理基本的内存标志设置流程
  */
-// 函数: void set_utility_memory_flags(void)
+/**
+ * 设置工具系统内存标志位
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 配置内存管理标志
+ *   - 设置内存保护选项
+ *   - 初始化内存访问权限
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void set_utility_memory_flags(void)
 
 {
@@ -2998,7 +3053,21 @@ void set_utility_memory_flags(void)
  *
  * @note 这是简化实现，主要处理基本的线程初始化流程
  */
-// 函数: void initialize_utility_thread(void)
+/**
+ * 初始化工具系统线程
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 创建线程控制结构
+ *   - 设置线程属性
+ *   - 初始化线程本地存储
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void initialize_utility_thread(void)
 
 {
@@ -3062,7 +3131,21 @@ void * get_utility_thread_status(void)
  *
  * @note 这是简化实现，主要处理基本的线程销毁流程
  */
-// 函数: void destroy_utility_thread(void)
+/**
+ * 销毁工具系统线程
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 清理线程资源
+ *   - 终止线程执行
+ *   - 释放线程控制结构
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void destroy_utility_thread(void)
 
 {
@@ -3082,7 +3165,21 @@ void destroy_utility_thread(void)
  *
  * @note 这是简化实现，主要处理基本的线程恢复流程
  */
-// 函数: void resume_utility_thread(void)
+/**
+ * 恢复工具系统线程执行
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 唤醒暂停的线程
+ *   - 恢复线程调度
+ *   - 重置线程状态
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void resume_utility_thread(void)
 
 {
@@ -3327,7 +3424,21 @@ void * create_utility_mutex(void)
  *
  * @note 这是简化实现，主要处理基本的互斥锁销毁流程
  */
-// 函数: void destroy_utility_mutex(void)
+/**
+ * 销毁工具系统互斥锁
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 释放互斥锁资源
+ *   - 清理同步对象
+ *   - 重置锁状态
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void destroy_utility_mutex(void)
 
 {
@@ -3459,7 +3570,21 @@ void * try_lock_utility_mutex(void)
  *
  * @note 这是简化实现，主要处理基本的信号量初始化流程
  */
-// 函数: void initialize_utility_semaphore(void)
+/**
+ * 初始化工具系统信号量
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 创建信号量对象
+ *   - 设置初始计数值
+ *   - 配置信号量属性
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void initialize_utility_semaphore(void)
 
 {
@@ -4132,7 +4257,25 @@ void utility_system_cleanup_11a2(void)
 
 
 
-// 函数: void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
+/**
+ * 处理系统上下文相关数据操作，包括数据验证、状态管理和资源分配
+ * 
+ * 参数:
+ *   - utility_context_handle - 系统上下文句柄，用于标识操作上下文
+ *   - utility_data_ptr - 数据指针，指向要处理的数据
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 从上下文中提取相关指针和数据
+ *   - 调用系统函数执行数据处理
+ *   - 根据执行结果设置错误状态码
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
 
 {
@@ -5321,7 +5464,7 @@ void * utility_data_func_02030(long long utility_context_handle,long long utilit
 
 
 
-void * utility_general_functiond(void)
+void * utility_data_processor_transform(void)
 
 {
   long long context_handle;
@@ -6189,7 +6332,7 @@ void * utility_context_handler_process_data(long long utility_context_handle,lon
 
 
 
-void * utility_general_functionb(void)
+void * utility_buffer_manager_cleanup(void)
 
 {
   float fVar1;
@@ -6284,7 +6427,25 @@ void * utility_context_handler_process_data(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
+/**
+ * 处理系统上下文相关数据操作，包括数据验证、状态管理和资源分配
+ * 
+ * 参数:
+ *   - utility_context_handle - 系统上下文句柄，用于标识操作上下文
+ *   - utility_data_ptr - 数据指针，指向要处理的数据
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 从上下文中提取相关指针和数据
+ *   - 调用系统函数执行数据处理
+ *   - 根据执行结果设置错误状态码
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
 
 {
@@ -6833,7 +6994,7 @@ int utility_data_func_0242d(long long utility_context_handle,void * utility_data
 
 
 
-void * utility_general_functionb(void)
+void * utility_buffer_manager_cleanup(void)
 
 {
   return 0x1f;
@@ -6983,7 +7144,7 @@ void * utility_context_handler_process_data(long long utility_context_handle,lon
 
 
 
-void * utility_general_functionf(void * utility_context_handle,void * utility_data_ptr)
+void * utility_file_manager_flush(void * utility_context_handle,void * utility_data_ptr)
 
 {
   float fVar1;
@@ -7816,8 +7977,8 @@ void utility_context_handler_process_data(long long utility_context_handle,void 
 
 
 
-// 函数: void utility_general_functionc(void)
-void utility_general_functionc(void)
+// 函数: void utility_cache_manager_clear(void)
+void utility_cache_manager_clear(void)
 
 {
   utility_context_handler_process_data();
@@ -7846,7 +8007,25 @@ void utility_context_handler_process_data(void)
 
 
 
-// 函数: void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
+/**
+ * 处理系统上下文相关数据操作，包括数据验证、状态管理和资源分配
+ * 
+ * 参数:
+ *   - utility_context_handle - 系统上下文句柄，用于标识操作上下文
+ *   - utility_data_ptr - 数据指针，指向要处理的数据
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 从上下文中提取相关指针和数据
+ *   - 调用系统函数执行数据处理
+ *   - 根据执行结果设置错误状态码
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
 
 {
@@ -7892,7 +8071,25 @@ void utility_context_handler_process_data(void)
 
 
 
-// 函数: void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
+/**
+ * 处理系统上下文相关数据操作，包括数据验证、状态管理和资源分配
+ * 
+ * 参数:
+ *   - utility_context_handle - 系统上下文句柄，用于标识操作上下文
+ *   - utility_data_ptr - 数据指针，指向要处理的数据
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 从上下文中提取相关指针和数据
+ *   - 调用系统函数执行数据处理
+ *   - 根据执行结果设置错误状态码
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
 
 {
@@ -7943,7 +8140,25 @@ void utility_context_handler_process_data(void)
 
 
 
-// 函数: void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
+/**
+ * 处理系统上下文相关数据操作，包括数据验证、状态管理和资源分配
+ * 
+ * 参数:
+ *   - utility_context_handle - 系统上下文句柄，用于标识操作上下文
+ *   - utility_data_ptr - 数据指针，指向要处理的数据
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 从上下文中提取相关指针和数据
+ *   - 调用系统函数执行数据处理
+ *   - 根据执行结果设置错误状态码
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
 
 {
@@ -8392,7 +8607,7 @@ void utility_buffer_func_02940(long long utility_context_handle,void **utility_d
       iVar8 = *(int *)(utility_context_handle + 0xb0);
       if (system_item_count < iVar8) {
         *(int *)(utility_context_handle + 0xac) = system_item_count + 1;
-        goto utility_general_function;
+        goto utility_system_operation_perform;
       }
       fVar10 = *(float *)(lVar9 + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
       fVar11 = fVar10;
@@ -8425,7 +8640,7 @@ void utility_buffer_func_02940(long long utility_context_handle,void **utility_d
         system_item_count = (**(code **)(utility_context_handle + 0xc0))
                           (uVar5,system_item_count,*(void **)(lVar9 + UTILITY_THREAD_TLS_CONTEXT_OFFSET),*(void **)(utility_context_handle + 0xb8)
                           );
-        if (system_item_count != 0) goto utility_general_function;
+        if (system_item_count != 0) goto utility_system_operation_perform;
       }
       if (((((bVar1 & 2) != 0 || (long long)fVar10 + lVar7 < lVar2 - lVar6) &&
            (system_item_count = *putility_stack_int_6f0, *putility_stack_int_6f0 = system_item_count + 1, system_item_count < 10)) &&
@@ -8440,7 +8655,7 @@ LAB_18089555d:
         cVar3 = system_call_function(*(void **)(utility_context_handle + 0x58));
         if (cVar3 == '\0') goto LAB_18089555d;
         *utility_data_ptr = 0;
-        goto utility_general_function;
+        goto utility_system_operation_perform;
       }
       if (cVar3 == '\a') {
         cVar3 = system_call_function(*(void **)(utility_context_handle + 0x58));
@@ -8448,7 +8663,7 @@ LAB_18089555d:
           if (*(int *)(*(long long *)(*(long long *)(*(long long *)(utility_context_handle + 0x58) + 0x90) + 0x790) +
                       0x1c8) != 0) {
             *utility_data_ptr = 0;
-            goto utility_general_function;
+            goto utility_system_operation_perform;
           }
           goto LAB_18089555d;
         }
@@ -8457,7 +8672,7 @@ LAB_18089555d:
         if ((cVar3 != '\x02') || ((*(byte *)(utility_context_handle + 0x6c) & 4) != 0)) goto LAB_18089555d;
         system_temp_var_6f4 = *(void **)(lVar9 + UTILITY_THREAD_TLS_DATA_OFFSET);
         system_item_count = utility_context_handler_process_data(utility_context_handle,system_item_count,&system_temp_var_6f4);
-        if (system_item_count != 0) goto utility_general_function;
+        if (system_item_count != 0) goto utility_system_operation_perform;
         system_item_count = system_call_function(system_temp_var_6f4,autility_stack_long_6b0);
         if ((system_item_count != 0) || (*(int *)(autility_stack_long_6b0[0] + UTILITY_THREAD_TLS_STATUS_OFFSET) != 2)) goto LAB_18089555d;
       }
@@ -8469,15 +8684,15 @@ LAB_18089555d:
     *(uint *)(utility_context_handle + 0x6c) = *(uint *)(utility_context_handle + 0x6c) | 0x4000000;
     *utility_data_ptr = 0;
   }
-utility_general_function:
+utility_system_operation_perform:
   utility_context_handler_process_data(system_temp_var_48 ^ (ulong long)asystem_temp_var_738);
 }
 
 
 
 
-// 函数: void utility_general_functionf(long long utility_context_handle,void * utility_data_ptr,int *utility_param)
-void utility_general_functionf(long long utility_context_handle,void * utility_data_ptr,int *utility_param)
+// 函数: void utility_file_manager_flush(long long utility_context_handle,void * utility_data_ptr,int *utility_param)
+void utility_file_manager_flush(long long utility_context_handle,void * utility_data_ptr,int *utility_param)
 
 {
   long long context_handle;
@@ -8694,7 +8909,7 @@ LAB_180895ccb:
 
 
 
-void * utility_general_functionb(long long utility_context_handle,void * utility_data_ptr,long long utility_param,uint utility_param)
+void * utility_buffer_manager_cleanup(long long utility_context_handle,void * utility_data_ptr,long long utility_param,uint utility_param)
 
 {
   long long context_handle;
@@ -8935,7 +9150,7 @@ void * utility_context_handler_process_data(void * utility_context_handle,int ut
 
 
 
-void * utility_general_functionc(void * utility_context_handle,void * utility_data_ptr)
+void * utility_cache_manager_lookup(void * utility_context_handle,void * utility_data_ptr)
 
 {
   int iVar1;
@@ -9830,7 +10045,7 @@ LAB_180896ce3:
       system_temp_var_2e0 = (ulong long)CONCAT14(iVar3 != 1,*(void **)(utility_data_ptr + 0x230));
       iVar3 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
     }
-    if (iVar3 != 0) goto utility_general_function;
+    if (iVar3 != 0) goto utility_system_operation_perform;
     system_temp_var_298 = *(uint *)(utility_data_ptr + 0x10);
     system_temp_var_294 = *(void **)(utility_data_ptr + 0x14);
     utility_stack_int_290 = *(int *)(utility_data_ptr + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
@@ -9840,7 +10055,7 @@ LAB_180896ce3:
     system_temp_var_284 = 0;
     system_temp_var_288 = utility_param;
     iVar3 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2a8);
-    if (iVar3 != 0) goto utility_general_function;
+    if (iVar3 != 0) goto utility_system_operation_perform;
     iVar7 = 0;
     iVar3 = *(int *)(*(long long *)(utility_data_ptr + 0x2e8) + 0x2c);
     if (0 < iVar3) {
@@ -9849,7 +10064,7 @@ LAB_180896ce3:
         psystem_temp_var_2f8 = &UNK_180982cc0;
         system_temp_var_2e8 = CONCAT44(system_temp_var_2e8._4_4_,utility_param);
         system_item_count = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
-        if (system_item_count != 0) goto utility_general_function;
+        if (system_item_count != 0) goto utility_system_operation_perform;
         iVar7 = iVar7 + 1;
       } while (iVar7 < iVar3);
     }
@@ -9862,7 +10077,7 @@ LAB_180896ce3:
       if (((*(byte *)(context_handle + 0xc4) & 1) != 0) && (lVar2 != 0)) {
         system_temp_var_308 = 0;
         iVar7 = system_call_function(lVar2,&system_temp_var_308);
-        if (iVar7 != 0) goto utility_general_function;
+        if (iVar7 != 0) goto utility_system_operation_perform;
         system_temp_var_28c = *(void **)(context_handle + 0x10);
         system_temp_var_288 = *(uint *)(context_handle + 0x14);
         system_temp_var_284 = *(void **)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
@@ -9875,14 +10090,14 @@ LAB_180896ce3:
         utility_stack_int_290 = iVar5;
         iVar5 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2a8);
         if ((iVar5 != 0) || (iVar5 = utility_context_handler_process_data(lVar2,afStack_304), iVar5 != 0))
-        goto utility_general_function;
+        goto utility_system_operation_perform;
         if (afStack_304[0] != 1.0) {
           system_temp_var_2e0 = CONCAT44(system_temp_var_2e0._4_4_,afStack_304[0]);
           psystem_temp_var_2f8 = &UNK_1809842e0;
           system_temp_var_2e8 = CONCAT44(system_temp_var_2e8._4_4_,system_temp_var_308);
           utility_stack_int_2f0 = iVar5;
           iVar5 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
-          if (iVar5 != 0) goto utility_general_function;
+          if (iVar5 != 0) goto utility_system_operation_perform;
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           utility_stack_int_2f0 = 0;
@@ -9890,7 +10105,7 @@ LAB_180896ce3:
           system_temp_var_2e8 = CONCAT44(system_temp_var_2e8._4_4_,system_temp_var_308);
           system_temp_var_2e0 = CONCAT71(system_temp_var_2e0._1_7_,1);
           iVar5 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
-          if (iVar5 != 0) goto utility_general_function;
+          if (iVar5 != 0) goto utility_system_operation_perform;
         }
         iVar5 = system_item_count;
         if (*(char *)(lVar2 + 0x29) != '\0') {
@@ -9899,7 +10114,7 @@ LAB_180896ce3:
           system_temp_var_2e8 = CONCAT44(system_temp_var_2e8._4_4_,system_temp_var_308);
           system_temp_var_2e0 = CONCAT71(system_temp_var_2e0._1_7_,1);
           iVar7 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
-          if (iVar7 != 0) goto utility_general_function;
+          if (iVar7 != 0) goto utility_system_operation_perform;
         }
       }
     }
@@ -9909,7 +10124,7 @@ LAB_180896ce3:
       if (((*(byte *)(context_handle + 0xc4) & 1) != 0) && (lVar2 != 0)) {
         system_temp_var_308 = 0;
         iVar7 = system_call_function(lVar2,&system_temp_var_308);
-        if (iVar7 != 0) goto utility_general_function;
+        if (iVar7 != 0) goto utility_system_operation_perform;
         system_temp_var_28c = *(void **)(context_handle + 0x10);
         system_temp_var_288 = *(uint *)(context_handle + 0x14);
         system_temp_var_284 = *(void **)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
@@ -9922,14 +10137,14 @@ LAB_180896ce3:
         utility_stack_int_290 = iVar5;
         iVar5 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2a8);
         if ((iVar5 != 0) || (iVar5 = utility_context_handler_process_data(lVar2,afStack_304), iVar5 != 0))
-        goto utility_general_function;
+        goto utility_system_operation_perform;
         if (afStack_304[0] != 1.0) {
           system_temp_var_2e0 = CONCAT44(system_temp_var_2e0._4_4_,afStack_304[0]);
           psystem_temp_var_2f8 = &UNK_1809842e0;
           system_temp_var_2e8 = CONCAT44(system_temp_var_2e8._4_4_,system_temp_var_308);
           utility_stack_int_2f0 = iVar5;
           iVar5 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
-          if (iVar5 != 0) goto utility_general_function;
+          if (iVar5 != 0) goto utility_system_operation_perform;
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           utility_stack_int_2f0 = 0;
@@ -9937,7 +10152,7 @@ LAB_180896ce3:
           system_temp_var_2e8 = CONCAT44(system_temp_var_2e8._4_4_,system_temp_var_308);
           system_temp_var_2e0 = CONCAT71(system_temp_var_2e0._1_7_,1);
           iVar5 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
-          if (iVar5 != 0) goto utility_general_function;
+          if (iVar5 != 0) goto utility_system_operation_perform;
         }
         iVar5 = system_item_count;
         if (*(char *)(lVar2 + 0x29) != '\0') {
@@ -9946,7 +10161,7 @@ LAB_180896ce3:
           system_temp_var_2e8 = CONCAT44(system_temp_var_2e8._4_4_,system_temp_var_308);
           system_temp_var_2e0 = CONCAT71(system_temp_var_2e0._1_7_,1);
           iVar7 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
-          if (iVar7 != 0) goto utility_general_function;
+          if (iVar7 != 0) goto utility_system_operation_perform;
         }
       }
     }
@@ -9956,7 +10171,7 @@ LAB_180896ce3:
       if (((*(byte *)(context_handle + 0xc4) & 1) != 0) && (lVar2 != 0)) {
         system_temp_var_308 = 0;
         iVar7 = system_call_function(lVar2,&system_temp_var_308);
-        if (iVar7 != 0) goto utility_general_function;
+        if (iVar7 != 0) goto utility_system_operation_perform;
         system_temp_var_28c = *(void **)(context_handle + 0x10);
         system_temp_var_288 = *(uint *)(context_handle + 0x14);
         system_temp_var_284 = *(void **)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
@@ -9969,14 +10184,14 @@ LAB_180896ce3:
         utility_stack_int_290 = iVar5;
         iVar5 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2a8);
         if ((iVar5 != 0) || (iVar5 = utility_context_handler_process_data(lVar2,afStack_304), iVar5 != 0))
-        goto utility_general_function;
+        goto utility_system_operation_perform;
         if (afStack_304[0] != 1.0) {
           system_temp_var_2e0 = CONCAT44(system_temp_var_2e0._4_4_,afStack_304[0]);
           psystem_temp_var_2f8 = &UNK_1809842e0;
           system_temp_var_2e8 = CONCAT44(system_temp_var_2e8._4_4_,system_temp_var_308);
           utility_stack_int_2f0 = iVar5;
           iVar5 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
-          if (iVar5 != 0) goto utility_general_function;
+          if (iVar5 != 0) goto utility_system_operation_perform;
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           utility_stack_int_2f0 = 0;
@@ -9984,7 +10199,7 @@ LAB_180896ce3:
           system_temp_var_2e8 = CONCAT44(system_temp_var_2e8._4_4_,system_temp_var_308);
           system_temp_var_2e0 = CONCAT71(system_temp_var_2e0._1_7_,1);
           iVar5 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
-          if (iVar5 != 0) goto utility_general_function;
+          if (iVar5 != 0) goto utility_system_operation_perform;
         }
         iVar5 = system_item_count;
         if (*(char *)(lVar2 + 0x29) != '\0') {
@@ -9993,7 +10208,7 @@ LAB_180896ce3:
           system_temp_var_2e8 = CONCAT44(system_temp_var_2e8._4_4_,system_temp_var_308);
           system_temp_var_2e0 = CONCAT71(system_temp_var_2e0._1_7_,1);
           iVar7 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
-          if (iVar7 != 0) goto utility_general_function;
+          if (iVar7 != 0) goto utility_system_operation_perform;
         }
       }
     }
@@ -10003,7 +10218,7 @@ LAB_180896ce3:
       if (((*(byte *)(context_handle + 0xc4) & 1) != 0) && (lVar2 != 0)) {
         system_temp_var_308 = 0;
         iVar7 = system_call_function(lVar2,&system_temp_var_308);
-        if (iVar7 != 0) goto utility_general_function;
+        if (iVar7 != 0) goto utility_system_operation_perform;
         system_temp_var_28c = *(void **)(context_handle + 0x10);
         system_temp_var_288 = *(uint *)(context_handle + 0x14);
         system_temp_var_284 = *(void **)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
@@ -10016,14 +10231,14 @@ LAB_180896ce3:
         utility_stack_int_290 = iVar5;
         iVar5 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2a8);
         if ((iVar5 != 0) || (iVar5 = utility_context_handler_process_data(lVar2,afStack_304), iVar5 != 0))
-        goto utility_general_function;
+        goto utility_system_operation_perform;
         if (afStack_304[0] != 1.0) {
           system_temp_var_2e0 = CONCAT44(system_temp_var_2e0._4_4_,afStack_304[0]);
           psystem_temp_var_2f8 = &UNK_1809842e0;
           system_temp_var_2e8 = CONCAT44(system_temp_var_2e8._4_4_,system_temp_var_308);
           utility_stack_int_2f0 = iVar5;
           iVar5 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
-          if (iVar5 != 0) goto utility_general_function;
+          if (iVar5 != 0) goto utility_system_operation_perform;
         }
         if (*(char *)(lVar2 + 0x28) != '\0') {
           utility_stack_int_2f0 = 0;
@@ -10031,7 +10246,7 @@ LAB_180896ce3:
           system_temp_var_2e8 = CONCAT44(system_temp_var_2e8._4_4_,system_temp_var_308);
           system_temp_var_2e0 = CONCAT71(system_temp_var_2e0._1_7_,1);
           iVar5 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
-          if (iVar5 != 0) goto utility_general_function;
+          if (iVar5 != 0) goto utility_system_operation_perform;
         }
         iVar5 = system_item_count;
         if (*(char *)(lVar2 + 0x29) != '\0') {
@@ -10040,7 +10255,7 @@ LAB_180896ce3:
           system_temp_var_2e8 = CONCAT44(system_temp_var_2e8._4_4_,system_temp_var_308);
           system_temp_var_2e0 = CONCAT71(system_temp_var_2e0._1_7_,1);
           iVar7 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_2f8);
-          if (iVar7 != 0) goto utility_general_function;
+          if (iVar7 != 0) goto utility_system_operation_perform;
         }
       }
     }
@@ -10079,7 +10294,7 @@ LAB_180896ce3:
       iVar3 = iVar3 + 1;
     } while( true );
   }
-utility_general_function:
+utility_system_operation_perform:
   utility_context_handler_process_data(system_temp_var_58 ^ (ulong long)asystem_temp_var_328);
 }
 
@@ -10572,7 +10787,7 @@ void utility_context_handler_process_data(long long utility_context_handle,long 
               }
               system_call_function(asystem_temp_var_e0,process_data_ptr2,0x80);
               iVar6 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_108);
-              if (iVar6 != 0) goto utility_general_function;
+              if (iVar6 != 0) goto utility_system_operation_perform;
             }
             lVar8 = lVar8 + 1;
             context_handle4 = context_handle4 + UTILITY_THREAD_TLS_CONTEXT_OFFSET;
@@ -10601,7 +10816,7 @@ void utility_context_handler_process_data(long long utility_context_handle,long 
               system_temp_var_114 = *(void **)(lVar2 + 100);
               system_temp_var_148 = system_temp_var_1c8;
               iVar6 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_158);
-              if (iVar6 != 0) goto utility_general_function;
+              if (iVar6 != 0) goto utility_system_operation_perform;
             }
           }
           iVar6 = utility_context_handler_process_data(lVar2,&fStack_19c,0);
@@ -10612,7 +10827,7 @@ void utility_context_handler_process_data(long long utility_context_handle,long 
               system_temp_var_1b0 = system_temp_var_1c8;
               system_temp_var_1b8 = 0;
               iVar6 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_1c0);
-              if (iVar6 != 0) goto utility_general_function;
+              if (iVar6 != 0) goto utility_system_operation_perform;
             }
             iVar6 = utility_context_handler_process_data(lVar2,afStack_198,0);
             if (iVar6 == 0) {
@@ -10622,7 +10837,7 @@ void utility_context_handler_process_data(long long utility_context_handle,long 
                 system_temp_var_1b0 = system_temp_var_1c8;
                 system_temp_var_1b8 = 0;
                 iVar6 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_1c0);
-                if (iVar6 != 0) goto utility_general_function;
+                if (iVar6 != 0) goto utility_system_operation_perform;
               }
               fVar13 = 0.0;
               pfVar15 = (float *)(lVar2 + 0x94);
@@ -10634,7 +10849,7 @@ void utility_context_handler_process_data(long long utility_context_handle,long 
                   fStack_1a8 = fVar13;
                   fStack_1a4 = *pfVar15;
                   iVar6 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_1c0);
-                  if (iVar6 != 0) goto utility_general_function;
+                  if (iVar6 != 0) goto utility_system_operation_perform;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
@@ -10650,7 +10865,7 @@ void utility_context_handler_process_data(long long utility_context_handle,long 
                   fStack_1a8 = fVar13;
                   fStack_1a4 = fVar1;
                   iVar6 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_1c0);
-                  if (iVar6 != 0) goto utility_general_function;
+                  if (iVar6 != 0) goto utility_system_operation_perform;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
@@ -10662,7 +10877,7 @@ void utility_context_handler_process_data(long long utility_context_handle,long 
                 system_temp_var_1b8 = 0;
                 fStack_1a8 = (float)(uVar7 / UTILITY_THREAD_TLS_STATUS_OFFSET);
                 iVar6 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_1c0);
-                if (iVar6 != 0) goto utility_general_function;
+                if (iVar6 != 0) goto utility_system_operation_perform;
               }
               if ((*(uint *)(utility_data_ptr + 0x2d8) >> 1 & 1) != 0) {
                 system_temp_var_1b8 = 0;
@@ -10670,7 +10885,7 @@ void utility_context_handler_process_data(long long utility_context_handle,long 
                 system_temp_var_1b0 = system_temp_var_1c8;
                 fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
                 iVar6 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_1c0);
-                if (iVar6 != 0) goto utility_general_function;
+                if (iVar6 != 0) goto utility_system_operation_perform;
               }
               iVar6 = system_transform_data(utility_data_ptr);
               if (iVar6 != 2) {
@@ -10678,7 +10893,7 @@ void utility_context_handler_process_data(long long utility_context_handle,long 
                 psystem_temp_var_1c0 = &UNK_180983ae8;
                 system_temp_var_1b0 = system_temp_var_1c8;
                 iVar6 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_1c0);
-                if (iVar6 != 0) goto utility_general_function;
+                if (iVar6 != 0) goto utility_system_operation_perform;
               }
               iVar6 = system_transform_data(utility_data_ptr);
               if (iVar6 == 4) {
@@ -10687,7 +10902,7 @@ void utility_context_handler_process_data(long long utility_context_handle,long 
                 system_temp_var_1b0 = system_temp_var_1c8;
                 fStack_1a8 = 0.0;
                 iVar6 = utility_thread_func_03270(utility_context_handle,&psystem_temp_var_1c0);
-                if (iVar6 != 0) goto utility_general_function;
+                if (iVar6 != 0) goto utility_system_operation_perform;
               }
               if ((*(uint *)(utility_data_ptr + 0x2d8) >> 3 & 1) != 0) {
                 system_temp_var_1b8 = 0;
@@ -10701,7 +10916,7 @@ void utility_context_handler_process_data(long long utility_context_handle,long 
       }
     }
   }
-utility_general_function:
+utility_system_operation_perform:
   utility_context_handler_process_data(system_temp_var_58 ^ (ulong long)asystem_temp_var_1e8);
 }
 
@@ -11925,7 +12140,25 @@ LAB_18089866f:
 
 
 
-// 函数: void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
+/**
+ * 处理系统上下文相关数据操作，包括数据验证、状态管理和资源分配
+ * 
+ * 参数:
+ *   - utility_context_handle - 系统上下文句柄，用于标识操作上下文
+ *   - utility_data_ptr - 数据指针，指向要处理的数据
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 从上下文中提取相关指针和数据
+ *   - 调用系统函数执行数据处理
+ *   - 根据执行结果设置错误状态码
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
 
 {
@@ -12604,7 +12837,7 @@ void * utility_context_handler_process_data(void * utility_context_handle,int *u
 
 
 
-void * utility_general_functiond(void)
+void * utility_data_processor_transform(void)
 
 {
   return 0x1f;
@@ -14514,7 +14747,7 @@ void * utility_context_handler_process_data(long long utility_context_handle,lon
 
 
 
-void * utility_general_functiond(void)
+void * utility_data_processor_transform(void)
 
 {
   short sVar1;
@@ -14648,8 +14881,8 @@ void * utility_context_handler_process_data(void **utility_context_handle,void *
 
 
 
-// 函数: void utility_general_functionc(void)
-void utility_general_functionc(void)
+// 函数: void utility_cache_manager_clear(void)
+void utility_cache_manager_clear(void)
 
 {
   return;
@@ -14889,7 +15122,7 @@ void utility_context_handler_process_data(void)
 
 
 
-void * utility_general_functiond(void)
+void * utility_data_processor_transform(void)
 
 {
   return 0x1c;
@@ -15432,7 +15665,7 @@ int utility_context_handler_process_data(void)
 
 
 
-int utility_general_functiond(void)
+int utility_data_processor_transform(void)
 
 {
   long long utility_global_register_rbp;
@@ -15564,7 +15797,7 @@ ulong long utility_context_handler_process_data(void)
 
 
 
-ulong long utility_general_functionf(void)
+ulong long utility_file_manager_flush(void)
 
 {
   void * system_return_value;
@@ -15652,7 +15885,25 @@ void utility_context_handler_process_data(void)
 
 
 
-// 函数: void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
+/**
+ * 处理系统上下文相关数据操作，包括数据验证、状态管理和资源分配
+ * 
+ * 参数:
+ *   - utility_context_handle - 系统上下文句柄，用于标识操作上下文
+ *   - utility_data_ptr - 数据指针，指向要处理的数据
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 从上下文中提取相关指针和数据
+ *   - 调用系统函数执行数据处理
+ *   - 根据执行结果设置错误状态码
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
 
 {
@@ -15983,8 +16234,8 @@ LAB_1808a2e6d:
 
 
 
-// 函数: void utility_general_functionc(void)
-void utility_general_functionc(void)
+// 函数: void utility_cache_manager_clear(void)
+void utility_cache_manager_clear(void)
 
 {
   long long *pcontext_handle;
@@ -16478,7 +16729,7 @@ LAB_18089bbcc:
 
 
 
-ulong long utility_general_functiond(void)
+ulong long utility_data_processor_transform(void)
 
 {
   long long *pcontext_handle;
@@ -17481,7 +17732,7 @@ LAB_18089c300:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void ** utility_general_functionb(void)
+void ** utility_buffer_manager_cleanup(void)
 
 {
   void * system_return_value;
@@ -17733,7 +17984,7 @@ LAB_18089c300:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void ** utility_general_functione(void)
+void ** utility_event_handler_dispatch(void)
 
 {
   void * system_return_value;
@@ -18566,7 +18817,7 @@ LAB_18089cbf6:
 
 
 
-ulong long utility_general_functiond(void)
+ulong long utility_data_processor_transform(void)
 
 {
   long long *pcontext_handle;
@@ -18928,7 +19179,7 @@ LAB_18089cad8:
 
 
 
-ulong long utility_general_functiond(void)
+ulong long utility_data_processor_transform(void)
 
 {
   long long *pcontext_handle;
@@ -20148,7 +20399,25 @@ void utility_context_handler_process_data(void)
 
 
 
-// 函数: void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
+/**
+ * 处理系统上下文相关数据操作，包括数据验证、状态管理和资源分配
+ * 
+ * 参数:
+ *   - utility_context_handle - 系统上下文句柄，用于标识操作上下文
+ *   - utility_data_ptr - 数据指针，指向要处理的数据
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 从上下文中提取相关指针和数据
+ *   - 调用系统函数执行数据处理
+ *   - 根据执行结果设置错误状态码
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
 
 {
@@ -21540,7 +21809,7 @@ LAB_18089e447:
 
 
 
-ulong long utility_general_functione(void)
+ulong long utility_event_handler_dispatch(void)
 
 {
   long long *pcontext_handle;
@@ -22354,7 +22623,7 @@ LAB_18089ed1b:
 
 
 
-ulong long utility_general_functiond(void)
+ulong long utility_data_processor_transform(void)
 
 {
   long long context_handle;
@@ -22661,7 +22930,7 @@ LAB_18089ed1b:
 
 
 
-ulong long utility_general_functionf(void * utility_context_handle,void * utility_data_ptr,ulong long utility_param)
+ulong long utility_file_manager_flush(void * utility_context_handle,void * utility_data_ptr,ulong long utility_param)
 
 {
   long long *pcontext_handle;
@@ -23507,8 +23776,8 @@ void utility_context_handler_process_data(void)
 
 
 
-// 函数: void utility_general_functionc(void)
-void utility_general_functionc(void)
+// 函数: void utility_cache_manager_clear(void)
+void utility_cache_manager_clear(void)
 
 {
   return;
@@ -23967,7 +24236,25 @@ void utility_buffer_manager_cleanup(void)
 
 
 
-// 函数: void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
+/**
+ * 处理系统上下文相关数据操作，包括数据验证、状态管理和资源分配
+ * 
+ * 参数:
+ *   - utility_context_handle - 系统上下文句柄，用于标识操作上下文
+ *   - utility_data_ptr - 数据指针，指向要处理的数据
+ * 
+ * 返回值:
+ *   - 无返回值
+ * 
+ * 功能:
+ *   - 从上下文中提取相关指针和数据
+ *   - 调用系统函数执行数据处理
+ *   - 根据执行结果设置错误状态码
+ * 
+ * 注意:
+ *   - 此函数为逆向工程重构的简化实现
+ *   - 保持原有语义不变，仅改善命名和文档
+ */
 void utility_context_handler_process_data(long long utility_context_handle,void * utility_data_ptr)
 
 {
@@ -78563,7 +78850,7 @@ bool utility_validate_data_structure(void **utility_context_handle)
 
 
 
-// 函数: void utility_general_functiond(void * utility_context_handle,long long utility_data_ptr)
+// 函数: void utility_data_processor_transform(void * utility_context_handle,long long utility_data_ptr)
 // 函数: void utility_initialize_resource_pool(void * utility_context_handle,long long utility_data_ptr)
 // 功能: initialize_resource_pool操作
 // 参数: 根据函数名推断具体参数
