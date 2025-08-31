@@ -79,9 +79,9 @@ void* system_config_initializer;
 system_uint64_t system_config_storage;
 
 // 系统资源管理初始化函数
-void* system_resource_init_function;
+void* system_resource_initializer;
 // 系统资源池数据
-system_uint64_t system_resource_pool_data[7];
+system_uint64_t system_resource_pool[7];
 // 系统资源加载器
 void* system_resource_loader;
 // 系统资源缓存管理器
@@ -91,18 +91,18 @@ system_uint64_t system_resource_metadata;
 // 系统资源索引
 system_uint8_t system_resource_index;
 // 系统设备配置数据
-system_uint64_t system_device_config_data[4];
+system_uint64_t system_device_config[4];
 
 // 系统音频管理初始化函数
-void* system_audio_init_function;
+void* system_audio_initializer;
 // 系统音频引擎
 void* system_audio_engine;
 
 // 系统网络管理初始化函数
-void* system_network_init_function;
+void* system_network_initializer;
 
 // 系统渲染管理初始化函数
-void* system_render_init_function;
+void* system_render_initializer;
 // 系统渲染设备数据
 system_uint64_t system_render_device_data;
 // 系统渲染上下文管理器
@@ -112,7 +112,7 @@ void* system_render_buffer_manager;
 // 系统渲染管道管理器
 void* system_render_pipeline_manager;
 // 系统内部调用保护函数
-void* system_guard_check_icall_function;
+void* system_icall_guard;
 
 // 系统输入管理初始化函数
 void* system_input_init_function;
