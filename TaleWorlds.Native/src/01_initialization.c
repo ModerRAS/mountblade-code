@@ -157,18 +157,18 @@ typedef unsigned long ulonglong;
 #define SYSTEM_INIT_CONFIG_POINTER_INDEX_TENTH 10                    // 第十配置指针索引
 
 // 系统激活标志常量
-#define SYSTEM_INIT_FLAG_ACTIVE_DEFAULT_NETWORK INIT_BASE_VALUE_FLAG
-#define SYSTEM_INIT_FLAG_ACTIVE_DEFAULT_RENDER INIT_BASE_VALUE_FLAG
-#define SYSTEM_INIT_FLAG_ACTIVE_DEFAULT_SYSTEM_SECONDARY INIT_BASE_VALUE_FLAG
-#define SYSTEM_INIT_FLAG_ACTIVE_DEFAULT_NETWORK_PRIMARY INIT_BASE_VALUE_FLAG
-#define SYSTEM_INIT_FLAG_ENABLED_AUDIO_PRIMARY INIT_BASE_VALUE_FLAG
+#define SYSTEM_INIT_FLAG_ACTIVE_DEFAULT_NETWORK INIT_BASE_VALUE_FLAG        // 默认网络激活标志
+#define SYSTEM_INIT_FLAG_ACTIVE_DEFAULT_RENDER INIT_BASE_VALUE_FLAG        // 默认渲染激活标志
+#define SYSTEM_INIT_FLAG_ACTIVE_DEFAULT_SYSTEM_SECONDARY INIT_BASE_VALUE_FLAG  // 默认次要系统激活标志
+#define SYSTEM_INIT_FLAG_ACTIVE_DEFAULT_NETWORK_PRIMARY INIT_BASE_VALUE_FLAG // 默认主要网络激活标志
+#define SYSTEM_INIT_FLAG_ENABLED_AUDIO_PRIMARY INIT_BASE_VALUE_FLAG         // 主要音频启用标志
 
 // 系统资源Cookie常量
-#define SYSTEM_INIT_RESOURCE_COOKIE_PRIMARY INIT_BASE_VALUE_MAGIC
-#define SYSTEM_INIT_RESOURCE_COOKIE_BASIC_PRIMARY INIT_BASE_VALUE_MAGIC
-#define SYSTEM_INIT_RESOURCE_COOKIE_BASIC_SECONDARY INIT_BASE_VALUE_MAGIC
-#define SYSTEM_INIT_RESOURCE_COOKIE_SYSTEM_SECONDARY INIT_BASE_VALUE_MAGIC
-#define SYSTEM_INIT_RESOURCE_COOKIE_NETWORK INIT_BASE_VALUE_MAGIC
+#define SYSTEM_INIT_RESOURCE_COOKIE_PRIMARY INIT_BASE_VALUE_MAGIC         // 主要资源Cookie
+#define SYSTEM_INIT_RESOURCE_COOKIE_BASIC_PRIMARY INIT_BASE_VALUE_MAGIC   // 基础主要资源Cookie
+#define SYSTEM_INIT_RESOURCE_COOKIE_BASIC_SECONDARY INIT_BASE_VALUE_MAGIC // 基础次要资源Cookie
+#define SYSTEM_INIT_RESOURCE_COOKIE_SYSTEM_SECONDARY INIT_BASE_VALUE_MAGIC // 次要系统资源Cookie
+#define SYSTEM_INIT_RESOURCE_COOKIE_NETWORK INIT_BASE_VALUE_MAGIC         // 网络资源Cookie
 
 // 全局变量声明
 static system_uint64_t *global_system_context_pointer = NULL;
@@ -183,6 +183,7 @@ static system_uint64_t *system_buffer_pointer = NULL;
  * 通过检查全局上下文指针和初始化状态标志来确定系统状态。
  * 
  * @note 这是简化实现，提供基本的初始化状态检查功能
+ * @warning 该函数仅检查基本状态，不进行深度验证
  * @return 返回状态码：0=成功，-1=失败
  */
 int system_check_initialization_status(void)
@@ -203,12 +204,13 @@ int system_check_initialization_status(void)
  * 
  * 该函数负责系统的核心初始化工作，包括：
  * - 验证系统上下文和配置参数的有效性
- * - 分配临时内存和模块内存
- * - 设置全局系统上下文和初始化状态
- * - 清理临时资源
+ * - 分配临时内存和模块内存用于初始化过程
+ * - 设置全局系统上下文和初始化状态标志
+ * - 清理临时资源，确保内存不泄漏
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
- * @warning 调用此函数前需要确保所有参数都有效
+ * @warning 调用此函数前需要确保所有参数都有效，避免空指针访问
+ * @warning 该函数会分配临时内存，调用者需要确保系统有足够的内存
  * @return 返回状态码：0=成功，-1=失败
  */
 int system_initialize_core(system_uint64_t context_param, system_uint64_t config_param, 
