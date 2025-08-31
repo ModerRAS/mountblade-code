@@ -98,6 +98,19 @@ void utility_cleanup_resource_function(void)
 {
   return;
 }
+/**
+ * @brief 验证资源访问权限 - 验证系统资源的访问权限和状态
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @return uint64 验证结果状态码
+ * 
+ * 该函数负责验证系统资源的访问权限，包括：
+ * - 执行系统内存操作
+ * - 验证资源句柄有效性
+ * - 返回验证结果
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 uint64 utility_utility_validate_resource_access(longlong utility_resource_primary_handle)
 {
   uint64 utility_operation_result;
@@ -25686,7 +25699,7 @@ void utility_unwind_function_system_exit_stage_nine(uint64 utility_resource_prim
   *(uint64 *)(utility_resource_context_handle + utility_thread_storage_extra_pointer_offset_extended_extended) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_function_system_exit_stage_bravo(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_function_system_exit_phase_bravo(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset_main);
@@ -25735,7 +25748,7 @@ void utility_unwind_function_system_exit_stage_bravo(uint64 utility_resource_pri
   *(uint64 *)(utility_resource_context_handle  + utility_boolean_flag_offset60) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_function_system_exit_stage_delta(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_function_system_exit_phase_delta(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset_main);
@@ -25784,7 +25797,7 @@ void utility_unwind_function_system_exit_stage_delta(uint64 utility_resource_pri
   *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_extended_primary) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_function_system_exit_stage_foxtrot(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_function_system_exit_phase_foxtrot(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset_main);
