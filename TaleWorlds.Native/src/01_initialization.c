@@ -15658,6 +15658,23 @@ system_init_label_memory_init:
 
 
 
+/**
+ * @brief 初始化系统核心组件
+ * 
+ * 该函数是系统初始化的核心函数，负责：
+ * - 初始化系统上下文参数
+ * - 配置系统内存和线程参数
+ * - 设置系统运行时环境
+ * - 返回初始化后的系统上下文指针
+ * 
+ * 这是简化实现，原本实现应该包含完整的错误处理和资源管理
+ * 
+ * @param system_context_param 系统上下文参数指针
+ * @param system_config_param 系统配置参数
+ * @param system_memory_param 系统内存参数
+ * @param system_thread_param 系统线程参数
+ * @return system_uint64_t* 初始化后的系统上下文指针
+ */
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
