@@ -100,8 +100,8 @@
 // 系统初始化全局变量声明
 static uint32_t system_context_primary_data;
 static void *system_context_primary_pointer;
-static uint32_t secondary_context_data;
-static void *secondary_system_context_ptr;
+static uint32_t system_context_secondary_data;
+static void *system_context_secondary_pointer;
 static uint32_t tertiary_context_data;
 static void *tertiary_system_context_ptr;
 static uint32_t quaternary_context_data;
