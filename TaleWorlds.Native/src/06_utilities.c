@@ -1076,22 +1076,24 @@ uint32_t utility_get_cache_status(void)
     utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
- * 关闭事件对象
-释放事件对象资源并清理相关状态
-调用上下文管理器激活函数来关闭事件
+ /** 
+ * @brief Close Event
  *
- * 简化实现：仅保留单个函数定义，删除重复声明
+ * 功能描述：关闭事件对象，释放事件对象资源并清理相关状态
+ *
+ * 简化实现：调用上下文管理器激活函数来关闭事件
  * 原本实现：完全重构事件相关机制
  */
 void CloseEvent(void)
 {
     utility_context_activate(0, 1);
 }
- * 初始化互斥体对象
-创建并初始化互斥体用于线程同步
-当前实现为空函数，仅返回
+ /** 
+ * @brief Initialize Mutex
  *
- * 简化实现：仅保留单个函数定义，删除重复声明
+ * 功能描述：初始化互斥体对象，创建并初始化互斥体用于线程同步
+ *
+ * 简化实现：当前实现为空函数，仅返回
  * 原本实现：完全重构互斥体相关机制
  */
 void InitializeMutex(void)
@@ -1100,19 +1102,18 @@ void InitializeMutex(void)
 }
 /** 
  * @brief Utility Handle Mutex Operation Result
-/**
  *
- * 功能描述
+ * 功能描述：处理互斥体操作结果，管理互斥体状态
  *
- * @param parameters 参数说明
- * @return 返回值说明
+ * @param utility_context_ptr 上下文句柄
+ * @return 操作结果
  *
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构互斥体操作处理机制
+ * 简化实现：仅进行变量名语义化替换，保持代码结构不变
  */
 uint64_t utility_resource_handle_mutex_operation_result(int64_t utility_context_ptr)
 {
-uint64_t utility_resource_handle;
+    uint64_t utility_resource_handle;
     int64_t utility_stack_context;
     utility_resource_identifier = utility_resource_handle_service_request(*(uint32_t *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET),&utility_stack_context);
         if ((int)utility_resource_identifier != UTILITY_FALSE) {
