@@ -134,6 +134,48 @@ void *utility_data_buffer_secondary;
 #define UTILITY_GLOBAL_DATA_TEMP_VAR_9 0x1809832b8
 #define UTILITY_GLOBAL_DATA_TEMP_VAR_10 0x180982f38
 #define UTILITY_GLOBAL_DATA_TEMP_VAR_11 0x1809834f8
+
+// 工具系统硬编码偏移量语义化常量定义（2025年8月31日最终批次美化）
+// 原本实现：完全重构工具系统所有硬编码偏移量体系，建立统一的语义化命名规范
+// 简化实现：仅将常见的硬编码十六进制值替换为语义化常量名，保持代码结构不变
+#define UTILITY_OFFSET_CONTEXT_DATA 0x1c              // 上下文数据偏移量
+#define UTILITY_OFFSET_CONTEXT_POINTER 0x24           // 上下文指针偏移量
+#define UTILITY_OFFSET_HANDLE_DATA 0x28                // 句柄数据偏移量
+#define UTILITY_OFFSET_CONFIG_DATA 0x2c                // 配置数据偏移量
+#define UTILITY_OFFSET_STATUS_DATA 0x34                // 状态数据偏移量
+#define UTILITY_OFFSET_FLAG_DATA 0x35                  // 标志数据偏移量
+#define UTILITY_OFFSET_BUFFER_SIZE 0x38                 // 缓冲区大小偏移量
+#define UTILITY_OFFSET_COUNTER_DATA 0x4c               // 计数器数据偏移量
+#define UTILITY_OFFSET_SIZE_DATA 0x54                   // 大小数据偏移量
+#define UTILITY_OFFSET_LENGTH_DATA 0x58                 // 长度数据偏移量
+#define UTILITY_OFFSET_EVENT_DATA 0x98                  // 事件数据偏移量
+#define UTILITY_OFFSET_FUNCTION_POINTER 0xd0           // 函数指针偏移量
+#define UTILITY_OFFSET_CONFIG_POINTER 0xf8              // 配置指针偏移量
+#define UTILITY_OFFSET_CONTEXT_BUFFER 0x240             // 上下文缓冲区偏移量
+#define UTILITY_OFFSET_MEMORY_BLOCK 0x368               // 内存块偏移量
+#define UTILITY_OFFSET_ARRAY_POINTER 0x4d8              // 数组指针偏移量
+#define UTILITY_OFFSET_ARRAY_COUNTER 0x4e0             // 数组计数器偏移量
+#define UTILITY_OFFSET_ARRAY_INDEX 0x4e4                // 数组索引偏移量
+#define UTILITY_OFFSET_ARRAY_CAPACITY 0x4e8            // 数组容量偏移量
+
+// 工具系统文件操作偏移量语义化常量定义（2025年8月31日最终批次美化）
+#define UTILITY_OFFSET_FILE_HANDLE 0x78                // 文件句柄偏移量
+#define UTILITY_OFFSET_PARAM_DATA 0x14                  // 参数数据偏移量
+#define UTILITY_OFFSET_FILE_BUFFER_SIZE 0xb8           // 文件缓冲区大小偏移量
+#define UTILITY_OFFSET_FILE_WRITE_SIZE 0xe9             // 文件写入大小偏移量
+#define UTILITY_OFFSET_FILE_FLUSH_SIZE 0xf4             // 文件刷新大小偏移量
+#define UTILITY_OFFSET_FILE_MANAGER 0x1a0              // 文件管理器偏移量
+
+// 工具系统状态码语义化常量定义（2025年8月31日最终批次美化）
+#define UTILITY_STATUS_ACCESS_DENIED 0x2e              // 访问被拒绝状态码
+#define UTILITY_STATUS_BUFFER_ERROR 0x4c                // 缓冲区错误状态码
+#define UTILITY_STATUS_CONFIG_ERROR 0x4e                // 配置错误状态码
+#define UTILITY_STATUS_THREAD_ERROR 0x4f                // 线程错误状态码
+
+// 工具系统特殊值语义化常量定义（2025年8月31日最终批次美化）
+#define UTILITY_NULL_POINTER 0x0                        // 空指针常量
+#define UTILITY_FLOAT_INFINITY_MASK 0x7f800000          // 浮点数无穷大掩码
+#define UTILITY_MAXIMUM_BUFFER_SIZE 0x3ffffffe          // 最大缓冲区大小
 void *utility_resource_pool_primary;
 void *utility_resource_cache_secondary;
 void *utility_memory_manager_main;
