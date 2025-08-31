@@ -99,7 +99,7 @@
 #define SYSTEM_POINTER_HANDLER_DEFAULT system_ptr_handler_default  // 默认处理器指针
 
 // 系统十六进制变量名语义化常量定义
-#define SYSTEM_POINTER_BUFFER_CONFIG SYSTEM_POINTER_BUFFER_CONFIG      // 缓冲区配置指针
+#define SYSTEM_POINTER_BUFFER_CONFIG system_ptr_uint_1b8      // 缓冲区配置指针
 #define SYSTEM_POINTER_HANDLER_PRIMARY system_ptr_uint_1d8   // 主处理器指针
 #define SYSTEM_POINTER_DATA_PRIMARY system_ptr_uint_1d0      // 主数据指针
 #define SYSTEM_POINTER_HANDLER_SECONDARY system_ptr_uint_1f8  // 次处理器指针
@@ -112,8 +112,8 @@ static void *system_context_primary_pointer;
 static uint32_t system_context_secondary_data;
 static void *system_context_secondary_pointer;
 static uint32_t system_context_tertiary_data;
-static void *tertiary_system_context_ptr;
-static uint32_t quaternary_context_data;
+static void *system_context_tertiary_pointer;
+static uint32_t system_context_quaternary_data;
 static void *quaternary_system_context_ptr;
 static uint32_t quinary_context_data;
 static void *quinary_system_context_ptr;

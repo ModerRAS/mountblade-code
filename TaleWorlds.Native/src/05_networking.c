@@ -12885,10 +12885,6 @@ int32_t execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG
   // 简化实现：返回成功状态
   return 0;
 }
-  network_operation_status_flag = false;
-  network_operation_status_flag = false;
-  network_connection_state_code = execute_network_operation(network_context_pointer[NETWORK_CONFIG_INDEX_PRIMARY]);
-  if (network_connection_state_code == 0) {
     network_operation_status = NETWORK_OPERATION_SUCCESS;
     network_connection_state_code = network_operation_status;
     if (0 < *(int32_t *)(network_context_pointer + NETWORK_PRIMARY_HANDLE_OFFSET)) {
