@@ -5057,11 +5057,17 @@ NETWORK_RECEIVE_CONNECTION_START:
   handle_network_connection_error(&network_data_packet_buffer_output_data);
 }
 
-void network_connection_validator_state(uint64_t connection_handle, int32_t state_type, uint64_t state_data){
+/**
+ * @brief 网络连接验证状态函数
+ * 验证并更新网络连接的状态信息
+ * @param connection_handle 连接句柄
+ * @param state_type 状态类型
+ * @param state_data 状态数据
+ */
+void network_connection_validator_state(uint64_t connection_handle, int32_t state_type, uint64_t state_data)
 {
   int32_t network_operation_status;
   int32_t network_connection_state_code;
-  int32_t network_operation_status;
   uint8_t network_security_extended_buffer [32];
   uint8_t *network_connection_thread_buffer;
   uint8_t config_data_buffer [256];
@@ -5069,7 +5075,7 @@ void network_connection_validator_state(uint64_t connection_handle, int32_t stat
 
   encryption_context = encryption_key ^ (uint64_t)network_control_flag_data_buffer;
   network_operation_status = network_packet_data_processor();
-  if ((network_operation_status != 0) && ((*(uint8_t *)(global_data_table + NETWORK_GLOBAL_DATA_FLAG_OFFSET) & NETWORK_GLOBAL_DATA_FLAG_OFFSET NETWORK_GLOBAL_DATA_FLAG_MASK_VALUE) != 0)) {
+  if ((network_operation_status != 0) && ((*(uint8_t *)(global_data_table + NETWORK_GLOBAL_DATA_FLAG_OFFSET) & NETWORK_GLOBAL_DATA_FLAG_MASK_VALUE) != 0)) {
     network_connection_state_code = network_data_packet_buffer_process_network_packet_data_func(config_data,MEMORY_POOL_SIZE_STANDARD,network_context_pointer);
     network_operation_status = socket_read_data(config_data + network_connection_state_code,MEMORY_POOL_SIZE_STANDARD - network_connection_state_code,&config_data);
     network_connection_id_validate(config_data + (network_connection_state_code + network_operation_status),MEMORY_POOL_SIZE_STANDARD - (network_connection_state_code + network_operation_status),network_context_pointer);
@@ -5079,7 +5085,11 @@ void network_connection_validator_state(uint64_t connection_handle, int32_t stat
   network_security_handle_operation(encryption_context ^ (uint64_t)network_control_flag_data_buffer);
 }
 
-void network_cleanup_connection_resources(void){
+/**
+ * @brief 网络连接资源清理函数
+ * 清理网络连接使用的资源和内存
+ */
+void network_cleanup_connection_resources(void)
 {
   int32_t network_operation_status;
   int32_t network_connection_state_code;
@@ -5092,7 +5102,11 @@ void network_cleanup_connection_resources(void){
   socket_send_data(connection_validation_flag,PACKET_TYPE_CONTROL);
 }
 
-void network_reset_network_connection_state_code(void){
+/**
+ * @brief 网络连接状态重置函数
+ * 重置网络连接的状态码到初始状态
+ */
+void network_reset_network_connection_state_code(void)
 {
   uint64_t network_security_context_temp;
 
