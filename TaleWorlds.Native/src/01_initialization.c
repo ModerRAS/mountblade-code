@@ -1,15 +1,15 @@
 /**
  * @file 01_initialization.c
  * 
- * 简化实现：仅修复语法错误，优化变量命名，为关键函数添加文档注释，保持代码结构不变
- *
+ * 系统初始化模块
+ * 
  * 功能描述：
- * 1. 系统组件初始化和配置
- * 2. 内存池管理和资源分配
- * 3. 线程池和并发控制
- * 4. 系统状态管理和监控
- * 5. 硬件抽象层初始化
- * 6. 安全和权限管理
+ * - 系统组件初始化和配置
+ * - 内存池管理和资源分配
+ * - 线程池和并发控制
+ * - 系统状态管理和监控
+ * - 硬件抽象层初始化
+ * - 安全和权限管理
  */
 
 #include "TaleWorlds.Native.Split.h"
@@ -1927,6 +1927,17 @@ void system_initialize_event_system(void)
  *
  * @return 无返回值
  */
+/**
+ * @brief 初始化系统消息队列
+ * 
+ * 功能描述：
+ * - 设置消息队列和缓冲区
+ * - 初始化消息发送和接收机制
+ * - 配置消息优先级和路由规则
+ * - 建立消息同步和阻塞机制
+ * 
+ * @return void
+ */
 void system_initialize_message_queue(void)
 
 {
@@ -1988,6 +1999,17 @@ void system_initialize_message_queue(void)
  * 为系统提供异步信号处理支持
  *
  * @return 无返回值
+ */
+/**
+ * @brief 初始化系统信号处理器
+ * 
+ * 功能描述：
+ * - 设置信号捕获和处理机制
+ * - 初始化信号处理函数
+ * - 配置信号优先级和屏蔽规则
+ * - 建立信号安全和恢复机制
+ * 
+ * @return void
  */
 void system_initialize_signal_handler(void)
 
@@ -2051,6 +2073,17 @@ void system_initialize_signal_handler(void)
  *
  * @return 无返回值
  */
+/**
+ * @brief 初始化系统中断处理器
+ * 
+ * 功能描述：
+ * - 设置中断处理向量和优先级
+ * - 初始化中断服务程序
+ * - 配置中断屏蔽和嵌套规则
+ * - 建立中断上下文保存和恢复机制
+ * 
+ * @return void
+ */
 void system_initialize_interrupt_handler(void)
 
 {
@@ -2111,6 +2144,17 @@ void system_initialize_interrupt_handler(void)
  * 为系统提供安全保障
  *
  * @return 无返回值
+ */
+/**
+ * @brief 初始化系统安全系统
+ * 
+ * 功能描述：
+ * - 设置安全策略和权限管理
+ * - 初始化身份验证和授权机制
+ * - 配置加密算法和安全协议
+ * - 建立安全审计和日志系统
+ * 
+ * @return void
  */
 void system_initialize_security_system(void)
 
@@ -2180,6 +2224,17 @@ void system_initialize_security_system(void)
  *
  * @return 无返回值
  */
+/**
+ * @brief 初始化系统配置加载器
+ * 
+ * 功能描述：
+ * - 设置配置文件解析器
+ * - 初始化配置缓存和验证机制
+ * - 配置配置热更新和版本控制
+ * - 建立配置错误处理和恢复机制
+ * 
+ * @return void
+ */
 void system_initialize_config_loader(void)
 
 {
@@ -2243,6 +2298,17 @@ void system_initialize_config_loader(void)
  *
  * @return 初始化状态码 (0=成功，非0=失败)
  */
+/**
+ * @brief 检查系统初始化状态
+ * 
+ * 功能描述：
+ * - 验证所有系统组件的初始化状态
+ * - 检查系统依赖关系和完整性
+ * - 生成系统状态报告
+ * - 提供系统健康度评估
+ * 
+ * @return int 系统初始化状态码 (0=成功，非0=错误码)
+ */
 int system_check_system_init_status(void)
 
 {
@@ -2282,6 +2348,17 @@ int system_check_system_init_status(void)
  * 为系统提供状态管理支持
  *
  * @return 无返回值
+ */
+/**
+ * @brief 初始化系统状态管理器
+ * 
+ * 功能描述：
+ * - 设置系统状态机和状态转换规则
+ * - 初始化状态同步和持久化机制
+ * - 配置状态变更通知和事件系统
+ * - 建立状态恢复和备份机制
+ * 
+ * @return void
  */
 void system_initialize_state_manager(void)
 
@@ -2332,6 +2409,17 @@ void system_initialize_state_manager(void)
 /**
  * 创建和管理固定大小的内存池
  * @return 设置状态码，0表示成功
+/**
+ * @brief 设置系统内存池
+ * 
+ * 功能描述：
+ * - 分配和初始化系统内存池
+ * - 配置内存池大小和管理策略
+ * - 设置内存池保护机制
+ * - 建立内存池监控和统计系统
+ * 
+ * @return int 设置状态码 (0=成功，非0=错误码)
+ */
 int system_setup_memory_pools(void)
 
 {
@@ -2345,6 +2433,17 @@ int system_setup_memory_pools(void)
 /**
  * 配置线程池的大小和工作队列
  * @return 设置状态码，0表示成功
+/**
+ * @brief 设置系统线程池
+ * 
+ * 功能描述：
+ * - 创建和配置系统线程池
+ * - 初始化线程同步机制
+ * - 设置线程优先级和调度策略
+ * - 建立线程池监控和负载均衡
+ * 
+ * @return int 设置状态码 (0=成功，非0=错误码)
+ */
 int system_setup_thread_pools(void)
 
 {
