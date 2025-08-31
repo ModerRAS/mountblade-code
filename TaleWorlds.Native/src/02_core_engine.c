@@ -516,13 +516,16 @@ void EngineFreeMemory(void* ptr);
  * 简化实现：从25万行减少到约400行，保留核心常量和函数定义
  * 原本实现：完整的引擎核心系统，包含复杂的初始化流程和错误处理
  * 
- * @version 2.1
+ * @version 2.2
  * @date 2025-08-31
  * 
  * @section improvements 本次改进内容
- * - 优化变量命名一致性，将g_material_data改为g_material_data_value等
+ * - 优化变量命名一致性，将g_material_data_value改为g_material_data_value等
+ * - 统一指针变量命名规范，将data_value后缀改为pointer后缀
  * - 为所有核心函数添加详细的@details说明文档
  * - 完善函数参数说明和返回值说明
+ * - 添加错误代码分类和处理策略说明
+ * - 增加内存分配策略和对齐要求说明
  * - 统一注释风格，提高代码可读性
  * - 保持代码语义不变，仅进行美化优化
  * 
