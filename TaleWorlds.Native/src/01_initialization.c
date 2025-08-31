@@ -20,12 +20,12 @@
 #define SYSTEM_CONFIG_INITIALIZER_MIN_VALUE 0x0000001
 #define SYSTEM_CONFIG_INITIALIZER_BASIC_1 0x0000002
 #define SYSTEM_CONFIG_INITIALIZER_BASIC_2 0x0000003
-#define SYSTEM_CONFIG_INITIALIZER_BASIC_2 0x0000004
-#define SYSTEM_CONFIG_INITIALIZER_BASIC_3 0x0000005
-#define SYSTEM_CONFIG_INITIALIZER_BASIC_4 0x0000006
-#define SYSTEM_CONFIG_INITIALIZER_BASIC_5 0x0000007
-#define SYSTEM_CONFIG_INITIALIZER_BASIC_6 0x0000008
-#define SYSTEM_CONFIG_INITIALIZER_BASIC_7 0x0000009
+#define SYSTEM_CONFIG_INITIALIZER_BASIC_3 0x0000004
+#define SYSTEM_CONFIG_INITIALIZER_BASIC_4 0x0000005
+#define SYSTEM_CONFIG_INITIALIZER_BASIC_5 0x0000006
+#define SYSTEM_CONFIG_INITIALIZER_BASIC_6 0x0000007
+#define SYSTEM_CONFIG_INITIALIZER_BASIC_7 0x0000008
+#define SYSTEM_CONFIG_INITIALIZER_BASIC_8 0x0000009
 #define SYSTEM_CONFIG_INITIALIZER_MIN_VALUE0 0x00000010
 #define SYSTEM_CONFIG_INITIALIZER_MIN_VALUE1 0x00000011
 #define SYSTEM_CONFIG_INITIALIZER_MIN_VALUE2 0x00000012
@@ -10235,8 +10235,8 @@ void system_configure_paths(void)
   uint32_t stack_uint_1a0;
   uint64_t stack_uint_198;
   longlong *plStack_190;
-  void *system_stack_config_ptr8;
-  void *system_stack_config_ptr0;
+  void *system_stack_config_pointer_eighth;
+  void *system_stack_config_pointer_zero;
   uint32_t stack_uint_178;
   int32_t system_stack_uint_170 [32];
   longlong **applStack_150 [3];
@@ -11253,7 +11253,7 @@ int system_initialize_basic_param(longlong system_context_ptr,longlong system_fl
   void *system_tertiary_ptr;
   longlong system_memory_buffer_ptr;
   int integer_count_var_var;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong system_transform_type;
   ulonglong texture_flag;
   uint64_t ****ppppointer_nonary;
@@ -11397,10 +11397,10 @@ void system_cleanup_buffer_type1(uint64_t *system_context_ptr,uint64_t system_fl
 }
 ulonglong system_initialize_ulonglong_return(longlong system_context_ptr,longlong system_flags_var)
 {
-  byte *psystem_byte_temp1;
+  byte *system_byte_temporary_pointer_one;
   int integer_secondary_variable;
   longlong system_memory_result;
-  byte *pbyte_temp4;
+  byte *system_byte_temporary_pointer_four;
   int integer_count_var_var;
   int integer_index_var_var_var;
   ulonglong system_transform_type;
@@ -11875,7 +11875,7 @@ void system_initialize_triple_pointer(uint64_t system_context_ptr,uint64_t syste
   double dVar3;
   uint vertex_count_var;
   uint64_t *system_quinary_ptr;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong system_transform_type;
   uint32_t *system_config_next_ptr;
   void *system_nonary_ptr;
@@ -13418,7 +13418,7 @@ void system_initialize_basic_operation(void)
   char *string_result_pointer_var;
   uint64_t vertex_count_var;
   longlong system_memory_alloc_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   void *system_config_data_ptr;
   int integer_status_var;
   uint loop_bound_limit;
@@ -15790,7 +15790,7 @@ void system_main_postinit(void)
   code *string_result_pointer_var;
   int32_t *system_quaternary_ptr;
   uint64_t system_vertex_offset;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   int integer_flag;
   longlong system_transform_temp_8;
   longlong **pploop_bound_limit;
@@ -16154,7 +16154,7 @@ uint64_t * system_get_config_context(uint64_t *system_context_ptr,uint64_t *syst
   longlong system_memory_result;
   longlong system_memory_buffer_ptr;
   ulonglong system_vertex_offset;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   int32_t *system_config_data_ptr;
   longlong system_transform_temp_8;
   ulonglong loop_bound_limit;
@@ -16345,7 +16345,7 @@ bool system_config_180051f00(longlong system_context_ptr)
   uint64_t *system_primary_ptr;
   byte system_byte_temp2;
   bool byte_temp3;
-  byte *pbyte_temp4;
+  byte *system_byte_temporary_pointer_four;
   uint system_vertex_offset;
   int integer_index_var_var_var;
   longlong system_transform_type;
@@ -16456,7 +16456,7 @@ void system_config_180052200(longlong system_context_ptr,longlong system_flags_v
   int system_memory_compare_status;
   uint64_t *system_quaternary_ptr;
   ulonglong system_vertex_offset;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   uint64_t system_transform_type;
   void *stack_pointer_90;
   uint64_t *stack_uint_pointer_88;
@@ -17094,7 +17094,7 @@ system_config_180054120(uint64_t system_context_ptr,uint64_t system_flags_var,ui
   uint64_t *system_tertiary_ptr;
   uint64_t *system_quaternary_ptr;
   uint64_t *system_quinary_ptr;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   char *pcVar7;
   uint texture_flag;
   int *pouter_loop_counter;
@@ -17212,7 +17212,7 @@ void system_config_180054360(longlong *system_context_ptr,longlong system_flags_
   uint64_t system_transform_result;
   longlong *system_root_table_ptr;
   void *system_quinary_ptr;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   ulonglong system_transform_type;
   uint8_t stack_array_238 [32];
   uint32_t stack_uint_218;
@@ -18155,7 +18155,7 @@ void system_config_180056410(longlong system_context_ptr,uint64_t system_flags_v
   ulonglong system_transform_result;
   ulonglong vertex_count_var;
   ulonglong system_vertex_offset;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   uint system_transform_type;
   ulonglong texture_flag;
   longlong loop_bound_limit;
@@ -18793,7 +18793,7 @@ void system_config_180057340(longlong *system_context_ptr,ulonglong system_flags
   ulonglong system_transform_result;
   ulonglong vertex_count_var;
   longlong system_memory_alloc_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   
   system_memory_alloc_size = system_context_ptr[1];
   transform_temp6 = *system_context_ptr;
@@ -19557,7 +19557,7 @@ longlong * system_config_180057b00(longlong system_context_ptr,longlong *system_
   longlong system_memory_result;
   longlong system_memory_buffer_ptr;
   byte *pbyte_temp5;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   uint64_t system_transform_type;
   char acStackX_8 [8];
   
@@ -19710,7 +19710,7 @@ void system_config_180057f30(longlong *system_context_ptr)
   longlong system_memory_result;
   uint64_t *system_quaternary_ptr;
   uint64_t *system_quinary_ptr;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   uint64_t *system_config_data_ptr;
   
   system_config_180057110();
@@ -19760,7 +19760,7 @@ uint64_t * system_config_180058080(uint64_t *system_context_ptr,uint64_t *system
   byte *pbyte_temp3;
   uint vertex_count_var;
   int integer_count_var_var;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   uint64_t *system_config_data_ptr;
   uint64_t *system_config_next_ptr;
   uint64_t *system_nonary_ptr;
@@ -19832,7 +19832,7 @@ void system_config_180058160(ulonglong *system_context_ptr)
   ulonglong system_transform_result;
   uint64_t *system_quaternary_ptr;
   ulonglong system_vertex_offset;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   ulonglong system_transform_type;
   
   system_context_ptr[1] = *system_context_ptr;
@@ -19941,7 +19941,7 @@ void system_config_1800584e0(uint64_t *system_context_ptr,longlong system_flags_
   uint64_t *system_tertiary_ptr;
   uint64_t *system_quaternary_ptr;
   longlong system_memory_alloc_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   uint64_t *system_config_data_ptr;
   
   system_config_data_ptr = (uint64_t *)system_context_ptr[1];
@@ -21319,7 +21319,7 @@ void system_config_180059820(longlong *system_context_ptr,uint64_t system_flags_
   longlong system_memory_result;
   longlong system_memory_buffer_ptr;
   uint64_t *system_quinary_ptr;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   
   system_memory_result = system_context_ptr[1];
   system_memory_buffer_ptr = *system_context_ptr;
@@ -22008,7 +22008,7 @@ void system_config_18005a200(uint64_t *system_context_ptr)
   ulonglong system_transform_result;
   ulonglong vertex_count_var;
   uint64_t *system_quinary_ptr;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   uint64_t *system_config_data_ptr;
   longlong system_transform_temp_8;
   
@@ -23095,7 +23095,7 @@ void system_config_18005d0e0(ulonglong system_context_ptr,longlong system_flags_
   ulonglong system_transform_result;
   ulonglong *system_quaternary_ptr;
   longlong system_memory_alloc_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   int integer_flag;
   int integer_status_var;
   float float_value_9;
@@ -23815,7 +23815,7 @@ void system_config_18005dbb0(void)
   uint64_t stack_variable_uint_58;
   char asystem_stack_48 [16];
   ulonglong stack_uint_38;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   
   system_memory_alloc_result = system_config_data_86;
   stack_uint_168 = SYSTEM_INVALID_HANDLE_VALUE;
@@ -24768,7 +24768,7 @@ longlong system_config_18005ed54(void)
   uint system_transform_result;
   ulonglong *system_quaternary_ptr;
   ulonglong system_vertex_offset;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   ulonglong system_transform_type;
   ulonglong system_register_bp;
   ulonglong system_register_si_var;
@@ -25551,7 +25551,7 @@ ulonglong system_config_18005fb30(longlong system_context_ptr,longlong *system_f
   uint system_transform_result;
   uint vertex_count_var;
   longlong *pallocation_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   ulonglong system_transform_type;
   ulonglong texture_flag;
   char cVar9;
@@ -25749,7 +25749,7 @@ longlong system_config_18005ff50(longlong system_context_ptr)
   uint system_transform_result;
   ulonglong vertex_count_var;
   uint system_vertex_offset;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong system_transform_type;
   longlong system_transform_temp_8;
   longlong loop_bound_limit;
@@ -25890,7 +25890,7 @@ void system_util_180060200(uint64_t *system_context_ptr)
   int system_memory_compare_status;
   uint vertex_count_var;
   ulonglong system_vertex_offset;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong system_transform_type;
   longlong system_transform_temp_8;
   longlong loop_bound_limit;
@@ -26012,7 +26012,7 @@ void system_util_180060420(uint64_t *system_context_ptr)
   ulonglong system_transform_result;
   ulonglong vertex_count_var;
   longlong *pallocation_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong system_transform_type;
   longlong system_transform_temp_8;
   longlong loop_bound_limit;
@@ -26421,7 +26421,7 @@ uint64_t system_util_180060c60(longlong system_context_ptr,uint64_t system_flags
   longlong system_memory_result;
   ulonglong vertex_count_var;
   longlong system_memory_alloc_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   ulonglong system_transform_type;
   
   if (*(char *)(system_context_ptr + 0x48) == '\0') {
@@ -26512,7 +26512,7 @@ uint64_t system_util_180060d76(void)
   longlong system_memory_result;
   longlong *system_root_table_ptr;
   longlong system_memory_alloc_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   ulonglong system_register_si_var;
   longlong system_register_di;
   
@@ -26642,7 +26642,7 @@ void system_util_180060fc0(longlong *system_context_ptr,longlong *system_flags_v
   longlong *long_pointer_result_var;
   longlong system_memory_buffer_ptr;
   ulonglong system_vertex_offset;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong system_transform_type;
   longlong system_transform_temp_8;
   ulonglong loop_bound_limit;
@@ -27131,7 +27131,7 @@ void system_util_180062920(int *system_context_ptr)
   uint32_t stack_uint_1a0;
   uint64_t stack_uint_198;
   uint32_t stack_uint_190;
-  void *system_stack_config_ptr8;
+  void *system_stack_config_pointer_eighth;
   longlong lStack_180;
   uint32_t stack_uint_170;
   longlong lStack_168;
@@ -27267,7 +27267,7 @@ void system_util_180062fd0(longlong system_context_ptr)
   uint32_t system_transform_result;
   int integer_value_var;
   uint64_t *system_quinary_ptr;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong *psystem_transform_type;
   int integer_status_var;
   void *system_nonary_ptr;
@@ -27429,7 +27429,7 @@ int system_util_1800634b0(uint64_t system_context_ptr,uint64_t system_flags_var,
 }
 ulonglong system_util_180063510(longlong *system_context_ptr,longlong system_flags_var)
 {
-  byte *psystem_byte_temp1;
+  byte *system_byte_temporary_pointer_one;
   uint texture_secondary;
   uint system_transform_result;
   longlong system_memory_buffer_ptr;
@@ -27575,7 +27575,7 @@ void system_util_180063b30(uint64_t system_context_ptr,longlong system_flags_var
   longlong system_memory_result;
   longlong system_memory_buffer_ptr;
   longlong system_memory_alloc_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   uint64_t system_stack_var_uint_48;
   longlong lStack_40;
   void *stack_pointer_30;
@@ -28257,7 +28257,7 @@ LAB_180065009:
 }
 void system_util_180065160(uint64_t system_context_ptr)
 {
-  byte *psystem_byte_temp1;
+  byte *system_byte_temporary_pointer_one;
   int integer_secondary_variable;
   bool byte_temp3;
   uint64_t *system_quaternary_ptr;
@@ -28329,7 +28329,7 @@ void system_util_180065160(uint64_t system_context_ptr)
   void *stack_pointer_1a0;
   void *stack_pointer_198;
   uint32_t stack_uint_188;
-  void *system_stack_config_ptr0;
+  void *system_stack_config_pointer_zero;
   void *stack_pointer_178;
   uint32_t stack_uint_168;
   uint64_t *system_ptr_uint_160;
@@ -29307,7 +29307,7 @@ void system_util_180066df0(longlong *system_context_ptr,longlong system_flags_va
   longlong system_memory_result;
   uint64_t *system_quaternary_ptr;
   uint64_t *system_quinary_ptr;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   
   system_quaternary_ptr = (uint64_t *)system_context_ptr[1];
   system_memory_alloc_result = 0;
@@ -30634,7 +30634,7 @@ void system_util_1800697a0(uint64_t *system_context_ptr)
   ulonglong system_transform_result;
   ulonglong vertex_count_var;
   longlong *pallocation_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong system_transform_type;
   longlong system_transform_temp_8;
   longlong loop_bound_limit;
@@ -31391,7 +31391,7 @@ void system_util_18006b940(uint64_t *system_context_ptr)
   ulonglong system_transform_result;
   uint64_t *system_quaternary_ptr;
   uint64_t *system_quinary_ptr;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong system_transform_type;
   uint8_t stack_array_b8 [48];
   uint64_t *stack_uint_pointer_88;
@@ -32122,7 +32122,7 @@ ulonglong system_util_18006cc50(longlong *system_context_ptr,longlong system_fla
   longlong system_memory_result;
   longlong system_memory_buffer_ptr;
   code *character_variable5;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   ulonglong stack_variable_unsigned_8;
   
   texture_secondary = system_context_ptr[1];
@@ -32300,7 +32300,7 @@ void system_util_18006cf00(uint64_t *system_context_ptr)
   ulonglong system_transform_result;
   ulonglong vertex_count_var;
   longlong *pallocation_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong system_transform_type;
   longlong system_transform_temp_8;
   longlong loop_bound_limit;
@@ -32755,7 +32755,7 @@ uint64_t system_util_18006d810(longlong system_context_ptr,uint64_t system_flags
   longlong system_memory_result;
   ulonglong vertex_count_var;
   longlong system_memory_alloc_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   uint64_t system_transform_type;
   ulonglong texture_flag;
   
@@ -32807,7 +32807,7 @@ longlong system_util_18006d920(longlong system_context_ptr)
   uint system_transform_result;
   ulonglong vertex_count_var;
   uint system_vertex_offset;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong system_transform_type;
   longlong system_transform_temp_8;
   longlong loop_bound_limit;
@@ -32997,7 +32997,7 @@ void system_util_18006dc10(longlong *system_context_ptr)
   int system_memory_compare_status;
   longlong system_memory_buffer_ptr;
   longlong system_memory_alloc_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong system_transform_type;
   bool byte_temp8;
   
@@ -33806,7 +33806,7 @@ void system_util_18006edf0(uint64_t system_context_ptr,uint64_t system_flags_var
   longlong system_memory_result;
   int integer_value_var;
   longlong *pallocation_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   uint64_t system_transform_type;
   uint32_t stack_uint_1c;
   uint32_t stack_uint_18;
@@ -36607,7 +36607,7 @@ void system_setup_render_parameters(longlong system_context_ptr,longlong *system
   int *memory_compare_result_pointer;
   uint32_t *system_quaternary_ptr;
   uint *system_quinary_ptr;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong system_transform_type;
   int integer_status_var;
   ulonglong loop_bound_limit;
@@ -36768,7 +36768,7 @@ void system_setup_texture_parameters(longlong system_context_ptr)
   int *memory_compare_result_pointer;
   uint32_t *system_quaternary_ptr;
   uint *system_quinary_ptr;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong *system_register_bx;
   longlong system_transform_type;
   int integer_status_var;
@@ -38726,7 +38726,7 @@ void system_update_vertex_buffer(longlong system_context_ptr,uint64_t *system_fl
 }
 void system_cleanup_vertex_data(uint64_t *system_context_ptr)
 {
-  byte *psystem_byte_temp1;
+  byte *system_byte_temporary_pointer_one;
   longlong *long_pointer_secondary_var;
   longlong system_memory_result;
   uint64_t vertex_count_var;
@@ -39285,7 +39285,7 @@ void system_validate_index_format(longlong *system_context_ptr)
 }
 longlong * system_configure_index_layout(longlong *system_context_ptr,longlong *system_flags_var)
 {
-  byte *psystem_byte_temp1;
+  byte *system_byte_temporary_pointer_one;
   uint32_t texture_secondary;
   longlong system_memory_result;
   uint32_t vertex_count_var;
@@ -39548,7 +39548,7 @@ void system_setup_material_properties(longlong system_context_ptr,longlong *syst
   int32_t system_transform_result;
   byte byte_temp4;
   uint system_vertex_offset;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   longlong *psystem_transform_type;
   
   if (*system_flags_var != *(longlong *)(system_context_ptr + 0x1b8)) {
@@ -39864,7 +39864,7 @@ ulonglong system_cleanup_material_data(longlong system_context_ptr)
   longlong system_memory_result;
   ulonglong vertex_count_var;
   longlong system_memory_alloc_size;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   
   if (*(longlong *)(system_context_ptr + 0x1b8) != 0) {
     transform_temp6 = 0xb8;
@@ -42876,7 +42876,7 @@ void system_initialize_input_data(longlong system_context_ptr,longlong system_fl
   longlong *system_long_primary_ptr;
   int *integer_secondary_variable_pointer;
   longlong *long_pointer_result_var;
-  byte *pbyte_temp4;
+  byte *system_byte_temporary_pointer_four;
   uint64_t *system_quinary_ptr;
   float float_temp_6;
   float float_temp_7;
@@ -43175,7 +43175,7 @@ void system_setup_input_properties(longlong system_context_ptr)
   longlong *system_long_primary_ptr;
   int *integer_secondary_variable_pointer;
   longlong *long_pointer_result_var;
-  byte *pbyte_temp4;
+  byte *system_byte_temporary_pointer_four;
   uint64_t *system_quinary_ptr;
   float float_temp_6;
   float float_temp_7;
@@ -45772,12 +45772,12 @@ int32_t system_validate_network_format(longlong system_context_ptr)
 }
 ulonglong system_process_network_data(longlong system_context_ptr,longlong *system_flags_var,byte system_size_param,char system_allocator_param)
 {
-  byte *psystem_byte_temp1;
+  byte *system_byte_temporary_pointer_one;
   char system_char_flag;
   int system_memory_compare_status;
   int integer_value_var;
   byte byte_temp5;
-  longlong transform_temp6;
+  longlong system_transform_temporary_six;
   uint64_t *system_config_data_ptr;
   ulonglong texture_flag;
   uint64_t loop_bound_limit;

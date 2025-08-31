@@ -28487,7 +28487,26 @@ void utility_unwind_semaphore_handler_tertiary(void * context_pointer,long long 
 
 
 
-void Unwind_180902f20(void * context_pointer,long long data_ptr,void * param,void * param)
+/**
+ * @brief 清理上下文处理器主函数
+ * 
+ * 该函数负责清理主上下文处理器占用的资源，包括：
+ * - 遍历和处理上下文数据
+ * - 调用清理函数释放资源
+ * - 重置相关指针和状态
+ * 
+ * @param context_pointer 上下文指针，指向要清理的上下文
+ * @param data_ptr 数据指针，包含清理所需的数据
+ * @param param 参数1，保留参数
+ * @param param 参数2，保留参数
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是简化实现，主要处理基本的上下文清理工作
+ * 原本实现：完全重构上下文清理系统，建立统一的资源释放规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
+ */
+void utility_unwind_context_handler_primary(void * context_pointer,long long data_ptr,void * param,void * param)
 
 {
   void **process_data_ptr;
@@ -28509,7 +28528,7 @@ void Unwind_180902f20(void * context_pointer,long long data_ptr,void * param,voi
 
 
 
-void Unwind_180902f40(void * context_pointer,long long data_ptr,void * param,void * param)
+void utility_unwind_context_handler_secondary(void * context_pointer,long long data_ptr,void * param,void * param)
 
 {
   void **process_data_ptr;
@@ -28531,7 +28550,7 @@ void Unwind_180902f40(void * context_pointer,long long data_ptr,void * param,voi
 
 
 
-void Unwind_180902f60(void * context_pointer,long long data_ptr)
+void utility_unwind_memory_manager(void * context_pointer,long long data_ptr)
 
 {
   int *presult_int;
@@ -28567,7 +28586,7 @@ void Unwind_180902f60(void * context_pointer,long long data_ptr)
 
 
 
-void Unwind_180902f80(void * context_pointer,long long data_ptr,void * param,void * param)
+void utility_unwind_thread_controller(void * context_pointer,long long data_ptr,void * param,void * param)
 
 {
   context_pointer_process_data(*(long long *)(data_ptr + 0x40) + 0x8e8,
@@ -28578,7 +28597,7 @@ void Unwind_180902f80(void * context_pointer,long long data_ptr,void * param,voi
 
 
 
-void Unwind_180902fa0(void * context_pointer,long long data_ptr)
+void utility_unwind_resource_pool(void * context_pointer,long long data_ptr)
 
 {
   long long context_handle;
@@ -28596,7 +28615,7 @@ void Unwind_180902fa0(void * context_pointer,long long data_ptr)
 
 
 
-void Unwind_180902fc0(void * context_pointer,long long data_ptr,void * param,void * param)
+void utility_unwind_event_system(void * context_pointer,long long data_ptr,void * param,void * param)
 
 {
   void **process_data_ptr;
@@ -28612,7 +28631,7 @@ void Unwind_180902fc0(void * context_pointer,long long data_ptr,void * param,voi
 
 
 
-void Unwind_180902fe0(void * context_pointer,long long data_ptr,void * param,void * param)
+void utility_unwind_sync_manager(void * context_pointer,long long data_ptr,void * param,void * param)
 
 {
   void **process_data_ptr;
@@ -28628,7 +28647,7 @@ void Unwind_180902fe0(void * context_pointer,long long data_ptr,void * param,voi
 
 
 
-void Unwind_180903000(void * context_pointer,long long data_ptr,void * param,void * param)
+void utility_unwind_network_handler(void * context_pointer,long long data_ptr,void * param,void * param)
 
 {
   void **process_data_ptr;
@@ -28644,7 +28663,7 @@ void Unwind_180903000(void * context_pointer,long long data_ptr,void * param,voi
 
 
 
-void Unwind_180903010(void * context_pointer,long long data_ptr,void * param,void * param)
+void utility_unwind_security_manager(void * context_pointer,long long data_ptr,void * param,void * param)
 
 {
   void **process_data_ptr;
@@ -28660,7 +28679,7 @@ void Unwind_180903010(void * context_pointer,long long data_ptr,void * param,voi
 
 
 
-void Unwind_180903020(void * context_pointer,long long data_ptr,void * param,void * param)
+void utility_unwind_debug_system(void * context_pointer,long long data_ptr,void * param,void * param)
 
 {
   context_pointer_process_data(*(long long *)(data_ptr + 0x48),*(void **)(*(long long *)(data_ptr + 0x48) + 0x10),
