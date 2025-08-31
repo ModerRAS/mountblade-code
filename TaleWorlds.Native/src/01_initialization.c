@@ -440,18 +440,18 @@ void* SystemCoreInitializer;
 void* SystemCoreInitializer;
 
 /**
- * @brief 初始化系统核心组件
+ * @brief 初始化基本系统核心组件
  * 
- * 简化实现：为系统核心初始化函数添加文档注释，说明其功能和初始化流程。
- * 原本实现：完全重构系统核心初始化流程，建立完整的组件初始化和验证机制。
+ * 简化实现：初始化系统基本核心组件，设置全局上下文和基本配置
+ * 原本实现：完全重构系统核心初始化流程，建立统一的初始化框架
  * 
- * 该函数负责初始化Mount & Blade II: Bannerlord的核心系统组件，包括：
+ * 该函数负责初始化Mount & Blade II: Bannerlord的基本系统核心组件，包括：
  * - 系统上下文和缓冲区初始化
  * - 模块数据验证和加载
  * - 配置数据处理
  * - 系统状态检查
  */
-void InitializeSystemCore(void)
+void InitializeSystemCore_Basic(void)
 
 {
   char system_character_validation_flag;
