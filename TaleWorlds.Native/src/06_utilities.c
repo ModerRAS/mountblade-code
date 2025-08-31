@@ -833,11 +833,6 @@ void utility_process_thread_storage(int64_t thread_handle, int64_t context_data)
             utility_buffer_cleanup(&utility_buffer_ptr);
         }
 }
-
-
-    // 计算最终校验和
-    utility_checksum_compute(utility_data_checksum ^ (uint64_t)utility_main_workspace_buffer);
-}
 /** 
  * @brief 初始化回调系统
  *
