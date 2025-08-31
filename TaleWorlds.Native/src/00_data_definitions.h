@@ -14066,30 +14066,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_REGISTER_OFFSET_2C 0x2c
 #define SYSTEM_REGISTER_MASK_32BIT 0xffffffffffffff20
 
-// 本次美化内容：
-// - 美化特殊浮点数值常量，将0x3d088889等替换为SYSTEM_FLOAT_VALUE_PI_DIV_4等语义化名称
-// - 美化特殊字符串模式常量，将0x2220656d等替换为SYSTEM_STRING_PATTERN_OBJECT_MSG等语义化名称
-// - 美化特殊位掩码常量，将0xffffff00等替换为SYSTEM_BIT_MASK_FLOAT_UPPER等语义化名称
-// - 美化特殊错误码常量，将-0x7f6dfffb等替换为SYSTEM_ERROR_CODE_SPECIAL_1等语义化名称
-// - 美化特殊地址偏移常量，将0x1c0042ed等替换为SYSTEM_ADDRESS_OFFSET_SPECIAL_1等语义化名称
-// - 美化特殊指针偏移常量，将0x70等替换为SYSTEM_POINTER_OFFSET_70等语义化名称
-// - 美化特殊数值常量，将-1等替换为SYSTEM_SPECIAL_VALUE_NEGATIVE_1等语义化名称
-// - 美化特殊最大值常量，将0xffffffff等替换为SYSTEM_MAX_VALUE_32BIT等语义化名称
-// - 美化特殊寄存器常量，将0x20等替换为SYSTEM_REGISTER_OFFSET_20等语义化名称
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中特殊硬编码值的语义化替换
 
-// 本次美化内容（2025年8月30日）：
-// - 美化特殊地址偏移常量，将0x35c替换为SYSTEM_ADDRESS_OFFSET_MODULE_CLEANUP等语义化名称
-// - 美化特殊浮点数值常量，将0x41200000替换为SYSTEM_FLOAT_VALUE_INITIALIZED等语义化名称
-// - 美化特殊位掩码常量，将0xffffff20替换为SYSTEM_BIT_MASK_REGISTER_ALIGN等语义化名称
-// - 美化特殊数值常量，将0xeb、0xef替换为SYSTEM_BUFFER_CODE_SPECIAL_1等语义化名称
-// - 美化特殊地址偏移常量，将0x17ffffff替换为SYSTEM_ADDRESS_OFFSET_MEMORY_BOUNDARY等语义化名称
-// - 美化特殊寄存器常量，将0xfffffffc、0xffffffe0、0xffffffc0替换为SYSTEM_BIT_MASK_ALIGN_*等语义化名称
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码值的语义化替换
-// - 原本实现：完全重构所有硬编码值体系
-// - 简化实现：仅将常见的硬编码值替换为语义化常量
 
 // 特殊模块地址偏移常量
 #define SYSTEM_ADDRESS_OFFSET_MODULE_CLEANUP 0x35c
