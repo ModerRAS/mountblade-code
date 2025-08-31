@@ -461,15 +461,15 @@ void system_free_memory(void* ptr)
  */
 void system_cleanup(void)
 {
-    if (system_global_context_ptr != NULL) {
-        system_free_memory(system_global_context_ptr);
-        system_global_context_ptr = NULL;
+    if (global_system_context_pointer != NULL) {
+        system_free_memory(global_system_context_pointer);
+        global_system_context_pointer = NULL;
     }
     
-    if (system_buffer_ptr != NULL) {
-        system_free_memory(system_buffer_ptr);
-        system_buffer_ptr = NULL;
+    if (system_buffer_pointer != NULL) {
+        system_free_memory(system_buffer_pointer);
+        system_buffer_pointer = NULL;
     }
     
-    system_initialized = 0;
+    system_initialization_status = 0;
 }
