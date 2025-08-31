@@ -948,17 +948,7 @@ void utility_thread_local_initializer(void)
 {
     utility_activate_context();
 }
- * 处理资源指针的转换和管理
- * 将原始资源指针转换为系统可用的资源引用
- * 
- * @param utility_context_input_data 输入的原始资源指针值
- * @return 转换后的资源指针，0表示失败
- */
- * 线程创建处理函数
- * 功能：处理线程创建和初始化过程
- * 参数：utility_context_input_data - 线程上下文句柄
- * 返回值：操作结果状态码
- */
+ /**
  * @brief 线程创建器
  * 功能：创建新的系统线程，初始化线程上下文
  * @param utility_context_input_data 线程上下文参数

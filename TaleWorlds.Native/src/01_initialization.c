@@ -27211,6 +27211,15 @@ void system_function_0591c0(longlong *param1)
 
 
 
+/**
+ * @brief 处理音频配置
+ * 根据传入的参数处理和配置音频系统的各项设置
+ * @param param1 配置参数1
+ * @param param1 配置参数2
+ * @param param1 配置参数3
+ * @param param1 配置参数4
+ * @return 无返回值
+ */
 void system_process_audio_configuration(longlong param1,uint64_t param1,uint64_t param1,uint64_t param1)
 
 {
@@ -27317,6 +27326,14 @@ longlong system_map_shared_memory(longlong param1,longlong param1,longlong param
 
 
 
+/**
+ * @brief 验证音频参数
+ * 验证音频系统参数的有效性和完整性
+ * @param param1 参数1
+ * @param param1 参数2
+ * @param param1 参数3
+ * @return 无返回值
+ */
 void system_validate_audio_parameters(longlong param1,longlong param1,uint64_t param1)
 
 {
@@ -27330,6 +27347,12 @@ void system_validate_audio_parameters(longlong param1,longlong param1,uint64_t p
 
 
 
+/**
+ * @brief 初始化音频上下文
+ * 初始化音频系统的上下文环境和相关数据结构
+ * @param param1 音频上下文指针
+ * @return 无返回值
+ */
 void system_initialize_audio_context(uint64_t *param1)
 
 {
@@ -27428,6 +27451,12 @@ void system_function_0595c0(uint64_t *param1)
 
 
 
+/**
+ * @brief 释放音频内存
+ * 释放音频系统占用的内存资源
+ * @param param1 音频内存指针
+ * @return 无返回值
+ */
 void system_release_audio_memory(longlong *param1)
 
 {
@@ -27448,6 +27477,12 @@ void system_release_audio_memory(longlong *param1)
 
 
 
+/**
+ * @brief 重置音频设备
+ * 重置音频设备到初始状态
+ * @param param1 设备句柄指针
+ * @return 无返回值
+ */
 void system_reset_audio_device(longlong *param1)
 
 {
@@ -27493,6 +27528,12 @@ void system_initialize_thread_scheduler(uint64_t *param1)
 
 
 
+/**
+ * @brief 配置音频流
+ * 配置音频流的参数和设置
+ * @param param1 流配置参数
+ * @return 无返回值
+ */
 void system_configure_audio_stream(longlong param1)
 
 {
@@ -32776,6 +32817,12 @@ uint64_t system_initialize_system_call(uint64_t param1,ulonglong param1)
 
 
 
+/**
+ * @brief 初始化性能监视器
+ * 初始化系统性能监视和统计功能
+ * @param param1 性能监视器上下文指针
+ * @return 无返回值
+ */
 void system_initialize_performance_monitor(uint64_t *param1)
 
 {
@@ -34499,6 +34546,13 @@ int system_function_0634b0(uint64_t param1,uint64_t param1,uint64_t param1,uint6
 
 
 
+/**
+ * @brief 计算内存校验和
+ * 计算指定内存区域的校验和值，用于数据完整性验证
+ * @param param1 内存区域指针
+ * @param param1 内存区域大小
+ * @return 校验和值
+ */
 ulonglong system_calculate_memory_checksum(longlong *param1,longlong param1)
 
 {
