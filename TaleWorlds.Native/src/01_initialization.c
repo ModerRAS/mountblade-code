@@ -5320,8 +5320,19 @@ void system_internal_function(void)
 
 
 
+/**
+ * @brief 系统内部函数 - 初始化浮点数组和数学计算
+ * 
+ * 该函数负责初始化系统内部的浮点数数组，执行复杂的数学计算，
+ * 包括平方根计算和数值归一化处理。主要用于系统启动时的
+ * 数学引擎初始化。
+ * 
+ * 简化实现：保留核心的数学计算逻辑，移除复杂的错误处理
+ * 原本实现：包含完整的数学引擎初始化和验证流程
+ * 
+ * @note 该函数在系统初始化阶段被调用，用于预计算常用的数学值
+ */
 void system_internal_function(void)
-
 {
   uint64_t system_uint_var_a;
   float *system_float_ptr_secondary;
