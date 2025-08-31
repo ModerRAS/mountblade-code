@@ -9,349 +9,349 @@ typedef int int32_t;
 typedef short int16_t;
 typedef char int8_t;
 
-// 游戏引擎核心数据定义头文件
+// 数据定义头文件 - 包含游戏引擎核心常量和数据结构
 // 简化实现：仅美化函数名和变量名，添加必要的注释，保持代码结构不变
 // 原本实现：完全重构所有命名体系，建立统一的语义化命名规范
 
-// 系统常量定义
-#define SYSTEM_CONFIG_BASIC_PARAMETER       0x0B    // 系统基础配置参数
-#define SYSTEM_CONFIG_COMMON_PARAMETER        0x0C    // 系统配置值0x0C - 常用配置参数
-#define SYSTEM_CONFIG_EXTENDED_PARAMETER        0x0E    // 系统配置值0x0E - 扩展配置参数
-#define SYSTEM_CONFIG_BUFFER_SIZE        0x10    // 系统配置值0x10 - 基础缓冲区大小
-#define SYSTEM_CONFIG_INPUT_PARAMETER        0x11    // 系统配置值0x11 - 输入配置参数
-#define SYSTEM_CONFIG_NETWORK_PARAMETER        0x12    // 系统配置值0x12 - 网络配置参数
-#define SYSTEM_CONFIG_AUDIO_PARAMETER        0x13    // 系统配置值0x13 - 音频配置参数
-#define SYSTEM_CONFIG_RENDER_PARAMETER        0x14    // 系统配置值0x14 - 渲染配置参数
-#define SYSTEM_CONFIG_PHYSICS_PARAMETER        0x16    // 系统配置值0x16 - 物理配置参数
-#define SYSTEM_CONFIG_AI_PARAMETER        0x17    // 系统配置值0x17 - AI配置参数
-#define SYSTEM_CONFIG_ADVANCED_PARAMETER        0x1B    // 系统配置值0x1B - 高级配置参数
-#define SYSTEM_CONFIG_DEBUG_PARAMETER        0x1D    // 系统配置值0x1D - 调试配置参数
-#define SYSTEM_CONFIG_PERFORMANCE_PARAMETER        0x1E    // 系统配置值0X1E - 性能配置参数
-#define SYSTEM_CONFIG_SECURITY_PARAMETER        0x1F    // 系统配置值0X1F - 安全配置参数
-#define SYSTEM_CONFIG_MEMORY_PARAMETER        0x21    // 系统配置值0X21 - 内存配置参数
-#define SYSTEM_CONFIG_THREAD_PARAMETER        0x23    // 系统配置值0X23 - 线程配置参数
-#define SYSTEM_CONFIG_FILE_PARAMETER        0x25    // 系统配置值0X25 - 文件配置参数
+// 游戏系统配置常量
+#define GAME_CONFIG_BASIC_PARAMETER       0x0B    // 基础配置参数
+#define GAME_CONFIG_COMMON_PARAMETER        0x0C    // 常用配置参数
+#define GAME_CONFIG_EXTENDED_PARAMETER        0x0E    // 扩展配置参数
+#define GAME_CONFIG_BUFFER_SIZE        0x10    // 基础缓冲区大小
+#define GAME_CONFIG_INPUT_PARAMETER        0x11    // 输入配置参数
+#define GAME_CONFIG_NETWORK_PARAMETER        0x12    // 网络配置参数
+#define GAME_CONFIG_AUDIO_PARAMETER        0x13    // 音频配置参数
+#define GAME_CONFIG_RENDER_PARAMETER        0x14    // 渲染配置参数
+#define GAME_CONFIG_PHYSICS_PARAMETER        0x16    // 物理配置参数
+#define GAME_CONFIG_AI_PARAMETER        0x17    // AI配置参数
+#define GAME_CONFIG_ADVANCED_PARAMETER        0x1B    // 高级配置参数
+#define GAME_CONFIG_DEBUG_PARAMETER        0x1D    // 调试配置参数
+#define GAME_CONFIG_PERFORMANCE_PARAMETER        0x1E    // 性能配置参数
+#define GAME_CONFIG_SECURITY_PARAMETER        0x1F    // 安全配置参数
+#define GAME_CONFIG_MEMORY_PARAMETER        0x21    // 内存配置参数
+#define GAME_CONFIG_THREAD_PARAMETER        0x23    // 线程配置参数
+#define GAME_CONFIG_FILE_PARAMETER        0x25    // 文件配置参数
 
-// 内存偏移量常量
-#define SYSTEM_MEMORY_OFFSET_RENDER_BUFFER      0x7B4   // 内存偏移0x7B4 - 渲染缓冲区
-#define SYSTEM_MEMORY_OFFSET_CONFIG_BUFFER      0x1F0   // 内存偏移0x1F0 - 配置缓冲区
-#define SYSTEM_MEMORY_OFFSET_STATUS_FLAG       0x22    // 内存偏移0x22 - 状态标志
-#define SYSTEM_MEMORY_OFFSET_CONTROL_FLAG       0x21    // 内存偏移0x21 - 控制标志
-#define SYSTEM_MEMORY_OFFSET_DATA_BUFFER       0x48    // 内存偏移0x48 - 数据缓冲区
-#define SYSTEM_MEMORY_OFFSET_NETWORK_BUFFER       0x60    // 内存偏移0x60 - 网络缓冲区
-#define SYSTEM_MEMORY_OFFSET_AUDIO_BUFFER       0x8C    // 内存偏移0x8C - 音频缓冲区
-#define SYSTEM_MEMORY_OFFSET_INPUT_BUFFER       0xB8    // 内存偏移0xB8 - 输入缓冲区
-#define SYSTEM_MEMORY_OFFSET_EVENT_BUFFER       0xC0    // 内存偏移0xC0 - 事件缓冲区
-#define SYSTEM_MEMORY_OFFSET_THREAD_BUFFER      0x170   // 内存偏移0x170 - 线程缓冲区
-#define SYSTEM_MEMORY_OFFSET_SYNC_BUFFER      0x178   // 内存偏移0x178 - 同步缓冲区
+// 游戏内存偏移量常量
+#define GAME_MEMORY_OFFSET_RENDER_BUFFER      0x7B4   // 渲染缓冲区偏移
+#define GAME_MEMORY_OFFSET_CONFIG_BUFFER      0x1F0   // 配置缓冲区偏移
+#define GAME_MEMORY_OFFSET_STATUS_FLAG       0x22    // 状态标志偏移
+#define GAME_MEMORY_OFFSET_CONTROL_FLAG       0x21    // 控制标志偏移
+#define GAME_MEMORY_OFFSET_DATA_BUFFER       0x48    // 数据缓冲区偏移
+#define GAME_MEMORY_OFFSET_NETWORK_BUFFER       0x60    // 网络缓冲区偏移
+#define GAME_MEMORY_OFFSET_AUDIO_BUFFER       0x8C    // 音频缓冲区偏移
+#define GAME_MEMORY_OFFSET_INPUT_BUFFER       0xB8    // 输入缓冲区偏移
+#define GAME_MEMORY_OFFSET_EVENT_BUFFER       0xC0    // 事件缓冲区偏移
+#define GAME_MEMORY_OFFSET_THREAD_BUFFER      0x170   // 线程缓冲区偏移
+#define GAME_MEMORY_OFFSET_SYNC_BUFFER      0x178   // 同步缓冲区偏移
 
-// 错误代码常量
-#define SYSTEM_ERROR_FILE_OPERATION          0xEB    // 错误代码0xEB - 文件操作错误
-#define SYSTEM_ERROR_NETWORK_OPERATION          0xEF    // 错误代码0xEF - 网络操作错误
-#define SYSTEM_ERROR_MEMORY_OPERATION          0xC1    // 错误代码0xC1 - 内存操作错误
+// 游戏错误代码常量
+#define GAME_ERROR_FILE_OPERATION          0xEB    // 文件操作错误
+#define GAME_ERROR_NETWORK_OPERATION          0xEF    // 网络操作错误
+#define GAME_ERROR_MEMORY_OPERATION          0xC1    // 内存操作错误
 
-// 标志位常量
-#define SYSTEM_FLAG_ENABLED             0x01    // 系统使能标志
-#define SYSTEM_FLAG_DISABLED            0x00    // 系统禁用标志
-#define SYSTEM_FLAG_INITIALIZED         0x02    // 系统已初始化标志
-#define SYSTEM_FLAG_RUNNING            0x04    // 系统运行中标志
-#define SYSTEM_FLAG_ERROR              0x08    // 系统错误标志
+// 游戏状态标志常量
+#define GAME_FLAG_ENABLED             0x01    // 使能标志
+#define GAME_FLAG_DISABLED            0x00    // 禁用标志
+#define GAME_FLAG_INITIALIZED         0x02    // 已初始化标志
+#define GAME_FLAG_RUNNING            0x04    // 运行中标志
+#define GAME_FLAG_ERROR              0x08    // 错误标志
 
-// 特殊常量定义
-#define SYSTEM_MAX_INT64_VALUE          0x7FFFFFFFFFFFFFFFLL  // 最大64位有符号整数
-#define SYSTEM_MAX_STACK_SIZE           0x1fff  // 最大栈大小
-#define SYSTEM_FLOAT_ONE                0x3f800000  // 浮点数1.0
-#define SYSTEM_CHECK_VALUE_B7           0xb7  // 检查值0xb7
-#define SYSTEM_CHAR_DOT                 0x2e  // 字符'.'的ASCII码
-#define SYSTEM_CONFIG_EXTRA_PARAMETER_1        0x15  // 系统配置值0x15 - 额外配置参数
-#define SYSTEM_CONFIG_EXTRA_PARAMETER_2        0x24  // 系统配置值0x24 - 额外配置参数
-#define SYSTEM_CONFIG_EXTRA_PARAMETER_3        0x26  // 系统配置值0x26 - 额外配置参数
-#define SYSTEM_CONFIG_EXTRA_PARAMETER_4        0x27  // 系统配置值0x27 - 额外配置参数
-#define SYSTEM_CONFIG_EXTRA_PARAMETER_5        0x28  // 系统配置值0x28 - 额外配置参数
-#define SYSTEM_CONFIG_EXTRA_PARAMETER_6        0x40  // 系统配置值0x40 - 额外配置参数
-#define SYSTEM_CONFIG_EXTRA_PARAMETER_7        0x56  // 系统配置值0x56 - 额外配置参数
-#define SYSTEM_CONFIG_EXTRA_PARAMETER_8        0xe0  // 系统配置值0xe0 - 额外配置参数
-#define SYSTEM_CONFIG_EXTRA_PARAMETER_9        0xb0  // 系统配置值0xb0 - 额外配置参数
-#define SYSTEM_CONFIG_EXTRA_PARAMETER_20000000 0x240000000  // 系统配置值0x240000000 - 大偏移量
+// 游戏特殊常量定义
+#define GAME_MAX_INT64_VALUE          0x7FFFFFFFFFFFFFFFLL  // 最大64位有符号整数
+#define GAME_MAX_STACK_SIZE           0x1fff  // 最大栈大小
+#define GAME_FLOAT_ONE                0x3f800000  // 浮点数1.0
+#define GAME_CHECK_VALUE_B7           0xb7  // 检查值0xb7
+#define GAME_CHAR_DOT                 0x2e  // 字符'.'的ASCII码
+#define GAME_CONFIG_EXTRA_PARAMETER_1        0x15  // 额外配置参数1
+#define GAME_CONFIG_EXTRA_PARAMETER_2        0x24  // 额外配置参数2
+#define GAME_CONFIG_EXTRA_PARAMETER_3        0x26  // 额外配置参数3
+#define GAME_CONFIG_EXTRA_PARAMETER_4        0x27  // 额外配置参数4
+#define GAME_CONFIG_EXTRA_PARAMETER_5        0x28  // 额外配置参数5
+#define GAME_CONFIG_EXTRA_PARAMETER_6        0x40  // 额外配置参数6
+#define GAME_CONFIG_EXTRA_PARAMETER_7        0x56  // 额外配置参数7
+#define GAME_CONFIG_EXTRA_PARAMETER_8        0xe0  // 额外配置参数8
+#define GAME_CONFIG_EXTRA_PARAMETER_9        0xb0  // 额外配置参数9
+#define GAME_CONFIG_EXTRA_PARAMETER_LARGE    0x240000000  // 大偏移量配置参数
 
-// 系统偏移量常量
-#define SYSTEM_OFFSET_24                0x24   // 系统偏移量24
-#define SYSTEM_OFFSET_25                0x25   // 系统偏移量25
-#define SYSTEM_OFFSET_26                0x26   // 系统偏移量26
-#define SYSTEM_OFFSET_27                0x27   // 系统偏移量27
-#define SYSTEM_OFFSET_28                0x28   // 系统偏移量28
-#define SYSTEM_OFFSET_30                0x30   // 系统偏移量30
-#define SYSTEM_OFFSET_56                0x56   // 系统偏移量56
-#define SYSTEM_OFFSET_98                0x98   // 系统偏移量98
-#define SYSTEM_OFFSET_200               200    // 系统偏移量200
-#define SYSTEM_OFFSET_238               0x238  // 系统偏移量238
-#define SYSTEM_OFFSET_240               0x240  // 系统偏移量240
-#define SYSTEM_OFFSET_328               0x328  // 系统偏移量328
-#define SYSTEM_OFFSET_1510              0x1510 // 系统偏移量1510
-#define SYSTEM_OFFSET_1518              0x1518 // 系统偏移量1518
-#define SYSTEM_OFFSET_1530              0x1530 // 系统偏移量1530
-#define SYSTEM_OFFSET_1590              0x1590 // 系统偏移量1590
-#define SYSTEM_OFFSET_1598              0x1598 // 系统偏移量1598
-#define SYSTEM_OFFSET_15A8              0x15a8 // 系统偏移量15a8
-#define SYSTEM_OFFSET_161C              0x161c // 系统偏移量161c
-#define SYSTEM_OFFSET_167C              0x167c // 系统偏移量167c
-#define SYSTEM_OFFSET_1680              0x1680 // 系统偏移量1680
-#define SYSTEM_OFFSET_1688              0x1688 // 系统偏移量1688
-#define SYSTEM_OFFSET_168C              0x168c // 系统偏移量168c
-#define SYSTEM_OFFSET_1710              0x1710 // 系统偏移量1710
-#define SYSTEM_OFFSET_1D20              0x1d20 // 系统偏移量1d20
-#define SYSTEM_OFFSET_1D40              0x1d40 // 系统偏移量1d40
-#define SYSTEM_OFFSET_1D4C              0x1d4c // 系统偏移量1d4c
-#define SYSTEM_OFFSET_2B0               0x2b0  // 系统偏移量2b0
-#define SYSTEM_OFFSET_3C0               0x3c0  // 系统偏移量3c0
+// 游戏系统偏移量常量
+#define GAME_OFFSET_24                0x24   // 偏移量24
+#define GAME_OFFSET_25                0x25   // 偏移量25
+#define GAME_OFFSET_26                0x26   // 偏移量26
+#define GAME_OFFSET_27                0x27   // 偏移量27
+#define GAME_OFFSET_28                0x28   // 偏移量28
+#define GAME_OFFSET_30                0x30   // 偏移量30
+#define GAME_OFFSET_56                0x56   // 偏移量56
+#define GAME_OFFSET_98                0x98   // 偏移量98
+#define GAME_OFFSET_200               200    // 偏移量200
+#define GAME_OFFSET_238               0x238  // 偏移量238
+#define GAME_OFFSET_240               0x240  // 偏移量240
+#define GAME_OFFSET_328               0x328  // 偏移量328
+#define GAME_OFFSET_1510              0x1510 // 偏移量1510
+#define GAME_OFFSET_1518              0x1518 // 偏移量1518
+#define GAME_OFFSET_1530              0x1530 // 偏移量1530
+#define GAME_OFFSET_1590              0x1590 // 偏移量1590
+#define GAME_OFFSET_1598              0x1598 // 偏移量1598
+#define GAME_OFFSET_15A8              0x15a8 // 偏移量15a8
+#define GAME_OFFSET_161C              0x161c // 偏移量161c
+#define GAME_OFFSET_167C              0x167c // 偏移量167c
+#define GAME_OFFSET_1680              0x1680 // 偏移量1680
+#define GAME_OFFSET_1688              0x1688 // 偏移量1688
+#define GAME_OFFSET_168C              0x168c // 偏移量168c
+#define GAME_OFFSET_1710              0x1710 // 偏移量1710
+#define GAME_OFFSET_1D20              0x1d20 // 偏移量1d20
+#define GAME_OFFSET_1D40              0x1d40 // 偏移量1d40
+#define GAME_OFFSET_1D4C              0x1d4c // 偏移量1d4c
+#define GAME_OFFSET_2B0               0x2b0  // 偏移量2b0
+#define GAME_OFFSET_3C0               0x3c0  // 偏移量3c0
 
-// 缓冲区大小常量
-#define SYSTEM_BUFFER_SIZE_16            16      // 缓冲区大小16字节
-#define SYSTEM_BUFFER_SIZE_32            32      // 缓冲区大小32字节
-#define SYSTEM_BUFFER_SIZE_64            64      // 缓冲区大小64字节
-#define SYSTEM_BUFFER_SIZE_128           128     // 缓冲区大小128字节
-#define SYSTEM_BUFFER_SIZE_160           160     // 缓冲区大小160字节
-#define SYSTEM_BUFFER_SIZE_LARGE         256     // 大缓冲区大小
-#define SYSTEM_CONFIG_AUDIO_LENGTH       6       // 音频配置长度
-#define SYSTEM_CONFIG_INPUT_LENGTH       8       // 输入配置长度
-#define SYSTEM_FLAG_MASK                 0xFFFFFFFF // 标志掩码
-#define SYSTEM_MUTEX_ADDRESS_PRIMARY     0x1000  // 主互斥锁地址
-#define SYSTEM_MUTEX_ADDRESS_SECONDARY   0x2000  // 次互斥锁地址
-#define SYSTEM_MUTEX_ADDRESS_TERTIARY    0x3000  // 第三互斥锁地址
-#define SYSTEM_MUTEX_ADDRESS_QUATERNARY  0x4000  // 第四互斥锁地址
-#define SYSTEM_MUTEX_ADDRESS_5           0x5000  // 第五互斥锁地址
-#define SYSTEM_OFFSET_240000000          0x240000000 // 大偏移量
-#define SYSTEM_BUFFER_SIZE_1289200ff     0x1289200ff // 特殊缓冲区大小
-#define SYSTEM_BUFFER_SIZE_12801002d     0x12801002d // 特殊缓冲区大小
-#define SYSTEM_CONFIG_INPUT_LENGTHfffff  0xfffff     // 输入长度掩码
-#define SYSTEM_CONFIG_INPUT_LENGTHfffffffffffffff  0xfffffffffffffff // 输入长度掩码
-#define SYSTEM_CONFIG_INPUT_LENGTHfffffffffffff00  0xfffffffffffff00 // 输入长度掩码
-#define SYSTEM_UI_STRING_LENGTHc         0x63    // UI字符串长度'c'
+// 游戏缓冲区大小常量
+#define GAME_BUFFER_SIZE_16            16      // 缓冲区大小16字节
+#define GAME_BUFFER_SIZE_32            32      // 缓冲区大小32字节
+#define GAME_BUFFER_SIZE_64            64      // 缓冲区大小64字节
+#define GAME_BUFFER_SIZE_128           128     // 缓冲区大小128字节
+#define GAME_BUFFER_SIZE_160           160     // 缓冲区大小160字节
+#define GAME_BUFFER_SIZE_LARGE         256     // 大缓冲区大小
+#define GAME_CONFIG_AUDIO_LENGTH       6       // 音频配置长度
+#define GAME_CONFIG_INPUT_LENGTH       8       // 输入配置长度
+#define GAME_FLAG_MASK                 0xFFFFFFFF // 标志掩码
+#define GAME_MUTEX_ADDRESS_PRIMARY     0x1000  // 主互斥锁地址
+#define GAME_MUTEX_ADDRESS_SECONDARY   0x2000  // 次互斥锁地址
+#define GAME_MUTEX_ADDRESS_TERTIARY    0x3000  // 第三互斥锁地址
+#define GAME_MUTEX_ADDRESS_QUATERNARY  0x4000  // 第四互斥锁地址
+#define GAME_MUTEX_ADDRESS_FIFTH       0x5000  // 第五互斥锁地址
+#define GAME_OFFSET_LARGE                0x240000000 // 大偏移量
+#define GAME_BUFFER_SIZE_SPECIAL_1       0x1289200ff // 特殊缓冲区大小1
+#define GAME_BUFFER_SIZE_SPECIAL_2       0x12801002d // 特殊缓冲区大小2
+#define GAME_INPUT_LENGTH_MASK_1         0xfffff     // 输入长度掩码1
+#define GAME_INPUT_LENGTH_MASK_2         0xfffffffffffffff // 输入长度掩码2
+#define GAME_INPUT_LENGTH_MASK_3         0xfffffffffffff00 // 输入长度掩码3
+#define GAME_UI_STRING_LENGTH_C          0x63    // UI字符串长度'c'
 
-// 系统大小常量
-#define SYSTEM_SIZE_0X960               0x960  // 系统大小0x960
-#define SYSTEM_SIZE_0XC0                0xc0   // 系统大小0xc0
+// 游戏系统大小常量
+#define GAME_SIZE_960                   0x960  // 系统大小960
+#define GAME_SIZE_C0                    0xc0   // 系统大小C0
 
-// 字符串常量（十六进制表示）
-#define SYSTEM_STRING_0X726F662F         0x726f662f  // 字符串常量
-#define SYSTEM_STRING_0X666E6F63         0x666e6f63  // 字符串常量
-#define SYSTEM_STRING_0X3A6769           0x3a6769    // 字符串常量
-#define SYSTEM_STRING_0X6F6D654D20555047 0x6f6d654d20555047  // 字符串常量
-#define SYSTEM_STRING_0X6567617375207972 0x6567617375207972  // 字符串常量
-#define SYSTEM_STRING_0X6163697469726320 0x6163697469726320  // 字符串常量
-#define SYSTEM_STRING_0X2E2E6C           0x2e2e6c    // 字符串常量
-#define SYSTEM_STRING_0X6D6D6F43204C4752 0x6d6d6f43204c4752  // 字符串常量
-#define SYSTEM_STRING_0X656E696C20646E61 0x656e696c20646e61  // 字符串常量
-#define SYSTEM_STRING_0X656C6F736E6F6320 0x656c6f736e6f6320  // 字符串常量
-#define SYSTEM_STRING_0X2E6B4F           0x2e6b4f    // 字符串常量
-// 栈浮点变量语义化定义
-#define fStack0000000000000050 system_stack_texture_coord_u1
-#define fStack0000000000000054 system_stack_texture_coord_v1
-#define fStack0000000000000058 system_stack_texture_coord_u2
-#define fStack000000000000005c system_stack_texture_coord_v2
-#define fStack0000000000000060 system_stack_matrix_element_0
-#define fStack0000000000000064 system_stack_matrix_element_1
-#define fStack0000000000000068 system_stack_matrix_element_2
-#define fStack000000000000006c system_stack_matrix_element_3
-#define fStack0000000000000070 system_stack_color_component_r
-#define fStack0000000000000074 system_stack_color_component_g
-#define fStack0000000000000078 system_stack_color_component_b
-#define fStack000000000000007c system_stack_color_component_a
+// 游戏字符串常量（十六进制表示）
+#define GAME_STRING_PATH_1              0x726f662f  // 路径字符串1
+#define GAME_STRING_CONF                0x666e6f63  // 配置字符串
+#define GAME_STRING_COLON               0x3a6769    // 冒号字符串
+#define GAME_STRING_MEM_USAGE            0x6f6d654d20555047  // 内存使用字符串
+#define GAME_STRING_GAME_SERIES          0x6567617375207972  // 游戏系列字符串
+#define GAME_STRING_ACTIVATION           0x6163697469726320  // 激活字符串
+#define GAME_STRING_DOT_DOT_L            0x2e2e6c    // 点点L字符串
+#define GAME_STRING_COMMON_LGR           0x6d6d6f43204c4752  // 通用LGR字符串
+#define GAME_STRING_INLINE_ANSI          0x656e696c20646e61  // 内联ANSI字符串
+#define GAME_STRING_CONSOLE              0x656c6f736e6f6320  // 控制台字符串
+#define GAME_STRING_DOT_OK               0x2e6b4f    // 点OK字符串
+// 游戏栈浮点变量语义化定义
+#define GAME_STACK_TEX_U1             system_stack_texture_coord_u1
+#define GAME_STACK_TEX_V1             system_stack_texture_coord_v1
+#define GAME_STACK_TEX_U2             system_stack_texture_coord_u2
+#define GAME_STACK_TEX_V2             system_stack_texture_coord_v2
+#define GAME_STACK_MATRIX_0            system_stack_matrix_element_0
+#define GAME_STACK_MATRIX_1            system_stack_matrix_element_1
+#define GAME_STACK_MATRIX_2            system_stack_matrix_element_2
+#define GAME_STACK_MATRIX_3            system_stack_matrix_element_3
+#define GAME_STACK_COLOR_R             system_stack_color_component_r
+#define GAME_STACK_COLOR_G             system_stack_color_component_g
+#define GAME_STACK_COLOR_B             system_stack_color_component_b
+#define GAME_STACK_COLOR_A             system_stack_color_component_a
 
-// 系统函数语义化定义
-#define system_process_temporary_data system_memory_manager_initialize
+// 游戏系统函数语义化定义
+#define system_process_temporary_data game_memory_manager_initialize
 
-// 全局数据变量定义
-void *global_system_data_pointer;
-void *global_system_unknown_pointer;
-int global_system_initialization_flag = 1;
-int *global_system_config_pointer = 0;
-int64_t global_system_maximum_value = SYSTEM_MAX_INT64_VALUE;
-int global_system_status_flag = 0;
+// 游戏全局数据变量定义
+void *game_global_data_pointer;
+void *game_global_unknown_pointer;
+int game_global_initialization_flag = 1;
+int *game_global_config_pointer = 0;
+int64_t game_global_maximum_value = GAME_MAX_INT64_VALUE;
+int game_global_status_flag = 0;
 
-// 各子系统数据定义
-void *global_graphics_data;
-void *global_audio_data;
-void *global_input_data;
-void *global_network_data;
-void *global_physics_data;
-void *global_ai_data;
-void *global_ui_data;
-void *global_script_data;
-void *global_string_data;
+// 游戏子系统数据定义
+void *game_global_graphics_data;
+void *game_global_audio_data;
+void *game_global_input_data;
+void *game_global_network_data;
+void *game_global_physics_data;
+void *game_global_ai_data;
+void *game_global_ui_data;
+void *game_global_script_data;
+void *game_global_string_data;
 
-// 系统配置和状态变量
-void *system_global_data_buffer;
-void *system_null_data_buffer;
-void *system_data_pointer;
-int system_result_code;
-uint64_t system_config_parameter;
-int system_global_data_buffer_buffer;
+// 游戏系统配置和状态变量
+void *game_global_data_buffer;
+void *game_null_data_buffer;
+void *game_data_pointer;
+int game_result_code;
+uint64_t game_config_parameter;
+int game_global_data_buffer_buffer;
 
-// 子系统指针变量
-void *graphics_system_data_ptr;
-void *graphics_system_config_ptr;
-int graphics_system_flag;
-int graphics_system_config;
-void *audio_system_data_ptr;
-void *audio_system_config_ptr;
-int audio_system_flag;
-int audio_system_config;
-void *input_system_data_ptr;
-void *input_system_config_ptr;
-int input_system_flag;
-int input_system_config;
-void *network_system_data_ptr;
-void *network_system_config_ptr;
-int network_system_flag;
-int network_system_config;
-void *physics_system_data_ptr;
-void *physics_system_config_ptr;
-int physics_system_flag;
-int physics_system_config;
-void *ai_system_data_ptr;
-void *ai_system_config_ptr;
-int ai_system_flag;
-int ai_system_config;
+// 游戏子系统指针变量
+void *game_graphics_data_ptr;
+void *game_graphics_config_ptr;
+int game_graphics_flag;
+int game_graphics_config;
+void *game_audio_data_ptr;
+void *game_audio_config_ptr;
+int game_audio_flag;
+int game_audio_config;
+void *game_input_data_ptr;
+void *game_input_config_ptr;
+int game_input_flag;
+int game_input_config;
+void *game_network_data_ptr;
+void *game_network_config_ptr;
+int game_network_flag;
+int game_network_config;
+void *game_physics_data_ptr;
+void *game_physics_config_ptr;
+int game_physics_flag;
+int game_physics_config;
+void *game_ai_data_ptr;
+void *game_ai_config_ptr;
+int game_ai_flag;
+int game_ai_config;
 
-// 字符串处理变量
-void *ui_string_data_ptr;
-void *ui_string_callback_ptr;
-int ui_string_callback;
-int ui_string_length;
-void *script_string_data_ptr;
-void *script_string_callback_ptr;
-int script_string_callback;
-int script_string_length;
-void *logic_string_data_ptr;
-void *logic_string_callback_ptr;
-int logic_string_callback;
-int logic_string_length;
+// 游戏字符串处理变量
+void *game_ui_string_data_ptr;
+void *game_ui_string_callback_ptr;
+int game_ui_string_callback;
+int game_ui_string_length;
+void *game_script_string_data_ptr;
+void *game_script_string_callback_ptr;
+int game_script_string_callback;
+int game_script_string_length;
+void *game_logic_string_data_ptr;
+void *game_logic_string_callback_ptr;
+int game_logic_string_callback;
+int game_logic_string_length;
 
-// 线程同步变量
-int thread_sync_primary_flag;
-int thread_sync_secondary_flag;
-int thread_sync_tertiary_flag;
-int thread_sync_quaternary_flag;
+// 游戏线程同步变量
+int game_thread_sync_primary_flag;
+int game_thread_sync_secondary_flag;
+int game_thread_sync_tertiary_flag;
+int game_thread_sync_quaternary_flag;
 
-// 其他系统变量
-int system_initialization_flag;
-uint64_t system_configuration_mask;
-uint64_t system_exit_handler_table_primary;
-uint64_t system_exit_handler_table_secondary;
-uint64_t system_exit_handler_table_tertiary;
-uint64_t system_exit_handler_table_quaternary;
-uint64_t system_exit_handler_table_quinary;
-uint64_t system_exit_handler_table_senary;
+// 游戏其他系统变量
+int game_initialization_flag;
+uint64_t game_configuration_mask;
+uint64_t game_exit_handler_table_primary;
+uint64_t game_exit_handler_table_secondary;
+uint64_t game_exit_handler_table_tertiary;
+uint64_t game_exit_handler_table_quaternary;
+uint64_t game_exit_handler_table_quinary;
+uint64_t game_exit_handler_table_senary;
 
-// 函数声明
-int system_initialize_callback(void *callback_function);
-int system_register_callback(void *callback_function);
-void system_synchronize_state(void);
-void system_memory_manager_initialize(void *memory_context);
-int system_validate_parameter_function(void);
-int system_initialize_exit_table(void *exit_table);
-void system_handle_exception(int exception_code);
-void *system_software_interrupt(int interrupt_number);
-void system_initialize_runtime(void);
-int system_check_initialization(void);
-void system_set_invalid_parameter_handler(void *handler);
-void system_log_message(const wchar_t *message, int log_level);
-void system_wide_string_copy(wchar_t *dest, size_t dest_size, const wchar_t *src);
-void system_wide_string_concatenate(wchar_t *dest, size_t dest_size, const wchar_t *src);
-void system_handle_error(void *error_handler, int error_code, void *error_context, const wchar_t *error_message, const wchar_t *context);
-void system_format_string(wchar_t *buffer, size_t buffer_size, const wchar_t *format, ...);
-long long system_context_get_handle(uint64_t context, int flags);
-uint32_t timeGetTime(void);
-void _Cnd_init_in_situ(void);
-void _Mtx_init_in_situ(uint64_t address, size_t size, uint64_t thread_context, uint64_t memory_context, uint64_t flags);
-void *_beginthread(void *start_address, unsigned stack_size, void *arglist);
-void _guard_check_icall(void *function_pointer);
-uint64_t system_combine_int7_with_byte(uint7 value, int flag);
+// 游戏系统函数声明
+int game_system_initialize_callback(void *callback_function);
+int game_system_register_callback(void *callback_function);
+void game_system_synchronize_state(void);
+void game_memory_manager_initialize(void *memory_context);
+int game_system_validate_parameter_function(void);
+int game_system_initialize_exit_table(void *exit_table);
+void game_system_handle_exception(int exception_code);
+void *game_system_software_interrupt(int interrupt_number);
+void game_system_initialize_runtime(void);
+int game_system_check_initialization(void);
+void game_system_set_invalid_parameter_handler(void *handler);
+void game_system_log_message(const wchar_t *message, int log_level);
+void game_system_wide_string_copy(wchar_t *dest, size_t dest_size, const wchar_t *src);
+void game_system_wide_string_concatenate(wchar_t *dest, size_t dest_size, const wchar_t *src);
+void game_system_handle_error(void *error_handler, int error_code, void *error_context, const wchar_t *error_message, const wchar_t *context);
+void game_system_format_string(wchar_t *buffer, size_t buffer_size, const wchar_t *format, ...);
+long long game_system_context_get_handle(uint64_t context, int flags);
+uint32_t game_system_time_get_time(void);
+void game_system_condition_init_in_situ(void);
+void game_system_mutex_init_in_situ(uint64_t address, size_t size, uint64_t thread_context, uint64_t memory_context, uint64_t flags);
+void *game_system_begin_thread(void *start_address, unsigned stack_size, void *arglist);
+void game_system_guard_check_icall(void *function_pointer);
+uint64_t game_system_combine_int7_with_byte(uint7 value, int flag);
 
-// 字符串常量声明
-static const wchar_t graphics_system_name[] = L"GraphicsSystem";
-static const wchar_t audio_system_name[] = L"AudioSystem";
-static const wchar_t input_system_name[] = L"InputSystem";
-static const wchar_t network_system_name[] = L"NetworkSystem";
-static const wchar_t file_error_message_primary[] = L"File not found";
-static const wchar_t file_error_message_secondary[] = L"File access denied";
-static const wchar_t file_path_template_primary[] = L"%s%d.dat";
-static const wchar_t file_path_template_secondary[] = L"%s%d_%d.dat";
-static const wchar_t ui_string_template[] = L"UIString";
-static const wchar_t script_string_template[] = L"ScriptString";
-static const wchar_t logic_string_template[] = L"LogicString";
+// 游戏字符串常量声明
+static const wchar_t game_graphics_system_name[] = L"GraphicsSystem";
+static const wchar_t game_audio_system_name[] = L"AudioSystem";
+static const wchar_t game_input_system_name[] = L"InputSystem";
+static const wchar_t game_network_system_name[] = L"NetworkSystem";
+static const wchar_t game_file_error_message_primary[] = L"File not found";
+static const wchar_t game_file_error_message_secondary[] = L"File access denied";
+static const wchar_t game_file_path_template_primary[] = L"%s%d.dat";
+static const wchar_t game_file_path_template_secondary[] = L"%s%d_%d.dat";
+static const wchar_t game_ui_string_template[] = L"UIString";
+static const wchar_t game_script_string_template[] = L"ScriptString";
+static const wchar_t game_logic_string_template[] = L"LogicString";
 
-// 回调函数声明
-void *graphics_setup_callback(void);
-void *audio_setup_callback(void);
-void *input_setup_callback(void);
-void *network_setup_callback(void);
-void *physics_setup_callback(void);
-void *ai_setup_callback(void);
-void *ui_setup_function(void);
-void *script_setup_function(void);
-void *logic_setup_function(void);
-void *render_mutex_setup_function(void);
-void *thread_sync_setup_primary(void);
-void *thread_sync_setup_secondary(void);
-void *thread_sync_setup_tertiary(void);
-void *thread_sync_setup_quaternary(void);
-void *system_event_handler(void);
+// 游戏回调函数声明
+void *game_graphics_setup_callback(void);
+void *game_audio_setup_callback(void);
+void *game_input_setup_callback(void);
+void *game_network_setup_callback(void);
+void *game_physics_setup_callback(void);
+void *game_ai_setup_callback(void);
+void *game_ui_setup_function(void);
+void *game_script_setup_function(void);
+void *game_logic_setup_function(void);
+void *game_render_mutex_setup_function(void);
+void *game_thread_sync_setup_primary(void);
+void *game_thread_sync_setup_secondary(void);
+void *game_thread_sync_setup_tertiary(void);
+void *game_thread_sync_setup_quaternary(void);
+void *game_system_event_handler(void);
 
-// 全局变量声明
-extern IMAGE_SECTION_HEADER system_image_section_header;
-extern void *file_handle_primary;
-extern bool file_operation_status;
-extern bool system_file_operation_result;
+// 游戏全局变量声明
+extern IMAGE_SECTION_HEADER game_image_section_header;
+extern void *game_file_handle_primary;
+extern bool game_file_operation_status;
+extern bool game_system_file_operation_result;
 
-// 缓冲区声明
-static wchar_t system_buffer_array_228[256];
-static wchar_t system_buffer_array_248[256];
-static wchar_t system_buffer_array_20[256];
-static wchar_t system_buffer_input_230[256];
-static wchar_t system_buffer_zero_address[256];
-static uint system_buffer_uint18;
-static uint system_buffer_input_230;
-static uint system_buffer_uint188;
-static uint system_buffer_uint180;
+// 游戏缓冲区声明
+static wchar_t game_buffer_array_228[256];
+static wchar_t game_buffer_array_248[256];
+static wchar_t game_buffer_array_20[256];
+static wchar_t game_buffer_input_230[256];
+static wchar_t game_buffer_zero_address[256];
+static uint game_buffer_uint18;
+static uint game_buffer_input_230;
+static uint game_buffer_uint188;
+static uint game_buffer_uint180;
 
-// 栈变量声明
-static uint system_stack_u_198;
-static uint system_stack_u_190;
-static uint system_stack_u_178;
-static uint system_stack_u_170;
-static uint system_stack_u_168;
-static uint system_stack_u_160;
-static uint system_stack_u_158;
-static uint system_stack_u_14c;
-static uint system_stack_u_1d8;
-static uint system_stack_u_1e8;
-static uint system_stack_u_1e4;
-static uint system_stack_u_1d0;
-static uint system_stack_u_208;
-static uint system_stack_u_48;
-static uint system_stack_context_98;
-static uint system_buffer_uint_150;
-static uint system_temp_uint10;
-static uint *system_allocated_buffer;
-static char *asystem_stack_u_148;
-static char *asystem_stack_u_1c0;
-static char *psystem_local_char2;
-static char **psystem_stack_u_208;
-static int system_local_int5;
-static long long system_temp_long2;
-static long long system_temp_data_pointer;
-static void *data_definitions_context_handle;
-static short sVar1;
-static bool data_definitions_system_local_bool10;
-static void *system_local_pointer8;
-static uint system_temp_uint5;
-static long long data_definitions_loop_counter;
-static uint in_stack_00000090;
-static uint in_stack_00000098;
-static uint system_temp_long4;
-static int system_temp_int3;
+// 游戏栈变量声明
+static uint game_stack_u_198;
+static uint game_stack_u_190;
+static uint game_stack_u_178;
+static uint game_stack_u_170;
+static uint game_stack_u_168;
+static uint game_stack_u_160;
+static uint game_stack_u_158;
+static uint game_stack_u_14c;
+static uint game_stack_u_1d8;
+static uint game_stack_u_1e8;
+static uint game_stack_u_1e4;
+static uint game_stack_u_1d0;
+static uint game_stack_u_208;
+static uint game_stack_u_48;
+static uint game_stack_context_98;
+static uint game_buffer_uint_150;
+static uint game_temp_uint10;
+static uint *game_allocated_buffer;
+static char *game_stack_u_148;
+static char *game_stack_u_1c0;
+static char *game_local_char2;
+static char **game_stack_u_208;
+static int game_local_int5;
+static long long game_temp_long2;
+static long long game_temp_data_pointer;
+static void *game_context_handle;
+static short game_short_var1;
+static bool game_local_bool10;
+static void *game_local_pointer8;
+static uint game_temp_uint5;
+static long long game_loop_counter;
+static uint game_in_stack_90;
+static uint game_in_stack_98;
+static uint game_temp_long4;
+static int game_temp_int3;
 
 /**
  * @brief 初始化渲染系统
@@ -359,12 +359,12 @@ static int system_temp_int3;
  * 
  * 该函数负责设置渲染系统的基本参数和回调函数
  */
-int graphics_system_initialize(void)
+int game_graphics_system_initialize(void)
 {
   int64_t init_result;
   // 简化实现：使用虚拟变量初始化
-  static int64_t global_graphics_data = 0;
-  static int graphics_system_state = 0;
+  static int64_t game_global_graphics_data = 0;
+  static int game_graphics_system_state = 0;
   init_result = 1; // 假设初始化成功
   return (init_result != 0) - 1;
 }
@@ -375,12 +375,12 @@ int graphics_system_initialize(void)
  * 
  * 该函数负责设置音频系统的基本参数和回调函数
  */
-int audio_system_initialize(void)
+int game_audio_system_initialize(void)
 {
   int64_t init_result;
   // 简化实现：使用虚拟变量初始化
-  static int64_t global_audio_data = 0;
-  static int audio_system_state = 0;
+  static int64_t game_global_audio_data = 0;
+  static int game_audio_system_state = 0;
   init_result = 1; // 假设初始化成功
   return (init_result != 0) - 1;
 }
@@ -391,14 +391,14 @@ int audio_system_initialize(void)
  * 
  * 该函数负责设置输入系统的基本参数和回调函数
  */
-int input_system_initialize(void)
+int game_input_system_initialize(void)
 {
   int64_t init_result;
-  input_system_data_ptr = &global_input_data;
-  input_system_callback_ptr = &input_system_callback;
-  input_system_state = 0;
-  input_system_callback = 0;
-  init_result = system_initialize_callback(input_setup_function);
+  game_input_data_ptr = &game_global_input_data;
+  game_input_callback_ptr = &game_input_callback;
+  game_input_state = 0;
+  game_input_callback = 0;
+  init_result = game_system_initialize_callback(game_input_setup_function);
   return (init_result != 0) - 1;
 }
 
@@ -408,14 +408,14 @@ int input_system_initialize(void)
  * 
  * 该函数负责设置网络系统的基本参数和回调函数
  */
-int network_system_initialize(void)
+int game_network_system_initialize(void)
 {
   int64_t init_result;
-  network_system_data_ptr = &global_network_data;
-  network_system_callback_ptr = &network_system_callback;
-  network_system_state = 0;
-  network_system_callback = 0;
-  init_result = system_initialize_callback(network_setup_function);
+  game_network_data_ptr = &game_global_network_data;
+  game_network_callback_ptr = &game_network_callback;
+  game_network_state = 0;
+  game_network_callback = 0;
+  init_result = game_system_initialize_callback(game_network_setup_function);
   return (init_result != 0) - 1;
 }
 
@@ -425,14 +425,14 @@ int network_system_initialize(void)
  * 
  * 该函数负责设置物理系统的基本参数和回调函数
  */
-int physics_system_initialize(void)
+int game_physics_system_initialize(void)
 {
   int64_t init_result;
-  physics_system_data_ptr = &global_physics_data;
-  physics_system_callback_ptr = &physics_system_callback;
-  physics_system_state = 0;
-  physics_system_callback = 0;
-  init_result = system_initialize_callback(physics_setup_function);
+  game_physics_data_ptr = &game_global_physics_data;
+  game_physics_callback_ptr = &game_physics_callback;
+  game_physics_state = 0;
+  game_physics_callback = 0;
+  init_result = game_system_initialize_callback(game_physics_setup_function);
   return (init_result != 0) - 1;
 }
 
@@ -442,14 +442,14 @@ int physics_system_initialize(void)
  * 
  * 该函数负责设置AI系统的基本参数和回调函数
  */
-int ai_system_initialize(void)
+int game_ai_system_initialize(void)
 {
   int64_t init_result;
-  ai_system_data_ptr = &global_ai_data;
-  ai_system_callback_ptr = &ai_system_callback;
-  ai_system_state = 0;
-  ai_system_callback = 0;
-  init_result = system_initialize_callback(ai_setup_function);
+  game_ai_data_ptr = &game_global_ai_data;
+  game_ai_callback_ptr = &game_ai_callback;
+  game_ai_state = 0;
+  game_ai_callback = 0;
+  init_result = game_system_initialize_callback(game_ai_setup_function);
   return (init_result != 0) - 1;
 }
 /**
@@ -462,15 +462,15 @@ int ai_system_initialize(void)
  * 
  * 该函数负责初始化主线程同步系统，包括条件变量和互斥锁
  */
-int thread_sync_system_initialize_primary(uint64_t system_context, uint64_t network_context, uint64_t thread_context, uint64_t memory_context)
+int game_thread_sync_system_initialize_primary(uint64_t system_context, uint64_t network_context, uint64_t thread_context, uint64_t memory_context)
 {
   int64_t init_result;
   uint64_t thread_sync_flags;
-  thread_sync_flags = SYSTEM_FLAG_MASK;
-  _Cnd_init_in_situ();
-  _Mtx_init_in_situ(SYSTEM_MUTEX_ADDRESS_PRIMARY, 2, thread_context, memory_context, thread_sync_flags);
-  thread_sync_primary_flag = 0;
-  init_result = system_initialize_callback(thread_sync_setup_primary);
+  thread_sync_flags = GAME_FLAG_MASK;
+  game_system_condition_init_in_situ();
+  game_system_mutex_init_in_situ(GAME_MUTEX_ADDRESS_PRIMARY, 2, thread_context, memory_context, thread_sync_flags);
+  game_thread_sync_primary_flag = 0;
+  init_result = game_system_initialize_callback(game_thread_sync_setup_primary);
   return (init_result != 0) - 1;
 }
 
@@ -484,15 +484,15 @@ int thread_sync_system_initialize_primary(uint64_t system_context, uint64_t netw
  * 
  * 该函数负责初始化次线程同步系统，包括条件变量和互斥锁
  */
-int thread_sync_system_initialize_secondary(uint64_t system_context, uint64_t network_context, uint64_t thread_context, uint64_t memory_context)
+int game_thread_sync_system_initialize_secondary(uint64_t system_context, uint64_t network_context, uint64_t thread_context, uint64_t memory_context)
 {
   int64_t init_result;
   uint64_t thread_sync_flags;
-  thread_sync_flags = SYSTEM_FLAG_MASK;
-  _Cnd_init_in_situ();
-  _Mtx_init_in_situ(SYSTEM_MUTEX_ADDRESS_SECONDARY, 2, thread_context, memory_context, thread_sync_flags);
-  thread_sync_secondary_flag = 0;
-  init_result = system_initialize_callback(thread_sync_setup_secondary);
+  thread_sync_flags = GAME_FLAG_MASK;
+  game_system_condition_init_in_situ();
+  game_system_mutex_init_in_situ(GAME_MUTEX_ADDRESS_SECONDARY, 2, thread_context, memory_context, thread_sync_flags);
+  game_thread_sync_secondary_flag = 0;
+  init_result = game_system_initialize_callback(game_thread_sync_setup_secondary);
   return (init_result != 0) - 1;
 }
 
@@ -506,15 +506,15 @@ int thread_sync_system_initialize_secondary(uint64_t system_context, uint64_t ne
  * 
  * 该函数负责初始化第三线程同步系统，包括条件变量和互斥锁
  */
-int thread_sync_system_initialize_tertiary(uint64_t system_context, uint64_t network_context, uint64_t thread_context, uint64_t memory_context)
+int game_thread_sync_system_initialize_tertiary(uint64_t system_context, uint64_t network_context, uint64_t thread_context, uint64_t memory_context)
 {
   int64_t init_result;
   uint64_t thread_sync_flags;
-  thread_sync_flags = SYSTEM_FLAG_MASK;
-  _Cnd_init_in_situ();
-  _Mtx_init_in_situ(SYSTEM_MUTEX_ADDRESS_TERTIARY, 2, thread_context, memory_context, thread_sync_flags);
-  thread_sync_tertiary_flag = 0;
-  init_result = system_initialize_callback(thread_sync_setup_tertiary);
+  thread_sync_flags = GAME_FLAG_MASK;
+  game_system_condition_init_in_situ();
+  game_system_mutex_init_in_situ(GAME_MUTEX_ADDRESS_TERTIARY, 2, thread_context, memory_context, thread_sync_flags);
+  game_thread_sync_tertiary_flag = 0;
+  init_result = game_system_initialize_callback(game_thread_sync_setup_tertiary);
   return (init_result != 0) - 1;
 }
 
@@ -528,15 +528,15 @@ int thread_sync_system_initialize_tertiary(uint64_t system_context, uint64_t net
  * 
  * 该函数负责初始化第四线程同步系统，包括条件变量和互斥锁
  */
-int thread_sync_system_initialize_quaternary(uint64_t system_context, uint64_t network_context, uint64_t thread_context, uint64_t memory_context)
+int game_thread_sync_system_initialize_quaternary(uint64_t system_context, uint64_t network_context, uint64_t thread_context, uint64_t memory_context)
 {
   int64_t init_result;
   uint64_t thread_sync_flags;
-  thread_sync_flags = SYSTEM_FLAG_MASK;
-  _Cnd_init_in_situ();
-  _Mtx_init_in_situ(SYSTEM_MUTEX_ADDRESS_QUATERNARY, 2, thread_context, memory_context, thread_sync_flags);
-  thread_sync_quaternary_flag = 0;
-  init_result = system_initialize_callback(thread_sync_setup_quaternary);
+  thread_sync_flags = GAME_FLAG_MASK;
+  game_system_condition_init_in_situ();
+  game_system_mutex_init_in_situ(GAME_MUTEX_ADDRESS_QUATERNARY, 2, thread_context, memory_context, thread_sync_flags);
+  game_thread_sync_quaternary_flag = 0;
+  init_result = game_system_initialize_callback(game_thread_sync_setup_quaternary);
   return (init_result != 0) - 1;
 }
 /**
@@ -545,28 +545,28 @@ int thread_sync_system_initialize_quaternary(uint64_t system_context, uint64_t n
  * 
  * 该函数负责初始化图形系统，设置图形数据指针和配置参数
  */
-int system_initialize_graphics(void)
+int game_system_initialize_graphics(void)
 {
   long long system_result_code;
   uint64_t system_config_parameter;
-  graphics_system_data_ptr = &global_graphics_data;
-  graphics_system_config_ptr = &graphics_system_flag;
-  graphics_system_flag = 0;
-  graphics_system_config = 6;
-  strcpy_s(&graphics_system_flag,SYSTEM_BUFFER_SIZE_16,&graphics_system_name,system_config_parameter,SYSTEM_FLAG_MASK);
-  system_result_code = system_register_callback(graphics_setup_callback);
+  game_graphics_data_ptr = &game_global_graphics_data;
+  game_graphics_config_ptr = &game_graphics_flag;
+  game_graphics_flag = 0;
+  game_graphics_config = 6;
+  strcpy_s(&game_graphics_flag,GAME_BUFFER_SIZE_16,&game_graphics_system_name,system_config_parameter,GAME_FLAG_MASK);
+  system_result_code = game_system_register_callback(game_graphics_setup_callback);
   return (system_result_code != 0) - 1;
 }
-int system_initialize_audio(void)
+int game_system_initialize_audio(void)
 {
   long long system_result_code;
   uint64_t system_config_parameter;
-  audio_system_data_ptr = &global_audio_data;
-  audio_system_config_ptr = &audio_system_flag;
-  audio_system_flag = 0;
-  audio_system_config = SYSTEM_CONFIG_AUDIO_LENGTH;
-  strcpy_s(&audio_system_flag,SYSTEM_BUFFER_SIZE_16,&audio_system_name,system_config_parameter,SYSTEM_FLAG_MASK);
-  system_result_code = system_register_callback(audio_setup_callback);
+  game_audio_data_ptr = &game_global_audio_data;
+  game_audio_config_ptr = &game_audio_flag;
+  game_audio_flag = 0;
+  game_audio_config = GAME_CONFIG_AUDIO_LENGTH;
+  strcpy_s(&game_audio_flag,GAME_BUFFER_SIZE_16,&game_audio_system_name,system_config_parameter,GAME_FLAG_MASK);
+  system_result_code = game_system_register_callback(game_audio_setup_callback);
   return (system_result_code != 0) - 1;
 }
 int system_initialize_input(void)
@@ -599,16 +599,16 @@ int system_initialize_network(void)
  * 
  * 该函数负责初始化系统配置，设置全局数据和回调函数
  */
-int system_initialize_config_0xc_buffer_SYSTEM_BUFFER_SIZE_16(void)
+int game_system_initialize_config_0xc_buffer_GAME_BUFFER_SIZE_16(void)
 {
   long long system_result_code;
   uint64_t system_config_parameter;
-  system_data_pointer = &system_null_data_buffer;
-  system_data_pointer = &system_global_data_buffer;
-  system_global_data_buffer_buffer = 0;
-  system_data_pointer = SYSTEM_CONFIG_COMMON_PARAMETER;
-  strcpy_s(&system_global_data_buffer, SYSTEM_BUFFER_SIZE_16, &system_null_data_buffer, system_config_parameter, SYSTEM_FLAG_MASK);
-  system_result_code = system_register_callback(system_event_handler);
+  game_data_pointer = &game_null_data_buffer;
+  game_data_pointer = &game_global_data_buffer;
+  game_global_data_buffer_buffer = 0;
+  game_data_pointer = GAME_CONFIG_COMMON_PARAMETER;
+  strcpy_s(&game_global_data_buffer, GAME_BUFFER_SIZE_16, &game_null_data_buffer, system_config_parameter, GAME_FLAG_MASK);
+  system_result_code = game_system_register_callback(game_system_event_handler);
   return (system_result_code != 0) - 1;
 }
 /**
@@ -621,12 +621,12 @@ int game_ui_string_initialize(void)
 {
   int64_t init_result;
   uint64_t string_param;
-  ui_string_data_ptr = &global_string_data;
-  ui_string_callback_ptr = &ui_string_callback;
-  ui_string_callback = 0;
-  ui_string_length = 5;
-  strcpy_s(&ui_string_callback, SYSTEM_BUFFER_SIZE_16, &ui_string_template, string_param, SYSTEM_FLAG_MASK);
-  init_result = system_initialize_callback(ui_setup_function);
+  game_ui_string_data_ptr = &game_global_string_data;
+  game_ui_string_callback_ptr = &game_ui_string_callback;
+  game_ui_string_callback = 0;
+  game_ui_string_length = 5;
+  strcpy_s(&game_ui_string_callback, GAME_BUFFER_SIZE_16, &game_ui_string_template, string_param, GAME_FLAG_MASK);
+  init_result = game_system_initialize_callback(game_ui_setup_function);
   return (init_result != 0) - 1;
 }
 
@@ -640,12 +640,12 @@ int game_script_string_initialize(void)
 {
   int64_t init_result;
   uint64_t string_param;
-  script_string_data_ptr = &global_input_data;
-  script_string_callback_ptr = &script_string_callback;
-  script_string_callback = 0;
-  script_string_length = SYSTEM_CONFIG_AUDIO_LENGTH;
-  strcpy_s(&script_string_callback, SYSTEM_BUFFER_SIZE_32, &script_string_template, string_param, SYSTEM_FLAG_MASK);
-  init_result = system_initialize_callback(script_setup_function);
+  game_script_string_data_ptr = &game_global_input_data;
+  game_script_string_callback_ptr = &game_script_string_callback;
+  game_script_string_callback = 0;
+  game_script_string_length = GAME_CONFIG_AUDIO_LENGTH;
+  strcpy_s(&game_script_string_callback, GAME_BUFFER_SIZE_32, &game_script_string_template, string_param, GAME_FLAG_MASK);
+  init_result = game_system_initialize_callback(game_script_setup_function);
   return (init_result != 0) - 1;
 }
 
