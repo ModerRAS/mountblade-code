@@ -524,7 +524,13 @@ int game_render_mutex_initialize(uint64_t system_context, uint64_t network_conte
   data_definitions_system_result = system_register_callback(&unknown_data);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -536,7 +542,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -548,7 +560,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -560,7 +578,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -814,7 +838,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -832,7 +862,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -844,7 +880,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -856,7 +898,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -868,7 +916,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -880,7 +934,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -892,7 +952,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -904,7 +970,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -916,7 +988,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -928,7 +1006,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -940,7 +1024,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -952,7 +1042,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -964,7 +1060,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -976,7 +1078,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -988,7 +1096,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1000,7 +1114,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1012,7 +1132,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1024,7 +1150,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1036,7 +1168,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1048,7 +1186,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1060,7 +1204,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1072,7 +1222,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1084,7 +1240,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1096,7 +1258,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1108,7 +1276,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1120,7 +1294,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1132,7 +1312,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1144,7 +1330,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1156,7 +1348,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1168,7 +1366,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1180,7 +1384,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1192,7 +1402,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1204,7 +1420,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1216,7 +1438,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1228,7 +1456,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1240,7 +1474,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1252,7 +1492,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1264,7 +1510,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1276,7 +1528,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1288,7 +1546,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1300,7 +1564,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1312,7 +1582,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1324,7 +1600,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1336,7 +1618,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1348,7 +1636,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1360,7 +1654,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1372,19 +1672,37 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   data_definitions_system_result = system_register_callback(function_);
@@ -1433,7 +1751,13 @@ int function_(uint64_t system_context,uint64_t network_context,uint64_t thread_c
   data_definitions_system_result = system_register_callback(&unknown_data);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1470,7 +1794,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(&unknown_data);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1507,7 +1837,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(&unknown_data);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   _global_data = 0;
@@ -1518,7 +1854,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   _global_data = 3;
@@ -1541,7 +1883,13 @@ int function_(uint64_t system_context,uint64_t network_context,uint64_t thread_c
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1553,7 +1901,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1565,7 +1919,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1583,7 +1943,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -1601,7 +1967,13 @@ int function_(void)
   data_definitions_system_result = system_register_callback(function_);
   return (data_definitions_system_result != 0) - 1;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   longlong data_definitions_system_result;
   uint64_t register_param;
@@ -11331,7 +11703,13 @@ int function_(uint32_t system_context,byte *network_context)
   func_0x0001808f6ce0();
   return -0x7f6dff01;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   char local_char1;
   int data_definitions_local_int2;
@@ -11360,7 +11738,13 @@ int function_(void)
   func_0x0001808f6ce0();
   return -0x7f6dff01;
 }
-int function_(void)
+/**
+ * @brief 系统初始化函数
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统配置，设置全局数据和回调函数
+ */
+int system_initialize_function(void)
 {
   int local_int1;
   uint8_t *unaff_RBX;
