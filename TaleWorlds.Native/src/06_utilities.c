@@ -48316,63 +48316,43 @@ uint64_t utility_resource_create(uint64_t resource_config, int64_t context_size,
     // 简化实现：返回资源数据
     return (uint64_t)utility_resource_manager;
 }
-/**
-/**
- * @brief 上下文管理器初始化函数
-/**
- *  * @param resource_data 资源数据
- *  * @return 初始化后的上下文句柄
- */
-/**
+/** 
  * @brief Utility Context Init
-/**
  *
- * 功能描述
+ * 功能描述：初始化上下文管理器，创建系统上下文
  *
- *  * @param parameters 参数说明
- *  * @return 返回值说明
+ * @param resource_data 资源数据
+ * @return 初始化后的上下文句柄
  *
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构上下文初始化机制
+ * 简化实现：仅进行参数验证和返回资源数据，保持代码结构不变
  */
 uint64_t utility_context_init(uint64_t resource_data)
 {
     if (resource_data == UTILITY_FALSE) {
-
-}
         return 0;
-}
+    }
 
     // 简化实现：返回资源数据
     return resource_data;
 }
-/**
-/**
- * @brief 上下文管理器激活函数
-/**
- *  * @param resource_data 资源数据
- *  * @param activation_flag 激活标志
- *  * @return 激活状态
- */
-/**
+/** 
  * @brief Utility Context Activate
-/**
  *
- * 功能描述
+ * 功能描述：激活上下文管理器，设置上下文状态
  *
- *  * @param parameters 参数说明
- *  * @return 返回值说明
+ * @param resource_data 资源数据
+ * @param activation_flag 激活标志
+ * @return 激活状态
  *
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构上下文激活机制
+ * 简化实现：仅进行变量名语义化替换，保持代码结构不变
  */
 int utility_context_activate(uint64_t resource_data, int activation_flag)
 {
     if (resource_data == UTILITY_FALSE) {
-
-}
         return UTILITY_ERROR_INVALID_PARAM;
-}
+    }
 
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
