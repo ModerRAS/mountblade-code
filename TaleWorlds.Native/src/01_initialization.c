@@ -647,7 +647,7 @@ void* system_resource_ptr_bd;
 void* system_resource_ptr_be;
 void* system_resource_ptr_bf;
 void* system_resource_ptr_bg;
-void* DAT_180a09dc0;
+void* system_resource_ptr_data_a;
 void* system_resource_ptr_bh;
 void* system_resource_ptr_bi;
 void* system_resource_ptr_bj;
