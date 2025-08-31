@@ -158,9 +158,6 @@ uint64 utility_process_resource_data(longlong UTILITY_RESOURCE_PRIMARY_HANDLE)
  */
 uint64 utility_resource_data_processor(void)
 {
-  return UTILITY_ZERO;
-}
-{
   uint64 UTILITY_RESULT;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
@@ -181,7 +178,7 @@ uint64 utility_resource_data_processor(void)
   return UTILITY_ZERO;
 }
 
-
+/**
  * @brief 获取内存使用情况 - 监控系统内存使用状态
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
