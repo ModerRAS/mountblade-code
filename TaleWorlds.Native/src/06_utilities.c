@@ -1208,6 +1208,17 @@ void utility_handle_resource_cleanup(void)
  * 原本实现：完全重构系统初始化流程，建立完整的验证机制
  * 简化实现：仅优化现有安全验证逻辑，保持核心功能不变
  */
+/**
+ * 系统初始化辅助函数 - 协助系统初始化过程
+ * 
+ * 功能说明：
+ * 1. 初始化安全上下文
+ * 2. 执行安全验证确保系统初始化完整性
+ * 3. 验证安全栈基址指针的有效性
+ * 
+ * 原本实现：完全重构系统初始化流程，建立完整的初始化验证机制
+ * 简化实现：仅优化现有系统初始化逻辑，保持核心功能不变
+ */
 void utility_system_initialization_helper(void)
 {
   ulonglong security_context; // 安全上下文
@@ -1572,7 +1583,17 @@ uint64 utility_validate_character_resource(char utility_resource_primary_handle)
   }
   return utility_zero;
 }
-// 函数: void utility_initialize_empty_function(void)
+/**
+ * 空初始化函数 - 提供空的初始化实现
+ * 
+ * 功能说明：
+ * 1. 作为占位符函数使用
+ * 2. 在某些初始化流程中提供空实现
+ * 3. 保持系统架构的完整性
+ * 
+ * 原本实现：完全重构空初始化函数，建立标准的占位符机制
+ * 简化实现：仅提供基本的空实现，保持接口一致性
+ */
 void utility_initialize_empty_function(void)
 {
   return;
