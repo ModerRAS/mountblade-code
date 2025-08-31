@@ -478,8 +478,8 @@ void validate_system_resource_status(int64_t resource_handle)
     uint8_t working_buffer[512];
     
     // 检查资源标志位并激活上下文管理器
-    if ((*(uint *)(resource_handle_value + UTILITY_MEMORY_FLAG_OFFSET) >> 7 & 1) != UTILITY_STATUS_FALSE) {
-        context_activate(resource_handle_value);
+    if ((*(uint *)(resource_handle + UTILITY_MEMORY_FLAG_OFFSET) >> 7 & 1) != UTILITY_STATUS_FALSE) {
+        context_activate(resource_handle);
     }
     
     // 清理缓冲区管理器
