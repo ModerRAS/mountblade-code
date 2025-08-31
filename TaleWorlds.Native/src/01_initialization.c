@@ -11486,39 +11486,39 @@ void system_main_preinit(void)
   uint8_t system_stack_array_2f0 [648];
   ulonglong system_stack_ulong_68;
   
-  stack_uint_4f8 = 0xfffffffffffffffe;
-  stack_variable_uint_68 = _SYSTEM_CONFIG_DATA_TYPE_35 ^ (ulonglong)astack_uint_698;
-  stack_uint_5b8 = 0;
+  system_stack_uint_4f8 = 0xfffffffffffffffe;
+  system_stack_ulong_68 = _SYSTEM_CONFIG_DATA_TYPE_35 ^ (ulonglong)system_stack_array_698;
+  system_stack_uint_5b8 = 0;
   if (*(int *)(_SYSTEM_CONFIG_DATA_TYPE_88 + 0x224) - _SYSTEM_CONFIG_DATA_TYPE_44 < 0xfb) {
-    system_runtime_1808fc050(stack_variable_uint_68 ^ (ulonglong)astack_uint_698);
+    system_runtime_1808fc050(system_stack_ulong_68 ^ (ulonglong)system_stack_array_698);
   }
   *(int32_t *)(_SYSTEM_CONFIG_DATA_TYPE_110 + 0x39) = 1;
-  ppsystem_table_pointer = (longlong ***)system_utility_create_object(system_memory_allocator_config,200,8,3);
-  ppplStack_590 = ppsystem_table_pointer;
-  system_thread_main_configure(ppsystem_table_pointer);
-  *ppsystem_table_pointer = (longlong **)&SYSTEM_DATABASE_TRIGGER_TYPE;
-  ppsystem_table_pointer[0x18] = (longlong **)&SYSTEM_STRING_NULL;
-  pplStack_4f0 = (longlong **)ppsystem_table_pointer;
-  (*(code *)(*ppsystem_table_pointer)[5])(ppsystem_table_pointer);
-  unsigned_value_primary_var = _SYSTEM_CONFIG_DATA_TYPE_86;
-  stack_uint_5b8 = 1;
-  ppplStack_590 = &ppstack_long_588;
-  ppstack_long_588 = (longlong **)ppsystem_table_pointer;
-  (*(code *)(*ppsystem_table_pointer)[5])(ppsystem_table_pointer);
-  system_config_18005e300(unsigned_value_primary_var,&ppstack_long_588);
-  stack_uint_5b8 = 0;
-  (*(code *)(*ppsystem_table_pointer)[7])(ppsystem_table_pointer);
-  system_module_180627ae0(&lStack_678,&SYSTEM_CONFIG_DATA_TYPE_47);
-  if (iStack_668 == 0) {
-    (**(code **)(lStack_678 + 0x10))(&lStack_678,&SYSTEM_STRING_QUERY);
-    char_flag = system_module_180624a00(&lStack_678);
-    if (char_flag == '\0') {
-      system_module_180624910(&lStack_678);
+  system_table_triple_ptr = (longlong ***)system_utility_create_object(system_memory_allocator_config,200,8,3);
+  system_stack_triple_ptr_590 = system_table_triple_ptr;
+  system_thread_main_configure(system_table_triple_ptr);
+  *system_table_triple_ptr = (longlong **)&SYSTEM_DATABASE_TRIGGER_TYPE;
+  system_table_triple_ptr[0x18] = (longlong **)&SYSTEM_STRING_NULL;
+  system_stack_double_ptr_4f0 = (longlong **)system_table_triple_ptr;
+  (*(code *)(*system_table_triple_ptr)[5])(system_table_triple_ptr);
+  system_primary_value = _SYSTEM_CONFIG_DATA_TYPE_86;
+  system_stack_uint_5b8 = 1;
+  system_stack_triple_ptr_590 = &system_stack_double_ptr_588;
+  system_stack_double_ptr_588 = (longlong **)system_table_triple_ptr;
+  (*(code *)(*system_table_triple_ptr)[5])(system_table_triple_ptr);
+  system_config_18005e300(system_primary_value,&system_stack_double_ptr_588);
+  system_stack_uint_5b8 = 0;
+  (*(code *)(*system_table_triple_ptr)[7])(system_table_triple_ptr);
+  system_module_180627ae0(&system_stack_long_678,&SYSTEM_CONFIG_DATA_TYPE_47);
+  if (system_stack_int_668 == 0) {
+    (**(code **)(system_stack_long_678 + 0x10))(&system_stack_long_678,&SYSTEM_STRING_QUERY);
+    system_status_flag = system_module_180624a00(&system_stack_long_678);
+    if (system_status_flag == '\0') {
+      system_module_180624910(&system_stack_long_678);
     }
   }
-  char_flag = system_module_180624a00(&lStack_678);
-  if (char_flag == '\0') {
-    system_module_180624910(&lStack_678);
+  system_status_flag = system_module_180624a00(&system_stack_long_678);
+  if (system_status_flag == '\0') {
+    system_module_180624910(&system_stack_long_678);
   }
   pstack_uint_4e8 = &SYSTEM_DEBUG_CONTEXT_TYPE9;
   pstack_uint_4e0 = astack_uint_4d0;
