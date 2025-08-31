@@ -1,58 +1,6 @@
 // 06_utilities.c - 工具系统模块
-// 新增最终批次硬编码十六进制值和数字常量语义化美化工作（2025年8月30日最终批次最新完成）：
-// - 美化文件末尾剩余的硬编码十六进制值，将0x1F18、0x1EC8等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_*等语义化常量
-// - 美化资源属性偏移量常量，将0xC525443、0xF525443等替换为UTILITY_RESOURCE_PROP_OFFSET_*等语义化常量
-// - 美化内存地址偏移量常量，将0x1400、0x1430等替换为UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_*等语义化常量
-// - 美化数字常量，将0、24、-19等替换为UTILITY_ZERO、UTILITY_CHAR_OFFSET_STANDARD等语义化常量
-// - 修复文件末尾截断的函数定义，确保代码完整性
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余硬编码值的语义化替换
-// - 原本实现：完全重构工具系统所有硬编码值命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将文件中剩余的硬编码值替换为语义化常量，保持代码结构不变
-// 最终语义化美化版本（2025年8月30日最终批次最新完成）
-// 新增文件末尾硬编码十六进制值语义化美化工作（2025年8月30日最终批次最新完成）：
-// - 美化线程本地存储偏移量常量，将0x1F18等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_*等语义化常量
-// - 美化线程本地存储偏移量常量，将0x1EC8等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_*等语义化常量
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了工具系统中文件末尾剩余硬编码十六进制值的语义化替换
-// - 原本实现：完全重构工具系统所有硬编码十六进制值命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将文件末尾常见的硬编码十六进制值替换为语义化常量，保持代码结构不变
-// 新增硬编码十六进制值最终语义化美化工作（2025年8月30日最终批次最新完成）：
-// - 美化掩码常量，将0xFF00等替换为UTILITY_MASK_HIGH_BYTE等语义化常量
-// - 美化偏移量常量，将0x9F0等替换为UTILITY_CALLBACK_HANDLER_OFFSET_EXTENDED_PRIMARY等语义化常量
-// - 美化大小阈值常量，将0x6E等替换为UTILITY_SIZE_THRESHOLD_VALIDATION_MEDIUM等语义化常量
-// - 美化位偏移常量，将0x260等替换为UTILITY_BIT_SHIFT_THREAD_STATE等语义化常量
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余硬编码十六进制值的语义化替换
-// - 原本实现：完全重构工具系统所有硬编码十六进制值命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的硬编码十六进制值替换为语义化常量，保持代码结构不变
-// 新增剩余拉丁数字后缀变量名语义化美化工作（2025年8月30日最终批次最新完成）：
-// 新增十六进制常量名语义化美化（2025年8月30日最终批次最新完成）：
-// - 美化线程本地存储偏移量常量名，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_PRIMARY等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_PRIMARY等语义化常量名
-// - 美化内存地址偏移量常量名，将UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_8000替换为UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_SYSTEM_BASE等语义化常量名
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余十六进制常量名的语义化替换
-// - 原本实现：完全重构工具系统所有十六进制常量命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的十六进制常量名替换为语义化名称，保持代码结构不变
-// - 美化线程上下文变量名，将utility_context_thread_count_tredecimal_offset等替换为utility_context_thread_count_offset_tertiary等语义化变量名
-// - 美化线程上下文变量名，将utility_context_thread_flag_tredecimal_offset等替换为utility_context_thread_flag_offset_tertiary等语义化变量名
-// - 美化线程上下文变量名，将utility_context_thread_storage_duodecimal_offset等替换为utility_context_thread_storage_offset_secondary等语义化变量名
-// - 美化资源数据缓冲区变量名，将utility_resource_data_buffer_offset_tredecimal_primary等替换为utility_resource_data_buffer_offset_tertiary_primary等语义化变量名
-// - 美化资源数据缓冲区变量名，将utility_resource_data_buffer_offset_quattuordecimal_primary等替换为utility_resource_data_buffer_offset_quaternary_primary等语义化变量名
-// - 美化线程上下文变量名，将utility_context_thread_flag_secondary_offset_extended_base等替换为utility_context_thread_flag_secondary_offset_standard等语义化变量名
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余拉丁数字后缀变量名的语义化替换
-// - 原本实现：完全重构工具系统所有拉丁数字后缀变量命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的拉丁数字后缀变量名替换为语义化名称，保持代码结构不变
-// 新增变量名语义化美化工作（2025年8月30日最终批次最新完成）：
-// - 美化循环计数器变量名，将utility_main_iteration_counter_primary等替换为utility_main_iteration_counter等语义化变量名
-// - 美化临时缓冲区变量名，将utility_temporary_stack_buffer_buffer替换为utility_temporary_stack_buffer等语义化变量名
-// - 美化浮点数据缓冲区变量名，将utility_float_utility_data_pointer_primary_extended替换为utility_float_data_buffer等语义化变量名
-// - 美化临时计数器变量名，将utility_temporary_utility_loop_counter_secondary替换为utility_loop_counter_temporary等语义化变量名
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余的非语义化变量名的语义化替换
-// - 原本实现：完全重构工具系统所有变量命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的非语义化变量名替换为语义化名称，保持代码结构不变
+// 简化实现：仅美化关键变量名、函数名和添加必要注释，保持代码结构不变
+// 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范
 // 新增剩余硬编码值语义化美化（2025年8月30日最终批次最新完成）：
 // - 美化硬编码掩码常量，将UTILITY_MASK_FFFFFFFFFFFE0替换为UTILITY_MASK_CLEAR_LOW_FIVE_BITS等语义化常量
 // - 美化硬编码偏移量变量，将utility_thread_local_storage_offset_extended_extended_1FF8替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_CLEANUP_PRIMARY等语义化常量
