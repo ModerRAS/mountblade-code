@@ -95,42 +95,42 @@
 #define UTILITY_LIST_DATA_OFFSET 0x14                              // 列表数据偏移量
 
 // 全局变量声明
-static longlong UTILITY_SYSTEM_RESOURCE_HANDLE = 0;
-static uint32 UTILITY_STACK_PROCESSING_BUFFER[16] = {0};
-static uint32 UTILITY_STACK_BUFFER_ARRAY[16] = {0};
-static uint32 UTILITY_STACK_DATA[16] = {0};
+static int64_t UTILITY_SYSTEM_RESOURCE_HANDLE = 0;
+static uint32_t UTILITY_STACK_PROCESSING_BUFFER[16] = {0};
+static uint32_t UTILITY_STACK_BUFFER_ARRAY[16] = {0};
+static uint32_t UTILITY_STACK_DATA[16] = {0};
 static float UTILITY_FLOAT_PRIMARY_VALUE = 0.0f;
-static uint32 UTILITY_STATUS_VALUE = 0;
+static uint32_t UTILITY_STATUS_VALUE = 0;
 static int UTILITY_COUNTER = 0;
-static uint32 UTILITY_STATE = 0;
-static uint32 *UTILITY_PTR_BUFFER = NULL;
-static longlong UTILITY_TEMPORARY_LONG_STORAGE = 0;
-static uint32 *UTILITY_GENERIC_DATA_POINTER = NULL;
+static uint32_t UTILITY_STATE = 0;
+static uint32_t *UTILITY_PTR_BUFFER = NULL;
+static int64_t UTILITY_TEMPORARY_LONG_STORAGE = 0;
+static uint32_t *UTILITY_GENERIC_DATA_POINTER = NULL;
 static int *UTILITY_RESULT_POINTER = NULL;
-static uint32 *UTILITY_CPU_REGISTER_RAX = NULL;
-static longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED = 0;
-static uint32 *UTILITY_SYSTEM_MEMORY_HANDLE = NULL;
-static longlong UTILITY_RESOURCE_CACHE = 0;
-static uint32 UTILITY_BUFFER[1024] = {0}
-static uint32 UTILITY_PROCESSING_BUFFER[1024] = {0}
-static uint32 UTILITY_RESOURCE_SIZE_LIMIT = 1024;
-static longlong UTILITY_RESOURCE_CONTEXT_HANDLE = 0;
-static uint32 UTILITY_RESOURCE_BUFFER = 0;
-static uint32 UTILITY_BOUNDARY_TWO = 2;
-static uint32 UTILITY_RESOURCE_CONFIG_OFFSET = 0;
-static uint32 UTILITY_RESOURCE_TABLE_OFFSET = 0;
-static longlong UTILITY_FRAME_PTR = 0;
-static longlong UTILITY_FILE_DATA_OFFSET = 0;
-static uint32 UTILITY_FILE_HANDLE_OFFSET = 0;
+static uint32_t *UTILITY_CPU_REGISTER_RAX = NULL;
+static int64_t UTILITY_DATA_POINTER_PRIMARY_EXTENDED = 0;
+static uint32_t *UTILITY_SYSTEM_MEMORY_HANDLE = NULL;
+static int64_t UTILITY_RESOURCE_CACHE = 0;
+static uint32_t UTILITY_BUFFER[1024] = {0}
+static uint32_t UTILITY_PROCESSING_BUFFER[1024] = {0}
+static uint32_t UTILITY_RESOURCE_SIZE_LIMIT = 1024;
+static int64_t UTILITY_RESOURCE_CONTEXT_HANDLE = 0;
+static uint32_t UTILITY_RESOURCE_BUFFER = 0;
+static uint32_t UTILITY_BOUNDARY_TWO = 2;
+static uint32_t UTILITY_RESOURCE_CONFIG_OFFSET = 0;
+static uint32_t UTILITY_RESOURCE_TABLE_OFFSET = 0;
+static int64_t UTILITY_FRAME_PTR = 0;
+static int64_t UTILITY_FILE_DATA_OFFSET = 0;
+static uint32_t UTILITY_FILE_HANDLE_OFFSET = 0;
 static uint64_t UTILITY_FILE_POSITION_OFFSET = 0;
 static float UTILITY_RESOURCE_DATA_BUFFER_POSITION = 0.0f;
-static longlong UTILITY_DATA_BUFFER_PRIMARY = 0;
-static uint32 UTILITY_LOCAL_INTEGER_VALUE = 0;
-static longlong UTILITY_BUFFER_POSITION = 0;
+static int64_t UTILITY_DATA_BUFFER_PRIMARY = 0;
+static uint32_t UTILITY_LOCAL_INTEGER_VALUE = 0;
+static int64_t UTILITY_BUFFER_POSITION = 0;
 static uint64_t UTILITY_RESULT = 0;
-static uint32 UTILITY_THREAD_OFFSET = 0;
+static uint32_t UTILITY_THREAD_OFFSET = 0;
 static uint64_t UTILITY_FILE_SIZE_PARAM = 0;
-static ulonglong UTILITY_EXTENDED_DATA_PTR = 0;
+static uint64_t UTILITY_EXTENDED_DATA_PTR = 0;
 
 /**
  * @file 06_utilities.c - 工具函数库
@@ -209,10 +209,10 @@ void utility_memory_cleanup_handler(void)
  * - 验证操作结果状态
  * - 返回处理结果
  */
-uint64_t utility_process_resource_data(longlong utility_resource_primary_handle)
+uint64_t utility_process_resource_data(int64_t utility_resource_primary_handle)
 {
   uint64_t utility_result;
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -222,10 +222,10 @@ uint64_t utility_process_resource_data(longlong utility_resource_primary_handle)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -242,7 +242,7 @@ uint64_t_t utility_resource_data_processor(void)
 {
   uint64_t_t utility_result;
   int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -252,10 +252,10 @@ uint64_t_t utility_resource_data_processor(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -264,9 +264,9 @@ uint64_t_t utility_resource_data_processor(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
-uint32 utility_get_memory_usage(void)
+uint32_t utility_get_memory_usage(void)
 {
   return UTILITY_ZERO;
 }
@@ -293,10 +293,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -311,8 +311,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -322,10 +322,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -334,7 +334,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -361,10 +361,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -379,8 +379,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -390,10 +390,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -402,7 +402,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -429,10 +429,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -447,8 +447,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -458,10 +458,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -470,7 +470,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -497,10 +497,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -515,8 +515,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -526,10 +526,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -538,7 +538,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -565,10 +565,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -583,8 +583,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -594,10 +594,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -606,7 +606,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -633,10 +633,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -651,8 +651,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -662,10 +662,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -674,7 +674,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -701,10 +701,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -719,8 +719,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -730,10 +730,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -742,7 +742,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -769,10 +769,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -787,8 +787,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -798,10 +798,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -810,7 +810,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -837,10 +837,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -855,8 +855,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -866,10 +866,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -878,7 +878,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -905,10 +905,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -923,8 +923,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -934,10 +934,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -946,7 +946,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -973,10 +973,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -991,8 +991,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1002,10 +1002,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1014,7 +1014,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1041,10 +1041,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1059,8 +1059,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1070,10 +1070,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1082,7 +1082,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1109,10 +1109,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1127,8 +1127,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1138,10 +1138,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1150,7 +1150,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1177,10 +1177,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1195,8 +1195,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1206,10 +1206,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1218,7 +1218,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1245,10 +1245,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1263,8 +1263,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1274,10 +1274,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1286,7 +1286,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1313,10 +1313,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1331,8 +1331,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1342,10 +1342,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1354,7 +1354,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1381,10 +1381,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1399,8 +1399,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1410,10 +1410,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1422,7 +1422,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1449,10 +1449,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1467,8 +1467,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1478,10 +1478,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1490,7 +1490,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1517,10 +1517,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1535,8 +1535,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1546,10 +1546,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1558,7 +1558,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1585,10 +1585,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1603,8 +1603,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1614,10 +1614,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1626,7 +1626,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1653,10 +1653,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1671,8 +1671,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1682,10 +1682,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1694,7 +1694,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1721,10 +1721,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1739,8 +1739,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1750,10 +1750,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1762,7 +1762,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1789,10 +1789,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1807,8 +1807,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1818,10 +1818,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1830,7 +1830,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1857,10 +1857,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1875,8 +1875,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1886,10 +1886,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1898,7 +1898,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1925,10 +1925,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1943,8 +1943,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1954,10 +1954,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1966,7 +1966,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1993,10 +1993,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2011,8 +2011,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2022,10 +2022,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2034,7 +2034,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2061,10 +2061,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2079,8 +2079,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2090,10 +2090,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2102,7 +2102,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2129,10 +2129,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2147,8 +2147,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2158,10 +2158,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2170,7 +2170,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2197,10 +2197,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2215,8 +2215,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2226,10 +2226,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2238,7 +2238,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2265,10 +2265,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2283,8 +2283,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2294,10 +2294,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2306,7 +2306,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2333,10 +2333,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2351,8 +2351,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2362,10 +2362,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2374,7 +2374,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2401,10 +2401,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2419,8 +2419,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2430,10 +2430,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2442,7 +2442,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2469,10 +2469,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2487,8 +2487,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2498,10 +2498,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2510,7 +2510,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2537,10 +2537,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2555,8 +2555,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2566,10 +2566,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2578,7 +2578,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2605,10 +2605,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2623,8 +2623,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2634,10 +2634,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2646,7 +2646,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2673,10 +2673,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2691,8 +2691,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2702,10 +2702,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2714,7 +2714,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2741,10 +2741,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2759,8 +2759,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2770,10 +2770,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2782,7 +2782,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2809,10 +2809,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2827,8 +2827,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2838,10 +2838,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2850,7 +2850,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2877,10 +2877,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2895,8 +2895,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2906,10 +2906,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2918,7 +2918,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2945,10 +2945,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2963,8 +2963,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2974,10 +2974,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2986,7 +2986,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3013,10 +3013,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3031,8 +3031,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3042,10 +3042,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3054,7 +3054,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3081,10 +3081,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3099,8 +3099,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3110,10 +3110,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3122,7 +3122,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3149,10 +3149,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3167,8 +3167,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3178,10 +3178,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3190,7 +3190,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3217,10 +3217,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3235,8 +3235,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3246,10 +3246,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3258,7 +3258,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3285,10 +3285,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3303,8 +3303,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3314,10 +3314,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3326,7 +3326,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3353,10 +3353,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3371,8 +3371,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3382,10 +3382,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3394,7 +3394,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3421,10 +3421,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3439,8 +3439,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3450,10 +3450,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3462,7 +3462,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3489,10 +3489,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3507,8 +3507,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3518,10 +3518,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3530,7 +3530,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3557,10 +3557,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3575,8 +3575,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3586,10 +3586,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3598,7 +3598,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3625,10 +3625,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3643,8 +3643,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3654,10 +3654,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3666,7 +3666,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3693,10 +3693,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3711,8 +3711,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3722,10 +3722,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3734,7 +3734,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3761,10 +3761,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3779,8 +3779,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3790,10 +3790,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3802,7 +3802,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3829,10 +3829,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3847,8 +3847,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3858,10 +3858,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3870,7 +3870,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3897,10 +3897,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3915,8 +3915,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3926,10 +3926,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3938,7 +3938,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3965,10 +3965,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3983,8 +3983,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3994,10 +3994,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4006,7 +4006,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4033,10 +4033,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4051,8 +4051,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4062,10 +4062,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4074,7 +4074,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4101,10 +4101,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4119,8 +4119,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4130,10 +4130,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4142,7 +4142,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4169,10 +4169,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4187,8 +4187,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4198,10 +4198,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4210,7 +4210,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4237,10 +4237,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4255,8 +4255,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4266,10 +4266,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4278,7 +4278,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4305,10 +4305,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4323,8 +4323,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4334,10 +4334,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4346,7 +4346,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4373,10 +4373,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4391,8 +4391,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4402,10 +4402,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4414,7 +4414,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4441,10 +4441,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4459,8 +4459,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4470,10 +4470,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4482,7 +4482,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4509,10 +4509,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4527,8 +4527,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4538,10 +4538,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4550,7 +4550,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4577,10 +4577,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4595,8 +4595,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4606,10 +4606,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4618,7 +4618,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4645,10 +4645,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4663,8 +4663,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4674,10 +4674,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4686,7 +4686,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4713,10 +4713,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4731,8 +4731,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4742,10 +4742,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4754,7 +4754,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4781,10 +4781,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4799,8 +4799,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4810,10 +4810,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4822,7 +4822,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4849,10 +4849,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4867,8 +4867,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4878,10 +4878,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4890,7 +4890,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4917,10 +4917,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4935,8 +4935,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4946,10 +4946,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4958,7 +4958,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4985,10 +4985,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5003,8 +5003,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5014,10 +5014,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5026,7 +5026,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5053,10 +5053,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5071,8 +5071,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5082,10 +5082,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5094,7 +5094,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5121,10 +5121,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5139,8 +5139,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5150,10 +5150,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5162,7 +5162,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5189,10 +5189,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5207,8 +5207,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5218,10 +5218,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5230,7 +5230,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5257,10 +5257,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5275,8 +5275,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5286,10 +5286,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5298,7 +5298,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5325,10 +5325,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5343,8 +5343,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5354,10 +5354,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5366,7 +5366,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5393,10 +5393,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5411,8 +5411,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5422,10 +5422,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5434,7 +5434,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5461,10 +5461,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5479,8 +5479,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5490,10 +5490,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5502,7 +5502,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5529,10 +5529,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5547,8 +5547,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5558,10 +5558,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5570,7 +5570,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5597,10 +5597,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5615,8 +5615,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5626,10 +5626,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5638,7 +5638,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5665,10 +5665,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5683,8 +5683,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5694,10 +5694,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5706,7 +5706,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5733,10 +5733,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5751,8 +5751,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5762,10 +5762,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5774,7 +5774,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5801,10 +5801,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5819,8 +5819,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5830,10 +5830,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5842,7 +5842,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5869,10 +5869,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5887,8 +5887,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5898,10 +5898,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5910,7 +5910,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5937,10 +5937,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5955,8 +5955,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5966,10 +5966,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5978,7 +5978,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6005,10 +6005,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6023,8 +6023,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6034,10 +6034,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6046,7 +6046,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6073,10 +6073,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6091,8 +6091,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6102,10 +6102,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6114,7 +6114,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6141,10 +6141,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6159,8 +6159,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6170,10 +6170,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6182,7 +6182,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6209,10 +6209,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6227,8 +6227,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6238,10 +6238,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6250,7 +6250,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6277,10 +6277,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6295,8 +6295,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6306,10 +6306,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6318,7 +6318,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6345,10 +6345,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6363,8 +6363,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6374,10 +6374,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6386,7 +6386,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6413,10 +6413,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6431,8 +6431,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6442,10 +6442,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6454,7 +6454,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6481,10 +6481,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6499,8 +6499,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6510,10 +6510,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6522,7 +6522,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6549,10 +6549,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6567,8 +6567,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6578,10 +6578,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6590,7 +6590,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6617,10 +6617,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6635,8 +6635,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6646,10 +6646,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6658,7 +6658,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6685,10 +6685,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6703,8 +6703,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6714,10 +6714,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6726,7 +6726,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6753,10 +6753,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6771,8 +6771,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6782,10 +6782,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6794,7 +6794,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6821,10 +6821,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6839,8 +6839,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6850,10 +6850,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6862,7 +6862,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6889,10 +6889,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6907,8 +6907,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6918,10 +6918,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6930,7 +6930,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6957,10 +6957,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6975,8 +6975,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6986,10 +6986,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6998,7 +6998,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7025,10 +7025,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7043,8 +7043,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7054,10 +7054,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7066,7 +7066,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7093,10 +7093,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7111,8 +7111,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7122,10 +7122,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7134,7 +7134,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7161,10 +7161,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7179,8 +7179,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7190,10 +7190,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7202,7 +7202,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7229,10 +7229,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7247,8 +7247,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7258,10 +7258,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7270,7 +7270,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7297,10 +7297,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7315,8 +7315,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7326,10 +7326,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7338,7 +7338,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7365,10 +7365,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7383,8 +7383,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7394,10 +7394,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7406,7 +7406,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7433,10 +7433,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7451,8 +7451,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7462,10 +7462,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7474,7 +7474,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7501,10 +7501,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7519,8 +7519,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7530,10 +7530,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7542,7 +7542,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7569,10 +7569,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7587,8 +7587,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7598,10 +7598,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7610,7 +7610,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7637,10 +7637,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7655,8 +7655,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7666,10 +7666,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7678,7 +7678,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7705,10 +7705,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7723,8 +7723,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7734,10 +7734,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7746,7 +7746,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7773,10 +7773,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7791,8 +7791,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7802,10 +7802,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7814,7 +7814,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7841,10 +7841,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7859,8 +7859,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7870,10 +7870,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7882,7 +7882,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7909,10 +7909,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7927,8 +7927,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7938,10 +7938,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7950,7 +7950,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7977,10 +7977,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7995,8 +7995,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8006,10 +8006,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8018,7 +8018,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8045,10 +8045,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8063,8 +8063,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8074,10 +8074,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8086,7 +8086,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8113,10 +8113,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8131,8 +8131,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8142,10 +8142,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8154,7 +8154,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8181,10 +8181,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8199,8 +8199,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8210,10 +8210,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8222,7 +8222,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8249,10 +8249,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8267,8 +8267,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8278,10 +8278,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8290,7 +8290,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8317,10 +8317,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8335,8 +8335,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8346,10 +8346,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8358,7 +8358,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8385,10 +8385,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8403,8 +8403,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8414,10 +8414,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8426,7 +8426,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8453,10 +8453,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8471,8 +8471,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8482,10 +8482,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8494,7 +8494,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8521,10 +8521,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8539,8 +8539,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8550,10 +8550,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8562,7 +8562,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8589,10 +8589,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8607,8 +8607,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8618,10 +8618,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8630,7 +8630,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8657,10 +8657,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8675,8 +8675,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8686,10 +8686,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8698,7 +8698,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8725,10 +8725,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8743,8 +8743,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8754,10 +8754,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8766,7 +8766,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8793,10 +8793,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8811,8 +8811,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8822,10 +8822,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8834,7 +8834,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8861,10 +8861,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8879,8 +8879,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8890,10 +8890,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8902,7 +8902,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8929,10 +8929,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8947,8 +8947,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8958,10 +8958,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8970,7 +8970,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8997,10 +8997,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9015,8 +9015,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9026,10 +9026,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9038,7 +9038,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9065,10 +9065,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9083,8 +9083,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9094,10 +9094,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9106,7 +9106,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9133,10 +9133,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9151,8 +9151,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9162,10 +9162,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9174,7 +9174,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9201,10 +9201,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9219,8 +9219,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9230,10 +9230,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9242,7 +9242,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9269,10 +9269,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9287,8 +9287,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9298,10 +9298,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9310,7 +9310,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9337,10 +9337,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9355,8 +9355,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9366,10 +9366,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9378,7 +9378,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9405,10 +9405,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9423,8 +9423,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9434,10 +9434,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9446,7 +9446,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9473,10 +9473,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9491,8 +9491,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9502,10 +9502,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9514,7 +9514,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9541,10 +9541,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9559,8 +9559,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9570,10 +9570,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9582,7 +9582,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9609,10 +9609,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9627,8 +9627,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9638,10 +9638,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9650,7 +9650,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9677,10 +9677,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9695,8 +9695,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9706,10 +9706,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9718,7 +9718,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9745,10 +9745,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9763,8 +9763,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9774,10 +9774,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9786,7 +9786,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9813,10 +9813,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9831,8 +9831,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9842,10 +9842,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9854,7 +9854,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9881,10 +9881,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9899,8 +9899,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9910,10 +9910,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9922,7 +9922,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9949,10 +9949,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9967,8 +9967,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9978,10 +9978,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9990,7 +9990,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10017,10 +10017,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10035,8 +10035,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10046,10 +10046,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10058,7 +10058,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10085,10 +10085,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10103,8 +10103,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10114,10 +10114,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10126,7 +10126,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10153,10 +10153,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10171,8 +10171,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10182,10 +10182,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10194,7 +10194,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10221,10 +10221,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10239,8 +10239,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10250,10 +10250,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10262,7 +10262,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10289,10 +10289,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10307,8 +10307,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10318,10 +10318,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10330,7 +10330,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10357,10 +10357,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10375,8 +10375,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10386,10 +10386,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10398,7 +10398,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10425,10 +10425,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10443,8 +10443,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10454,10 +10454,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10466,7 +10466,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10493,10 +10493,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10511,8 +10511,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10522,10 +10522,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10534,7 +10534,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10561,10 +10561,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10579,8 +10579,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10590,10 +10590,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10602,7 +10602,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10629,10 +10629,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10647,8 +10647,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10658,10 +10658,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10670,7 +10670,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10697,10 +10697,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10715,8 +10715,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10726,10 +10726,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10738,7 +10738,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10765,10 +10765,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10783,8 +10783,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10794,10 +10794,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10806,7 +10806,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10833,10 +10833,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10851,8 +10851,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10862,10 +10862,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10874,7 +10874,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10901,10 +10901,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10919,8 +10919,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10930,10 +10930,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10942,7 +10942,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10969,10 +10969,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10987,8 +10987,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10998,10 +10998,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11010,7 +11010,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11037,10 +11037,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11055,8 +11055,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11066,10 +11066,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11078,7 +11078,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11105,10 +11105,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11123,8 +11123,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11134,10 +11134,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11146,7 +11146,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11173,10 +11173,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11191,8 +11191,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11202,10 +11202,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11214,7 +11214,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11241,10 +11241,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11259,8 +11259,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11270,10 +11270,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11282,7 +11282,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11309,10 +11309,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11327,8 +11327,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11338,10 +11338,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11350,7 +11350,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11377,10 +11377,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11395,8 +11395,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11406,10 +11406,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11418,7 +11418,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11445,10 +11445,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11463,8 +11463,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11474,10 +11474,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11486,7 +11486,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11513,10 +11513,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11531,8 +11531,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11542,10 +11542,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11554,7 +11554,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11581,10 +11581,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11599,8 +11599,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11610,10 +11610,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11622,7 +11622,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11649,10 +11649,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11667,8 +11667,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11678,10 +11678,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11690,7 +11690,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11717,10 +11717,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11735,8 +11735,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11746,10 +11746,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11758,7 +11758,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11785,10 +11785,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11803,8 +11803,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11814,10 +11814,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11826,7 +11826,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11853,10 +11853,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11871,8 +11871,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11882,10 +11882,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11894,7 +11894,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11921,10 +11921,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11939,8 +11939,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11950,10 +11950,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11962,7 +11962,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11989,10 +11989,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12007,8 +12007,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12018,10 +12018,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12030,7 +12030,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12057,10 +12057,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12075,8 +12075,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12086,10 +12086,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12098,7 +12098,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12125,10 +12125,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12143,8 +12143,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12154,10 +12154,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12166,7 +12166,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12193,10 +12193,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12211,8 +12211,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12222,10 +12222,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12234,7 +12234,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12261,10 +12261,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12279,8 +12279,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12290,10 +12290,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12302,7 +12302,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12329,10 +12329,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12347,8 +12347,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12358,10 +12358,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12370,7 +12370,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12397,10 +12397,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12415,8 +12415,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12426,10 +12426,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12438,7 +12438,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12465,10 +12465,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12483,8 +12483,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12494,10 +12494,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12506,7 +12506,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12533,10 +12533,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12551,8 +12551,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12562,10 +12562,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12574,7 +12574,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12601,10 +12601,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12619,8 +12619,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12630,10 +12630,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12642,7 +12642,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12669,10 +12669,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12687,8 +12687,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12698,10 +12698,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12710,7 +12710,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12737,10 +12737,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12755,8 +12755,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12766,10 +12766,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12778,7 +12778,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12805,10 +12805,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12823,8 +12823,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12834,10 +12834,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12846,7 +12846,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12873,10 +12873,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12891,8 +12891,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12902,10 +12902,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12914,7 +12914,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12941,10 +12941,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12959,8 +12959,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12970,10 +12970,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12982,7 +12982,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13009,10 +13009,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13027,8 +13027,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13038,10 +13038,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13050,7 +13050,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13077,10 +13077,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13095,8 +13095,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13106,10 +13106,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13118,7 +13118,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13145,10 +13145,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13163,8 +13163,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13174,10 +13174,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13186,7 +13186,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13213,10 +13213,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13231,8 +13231,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13242,10 +13242,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13254,7 +13254,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13281,10 +13281,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13299,8 +13299,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13310,10 +13310,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13322,7 +13322,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13349,10 +13349,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13367,8 +13367,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13378,10 +13378,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13390,7 +13390,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13417,10 +13417,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13435,8 +13435,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13446,10 +13446,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13458,7 +13458,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13485,10 +13485,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13503,8 +13503,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13514,10 +13514,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13526,7 +13526,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13553,10 +13553,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13571,8 +13571,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13582,10 +13582,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13594,7 +13594,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13621,10 +13621,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13639,8 +13639,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13650,10 +13650,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13662,7 +13662,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13689,10 +13689,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13707,8 +13707,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13718,10 +13718,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13730,7 +13730,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13757,10 +13757,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13775,8 +13775,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13786,10 +13786,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13798,7 +13798,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13825,10 +13825,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13843,8 +13843,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13854,10 +13854,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13866,7 +13866,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13893,10 +13893,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13911,8 +13911,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13922,10 +13922,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13934,7 +13934,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13961,10 +13961,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13979,8 +13979,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13990,10 +13990,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14002,7 +14002,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14029,10 +14029,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14047,8 +14047,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14058,10 +14058,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14070,7 +14070,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14097,10 +14097,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14115,8 +14115,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14126,10 +14126,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14138,7 +14138,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14165,10 +14165,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14183,8 +14183,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14194,10 +14194,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14206,7 +14206,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14233,10 +14233,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14251,8 +14251,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14262,10 +14262,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14274,7 +14274,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14301,10 +14301,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14319,8 +14319,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14330,10 +14330,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14342,7 +14342,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14369,10 +14369,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14387,8 +14387,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14398,10 +14398,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14410,7 +14410,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14437,10 +14437,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14455,8 +14455,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14466,10 +14466,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14478,7 +14478,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14505,10 +14505,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14523,8 +14523,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14534,10 +14534,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14546,7 +14546,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14573,10 +14573,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14591,8 +14591,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14602,10 +14602,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14614,7 +14614,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14641,10 +14641,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14659,8 +14659,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14670,10 +14670,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14682,7 +14682,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14709,10 +14709,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14727,8 +14727,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14738,10 +14738,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14750,7 +14750,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14777,10 +14777,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14795,8 +14795,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14806,10 +14806,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14818,7 +14818,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14845,10 +14845,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14863,8 +14863,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14874,10 +14874,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14886,7 +14886,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14913,10 +14913,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14931,8 +14931,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14942,10 +14942,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14954,7 +14954,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14981,10 +14981,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14999,8 +14999,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15010,10 +15010,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15022,7 +15022,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15049,10 +15049,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15067,8 +15067,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15078,10 +15078,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15090,7 +15090,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15117,10 +15117,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15135,8 +15135,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15146,10 +15146,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15158,7 +15158,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15185,10 +15185,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15203,8 +15203,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15214,10 +15214,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15226,7 +15226,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15253,10 +15253,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15271,8 +15271,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15282,10 +15282,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15294,7 +15294,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15321,10 +15321,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15339,8 +15339,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15350,10 +15350,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15362,7 +15362,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15389,10 +15389,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15407,8 +15407,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15418,10 +15418,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15430,7 +15430,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15457,10 +15457,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15475,8 +15475,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15486,10 +15486,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15498,7 +15498,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15525,10 +15525,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15543,8 +15543,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15554,10 +15554,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15566,7 +15566,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15593,10 +15593,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15611,8 +15611,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15622,10 +15622,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15634,7 +15634,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15661,10 +15661,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15679,8 +15679,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15690,10 +15690,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15702,7 +15702,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15729,10 +15729,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15747,8 +15747,8 @@ uint64_t utility_context_manager(void)
  */
 {
   uint64_t utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15758,10 +15758,10 @@ uint64_t utility_context_manager(void)
   else {
     UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15770,7 +15770,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
