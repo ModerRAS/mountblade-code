@@ -260,10 +260,14 @@ int system_initialize_core(system_uint64_t context_param, system_uint64_t config
 
 /**
  * @brief 使用上下文的系统初始化函数
- * @param context_param 系统上下文参数
+ * @param context_param 系统上下文参数，指向系统上下文结构的指针
  * 
- * 该函数使用上下文参数初始化系统。
- * 这是简化实现，提供基本的初始化功能。
+ * 该函数使用上下文参数初始化系统，设置全局系统上下文指针和初始化状态。
+ * 这是一个简化的初始化函数，提供基本的系统初始化功能。
+ * 
+ * @note 这是简化实现，提供基本的初始化功能
+ * @warning 传入的context_param必须为有效的指针
+ * @param context_param 系统上下文参数，不能为NULL
  */
 void system_initialize_with_context(int64_t context_param)
 {
@@ -278,8 +282,12 @@ void system_initialize_with_context(int64_t context_param)
 /**
  * @brief 系统核心上下文初始化函数
  * 
- * 该函数初始化系统的核心上下文。
- * 这是简化实现，提供基本的上下文初始化功能。
+ * 该函数初始化系统的核心上下文，分配内存并设置初始化状态。
+ * 如果全局上下文指针为NULL，则会分配新的内存空间。
+ * 
+ * @note 这是简化实现，提供基本的上下文初始化功能
+ * @warning 该函数会分配内存，调用者需要确保系统有足够的内存
+ * @warning 内存分配失败时，系统状态不会改变
  */
 void system_initialize_core_context(void)
 {
@@ -293,10 +301,14 @@ void system_initialize_core_context(void)
 
 /**
  * @brief 主入口点初始化函数
- * @param context_param 系统上下文参数
+ * @param context_param 系统上下文参数，指向系统上下文结构的指针
  * 
  * 该函数是系统的主要入口点，负责初始化系统。
- * 这是简化实现，提供基本的入口点功能。
+ * 它调用system_initialize_with_context函数来完成实际的初始化工作。
+ * 
+ * @note 这是简化实现，提供基本的入口点功能
+ * @warning 该函数是系统启动的主要入口点，应该在其他初始化之前调用
+ * @param context_param 系统上下文参数，不能为NULL
  */
 void system_main_entry_init(system_uint64_t context_param)
 {
@@ -305,12 +317,18 @@ void system_main_entry_init(system_uint64_t context_param)
 
 /**
  * @brief 使用上下文和配置的系统初始化函数
- * @param context_param 系统上下文参数
- * @param config_param 系统配置参数
- * @param memory_param 系统内存参数
+ * @param context_param 系统上下文参数，指向系统上下文结构的指针
+ * @param config_param 系统配置参数，包含系统配置信息
+ * @param memory_param 系统内存参数，指定内存管理相关设置
  * 
- * 该函数使用上下文和配置参数初始化系统。
- * 这是简化实现，提供基本的初始化功能。
+ * 该函数使用上下文和配置参数初始化系统，设置上下文结构中的配置和内存参数。
+ * 这是一个简化的初始化函数，提供基本的系统初始化功能。
+ * 
+ * @note 这是简化实现，提供基本的初始化功能
+ * @warning 所有参数必须有效，context_param不能为NULL
+ * @param context_param 系统上下文参数，不能为NULL
+ * @param config_param 系统配置参数，不能为0
+ * @param memory_param 系统内存参数，可以为任意整数值
  */
 void system_initialize_with_context_config_memory(int64_t context_param, system_uint64_t config_param, int memory_param)
 {
