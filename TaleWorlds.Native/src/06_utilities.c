@@ -156,7 +156,7 @@ static int64_t g_utility_buffer_current_position = 0;           // 缓冲区当�
 static uint64_t g_utility_operation_result = 0;                 // 操作结果
 static uint32_t g_utility_thread_local_offset = 0;              // 线程本地偏移量
 static uint64_t g_utility_file_total_size = 0;                  // 文件总大小
-static uint64_t g_utility_extended_data_ptr = 0;                // 扩展数据指针
+static int64_t g_utility_extended_data_pointer = 0;                // 扩展数据指针
 static uint32_t g_utility_system_error_flag = 0;                // 系统错误标志
 
 // 函数声明
