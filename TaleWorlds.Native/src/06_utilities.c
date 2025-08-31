@@ -719,7 +719,7 @@ uint8_t utility_context_system_extended;
  * 该函数负责处理线程本地存储的初始化、资源分配和上下文管理
  * 通过校验和验证确保数据完整性，并管理线程相关的资源生命周期
  */
-uint64_t resource_handle_semaphore_pointer(int64_t utility_context_ptr)
+uint64_t resource_handle_semaphore_pointer(int64_t utility_context)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
@@ -730,12 +730,12 @@ uint64_t resource_handle_semaphore_pointer(int64_t utility_context_ptr)
  *
  * 功能：处理系统资源的操作请求，包括资源的分配、释放和状态管理
  *
- * @param utility_context_ptr 工具上下文指针，包含资源操作的上下文信息
+ * @param utility_context 工具上下文指针，包含资源操作的上下文信息
  * @return 操作状态码，成功返回UTILITY_STATUS_SUCCESS
  *
  * @note 此函数为简化实现，主要处理资源操作的基本框架
  */
-uint64_t utility_resource_operation_handler(int64_t utility_context_ptr)
+uint64_t utility_resource_operation_handler(int64_t utility_context)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
@@ -747,12 +747,12 @@ uint64_t utility_resource_operation_handler(int64_t utility_context_ptr)
  * 功能：管理系统上下文存储指针，负责指针的分配、释放和验证
  *
  * @param resource_count 资源数量
- * @param utility_context_ptr 工具上下文指针
+ * @param utility_context 工具上下文指针
  * @return 操作状态码
  *
  * @note 此函数为简化实现，主要处理上下文存储指针的管理操作
  */
-uint64_t temporary_storage_ptr_manager(int64_t resource_count, uint64_t utility_context_ptr)
+uint64_t temporary_storage_ptr_manager(int64_t resource_count, uint64_t utility_context)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
@@ -764,12 +764,12 @@ uint64_t temporary_storage_ptr_manager(int64_t resource_count, uint64_t utility_
  * 功能：处理资源的迭代操作，包括资源的遍历和状态检查
  *
  * @param resource_count 资源数量
- * @param utility_context_ptr 工具上下文指针
+ * @param utility_context 工具上下文指针
  * @return 操作状态码
  *
  * @note 此函数为简化实现，主要处理资源迭代的基本操作
  */
-uint64_t utility_resource_iterator_handler(int64_t resource_count, int64_t utility_context_ptr)
+uint64_t utility_resource_iterator_handler(int64_t resource_count, int64_t utility_context)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
@@ -798,12 +798,12 @@ uint64_t utility_process_resource_context(int64_t resource_count, int64_t operat
  * 功能：验证资源参数的有效性，确保参数符合系统要求
  *
  * @param resource_count 资源数量
- * @param utility_context_ptr 工具上下文指针
+ * @param utility_context 工具上下文指针
  * @return 验证结果状态码
  *
  * @note 此函数为简化实现，主要处理资源参数的基本验证
  */
-uint64_t utility_validate_resource_parameters(int64_t resource_count, int64_t utility_context_ptr)
+uint64_t utility_validate_resource_parameters(int64_t resource_count, int64_t utility_context)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
@@ -815,12 +815,12 @@ uint64_t utility_validate_resource_parameters(int64_t resource_count, int64_t ut
  * 功能：清理资源上下文，释放相关资源并重置状态
  *
  * @param resource_count 资源数量
- * @param utility_context_ptr 工具上下文指针
+ * @param utility_context 工具上下文指针
  * @return 操作状态码
  *
  * @note 此函数为简化实现，主要处理资源清理的基本操作
  */
-uint64_t utility_cleanup_resource_context(int64_t resource_count, int64_t utility_context_ptr)
+uint64_t utility_cleanup_resource_context(int64_t resource_count, int64_t utility_context)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
@@ -847,13 +847,13 @@ void InitializeFileMap(void) {
  * 功能：创建网络套接字，初始化网络连接所需的资源
  *
  * @param resource_count 资源数量
- * @param utility_context_ptr 工具上下文指针
+ * @param utility_context 工具上下文指针
  * @param buffer_pointer 缓冲区指针
  * @return 操作状态码
  *
  * @note 此函数为简化实现，主要处理套接字创建的基本操作
  */
-uint64_t utility_socket_creator(int64_t resource_count, int utility_context_ptr, uint *buffer_pointer)
+uint64_t utility_socket_creator(int64_t resource_count, int utility_context, uint *buffer_pointer)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
@@ -864,12 +864,12 @@ uint64_t utility_socket_creator(int64_t resource_count, int utility_context_ptr,
  *
  * 功能：验证网络地址的有效性，确保地址格式正确
  *
- * @param utility_context_ptr 工具上下文指针
+ * @param utility_context 工具上下文指针
  * @return 验证结果状态码
  *
  * @note 此函数为简化实现，主要处理网络地址的基本验证
  */
-uint32_t utility_network_address_validator(uint64_t utility_context_ptr)
+uint32_t utility_network_address_validator(uint64_t utility_context)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
@@ -880,12 +880,12 @@ uint32_t utility_network_address_validator(uint64_t utility_context_ptr)
  *
  * 功能：加载系统配置文件，解析配置参数并应用到系统
  *
- * @param utility_context_ptr 工具上下文指针
+ * @param utility_context 工具上下文指针
  * @return 操作状态码
  *
  * @note 此函数为简化实现，主要处理系统配置的基本加载
  */
-uint64_t utility_system_config_loader(int64_t utility_context_ptr)
+uint64_t utility_system_config_loader(int64_t utility_context)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
@@ -897,12 +897,12 @@ uint64_t utility_system_config_loader(int64_t utility_context_ptr)
  * 功能：读取系统环境变量，获取系统配置信息
  *
  * @param buffer_pointer 缓冲区指针，用于存储读取的环境变量
- * @param utility_context_ptr 工具上下文指针
+ * @param utility_context 工具上下文指针
  * @return 操作状态码
  *
  * @note 此函数为简化实现，主要处理环境变量的基本读取
  */
-uint64_t utility_environment_variable_reader(int64_t *buffer_pointer, int utility_context_ptr)
+uint64_t utility_environment_variable_reader(int64_t *buffer_pointer, int utility_context)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
@@ -914,12 +914,12 @@ uint64_t utility_environment_variable_reader(int64_t *buffer_pointer, int utilit
  * 功能：转换时间格式，处理不同时间表示之间的转换
  *
  * @param buffer_pointer 缓冲区指针，包含时间数据
- * @param utility_context_ptr 工具上下文指针
+ * @param utility_context 工具上下文指针
  * @return 操作状态码
  *
  * @note 此函数为简化实现，主要处理时间格式的基本转换
  */
-uint64_t utility_time_converter(uint64_t *buffer_pointer, int64_t utility_context_ptr)
+uint64_t utility_time_converter(uint64_t *buffer_pointer, int64_t utility_context)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
@@ -995,42 +995,42 @@ uint64_t utility_time_zone_converter(uint64_t resource_count, int64_t *buffer_po
     temp_buffer = (int)resource_handle + 1;
     temp_buffer = (uint64_t)temp_buffer;
 } while ((int)resource_handle < execution_status);
-    execution_status = utility_context_ptr[UTILITY_OFFSET_FOURTEEN];
+    execution_status = utility_context[UTILITY_OFFSET_FOURTEEN];
     data_component = utility_data_combine(data_component.component_x,execution_status);
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
         if (0 < execution_status) {
 do {
-    disk_info = utility_get_disk_free_space(utility_context_ptr,(int64_t)(int)resource_handle * UTILITY_THREAD_HANDLE_OFFSET +
-*(int64_t *)(utility_context_ptr + UTILITY_BUFFER_ELEMENT_SIZE));
+    disk_info = utility_get_disk_free_space(utility_context,(int64_t)(int)resource_handle * UTILITY_THREAD_HANDLE_OFFSET +
+*(int64_t *)(utility_context + UTILITY_BUFFER_ELEMENT_SIZE));
     if (execution_status != UTILITY_FALSE) {
     temp_buffer = (int)resource_handle + 1;
     temp_buffer = (uint64_t)temp_buffer;
 } while ((int)resource_handle < execution_status);
-    execution_status = utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG_SECONDARY];
+    execution_status = utility_context[UTILITY_STATUS_ENABLED_FLAG_SECONDARY];
     data_component = utility_data_combine(data_component.component_x,execution_status);
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
         if (0 < execution_status) {
 do {
     data_component = utility_data_combine(data_component.component_x,
-*(uint32_t *)(*(int64_t *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET) + resource_handle * UTILITY_DEFAULT_ALLOCATION_SIZE));
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+*(uint32_t *)(*(int64_t *)(utility_context + UTILITY_THREAD_HANDLE_OFFSET) + resource_handle * UTILITY_DEFAULT_ALLOCATION_SIZE));
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status != UTILITY_FALSE) {
     temp_buffer = resource_handle + 1;
 } while ((int64_t)resource_handle < (int64_t)execution_status);
-    execution_status = utility_context_ptr[UTILITY_STATUS_ENABLED_FLAG6];
+    execution_status = utility_context[UTILITY_STATUS_ENABLED_FLAG6];
     data_component = utility_data_combine(data_component.component_x,execution_status);
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
             if (0 < execution_status) {
 do {
-    iteration_counter = *(int64_t *)(utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) + temp_buffer;
-    disk_info = utility_get_disk_free_space(utility_context_ptr,iteration_counter);
+    iteration_counter = *(int64_t *)(utility_context + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY) + temp_buffer;
+    disk_info = utility_get_disk_free_space(utility_context,iteration_counter);
     if (execution_status != UTILITY_FALSE) {
     temp_buffer = *(uint *)(iteration_counter + UTILITY_THREAD_HANDLE_OFFSET);
     if (resource_handle < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
@@ -1040,45 +1040,45 @@ else {
     temp_buffer = UTILITY_DEFAULT_ALLOCATION_SIZE;
     data_component = utility_data_combine(data_component.component_x,
 (resource_handle & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_handle & UTILITY_STATUS_FLAG_MASK_SMALL);
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,temp_buffer);
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,temp_buffer);
     if (execution_status != UTILITY_FALSE) {
-    execution_status = utility_execute_operation(utility_context_ptr,iteration_counter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
+    execution_status = utility_execute_operation(utility_context,iteration_counter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
     if (execution_status != UTILITY_FALSE) {
     temp_buffer = resource_handle + 1;
     temp_buffer = resource_handle + UTILITY_THREAD_CONTEXT_OFFSET;
 } while ((int64_t)resource_handle < (int64_t)execution_status);
-    execution_status = utility_complete_operation(utility_context_ptr,utility_context_ptr + UTILITY_THREAD_CONTEXT_OFFSET);
+    execution_status = utility_complete_operation(utility_context,utility_context + UTILITY_THREAD_CONTEXT_OFFSET);
     if (execution_status == UTILITY_FALSE) {
-    execution_status = utility_context_ptr[UTILITY_STATUS_FLAG_EXTENDED];
+    execution_status = utility_context[UTILITY_STATUS_FLAG_EXTENDED];
     data_component = utility_data_combine(data_component.component_x,execution_status);
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
     if (0 < execution_status) {
 do {
-    iteration_counter = *(int64_t *)(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED);
+    iteration_counter = *(int64_t *)(utility_context + UTILITY_STATUS_THREAD_CREATED);
     data_component.component_y = *(uint32_t *)(iteration_counter + resource_handle * 8);
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status != UTILITY_FALSE) {
     data_component = utility_data_combine(data_component.component_x,*(uint32_t *)(iteration_counter + UTILITY_DEFAULT_ALLOCATION_SIZE + resource_handle * 8));
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status != UTILITY_FALSE) {
     temp_buffer = resource_handle + 1;
 } while ((int64_t)resource_handle < (int64_t)execution_status);
-    data_component = utility_data_combine(data_component.component_x,utility_context_ptr[UTILITY_THREAD_DATA_OFFSET]);
-(**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    data_component = utility_data_combine(data_component.component_x,utility_context[UTILITY_THREAD_DATA_OFFSET]);
+(**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     temp_buffer = (int)resource_handle + 1;
     temp_buffer = (uint64_t)temp_buffer;
     temp_buffer = xmm0_register_result;
 } while ((int)resource_handle < execution_status);
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
     execution_status = *(int *)(aux_context_ptr + UTILITY_THREAD_POINTER_OFFSET);
 *(int *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = execution_status;
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
         temp_buffer = param_float_value;
     if (0 < execution_status) {
@@ -1090,24 +1090,24 @@ do {
     temp_buffer = (uint64_t)temp_buffer;
     temp_buffer = float_operation_result;
 } while ((int)resource_handle < execution_status);
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
     execution_status = *(int *)(aux_context_ptr + UTILITY_THREAD_BUFFER_OFFSET);
 *(int *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = execution_status;
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
         if (0 < execution_status) {
 do {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) =
 *(uint32_t *)(*(int64_t *)(aux_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX) + resource_handle * UTILITY_DEFAULT_ALLOCATION_SIZE);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status != UTILITY_FALSE) {
     temp_buffer = resource_handle + 1;
 } while ((int64_t)resource_handle < (int64_t)execution_status);
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
     execution_status = *(int *)(aux_context_ptr + UTILITY_RESOURCE_SIZE_OFFSET);
 *(int *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = execution_status;
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
             temp_buffer = utility_xmm_register_value;
     if (0 < execution_status) {
@@ -1116,14 +1116,14 @@ do {
     disk_info = utility_get_disk_free_space(temp_buffer,iteration_counter);
     if (execution_status != UTILITY_FALSE) {
     temp_buffer = *(uint *)(iteration_counter + UTILITY_THREAD_HANDLE_OFFSET);
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
     if (resource_handle < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
 *(short *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = (short)temp_buffer;
     temp_buffer = 2;
 else {
     temp_buffer = UTILITY_DEFAULT_ALLOCATION_SIZE;
 *(uint *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = (resource_handle & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_handle & UTILITY_STATUS_FLAG_MASK_SMALL;
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,temp_buffer);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,temp_buffer);
     if (execution_status != UTILITY_FALSE) {
     execution_status = utility_execute_operation(utility_result_float_alpha,iteration_counter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
     if (execution_status != UTILITY_FALSE) {
@@ -1133,36 +1133,36 @@ else {
 } while ((int64_t)resource_handle < (int64_t)execution_status);
     execution_status = utility_complete_operation(temp_buffer,aux_context_ptr + UTILITY_CONTEXT_TABLE_OFFSET);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
     execution_status = *(int *)(aux_context_ptr + UTILITY_STATUS_FLAG_MASK_8_BIT);
 *(int *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = execution_status;
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
     if (0 < execution_status) {
 do {
     iteration_counter = *(int64_t *)(aux_context_ptr + UTILITY_STATUS_FLAG_MASK_PRIMARY);
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_counter + resource_handle * 8);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status != UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_counter + UTILITY_DEFAULT_ALLOCATION_SIZE + resource_handle * 8);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status != UTILITY_FALSE) {
     temp_buffer = resource_handle + 1;
 } while ((int64_t)resource_handle < (int64_t)execution_status);
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(aux_context_ptr + UTILITY_MEMORY_POINTER_OFFSET_BASE);
-(**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     temp_buffer = *(uint *)(iteration_counter + UTILITY_THREAD_HANDLE_OFFSET);
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
     if (resource_handle < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
 *(short *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = (short)temp_buffer;
     temp_buffer = 2;
 else {
     temp_buffer = UTILITY_DEFAULT_ALLOCATION_SIZE;
 *(uint *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = (resource_handle & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_handle & UTILITY_STATUS_FLAG_MASK_SMALL;
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,temp_buffer);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,temp_buffer);
     if (execution_status != UTILITY_FALSE) {
     execution_status = utility_execute_operation(xmm0_register_result,iteration_counter + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
     if (execution_status != UTILITY_FALSE) {
@@ -1172,40 +1172,40 @@ else {
 } while (iteration_counter < context_index_source);
     execution_status = utility_complete_operation(temp_buffer,aux_context_ptr + UTILITY_CONTEXT_TABLE_OFFSET);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
     execution_status = *(int *)(aux_context_ptr + UTILITY_STATUS_FLAG_MASK_8_BIT);
 *(int *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = execution_status;
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
     if (0 < execution_status) {
 do {
     iteration_counter = *(int64_t *)(aux_context_ptr + UTILITY_STATUS_FLAG_MASK_PRIMARY);
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_counter + utility_input_parameter * 8);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status != UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(iteration_counter + UTILITY_DEFAULT_ALLOCATION_SIZE + utility_input_parameter * 8);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status != UTILITY_FALSE) {
     utility_input_parameter = utility_input_parameter + 1;
 } while (utility_input_parameter < execution_status);
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(aux_context_ptr + UTILITY_MEMORY_POINTER_OFFSET_BASE);
-(**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
-    disk_info = utility_get_disk_free_space(utility_context_ptr,utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_THREE);
+(**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    disk_info = utility_get_disk_free_space(utility_context,utility_context + UTILITY_STATUS_ENABLED_FLAG_THREE);
     if (execution_status != UTILITY_FALSE) {
     if (((temp_buffer[1] & UTILITY_MEMORY_POINTER_OFFSET_BASE_ZERO) == UTILITY_FALSE) ||
-((utility_valueidation_result = utility_operation_verify(utility_context_ptr,utility_context_ptr + UTILITY_THREAD_CONTEXT_OFFSET), execution_status == UTILITY_FALSE &&
-(utility_valueidation_result = utility_operation_verify(utility_context_ptr,utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_SEVEN), execution_status == UTILITY_FALSE)))) {
-GetModuleHandle(utility_context_ptr,utility_context_ptr + UTILITY_STATUS_ENABLED_FLAG_NINE);
+((utility_valueidation_result = utility_operation_verify(utility_context,utility_context + UTILITY_THREAD_CONTEXT_OFFSET), execution_status == UTILITY_FALSE &&
+(utility_valueidation_result = utility_operation_verify(utility_context,utility_context + UTILITY_STATUS_ENABLED_FLAG_SEVEN), execution_status == UTILITY_FALSE)))) {
+GetModuleHandle(utility_context,utility_context + UTILITY_STATUS_ENABLED_FLAG_NINE);
     utility_valueidation_result = utility_operation_verify();
     if ((((execution_status == UTILITY_FALSE) && (utility_valueidation_result = utility_operation_verify(), execution_status == UTILITY_FALSE)) &&
 (utility_valueidation_result = utility_operation_verify(), execution_status == UTILITY_FALSE)) && (utility_valueidation_result = utility_operation_verify(), execution_status == UTILITY_FALSE)) {
     if ((*(uint *)(resource_handle + UTILITY_DEFAULT_ALLOCATION_SIZE) & UTILITY_THREAD_HANDLE_OFFSET_PRIMARY) != UTILITY_FALSE) {
     buffer_pointer = *(uint32_t *)(resource_handle + UTILITY_THREAD_BUFFER_OFFSET);
     execution_status = (**(code **)**(uint64_t **)(utility_input_parameter + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_input_parameter + UTILITY_POINTER_OFFSET),&utility_main_workspace_buffer,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(*(uint64_t **)(utility_input_parameter + UTILITY_POINTER_OFFSET),&utility_large_workspace,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status != UTILITY_FALSE) {
     disk_info = utility_get_disk_free_space();
     if (execution_status != UTILITY_FALSE) {
@@ -1221,81 +1221,81 @@ GetModuleHandle();
  * 功能：读取系统处理器相关信息，包括CPU型号、核心数、频率等
  *
  * @param resource_count 资源数量
- * @param utility_context_ptr 工具上下文指针
+ * @param utility_context 工具上下文指针
  * @return 操作状态码
  *
  * @note 此函数为简化实现，主要处理处理器信息的基本读取
  */
-uint64_t utility_system_processor_info_reader(int64_t resource_count, int64_t utility_context_ptr) {
+uint64_t utility_system_processor_info_reader(int64_t resource_count, int64_t utility_context) {
     // 简化实现：返回成功状态
     return UTILITY_STATUS_SUCCESS;
 }
-    temp_buffer = utility_context_ptr[100];
+    temp_buffer = utility_context[100];
     if (resource_handle < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
     data_component = utility_int64_int16_concat(data_component.primary,(short)temp_buffer);
     temp_buffer = 2;
 else {
     temp_buffer = UTILITY_DEFAULT_ALLOCATION_SIZE;
     data_component = utility_data_combine(data_component.component_x,(resource_handle & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_handle & UTILITY_STATUS_FLAG_MASK_SMALL);
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,temp_buffer);
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,temp_buffer);
     if (execution_status == UTILITY_FALSE) {
-    data_component.component_y = utility_context_ptr[UTILITY_CHARACTER_COMPARE_UPPER_E];
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
-    if (((execution_status == UTILITY_FALSE) && (execution_status = utility_data_process(utility_context_ptr,utility_context_ptr + UTILITY_CONTEXT_PROCESS_DATA_PRIMARY_OFFSET), execution_status == UTILITY_FALSE)) &&
-(execution_status = utility_data_process(utility_context_ptr,utility_context_ptr + UTILITY_POINTER_THRESHOLD_VALUE), execution_status == UTILITY_FALSE)) {
-    data_component.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_FIRST];
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    data_component.component_y = utility_context[UTILITY_CHARACTER_COMPARE_UPPER_E];
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    if (((execution_status == UTILITY_FALSE) && (execution_status = utility_data_process(utility_context,utility_context + UTILITY_CONTEXT_PROCESS_DATA_PRIMARY_OFFSET), execution_status == UTILITY_FALSE)) &&
+(execution_status = utility_data_process(utility_context,utility_context + UTILITY_POINTER_THRESHOLD_VALUE), execution_status == UTILITY_FALSE)) {
+    data_component.component_y = utility_context[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_FIRST];
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    data_component.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_SECOND];
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    data_component.component_y = utility_context[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_SECOND];
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    data_component.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_THIRD];
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    data_component.component_y = utility_context[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_THIRD];
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    data_component.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_FOURTH];
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    data_component.component_y = utility_context[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_FOURTH];
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    data_component.component_y = utility_context_ptr[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_FIFTH];
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    data_component.component_y = utility_context[UTILITY_CONTEXT_COMPONENT_Y_OFFSET_FIFTH];
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    data_component.component_y = utility_context_ptr[UTILITY_CONTEXT_OFFSET_STATUS];
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    data_component.component_y = utility_context[UTILITY_CONTEXT_OFFSET_STATUS];
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    data_component = utility_data_combine(data_component.component_x,utility_context_ptr[UTILITY_MAX_RESOURCE_INDEX]);
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    data_component = utility_data_combine(data_component.component_x,utility_context[UTILITY_MAX_RESOURCE_INDEX]);
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    data_component = *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_MASK_PRIMARY);
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,8);
+    data_component = *(uint64_t *)(utility_context + UTILITY_STATUS_FLAG_MASK_PRIMARY);
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,8);
     if (execution_status == UTILITY_FALSE) {
-    data_component = *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_OFFSET_SECONDARY);
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,8);
+    data_component = *(uint64_t *)(utility_context + UTILITY_STATUS_FLAG_OFFSET_SECONDARY);
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,8);
     if (execution_status == UTILITY_FALSE) {
-    data_component = *(uint64_t *)(utility_context_ptr + UTILITY_STATUS_FLAG_OFFSET_QUATERNARY);
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,8);
+    data_component = *(uint64_t *)(utility_context + UTILITY_STATUS_FLAG_OFFSET_QUATERNARY);
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,8);
     if (execution_status == UTILITY_FALSE) {
-    data_component.component_y = utility_context_ptr[UTILITY_STATUS_FLAG_MASK_SEVEN];
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    data_component.component_y = utility_context[UTILITY_STATUS_FLAG_MASK_SEVEN];
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    data_component.component_y = utility_context_ptr[UTILITY_STATUS_FLAG_OFFSET_SENARY];
-    execution_status = (**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    data_component.component_y = utility_context[UTILITY_STATUS_FLAG_OFFSET_SENARY];
+    execution_status = (**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    data_component = utility_data_combine(data_component.component_x,utility_context_ptr[UTILITY_STATUS_FLAG_MASK_8_BIT]);
-(**(code **)**(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET))
-(*(uint64_t **)(utility_context_ptr + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    data_component = utility_data_combine(data_component.component_x,utility_context[UTILITY_STATUS_FLAG_MASK_8_BIT]);
+(**(code **)**(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET))
+(*(uint64_t **)(utility_context + UTILITY_POINTER_OFFSET),&data_component,UTILITY_DEFAULT_ALLOCATION_SIZE);
     execution_status = SetLocalTime(utility_float_result_primary,iteration_counter + UTILITY_STATUS_THREAD_CREATED);
     if (execution_status != UTILITY_FALSE) {
     execution_status = SetLocalTime(xmm0_register_result,iteration_counter + UTILITY_THREAD_CONFIG_OFFSET);
@@ -1303,87 +1303,87 @@ else {
     execution_status = SetLocalTime(param_float_value,iteration_counter + UTILITY_THREAD_STATUS_OFFSET);
     if (execution_status != UTILITY_FALSE) {
     execution_status = execution_status + 1;
-    utility_context_ptr = float_operation_result;
+    utility_context = float_operation_result;
 } while (execution_status < *(int *)(utility_input_parameter + UTILITY_CONTEXT_OFFSET_EXTENDED_HEX));
     temp_buffer = *(uint *)(utility_input_parameter + 400);
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
     if (resource_handle < UTILITY_MEMORY_POINTER_OFFSET_ONE_KB) {
 *(short *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = (short)temp_buffer;
     temp_buffer = 2;
 else {
     temp_buffer = UTILITY_DEFAULT_ALLOCATION_SIZE;
 *(uint *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = (resource_handle & UTILITY_FLAG_MASK_C000 | UTILITY_FLAG_MASK_THREAD_RUNNING) * 2 | resource_handle & UTILITY_STATUS_FLAG_MASK_SMALL;
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,temp_buffer);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,temp_buffer);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_NONARY4);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (((execution_status == UTILITY_FALSE) && (execution_status = utility_data_process(utility_xmm_register_value,utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_NONARY8), execution_status == UTILITY_FALSE))
 && (execution_status = utility_data_process(utility_result_float_alpha,utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_NONARYc), execution_status == UTILITY_FALSE)) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_OFFSET_A4);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_OFFSET_A8);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGac);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGb4);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGb8);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGb0);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAGbc);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint64_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint64_t *)(utility_input_parameter + UTILITY_STATUS_THREAD_CREATED0);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,8);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,8);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint64_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint64_t *)(utility_input_parameter + UTILITY_STATUS_THREAD_CREATED8);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,8);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,8);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint64_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint64_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_ZERO);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,8);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,8);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_DECIMALc);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_ENABLED_FLAG_EIGHT);
-    execution_status = (**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    execution_status = (**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
     if (execution_status == UTILITY_FALSE) {
-    utility_context_ptr = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
+    utility_context = *(uint64_t **)(resource_handle + UTILITY_POINTER_OFFSET);
 *(uint32_t *)(base_context_ptr + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX)
 ;
-(**(code **)*buffer_pointer)(utility_context_ptr,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+(**(code **)*buffer_pointer)(utility_context,base_context_ptr + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
 /**
  * 系统磁盘信息读取器
  *
  * 功能：读取系统磁盘相关信息，包括磁盘空间、分区信息等
  *
  * @param resource_count 资源数量
- * @param utility_context_ptr 工具上下文指针
+ * @param utility_context 工具上下文指针
  * @return 操作状态码
  *
  * @note 此函数为简化实现，主要处理磁盘信息的基本读取
  */
-uint64_t utility_system_disk_info_reader(int64_t resource_count, int64_t utility_context_ptr) {
+uint64_t utility_system_disk_info_reader(int64_t resource_count, int64_t utility_context) {
     // 简化实现：返回成功状态
     return UTILITY_STATUS_SUCCESS;
 }
@@ -1514,26 +1514,26 @@ uint64_t utility_network_connector_link(int64_t resource_count, int64_t *buffer_
  *
  * 功能：获取网络接收器，处理网络数据接收
  *
- * @param utility_context_ptr 工具上下文指针
+ * @param utility_context 工具上下文指针
  * @return 操作状态码
  *
  * @note 此函数为简化实现，主要处理网络接收的基本操作
  */
-uint64_t utility_network_receiver_get(int utility_context_ptr) {
+uint64_t utility_network_receiver_get(int utility_context) {
     // 简化实现：返回成功状态
     return UTILITY_STATUS_SUCCESS;
 }
     if ((uint64_t)temp_buffer[2] < (uint64_t)utility_stack_uint_data + 1) {
     execution_status = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
 goto UTILITY_LABEL_CLEANUP_DONE;
-    execution_status = utility_resource_create(*buffer_pointer,&utility_main_workspace_buffer,1,1,0);
+    execution_status = utility_resource_create(*buffer_pointer,&utility_large_workspace,1,1,0);
 UTILITY_LABEL_CLEANUP_DONE:
     if (execution_status == UTILITY_FALSE) {
 *(bool *)(utility_input_parameter + UTILITY_STATUS_FLAG_OFFSET_C) = buffer_pointer != '\0';
 uint64_t utility_security_validator_verify(void)
  * 安全加密器编码
- *  * @param utility_context_ptr 加密参数
- *  * @param utility_context_ptr 加密数据
+ *  * @param utility_context 加密参数
+ *  * @param utility_context 加密数据
  *  * @return 编码结果状态码
  */
 uint64_t utility_security_encryptor_encode(int64_t resource_count,uint64_t *buffer_pointer)
@@ -1570,27 +1570,27 @@ uint64_t utility_interface_controller_handle(int64_t resource_count,uint64_t *bu
     temp_buffer = stack_buffer[0];
     if (execution_status != UTILITY_FALSE) {
     temp_buffer = stack_buffer[0] & 1;
-    temp_buffer = (int)*(uint *)(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
+    temp_buffer = (int)*(uint *)(utility_context + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
     temp_buffer = stack_buffer[0] >> 1;
-    if (((int)((*(uint *)(utility_context_ptr + UTILITY_STATUS_THREAD_CREATED) ^ temp_buffer) - temp_buffer) < (int)temp_buffer) &&
-(execution_status = utility_resource_test(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET,temp_buffer), execution_status != UTILITY_FALSE)) {
-    execution_status = *(int *)(utility_context_ptr + UTILITY_THREAD_CONTEXT_OFFSET);
+    if (((int)((*(uint *)(utility_context + UTILITY_STATUS_THREAD_CREATED) ^ temp_buffer) - temp_buffer) < (int)temp_buffer) &&
+(execution_status = utility_resource_test(utility_context + UTILITY_THREAD_HANDLE_OFFSET,temp_buffer), execution_status != UTILITY_FALSE)) {
+    execution_status = *(int *)(utility_context + UTILITY_THREAD_CONTEXT_OFFSET);
     if (execution_status < (int)temp_buffer) {
-memset((int64_t)execution_status * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET),0,
+memset((int64_t)execution_status * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_context + UTILITY_THREAD_HANDLE_OFFSET),0,
 (int64_t)(int)(resource_handle - execution_status) << UTILITY_DEFAULT_ALLOCATION_SIZE);
-*(uint *)(utility_context_ptr + UTILITY_THREAD_CONTEXT_OFFSET) = temp_buffer;
+*(uint *)(utility_context + UTILITY_THREAD_CONTEXT_OFFSET) = temp_buffer;
     stack_buffer[0] = UTILITY_FALSE;
     execution_status = UTILITY_FALSE;
     if (resource_handle >> 1 != UTILITY_FALSE) {
 do {
-    execution_status = utility_resource_read(utility_context_ptr,stack_buffer[0]);
+    execution_status = utility_resource_read(utility_context,stack_buffer[0]);
     if (execution_status != UTILITY_FALSE) {
     if (*(int *)(temp_buffer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
-    execution_status = GetLocalTime(*buffer_pointer,(int64_t)execution_status * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET));
+    execution_status = GetLocalTime(*buffer_pointer,(int64_t)execution_status * UTILITY_THREAD_HANDLE_OFFSET + *(int64_t *)(utility_context + UTILITY_THREAD_HANDLE_OFFSET));
 else {
     execution_status = UTILITY_STATUS_THREAD_CREATED;
     if (execution_status != UTILITY_FALSE) {
-    execution_status = utility_resource_write(utility_context_ptr,stack_buffer);
+    execution_status = utility_resource_write(utility_context,stack_buffer);
     if (execution_status != UTILITY_FALSE) {
     execution_status = execution_status + 1;
     stack_buffer[0] = stack_buffer[0] & -temp_buffer;
@@ -1600,29 +1600,29 @@ else {
     temp_buffer = stack_buffer[0];
     if (execution_status != UTILITY_FALSE) {
     iteration_counter = (int64_t)(int)stack_buffer[0];
-    temp_buffer = (int)*(uint *)(utility_context_ptr + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
-    if (((int)((*(uint *)(utility_context_ptr + UTILITY_CONTEXT_CONFIG_OFFSET) ^ temp_buffer) - temp_buffer) < (int)stack_buffer[0]) &&
-(execution_status = utility_context_acquire(utility_context_ptr + UTILITY_THREAD_DATA_OFFSET,stack_buffer[0]), execution_status != UTILITY_FALSE)) {
-    execution_status = *(int *)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET);
+    temp_buffer = (int)*(uint *)(utility_context + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    if (((int)((*(uint *)(utility_context + UTILITY_CONTEXT_CONFIG_OFFSET) ^ temp_buffer) - temp_buffer) < (int)stack_buffer[0]) &&
+(execution_status = utility_context_acquire(utility_context + UTILITY_THREAD_DATA_OFFSET,stack_buffer[0]), execution_status != UTILITY_FALSE)) {
+    execution_status = *(int *)(utility_context + UTILITY_THREAD_CONFIG_OFFSET);
     if (execution_status < (int)temp_buffer) {
-memset((int64_t)execution_status + *(int64_t *)(utility_context_ptr + UTILITY_THREAD_DATA_OFFSET),0,(int64_t)(int)(resource_handle - execution_status));
-*(uint *)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET) = temp_buffer;
+memset((int64_t)execution_status + *(int64_t *)(utility_context + UTILITY_THREAD_DATA_OFFSET),0,(int64_t)(int)(resource_handle - execution_status));
+*(uint *)(utility_context + UTILITY_THREAD_CONFIG_OFFSET) = temp_buffer;
     if (resource_handle != UTILITY_FALSE) {
     if (*(int *)(temp_buffer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
-    execution_status = resource_handle_parameter_validation(*buffer_pointer,*(uint64_t *)(utility_context_ptr + UTILITY_THREAD_DATA_OFFSET),iteration_counter);
+    execution_status = resource_handle_parameter_validation(*buffer_pointer,*(uint64_t *)(utility_context + UTILITY_THREAD_DATA_OFFSET),iteration_counter);
     if (execution_status == UTILITY_FALSE) goto UTILITY_LABEL_OPERATION_SUCCESS;
 else {
     execution_status = UTILITY_STATUS_THREAD_CREATED;
     if (execution_status != UTILITY_FALSE) {
 UTILITY_LABEL_OPERATION_SUCCESS:
-    if (utility_context_ptr == UTILITY_FALSE) {
-    execution_status = utility_resource_setup(utility_context_ptr,utility_context_ptr);
+    if (utility_context == UTILITY_FALSE) {
+    execution_status = utility_resource_setup(utility_context,utility_context);
 else {
-    execution_status = utility_resource_prepare(utility_context_ptr,utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
+    execution_status = utility_resource_prepare(utility_context,utility_context + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY);
     if (execution_status != UTILITY_FALSE) {
-    execution_status = utility_resource_prepare(utility_context_ptr,utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
+    execution_status = utility_resource_prepare(utility_context,utility_context + UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_HEX);
     if (execution_status == UTILITY_FALSE) {
-    utility_system_shutdown(utility_context_ptr);
+    utility_system_shutdown(utility_context);
     temp_buffer = (int)*(uint *)(utility_service_context_handle + UTILITY_STATUS_THREAD_CREATED) >> UTILITY_STATUS_FLAG_F;
     temp_buffer = utility_stack_handle_value >> 1;
     if (((int)((*(uint *)(utility_service_context_handle + UTILITY_STATUS_THREAD_CREATED) ^ temp_buffer) - temp_buffer) < (int)temp_buffer) &&
@@ -1649,7 +1649,7 @@ else {
     buffer_pointer = buffer_pointer & -(utility_stack_handle_value & 1);
 } while (execution_status < (int)temp_buffer);
     buffer_pointer = UTILITY_FALSE;
-    execution_status = utility_resource_validate(*resource_handle,&utility_main_workspace_buffer);
+    execution_status = utility_resource_validate(*resource_handle,&utility_large_workspace);
     execution_status = buffer_pointer;
     if (execution_status != UTILITY_FALSE) {
     iteration_counter = (int64_t)(int)buffer_pointer;
@@ -1678,27 +1678,27 @@ else {
     utility_system_shutdown();
 uint64_t utility_process_resource_context_primary(int64_t resource_count,uint64_t *buffer_pointer)
 void InitializeEncryption(void)
-    temp_buffer = utility_stream_create(utility_context_ptr,stack_buffer_array_output,0,UTILITY_STREAM_TYPE_BMRP);
+    temp_buffer = utility_stream_create(utility_context,stack_buffer_array_output,0,UTILITY_STREAM_TYPE_BMRP);
         if ((int)resource_handle != UTILITY_FALSE) {
         return resource_handle;
-    temp_buffer = utility_time_processor(utility_context_ptr,utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET);
+    temp_buffer = utility_time_processor(utility_context,utility_context + UTILITY_THREAD_HANDLE_OFFSET);
         if ((int)resource_handle != UTILITY_FALSE) {
         return resource_handle;
     temp_buffer = UTILITY_DEFAULT_ALLOCATION_SIZE;
     execution_status = UTILITY_FALSE;
     execution_status = UTILITY_FALSE;
-        if (UTILITY_MAX_RESOURCE_INDEX < *(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET)) {
+        if (UTILITY_MAX_RESOURCE_INDEX < *(uint *)(utility_context + UTILITY_POINTER_OFFSET)) {
     if (*(int *)(temp_buffer[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
-    temp_buffer = resource_handle_parameter_validation(*buffer_pointer,utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
+    temp_buffer = resource_handle_parameter_validation(*buffer_pointer,utility_context + UTILITY_THREAD_STATUS_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
 else {
     temp_buffer = UTILITY_STATUS_THREAD_CREATED;
         if ((int)resource_handle != UTILITY_FALSE) {
         return resource_handle;
-        if (*(uint *)(utility_context_ptr + UTILITY_POINTER_OFFSET) < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
+        if (*(uint *)(utility_context + UTILITY_POINTER_OFFSET) < UTILITY_STATUS_FLAG_MASK_PRIMARY) {
     if (*(int *)(temp_buffer[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
     temp_buffer = UTILITY_STATUS_THREAD_CREATED;
 goto UTILITY_LABEL_NEXT_ITERATION;
-    utility_context_ptr = (int64_t *)*buffer_pointer;
+    utility_context = (int64_t *)*buffer_pointer;
     if (*buffer_pointer == UTILITY_FALSE) {
     temp_buffer = UTILITY_STATUS_THREAD_CREATED;
 else if (temp_buffer[2] == UTILITY_FALSE) {
@@ -1726,7 +1726,7 @@ UTILITY_LABEL_NEXT_ITERATION:
     return (uint64_t)temp_buffer;
     if (*(int *)(temp_buffer[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_FALSE) {
     return UTILITY_STATUS_THREAD_CREATED;
-    utility_context_ptr = (int64_t *)*buffer_pointer;
+    utility_context = (int64_t *)*buffer_pointer;
     if (*buffer_pointer == UTILITY_FALSE) {
     temp_buffer = UTILITY_STATUS_THREAD_CREATED;
 else {
@@ -1972,7 +1972,7 @@ void InitializeThreadManager(void)
  *       userData - 用户数据
  * 功能描述：处理线程队列中的任务，管理线程的执行状态
  */
-void ProcessThreadQueue(uint64_t queueHandle, uint64_t utility_context_ptr, uint64_t callbackData, uint64_t userData)
+void ProcessThreadQueue(uint64_t queueHandle, uint64_t utility_context, uint64_t callbackData, uint64_t userData)
 {
     return;
 }
