@@ -141,15 +141,17 @@ void utility_cleanup_resource_function(void)
 }
 
 /**
- * @brief 验证资源访问权限 - 验证系统资源的访问权限和状态
+ * @brief 验证资源访问权限 - 检查系统资源的访问权限
  * @param utility_resource_primary_handle 主要资源句柄
- * @return uint64 验证结果状态码
+ * @return uint64 验证结果状态码，UTILITY_OFFSET_FLAG表示错误，其他值表示成功
  * 
  * 该函数负责验证系统资源的访问权限，包括：
  * - 执行系统内存操作
  * - 验证资源句柄有效性
- * - 返回验证结果
+ * - 检查资源指针状态
+ * - 释放相关内存资源
  * 
+ * 简化实现：主要处理资源访问验证的基本逻辑
  */
 uint64 utility_validate_resource_access(longlong utility_resource_primary_handle)
 {
