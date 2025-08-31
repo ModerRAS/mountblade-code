@@ -1,3 +1,10 @@
+/**
+ * @brief 系统初始化核心常量定义
+ * 
+ * 定义系统初始化过程中使用的各种魔法值、地址、偏移量等常量。
+ * 这些常量用于标识系统组件、配置内存布局和管理系统资源。
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
 #define SYSTEM_OFFSET_STATUS_FLAG 0x4
@@ -1481,64 +1488,57 @@ void *system_data_config_171;
 void *system_initialize_graphics_system;
 
 /**
- * @brief 系统内存管理器初始化函数
- * 
- * 初始化系统的内存管理器，包括内存分配、资源块管理和数据库配置。
- * 该函数负责设置内存管理的基础设施，确保系统能够正确管理内存资源。
- * 
- * @return 无返回值
- */
-/**
  * @brief 内存管理器初始化函数
  * 
- * 初始化系统的内存管理器，设置内存分配器和资源块。
- * 该函数负责创建和配置内存管理所需的核心数据结构。
- * 
+ * 初始化系统的内存管理器，设置内存分配和回收机制。
+ * 该函数负责创建和配置内存管理所需的核心数据结构，
+ * 包括内存池、分配器和资源管理等功能。
+ *
  * @return 无返回值
  */
 void system_initialize_memory_manager(void)
 
 {
-  char memory_init_status;
-  uint64_t *memory_data_ptr;
-  int config_comparison_result;
-  longlong *global_context_ptr;
-  longlong memory_resource_id;
-  uint64_t *memory_node_ptr;
-  uint64_t *memory_parent_ptr;
-  uint64_t *memory_child_ptr;
-  uint64_t *memory_temp_ptr;
-  code *memory_allocator_ptr;
+  char memory_initialization_status;
+  uint64_t *memory_data_pointer;
+  int configuration_comparison_result;
+  longlong *global_context_pointer;
+  longlong memory_resource_identifier;
+  uint64_t *memory_node_pointer;
+  uint64_t *memory_parent_pointer;
+  uint64_t *memory_child_pointer;
+  uint64_t *memory_temporary_pointer;
+  code *memory_allocator_function_pointer;
   
-  global_context_ptr = (longlong *)system_get_global_context();
-  memory_data_ptr = (uint64_t *)*global_context_ptr;
-  memory_init_status = *(char *)((longlong)memory_data_ptr[1] + SYSTEM_OFFSET_STATUS_FLAG);
-  memory_allocator_ptr = system_get_memory_allocator;
-  memory_parent_ptr = memory_data_ptr;
-  memory_node_ptr = (uint64_t *)memory_data_ptr[1];
-  while (memory_init_status == '\0') {
-    config_comparison_result = memcmp(memory_node_ptr + 4, &system_database_config, SYSTEM_CONFIG_DATA_SIZE_16);
-    if (config_comparison_result < 0) {
-      memory_child_ptr = (uint64_t *)memory_node_ptr[2];
-      memory_node_ptr = memory_parent_ptr;
+  global_context_pointer = (longlong *)system_get_global_context();
+  memory_data_pointer = (uint64_t *)*global_context_pointer;
+  memory_initialization_status = *(char *)((longlong)memory_data_pointer[1] + SYSTEM_OFFSET_STATUS_FLAG);
+  memory_allocator_function_pointer = system_get_memory_allocator;
+  memory_parent_pointer = memory_data_pointer;
+  memory_node_pointer = (uint64_t *)memory_data_pointer[1];
+  while (memory_initialization_status == '\0') {
+    configuration_comparison_result = memcmp(memory_node_pointer + 4, &system_database_config, SYSTEM_CONFIG_DATA_SIZE_16);
+    if (configuration_comparison_result < 0) {
+      memory_child_pointer = (uint64_t *)memory_node_pointer[2];
+      memory_node_pointer = memory_parent_pointer;
     }
     else {
-      memory_child_ptr = (uint64_t *)*memory_node_ptr;
+      memory_child_pointer = (uint64_t *)*memory_node_pointer;
     }
-    memory_parent_ptr = memory_node_ptr;
-    memory_node_ptr = memory_child_ptr;
-    memory_init_status = *(char *)((longlong)memory_child_ptr + SYSTEM_OFFSET_STATUS_FLAG);
+    memory_parent_pointer = memory_node_pointer;
+    memory_node_pointer = memory_child_pointer;
+    memory_initialization_status = *(char *)((longlong)memory_child_pointer + SYSTEM_OFFSET_STATUS_FLAG);
   }
-  if ((memory_parent_ptr == memory_data_ptr) || (config_comparison_result = memcmp(&system_database_config, memory_parent_ptr + 4, SYSTEM_CONFIG_DATA_SIZE_16), config_comparison_result < 0)) {
-    memory_resource_id = system_allocate_resource_block(global_context_ptr);
-    system_initialize_resource_block(global_context_ptr, &memory_temp_ptr, memory_parent_ptr, memory_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20, memory_resource_id);
-    memory_parent_ptr = memory_temp_ptr;
+  if ((memory_parent_pointer == memory_data_pointer) || (configuration_comparison_result = memcmp(&system_database_config, memory_parent_pointer + 4, SYSTEM_CONFIG_DATA_SIZE_16), configuration_comparison_result < 0)) {
+    memory_resource_identifier = system_allocate_resource_block(global_context_pointer);
+    system_initialize_resource_block(global_context_pointer, &memory_temporary_pointer, memory_parent_pointer, memory_resource_identifier + SYSTEM_RESOURCE_BLOCK_OFFSET_20, memory_resource_identifier);
+    memory_parent_pointer = memory_temporary_pointer;
   }
-  memory_parent_ptr[6] = SYSTEM_MAGIC_MEMORY_MANAGER;
-  memory_parent_ptr[7] = SYSTEM_MAGIC_MEMORY_MANAGER_SECONDARY;
-  memory_parent_ptr[8] = &memory_resource_id;
-  memory_parent_ptr[9] = 0;
-  memory_parent_ptr[10] = memory_allocator_ptr;
+  memory_parent_pointer[6] = SYSTEM_MAGIC_MEMORY_MANAGER;
+  memory_parent_pointer[7] = SYSTEM_MAGIC_MEMORY_MANAGER_SECONDARY;
+  memory_parent_pointer[8] = &memory_resource_identifier;
+  memory_parent_pointer[9] = 0;
+  memory_parent_pointer[10] = memory_allocator_function_pointer;
   return;
 }
 
@@ -1558,46 +1558,46 @@ void system_initialize_memory_manager(void)
 void system_initialize_thread_pool(void)
 
 {
-  char initialization_status;
-  uint64_t *data_pointer;
-  int comparison_status;
-  longlong *context_pointer;
-  longlong audio_resource_id;
-  uint64_t *node_pointer;
-  uint64_t *parent_pointer;
-  uint64_t *child_pointer;
-  uint64_t *temp_pointer;
-  uint64_t system_stack_initialization_flag;
+  char thread_initialization_status;
+  uint64_t *thread_data_pointer;
+  int thread_comparison_status;
+  longlong *thread_context_pointer;
+  longlong thread_resource_identifier;
+  uint64_t *thread_node_pointer;
+  uint64_t *thread_parent_pointer;
+  uint64_t *thread_child_pointer;
+  uint64_t *thread_temp_pointer;
+  uint64_t thread_stack_initialization_flag;
   
-  context_pointer = (longlong *)system_get_global_context();
-  data_pointer = (uint64_t *)*context_pointer;
-  initialization_status = *(char *)((longlong)data_pointer[1] + SYSTEM_OFFSET_STATUS_FLAG);
-  system_stack_initialization_flag = 0;
-  parent_pointer = data_pointer;
-  node_pointer = (uint64_t *)data_pointer[1];
-  while (initialization_status == '\0') {
-    comparison_status = memcmp(node_pointer + 4,&data_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (comparison_status < 0) {
-      child_pointer = (uint64_t *)node_pointer[2];
-      node_pointer = parent_pointer;
+  thread_context_pointer = (longlong *)system_get_global_context();
+  thread_data_pointer = (uint64_t *)*thread_context_pointer;
+  thread_initialization_status = *(char *)((longlong)thread_data_pointer[1] + SYSTEM_OFFSET_STATUS_FLAG);
+  thread_stack_initialization_flag = 0;
+  thread_parent_pointer = thread_data_pointer;
+  thread_node_pointer = (uint64_t *)thread_data_pointer[1];
+  while (thread_initialization_status == '\0') {
+    thread_comparison_status = memcmp(thread_node_pointer + 4,&thread_data_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (thread_comparison_status < 0) {
+      thread_child_pointer = (uint64_t *)thread_node_pointer[2];
+      thread_node_pointer = thread_parent_pointer;
     }
     else {
-      child_pointer = (uint64_t *)*node_pointer;
+      thread_child_pointer = (uint64_t *)*thread_node_pointer;
     }
-    parent_pointer = node_pointer;
-    node_pointer = child_pointer;
-    initialization_status = *(char *)((longlong)child_pointer + SYSTEM_OFFSET_STATUS_FLAG);
+    thread_parent_pointer = thread_node_pointer;
+    thread_node_pointer = thread_child_pointer;
+    thread_initialization_status = *(char *)((longlong)thread_child_pointer + SYSTEM_OFFSET_STATUS_FLAG);
   }
-  if ((parent_pointer == data_pointer) || (comparison_status = memcmp(&data_pointer,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), comparison_status < 0)) {
-    audio_resource_id = system_allocate_resource_block(context_pointer);
-    system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
-    parent_pointer = temp_pointer;
+  if ((thread_parent_pointer == thread_data_pointer) || (thread_comparison_status = memcmp(&thread_data_pointer,thread_parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), thread_comparison_status < 0)) {
+    thread_resource_identifier = system_allocate_resource_block(thread_context_pointer);
+    system_initialize_resource_block(thread_context_pointer,&thread_temp_pointer,thread_parent_pointer,thread_resource_identifier + SYSTEM_RESOURCE_BLOCK_OFFSET_20,thread_resource_identifier);
+    thread_parent_pointer = thread_temp_pointer;
   }
-  parent_pointer[6] = SYSTEM_MAGIC_THREAD_POOL;
-  parent_pointer[7] = SYSTEM_MAGIC_THREAD_POOL_SECONDARY;
-  parent_pointer[8] = &system_handler_database;
-  parent_pointer[9] = 1;
-  parent_pointer[10] = system_stack_initialization_flag;
+  thread_parent_pointer[6] = SYSTEM_MAGIC_THREAD_POOL;
+  thread_parent_pointer[7] = SYSTEM_MAGIC_THREAD_POOL_SECONDARY;
+  thread_parent_pointer[8] = &system_handler_database;
+  thread_parent_pointer[9] = 1;
+  thread_parent_pointer[10] = thread_stack_initialization_flag;
   return;
 }
 
