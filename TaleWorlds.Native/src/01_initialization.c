@@ -1452,11 +1452,11 @@ void *system_data_memory_config;
 void *system_data_thread_config;
 void *system_data_resource_config;
 void *system_data_cache_config;
-void *system_data_memory_pool_primaryse3;
+void *system_memory_pool_primary_extended_three;
 void *system_data_filesystem_config;
-void *system_data_memory_pool_primaryse4;
-void *system_data_memory_pool_primaryse5;
-void *system_data_memory_pool_primaryse2;
+void *system_memory_pool_primary_extended_four;
+void *system_memory_pool_primary_extended_five;
+void *system_memory_pool_primary_extended_two;
 void *system_data_thread_pool_base0;
 void *system_data_thread_pool_base1;
 void *system_data_thread_pool_base2;
@@ -4000,7 +4000,7 @@ void system_initialize_thread_context_stage_2(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x07;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_security_config_path,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21d64 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_primary = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -12374,18 +12374,18 @@ int system_check_render_status(void)
   system_create_memory_pool(0x010010c00262401,0x01,5,&resource_loader_callback,system_resource_loader_callback);
   system_create_memory_pool(0x010010c0026202001,0x01,5,&resource_loader_callback,system_resource_loader_callback);
   _Mtx_init_in_situ(0x010010c00262c0,2);
-  _system_data_memory_pool0c26310 = 0;
-  _system_data_memory_pool0c2631001 = 0;
-  _system_data_memory_pool0c260400 = 0;
-  _system_data_memory_pool0c26040001 = 3;
-  _system_data_memory_pool0c26330 = 0;
-  _system_data_memory_pool0c2633001 = 0;
-  _system_data_memory_pool0c26340 = 0;
-  _system_data_memory_pool0c2634001 = 3;
-  _system_data_memory_pool0c26350 = 0;
-  uRam0x010010c002635001 = 0;
-  _system_data_memory_pool0c26360 = 0;
-  _system_data_memory_pool0c2636001 = 3;
+  system_init_flag_primary = 0;
+  system_init_flag_secondary = 0;
+  system_init_flag_tertiary = 0;
+  system_init_flag_quaternary = 3;
+  system_init_flag_penta = 0;
+  system_init_flag_hexa = 0;
+  system_init_flag_hepta = 0;
+  system_init_flag_octa = 3;
+  system_init_flag_nona = 0;
+  system_reserved_flag_4 = 0;
+  system_init_flag_deca = 0;
+  system_init_flag_undeca = 3;
   system_audio_initializer();
   system_audio_long_value = system_audio_register_value_memory_pool(&graphics_renderer_callback);
   return (system_audio_long_value != 0) - 1;
@@ -12400,7 +12400,7 @@ int system_verify_graphics_config(void)
   uint64_t system_audio_register_value;
   
   system_display_memory_pool = &system_data_physics_pool_base;
-  _system_data_memory_pool0bf6500 = &engine_manager_ptr;
+  system_engine_manager = &engine_manager_ptr;
 
 void system_validate_render_system(void)
 
@@ -13028,7 +13028,7 @@ void system_initialize_lock_manager(void)
 void system_initialize_semaphore_system(void)
 
 {
-  _system_data_memory_pool0c2621001 = GetCurrentProcess();
+  system_process_handle = GetCurrentProcess();
   return;
 }
 
@@ -13085,12 +13085,12 @@ int system_check_mutex_status(void)
 {
   longlong system_audio_long_value;
   
-  _system_data_memory_pool0c26003b001 = 3;
-  _system_data_memory_pool0c260030020 = &system_data_memory_pool0c260030020;
-  _system_data_memory_pool0c2600300201 = &system_data_memory_pool0c260030020;
-  _system_data_memory_pool0c26003a0 = 0;
-  _system_data_memory_pool0c26003a001 = 0;
-  _system_data_memory_pool0c26003b0 = 0;
+  system_thread_flag_primary = 3;
+  system_thread_cache_primary = &system_thread_buffer_primary;
+  system_thread_cache_secondary = &system_thread_buffer_primary;
+  system_thread_state_primary = 0;
+  system_thread_state_secondary = 0;
+  system_thread_state_tertiary = 0;
   system_audio_long_value = system_audio_register_value_memory_pool(system_animation_manager_register);
   return (system_audio_long_value != 0) - 1;
 }
@@ -13237,12 +13237,12 @@ int system_check_barrier_status(void)
 {
   longlong system_audio_long_value;
   
-  _system_data_memory_pool0c260010001 = 3;
-  _system_data_memory_pool0c26003e0 = &system_data_memory_pool0c26003e0;
-  _system_data_memory_pool0c26003e001 = &system_data_memory_pool0c26003e0;
-  _system_data_memory_pool0c26003f0 = 0;
-  _system_data_memory_pool0c26003f001 = 0;
-  _system_data_memory_pool0c2600100 = 0;
+  system_thread_flag_secondary = 3;
+  system_thread_cache_tertiary = &system_thread_buffer_tertiary;
+  system_thread_cache_quaternary = &system_thread_buffer_tertiary;
+  system_thread_state_quaternary = 0;
+  system_thread_state_penta = 0;
+  system_thread_state_hexa = 0;
   system_audio_long_value = system_audio_register_value_memory_pool(system_ai_manager_register_extended);
   return (system_audio_long_value != 0) - 1;
 }
@@ -13263,14 +13263,14 @@ int system_verify_barrier_config(void)
   longlong system_audio_long_value;
   int system_int_context;
   
-  _system_data_memory_pool0c0c6c0 = SYSTEM_CONFIG_DATA_SIZE_160;
+  system_config_size = SYSTEM_CONFIG_DATA_SIZE_160;
   system_int_context = 0;
   do {
     system_audio_register_value_graphics_handler(system_int_context,SYSTEM_AUDIO_TABLE_OFFSET_VALUE00000000000000,0x07fff003fff,0);
     system_int_context = system_int_context + 1;
   } while (system_int_context < 0x06);
   *(uint *)(_system_data_memory_pool0be14a0 + 0x0330) = *(uint *)(_system_data_memory_pool0be14a0 + 0x0330) | 4;
-  _system_data_memory_pool0be10404 = 0x07fffffff;
+  system_resource_limit = 0x07fffffff;
   system_audio_long_value = system_audio_register_value_memory_pool(&system_data_thread_pool_base);
   return (system_audio_long_value != 0) - 1;
 }
@@ -13300,7 +13300,7 @@ void system_test_barrier_functionality(void)
   int system_int_value;
   
   system_int_value = system_query_graphics_status(0);
-  _system_data_memory_pool0c0c6d0 = 0x010010be14a001;
+  system_memory_address_primary = 0x010010be14a001;
   if (system_int_value != 0) {
     _system_data_memory_pool0c0c6d0 = 0x010010be14c0;
   }
@@ -13319,7 +13319,7 @@ void system_configure_barrier_settings(void)
     return;
   }
   system_int_value = system_query_graphics_status(0);
-  _system_data_memory_pool0c0c6d1 = 0x010010be14e0;
+  system_memory_address_secondary = 0x010010be14e0;
   if (system_int_value != 0) {
     _system_data_memory_pool0c0c6d1 = 0x010010be1550;
   }
@@ -13333,7 +13333,7 @@ void system_setup_barrier_context(void)
   int system_int_value;
   
   system_int_value = system_query_graphics_status(0);
-  _system_data_memory_pool0c0d100 = 0x010010be1c00;
+  system_memory_address_tertiary = 0x010010be1c00;
   if (system_int_value != 0) {
     _system_data_memory_pool0c0d100 = 0x010010be1c0001;
   }
@@ -13347,7 +13347,7 @@ void system_initialize_barrier_pool(void)
   int system_int_value;
   
   system_int_value = system_query_graphics_status(0);
-  _system_data_memory_pool0c0e10030 = 0x010010be23a0;
+  system_memory_address_quaternary = 0x010010be23a0;
   if (system_int_value != 0) {
     _system_data_memory_pool0c0e10030 = 0x010010be23c0;
   }
@@ -13361,7 +13361,7 @@ void system_create_barrier_instance(void)
   int system_int_value;
   
   system_int_value = system_query_graphics_status(0);
-  _system_data_memory_pool0c10001d0 = 0x010010be2ad001;
+  system_memory_address_penta = 0x010010be2ad001;
   if (system_int_value != 0) {
     _system_data_memory_pool0c10001d0 = 0x010010be2af001;
   }
@@ -13375,7 +13375,7 @@ void system_destroy_barrier_instance(void)
   int system_int_value;
   
   system_int_value = system_query_graphics_status(0);
-  _system_data_memory_pool0c2bca0 = 0x010010be400310;
+  system_memory_address_hexa = 0x010010be400310;
   if (system_int_value != 0) {
     _system_data_memory_pool0c2bca0 = 0x010010be4003201;
   }
