@@ -1490,22 +1490,10 @@ void network_message_handler(uint64_t network_context_pointer,uint64_t message_b
  * 4. 调用安全处理函数进行最终清理
  *
  * @return void 无返回值，清理结果通过全局状态返回
+ */
+
 /**
- * @brief 网络系统清理管理器函数
- * 负责清理网络系统的所有资源和内存
- * 在系统关闭或重启时调用，确保资源正确释放
- *
- * 功能描述：
- * 1. 清理网络连接资源
- * 2. 释放内存缓冲区
- * 3. 重置全局状态
- * 4. 关闭网络套接字
- * 5. 清理事件处理器
- *
- * @param void 无参数
- * @return void 无返回值
-/**
- * @brief 清理网络管理器资源
+ * @brief 清理网络连接管理器资源
  * 
  * 此函数清理网络管理器占用的资源，包括：
  * - 释放内存缓冲区
@@ -1514,7 +1502,8 @@ void network_message_handler(uint64_t network_context_pointer,uint64_t message_b
  *
  * @param void 无参数
  * @return void 无返回值
-void cleanup_network_connection_manager(void){
+ */
+void cleanup_network_connection_manager(void)
 {
   uint64_t *config_data;
   uint64_t network_address_pointer;
@@ -1543,7 +1532,8 @@ void cleanup_network_connection_manager(void){
  *
  * @param void 无参数，错误信息通过全局状态获取
  * @return void 无返回值，错误处理结果通过全局状态返回
-void handle_network_connection_error(void){
+ */
+void handle_network_connection_error(void)
 {
   uint64_t network_address_pointer;
 
