@@ -346,6 +346,12 @@ void *utility_buffer_advanced_quaternary;
 void *utility_buffer_advanced_auxiliary;
 void *utility_buffer_advanced_backup;
 void *utility_buffer_extended_reserve;
+void *utility_buffer_extended;
+void *utility_network_context_extended;
+void *utility_resource_extended;
+void *utility_thread_extended;
+void *utility_event_extended;
+void *utility_memory_extended;
 void *utility_context_system_primary;
 int utility_context_system_secondary;
 long long utility_context_system_tertiary;
@@ -38366,27 +38372,27 @@ utility_system_initialize();
 utility_system_initialize();
 }
 {
-utility_buffer_a = &utility_system_reserved_memory;
+utility_buffer_extended = &utility_system_reserved_memory;
 return;
 }
 {
-utility_network_data_a = &utility_system_reserved_memory;
+utility_network_context_extended = &utility_system_reserved_memory;
 return;
 }
 {
-utility_resource_a = &utility_system_reserved_memory;
+utility_resource_extended = &utility_system_reserved_memory;
 return;
 }
 {
-utility_allocate_memory_pointer_ = &utility_system_reserved_memory;
+utility_memory_extended = &utility_system_reserved_memory;
 return;
 }
 {
-utility_thread_a = &utility_system_reserved_memory;
+utility_thread_extended = &utility_system_reserved_memory;
 return;
 }
 {
-utility_event_a = &utility_system_reserved_memory;
+utility_event_extended = &utility_system_reserved_memory;
 return;
 }
 {
