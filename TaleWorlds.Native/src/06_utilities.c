@@ -347,6 +347,47 @@
 #define UTILITY_CHARACTER_OFFSET_ADJUSTMENT -0x57
 #define UTILITY_CHARACTER_COMPARE_LIMIT_1 0x3d
 #define UTILITY_CHARACTER_COMPARE_LIMIT_2 0x3b
+
+// 参数验证相关偏移量
+#define UTILITY_PARAMETER_VALIDATION_OFFSET_1 0x4f0
+#define UTILITY_PARAMETER_VALIDATION_OFFSET_2 0x4f8
+
+// 流处理相关限制值
+#define UTILITY_STREAM_COMPARE_LIMIT_1 0x4f8
+
+// 句柄处理相关限制值
+#define UTILITY_HANDLE_COMPARE_LIMIT_1 0x500
+
+// 新增语义化常量定义
+#define UTILITY_STATUS_RUNNING_STATE 0x2
+#define UTILITY_MAX_INT32_VALUE 0x7FFFFFFF
+#define UTILITY_MEMORY_PAGE_ALIGNMENT_MASK 0xfffffffffffffff0
+#define UTILITY_MEMORY_NEGATIVE_512MB -0x20000000
+#define UTILITY_FLOAT_NEGATIVE_ONE 0xbf800000
+#define UTILITY_CONTEXT_RESERVED_OFFSET 0x29
+#define UTILITY_CONTEXT_EXTENDED_OFFSET 0xa0
+#define UTILITY_BYTE_MASK_CLEAR_LSB 0xfe
+#define UTILITY_DATA_AREA_OFFSET 0x6c
+#define UTILITY_CONTROL_BLOCK_OFFSET 0x192
+#define UTILITY_CHECKSUM_VALIDATION_OFFSET 0x5f0
+#define UTILITY_EXTENDED_CONTROL_OFFSET 0xe00
+#define UTILITY_VALIDATION_CHECKSUM_OFFSET 0xe38
+#define UTILITY_RESOURCE_TABLE_OFFSET 0xe40
+#define UTILITY_MEMORY_POOL_OFFSET 0xe50
+#define UTILITY_THREAD_QUEUE_OFFSET 0xe58
+#define UTILITY_EVENT_HANDLER_OFFSET 0xe60
+#define UTILITY_SIGNAL_HANDLER_OFFSET 0xe68
+#define UTILITY_TIMER_OFFSET 0xe70
+#define UTILITY_PERFORMANCE_COUNTER_OFFSET 0xe78
+#define UTILITY_DEBUG_INFO_OFFSET 0xe80
+#define UTILITY_LOGGER_OFFSET 0xea8
+#define UTILITY_CONFIG_STORAGE_OFFSET 0xeb0
+#define UTILITY_USER_DATA_OFFSET 0xeb8
+#define UTILITY_CACHE_OFFSET 0xec0
+#define UTILITY_BUFFER_POOL_OFFSET 0xec8
+#define UTILITY_NETWORK_OFFSET 0xed0
+#define UTILITY_GRAPHICS_OFFSET 0xee0
+#define UTILITY_AUDIO_OFFSET 0xef0
 #define UTILITY_CHARACTER_COMPARE_LIMIT_3 0x55
 #define UTILITY_CHARACTER_COMPARE_LIMIT_4 0x53
 #define UTILITY_CHARACTER_COMPARE_UPPER_Z 0x5a
@@ -589,6 +630,20 @@ uint8_t utility_context_system_extended;
  * 
  * 原本实现：完全重构
  * 简化实现：仅进行变量名语义化替换
+ */
+/**
+ * @brief 处理线程本地存储数据
+ * 
+ * 该函数负责管理和处理线程本地存储(TLS)数据，包括数据验证、状态检查和资源清理。
+ * 确保线程安全的数据访问和资源管理。
+ * 
+ * @param thread_handle 线程句柄，标识要处理的线程
+ * @param context_data 上下文数据指针，包含线程相关的配置信息
+ * 
+ * @return void
+ * 
+ * 原本实现：完全重构线程本地存储管理系统，建立统一的数据处理规范
+ * 简化实现：保持现有功能，仅添加语义化文档注释
  */
 void utility_process_thread_local_storage(int64_t thread_handle, int64_t context_data)
 {
@@ -884,22 +939,17 @@ uint64_t utility_process_resource_handle(int64_t context_handle)
     return 0;
 }
 /**
- * @brief 资源请求处理器
- * 功能：处理资源分配请求，管理资源池和分配策略
+ * @brief 处理资源请求
+ * 
+ * 该函数负责处理系统资源分配请求，包括资源池管理、分配策略制定和资源句柄生成。
+ * 确保资源的有效分配和管理。
+ * 
  * @param resource_count 请求的资源数量
- * @param utility_context_pointer 上下文参数
- * @return 分配的资源句柄，0表示失败
- */
-/**
- * @brief Utility Handle Resource Request
+ * @param context_data 上下文数据指针，包含资源分配的配置信息
+ * @return uint64_t 分配的资源句柄，0表示分配失败
  * 
- * 功能描述
- * 
- * @param parameters 参数说明
- * @return 返回值说明
- * 
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构资源请求处理系统，建立统一的资源管理规范
+ * 简化实现：保持现有功能，仅添加语义化文档注释
  */
 uint64_t utility_handle_resource_request(int64_t resource_count,int64_t context_data)
 {
