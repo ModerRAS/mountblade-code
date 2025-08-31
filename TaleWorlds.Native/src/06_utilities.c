@@ -497,27 +497,27 @@ void validate_system_resource_status(int64_t resource_handle)
  */
 uint64_t process_resource_pointer(int64_t context_pointer)
 {
-    int64_t utility_current_counter;
-    int64_t utility_iteration_max;
+    int64_t current_counter;
+    int64_t iteration_max;
     int status_code;
     uint64_t status;
-    int64_t utility_resource_context_data;
-    int64_t *utility_resource_manager_ptr;
-    uint64_t utility_resource_context_data_status;
-    int64_t data_storage_pointer;
-    char utility_char_buffer[16];
+    int64_t resource_context_data;
+    int64_t *resource_manager_ptr;
+    uint64_t resource_context_status;
+    int64_t data_storage_ptr;
+    char temp_char_buffer[16];
     uint8_t working_buffer[512];
     int64_t resource_handle_value;
     
     status_code = UTILITY_STATUS_FALSE;
     
-    status = handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET), &working_buffer);
+    status = handle_service_request(*(uint32_t *)(context_pointer + UTILITY_THREAD_HANDLE_OFFSET), &working_buffer);
     if ((int)status != UTILITY_STATUS_FALSE) {
         return status;
     }
     
-    utility_current_counter = *(int64_t *)(working_buffer + UTILITY_MEMORY_POINTER_OFFSET_BASE);
-    if ((utility_current_counter == UTILITY_STATUS_FALSE) || (*(int64_t *)(utility_current_counter + UTILITY_THREAD_BUFFER_OFFSET) != data_storage_pointer)) {
+    current_counter = *(int64_t *)(working_buffer + UTILITY_MEMORY_POINTER_OFFSET_BASE);
+    if ((current_counter == UTILITY_STATUS_FALSE) || (*(int64_t *)(current_counter + UTILITY_THREAD_BUFFER_OFFSET) != data_storage_ptr)) {
         return UTILITY_STATUS_THREAD_CREATED;
     }
     
