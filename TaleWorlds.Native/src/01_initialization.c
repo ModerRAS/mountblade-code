@@ -765,49 +765,61 @@ void* system_resource_ptr_ew;
 
 void* system_get_init_function;
 
+/**
+ * 系统主初始化函数
+ * 初始化系统的核心组件和上下文管理器
+ * 
+ * 功能：
+ * - 获取系统上下文管理器
+ * - 初始化系统配置数据
+ * - 分配内存并设置初始化上下文
+ * - 设置系统初始化参数和函数指针
+ * 
+ * 简化实现：仅保留核心初始化逻辑，删除冗余代码
+ */
 void system_initialize_main(void)
 
 {
-  char cVar1;
-  uint8_t *puVar2;
-  int iVar3;
-  int64_t *plVar4;
-  int64_t lVar5;
-  uint8_t *puVar6;
-  uint8_t *puVar7;
-  uint8_t *puVar8;
-  uint8_t *puStackX_10;
-  code *pcStackX_18;
+  char context_status_flag;
+  uint8_t *context_manager_ptr;
+  int memory_compare_result;
+  int64_t *memory_manager_ptr;
+  int64_t allocated_memory_size;
+  uint8_t *context_node_ptr;
+  uint8_t *context_prev_ptr;
+  uint8_t *context_next_ptr;
+  uint8_t *context_buffer_ptr;
+  code *init_function_ptr;
   
-  plVar4 = (int64_t *)system_get_context_manager();
-  puVar2 = (uint8_t *)*plVar4;
-  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  pcStackX_18 = system_initialize_main;
-  puVar7 = puVar2;
-  puVar6 = (uint8_t *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&system_init_config_data,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (uint8_t *)puVar6[2];
-      puVar6 = puVar7;
+  memory_manager_ptr = (int64_t *)system_get_context_manager();
+  context_manager_ptr = (uint8_t *)*memory_manager_ptr;
+  context_status_flag = *(char *)((int64_t)context_manager_ptr[1] + 0x19);
+  init_function_ptr = system_initialize_main;
+  context_prev_ptr = context_manager_ptr;
+  context_node_ptr = (uint8_t *)context_manager_ptr[1];
+  while (context_status_flag == '\0') {
+    memory_compare_result = memcmp(context_node_ptr + 4,&system_init_config_data,0x10);
+    if (memory_compare_result < 0) {
+      context_next_ptr = (uint8_t *)context_node_ptr[2];
+      context_node_ptr = context_prev_ptr;
     }
     else {
-      puVar8 = (uint8_t *)*puVar6;
+      context_next_ptr = (uint8_t *)*context_node_ptr;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
+    context_prev_ptr = context_node_ptr;
+    context_node_ptr = context_next_ptr;
+    context_status_flag = *(char *)((int64_t)context_next_ptr + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_init_config_data,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = system_allocate_memory(plVar4);
-    system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  if ((context_prev_ptr == context_manager_ptr) || (memory_compare_result = memcmp(&system_init_config_data,context_prev_ptr + 4,0x10), memory_compare_result < 0)) {
+    allocated_memory_size = system_allocate_memory(memory_manager_ptr);
+    system_initialize_context(memory_manager_ptr,&context_buffer_ptr,context_prev_ptr,allocated_memory_size + 0x20,allocated_memory_size);
+    context_prev_ptr = context_buffer_ptr;
   }
-  puVar7[6] = 0x4fc124d23d41985f;
-  puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &system_init_context_ptr;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  context_prev_ptr[6] = 0x4fc124d23d41985f;
+  context_prev_ptr[7] = 0xe2f4a30d6e6ae482;
+  context_prev_ptr[8] = &system_init_context_ptr;
+  context_prev_ptr[9] = 0;
+  context_prev_ptr[10] = init_function_ptr;
   return;
 }
 
