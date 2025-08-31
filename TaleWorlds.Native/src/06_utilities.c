@@ -780,7 +780,7 @@ void *utility_data_segment_9690;
 void *utility_data_segment_9698;
 void *utility_data_segment_96a0;
 void *utility_data_segment_96a8;
-void * DAT_180a22cb0;
+void * utility_global_data_system_config_primary;
 
 void *utility_function_9420a0;
 void *utility_data_segment_96f0;
@@ -859,7 +859,7 @@ void *utility_data_segment_9ac0;
 void *utility_data_segment_9ac8;
 
 void *utility_function_942200;
-void * DAT_180a22d48;
+void * utility_global_data_system_config_secondary;
 void *utility_data_segment_9b10;
 void *utility_data_segment_9b18;
 void *utility_data_segment_9b20;
@@ -990,14 +990,14 @@ void *utility_data_segment_a1d0;
 void *utility_data_segment_a1d8;
 void *utility_data_segment_a1e0;
 void *utility_data_segment_a1e8;
-void * DAT_180a22fd0;
+void * utility_global_data_system_config_tertiary;
 
 void *utility_function_942460;
 void *utility_data_segment_a230;
 void *utility_data_segment_a238;
 void *utility_data_segment_a240;
 void *utility_data_segment_a248;
-void * DAT_180a22fa8;
+void * utility_global_data_system_config_quaternary;
 
 void *utility_function_942480;
 void *utility_data_segment_a290;
@@ -1157,12 +1157,12 @@ void *utility_function_942a20;
 void *utility_function_9429f0;
 void * utility_special_data_quaternary;
 void *utility_unknown_segment_a2bf10;
-void * DAT_180c924b0;
-void * DAT_180a2c1d0;
-void * DAT_180c924b4;
-void * DAT_180a2c338;
-void * DAT_180c924b8;
-void * DAT_180a2c510;
+void * utility_global_data_memory_pool_primary;
+void * utility_global_data_memory_pool_secondary;
+void * utility_global_data_memory_pool_tertiary;
+void * utility_global_data_memory_pool_quaternary;
+void * utility_global_data_thread_context_primary;
+void * utility_global_data_thread_context_secondary;
 void *utility_data_segment_6048;
 void *utility_data_segment_6050;
 void *utility_data_segment_6058;
@@ -1177,7 +1177,7 @@ void *utility_data_segment_64b0;
 void *utility_function_942a80;
 void * utility_special_data_quinary;
 void *utility_unknown_segment_a2ca90;
-void * DAT_180a2d590;
+void * utility_global_data_thread_context_tertiary;
 void *utility_unknown_segment_a2cab0;
 void * utility_special_data_senary;
 void * utility_special_data_septenary;
@@ -1217,7 +1217,7 @@ void *utility_unknown_segment_98bcb0;
 void *utility_function_9431a0;
 void * _tls_index;
 void *thread_local_storage_base_ptr;
-void * DAT_180c967d4;
+void * utility_global_data_resource_table_primary;
 void *utility_unknown_segment_a3e3d8;
 void * utility_context_global_offset;
 void *utility_unknown_segment_a3e3f0;
@@ -1229,39 +1229,39 @@ void * utility_context_system_offset;
 void *utility_function_943200;
 void * utility_thread_context_primary;
 void * utility_thread_context_secondary;
-void * DAT_180c0c6c0;
-void * DAT_180be14a0;
-void * DAT_180be1324;
+void * utility_global_data_resource_table_secondary;
+void * utility_global_data_file_handle_primary;
+void * utility_global_data_file_handle_secondary;
 void *utility_unknown_segment_943250;
 void *utility_unknown_segment_943260;
-void * DAT_180c0c6d0;
-void * DAT_180c0c6d8;
-void * DAT_180c0d100;
+void * utility_global_data_network_context_primary;
+void * utility_global_data_network_context_secondary;
+void * utility_global_data_security_context_primary;
 void * DAT_180c0e170;
 void * DAT_180c108d0;
-void * DAT_180c2bca0;
-void * DAT_180c31148;
+void * utility_global_data_security_context_secondary;
+void * utility_global_data_performance_counter_primary;
 void *utility_unknown_segment_943270;
 void *utility_unknown_segment_97e888;
-void * DAT_180c4ea58;
-void * DAT_180c4ea60;
+void * utility_global_data_performance_counter_secondary;
+void * utility_global_data_error_handler_primary;
 void *utility_unknown_segment_943310;
 void *utility_unknown_segment_943320;
-void * DAT_180c82841;
-void * DAT_180c82840;
-void * DAT_180c82864;
-void * DAT_180c91048;
-void * DAT_180c8ed18;
-void * DAT_180c86948;
-void * DAT_180c86870;
-void * DAT_180c82868;
+void * utility_global_data_error_handler_secondary;
+void * utility_global_data_event_system_primary;
+void * utility_global_data_event_system_secondary;
+void * utility_global_data_message_system_primary;
+void * utility_global_data_message_system_secondary;
+void * utility_global_data_timer_system_primary;
+void * utility_global_data_timer_system_secondary;
+void * utility_global_data_sync_system_primary;
 void *utility_unknown_segment_98bd40;
 void *utility_unknown_segment_98bdc8;
 void *utility_unknown_segment_9fe100;
 void *utility_unknown_segment_a21690;
 void *utility_unknown_segment_a21720;
 void *utility_data_segment_00a8;
-void * DAT_180c86928;
+void * utility_global_data_sync_system_secondary;
 void *utility_unknown_segment_98bab0;
 void *utility_unknown_segment_98bac8;
 void *utility_unknown_segment_9fd0a0;
@@ -1269,49 +1269,49 @@ void *utility_unknown_segment_a3c110;
 void *utility_unknown_segment_a3c138;
 void *utility_unknown_segment_9ff040;
 void *utility_unknown_segment_a3c090;
-void * DAT_180c8ed10;
+void * utility_global_data_lock_system_primary;
 void *utility_unknown_segment_a3c410;
 void *utility_unknown_segment_a3c428;
-void * DAT_180c8ed08;
-void * DAT_180c8ed68;
-void * DAT_180c8ed00;
-void * DAT_180c8ed50;
+void * utility_global_data_lock_system_secondary;
+void * utility_global_data_semaphore_system_primary;
+void * utility_global_data_semaphore_system_secondary;
+void * utility_global_data_mutex_system_primary;
 utility_system_status_char_t UTILITY_SYSTEM_STATUS_CHAR;
-void * DAT_180c8ed58;
-void * DAT_180c8ed48;
-void * DAT_180c8ed40;
-void * DAT_180c86940;
+void * utility_global_data_mutex_system_secondary;
+void * utility_global_data_condition_system_primary;
+void * utility_global_data_condition_system_secondary;
+void * utility_global_data_barrier_system_primary;
 void *utility_unknown_segment_98bae0;
 void *utility_unknown_segment_98bb60;
 void *utility_unknown_segment_98bb88;
 void *utility_unknown_segment_9fee70;
 void *utility_unknown_segment_9ff2f8;
 void *utility_unknown_segment_9ff3f8;
-void * DAT_180c82854;
+void * utility_global_data_barrier_system_secondary;
 void *utility_unknown_segment_98bc48;
 utility_system_flag_char_t UTILITY_SYSTEM_FLAG_CHAR;
 void *utility_unknown_segment_98bc00;
-void * DAT_180c86920;
+void * utility_global_data_atomic_system_primary;
 void *ExceptionList;
 void *utility_unknown_segment_046dd0;
 void *utility_unknown_segment_9fcb00;
-void * DAT_180c86960;
+void * utility_global_data_atomic_system_secondary;
 void *utility_data_segment_52b8;
 void *utility_data_segment_52bc;
 void *utility_data_segment_5248;
-void * DAT_180c8ed60;
+void * utility_global_data_cache_system_primary;
 void *utility_unknown_segment_047d20;
 void *utility_unknown_segment_0adc10;
 void *utility_unknown_segment_9fc790;
 void *utility_unknown_segment_9fc7a0;
 void *utility_unknown_segment_9fc7b8;
-void * DAT_1809fc7ec;
+void * utility_global_data_cache_system_secondary;
 void *utility_data_segment_5240;
 
 void *utility_function_9417e0;
-void * DAT_180d49160;
-void * DAT_180d49168;
-void * DAT_180d49170;
+void * utility_global_data_buffer_system_primary;
+void * utility_global_data_buffer_system_secondary;
+void * utility_global_data_misc_system_primary;
 void * DAT_180d49178;
 void *utility_unknown_segment_9ffb30;
 void * DAT_180a001d0;
@@ -36204,7 +36204,7 @@ void Unwind_180904fe0(void * utility_context_handle,long long utility_data_ptr)
     fclose();
     *(void **)(utility_data_ptr + 0x68) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    _utility_global_data_cache_system_primary = _utility_global_data_cache_system_primary + -1;
     UNLOCK();
   }
   return;
@@ -36235,7 +36235,7 @@ void Unwind_180905000(void * utility_context_handle,long long utility_data_ptr)
     fclose();
     *(void **)(utility_data_ptr + 0x80) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    _utility_global_data_cache_system_primary = _utility_global_data_cache_system_primary + -1;
     UNLOCK();
   }
   return;
@@ -36432,7 +36432,7 @@ void Unwind_1809050d0(void * utility_context_handle,long long utility_data_ptr)
     fclose();
     *(void **)(utility_data_ptr + 0xf0) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    _utility_global_data_cache_system_primary = _utility_global_data_cache_system_primary + -1;
     UNLOCK();
   }
   return;
@@ -37794,7 +37794,7 @@ void Unwind_1809057b0(void * utility_context_handle,long long utility_data_ptr)
       }
       utility_context_handler_process_data(utility_ptr_var + 10,&putility_stack_long_var,(ulong long)*(uint *)(utility_ptr_var + 8),
                     *(void **)(utility_ptr_var + 9),1);
-      putility_int_var = (int *)utility_context_handler_process_data(_DAT_180c8ed18,UTILITY_THREAD_TLS_CONTEXT_OFFSET,*(void **)((long long)utility_ptr_var + 0x5c));
+      putility_int_var = (int *)utility_context_handler_process_data(_utility_global_data_message_system_secondary,UTILITY_THREAD_TLS_CONTEXT_OFFSET,*(void **)((long long)utility_ptr_var + 0x5c));
       *putility_int_var = utility_int_var;
       putility_int_var[2] = 0;
       putility_int_var[3] = 0;
@@ -38211,7 +38211,7 @@ void Unwind_1809058f0(void * utility_context_handle,long long utility_data_ptr)
     fclose();
     *(void **)(utility_data_ptr + 0x148) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    _utility_global_data_cache_system_primary = _utility_global_data_cache_system_primary + -1;
     UNLOCK();
   }
   return;
@@ -38371,7 +38371,7 @@ void Unwind_180905950(void * utility_context_handle,long long utility_data_ptr)
       }
       utility_context_handler_process_data(utility_ptr_var + 10,&putility_stack_long_var,(ulong long)*(uint *)(utility_ptr_var + 8),
                     *(void **)(utility_ptr_var + 9),1);
-      putility_int_var = (int *)utility_context_handler_process_data(_DAT_180c8ed18,UTILITY_THREAD_TLS_CONTEXT_OFFSET,*(void **)((long long)utility_ptr_var + 0x5c));
+      putility_int_var = (int *)utility_context_handler_process_data(_utility_global_data_message_system_secondary,UTILITY_THREAD_TLS_CONTEXT_OFFSET,*(void **)((long long)utility_ptr_var + 0x5c));
       *putility_int_var = utility_int_var;
       putility_int_var[2] = 0;
       putility_int_var[3] = 0;
@@ -42247,7 +42247,7 @@ void Unwind_180906c00(void)
 void Unwind_180906c10(void)
 
 {
-  _DAT_180d49160 = &UTILITY_NULL_CONTEXT_ADDRESS;
+  _utility_global_data_buffer_system_primary = &UTILITY_NULL_CONTEXT_ADDRESS;
   return;
 }
 
@@ -50902,7 +50902,7 @@ void Unwind_180909540(void * utility_context_handle,long long utility_data_ptr)
     fclose();
     *(void **)(utility_data_ptr + 0x268) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    _utility_global_data_cache_system_primary = _utility_global_data_cache_system_primary + -1;
     UNLOCK();
   }
   return;
@@ -50952,7 +50952,7 @@ void Unwind_180909570(void * utility_context_handle,long long utility_data_ptr)
     fclose();
     *(void **)(utility_data_ptr + 0x2e0) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    _utility_global_data_cache_system_primary = _utility_global_data_cache_system_primary + -1;
     UNLOCK();
   }
   return;
@@ -50983,7 +50983,7 @@ void Unwind_180909590(void * utility_context_handle,long long utility_data_ptr)
     fclose();
     *(void **)(utility_data_ptr + 0x2c8) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    _utility_global_data_cache_system_primary = _utility_global_data_cache_system_primary + -1;
     UNLOCK();
   }
   return;
@@ -52309,7 +52309,7 @@ void Unwind_180909c30(void * utility_context_handle,long long utility_data_ptr)
   int utility_int_var;
   int system_status_code;
   
-  utility_int_var = *(int *)(**(long long **)(_DAT_180c82868 + 8) + 0x48);
+  utility_int_var = *(int *)(**(long long **)(_utility_global_data_sync_system_primary + 8) + 0x48);
   system_status_code = _Thrd_id();
   if (system_status_code != utility_int_var) {
     _DAT_180c9105c = *(void **)(utility_data_ptr + 0x90);
@@ -78895,7 +78895,7 @@ void utility_initialize_system(void)
 // 参数: 根据函数名推断具体参数
 
 {
-  _DAT_180d49160 = &UTILITY_NULL_CONTEXT_ADDRESS;
+  _utility_global_data_buffer_system_primary = &UTILITY_NULL_CONTEXT_ADDRESS;
   return;
 }
 
