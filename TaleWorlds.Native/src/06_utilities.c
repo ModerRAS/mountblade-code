@@ -763,13 +763,6 @@ void utility_free_system_memory_block(void)
  * 该函数用于初始化系统的线程池，确保线程能够被正确管理。
  * 
  */
-/**
- * @brief 初始化线程池 - 初始化系统线程池
- * @return 无返回值
- * 
- * 该函数负责初始化系统线程池。
- * 
- */
 void utility_initialize_thread_pool(void)
 {
   return;
