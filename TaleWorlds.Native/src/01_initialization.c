@@ -27550,7 +27550,7 @@ void system_run_maintenance_tasks(uint64_t system_config_parameter,uint64_t *sys
 
 
 
-void system_function_0582b0(uint64_t system_config_parameter,uint64_t *system_config_parameter,uint64_t system_config_parameter,uint64_t system_config_parameter)
+void system_initialize_audio_config(uint64_t system_config_parameter,uint64_t *system_config_parameter,uint64_t system_config_parameter,uint64_t system_config_parameter)
 
 {
   if (system_config_parameter == (uint64_t *)0x0) {
@@ -27573,7 +27573,7 @@ void system_function_0582b0(uint64_t system_config_parameter,uint64_t *system_co
 
 
 
-void system_function_058370(uint64_t system_config_parameter,uint64_t *system_config_parameter,uint64_t system_config_parameter,uint64_t system_config_parameter)
+void system_initialize_audio_buffer(uint64_t system_config_parameter,uint64_t *system_config_parameter,uint64_t system_config_parameter,uint64_t system_config_parameter)
 
 {
   if (system_config_parameter == (uint64_t *)0x0) {
@@ -27595,7 +27595,7 @@ void system_function_058370(uint64_t system_config_parameter,uint64_t *system_co
 
 
 
-void system_function_058420(uint64_t system_config_parameter,uint64_t *system_config_parameter,uint64_t system_config_parameter,uint64_t system_config_parameter)
+void system_initialize_audio_device(uint64_t system_config_parameter,uint64_t *system_config_parameter,uint64_t system_config_parameter,uint64_t system_config_parameter)
 
 {
   if (system_config_parameter == (uint64_t *)0x0) {
@@ -27623,7 +27623,7 @@ void system_function_058420(uint64_t system_config_parameter,uint64_t *system_co
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_function_0584e0(uint64_t *system_config_parameter,longlong system_config_parameter)
+void system_initialize_audio_stream(uint64_t *system_config_parameter,longlong system_config_parameter)
 
 {
   uint64_t *system_data_pointer;
@@ -27732,7 +27732,7 @@ void system_initialize_interrupt_handler(longlong system_config_parameter)
 
 
 
-void system_function_058710(uint64_t system_config_parameter,uint64_t *system_config_parameter,uint64_t system_config_parameter,uint64_t system_config_parameter)
+void system_initialize_audio_channel(uint64_t system_config_parameter,uint64_t *system_config_parameter,uint64_t system_config_parameter,uint64_t system_config_parameter)
 
 {
   if (system_config_parameter == (uint64_t *)0x0) {
@@ -27758,7 +27758,7 @@ void system_function_058710(uint64_t system_config_parameter,uint64_t *system_co
 
 
 
-void system_function_0587d0(uint64_t system_config_parameter,uint64_t *system_config_parameter)
+void system_initialize_audio_volume(uint64_t system_config_parameter,uint64_t *system_config_parameter)
 
 {
   if (system_config_parameter != (uint64_t *)0x0) {
@@ -27773,7 +27773,7 @@ void system_function_0587d0(uint64_t system_config_parameter,uint64_t *system_co
 
 
 
-void system_function_0587e2(uint64_t system_config_parameter)
+void system_initialize_audio_pan(uint64_t system_config_parameter)
 
 {
   uint64_t *system_register;
@@ -27787,7 +27787,7 @@ void system_function_0587e2(uint64_t system_config_parameter)
 
 
 
-void system_function_058826(void)
+void system_initialize_audio_mixer(void)
 
 {
   return;
@@ -27796,7 +27796,7 @@ void system_function_058826(void)
 
 
 
-void system_function_058830(uint64_t system_config_parameter,longlong system_config_parameter)
+void system_initialize_audio_filter(uint64_t system_config_parameter,longlong system_config_parameter)
 
 {
   if (*(longlong *)(system_config_parameter + SYSTEM_AUDIO_TABLE_OFFSET) != 0) {
@@ -27823,7 +27823,7 @@ void system_function_058830(uint64_t system_config_parameter,longlong system_con
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_function_0588c0(longlong *system_config_parameter,longlong system_config_parameter,longlong system_config_parameter)
+void system_initialize_audio_effect(longlong *system_config_parameter,longlong system_config_parameter,longlong system_config_parameter)
 
 {
   uint64_t *system_data_pointer;
@@ -27892,7 +27892,7 @@ void system_function_0588c0(longlong *system_config_parameter,longlong system_co
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_function_0588fc(longlong system_config_parameter)
+void system_initialize_audio_spatial(longlong system_config_parameter)
 
 {
   uint64_t *system_data_pointer;
@@ -27940,7 +27940,7 @@ void system_function_0588fc(longlong system_config_parameter)
 
 
 
-void system_function_05892b(void)
+void system_initialize_audio_dsp(void)
 
 {
   uint64_t *system_data_pointer;
@@ -27980,7 +27980,7 @@ void system_function_05892b(void)
 
 
 
-void system_function_05895a(void)
+void system_initialize_audio_codec(void)
 
 {
   longlong system_long_value;
@@ -28013,7 +28013,7 @@ void system_function_05895a(void)
 
 
 
-void system_function_0589a3(longlong system_config_parameter,uint64_t system_config_parameter,longlong system_config_parameter)
+void system_initialize_audio_resampler(longlong system_config_parameter,uint64_t system_config_parameter,longlong system_config_parameter)
 
 {
   uint64_t *system_data_pointer;
@@ -28047,7 +28047,7 @@ void system_function_0589a3(longlong system_config_parameter,uint64_t system_con
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_function_058a20(longlong *system_config_parameter,longlong system_config_parameter,longlong system_config_parameter,longlong system_config_parameter)
+void system_initialize_audio_compressor(longlong *system_config_parameter,longlong system_config_parameter,longlong system_config_parameter,longlong system_config_parameter)
 
 {
   uint64_t system_uint_value;
@@ -28113,7 +28113,7 @@ void system_function_058a20(longlong *system_config_parameter,longlong system_co
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_function_058a31(longlong *system_config_parameter,longlong system_config_parameter,longlong system_config_parameter,longlong system_config_parameter)
+void system_initialize_audio_equalizer(longlong *system_config_parameter,longlong system_config_parameter,longlong system_config_parameter,longlong system_config_parameter)
 
 {
   uint64_t system_uint_value;
