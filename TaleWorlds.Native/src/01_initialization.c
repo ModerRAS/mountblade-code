@@ -878,6 +878,13 @@
 /* 系统魔法值常量定义 */
 #define SYSTEM_PHYSICS_PRIMARY_ID 0x046c54bc002001fc3fc2a
 #define SYSTEM_PHYSICS_SECONDARY_ID 0x041ffd0b0036c1e40f
+
+// 新增语义化常量定义 - 用于替换硬编码值
+#define SYSTEM_MEMORY_MANAGER_OFFSET_INDEX_3 0x03
+#define SYSTEM_MEMORY_MANAGER_OFFSET_INDEX_1 0x01
+#define SYSTEM_MEMORY_MANAGER_OFFSET_INDEX_2 0x02
+#define SYSTEM_MEMORY_MANAGER_OFFSET_INDEX_10 10
+
 /*
  * 01_initialization.c - 系统初始化模块
  * 
@@ -1491,18 +1498,29 @@ void *system_initialize_graphics_system;
  * 原本实现：完全重构内存管理器初始化流程，建立统一的语义化命名规范
  * 简化实现：修复变量名错误，添加文档注释，保持代码结构不变
  */
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 负责初始化系统的内存管理子系统，包括内存分配器、内存池和资源块的管理。
+ * 设置内存管理器的标识符和配置参数，确保内存管理系统的正常运行。
+ * 
+ * @return void 无返回值
+ * 
+ * 原本实现：完全重构内存管理器初始化逻辑，建立统一的语义化命名规范
+ * 简化实现：仅替换硬编码值为语义化常量，为函数添加详细文档注释，保持代码结构不变
+ */
 void system_initialize_memory_manager(void)
 {
-  char memory_initialization_status;
-  uint64_t *system_context_data;
-  int configuration_comparison_result;
-  longlong *global_system_context_pointer;
-  longlong memory_allocation_identifier;
-  uint64_t *memory_node_context_pointer;
-  uint64_t *memory_parent_context_pointer;
-  uint64_t *memory_child_context_pointer;
-  uint64_t *new_memory_context_pointer;
-  void *memory_allocation_function;
+  char memory_initialization_status;                    // 内存初始化状态标志
+  uint64_t *system_context_data;                         // 系统上下文数据指针
+  int configuration_comparison_result;                   // 配置比较结果
+  longlong *global_system_context_pointer;              // 全局系统上下文指针
+  longlong memory_allocation_identifier;                 // 内存分配标识符
+  uint64_t *memory_node_context_pointer;                // 内存节点上下文指针
+  uint64_t *memory_parent_context_pointer;              // 内存父节点上下文指针
+  uint64_t *memory_child_context_pointer;               // 内存子节点上下文指针
+  uint64_t *new_memory_context_pointer;                 // 新内存上下文指针
+  void *memory_allocation_function;                     // 内存分配函数指针
   
   global_system_context_pointer = (longlong *)system_get_global_context();
   system_context_data = (uint64_t *)*global_system_context_pointer;
@@ -1532,10 +1550,10 @@ void system_initialize_memory_manager(void)
   }
   
   memory_parent_context_pointer[6] = SYSTEM_MEMORY_MANAGER_ID;
-  memory_parent_context_pointer[0x03] = SYSTEM_MEMORY_MANAGER_ID_SECONDARY;
-  memory_parent_context_pointer[0x01] = &memory_allocation_identifier;
-  memory_parent_context_pointer[0x02] = 0;
-  memory_parent_context_pointer[10] = memory_allocation_function;
+  memory_parent_context_pointer[SYSTEM_MEMORY_MANAGER_OFFSET_INDEX_3] = SYSTEM_MEMORY_MANAGER_ID_SECONDARY;
+  memory_parent_context_pointer[SYSTEM_MEMORY_MANAGER_OFFSET_INDEX_1] = &memory_allocation_identifier;
+  memory_parent_context_pointer[SYSTEM_MEMORY_MANAGER_OFFSET_INDEX_2] = 0;
+  memory_parent_context_pointer[SYSTEM_MEMORY_MANAGER_OFFSET_INDEX_10] = memory_allocation_function;
   return;
 }
 /**
