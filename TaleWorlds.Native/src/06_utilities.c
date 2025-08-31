@@ -47,12 +47,6 @@
 #define UTILITY_CHECK_FLAG_E0 0xE0                                // 检查标志E0
 #define UTILITY_CHECK_FLAG_F0 0xF0                                // 检查标志F0
 
-// 新增语义化偏移量常量
-#define UTILITY_OFFSET_LIST_HANDLE 0x4                           // 列表句柄偏移量
-#define UTILITY_OFFSET_STRUCT_ONE 0x8                             // 结构体偏移量1
-#define UTILITY_OFFSET_PTR_CHECKSUM 0xC                           // 校验和指针偏移量
-#define UTILITY_OFFSET_SECONDARY_BYTE 0x10                        // 次要字节偏移量
-
 // 内存操作常量
 #define UTILITY_MEMORY_OFFSET_NEGATIVE -1                          // 内存偏移量负值
 #define UTILITY_MEMORY_NEGATIVE_OFFSET -1                          // 内存负偏移量
