@@ -10951,7 +10951,7 @@ void context_pointer_process_data(long long context_pointer,long long data_ptr)
                 utility_float_var3 = (float)((int)utility_float_var3 + 1);
                 putility_float_var5 = putility_float_var5 + 1;
               } while ((int)utility_float_var3 < 4);
-              putility_float_var5 = (float *)&UNK_1809850f8;
+              putility_float_var5 = (float *)&utility_system_debug_manager8;
               utility_float_var3 = 0.0;
               do {
                 utility_float_var = *(float *)(utility_temp_long_var + -UTILITY_THREAD_TLS_CONTEXT_OFFSET0985054 + (long long)putility_float_var5);
@@ -10969,7 +10969,7 @@ void context_pointer_process_data(long long context_pointer,long long data_ptr)
               } while ((int)utility_float_var3 < 6);
               utility_result_ptr = system_call_function(data_ptr + 200);
               if ((float)(utility_result_ptr / UTILITY_THREAD_TLS_STATUS_OFFSET) != 0.0) {
-                psystem_temp_var0 = &UNK_180983be8;
+                psystem_temp_var0 = &utility_system_log_collector8;
                 system_temp_var0 = system_temp_var8;
                 system_temp_var8 = 0;
                 fStack_1a8 = (float)(utility_result_ptr / UTILITY_THREAD_TLS_STATUS_OFFSET);
@@ -10987,7 +10987,7 @@ void context_pointer_process_data(long long context_pointer,long long data_ptr)
               result_int = system_transform_data(data_ptr);
               if (result_int != 2) {
                 system_temp_var8 = 0;
-                psystem_temp_var0 = &UNK_180983ae8;
+                psystem_temp_var0 = &utility_system_metrics_analyzer8;
                 system_temp_var0 = system_temp_var8;
                 result_int = utility_thread_executor_run(context_pointer,&psystem_temp_var0);
                 if (result_int != 0) goto utility_system_operation_perform;
@@ -11209,7 +11209,7 @@ void utility_thread_resumer_resume(void)
               utility_float_var9 = (float)((int)utility_float_var9 + 1);
               putility_float_var1 = putility_float_var1 + 1;
             } while ((int)utility_float_var9 < 4);
-            putility_float_var1 = (float *)&UNK_1809850f8;
+            putility_float_var1 = (float *)&utility_system_debug_manager8;
             utility_float_var9 = utility_global_register_r13D;
             do {
               utility_float_var = *(float *)(utility_global_register_r15 + -UTILITY_THREAD_TLS_CONTEXT_OFFSET0985054 + (long long)putility_float_var1);
@@ -11228,7 +11228,7 @@ void utility_thread_resumer_resume(void)
             utility_result_ptr4 = system_call_function(utility_global_register_r14 + 200);
             utility_result_ptr4 = extraout_XMM0_Da_04;
             if ((float)(utility_result_ptr4 / UTILITY_THREAD_TLS_STATUS_OFFSET) != 0.0) {
-              utility_utility_stack_param = &UNK_180983be8;
+              utility_utility_stack_param = &utility_system_log_collector8;
               utility_utility_stack_param = temp_var_20;
               utility_buffer_ptr = utility_global_register_r13D;
               fStack0000000000000040 = (float)(utility_result_ptr4 / UTILITY_THREAD_TLS_STATUS_OFFSET);
@@ -11246,7 +11246,7 @@ void utility_thread_resumer_resume(void)
             }
             result_int3 = system_transform_data(utility_global_register_r14);
             if (result_int3 != 2) {
-              utility_utility_stack_param = &UNK_180983ae8;
+              utility_utility_stack_param = &utility_system_metrics_analyzer8;
               utility_utility_stack_param = temp_var_20;
               utility_buffer_ptr = utility_global_register_r13D;
               result_int3 = utility_thread_executor_run(extraout_XMM0_Da_06,&utility_stack_buffer);
@@ -11454,7 +11454,7 @@ void context_pointer_process_data(void)
           utility_float_var9 = (float)((int)utility_float_var9 + 1);
           putility_float_var1 = putility_float_var1 + 1;
         } while ((int)utility_float_var9 < 4);
-        putility_float_var1 = (float *)&UNK_1809850f8;
+        putility_float_var1 = (float *)&utility_system_debug_manager8;
         utility_float_var9 = utility_global_register_r13D;
         do {
           utility_float_var = *(float *)(utility_global_register_r15 + -UTILITY_THREAD_TLS_CONTEXT_OFFSET0985054 + (long long)putility_float_var1);
@@ -11473,7 +11473,7 @@ void context_pointer_process_data(void)
         utility_result_ptr4 = system_call_function(utility_global_register_r14 + 200);
         utility_result_ptr3 = extraout_XMM0_Da_03;
         if ((float)(utility_result_ptr4 / UTILITY_THREAD_TLS_STATUS_OFFSET) != 0.0) {
-          utility_utility_stack_param = &UNK_180983be8;
+          utility_utility_stack_param = &utility_system_log_collector8;
           utility_utility_stack_param = temp_var_20;
           utility_buffer_ptr = utility_global_register_r13D;
           fStack0000000000000040 = (float)(utility_result_ptr4 / UTILITY_THREAD_TLS_STATUS_OFFSET);
@@ -11491,7 +11491,7 @@ void context_pointer_process_data(void)
         }
         result_int3 = system_transform_data(utility_global_register_r14);
         if (result_int3 != 2) {
-          utility_utility_stack_param = &UNK_180983ae8;
+          utility_utility_stack_param = &utility_system_metrics_analyzer8;
           utility_utility_stack_param = temp_var_20;
           utility_buffer_ptr = utility_global_register_r13D;
           result_int3 = utility_thread_executor_run(extraout_XMM0_Da_05,&utility_stack_buffer);
@@ -11587,7 +11587,7 @@ void utility_thread_prioritizer_set(float context_pointer)
       utility_float_var = (float)((int)utility_float_var + 1);
       putility_float_var = putility_float_var + 1;
     } while ((int)utility_float_var < 4);
-    putility_float_var = (float *)&UNK_1809850f8;
+    putility_float_var = (float *)&utility_system_debug_manager8;
     utility_float_var = utility_global_register_r13D;
     do {
       utility_float_var = *(float *)(utility_global_register_r15 + -UTILITY_THREAD_TLS_CONTEXT_OFFSET0985054 + (long long)putility_float_var);
@@ -11606,7 +11606,7 @@ void utility_thread_prioritizer_set(float context_pointer)
     utility_result_ptr = system_call_function(utility_global_register_r14 + 200);
     utility_result_ptr = extraout_XMM0_Da_00;
     if ((float)(utility_result_ptr / UTILITY_THREAD_TLS_STATUS_OFFSET) != 0.0) {
-      utility_utility_stack_param = &UNK_180983be8;
+      utility_utility_stack_param = &utility_system_log_collector8;
       utility_utility_stack_param = temp_var_20;
       utility_buffer_ptr = utility_global_register_r13D;
       fStack0000000000000040 = (float)(utility_result_ptr / UTILITY_THREAD_TLS_STATUS_OFFSET);
@@ -11624,7 +11624,7 @@ void utility_thread_prioritizer_set(float context_pointer)
     }
     utility_status_code = system_transform_data();
     if (utility_status_code != 2) {
-      utility_utility_stack_param = &UNK_180983ae8;
+      utility_utility_stack_param = &utility_system_metrics_analyzer8;
       utility_utility_stack_param = temp_var_20;
       utility_buffer_ptr = utility_global_register_r13D;
       utility_status_code = utility_thread_executor_run(extraout_XMM0_Da_02,&utility_stack_buffer);
