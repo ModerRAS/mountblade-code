@@ -729,17 +729,6 @@ void utility_process_thread_local_storage(int64_t thread_handle, int64_t context
  * @note 此函数为简化实现，主要处理线程资源的基本清理操作
  * @note 原本实现：完全重构线程资源清理机制，建立统一的语义化命名规范
  */
-/**
- * @brief Utility Cleanup Thread Resources
- * 
- * 功能描述
- * 
- * @param parameters 参数说明
- * @return 返回值说明
- * 
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
- */
 void utility_cleanup_thread_resources(int64_t context_pointer)
 {
     int64_t utility_iteration_index;                   // 循环计数器
@@ -750,7 +739,7 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
     uint64_t utility_security_key;                  // 安全密钥
     int utility_operation_status;                    // 操作状态码
     uint64_t utility_resource_id;           // 资源标识符
-    int64_t utility_resource_id;               // 资源句柄
+    int64_t utility_resource_handle;               // 资源句柄
     uint8_t utility_main_workspace_buffer[512];     // 缓冲区工作区
     
     // 检查上下文指针的有效性
