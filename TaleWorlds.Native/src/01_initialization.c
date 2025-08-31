@@ -13394,7 +13394,7 @@ void system_reset_barrier_instance(void)
     return;
   }
   system_int_value = system_query_graphics_status(0);
-  _system_data_memory_pool0c3114001 = 0x010010be606001;
+  system_engine_address = 0x010010be606001;
   if (system_int_value != 0) {
     _system_data_memory_pool0c3114001 = 0x010010be600030;
   }
@@ -13426,7 +13426,7 @@ void system_wait_on_barrier(void)
   int system_int_value;
   
   system_int_value = system_query_graphics_status(0);
-  _system_data_memory_pool0c4ea5001 = 0x010010bebac001;
+  system_graphics_address = 0x010010bebac001;
   if (system_int_value != 0) {
     _system_data_memory_pool0c4ea5001 = 0x010010bebad001;
   }
@@ -13450,7 +13450,7 @@ void system_signal_barrier(void)
     return;
   }
   system_int_value = system_query_graphics_status(0);
-  _system_data_memory_pool0c4ea60 = 0x010010bebaf0;
+  system_render_address = 0x010010bebaf0;
   if (system_int_value != 0) {
     _system_data_memory_pool0c4ea60 = 0x010010bebb50;
   }

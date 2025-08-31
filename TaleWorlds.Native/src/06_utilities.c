@@ -1029,7 +1029,7 @@ uint64_t utility_create_thread(int64_t utility_context_pointer)
 float utility_float_param_secondary;
     uint8_t utility_resource_context_data_status [16];
 int64_t utility_stack_pointer;
-    utility_status = utility_handle_service_request;(*(uint32_t *)(utility_context_pointer + UTILITY_STATUS_THREAD_CREATED),&utility_stack_pointer);
+    utility_status = utility_handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_STATUS_THREAD_CREATED),&utility_stack_pointer);
     if ((int)utility_status != UTILITY_STATUS_FALSE) {
     return utility_status;
 }
@@ -1150,7 +1150,7 @@ utility_loop_counter = 0;
     int64_t utility_stack_pointer;
     uint64_t utility_status_code;
     
-    utility_status = utility_handle_service_request;(*(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET), &utility_stack_pointer);
+    utility_status = utility_handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET), &utility_stack_pointer);
     if ((int)utility_status == UTILITY_STATUS_FALSE) {
         utility_status_code = UTILITY_STATUS_FALSE;
         utility_resource_context_data_status = utility_stack_pointer - UTILITY_MEMORY_POINTER_OFFSET;
@@ -1224,7 +1224,7 @@ utility_loop_counter = 0;
     uint64_t utility_status;
     int64_t utility_stack_pointer;
     
-    utility_status = utility_handle_service_request;(
+    utility_status = utility_handle_service_request(
         *(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET),
         &utility_stack_pointer);
     
@@ -1749,7 +1749,7 @@ long long utility_parameter_data;
     uint32_t utility_stack_data_buffer [2];
 int64_t utility_stack_long_context;
     int stack_int_count;
-    utility_status = utility_handle_service_request;(*(uint32_t *)(utility_context_pointer + UTILITY_CONTEXT_RESOURCE_OFFSET),&utility_parameter_data);
+    utility_status = utility_handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_CONTEXT_RESOURCE_OFFSET),&utility_parameter_data);
     if ((int)utility_status == UTILITY_STATUS_FALSE) {
 stack_int_count = *(int *)(utility_context_pointer + UTILITY_THREAD_CONTEXT_OFFSET);
     if ((0 < stack_int_count) && (*(uint *)(utility_context_pointer + UTILITY_STATUS_THREAD_CREATED) < 2)) {
