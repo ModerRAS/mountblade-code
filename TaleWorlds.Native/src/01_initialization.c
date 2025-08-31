@@ -20021,7 +20021,7 @@ void system_init_with_full_params(system_uint64_t system_context_param,system_ui
   longlong system_memory_allocation_result1;
   ulonglong system_ulong_result;
   longlong system_memory_allocation_result_primary_pointer;
-  char *system_char_pointer_primary4;
+  char *system_char_pointer_primary_extended;
   void* *psystem_ulong_primary5;
   uint system_ulong_primary6;
   int system_operation_status_code;
@@ -20113,11 +20113,11 @@ void system_init_with_full_params(system_uint64_t system_context_param,system_ui
         system_memory_allocation_result1 = system_memory_allocation_result1 + 1;
         system_character_buffer = system_stack_char_buffer_pointer[system_memory_allocation_result1];
       }
-      system_char_pointer_primary4 = "";
+      system_char_pointer_primary_extended = "";
       if (system_stack_char_buffer_pointer != (char *)system_init_value_null) {
-        system_char_pointer_primary4 = system_stack_char_buffer_pointer;
+        system_char_pointer_primary_extended = system_stack_char_buffer_pointer;
       }
-      system_process_service(system_ptr_pool,&system_global_context,system_char_pointer_primary4);
+      system_process_service(system_ptr_pool,&system_global_context,system_char_pointer_primary_extended);
       system_double_primary = *(double *)(system_memory_allocation_result_primary_pointer +  + system_init_flag_primary);
       system_double_temp = (double)*(uint *)(system_memory_allocation_result_primary_pointer +  + system_init_flag_primary);
       if (system_double_temp != 0.0) {
@@ -20243,11 +20243,11 @@ void system_init_with_full_params(system_uint64_t system_context_param,system_ui
           system_calculation_temp = system_calculation_temp + 1;
           system_character_buffer = system_stack_char_pointer_a0[system_calculation_temp];
         }
-        system_char_pointer_primary4 = "";
+        system_char_pointer_primary_extended = "";
         if (system_stack_char_pointer_a0 != (char *)system_init_value_null) {
-          system_char_pointer_primary4 = system_stack_char_pointer_a0;
+          system_char_pointer_primary_extended = system_stack_char_pointer_a0;
         }
-        system_process_service(system_ptr_pool,&system_global_context,system_char_pointer_primary4,*(system_uint64_t *)(system_memory_allocation_result1 + ));
+        system_process_service(system_ptr_pool,&system_global_context,system_char_pointer_primary_extended,*(system_uint64_t *)(system_memory_allocation_result1 + ));
         psystem_stack_uint_a8 = &system_global_context;
         if (system_stack_char_pointer_a0 != (char *)system_init_value_null) {
                     // WARNING: Subroutine does not return
@@ -20280,16 +20280,16 @@ void system_init_with_full_params(system_uint64_t system_context_param,system_ui
     do {
       system_calculation_temp = _g_physics_world;
       system_memory_allocation_result_primary_pointer = 0;
-      system_char_pointer_primary4 = *(char **)(_g_physics_world + INIT_SIZE_MEMORY_CHUNK + system_memory_allocation_result1);
-      system_character_buffer = *system_char_pointer_primary4;
+      system_char_pointer_primary_extended = *(char **)(_g_physics_world + INIT_SIZE_MEMORY_CHUNK + system_memory_allocation_result1);
+      system_character_buffer = *system_char_pointer_primary_extended;
       while (system_character_buffer != '\0') {
-        system_function_result = strchr(&system_initialized,(int)system_char_pointer_primary4[system_memory_allocation_result_primary_pointer]);
+        system_function_result = strchr(&system_initialized,(int)system_char_pointer_primary_extended[system_memory_allocation_result_primary_pointer]);
         if (system_function_result != 0) {
           *(system_uint8_t *)(system_memory_allocation_result_primary_pointer + *(longlong *)(system_calculation_temp + INIT_SIZE_MEMORY_CHUNK + system_memory_allocation_result1)) = SYSTEM_INIT_VALUE_STRING_TERMINATOR;
         }
         system_memory_allocation_result_primary_pointer = system_memory_allocation_result_primary_pointer + 1;
-        system_char_pointer_primary4 = *(char **)(system_calculation_temp + INIT_SIZE_MEMORY_CHUNK + system_memory_allocation_result1);
-        system_character_buffer = system_char_pointer_primary4[system_memory_allocation_result_primary_pointer];
+        system_char_pointer_primary_extended = *(char **)(system_calculation_temp + INIT_SIZE_MEMORY_CHUNK + system_memory_allocation_result1);
+        system_character_buffer = system_char_pointer_primary_extended[system_memory_allocation_result_primary_pointer];
       }
       memory_pointer = *(void* **)(_g_physics_world + INIT_SIZE_MEMORY_CHUNK + system_memory_allocation_result1);
       psystem_ulong_primary5 = &system_initialized;
@@ -56744,7 +56744,7 @@ return;
   longlong system_register_rbx_input;
   longlong system_memory_allocation_result2;
   ulonglong system_ulong_primary_extended;
-  char *system_char_pointer_primary4;
+  char *system_char_pointer_primary_extended;
   uint *psystem_ulong_primary5;
   int system_initialization_loop_counter_primary;
   uint system_config_primary;
@@ -56868,7 +56868,7 @@ return;
           system_uint_secondary = (ulonglong)(system_config_primary >> );
           system_uint_temp_secondary = (ulonglong)(system_char_result + -1 + system_config_primary >> );
           if (system_uint_secondary <= system_uint_temp_secondary) {
-            system_char_pointer_primary4 = (char *)((longlong)psystem_ulong_primary5 + system_uint_secondary + INIT_SIZE_COMPARE8);
+            system_char_pointer_primary_extended = (char *)((longlong)psystem_ulong_primary5 + system_uint_secondary + INIT_SIZE_COMPARE8);
             system_memory_allocation_result2 = (system_uint_temp_secondary - system_uint_secondary) + 1;
             system_uint_ptr_secondary = psystem_ulong_primary5 + system_uint_secondary * 2 + 2;
             do {
@@ -56892,16 +56892,16 @@ return;
                     system_execute_operation();
                   }
                   do {
-                  } while (*system_char_pointer_primary4 != '\0');
+                  } while (*system_char_pointer_primary_extended != '\0');
                 }
               }
               else {
                 do {
-                } while (*system_char_pointer_primary4 != '\0');
+                } while (*system_char_pointer_primary_extended != '\0');
               }
               system_uint_secondary = (ulonglong)(status_code9 + 1);
               system_uint_ptr_secondary = system_uint_ptr_secondary + 2;
-              system_char_pointer_primary4 = system_char_pointer_primary4 + 1;
+              system_char_pointer_primary_extended = system_char_pointer_primary_extended + 1;
               system_memory_allocation_result2 = system_memory_allocation_result2 + -1;
             } while (system_memory_allocation_result2 != 0);
           }
