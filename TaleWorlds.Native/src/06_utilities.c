@@ -1024,56 +1024,37 @@ undefined DAT_180bfa350;
 undefined DAT_180bfa358;
 undefined DAT_180bfa360;
 undefined DAT_180bfa368;
-undefined DAT_180bfa3e8;
-undefined DAT_180bfa3f0;
-undefined DAT_180bfa3f8;
-undefined DAT_180bfa400;
-undefined DAT_180bfa480;
-undefined DAT_180bfa488;
-undefined DAT_180bfa490;
-undefined DAT_180bfa498;
-undefined DAT_180bfa518;
-undefined DAT_180bfa520;
-undefined DAT_180bfa528;
-undefined DAT_180bfa530;
-undefined DAT_180bfa5b0;
-undefined DAT_180bfa5b8;
-undefined DAT_180bfa5c0;
-undefined DAT_180bfa5c8;
-undefined DAT_180bfa648;
-undefined DAT_180bfa650;
-undefined DAT_180bfa658;
-undefined DAT_180bfa660;
-undefined DAT_180bfa6e0;
-undefined DAT_180bfa6e8;
-undefined DAT_180bfa6f0;
-undefined DAT_180bfa6f8;
-undefined UNK_180942600;
-undefined UNK_180a0f168;
-undefined UNK_180a0f178;
-undefined UNK_180a0f188;
-undefined UNK_180a0f190;
-undefined UNK_180a0f5b8;
-undefined UNK_180a24c50;
-undefined UNK_180a24c60;
-undefined DAT_180bfa780;
-undefined DAT_180bfa788;
-undefined DAT_180bfa790;
-undefined DAT_180bfa798;
-undefined DAT_180bfa818;
-undefined DAT_180bfa820;
-undefined DAT_180bfa828;
-undefined DAT_180bfa830;
-undefined DAT_180bfa8b0;
-undefined DAT_180bfa8b8;
-undefined DAT_180bfa8c0;
-undefined DAT_180bfa8c8;
-undefined DAT_180bfa948;
-undefined DAT_180bfa950;
-undefined DAT_180bfa958;
-undefined DAT_180bfa960;
-undefined DAT_180bfa9e0;
-undefined DAT_180bfa9e8;
+// 工具系统数据段定义 - 语义化命名
+void *utility_data_segment_primary;        // 主要数据段
+void *utility_data_segment_secondary;      // 次要数据段
+void *utility_data_segment_tertiary;       // 第三数据段
+void *utility_data_segment_quaternary;     // 第四数据段
+void *utility_data_segment_primary_ext;     // 主要数据段扩展
+void *utility_data_segment_secondary_ext;   // 次要数据段扩展
+void *utility_data_segment_tertiary_ext;    // 第三数据段扩展
+void *utility_data_segment_quaternary_ext;  // 第四数据段扩展
+
+// 工具系统未知数据段 - 待进一步分析
+void *utility_unknown_data_segment_600;    // 未知数据段1
+void *utility_unknown_data_segment_168;    // 未知数据段2
+void *utility_unknown_data_segment_178;    // 未知数据段3
+void *utility_unknown_data_segment_188;    // 未知数据段4
+void *utility_unknown_data_segment_190;    // 未知数据段5
+void *utility_unknown_data_segment_5b8;    // 未知数据段6
+void *utility_unknown_data_segment_c50;    // 未知数据段7
+void *utility_unknown_data_segment_c60;    // 未知数据段8
+
+// 工具系统配置数据段
+void *utility_config_data_primary;         // 主要配置数据段
+void *utility_config_data_secondary;       // 次要配置数据段
+void *utility_config_data_tertiary;        // 第三配置数据段
+void *utility_config_data_quaternary;      // 第四配置数据段
+void *utility_config_data_primary_ext;     // 主要配置数据段扩展
+void *utility_config_data_secondary_ext;   // 次要配置数据段扩展
+void *utility_config_data_tertiary_ext;    // 第三配置数据段扩展
+void *utility_config_data_quaternary_ext;  // 第四配置数据段扩展
+void *utility_config_data_tertiary_ext2;   // 第三配置数据段扩展2
+void *utility_config_data_quaternary_ext2; // 第四配置数据段扩展2
 undefined DAT_180bfa9f0;
 undefined DAT_180bfa9f8;
 undefined DAT_180bfaa78;
