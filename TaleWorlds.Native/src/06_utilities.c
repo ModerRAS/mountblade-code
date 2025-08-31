@@ -378,22 +378,6 @@ void utility_process_thread_local_storage(int64_t thread_handle, int64_t context
         if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
             // 处理资源计数器大于0的情况
             if (0 < utility_resource_count) {
-                utility_iteration_counter = UTILITY_BOOLEAN_FALSE;
-                do {
-                    // 获取资源句柄
-                    utility_resource_handle = *(uint64_t *)(utility_buffer_data_pointer + utility_iteration_counter);
-                    
-                    // 初始化上下文管理器
-                    utility_operation_status = utility_context_init(utility_resource_handle);
-                    if (utility_operation_status != 2) {
-                        // 激活上下文管理器
-                        utility_activate_context(utility_resource_handle, 1);
-                    }
-                    
-                    utility_processed_count = utility_process_count + 1;
-                    utility_iteration_counter = utility_iteration_counter + UTILITY_POINTER_OFFSET;
-                } while (utility_process_count < utility_resource_count);
-            }
             // 清理缓冲区管理器
             utility_buffer_cleanup(&utility_buffer_data_pointer);
         }

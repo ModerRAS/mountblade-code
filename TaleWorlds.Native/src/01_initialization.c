@@ -26612,7 +26612,7 @@ void system_function_058f00(uint64_t param1,uint64_t *param1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_function_059000(longlong *param1)
+void system_cleanup_audio_resources(longlong *param1)
 
 {
   uint64_t *******ppppppsystem_uint_ptr;
@@ -27205,7 +27205,7 @@ void system_function_0591c0(longlong *param1)
 
 
 
-void system_function_059230(longlong param1,uint64_t param1,uint64_t param1,uint64_t param1)
+void system_process_audio_configuration(longlong param1,uint64_t param1,uint64_t param1,uint64_t param1)
 
 {
   system_initialize_virtual_memory(param1,*(uint64_t *)(param1 + SYSTEM_CONFIG_DATA_SIZE_16),param1,param1,SYSTEM_INVALID_HANDLE);
@@ -27311,7 +27311,7 @@ longlong system_map_shared_memory(longlong param1,longlong param1,longlong param
 
 
 
-void system_function_059350(longlong param1,longlong param1,uint64_t param1)
+void system_validate_audio_parameters(longlong param1,longlong param1,uint64_t param1)
 
 {
   if (param1 != param1) {
@@ -27324,7 +27324,7 @@ void system_function_059350(longlong param1,longlong param1,uint64_t param1)
 
 
 
-void system_function_059380(uint64_t *param1)
+void system_initialize_audio_context(uint64_t *param1)
 
 {
   if (param1[4] != 0) {
@@ -27422,7 +27422,7 @@ void system_function_0595c0(uint64_t *param1)
 
 
 
-void system_function_059620(longlong *param1)
+void system_release_audio_memory(longlong *param1)
 
 {
   longlong system_audio_long_value;
@@ -27442,7 +27442,7 @@ void system_function_059620(longlong *param1)
 
 
 
-void system_function_059640(longlong *param1)
+void system_reset_audio_device(longlong *param1)
 
 {
   longlong system_audio_long_value;
@@ -27487,7 +27487,7 @@ void system_initialize_thread_scheduler(uint64_t *param1)
 
 
 
-void system_function_059730(longlong param1)
+void system_configure_audio_stream(longlong param1)
 
 {
   if (*(longlong *)(param1 + 8) != 0) {
