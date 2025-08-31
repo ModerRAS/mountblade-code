@@ -25661,7 +25661,7 @@ void utility_unwind_tls_flag_clear_bit23_offset1c8(void * utility_context_pointe
   long long context_handle;
   
   context_handle = *(long long *)(utility_data_ptr + 0x70);
-  *(void **)(context_handle + UTILITY_THREAD_TLS_DATA_OFFSET) = &UNK_180a3cf50;
+  *(void **)(context_handle + UTILITY_THREAD_TLS_DATA_OFFSET) = &utility_system_cache_manager0;
   if (*(char *)(context_handle + 0xd1) != '\0') {
     utility_context_pointerr_process_data();
   }
@@ -25692,7 +25692,7 @@ void utility_unwind_sync_manager_primary(void * utility_context_pointer,long lon
   long long context_handle;
   
   context_handle = *(long long *)(utility_data_ptr + 0x70);
-  *(void **)(context_handle + 0xd8) = &UNK_180a3cf50;
+  *(void **)(context_handle + 0xd8) = &utility_system_cache_manager0;
   if (*(char *)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET9) != '\0') {
     utility_context_pointerr_process_data();
   }
@@ -25723,7 +25723,7 @@ void utility_unwind_tls_flag_clear_bit24(void * utility_context_pointer,long lon
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x78);
-  *process_data_ptr = &UNK_180a3cf50;
+  *process_data_ptr = &utility_system_cache_manager0;
   if (*(char *)((long long)process_data_ptr + 0xb1) != '\0') {
     utility_context_pointerr_process_data();
   }
@@ -27587,7 +27587,7 @@ void utility_unwind_tls_flag_clear_bit23_secondary(void * utility_context_pointe
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x38);
   utility_result_ptr = UTILITY_CLEANUP_FLAG;
-  *process_data_ptr = &UNK_180a10098;
+  *process_data_ptr = &utility_system_scheduler8;
   utility_temp_char_var = utility_context_pointerr_process_data(process_data_ptr,1,utility_param,utility_param,UTILITY_CLEANUP_FLAG);
   while (utility_temp_char_var != '\0') {
     utility_temp_char_var = utility_context_pointerr_process_data(process_data_ptr,1,utility_param,utility_param,utility_result_ptr);
@@ -35628,7 +35628,7 @@ void Unwind_180904ab0(void * utility_context_pointer,long long utility_data_ptr,
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x160);
   utility_result_ptr = UTILITY_CLEANUP_FLAG;
-  *process_data_ptr = &UNK_180a10098;
+  *process_data_ptr = &utility_system_scheduler8;
   utility_temp_char_var = utility_context_pointerr_process_data(process_data_ptr,1,utility_param,utility_param,UTILITY_CLEANUP_FLAG);
   while (utility_temp_char_var != '\0') {
     utility_temp_char_var = utility_context_pointerr_process_data(process_data_ptr,1,utility_param,utility_param,utility_result_ptr);
@@ -35694,7 +35694,7 @@ void Unwind_180904af0(void * utility_context_pointer,long long utility_data_ptr,
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x50);
   utility_result_ptr = UTILITY_CLEANUP_FLAG;
-  *process_data_ptr = &UNK_180a10098;
+  *process_data_ptr = &utility_system_scheduler8;
   utility_temp_char_var = utility_context_pointerr_process_data(process_data_ptr,1,utility_param,utility_param,UTILITY_CLEANUP_FLAG);
   while (utility_temp_char_var != '\0') {
     utility_temp_char_var = utility_context_pointerr_process_data(process_data_ptr,1,utility_param,utility_param,utility_result_ptr);
@@ -35905,7 +35905,7 @@ void Unwind_180904dd0(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x40);
-  *process_data_ptr = &UNK_180a3cf50;
+  *process_data_ptr = &utility_system_cache_manager0;
   if (*(char *)((long long)process_data_ptr + 0xb1) != '\0') {
     utility_context_pointerr_process_data();
   }
@@ -36030,7 +36030,7 @@ void Unwind_180904e40(void * utility_context_pointer,long long utility_data_ptr,
   
   process_data_ptr = *(void ***)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET);
   utility_result_ptr = UTILITY_CLEANUP_FLAG;
-  *process_data_ptr = &UNK_180a10098;
+  *process_data_ptr = &utility_system_scheduler8;
   utility_temp_char_var = utility_context_pointerr_process_data(process_data_ptr,1,utility_param,utility_param,UTILITY_CLEANUP_FLAG);
   while (utility_temp_char_var != '\0') {
     utility_temp_char_var = utility_context_pointerr_process_data(process_data_ptr,1,utility_param,utility_param,utility_result_ptr);
