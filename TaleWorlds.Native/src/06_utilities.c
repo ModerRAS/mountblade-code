@@ -27567,7 +27567,7 @@ void utility_unwind_tls_flag_clear_bit22_secondary(void * utility_context_pointe
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x38);
-  *process_data_ptr = &UNK_1809fcb90;
+  *process_data_ptr = &utility_system_data_collector0;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
   *process_data_ptr = &utility_system_buffer_manager8;
@@ -38924,7 +38924,7 @@ void Unwind_180905b00(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x50);
-  *process_data_ptr = &UNK_1809fcb90;
+  *process_data_ptr = &utility_system_data_collector0;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
   *process_data_ptr = &utility_system_buffer_manager8;
@@ -40119,7 +40119,7 @@ void Unwind_180905f90(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x70);
-  *process_data_ptr = &UNK_1809fcb90;
+  *process_data_ptr = &utility_system_data_collector0;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
   *process_data_ptr = &utility_system_buffer_manager8;
@@ -52396,7 +52396,7 @@ void Unwind_180909b70(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x28);
-  *process_data_ptr = &UNK_1809fcb90;
+  *process_data_ptr = &utility_system_data_collector0;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
   *process_data_ptr = &utility_system_buffer_manager8;
@@ -69358,7 +69358,7 @@ void Unwind_18090fa20(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x130);
-  *process_data_ptr = &UNK_1809fcb90;
+  *process_data_ptr = &utility_system_data_collector0;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
   *process_data_ptr = &utility_system_buffer_manager8;
