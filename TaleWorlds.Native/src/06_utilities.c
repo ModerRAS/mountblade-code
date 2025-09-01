@@ -9883,7 +9883,13 @@ LAB_180894aca:
 
 
 
- ExecuteSecurityFinalization(void)
+ /**
+ * @brief 执行安全操作终结
+ * 
+ * 该函数负责执行安全操作的终结处理
+ * 清理安全上下文并释放相关资源
+ */
+ExecuteSecurityFinalization(void)
 
 {
   ulonglong in_stack_000000a8;
@@ -9897,8 +9903,17 @@ LAB_180894aca:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- 4b00(longlong param_1,uint8_t4 *param_2,longlong *param_3)
-4b00(longlong param_1,uint8_t4 *param_2,longlong *param_3)
+ /**
+ * @brief 处理资源索引操作
+ * 
+ * 该函数负责处理资源索引的相关操作
+ * 包括资源的查找、验证和索引管理
+ * 
+ * @param resource_handle 资源句柄，用于标识要操作的资源
+ * @param resource_data 资源数据指针，包含资源的具体信息
+ * @param resource_index 资源索引指针，用于返回资源索引信息
+ */
+ProcessResourceIndexOperation(longlong resource_handle, uint8_t4 *resource_data, longlong *resource_index)
 
 {
   longlong *plVar1;

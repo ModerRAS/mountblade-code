@@ -998,16 +998,16 @@ void InitializeSystemCoreConfig(void)
 void InitializeSystemMemoryPool(void)
 
 {
-  char systemNodeFlag;
-  void** systemDataTable;
-  int memoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
-  void** systemCurrentNode;
-  void** systemNextNode;
-  void** systemPreviousNode;
-  uint64_t systemInitializationFlag;
+  char SystemNodeFlag;
+  void** SystemDataTable;
+  int MemoryCompareResult;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
+  void** SystemCurrentNode;
+  void** SystemNextNode;
+  void** SystemPreviousNode;
+  uint64_t SystemInitializationFlag;
   
   systemDataTable = (long long *)GetSystemRootPointer();
   systemRootNode = (void* *)*systemDataTable;
