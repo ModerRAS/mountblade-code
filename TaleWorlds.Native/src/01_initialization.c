@@ -614,7 +614,7 @@ void* SystemConfigDataPointerSeptenary;        // SystemConfigDataPointerG
 void* SystemConfigDataPointerH;  // SystemConfigDataPointerH
 void* SystemResourceTemplate;  // SystemResourceTemplate
 void* SystemDebugFlag;  // DAT_180bf0101
-void* SystemStringBuffer;  // DAT_180c84870
+void* SystemStringBuffer;  // SystemStringBuffer
 void* SystemNodeLinkPointerPrimary;        // 系统节点链接指针主表
 void* SystemNodeLinkPointerSecondary;        // 系统节点链接指针次表
 void* SystemRootNodePointer;         // 系统根节点指针
@@ -1940,15 +1940,15 @@ void InitializeSystemStringHandler(void)
 {
   uint64_t SystemStringParameter;
   void* StringProcessCallbackPointer;
-  uint8_t* stringDataBufferPointer;
-  uint32_t stringBufferSize;
-  uint8_t stringDataBuffer [136];
+  uint8_t* StringDataBufferPointer;
+  uint32_t StringBufferSize;
+  uint8_t StringDataBuffer [136];
   
   StringProcessCallbackPointer = &SystemStringProcessorNode;
-  stringDataBufferPointer = stringDataBuffer;
-  stringDataBuffer[0] = 0;
-  stringBufferSize = 7;
-  strcpy_s(stringDataBuffer,0x80,&SystemStringProcessorTemplate,SystemStringParameter,0xfffffffffffffffe);
+  StringDataBufferPointer = StringDataBuffer;
+  StringDataBuffer[0] = 0;
+  StringBufferSize = 7;
+  strcpy_s(StringDataBuffer,0x80,&SystemStringProcessorTemplate,SystemStringParameter,0xfffffffffffffffe);
   SystemStringProcessorHandle = InitializeStringProcessorCallback(&StringProcessCallbackPointer);
   return;
 }
@@ -2090,32 +2090,32 @@ void InitializeSystemConfigurationNode(void)
   SystemTablePointer = (long long*)GetSystemRootPointer();
   SystemRootPointer = (void* *)*SystemTablePointer;
   NodeFlag = *(char*)((long long)SystemRootPointer[1] + 0x19);
-  initializationFlag = 0;
-  previousNode = SystemRootPointer;
-  currentNode = (void* *)SystemRootPointer[1];
+  InitializationFlag = 0;
+  PreviousNode = SystemRootPointer;
+  CurrentNode = (void* *)SystemRootPointer[1];
   while (NodeFlag == '\0') {
-    comparisonResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateJ,0x10);
-    if (comparisonResult < 0) {
-      nextNode = (void* *)currentNode[2];
-      currentNode = previousNode;
+    ComparisonResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    if (ComparisonResult < 0) {
+      NextNode = (void* *)CurrentNode[2];
+      CurrentNode = PreviousNode;
     }
     else {
-      nextNode = (void* *)*currentNode;
+      NextNode = (void* *)*CurrentNode;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    NodeFlag = *(char*)((long long)nextNode + 0x19);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    NodeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((previousNode == SystemRootPointer) || (comparisonResult = memcmp(&SystemDataComparisonTemplateJ,previousNode + 4,0x10), comparisonResult < 0)) {
+  if ((PreviousNode == SystemRootPointer) || (ComparisonResult = memcmp(&SystemDataComparisonTemplateJ,PreviousNode + 4,0x10), ComparisonResult < 0)) {
     allocationSize = GetSystemMemorySize(SystemTablePointer);
-    AllocateSystemMemory(SystemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
-    previousNode = allocatedNode;
+    AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,allocationSize + 0x20,allocationSize);
+    PreviousNode = AllocatedNode;
   }
-  previousNode[6] = 0x4b2d79e470ee4e2c;
-  previousNode[7] = 0x9c552acd3ed5548d;
-  previousNode[8] = &SystemDataNodeG;
-  previousNode[9] = 0;
-  previousNode[10] = initializationFlag;
+  PreviousNode[6] = 0x4b2d79e470ee4e2c;
+  PreviousNode[7] = 0x9c552acd3ed5548d;
+  PreviousNode[8] = &SystemDataNodeG;
+  PreviousNode[9] = 0;
+  PreviousNode[10] = InitializationFlag;
   return;
 }
 
@@ -2134,7 +2134,7 @@ void InitializeSystemResourceNode(void)
 {
   char NodeFlag;
   void** SystemRootPointer;
-  int comparisonResult;
+  int ComparisonResult;
   long long *SystemTablePointer;
   long long allocationSize;
   void** CurrentNode;
@@ -2146,32 +2146,32 @@ void InitializeSystemResourceNode(void)
   SystemTablePointer = (long long*)GetSystemRootPointer();
   SystemRootPointer = (void* *)*SystemTablePointer;
   NodeFlag = *(char*)((long long)SystemRootPointer[1] + 0x19);
-  initializationCallback = GetSystemInitializationCallbackB;
-  previousNode = SystemRootPointer;
-  currentNode = (void* *)SystemRootPointer[1];
+  InitializationCallback = GetSystemInitializationCallbackB;
+  PreviousNode = SystemRootPointer;
+  CurrentNode = (void* *)SystemRootPointer[1];
   while (NodeFlag == '\0') {
-    comparisonResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateK,0x10);
-    if (comparisonResult < 0) {
-      nextNode = (void* *)currentNode[2];
-      currentNode = previousNode;
+    ComparisonResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    if (ComparisonResult < 0) {
+      NextNode = (void* *)CurrentNode[2];
+      CurrentNode = PreviousNode;
     }
     else {
-      nextNode = (void* *)*currentNode;
+      NextNode = (void* *)*CurrentNode;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    NodeFlag = *(char*)((long long)nextNode + 0x19);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    NodeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((previousNode == SystemRootPointer) || (comparisonResult = memcmp(&SystemDataComparisonTemplateK,previousNode + 4,0x10), comparisonResult < 0)) {
+  if ((PreviousNode == SystemRootPointer) || (ComparisonResult = memcmp(&SystemDataComparisonTemplateK,PreviousNode + 4,0x10), ComparisonResult < 0)) {
     allocationSize = GetSystemMemorySize(SystemTablePointer);
-    AllocateSystemMemory(SystemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
-    previousNode = allocatedNode;
+    AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,allocationSize + 0x20,allocationSize);
+    PreviousNode = AllocatedNode;
   }
-  previousNode[6] = 0x49086ba08ab981a7;
-  previousNode[7] = 0xa9191d34ad910696;
-  previousNode[8] = &SystemDataNodeH;
-  previousNode[9] = 0;
-  previousNode[10] = initializationCallback;
+  PreviousNode[6] = 0x49086ba08ab981a7;
+  PreviousNode[7] = 0xa9191d34ad910696;
+  PreviousNode[8] = &SystemDataNodeH;
+  PreviousNode[9] = 0;
+  PreviousNode[10] = InitializationCallback;
   return;
 }
 
@@ -2190,44 +2190,44 @@ void InitializeSystemMemoryNode(void)
 {
   char NodeFlag;
   void** SystemRootPointer;
-  int comparisonResult;
+  int ComparisonResult;
   long long *SystemTablePointer;
   long long allocationSize;
   void** CurrentNode;
   void** PreviousNode;
   void** NextNode;
   void** AllocatedNode;
-  void* initializationFlag;
+  void* InitializationFlag;
   
   SystemTablePointer = (long long*)GetSystemRootPointer();
   SystemRootPointer = (void* *)*SystemTablePointer;
   NodeFlag = *(char*)((long long)SystemRootPointer[1] + 0x19);
-  initializationFlag = 0;
-  previousNode = SystemRootPointer;
-  currentNode = (void* *)SystemRootPointer[1];
+  InitializationFlag = 0;
+  PreviousNode = SystemRootPointer;
+  CurrentNode = (void* *)SystemRootPointer[1];
   while (NodeFlag == '\0') {
-    comparisonResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateL,0x10);
-    if (comparisonResult < 0) {
-      nextNode = (void* *)currentNode[2];
-      currentNode = previousNode;
+    ComparisonResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    if (ComparisonResult < 0) {
+      NextNode = (void* *)CurrentNode[2];
+      CurrentNode = PreviousNode;
     }
     else {
-      nextNode = (void* *)*currentNode;
+      NextNode = (void* *)*CurrentNode;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    NodeFlag = *(char*)((long long)nextNode + 0x19);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    NodeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((previousNode == SystemRootPointer) || (comparisonResult = memcmp(&SystemDataComparisonTemplateL,previousNode + 4,0x10), comparisonResult < 0)) {
+  if ((PreviousNode == SystemRootPointer) || (ComparisonResult = memcmp(&SystemDataComparisonTemplateL,PreviousNode + 4,0x10), ComparisonResult < 0)) {
     allocationSize = GetSystemMemorySize(SystemTablePointer);
-    AllocateSystemMemory(SystemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
-    previousNode = allocatedNode;
+    AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,allocationSize + 0x20,allocationSize);
+    PreviousNode = AllocatedNode;
   }
-  previousNode[6] = 0x402feffe4481676e;
-  previousNode[7] = 0xd4c2151109de93a0;
-  previousNode[8] = &SystemDataNodeI;
-  previousNode[9] = 0;
-  previousNode[10] = initializationFlag;
+  PreviousNode[6] = 0x402feffe4481676e;
+  PreviousNode[7] = 0xd4c2151109de93a0;
+  PreviousNode[8] = &SystemDataNodeI;
+  PreviousNode[9] = 0;
+  PreviousNode[10] = InitializationFlag;
   return;
 }
 
@@ -2252,38 +2252,38 @@ void InitializeSystemDataTableStructureA(void)
   void** CurrentNode;
   void** PreviousNode;
   void** NextNode;
-  void* *newNodePointer;
+  void* *NewNodePointer;
   void** SystemDataReference;
   
   SystemRootPointer = (long long*)GetSystemRootPointer();
-  dataTablePointer = (void* *)*SystemRootPointer;
-  DataTypeFlag = *(char*)((long long)dataTablePointer[1] + 0x19);
+  DataTablePointer = (void* *)*SystemRootPointer;
+  DataTypeFlag = *(char*)((long long)DataTablePointer[1] + 0x19);
   systemDataReference = &SystemDataNodeJ;
-  previousNode = dataTablePointer;
-  currentNode = (void* *)dataTablePointer[1];
+  PreviousNode = DataTablePointer;
+  CurrentNode = (void* *)DataTablePointer[1];
   while (DataTypeFlag == '\0') {
-    MemoryCompareResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateM,0x10);
+    MemoryCompareResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
-      nextNode = (void* *)currentNode[2];
-      currentNode = previousNode;
+      NextNode = (void* *)CurrentNode[2];
+      CurrentNode = PreviousNode;
     }
     else {
-      nextNode = (void* *)*currentNode;
+      NextNode = (void* *)*CurrentNode;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    DataTypeFlag = *(char*)((long long)nextNode + 0x19);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    DataTypeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((previousNode == dataTablePointer) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,previousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((PreviousNode == DataTablePointer) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     allocationSize = GetSystemMemorySize(SystemRootPointer);
-    AllocateSystemMemory(SystemRootPointer,&newNodePointer,previousNode,allocationSize + 0x20,allocationSize);
-    previousNode = newNodePointer;
+    AllocateSystemMemory(SystemRootPointer,&NewNodePointer,PreviousNode,allocationSize + 0x20,allocationSize);
+    PreviousNode = NewNodePointer;
   }
-  previousNode[6] = 0x4384dcc4b6d3f417;
-  previousNode[7] = 0x92a15d52fe2679bd;
-  previousNode[8] = &SystemDataNodeK;
-  previousNode[9] = 0;
-  previousNode[10] = systemDataReference;
+  PreviousNode[6] = 0x4384dcc4b6d3f417;
+  PreviousNode[7] = 0x92a15d52fe2679bd;
+  PreviousNode[8] = &SystemDataNodeK;
+  PreviousNode[9] = 0;
+  PreviousNode[10] = systemDataReference;
   return;
 }
 
@@ -2301,45 +2301,45 @@ void InitializeSystemDataTableStructureB(void)
 
 {
   char DataTypeFlag;
-  void** dataTablePointer;
+  void** DataTablePointer;
   int MemoryCompareResult;
   long long* SystemRootPointer;
   long long allocationSize;
-  void** currentNode;
-  void** previousNode;
-  void** nextNode;
-  void** newNodePointer;
-  void* initializationFlag;
+  void** CurrentNode;
+  void** PreviousNode;
+  void** NextNode;
+  void** NewNodePointer;
+  void* InitializationFlag;
   
   SystemRootPointer = (long long*)GetSystemRootPointer();
-  dataTablePointer = (void**)*SystemRootPointer;
-  DataTypeFlag = *(char*)((long long)dataTablePointer[1] + 0x19);
-  initializationFlag = 0;
-  previousNode = dataTablePointer;
-  currentNode = (void**)dataTablePointer[1];
+  DataTablePointer = (void**)*SystemRootPointer;
+  DataTypeFlag = *(char*)((long long)DataTablePointer[1] + 0x19);
+  InitializationFlag = 0;
+  PreviousNode = DataTablePointer;
+  CurrentNode = (void**)DataTablePointer[1];
   while (DataTypeFlag == '\0') {
-    MemoryCompareResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateN,0x10);
+    MemoryCompareResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
-      nextNode = (void**)currentNode[2];
-      currentNode = previousNode;
+      NextNode = (void**)CurrentNode[2];
+      CurrentNode = PreviousNode;
     }
     else {
-      nextNode = (void**)*currentNode;
+      NextNode = (void**)*CurrentNode;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    DataTypeFlag = *(char*)((long long)nextNode + 0x19);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    DataTypeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((previousNode == dataTablePointer) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,previousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((PreviousNode == DataTablePointer) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     allocationSize = GetSystemMemorySize(SystemRootPointer);
-    AllocateSystemMemory(SystemRootPointer,&newNodePointer,previousNode,allocationSize + 0x20,allocationSize);
-    previousNode = newNodePointer;
+    AllocateSystemMemory(SystemRootPointer,&NewNodePointer,PreviousNode,allocationSize + 0x20,allocationSize);
+    PreviousNode = NewNodePointer;
   }
-  previousNode[6] = 0x4140994454d56503;
-  previousNode[7] = 0x399eced9bb5517ad;
-  previousNode[8] = &SystemDataNodeL;
-  previousNode[9] = 0;
-  previousNode[10] = initializationFlag;
+  PreviousNode[6] = 0x4140994454d56503;
+  PreviousNode[7] = 0x399eced9bb5517ad;
+  PreviousNode[8] = &SystemDataNodeL;
+  PreviousNode[9] = 0;
+  PreviousNode[10] = InitializationFlag;
   return;
 }
 
@@ -2772,15 +2772,15 @@ void InitializeSystemStringProcessor(void)
 {
   uint64_t SystemStringParameter;
   void* StringProcessCallbackPointer;
-  uint8_t* stringDataBufferPointer;
-  uint32_t stringBufferSize;
-  uint8_t stringDataBuffer [136];
+  uint8_t* StringDataBufferPointer;
+  uint32_t StringBufferSize;
+  uint8_t StringDataBuffer [136];
   
   StringProcessCallbackPointer = &SystemStringProcessorNode;
-  stringDataBufferPointer = stringDataBuffer;
-  stringDataBuffer[0] = 0;
-  stringBufferSize = 0xb;
-  strcpy_s(stringDataBuffer,0x80,&SystemStringProcessorTemplate,SystemStringParameter,0xfffffffffffffffe);
+  StringDataBufferPointer = StringDataBuffer;
+  StringDataBuffer[0] = 0;
+  StringBufferSize = 0xb;
+  strcpy_s(StringDataBuffer,0x80,&SystemStringProcessorTemplate,SystemStringParameter,0xfffffffffffffffe);
   SystemStringProcessorHandle = InitializeStringProcessorCallback(&StringProcessCallbackPointer);
   return;
 }
@@ -2858,7 +2858,7 @@ void InitializeSystemDataStructure(void)
 {
   char NodeFlag;
   void** SystemRootPointer;
-  int comparisonResult;
+  int ComparisonResult;
   long long *SystemTablePointer;
   long long allocationSize;
   void** CurrentNode;
@@ -2871,31 +2871,31 @@ void InitializeSystemDataStructure(void)
   SystemRootPointer = (void* *)*SystemTablePointer;
   NodeFlag = *(char*)((long long)SystemRootPointer[1] + 0x19);
   initializationFunction = (void* *)SystemInitializationCallbackA;
-  previousNode = SystemRootPointer;
-  currentNode = (void* *)SystemRootPointer[1];
+  PreviousNode = SystemRootPointer;
+  CurrentNode = (void* *)SystemRootPointer[1];
   while (NodeFlag == '\0') {
-    comparisonResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateI,0x10);
-    if (comparisonResult < 0) {
-      nextNode = (void* *)currentNode[2];
-      currentNode = previousNode;
+    ComparisonResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    if (ComparisonResult < 0) {
+      NextNode = (void* *)CurrentNode[2];
+      CurrentNode = PreviousNode;
     }
     else {
-      nextNode = (void* *)*currentNode;
+      NextNode = (void* *)*CurrentNode;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    NodeFlag = *(char*)((long long)nextNode + 0x19);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    NodeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((previousNode == SystemRootPointer) || (comparisonResult = memcmp(&SystemDataComparisonTemplateI,previousNode + 4,0x10), comparisonResult < 0)) {
+  if ((PreviousNode == SystemRootPointer) || (ComparisonResult = memcmp(&SystemDataComparisonTemplateI,PreviousNode + 4,0x10), ComparisonResult < 0)) {
     allocationSize = GetSystemMemorySize(SystemTablePointer);
-    AllocateSystemMemory(SystemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
-    previousNode = allocatedNode;
+    AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,allocationSize + 0x20,allocationSize);
+    PreviousNode = AllocatedNode;
   }
-  previousNode[6] = 0x431d7c8d7c475be2;
-  previousNode[7] = 0xb97f048d2153e1b0;
-  previousNode[8] = &SystemDataNodeF;
-  previousNode[9] = 4;
-  previousNode[10] = initializationFunction;
+  PreviousNode[6] = 0x431d7c8d7c475be2;
+  PreviousNode[7] = 0xb97f048d2153e1b0;
+  PreviousNode[8] = &SystemDataNodeF;
+  PreviousNode[9] = 4;
+  PreviousNode[10] = initializationFunction;
   return;
 }
 
@@ -4587,33 +4587,33 @@ void InitializeSystemEventManager(void)
   rootNode = (void* *)*dataTable;
   NodeFlag = *(char*)((long long)rootNode[1] + 0x19);
   eventCallbackPointer = SystemEventCallback;
-  previousNode = rootNode;
-  currentNode = (void* *)rootNode[1];
+  PreviousNode = rootNode;
+  CurrentNode = (void* *)rootNode[1];
   while (NodeFlag == '\0') {
-    MemoryCompareResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateD,0x10);
+    MemoryCompareResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
     if (MemoryCompareResult < 0) {
-      nextNode = (void* *)currentNode[2];
-      currentNode = previousNode;
+      NextNode = (void* *)CurrentNode[2];
+      CurrentNode = PreviousNode;
     }
     else {
-      nextNode = (void* *)*currentNode;
+      NextNode = (void* *)*CurrentNode;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    NodeFlag = *(char*)((long long)nextNode + 0x19);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    NodeFlag = *(char*)((long long)NextNode + 0x19);
   }
   if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     long long MemoryAllocationSize;
     void** SystemAllocatedNode;
     MemoryAllocationSize = GetSystemMemorySize(dataTable);
-    AllocateSystemMemory(dataTable,&SystemAllocatedNode,previousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
-    previousNode = SystemAllocatedNode;
+    AllocateSystemMemory(dataTable,&SystemAllocatedNode,PreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    PreviousNode = SystemAllocatedNode;
   }
-  previousNode[6] = 0x406be72011d07d37;
-  previousNode[7] = 0x71876af946c867ab;
-  previousNode[8] = &SystemDataNodeTertiaryRoot;
-  previousNode[9] = 0;
-  previousNode[10] = eventCallbackPointer;
+  PreviousNode[6] = 0x406be72011d07d37;
+  PreviousNode[7] = 0x71876af946c867ab;
+  PreviousNode[8] = &SystemDataNodeTertiaryRoot;
+  PreviousNode[9] = 0;
+  PreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4646,33 +4646,33 @@ void InitializeSystemNetworkManager(void)
   rootNode = (void* *)*dataTable;
   NodeFlag = *(char*)((long long)rootNode[1] + 0x19);
   networkCallbackPointer = SystemNetworkCallback;
-  previousNode = rootNode;
-  currentNode = (void* *)rootNode[1];
+  PreviousNode = rootNode;
+  CurrentNode = (void* *)rootNode[1];
   while (NodeFlag == '\0') {
-    MemoryCompareResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateG,0x10);
+    MemoryCompareResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
     if (MemoryCompareResult < 0) {
-      nextNode = (void* *)currentNode[2];
-      currentNode = previousNode;
+      NextNode = (void* *)CurrentNode[2];
+      CurrentNode = PreviousNode;
     }
     else {
-      nextNode = (void* *)*currentNode;
+      NextNode = (void* *)*CurrentNode;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    NodeFlag = *(char*)((long long)nextNode + 0x19);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    NodeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((previousNode == rootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,previousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((PreviousNode == rootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     long long MemoryAllocationSize;
     void** AllocatedNode;
     MemoryAllocationSize = GetSystemMemorySize(dataTable);
-    AllocateSystemMemory(dataTable,&allocatedNode,previousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
-    previousNode = allocatedNode;
+    AllocateSystemMemory(dataTable,&AllocatedNode,PreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    PreviousNode = AllocatedNode;
   }
-  previousNode[6] = 0x40afa5469b6ac06d;
-  previousNode[7] = 0x2f4bab01d34055a5;
-  previousNode[8] = &SystemDataNodeQuaternaryRoot;
-  previousNode[9] = 3;
-  previousNode[10] = networkCallbackPointer;
+  PreviousNode[6] = 0x40afa5469b6ac06d;
+  PreviousNode[7] = 0x2f4bab01d34055a5;
+  PreviousNode[8] = &SystemDataNodeQuaternaryRoot;
+  PreviousNode[9] = 3;
+  PreviousNode[10] = networkCallbackPointer;
   return;
 }
 
@@ -4705,33 +4705,33 @@ void InitializeSystemConfigurationManager(void)
   rootNode = (void* *)*dataTable;
   NodeFlag = *(char*)((long long)rootNode[1] + 0x19);
   initializationFunction = GetSystemConfigurationManagerFunction;
-  previousNode = rootNode;
-  currentNode = (void* *)rootNode[1];
+  PreviousNode = rootNode;
+  CurrentNode = (void* *)rootNode[1];
   while (NodeFlag == '\0') {
-    MemoryCompareResult = memcmp(currentNode + 4,&CONFIGURATION_MANAGER_ID,0x10);
+    MemoryCompareResult = memcmp(CurrentNode + 4,&CONFIGURATION_MANAGER_ID,0x10);
     if (MemoryCompareResult < 0) {
-      nextNode = (void* *)currentNode[2];
-      currentNode = previousNode;
+      NextNode = (void* *)CurrentNode[2];
+      CurrentNode = PreviousNode;
     }
     else {
-      nextNode = (void* *)*currentNode;
+      NextNode = (void* *)*CurrentNode;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    NodeFlag = *(char*)((long long)nextNode + 0x19);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    NodeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((previousNode == rootNode) || (MemoryCompareResult = memcmp(&CONFIGURATION_MANAGER_ID,previousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((PreviousNode == rootNode) || (MemoryCompareResult = memcmp(&CONFIGURATION_MANAGER_ID,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     long long MemoryAllocationSize;
     void** AllocatedNode;
     MemoryAllocationSize = GetSystemMemorySize(dataTable);
-    AllocateSystemMemory(dataTable,&allocatedNode,previousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
-    previousNode = allocatedNode;
+    AllocateSystemMemory(dataTable,&AllocatedNode,PreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    PreviousNode = AllocatedNode;
   }
-  previousNode[6] = 0x406be72011d07d37;
-  previousNode[7] = 0x71876af946c867ab;
-  previousNode[8] = &ConfigurationManagerNodeData;
-  previousNode[9] = 0;
-  previousNode[10] = initializationFunction;
+  PreviousNode[6] = 0x406be72011d07d37;
+  PreviousNode[7] = 0x71876af946c867ab;
+  PreviousNode[8] = &ConfigurationManagerNodeData;
+  PreviousNode[9] = 0;
+  PreviousNode[10] = initializationFunction;
   return;
 }
 
@@ -4764,33 +4764,33 @@ void InitializeSystemResourceManager(void)
   rootNode = (void* *)*dataTable;
   NodeFlag = *(char*)((long long)rootNode[1] + 0x19);
   initializationFunction = GetSystemResourceManagerFunction;
-  previousNode = rootNode;
-  currentNode = (void* *)rootNode[1];
+  PreviousNode = rootNode;
+  CurrentNode = (void* *)rootNode[1];
   while (NodeFlag == '\0') {
-    MemoryCompareResult = memcmp(currentNode + 4,&RESOURCE_MANAGER_ID,0x10);
+    MemoryCompareResult = memcmp(CurrentNode + 4,&RESOURCE_MANAGER_ID,0x10);
     if (MemoryCompareResult < 0) {
-      nextNode = (void* *)currentNode[2];
-      currentNode = previousNode;
+      NextNode = (void* *)CurrentNode[2];
+      CurrentNode = PreviousNode;
     }
     else {
-      nextNode = (void* *)*currentNode;
+      NextNode = (void* *)*CurrentNode;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    NodeFlag = *(char*)((long long)nextNode + 0x19);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    NodeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((previousNode == rootNode) || (MemoryCompareResult = memcmp(&RESOURCE_MANAGER_ID,previousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((PreviousNode == rootNode) || (MemoryCompareResult = memcmp(&RESOURCE_MANAGER_ID,PreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     long long MemoryAllocationSize;
     void** AllocatedNode;
     MemoryAllocationSize = GetSystemMemorySize(dataTable);
-    AllocateSystemMemory(dataTable,&allocatedNode,previousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
-    previousNode = allocatedNode;
+    AllocateSystemMemory(dataTable,&AllocatedNode,PreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    PreviousNode = AllocatedNode;
   }
-  previousNode[6] = 0x40afa5469b6ac06d;
-  previousNode[7] = 0x2f4bab01d34055a5;
-  previousNode[8] = &ResourceManagerNodeData;
-  previousNode[9] = 3;
-  previousNode[10] = initializationFunction;
+  PreviousNode[6] = 0x40afa5469b6ac06d;
+  PreviousNode[7] = 0x2f4bab01d34055a5;
+  PreviousNode[8] = &ResourceManagerNodeData;
+  PreviousNode[9] = 3;
+  PreviousNode[10] = initializationFunction;
   return;
 }
 
@@ -18488,11 +18488,11 @@ LAB_180044db8:
  * 线程管理器和时间相关功能。
  * 
  * @param systemContext 系统上下文参数
- * @param initializationFlag 初始化标志
+ * @param InitializationFlag 初始化标志
  * 
  * @note 这是系统初始化过程中的重要组成部分，确保调试功能的正常运行
  */
-void InitializeSystemDebugSymbolManager(void* systemContext,long long initializationFlag)
+void InitializeSystemDebugSymbolManager(void* systemContext,long long InitializationFlag)
 
 {
   long long **symbolTablePointer;
@@ -18825,8 +18825,8 @@ uint32_t FinalSystemInitialization(void)
     SystemInitializationFlag = (long long ****)0x0;
     WaitForSingleObject(SystemSemaphoreHandle,0xffffffff);
     do {
-      iVar5 = ReleaseSemaphore(SystemSemaphoreHandle,1);
-    } while (iVar5 == 0);
+      systemValue = ReleaseSemaphore(SystemSemaphoreHandle,1);
+    } while (systemValue == 0);
     unsignedSystemValue12 = __acrt_iob_func(1);
     fflush(unsignedSystemValue12);
     unsignedSystemValue12 = __acrt_iob_func(2);
@@ -18999,17 +18999,17 @@ void FinalizeSystemInitialization(void)
  * 并根据清理标志决定是否释放相关内存资源
  * 
  * @param systemPointerPool 系统指针池指针
- * @param initializationFlags 初始化标志，用于控制内存清理行为
+ * @param InitializationFlags 初始化标志，用于控制内存清理行为
  * @param reservedParam3 保留参数3
  * @param reservedParam4 保留参数4
  * @return 返回系统指针池指针
  */
 void* *
-InitializeSystemPointerPool(void* *systemPointerPool,ulong long initializationFlags,void* reservedParam3,void* reservedParam4)
+InitializeSystemPointerPool(void* *systemPointerPool,ulong long InitializationFlags,void* reservedParam3,void* reservedParam4)
 
 {
   *systemPointerPool = &SystemMemoryAllocatorReference;
-  if ((initializationFlags & 1) != 0) {
+  if ((InitializationFlags & 1) != 0) {
     free(systemPointerPool,0x1018,reservedParam3,reservedParam4,0xfffffffffffffffe);
   }
   return systemPointerPool;
@@ -19832,7 +19832,7 @@ int InitializeSystemCoreComponents(long long SystemResourcePointer,long long par
   long long localSystemHandle;
   void* *pointerToUnsigned3;
   long long localBufferAddress;
-  int iVar5;
+  int systemValue;
   long long localSystemFlags;
   long long localDataPointer;
   ulong long unsignedSystemValue8;
@@ -19953,14 +19953,14 @@ LAB_1800469fd:
   *(void* *****)(SystemResourcePointer + 0x10) = ppppunsignedSystemValue9;
   *(long long *)(SystemResourcePointer + 0x18) = localDataPointer * 0x100 + localSystemHandle;
 LAB_180046a90:
-  iVar5 = (int)((ulong long)((long long)ppppunsignedSystemValue9 - *(long long *)(SystemResourcePointer + 8)) >> 8) + -1;
-  *(int *)(SystemResourcePointer + 0x68) = iVar5;
+  systemValue = (int)((ulong long)((long long)ppppunsignedSystemValue9 - *(long long *)(SystemResourcePointer + 8)) >> 8) + -1;
+  *(int *)(SystemResourcePointer + 0x68) = systemValue;
   pppuStackX_8 = &pppuStack_68;
   InitializeAndCleanupSystemMemoryAllocator(&pppuStack_68,uStack_58);
   pppuStackX_8 = (void* ***)&puStack_138;
   puStack_138 = (void* *)&SystemGlobalDataReference;
   if (lStack_130 == 0) {
-    return iVar5;
+    return systemValue;
   }
                     // WARNING: Subroutine does not return
   SystemCleanupFunction();
@@ -19991,10 +19991,10 @@ ulong long CompareSystemDataBlocks(long long SystemResourcePointer,long long par
 
 {
   byte *pbVar1;
-  int iVar2;
+  int systemResult;
   long long localResourceOffset;
   byte *pbVar4;
-  int iVar5;
+  int systemValue;
   int iVar6;
   ulong long unsignedSystemValue7;
   long long localMemoryAddress;
@@ -20005,22 +20005,22 @@ ulong long CompareSystemDataBlocks(long long SystemResourcePointer,long long par
   unsignedSystemValue10 = (ulong long)*(int *)(SystemResourcePointer + 0x68);
   localResourceOffset = *(long long *)(SystemResourcePointer + 8);
   if (unsignedSystemValue10 < (ulong long)(*(long long *)(SystemResourcePointer + 0x10) - localResourceOffset >> 8)) {
-    iVar5 = *(int *)(param_2 + 0x10);
-    iVar2 = *(int *)(unsignedSystemValue10 * 0x100 + 0x10 + localResourceOffset);
-    if (iVar2 == iVar5) {
-      if (iVar2 != 0) {
+    systemValue = *(int *)(param_2 + 0x10);
+    systemResult = *(int *)(unsignedSystemValue10 * 0x100 + 0x10 + localResourceOffset);
+    if (systemResult == systemValue) {
+      if (systemResult != 0) {
         pbVar4 = *(byte **)(unsignedSystemValue10 * 0x100 + 8 + localResourceOffset);
         localMemoryAddress = *(long long *)(param_2 + 8) - (long long)pbVar4;
         do {
           pbVar1 = pbVar4 + localMemoryAddress;
-          iVar5 = (uint)*pbVar4 - (uint)*pbVar1;
-          if (iVar5 != 0) break;
+          systemValue = (uint)*pbVar4 - (uint)*pbVar1;
+          if (systemValue != 0) break;
           pbVar4 = pbVar4 + 1;
         } while (*pbVar1 != 0);
       }
     }
-    else if (iVar2 != 0) goto LAB_180046c03;
-    if (iVar5 == 0) {
+    else if (systemResult != 0) goto LAB_180046c03;
+    if (systemValue == 0) {
 LAB_180046c90:
       return unsignedSystemValue10 & 0xffffffff;
     }
@@ -20029,13 +20029,13 @@ LAB_180046c03:
   unsignedSystemValue10 = 0;
   unsignedSystemValue7 = *(long long *)(SystemResourcePointer + 0x10) - localResourceOffset >> 8;
   if (unsignedSystemValue7 != 0) {
-    iVar5 = *(int *)(param_2 + 0x10);
+    systemValue = *(int *)(param_2 + 0x10);
     unsignedSystemValue11 = unsignedSystemValue10;
     do {
-      iVar2 = *(int *)(unsignedSystemValue11 + 0x10 + localResourceOffset);
-      iVar6 = iVar5;
-      if (iVar2 == iVar5) {
-        if (iVar2 != 0) {
+      systemResult = *(int *)(unsignedSystemValue11 + 0x10 + localResourceOffset);
+      iVar6 = systemValue;
+      if (systemResult == systemValue) {
+        if (systemResult != 0) {
           pbVar4 = *(byte **)(unsignedSystemValue11 + 8 + localResourceOffset);
           localMemoryAddress = *(long long *)(param_2 + 8) - (long long)pbVar4;
           do {
@@ -20051,7 +20051,7 @@ LAB_180046c5e:
           goto LAB_180046c90;
         }
       }
-      else if (iVar2 == 0) goto LAB_180046c5e;
+      else if (systemResult == 0) goto LAB_180046c5e;
       unsignedSystemValue9 = (int)unsignedSystemValue10 + 1;
       unsignedSystemValue10 = (ulong long)unsignedSystemValue9;
       unsignedSystemValue11 = unsignedSystemValue11 + 0x100;
@@ -20286,22 +20286,22 @@ void InitializeSystemCoreEngine(void)
     InitializeSystemConfiguration(&SystemConfigurationTemplate,&puStack_558,0,SystemConfigDataPointerD + -1);
     iStack_548 = iStack_548 + -1;
     localSystemFlags = (long long)iStack_548;
-    iVar3 = -1;
+    systemCounter = -1;
     if (-1 < iStack_548) {
       do {
-        iVar3 = iStack_548;
+        systemCounter = iStack_548;
         if (*(char *)(lStack_550 + localSystemFlags) == '/') break;
         iStack_548 = iStack_548 + -1;
         localSystemFlags = localSystemFlags + -1;
-        iVar3 = -1;
+        systemCounter = -1;
       } while (-1 < localSystemFlags);
     }
-    InitializeSystemConfiguration(&puStack_558,&puStack_538,iVar3 + 1,0xffffffff);
-    iVar3 = FindSystemResourceIndex(&SystemResourceTemplate,&puStack_538);
-    if (iVar3 == -1) {
-      iVar3 = FindSystemResourceHandle(&SystemResourceTemplate,&puStack_538);
+    InitializeSystemConfiguration(&puStack_558,&puStack_538,systemCounter + 1,0xffffffff);
+    systemCounter = FindSystemResourceIndex(&SystemResourceTemplate,&puStack_538);
+    if (systemCounter == -1) {
+      systemCounter = FindSystemResourceHandle(&SystemResourceTemplate,&puStack_538);
     }
-    localSystemFlags = (long long)iVar3 * 0x100;
+    localSystemFlags = (long long)systemCounter * 0x100;
     ppplStack_590 = (long long ***)(SystemInitializationDataStart + 0x30 + localSystemFlags);
     pppplStack_580 = appplStack_518;
     puStack_508 = &SystemStringFormatTemplate;
@@ -20351,15 +20351,15 @@ void InitializeSystemCoreEngine(void)
     uStack_600 = uStack_600 & 0xffffffff;
   }
   InitializeSystemRuntimeState(&lStack_678,1);
-  iVar3 = uStack_608 + 0x11;
-  WriteDataToBuffer(&puStack_618,iVar3);
+  systemCounter = uStack_608 + 0x11;
+  WriteDataToBuffer(&puStack_618,systemCounter);
   punsignedSystemValue8 = (uint32_t *)(puStack_610 + uStack_608);
   *punsignedSystemValue8 = 0x69676e65;
   punsignedSystemValue8[1] = 0x635f656e;
   punsignedSystemValue8[2] = 0x69666e6f;
   punsignedSystemValue8[3] = 0x78742e67;
   *(void*2 *)(punsignedSystemValue8 + 4) = 0x74;
-  uStack_608 = iVar3;
+  uStack_608 = systemCounter;
   SystemPreviousNode = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x18,8,3);
   punsignedSystemValue9 = &SystemStringTemplate;
   if (puStack_610 != (uint8_t *)0x0) {
@@ -20492,11 +20492,11 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
   void* uStackX_8;
   
   uStackX_8 = SystemResourcePointer;
-  iVar3 = FindSystemDataIndex(&SystemResourceTemplate);
-  if (iVar3 == -1) {
-    iVar3 = FindSystemDataIndexAlternative(&SystemResourceTemplate,param_2);
+  systemCounter = FindSystemDataIndex(&SystemResourceTemplate);
+  if (systemCounter == -1) {
+    systemCounter = FindSystemDataIndexAlternative(&SystemResourceTemplate,param_2);
   }
-  SystemPreviousNode = (void* *)(SystemInitializationDataStart + 0xd0 + (long long)iVar3 * 0x100);
+  SystemPreviousNode = (void* *)(SystemInitializationDataStart + 0xd0 + (long long)systemCounter * 0x100);
   punsignedSystemValue4 = SystemPreviousNode;
   if ((void* *)SystemPreviousNode[2] != (void* *)0x0) {
     punsignedSystemValue8 = (void* *)SystemPreviousNode[2];
@@ -20514,12 +20514,12 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
           localAllocationFlags = punsignedSystemValue8[5] - (long long)pbVar6;
           do {
             unsignedSystemValue5 = (uint)pbVar6[localAllocationFlags];
-            iVar3 = *pbVar6 - unsignedSystemValue5;
+            systemCounter = *pbVar6 - unsignedSystemValue5;
             if (*pbVar6 != unsignedSystemValue5) break;
             pbVar6 = pbVar6 + 1;
           } while (unsignedSystemValue5 != 0);
-          bVar2 = 0 < iVar3;
-          if (iVar3 < 1) {
+          bVar2 = 0 < systemCounter;
+          if (systemCounter < 1) {
             punsignedSystemValue9 = (void* *)punsignedSystemValue8[1];
             goto LAB_180047f2c;
           }
@@ -20585,7 +20585,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2
   char *pcVar14;
   void* *pointerToUnsigned15;
   uint unsignedSystemValue16;
-  int iVar17;
+  int systemStatus7;
   void* *puStack_c8;
   void* *puStack_c0;
   uint uStack_b8;
@@ -20653,10 +20653,10 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2
       pcStack_80 = (char *)0x0;
       uStack_78 = 0;
       InitializeSystemDataBuffer(&puStack_88,*(uint32_t *)(SystemInitializationDataStart + 0x10 + unsignedSystemValue10));
-      iVar17 = *(int *)(localMemoryPointer3 + 0x10 + unsignedSystemValue10);
-      if (iVar17 != 0) {
+      systemStatus7 = *(int *)(localMemoryPointer3 + 0x10 + unsignedSystemValue10);
+      if (systemStatus7 != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(pcStack_80,*(void* *)(localMemoryPointer3 + 8 + unsignedSystemValue10),iVar17 + 1);
+        memcpy(pcStack_80,*(void* *)(localMemoryPointer3 + 8 + unsignedSystemValue10),systemStatus7 + 1);
       }
       if (*(long long *)(localMemoryPointer3 + 8 + unsignedSystemValue10) != 0) {
         uStack_78 = 0;
@@ -20834,7 +20834,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2
       unsignedSystemValue10 = unsignedSystemValue10 + 0x100;
     } while ((ulong long)(long long)(int)unsignedSystemValue16 < (ulong long)(SystemInitializationDataEnd - SystemInitializationDataStart >> 8));
   }
-  iVar17 = 0;
+  systemStatus7 = 0;
   FinalizeSystemConfiguration(punsignedSystemValue5,&SystemConfigurationTerminatorPointer);
   if ((SystemInitializationProgress - SystemInitializationStatusCode) / 0x28 != 0) {
     localMemoryPointer1 = 0;
@@ -20858,9 +20858,9 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2
         pointerToUnsigned15 = punsignedSystemValue9;
       }
       SetSystemPropertyPointerValue(punsignedSystemValue5,&SystemPropertyTemplate,pointerToUnsigned15,*(void* *)(SystemInitializationStatusCode + 0x20 + localMemoryPointer1));
-      iVar17 = iVar17 + 1;
+      systemStatus7 = systemStatus7 + 1;
       localMemoryPointer1 = localMemoryPointer1 + 0x28;
-    } while ((ulong long)(long long)iVar17 < (ulong long)((SystemInitializationProgress - SystemInitializationStatusCode) / 0x28));
+    } while ((ulong long)(long long)systemStatus7 < (ulong long)((SystemInitializationProgress - SystemInitializationStatusCode) / 0x28));
   }
   if (punsignedSystemValue5[1] != 0) {
     fclose();
@@ -21574,16 +21574,16 @@ void* MemoryReleaseManager(void* memoryPointer, unsigned long long flags)
 void LockSystemMutex(long long SystemResourcePointer,uint8_t param_2)
 
 {
-  int iVar1;
+  int systemStatus;
   
-  iVar1 = _Mtx_lock(SystemResourcePointer + 0x48);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_lock(SystemResourcePointer + 0x48);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
   *(uint8_t *)(SystemResourcePointer + 0x98) = param_2;
-  iVar1 = _Mtx_unlock(SystemResourcePointer + 0x48);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_unlock(SystemResourcePointer + 0x48);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
   return;
 }
@@ -21609,7 +21609,7 @@ void LockSystemMutex(long long SystemResourcePointer,uint8_t param_2)
 void ProcessSystemTimestampHandler(void* SystemResourcePointer,void* *param_2,long long *param_3)
 
 {
-  int iVar1;
+  int systemStatus;
   uint unsignedSystemValue2;
   long long localResourceOffset;
   uint8_t auStack_58 [32];
@@ -21628,8 +21628,8 @@ void ProcessSystemTimestampHandler(void* SystemResourcePointer,void* *param_2,lo
     lStack_38 = localResourceOffset / 1000000000;
     iStack_30 = (int)localResourceOffset + (int)lStack_38 * -1000000000;
   }
-  iVar1 = _Mtx_current_owns(*param_2);
-  if (iVar1 == 0) {
+  systemStatus = _Mtx_current_owns(*param_2);
+  if (systemStatus == 0) {
     __Throw_Cpp_error_std__YAXH_Z(4);
   }
   unsignedSystemValue2 = _Cnd_timedwait(SystemResourcePointer,*param_2,&lStack_38);
@@ -21646,7 +21646,7 @@ uint8_t SystemInitializationProcessData(long long SystemResourcePointer,void* pa
 
 {
   uint8_t unsignedSystemValue1;
-  int iVar2;
+  int systemResult;
   void* uStackX_8;
   void* unsignedSystemValue3;
   long long lStack_20;
@@ -21655,9 +21655,9 @@ uint8_t SystemInitializationProcessData(long long SystemResourcePointer,void* pa
   unsignedSystemValue3 = 0xfffffffffffffffe;
   lStack_20 = SystemResourcePointer + 0x48;
   cStack_18 = 0;
-  iVar2 = _Mtx_lock();
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  systemResult = _Mtx_lock();
+  if (systemResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemResult);
   }
   cStack_18 = '\x01';
   if (*(char *)(SystemResourcePointer + 0x98) == '\x01') {
@@ -21670,9 +21670,9 @@ uint8_t SystemInitializationProcessData(long long SystemResourcePointer,void* pa
   }
   *(uint8_t *)(SystemResourcePointer + 0x98) = 0;
   if (cStack_18 != '\0') {
-    iVar2 = _Mtx_unlock(lStack_20);
-    if (iVar2 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar2);
+    systemResult = _Mtx_unlock(lStack_20);
+    if (systemResult != 0) {
+      __Throw_C_error_std__YAXH_Z(systemResult);
     }
   }
   return unsignedSystemValue1;
@@ -22021,11 +22021,11 @@ void* * SystemMemoryAllocatorInitializer(void* *SystemResourcePointer,long long 
 
 
 void* *
-InitializeMemoryAllocatorReference(void* *memoryAllocatorRef,ulong long initializationFlags,void* reservedParam3,void* reservedParam4)
+InitializeMemoryAllocatorReference(void* *memoryAllocatorRef,ulong long InitializationFlags,void* reservedParam3,void* reservedParam4)
 
 {
   *memoryAllocatorRef = &SystemMemoryAllocatorReference;
-  if ((initializationFlags & 1) != 0) {
+  if ((InitializationFlags & 1) != 0) {
     free(memoryAllocatorRef,0x58,reservedParam3,reservedParam4,0xfffffffffffffffe);
   }
   return memoryAllocatorRef;
@@ -22494,7 +22494,7 @@ void DestroySystemMutex(void)
 void* SystemThreadObjectManager(long long threadPoolContext, uint32_t threadFlags, void* threadCallback, void* threadParameter)
 
 {
-  int iVar1;
+  int systemStatus;
   void* unsignedSystemValue2;
   long long localResourceOffset;
   void* *punsignedSystemValue4;
@@ -22504,9 +22504,9 @@ void* SystemThreadObjectManager(long long threadPoolContext, uint32_t threadFlag
   
   unsignedSystemValue7 = 0xfffffffffffffffe;
   unsignedSystemValue2 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,param_2,3,param_4,0xfffffffffffffffe);
-  iVar1 = _Mtx_lock(SystemResourcePointer + 0x28);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_lock(SystemResourcePointer + 0x28);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
   punsignedSystemValue6 = *(void* **)(SystemResourcePointer + 0x10);
   if (punsignedSystemValue6 < *(void* **)(SystemResourcePointer + 0x18)) {
@@ -22542,9 +22542,9 @@ LAB_18004a2b9:
   *(void* **)(SystemResourcePointer + 0x10) = punsignedSystemValue4 + 1;
   *(void* **)(SystemResourcePointer + 0x18) = punsignedSystemValue4 + localResourceOffset;
 LAB_18004a322:
-  iVar1 = _Mtx_unlock(SystemResourcePointer + 0x28);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_unlock(SystemResourcePointer + 0x28);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
   return unsignedSystemValue2;
 }
@@ -22677,12 +22677,12 @@ void StartAndManageSystemThread(long long SystemResourcePointer,long long param_
 
 
 void* *
-InitializeDataBufferTemplates(void* *dataBufferRef,ulong long initializationFlags,void* reservedParam3,void* reservedParam4)
+InitializeDataBufferTemplates(void* *dataBufferRef,ulong long InitializationFlags,void* reservedParam3,void* reservedParam4)
 
 {
   *dataBufferRef = &SystemDataBufferInputTemplateE;
   *dataBufferRef = &SystemDataBufferOutputTemplateF;
-  if ((initializationFlags & 1) != 0) {
+  if ((InitializationFlags & 1) != 0) {
     free(dataBufferRef,0x10,reservedParam3,reservedParam4,0xfffffffffffffffe);
   }
   return dataBufferRef;
@@ -22698,7 +22698,7 @@ bool SystemNodeCheckStatus(void)
   char SystemNodeFlag;
   uint32_t *pointerToUnsigned2;
   void* *pointerToUnsigned3;
-  int iVar4;
+  int systemIndex;
   bool bVar5;
   void* uStack_48;
   long long lStack_40;
@@ -22707,8 +22707,8 @@ bool SystemNodeCheckStatus(void)
   uint uStack_20;
   
   InitializeSystemStringBuffer(&puStack_30);
-  iVar4 = uStack_20 + 0x11;
-  ProcessSystemStringData(&puStack_30,iVar4);
+  systemIndex = uStack_20 + 0x11;
+  ProcessSystemStringData(&puStack_30,systemIndex);
   pointerToUnsigned2 = (uint32_t *)(puStack_28 + uStack_20);
   *pointerToUnsigned2 = 0x69676e65;
   pointerToUnsigned2[1] = 0x635f656e;
@@ -22721,7 +22721,7 @@ bool SystemNodeCheckStatus(void)
   if (puStack_28 != (void* *)0x0) {
     pointerToUnsigned3 = puStack_28;
   }
-  uStack_20 = iVar4;
+  uStack_20 = systemIndex;
   ValidateSystemStringFormat(&uStack_48,pointerToUnsigned3,&SystemStringConstant);
   if (lStack_40 == 0) {
     bVar5 = false;
@@ -22770,7 +22770,7 @@ void InitializeSystemThreadPoolManager(void)
   uint32_t *pointerToUnsigned2;
   void* *pointerToUnsigned3;
   void* *punsignedSystemValue4;
-  int iVar5;
+  int systemValue;
   uint8_t stackBuffer [32];
   uint32_t uStack_68;
   uint8_t auStack_60 [8];
@@ -22800,14 +22800,14 @@ void InitializeSystemThreadPoolManager(void)
   ProcessSystemWindowTitle(auStack_60,&puStack_38);
   uStack_68 = 0;
   puStack_38 = &SystemMemoryAllocatorReference;
-  iVar5 = uStack_50 + 0xf;
-  ProcessSystemStringData(auStack_60,iVar5);
+  systemValue = uStack_50 + 0xf;
+  ProcessSystemStringData(auStack_60,systemValue);
   pointerToUnsigned2 = (uint32_t *)(puStack_58 + uStack_50);
   *pointerToUnsigned2 = 0x72657375;
   pointerToUnsigned2[1] = 0x6e6f635f;
   pointerToUnsigned2[2] = 0x2e676966;
   pointerToUnsigned2[3] = 0x747874;
-  uStack_50 = iVar5;
+  uStack_50 = systemValue;
   pointerToUnsigned3 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x18,8,3);
   punsignedSystemValue4 = &SystemStringTemplate;
   if (puStack_58 != (void* *)0x0) {
@@ -23012,7 +23012,7 @@ InitializeSystemPathBuffers(void* *pathBufferRef,void* reservedParam2,void* rese
   uint32_t *pointerToUnsigned1;
   void** systemDataTable;
   int MemoryCompareResult;
-  int iVar4;
+  int systemIndex;
   void* unsignedSystemValue5;
   
   unsignedSystemValue5 = 0xfffffffffffffffe;
@@ -23028,16 +23028,16 @@ InitializeSystemPathBuffers(void* *pathBufferRef,void* reservedParam2,void* rese
   if ((uint8_t *)SystemResourcePointer[1] != (uint8_t *)0x0) {
     *(uint8_t *)SystemResourcePointer[1] = 0;
   }
-  iVar4 = *(int *)(SystemResourcePointer + 2);
-  iVar3 = iVar4 + 6;
-  ExecuteSystemCommand(SystemResourcePointer,iVar3,param_3,param_4,1,unsignedSystemValue5);
+  systemIndex = *(int *)(SystemResourcePointer + 2);
+  systemCounter = systemIndex + 6;
+  ExecuteSystemCommand(SystemResourcePointer,systemCounter,param_3,param_4,1,unsignedSystemValue5);
   pointerToUnsigned1 = (uint32_t *)((ulong long)*(uint *)(SystemResourcePointer + 2) + SystemResourcePointer[1]);
   *pointerToUnsigned1 = 0x2e2f2e2e;
   *(void*2 *)(pointerToUnsigned1 + 1) = 0x2f2e;
   *(uint8_t *)((long long)pointerToUnsigned1 + 6) = 0;
-  *(int *)(SystemResourcePointer + 2) = iVar3;
-  iVar4 = iVar4 + 0x2a;
-  ExecuteSystemCommand(SystemResourcePointer,iVar4);
+  *(int *)(SystemResourcePointer + 2) = systemCounter;
+  systemIndex = systemIndex + 0x2a;
+  ExecuteSystemCommand(SystemResourcePointer,systemIndex);
   pointerToUnsigned2 = (void* *)((ulong long)*(uint *)(SystemResourcePointer + 2) + SystemResourcePointer[1]);
   *pointerToUnsigned2 = 0x736c6f6f542f2e2e;
   pointerToUnsigned2[1] = 0x747541747365542f;
@@ -23045,7 +23045,7 @@ InitializeSystemPathBuffers(void* *pathBufferRef,void* reservedParam2,void* rese
   pointerToUnsigned2[3] = 0x656d686361747441;
   *(uint32_t *)(pointerToUnsigned2 + 4) = 0x2f73746e;
   *(uint8_t *)((long long)pointerToUnsigned2 + 0x24) = 0;
-  *(int *)(SystemResourcePointer + 2) = iVar4;
+  *(int *)(SystemResourcePointer + 2) = systemIndex;
   return SystemResourcePointer;
 }
 
@@ -23070,7 +23070,7 @@ void* InitializeSystemResourceValidation(char SystemResourcePointer)
   char cVar2;
   uint32_t *pointerToUnsigned3;
   void* *punsignedSystemValue4;
-  int iVar5;
+  int systemValue;
   void* unsignedSystemValue6;
   void* uStack_48;
   long long lStack_40;
@@ -23095,8 +23095,8 @@ void* InitializeSystemResourceValidation(char SystemResourcePointer)
     }
   }
   SetupSystemConfiguration(&puStack_30);
-  iVar5 = uStack_20 + 0x11;
-  ExecuteSystemCommand(&puStack_30,iVar5);
+  systemValue = uStack_20 + 0x11;
+  ExecuteSystemCommand(&puStack_30,systemValue);
   pointerToUnsigned3 = (uint32_t *)(puStack_28 + uStack_20);
   *pointerToUnsigned3 = 0x69676e65;
   pointerToUnsigned3[1] = 0x635f656e;
@@ -23109,7 +23109,7 @@ void* InitializeSystemResourceValidation(char SystemResourcePointer)
   if (puStack_28 != (void* *)0x0) {
     punsignedSystemValue4 = puStack_28;
   }
-  uStack_20 = iVar5;
+  uStack_20 = systemValue;
   ProcessSystemResourceData(&uStack_48,punsignedSystemValue4,&SystemConfigurationDataTemplate);
   PrimaryResourcePointer = SystemNodeManagerPointer;
   if (lStack_40 == 0) {
@@ -23152,13 +23152,13 @@ void* InitializeSystemResourceValidation(char SystemResourcePointer)
 bool SystemThreadCheckStatus(void)
 
 {
-  int iVar1;
+  int systemStatus;
   
-  iVar1 = _Thrd_id();
+  systemStatus = _Thrd_id();
   if (SystemVersionCheckStorage == 0) {
-    return iVar1 == *(int *)(**(long long **)(SystemAllocationFlagsTemplate + 8) + 0x48);
+    return systemStatus == *(int *)(**(long long **)(SystemAllocationFlagsTemplate + 8) + 0x48);
   }
-  if ((iVar1 != *(int *)(**(long long **)(SystemAllocationFlagsTemplate + 8) + 0x48)) && (iVar1 != SystemVersionCheckStorage))
+  if ((systemStatus != *(int *)(**(long long **)(SystemAllocationFlagsTemplate + 8) + 0x48)) && (systemStatus != SystemVersionCheckStorage))
   {
     return false;
   }
@@ -23185,7 +23185,7 @@ void ConfigureAndInitializeSystemMemoryAllocator(void* *SystemResourcePointer)
 
 {
   uint unsignedSystemValue1;
-  int iVar2;
+  int systemResult;
   long long localResourceOffset;
   uint unsignedSystemValue4;
   void* *punsignedSystemValue5;
@@ -23234,10 +23234,10 @@ void ConfigureAndInitializeSystemMemoryAllocator(void* *SystemResourcePointer)
   do {
     localResourceOffset = localResourceOffset + 1;
   } while (punsignedSystemValue5[localResourceOffset] != '\0');
-  iVar2 = (int)localResourceOffset;
-  if ((0 < iVar2) && (*(uint *)(SystemResourcePointer + 2) + iVar2 < 0x1f)) {
+  systemResult = (int)localResourceOffset;
+  if ((0 < systemResult) && (*(uint *)(SystemResourcePointer + 2) + systemResult < 0x1f)) {
                     // WARNING: Subroutine does not return
-    memcpy((ulong long)*(uint *)(SystemResourcePointer + 2) + SystemResourcePointer[1],punsignedSystemValue5,(long long)(iVar2 + 1));
+    memcpy((ulong long)*(uint *)(SystemResourcePointer + 2) + SystemResourcePointer[1],punsignedSystemValue5,(long long)(systemResult + 1));
   }
   uStack_68 = 1;
   puStack_50 = &SystemMemoryAllocatorReference;
@@ -23371,7 +23371,7 @@ void SetSystemMemoryManagerEntryPoint(void **memoryManagerPointer)
 
 
 
-// 函数: void InitializeSystemEntryPoint(long long systemContext,void* entryPointData,void* memoryPool,void* initializationFlags)
+// 函数: void InitializeSystemEntryPoint(long long systemContext,void* entryPointData,void* memoryPool,void* InitializationFlags)
 /**
  * @brief 初始化系统入口点
  * 
@@ -23381,16 +23381,16 @@ void SetSystemMemoryManagerEntryPoint(void **memoryManagerPointer)
  * @param systemContext 系统上下文指针，包含系统状态和配置信息
  * @param entryPointData 入口点数据指针，包含入口点相关的配置
  * @param memoryPool 内存池指针，用于系统内存分配
- * @param initializationFlags 初始化标志，控制初始化过程的行为
+ * @param InitializationFlags 初始化标志，控制初始化过程的行为
  */
-void InitializeSystemEntryPoint(long long systemContext,void* entryPointData,void* memoryPool,void* initializationFlags)
+void InitializeSystemEntryPoint(long long systemContext,void* entryPointData,void* memoryPool,void* InitializationFlags)
 
 {
   void* *entryPointPtr;
   
   entryPointPtr = *(void* **)(systemContext + 0x10);
   if (entryPointPtr != (void* *)0x0) {
-    InitializeSystemContext(systemContext,*entryPointPtr,memoryPool,initializationFlags,0xfffffffffffffffe);
+    InitializeSystemContext(systemContext,*entryPointPtr,memoryPool,InitializationFlags,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(entryPointPtr);
   }
@@ -23568,7 +23568,7 @@ void InitializeGameSettings(long long SystemResourcePointer,void* param_2,void* 
 
 {
   long long localMemoryPointer;
-  int iVar2;
+  int systemResult;
   ulong long *pointerToUnsigned3;
   long long localBufferAddress;
   uint64_t systemInitializationFlag;
@@ -23591,8 +23591,8 @@ void InitializeGameSettings(long long SystemResourcePointer,void* param_2,void* 
     localBufferAddress = localMemoryPointer;
     localMemoryPointer = localBufferAddress + 1;
   } while (acStack_48[localBufferAddress + 1] != '\0');
-  iVar2 = (int)(localBufferAddress + 1);
-  if ((0 < iVar2) && (*(uint *)(SystemResourcePointer + 0x10) + iVar2 < 0x1f)) {
+  systemResult = (int)(localBufferAddress + 1);
+  if ((0 < systemResult) && (*(uint *)(SystemResourcePointer + 0x10) + systemResult < 0x1f)) {
                     // WARNING: Subroutine does not return
     memcpy((ulong long)*(uint *)(SystemResourcePointer + 0x10) + *(long long *)(SystemResourcePointer + 8),acStack_48,
            (long long)((int)localBufferAddress + 2));
@@ -23650,15 +23650,15 @@ void* * GetSystemDataBufferTemplateD(void* *SystemResourcePointer,ulong long par
 int SystemStringFormatProcess(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
-  int iVar1;
+  int systemStatus;
   ulong long *pointerToUnsigned2;
   
   pointerToUnsigned2 = (ulong long *)func_0x00018004b9a0();
-  iVar1 = __stdio_common_vsprintf(*pointerToUnsigned2 | 1,SystemResourcePointer,param_2,param_3,0,param_4);
-  if (iVar1 < 0) {
-    iVar1 = -1;
+  systemStatus = __stdio_common_vsprintf(*pointerToUnsigned2 | 1,SystemResourcePointer,param_2,param_3,0,param_4);
+  if (systemStatus < 0) {
+    systemStatus = -1;
   }
-  return iVar1;
+  return systemStatus;
 }
 
 
@@ -23986,13 +23986,13 @@ void* * SystemMemoryAllocatorInitializer(void* *memoryAllocator)
  * 该函数处理系统数据表的操作，遍历数据表中的所有条目，并调用相应的处理函数。
  * 使用0x69作为步长来遍历数据表条目。
  * 
- * @param dataTablePointer 数据表指针
+ * @param DataTablePointer 数据表指针
  * @param systemContext 系统上下文
  * @param operationFlag 操作标志
  * @param operationParameter 操作参数
  * @note 这是系统数据表处理的核心函数，确保数据表条目的正确处理
  */
-void SystemDataTableProcessorA(long long *dataTablePointer,void* systemContext,void* operationFlag,void* operationParameter)
+void SystemDataTableProcessorA(long long *DataTablePointer,void* systemContext,void* operationFlag,void* operationParameter)
 
 {
   void* *tableEntryPointer;
@@ -24000,11 +24000,11 @@ void SystemDataTableProcessorA(long long *dataTablePointer,void* systemContext,v
   void* cleanupFlag;
   
   cleanupFlag = 0xfffffffffffffffe;
-  tableEntryPointer = (void* *)dataTablePointer[1];
-  for (pointerToUnsigned2 = (void* *)*dataTablePointer; pointerToUnsigned2 != tableEntryPointer; pointerToUnsigned2 = pointerToUnsigned2 + 0x69) {
+  tableEntryPointer = (void* *)DataTablePointer[1];
+  for (pointerToUnsigned2 = (void* *)*DataTablePointer; pointerToUnsigned2 != tableEntryPointer; pointerToUnsigned2 = pointerToUnsigned2 + 0x69) {
     (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,operationFlag,operationParameter,cleanupFlag);
   }
-  if (*dataTablePointer == 0) {
+  if (*DataTablePointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -24021,13 +24021,13 @@ void SystemDataTableProcessorA(long long *dataTablePointer,void* systemContext,v
  * 该函数处理系统数据表的操作，遍历数据表中的所有条目，并调用相应的处理函数。
  * 使用0xb作为步长来遍历数据表条目。
  * 
- * @param dataTablePointer 数据表指针
+ * @param DataTablePointer 数据表指针
  * @param systemContext 系统上下文
  * @param operationFlag 操作标志
  * @param operationParameter 操作参数
  * @note 这是系统数据表处理的辅助函数，用于处理不同结构的数据表
  */
-void SystemDataTableProcessorB(long long *dataTablePointer,void* systemContext,void* operationFlag,void* operationParameter)
+void SystemDataTableProcessorB(long long *DataTablePointer,void* systemContext,void* operationFlag,void* operationParameter)
 
 {
   void* *tableEntryPointer;
@@ -24035,11 +24035,11 @@ void SystemDataTableProcessorB(long long *dataTablePointer,void* systemContext,v
   void* cleanupFlag;
   
   cleanupFlag = 0xfffffffffffffffe;
-  tableEntryPointer = (void* *)dataTablePointer[1];
-  for (pointerToUnsigned2 = (void* *)*dataTablePointer; pointerToUnsigned2 != tableEntryPointer; pointerToUnsigned2 = pointerToUnsigned2 + 0xb) {
+  tableEntryPointer = (void* *)DataTablePointer[1];
+  for (pointerToUnsigned2 = (void* *)*DataTablePointer; pointerToUnsigned2 != tableEntryPointer; pointerToUnsigned2 = pointerToUnsigned2 + 0xb) {
     (**(code **)*pointerToUnsigned2)(pointerToUnsigned2,0,operationFlag,operationParameter,cleanupFlag);
   }
-  if (*dataTablePointer == 0) {
+  if (*DataTablePointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -24966,7 +24966,7 @@ void CalculateRenderQualitySettings(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
-  int iVar2;
+  int systemResult;
   int MemoryCompareResult;
   float renderQualityMultiplier;
   float baseRenderScale;
@@ -24975,12 +24975,12 @@ void CalculateRenderQualitySettings(long long SystemResourcePointer)
   float qualityLevel;
   
   localMemoryPointer = SystemNodeManagerPointer;
-  iVar2 = *(int *)(SystemNodeManagerPointer + 0xd90) + -1;
-  iVar3 = 0;
-  if ((-1 < iVar2) && (iVar3 = iVar2, 3 < iVar2)) {
-    iVar3 = 3;
+  systemResult = *(int *)(SystemNodeManagerPointer + 0xd90) + -1;
+  systemCounter = 0;
+  if ((-1 < systemResult) && (systemCounter = systemResult, 3 < systemResult)) {
+    systemCounter = 3;
   }
-  qualityLevel = (float)iVar3;
+  qualityLevel = (float)systemCounter;
   shadowScaleFactor = qualityLevel * 1.6750001 + 2.4750001;
   baseRenderScale = qualityLevel * 4.4666667 + 6.6000004;
   textureScaleFactor = qualityLevel * 3.3500001 + 4.9500003;
@@ -25234,7 +25234,7 @@ void ProcessSystemResourceAllocation(void* SystemResourcePointer,long long param
   uint8_t *pointerToUnsigned16;
   void* *pointerToUnsigned17;
   void* *pointerToUnsigned18;
-  int iVar19;
+  int systemStatus9;
   long long localSystemHandle0;
   ulong long unsignedSystemValue21;
   void* *pointerToUnsigned22;
@@ -25374,8 +25374,8 @@ void ProcessSystemResourceAllocation(void* SystemResourcePointer,long long param
       if ((bVar1 & 0xdf) == 0) {
         localSystemHandle0 = localSystemHandle4 + 0x2e0;
         localResourcePointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x40,*(uint8_t *)(localSystemHandle4 + 0x308));
-        FUN_180627ae0(localResourcePointer + 0x20,&puStack_310);
-        localAllocationFlags = FUN_1800590b0(localSystemHandle0,&cStack_337,localResourcePointer + 0x20);
+        ProcessResourcePointerOperation(localResourcePointer + 0x20,&puStack_310);
+        localAllocationFlags = SystemResourceAllocator(localSystemHandle0,&cStack_337,localResourcePointer + 0x20);
         if (cStack_337 != '\0') {
           if (localAllocationFlags == localSystemHandle0) goto LAB_18004d1c1;
           if (*(int *)(localAllocationFlags + 0x30) == 0) goto LAB_18004d1b9;
@@ -25384,7 +25384,7 @@ void ProcessSystemResourceAllocation(void* SystemResourcePointer,long long param
           localSystemHandle4 = *(long long *)(localResourcePointer + 0x28) - (long long)pbVar15;
           goto LAB_18004d1a2;
         }
-        FUN_18005d1f0(extraout_XMM0_Da,localResourcePointer);
+        SystemUtilityHandler(extraout_XMM0_Da,localResourcePointer);
         if (unsignedSystemValue8 == 8) {
           iVar6 = strcmp(pointerToUnsigned11,&UNK_1809fd150);
           bVar31 = iVar6 == 0;
@@ -25437,7 +25437,7 @@ void UpdateSystemRenderManager(long long SystemResourcePointer)
   }
   else {
     if (*(char *)(SystemResourcePointer + 0x3d4) != '\0') {
-      iVar3 = *(int *)(SystemNodeManagerPointer + 0x1ea0);
+      systemCounter = *(int *)(SystemNodeManagerPointer + 0x1ea0);
       if ((*(char *)(SystemResourcePointer + 0x3d5) != '\0') || (bVar4)) {
         unsignedSystemValue5 = 1;
       }
@@ -25445,7 +25445,7 @@ void UpdateSystemRenderManager(long long SystemResourcePointer)
         unsignedSystemValue5 = 0;
       }
       FUN_1801725e0(*(long long *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,unsignedSystemValue5);
-      bVar6 = iVar3 == 2;
+      bVar6 = systemCounter == 2;
       goto LAB_18004e721;
     }
     if (!bVar4) {
@@ -25726,7 +25726,7 @@ void SystemResourceInitializer(void* SystemResourcePointer,void* parameter2,void
 void SystemCleanupHandler(void)
 
 {
-  int iVar1;
+  int systemStatus;
   long long localSystemHandle;
   long long localResourceOffset;
   long long localBufferAddress;
@@ -25784,9 +25784,9 @@ void SystemCleanupHandler(void)
   *(uint32_t *)(localResourceOffset + 0x238) = 0x3f800000;
   fVar12 = 1.0;
   if (*(int *)(localSystemHandle + 0x1ea0) == 1) {
-    iVar1 = *(int *)(localSystemHandle + 0x1d50);
+    systemStatus = *(int *)(localSystemHandle + 0x1d50);
     pointerToInteger5 = (int *)FUN_180171f10(*(void* *)(SystemStatusFlagsPointer + 8),auStack_170);
-    fVar12 = (float)iVar1 / (float)*pointerToInteger5;
+    fVar12 = (float)systemStatus / (float)*pointerToInteger5;
     fVar10 = fVar12 * *(float *)(localResourceOffset + 0x234);
     fVar12 = fVar12 * *(float *)(localResourceOffset + 0x238);
   }
@@ -26951,7 +26951,7 @@ void SystemDataProcessor(long long SystemResourcePointer)
 
 {
   void* *pointerToUnsigned1;
-  int iVar2;
+  int systemResult;
   uint8_t auStack_108 [32];
   uint32_t uStack_e8;
   void* uStack_b8;
@@ -26965,12 +26965,12 @@ void SystemDataProcessor(long long SystemResourcePointer)
   lStack_b0 = SystemResourcePointer;
   FUN_180627ae0(SystemResourcePointer,SystemStatusFlagsPointer + 0x170);
   uStack_e8 = 1;
-  iVar2 = *(int *)(SystemResourcePointer + 0x10) + 8;
-  ExecuteSystemCommand(SystemResourcePointer,iVar2);
+  systemResult = *(int *)(SystemResourcePointer + 0x10) + 8;
+  ExecuteSystemCommand(SystemResourcePointer,systemResult);
   pointerToUnsigned1 = (void* *)((ulong long)*(uint *)(SystemResourcePointer + 0x10) + *(long long *)(SystemResourcePointer + 8));
   *pointerToUnsigned1 = 0x2f73656873617263;
   *(uint8_t *)(pointerToUnsigned1 + 1) = 0;
-  *(int *)(SystemResourcePointer + 0x10) = iVar2;
+  *(int *)(SystemResourcePointer + 0x10) = systemResult;
                     // WARNING: Subroutine does not return
   memset(auStack_a8,0,0x80);
 }
@@ -27046,8 +27046,8 @@ void SystemMemoryAllocator(long long SystemResourcePointer,long long parameter2,
   *(void*2 *)(punsignedSystemValue4 + 1) = 0x2a5f;
   *(uint8_t *)((long long)punsignedSystemValue4 + 10) = 0;
   uStack_60 = 10;
-  iVar3 = FUN_180628d60(SystemResourcePointer + 0x2c0,&puStack_70);
-  if (-1 < iVar3) {
+  systemCounter = FUN_180628d60(SystemResourcePointer + 0x2c0,&puStack_70);
+  if (-1 < systemCounter) {
     pstackParameterC = &SystemGlobalDataReference;
     uStack_78 = 0;
     puStack_88 = (void* *)0x0;
@@ -27119,8 +27119,8 @@ void* SystemResourceAllocator(void* SystemResourcePointer,void* param_2)
   *(void*2 *)(punsignedSystemValue4 + 1) = 0x2a5f;
   *(uint8_t *)((long long)punsignedSystemValue4 + 10) = 0;
   uStack_58 = 10;
-  iVar3 = FUN_180628d60(localMemoryPointer + 0x2c0,&puStack_68);
-  if (-1 < iVar3) {
+  systemCounter = FUN_180628d60(localMemoryPointer + 0x2c0,&puStack_68);
+  if (-1 < systemCounter) {
     puStack_88 = &SystemGlobalDataReference;
     uStack_70 = 0;
     puStack_80 = (void* *)0x0;
@@ -27508,7 +27508,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
 
 {
   uint32_t *pointerToUnsigned1;
-  int iVar2;
+  int systemResult;
   int MemoryCompareResult;
   uint8_t auStack_1c8 [32];
   void* **ppuStack_1a8;
@@ -27528,42 +27528,42 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
                 (long long)*(int *)(SystemTextureManagerPointer + 0x1d40) * 0xd0 +
                 *(long long *)(SystemTextureManagerPointer + 0x1d20));
   FUN_180623de0(&puStack_198);
-  iVar2 = 0;
+  systemResult = 0;
   *(uint32_t *)(param_2 + 0x10) = 0;
   if (*(uint8_t **)(param_2 + 8) != (uint8_t *)0x0) {
     **(uint8_t **)(param_2 + 8) = 0;
-    iVar2 = *(int *)(param_2 + 0x10);
+    systemResult = *(int *)(param_2 + 0x10);
   }
-  iVar3 = iVar2 + 5;
-  ExecuteSystemCommand(param_2,iVar3);
+  systemCounter = systemResult + 5;
+  ExecuteSystemCommand(param_2,systemCounter);
   pointerToUnsigned1 = (uint32_t *)((ulong long)*(uint *)(param_2 + 0x10) + *(long long *)(param_2 + 8));
   *pointerToUnsigned1 = 0x3a757067;
   *(void*2 *)(pointerToUnsigned1 + 1) = 0x20;
-  *(int *)(param_2 + 0x10) = iVar3;
+  *(int *)(param_2 + 0x10) = systemCounter;
   if (0 < iStack_c8) {
-    ExecuteSystemCommand(param_2,iVar3 + iStack_c8);
+    ExecuteSystemCommand(param_2,systemCounter + iStack_c8);
                     // WARNING: Subroutine does not return
     memcpy((ulong long)*(uint *)(param_2 + 0x10) + *(long long *)(param_2 + 8),uStack_d0,
            (long long)(iStack_c8 + 1));
   }
-  ExecuteSystemCommand(param_2,iVar2 + 6);
+  ExecuteSystemCommand(param_2,systemResult + 6);
   *(void*2 *)((ulong long)*(uint *)(param_2 + 0x10) + *(long long *)(param_2 + 8)) = 10;
-  *(int *)(param_2 + 0x10) = iVar2 + 6;
-  iVar3 = iVar2 + 0xb;
-  ExecuteSystemCommand(param_2,iVar3);
+  *(int *)(param_2 + 0x10) = systemResult + 6;
+  systemCounter = systemResult + 0xb;
+  ExecuteSystemCommand(param_2,systemCounter);
   pointerToUnsigned1 = (uint32_t *)((ulong long)*(uint *)(param_2 + 0x10) + *(long long *)(param_2 + 8));
   *pointerToUnsigned1 = 0x3a757063;
   *(void*2 *)(pointerToUnsigned1 + 1) = 0x20;
-  *(int *)(param_2 + 0x10) = iVar3;
+  *(int *)(param_2 + 0x10) = systemCounter;
   if (0 < iStack_188) {
-    ExecuteSystemCommand(param_2,iVar3 + iStack_188);
+    ExecuteSystemCommand(param_2,systemCounter + iStack_188);
                     // WARNING: Subroutine does not return
     memcpy((ulong long)*(uint *)(param_2 + 0x10) + *(long long *)(param_2 + 8),uStack_190,
            (long long)(iStack_188 + 1));
   }
-  ExecuteSystemCommand(param_2,iVar2 + 0xc);
+  ExecuteSystemCommand(param_2,systemResult + 0xc);
   *(void*2 *)((ulong long)*(uint *)(param_2 + 0x10) + *(long long *)(param_2 + 8)) = 10;
-  *(int *)(param_2 + 0x10) = iVar2 + 0xc;
+  *(int *)(param_2 + 0x10) = systemResult + 0xc;
   puStack_198 = &SystemMemoryAllocatorReference;
   ppuStack_1a8 = &puStack_d8;
   puStack_d8 = &SystemMemoryAllocatorReference;
@@ -28015,7 +28015,7 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long para
 
 {
   uint unsignedSystemValue1;
-  int iVar2;
+  int systemResult;
   void* unsignedSystemValue3;
   long long* systemMemoryPointer;
   void* *punsignedSystemValue5;
@@ -28135,7 +28135,7 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long para
   uStack_1d0 = 0;
   localSystemFlags = *SystemResourcePointer;
   FUN_1806279c0(&puStack_168,param_2);
-  iVar2 = FUN_1801426a0(localSystemFlags,&puStack_168);
+  systemResult = FUN_1801426a0(localSystemFlags,&puStack_168);
   puStack_168 = &SystemGlobalDataReference;
   if (lStack_160 != 0) {
                     // WARNING: Subroutine does not return
@@ -28144,13 +28144,13 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long para
   lStack_160 = 0;
   uStack_150 = 0;
   puStack_168 = &SystemMemoryAllocatorReference;
-  if ((iVar2 < 0) ||
+  if ((systemResult < 0) ||
      (localSystemFlags = *(long long *)(*SystemResourcePointer + 0x888),
-     (ulong long)(*(long long *)(*SystemResourcePointer + 0x890) - localSystemFlags >> 5) <= (ulong long)(long long)iVar2)) {
+     (ulong long)(*(long long *)(*SystemResourcePointer + 0x890) - localSystemFlags >> 5) <= (ulong long)(long long)systemResult)) {
     localSystemFlags = FUN_180628ca0();
   }
   else {
-    localSystemFlags = (long long)iVar2 * 0x20 + localSystemFlags;
+    localSystemFlags = (long long)systemResult * 0x20 + localSystemFlags;
   }
   puStack_208 = &SystemGlobalDataReference;
   uStack_1f0 = 0;
@@ -28255,7 +28255,7 @@ void SystemResourceEnumerator(void)
   long long localAllocationFlags;
   ulong long unsignedSystemValue11;
   void* *punsignedSystemValue12;
-  int iVar13;
+  int systemStatus3;
   long long localMemoryPointer4;
   uint *pointerToUnsigned15;
   void* *pointerToUnsigned16;
@@ -28306,7 +28306,7 @@ void SystemResourceEnumerator(void)
   if (0 < (int)localMemoryPointer4) {
     do {
       iVar9 = iStack_f8;
-      iVar13 = 0;
+      systemStatus3 = 0;
       if (iStack_f8 < 0) {
 LAB_18005485e:
         localAllocationFlags = FUN_180628ca0();
@@ -28512,7 +28512,7 @@ LAB_180054d28:
                 }
                 iVar9 = -1;
 LAB_180054d57:
-                FUN_180629a40(pointerToUnsigned3 + (long long)iVar13 * 4,&stackParameterB,iVar9 + 1,0xffffffff);
+                FUN_180629a40(pointerToUnsigned3 + (long long)systemStatus3 * 4,&stackParameterB,iVar9 + 1,0xffffffff);
                 unsignedSystemValue17 = FUN_180054360(SecondaryResourcePointer,&stackParameterB);
                 if (SystemGlobalStateStorage != 0) {
                   FUN_18005c1c0(unsignedSystemValue17,&puStack_78);
@@ -28583,7 +28583,7 @@ LAB_180054ec9:
             }
             puStack_150 = (uint8_t *)0x0;
             puStack_158 = &SystemMemoryAllocatorReference;
-            iVar13 = iVar13 + 1;
+            systemStatus3 = systemStatus3 + 1;
             pointerToUnsigned15 = pointerToUnsigned15 + 8;
             localAllocationFlags = localAllocationFlags + -1;
             localMemoryPointer4 = lStack_a0;
@@ -29056,37 +29056,37 @@ void ProcessSystemNodeResource(long long SystemResourcePointer)
   ulong long unsignedSystemValue10;
   long long localMemoryPointer1;
   long long localMemoryPointer2;
-  int iVar13;
+  int systemStatus3;
   long long localMemoryPointer4;
-  int iVar15;
+  int systemStatus5;
   long long localMemoryPointer6;
-  int iVar17;
+  int systemStatus7;
   ulong long unsignedSystemValue18;
-  int iVar19;
+  int systemStatus9;
   bool bVar20;
   
   unsignedSystemValue10 = 0;
   localResourcePointer = *(long long *)(SystemResourcePointer + 0x50);
   localMemoryPointer2 = *(long long *)(SystemResourcePointer + 0x48);
   if (localResourcePointer - localMemoryPointer2 >> 3 != 0) {
-    iVar19 = 1;
+    systemStatus9 = 1;
     localMemoryPointer6 = 8;
     unsignedSystemValue18 = unsignedSystemValue10;
     do {
-      iVar17 = (int)unsignedSystemValue10;
+      systemStatus7 = (int)unsignedSystemValue10;
       iVar6 = -1;
-      if ((ulong long)(long long)iVar19 < (ulong long)(localResourcePointer - localMemoryPointer2 >> 3)) {
+      if ((ulong long)(long long)systemStatus9 < (ulong long)(localResourcePointer - localMemoryPointer2 >> 3)) {
         localResourcePointer = *(long long *)(SystemResourcePointer + 0x50);
         localMemoryPointer4 = localMemoryPointer6;
-        iVar13 = iVar19;
-        iVar15 = -1;
+        systemStatus3 = systemStatus9;
+        systemStatus5 = -1;
         do {
           iVar6 = *(int *)(*(long long *)(localMemoryPointer4 + localMemoryPointer2) + 0x10);
-          iVar3 = *(int *)(*(long long *)(unsignedSystemValue18 + localMemoryPointer2) + 0x10);
-          if (iVar6 == iVar3) {
+          systemCounter = *(int *)(*(long long *)(unsignedSystemValue18 + localMemoryPointer2) + 0x10);
+          if (iVar6 == systemCounter) {
             if (iVar6 == 0) {
 LAB_180056220:
-              if (iVar3 != 0) goto LAB_180056228;
+              if (systemCounter != 0) goto LAB_180056228;
               bVar20 = true;
             }
             else {
@@ -29106,14 +29106,14 @@ LAB_180056220:
 LAB_180056228:
             bVar20 = false;
           }
-          iVar6 = iVar13;
+          iVar6 = systemStatus3;
           if (!bVar20) {
-            iVar6 = iVar15;
+            iVar6 = systemStatus5;
           }
-          iVar13 = iVar13 + 1;
+          systemStatus3 = systemStatus3 + 1;
           localMemoryPointer4 = localMemoryPointer4 + 8;
-          iVar15 = iVar6;
-        } while ((ulong long)(long long)iVar13 < (ulong long)(localResourcePointer - localMemoryPointer2 >> 3));
+          systemStatus5 = iVar6;
+        } while ((ulong long)(long long)systemStatus3 < (ulong long)(localResourcePointer - localMemoryPointer2 >> 3));
       }
       if (iVar6 != -1) {
         localMemoryPointer4 = (long long)iVar6;
@@ -29172,17 +29172,17 @@ LAB_180056228:
         }
         localResourcePointer = unsignedSystemValue5 - 8;
         *(long long *)(SystemResourcePointer + 0x50) = localResourcePointer;
-        iVar17 = iVar17 + -1;
-        iVar19 = iVar19 + -1;
+        systemStatus7 = systemStatus7 + -1;
+        systemStatus9 = systemStatus9 + -1;
         unsignedSystemValue18 = unsignedSystemValue18 - 8;
         localMemoryPointer6 = localMemoryPointer6 + -8;
       }
-      unsignedSystemValue10 = (ulong long)(iVar17 + 1U);
-      iVar19 = iVar19 + 1;
+      unsignedSystemValue10 = (ulong long)(systemStatus7 + 1U);
+      systemStatus9 = systemStatus9 + 1;
       unsignedSystemValue18 = unsignedSystemValue18 + 8;
       localMemoryPointer6 = localMemoryPointer6 + 8;
       localMemoryPointer2 = *(long long *)(SystemResourcePointer + 0x48);
-    } while ((ulong long)(long long)(int)(iVar17 + 1U) < (ulong long)(localResourcePointer - localMemoryPointer2 >> 3));
+    } while ((ulong long)(long long)(int)(systemStatus7 + 1U) < (ulong long)(localResourcePointer - localMemoryPointer2 >> 3));
   }
   return;
 }
@@ -31356,7 +31356,7 @@ void* * FUN_180058080(void* *SystemResourcePointer,void* *param_2,long long para
   bool bVar2;
   byte *pbVar3;
   uint unsignedSystemValue4;
-  int iVar5;
+  int systemValue;
   long long localSystemFlags;
   void** SystemCurrentNode;
   void** SystemNextNode;
@@ -31380,12 +31380,12 @@ void* * FUN_180058080(void* *SystemResourcePointer,void* *param_2,long long para
           localSystemFlags = SystemPreviousNode[5] - (long long)pbVar3;
           do {
             unsignedSystemValue4 = (uint)pbVar3[localSystemFlags];
-            iVar5 = *pbVar3 - unsignedSystemValue4;
+            systemValue = *pbVar3 - unsignedSystemValue4;
             if (*pbVar3 != unsignedSystemValue4) break;
             pbVar3 = pbVar3 + 1;
           } while (unsignedSystemValue4 != 0);
-          bVar2 = 0 < iVar5;
-          if (iVar5 < 1) {
+          bVar2 = 0 < systemValue;
+          if (systemValue < 1) {
             punsignedSystemValue8 = (void* *)SystemPreviousNode[1];
             goto LAB_1800580f9;
           }
@@ -32441,7 +32441,7 @@ void FUN_180059000(long long *SystemResourcePointer)
   void* *pointerToUnsigned17;
   long long localMemoryPointer8;
   void* ******ppppppointerToUnsigned19;
-  int iVar20;
+  int systemResult0;
   uint *pointerToUnsigned21;
   ulong long unsignedSystemValue22;
   ulong long unsignedSystemValue23;
@@ -32538,9 +32538,9 @@ void FUN_180059000(long long *SystemResourcePointer)
           localAllocationFlags = localMemoryPointer8 + 1;
         } while (pointerToUnsigned13[localAllocationFlags] != '\0');
         if ((int)localAllocationFlags != 0) {
-          iVar20 = (int)localMemoryPointer8 + 2;
-          iVar8 = iVar20;
-          if (iVar20 < 0x10) {
+          systemResult0 = (int)localMemoryPointer8 + 2;
+          iVar8 = systemResult0;
+          if (systemResult0 < 0x10) {
             iVar8 = 0x10;
           }
           pointerToUnsigned11 = (uint8_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)iVar8,0x13);
@@ -32549,7 +32549,7 @@ void FUN_180059000(long long *SystemResourcePointer)
           unsignedSystemValue7 = StartSystemThread(pointerToUnsigned11);
           uStack_380 = CONCAT44(uStack_380._4_4_,unsignedSystemValue7);
                     // WARNING: Subroutine does not return
-          memcpy(pointerToUnsigned11,pointerToUnsigned13,iVar20);
+          memcpy(pointerToUnsigned11,pointerToUnsigned13,systemResult0);
         }
       }
       uStack_388 = 0;
@@ -32619,9 +32619,9 @@ void FUN_180059000(long long *SystemResourcePointer)
             localMemoryPointer2 = localMemoryPointer8 + 1;
           } while (*(char*)((long long)&uStack_268 + localMemoryPointer8 + 1) != '\0');
           if ((int)(localMemoryPointer8 + 1) != 0) {
-            iVar20 = (int)localMemoryPointer8 + 2;
-            iVar8 = iVar20;
-            if (iVar20 < 0x10) {
+            systemResult0 = (int)localMemoryPointer8 + 2;
+            iVar8 = systemResult0;
+            if (systemResult0 < 0x10) {
               iVar8 = 0x10;
             }
             puStack_328 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)iVar8,0x13);
@@ -32654,7 +32654,7 @@ void FUN_180059000(long long *SystemResourcePointer)
             }
             uStack_318 = CONCAT44(uStack_318._4_4_,unsignedSystemValue16);
                     // WARNING: Subroutine does not return
-            memcpy(puStack_328,&uStack_268,iVar20);
+            memcpy(puStack_328,&uStack_268,systemResult0);
           }
           uStack_320 = 0;
           pppppppointerToUnsigned14 = &ppppppuStack_360;
@@ -34957,22 +34957,22 @@ void FUN_18005c560(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
-  int iVar2;
+  int systemResult;
   
   (**(code **)(SystemResourcePointer + 0xd8))(SystemResourcePointer + 0xc0);
   localMemoryPointer = *(long long *)(SystemResourcePointer + 0xe0);
-  iVar2 = _Mtx_lock(localMemoryPointer + 0x48);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  systemResult = _Mtx_lock(localMemoryPointer + 0x48);
+  if (systemResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemResult);
   }
   *(uint8_t *)(localMemoryPointer + 0x98) = 1;
-  iVar2 = _Cnd_broadcast(localMemoryPointer);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  systemResult = _Cnd_broadcast(localMemoryPointer);
+  if (systemResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemResult);
   }
-  iVar2 = _Mtx_unlock(localMemoryPointer + 0x48);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  systemResult = _Mtx_unlock(localMemoryPointer + 0x48);
+  if (systemResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemResult);
   }
   return;
 }
@@ -35030,7 +35030,7 @@ FUN_18005c590(void* *SystemResourcePointer,void* *param_2,void* param_3,void* pa
 void ProcessSystemResourceData(long long *SystemResourcePointer)
 
 {
-  int iVar1;
+  int systemStatus;
   long long localSystemHandle;
   int MemoryCompareResult;
   void* unsignedSystemValue4;
@@ -35052,10 +35052,10 @@ void ProcessSystemResourceData(long long *SystemResourcePointer)
   
   uStack_d8 = 0xfffffffffffffffe;
   uStack_18 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_128;
-  iVar1 = *(int *)(*(long long *)(*(long long *)(SystemAllocationFlagsTemplate + 8) + 8) + 0x48);
+  systemStatus = *(int *)(*(long long *)(*(long long *)(SystemAllocationFlagsTemplate + 8) + 8) + 0x48);
   plStack_d0 = SystemResourcePointer;
-  iVar3 = _Thrd_id();
-  if (iVar3 == iVar1) {
+  systemCounter = _Thrd_id();
+  if (systemCounter == systemStatus) {
     (*(code *)SystemResourcePointer[3])(SystemResourcePointer);
   }
   else {
@@ -35167,7 +35167,7 @@ void* FUN_18005c8a0(long long SystemResourcePointer,void* param_2)
 void FUN_18005c930(void* *SystemResourcePointer,void* param_2,int *param_3)
 
 {
-  int iVar1;
+  int systemStatus;
   bool bVar2;
   void* *pointerToUnsigned3;
   long long localBufferAddress;
@@ -35175,15 +35175,15 @@ void FUN_18005c930(void* *SystemResourcePointer,void* param_2,int *param_3)
   void* unsignedSystemValue6;
   
   localBufferAddress = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x28,*(uint8_t *)(SystemResourcePointer + 5));
-  iVar1 = *param_3;
+  systemStatus = *param_3;
   bVar2 = true;
-  *(int *)(localBufferAddress + 0x20) = iVar1;
+  *(int *)(localBufferAddress + 0x20) = systemStatus;
   punsignedSystemValue5 = (void* *)SystemResourcePointer[2];
   pointerToUnsigned3 = SystemResourcePointer;
   while (punsignedSystemValue5 != (void* *)0x0) {
-    bVar2 = iVar1 < *(int *)(punsignedSystemValue5 + 4);
+    bVar2 = systemStatus < *(int *)(punsignedSystemValue5 + 4);
     pointerToUnsigned3 = punsignedSystemValue5;
-    if (iVar1 < *(int *)(punsignedSystemValue5 + 4)) {
+    if (systemStatus < *(int *)(punsignedSystemValue5 + 4)) {
       punsignedSystemValue5 = (void* *)punsignedSystemValue5[1];
     }
     else {
@@ -35474,17 +35474,17 @@ void* * FUN_18005ce30(void* *SystemResourcePointer,void* *param_2)
 uint32_t FUN_18005cf50(long long SystemResourcePointer)
 
 {
-  int iVar1;
+  int systemStatus;
   uint32_t unsignedSystemValue2;
   
-  iVar1 = _Mtx_lock(SystemResourcePointer + 0x9f0);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_lock(SystemResourcePointer + 0x9f0);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
   unsignedSystemValue2 = FUN_1800b2bd0();
-  iVar1 = _Mtx_unlock(SystemResourcePointer + 0x9f0);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_unlock(SystemResourcePointer + 0x9f0);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
   return unsignedSystemValue2;
 }
@@ -35499,32 +35499,32 @@ int FUN_18005cfc0(void)
   long long localMemoryPointer;
   long long localSystemHandle;
   int MemoryCompareResult;
-  int iVar4;
-  int iVar5;
+  int systemIndex;
+  int systemValue;
   int iVar6;
   int iVar7;
   
   localSystemHandle = SystemInputManagerPointer;
   localMemoryPointer = SystemInputManagerPointer + 0x770;
-  iVar3 = _Mtx_lock(localMemoryPointer);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  systemCounter = _Mtx_lock(localMemoryPointer);
+  if (systemCounter != 0) {
+    __Throw_C_error_std__YAXH_Z(systemCounter);
   }
-  iVar3 = FUN_1800b2bd0();
-  iVar4 = _Mtx_unlock(localMemoryPointer);
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+  systemCounter = FUN_1800b2bd0();
+  systemIndex = _Mtx_unlock(localMemoryPointer);
+  if (systemIndex != 0) {
+    __Throw_C_error_std__YAXH_Z(systemIndex);
   }
-  iVar4 = _Mtx_lock(localSystemHandle + 0x7c0);
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+  systemIndex = _Mtx_lock(localSystemHandle + 0x7c0);
+  if (systemIndex != 0) {
+    __Throw_C_error_std__YAXH_Z(systemIndex);
   }
-  iVar4 = FUN_1800b2bd0();
-  iVar5 = _Mtx_unlock(localSystemHandle + 0x7c0);
-  if (iVar5 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar5);
+  systemIndex = FUN_1800b2bd0();
+  systemValue = _Mtx_unlock(localSystemHandle + 0x7c0);
+  if (systemValue != 0) {
+    __Throw_C_error_std__YAXH_Z(systemValue);
   }
-  iVar5 = FUN_18005cf50(localSystemHandle);
+  systemValue = FUN_18005cf50(localSystemHandle);
   iVar6 = _Mtx_lock(localSystemHandle + 0x950);
   if (iVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar6);
@@ -35534,7 +35534,7 @@ int FUN_18005cfc0(void)
   if (iVar7 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar7);
   }
-  return iVar6 + iVar4 + iVar3 + iVar5;
+  return iVar6 + systemIndex + systemCounter + systemValue;
 }
 
 
@@ -36285,8 +36285,8 @@ void FUN_18005dab0(long long SystemResourcePointer)
   long long localBufferAddress;
   
   localSystemHandle = GetCurrentThread();
-  iVar3 = (int)(*(long long *)(SystemResourcePointer + 0x10) - *(long long *)(SystemResourcePointer + 8) >> 3);
-  if (0 < iVar3) {
+  systemCounter = (int)(*(long long *)(SystemResourcePointer + 0x10) - *(long long *)(SystemResourcePointer + 8) >> 3);
+  if (0 < systemCounter) {
     localBufferAddress = 0;
     do {
       localMemoryPointer = *(long long *)(*(long long *)(*(long long *)(SystemResourcePointer + 8) + localBufferAddress * 8) + 0x40);
@@ -36294,7 +36294,7 @@ void FUN_18005dab0(long long SystemResourcePointer)
         SuspendThread();
       }
       localBufferAddress = localBufferAddress + 1;
-    } while (localBufferAddress < iVar3);
+    } while (localBufferAddress < systemCounter);
   }
   return;
 }
@@ -36346,8 +36346,8 @@ void FUN_18005db30(long long SystemResourcePointer)
   long long localBufferAddress;
   
   localSystemHandle = GetCurrentThread();
-  iVar3 = (int)(*(long long *)(SystemResourcePointer + 0x10) - *(long long *)(SystemResourcePointer + 8) >> 3);
-  if (0 < iVar3) {
+  systemCounter = (int)(*(long long *)(SystemResourcePointer + 0x10) - *(long long *)(SystemResourcePointer + 8) >> 3);
+  if (0 < systemCounter) {
     localBufferAddress = 0;
     do {
       localMemoryPointer = *(long long *)(*(long long *)(*(long long *)(SystemResourcePointer + 8) + localBufferAddress * 8) + 0x40);
@@ -36355,7 +36355,7 @@ void FUN_18005db30(long long SystemResourcePointer)
         ResumeThread();
       }
       localBufferAddress = localBufferAddress + 1;
-    } while (localBufferAddress < iVar3);
+    } while (localBufferAddress < systemCounter);
   }
   return;
 }
@@ -36404,7 +36404,7 @@ void FUN_18005dbb0(void)
 
 {
   long long *PrimaryResourcePointer;
-  int iVar2;
+  int systemResult;
   void* unsignedSystemValue3;
   void* *punsignedSystemValue4;
   long long systemTimeValue;
@@ -36413,7 +36413,7 @@ void FUN_18005dbb0(void)
   ulong long unsignedSystemValue9;
   long long localAllocationFlags;
   long long localMemoryPointer1;
-  int iVar12;
+  int systemStatus2;
   uint unsignedSystemValue13;
   ulong long unsignedSystemValue14;
   void* **ppointerToUnsigned15;
@@ -36444,16 +36444,16 @@ void FUN_18005dbb0(void)
   uStack_38 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_1b8;
   lStack_178 = SystemAllocationFlagsTemplate;
   FUN_180623de0(apuStack_108);
-  iVar12 = iStack_70 + -1;
+  systemStatus2 = iStack_70 + -1;
   if (*(int *)(localAllocationFlags + 0x7b4) < iStack_70 + -1) {
-    iVar12 = *(int *)(localAllocationFlags + 0x7b4);
+    systemStatus2 = *(int *)(localAllocationFlags + 0x7b4);
   }
-  iVar2 = 3;
-  if (3 < iVar12) {
-    iVar2 = iVar12;
+  systemResult = 3;
+  if (3 < systemStatus2) {
+    systemResult = systemStatus2;
   }
   ppointerToUnsigned15 = (void* **)(localAllocationFlags + 8);
-  localMemoryPointer1 = (long long)iVar2;
+  localMemoryPointer1 = (long long)systemResult;
   ppuStack_170 = ppointerToUnsigned15;
   FUN_180057340(ppointerToUnsigned15,localMemoryPointer1);
   unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
@@ -36483,7 +36483,7 @@ void FUN_18005dbb0(void)
   *punsignedSystemValue4 = &UNK_1809fe290;
   *(void* **)((long long)*ppointerToUnsigned15 + 8) = punsignedSystemValue4;
   puStack_138 = &SystemMemoryAllocatorReference;
-  iVar12 = 2;
+  systemStatus2 = 2;
   *(uint32_t *)(lStack_178 + 0x7b0) = 2;
   if (2 < localMemoryPointer1) {
     localAllocationFlags = 2;
@@ -36493,37 +36493,37 @@ void FUN_18005dbb0(void)
       auStack_148[0] = 0;
       uStack_150 = 7;
       strcpy_s(auStack_148,0x10,&UNK_1809fe198);
-      FUN_180060680(&uStack_58,&SystemDataBufferTemplateI,iVar12 + -1);
+      FUN_180060680(&uStack_58,&SystemDataBufferTemplateI,systemStatus2 + -1);
       localSystemFlags = -1;
       do {
         localSystemPointer = localSystemFlags + 1;
         localDataPointer = localSystemFlags + 1;
         localSystemFlags = localSystemPointer;
       } while (*(char*)((long long)&uStack_58 + localDataPointer) != '\0');
-      iVar2 = (int)localSystemPointer;
-      if ((0 < iVar2) && (uStack_150 + iVar2 < 0xf)) {
+      systemResult = (int)localSystemPointer;
+      if ((0 < systemResult) && (uStack_150 + systemResult < 0xf)) {
                     // WARNING: Subroutine does not return
-        memcpy(puStack_158 + uStack_150,&uStack_58,(long long)(iVar2 + 1));
+        memcpy(puStack_158 + uStack_150,&uStack_58,(long long)(systemResult + 1));
       }
       unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
       lStack_188 = lStack_178 + 0x68;
       lStack_190 = lStack_178 + 0x548;
       lStack_198 = lStack_178 + 0x78;
-      unsignedSystemValue3 = FUN_18020e410(unsignedSystemValue3,&puStack_160,2,iVar12);
+      unsignedSystemValue3 = FUN_18020e410(unsignedSystemValue3,&puStack_160,2,systemStatus2);
       *(void* *)((long long)*ppointerToUnsigned15 + localAllocationFlags * 8) = unsignedSystemValue3;
       puStack_160 = &SystemMemoryAllocatorReference;
-      iVar12 = iVar12 + 1;
+      systemStatus2 = systemStatus2 + 1;
       localAllocationFlags = localAllocationFlags + 1;
     } while (localAllocationFlags < localMemoryPointer1);
   }
   localAllocationFlags = lStack_178;
-  iVar2 = (int)(iStack_70 + (iStack_70 >> 0x1f & 3U)) >> 2;
-  iVar12 = 2;
-  if ((1 < iVar2) && (iVar12 = iVar2, 4 < iVar2)) {
-    iVar12 = 4;
+  systemResult = (int)(iStack_70 + (iStack_70 >> 0x1f & 3U)) >> 2;
+  systemStatus2 = 2;
+  if ((1 < systemResult) && (systemStatus2 = systemResult, 4 < systemResult)) {
+    systemStatus2 = 4;
   }
   PrimaryResourcePointer = (long long *)(lStack_178 + 0x28);
-  localMemoryPointer1 = (long long)iVar12;
+  localMemoryPointer1 = (long long)systemStatus2;
   FUN_180057340(PrimaryResourcePointer,localMemoryPointer1);
   if (0 < localMemoryPointer1) {
     unsignedSystemValue8 = unsignedSystemValue9;
@@ -36540,8 +36540,8 @@ void FUN_18005dbb0(void)
         localDataPointer = localSystemFlags;
         localSystemFlags = localDataPointer + 1;
       } while (acStack_48[localDataPointer + 1] != '\0');
-      iVar12 = (int)(localDataPointer + 1);
-      if ((0 < iVar12) && (uStack_150 + iVar12 < 0xf)) {
+      systemStatus2 = (int)(localDataPointer + 1);
+      if ((0 < systemStatus2) && (uStack_150 + systemStatus2 < 0xf)) {
                     // WARNING: Subroutine does not return
         memcpy(puStack_158 + uStack_150,acStack_48,(long long)((int)localDataPointer + 2));
       }
@@ -36594,7 +36594,7 @@ void FUN_18005e110(long long SystemResourcePointer,long long *param_2,void* para
 
 {
   uint unsignedSystemValue1;
-  int iVar2;
+  int systemResult;
   long long localResourceOffset;
   long long localBufferAddress;
   void* unsignedSystemValue5;
@@ -36618,8 +36618,8 @@ void FUN_18005e110(long long SystemResourcePointer,long long *param_2,void* para
     FUN_18005f040(localBufferAddress,param_2,(ulong long)__tls_index,param_4,unsignedSystemValue5);
   }
   do {
-    iVar2 = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),1);
-  } while (iVar2 == 0);
+    systemResult = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),1);
+  } while (systemResult == 0);
   if ((long long *)*param_2 != (long long *)0x0) {
     (**(code **)(*(long long *)*param_2 + 0x38))();
   }
@@ -36633,7 +36633,7 @@ void FUN_18005e110(long long SystemResourcePointer,long long *param_2,void* para
 void FUN_18005e1d0(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
 
 {
-  int iVar1;
+  int systemStatus;
   long long localSystemHandle;
   void* unsignedSystemValue3;
   
@@ -36644,8 +36644,8 @@ void FUN_18005e1d0(long long SystemResourcePointer,long long *param_2,void* para
     FUN_18005f220(localSystemHandle,param_2);
   }
   do {
-    iVar1 = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),1,0,param_4,unsignedSystemValue3);
-  } while (iVar1 == 0);
+    systemStatus = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),1,0,param_4,unsignedSystemValue3);
+  } while (systemStatus == 0);
   if ((long long *)*param_2 != (long long *)0x0) {
     (**(code **)(*(long long *)*param_2 + 0x38))();
   }
@@ -36662,7 +36662,7 @@ void FUN_18005e250(long long SystemResourcePointer,void* param_2,int param_3)
 
 {
   uint unsignedSystemValue1;
-  int iVar2;
+  int systemResult;
   long long localResourceOffset;
   long long localBufferAddress;
   
@@ -36683,8 +36683,8 @@ void FUN_18005e250(long long SystemResourcePointer,void* param_2,int param_3)
     FUN_18005f570(localBufferAddress,param_2,(long long)param_3);
   }
   do {
-    iVar2 = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),param_3,0);
-  } while (iVar2 == 0);
+    systemResult = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),param_3,0);
+  } while (systemResult == 0);
   return;
 }
 
@@ -36785,7 +36785,7 @@ void FUN_18005e3e0(long long SystemResourcePointer,long long *param_2,void* para
 void FUN_18005e450(long long SystemResourcePointer,long long *param_2,void* param_3,void* param_4)
 
 {
-  int iVar1;
+  int systemStatus;
   long long localSystemHandle;
   void* unsignedSystemValue3;
   
@@ -36796,8 +36796,8 @@ void FUN_18005e450(long long SystemResourcePointer,long long *param_2,void* para
     FUN_18005f220(localSystemHandle,param_2);
   }
   do {
-    iVar1 = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x70),1,0,param_4,unsignedSystemValue3);
-  } while (iVar1 == 0);
+    systemStatus = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x70),1,0,param_4,unsignedSystemValue3);
+  } while (systemStatus == 0);
   if ((long long *)*param_2 != (long long *)0x0) {
     (**(code **)(*(long long *)*param_2 + 0x38))();
   }
@@ -36835,19 +36835,19 @@ void FUN_18005e570(long long SystemResourcePointer,long long *param_2)
   ulong long unsignedSystemValue2;
   long long localResourceOffset;
   long long* systemMemoryPointer;
-  int iVar5;
+  int systemValue;
   ulong long unsignedSystemValue6;
   
-  iVar5 = 0;
+  systemValue = 0;
   PrimaryResourcePointer = *(long long **)(SystemResourcePointer + 0x48);
   unsignedSystemValue6 = *(long long *)(SystemResourcePointer + 0x50) - (long long)PrimaryResourcePointer >> 3;
   plocalBufferAddress = PrimaryResourcePointer;
   if (unsignedSystemValue6 != 0) {
     do {
       if ((long long *)*plocalBufferAddress == param_2) {
-        FUN_18020e7b0(PrimaryResourcePointer[iVar5]);
+        FUN_18020e7b0(PrimaryResourcePointer[systemValue]);
         unsignedSystemValue2 = *(ulong long *)(SystemResourcePointer + 0x50);
-        localResourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)iVar5 * 8;
+        localResourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)systemValue * 8;
         unsignedSystemValue6 = localResourceOffset + 8;
         if (unsignedSystemValue6 < unsignedSystemValue2) {
                     // WARNING: Subroutine does not return
@@ -36856,9 +36856,9 @@ void FUN_18005e570(long long SystemResourcePointer,long long *param_2)
         *(ulong long *)(SystemResourcePointer + 0x50) = unsignedSystemValue2 - 8;
         break;
       }
-      iVar5 = iVar5 + 1;
+      systemValue = systemValue + 1;
       plocalBufferAddress = plocalBufferAddress + 1;
-    } while ((ulong long)(long long)iVar5 < unsignedSystemValue6);
+    } while ((ulong long)(long long)systemValue < unsignedSystemValue6);
   }
   if (param_2 != (long long *)0x0) {
     localResourceOffset = __RTCastToVoid(param_2);
@@ -36882,19 +36882,19 @@ void FUN_18005e57a(long long SystemResourcePointer,long long *param_2)
   ulong long unsignedSystemValue2;
   long long localResourceOffset;
   long long* systemMemoryPointer;
-  int iVar5;
+  int systemValue;
   ulong long unsignedSystemValue6;
   
-  iVar5 = 0;
+  systemValue = 0;
   PrimaryResourcePointer = *(long long **)(SystemResourcePointer + 0x48);
   unsignedSystemValue6 = *(long long *)(SystemResourcePointer + 0x50) - (long long)PrimaryResourcePointer >> 3;
   plocalBufferAddress = PrimaryResourcePointer;
   if (unsignedSystemValue6 != 0) {
     do {
       if ((long long *)*plocalBufferAddress == param_2) {
-        FUN_18020e7b0(PrimaryResourcePointer[iVar5]);
+        FUN_18020e7b0(PrimaryResourcePointer[systemValue]);
         unsignedSystemValue2 = *(ulong long *)(SystemResourcePointer + 0x50);
-        localResourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)iVar5 * 8;
+        localResourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)systemValue * 8;
         unsignedSystemValue6 = localResourceOffset + 8;
         if (unsignedSystemValue6 < unsignedSystemValue2) {
                     // WARNING: Subroutine does not return
@@ -36903,9 +36903,9 @@ void FUN_18005e57a(long long SystemResourcePointer,long long *param_2)
         *(ulong long *)(SystemResourcePointer + 0x50) = unsignedSystemValue2 - 8;
         break;
       }
-      iVar5 = iVar5 + 1;
+      systemValue = systemValue + 1;
       plocalBufferAddress = plocalBufferAddress + 1;
-    } while ((ulong long)(long long)iVar5 < unsignedSystemValue6);
+    } while ((ulong long)(long long)systemValue < unsignedSystemValue6);
   }
   if (param_2 != (long long *)0x0) {
     localResourceOffset = __RTCastToVoid(param_2);
@@ -36946,20 +36946,20 @@ void FUN_18005e5ff(void)
 void FUN_18005e630(long long SystemResourcePointer)
 
 {
-  int iVar1;
+  int systemStatus;
   long long localSystemHandle;
   
   ProcessSystemCallback(*(void* *)(*(long long *)(SystemResourcePointer + 8) + 8));
   localSystemHandle = SystemTextureManagerPointer + 0x20;
-  iVar1 = _Mtx_lock(localSystemHandle);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_lock(localSystemHandle);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
-  iVar1 = _Mtx_unlock(localSystemHandle);
-  if (iVar1 != 0) {
+  systemStatus = _Mtx_unlock(localSystemHandle);
+  if (systemStatus != 0) {
                     // WARNING: Could not recover jumptable at 0x00018005e68f. Too many branches
                     // WARNING: Treating indirect jump as call
-    __Throw_C_error_std__YAXH_Z(iVar1);
+    __Throw_C_error_std__YAXH_Z(systemStatus);
     return;
   }
   return;
@@ -37071,7 +37071,7 @@ long long FUN_18005e890(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
-  int iVar2;
+  int systemResult;
   ulong long unsignedSystemValue3;
   ulong long unsignedSystemValue4;
   
@@ -37079,9 +37079,9 @@ long long FUN_18005e890(long long SystemResourcePointer)
   unsignedSystemValue3 = unsignedSystemValue4;
   if (*(long long *)(SystemResourcePointer + 0x10) - *(long long *)(SystemResourcePointer + 8) >> 3 != 0) {
     do {
-      iVar2 = _Thrd_id();
+      systemResult = _Thrd_id();
       localMemoryPointer = *(long long *)(*(long long *)(SystemResourcePointer + 8) + unsignedSystemValue3 * 8);
-      if (*(int *)(localMemoryPointer + 0x48) == iVar2) {
+      if (*(int *)(localMemoryPointer + 0x48) == systemResult) {
         return localMemoryPointer;
       }
       unsignedSystemValue3 = (ulong long)((int)unsignedSystemValue3 + 1);
@@ -37089,9 +37089,9 @@ long long FUN_18005e890(long long SystemResourcePointer)
   }
   if (*(long long *)(SystemResourcePointer + 0x30) - *(long long *)(SystemResourcePointer + 0x28) >> 3 != 0) {
     do {
-      iVar2 = _Thrd_id();
+      systemResult = _Thrd_id();
       localMemoryPointer = *(long long *)(*(long long *)(SystemResourcePointer + 0x28) + unsignedSystemValue4 * 8);
-      if (*(int *)(localMemoryPointer + 0x48) == iVar2) {
+      if (*(int *)(localMemoryPointer + 0x48) == systemResult) {
         return localMemoryPointer;
       }
       unsignedSystemValue4 = (ulong long)((int)unsignedSystemValue4 + 1);
@@ -38786,10 +38786,10 @@ code_r0x000180060327:
       localResourcePointer = SystemResourcePointer[10];
       LOCK();
       pointerToInteger2 = (int *)(localDataPointer + 0x130);
-      iVar3 = *pointerToInteger2;
+      systemCounter = *pointerToInteger2;
       *pointerToInteger2 = *pointerToInteger2 + -0x80000000;
       UNLOCK();
-      if (iVar3 == 0) {
+      if (systemCounter == 0) {
         localMemoryAddress = *(long long *)(localResourcePointer + 0x28);
         do {
           *(long long *)(localDataPointer + 0x138) = localMemoryAddress;
@@ -38806,11 +38806,11 @@ code_r0x000180060327:
           if (bVar12) break;
           LOCK();
           pointerToInteger2 = (int *)(localDataPointer + 0x130);
-          iVar3 = *pointerToInteger2;
+          systemCounter = *pointerToInteger2;
           *pointerToInteger2 = *pointerToInteger2 + 0x7fffffff;
           UNLOCK();
           localMemoryAddress = localSystemFlags;
-        } while (iVar3 == 1);
+        } while (systemCounter == 1);
       }
       localDataPointer = localMemoryPointer1;
     } while (localMemoryPointer1 != SystemResourcePointer[8]);
@@ -38838,7 +38838,7 @@ void FUN_180060420(void* *SystemResourcePointer)
 
 {
   int *pointerToInteger1;
-  int iVar2;
+  int systemResult;
   ulong long unsignedSystemValue3;
   ulong long unsignedSystemValue4;
   long long *plocalSystemPointer;
@@ -38859,10 +38859,10 @@ void FUN_180060420(void* *SystemResourcePointer)
         localSystemFlags = SystemResourcePointer[10];
         LOCK();
         pointerToInteger1 = (int *)(localResourcePointer + 0x130);
-        iVar2 = *pointerToInteger1;
+        systemResult = *pointerToInteger1;
         *pointerToInteger1 = *pointerToInteger1 + -0x80000000;
         UNLOCK();
-        if (iVar2 == 0) {
+        if (systemResult == 0) {
           localMemoryAddress = *(long long *)(localSystemFlags + 0x28);
           do {
             *(long long *)(localResourcePointer + 0x138) = localMemoryAddress;
@@ -38879,11 +38879,11 @@ void FUN_180060420(void* *SystemResourcePointer)
             if (bVar11) break;
             LOCK();
             pointerToInteger1 = (int *)(localResourcePointer + 0x130);
-            iVar2 = *pointerToInteger1;
+            systemResult = *pointerToInteger1;
             *pointerToInteger1 = *pointerToInteger1 + 0x7fffffff;
             UNLOCK();
             localMemoryAddress = localDataPointer;
-          } while (iVar2 == 1);
+          } while (systemResult == 1);
         }
       }
 LAB_1800604d1:
@@ -38905,10 +38905,10 @@ LAB_1800604d1:
     localSystemFlags = SystemResourcePointer[10];
     LOCK();
     pointerToInteger1 = (int *)(localResourcePointer + 0x130);
-    iVar2 = *pointerToInteger1;
+    systemResult = *pointerToInteger1;
     *pointerToInteger1 = *pointerToInteger1 + -0x80000000;
     UNLOCK();
-    if (iVar2 == 0) {
+    if (systemResult == 0) {
       localMemoryAddress = *(long long *)(localSystemFlags + 0x28);
       do {
         *(long long *)(localResourcePointer + 0x138) = localMemoryAddress;
@@ -38925,11 +38925,11 @@ LAB_1800604d1:
         if (bVar11) break;
         LOCK();
         pointerToInteger1 = (int *)(localResourcePointer + 0x130);
-        iVar2 = *pointerToInteger1;
+        systemResult = *pointerToInteger1;
         *pointerToInteger1 = *pointerToInteger1 + 0x7fffffff;
         UNLOCK();
         localMemoryAddress = localDataPointer;
-      } while (iVar2 == 1);
+      } while (systemResult == 1);
     }
   }
   if (SystemResourcePointer[0xc] != 0) {
@@ -39009,7 +39009,7 @@ void* FUN_180060630(void* SystemResourcePointer,ulong long param_2,void* param_3
 int FUN_180060680(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
-  int iVar1;
+  int systemStatus;
   ulong long *pointerToUnsigned2;
   uint64_t systemInitializationFlag;
   void* uStackX_20;
@@ -39017,11 +39017,11 @@ int FUN_180060680(void* SystemResourcePointer,void* param_2,void* param_3,void* 
   uStackX_18 = param_3;
   uStackX_20 = param_4;
   pointerToUnsigned2 = (ulong long *)func_0x00018004b9a0();
-  iVar1 = __stdio_common_vsprintf(*pointerToUnsigned2 | 1,SystemResourcePointer,0xffffffffffffffff,param_2,0,&uStackX_18);
-  if (iVar1 < 0) {
-    iVar1 = -1;
+  systemStatus = __stdio_common_vsprintf(*pointerToUnsigned2 | 1,SystemResourcePointer,0xffffffffffffffff,param_2,0,&uStackX_18);
+  if (systemStatus < 0) {
+    systemStatus = -1;
   }
-  return iVar1;
+  return systemStatus;
 }
 
 
@@ -39048,9 +39048,9 @@ void FUN_1800606e0(long long *SystemResourcePointer)
         FUN_18064e0d0(*(void* *)(*PrimaryResourcePointer + 0x10),0);
         plStack_20 = SystemResourcePointer + 0x33;
         cStack_18 = 0;
-        iVar3 = _Mtx_lock();
-        if (iVar3 != 0) {
-          __Throw_C_error_std__YAXH_Z(iVar3);
+        systemCounter = _Mtx_lock();
+        if (systemCounter != 0) {
+          __Throw_C_error_std__YAXH_Z(systemCounter);
         }
         cStack_18 = '\x01';
         if ((char)SystemResourcePointer[0x3d] == '\x01') {
@@ -39062,9 +39062,9 @@ void FUN_1800606e0(long long *SystemResourcePointer)
           *(uint8_t *)(SystemResourcePointer + 0x3d) = 0;
           if (cStack_18 == '\0') goto LAB_1800607cc;
         }
-        iVar3 = _Mtx_unlock(plStack_20);
-        if (iVar3 != 0) {
-          __Throw_C_error_std__YAXH_Z(iVar3);
+        systemCounter = _Mtx_unlock(plStack_20);
+        if (systemCounter != 0) {
+          __Throw_C_error_std__YAXH_Z(systemCounter);
         }
       }
 LAB_1800607cc:
@@ -39079,7 +39079,7 @@ void* FUN_1800607f0(long long SystemResourcePointer,char param_2)
 
 {
   long long localMemoryPointer;
-  int iVar2;
+  int systemResult;
   long long *plocalResourceOffset;
   void* unsignedSystemValue4;
   long long *plStackX_18;
@@ -39091,9 +39091,9 @@ void* FUN_1800607f0(long long SystemResourcePointer,char param_2)
       plocalResourceOffset = (long long *)0x0;
     }
     else {
-      iVar2 = _Mtx_lock(SystemResourcePointer + 0xf0);
-      if (iVar2 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar2);
+      systemResult = _Mtx_lock(SystemResourcePointer + 0xf0);
+      if (systemResult != 0) {
+        __Throw_C_error_std__YAXH_Z(systemResult);
       }
       if ((*(long long *)(SystemResourcePointer + 200) - *(long long *)(SystemResourcePointer + 0xd0) >> 3) +
           ((*(long long *)(SystemResourcePointer + 0xe0) - *(long long *)(SystemResourcePointer + 0xc0) >> 3) + -1) * 0x20 +
@@ -39125,9 +39125,9 @@ void* FUN_1800607f0(long long SystemResourcePointer,char param_2)
           }
         }
       }
-      iVar2 = _Mtx_unlock(SystemResourcePointer + 0xf0);
-      if (iVar2 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar2);
+      systemResult = _Mtx_unlock(SystemResourcePointer + 0xf0);
+      if (systemResult != 0) {
+        __Throw_C_error_std__YAXH_Z(systemResult);
       }
       plocalResourceOffset = plStackX_18;
       if (plStackX_18 != (long long *)0x0) {
@@ -39634,16 +39634,16 @@ void FUN_1800611a0(long long SystemResourcePointer,long long *param_2,void* para
   void* *pointerToUnsigned1;
   long long localSystemHandle;
   long long localResourceOffset;
-  int iVar4;
+  int systemIndex;
   long long systemTimeValue;
   void* unsignedSystemValue6;
   uint8_t unsignedSystemValue7;
   
   unsignedSystemValue6 = 0xfffffffffffffffe;
   localSystemPointer = SystemResourcePointer + 0xf0;
-  iVar4 = _Mtx_lock();
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+  systemIndex = _Mtx_lock();
+  if (systemIndex != 0) {
+    __Throw_C_error_std__YAXH_Z(systemIndex);
   }
   unsignedSystemValue7 = 1;
   FUN_180060fc0(SystemResourcePointer + 0x98,param_2);
@@ -39654,12 +39654,12 @@ void FUN_1800611a0(long long SystemResourcePointer,long long *param_2,void* para
   localSystemHandle = *(long long *)(SystemAllocationFlagsTemplate + 0x10);
   localResourceOffset = *(long long *)(SystemAllocationFlagsTemplate + 8);
   do {
-    iVar4 = ReleaseSemaphore(*pointerToUnsigned1,localSystemHandle - localResourceOffset >> 3 & 0xffffffff,0,param_4,unsignedSystemValue6,localSystemPointer,unsignedSystemValue7);
-  } while (iVar4 == 0);
+    systemIndex = ReleaseSemaphore(*pointerToUnsigned1,localSystemHandle - localResourceOffset >> 3 & 0xffffffff,0,param_4,unsignedSystemValue6,localSystemPointer,unsignedSystemValue7);
+  } while (systemIndex == 0);
   SystemThreadSyncBroadcast(SystemResourcePointer + 0x150);
-  iVar4 = _Mtx_unlock(localSystemPointer);
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+  systemIndex = _Mtx_unlock(localSystemPointer);
+  if (systemIndex != 0) {
+    __Throw_C_error_std__YAXH_Z(systemIndex);
   }
   if ((long long *)*param_2 != (long long *)0x0) {
     (**(code **)(*(long long *)*param_2 + 0x38))();
@@ -40208,7 +40208,7 @@ void* FUN_180062ee0(void* SystemResourcePointer,uint32_t param_2)
 
 {
   void*2 unsignedSystemValue1;
-  int iVar2;
+  int systemResult;
   
   switch(param_2) {
   case 0:
@@ -40253,8 +40253,8 @@ void* FUN_180062ee0(void* SystemResourcePointer,uint32_t param_2)
   default:
     unsignedSystemValue1 = 0xf;
   }
-  iVar2 = SetConsoleTextAttribute(_DAT_180c912f0,unsignedSystemValue1);
-  if (iVar2 == 0) {
+  systemResult = SetConsoleTextAttribute(_DAT_180c912f0,unsignedSystemValue1);
+  if (systemResult == 0) {
     FUN_18005d3a0(&UNK_1809fe5a0);
     return 0;
   }
@@ -40273,7 +40273,7 @@ void FUN_180062fd0(long long SystemResourcePointer)
   uint unsignedSystemValue1;
   uint unsignedSystemValue2;
   uint32_t unsignedSystemValue3;
-  int iVar4;
+  int systemIndex;
   void* *punsignedSystemValue5;
   long long localSystemFlags;
   long long *plocalDataPointer;
@@ -40381,12 +40381,12 @@ code_r0x0001800630e9:
         if ((*(byte *)(punsignedSystemValue5 + 1) & 2) != 0) {
           FUN_180062ee0((ulong long)*(uint *)(&DAT_180063480 + (long long)(int)unsignedSystemValue1 * 4) +
                         0x180000000,*(uint32_t *)(SystemResourcePointer + 0x50));
-          iVar4 = WriteConsoleA(_DAT_180c912f0,punsignedSystemValue9,unsignedSystemValue2,auStackX_20,0);
-          if ((iVar4 == 0) || (auStackX_20[0] < unsignedSystemValue2)) {
+          systemIndex = WriteConsoleA(_DAT_180c912f0,punsignedSystemValue9,unsignedSystemValue2,auStackX_20,0);
+          if ((systemIndex == 0) || (auStackX_20[0] < unsignedSystemValue2)) {
             FUN_18005d3a0(&UNK_1809fe62c,punsignedSystemValue9);
           }
-          iVar4 = SetConsoleTextAttribute(_DAT_180c912f0,0xf);
-          if (iVar4 == 0) {
+          systemIndex = SetConsoleTextAttribute(_DAT_180c912f0,0xf);
+          if (systemIndex == 0) {
             FUN_18005d3a0(&UNK_1809fe5a0);
           }
         }
@@ -40428,17 +40428,17 @@ code_r0x0001800630e9:
 int FUN_1800634b0(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
-  int iVar1;
+  int systemStatus;
   void** systemDataTable;
   void* uStackX_20;
   
   uStackX_20 = param_4;
   pointerToUnsigned2 = (void* *)func_0x00018004b9a0();
-  iVar1 = __stdio_common_vsprintf_s(*pointerToUnsigned2,SystemResourcePointer,param_2,param_3,0,&uStackX_20);
-  if (iVar1 < 0) {
-    iVar1 = -1;
+  systemStatus = __stdio_common_vsprintf_s(*pointerToUnsigned2,SystemResourcePointer,param_2,param_3,0,&uStackX_20);
+  if (systemStatus < 0) {
+    systemStatus = -1;
   }
-  return iVar1;
+  return systemStatus;
 }
 
 
@@ -40509,15 +40509,15 @@ void FUN_1800635c0(void)
 int FUN_1800635e0(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
-  int iVar1;
+  int systemStatus;
   ulong long *pointerToUnsigned2;
   
   pointerToUnsigned2 = (ulong long *)func_0x00018004b9a0();
-  iVar1 = __stdio_common_vsprintf(*pointerToUnsigned2 | 2,SystemResourcePointer,param_2,param_3,0,param_4);
-  if (iVar1 < 0) {
-    iVar1 = -1;
+  systemStatus = __stdio_common_vsprintf(*pointerToUnsigned2 | 2,SystemResourcePointer,param_2,param_3,0,param_4);
+  if (systemStatus < 0) {
+    systemStatus = -1;
   }
-  return iVar1;
+  return systemStatus;
 }
 
 
@@ -40688,7 +40688,7 @@ void FUN_180063cf0(void)
   uint unsignedSystemValue10;
   void* *punsignedSystemValue12;
   ulong long unsignedSystemValue13;
-  int iVar14;
+  int systemStatus4;
   long long localMemoryPointer5;
   uint unsignedSystemValue16;
   uint8_t auStack_2f8 [32];
@@ -40723,7 +40723,7 @@ void FUN_180063cf0(void)
   uStack_2a0 = 0;
   uStack_298 = 3;
   FUN_18062d3b0(&puStack_290,&puStack_2d8,&puStack_2b0);
-  iVar14 = -1;
+  systemStatus4 = -1;
   localMemoryPointer5 = -0x8000000000000000;
   unsignedSystemValue16 = (uint)((long long)puStack_2d0 - (long long)puStack_2d8 >> 5);
   unsignedSystemValue13 = unsignedSystemValue11;
@@ -40756,7 +40756,7 @@ LAB_180063de9:
         iVar6 = _stat64i32(punsignedSystemValue9,auStack_268);
         if ((iVar6 != -1) && (localMemoryPointer5 < lStack_248)) {
           localMemoryPointer5 = lStack_248;
-          iVar14 = (int)unsignedSystemValue11;
+          systemStatus4 = (int)unsignedSystemValue11;
         }
       }
       unsignedSystemValue10 = (int)unsignedSystemValue11 + 1;
@@ -40766,7 +40766,7 @@ LAB_180063de9:
     pointerToUnsigned3 = puStack_2d0;
     punsignedSystemValue12 = puStack_2b0;
     punsignedSystemValue4 = puStack_2a8;
-    if (-1 < iVar14) {
+    if (-1 < systemStatus4) {
                     // WARNING: Subroutine does not return
       memset(auStack_238,0,0x200);
     }
@@ -41094,7 +41094,7 @@ void FUN_180064c00(long long *SystemResourcePointer,long long param_2,long long 
 
 {
   uint unsignedSystemValue1;
-  int iVar2;
+  int systemResult;
   void* *pointerToUnsigned3;
   void* *punsignedSystemValue4;
   uint8_t *punsignedSystemValue5;
@@ -41267,10 +41267,10 @@ void FUN_180064c00(long long *SystemResourcePointer,long long param_2,long long 
   puStack_100 = (uint8_t *)0x0;
   uStack_f8 = 0;
   uStack_98._0_4_ = (int)unsignedSystemValue9;
-  iVar2 = (int)uStack_98;
+  systemResult = (int)uStack_98;
   uStack_98 = unsignedSystemValue9;
   ExecuteSystemCommand(&puStack_108,unsignedSystemValue9 & 0xffffffff);
-  if (iVar2 != 0) {
+  if (systemResult != 0) {
     SystemPreviousNode = &uStack_a8;
     if (0xf < stackParameterC) {
       SystemPreviousNode = (uint *)CONCAT44(uStack_64,unsignedSystemValue1);
@@ -41384,7 +41384,7 @@ void FUN_180065160(void* SystemResourcePointer)
 
 {
   byte *pbVar1;
-  int iVar2;
+  int systemResult;
   bool bVar3;
   void* *punsignedSystemValue4;
   void* *punsignedSystemValue5;
@@ -41397,7 +41397,7 @@ void FUN_180065160(void* SystemResourcePointer)
   ulong long unsignedSystemValue12;
   byte *pbVar13;
   long long localMemoryPointer4;
-  int iVar15;
+  int systemStatus5;
   void* *pointerToUnsigned16;
   void* *pointerToUnsigned17;
   void* *pointerToUnsigned18;
@@ -41732,21 +41732,21 @@ void FUN_180065160(void* SystemResourcePointer)
           if (unsignedSystemValue10 != 0) {
             pointerToUnsigned18 = punsignedSystemValue4 + 1;
             do {
-              iVar2 = *(int *)(pointerToUnsigned18 + 1);
-              iVar15 = iStack_290;
-              if (iVar2 == iStack_290) {
-                if (iVar2 != 0) {
+              systemResult = *(int *)(pointerToUnsigned18 + 1);
+              systemStatus5 = iStack_290;
+              if (systemResult == iStack_290) {
+                if (systemResult != 0) {
                   pbVar13 = (byte *)*pointerToUnsigned18;
                   localResourcePointer = (long long)pcStack_298 - (long long)pbVar13;
                   do {
                     pbVar1 = pbVar13 + localResourcePointer;
-                    iVar15 = (uint)*pbVar13 - (uint)*pbVar1;
-                    if (iVar15 != 0) break;
+                    systemStatus5 = (uint)*pbVar13 - (uint)*pbVar1;
+                    if (systemStatus5 != 0) break;
                     pbVar13 = pbVar13 + 1;
                   } while (*pbVar1 != 0);
                 }
 LAB_180065a3e:
-                if (iVar15 == 0) {
+                if (systemStatus5 == 0) {
                   puStack_348 = &SystemStringTemplate;
                   if ((void* *)pointerToUnsigned17[5] != (void* *)0x0) {
                     puStack_348 = (void* *)pointerToUnsigned17[5];
@@ -41759,7 +41759,7 @@ LAB_180065a3e:
                   break;
                 }
               }
-              else if (iVar2 == 0) goto LAB_180065a3e;
+              else if (systemResult == 0) goto LAB_180065a3e;
               iVar8 = iVar8 + 1;
               pointerToUnsigned18 = pointerToUnsigned18 + 4;
             } while ((ulong long)(long long)iVar8 < unsignedSystemValue10);
@@ -41968,7 +41968,7 @@ void FUN_180065f00(void* SystemResourcePointer,long long param_2,void* param_3,v
   char cVar2;
   void* unsignedSystemValue3;
   long long localBufferAddress;
-  int iVar5;
+  int systemValue;
   long long *plStack_b0;
   void* *puStack_a8;
   long long lStack_a0;
@@ -41984,10 +41984,10 @@ void FUN_180065f00(void* SystemResourcePointer,long long param_2,void* param_3,v
   uStack_48 = 0xfffffffffffffffe;
   plStack_b0 = *(long long **)(SystemMemoryBlockStorage + 0x18);
   FUN_180627ae0(&puStack_a8,SystemStatusFlagsPointer + 0x170,param_3,param_4,0);
-  iVar5 = uStack_98 + 3;
-  ExecuteSystemCommand(&puStack_a8,iVar5);
+  systemValue = uStack_98 + 3;
+  ExecuteSystemCommand(&puStack_a8,systemValue);
   *(uint32_t *)((ulong long)uStack_98 + lStack_a0) = 0x706d74;
-  uStack_98 = iVar5;
+  uStack_98 = systemValue;
   cVar2 = FUN_180624a00(&puStack_a8);
   if (cVar2 == '\0') {
     FUN_180624910(&puStack_a8);
@@ -42144,9 +42144,9 @@ void FUN_180066320(void* SystemResourcePointer,void* param_2,char param_3,char p
 
 {
   char SystemNodeFlag;
-  int iVar2;
+  int systemResult;
   uint32_t unsignedSystemValue3;
-  int iVar4;
+  int systemIndex;
   void* unsignedSystemValue5;
   ulong long unsignedSystemValue6;
   uint8_t auStack_1f8 [32];
@@ -42189,7 +42189,7 @@ void FUN_180066320(void* SystemResourcePointer,void* param_2,char param_3,char p
   uStack_b0 = 0xfffffffffffffffe;
   uStack_48 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_1f8;
   cVar1 = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
-  iVar4 = 0;
+  systemIndex = 0;
   if (cVar1 != '\0') {
     ProcessSystemQueue(&puStack_1b8,&SystemStringBuffer);
     FUN_180065f00(&puStack_1b8,0);
@@ -42210,28 +42210,28 @@ void FUN_180066320(void* SystemResourcePointer,void* param_2,char param_3,char p
     goto LAB_180066971;
   }
   if ((param_3 == '\0') && (DAT_180c82851 == '\0')) {
-    if (((DAT_180c82860 == '\0') || (iVar2 = IsDebuggerPresent(), iVar2 != 0)) &&
+    if (((DAT_180c82860 == '\0') || (systemResult = IsDebuggerPresent(), systemResult != 0)) &&
        (DAT_180c82842 == '\0')) {
       unsignedSystemValue3 = MessageBoxA(0,&UNK_1809feaa0,&UNK_1809feb24,0x40004);
       switch(unsignedSystemValue3) {
       case 1:
         break;
       default:
-        iVar4 = 1;
+        systemIndex = 1;
         break;
       case 4:
-        iVar4 = 2;
+        systemIndex = 2;
         break;
       case 5:
-        iVar4 = 3;
+        systemIndex = 3;
         break;
       case 6:
-        iVar4 = 4;
+        systemIndex = 4;
         break;
       case 7:
-        iVar4 = 5;
+        systemIndex = 5;
       }
-      if (iVar4 == 4) goto LAB_18006650a;
+      if (systemIndex == 4) goto LAB_18006650a;
     }
     else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
       puStack_1c8 = &UNK_1809feaa0;
@@ -42245,7 +42245,7 @@ void FUN_180066320(void* SystemResourcePointer,void* param_2,char param_3,char p
 LAB_18006650a:
     FUN_180052070(&puStack_198);
     unsignedSystemValue5 = ProcessSystemQueue(&puStack_138,&DAT_1809feb50);
-    iVar4 = FUN_180628d60(&puStack_198,unsignedSystemValue5);
+    systemIndex = FUN_180628d60(&puStack_198,unsignedSystemValue5);
     puStack_138 = &SystemGlobalDataReference;
     if (lStack_130 != 0) {
                     // WARNING: Subroutine does not return
@@ -42254,7 +42254,7 @@ LAB_18006650a:
     lStack_130 = 0;
     uStack_120 = 0;
     puStack_138 = &SystemMemoryAllocatorReference;
-    FUN_180629a40(&puStack_198,&puStack_d0,iVar4 + 7,0xffffffff);
+    FUN_180629a40(&puStack_198,&puStack_d0,systemIndex + 7,0xffffffff);
     puStack_1b8 = &SystemGlobalDataReference;
     uStack_1a0 = 0;
     lStack_1b0 = 0;
@@ -42271,9 +42271,9 @@ LAB_18006650a:
     FUN_180628040(&puStack_158,&UNK_1809fe8f8,unsignedSystemValue6 / 0x100000 & 0xffffffff);
     auStack_98[0] = 0x48;
     unsignedSystemValue5 = GetCurrentProcess();
-    iVar4 = K32GetProcessMemoryInfo(unsignedSystemValue5,auStack_98,0x48);
+    systemIndex = K32GetProcessMemoryInfo(unsignedSystemValue5,auStack_98,0x48);
     unsignedSystemValue6 = 0;
-    if (iVar4 != 0) {
+    if (systemIndex != 0) {
       unsignedSystemValue6 = uStack_60;
     }
     FUN_180628040(&puStack_178,&UNK_1809fe8f8,unsignedSystemValue6 / 0x100000 & 0xffffffff);
@@ -42413,7 +42413,7 @@ void FUN_1800669c0(void* SystemResourcePointer,void* param_2,char param_3,void* 
   cVar2 = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
   if (cVar2 == '\0') {
     if ((DAT_180c82843 == '\0') && (*(int *)(SystemMemoryManagerPointer + 0x10e0) != 1)) {
-      iVar3 = 0;
+      systemCounter = 0;
       if ((param_3 != '\0') || (DAT_180c82851 != '\0')) {
 LAB_180066bf4:
         FUN_180052070(auStack_80);
@@ -42440,21 +42440,21 @@ LAB_180066bf4:
         case 1:
           break;
         default:
-          iVar3 = 1;
+          systemCounter = 1;
           break;
         case 4:
-          iVar3 = 2;
+          systemCounter = 2;
           break;
         case 5:
-          iVar3 = 3;
+          systemCounter = 3;
           break;
         case 6:
-          iVar3 = 4;
+          systemCounter = 4;
           break;
         case 7:
-          iVar3 = 5;
+          systemCounter = 5;
         }
-        if (iVar3 == 4) goto LAB_180066bf4;
+        if (systemCounter == 4) goto LAB_180066bf4;
       }
       else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
         SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd,&UNK_180a04f08,&UNK_1809feb24,
@@ -42479,11 +42479,11 @@ LAB_180066bf4:
     } while (*(char *)(localDataPointer + 0x180c84871) != '\0');
     if ((int)(localDataPointer + 1) != 0) {
       iVar6 = (int)localDataPointer + 2;
-      iVar3 = iVar6;
+      systemCounter = iVar6;
       if (iVar6 < 0x10) {
-        iVar3 = 0x10;
+        systemCounter = 0x10;
       }
-      stackParameterB = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)iVar3,0x13);
+      stackParameterB = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)systemCounter,0x13);
       *(uint8_t *)stackParameterB = 0;
       unsignedSystemValue4 = StartSystemThread(stackParameterB);
       uStack_88 = CONCAT44(uStack_88._4_4_,unsignedSystemValue4);
@@ -42601,7 +42601,7 @@ long long FUN_180066f90(long long SystemResourcePointer,ulong long param_2,void*
 
 {
   char SystemNodeFlag;
-  int iVar2;
+  int systemResult;
   long long localResourceOffset;
   long long localBufferAddress;
   
@@ -42613,8 +42613,8 @@ long long FUN_180066f90(long long SystemResourcePointer,ulong long param_2,void*
     localBufferAddress = (SystemResourcePointer - param_5) + param_2;
     for (localResourceOffset = memchr(SystemResourcePointer,(int)cVar1,(localBufferAddress + 1) - SystemResourcePointer); localResourceOffset != 0;
         localResourceOffset = memchr(localResourceOffset + 1,(int)cVar1,(localBufferAddress + 1) - (localResourceOffset + 1))) {
-      iVar2 = memcmp(localResourceOffset,param_4,param_5);
-      if (iVar2 == 0) {
+      systemResult = memcmp(localResourceOffset,param_4,param_5);
+      if (systemResult == 0) {
         return localResourceOffset - SystemResourcePointer;
       }
     }
@@ -42701,7 +42701,7 @@ void FUN_180067110(ulong long SystemResourcePointer)
 
 {
   code *pcVar1;
-  int iVar2;
+  int systemResult;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
   
@@ -42726,8 +42726,8 @@ void FUN_180067110(ulong long SystemResourcePointer)
     if (localResourceOffset != 0) {
       return;
     }
-    iVar2 = _callnewh(SystemResourcePointer);
-  } while (iVar2 != 0);
+    systemResult = _callnewh(SystemResourcePointer);
+  } while (systemResult != 0);
   if (SystemResourcePointer == 0xffffffffffffffff) {
     FUN_1808fd8b4();
     pcVar1 = (code *)swi(3);
@@ -42905,11 +42905,11 @@ void FUN_1800672c0(long long SystemResourcePointer)
   lStackX_10 = 0;
   while( true ) {
     while( true ) {
-      iVar3 = GetQueuedCompletionStatus
+      systemCounter = GetQueuedCompletionStatus
                         (*(void* *)(SystemResourcePointer + 0x28),auStackX_8,&lStackX_18,&lStackX_10,
                          0xffffffff);
       localSystemHandle = lStackX_10;
-      if (iVar3 == 0) break;
+      if (systemCounter == 0) break;
       if (lStackX_18 == -1) {
         return;
       }
@@ -42952,15 +42952,15 @@ void FUN_1800672c0(long long SystemResourcePointer)
         }
       }
     }
-    iVar3 = GetLastError();
-    if (iVar3 == 0x2df) {
+    systemCounter = GetLastError();
+    if (systemCounter == 0x2df) {
       return;
     }
     if (lStackX_10 == 0) break;
     FUN_180067480(*(void* *)(SystemResourcePointer + 0x20));
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(SystemContextManagerPointer,&UNK_1809fec50,iVar3);
+  FUN_180062300(SystemContextManagerPointer,&UNK_1809fec50,systemCounter);
 }
 
 
@@ -43183,7 +43183,7 @@ void FUN_180067f30(void)
 void FUN_180067f60(long long SystemResourcePointer,long long param_2)
 
 {
-  int iVar1;
+  int systemStatus;
   long long localSystemHandle;
   long long localResourceOffset;
   void* *punsignedSystemValue4;
@@ -43233,17 +43233,17 @@ void FUN_180067f60(long long SystemResourcePointer,long long param_2)
   }
   localResourceOffset = SystemResourcePointer + 0x2133e0;
   lStack_2a8 = localResourceOffset;
-  iVar1 = _Mtx_lock(localResourceOffset);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_lock(localResourceOffset);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
   punsignedSystemValue5 = *(void* **)(SystemResourcePointer + 0x2133d8);
   if (punsignedSystemValue5 == (void* *)0x0) {
     unsignedSystemValue8 = *(ulong long *)(SystemResourcePointer + 0x2133d0);
     if (0xff < unsignedSystemValue8) {
-      iVar1 = _Mtx_unlock(localResourceOffset);
-      if (iVar1 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar1);
+      systemStatus = _Mtx_unlock(localResourceOffset);
+      if (systemStatus != 0) {
+        __Throw_C_error_std__YAXH_Z(systemStatus);
       }
       _DAT_00000018 = *(uint32_t *)(param_2 + 0x10);
       punsignedSystemValue4 = &SystemStringTemplate;
@@ -43296,17 +43296,17 @@ void* FUN_180068250(long long SystemResourcePointer,long long param_2,long long 
   unsignedSystemValue8 = *(ulong long *)(param_3 + 0x118) & 0xfffffffffffff000;
   unsignedSystemValue5 = (*(long long *)(param_3 + 0x120) - unsignedSystemValue8) + *(ulong long *)(param_3 + 0x118);
   unsignedSystemValue7 = (ulong long)(-(uint)((unsignedSystemValue5 & 0xfff) != 0) & 0x1000) + (unsignedSystemValue5 & 0xfffffffffffff000);
-  iVar3 = _Mtx_lock(SystemResourcePointer + 0x200380);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  systemCounter = _Mtx_lock(SystemResourcePointer + 0x200380);
+  if (systemCounter != 0) {
+    __Throw_C_error_std__YAXH_Z(systemCounter);
   }
   punsignedSystemValue6 = *(void* **)(SystemResourcePointer + 0x200378);
   if (punsignedSystemValue6 == (void* *)0x0) {
     unsignedSystemValue1 = *(ulong long *)(SystemResourcePointer + 0x200370);
     if (0xfff < unsignedSystemValue1) {
-      iVar3 = _Mtx_unlock(SystemResourcePointer + 0x200380);
-      if (iVar3 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar3);
+      systemCounter = _Mtx_unlock(SystemResourcePointer + 0x200380);
+      if (systemCounter != 0) {
+        __Throw_C_error_std__YAXH_Z(systemCounter);
       }
       FUN_180068490(0x20,param_3);
       uRam00000000000001f0 = 0;
@@ -43329,16 +43329,16 @@ void* FUN_180068250(long long SystemResourcePointer,long long param_2,long long 
         lRam00000000000001f8 = param_2;
         *(int *)(param_2 + 0x120) = *(int *)(param_2 + 0x120) + 1;
         UNLOCK();
-        iVar3 = ReadFile(*(void* *)(param_2 + 0x128),uRam00000000000001f0,unsignedSystemValue7 & 0xffffffff,0,
+        systemCounter = ReadFile(*(void* *)(param_2 + 0x128),uRam00000000000001f0,unsignedSystemValue7 & 0xffffffff,0,
                          0);
-        if (iVar3 != 0) {
+        if (systemCounter != 0) {
                     // WARNING: Subroutine does not return
           FUN_180062300(SystemContextManagerPointer,&UNK_1809fed78);
         }
-        iVar3 = GetLastError();
-        if (iVar3 != 0x3e5) {
+        systemCounter = GetLastError();
+        if (systemCounter != 0x3e5) {
                     // WARNING: Subroutine does not return
-          FUN_180062300(SystemContextManagerPointer,&UNK_1809fed40,iVar3);
+          FUN_180062300(SystemContextManagerPointer,&UNK_1809fed40,systemCounter);
         }
         unsignedSystemValue4 = 1;
       }
@@ -43416,21 +43416,21 @@ long long FUN_180068490(long long SystemResourcePointer,long long param_2)
 void FUN_180068620(long long SystemResourcePointer,void* *param_2,void* param_3,void* param_4)
 
 {
-  int iVar1;
+  int systemStatus;
   void* unsignedSystemValue2;
   
   unsignedSystemValue2 = 0xfffffffffffffffe;
   CloseHandle(param_2[0x25]);
-  iVar1 = _Mtx_lock(SystemResourcePointer + 0x2133e0);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_lock(SystemResourcePointer + 0x2133e0);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
   (**(code **)*param_2)(param_2,0,param_3,param_4,unsignedSystemValue2);
   *param_2 = *(void* *)(SystemResourcePointer + 0x2133d8);
   *(void* **)(SystemResourcePointer + 0x2133d8) = param_2;
-  iVar1 = _Mtx_unlock(SystemResourcePointer + 0x2133e0);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_unlock(SystemResourcePointer + 0x2133e0);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
   return;
 }
@@ -43506,18 +43506,18 @@ void FUN_1800686b0(long long SystemResourcePointer)
 void FUN_1800687d0(long long SystemResourcePointer,void* *param_2)
 
 {
-  int iVar1;
+  int systemStatus;
   
-  iVar1 = _Mtx_lock(SystemResourcePointer + 0x200010);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_lock(SystemResourcePointer + 0x200010);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
   FUN_180069530(param_2 + 4);
   *param_2 = *(void* *)(SystemResourcePointer + 0x200008);
   *(void* **)(SystemResourcePointer + 0x200008) = param_2;
-  iVar1 = _Mtx_unlock(SystemResourcePointer + 0x200010);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_unlock(SystemResourcePointer + 0x200010);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
   return;
 }
@@ -44144,7 +44144,7 @@ void FUN_1800697a0(void* *SystemResourcePointer)
 
 {
   int *pointerToInteger1;
-  int iVar2;
+  int systemResult;
   ulong long unsignedSystemValue3;
   ulong long unsignedSystemValue4;
   long long *plocalSystemPointer;
@@ -44165,10 +44165,10 @@ void FUN_1800697a0(void* *SystemResourcePointer)
         localSystemFlags = SystemResourcePointer[10];
         LOCK();
         pointerToInteger1 = (int *)(localResourcePointer + 0x130);
-        iVar2 = *pointerToInteger1;
+        systemResult = *pointerToInteger1;
         *pointerToInteger1 = *pointerToInteger1 + -0x80000000;
         UNLOCK();
-        if (iVar2 == 0) {
+        if (systemResult == 0) {
           localMemoryAddress = *(long long *)(localSystemFlags + 0x28);
           do {
             *(long long *)(localResourcePointer + 0x138) = localMemoryAddress;
@@ -44185,11 +44185,11 @@ void FUN_1800697a0(void* *SystemResourcePointer)
             if (bVar11) break;
             LOCK();
             pointerToInteger1 = (int *)(localResourcePointer + 0x130);
-            iVar2 = *pointerToInteger1;
+            systemResult = *pointerToInteger1;
             *pointerToInteger1 = *pointerToInteger1 + 0x7fffffff;
             UNLOCK();
             localMemoryAddress = localDataPointer;
-          } while (iVar2 == 1);
+          } while (systemResult == 1);
         }
       }
 LAB_180069842:
@@ -44208,10 +44208,10 @@ LAB_180069842:
     localSystemFlags = SystemResourcePointer[10];
     LOCK();
     pointerToInteger1 = (int *)(localResourcePointer + 0x130);
-    iVar2 = *pointerToInteger1;
+    systemResult = *pointerToInteger1;
     *pointerToInteger1 = *pointerToInteger1 + -0x80000000;
     UNLOCK();
-    if (iVar2 == 0) {
+    if (systemResult == 0) {
       localMemoryAddress = *(long long *)(localSystemFlags + 0x28);
       do {
         *(long long *)(localResourcePointer + 0x138) = localMemoryAddress;
@@ -44228,11 +44228,11 @@ LAB_180069842:
         if (bVar11) break;
         LOCK();
         pointerToInteger1 = (int *)(localResourcePointer + 0x130);
-        iVar2 = *pointerToInteger1;
+        systemResult = *pointerToInteger1;
         *pointerToInteger1 = *pointerToInteger1 + 0x7fffffff;
         UNLOCK();
         localMemoryAddress = localDataPointer;
-      } while (iVar2 == 1);
+      } while (systemResult == 1);
     }
   }
   if (SystemResourcePointer[0xc] != 0) {
@@ -45339,7 +45339,7 @@ void FUN_18006c070(long long SystemResourcePointer)
   long long localMemoryPointer4;
   long long *PrimaryResourcePointer5;
   uint unsignedSystemValue16;
-  int iVar17;
+  int systemStatus7;
   long long *PrimaryResourcePointer8;
   void* *pointerToUnsigned20;
   long long localSystemHandle1;
@@ -45417,9 +45417,9 @@ void FUN_18006c070(long long SystemResourcePointer)
         localMemoryPointer3 = SystemResourcePointer + 0x378;
         uStack_228 = 0;
         lStack_230 = localMemoryPointer3;
-        iVar17 = _Mtx_lock(localMemoryPointer3);
-        if (iVar17 != 0) {
-          __Throw_C_error_std__YAXH_Z(iVar17);
+        systemStatus7 = _Mtx_lock(localMemoryPointer3);
+        if (systemStatus7 != 0) {
+          __Throw_C_error_std__YAXH_Z(systemStatus7);
         }
         uStack_228 = 1;
         localAllocationFlags = _Xtime_get_ticks();
@@ -45432,8 +45432,8 @@ void FUN_18006c070(long long SystemResourcePointer)
         uStack_3c = uStack_20c;
         uStack_218 = localAllocationFlags;
         iStack_40 = iStack_210;
-        iVar17 = _Mtx_current_owns(localMemoryPointer3);
-        if (iVar17 == 0) {
+        systemStatus7 = _Mtx_current_owns(localMemoryPointer3);
+        if (systemStatus7 == 0) {
           __Throw_Cpp_error_std__YAXH_Z(4);
         }
         unsignedSystemValue16 = _Cnd_timedwait(SystemResourcePointer + 0x330,localMemoryPointer3,&iStack_48);
@@ -45442,16 +45442,16 @@ void FUN_18006c070(long long SystemResourcePointer)
         }
         cVar9 = FUN_18006d4e0(SystemResourcePointer + 200,&puStack_1f8);
         if (cVar9 == '\0') {
-          iVar17 = _Mtx_unlock(localMemoryPointer3);
-          if (iVar17 != 0) {
-            __Throw_C_error_std__YAXH_Z(iVar17);
+          systemStatus7 = _Mtx_unlock(localMemoryPointer3);
+          if (systemStatus7 != 0) {
+            __Throw_C_error_std__YAXH_Z(systemStatus7);
           }
           bVar7 = false;
         }
         else {
-          iVar17 = _Mtx_unlock();
-          if (iVar17 != 0) {
-            __Throw_C_error_std__YAXH_Z(iVar17);
+          systemStatus7 = _Mtx_unlock();
+          if (systemStatus7 != 0) {
+            __Throw_C_error_std__YAXH_Z(systemStatus7);
           }
           bVar7 = true;
         }
@@ -45568,19 +45568,19 @@ void FUN_18006c070(long long SystemResourcePointer)
       PrimaryResourcePointer8 = (long long *)SecondaryResourcePointer3[0x67];
       for (localMemoryPointer3 = PrimaryResourcePointer8[unsignedSystemValue25 % (ulong long)*(uint *)(SecondaryResourcePointer3 + 0x68)]; localMemoryPointer3 != 0;
           localMemoryPointer3 = *(long long *)(localMemoryPointer3 + 0x120)) {
-        iVar17 = *(int *)(localMemoryPointer3 + 0x10);
-        if (iStack_1e8 == iVar17) {
+        systemStatus7 = *(int *)(localMemoryPointer3 + 0x10);
+        if (iStack_1e8 == systemStatus7) {
           if (iStack_1e8 != 0) {
             pbVar12 = pbStack_1f0;
             do {
               pbVar3 = pbVar12 + (*(long long *)(localMemoryPointer3 + 8) - (long long)pbStack_1f0);
-              iVar17 = (uint)*pbVar12 - (uint)*pbVar3;
-              if (iVar17 != 0) break;
+              systemStatus7 = (uint)*pbVar12 - (uint)*pbVar3;
+              if (systemStatus7 != 0) break;
               pbVar12 = pbVar12 + 1;
             } while (*pbVar3 != 0);
           }
 LAB_18006c61e:
-          if (iVar17 == 0) {
+          if (systemStatus7 == 0) {
             if (localMemoryPointer3 != 0) {
               localAllocationFlags = SecondaryResourcePointer3[0x68];
               goto LAB_18006c642;
@@ -45614,7 +45614,7 @@ LAB_18006c852:
         UNLOCK();
         LOCK();
         pointerToInteger2 = (int *)(SystemResourcePointer + 0x3f8);
-        iVar17 = *pointerToInteger2;
+        systemStatus7 = *pointerToInteger2;
         *pointerToInteger2 = *pointerToInteger2 + 1;
         UNLOCK();
         pointerToUnsigned20 = *(void* **)(SystemResourcePointer + 0xc0);
@@ -45628,7 +45628,7 @@ LAB_18006c852:
           FUN_180062300(SystemContextManagerPointer,&UNK_1809ff390,unsignedSystemValue19,pbVar12);
         }
         if (((uStack_258 < localAllocationFlags + unsignedSystemValue19) ||
-            ((ulong long)(long long)*(int *)(SystemResourcePointer + 0x3fc) < (long long)iVar17 + 1U)) ||
+            ((ulong long)(long long)*(int *)(SystemResourcePointer + 0x3fc) < (long long)systemStatus7 + 1U)) ||
            (cVar9 = (**(code **)*pointerToUnsigned20)(pointerToUnsigned20,localMemoryPointer3,&puStack_1f8), cVar9 == '\0')) {
           LOCK();
           *(long long *)(SystemResourcePointer + 0x3f0) = *(long long *)(SystemResourcePointer + 0x3f0) - unsignedSystemValue19;
@@ -46027,7 +46027,7 @@ void FUN_18006cf00(void* *SystemResourcePointer)
 
 {
   int *pointerToInteger1;
-  int iVar2;
+  int systemResult;
   ulong long unsignedSystemValue3;
   ulong long unsignedSystemValue4;
   long long *plocalSystemPointer;
@@ -46048,10 +46048,10 @@ void FUN_18006cf00(void* *SystemResourcePointer)
         localSystemFlags = SystemResourcePointer[10];
         LOCK();
         pointerToInteger1 = (int *)(localResourcePointer + 0x3530);
-        iVar2 = *pointerToInteger1;
+        systemResult = *pointerToInteger1;
         *pointerToInteger1 = *pointerToInteger1 + -0x80000000;
         UNLOCK();
-        if (iVar2 == 0) {
+        if (systemResult == 0) {
           localMemoryAddress = *(long long *)(localSystemFlags + 0x28);
           do {
             *(long long *)(localResourcePointer + 0x3538) = localMemoryAddress;
@@ -46068,11 +46068,11 @@ void FUN_18006cf00(void* *SystemResourcePointer)
             if (bVar11) break;
             LOCK();
             pointerToInteger1 = (int *)(localResourcePointer + 0x3530);
-            iVar2 = *pointerToInteger1;
+            systemResult = *pointerToInteger1;
             *pointerToInteger1 = *pointerToInteger1 + 0x7fffffff;
             UNLOCK();
             localMemoryAddress = localDataPointer;
-          } while (iVar2 == 1);
+          } while (systemResult == 1);
         }
       }
 LAB_18006cfb1:
@@ -46091,10 +46091,10 @@ LAB_18006cfb1:
     localSystemFlags = SystemResourcePointer[10];
     LOCK();
     pointerToInteger1 = (int *)(localResourcePointer + 0x3530);
-    iVar2 = *pointerToInteger1;
+    systemResult = *pointerToInteger1;
     *pointerToInteger1 = *pointerToInteger1 + -0x80000000;
     UNLOCK();
-    if (iVar2 == 0) {
+    if (systemResult == 0) {
       localMemoryAddress = *(long long *)(localSystemFlags + 0x28);
       do {
         *(long long *)(localResourcePointer + 0x3538) = localMemoryAddress;
@@ -46111,11 +46111,11 @@ LAB_18006cfb1:
         if (bVar11) break;
         LOCK();
         pointerToInteger1 = (int *)(localResourcePointer + 0x3530);
-        iVar2 = *pointerToInteger1;
+        systemResult = *pointerToInteger1;
         *pointerToInteger1 = *pointerToInteger1 + 0x7fffffff;
         UNLOCK();
         localMemoryAddress = localDataPointer;
-      } while (iVar2 == 1);
+      } while (systemResult == 1);
     }
   }
   if (SystemResourcePointer[0xc] != 0) {
@@ -46789,10 +46789,10 @@ void FUN_18006dc10(long long *SystemResourcePointer)
     localSystemPointer = SystemResourcePointer[3];
     LOCK();
     pointerToInteger2 = (int *)(localBufferAddress + 0x3530);
-    iVar3 = *pointerToInteger2;
+    systemCounter = *pointerToInteger2;
     *pointerToInteger2 = *pointerToInteger2 + -0x80000000;
     UNLOCK();
-    if (iVar3 == 0) {
+    if (systemCounter == 0) {
       localDataPointer = *(long long *)(localSystemPointer + 0x28);
       do {
         *(long long *)(localBufferAddress + 0x3538) = localDataPointer;
@@ -46811,11 +46811,11 @@ void FUN_18006dc10(long long *SystemResourcePointer)
         }
         LOCK();
         pointerToInteger2 = (int *)(localBufferAddress + 0x3530);
-        iVar3 = *pointerToInteger2;
+        systemCounter = *pointerToInteger2;
         *pointerToInteger2 = *pointerToInteger2 + 0x7fffffff;
         UNLOCK();
         localDataPointer = localSystemFlags;
-      } while (iVar3 == 1);
+      } while (systemCounter == 1);
     }
   }
   return;
@@ -47599,9 +47599,9 @@ void FUN_18006e990(void)
   localMemoryPointer = SystemInitializationFlag;
   FUN_18006f160(SystemInitializationFlag);
   *(int *)(localMemoryPointer + 0xec) = *(int *)(localMemoryPointer + 0xec) + 1;
-  iVar3 = _Mtx_lock(localMemoryPointer + 0x98);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  systemCounter = _Mtx_lock(localMemoryPointer + 0x98);
+  if (systemCounter != 0) {
+    __Throw_C_error_std__YAXH_Z(systemCounter);
   }
   plocalBufferAddress = *(long long **)(localMemoryPointer + 0x78);
   if ((plocalBufferAddress != (long long *)(localMemoryPointer + 0x78)) && (*(uint *)(plocalBufferAddress + 2) < *(uint *)(localMemoryPointer + 0xec))) {
@@ -47611,22 +47611,22 @@ void FUN_18006e990(void)
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  iVar3 = _Mtx_unlock(localMemoryPointer + 0x98);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  systemCounter = _Mtx_unlock(localMemoryPointer + 0x98);
+  if (systemCounter != 0) {
+    __Throw_C_error_std__YAXH_Z(systemCounter);
   }
   *(int *)(localMemoryPointer + 0x164) = *(int *)(localMemoryPointer + 0x164) + 1;
-  iVar3 = _Mtx_lock(localMemoryPointer + 0x110);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  systemCounter = _Mtx_lock(localMemoryPointer + 0x110);
+  if (systemCounter != 0) {
+    __Throw_C_error_std__YAXH_Z(systemCounter);
   }
   plocalBufferAddress = *(long long **)(localMemoryPointer + 0xf0);
   do {
     if (plocalBufferAddress == (long long *)(localMemoryPointer + 0xf0)) {
 LAB_18006f48d:
-      iVar3 = _Mtx_unlock(localMemoryPointer + 0x110);
-      if (iVar3 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar3);
+      systemCounter = _Mtx_unlock(localMemoryPointer + 0x110);
+      if (systemCounter != 0) {
+        __Throw_C_error_std__YAXH_Z(systemCounter);
       }
       return;
     }
@@ -47661,9 +47661,9 @@ void FUN_18006eb30(void* SystemResourcePointer,void* param_2,void* param_3,void*
   localSystemHandle = SystemInitializationFlag;
   FUN_18005e630(SystemAllocationFlagsTemplate,param_2,param_3,param_4,0xfffffffffffffffe);
   FUN_18006efc0(localSystemHandle);
-  iVar3 = _Mtx_lock(localSystemHandle + 0x98);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  systemCounter = _Mtx_lock(localSystemHandle + 0x98);
+  if (systemCounter != 0) {
+    __Throw_C_error_std__YAXH_Z(systemCounter);
   }
   if (*(long long *)(localSystemHandle + 0x90) != 0) {
     PrimaryResourcePointer = *(long long **)(**(long long **)(localSystemHandle + 0x78) + 8);
@@ -47672,13 +47672,13 @@ void FUN_18006eb30(void* SystemResourcePointer,void* param_2,void* param_3,void*
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  iVar3 = _Mtx_unlock(localSystemHandle + 0x98);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  systemCounter = _Mtx_unlock(localSystemHandle + 0x98);
+  if (systemCounter != 0) {
+    __Throw_C_error_std__YAXH_Z(systemCounter);
   }
-  iVar3 = _Mtx_lock(localSystemHandle + 0x110);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  systemCounter = _Mtx_lock(localSystemHandle + 0x110);
+  if (systemCounter != 0) {
+    __Throw_C_error_std__YAXH_Z(systemCounter);
   }
   if (*(long long *)(localSystemHandle + 0x108) != 0) {
     PrimaryResourcePointer = *(long long **)(**(long long **)(localSystemHandle + 0xf0) + 8);
@@ -47687,9 +47687,9 @@ void FUN_18006eb30(void* SystemResourcePointer,void* param_2,void* param_3,void*
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  iVar3 = _Mtx_unlock(localSystemHandle + 0x110);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  systemCounter = _Mtx_unlock(localSystemHandle + 0x110);
+  if (systemCounter != 0) {
+    __Throw_C_error_std__YAXH_Z(systemCounter);
   }
   return;
 }
@@ -47704,9 +47704,9 @@ void FUN_18006edf0(void* SystemResourcePointer,void* param_2,void* param_3,void*
 
 {
   long long localMemoryPointer;
-  int iVar2;
+  int systemResult;
   long long localResourceOffset;
-  int iVar4;
+  int systemIndex;
   long long *plocalSystemPointer;
   long long localSystemFlags;
   void* unsignedSystemValue7;
@@ -47720,17 +47720,17 @@ void FUN_18006edf0(void* SystemResourcePointer,void* param_2,void* param_3,void*
   if (SystemInitializationFlag != 0) {
     localSystemFlags = SystemInitializationFlag + 0xf0;
     localMemoryPointer = SystemInitializationFlag + 0x110;
-    iVar4 = _Mtx_lock(localMemoryPointer);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+    systemIndex = _Mtx_lock(localMemoryPointer);
+    if (systemIndex != 0) {
+      __Throw_C_error_std__YAXH_Z(systemIndex);
     }
-    iVar4 = *(int *)(localResourceOffset + 0x164);
-    iVar2 = *(int *)(localResourceOffset + 0x160);
+    systemIndex = *(int *)(localResourceOffset + 0x164);
+    systemResult = *(int *)(localResourceOffset + 0x160);
     plocalSystemPointer = (long long *)
              CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x28,*(uint8_t *)(localResourceOffset + 0x100),param_4,unsignedSystemValue7);
     uStack_18 = (uint32_t)SystemResourcePointer;
     uStack_14 = (uint32_t)((ulong long)SystemResourcePointer >> 0x20);
-    *(int *)(plocalSystemPointer + 2) = iVar4 + iVar2;
+    *(int *)(plocalSystemPointer + 2) = systemIndex + systemResult;
     *(uint32_t *)((long long)plocalSystemPointer + 0x14) = uStack_1c;
     *(uint32_t *)(plocalSystemPointer + 3) = uStack_18;
     *(uint32_t *)((long long)plocalSystemPointer + 0x1c) = uStack_14;
@@ -47740,9 +47740,9 @@ void FUN_18006edf0(void* SystemResourcePointer,void* param_2,void* param_3,void*
     **(long long **)(localResourceOffset + 0xf8) = (long long)plocalSystemPointer;
     *(long long **)(localResourceOffset + 0xf8) = plocalSystemPointer;
     *(long long *)(localResourceOffset + 0x108) = *(long long *)(localResourceOffset + 0x108) + 1;
-    iVar4 = _Mtx_unlock(localMemoryPointer);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+    systemIndex = _Mtx_unlock(localMemoryPointer);
+    if (systemIndex != 0) {
+      __Throw_C_error_std__YAXH_Z(systemIndex);
     }
   }
   return;
@@ -47754,16 +47754,16 @@ void* FUN_18006eec0(long long SystemResourcePointer)
 
 {
   void* unsignedSystemValue1;
-  int iVar2;
+  int systemResult;
   
-  iVar2 = _Mtx_lock(SystemResourcePointer + 0x20);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  systemResult = _Mtx_lock(SystemResourcePointer + 0x20);
+  if (systemResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemResult);
   }
   unsignedSystemValue1 = *(void* *)(SystemResourcePointer + 0x18);
-  iVar2 = _Mtx_unlock(SystemResourcePointer + 0x20);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  systemResult = _Mtx_unlock(SystemResourcePointer + 0x20);
+  if (systemResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemResult);
   }
   return unsignedSystemValue1;
 }
@@ -47805,11 +47805,11 @@ void FUN_18006efc0(void* *SystemResourcePointer,void* param_2,void* param_3,void
 
 {
   long long *PrimaryResourcePointer;
-  int iVar2;
+  int systemResult;
   
-  iVar2 = _Mtx_lock(SystemResourcePointer + 4,param_2,param_3,param_4,0xfffffffffffffffe);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  systemResult = _Mtx_lock(SystemResourcePointer + 4,param_2,param_3,param_4,0xfffffffffffffffe);
+  if (systemResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemResult);
   }
   if (SystemResourcePointer[3] != 0) {
     PrimaryResourcePointer = *(long long **)(*(long long *)*SystemResourcePointer + 8);
@@ -47818,9 +47818,9 @@ void FUN_18006efc0(void* *SystemResourcePointer,void* param_2,void* param_3,void
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  iVar2 = _Mtx_unlock(SystemResourcePointer + 4);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  systemResult = _Mtx_unlock(SystemResourcePointer + 4);
+  if (systemResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemResult);
   }
   return;
 }
@@ -47833,12 +47833,12 @@ void FUN_18006f160(long long *SystemResourcePointer,void* param_2,void* param_3,
 
 {
   long long *PrimaryResourcePointer;
-  int iVar2;
+  int systemResult;
   
   *(int *)((long long)SystemResourcePointer + 0x74) = *(int *)((long long)SystemResourcePointer + 0x74) + 1;
-  iVar2 = _Mtx_lock(SystemResourcePointer + 4,param_2,param_3,param_4,0xfffffffffffffffe);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  systemResult = _Mtx_lock(SystemResourcePointer + 4,param_2,param_3,param_4,0xfffffffffffffffe);
+  if (systemResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemResult);
   }
   PrimaryResourcePointer = (long long *)*SystemResourcePointer;
   if ((PrimaryResourcePointer != SystemResourcePointer) && (*(uint *)(PrimaryResourcePointer + 2) < *(uint *)((long long)SystemResourcePointer + 0x74))) {
@@ -47848,9 +47848,9 @@ void FUN_18006f160(long long *SystemResourcePointer,void* param_2,void* param_3,
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  iVar2 = _Mtx_unlock(SystemResourcePointer + 4);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  systemResult = _Mtx_unlock(SystemResourcePointer + 4);
+  if (systemResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemResult);
   }
   return;
 }
@@ -47877,21 +47877,21 @@ void FUN_18006f340(long long *SystemResourcePointer)
 
 {
   char SystemNodeFlag;
-  int iVar2;
+  int systemResult;
   long long *plocalResourceOffset;
   
   *(int *)((long long)SystemResourcePointer + 0x74) = *(int *)((long long)SystemResourcePointer + 0x74) + 1;
-  iVar2 = _Mtx_lock(SystemResourcePointer + 4);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  systemResult = _Mtx_lock(SystemResourcePointer + 4);
+  if (systemResult != 0) {
+    __Throw_C_error_std__YAXH_Z(systemResult);
   }
   plocalResourceOffset = (long long *)*SystemResourcePointer;
   do {
     if (plocalResourceOffset == SystemResourcePointer) {
 LAB_18006f48d:
-      iVar2 = _Mtx_unlock(SystemResourcePointer + 4);
-      if (iVar2 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar2);
+      systemResult = _Mtx_unlock(SystemResourcePointer + 4);
+      if (systemResult != 0) {
+        __Throw_C_error_std__YAXH_Z(systemResult);
       }
       return;
     }
@@ -48034,7 +48034,7 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
   bool bVar2;
   long long localResourceOffset;
   char cVar4;
-  int iVar5;
+  int systemValue;
   int iVar6;
   ulong long unsignedSystemValue7;
   void* *punsignedSystemValue8;
@@ -48056,16 +48056,16 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
   }
   bVar9 = true;
   cVar4 = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
-  if ((cVar4 == '\0') && (iVar5 = IsDebuggerPresent(), iVar5 != 0)) {
+  if ((cVar4 == '\0') && (systemValue = IsDebuggerPresent(), systemValue != 0)) {
     bVar2 = true;
   }
   else {
     bVar2 = false;
   }
   if (localResourceOffset != 0) {
-    iVar5 = *(int *)(**(long long **)(localResourceOffset + 8) + 0x48);
+    systemValue = *(int *)(**(long long **)(localResourceOffset + 8) + 0x48);
     iVar6 = _Thrd_id();
-    bVar9 = iVar6 == iVar5;
+    bVar9 = iVar6 == systemValue;
   }
   FUN_1800f9ce0(auStack_30,0);
   puStack_50 = &SystemGlobalDataReference;
@@ -48099,7 +48099,7 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
   }
   if (DAT_180c82842 == '\0') {
     if ((DAT_180c82860 == '\0') ||
-       ((iVar5 = IsDebuggerPresent(), iVar5 != 0 && (DAT_180c82842 == '\0')))) {
+       ((systemValue = IsDebuggerPresent(), systemValue != 0 && (DAT_180c82842 == '\0')))) {
       MessageBoxA(0,param_2,&UNK_1809ff5b8,0x41010);
     }
     else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
@@ -48113,8 +48113,8 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
     }
     FUN_1806272a0(punsignedSystemValue8);
   }
-  iVar5 = FUN_1800f98e0(param_2);
-  if ((!bVar2) && (iVar5 == 0)) {
+  systemValue = FUN_1800f98e0(param_2);
+  if ((!bVar2) && (systemValue == 0)) {
     FUN_180066320();
   }
   FUN_1800f96b0(param_2,0);
@@ -48378,8 +48378,8 @@ ulong long FUN_18006ff80(void* SystemResourcePointer,void* param_2,char param_3)
   code *pcVar1;
   long long localSystemHandle;
   char cVar3;
-  int iVar4;
-  int iVar5;
+  int systemIndex;
+  int systemValue;
   uint8_t *punsignedSystemValue6;
   long long localDataPointer;
   void* **ppunsignedSystemValue8;
@@ -48422,16 +48422,16 @@ ulong long FUN_18006ff80(void* SystemResourcePointer,void* param_2,char param_3)
   }
   bVar14 = true;
   cVar3 = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
-  if ((cVar3 == '\0') && (iVar4 = IsDebuggerPresent(), iVar4 != 0)) {
+  if ((cVar3 == '\0') && (systemIndex = IsDebuggerPresent(), systemIndex != 0)) {
     bVar15 = true;
   }
   else {
     bVar15 = false;
   }
   if (localSystemHandle != 0) {
-    iVar4 = *(int *)(**(long long **)(localSystemHandle + 8) + 0x48);
-    iVar5 = _Thrd_id();
-    bVar14 = iVar5 == iVar4;
+    systemIndex = *(int *)(**(long long **)(localSystemHandle + 8) + 0x48);
+    systemValue = _Thrd_id();
+    bVar14 = systemValue == systemIndex;
   }
   punsignedSystemValue12 = (void* *)0x0;
   if (!bVar15) {
@@ -48503,7 +48503,7 @@ LAB_180070230:
           *(uint8_t *)(localDataPointer + 0x1609) = 1;
         }
       }
-      if (((DAT_180c82860 == '\0') || (iVar4 = IsDebuggerPresent(), iVar4 != 0)) &&
+      if (((DAT_180c82860 == '\0') || (systemIndex = IsDebuggerPresent(), systemIndex != 0)) &&
          (DAT_180c82842 == '\0')) {
         MessageBoxA(0,param_2,&UNK_1809ff630,0x41030);
       }
@@ -48515,8 +48515,8 @@ LAB_180070230:
     else if (DAT_180c82860 == '\0') {
       FUN_1806272a0(&UNK_1809ff610,param_2);
     }
-    iVar4 = FUN_1800f98e0(param_2);
-    if ((!bVar15) && (iVar4 == 0)) {
+    systemIndex = FUN_1800f98e0(param_2);
+    if ((!bVar15) && (systemIndex == 0)) {
       bVar15 = SystemStatusFlagsPointer == 0;
       if (bVar15) {
         unsignedSystemValue13 = 0;
@@ -48609,8 +48609,8 @@ LAB_180070230:
       FUN_18005db30(localSystemHandle);
     }
     do {
-      iVar4 = ReleaseSemaphore(SystemSemaphoreHandle,1);
-    } while (iVar4 == 0);
+      systemIndex = ReleaseSemaphore(SystemSemaphoreHandle,1);
+    } while (systemIndex == 0);
     puStack_b0 = &SystemGlobalDataReference;
     if (puStack_a8 != (void* *)0x0) {
                     // WARNING: Subroutine does not return
@@ -48657,7 +48657,7 @@ void FUN_180070680(void* SystemResourcePointer,void* param_2)
   bool bVar1;
   char cVar2;
   int MemoryCompareResult;
-  int iVar4;
+  int systemIndex;
   long long systemTimeValue;
   void* *punsignedSystemValue6;
   void* unsignedSystemValue7;
@@ -48671,22 +48671,22 @@ void FUN_180070680(void* SystemResourcePointer,void* param_2)
   long long lStack_48;
   uint32_t uStack_38;
   
-  iVar3 = WaitForSingleObject(SystemSemaphoreHandle,0);
-  if (iVar3 != 0) {
+  systemCounter = WaitForSingleObject(SystemSemaphoreHandle,0);
+  if (systemCounter != 0) {
     return;
   }
   bVar9 = true;
   cVar2 = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
-  if ((cVar2 == '\0') && (iVar3 = IsDebuggerPresent(), iVar3 != 0)) {
+  if ((cVar2 == '\0') && (systemCounter = IsDebuggerPresent(), systemCounter != 0)) {
     bVar1 = true;
   }
   else {
     bVar1 = false;
   }
   if (SystemAllocationFlagsTemplate != 0) {
-    iVar3 = *(int *)(**(long long **)(SystemAllocationFlagsTemplate + 8) + 0x48);
-    iVar4 = _Thrd_id();
-    bVar9 = iVar4 == iVar3;
+    systemCounter = *(int *)(**(long long **)(SystemAllocationFlagsTemplate + 8) + 0x48);
+    systemIndex = _Thrd_id();
+    bVar9 = systemIndex == systemCounter;
   }
   punsignedSystemValue8 = (void* *)0x0;
   if (!bVar1) {
@@ -48759,7 +48759,7 @@ void FUN_180070930(void* SystemResourcePointer,long long param_2,uint32_t param_
   code *pcVar1;
   bool bVar2;
   char cVar3;
-  int iVar4;
+  int systemIndex;
   uint unsignedSystemValue5;
   uint unsignedSystemValue6;
   uint32_t unsignedSystemValue7;
@@ -48837,11 +48837,11 @@ LAB_180070a3f:
     }
   }
   else if (unsignedSystemValue6 != 0) {
-    iVar4 = unsignedSystemValue6 + 1;
-    if (iVar4 < 0x10) {
-      iVar4 = 0x10;
+    systemIndex = unsignedSystemValue6 + 1;
+    if (systemIndex < 0x10) {
+      systemIndex = 0x10;
     }
-    pointerToUnsigned10 = (uint8_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)iVar4,0x13);
+    pointerToUnsigned10 = (uint8_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)systemIndex,0x13);
     *pointerToUnsigned10 = 0;
     puStack_110 = pointerToUnsigned10;
     unsignedSystemValue5 = StartSystemThread(pointerToUnsigned10);
@@ -48861,9 +48861,9 @@ LAB_180070a3f:
       localResourcePointer = localMemoryPointer5 + 1;
     } while (*(char *)(param_2 + localResourcePointer) != '\0');
     if (0 < (int)localResourcePointer) {
-      iVar4 = unsignedSystemValue6 + (int)localResourcePointer;
-      if (iVar4 != 0) {
-        unsignedSystemValue6 = iVar4 + 1;
+      systemIndex = unsignedSystemValue6 + (int)localResourcePointer;
+      if (systemIndex != 0) {
+        unsignedSystemValue6 = systemIndex + 1;
         if (pointerToUnsigned10 == (uint8_t *)0x0) {
           if ((int)unsignedSystemValue6 < 0x10) {
             unsignedSystemValue6 = 0x10;
@@ -48916,9 +48916,9 @@ LAB_180070b00:
     }
     goto LAB_1800718e9;
   }
-  iVar4 = WaitForSingleObject(SystemSemaphoreHandle,1);
+  systemIndex = WaitForSingleObject(SystemSemaphoreHandle,1);
   localResourcePointer = SystemAllocationFlagsTemplate;
-  if (iVar4 != 0) {
+  if (systemIndex != 0) {
     puStack_f8 = &SystemGlobalDataReference;
     if (puStack_f0 != (void* *)0x0) {
                     // WARNING: Subroutine does not return
@@ -48940,14 +48940,14 @@ LAB_180070b00:
     localMemoryPointer6 = localMemoryPointer5;
     localMemoryPointer5 = localMemoryPointer6 + 1;
   } while (pointerToUnsigned18[localMemoryPointer5] != '\0');
-  iVar4 = (int)localMemoryPointer5;
-  if (0 < iVar4) {
-    if (iVar4 != 0) {
-      iVar4 = iVar4 + 1;
-      if (iVar4 < 0x10) {
-        iVar4 = 0x10;
+  systemIndex = (int)localMemoryPointer5;
+  if (0 < systemIndex) {
+    if (systemIndex != 0) {
+      systemIndex = systemIndex + 1;
+      if (systemIndex < 0x10) {
+        systemIndex = 0x10;
       }
-      puStack_138 = (uint8_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)iVar4,0x13);
+      puStack_138 = (uint8_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)systemIndex,0x13);
       *puStack_138 = 0;
       unsignedSystemValue7 = StartSystemThread(puStack_138);
       uStack_128 = CONCAT44(uStack_128._4_4_,unsignedSystemValue7);
@@ -48984,11 +48984,11 @@ LAB_180070db8:
       localMemoryPointer6 = localMemoryPointer5;
       localMemoryPointer5 = localMemoryPointer6 + 1;
     } while (*(char *)(param_2 + localMemoryPointer5) != '\0');
-    iVar4 = (int)localMemoryPointer5;
-    if (0 < iVar4) {
+    systemIndex = (int)localMemoryPointer5;
+    if (0 < systemIndex) {
       unsignedSystemValue5 = unsignedSystemValue6;
-      if (iVar4 != -2) {
-        unsignedSystemValue14 = iVar4 + 3;
+      if (systemIndex != -2) {
+        unsignedSystemValue14 = systemIndex + 3;
         if (puStack_138 == (uint8_t *)0x0) {
           if ((int)unsignedSystemValue14 < 0x10) {
             unsignedSystemValue14 = 0x10;
@@ -49085,9 +49085,9 @@ LAB_180071000:
       localMemoryPointer6 = localMemoryPointer7 + 1;
     } while (*(char *)(lStack_88 + localMemoryPointer6) != '\0');
     if (0 < (int)localMemoryPointer6) {
-      iVar4 = unsignedSystemValue14 + (int)localMemoryPointer6;
-      if (iVar4 != 0) {
-        unsignedSystemValue6 = iVar4 + 1;
+      systemIndex = unsignedSystemValue14 + (int)localMemoryPointer6;
+      if (systemIndex != 0) {
+        unsignedSystemValue6 = systemIndex + 1;
         if (puStack_138 == (uint8_t *)0x0) {
           if ((int)unsignedSystemValue6 < 0x10) {
             unsignedSystemValue6 = 0x10;
@@ -49108,8 +49108,8 @@ LAB_1800710b8:
       memcpy(puStack_138 + uStack_130,localMemoryPointer5,(long long)((int)localMemoryPointer7 + 2));
     }
   }
-  iVar4 = unsignedSystemValue6 + 0xe;
-  if (iVar4 != 0) {
+  systemIndex = unsignedSystemValue6 + 0xe;
+  if (systemIndex != 0) {
     unsignedSystemValue6 = unsignedSystemValue6 + 0xf;
     if (puStack_138 == (uint8_t *)0x0) {
       if ((int)unsignedSystemValue6 < 0x10) {
@@ -49128,14 +49128,14 @@ LAB_1800710b8:
   }
 LAB_18007113f:
   *(void*2 *)(puStack_138 + uStack_130) = 10;
-  uStack_130 = iVar4;
+  uStack_130 = systemIndex;
   if (localResourcePointer != 0) {
     FUN_18005dab0(localResourcePointer);
   }
   bVar13 = 1;
   cStack_11f = '\x01';
   cVar3 = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
-  if ((cVar3 != '\0') || (iVar4 = IsDebuggerPresent(), iVar4 == 0)) {
+  if ((cVar3 != '\0') || (systemIndex = IsDebuggerPresent(), systemIndex == 0)) {
     bVar13 = 0;
   }
   if (SystemStatusFlagsPointer == 0) {
@@ -49146,9 +49146,9 @@ LAB_18007113f:
   }
   bVar2 = true;
   if (localResourcePointer != 0) {
-    iVar4 = *(int *)(**(long long **)(localResourcePointer + 8) + 0x48);
+    systemIndex = *(int *)(**(long long **)(localResourcePointer + 8) + 0x48);
     iVar8 = _Thrd_id();
-    cStack_11f = iVar8 == iVar4;
+    cStack_11f = iVar8 == systemIndex;
     bVar2 = (bool)cStack_11f;
   }
   localResourcePointer = SystemRenderManagerPointer;
@@ -49216,8 +49216,8 @@ LAB_18007113f:
     if ((SystemInitializationFlag == 0) || (*(int *)(SystemInitializationFlag + 0x168) == 2)) {
       FUN_180062380(SystemContextManagerPointer,4,0xffffffff00000000,&UNK_1809ff688);
       InitializeSystemManager();
-      iVar4 = IsDebuggerPresent();
-      if ((iVar4 != 0) && (DAT_180c82851 == '\0')) {
+      systemIndex = IsDebuggerPresent();
+      if ((systemIndex != 0) && (DAT_180c82851 == '\0')) {
         pcVar1 = (code *)swi(3);
         (*pcVar1)();
         return;
@@ -49235,7 +49235,7 @@ LAB_18007113f:
         if (puStack_138 != (uint8_t *)0x0) {
           punsignedSystemValue12 = puStack_138;
         }
-        if (((DAT_180c82860 == '\0') || (iVar4 = IsDebuggerPresent(), iVar4 != 0)) &&
+        if (((DAT_180c82860 == '\0') || (systemIndex = IsDebuggerPresent(), systemIndex != 0)) &&
            (DAT_180c82842 == '\0')) break;
         if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
           puStack_168 = &UNK_180a04f08;
@@ -49247,31 +49247,31 @@ LAB_18007113f:
       unsignedSystemValue7 = MessageBoxA(0,punsignedSystemValue12,pointerToUnsigned18,0x52012);
       switch(unsignedSystemValue7) {
       case 1:
-        iVar4 = 0;
+        systemIndex = 0;
         break;
       default:
-        iVar4 = 1;
+        systemIndex = 1;
         break;
       case 4:
-        iVar4 = 2;
+        systemIndex = 2;
         break;
       case 5:
-        iVar4 = 3;
+        systemIndex = 3;
         break;
       case 6:
-        iVar4 = 4;
+        systemIndex = 4;
         break;
       case 7:
-        iVar4 = 5;
+        systemIndex = 5;
       }
-    } while (iVar4 == 1);
-    if (iVar4 == 2) {
+    } while (systemIndex == 1);
+    if (systemIndex == 2) {
       if (bVar13 == 0) {
         punsignedSystemValue12 = &SystemStringTemplate;
         if (pointerToUnsigned10 != (uint8_t *)0x0) {
           punsignedSystemValue12 = pointerToUnsigned10;
         }
-        if (((DAT_180c82860 == '\0') || (iVar4 = IsDebuggerPresent(), iVar4 != 0)) &&
+        if (((DAT_180c82860 == '\0') || (systemIndex = IsDebuggerPresent(), systemIndex != 0)) &&
            (DAT_180c82842 == '\0')) {
           MessageBoxA(0,punsignedSystemValue12,&UNK_1809ff6c8,0x41010);
         }
@@ -49289,7 +49289,7 @@ LAB_18007113f:
         return;
       }
     }
-    else if (iVar4 == 3) goto LAB_1800715eb;
+    else if (systemIndex == 3) goto LAB_1800715eb;
     if (SystemStatusFlagsPointer == 0) {
       cVar3 = '\x01';
     }
@@ -49317,8 +49317,8 @@ LAB_18007113f:
       FUN_18005db30();
     }
     do {
-      iVar4 = ReleaseSemaphore(SystemSemaphoreHandle,1);
-    } while (iVar4 == 0);
+      systemIndex = ReleaseSemaphore(SystemSemaphoreHandle,1);
+    } while (systemIndex == 0);
     puStack_118 = &SystemGlobalDataReference;
     if (pointerToUnsigned10 != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -49370,7 +49370,7 @@ LAB_1800715eb:
 void FUN_180071940(void* SystemResourcePointer,long long param_2,uint32_t param_3,long long param_4)
 
 {
-  int iVar1;
+  int systemStatus;
   uint unsignedSystemValue2;
   uint32_t unsignedSystemValue3;
   long long localBufferAddress;
@@ -49394,8 +49394,8 @@ void FUN_180071940(void* SystemResourcePointer,long long param_2,uint32_t param_
   long long lStack_48;
   uint32_t uStack_38;
   
-  iVar1 = WaitForSingleObject(SystemSemaphoreHandle,0);
-  if (iVar1 != 0) {
+  systemStatus = WaitForSingleObject(SystemSemaphoreHandle,0);
+  if (systemStatus != 0) {
     return;
   }
   punsignedSystemValue9 = (void* *)0x0;
@@ -49403,8 +49403,8 @@ void FUN_180071940(void* SystemResourcePointer,long long param_2,uint32_t param_
   uStack_58 = 0;
   puStack_68 = (void* *)0x0;
   uStack_60 = 0;
-  iVar1 = IsDebuggerPresent();
-  if (iVar1 == 0) {
+  systemStatus = IsDebuggerPresent();
+  if (systemStatus == 0) {
     localBufferAddress = FUN_1800f9ce0(&puStack_50,0);
     uStack_60 = *(uint32_t *)(localBufferAddress + 0x10);
     punsignedSystemValue9 = *(void* **)(localBufferAddress + 8);
@@ -49474,11 +49474,11 @@ LAB_180071b69:
       localAllocationFlags = localBufferAddress;
       localBufferAddress = localAllocationFlags + 1;
     } while (*(char *)(param_2 + localBufferAddress) != '\0');
-    iVar1 = (int)localBufferAddress;
-    if (0 < iVar1) {
+    systemStatus = (int)localBufferAddress;
+    if (0 < systemStatus) {
       unsignedSystemValue11 = unsignedSystemValue2;
-      if (iVar1 != -0x13) {
-        unsignedSystemValue12 = iVar1 + 0x14;
+      if (systemStatus != -0x13) {
+        unsignedSystemValue12 = systemStatus + 0x14;
         if (puStack_88 == (uint8_t *)0x0) {
           if ((int)unsignedSystemValue12 < 0x10) {
             unsignedSystemValue12 = 0x10;
@@ -49570,9 +49570,9 @@ LAB_180071d94:
       localBufferAddress = localAllocationFlags + 1;
     } while (*(char *)(param_4 + localBufferAddress) != '\0');
     if (0 < (int)localBufferAddress) {
-      iVar1 = unsignedSystemValue12 + (int)localBufferAddress;
-      if (iVar1 != 0) {
-        unsignedSystemValue2 = iVar1 + 1;
+      systemStatus = unsignedSystemValue12 + (int)localBufferAddress;
+      if (systemStatus != 0) {
+        unsignedSystemValue2 = systemStatus + 1;
         if (puStack_88 == (uint8_t *)0x0) {
           if ((int)unsignedSystemValue2 < 0x10) {
             unsignedSystemValue2 = 0x10;
@@ -49629,8 +49629,8 @@ LAB_180071eb0:
   }
   OutputDebugStringA(punsignedSystemValue8);
   do {
-    iVar1 = ReleaseSemaphore(SystemSemaphoreHandle,1);
-  } while (iVar1 == 0);
+    systemStatus = ReleaseSemaphore(SystemSemaphoreHandle,1);
+  } while (systemStatus == 0);
   pstackParameterC = &SystemGlobalDataReference;
   if (puStack_88 == (uint8_t *)0x0) {
     puStack_88 = (uint8_t *)0x0;
@@ -49665,7 +49665,7 @@ void FUN_180072000(void* SystemResourcePointer,long long param_2,uint32_t param_
   char cVar2;
   int MemoryCompareResult;
   uint unsignedSystemValue4;
-  int iVar5;
+  int systemValue;
   uint unsignedSystemValue6;
   uint32_t unsignedSystemValue7;
   uint unsignedSystemValue8;
@@ -49744,11 +49744,11 @@ LAB_180072120:
     }
   }
   else if (unsignedSystemValue6 != 0) {
-    iVar3 = unsignedSystemValue6 + 1;
+    systemCounter = unsignedSystemValue6 + 1;
     if (MemoryCompareResult < 0x10) {
-      iVar3 = 0x10;
+      systemCounter = 0x10;
     }
-    pointerToUnsigned10 = (uint8_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)iVar3,0x13);
+    pointerToUnsigned10 = (uint8_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)systemCounter,0x13);
     *pointerToUnsigned10 = 0;
     puStack_108 = pointerToUnsigned10;
     unsignedSystemValue4 = StartSystemThread(pointerToUnsigned10);
@@ -49768,9 +49768,9 @@ LAB_180072120:
       localResourcePointer = localMemoryPointer7 + 1;
     } while (*(char *)(param_2 + localResourcePointer) != '\0');
     if (0 < (int)localResourcePointer) {
-      iVar3 = unsignedSystemValue6 + (int)localResourcePointer;
-      if (iVar3 != 0) {
-        unsignedSystemValue6 = iVar3 + 1;
+      systemCounter = unsignedSystemValue6 + (int)localResourcePointer;
+      if (systemCounter != 0) {
+        unsignedSystemValue6 = systemCounter + 1;
         if (pointerToUnsigned10 == (uint8_t *)0x0) {
           if ((int)unsignedSystemValue6 < 0x10) {
             unsignedSystemValue6 = 0x10;
@@ -49815,11 +49815,11 @@ LAB_1800721e1:
   }
   cVar2 = FUN_1800f9600(pointerToUnsigned15);
   if (cVar2 == '\0') {
-    iVar3 = WaitForSingleObject(SystemSemaphoreHandle,0);
-    if (iVar3 == 0) {
+    systemCounter = WaitForSingleObject(SystemSemaphoreHandle,0);
+    if (systemCounter == 0) {
       cStack_117 = '\x01';
       cVar2 = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
-      if ((cVar2 == '\0') && (iVar3 = IsDebuggerPresent(), iVar3 != 0)) {
+      if ((cVar2 == '\0') && (systemCounter = IsDebuggerPresent(), systemCounter != 0)) {
         cVar2 = '\x01';
       }
       else {
@@ -49840,9 +49840,9 @@ LAB_1800722f5:
         }
       }
       else {
-        iVar3 = *(int *)(**(long long **)(SystemAllocationFlagsTemplate + 8) + 0x48);
-        iVar5 = _Thrd_id();
-        cStack_117 = iVar5 == iVar3;
+        systemCounter = *(int *)(**(long long **)(SystemAllocationFlagsTemplate + 8) + 0x48);
+        systemValue = _Thrd_id();
+        cStack_117 = systemValue == systemCounter;
         if ((bool)cStack_117) goto LAB_1800722f5;
       }
       if (cVar2 != '\0') {
@@ -49930,11 +49930,11 @@ LAB_1800725ac:
           localMemoryPointer7 = localResourcePointer;
           localResourcePointer = localMemoryPointer7 + 1;
         } while (*(char *)(param_2 + localResourcePointer) != '\0');
-        iVar3 = (int)localResourcePointer;
-        if (0 < iVar3) {
+        systemCounter = (int)localResourcePointer;
+        if (0 < systemCounter) {
           unsignedSystemValue4 = unsignedSystemValue6;
-          if (iVar3 != -0x16) {
-            unsignedSystemValue16 = iVar3 + 0x17;
+          if (systemCounter != -0x16) {
+            unsignedSystemValue16 = systemCounter + 0x17;
             if (puStack_130 == (uint8_t *)0x0) {
               if ((int)unsignedSystemValue16 < 0x10) {
                 unsignedSystemValue16 = 0x10;
@@ -50030,9 +50030,9 @@ LAB_1800727ff:
           localResourcePointer = localMemoryPointer7 + 1;
         } while (*(char *)(localResourcePointer + param_4) != '\0');
         if (0 < (int)localResourcePointer) {
-          iVar3 = unsignedSystemValue16 + (int)localResourcePointer;
-          if (iVar3 != 0) {
-            unsignedSystemValue6 = iVar3 + 1;
+          systemCounter = unsignedSystemValue16 + (int)localResourcePointer;
+          if (systemCounter != 0) {
+            unsignedSystemValue6 = systemCounter + 1;
             if (puStack_130 == (uint8_t *)0x0) {
               if ((int)unsignedSystemValue6 < 0x10) {
                 unsignedSystemValue6 = 0x10;
@@ -50132,8 +50132,8 @@ LAB_1800729bd:
       if (stackParameterA != (void* *)0x0) {
         pointerToUnsigned15 = stackParameterA;
       }
-      iVar3 = FUN_1800f98e0(pointerToUnsigned15);
-      if ((cStack_118 == '\0') && (iVar3 == 0)) {
+      systemCounter = FUN_1800f98e0(pointerToUnsigned15);
+      if ((cStack_118 == '\0') && (systemCounter == 0)) {
         if ((SystemStatusFlagsPointer == 0) || (*(char *)(SystemStatusFlagsPointer + 0x141) == '\0')) {
           unsignedSystemValue18 = 0;
         }
@@ -50252,7 +50252,7 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *param_2)
 
 {
   uint32_t unsignedSystemValue1;
-  int iVar2;
+  int systemResult;
   int MemoryCompareResult;
   long long localBufferAddress;
   void* *punsignedSystemValue5;
@@ -50295,7 +50295,7 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *param_2)
   
   uStack_40 = 0xfffffffffffffffe;
   punsignedSystemValue5 = (void* *)0x0;
-  iVar3 = 0;
+  systemCounter = 0;
   WaitForSingleObject(SystemSemaphoreHandle,300000);
   lStack_48 = SystemAllocationFlagsTemplate;
   if (SystemAllocationFlagsTemplate != 0) {
@@ -50406,7 +50406,7 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *param_2)
     *(uint32_t *)(punsignedSystemValue6 + 5) = 0x6e697373;
     *(uint32_t *)((long long)punsignedSystemValue6 + 0x2c) = 0x6c6f4667;
     *(uint32_t *)(punsignedSystemValue6 + 6) = 0x726564;
-    iVar3 = 0x33;
+    systemCounter = 0x33;
     iStack_100 = 0x33;
     unsignedSystemValue11 = 2;
     unsignedSystemValue15 = 2;
@@ -50420,11 +50420,11 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *param_2)
     puStack_a8 = (void* *)0x0;
     uStack_a0 = 0;
     if (*(int *)(SystemStatusFlagsPointer + 0x158) != 0) {
-      iVar2 = *(int *)(SystemStatusFlagsPointer + 0x158) + 1;
-      if (iVar2 < 0x10) {
-        iVar2 = 0x10;
+      systemResult = *(int *)(SystemStatusFlagsPointer + 0x158) + 1;
+      if (systemResult < 0x10) {
+        systemResult = 0x10;
       }
-      punsignedSystemValue5 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)iVar2,0x13);
+      punsignedSystemValue5 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)systemResult,0x13);
       *(uint8_t *)punsignedSystemValue5 = 0;
       puStack_a8 = punsignedSystemValue5;
       unsignedSystemValue1 = StartSystemThread(punsignedSystemValue5);
@@ -50450,8 +50450,8 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *param_2)
   uStack_78 = 0;
   puStack_88 = (uint8_t *)0x0;
   uStack_80 = 0;
-  if (iVar3 != 0) {
-    unsignedSystemValue15 = iVar3 + 1;
+  if (systemCounter != 0) {
+    unsignedSystemValue15 = systemCounter + 1;
     unsignedSystemValue11 = unsignedSystemValue15;
     if (unsignedSystemValue15 < 0x10) {
       unsignedSystemValue11 = 0x10;
@@ -50498,8 +50498,8 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *param_2)
     FUN_18005db30();
   }
   do {
-    iVar3 = ReleaseSemaphore(SystemSemaphoreHandle,1);
-  } while (iVar3 == 0);
+    systemCounter = ReleaseSemaphore(SystemSemaphoreHandle,1);
+  } while (systemCounter == 0);
   unsignedSystemValue9 = __acrt_iob_func(1);
   fflush(unsignedSystemValue9);
   unsignedSystemValue9 = __acrt_iob_func(2);
@@ -51547,7 +51547,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
   long long *PrimaryResourcePointer;
   int *pointerToInteger2;
   uint unsignedSystemValue3;
-  int iVar4;
+  int systemIndex;
   long long systemTimeValue;
   ulong long unsignedSystemValue6;
   long long localDataPointer;
@@ -51576,11 +51576,11 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
     do {
       localAllocationFlags = *PrimaryResourcePointer;
       *(int **)(param_2 + 8) = (int *)(localSystemPointer + 8);
-      iVar4 = *(int *)(localSystemPointer + 8);
+      systemIndex = *(int *)(localSystemPointer + 8);
       PrimaryResourcePointer2 = (long long *)(localAllocationFlags + localMemoryPointer1);
       *(long long *)(param_2 + 8) = localSystemPointer + 0xc;
-      if (0 < iVar4) {
-        *(short *)(PrimaryResourcePointer2 + 2) = (short)iVar4;
+      if (0 < systemIndex) {
+        *(short *)(PrimaryResourcePointer2 + 2) = (short)systemIndex;
         if (PrimaryResourcePointer2[1] != 0) {
                     // WARNING: Subroutine does not return
           SystemCleanupFunction();
@@ -51602,7 +51602,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
           }
           *PrimaryResourcePointer2 = localDataPointer;
                     // WARNING: Subroutine does not return
-          memcpy(PrimaryResourcePointer2[1],*(void* *)(param_2 + 8),(long long)(iVar4 * 4));
+          memcpy(PrimaryResourcePointer2[1],*(void* *)(param_2 + 8),(long long)(systemIndex * 4));
         }
                     // WARNING: Subroutine does not return
         SystemCleanupFunction();
@@ -51611,11 +51611,11 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
       pointerToInteger2 = (int *)(localSystemPointer + 0x14);
       *(int **)(param_2 + 8) = pointerToInteger2;
       localSystemPointer = localSystemPointer + 0x18;
-      iVar4 = *pointerToInteger2;
+      systemIndex = *pointerToInteger2;
       localAllocationFlags = localAllocationFlags + localMemoryPointer1;
       *(long long *)(param_2 + 8) = localSystemPointer;
-      if (0 < iVar4) {
-        *(short *)(localAllocationFlags + 0x22) = (short)iVar4;
+      if (0 < systemIndex) {
+        *(short *)(localAllocationFlags + 0x22) = (short)systemIndex;
         if (*(long long *)(localAllocationFlags + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
           SystemCleanupFunction();
@@ -51637,7 +51637,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
           }
           *(long long *)(localAllocationFlags + 0x12) = localDataPointer;
                     // WARNING: Subroutine does not return
-          memcpy(*(void* *)(localAllocationFlags + 0x1a),*(void* *)(param_2 + 8),(long long)(iVar4 * 4));
+          memcpy(*(void* *)(localAllocationFlags + 0x1a),*(void* *)(param_2 + 8),(long long)(systemIndex * 4));
         }
                     // WARNING: Subroutine does not return
         SystemCleanupFunction();
@@ -51647,16 +51647,16 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
     } while (localMemoryAddress != 0);
   }
   *(int **)(param_2 + 8) = (int *)(localSystemPointer + 8);
-  iVar4 = *(int *)(localSystemPointer + 8);
+  systemIndex = *(int *)(localSystemPointer + 8);
   *(long long *)(param_2 + 8) = localSystemPointer + 0xc;
-  if (iVar4 < 1) {
+  if (systemIndex < 1) {
     *(int **)(param_2 + 8) = (int *)(localSystemPointer + 0x14);
-    iVar4 = *(int *)(localSystemPointer + 0x14);
+    systemIndex = *(int *)(localSystemPointer + 0x14);
     *(long long *)(param_2 + 8) = localSystemPointer + 0x18;
-    if (iVar4 < 1) {
+    if (systemIndex < 1) {
       return;
     }
-    *(short *)((long long)SystemResourcePointer + 0x62) = (short)iVar4;
+    *(short *)((long long)SystemResourcePointer + 0x62) = (short)systemIndex;
     if (*(long long *)((long long)SystemResourcePointer + 0x5a) == 0) {
       *(void* *)((long long)SystemResourcePointer + 0x5a) = 0;
       if (*(long long *)((long long)SystemResourcePointer + 0x52) == 0) {
@@ -51677,7 +51677,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
         *(long long *)((long long)SystemResourcePointer + 0x52) = localDataPointer;
                     // WARNING: Subroutine does not return
         memcpy(*(void* *)((long long)SystemResourcePointer + 0x5a),*(void* *)(param_2 + 8),
-               (long long)(iVar4 * 4));
+               (long long)(systemIndex * 4));
       }
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
@@ -51685,7 +51685,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  *(short *)(SystemResourcePointer + 10) = (short)iVar4;
+  *(short *)(SystemResourcePointer + 10) = (short)systemIndex;
   if (SystemResourcePointer[9] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
@@ -51707,7 +51707,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
     }
     SystemResourcePointer[8] = localDataPointer;
                     // WARNING: Subroutine does not return
-    memcpy(SystemResourcePointer[9],*(void* *)(param_2 + 8),(long long)(iVar4 * 4));
+    memcpy(SystemResourcePointer[9],*(void* *)(param_2 + 8),(long long)(systemIndex * 4));
   }
                     // WARNING: Subroutine does not return
   SystemCleanupFunction();
@@ -51725,7 +51725,7 @@ void FUN_1800740a2(long long *SystemResourcePointer)
   long long *PrimaryResourcePointer;
   int *pointerToInteger2;
   uint unsignedSystemValue3;
-  int iVar4;
+  int systemIndex;
   uint *in_RAX;
   long long systemTimeValue;
   ulong long unsignedSystemValue6;
@@ -51756,11 +51756,11 @@ void FUN_1800740a2(long long *SystemResourcePointer)
     do {
       localAllocationFlags = *PrimaryResourcePointer;
       *(int **)(unaff_RDI + 8) = (int *)(localSystemPointer + 8);
-      iVar4 = *(int *)(localSystemPointer + 8);
+      systemIndex = *(int *)(localSystemPointer + 8);
       PrimaryResourcePointer2 = (long long *)(localAllocationFlags + localMemoryPointer1);
       *(long long *)(unaff_RDI + 8) = localSystemPointer + 0xc;
-      if (0 < iVar4) {
-        *(short *)(PrimaryResourcePointer2 + 2) = (short)iVar4;
+      if (0 < systemIndex) {
+        *(short *)(PrimaryResourcePointer2 + 2) = (short)systemIndex;
         if (PrimaryResourcePointer2[1] != 0) {
                     // WARNING: Subroutine does not return
           SystemCleanupFunction();
@@ -51782,7 +51782,7 @@ void FUN_1800740a2(long long *SystemResourcePointer)
           }
           *PrimaryResourcePointer2 = localDataPointer;
                     // WARNING: Subroutine does not return
-          memcpy(PrimaryResourcePointer2[1],*(void* *)(unaff_RDI + 8),(long long)(iVar4 * 4));
+          memcpy(PrimaryResourcePointer2[1],*(void* *)(unaff_RDI + 8),(long long)(systemIndex * 4));
         }
                     // WARNING: Subroutine does not return
         SystemCleanupFunction();
@@ -51791,11 +51791,11 @@ void FUN_1800740a2(long long *SystemResourcePointer)
       pointerToInteger2 = (int *)(localSystemPointer + 0x14);
       *(int **)(unaff_RDI + 8) = pointerToInteger2;
       localSystemPointer = localSystemPointer + 0x18;
-      iVar4 = *pointerToInteger2;
+      systemIndex = *pointerToInteger2;
       localAllocationFlags = localAllocationFlags + localMemoryPointer1;
       *(long long *)(unaff_RDI + 8) = localSystemPointer;
-      if (0 < iVar4) {
-        *(short *)(localAllocationFlags + 0x22) = (short)iVar4;
+      if (0 < systemIndex) {
+        *(short *)(localAllocationFlags + 0x22) = (short)systemIndex;
         if (*(long long *)(localAllocationFlags + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
           SystemCleanupFunction();
@@ -51817,7 +51817,7 @@ void FUN_1800740a2(long long *SystemResourcePointer)
           }
           *(long long *)(localAllocationFlags + 0x12) = localDataPointer;
                     // WARNING: Subroutine does not return
-          memcpy(*(void* *)(localAllocationFlags + 0x1a),*(void* *)(unaff_RDI + 8),(long long)(iVar4 * 4)
+          memcpy(*(void* *)(localAllocationFlags + 0x1a),*(void* *)(unaff_RDI + 8),(long long)(systemIndex * 4)
                 );
         }
                     // WARNING: Subroutine does not return
@@ -51828,16 +51828,16 @@ void FUN_1800740a2(long long *SystemResourcePointer)
     } while (localMemoryAddress != 0);
   }
   *(int **)(unaff_RDI + 8) = (int *)(localSystemPointer + 8);
-  iVar4 = *(int *)(localSystemPointer + 8);
+  systemIndex = *(int *)(localSystemPointer + 8);
   *(long long *)(unaff_RDI + 8) = localSystemPointer + 0xc;
-  if (iVar4 < 1) {
+  if (systemIndex < 1) {
     *(int **)(unaff_RDI + 8) = (int *)(localSystemPointer + 0x14);
-    iVar4 = *(int *)(localSystemPointer + 0x14);
+    systemIndex = *(int *)(localSystemPointer + 0x14);
     *(long long *)(unaff_RDI + 8) = localSystemPointer + 0x18;
-    if (iVar4 < 1) {
+    if (systemIndex < 1) {
       return;
     }
-    *(short *)((long long)SystemResourcePointer + 0x62) = (short)iVar4;
+    *(short *)((long long)SystemResourcePointer + 0x62) = (short)systemIndex;
     if (*(long long *)((long long)SystemResourcePointer + 0x5a) == 0) {
       *(void* *)((long long)SystemResourcePointer + 0x5a) = 0;
       if (*(long long *)((long long)SystemResourcePointer + 0x52) == 0) {
@@ -51858,7 +51858,7 @@ void FUN_1800740a2(long long *SystemResourcePointer)
         *(long long *)((long long)SystemResourcePointer + 0x52) = localDataPointer;
                     // WARNING: Subroutine does not return
         memcpy(*(void* *)((long long)SystemResourcePointer + 0x5a),*(void* *)(unaff_RDI + 8),
-               (long long)(iVar4 * 4));
+               (long long)(systemIndex * 4));
       }
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
@@ -51866,7 +51866,7 @@ void FUN_1800740a2(long long *SystemResourcePointer)
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  *(short *)(SystemResourcePointer + 10) = (short)iVar4;
+  *(short *)(SystemResourcePointer + 10) = (short)systemIndex;
   if (SystemResourcePointer[9] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
@@ -51888,7 +51888,7 @@ void FUN_1800740a2(long long *SystemResourcePointer)
     }
     SystemResourcePointer[8] = localDataPointer;
                     // WARNING: Subroutine does not return
-    memcpy(SystemResourcePointer[9],*(void* *)(unaff_RDI + 8),(long long)(iVar4 * 4));
+    memcpy(SystemResourcePointer[9],*(void* *)(unaff_RDI + 8),(long long)(systemIndex * 4));
   }
                     // WARNING: Subroutine does not return
   SystemCleanupFunction();
@@ -51903,7 +51903,7 @@ void FUN_1800740a2(long long *SystemResourcePointer)
 void FUN_1800740f5(long long SystemResourcePointer)
 
 {
-  int iVar1;
+  int systemStatus;
   ulong long unsignedSystemValue2;
   long long localResourceOffset;
   long long *unaff_RBX;
@@ -51920,11 +51920,11 @@ void FUN_1800740f5(long long SystemResourcePointer)
     localResourceOffset = SystemResourcePointer;
     localBufferAddress = *unaff_RBX;
     *(int **)(unaff_RDI + 8) = (int *)(localResourceOffset + 8);
-    iVar1 = *(int *)(localResourceOffset + 8);
+    systemStatus = *(int *)(localResourceOffset + 8);
     punsignedSystemValue6 = (ulong long *)(localBufferAddress + unsignedSystemValue5);
     *(long long *)(unaff_RDI + 8) = localResourceOffset + 0xc;
-    if (0 < iVar1) {
-      *(short *)(punsignedSystemValue6 + 2) = (short)iVar1;
+    if (0 < systemStatus) {
+      *(short *)(punsignedSystemValue6 + 2) = (short)systemStatus;
       if (punsignedSystemValue6[1] != 0) {
                     // WARNING: Subroutine does not return
         SystemCleanupFunction();
@@ -51946,18 +51946,18 @@ void FUN_1800740f5(long long SystemResourcePointer)
         }
         *punsignedSystemValue6 = unaff_RSI;
                     // WARNING: Subroutine does not return
-        memcpy(punsignedSystemValue6[1],*(void* *)(unaff_RDI + 8),(long long)(iVar1 * 4));
+        memcpy(punsignedSystemValue6[1],*(void* *)(unaff_RDI + 8),(long long)(systemStatus * 4));
       }
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
     }
     localBufferAddress = *unaff_RBX;
     *(int **)(unaff_RDI + 8) = (int *)(localResourceOffset + 0x14);
-    iVar1 = *(int *)(localResourceOffset + 0x14);
+    systemStatus = *(int *)(localResourceOffset + 0x14);
     localBufferAddress = localBufferAddress + unsignedSystemValue5;
     *(long long *)(unaff_RDI + 8) = localResourceOffset + 0x18;
-    if (0 < iVar1) {
-      *(short *)(localBufferAddress + 0x22) = (short)iVar1;
+    if (0 < systemStatus) {
+      *(short *)(localBufferAddress + 0x22) = (short)systemStatus;
       if (*(long long *)(localBufferAddress + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
         SystemCleanupFunction();
@@ -51979,7 +51979,7 @@ void FUN_1800740f5(long long SystemResourcePointer)
         }
         *(ulong long *)(localBufferAddress + 0x12) = unaff_RSI;
                     // WARNING: Subroutine does not return
-        memcpy(*(void* *)(localBufferAddress + 0x1a),*(void* *)(unaff_RDI + 8),(long long)(iVar1 * 4));
+        memcpy(*(void* *)(localBufferAddress + 0x1a),*(void* *)(unaff_RDI + 8),(long long)(systemStatus * 4));
       }
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
@@ -51989,16 +51989,16 @@ void FUN_1800740f5(long long SystemResourcePointer)
     SystemResourcePointer = localResourceOffset + 0x18;
   } while (unaff_R13 != 0);
   *(int **)(unaff_RDI + 8) = (int *)(localResourceOffset + 0x20);
-  iVar1 = *(int *)(localResourceOffset + 0x20);
+  systemStatus = *(int *)(localResourceOffset + 0x20);
   *(long long *)(unaff_RDI + 8) = localResourceOffset + 0x24;
-  if (iVar1 < 1) {
+  if (systemStatus < 1) {
     *(int **)(unaff_RDI + 8) = (int *)(localResourceOffset + 0x2c);
-    iVar1 = *(int *)(localResourceOffset + 0x2c);
+    systemStatus = *(int *)(localResourceOffset + 0x2c);
     *(long long *)(unaff_RDI + 8) = localResourceOffset + 0x30;
-    if (iVar1 < 1) {
+    if (systemStatus < 1) {
       return;
     }
-    *(short *)(unaff_R15 + 0x62) = (short)iVar1;
+    *(short *)(unaff_R15 + 0x62) = (short)systemStatus;
     if (*(long long *)(unaff_R15 + 0x5a) == 0) {
       *(ulong long *)(unaff_R15 + 0x5a) = unaff_RSI;
       if (*(long long *)(unaff_R15 + 0x52) == 0) {
@@ -52018,7 +52018,7 @@ void FUN_1800740f5(long long SystemResourcePointer)
         *(ulong long *)(unaff_R15 + 0x52) = unaff_RSI;
                     // WARNING: Subroutine does not return
         memcpy(*(void* *)(unaff_R15 + 0x5a),*(void* *)(unaff_RDI + 8),
-               (long long)(iVar1 * 4));
+               (long long)(systemStatus * 4));
       }
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
@@ -52026,7 +52026,7 @@ void FUN_1800740f5(long long SystemResourcePointer)
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  *(short *)(unaff_R15 + 0x50) = (short)iVar1;
+  *(short *)(unaff_R15 + 0x50) = (short)systemStatus;
   if (*(long long *)(unaff_R15 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
@@ -52048,7 +52048,7 @@ void FUN_1800740f5(long long SystemResourcePointer)
     }
     *(ulong long *)(unaff_R15 + 0x40) = unaff_RSI;
                     // WARNING: Subroutine does not return
-    memcpy(*(void* *)(unaff_R15 + 0x48),*(void* *)(unaff_RDI + 8),(long long)(iVar1 * 4));
+    memcpy(*(void* *)(unaff_R15 + 0x48),*(void* *)(unaff_RDI + 8),(long long)(systemStatus * 4));
   }
                     // WARNING: Subroutine does not return
   SystemCleanupFunction();
@@ -52063,7 +52063,7 @@ void FUN_1800740f5(long long SystemResourcePointer)
 void FUN_1800742ea(long long SystemResourcePointer)
 
 {
-  int iVar1;
+  int systemStatus;
   void* unsignedSystemValue2;
   ulong long unsignedSystemValue3;
   void* unaff_RSI;
@@ -52071,16 +52071,16 @@ void FUN_1800742ea(long long SystemResourcePointer)
   long long unaff_R15;
   
   *(int **)(unaff_RDI + 8) = (int *)(SystemResourcePointer + 8);
-  iVar1 = *(int *)(SystemResourcePointer + 8);
+  systemStatus = *(int *)(SystemResourcePointer + 8);
   *(long long *)(unaff_RDI + 8) = SystemResourcePointer + 0xc;
-  if (iVar1 < 1) {
+  if (systemStatus < 1) {
     *(int **)(unaff_RDI + 8) = (int *)(SystemResourcePointer + 0x14);
-    iVar1 = *(int *)(SystemResourcePointer + 0x14);
+    systemStatus = *(int *)(SystemResourcePointer + 0x14);
     *(long long *)(unaff_RDI + 8) = SystemResourcePointer + 0x18;
-    if (iVar1 < 1) {
+    if (systemStatus < 1) {
       return;
     }
-    *(short *)(unaff_R15 + 0x62) = (short)iVar1;
+    *(short *)(unaff_R15 + 0x62) = (short)systemStatus;
     if (*(long long *)(unaff_R15 + 0x5a) == 0) {
       *(void* *)(unaff_R15 + 0x5a) = unaff_RSI;
       if (*(long long *)(unaff_R15 + 0x52) == 0) {
@@ -52100,7 +52100,7 @@ void FUN_1800742ea(long long SystemResourcePointer)
         *(void* *)(unaff_R15 + 0x52) = unaff_RSI;
                     // WARNING: Subroutine does not return
         memcpy(*(void* *)(unaff_R15 + 0x5a),*(void* *)(unaff_RDI + 8),
-               (long long)(iVar1 * 4));
+               (long long)(systemStatus * 4));
       }
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
@@ -52108,7 +52108,7 @@ void FUN_1800742ea(long long SystemResourcePointer)
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  *(short *)(unaff_R15 + 0x50) = (short)iVar1;
+  *(short *)(unaff_R15 + 0x50) = (short)systemStatus;
   if (*(long long *)(unaff_R15 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
@@ -52130,7 +52130,7 @@ void FUN_1800742ea(long long SystemResourcePointer)
     }
     *(void* *)(unaff_R15 + 0x40) = unaff_RSI;
                     // WARNING: Subroutine does not return
-    memcpy(*(void* *)(unaff_R15 + 0x48),*(void* *)(unaff_RDI + 8),(long long)(iVar1 * 4));
+    memcpy(*(void* *)(unaff_R15 + 0x48),*(void* *)(unaff_RDI + 8),(long long)(systemStatus * 4));
   }
                     // WARNING: Subroutine does not return
   SystemCleanupFunction();
@@ -52218,7 +52218,7 @@ void ManageSystemResourceTimestamp(long long SystemResourcePointer, long long Ti
 
 {
   uint *pointerToUnsigned1;
-  int iVar2;
+  int systemResult;
   uint unsignedSystemValue3;
   int *pointerToInteger4;
   long long systemTimeValue;
@@ -52241,7 +52241,7 @@ void ManageSystemResourceTimestamp(long long SystemResourcePointer, long long Ti
   uStack_d8 = 0xfffffffffffffffe;
   uStack_28 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_f8;
   pointerToInteger4 = *(int **)(param_2 + 8);
-  iVar2 = *pointerToInteger4;
+  systemResult = *pointerToInteger4;
   *(int **)(param_2 + 8) = pointerToInteger4 + 1;
   iVar6 = pointerToInteger4[2];
   iVar7 = pointerToInteger4[3];
@@ -52255,7 +52255,7 @@ void ManageSystemResourceTimestamp(long long SystemResourcePointer, long long Ti
   *(uint8_t *)(SystemResourcePointer + 0x28) = *punsignedSystemValue12;
   localSystemPointer = *(long long *)(param_2 + 8);
   *(uint32_t **)(param_2 + 8) = (uint32_t *)(localSystemPointer + 1);
-  if (iVar2 == 0) {
+  if (systemResult == 0) {
     puStack_c8 = &UNK_1809fcc28;
     puStack_c0 = auStack_b0;
     uStack_b8 = 0;
@@ -52353,7 +52353,7 @@ void FUN_1800746c0(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
-  int iVar2;
+  int systemResult;
   long long *plocalResourceOffset;
   long long* systemMemoryPointer;
   void* *punsignedSystemValue5;
@@ -52394,9 +52394,9 @@ void FUN_1800746c0(long long SystemResourcePointer)
     *(uint8_t *)(*(long long *)(SystemResourcePointer + 0xb0) + 0xb1) = 1;
     localMemoryPointer = SystemInputManagerPointer;
     plocalBufferAddress = *(long long **)(SystemResourcePointer + 0xb0);
-    iVar2 = (**(code **)(*plocalBufferAddress + 0x60))(plocalBufferAddress);
+    systemResult = (**(code **)(*plocalBufferAddress + 0x60))(plocalBufferAddress);
     *(uint8_t *)((long long)plocalBufferAddress + 0xb2) = 1;
-    FUN_1802abe00((long long)iVar2 * 0x98 + localMemoryPointer + 8,plocalBufferAddress);
+    FUN_1802abe00((long long)systemResult * 0x98 + localMemoryPointer + 8,plocalBufferAddress);
   }
   return;
 }
@@ -53679,8 +53679,8 @@ void FUN_180075ff0(long long *SystemResourcePointer)
   ushort unsignedSystemValue1;
   long long *SecondaryResourcePointer;
   uint unsignedSystemValue3;
-  int iVar4;
-  int iVar5;
+  int systemIndex;
+  int systemValue;
   int iVar6;
   long long localDataPointer;
   float fVar8;
@@ -53734,22 +53734,22 @@ void FUN_180075ff0(long long *SystemResourcePointer)
         if (unsignedSystemValue1 < 2) {
           iVar6 = unsignedSystemValue3 - 1;
           fVar8 = 0.0;
-          iVar5 = iVar6;
+          systemValue = iVar6;
         }
         else {
-          iVar5 = unsignedSystemValue3 - 1;
+          systemValue = unsignedSystemValue3 - 1;
           if (0 < (int)(unsignedSystemValue3 - 2)) {
             do {
-              iVar4 = iVar5 + iVar6 >> 1;
-              if (*(float *)(plStack_120[0x17] + (long long)iVar4 * 4) <= fVar9) {
-                iVar6 = iVar4;
-                iVar4 = iVar5;
+              systemIndex = systemValue + iVar6 >> 1;
+              if (*(float *)(plStack_120[0x17] + (long long)systemIndex * 4) <= fVar9) {
+                iVar6 = systemIndex;
+                systemIndex = systemValue;
               }
-              iVar5 = iVar4;
-            } while (iVar6 < iVar5 + -1);
+              systemValue = systemIndex;
+            } while (iVar6 < systemValue + -1);
           }
           fVar8 = *(float *)(plStack_120[0x17] + (long long)iVar6 * 4);
-          fVar8 = (fVar9 - fVar8) / (*(float *)(plStack_120[0x17] + (long long)iVar5 * 4) - fVar8);
+          fVar8 = (fVar9 - fVar8) / (*(float *)(plStack_120[0x17] + (long long)systemValue * 4) - fVar8);
           if (0.0 <= fVar8) {
             if (1.0 <= fVar8) {
               fVar8 = 1.0;
@@ -53768,7 +53768,7 @@ void FUN_180075ff0(long long *SystemResourcePointer)
           uStack_f0 = 0;
           FUN_18022f2e0(&uStack_100,SystemResourcePointer,0);
           (**(code **)(*SystemResourcePointer + 0x38))(SystemResourcePointer);
-          FUN_18022f9b0(&uStack_100,SecondaryResourcePointer,iVar5,iVar6,fVar8);
+          FUN_18022f9b0(&uStack_100,SecondaryResourcePointer,systemValue,iVar6,fVar8);
           FUN_18022f410(&uStack_100);
         }
         FUN_18007f6a0(auStack_138);
@@ -53793,23 +53793,23 @@ void FUN_180075ff0(long long *SystemResourcePointer)
         if (unsignedSystemValue1 < 2) {
           iVar6 = unsignedSystemValue3 - 1;
           fVar8 = 0.0;
-          iVar5 = iVar6;
+          systemValue = iVar6;
         }
         else {
-          iVar5 = unsignedSystemValue3 - 1;
+          systemValue = unsignedSystemValue3 - 1;
           if (0 < (int)(unsignedSystemValue3 - 2)) {
             do {
-              iVar4 = iVar5 + iVar6 >> 1;
-              if (*(float *)(*(long long *)(lStack_108 + 0xb8) + (long long)iVar4 * 4) <= fVar9) {
-                iVar6 = iVar4;
-                iVar4 = iVar5;
+              systemIndex = systemValue + iVar6 >> 1;
+              if (*(float *)(*(long long *)(lStack_108 + 0xb8) + (long long)systemIndex * 4) <= fVar9) {
+                iVar6 = systemIndex;
+                systemIndex = systemValue;
               }
-              iVar5 = iVar4;
-            } while (iVar6 < iVar5 + -1);
+              systemValue = systemIndex;
+            } while (iVar6 < systemValue + -1);
           }
           fVar8 = *(float *)(*(long long *)(lStack_108 + 0xb8) + (long long)iVar6 * 4);
           fVar8 = (fVar9 - fVar8) /
-                  (*(float *)(*(long long *)(lStack_108 + 0xb8) + (long long)iVar5 * 4) - fVar8);
+                  (*(float *)(*(long long *)(lStack_108 + 0xb8) + (long long)systemValue * 4) - fVar8);
           if (0.0 <= fVar8) {
             if (1.0 <= fVar8) {
               fVar8 = 1.0;
@@ -53828,7 +53828,7 @@ void FUN_180075ff0(long long *SystemResourcePointer)
           uStack_b8 = 0;
           FUN_18022f2e0(&uStack_c8,SystemResourcePointer,0);
           (**(code **)(*SystemResourcePointer + 0x38))(SystemResourcePointer);
-          FUN_18022f9b0(&uStack_c8,localDataPointer,iVar5,iVar6,fVar8);
+          FUN_18022f9b0(&uStack_c8,localDataPointer,systemValue,iVar6,fVar8);
           FUN_18022f410(&uStack_c8);
         }
         FUN_18007f840(&plStack_118);
@@ -54175,16 +54175,16 @@ void FUN_180076910(long long SystemResourcePointer,long long *param_2)
 void FUN_180076a20(long long SystemResourcePointer)
 
 {
-  int iVar1;
+  int systemStatus;
   
-  iVar1 = _Mtx_lock(0x180c91910);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_lock(0x180c91910);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
   *(char *)(SystemResourcePointer + 0xfc) = *(char *)(SystemResourcePointer + 0xfc) + '\x01';
-  iVar1 = _Mtx_unlock(0x180c91910);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  systemStatus = _Mtx_unlock(0x180c91910);
+  if (systemStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(systemStatus);
   }
   return;
 }
@@ -54201,9 +54201,9 @@ void FUN_180076a80(long long SystemResourcePointer)
   int MemoryCompareResult;
   bool bVar4;
   
-  iVar3 = _Mtx_lock(0x180c91910);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  systemCounter = _Mtx_lock(0x180c91910);
+  if (systemCounter != 0) {
+    __Throw_C_error_std__YAXH_Z(systemCounter);
   }
   pcVar1 = (char *)(SystemResourcePointer + 0xfc);
   *pcVar1 = *pcVar1 + -1;
@@ -54237,9 +54237,9 @@ void FUN_180076a80(long long SystemResourcePointer)
     }
     UNLOCK();
   }
-  iVar3 = _Mtx_unlock(0x180c91910);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  systemCounter = _Mtx_unlock(0x180c91910);
+  if (systemCounter != 0) {
+    __Throw_C_error_std__YAXH_Z(systemCounter);
   }
   return;
 }
@@ -54288,7 +54288,7 @@ int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
   long long *SecondaryResourcePointer;
   ulong long *pointerToUnsigned3;
   char cVar4;
-  int iVar5;
+  int systemValue;
   uint unsignedSystemValue6;
   long long localDataPointer;
   char *pcVar8;
@@ -54315,10 +54315,10 @@ int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
   uint32_t uStack_48;
   
   unsignedSystemValue16 = 0xfffffffffffffffe;
-  iVar5 = 0;
-  if (((*(long long *)(SystemResourcePointer + 0x1b8) != 0) && (iVar5 = 0, (*(byte *)(param_2 + 1) & 4) == 0)) &&
+  systemValue = 0;
+  if (((*(long long *)(SystemResourcePointer + 0x1b8) != 0) && (systemValue = 0, (*(byte *)(param_2 + 1) & 4) == 0)) &&
      (*(char*)((long long)param_2 + 0x12) == '\0')) {
-    iVar5 = FUN_18022d470();
+    systemValue = FUN_18022d470();
   }
   if ((*(byte *)(param_2 + 1) & 0x20) == 0) {
     cVar4 = FUN_180076b90(SystemResourcePointer);
@@ -54335,7 +54335,7 @@ int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
       }
       cVar4 = FUN_180076b90(SystemResourcePointer);
       if (cVar4 == '\0') {
-        iVar5 = iVar5 + 1;
+        systemValue = systemValue + 1;
         if (*param_2 != 0) {
           uStackX_8 = SystemResourcePointer;
           FUN_18005ea90(*param_2,&uStackX_8);
@@ -54347,7 +54347,7 @@ int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
     }
   }
   if ((*(byte *)(param_2 + 1) & 0x10) == 0) {
-    return iVar5;
+    return systemValue;
   }
   uStack_60 = 0;
   uStack_58 = 0;
@@ -54410,7 +54410,7 @@ int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
   uStackX_8 = 0;
   cVar4 = FUN_1801de280(unsignedSystemValue15,PrimaryResourcePointer,&uStackX_8);
   if (cVar4 == '\0') {
-    iVar5 = iVar5 + 1;
+    systemValue = systemValue + 1;
   }
   param_2[6] = *PrimaryResourcePointer;
   localResourcePointer = param_2[9];
@@ -54436,7 +54436,7 @@ int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
   *(long long *)(localResourcePointer + 0x18) = *(long long *)(localResourcePointer + 0x18) + 1;
 LAB_180076feb:
   FUN_180080df0(&uStack_60);
-  return iVar5;
+  return systemValue;
 }
 
 
@@ -54856,7 +54856,7 @@ ulong long FUN_180077750(long long SystemResourcePointer,uint *param_2,float *pa
   uint *pointerToUnsigned30;
   byte bVar31;
   char *pcVar32;
-  int iVar33;
+  int systemCounter3;
   ulong long unsignedSystemValue34;
   uint *pointerToUnsigned35;
   bool bVar36;
@@ -54959,7 +54959,7 @@ LAB_180077879:
       if (((unsignedSystemValue6 >> 0x19 & 1) != 0) ||
          ((*(long long *)(SystemResourcePointer + 600) != 0 && (0 < *(int *)(*(long long *)(SystemResourcePointer + 600) + 0x1c)))
          )) {
-        iVar33 = *(int *)(SystemStatusFlagsPointer + 0x224);
+        systemCounter3 = *(int *)(SystemStatusFlagsPointer + 0x224);
         pointerToUnsigned26 = *(void* **)(SystemResourcePointer + 600);
         if (pointerToUnsigned26 == (void* *)0x0) {
           pointerToUnsigned26 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x58,8,3);
@@ -54978,8 +54978,8 @@ LAB_180077879:
           *(void* **)(SystemResourcePointer + 600) = pointerToUnsigned26;
         }
         param_3 = pfStackX_18;
-        if (*(int *)(pointerToUnsigned26 + 4) != iVar33) {
-          *(int *)(pointerToUnsigned26 + 4) = iVar33;
+        if (*(int *)(pointerToUnsigned26 + 4) != systemCounter3) {
+          *(int *)(pointerToUnsigned26 + 4) = systemCounter3;
           FUN_180079270(SystemResourcePointer,param_5);
           param_3 = pfStackX_18;
           if (((byte)(unsignedSystemValue6 >> 0x19) & 1) != 0) {
@@ -54998,19 +54998,19 @@ LAB_180077879:
             pointerToUnsigned35 = pointerToUnsigned30 + (unsignedSystemValue25 + 1) * 2;
             uStack_130 = unsignedSystemValue25;
             do {
-              iVar33 = (int)unsignedSystemValue34;
+              systemCounter3 = (int)unsignedSystemValue34;
               if (*(long long *)pointerToUnsigned35 == 0) {
                 localSystemHandle7 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0xc000,0x25);
                 LOCK();
-                bVar36 = *(long long *)(pointerToUnsigned30 + (long long)iVar33 * 2 + 2) == 0;
+                bVar36 = *(long long *)(pointerToUnsigned30 + (long long)systemCounter3 * 2 + 2) == 0;
                 if (bVar36) {
-                  *(long long *)(pointerToUnsigned30 + (long long)iVar33 * 2 + 2) = localSystemHandle7;
+                  *(long long *)(pointerToUnsigned30 + (long long)systemCounter3 * 2 + 2) = localSystemHandle7;
                 }
                 UNLOCK();
                 if (bVar36) {
-                  FUN_1800e94a0(pointerToUnsigned30,iVar33 << 9);
+                  FUN_1800e94a0(pointerToUnsigned30,systemCounter3 << 9);
                   LOCK();
-                  *(uint8_t *)((long long)pointerToUnsigned30 + (long long)iVar33 + 0x808) = 0;
+                  *(uint8_t *)((long long)pointerToUnsigned30 + (long long)systemCounter3 + 0x808) = 0;
                   UNLOCK();
                   unsignedSystemValue25 = uStack_130;
                 }
@@ -55029,7 +55029,7 @@ LAB_180077879:
                 } while (*pcVar32 != '\0');
               }
               pcVar32 = pcVar32 + 1;
-              unsignedSystemValue34 = (ulong long)(iVar33 + 1);
+              unsignedSystemValue34 = (ulong long)(systemCounter3 + 1);
               pointerToUnsigned35 = pointerToUnsigned35 + 2;
             } while ((long long)(pcVar32 + (-0x808 - (long long)pointerToUnsigned30)) <= (long long)unsignedSystemValue25);
             pointerToUnsigned26 = (void* *)
@@ -55175,9 +55175,9 @@ LAB_180077879:
     }
     FUN_180085190(&uStack_108,param_2 + 0xc,*(uint8_t *)(SystemResourcePointer + 0xf7),param_3);
     unsignedSystemValue6 = param_2[0x6f6];
-    iVar33 = *(int *)(SystemStatusFlagsPointer + 0x224);
+    systemCounter3 = *(int *)(SystemStatusFlagsPointer + 0x224);
     if (((*(byte *)(SystemResourcePointer + 0xfd) & 1) == 0) &&
-       ((*(int *)(SystemResourcePointer + 0x1d0) == iVar33 || (*(int *)(SystemResourcePointer + 0x1d0) == iVar33 + -1)))) {
+       ((*(int *)(SystemResourcePointer + 0x1d0) == systemCounter3 || (*(int *)(SystemResourcePointer + 0x1d0) == systemCounter3 + -1)))) {
       bVar31 = 0;
     }
     else {
@@ -55197,7 +55197,7 @@ LAB_180077879:
     }
     unsignedSystemValue25 = FUN_18024a290(param_2,SystemResourcePointer,&uStack_108,param_4,param_5);
     *(byte *)(SystemResourcePointer + 0xfd) = *(byte *)(SystemResourcePointer + 0xfd) & 0xfe;
-    *(int *)(SystemResourcePointer + 0x1d0) = iVar33;
+    *(int *)(SystemResourcePointer + 0x1d0) = systemCounter3;
     if (bVar22 != 0) {
       *(void* *)(SystemResourcePointer + 0x160) = uStack_108;
       *(void* *)(SystemResourcePointer + 0x168) = uStack_100;
@@ -55262,7 +55262,7 @@ void FUN_18007799c(void)
   void* *pointerToUnsigned38;
   float *pfVar39;
   int unaff_R12D;
-  int iVar40;
+  int systemIndex0;
   ulong long unsignedSystemValue41;
   uint *punsignedSystemValue42;
   bool in_ZF;
@@ -55324,19 +55324,19 @@ void FUN_18007799c(void)
   punsignedSystemValue42 = pointerToUnsigned36 + (unsignedSystemValue32 + 1) * 2;
   in_stack_00000038 = unsignedSystemValue32;
   do {
-    iVar40 = (int)unsignedSystemValue41;
+    systemIndex0 = (int)unsignedSystemValue41;
     if (*(long long *)punsignedSystemValue42 == 0) {
       localResourceOffset3 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0xc000,0x25);
       LOCK();
-      bVar43 = *(long long *)(pointerToUnsigned36 + (long long)iVar40 * 2 + 2) == 0;
+      bVar43 = *(long long *)(pointerToUnsigned36 + (long long)systemIndex0 * 2 + 2) == 0;
       if (bVar43) {
-        *(long long *)(pointerToUnsigned36 + (long long)iVar40 * 2 + 2) = localResourceOffset3;
+        *(long long *)(pointerToUnsigned36 + (long long)systemIndex0 * 2 + 2) = localResourceOffset3;
       }
       UNLOCK();
       if (bVar43) {
-        FUN_1800e94a0(pointerToUnsigned36,iVar40 << 9);
+        FUN_1800e94a0(pointerToUnsigned36,systemIndex0 << 9);
         LOCK();
-        *(uint8_t *)((long long)pointerToUnsigned36 + (long long)iVar40 + 0x808) = 0;
+        *(uint8_t *)((long long)pointerToUnsigned36 + (long long)systemIndex0 + 0x808) = 0;
         UNLOCK();
         unsignedSystemValue32 = in_stack_00000038;
       }
@@ -55355,7 +55355,7 @@ void FUN_18007799c(void)
       } while (*pcVar37 != '\0');
     }
     pcVar37 = pcVar37 + 1;
-    unsignedSystemValue41 = (ulong long)(iVar40 + 1);
+    unsignedSystemValue41 = (ulong long)(systemIndex0 + 1);
     punsignedSystemValue42 = punsignedSystemValue42 + 2;
   } while ((long long)(pcVar37 + (-0x808 - (long long)pointerToUnsigned36)) <= (long long)unsignedSystemValue32);
   pointerToUnsigned38 = (void* *)
@@ -55507,9 +55507,9 @@ void FUN_18007799c(void)
   unsignedSystemValue22 = in_stack_00000068;
   unsignedSystemValue21 = in_stack_00000060;
   bVar29 = *(byte *)(localResourceOffset4 + 0x1bd8);
-  iVar40 = *(int *)(SystemStatusFlagsPointer + 0x224);
+  systemIndex0 = *(int *)(SystemStatusFlagsPointer + 0x224);
   if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
-     ((*(int *)(unaff_RBX + 0x1d0) == iVar40 || (*(int *)(unaff_RBX + 0x1d0) == iVar40 + -1)))) {
+     ((*(int *)(unaff_RBX + 0x1d0) == systemIndex0 || (*(int *)(unaff_RBX + 0x1d0) == systemIndex0 + -1)))) {
     bVar30 = 0;
   }
   else {
@@ -55529,7 +55529,7 @@ void FUN_18007799c(void)
   }
   FUN_18024a290(localResourceOffset4);
   *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe;
-  *(int *)(unaff_RBX + 0x1d0) = iVar40;
+  *(int *)(unaff_RBX + 0x1d0) = systemIndex0;
   if (bVar29 != 0) {
     *(void* *)(unaff_RBX + 0x160) = unsignedSystemValue21;
     *(void* *)(unaff_RBX + 0x168) = unsignedSystemValue22;
@@ -56143,7 +56143,7 @@ void FUN_180077dc6(void)
 void FUN_180077dec(void)
 
 {
-  int iVar1;
+  int systemStatus;
   void* unsignedSystemValue2;
   void* unsignedSystemValue3;
   void* unsignedSystemValue4;
@@ -56175,9 +56175,9 @@ void FUN_180077dec(void)
   unsignedSystemValue3 = in_stack_00000068;
   unsignedSystemValue2 = in_stack_00000060;
   bVar11 = *(byte *)(unaff_R13 + 0x1bd8);
-  iVar1 = *(int *)(SystemStatusFlagsPointer + 0x224);
+  systemStatus = *(int *)(SystemStatusFlagsPointer + 0x224);
   if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
-     ((*(int *)(unaff_RBX + 0x1d0) == iVar1 || (*(int *)(unaff_RBX + 0x1d0) == iVar1 + -1)))) {
+     ((*(int *)(unaff_RBX + 0x1d0) == systemStatus || (*(int *)(unaff_RBX + 0x1d0) == systemStatus + -1)))) {
     bVar10 = 0;
   }
   else {
@@ -56197,7 +56197,7 @@ void FUN_180077dec(void)
   }
   FUN_18024a290();
   *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe;
-  *(int *)(unaff_RBX + 0x1d0) = iVar1;
+  *(int *)(unaff_RBX + 0x1d0) = systemStatus;
   if (bVar11 != 0) {
     *(void* *)(unaff_RBX + 0x160) = unsignedSystemValue2;
     *(void* *)(unaff_RBX + 0x168) = unsignedSystemValue3;
@@ -57704,15 +57704,15 @@ void FUN_180079270(long long SystemResourcePointer,long long param_2)
   long long *plocalResourceOffset4;
   long long localResourceOffset5;
   uint unsignedSystemValue36;
-  int iVar37;
+  int systemCounter7;
   uint unsignedSystemValue38;
-  int iVar39;
+  int systemCounter9;
   ulong long unsignedSystemValue40;
   char *pcVar41;
   uint *punsignedSystemValue42;
-  int iVar43;
-  int iVar44;
-  int iVar45;
+  int systemIndex3;
+  int systemIndex4;
+  int systemIndex5;
   uint32_t *punsignedSystemValue46;
   uint *punsignedSystemValue47;
   ulong long unsignedSystemValue48;
@@ -57726,7 +57726,7 @@ void FUN_180079270(long long SystemResourcePointer,long long param_2)
   }
   LOCK();
   pointerToInteger2 = (int *)(localMemoryPointer7 + 0xed8);
-  iVar43 = *pointerToInteger2;
+  systemIndex3 = *pointerToInteger2;
   *pointerToInteger2 = *pointerToInteger2 + *(int *)(localResourceOffset3 + 0x200);
   UNLOCK();
   localMemoryPointer7 = *(long long *)(SystemResourcePointer + 600);
@@ -57735,7 +57735,7 @@ void FUN_180079270(long long SystemResourcePointer,long long param_2)
   cVar16 = *(char *)(param_2 + 0xd);
   *(uint32_t *)(localMemoryPointer7 + 0x48) = *(uint32_t *)(localMemoryPointer7 + 0x2c);
   *(uint32_t *)(localMemoryPointer7 + 0x50) = *(uint32_t *)(localMemoryPointer7 + 0x4c);
-  *(int *)(localMemoryPointer7 + 0x4c) = iVar43;
+  *(int *)(localMemoryPointer7 + 0x4c) = systemIndex3;
   *(uint8_t *)(localMemoryPointer7 + 0x44) = unsignedSystemValue15;
   *(uint32_t *)(localMemoryPointer7 + 0x2c) = unsignedSystemValue32;
   if (cVar16 != -1) {
@@ -57798,11 +57798,11 @@ void FUN_180079270(long long SystemResourcePointer,long long param_2)
   }
   localMemoryPointer7 = *(long long *)(SystemResourcePointer + 600);
   if (*(int *)(localMemoryPointer7 + 0x28) != *(int *)(SystemStatusFlagsPointer + 0x224)) {
-    iVar43 = *(int *)(localMemoryPointer7 + 0x1c) + *(int *)(localMemoryPointer7 + 0x18);
+    systemIndex3 = *(int *)(localMemoryPointer7 + 0x1c) + *(int *)(localMemoryPointer7 + 0x18);
     *(int *)(localMemoryPointer7 + 0x28) = *(int *)(SystemStatusFlagsPointer + 0x224);
-    if (0 < iVar43) {
+    if (0 < systemIndex3) {
       localResourceOffset3 = (long long)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-      unsignedSystemValue32 = FUN_180080380(localResourceOffset3,iVar43);
+      unsignedSystemValue32 = FUN_180080380(localResourceOffset3,systemIndex3);
       *(uint32_t *)(localMemoryPointer7 + 0x30) = unsignedSystemValue32;
       FUN_1800802e0(localResourceOffset3,unsignedSystemValue32);
       if (*(long long *)(localMemoryPointer7 + 0x10) == 0) {
@@ -57815,12 +57815,12 @@ void FUN_180079270(long long SystemResourcePointer,long long param_2)
         cVar16 = *(char *)(localMemoryPointer7 + 0x44);
         unsignedSystemValue40 = (ulong long)cVar16;
         PrimaryResourcePointer = (long long *)(localMemoryPointer7 + 0x38);
-        iVar43 = (int)cVar16;
+        systemIndex3 = (int)cVar16;
         if (*(int *)(localMemoryPointer7 + 0x40) == (int)cVar16) {
           plocalResourceOffset4 = (long long *)*PrimaryResourcePointer;
         }
         else {
-          *(int *)(localMemoryPointer7 + 0x40) = iVar43;
+          *(int *)(localMemoryPointer7 + 0x40) = systemIndex3;
           if (*PrimaryResourcePointer != 0) {
                     // WARNING: Subroutine does not return
             SystemCleanupFunction();
@@ -57836,65 +57836,65 @@ void FUN_180079270(long long SystemResourcePointer,long long param_2)
           }
         }
         if (plocalResourceOffset4 != (long long *)0x0) {
-          iVar44 = 0;
+          systemIndex4 = 0;
           unsignedSystemValue36 = (uint)cVar16;
-          iVar45 = iVar44;
-          if ((0 < iVar43) && (0xf < unsignedSystemValue36)) {
-            iVar39 = *(int *)(localMemoryPointer7 + 0x2c);
+          systemIndex5 = systemIndex4;
+          if ((0 < systemIndex3) && (0xf < unsignedSystemValue36)) {
+            systemCounter9 = *(int *)(localMemoryPointer7 + 0x2c);
             plocalResourceOffset = (long long *)((long long)plocalResourceOffset4 + (long long)(cVar16 + -1) * 4);
             if ((((long long *)(localMemoryPointer7 + 0x2c) < plocalResourceOffset4) || (plocalResourceOffset < (long long *)(localMemoryPointer7 + 0x2c)))
-               && ((PrimaryResourcePointer < plocalResourceOffset4 || (iVar45 = 0, plocalResourceOffset < PrimaryResourcePointer)))) {
+               && ((PrimaryResourcePointer < plocalResourceOffset4 || (systemIndex5 = 0, plocalResourceOffset < PrimaryResourcePointer)))) {
               unsignedSystemValue38 = unsignedSystemValue36 & 0x8000000f;
               if ((int)unsignedSystemValue38 < 0) {
                 unsignedSystemValue38 = (unsignedSystemValue38 - 1 | 0xfffffff0) + 1;
               }
               plocalResourceOffset4 = plocalResourceOffset4 + 4;
-              iVar37 = 8;
+              systemCounter7 = 8;
               do {
-                *(int *)(plocalResourceOffset4 + -4) = iVar44 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + -0x1c) = iVar44 + 1 + iVar39;
-                *(int *)(plocalResourceOffset4 + -3) = iVar44 + 2 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + -0x14) = iVar44 + 3 + iVar39;
-                iVar44 = iVar44 + 0x10;
-                *(int *)(plocalResourceOffset4 + -2) = iVar37 + -4 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + -0xc) = iVar37 + -3 + iVar39;
-                *(int *)(plocalResourceOffset4 + -1) = iVar37 + -2 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + -4) = iVar37 + -1 + iVar39;
-                *(int *)plocalResourceOffset4 = iVar37 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + 4) = iVar37 + 1 + iVar39;
-                *(int *)(plocalResourceOffset4 + 1) = iVar37 + 2 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + 0xc) = iVar37 + 3 + iVar39;
-                *(int *)(plocalResourceOffset4 + 2) = iVar37 + 4 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + 0x14) = iVar37 + 5 + iVar39;
-                *(int *)(plocalResourceOffset4 + 3) = iVar37 + 6 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + 0x1c) = iVar37 + 7 + iVar39;
+                *(int *)(plocalResourceOffset4 + -4) = systemIndex4 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + -0x1c) = systemIndex4 + 1 + systemCounter9;
+                *(int *)(plocalResourceOffset4 + -3) = systemIndex4 + 2 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + -0x14) = systemIndex4 + 3 + systemCounter9;
+                systemIndex4 = systemIndex4 + 0x10;
+                *(int *)(plocalResourceOffset4 + -2) = systemCounter7 + -4 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + -0xc) = systemCounter7 + -3 + systemCounter9;
+                *(int *)(plocalResourceOffset4 + -1) = systemCounter7 + -2 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + -4) = systemCounter7 + -1 + systemCounter9;
+                *(int *)plocalResourceOffset4 = systemCounter7 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + 4) = systemCounter7 + 1 + systemCounter9;
+                *(int *)(plocalResourceOffset4 + 1) = systemCounter7 + 2 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + 0xc) = systemCounter7 + 3 + systemCounter9;
+                *(int *)(plocalResourceOffset4 + 2) = systemCounter7 + 4 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + 0x14) = systemCounter7 + 5 + systemCounter9;
+                *(int *)(plocalResourceOffset4 + 3) = systemCounter7 + 6 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + 0x1c) = systemCounter7 + 7 + systemCounter9;
                 plocalResourceOffset4 = plocalResourceOffset4 + 8;
-                iVar37 = iVar37 + 0x10;
-                iVar45 = iVar44;
-              } while (iVar44 < (int)(unsignedSystemValue36 - unsignedSystemValue38));
+                systemCounter7 = systemCounter7 + 0x10;
+                systemIndex5 = systemIndex4;
+              } while (systemIndex4 < (int)(unsignedSystemValue36 - unsignedSystemValue38));
             }
           }
-          for (localResourceOffset3 = (long long)iVar45; localResourceOffset3 < (long long)unsignedSystemValue40; localResourceOffset3 = localResourceOffset3 + 1) {
-            iVar44 = *(int *)(localMemoryPointer7 + 0x2c) + iVar45;
-            iVar45 = iVar45 + 1;
-            *(int *)(*PrimaryResourcePointer + localResourceOffset3 * 4) = iVar44;
+          for (localResourceOffset3 = (long long)systemIndex5; localResourceOffset3 < (long long)unsignedSystemValue40; localResourceOffset3 = localResourceOffset3 + 1) {
+            systemIndex4 = *(int *)(localMemoryPointer7 + 0x2c) + systemIndex5;
+            systemIndex5 = systemIndex5 + 1;
+            *(int *)(*PrimaryResourcePointer + localResourceOffset3 * 4) = systemIndex4;
           }
-          iVar45 = *(int *)(localMemoryPointer7 + 0x18);
-          iVar44 = 0;
-          if (0 < (long long)iVar45) {
+          systemIndex5 = *(int *)(localMemoryPointer7 + 0x18);
+          systemIndex4 = 0;
+          if (0 < (long long)systemIndex5) {
             localResourceOffset3 = 0;
             do {
-              iVar39 = *(int *)(localMemoryPointer7 + 0x30) + iVar44;
-              iVar44 = iVar44 + 1;
+              systemCounter9 = *(int *)(localMemoryPointer7 + 0x30) + systemIndex4;
+              systemIndex4 = systemIndex4 + 1;
               pbVar4 = (byte *)(*(long long *)(localMemoryPointer7 + 0x10) + localResourceOffset3);
               localResourceOffset3 = localResourceOffset3 + 1;
-              *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar4 * 4) = iVar39;
-            } while (localResourceOffset3 < iVar45);
+              *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar4 * 4) = systemCounter9;
+            } while (localResourceOffset3 < systemIndex5);
           }
         }
         punsignedSystemValue42 = (uint *)((long long)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
                           _DAT_180c86890 + 0x9d0);
-        if (iVar43 == 0) {
+        if (systemIndex3 == 0) {
           unsignedSystemValue36 = (int)cVar16 - 1;
         }
         else {
@@ -57909,18 +57909,18 @@ void FUN_180079270(long long SystemResourcePointer,long long param_2)
             localResourceOffset3 = (unsignedSystemValue49 - unsignedSystemValue48) + 1;
             punsignedSystemValue47 = punsignedSystemValue42 + unsignedSystemValue48 * 2 + 2;
             do {
-              iVar45 = (int)unsignedSystemValue48;
+              systemIndex5 = (int)unsignedSystemValue48;
               if (*(long long *)punsignedSystemValue47 == 0) {
                 localResourceOffset5 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x2000,0x25);
                 LOCK();
-                bVar50 = *(long long *)(punsignedSystemValue42 + (long long)iVar45 * 2 + 2) == 0;
+                bVar50 = *(long long *)(punsignedSystemValue42 + (long long)systemIndex5 * 2 + 2) == 0;
                 if (bVar50) {
-                  *(long long *)(punsignedSystemValue42 + (long long)iVar45 * 2 + 2) = localResourceOffset5;
+                  *(long long *)(punsignedSystemValue42 + (long long)systemIndex5 * 2 + 2) = localResourceOffset5;
                 }
                 UNLOCK();
                 if (bVar50) {
                   LOCK();
-                  *(uint8_t *)((long long)iVar45 + 0x108 + (long long)punsignedSystemValue42) = 0;
+                  *(uint8_t *)((long long)systemIndex5 + 0x108 + (long long)punsignedSystemValue42) = 0;
                   UNLOCK();
                 }
                 else {
@@ -57936,7 +57936,7 @@ void FUN_180079270(long long SystemResourcePointer,long long param_2)
                 do {
                 } while (*pcVar41 != '\0');
               }
-              unsignedSystemValue48 = (ulong long)(iVar45 + 1);
+              unsignedSystemValue48 = (ulong long)(systemIndex5 + 1);
               punsignedSystemValue47 = punsignedSystemValue47 + 2;
               pcVar41 = pcVar41 + 1;
               localResourceOffset3 = localResourceOffset3 + -1;
@@ -57951,7 +57951,7 @@ void FUN_180079270(long long SystemResourcePointer,long long param_2)
           memcpy(*(long long *)(punsignedSystemValue42 + (ulong long)unsignedSystemValue38 * 2 + 2) +
                  (ulong long)(unsignedSystemValue36 + unsignedSystemValue38 * -0x800) * 4,punsignedSystemValue46,(unsignedSystemValue40 & 0xffffffff) << 2);
         }
-        if (iVar43 != 0) {
+        if (systemIndex3 != 0) {
           unsignedSystemValue40 = unsignedSystemValue40 & 0xffffffff;
           do {
             unsignedSystemValue32 = *punsignedSystemValue46;
@@ -58014,16 +58014,16 @@ void FUN_180079284(long long SystemResourcePointer)
   long long *plocalResourceOffset4;
   long long localResourceOffset5;
   uint unsignedSystemValue36;
-  int iVar37;
+  int systemCounter7;
   uint unsignedSystemValue38;
-  int iVar39;
+  int systemCounter9;
   ulong long unsignedSystemValue40;
   char *pcVar41;
   uint *punsignedSystemValue42;
-  int iVar43;
+  int systemIndex3;
   long long unaff_RDI;
-  int iVar44;
-  int iVar45;
+  int systemIndex4;
+  int systemIndex5;
   uint32_t *punsignedSystemValue46;
   uint *punsignedSystemValue47;
   ulong long unsignedSystemValue48;
@@ -58038,7 +58038,7 @@ void FUN_180079284(long long SystemResourcePointer)
   }
   LOCK();
   pointerToInteger2 = (int *)(localMemoryPointer7 + 0xed8);
-  iVar43 = *pointerToInteger2;
+  systemIndex3 = *pointerToInteger2;
   *pointerToInteger2 = *pointerToInteger2 + *(int *)(localResourceOffset3 + 0x200);
   UNLOCK();
   localMemoryPointer7 = *(long long *)(SystemResourcePointer + 600);
@@ -58047,7 +58047,7 @@ void FUN_180079284(long long SystemResourcePointer)
   cVar16 = *(char *)(unaff_RDI + 0xd);
   *(uint32_t *)(localMemoryPointer7 + 0x48) = *(uint32_t *)(localMemoryPointer7 + 0x2c);
   *(uint32_t *)(localMemoryPointer7 + 0x50) = *(uint32_t *)(localMemoryPointer7 + 0x4c);
-  *(int *)(localMemoryPointer7 + 0x4c) = iVar43;
+  *(int *)(localMemoryPointer7 + 0x4c) = systemIndex3;
   *(uint8_t *)(localMemoryPointer7 + 0x44) = unsignedSystemValue15;
   *(uint32_t *)(localMemoryPointer7 + 0x2c) = unsignedSystemValue32;
   if (cVar16 != -1) {
@@ -58110,11 +58110,11 @@ void FUN_180079284(long long SystemResourcePointer)
   }
   localMemoryPointer7 = *(long long *)(SystemResourcePointer + 600);
   if (*(int *)(localMemoryPointer7 + 0x28) != *(int *)(SystemStatusFlagsPointer + 0x224)) {
-    iVar43 = *(int *)(localMemoryPointer7 + 0x1c) + *(int *)(localMemoryPointer7 + 0x18);
+    systemIndex3 = *(int *)(localMemoryPointer7 + 0x1c) + *(int *)(localMemoryPointer7 + 0x18);
     *(int *)(localMemoryPointer7 + 0x28) = *(int *)(SystemStatusFlagsPointer + 0x224);
-    if (0 < iVar43) {
+    if (0 < systemIndex3) {
       localResourceOffset3 = (long long)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-      unsignedSystemValue32 = FUN_180080380(localResourceOffset3,iVar43);
+      unsignedSystemValue32 = FUN_180080380(localResourceOffset3,systemIndex3);
       *(uint32_t *)(localMemoryPointer7 + 0x30) = unsignedSystemValue32;
       FUN_1800802e0(localResourceOffset3,unsignedSystemValue32);
       if (*(long long *)(localMemoryPointer7 + 0x10) == 0) {
@@ -58127,12 +58127,12 @@ void FUN_180079284(long long SystemResourcePointer)
         cVar16 = *(char *)(localMemoryPointer7 + 0x44);
         unsignedSystemValue40 = (ulong long)cVar16;
         PrimaryResourcePointer = (long long *)(localMemoryPointer7 + 0x38);
-        iVar43 = (int)cVar16;
+        systemIndex3 = (int)cVar16;
         if (*(int *)(localMemoryPointer7 + 0x40) == (int)cVar16) {
           plocalResourceOffset4 = (long long *)*PrimaryResourcePointer;
         }
         else {
-          *(int *)(localMemoryPointer7 + 0x40) = iVar43;
+          *(int *)(localMemoryPointer7 + 0x40) = systemIndex3;
           if (*PrimaryResourcePointer != 0) {
                     // WARNING: Subroutine does not return
             SystemCleanupFunction();
@@ -58148,65 +58148,65 @@ void FUN_180079284(long long SystemResourcePointer)
           }
         }
         if (plocalResourceOffset4 != (long long *)0x0) {
-          iVar44 = 0;
+          systemIndex4 = 0;
           unsignedSystemValue36 = (uint)cVar16;
-          iVar45 = iVar44;
-          if ((0 < iVar43) && (0xf < unsignedSystemValue36)) {
-            iVar39 = *(int *)(localMemoryPointer7 + 0x2c);
+          systemIndex5 = systemIndex4;
+          if ((0 < systemIndex3) && (0xf < unsignedSystemValue36)) {
+            systemCounter9 = *(int *)(localMemoryPointer7 + 0x2c);
             plocalResourceOffset = (long long *)((long long)plocalResourceOffset4 + (long long)(cVar16 + -1) * 4);
             if ((((long long *)(localMemoryPointer7 + 0x2c) < plocalResourceOffset4) || (plocalResourceOffset < (long long *)(localMemoryPointer7 + 0x2c)))
-               && ((PrimaryResourcePointer < plocalResourceOffset4 || (iVar45 = 0, plocalResourceOffset < PrimaryResourcePointer)))) {
+               && ((PrimaryResourcePointer < plocalResourceOffset4 || (systemIndex5 = 0, plocalResourceOffset < PrimaryResourcePointer)))) {
               unsignedSystemValue38 = unsignedSystemValue36 & 0x8000000f;
               if ((int)unsignedSystemValue38 < 0) {
                 unsignedSystemValue38 = (unsignedSystemValue38 - 1 | 0xfffffff0) + 1;
               }
               plocalResourceOffset4 = plocalResourceOffset4 + 4;
-              iVar37 = 8;
+              systemCounter7 = 8;
               do {
-                *(int *)(plocalResourceOffset4 + -4) = iVar44 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + -0x1c) = iVar44 + 1 + iVar39;
-                *(int *)(plocalResourceOffset4 + -3) = iVar44 + 2 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + -0x14) = iVar44 + 3 + iVar39;
-                iVar44 = iVar44 + 0x10;
-                *(int *)(plocalResourceOffset4 + -2) = iVar37 + -4 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + -0xc) = iVar37 + -3 + iVar39;
-                *(int *)(plocalResourceOffset4 + -1) = iVar37 + -2 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + -4) = iVar37 + -1 + iVar39;
-                *(int *)plocalResourceOffset4 = iVar37 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + 4) = iVar37 + 1 + iVar39;
-                *(int *)(plocalResourceOffset4 + 1) = iVar37 + 2 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + 0xc) = iVar37 + 3 + iVar39;
-                *(int *)(plocalResourceOffset4 + 2) = iVar37 + 4 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + 0x14) = iVar37 + 5 + iVar39;
-                *(int *)(plocalResourceOffset4 + 3) = iVar37 + 6 + iVar39;
-                *(int *)((long long)plocalResourceOffset4 + 0x1c) = iVar37 + 7 + iVar39;
+                *(int *)(plocalResourceOffset4 + -4) = systemIndex4 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + -0x1c) = systemIndex4 + 1 + systemCounter9;
+                *(int *)(plocalResourceOffset4 + -3) = systemIndex4 + 2 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + -0x14) = systemIndex4 + 3 + systemCounter9;
+                systemIndex4 = systemIndex4 + 0x10;
+                *(int *)(plocalResourceOffset4 + -2) = systemCounter7 + -4 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + -0xc) = systemCounter7 + -3 + systemCounter9;
+                *(int *)(plocalResourceOffset4 + -1) = systemCounter7 + -2 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + -4) = systemCounter7 + -1 + systemCounter9;
+                *(int *)plocalResourceOffset4 = systemCounter7 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + 4) = systemCounter7 + 1 + systemCounter9;
+                *(int *)(plocalResourceOffset4 + 1) = systemCounter7 + 2 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + 0xc) = systemCounter7 + 3 + systemCounter9;
+                *(int *)(plocalResourceOffset4 + 2) = systemCounter7 + 4 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + 0x14) = systemCounter7 + 5 + systemCounter9;
+                *(int *)(plocalResourceOffset4 + 3) = systemCounter7 + 6 + systemCounter9;
+                *(int *)((long long)plocalResourceOffset4 + 0x1c) = systemCounter7 + 7 + systemCounter9;
                 plocalResourceOffset4 = plocalResourceOffset4 + 8;
-                iVar37 = iVar37 + 0x10;
-                iVar45 = iVar44;
-              } while (iVar44 < (int)(unsignedSystemValue36 - unsignedSystemValue38));
+                systemCounter7 = systemCounter7 + 0x10;
+                systemIndex5 = systemIndex4;
+              } while (systemIndex4 < (int)(unsignedSystemValue36 - unsignedSystemValue38));
             }
           }
-          for (localResourceOffset3 = (long long)iVar45; localResourceOffset3 < (long long)unsignedSystemValue40; localResourceOffset3 = localResourceOffset3 + 1) {
-            iVar44 = *(int *)(localMemoryPointer7 + 0x2c) + iVar45;
-            iVar45 = iVar45 + 1;
-            *(int *)(*PrimaryResourcePointer + localResourceOffset3 * 4) = iVar44;
+          for (localResourceOffset3 = (long long)systemIndex5; localResourceOffset3 < (long long)unsignedSystemValue40; localResourceOffset3 = localResourceOffset3 + 1) {
+            systemIndex4 = *(int *)(localMemoryPointer7 + 0x2c) + systemIndex5;
+            systemIndex5 = systemIndex5 + 1;
+            *(int *)(*PrimaryResourcePointer + localResourceOffset3 * 4) = systemIndex4;
           }
-          iVar45 = *(int *)(localMemoryPointer7 + 0x18);
-          iVar44 = 0;
-          if (0 < (long long)iVar45) {
+          systemIndex5 = *(int *)(localMemoryPointer7 + 0x18);
+          systemIndex4 = 0;
+          if (0 < (long long)systemIndex5) {
             localResourceOffset3 = 0;
             do {
-              iVar39 = *(int *)(localMemoryPointer7 + 0x30) + iVar44;
-              iVar44 = iVar44 + 1;
+              systemCounter9 = *(int *)(localMemoryPointer7 + 0x30) + systemIndex4;
+              systemIndex4 = systemIndex4 + 1;
               pbVar4 = (byte *)(*(long long *)(localMemoryPointer7 + 0x10) + localResourceOffset3);
               localResourceOffset3 = localResourceOffset3 + 1;
-              *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar4 * 4) = iVar39;
-            } while (localResourceOffset3 < iVar45);
+              *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar4 * 4) = systemCounter9;
+            } while (localResourceOffset3 < systemIndex5);
           }
         }
         punsignedSystemValue42 = (uint *)((long long)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
                           _DAT_180c86890 + 0x9d0);
-        if (iVar43 == 0) {
+        if (systemIndex3 == 0) {
           unsignedSystemValue36 = (int)cVar16 - 1;
         }
         else {
@@ -58221,18 +58221,18 @@ void FUN_180079284(long long SystemResourcePointer)
             localResourceOffset3 = (unsignedSystemValue49 - unsignedSystemValue48) + 1;
             punsignedSystemValue47 = punsignedSystemValue42 + unsignedSystemValue48 * 2 + 2;
             do {
-              iVar45 = (int)unsignedSystemValue48;
+              systemIndex5 = (int)unsignedSystemValue48;
               if (*(long long *)punsignedSystemValue47 == 0) {
                 localResourceOffset5 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x2000,0x25);
                 LOCK();
-                bVar50 = *(long long *)(punsignedSystemValue42 + (long long)iVar45 * 2 + 2) == 0;
+                bVar50 = *(long long *)(punsignedSystemValue42 + (long long)systemIndex5 * 2 + 2) == 0;
                 if (bVar50) {
-                  *(long long *)(punsignedSystemValue42 + (long long)iVar45 * 2 + 2) = localResourceOffset5;
+                  *(long long *)(punsignedSystemValue42 + (long long)systemIndex5 * 2 + 2) = localResourceOffset5;
                 }
                 UNLOCK();
                 if (bVar50) {
                   LOCK();
-                  *(uint8_t *)((long long)iVar45 + 0x108 + (long long)punsignedSystemValue42) = 0;
+                  *(uint8_t *)((long long)systemIndex5 + 0x108 + (long long)punsignedSystemValue42) = 0;
                   UNLOCK();
                 }
                 else {
@@ -58248,7 +58248,7 @@ void FUN_180079284(long long SystemResourcePointer)
                 do {
                 } while (*pcVar41 != '\0');
               }
-              unsignedSystemValue48 = (ulong long)(iVar45 + 1);
+              unsignedSystemValue48 = (ulong long)(systemIndex5 + 1);
               punsignedSystemValue47 = punsignedSystemValue47 + 2;
               pcVar41 = pcVar41 + 1;
               localResourceOffset3 = localResourceOffset3 + -1;
@@ -58263,7 +58263,7 @@ void FUN_180079284(long long SystemResourcePointer)
           memcpy(*(long long *)(punsignedSystemValue42 + (ulong long)unsignedSystemValue38 * 2 + 2) +
                  (ulong long)(unsignedSystemValue36 + unsignedSystemValue38 * -0x800) * 4,punsignedSystemValue46,(unsignedSystemValue40 & 0xffffffff) << 2);
         }
-        if (iVar43 != 0) {
+        if (systemIndex3 != 0) {
           unsignedSystemValue40 = unsignedSystemValue40 & 0xffffffff;
           do {
             unsignedSystemValue32 = *punsignedSystemValue46;
@@ -58323,17 +58323,17 @@ void FUN_1800792ea(void)
   long long localResourceOffset1;
   long long *plocalResourceOffset2;
   uint unsignedSystemValue33;
-  int iVar34;
+  int systemCounter4;
   uint unsignedSystemValue35;
-  int iVar36;
+  int systemCounter6;
   long long unaff_RBX;
   ulong long unsignedSystemValue37;
   char *pcVar38;
   uint *pointerToUnsigned39;
-  int iVar40;
+  int systemIndex0;
   long long unaff_RDI;
-  int iVar41;
-  int iVar42;
+  int systemIndex1;
+  int systemIndex2;
   long long localBufferAddress3;
   uint32_t *punsignedSystemValue44;
   uint *punsignedSystemValue45;
@@ -58402,12 +58402,12 @@ void FUN_1800792ea(void)
   pfVar15[0xb] = fVar9 * fVar28 + fVar12 * fVar24 + fVar13 * fVar20;
   localMemoryPointer6 = *(long long *)(unaff_RBX + 600);
   if (*(int *)(localMemoryPointer6 + 0x28) != *(int *)(SystemStatusFlagsPointer + 0x224)) {
-    iVar40 = *(int *)(localMemoryPointer6 + 0x1c) + *(int *)(localMemoryPointer6 + 0x18);
+    systemIndex0 = *(int *)(localMemoryPointer6 + 0x1c) + *(int *)(localMemoryPointer6 + 0x18);
     *(int *)(localMemoryPointer6 + 0x28) = *(int *)(SystemStatusFlagsPointer + 0x224);
-    if (0 < iVar40) {
+    if (0 < systemIndex0) {
       uStack0000000000000050 = in_stack_00000058;
       localResourceOffset1 = (long long)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-      unsignedSystemValue30 = FUN_180080380(localResourceOffset1,iVar40,localBufferAddress3,pfVar15,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
+      unsignedSystemValue30 = FUN_180080380(localResourceOffset1,systemIndex0,localBufferAddress3,pfVar15,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(uint32_t *)(localMemoryPointer6 + 0x30) = unsignedSystemValue30;
       FUN_1800802e0(localResourceOffset1,unsignedSystemValue30);
       if (*(long long *)(localMemoryPointer6 + 0x10) == 0) {
@@ -58420,12 +58420,12 @@ void FUN_1800792ea(void)
         cVar14 = *(char *)(localMemoryPointer6 + 0x44);
         unsignedSystemValue37 = (ulong long)cVar14;
         PrimaryResourcePointer = (long long *)(localMemoryPointer6 + 0x38);
-        iVar40 = (int)cVar14;
+        systemIndex0 = (int)cVar14;
         if (*(int *)(localMemoryPointer6 + 0x40) == (int)cVar14) {
           plocalResourceOffset2 = (long long *)*PrimaryResourcePointer;
         }
         else {
-          *(int *)(localMemoryPointer6 + 0x40) = iVar40;
+          *(int *)(localMemoryPointer6 + 0x40) = systemIndex0;
           if (*PrimaryResourcePointer != 0) {
                     // WARNING: Subroutine does not return
             SystemCleanupFunction();
@@ -58441,65 +58441,65 @@ void FUN_1800792ea(void)
           }
         }
         if (plocalResourceOffset2 != (long long *)0x0) {
-          iVar41 = 0;
+          systemIndex1 = 0;
           unsignedSystemValue33 = (uint)cVar14;
-          iVar42 = iVar41;
-          if ((0 < iVar40) && (0xf < unsignedSystemValue33)) {
-            iVar36 = *(int *)(localMemoryPointer6 + 0x2c);
+          systemIndex2 = systemIndex1;
+          if ((0 < systemIndex0) && (0xf < unsignedSystemValue33)) {
+            systemCounter6 = *(int *)(localMemoryPointer6 + 0x2c);
             SecondaryResourcePointer = (long long *)((long long)plocalResourceOffset2 + (long long)(cVar14 + -1) * 4);
             if ((((long long *)(localMemoryPointer6 + 0x2c) < plocalResourceOffset2) || (SecondaryResourcePointer < (long long *)(localMemoryPointer6 + 0x2c)))
-               && ((PrimaryResourcePointer < plocalResourceOffset2 || (iVar42 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
+               && ((PrimaryResourcePointer < plocalResourceOffset2 || (systemIndex2 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
               unsignedSystemValue35 = unsignedSystemValue33 & 0x8000000f;
               if ((int)unsignedSystemValue35 < 0) {
                 unsignedSystemValue35 = (unsignedSystemValue35 - 1 | 0xfffffff0) + 1;
               }
               plocalResourceOffset2 = plocalResourceOffset2 + 4;
-              iVar34 = 8;
+              systemCounter4 = 8;
               do {
-                *(int *)(plocalResourceOffset2 + -4) = iVar41 + iVar36;
-                *(int *)((long long)plocalResourceOffset2 + -0x1c) = iVar41 + 1 + iVar36;
-                *(int *)(plocalResourceOffset2 + -3) = iVar41 + 2 + iVar36;
-                *(int *)((long long)plocalResourceOffset2 + -0x14) = iVar41 + 3 + iVar36;
-                iVar41 = iVar41 + 0x10;
-                *(int *)(plocalResourceOffset2 + -2) = iVar34 + -4 + iVar36;
-                *(int *)((long long)plocalResourceOffset2 + -0xc) = iVar34 + -3 + iVar36;
-                *(int *)(plocalResourceOffset2 + -1) = iVar34 + -2 + iVar36;
-                *(int *)((long long)plocalResourceOffset2 + -4) = iVar34 + -1 + iVar36;
-                *(int *)plocalResourceOffset2 = iVar34 + iVar36;
-                *(int *)((long long)plocalResourceOffset2 + 4) = iVar34 + 1 + iVar36;
-                *(int *)(plocalResourceOffset2 + 1) = iVar34 + 2 + iVar36;
-                *(int *)((long long)plocalResourceOffset2 + 0xc) = iVar34 + 3 + iVar36;
-                *(int *)(plocalResourceOffset2 + 2) = iVar34 + 4 + iVar36;
-                *(int *)((long long)plocalResourceOffset2 + 0x14) = iVar34 + 5 + iVar36;
-                *(int *)(plocalResourceOffset2 + 3) = iVar34 + 6 + iVar36;
-                *(int *)((long long)plocalResourceOffset2 + 0x1c) = iVar34 + 7 + iVar36;
+                *(int *)(plocalResourceOffset2 + -4) = systemIndex1 + systemCounter6;
+                *(int *)((long long)plocalResourceOffset2 + -0x1c) = systemIndex1 + 1 + systemCounter6;
+                *(int *)(plocalResourceOffset2 + -3) = systemIndex1 + 2 + systemCounter6;
+                *(int *)((long long)plocalResourceOffset2 + -0x14) = systemIndex1 + 3 + systemCounter6;
+                systemIndex1 = systemIndex1 + 0x10;
+                *(int *)(plocalResourceOffset2 + -2) = systemCounter4 + -4 + systemCounter6;
+                *(int *)((long long)plocalResourceOffset2 + -0xc) = systemCounter4 + -3 + systemCounter6;
+                *(int *)(plocalResourceOffset2 + -1) = systemCounter4 + -2 + systemCounter6;
+                *(int *)((long long)plocalResourceOffset2 + -4) = systemCounter4 + -1 + systemCounter6;
+                *(int *)plocalResourceOffset2 = systemCounter4 + systemCounter6;
+                *(int *)((long long)plocalResourceOffset2 + 4) = systemCounter4 + 1 + systemCounter6;
+                *(int *)(plocalResourceOffset2 + 1) = systemCounter4 + 2 + systemCounter6;
+                *(int *)((long long)plocalResourceOffset2 + 0xc) = systemCounter4 + 3 + systemCounter6;
+                *(int *)(plocalResourceOffset2 + 2) = systemCounter4 + 4 + systemCounter6;
+                *(int *)((long long)plocalResourceOffset2 + 0x14) = systemCounter4 + 5 + systemCounter6;
+                *(int *)(plocalResourceOffset2 + 3) = systemCounter4 + 6 + systemCounter6;
+                *(int *)((long long)plocalResourceOffset2 + 0x1c) = systemCounter4 + 7 + systemCounter6;
                 plocalResourceOffset2 = plocalResourceOffset2 + 8;
-                iVar34 = iVar34 + 0x10;
-                iVar42 = iVar41;
-              } while (iVar41 < (int)(unsignedSystemValue33 - unsignedSystemValue35));
+                systemCounter4 = systemCounter4 + 0x10;
+                systemIndex2 = systemIndex1;
+              } while (systemIndex1 < (int)(unsignedSystemValue33 - unsignedSystemValue35));
             }
           }
-          for (localResourceOffset1 = (long long)iVar42; localResourceOffset1 < (long long)unsignedSystemValue37; localResourceOffset1 = localResourceOffset1 + 1) {
-            iVar41 = *(int *)(localMemoryPointer6 + 0x2c) + iVar42;
-            iVar42 = iVar42 + 1;
-            *(int *)(*PrimaryResourcePointer + localResourceOffset1 * 4) = iVar41;
+          for (localResourceOffset1 = (long long)systemIndex2; localResourceOffset1 < (long long)unsignedSystemValue37; localResourceOffset1 = localResourceOffset1 + 1) {
+            systemIndex1 = *(int *)(localMemoryPointer6 + 0x2c) + systemIndex2;
+            systemIndex2 = systemIndex2 + 1;
+            *(int *)(*PrimaryResourcePointer + localResourceOffset1 * 4) = systemIndex1;
           }
-          iVar42 = *(int *)(localMemoryPointer6 + 0x18);
-          iVar41 = 0;
-          if (0 < (long long)iVar42) {
+          systemIndex2 = *(int *)(localMemoryPointer6 + 0x18);
+          systemIndex1 = 0;
+          if (0 < (long long)systemIndex2) {
             localResourceOffset1 = 0;
             do {
-              iVar36 = *(int *)(localMemoryPointer6 + 0x30) + iVar41;
-              iVar41 = iVar41 + 1;
+              systemCounter6 = *(int *)(localMemoryPointer6 + 0x30) + systemIndex1;
+              systemIndex1 = systemIndex1 + 1;
               pbVar3 = (byte *)(*(long long *)(localMemoryPointer6 + 0x10) + localResourceOffset1);
               localResourceOffset1 = localResourceOffset1 + 1;
-              *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = iVar36;
-            } while (localResourceOffset1 < iVar42);
+              *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = systemCounter6;
+            } while (localResourceOffset1 < systemIndex2);
           }
         }
         pointerToUnsigned39 = (uint *)((long long)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
                           _DAT_180c86890 + 0x9d0);
-        if (iVar40 == 0) {
+        if (systemIndex0 == 0) {
           unsignedSystemValue33 = (int)cVar14 - 1;
         }
         else {
@@ -58514,18 +58514,18 @@ void FUN_1800792ea(void)
             localResourceOffset1 = (unsignedSystemValue47 - unsignedSystemValue46) + 1;
             punsignedSystemValue45 = pointerToUnsigned39 + unsignedSystemValue46 * 2 + 2;
             do {
-              iVar42 = (int)unsignedSystemValue46;
+              systemIndex2 = (int)unsignedSystemValue46;
               if (*(long long *)punsignedSystemValue45 == 0) {
                 localBufferAddress3 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x2000,0x25);
                 LOCK();
-                bVar48 = *(long long *)(pointerToUnsigned39 + (long long)iVar42 * 2 + 2) == 0;
+                bVar48 = *(long long *)(pointerToUnsigned39 + (long long)systemIndex2 * 2 + 2) == 0;
                 if (bVar48) {
-                  *(long long *)(pointerToUnsigned39 + (long long)iVar42 * 2 + 2) = localBufferAddress3;
+                  *(long long *)(pointerToUnsigned39 + (long long)systemIndex2 * 2 + 2) = localBufferAddress3;
                 }
                 UNLOCK();
                 if (bVar48) {
                   LOCK();
-                  *(uint8_t *)((long long)iVar42 + 0x108 + (long long)pointerToUnsigned39) = 0;
+                  *(uint8_t *)((long long)systemIndex2 + 0x108 + (long long)pointerToUnsigned39) = 0;
                   UNLOCK();
                 }
                 else {
@@ -58541,7 +58541,7 @@ void FUN_1800792ea(void)
                 do {
                 } while (*pcVar38 != '\0');
               }
-              unsignedSystemValue46 = (ulong long)(iVar42 + 1);
+              unsignedSystemValue46 = (ulong long)(systemIndex2 + 1);
               punsignedSystemValue45 = punsignedSystemValue45 + 2;
               pcVar38 = pcVar38 + 1;
               localResourceOffset1 = localResourceOffset1 + -1;
@@ -58556,7 +58556,7 @@ void FUN_1800792ea(void)
           memcpy(*(long long *)(pointerToUnsigned39 + (ulong long)unsignedSystemValue35 * 2 + 2) +
                  (ulong long)(unsignedSystemValue33 + unsignedSystemValue35 * -0x800) * 4,punsignedSystemValue44,(unsignedSystemValue37 & 0xffffffff) << 2);
         }
-        if (iVar40 != 0) {
+        if (systemIndex0 != 0) {
           unsignedSystemValue37 = unsignedSystemValue37 & 0xffffffff;
           do {
             unsignedSystemValue30 = *punsignedSystemValue44;
@@ -58616,17 +58616,17 @@ void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,fl
   long long localResourceOffset1;
   long long *plocalResourceOffset2;
   long long localResourceOffset3;
-  int iVar34;
-  int iVar35;
+  int systemCounter4;
+  int systemCounter5;
   long long unaff_RBX;
   ulong long unsignedSystemValue36;
   char *pcVar37;
   uint *pointerToUnsigned38;
-  int iVar39;
+  int systemCounter9;
   uint unsignedSystemValue40;
   long long unaff_RDI;
-  int iVar41;
-  int iVar42;
+  int systemIndex1;
+  int systemIndex2;
   uint32_t *punsignedSystemValue43;
   uint *punsignedSystemValue44;
   ulong long unsignedSystemValue45;
@@ -58691,12 +58691,12 @@ void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,fl
   param_4[0xb] = fVar9 * fVar27 + fVar12 * fVar23 + fVar13 * fVar19;
   localMemoryPointer5 = *(long long *)(unaff_RBX + 600);
   if (*(int *)(localMemoryPointer5 + 0x28) != *(int *)(SystemStatusFlagsPointer + 0x224)) {
-    iVar39 = *(int *)(localMemoryPointer5 + 0x1c) + *(int *)(localMemoryPointer5 + 0x18);
+    systemCounter9 = *(int *)(localMemoryPointer5 + 0x1c) + *(int *)(localMemoryPointer5 + 0x18);
     *(int *)(localMemoryPointer5 + 0x28) = *(int *)(SystemStatusFlagsPointer + 0x224);
-    if (0 < iVar39) {
+    if (0 < systemCounter9) {
       uStack0000000000000050 = in_stack_00000058;
       localResourceOffset1 = (long long)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-      unsignedSystemValue29 = FUN_180080380(localResourceOffset1,iVar39,SystemResourcePointer,param_4,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
+      unsignedSystemValue29 = FUN_180080380(localResourceOffset1,systemCounter9,SystemResourcePointer,param_4,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(uint32_t *)(localMemoryPointer5 + 0x30) = unsignedSystemValue29;
       FUN_1800802e0(localResourceOffset1,unsignedSystemValue29);
       if (*(long long *)(localMemoryPointer5 + 0x10) == 0) {
@@ -58709,12 +58709,12 @@ void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,fl
         cVar14 = *(char *)(localMemoryPointer5 + 0x44);
         unsignedSystemValue36 = (ulong long)cVar14;
         PrimaryResourcePointer = (long long *)(localMemoryPointer5 + 0x38);
-        iVar39 = (int)cVar14;
+        systemCounter9 = (int)cVar14;
         if (*(int *)(localMemoryPointer5 + 0x40) == (int)cVar14) {
           plocalResourceOffset2 = (long long *)*PrimaryResourcePointer;
         }
         else {
-          *(int *)(localMemoryPointer5 + 0x40) = iVar39;
+          *(int *)(localMemoryPointer5 + 0x40) = systemCounter9;
           if (*PrimaryResourcePointer != 0) {
                     // WARNING: Subroutine does not return
             SystemCleanupFunction();
@@ -58730,65 +58730,65 @@ void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,fl
           }
         }
         if (plocalResourceOffset2 != (long long *)0x0) {
-          iVar41 = 0;
+          systemIndex1 = 0;
           unsignedSystemValue40 = (uint)cVar14;
-          iVar42 = iVar41;
-          if ((0 < iVar39) && (0xf < unsignedSystemValue40)) {
-            iVar35 = *(int *)(localMemoryPointer5 + 0x2c);
+          systemIndex2 = systemIndex1;
+          if ((0 < systemCounter9) && (0xf < unsignedSystemValue40)) {
+            systemCounter5 = *(int *)(localMemoryPointer5 + 0x2c);
             SecondaryResourcePointer = (long long *)((long long)plocalResourceOffset2 + (long long)(cVar14 + -1) * 4);
             if ((((long long *)(localMemoryPointer5 + 0x2c) < plocalResourceOffset2) || (SecondaryResourcePointer < (long long *)(localMemoryPointer5 + 0x2c)))
-               && ((PrimaryResourcePointer < plocalResourceOffset2 || (iVar42 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
+               && ((PrimaryResourcePointer < plocalResourceOffset2 || (systemIndex2 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
               unsignedSystemValue30 = unsignedSystemValue40 & 0x8000000f;
               if ((int)unsignedSystemValue30 < 0) {
                 unsignedSystemValue30 = (unsignedSystemValue30 - 1 | 0xfffffff0) + 1;
               }
               plocalResourceOffset2 = plocalResourceOffset2 + 4;
-              iVar34 = 8;
+              systemCounter4 = 8;
               do {
-                *(int *)(plocalResourceOffset2 + -4) = iVar41 + iVar35;
-                *(int *)((long long)plocalResourceOffset2 + -0x1c) = iVar41 + 1 + iVar35;
-                *(int *)(plocalResourceOffset2 + -3) = iVar41 + 2 + iVar35;
-                *(int *)((long long)plocalResourceOffset2 + -0x14) = iVar41 + 3 + iVar35;
-                iVar41 = iVar41 + 0x10;
-                *(int *)(plocalResourceOffset2 + -2) = iVar34 + -4 + iVar35;
-                *(int *)((long long)plocalResourceOffset2 + -0xc) = iVar34 + -3 + iVar35;
-                *(int *)(plocalResourceOffset2 + -1) = iVar34 + -2 + iVar35;
-                *(int *)((long long)plocalResourceOffset2 + -4) = iVar34 + -1 + iVar35;
-                *(int *)plocalResourceOffset2 = iVar34 + iVar35;
-                *(int *)((long long)plocalResourceOffset2 + 4) = iVar34 + 1 + iVar35;
-                *(int *)(plocalResourceOffset2 + 1) = iVar34 + 2 + iVar35;
-                *(int *)((long long)plocalResourceOffset2 + 0xc) = iVar34 + 3 + iVar35;
-                *(int *)(plocalResourceOffset2 + 2) = iVar34 + 4 + iVar35;
-                *(int *)((long long)plocalResourceOffset2 + 0x14) = iVar34 + 5 + iVar35;
-                *(int *)(plocalResourceOffset2 + 3) = iVar34 + 6 + iVar35;
-                *(int *)((long long)plocalResourceOffset2 + 0x1c) = iVar34 + 7 + iVar35;
+                *(int *)(plocalResourceOffset2 + -4) = systemIndex1 + systemCounter5;
+                *(int *)((long long)plocalResourceOffset2 + -0x1c) = systemIndex1 + 1 + systemCounter5;
+                *(int *)(plocalResourceOffset2 + -3) = systemIndex1 + 2 + systemCounter5;
+                *(int *)((long long)plocalResourceOffset2 + -0x14) = systemIndex1 + 3 + systemCounter5;
+                systemIndex1 = systemIndex1 + 0x10;
+                *(int *)(plocalResourceOffset2 + -2) = systemCounter4 + -4 + systemCounter5;
+                *(int *)((long long)plocalResourceOffset2 + -0xc) = systemCounter4 + -3 + systemCounter5;
+                *(int *)(plocalResourceOffset2 + -1) = systemCounter4 + -2 + systemCounter5;
+                *(int *)((long long)plocalResourceOffset2 + -4) = systemCounter4 + -1 + systemCounter5;
+                *(int *)plocalResourceOffset2 = systemCounter4 + systemCounter5;
+                *(int *)((long long)plocalResourceOffset2 + 4) = systemCounter4 + 1 + systemCounter5;
+                *(int *)(plocalResourceOffset2 + 1) = systemCounter4 + 2 + systemCounter5;
+                *(int *)((long long)plocalResourceOffset2 + 0xc) = systemCounter4 + 3 + systemCounter5;
+                *(int *)(plocalResourceOffset2 + 2) = systemCounter4 + 4 + systemCounter5;
+                *(int *)((long long)plocalResourceOffset2 + 0x14) = systemCounter4 + 5 + systemCounter5;
+                *(int *)(plocalResourceOffset2 + 3) = systemCounter4 + 6 + systemCounter5;
+                *(int *)((long long)plocalResourceOffset2 + 0x1c) = systemCounter4 + 7 + systemCounter5;
                 plocalResourceOffset2 = plocalResourceOffset2 + 8;
-                iVar34 = iVar34 + 0x10;
-                iVar42 = iVar41;
-              } while (iVar41 < (int)(unsignedSystemValue40 - unsignedSystemValue30));
+                systemCounter4 = systemCounter4 + 0x10;
+                systemIndex2 = systemIndex1;
+              } while (systemIndex1 < (int)(unsignedSystemValue40 - unsignedSystemValue30));
             }
           }
-          for (localResourceOffset1 = (long long)iVar42; localResourceOffset1 < (long long)unsignedSystemValue36; localResourceOffset1 = localResourceOffset1 + 1) {
-            iVar41 = *(int *)(localMemoryPointer5 + 0x2c) + iVar42;
-            iVar42 = iVar42 + 1;
-            *(int *)(*PrimaryResourcePointer + localResourceOffset1 * 4) = iVar41;
+          for (localResourceOffset1 = (long long)systemIndex2; localResourceOffset1 < (long long)unsignedSystemValue36; localResourceOffset1 = localResourceOffset1 + 1) {
+            systemIndex1 = *(int *)(localMemoryPointer5 + 0x2c) + systemIndex2;
+            systemIndex2 = systemIndex2 + 1;
+            *(int *)(*PrimaryResourcePointer + localResourceOffset1 * 4) = systemIndex1;
           }
-          iVar42 = *(int *)(localMemoryPointer5 + 0x18);
-          iVar41 = 0;
-          if (0 < (long long)iVar42) {
+          systemIndex2 = *(int *)(localMemoryPointer5 + 0x18);
+          systemIndex1 = 0;
+          if (0 < (long long)systemIndex2) {
             localResourceOffset1 = 0;
             do {
-              iVar35 = *(int *)(localMemoryPointer5 + 0x30) + iVar41;
-              iVar41 = iVar41 + 1;
+              systemCounter5 = *(int *)(localMemoryPointer5 + 0x30) + systemIndex1;
+              systemIndex1 = systemIndex1 + 1;
               pbVar3 = (byte *)(*(long long *)(localMemoryPointer5 + 0x10) + localResourceOffset1);
               localResourceOffset1 = localResourceOffset1 + 1;
-              *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = iVar35;
-            } while (localResourceOffset1 < iVar42);
+              *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = systemCounter5;
+            } while (localResourceOffset1 < systemIndex2);
           }
         }
         pointerToUnsigned38 = (uint *)((long long)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
                           _DAT_180c86890 + 0x9d0);
-        if (iVar39 == 0) {
+        if (systemCounter9 == 0) {
           unsignedSystemValue40 = (int)cVar14 - 1;
         }
         else {
@@ -58803,18 +58803,18 @@ void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,fl
             localResourceOffset1 = (unsignedSystemValue46 - unsignedSystemValue45) + 1;
             punsignedSystemValue44 = pointerToUnsigned38 + unsignedSystemValue45 * 2 + 2;
             do {
-              iVar42 = (int)unsignedSystemValue45;
+              systemIndex2 = (int)unsignedSystemValue45;
               if (*(long long *)punsignedSystemValue44 == 0) {
                 localResourceOffset3 = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x2000,0x25);
                 LOCK();
-                bVar47 = *(long long *)(pointerToUnsigned38 + (long long)iVar42 * 2 + 2) == 0;
+                bVar47 = *(long long *)(pointerToUnsigned38 + (long long)systemIndex2 * 2 + 2) == 0;
                 if (bVar47) {
-                  *(long long *)(pointerToUnsigned38 + (long long)iVar42 * 2 + 2) = localResourceOffset3;
+                  *(long long *)(pointerToUnsigned38 + (long long)systemIndex2 * 2 + 2) = localResourceOffset3;
                 }
                 UNLOCK();
                 if (bVar47) {
                   LOCK();
-                  *(uint8_t *)((long long)iVar42 + 0x108 + (long long)pointerToUnsigned38) = 0;
+                  *(uint8_t *)((long long)systemIndex2 + 0x108 + (long long)pointerToUnsigned38) = 0;
                   UNLOCK();
                 }
                 else {
@@ -58830,7 +58830,7 @@ void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,fl
                 do {
                 } while (*pcVar37 != '\0');
               }
-              unsignedSystemValue45 = (ulong long)(iVar42 + 1);
+              unsignedSystemValue45 = (ulong long)(systemIndex2 + 1);
               punsignedSystemValue44 = punsignedSystemValue44 + 2;
               pcVar37 = pcVar37 + 1;
               localResourceOffset1 = localResourceOffset1 + -1;
@@ -58845,7 +58845,7 @@ void FUN_180079309(long long SystemResourcePointer,uint param_2,void* param_3,fl
           memcpy(*(long long *)(pointerToUnsigned38 + (ulong long)unsignedSystemValue30 * 2 + 2) +
                  (ulong long)(unsignedSystemValue40 + unsignedSystemValue30 * -0x800) * 4,punsignedSystemValue43,(unsignedSystemValue36 & 0xffffffff) << 2);
         }
-        if (iVar39 != 0) {
+        if (systemCounter9 != 0) {
           unsignedSystemValue36 = unsignedSystemValue36 & 0xffffffff;
           do {
             unsignedSystemValue29 = *punsignedSystemValue43;
@@ -58881,17 +58881,17 @@ void FUN_18007940e(void)
   uint unsignedSystemValue7;
   long long *plocalMemoryAddress;
   long long localResourcePointer;
-  int iVar10;
-  int iVar11;
+  int systemStatus0;
+  int systemStatus1;
   long long unaff_RBX;
   long long localMemoryPointer2;
   ulong long unsignedSystemValue13;
   char *pcVar14;
   uint *pointerToUnsigned15;
-  int iVar16;
+  int systemStatus6;
   uint unsignedSystemValue17;
-  int iVar18;
-  int iVar19;
+  int systemStatus8;
+  int systemStatus9;
   uint32_t *pointerToUnsigned20;
   uint *pointerToUnsigned21;
   ulong long unsignedSystemValue22;
@@ -58902,12 +58902,12 @@ void FUN_18007940e(void)
   
   localSystemPointer = *(long long *)(unaff_RBX + 600);
   if (*(int *)(localSystemPointer + 0x28) != *(int *)(SystemStatusFlagsPointer + 0x224)) {
-    iVar16 = *(int *)(localSystemPointer + 0x1c) + *(int *)(localSystemPointer + 0x18);
+    systemStatus6 = *(int *)(localSystemPointer + 0x1c) + *(int *)(localSystemPointer + 0x18);
     *(int *)(localSystemPointer + 0x28) = *(int *)(SystemStatusFlagsPointer + 0x224);
-    if (0 < iVar16) {
+    if (0 < systemStatus6) {
       uStack0000000000000050 = in_stack_00000058;
       localMemoryPointer2 = (long long)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-      unsignedSystemValue6 = FUN_180080380(localMemoryPointer2,iVar16);
+      unsignedSystemValue6 = FUN_180080380(localMemoryPointer2,systemStatus6);
       *(uint32_t *)(localSystemPointer + 0x30) = unsignedSystemValue6;
       FUN_1800802e0(localMemoryPointer2,unsignedSystemValue6);
       if (*(long long *)(localSystemPointer + 0x10) == 0) {
@@ -58920,12 +58920,12 @@ void FUN_18007940e(void)
         cVar4 = *(char *)(localSystemPointer + 0x44);
         unsignedSystemValue13 = (ulong long)cVar4;
         PrimaryResourcePointer = (long long *)(localSystemPointer + 0x38);
-        iVar16 = (int)cVar4;
+        systemStatus6 = (int)cVar4;
         if (*(int *)(localSystemPointer + 0x40) == (int)cVar4) {
           plocalMemoryAddress = (long long *)*PrimaryResourcePointer;
         }
         else {
-          *(int *)(localSystemPointer + 0x40) = iVar16;
+          *(int *)(localSystemPointer + 0x40) = systemStatus6;
           if (*PrimaryResourcePointer != 0) {
                     // WARNING: Subroutine does not return
             SystemCleanupFunction();
@@ -58941,65 +58941,65 @@ void FUN_18007940e(void)
           }
         }
         if (plocalMemoryAddress != (long long *)0x0) {
-          iVar18 = 0;
+          systemStatus8 = 0;
           unsignedSystemValue17 = (uint)cVar4;
-          iVar19 = iVar18;
-          if ((0 < iVar16) && (0xf < unsignedSystemValue17)) {
-            iVar11 = *(int *)(localSystemPointer + 0x2c);
+          systemStatus9 = systemStatus8;
+          if ((0 < systemStatus6) && (0xf < unsignedSystemValue17)) {
+            systemStatus1 = *(int *)(localSystemPointer + 0x2c);
             SecondaryResourcePointer = (long long *)((long long)plocalMemoryAddress + (long long)(cVar4 + -1) * 4);
             if ((((long long *)(localSystemPointer + 0x2c) < plocalMemoryAddress) || (SecondaryResourcePointer < (long long *)(localSystemPointer + 0x2c))) &&
-               ((PrimaryResourcePointer < plocalMemoryAddress || (iVar19 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
+               ((PrimaryResourcePointer < plocalMemoryAddress || (systemStatus9 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
               unsignedSystemValue7 = unsignedSystemValue17 & 0x8000000f;
               if ((int)unsignedSystemValue7 < 0) {
                 unsignedSystemValue7 = (unsignedSystemValue7 - 1 | 0xfffffff0) + 1;
               }
               plocalMemoryAddress = plocalMemoryAddress + 4;
-              iVar10 = 8;
+              systemStatus0 = 8;
               do {
-                *(int *)(plocalMemoryAddress + -4) = iVar18 + iVar11;
-                *(int *)((long long)plocalMemoryAddress + -0x1c) = iVar18 + 1 + iVar11;
-                *(int *)(plocalMemoryAddress + -3) = iVar18 + 2 + iVar11;
-                *(int *)((long long)plocalMemoryAddress + -0x14) = iVar18 + 3 + iVar11;
-                iVar18 = iVar18 + 0x10;
-                *(int *)(plocalMemoryAddress + -2) = iVar10 + -4 + iVar11;
-                *(int *)((long long)plocalMemoryAddress + -0xc) = iVar10 + -3 + iVar11;
-                *(int *)(plocalMemoryAddress + -1) = iVar10 + -2 + iVar11;
-                *(int *)((long long)plocalMemoryAddress + -4) = iVar10 + -1 + iVar11;
-                *(int *)plocalMemoryAddress = iVar10 + iVar11;
-                *(int *)((long long)plocalMemoryAddress + 4) = iVar10 + 1 + iVar11;
-                *(int *)(plocalMemoryAddress + 1) = iVar10 + 2 + iVar11;
-                *(int *)((long long)plocalMemoryAddress + 0xc) = iVar10 + 3 + iVar11;
-                *(int *)(plocalMemoryAddress + 2) = iVar10 + 4 + iVar11;
-                *(int *)((long long)plocalMemoryAddress + 0x14) = iVar10 + 5 + iVar11;
-                *(int *)(plocalMemoryAddress + 3) = iVar10 + 6 + iVar11;
-                *(int *)((long long)plocalMemoryAddress + 0x1c) = iVar10 + 7 + iVar11;
+                *(int *)(plocalMemoryAddress + -4) = systemStatus8 + systemStatus1;
+                *(int *)((long long)plocalMemoryAddress + -0x1c) = systemStatus8 + 1 + systemStatus1;
+                *(int *)(plocalMemoryAddress + -3) = systemStatus8 + 2 + systemStatus1;
+                *(int *)((long long)plocalMemoryAddress + -0x14) = systemStatus8 + 3 + systemStatus1;
+                systemStatus8 = systemStatus8 + 0x10;
+                *(int *)(plocalMemoryAddress + -2) = systemStatus0 + -4 + systemStatus1;
+                *(int *)((long long)plocalMemoryAddress + -0xc) = systemStatus0 + -3 + systemStatus1;
+                *(int *)(plocalMemoryAddress + -1) = systemStatus0 + -2 + systemStatus1;
+                *(int *)((long long)plocalMemoryAddress + -4) = systemStatus0 + -1 + systemStatus1;
+                *(int *)plocalMemoryAddress = systemStatus0 + systemStatus1;
+                *(int *)((long long)plocalMemoryAddress + 4) = systemStatus0 + 1 + systemStatus1;
+                *(int *)(plocalMemoryAddress + 1) = systemStatus0 + 2 + systemStatus1;
+                *(int *)((long long)plocalMemoryAddress + 0xc) = systemStatus0 + 3 + systemStatus1;
+                *(int *)(plocalMemoryAddress + 2) = systemStatus0 + 4 + systemStatus1;
+                *(int *)((long long)plocalMemoryAddress + 0x14) = systemStatus0 + 5 + systemStatus1;
+                *(int *)(plocalMemoryAddress + 3) = systemStatus0 + 6 + systemStatus1;
+                *(int *)((long long)plocalMemoryAddress + 0x1c) = systemStatus0 + 7 + systemStatus1;
                 plocalMemoryAddress = plocalMemoryAddress + 8;
-                iVar10 = iVar10 + 0x10;
-                iVar19 = iVar18;
-              } while (iVar18 < (int)(unsignedSystemValue17 - unsignedSystemValue7));
+                systemStatus0 = systemStatus0 + 0x10;
+                systemStatus9 = systemStatus8;
+              } while (systemStatus8 < (int)(unsignedSystemValue17 - unsignedSystemValue7));
             }
           }
-          for (localMemoryPointer2 = (long long)iVar19; localMemoryPointer2 < (long long)unsignedSystemValue13; localMemoryPointer2 = localMemoryPointer2 + 1) {
-            iVar18 = *(int *)(localSystemPointer + 0x2c) + iVar19;
-            iVar19 = iVar19 + 1;
-            *(int *)(*PrimaryResourcePointer + localMemoryPointer2 * 4) = iVar18;
+          for (localMemoryPointer2 = (long long)systemStatus9; localMemoryPointer2 < (long long)unsignedSystemValue13; localMemoryPointer2 = localMemoryPointer2 + 1) {
+            systemStatus8 = *(int *)(localSystemPointer + 0x2c) + systemStatus9;
+            systemStatus9 = systemStatus9 + 1;
+            *(int *)(*PrimaryResourcePointer + localMemoryPointer2 * 4) = systemStatus8;
           }
-          iVar19 = *(int *)(localSystemPointer + 0x18);
-          iVar18 = 0;
-          if (0 < (long long)iVar19) {
+          systemStatus9 = *(int *)(localSystemPointer + 0x18);
+          systemStatus8 = 0;
+          if (0 < (long long)systemStatus9) {
             localMemoryPointer2 = 0;
             do {
-              iVar11 = *(int *)(localSystemPointer + 0x30) + iVar18;
-              iVar18 = iVar18 + 1;
+              systemStatus1 = *(int *)(localSystemPointer + 0x30) + systemStatus8;
+              systemStatus8 = systemStatus8 + 1;
               pbVar3 = (byte *)(*(long long *)(localSystemPointer + 0x10) + localMemoryPointer2);
               localMemoryPointer2 = localMemoryPointer2 + 1;
-              *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = iVar11;
-            } while (localMemoryPointer2 < iVar19);
+              *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = systemStatus1;
+            } while (localMemoryPointer2 < systemStatus9);
           }
         }
         pointerToUnsigned15 = (uint *)((long long)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
                           _DAT_180c86890 + 0x9d0);
-        if (iVar16 == 0) {
+        if (systemStatus6 == 0) {
           unsignedSystemValue17 = (int)cVar4 - 1;
         }
         else {
@@ -59014,18 +59014,18 @@ void FUN_18007940e(void)
             localMemoryPointer2 = (unsignedSystemValue23 - unsignedSystemValue22) + 1;
             pointerToUnsigned21 = pointerToUnsigned15 + unsignedSystemValue22 * 2 + 2;
             do {
-              iVar19 = (int)unsignedSystemValue22;
+              systemStatus9 = (int)unsignedSystemValue22;
               if (*(long long *)pointerToUnsigned21 == 0) {
                 localResourcePointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x2000,0x25);
                 LOCK();
-                bVar24 = *(long long *)(pointerToUnsigned15 + (long long)iVar19 * 2 + 2) == 0;
+                bVar24 = *(long long *)(pointerToUnsigned15 + (long long)systemStatus9 * 2 + 2) == 0;
                 if (bVar24) {
-                  *(long long *)(pointerToUnsigned15 + (long long)iVar19 * 2 + 2) = localResourcePointer;
+                  *(long long *)(pointerToUnsigned15 + (long long)systemStatus9 * 2 + 2) = localResourcePointer;
                 }
                 UNLOCK();
                 if (bVar24) {
                   LOCK();
-                  *(uint8_t *)((long long)iVar19 + 0x108 + (long long)pointerToUnsigned15) = 0;
+                  *(uint8_t *)((long long)systemStatus9 + 0x108 + (long long)pointerToUnsigned15) = 0;
                   UNLOCK();
                 }
                 else {
@@ -59041,7 +59041,7 @@ void FUN_18007940e(void)
                 do {
                 } while (*pcVar14 != '\0');
               }
-              unsignedSystemValue22 = (ulong long)(iVar19 + 1);
+              unsignedSystemValue22 = (ulong long)(systemStatus9 + 1);
               pointerToUnsigned21 = pointerToUnsigned21 + 2;
               pcVar14 = pcVar14 + 1;
               localMemoryPointer2 = localMemoryPointer2 + -1;
@@ -59056,7 +59056,7 @@ void FUN_18007940e(void)
           memcpy(*(long long *)(pointerToUnsigned15 + (ulong long)unsignedSystemValue7 * 2 + 2) +
                  (ulong long)(unsignedSystemValue17 + unsignedSystemValue7 * -0x800) * 4,pointerToUnsigned20,(unsignedSystemValue13 & 0xffffffff) << 2);
         }
-        if (iVar16 != 0) {
+        if (systemStatus6 != 0) {
           unsignedSystemValue13 = unsignedSystemValue13 & 0xffffffff;
           do {
             unsignedSystemValue6 = *pointerToUnsigned20;
@@ -59099,24 +59099,24 @@ void FUN_180079520(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
-  int iVar2;
+  int systemResult;
   long long localResourceOffset;
   
   if (((*(byte *)(SystemResourcePointer + 0xfd) & 0x20) != 0) && (*(long long *)(SystemResourcePointer + 0x1e0) != 0)) {
-    iVar2 = 0;
+    systemResult = 0;
     localResourceOffset = 0;
     do {
       while ((*(char *)(*(long long *)(SystemResourcePointer + 0x1e0) + 0x15 + localResourceOffset) == '\x02' ||
              (*(char *)(*(long long *)(SystemResourcePointer + 0x1e0) + 0x15 + localResourceOffset) == '\x01'))) {
         Sleep(0);
       }
-      localMemoryPointer = (long long)iVar2;
+      localMemoryPointer = (long long)systemResult;
       localResourceOffset = localResourceOffset + 0x18;
-      iVar2 = iVar2 + 1;
+      systemResult = systemResult + 1;
       LOCK();
       *(uint8_t *)(*(long long *)(SystemResourcePointer + 0x1e0) + localMemoryPointer * 0x18 + 0x15) = 0;
       UNLOCK();
-    } while (iVar2 < 0x10);
+    } while (systemResult < 0x10);
   }
   return;
 }
@@ -59130,25 +59130,25 @@ uint8_t FUN_18007953e(void)
   uint8_t unsignedSystemValue2;
   long long localResourceOffset;
   long long unaff_RBX;
-  int iVar4;
+  int systemIndex;
   long long systemTimeValue;
   
-  iVar4 = 0;
+  systemIndex = 0;
   localSystemPointer = 0;
   do {
     while ((*(char *)(*(long long *)(unaff_RBX + 0x1e0) + 0x15 + localSystemPointer) == '\x02' ||
            (*(char *)(*(long long *)(unaff_RBX + 0x1e0) + 0x15 + localSystemPointer) == '\x01'))) {
       Sleep(0);
     }
-    localResourceOffset = (long long)iVar4;
+    localResourceOffset = (long long)systemIndex;
     localSystemPointer = localSystemPointer + 0x18;
-    iVar4 = iVar4 + 1;
+    systemIndex = systemIndex + 1;
     LOCK();
     pointerToUnsigned1 = (uint8_t *)(*(long long *)(unaff_RBX + 0x1e0) + localResourceOffset * 0x18 + 0x15);
     unsignedSystemValue2 = *pointerToUnsigned1;
     *pointerToUnsigned1 = 0;
     UNLOCK();
-  } while (iVar4 < 0x10);
+  } while (systemIndex < 0x10);
   return unsignedSystemValue2;
 }
 
@@ -59471,7 +59471,7 @@ void FUN_1800796b0(long long SystemResourcePointer)
   uint8_t aunsignedSystemValue8 [16];
   bool bVar9;
   int *pointerToInteger10;
-  int iVar11;
+  int systemStatus1;
   long long localMemoryPointer2;
   int *pointerToInteger13;
   int *pointerToInteger14;
@@ -59487,7 +59487,7 @@ void FUN_1800796b0(long long SystemResourcePointer)
   long long localSystemHandle4;
   int *pointerToInteger25;
   int *pointerToInteger26;
-  int iVar27;
+  int systemResult7;
   ulong long unsignedSystemValue28;
   uint32_t *pointerToUnsigned29;
   ulong long unsignedSystemValue30;
@@ -59567,9 +59567,9 @@ void FUN_1800796b0(long long SystemResourcePointer)
   
   uStack_110 = 0xfffffffffffffffe;
   pointerToInteger1 = (int *)(SystemResourcePointer + 0x60);
-  iVar27 = *pointerToInteger1;
-  iVar11 = *(int *)(SystemResourcePointer + 0x88);
-  unsignedSystemValue28 = (ulong long)iVar11;
+  systemResult7 = *pointerToInteger1;
+  systemStatus1 = *(int *)(SystemResourcePointer + 0x88);
+  unsignedSystemValue28 = (ulong long)systemStatus1;
   iStack_1e8 = *(int *)(SystemResourcePointer + 0x10);
   puStack_130 = (uint32_t *)0x0;
   uStack_128 = 0;
@@ -59578,7 +59578,7 @@ void FUN_1800796b0(long long SystemResourcePointer)
   FUN_180080ca0(&puStack_130,unsignedSystemValue28);
   unsignedSystemValue41 = unsignedSystemValue28;
   pointerToUnsigned29 = puStack_130;
-  if (0 < iVar11) {
+  if (0 < systemStatus1) {
     for (; unsignedSystemValue41 != 0; unsignedSystemValue41 = unsignedSystemValue41 - 1) {
       *pointerToUnsigned29 = 1;
       pointerToUnsigned29 = pointerToUnsigned29 + 1;
@@ -59727,7 +59727,7 @@ void FUN_1800796b0(long long SystemResourcePointer)
   plStack_168 = (long long *)0x0;
   plStack_160 = (long long *)0x0;
   uStack_158 = 3;
-  FUN_180081010(&lStack_170,(long long)iVar27);
+  FUN_180081010(&lStack_170,(long long)systemResult7);
   unsignedSystemValue41 = unsignedSystemValue36;
   uStackX_20 = unsignedSystemValue28;
   if (0 < (long long)unsignedSystemValue28) {
@@ -59737,10 +59737,10 @@ void FUN_1800796b0(long long SystemResourcePointer)
       localSystemHandle1 = *(long long *)(SystemResourcePointer + 0x90);
       localResourceOffset1 = (ulong long)*(uint *)(localSystemHandle1 + unsignedSystemValue36) * 0x20;
       pointerToInteger20 = *(int **)(localResourceOffset1 + 8 + lStack_170);
-      iVar27 = (int)unsignedSystemValue41;
+      systemResult7 = (int)unsignedSystemValue41;
       if (pointerToInteger20 < *(int **)(localResourceOffset1 + 0x10 + lStack_170)) {
         *(int **)(localResourceOffset1 + 8 + lStack_170) = pointerToInteger20 + 1;
-        *pointerToInteger20 = iVar27;
+        *pointerToInteger20 = systemResult7;
       }
       else {
         pointerToInteger15 = *(int **)(localResourceOffset1 + lStack_170);
@@ -59761,7 +59761,7 @@ LAB_180079c12:
                     // WARNING: Subroutine does not return
           memmove(pointerToInteger13,pointerToInteger15,(long long)pointerToInteger20 - (long long)pointerToInteger15);
         }
-        *pointerToInteger13 = iVar27;
+        *pointerToInteger13 = systemResult7;
         if (*(long long *)(localResourceOffset1 + localSystemHandle3) != 0) {
                     // WARNING: Subroutine does not return
           SystemCleanupFunction();
@@ -59776,7 +59776,7 @@ LAB_180079c12:
       pointerToInteger20 = *(int **)(localResourceOffset1 + 8 + lStack_170);
       if (pointerToInteger20 < *(int **)(localResourceOffset1 + 0x10 + lStack_170)) {
         *(int **)(localResourceOffset1 + 8 + lStack_170) = pointerToInteger20 + 1;
-        *pointerToInteger20 = iVar27;
+        *pointerToInteger20 = systemResult7;
       }
       else {
         pointerToInteger15 = *(int **)(localResourceOffset1 + lStack_170);
@@ -59797,7 +59797,7 @@ LAB_180079cd7:
                     // WARNING: Subroutine does not return
           memmove(pointerToInteger13,pointerToInteger15,(long long)pointerToInteger20 - (long long)pointerToInteger15);
         }
-        *pointerToInteger13 = iVar27;
+        *pointerToInteger13 = systemResult7;
         if (*(long long *)(localResourceOffset1 + localSystemHandle3) != 0) {
                     // WARNING: Subroutine does not return
           SystemCleanupFunction();
@@ -59811,7 +59811,7 @@ LAB_180079cd7:
       pointerToInteger20 = *(int **)(localSystemHandle1 + 8 + lStack_170);
       if (pointerToInteger20 < *(int **)(localSystemHandle1 + 0x10 + lStack_170)) {
         *(int **)(localSystemHandle1 + 8 + lStack_170) = pointerToInteger20 + 1;
-        *pointerToInteger20 = iVar27;
+        *pointerToInteger20 = systemResult7;
       }
       else {
         pointerToInteger13 = *(int **)(localSystemHandle1 + lStack_170);
@@ -59833,7 +59833,7 @@ LAB_180079d9b:
                     // WARNING: Subroutine does not return
           memmove(pointerToInteger15,pointerToInteger13,(long long)pointerToInteger20 - (long long)pointerToInteger13);
         }
-        *pointerToInteger15 = iVar27;
+        *pointerToInteger15 = systemResult7;
         if (*(long long *)(localSystemHandle1 + localSystemHandle3) != 0) {
                     // WARNING: Subroutine does not return
           SystemCleanupFunction();
@@ -59844,7 +59844,7 @@ LAB_180079d9b:
       }
       unsignedSystemValue36 = unsignedSystemValue36 + 0xc;
       uStackX_20 = uStackX_20 - 1;
-      unsignedSystemValue41 = (ulong long)(iVar27 + 1);
+      unsignedSystemValue41 = (ulong long)(systemResult7 + 1);
     } while (uStackX_20 != 0);
   }
   unsignedSystemValue19 = 0;
@@ -60113,11 +60113,11 @@ LAB_18007ac04:
       localResourceOffset1 = localSystemHandle1;
       if (0 < localSystemHandle1) {
         do {
-          iVar27 = (int)((*(long long *)(localSystemHandle3 + 8 + (long long)piStack_218) -
+          systemResult7 = (int)((*(long long *)(localSystemHandle3 + 8 + (long long)piStack_218) -
                          *(long long *)(localSystemHandle3 + (long long)piStack_218)) / 0x14);
-          localSystemHandle2 = (long long)iVar27;
+          localSystemHandle2 = (long long)systemResult7;
           localSystemHandle4 = localMemoryPointer7;
-          if (0 < iVar27) {
+          if (0 < systemResult7) {
             do {
               localMemoryPointer2 = *(long long *)(localSystemHandle3 + (long long)piStack_218);
               fVar48 = *(float *)(localMemoryPointer2 + 8 + localSystemHandle4);
@@ -60152,10 +60152,10 @@ LAB_18007ac04:
             localMemoryPointer2 = (long long)*(int *)(localMemoryPointer7 + localSystemHandle1) * 0x5c;
             localSystemHandle2 = (long long)*(int *)(*(long long *)(SystemResourcePointer + 0x68) + localMemoryPointer2);
             localSystemHandle4 = 0;
-            iVar27 = (int)((*(long long *)(piStack_218 + localSystemHandle2 * 8 + 2) -
+            systemResult7 = (int)((*(long long *)(piStack_218 + localSystemHandle2 * 8 + 2) -
                            *(long long *)(piStack_218 + localSystemHandle2 * 8)) / 0x14);
             localResourceOffset1 = -1;
-            if (0 < iVar27) {
+            if (0 < systemResult7) {
               pointerToUnsigned32 = *(uint **)(piStack_218 + localSystemHandle2 * 8);
               do {
                 localResourceOffset1 = localSystemHandle4;
@@ -60163,7 +60163,7 @@ LAB_18007ac04:
                 localSystemHandle4 = localSystemHandle4 + 1;
                 pointerToUnsigned32 = pointerToUnsigned32 + 5;
                 localResourceOffset1 = -1;
-              } while (localSystemHandle4 < iVar27);
+              } while (localSystemHandle4 < systemResult7);
             }
             localSystemHandle4 = *(long long *)(piStack_218 + localSystemHandle2 * 8);
             pointerToUnsigned3 = (void* *)(localSystemHandle4 + 4 + localResourceOffset1 * 0x14);
@@ -60192,10 +60192,10 @@ LAB_18007ac04:
             localMemoryPointer2 = localBufferAddress0 * 0x5c;
             localSystemHandle2 = (long long)*(int *)(*(long long *)(SystemResourcePointer + 0x68) + localMemoryPointer2);
             localSystemHandle4 = 0;
-            iVar27 = (int)((*(long long *)(piStack_218 + localSystemHandle2 * 8 + 2) -
+            systemResult7 = (int)((*(long long *)(piStack_218 + localSystemHandle2 * 8 + 2) -
                            *(long long *)(piStack_218 + localSystemHandle2 * 8)) / 0x14);
             localResourceOffset1 = -1;
-            if (0 < iVar27) {
+            if (0 < systemResult7) {
               pointerToUnsigned32 = *(uint **)(piStack_218 + localSystemHandle2 * 8);
               do {
                 localResourceOffset1 = localSystemHandle4;
@@ -60203,7 +60203,7 @@ LAB_18007ac04:
                 localSystemHandle4 = localSystemHandle4 + 1;
                 pointerToUnsigned32 = pointerToUnsigned32 + 5;
                 localResourceOffset1 = -1;
-              } while (localSystemHandle4 < iVar27);
+              } while (localSystemHandle4 < systemResult7);
             }
             localSystemHandle4 = *(long long *)(piStack_218 + localSystemHandle2 * 8);
             pointerToUnsigned3 = (void* *)(localSystemHandle4 + 4 + localResourceOffset1 * 0x14);
@@ -60290,7 +60290,7 @@ LAB_180079e40:
   if (1 < unsignedSystemValue41) {
     bVar44 = true;
     uStack_1c8 = puStack_130[*pointerToInteger20];
-    iVar27 = 1;
+    systemResult7 = 1;
     unsignedSystemValue19 = uStack_1c8;
     pointerToInteger13 = pointerToInteger20;
     do {
@@ -60300,8 +60300,8 @@ LAB_180079e40:
         break;
       }
       unsignedSystemValue19 = unsignedSystemValue19 | puStack_130[*pointerToInteger13];
-      iVar27 = iVar27 + 1;
-    } while ((ulong long)(long long)iVar27 < unsignedSystemValue41);
+      systemResult7 = systemResult7 + 1;
+    } while ((ulong long)(long long)systemResult7 < unsignedSystemValue41);
     unsignedSystemValue19 = (uint)uStackX_18;
     if (!bVar44) {
       uStack_1a0 = (int *)0x0;
@@ -60389,10 +60389,10 @@ LAB_180079fb3:
           do {
             piStack_1f0 = pointerToInteger10;
             pointerToInteger16 = (int *)0x0;
-            iVar27 = *piStack_1f0;
-            if ((uStack_1c8 & puStack_130[iVar27]) == 0) {
+            systemResult7 = *piStack_1f0;
+            if ((uStack_1c8 & puStack_130[systemResult7]) == 0) {
               if (pointerToInteger26 < pointerToInteger13) {
-                *pointerToInteger26 = iVar27;
+                *pointerToInteger26 = systemResult7;
                 pointerToInteger16 = pointerToInteger25;
                 unsignedSystemValue33 = (uint)pointerToInteger34;
               }
@@ -60427,10 +60427,10 @@ LAB_18007a203:
               bVar44 = bVar9;
             }
             else {
-              uStack_1c8 = uStack_1c8 | puStack_130[iVar27];
+              uStack_1c8 = uStack_1c8 | puStack_130[systemResult7];
               if (pointerToInteger20 < pointerToInteger15) {
                 uStack_198 = pointerToInteger20 + 1;
-                *pointerToInteger20 = iVar27;
+                *pointerToInteger20 = systemResult7;
                 pointerToInteger20 = uStack_198;
                 pointerToInteger16 = pointerToInteger25;
                 unsignedSystemValue33 = (uint)pointerToInteger34;
@@ -60543,7 +60543,7 @@ LAB_18007a312:
       pointerToInteger16 = piStack_218;
     }
     localSystemHandle3 = lStack_1d0;
-    iVar27 = *pointerToInteger1;
+    systemResult7 = *pointerToInteger1;
     localResourceOffset1 = lStack_1d0 * 0x5c;
     localSystemHandle1 = *(long long *)(SystemResourcePointer + 0x68);
     uStack_108 = *(void* *)(localResourceOffset1 + localSystemHandle1);
@@ -60572,13 +60572,13 @@ LAB_18007a312:
         localResourceOffset1 = (long long)*pointerToInteger20;
         localSystemHandle1 = *(long long *)(SystemResourcePointer + 0x90);
         if (*(uint *)(localSystemHandle1 + localResourceOffset1 * 0xc) == (uint)uStackX_18) {
-          *(int *)(localSystemHandle1 + localResourceOffset1 * 0xc) = iVar27;
+          *(int *)(localSystemHandle1 + localResourceOffset1 * 0xc) = systemResult7;
         }
         if (*(uint *)(localSystemHandle1 + 4 + localResourceOffset1 * 0xc) == (uint)uStackX_18) {
-          *(int *)(localSystemHandle1 + 4 + localResourceOffset1 * 0xc) = iVar27;
+          *(int *)(localSystemHandle1 + 4 + localResourceOffset1 * 0xc) = systemResult7;
         }
         if (*(uint *)(localSystemHandle1 + 8 + localResourceOffset1 * 0xc) == (uint)uStackX_18) {
-          *(int *)(localSystemHandle1 + 8 + localResourceOffset1 * 0xc) = iVar27;
+          *(int *)(localSystemHandle1 + 8 + localResourceOffset1 * 0xc) = systemResult7;
         }
         unsignedSystemValue33 = (int)unsignedSystemValue41 + 1;
         pointerToInteger20 = pointerToInteger20 + 1;
@@ -60594,20 +60594,20 @@ LAB_18007a312:
         pointerToUnsigned3 = (void* *)(localResourceOffset1 + localSystemHandle3 * 0x10);
         unsignedSystemValue6 = *pointerToUnsigned3;
         unsignedSystemValue7 = pointerToUnsigned3[1];
-        iVar27 = *(int *)(localSystemHandle1 + 0x2c);
-        iVar11 = *(int *)(localSystemHandle1 + 0x28);
-        if (iVar27 <= iVar11) {
-          if (iVar27 < 2) {
+        systemResult7 = *(int *)(localSystemHandle1 + 0x2c);
+        systemStatus1 = *(int *)(localSystemHandle1 + 0x28);
+        if (systemResult7 <= systemStatus1) {
+          if (systemResult7 < 2) {
             *(uint32_t *)(localSystemHandle1 + 0x2c) = 8;
           }
           else {
-            *(int *)(localSystemHandle1 + 0x2c) = (iVar27 >> 1) + iVar27;
+            *(int *)(localSystemHandle1 + 0x2c) = (systemResult7 >> 1) + systemResult7;
           }
           FUN_1800846d0(localSystemHandle1 + 0x28);
-          iVar11 = *(int *)(localSystemHandle1 + 0x28);
+          systemStatus1 = *(int *)(localSystemHandle1 + 0x28);
           localResourceOffset1 = *(long long *)(localSystemHandle1 + 0x30);
         }
-        pointerToUnsigned3 = (void* *)(localResourceOffset1 + (long long)iVar11 * 0x10);
+        pointerToUnsigned3 = (void* *)(localResourceOffset1 + (long long)systemStatus1 * 0x10);
         *pointerToUnsigned3 = unsignedSystemValue6;
         pointerToUnsigned3[1] = unsignedSystemValue7;
         *(int *)(localSystemHandle1 + 0x28) = *(int *)(localSystemHandle1 + 0x28) + 1;
@@ -60712,7 +60712,7 @@ ulong long FUN_18007b240(long long SystemResourcePointer,long long *param_2,byte
   byte *pbVar1;
   char cVar2;
   int MemoryCompareResult;
-  int iVar4;
+  int systemIndex;
   byte bVar5;
   long long localSystemFlags;
   void** SystemCurrentNode;
@@ -60875,20 +60875,20 @@ LAB_18007b454:
   if (bVar5 == 0) {
     localSystemFlags = func_0x000180085de0(*(void* *)(SystemResourcePointer + 0x1b0));
   }
-  iVar3 = *(int *)(localSystemFlags + 0x200);
+  systemCounter = *(int *)(localSystemFlags + 0x200);
   localSystemFlags = SystemResourcePointer;
   if (bVar5 == 0) {
     localSystemFlags = func_0x000180085de0(*(void* *)(SystemResourcePointer + 0x1b0));
   }
-  iVar4 = *(int *)(localSystemFlags + 0x1fc);
+  systemIndex = *(int *)(localSystemFlags + 0x1fc);
   unsignedSystemValue13 = 2;
-  if (0xffff < iVar3) {
+  if (0xffff < systemCounter) {
     unsignedSystemValue13 = 4;
   }
   *(byte *)(PrimaryResourcePointer1 + 5) =
        *(byte *)(PrimaryResourcePointer1 + 5) ^ (*(byte *)(SystemResourcePointer + 0xfe) >> 1 ^ *(byte *)(PrimaryResourcePointer1 + 5)) & 1;
   *(uint32_t *)((long long)PrimaryResourcePointer1 + 0x14) = unsignedSystemValue13;
-  *(int *)(PrimaryResourcePointer1 + 2) = iVar4 * 3;
+  *(int *)(PrimaryResourcePointer1 + 2) = systemIndex * 3;
   *(uint8_t *)(PrimaryResourcePointer1 + 3) = *(uint8_t *)(SystemResourcePointer + 0xfa);
   if ((*(long long *)(SystemResourcePointer + 0xa8) == 0) || (*(long long *)(SystemResourcePointer + 0x210) != 0)) {
     if (param_4 == '\0') {
@@ -61356,9 +61356,9 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
         *(uint *)(SystemResourcePointer + 0x100) = unsignedSystemValue16;
       }
       unsignedSystemValue17 = unsignedSystemValue17 << 0x10 | unsignedSystemValue17 >> 0x10;
-      iVar1 = unsignedSystemValue11 + 0xe;
+      systemStatus = unsignedSystemValue11 + 0xe;
       unsignedSystemValue11 = unsignedSystemValue11 + 0x10;
-    } while (iVar1 < 0x20);
+    } while (systemStatus < 0x20);
   }
   *(uint32_t *)(SystemResourcePointer + 0x208) = *(uint32_t *)(param_3 + 0x84);
   *(uint32_t *)(SystemResourcePointer + 0x1f8) = *(uint32_t *)(param_3 + 0x88);
@@ -61739,9 +61739,9 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
   long long *ThreadStackPointer;
   
   uStack_38 = 0xfffffffffffffffe;
-  iVar3 = *(int *)(*(long long *)(*(long long *)(SystemAllocationFlagsTemplate + 8) + 8) + 0x48);
-  iVar4 = _Thrd_id();
-  if (iVar4 == iVar3) {
+  systemCounter = *(int *)(*(long long *)(*(long long *)(SystemAllocationFlagsTemplate + 8) + 8) + 0x48);
+  systemIndex = _Thrd_id();
+  if (systemIndex == systemCounter) {
     localMemoryPointer = (ulong long)param_2 * 0x18;
     unsignedSystemValue5 = *(void* *)(*(long long *)(SystemResourcePointer + 0x1e0) + localMemoryPointer);
     pplStack_a0 = &plStack_a8;
@@ -61842,7 +61842,7 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
 
 {
   float fVar1;
-  int iVar2;
+  int systemResult;
   long long *plocalResourceOffset;
   long long localBufferAddress;
   bool bVar5;
@@ -61905,9 +61905,9 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
   else {
     iVar8 = -1;
   }
-  iVar2 = *(int *)(param_2 + 0x60);
-  localSystemHandle7 = (long long)iVar2;
-  PrimaryResourcePointer0 = (long long *)FUN_180081480(_DAT_180c8a998,&plStackX_20,iVar2 * iVar8);
+  systemResult = *(int *)(param_2 + 0x60);
+  localSystemHandle7 = (long long)systemResult;
+  PrimaryResourcePointer0 = (long long *)FUN_180081480(_DAT_180c8a998,&plStackX_20,systemResult * iVar8);
   PrimaryResourcePointer0 = (long long *)*PrimaryResourcePointer0;
   if (PrimaryResourcePointer0 != (long long *)0x0) {
     (**(code **)(*PrimaryResourcePointer0 + 0x28))(PrimaryResourcePointer0);
@@ -61924,7 +61924,7 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
   pfVar20 = *(float **)(*param_3 + 0x10);
   switch(SystemResourcePointer) {
   case 0:
-    if (0 < iVar2) {
+    if (0 < systemResult) {
       do {
         *pfVar20 = *(float *)(localSystemHandle1 + 0x54 + *(long long *)(param_2 + 0x68));
         pfVar20 = (float *)((long long)pfVar20 + (long long)iVar8);
@@ -61934,7 +61934,7 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
     }
     break;
   case 1:
-    if (0 < iVar2) {
+    if (0 < systemResult) {
       do {
         *pfVar20 = *(float *)(localSystemHandle1 + 0x58 + *(long long *)(param_2 + 0x68));
         pfVar20 = (float *)((long long)pfVar20 + (long long)iVar8);
@@ -62208,7 +62208,7 @@ void FUN_18007cbb0(uint SystemResourcePointer,long long param_2,long long *param
     if (*(int *)(param_2 + 200) < 1) {
 code_r0x00018007db1b:
                     // WARNING: Subroutine does not return
-      memset(pfVar20,0,(long long)(iVar2 * 4));
+      memset(pfVar20,0,(long long)(systemResult * 4));
     }
     localSystemHandle5 = localSystemHandle1;
     if (3 < localSystemHandle7) {
@@ -62336,7 +62336,7 @@ code_r0x00018007db1b:
     break;
   case 9:
     if (*(int *)(param_2 + 200) < 1) goto code_r0x00018007db1b;
-    if (0 < iVar2) {
+    if (0 < systemResult) {
       do {
         localSystemHandle5 = *(long long *)(param_2 + 0x68);
         *(uint8_t *)pfVar20 =
@@ -62358,7 +62358,7 @@ code_r0x00018007db1b:
     }
     break;
   case 10:
-    if (0 < iVar2) {
+    if (0 < systemResult) {
       do {
         localSystemHandle5 = *(long long *)(param_2 + 0x68);
         fVar29 = *(float *)(localSystemHandle1 + 0x34 + localSystemHandle5) * 0.5;
@@ -62401,7 +62401,7 @@ code_r0x00018007db1b:
     }
     break;
   case 0xb:
-    if (0 < iVar2) {
+    if (0 < systemResult) {
       localSystemHandle5 = 0x40;
       if (*(int *)(param_2 + 0x38) < 1) {
         localSystemHandle5 = 0x18;
@@ -62430,7 +62430,7 @@ code_r0x00018007db1b:
     }
     break;
   case 0xc:
-    if (0 < iVar2) {
+    if (0 < systemResult) {
       do {
         localSystemHandle5 = *(long long *)(param_2 + 0x68);
         fVar28 = *(float *)(localSystemHandle1 + 0x1c + localSystemHandle5);
@@ -62483,7 +62483,7 @@ code_r0x00018007db1b:
     }
     break;
   case 0xd:
-    if (0 < iVar2) {
+    if (0 < systemResult) {
       localSystemHandle2 = 0x48;
       localSystemHandle5 = *(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8);
       fVar28 = fRam0000000180d49154;
@@ -62644,7 +62644,7 @@ void FUN_18007e080(long long SystemResourcePointer,ulong long param_2,long long 
   long long localMemoryPointer;
   int *pointerToInteger2;
   int MemoryCompareResult;
-  int iVar4;
+  int systemIndex;
   long long systemTimeValue;
   int iVar6;
   long long lStack_70;
@@ -62655,19 +62655,19 @@ void FUN_18007e080(long long SystemResourcePointer,ulong long param_2,long long 
   void* uStack_48;
   
   localSystemPointer = (param_2 & 0xff) * 0x1c0 + SystemTextureManagerPointer;
-  iVar4 = *(int *)(localSystemPointer + 0x70);
-  localMemoryPointer = (long long)iVar4;
-  if (0 < iVar4) {
+  systemIndex = *(int *)(localSystemPointer + 0x70);
+  localMemoryPointer = (long long)systemIndex;
+  if (0 < systemIndex) {
     uStack_68 = 0;
     lStack_70 = SystemResourcePointer;
     FUN_18007f770(&lStack_70);
     if (lStack_60 != 0) {
-      iVar3 = 0;
+      systemCounter = 0;
       iVar6 = -1;
-      if (0 < iVar4) {
+      if (0 < systemIndex) {
         pointerToInteger2 = (int *)(localSystemPointer + 0x128);
         localSystemPointer = lStack_60;
-        iVar4 = iVar6;
+        systemIndex = iVar6;
         do {
           switch(*pointerToInteger2) {
           case 0:
@@ -62682,16 +62682,16 @@ void FUN_18007e080(long long SystemResourcePointer,ulong long param_2,long long 
           case 0xb:
           case 0xc:
           case 0xd:
-            FUN_18007cbb0((long long)*pointerToInteger2,localSystemPointer,*param_3 + 0x18 + (long long)iVar3 * 8);
+            FUN_18007cbb0((long long)*pointerToInteger2,localSystemPointer,*param_3 + 0x18 + (long long)systemCounter * 8);
             localSystemPointer = lStack_60;
             break;
           case 8:
-            iVar6 = iVar3;
+            iVar6 = systemCounter;
             break;
           case 9:
-            iVar4 = iVar3;
+            systemIndex = systemCounter;
           }
-          iVar3 = iVar3 + 1;
+          systemCounter = systemCounter + 1;
           pointerToInteger2 = pointerToInteger2 + 3;
           localMemoryPointer = localMemoryPointer + -1;
         } while (localMemoryPointer != 0);
@@ -62704,7 +62704,7 @@ void FUN_18007e080(long long SystemResourcePointer,ulong long param_2,long long 
           uStack_50 = 0;
           FUN_18007f770(&lStack_58);
           FUN_18007cbb0(8,uStack_48,*param_3 + 0x18 + (long long)iVar6 * 8);
-          FUN_18007cbb0(9,uStack_48,*param_3 + 0x18 + (long long)iVar4 * 8);
+          FUN_18007cbb0(9,uStack_48,*param_3 + 0x18 + (long long)systemIndex * 8);
           FUN_18007f840(&lStack_58);
         }
       }
@@ -62731,8 +62731,8 @@ void FUN_18007e080(long long SystemResourcePointer,ulong long param_2,long long 
 void FUN_18007e2b0(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
 
 {
-  int iVar1;
-  int iVar2;
+  int systemStatus;
+  int systemResult;
   void* unsignedSystemValue3;
   
   unsignedSystemValue3 = 0xfffffffffffffffe;
@@ -62741,25 +62741,25 @@ void FUN_18007e2b0(long long SystemResourcePointer,long long param_2,void* param
   *(uint8_t *)(SystemResourcePointer + 0x80) = *(uint8_t *)(param_2 + 0x1a);
   *(uint32_t *)(SystemResourcePointer + 0x60) = **(uint32_t **)(param_2 + 8);
   *(long long *)(param_2 + 8) = *(long long *)(param_2 + 8) + 4;
-  iVar1 = *(int *)(SystemResourcePointer + 0x60);
-  iVar2 = *(int *)(SystemResourcePointer + 100);
-  if (iVar2 < iVar1) {
-    if (iVar1 == 0) {
-      if (iVar2 < 2) {
+  systemStatus = *(int *)(SystemResourcePointer + 0x60);
+  systemResult = *(int *)(SystemResourcePointer + 100);
+  if (systemResult < systemStatus) {
+    if (systemStatus == 0) {
+      if (systemResult < 2) {
         *(uint32_t *)(SystemResourcePointer + 100) = 8;
       }
       else {
-        *(int *)(SystemResourcePointer + 100) = (iVar2 >> 1) + iVar2;
+        *(int *)(SystemResourcePointer + 100) = (systemResult >> 1) + systemResult;
       }
     }
     else {
-      *(int *)(SystemResourcePointer + 100) = iVar1;
+      *(int *)(SystemResourcePointer + 100) = systemStatus;
     }
     FUN_180086010(SystemResourcePointer + 0x60);
   }
-  *(int *)(SystemResourcePointer + 0x60) = iVar1;
+  *(int *)(SystemResourcePointer + 0x60) = systemStatus;
                     // WARNING: Subroutine does not return
-  memcpy(*(void* *)(SystemResourcePointer + 0x68),*(void* *)(param_2 + 8),(long long)(iVar1 * 0x5c),
+  memcpy(*(void* *)(SystemResourcePointer + 0x68),*(void* *)(param_2 + 8),(long long)(systemStatus * 0x5c),
          param_4,unsignedSystemValue3);
 }
 
@@ -62774,7 +62774,7 @@ void FUN_18007e5b0(long long SystemResourcePointer,long long *param_2)
   int *pointerToInteger2;
   uint32_t *pointerToUnsigned3;
   long long localBufferAddress;
-  int iVar5;
+  int systemValue;
   int iVar6;
   long long localDataPointer;
   ulong long unsignedSystemValue8;
@@ -62803,8 +62803,8 @@ void FUN_18007e5b0(long long SystemResourcePointer,long long *param_2)
   *pointerToInteger2 = iVar6;
   param_2[1] = param_2[1] + 4;
   pointerToUnsigned3 = (uint32_t *)param_2[1];
-  iVar5 = 0;
-  iVar6 = iVar5;
+  systemValue = 0;
+  iVar6 = systemValue;
   if (0 < *(int *)(SystemResourcePointer + 0x60)) {
     do {
       FUN_180078c70((long long)iVar6 * 0x5c + *(long long *)(SystemResourcePointer + 0x68),param_2);
@@ -62842,11 +62842,11 @@ void FUN_18007e5b0(long long SystemResourcePointer,long long *param_2)
   ;
   if (*(short *)(SystemResourcePointer + 0xc0) != 0) {
     do {
-      localDataPointer = (long long)iVar5 * 0x50 + *(long long *)(SystemResourcePointer + 0xb0);
+      localDataPointer = (long long)systemValue * 0x50 + *(long long *)(SystemResourcePointer + 0xb0);
       FUN_1800806e0(localDataPointer,param_2);
       FUN_1800806e0(localDataPointer + 0x28,param_2);
-      iVar5 = iVar5 + 1;
-    } while (iVar5 < (int)(uint)*(ushort *)(SystemResourcePointer + 0xc0));
+      systemValue = systemValue + 1;
+    } while (systemValue < (int)(uint)*(ushort *)(SystemResourcePointer + 0xc0));
   }
   unsignedSystemValue1 = *(uint32_t *)(SystemResourcePointer + 200);
   pointerToUnsigned3 = (uint32_t *)param_2[1];
@@ -63149,10 +63149,10 @@ void FUN_18007edd0(long long SystemResourcePointer,char param_2)
 void FUN_18007ee70(long long SystemResourcePointer)
 
 {
-  int iVar1;
+  int systemStatus;
   uint unsignedSystemValue2;
   void* unsignedSystemValue3;
-  int iVar4;
+  int systemIndex;
   uint unsignedSystemValue5;
   uint unsignedSystemValue6;
   int iVar7;
@@ -63166,10 +63166,10 @@ void FUN_18007ee70(long long SystemResourcePointer)
   long long localMemoryPointer5;
   
   localAllocationFlags = *(long long *)(SystemResourcePointer + 0x2d0);
-  iVar1 = *(int *)(SystemStatusFlagsPointer + 0x224);
-  if (*(int *)(localAllocationFlags + 0xc) != iVar1) {
+  systemStatus = *(int *)(SystemStatusFlagsPointer + 0x224);
+  if (*(int *)(localAllocationFlags + 0xc) != systemStatus) {
     if (*(int *)(localAllocationFlags + 8) < 1) {
-      if (*(int *)(localAllocationFlags + 0xc) == iVar1 + -1) {
+      if (*(int *)(localAllocationFlags + 0xc) == systemStatus + -1) {
         unsignedSystemValue6 = *(int *)(_DAT_180c86890 + 0x9c8) + 1U & 0x80000001;
         if ((int)unsignedSystemValue6 < 0) {
           unsignedSystemValue6 = (unsignedSystemValue6 - 1 | 0xfffffffe) + 1;
@@ -63196,14 +63196,14 @@ void FUN_18007ee70(long long SystemResourcePointer)
           }
           if (0 < (int)unsignedSystemValue6) {
             do {
-              iVar4 = (int)unsignedSystemValue11;
-              unsignedSystemValue5 = (unsignedSystemValue2 - iVar7) + iVar4;
+              systemIndex = (int)unsignedSystemValue11;
+              unsignedSystemValue5 = (unsignedSystemValue2 - iVar7) + systemIndex;
               unsignedSystemValue6 = unsignedSystemValue5 >> 0xb;
               unsignedSystemValue13 = unsignedSystemValue11 >> 0xb;
-              unsignedSystemValue11 = (ulong long)(iVar4 + 1);
+              unsignedSystemValue11 = (ulong long)(systemIndex + 1);
               *(void* *)
                (*(long long *)(localResourcePointer + 8 + unsignedSystemValue13 * 8) +
-               (ulong long)(uint)(iVar4 + (int)unsignedSystemValue13 * -0x800) * 8) =
+               (ulong long)(uint)(systemIndex + (int)unsignedSystemValue13 * -0x800) * 8) =
                    *(void* *)
                     (*(long long *)(localMemoryPointer5 + 8 + (ulong long)unsignedSystemValue6 * 8) +
                     (ulong long)(unsignedSystemValue5 + unsignedSystemValue6 * -0x800) * 8);
@@ -63211,7 +63211,7 @@ void FUN_18007ee70(long long SystemResourcePointer)
             } while (unsignedSystemValue14 != 0);
           }
           *(int *)(*(long long *)(SystemResourcePointer + 0x2d0) + 0x18) = iVar7;
-          *(int *)(*(long long *)(SystemResourcePointer + 0x2d0) + 0xc) = iVar1;
+          *(int *)(*(long long *)(SystemResourcePointer + 0x2d0) + 0xc) = systemStatus;
         }
       }
       else {
@@ -63245,7 +63245,7 @@ void FUN_18007ee70(long long SystemResourcePointer)
       *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x2d0) + 0x14) =
            *(uint32_t *)(*(long long *)(SystemResourcePointer + 0x2d0) + 8);
       *(uint *)(*(long long *)(SystemResourcePointer + 0x2d0) + 0x18) = unsignedSystemValue5;
-      *(int *)(*(long long *)(SystemResourcePointer + 0x2d0) + 0xc) = iVar1;
+      *(int *)(*(long long *)(SystemResourcePointer + 0x2d0) + 0xc) = systemStatus;
     }
   }
   return;
@@ -63304,14 +63304,14 @@ void FUN_18007eea1(long long SystemResourcePointer,int param_2,int param_3)
         }
         if (0 < (int)unsignedSystemValue5) {
           do {
-            iVar3 = (int)unsignedSystemValue9;
-            unsignedSystemValue4 = (unsignedSystemValue1 - iVar6) + iVar3;
+            systemCounter = (int)unsignedSystemValue9;
+            unsignedSystemValue4 = (unsignedSystemValue1 - iVar6) + systemCounter;
             unsignedSystemValue5 = unsignedSystemValue4 >> 0xb;
             unsignedSystemValue11 = unsignedSystemValue9 >> 0xb;
-            unsignedSystemValue9 = (ulong long)(iVar3 + 1);
+            unsignedSystemValue9 = (ulong long)(systemCounter + 1);
             *(void* *)
              (*(long long *)(localMemoryAddress + 8 + unsignedSystemValue11 * 8) +
-             (ulong long)(uint)(iVar3 + (int)unsignedSystemValue11 * -0x800) * 8) =
+             (ulong long)(uint)(systemCounter + (int)unsignedSystemValue11 * -0x800) * 8) =
                  *(void* *)
                   (*(long long *)(localMemoryPointer3 + 8 + (ulong long)unsignedSystemValue5 * 8) +
                   (ulong long)(unsignedSystemValue4 + unsignedSystemValue5 * -0x800) * 8);
@@ -63366,9 +63366,9 @@ void FUN_18007ef9a(long long SystemResourcePointer,long long param_2)
 
 {
   uint unsignedSystemValue1;
-  int iVar2;
+  int systemResult;
   uint unsignedSystemValue3;
-  int iVar4;
+  int systemIndex;
   ulong long unsignedSystemValue5;
   uint unsignedSystemValue6;
   uint unsignedSystemValue7;
@@ -63385,40 +63385,40 @@ void FUN_18007ef9a(long long SystemResourcePointer,long long param_2)
   localAllocationFlags = (long long)(int)unsignedSystemValue3 * 0x488 + param_2;
   param_2 = (long long)*(int *)(param_2 + 0x910) * 0x488 + param_2;
   unsignedSystemValue5 = FUN_180080480(param_2,*(uint32_t *)(SystemResourcePointer + 0x14));
-  iVar4 = (int)unsignedSystemValue5;
+  systemIndex = (int)unsignedSystemValue5;
   unsignedSystemValue8 = unsignedSystemValue5 & 0xffffffff;
-  if (-1 < iVar4) {
+  if (-1 < systemIndex) {
     unsignedSystemValue9 = unsignedSystemValue5 >> 0xb & 0x1fffff;
     unsignedSystemValue3 = *(uint *)(*(long long *)(unaff_RBX + 0x2d0) + 0x14);
     unsignedSystemValue5 = (ulong long)unsignedSystemValue3;
     unsignedSystemValue1 = *(uint *)(*(long long *)(unaff_RBX + 0x2d0) + 0x18);
     unsignedSystemValue7 = (uint)unsignedSystemValue9;
-    if (unsignedSystemValue7 == unsignedSystemValue3 + iVar4 >> 0xb) {
+    if (unsignedSystemValue7 == unsignedSystemValue3 + systemIndex >> 0xb) {
       unsignedSystemValue6 = unsignedSystemValue1 >> 0xb;
       if (unsignedSystemValue6 == unsignedSystemValue1 + unsignedSystemValue3 >> 0xb) {
                     // WARNING: Subroutine does not return
-        memcpy(*(long long *)(param_2 + 8 + unsignedSystemValue9 * 8) + (ulong long)(iVar4 + unsignedSystemValue7 * -0x800) * 8,
+        memcpy(*(long long *)(param_2 + 8 + unsignedSystemValue9 * 8) + (ulong long)(systemIndex + unsignedSystemValue7 * -0x800) * 8,
                *(long long *)(localAllocationFlags + 8 + (ulong long)unsignedSystemValue6 * 8) +
                (ulong long)(unsignedSystemValue1 + unsignedSystemValue6 * -0x800) * 8,(long long)(int)unsignedSystemValue3 << 3);
       }
     }
     if (0 < (int)unsignedSystemValue3) {
       do {
-        iVar2 = (int)unsignedSystemValue8;
-        unsignedSystemValue7 = (unsignedSystemValue1 - iVar4) + iVar2;
+        systemResult = (int)unsignedSystemValue8;
+        unsignedSystemValue7 = (unsignedSystemValue1 - systemIndex) + systemResult;
         unsignedSystemValue3 = unsignedSystemValue7 >> 0xb;
         unsignedSystemValue9 = unsignedSystemValue8 >> 0xb;
-        unsignedSystemValue8 = (ulong long)(iVar2 + 1);
+        unsignedSystemValue8 = (ulong long)(systemResult + 1);
         *(void* *)
          (*(long long *)(param_2 + 8 + unsignedSystemValue9 * 8) +
-         (ulong long)(uint)(iVar2 + (int)unsignedSystemValue9 * -0x800) * 8) =
+         (ulong long)(uint)(systemResult + (int)unsignedSystemValue9 * -0x800) * 8) =
              *(void* *)
               (*(long long *)(localAllocationFlags + 8 + (ulong long)unsignedSystemValue3 * 8) +
               (ulong long)(unsignedSystemValue7 + unsignedSystemValue3 * -0x800) * 8);
         unsignedSystemValue5 = unsignedSystemValue5 - 1;
       } while (unsignedSystemValue5 != 0);
     }
-    *(int *)(*(long long *)(unaff_RBX + 0x2d0) + 0x18) = iVar4;
+    *(int *)(*(long long *)(unaff_RBX + 0x2d0) + 0x18) = systemIndex;
     *(uint32_t *)(*(long long *)(unaff_RBX + 0x2d0) + 0xc) = unaff_EBP;
   }
   return;
@@ -63775,7 +63775,7 @@ void FUN_18007f4c0(uint8_t *SystemResourcePointer,void* param_2,void* param_3,vo
   long long *SecondaryResourcePointer;
   long long *plocalResourceOffset;
   char cVar4;
-  int iVar5;
+  int systemValue;
   uint32_t unsignedSystemValue6;
   long long localDataPointer;
   void* *punsignedSystemValue8;
@@ -63821,8 +63821,8 @@ void FUN_18007f4c0(uint8_t *SystemResourcePointer,void* param_2,void* param_3,vo
     }
     UNLOCK();
     if (bVar9) break;
-    iVar5 = _Thrd_id();
-    if (*(int *)(localDataPointer + 0xf0) == iVar5) goto LAB_18007f5cb;
+    systemValue = _Thrd_id();
+    if (*(int *)(localDataPointer + 0xf0) == systemValue) goto LAB_18007f5cb;
     Sleep();
   }
   cVar4 = '\0';
@@ -63947,7 +63947,7 @@ void FUN_18007f770(long long *SystemResourcePointer)
   bool bVar4;
   
   localMemoryPointer = *SystemResourcePointer;
-  iVar3 = _Thrd_id();
+  systemCounter = _Thrd_id();
   while( true ) {
     LOCK();
     cVar2 = *(char *)(localMemoryPointer + 0xec);
@@ -63958,7 +63958,7 @@ void FUN_18007f770(long long *SystemResourcePointer)
     }
     UNLOCK();
     if (bVar4) break;
-    if (*(int *)(localMemoryPointer + 0xf0) == iVar3) goto LAB_18007f7cf;
+    if (*(int *)(localMemoryPointer + 0xf0) == systemCounter) goto LAB_18007f7cf;
     Sleep(0);
   }
   cVar2 = '\0';
@@ -63999,7 +63999,7 @@ void FUN_18007f840(long long *SystemResourcePointer)
   int *pointerToInteger1;
   long long localSystemHandle;
   char cVar3;
-  int iVar4;
+  int systemIndex;
   bool bVar5;
   
   localSystemHandle = *SystemResourcePointer;
@@ -64014,19 +64014,19 @@ void FUN_18007f840(long long *SystemResourcePointer)
       }
       UNLOCK();
       if (bVar5) break;
-      iVar4 = _Thrd_id();
-      if ((*(int *)(localSystemHandle + 0xf0) == iVar4) || (*(int *)(localSystemHandle + 0xf0) != 0)) goto LAB_18007f89f;
+      systemIndex = _Thrd_id();
+      if ((*(int *)(localSystemHandle + 0xf0) == systemIndex) || (*(int *)(localSystemHandle + 0xf0) != 0)) goto LAB_18007f89f;
       Sleep();
     }
     cVar3 = '\0';
 LAB_18007f89f:
     LOCK();
     pointerToInteger1 = (int *)(localSystemHandle + 0xe8);
-    iVar4 = *pointerToInteger1;
+    systemIndex = *pointerToInteger1;
     *pointerToInteger1 = *pointerToInteger1 + -1;
     UNLOCK();
     if (cVar3 == '\0') {
-      if (iVar4 == 1) {
+      if (systemIndex == 1) {
         FUN_18007edd0(*SystemResourcePointer,0);
       }
       LOCK();
@@ -64046,7 +64046,7 @@ uint FUN_18007f859(void)
   uint *pointerToUnsigned1;
   byte bVar2;
   char cVar3;
-  int iVar4;
+  int systemIndex;
   uint unsignedSystemValue5;
   long long unaff_RBX;
   void* *unaff_RSI;
@@ -64062,8 +64062,8 @@ uint FUN_18007f859(void)
     }
     UNLOCK();
     if (bVar6) break;
-    iVar4 = _Thrd_id();
-    if ((*(int *)(unaff_RBX + 0xf0) == iVar4) || (*(int *)(unaff_RBX + 0xf0) != 0))
+    systemIndex = _Thrd_id();
+    if ((*(int *)(unaff_RBX + 0xf0) == systemIndex) || (*(int *)(unaff_RBX + 0xf0) != 0))
     goto LAB_18007f89f;
     Sleep();
   }
@@ -64127,15 +64127,15 @@ void FUN_18007f8f0(long long SystemResourcePointer)
   long long *plocalDataPointer;
   long long localMemoryAddress;
   int iVar9;
-  int iVar10;
+  int systemStatus0;
   long long localMemoryPointer1;
   ulong long unsignedSystemValue12;
   char *pcVar13;
   uint *pointerToUnsigned14;
-  int iVar15;
+  int systemStatus5;
   uint unsignedSystemValue16;
-  int iVar17;
-  int iVar18;
+  int systemStatus7;
+  int systemStatus8;
   uint32_t *pointerToUnsigned19;
   uint *pointerToUnsigned20;
   ulong long unsignedSystemValue21;
@@ -64143,11 +64143,11 @@ void FUN_18007f8f0(long long SystemResourcePointer)
   bool bVar23;
   
   if (*(int *)(SystemResourcePointer + 0x28) != *(int *)(SystemStatusFlagsPointer + 0x224)) {
-    iVar15 = *(int *)(SystemResourcePointer + 0x1c) + *(int *)(SystemResourcePointer + 0x18);
+    systemStatus5 = *(int *)(SystemResourcePointer + 0x1c) + *(int *)(SystemResourcePointer + 0x18);
     *(int *)(SystemResourcePointer + 0x28) = *(int *)(SystemStatusFlagsPointer + 0x224);
-    if (0 < iVar15) {
+    if (0 < systemStatus5) {
       localMemoryPointer1 = (long long)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-      unsignedSystemValue5 = FUN_180080380(localMemoryPointer1,iVar15);
+      unsignedSystemValue5 = FUN_180080380(localMemoryPointer1,systemStatus5);
       *(uint32_t *)(SystemResourcePointer + 0x30) = unsignedSystemValue5;
       FUN_1800802e0(localMemoryPointer1,unsignedSystemValue5);
       if (*(long long *)(SystemResourcePointer + 0x10) == 0) {
@@ -64160,12 +64160,12 @@ void FUN_18007f8f0(long long SystemResourcePointer)
         cVar4 = *(char *)(SystemResourcePointer + 0x44);
         unsignedSystemValue12 = (ulong long)cVar4;
         PrimaryResourcePointer = (long long *)(SystemResourcePointer + 0x38);
-        iVar15 = (int)cVar4;
+        systemStatus5 = (int)cVar4;
         if (*(int *)(SystemResourcePointer + 0x40) == (int)cVar4) {
           plocalDataPointer = (long long *)*PrimaryResourcePointer;
         }
         else {
-          *(int *)(SystemResourcePointer + 0x40) = iVar15;
+          *(int *)(SystemResourcePointer + 0x40) = systemStatus5;
           if (*PrimaryResourcePointer != 0) {
                     // WARNING: Subroutine does not return
             SystemCleanupFunction();
@@ -64181,14 +64181,14 @@ void FUN_18007f8f0(long long SystemResourcePointer)
           }
         }
         if (plocalDataPointer != (long long *)0x0) {
-          iVar17 = 0;
+          systemStatus7 = 0;
           unsignedSystemValue16 = (uint)cVar4;
-          iVar18 = iVar17;
-          if ((0 < iVar15) && (0xf < unsignedSystemValue16)) {
-            iVar10 = *(int *)(SystemResourcePointer + 0x2c);
+          systemStatus8 = systemStatus7;
+          if ((0 < systemStatus5) && (0xf < unsignedSystemValue16)) {
+            systemStatus0 = *(int *)(SystemResourcePointer + 0x2c);
             SecondaryResourcePointer = (long long *)((long long)plocalDataPointer + (long long)(cVar4 + -1) * 4);
             if ((((long long *)(SystemResourcePointer + 0x2c) < plocalDataPointer) || (SecondaryResourcePointer < (long long *)(SystemResourcePointer + 0x2c)))
-               && ((PrimaryResourcePointer < plocalDataPointer || (iVar18 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
+               && ((PrimaryResourcePointer < plocalDataPointer || (systemStatus8 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
               unsignedSystemValue6 = unsignedSystemValue16 & 0x8000000f;
               if ((int)unsignedSystemValue6 < 0) {
                 unsignedSystemValue6 = (unsignedSystemValue6 - 1 | 0xfffffff0) + 1;
@@ -64196,50 +64196,50 @@ void FUN_18007f8f0(long long SystemResourcePointer)
               plocalDataPointer = plocalDataPointer + 4;
               iVar9 = 8;
               do {
-                *(int *)(plocalDataPointer + -4) = iVar17 + iVar10;
-                *(int *)((long long)plocalDataPointer + -0x1c) = iVar17 + 1 + iVar10;
-                *(int *)(plocalDataPointer + -3) = iVar17 + 2 + iVar10;
-                *(int *)((long long)plocalDataPointer + -0x14) = iVar17 + 3 + iVar10;
-                iVar17 = iVar17 + 0x10;
-                *(int *)(plocalDataPointer + -2) = iVar9 + -4 + iVar10;
-                *(int *)((long long)plocalDataPointer + -0xc) = iVar9 + -3 + iVar10;
-                *(int *)(plocalDataPointer + -1) = iVar9 + -2 + iVar10;
-                *(int *)((long long)plocalDataPointer + -4) = iVar9 + -1 + iVar10;
-                *(int *)plocalDataPointer = iVar9 + iVar10;
-                *(int *)((long long)plocalDataPointer + 4) = iVar9 + 1 + iVar10;
-                *(int *)(plocalDataPointer + 1) = iVar9 + 2 + iVar10;
-                *(int *)((long long)plocalDataPointer + 0xc) = iVar9 + 3 + iVar10;
-                *(int *)(plocalDataPointer + 2) = iVar9 + 4 + iVar10;
-                *(int *)((long long)plocalDataPointer + 0x14) = iVar9 + 5 + iVar10;
-                *(int *)(plocalDataPointer + 3) = iVar9 + 6 + iVar10;
-                *(int *)((long long)plocalDataPointer + 0x1c) = iVar9 + 7 + iVar10;
+                *(int *)(plocalDataPointer + -4) = systemStatus7 + systemStatus0;
+                *(int *)((long long)plocalDataPointer + -0x1c) = systemStatus7 + 1 + systemStatus0;
+                *(int *)(plocalDataPointer + -3) = systemStatus7 + 2 + systemStatus0;
+                *(int *)((long long)plocalDataPointer + -0x14) = systemStatus7 + 3 + systemStatus0;
+                systemStatus7 = systemStatus7 + 0x10;
+                *(int *)(plocalDataPointer + -2) = iVar9 + -4 + systemStatus0;
+                *(int *)((long long)plocalDataPointer + -0xc) = iVar9 + -3 + systemStatus0;
+                *(int *)(plocalDataPointer + -1) = iVar9 + -2 + systemStatus0;
+                *(int *)((long long)plocalDataPointer + -4) = iVar9 + -1 + systemStatus0;
+                *(int *)plocalDataPointer = iVar9 + systemStatus0;
+                *(int *)((long long)plocalDataPointer + 4) = iVar9 + 1 + systemStatus0;
+                *(int *)(plocalDataPointer + 1) = iVar9 + 2 + systemStatus0;
+                *(int *)((long long)plocalDataPointer + 0xc) = iVar9 + 3 + systemStatus0;
+                *(int *)(plocalDataPointer + 2) = iVar9 + 4 + systemStatus0;
+                *(int *)((long long)plocalDataPointer + 0x14) = iVar9 + 5 + systemStatus0;
+                *(int *)(plocalDataPointer + 3) = iVar9 + 6 + systemStatus0;
+                *(int *)((long long)plocalDataPointer + 0x1c) = iVar9 + 7 + systemStatus0;
                 plocalDataPointer = plocalDataPointer + 8;
                 iVar9 = iVar9 + 0x10;
-                iVar18 = iVar17;
-              } while (iVar17 < (int)(unsignedSystemValue16 - unsignedSystemValue6));
+                systemStatus8 = systemStatus7;
+              } while (systemStatus7 < (int)(unsignedSystemValue16 - unsignedSystemValue6));
             }
           }
-          for (localMemoryPointer1 = (long long)iVar18; localMemoryPointer1 < (long long)unsignedSystemValue12; localMemoryPointer1 = localMemoryPointer1 + 1) {
-            iVar17 = *(int *)(SystemResourcePointer + 0x2c) + iVar18;
-            iVar18 = iVar18 + 1;
-            *(int *)(*PrimaryResourcePointer + localMemoryPointer1 * 4) = iVar17;
+          for (localMemoryPointer1 = (long long)systemStatus8; localMemoryPointer1 < (long long)unsignedSystemValue12; localMemoryPointer1 = localMemoryPointer1 + 1) {
+            systemStatus7 = *(int *)(SystemResourcePointer + 0x2c) + systemStatus8;
+            systemStatus8 = systemStatus8 + 1;
+            *(int *)(*PrimaryResourcePointer + localMemoryPointer1 * 4) = systemStatus7;
           }
-          iVar18 = *(int *)(SystemResourcePointer + 0x18);
-          iVar17 = 0;
-          if (0 < (long long)iVar18) {
+          systemStatus8 = *(int *)(SystemResourcePointer + 0x18);
+          systemStatus7 = 0;
+          if (0 < (long long)systemStatus8) {
             localMemoryPointer1 = 0;
             do {
-              iVar10 = *(int *)(SystemResourcePointer + 0x30) + iVar17;
-              iVar17 = iVar17 + 1;
+              systemStatus0 = *(int *)(SystemResourcePointer + 0x30) + systemStatus7;
+              systemStatus7 = systemStatus7 + 1;
               pbVar3 = (byte *)(*(long long *)(SystemResourcePointer + 0x10) + localMemoryPointer1);
               localMemoryPointer1 = localMemoryPointer1 + 1;
-              *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = iVar10;
-            } while (localMemoryPointer1 < iVar18);
+              *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = systemStatus0;
+            } while (localMemoryPointer1 < systemStatus8);
           }
         }
         pointerToUnsigned14 = (uint *)((long long)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
                           _DAT_180c86890 + 0x9d0);
-        if (iVar15 == 0) {
+        if (systemStatus5 == 0) {
           unsignedSystemValue16 = (int)cVar4 - 1;
         }
         else {
@@ -64254,18 +64254,18 @@ void FUN_18007f8f0(long long SystemResourcePointer)
             localMemoryPointer1 = (unsignedSystemValue22 - unsignedSystemValue21) + 1;
             pointerToUnsigned20 = pointerToUnsigned14 + unsignedSystemValue21 * 2 + 2;
             do {
-              iVar18 = (int)unsignedSystemValue21;
+              systemStatus8 = (int)unsignedSystemValue21;
               if (*(long long *)pointerToUnsigned20 == 0) {
                 localMemoryAddress = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x2000,0x25);
                 LOCK();
-                bVar23 = *(long long *)(pointerToUnsigned14 + (long long)iVar18 * 2 + 2) == 0;
+                bVar23 = *(long long *)(pointerToUnsigned14 + (long long)systemStatus8 * 2 + 2) == 0;
                 if (bVar23) {
-                  *(long long *)(pointerToUnsigned14 + (long long)iVar18 * 2 + 2) = localMemoryAddress;
+                  *(long long *)(pointerToUnsigned14 + (long long)systemStatus8 * 2 + 2) = localMemoryAddress;
                 }
                 UNLOCK();
                 if (bVar23) {
                   LOCK();
-                  *(uint8_t *)((long long)iVar18 + 0x108 + (long long)pointerToUnsigned14) = 0;
+                  *(uint8_t *)((long long)systemStatus8 + 0x108 + (long long)pointerToUnsigned14) = 0;
                   UNLOCK();
                 }
                 else {
@@ -64281,7 +64281,7 @@ void FUN_18007f8f0(long long SystemResourcePointer)
                 do {
                 } while (*pcVar13 != '\0');
               }
-              unsignedSystemValue21 = (ulong long)(iVar18 + 1);
+              unsignedSystemValue21 = (ulong long)(systemStatus8 + 1);
               pointerToUnsigned20 = pointerToUnsigned20 + 2;
               pcVar13 = pcVar13 + 1;
               localMemoryPointer1 = localMemoryPointer1 + -1;
@@ -64296,7 +64296,7 @@ void FUN_18007f8f0(long long SystemResourcePointer)
           memcpy(*(long long *)(pointerToUnsigned14 + (ulong long)unsignedSystemValue6 * 2 + 2) +
                  (ulong long)(unsignedSystemValue16 + unsignedSystemValue6 * -0x800) * 4,pointerToUnsigned19,(unsignedSystemValue12 & 0xffffffff) << 2);
         }
-        if (iVar15 != 0) {
+        if (systemStatus5 != 0) {
           unsignedSystemValue12 = unsignedSystemValue12 & 0xffffffff;
           do {
             unsignedSystemValue5 = *pointerToUnsigned19;
@@ -64332,27 +64332,27 @@ void FUN_18007f90f(uint32_t SystemResourcePointer)
   long long *plocalDataPointer;
   long long localMemoryAddress;
   int iVar9;
-  int iVar10;
+  int systemStatus0;
   long long localMemoryPointer1;
   ulong long unsignedSystemValue12;
   char *pcVar13;
   uint *pointerToUnsigned14;
-  int iVar15;
+  int systemStatus5;
   uint unsignedSystemValue16;
   long long unaff_RDI;
-  int iVar17;
-  int iVar18;
+  int systemStatus7;
+  int systemStatus8;
   uint32_t *pointerToUnsigned19;
   uint *pointerToUnsigned20;
   ulong long unsignedSystemValue21;
   ulong long unsignedSystemValue22;
   bool bVar23;
   
-  iVar15 = *(int *)(unaff_RDI + 0x1c) + *(int *)(unaff_RDI + 0x18);
+  systemStatus5 = *(int *)(unaff_RDI + 0x1c) + *(int *)(unaff_RDI + 0x18);
   *(uint32_t *)(unaff_RDI + 0x28) = SystemResourcePointer;
-  if (0 < iVar15) {
+  if (0 < systemStatus5) {
     localMemoryPointer1 = (long long)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-    unsignedSystemValue5 = FUN_180080380(localMemoryPointer1,iVar15);
+    unsignedSystemValue5 = FUN_180080380(localMemoryPointer1,systemStatus5);
     *(uint32_t *)(unaff_RDI + 0x30) = unsignedSystemValue5;
     FUN_1800802e0(localMemoryPointer1,unsignedSystemValue5);
     if (*(long long *)(unaff_RDI + 0x10) == 0) {
@@ -64365,12 +64365,12 @@ void FUN_18007f90f(uint32_t SystemResourcePointer)
       cVar4 = *(char *)(unaff_RDI + 0x44);
       unsignedSystemValue12 = (ulong long)cVar4;
       PrimaryResourcePointer = (long long *)(unaff_RDI + 0x38);
-      iVar15 = (int)cVar4;
+      systemStatus5 = (int)cVar4;
       if (*(int *)(unaff_RDI + 0x40) == (int)cVar4) {
         plocalDataPointer = (long long *)*PrimaryResourcePointer;
       }
       else {
-        *(int *)(unaff_RDI + 0x40) = iVar15;
+        *(int *)(unaff_RDI + 0x40) = systemStatus5;
         if (*PrimaryResourcePointer != 0) {
                     // WARNING: Subroutine does not return
           SystemCleanupFunction();
@@ -64386,15 +64386,15 @@ void FUN_18007f90f(uint32_t SystemResourcePointer)
         }
       }
       if (plocalDataPointer != (long long *)0x0) {
-        iVar17 = 0;
+        systemStatus7 = 0;
         unsignedSystemValue16 = (uint)cVar4;
-        iVar18 = iVar17;
-        if ((0 < iVar15) && (0xf < unsignedSystemValue16)) {
-          iVar10 = *(int *)(unaff_RDI + 0x2c);
+        systemStatus8 = systemStatus7;
+        if ((0 < systemStatus5) && (0xf < unsignedSystemValue16)) {
+          systemStatus0 = *(int *)(unaff_RDI + 0x2c);
           SecondaryResourcePointer = (long long *)((long long)plocalDataPointer + (long long)(cVar4 + -1) * 4);
           if ((((long long *)(unaff_RDI + 0x2c) < plocalDataPointer) ||
               (SecondaryResourcePointer < (long long *)(unaff_RDI + 0x2c))) &&
-             ((PrimaryResourcePointer < plocalDataPointer || (iVar18 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
+             ((PrimaryResourcePointer < plocalDataPointer || (systemStatus8 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
             unsignedSystemValue6 = unsignedSystemValue16 & 0x8000000f;
             if ((int)unsignedSystemValue6 < 0) {
               unsignedSystemValue6 = (unsignedSystemValue6 - 1 | 0xfffffff0) + 1;
@@ -64402,50 +64402,50 @@ void FUN_18007f90f(uint32_t SystemResourcePointer)
             plocalDataPointer = plocalDataPointer + 4;
             iVar9 = 8;
             do {
-              *(int *)(plocalDataPointer + -4) = iVar17 + iVar10;
-              *(int *)((long long)plocalDataPointer + -0x1c) = iVar17 + 1 + iVar10;
-              *(int *)(plocalDataPointer + -3) = iVar17 + 2 + iVar10;
-              *(int *)((long long)plocalDataPointer + -0x14) = iVar17 + 3 + iVar10;
-              iVar17 = iVar17 + 0x10;
-              *(int *)(plocalDataPointer + -2) = iVar9 + -4 + iVar10;
-              *(int *)((long long)plocalDataPointer + -0xc) = iVar9 + -3 + iVar10;
-              *(int *)(plocalDataPointer + -1) = iVar9 + -2 + iVar10;
-              *(int *)((long long)plocalDataPointer + -4) = iVar9 + -1 + iVar10;
-              *(int *)plocalDataPointer = iVar9 + iVar10;
-              *(int *)((long long)plocalDataPointer + 4) = iVar9 + 1 + iVar10;
-              *(int *)(plocalDataPointer + 1) = iVar9 + 2 + iVar10;
-              *(int *)((long long)plocalDataPointer + 0xc) = iVar9 + 3 + iVar10;
-              *(int *)(plocalDataPointer + 2) = iVar9 + 4 + iVar10;
-              *(int *)((long long)plocalDataPointer + 0x14) = iVar9 + 5 + iVar10;
-              *(int *)(plocalDataPointer + 3) = iVar9 + 6 + iVar10;
-              *(int *)((long long)plocalDataPointer + 0x1c) = iVar9 + 7 + iVar10;
+              *(int *)(plocalDataPointer + -4) = systemStatus7 + systemStatus0;
+              *(int *)((long long)plocalDataPointer + -0x1c) = systemStatus7 + 1 + systemStatus0;
+              *(int *)(plocalDataPointer + -3) = systemStatus7 + 2 + systemStatus0;
+              *(int *)((long long)plocalDataPointer + -0x14) = systemStatus7 + 3 + systemStatus0;
+              systemStatus7 = systemStatus7 + 0x10;
+              *(int *)(plocalDataPointer + -2) = iVar9 + -4 + systemStatus0;
+              *(int *)((long long)plocalDataPointer + -0xc) = iVar9 + -3 + systemStatus0;
+              *(int *)(plocalDataPointer + -1) = iVar9 + -2 + systemStatus0;
+              *(int *)((long long)plocalDataPointer + -4) = iVar9 + -1 + systemStatus0;
+              *(int *)plocalDataPointer = iVar9 + systemStatus0;
+              *(int *)((long long)plocalDataPointer + 4) = iVar9 + 1 + systemStatus0;
+              *(int *)(plocalDataPointer + 1) = iVar9 + 2 + systemStatus0;
+              *(int *)((long long)plocalDataPointer + 0xc) = iVar9 + 3 + systemStatus0;
+              *(int *)(plocalDataPointer + 2) = iVar9 + 4 + systemStatus0;
+              *(int *)((long long)plocalDataPointer + 0x14) = iVar9 + 5 + systemStatus0;
+              *(int *)(plocalDataPointer + 3) = iVar9 + 6 + systemStatus0;
+              *(int *)((long long)plocalDataPointer + 0x1c) = iVar9 + 7 + systemStatus0;
               plocalDataPointer = plocalDataPointer + 8;
               iVar9 = iVar9 + 0x10;
-              iVar18 = iVar17;
-            } while (iVar17 < (int)(unsignedSystemValue16 - unsignedSystemValue6));
+              systemStatus8 = systemStatus7;
+            } while (systemStatus7 < (int)(unsignedSystemValue16 - unsignedSystemValue6));
           }
         }
-        for (localMemoryPointer1 = (long long)iVar18; localMemoryPointer1 < (long long)unsignedSystemValue12; localMemoryPointer1 = localMemoryPointer1 + 1) {
-          iVar17 = *(int *)(unaff_RDI + 0x2c) + iVar18;
-          iVar18 = iVar18 + 1;
-          *(int *)(*PrimaryResourcePointer + localMemoryPointer1 * 4) = iVar17;
+        for (localMemoryPointer1 = (long long)systemStatus8; localMemoryPointer1 < (long long)unsignedSystemValue12; localMemoryPointer1 = localMemoryPointer1 + 1) {
+          systemStatus7 = *(int *)(unaff_RDI + 0x2c) + systemStatus8;
+          systemStatus8 = systemStatus8 + 1;
+          *(int *)(*PrimaryResourcePointer + localMemoryPointer1 * 4) = systemStatus7;
         }
-        iVar18 = *(int *)(unaff_RDI + 0x18);
-        iVar17 = 0;
-        if (0 < (long long)iVar18) {
+        systemStatus8 = *(int *)(unaff_RDI + 0x18);
+        systemStatus7 = 0;
+        if (0 < (long long)systemStatus8) {
           localMemoryPointer1 = 0;
           do {
-            iVar10 = *(int *)(unaff_RDI + 0x30) + iVar17;
-            iVar17 = iVar17 + 1;
+            systemStatus0 = *(int *)(unaff_RDI + 0x30) + systemStatus7;
+            systemStatus7 = systemStatus7 + 1;
             pbVar3 = (byte *)(*(long long *)(unaff_RDI + 0x10) + localMemoryPointer1);
             localMemoryPointer1 = localMemoryPointer1 + 1;
-            *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = iVar10;
-          } while (localMemoryPointer1 < iVar18);
+            *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = systemStatus0;
+          } while (localMemoryPointer1 < systemStatus8);
         }
       }
       pointerToUnsigned14 = (uint *)((long long)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 + _DAT_180c86890 + 0x9d0
                         );
-      if (iVar15 == 0) {
+      if (systemStatus5 == 0) {
         unsignedSystemValue16 = (int)cVar4 - 1;
       }
       else {
@@ -64460,18 +64460,18 @@ void FUN_18007f90f(uint32_t SystemResourcePointer)
           localMemoryPointer1 = (unsignedSystemValue22 - unsignedSystemValue21) + 1;
           pointerToUnsigned20 = pointerToUnsigned14 + unsignedSystemValue21 * 2 + 2;
           do {
-            iVar18 = (int)unsignedSystemValue21;
+            systemStatus8 = (int)unsignedSystemValue21;
             if (*(long long *)pointerToUnsigned20 == 0) {
               localMemoryAddress = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x2000,0x25);
               LOCK();
-              bVar23 = *(long long *)(pointerToUnsigned14 + (long long)iVar18 * 2 + 2) == 0;
+              bVar23 = *(long long *)(pointerToUnsigned14 + (long long)systemStatus8 * 2 + 2) == 0;
               if (bVar23) {
-                *(long long *)(pointerToUnsigned14 + (long long)iVar18 * 2 + 2) = localMemoryAddress;
+                *(long long *)(pointerToUnsigned14 + (long long)systemStatus8 * 2 + 2) = localMemoryAddress;
               }
               UNLOCK();
               if (bVar23) {
                 LOCK();
-                *(uint8_t *)((long long)iVar18 + 0x108 + (long long)pointerToUnsigned14) = 0;
+                *(uint8_t *)((long long)systemStatus8 + 0x108 + (long long)pointerToUnsigned14) = 0;
                 UNLOCK();
               }
               else {
@@ -64487,7 +64487,7 @@ void FUN_18007f90f(uint32_t SystemResourcePointer)
               do {
               } while (*pcVar13 != '\0');
             }
-            unsignedSystemValue21 = (ulong long)(iVar18 + 1);
+            unsignedSystemValue21 = (ulong long)(systemStatus8 + 1);
             pointerToUnsigned20 = pointerToUnsigned20 + 2;
             pcVar13 = pcVar13 + 1;
             localMemoryPointer1 = localMemoryPointer1 + -1;
@@ -64502,7 +64502,7 @@ void FUN_18007f90f(uint32_t SystemResourcePointer)
         memcpy(*(long long *)(pointerToUnsigned14 + (ulong long)unsignedSystemValue6 * 2 + 2) +
                (ulong long)(unsignedSystemValue16 + unsignedSystemValue6 * -0x800) * 4,pointerToUnsigned19,(unsignedSystemValue12 & 0xffffffff) << 2);
       }
-      if (iVar15 != 0) {
+      if (systemStatus5 != 0) {
         unsignedSystemValue12 = unsignedSystemValue12 & 0xffffffff;
         do {
           unsignedSystemValue5 = *pointerToUnsigned19;
@@ -64537,7 +64537,7 @@ void FUN_18007f933(void* SystemResourcePointer,long long param_2)
   long long *plocalDataPointer;
   long long localMemoryAddress;
   int iVar9;
-  int iVar10;
+  int systemStatus0;
   long long localMemoryPointer1;
   ulong long unsignedSystemValue12;
   char *pcVar13;
@@ -64545,10 +64545,10 @@ void FUN_18007f933(void* SystemResourcePointer,long long param_2)
   uint32_t unaff_ESI;
   uint unsignedSystemValue15;
   long long unaff_RDI;
-  int iVar16;
-  int iVar17;
+  int systemStatus6;
+  int systemStatus7;
   uint32_t *pointerToUnsigned18;
-  int iVar19;
+  int systemStatus9;
   uint *pointerToUnsigned20;
   ulong long unsignedSystemValue21;
   ulong long unsignedSystemValue22;
@@ -64568,12 +64568,12 @@ void FUN_18007f933(void* SystemResourcePointer,long long param_2)
     cVar4 = *(char *)(unaff_RDI + 0x44);
     unsignedSystemValue12 = (ulong long)cVar4;
     PrimaryResourcePointer = (long long *)(unaff_RDI + 0x38);
-    iVar19 = (int)cVar4;
+    systemStatus9 = (int)cVar4;
     if (*(int *)(unaff_RDI + 0x40) == (int)cVar4) {
       plocalDataPointer = (long long *)*PrimaryResourcePointer;
     }
     else {
-      *(int *)(unaff_RDI + 0x40) = iVar19;
+      *(int *)(unaff_RDI + 0x40) = systemStatus9;
       if (*PrimaryResourcePointer != 0) {
                     // WARNING: Subroutine does not return
         SystemCleanupFunction();
@@ -64589,14 +64589,14 @@ void FUN_18007f933(void* SystemResourcePointer,long long param_2)
       }
     }
     if (plocalDataPointer != (long long *)0x0) {
-      iVar16 = 0;
+      systemStatus6 = 0;
       unsignedSystemValue15 = (uint)cVar4;
-      iVar17 = iVar16;
-      if ((0 < iVar19) && (0xf < unsignedSystemValue15)) {
-        iVar10 = *(int *)(unaff_RDI + 0x2c);
+      systemStatus7 = systemStatus6;
+      if ((0 < systemStatus9) && (0xf < unsignedSystemValue15)) {
+        systemStatus0 = *(int *)(unaff_RDI + 0x2c);
         SecondaryResourcePointer = (long long *)((long long)plocalDataPointer + (long long)(cVar4 + -1) * 4);
         if ((((long long *)(unaff_RDI + 0x2c) < plocalDataPointer) || (SecondaryResourcePointer < (long long *)(unaff_RDI + 0x2c)))
-           && ((PrimaryResourcePointer < plocalDataPointer || (iVar17 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
+           && ((PrimaryResourcePointer < plocalDataPointer || (systemStatus7 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
           unsignedSystemValue6 = unsignedSystemValue15 & 0x8000000f;
           if ((int)unsignedSystemValue6 < 0) {
             unsignedSystemValue6 = (unsignedSystemValue6 - 1 | 0xfffffff0) + 1;
@@ -64604,49 +64604,49 @@ void FUN_18007f933(void* SystemResourcePointer,long long param_2)
           plocalDataPointer = plocalDataPointer + 4;
           iVar9 = 8;
           do {
-            *(int *)(plocalDataPointer + -4) = iVar16 + iVar10;
-            *(int *)((long long)plocalDataPointer + -0x1c) = iVar16 + 1 + iVar10;
-            *(int *)(plocalDataPointer + -3) = iVar16 + 2 + iVar10;
-            *(int *)((long long)plocalDataPointer + -0x14) = iVar16 + 3 + iVar10;
-            iVar16 = iVar16 + 0x10;
-            *(int *)(plocalDataPointer + -2) = iVar9 + -4 + iVar10;
-            *(int *)((long long)plocalDataPointer + -0xc) = iVar9 + -3 + iVar10;
-            *(int *)(plocalDataPointer + -1) = iVar9 + -2 + iVar10;
-            *(int *)((long long)plocalDataPointer + -4) = iVar9 + -1 + iVar10;
-            *(int *)plocalDataPointer = iVar9 + iVar10;
-            *(int *)((long long)plocalDataPointer + 4) = iVar9 + 1 + iVar10;
-            *(int *)(plocalDataPointer + 1) = iVar9 + 2 + iVar10;
-            *(int *)((long long)plocalDataPointer + 0xc) = iVar9 + 3 + iVar10;
-            *(int *)(plocalDataPointer + 2) = iVar9 + 4 + iVar10;
-            *(int *)((long long)plocalDataPointer + 0x14) = iVar9 + 5 + iVar10;
-            *(int *)(plocalDataPointer + 3) = iVar9 + 6 + iVar10;
-            *(int *)((long long)plocalDataPointer + 0x1c) = iVar9 + 7 + iVar10;
+            *(int *)(plocalDataPointer + -4) = systemStatus6 + systemStatus0;
+            *(int *)((long long)plocalDataPointer + -0x1c) = systemStatus6 + 1 + systemStatus0;
+            *(int *)(plocalDataPointer + -3) = systemStatus6 + 2 + systemStatus0;
+            *(int *)((long long)plocalDataPointer + -0x14) = systemStatus6 + 3 + systemStatus0;
+            systemStatus6 = systemStatus6 + 0x10;
+            *(int *)(plocalDataPointer + -2) = iVar9 + -4 + systemStatus0;
+            *(int *)((long long)plocalDataPointer + -0xc) = iVar9 + -3 + systemStatus0;
+            *(int *)(plocalDataPointer + -1) = iVar9 + -2 + systemStatus0;
+            *(int *)((long long)plocalDataPointer + -4) = iVar9 + -1 + systemStatus0;
+            *(int *)plocalDataPointer = iVar9 + systemStatus0;
+            *(int *)((long long)plocalDataPointer + 4) = iVar9 + 1 + systemStatus0;
+            *(int *)(plocalDataPointer + 1) = iVar9 + 2 + systemStatus0;
+            *(int *)((long long)plocalDataPointer + 0xc) = iVar9 + 3 + systemStatus0;
+            *(int *)(plocalDataPointer + 2) = iVar9 + 4 + systemStatus0;
+            *(int *)((long long)plocalDataPointer + 0x14) = iVar9 + 5 + systemStatus0;
+            *(int *)(plocalDataPointer + 3) = iVar9 + 6 + systemStatus0;
+            *(int *)((long long)plocalDataPointer + 0x1c) = iVar9 + 7 + systemStatus0;
             plocalDataPointer = plocalDataPointer + 8;
             iVar9 = iVar9 + 0x10;
-            iVar17 = iVar16;
-          } while (iVar16 < (int)(unsignedSystemValue15 - unsignedSystemValue6));
+            systemStatus7 = systemStatus6;
+          } while (systemStatus6 < (int)(unsignedSystemValue15 - unsignedSystemValue6));
         }
       }
-      for (localMemoryPointer1 = (long long)iVar17; localMemoryPointer1 < (long long)unsignedSystemValue12; localMemoryPointer1 = localMemoryPointer1 + 1) {
-        iVar16 = *(int *)(unaff_RDI + 0x2c) + iVar17;
-        iVar17 = iVar17 + 1;
-        *(int *)(*PrimaryResourcePointer + localMemoryPointer1 * 4) = iVar16;
+      for (localMemoryPointer1 = (long long)systemStatus7; localMemoryPointer1 < (long long)unsignedSystemValue12; localMemoryPointer1 = localMemoryPointer1 + 1) {
+        systemStatus6 = *(int *)(unaff_RDI + 0x2c) + systemStatus7;
+        systemStatus7 = systemStatus7 + 1;
+        *(int *)(*PrimaryResourcePointer + localMemoryPointer1 * 4) = systemStatus6;
       }
-      iVar17 = *(int *)(unaff_RDI + 0x18);
-      iVar16 = 0;
-      if (0 < (long long)iVar17) {
+      systemStatus7 = *(int *)(unaff_RDI + 0x18);
+      systemStatus6 = 0;
+      if (0 < (long long)systemStatus7) {
         localMemoryPointer1 = 0;
         do {
-          iVar10 = *(int *)(unaff_RDI + 0x30) + iVar16;
-          iVar16 = iVar16 + 1;
+          systemStatus0 = *(int *)(unaff_RDI + 0x30) + systemStatus6;
+          systemStatus6 = systemStatus6 + 1;
           pbVar3 = (byte *)(*(long long *)(unaff_RDI + 0x10) + localMemoryPointer1);
           localMemoryPointer1 = localMemoryPointer1 + 1;
-          *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = iVar10;
-        } while (localMemoryPointer1 < iVar17);
+          *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = systemStatus0;
+        } while (localMemoryPointer1 < systemStatus7);
       }
     }
     pointerToUnsigned14 = (uint *)((long long)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 + _DAT_180c86890 + 0x9d0);
-    if (iVar19 == 0) {
+    if (systemStatus9 == 0) {
       unsignedSystemValue15 = (int)cVar4 - 1;
     }
     else {
@@ -64661,18 +64661,18 @@ void FUN_18007f933(void* SystemResourcePointer,long long param_2)
         localMemoryPointer1 = (unsignedSystemValue22 - unsignedSystemValue21) + 1;
         pointerToUnsigned20 = pointerToUnsigned14 + unsignedSystemValue21 * 2 + 2;
         do {
-          iVar17 = (int)unsignedSystemValue21;
+          systemStatus7 = (int)unsignedSystemValue21;
           if (*(long long *)pointerToUnsigned20 == 0) {
             localMemoryAddress = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x2000,0x25);
             LOCK();
-            bVar23 = *(long long *)(pointerToUnsigned14 + (long long)iVar17 * 2 + 2) == 0;
+            bVar23 = *(long long *)(pointerToUnsigned14 + (long long)systemStatus7 * 2 + 2) == 0;
             if (bVar23) {
-              *(long long *)(pointerToUnsigned14 + (long long)iVar17 * 2 + 2) = localMemoryAddress;
+              *(long long *)(pointerToUnsigned14 + (long long)systemStatus7 * 2 + 2) = localMemoryAddress;
             }
             UNLOCK();
             if (bVar23) {
               LOCK();
-              *(uint8_t *)((long long)iVar17 + 0x108 + (long long)pointerToUnsigned14) = 0;
+              *(uint8_t *)((long long)systemStatus7 + 0x108 + (long long)pointerToUnsigned14) = 0;
               UNLOCK();
             }
             else {
@@ -64688,7 +64688,7 @@ void FUN_18007f933(void* SystemResourcePointer,long long param_2)
             do {
             } while (*pcVar13 != '\0');
           }
-          unsignedSystemValue21 = (ulong long)(iVar17 + 1);
+          unsignedSystemValue21 = (ulong long)(systemStatus7 + 1);
           pointerToUnsigned20 = pointerToUnsigned20 + 2;
           pcVar13 = pcVar13 + 1;
           localMemoryPointer1 = localMemoryPointer1 + -1;
@@ -64703,7 +64703,7 @@ void FUN_18007f933(void* SystemResourcePointer,long long param_2)
       memcpy(*(long long *)(pointerToUnsigned14 + (ulong long)unsignedSystemValue6 * 2 + 2) +
              (ulong long)(unsignedSystemValue15 + unsignedSystemValue6 * -0x800) * 4,pointerToUnsigned18,(unsignedSystemValue12 & 0xffffffff) << 2);
     }
-    if (iVar19 != 0) {
+    if (systemStatus9 != 0) {
       unsignedSystemValue12 = unsignedSystemValue12 & 0xffffffff;
       do {
         unsignedSystemValue5 = *pointerToUnsigned18;
@@ -64737,15 +64737,15 @@ void FUN_18007f976(void)
   long long *plocalDataPointer;
   long long localMemoryAddress;
   int iVar9;
-  int iVar10;
+  int systemStatus0;
   long long localMemoryPointer1;
   uint unsignedSystemValue12;
   ulong long unaff_RBX;
   char *pcVar13;
   uint *pointerToUnsigned14;
   long long unaff_RDI;
-  int iVar15;
-  int iVar16;
+  int systemStatus5;
+  int systemStatus6;
   uint32_t *pointerToUnsigned17;
   ulong long unsignedSystemValue18;
   uint *pointerToUnsigned19;
@@ -64774,13 +64774,13 @@ void FUN_18007f976(void)
     }
   }
   if (plocalDataPointer != (long long *)0x0) {
-    iVar15 = 0;
-    iVar16 = iVar15;
+    systemStatus5 = 0;
+    systemStatus6 = systemStatus5;
     if ((0 < (int)unsignedSystemValue12) && (0xf < unsignedSystemValue12)) {
-      iVar10 = *(int *)(unaff_RDI + 0x2c);
+      systemStatus0 = *(int *)(unaff_RDI + 0x2c);
       SecondaryResourcePointer = (long long *)((long long)plocalDataPointer + (long long)(int)(unsignedSystemValue12 - 1) * 4);
       if ((((long long *)(unaff_RDI + 0x2c) < plocalDataPointer) || (SecondaryResourcePointer < (long long *)(unaff_RDI + 0x2c)))
-         && ((PrimaryResourcePointer < plocalDataPointer || (iVar16 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
+         && ((PrimaryResourcePointer < plocalDataPointer || (systemStatus6 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
         unsignedSystemValue6 = unsignedSystemValue12 & 0x8000000f;
         if ((int)unsignedSystemValue6 < 0) {
           unsignedSystemValue6 = (unsignedSystemValue6 - 1 | 0xfffffff0) + 1;
@@ -64788,45 +64788,45 @@ void FUN_18007f976(void)
         plocalDataPointer = plocalDataPointer + 4;
         iVar9 = 8;
         do {
-          *(int *)(plocalDataPointer + -4) = iVar15 + iVar10;
-          *(int *)((long long)plocalDataPointer + -0x1c) = iVar15 + 1 + iVar10;
-          *(int *)(plocalDataPointer + -3) = iVar15 + 2 + iVar10;
-          *(int *)((long long)plocalDataPointer + -0x14) = iVar15 + 3 + iVar10;
-          iVar15 = iVar15 + 0x10;
-          *(int *)(plocalDataPointer + -2) = iVar9 + -4 + iVar10;
-          *(int *)((long long)plocalDataPointer + -0xc) = iVar9 + -3 + iVar10;
-          *(int *)(plocalDataPointer + -1) = iVar9 + -2 + iVar10;
-          *(int *)((long long)plocalDataPointer + -4) = iVar9 + -1 + iVar10;
-          *(int *)plocalDataPointer = iVar9 + iVar10;
-          *(int *)((long long)plocalDataPointer + 4) = iVar9 + 1 + iVar10;
-          *(int *)(plocalDataPointer + 1) = iVar9 + 2 + iVar10;
-          *(int *)((long long)plocalDataPointer + 0xc) = iVar9 + 3 + iVar10;
-          *(int *)(plocalDataPointer + 2) = iVar9 + 4 + iVar10;
-          *(int *)((long long)plocalDataPointer + 0x14) = iVar9 + 5 + iVar10;
-          *(int *)(plocalDataPointer + 3) = iVar9 + 6 + iVar10;
-          *(int *)((long long)plocalDataPointer + 0x1c) = iVar9 + 7 + iVar10;
+          *(int *)(plocalDataPointer + -4) = systemStatus5 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + -0x1c) = systemStatus5 + 1 + systemStatus0;
+          *(int *)(plocalDataPointer + -3) = systemStatus5 + 2 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + -0x14) = systemStatus5 + 3 + systemStatus0;
+          systemStatus5 = systemStatus5 + 0x10;
+          *(int *)(plocalDataPointer + -2) = iVar9 + -4 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + -0xc) = iVar9 + -3 + systemStatus0;
+          *(int *)(plocalDataPointer + -1) = iVar9 + -2 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + -4) = iVar9 + -1 + systemStatus0;
+          *(int *)plocalDataPointer = iVar9 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + 4) = iVar9 + 1 + systemStatus0;
+          *(int *)(plocalDataPointer + 1) = iVar9 + 2 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + 0xc) = iVar9 + 3 + systemStatus0;
+          *(int *)(plocalDataPointer + 2) = iVar9 + 4 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + 0x14) = iVar9 + 5 + systemStatus0;
+          *(int *)(plocalDataPointer + 3) = iVar9 + 6 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + 0x1c) = iVar9 + 7 + systemStatus0;
           plocalDataPointer = plocalDataPointer + 8;
           iVar9 = iVar9 + 0x10;
-          iVar16 = iVar15;
-        } while (iVar15 < (int)(unsignedSystemValue12 - unsignedSystemValue6));
+          systemStatus6 = systemStatus5;
+        } while (systemStatus5 < (int)(unsignedSystemValue12 - unsignedSystemValue6));
       }
     }
-    for (localMemoryPointer1 = (long long)iVar16; localMemoryPointer1 < (long long)unaff_RBX; localMemoryPointer1 = localMemoryPointer1 + 1) {
-      iVar15 = *(int *)(unaff_RDI + 0x2c) + iVar16;
-      iVar16 = iVar16 + 1;
-      *(int *)(*PrimaryResourcePointer + localMemoryPointer1 * 4) = iVar15;
+    for (localMemoryPointer1 = (long long)systemStatus6; localMemoryPointer1 < (long long)unaff_RBX; localMemoryPointer1 = localMemoryPointer1 + 1) {
+      systemStatus5 = *(int *)(unaff_RDI + 0x2c) + systemStatus6;
+      systemStatus6 = systemStatus6 + 1;
+      *(int *)(*PrimaryResourcePointer + localMemoryPointer1 * 4) = systemStatus5;
     }
-    iVar16 = *(int *)(unaff_RDI + 0x18);
-    iVar15 = 0;
-    if (0 < (long long)iVar16) {
+    systemStatus6 = *(int *)(unaff_RDI + 0x18);
+    systemStatus5 = 0;
+    if (0 < (long long)systemStatus6) {
       localMemoryPointer1 = 0;
       do {
-        iVar10 = *(int *)(unaff_RDI + 0x30) + iVar15;
-        iVar15 = iVar15 + 1;
+        systemStatus0 = *(int *)(unaff_RDI + 0x30) + systemStatus5;
+        systemStatus5 = systemStatus5 + 1;
         pbVar3 = (byte *)(*(long long *)(unaff_RDI + 0x10) + localMemoryPointer1);
         localMemoryPointer1 = localMemoryPointer1 + 1;
-        *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = iVar10;
-      } while (localMemoryPointer1 < iVar16);
+        *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = systemStatus0;
+      } while (localMemoryPointer1 < systemStatus6);
     }
   }
   pointerToUnsigned14 = (uint *)((long long)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 + _DAT_180c86890 + 0x9d0);
@@ -64845,18 +64845,18 @@ void FUN_18007f976(void)
       localMemoryPointer1 = (unsignedSystemValue20 - unsignedSystemValue18) + 1;
       pointerToUnsigned19 = pointerToUnsigned14 + unsignedSystemValue18 * 2 + 2;
       do {
-        iVar16 = (int)unsignedSystemValue18;
+        systemStatus6 = (int)unsignedSystemValue18;
         if (*(long long *)pointerToUnsigned19 == 0) {
           localMemoryAddress = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x2000,0x25);
           LOCK();
-          bVar21 = *(long long *)(pointerToUnsigned14 + (long long)iVar16 * 2 + 2) == 0;
+          bVar21 = *(long long *)(pointerToUnsigned14 + (long long)systemStatus6 * 2 + 2) == 0;
           if (bVar21) {
-            *(long long *)(pointerToUnsigned14 + (long long)iVar16 * 2 + 2) = localMemoryAddress;
+            *(long long *)(pointerToUnsigned14 + (long long)systemStatus6 * 2 + 2) = localMemoryAddress;
           }
           UNLOCK();
           if (bVar21) {
             LOCK();
-            *(uint8_t *)((long long)iVar16 + 0x108 + (long long)pointerToUnsigned14) = 0;
+            *(uint8_t *)((long long)systemStatus6 + 0x108 + (long long)pointerToUnsigned14) = 0;
             UNLOCK();
           }
           else {
@@ -64872,7 +64872,7 @@ void FUN_18007f976(void)
           do {
           } while (*pcVar13 != '\0');
         }
-        unsignedSystemValue18 = (ulong long)(iVar16 + 1);
+        unsignedSystemValue18 = (ulong long)(systemStatus6 + 1);
         pointerToUnsigned19 = pointerToUnsigned19 + 2;
         pcVar13 = pcVar13 + 1;
         localMemoryPointer1 = localMemoryPointer1 + -1;
@@ -64920,14 +64920,14 @@ void FUN_18007f983(void)
   long long *plocalDataPointer;
   long long localMemoryAddress;
   int iVar9;
-  int iVar10;
+  int systemStatus0;
   long long localMemoryPointer1;
   int unaff_EBX;
   char *pcVar12;
   uint *pointerToUnsigned13;
   long long unaff_RDI;
-  int iVar14;
-  int iVar15;
+  int systemStatus4;
+  int systemStatus5;
   uint32_t *pointerToUnsigned16;
   ulong long unsignedSystemValue17;
   uint unsignedSystemValue18;
@@ -64958,13 +64958,13 @@ void FUN_18007f983(void)
     }
   }
   if (plocalDataPointer != (long long *)0x0) {
-    iVar14 = 0;
-    iVar15 = iVar14;
+    systemStatus4 = 0;
+    systemStatus5 = systemStatus4;
     if ((0 < (int)unsignedSystemValue18) && (0xf < unsignedSystemValue18)) {
-      iVar10 = *(int *)(unaff_RDI + 0x2c);
+      systemStatus0 = *(int *)(unaff_RDI + 0x2c);
       SecondaryResourcePointer = (long long *)((long long)plocalDataPointer + (long long)(int)(unsignedSystemValue18 - 1) * 4);
       if ((((long long *)(unaff_RDI + 0x2c) < plocalDataPointer) || (SecondaryResourcePointer < (long long *)(unaff_RDI + 0x2c)))
-         && ((PrimaryResourcePointer < plocalDataPointer || (iVar15 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
+         && ((PrimaryResourcePointer < plocalDataPointer || (systemStatus5 = 0, SecondaryResourcePointer < PrimaryResourcePointer)))) {
         unsignedSystemValue6 = unsignedSystemValue18 & 0x8000000f;
         if ((int)unsignedSystemValue6 < 0) {
           unsignedSystemValue6 = (unsignedSystemValue6 - 1 | 0xfffffff0) + 1;
@@ -64972,45 +64972,45 @@ void FUN_18007f983(void)
         plocalDataPointer = plocalDataPointer + 4;
         iVar9 = 8;
         do {
-          *(int *)(plocalDataPointer + -4) = iVar14 + iVar10;
-          *(int *)((long long)plocalDataPointer + -0x1c) = iVar14 + 1 + iVar10;
-          *(int *)(plocalDataPointer + -3) = iVar14 + 2 + iVar10;
-          *(int *)((long long)plocalDataPointer + -0x14) = iVar14 + 3 + iVar10;
-          iVar14 = iVar14 + 0x10;
-          *(int *)(plocalDataPointer + -2) = iVar9 + -4 + iVar10;
-          *(int *)((long long)plocalDataPointer + -0xc) = iVar9 + -3 + iVar10;
-          *(int *)(plocalDataPointer + -1) = iVar9 + -2 + iVar10;
-          *(int *)((long long)plocalDataPointer + -4) = iVar9 + -1 + iVar10;
-          *(int *)plocalDataPointer = iVar9 + iVar10;
-          *(int *)((long long)plocalDataPointer + 4) = iVar9 + 1 + iVar10;
-          *(int *)(plocalDataPointer + 1) = iVar9 + 2 + iVar10;
-          *(int *)((long long)plocalDataPointer + 0xc) = iVar9 + 3 + iVar10;
-          *(int *)(plocalDataPointer + 2) = iVar9 + 4 + iVar10;
-          *(int *)((long long)plocalDataPointer + 0x14) = iVar9 + 5 + iVar10;
-          *(int *)(plocalDataPointer + 3) = iVar9 + 6 + iVar10;
-          *(int *)((long long)plocalDataPointer + 0x1c) = iVar9 + 7 + iVar10;
+          *(int *)(plocalDataPointer + -4) = systemStatus4 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + -0x1c) = systemStatus4 + 1 + systemStatus0;
+          *(int *)(plocalDataPointer + -3) = systemStatus4 + 2 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + -0x14) = systemStatus4 + 3 + systemStatus0;
+          systemStatus4 = systemStatus4 + 0x10;
+          *(int *)(plocalDataPointer + -2) = iVar9 + -4 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + -0xc) = iVar9 + -3 + systemStatus0;
+          *(int *)(plocalDataPointer + -1) = iVar9 + -2 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + -4) = iVar9 + -1 + systemStatus0;
+          *(int *)plocalDataPointer = iVar9 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + 4) = iVar9 + 1 + systemStatus0;
+          *(int *)(plocalDataPointer + 1) = iVar9 + 2 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + 0xc) = iVar9 + 3 + systemStatus0;
+          *(int *)(plocalDataPointer + 2) = iVar9 + 4 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + 0x14) = iVar9 + 5 + systemStatus0;
+          *(int *)(plocalDataPointer + 3) = iVar9 + 6 + systemStatus0;
+          *(int *)((long long)plocalDataPointer + 0x1c) = iVar9 + 7 + systemStatus0;
           plocalDataPointer = plocalDataPointer + 8;
           iVar9 = iVar9 + 0x10;
-          iVar15 = iVar14;
-        } while (iVar14 < (int)(unsignedSystemValue18 - unsignedSystemValue6));
+          systemStatus5 = systemStatus4;
+        } while (systemStatus4 < (int)(unsignedSystemValue18 - unsignedSystemValue6));
       }
     }
-    for (localMemoryPointer1 = (long long)iVar15; localMemoryPointer1 < (long long)unaff_R12; localMemoryPointer1 = localMemoryPointer1 + 1) {
-      iVar14 = *(int *)(unaff_RDI + 0x2c) + iVar15;
-      iVar15 = iVar15 + 1;
-      *(int *)(*PrimaryResourcePointer + localMemoryPointer1 * 4) = iVar14;
+    for (localMemoryPointer1 = (long long)systemStatus5; localMemoryPointer1 < (long long)unaff_R12; localMemoryPointer1 = localMemoryPointer1 + 1) {
+      systemStatus4 = *(int *)(unaff_RDI + 0x2c) + systemStatus5;
+      systemStatus5 = systemStatus5 + 1;
+      *(int *)(*PrimaryResourcePointer + localMemoryPointer1 * 4) = systemStatus4;
     }
-    iVar15 = *(int *)(unaff_RDI + 0x18);
-    iVar14 = 0;
-    if (0 < (long long)iVar15) {
+    systemStatus5 = *(int *)(unaff_RDI + 0x18);
+    systemStatus4 = 0;
+    if (0 < (long long)systemStatus5) {
       localMemoryPointer1 = 0;
       do {
-        iVar10 = *(int *)(unaff_RDI + 0x30) + iVar14;
-        iVar14 = iVar14 + 1;
+        systemStatus0 = *(int *)(unaff_RDI + 0x30) + systemStatus4;
+        systemStatus4 = systemStatus4 + 1;
         pbVar3 = (byte *)(*(long long *)(unaff_RDI + 0x10) + localMemoryPointer1);
         localMemoryPointer1 = localMemoryPointer1 + 1;
-        *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = iVar10;
-      } while (localMemoryPointer1 < iVar15);
+        *(int *)(*PrimaryResourcePointer + (ulong long)*pbVar3 * 4) = systemStatus0;
+      } while (localMemoryPointer1 < systemStatus5);
     }
   }
   pointerToUnsigned13 = (uint *)((long long)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 + _DAT_180c86890 + 0x9d0);
@@ -65029,18 +65029,18 @@ void FUN_18007f983(void)
       localMemoryPointer1 = (unsignedSystemValue20 - unsignedSystemValue17) + 1;
       pointerToUnsigned19 = pointerToUnsigned13 + unsignedSystemValue17 * 2 + 2;
       do {
-        iVar15 = (int)unsignedSystemValue17;
+        systemStatus5 = (int)unsignedSystemValue17;
         if (*(long long *)pointerToUnsigned19 == 0) {
           localMemoryAddress = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x2000,0x25);
           LOCK();
-          bVar21 = *(long long *)(pointerToUnsigned13 + (long long)iVar15 * 2 + 2) == 0;
+          bVar21 = *(long long *)(pointerToUnsigned13 + (long long)systemStatus5 * 2 + 2) == 0;
           if (bVar21) {
-            *(long long *)(pointerToUnsigned13 + (long long)iVar15 * 2 + 2) = localMemoryAddress;
+            *(long long *)(pointerToUnsigned13 + (long long)systemStatus5 * 2 + 2) = localMemoryAddress;
           }
           UNLOCK();
           if (bVar21) {
             LOCK();
-            *(uint8_t *)((long long)iVar15 + 0x108 + (long long)pointerToUnsigned13) = 0;
+            *(uint8_t *)((long long)systemStatus5 + 0x108 + (long long)pointerToUnsigned13) = 0;
             UNLOCK();
           }
           else {
@@ -65056,7 +65056,7 @@ void FUN_18007f983(void)
           do {
           } while (*pcVar12 != '\0');
         }
-        unsignedSystemValue17 = (ulong long)(iVar15 + 1);
+        unsignedSystemValue17 = (ulong long)(systemStatus5 + 1);
         pointerToUnsigned19 = pointerToUnsigned19 + 2;
         pcVar12 = pcVar12 + 1;
         localMemoryPointer1 = localMemoryPointer1 + -1;
@@ -65347,7 +65347,7 @@ void FUN_18007fd60(void* SystemResourcePointer,long long param_2,void* param_3,l
 
 {
   long long *PrimaryResourcePointer;
-  int iVar2;
+  int systemResult;
   uint8_t auStack_338 [32];
   long long *plStack_318;
   long long *aplStack_310 [2];
@@ -65357,8 +65357,8 @@ void FUN_18007fd60(void* SystemResourcePointer,long long param_2,void* param_3,l
   uStack_300 = 0xfffffffffffffffe;
   uStack_58 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_338;
   *(long long *)(param_4 + 8) = *(long long *)(param_4 + 8) + 4;
-  iVar2 = *(int *)(param_2 + 0x14) * *(int *)(param_2 + 0x10);
-  PrimaryResourcePointer = (long long *)FUN_180081590(SystemResourcePointer,aplStack_310,iVar2);
+  systemResult = *(int *)(param_2 + 0x14) * *(int *)(param_2 + 0x10);
+  PrimaryResourcePointer = (long long *)FUN_180081590(SystemResourcePointer,aplStack_310,systemResult);
   PrimaryResourcePointer = (long long *)*PrimaryResourcePointer;
   if (PrimaryResourcePointer != (long long *)0x0) {
     plStack_318 = PrimaryResourcePointer;
@@ -65374,7 +65374,7 @@ void FUN_18007fd60(void* SystemResourcePointer,long long param_2,void* param_3,l
   }
                     // WARNING: Subroutine does not return
   memcpy(*(void* *)(*(long long *)(param_2 + 0x20) + 0x10),*(void* *)(param_4 + 8),
-         (long long)iVar2);
+         (long long)systemResult);
 }
 
 
@@ -65391,9 +65391,9 @@ void FUN_18007fd60(void* SystemResourcePointer,long long param_2,void* param_3,l
  * @param systemContext 系统上下文，包含系统运行所需的环境信息
  * @param entryPointData 入口点数据，包含入口点初始化所需的参数
  * @param memoryPool 内存池，用于分配入口点所需的内存资源
- * @param initializationFlags 初始化标志，控制初始化过程的选项
+ * @param InitializationFlags 初始化标志，控制初始化过程的选项
  */
-void InitializeSystemEntryPoint(long long systemContext,void* entryPointData,void* memoryPool,void* initializationFlags);
+void InitializeSystemEntryPoint(long long systemContext,void* entryPointData,void* memoryPool,void* InitializationFlags);
 
 /**
  * @brief 执行系统入口点
@@ -65427,12 +65427,12 @@ void* FUN_180779434(void)
   float fVar8;
   uint unsignedSystemValue9;
   uint unsignedSystemValue10;
-  int iVar11;
+  int systemStatus1;
   float *pfVar12;
   int unaff_EBX;
   float *unaff_RDI;
   uint unsignedSystemValue13;
-  int iVar14;
+  int systemStatus4;
   uint in_R9D;
   uint in_R10D;
   int unaff_R13D;
@@ -65476,15 +65476,15 @@ void* FUN_180779434(void)
   pfVar12 = unaff_RDI;
   do {
     unsignedSystemValue10 = 0;
-    iVar11 = unaff_R13D;
+    systemStatus1 = unaff_R13D;
     unsignedSystemValue13 = in_R10D;
     if (unaff_R13D != 0) {
       do {
         unsignedSystemValue9 = unsignedSystemValue13 & 1;
         unsignedSystemValue13 = unsignedSystemValue13 >> 1;
         unsignedSystemValue10 = unsignedSystemValue10 * 2 | unsignedSystemValue9;
-        iVar11 = iVar11 + -1;
-      } while (iVar11 != 0);
+        systemStatus1 = systemStatus1 + -1;
+      } while (systemStatus1 != 0);
     }
     in_R10D = in_R10D + 1;
     fVar17 = *(float *)(*(long long *)(unaff_R14 + 0x218) + 4 + (long long)(int)unsignedSystemValue10 * 8);
@@ -65497,7 +65497,7 @@ void* FUN_180779434(void)
     pfVar12 = pfVar12 + 1;
   } while ((int)in_R10D < (int)in_R9D);
   if (in_stack_00000120 != (float *)0x0) {
-    iVar11 = 0;
+    systemStatus1 = 0;
     if (0 < (int)in_R9D) {
       fVar17 = unaff_XMM6_Da;
       if (7 < in_R9D) {
@@ -65539,7 +65539,7 @@ void* FUN_180779434(void)
         fVar23 = (fVar23 + fVar23) - fVar23 * fVar23 * aunsignedSystemValue18._8_4_;
         fVar24 = (fVar24 + fVar24) - fVar24 * fVar24 * aunsignedSystemValue18._12_4_;
         pfVar12 = unaff_RDI;
-        iVar14 = iVar11;
+        systemStatus4 = systemStatus1;
         do {
           fVar1 = *pfVar12;
           fVar2 = pfVar12[1];
@@ -65549,19 +65549,19 @@ void* FUN_180779434(void)
           unsignedSystemValue9 = -(uint)(0.0001 < fVar2);
           unsignedSystemValue15 = -(uint)(0.0001 < fVar3);
           unsignedSystemValue16 = -(uint)(0.0001 < fVar4);
-          iVar11 = iVar14 + 8;
+          systemStatus1 = systemStatus4 + 8;
           fVar5 = pfVar12[4];
           fVar6 = pfVar12[5];
           fVar7 = pfVar12[6];
           fVar8 = pfVar12[7];
           pfVar12 = pfVar12 + 8;
-          fVar17 = (float)((uint)((float)iVar14 * (float)unaff_XMM12_Da * 0.5 * fVar20 * fVar1 +
+          fVar17 = (float)((uint)((float)systemStatus4 * (float)unaff_XMM12_Da * 0.5 * fVar20 * fVar1 +
                                  fVar17) & unsignedSystemValue10 | ~unsignedSystemValue10 & (uint)fVar17);
-          fVar29 = (float)((uint)((float)(iVar14 + 1) * (float)unaff_XMM12_Db * 0.5 * fVar22 * fVar2
+          fVar29 = (float)((uint)((float)(systemStatus4 + 1) * (float)unaff_XMM12_Db * 0.5 * fVar22 * fVar2
                                  + fVar29) & unsignedSystemValue9 | ~unsignedSystemValue9 & (uint)fVar29);
-          fVar31 = (float)((uint)((float)(iVar14 + 2) * (float)unaff_XMM12_Dc * 0.5 * fVar23 * fVar3
+          fVar31 = (float)((uint)((float)(systemStatus4 + 2) * (float)unaff_XMM12_Dc * 0.5 * fVar23 * fVar3
                                  + fVar31) & unsignedSystemValue15 | ~unsignedSystemValue15 & (uint)fVar31);
-          fVar19 = (float)((uint)((float)(iVar14 + 3) * (float)unaff_XMM12_Dd * 0.5 * fVar24 * fVar4
+          fVar19 = (float)((uint)((float)(systemStatus4 + 3) * (float)unaff_XMM12_Dd * 0.5 * fVar24 * fVar4
                                  + fVar19) & unsignedSystemValue16 | ~unsignedSystemValue16 & (uint)fVar19);
           fVar25 = (float)((uint)(fVar1 + fVar25) & unsignedSystemValue10 | ~unsignedSystemValue10 & (uint)fVar25);
           fVar26 = (float)((uint)(fVar2 + fVar26) & unsignedSystemValue9 | ~unsignedSystemValue9 & (uint)fVar26);
@@ -65571,67 +65571,67 @@ void* FUN_180779434(void)
           unsignedSystemValue9 = -(uint)(0.0001 < fVar6);
           unsignedSystemValue15 = -(uint)(0.0001 < fVar7);
           unsignedSystemValue16 = -(uint)(0.0001 < fVar8);
-          fVar30 = (float)((uint)((float)(iVar14 + 4) * (float)unaff_XMM12_Da * 0.5 * fVar20 * fVar5
+          fVar30 = (float)((uint)((float)(systemStatus4 + 4) * (float)unaff_XMM12_Da * 0.5 * fVar20 * fVar5
                                  + fVar30) & unsignedSystemValue10 | ~unsignedSystemValue10 & (uint)fVar30);
-          fVar32 = (float)((uint)((float)(iVar14 + 5) * (float)unaff_XMM12_Db * 0.5 * fVar22 * fVar6
+          fVar32 = (float)((uint)((float)(systemStatus4 + 5) * (float)unaff_XMM12_Db * 0.5 * fVar22 * fVar6
                                  + fVar32) & unsignedSystemValue9 | ~unsignedSystemValue9 & (uint)fVar32);
-          fVar33 = (float)((uint)((float)(iVar14 + 6) * (float)unaff_XMM12_Dc * 0.5 * fVar23 * fVar7
+          fVar33 = (float)((uint)((float)(systemStatus4 + 6) * (float)unaff_XMM12_Dc * 0.5 * fVar23 * fVar7
                                  + fVar33) & unsignedSystemValue15 | ~unsignedSystemValue15 & (uint)fVar33);
-          fVar34 = (float)((uint)((float)(iVar14 + 7) * (float)unaff_XMM12_Dd * 0.5 * fVar24 * fVar8
+          fVar34 = (float)((uint)((float)(systemStatus4 + 7) * (float)unaff_XMM12_Dd * 0.5 * fVar24 * fVar8
                                  + fVar34) & unsignedSystemValue16 | ~unsignedSystemValue16 & (uint)fVar34);
           fVar35 = (float)((uint)(fVar5 + fVar35) & unsignedSystemValue10 | ~unsignedSystemValue10 & (uint)fVar35);
           fVar36 = (float)((uint)(fVar6 + fVar36) & unsignedSystemValue9 | ~unsignedSystemValue9 & (uint)fVar36);
           fVar37 = (float)((uint)(fVar7 + fVar37) & unsignedSystemValue15 | ~unsignedSystemValue15 & (uint)fVar37);
           fVar38 = (float)((uint)(fVar8 + fVar38) & unsignedSystemValue16 | ~unsignedSystemValue16 & (uint)fVar38);
-          iVar14 = iVar11;
-        } while (iVar11 < (int)(in_R9D - unsignedSystemValue13));
+          systemStatus4 = systemStatus1;
+        } while (systemStatus1 < (int)(in_R9D - unsignedSystemValue13));
         unaff_XMM6_Da = fVar27 + fVar37 + fVar25 + fVar35 + fVar28 + fVar38 + fVar26 + fVar36;
         fVar17 = fVar31 + fVar33 + fVar17 + fVar30 + fVar19 + fVar34 + fVar29 + fVar32;
       }
-      if (iVar11 < (int)in_R9D) {
-        if (3 < (int)(in_R9D - iVar11)) {
-          iVar14 = iVar11 + 2;
+      if (systemStatus1 < (int)in_R9D) {
+        if (3 < (int)(in_R9D - systemStatus1)) {
+          systemStatus4 = systemStatus1 + 2;
           fVar29 = (float)unaff_EBX;
-          pfVar12 = unaff_RDI + (long long)iVar11 + 2;
+          pfVar12 = unaff_RDI + (long long)systemStatus1 + 2;
           fVar31 = (float)(int)in_R9D;
           do {
             fVar19 = pfVar12[-2];
             if (0.0001 < fVar19) {
               unaff_XMM6_Da = unaff_XMM6_Da + fVar19;
-              fVar17 = fVar17 + ((fVar29 * 0.5 * (float)iVar11) / fVar31) * fVar19;
+              fVar17 = fVar17 + ((fVar29 * 0.5 * (float)systemStatus1) / fVar31) * fVar19;
             }
             fVar19 = pfVar12[-1];
             if (0.0001 < fVar19) {
               unaff_XMM6_Da = unaff_XMM6_Da + fVar19;
-              fVar17 = fVar17 + (((float)(iVar14 + -1) * fVar29 * 0.5) / fVar31) * fVar19;
+              fVar17 = fVar17 + (((float)(systemStatus4 + -1) * fVar29 * 0.5) / fVar31) * fVar19;
             }
             fVar19 = *pfVar12;
             if (0.0001 < fVar19) {
               unaff_XMM6_Da = unaff_XMM6_Da + fVar19;
-              fVar17 = fVar17 + (((float)iVar14 * fVar29 * 0.5) / fVar31) * fVar19;
+              fVar17 = fVar17 + (((float)systemStatus4 * fVar29 * 0.5) / fVar31) * fVar19;
             }
             fVar19 = pfVar12[1];
             if (0.0001 < fVar19) {
               unaff_XMM6_Da = unaff_XMM6_Da + fVar19;
-              fVar17 = fVar17 + (((float)(iVar14 + 1) * fVar29 * 0.5) / fVar31) * fVar19;
+              fVar17 = fVar17 + (((float)(systemStatus4 + 1) * fVar29 * 0.5) / fVar31) * fVar19;
             }
             pfVar12 = pfVar12 + 4;
-            iVar11 = iVar11 + 4;
-            iVar14 = iVar14 + 4;
-          } while (iVar11 < (int)(in_R9D - 3));
+            systemStatus1 = systemStatus1 + 4;
+            systemStatus4 = systemStatus4 + 4;
+          } while (systemStatus1 < (int)(in_R9D - 3));
         }
-        if (iVar11 < (int)in_R9D) {
-          pfVar12 = unaff_RDI + iVar11;
+        if (systemStatus1 < (int)in_R9D) {
+          pfVar12 = unaff_RDI + systemStatus1;
           do {
             fVar29 = *pfVar12;
             if (0.0001 < fVar29) {
               unaff_XMM6_Da = unaff_XMM6_Da + fVar29;
-              fVar17 = fVar17 + (((float)unaff_EBX * 0.5 * (float)iVar11) / (float)(int)in_R9D) *
+              fVar17 = fVar17 + (((float)unaff_EBX * 0.5 * (float)systemStatus1) / (float)(int)in_R9D) *
                                 fVar29;
             }
             pfVar12 = pfVar12 + 1;
-            iVar11 = iVar11 + 1;
-          } while (iVar11 < (int)in_R9D);
+            systemStatus1 = systemStatus1 + 1;
+          } while (systemStatus1 < (int)in_R9D);
         }
       }
       if (0.001 < unaff_XMM6_Da) {
@@ -65658,11 +65658,11 @@ void* FUN_1807794c5(void)
   float fVar7;
   float fVar8;
   uint unsignedSystemValue9;
-  int iVar10;
+  int systemStatus0;
   float *pfVar11;
   int unaff_EBX;
   float *unaff_RDI;
-  int iVar12;
+  int systemStatus2;
   uint in_R9D;
   float *in_R11;
   uint unsignedSystemValue13;
@@ -65701,7 +65701,7 @@ void* FUN_1807794c5(void)
   int unaff_XMM12_Dc;
   int unaff_XMM12_Dd;
   
-  iVar10 = 0;
+  systemStatus0 = 0;
   if (0 < (int)in_R9D) {
     fVar25 = unaff_XMM6_Da;
     if (7 < in_R9D) {
@@ -65743,7 +65743,7 @@ void* FUN_1807794c5(void)
       fVar22 = (fVar22 + fVar22) - fVar22 * fVar22 * aunsignedSystemValue17._8_4_;
       fVar23 = (fVar23 + fVar23) - fVar23 * fVar23 * aunsignedSystemValue17._12_4_;
       pfVar11 = unaff_RDI;
-      iVar12 = iVar10;
+      systemStatus2 = systemStatus0;
       do {
         fVar1 = *pfVar11;
         fVar2 = pfVar11[1];
@@ -65753,19 +65753,19 @@ void* FUN_1807794c5(void)
         unsignedSystemValue14 = -(uint)(0.0001 < fVar2);
         unsignedSystemValue15 = -(uint)(0.0001 < fVar3);
         unsignedSystemValue16 = -(uint)(0.0001 < fVar4);
-        iVar10 = iVar12 + 8;
+        systemStatus0 = systemStatus2 + 8;
         fVar5 = pfVar11[4];
         fVar6 = pfVar11[5];
         fVar7 = pfVar11[6];
         fVar8 = pfVar11[7];
         pfVar11 = pfVar11 + 8;
-        fVar25 = (float)((uint)((float)iVar12 * (float)unaff_XMM12_Da * 0.5 * fVar19 * fVar1 +
+        fVar25 = (float)((uint)((float)systemStatus2 * (float)unaff_XMM12_Da * 0.5 * fVar19 * fVar1 +
                                fVar25) & unsignedSystemValue13 | ~unsignedSystemValue13 & (uint)fVar25);
-        fVar29 = (float)((uint)((float)(iVar12 + 1) * (float)unaff_XMM12_Db * 0.5 * fVar21 * fVar2 +
+        fVar29 = (float)((uint)((float)(systemStatus2 + 1) * (float)unaff_XMM12_Db * 0.5 * fVar21 * fVar2 +
                                fVar29) & unsignedSystemValue14 | ~unsignedSystemValue14 & (uint)fVar29);
-        fVar31 = (float)((uint)((float)(iVar12 + 2) * (float)unaff_XMM12_Dc * 0.5 * fVar22 * fVar3 +
+        fVar31 = (float)((uint)((float)(systemStatus2 + 2) * (float)unaff_XMM12_Dc * 0.5 * fVar22 * fVar3 +
                                fVar31) & unsignedSystemValue15 | ~unsignedSystemValue15 & (uint)fVar31);
-        fVar18 = (float)((uint)((float)(iVar12 + 3) * (float)unaff_XMM12_Dd * 0.5 * fVar23 * fVar4 +
+        fVar18 = (float)((uint)((float)(systemStatus2 + 3) * (float)unaff_XMM12_Dd * 0.5 * fVar23 * fVar4 +
                                fVar18) & unsignedSystemValue16 | ~unsignedSystemValue16 & (uint)fVar18);
         fVar24 = (float)((uint)(fVar1 + fVar24) & unsignedSystemValue13 | ~unsignedSystemValue13 & (uint)fVar24);
         fVar26 = (float)((uint)(fVar2 + fVar26) & unsignedSystemValue14 | ~unsignedSystemValue14 & (uint)fVar26);
@@ -65775,67 +65775,67 @@ void* FUN_1807794c5(void)
         unsignedSystemValue14 = -(uint)(0.0001 < fVar6);
         unsignedSystemValue15 = -(uint)(0.0001 < fVar7);
         unsignedSystemValue16 = -(uint)(0.0001 < fVar8);
-        fVar30 = (float)((uint)((float)(iVar12 + 4) * (float)unaff_XMM12_Da * 0.5 * fVar19 * fVar5 +
+        fVar30 = (float)((uint)((float)(systemStatus2 + 4) * (float)unaff_XMM12_Da * 0.5 * fVar19 * fVar5 +
                                fVar30) & unsignedSystemValue13 | ~unsignedSystemValue13 & (uint)fVar30);
-        fVar32 = (float)((uint)((float)(iVar12 + 5) * (float)unaff_XMM12_Db * 0.5 * fVar21 * fVar6 +
+        fVar32 = (float)((uint)((float)(systemStatus2 + 5) * (float)unaff_XMM12_Db * 0.5 * fVar21 * fVar6 +
                                fVar32) & unsignedSystemValue14 | ~unsignedSystemValue14 & (uint)fVar32);
-        fVar33 = (float)((uint)((float)(iVar12 + 6) * (float)unaff_XMM12_Dc * 0.5 * fVar22 * fVar7 +
+        fVar33 = (float)((uint)((float)(systemStatus2 + 6) * (float)unaff_XMM12_Dc * 0.5 * fVar22 * fVar7 +
                                fVar33) & unsignedSystemValue15 | ~unsignedSystemValue15 & (uint)fVar33);
-        fVar34 = (float)((uint)((float)(iVar12 + 7) * (float)unaff_XMM12_Dd * 0.5 * fVar23 * fVar8 +
+        fVar34 = (float)((uint)((float)(systemStatus2 + 7) * (float)unaff_XMM12_Dd * 0.5 * fVar23 * fVar8 +
                                fVar34) & unsignedSystemValue16 | ~unsignedSystemValue16 & (uint)fVar34);
         fVar35 = (float)((uint)(fVar5 + fVar35) & unsignedSystemValue13 | ~unsignedSystemValue13 & (uint)fVar35);
         fVar36 = (float)((uint)(fVar6 + fVar36) & unsignedSystemValue14 | ~unsignedSystemValue14 & (uint)fVar36);
         fVar37 = (float)((uint)(fVar7 + fVar37) & unsignedSystemValue15 | ~unsignedSystemValue15 & (uint)fVar37);
         fVar38 = (float)((uint)(fVar8 + fVar38) & unsignedSystemValue16 | ~unsignedSystemValue16 & (uint)fVar38);
-        iVar12 = iVar10;
-      } while (iVar10 < (int)(in_R9D - unsignedSystemValue9));
+        systemStatus2 = systemStatus0;
+      } while (systemStatus0 < (int)(in_R9D - unsignedSystemValue9));
       unaff_XMM6_Da = fVar27 + fVar37 + fVar24 + fVar35 + fVar28 + fVar38 + fVar26 + fVar36;
       fVar25 = fVar31 + fVar33 + fVar25 + fVar30 + fVar18 + fVar34 + fVar29 + fVar32;
     }
-    if (iVar10 < (int)in_R9D) {
-      if (3 < (int)(in_R9D - iVar10)) {
-        iVar12 = iVar10 + 2;
+    if (systemStatus0 < (int)in_R9D) {
+      if (3 < (int)(in_R9D - systemStatus0)) {
+        systemStatus2 = systemStatus0 + 2;
         fVar29 = (float)unaff_EBX;
-        pfVar11 = unaff_RDI + (long long)iVar10 + 2;
+        pfVar11 = unaff_RDI + (long long)systemStatus0 + 2;
         fVar31 = (float)(int)in_R9D;
         do {
           fVar18 = pfVar11[-2];
           if (0.0001 < fVar18) {
             unaff_XMM6_Da = unaff_XMM6_Da + fVar18;
-            fVar25 = fVar25 + ((fVar29 * 0.5 * (float)iVar10) / fVar31) * fVar18;
+            fVar25 = fVar25 + ((fVar29 * 0.5 * (float)systemStatus0) / fVar31) * fVar18;
           }
           fVar18 = pfVar11[-1];
           if (0.0001 < fVar18) {
             unaff_XMM6_Da = unaff_XMM6_Da + fVar18;
-            fVar25 = fVar25 + (((float)(iVar12 + -1) * fVar29 * 0.5) / fVar31) * fVar18;
+            fVar25 = fVar25 + (((float)(systemStatus2 + -1) * fVar29 * 0.5) / fVar31) * fVar18;
           }
           fVar18 = *pfVar11;
           if (0.0001 < fVar18) {
             unaff_XMM6_Da = unaff_XMM6_Da + fVar18;
-            fVar25 = fVar25 + (((float)iVar12 * fVar29 * 0.5) / fVar31) * fVar18;
+            fVar25 = fVar25 + (((float)systemStatus2 * fVar29 * 0.5) / fVar31) * fVar18;
           }
           fVar18 = pfVar11[1];
           if (0.0001 < fVar18) {
             unaff_XMM6_Da = unaff_XMM6_Da + fVar18;
-            fVar25 = fVar25 + (((float)(iVar12 + 1) * fVar29 * 0.5) / fVar31) * fVar18;
+            fVar25 = fVar25 + (((float)(systemStatus2 + 1) * fVar29 * 0.5) / fVar31) * fVar18;
           }
           pfVar11 = pfVar11 + 4;
-          iVar10 = iVar10 + 4;
-          iVar12 = iVar12 + 4;
-        } while (iVar10 < (int)(in_R9D - 3));
+          systemStatus0 = systemStatus0 + 4;
+          systemStatus2 = systemStatus2 + 4;
+        } while (systemStatus0 < (int)(in_R9D - 3));
       }
-      if (iVar10 < (int)in_R9D) {
-        pfVar11 = unaff_RDI + iVar10;
+      if (systemStatus0 < (int)in_R9D) {
+        pfVar11 = unaff_RDI + systemStatus0;
         do {
           fVar29 = *pfVar11;
           if (0.0001 < fVar29) {
             unaff_XMM6_Da = unaff_XMM6_Da + fVar29;
-            fVar25 = fVar25 + (((float)unaff_EBX * 0.5 * (float)iVar10) / (float)(int)in_R9D) *
+            fVar25 = fVar25 + (((float)unaff_EBX * 0.5 * (float)systemStatus0) / (float)(int)in_R9D) *
                               fVar29;
           }
           pfVar11 = pfVar11 + 1;
-          iVar10 = iVar10 + 1;
-        } while (iVar10 < (int)in_R9D);
+          systemStatus0 = systemStatus0 + 1;
+        } while (systemStatus0 < (int)in_R9D);
       }
     }
     if (0.001 < unaff_XMM6_Da) {
@@ -65864,7 +65864,7 @@ void* FUN_1807794dd(int SystemResourcePointer,void* param_2,void* param_3,uint p
   float *pfVar10;
   int unaff_EBX;
   float *unaff_RDI;
-  int iVar11;
+  int systemStatus1;
   float *in_R11;
   uint unsignedSystemValue12;
   uint unsignedSystemValue13;
@@ -65940,7 +65940,7 @@ void* FUN_1807794dd(int SystemResourcePointer,void* param_2,void* param_3,uint p
   fVar22 = (fVar22 + fVar22) - fVar22 * fVar22 * aunsignedSystemValue16._12_4_;
   pfVar10 = unaff_RDI;
   do {
-    iVar11 = SystemResourcePointer;
+    systemStatus1 = SystemResourcePointer;
     fVar1 = *pfVar10;
     fVar2 = pfVar10[1];
     fVar3 = pfVar10[2];
@@ -65949,19 +65949,19 @@ void* FUN_1807794dd(int SystemResourcePointer,void* param_2,void* param_3,uint p
     unsignedSystemValue13 = -(uint)(0.0001 < fVar2);
     unsignedSystemValue14 = -(uint)(0.0001 < fVar3);
     unsignedSystemValue15 = -(uint)(0.0001 < fVar4);
-    SystemResourcePointer = iVar11 + 8;
+    SystemResourcePointer = systemStatus1 + 8;
     fVar5 = pfVar10[4];
     fVar6 = pfVar10[5];
     fVar7 = pfVar10[6];
     fVar8 = pfVar10[7];
     pfVar10 = pfVar10 + 8;
-    fVar24 = (float)((uint)((float)iVar11 * (float)unaff_XMM12_Da * 0.5 * fVar18 * fVar1 + fVar24) &
+    fVar24 = (float)((uint)((float)systemStatus1 * (float)unaff_XMM12_Da * 0.5 * fVar18 * fVar1 + fVar24) &
                      unsignedSystemValue12 | ~unsignedSystemValue12 & (uint)fVar24);
-    fVar28 = (float)((uint)((float)(iVar11 + 1) * (float)unaff_XMM12_Db * 0.5 * fVar20 * fVar2 +
+    fVar28 = (float)((uint)((float)(systemStatus1 + 1) * (float)unaff_XMM12_Db * 0.5 * fVar20 * fVar2 +
                            fVar28) & unsignedSystemValue13 | ~unsignedSystemValue13 & (uint)fVar28);
-    fVar30 = (float)((uint)((float)(iVar11 + 2) * (float)unaff_XMM12_Dc * 0.5 * fVar21 * fVar3 +
+    fVar30 = (float)((uint)((float)(systemStatus1 + 2) * (float)unaff_XMM12_Dc * 0.5 * fVar21 * fVar3 +
                            fVar30) & unsignedSystemValue14 | ~unsignedSystemValue14 & (uint)fVar30);
-    fVar17 = (float)((uint)((float)(iVar11 + 3) * (float)unaff_XMM12_Dd * 0.5 * fVar22 * fVar4 +
+    fVar17 = (float)((uint)((float)(systemStatus1 + 3) * (float)unaff_XMM12_Dd * 0.5 * fVar22 * fVar4 +
                            fVar17) & unsignedSystemValue15 | ~unsignedSystemValue15 & (uint)fVar17);
     fVar23 = (float)((uint)(fVar1 + fVar23) & unsignedSystemValue12 | ~unsignedSystemValue12 & (uint)fVar23);
     fVar25 = (float)((uint)(fVar2 + fVar25) & unsignedSystemValue13 | ~unsignedSystemValue13 & (uint)fVar25);
@@ -65971,13 +65971,13 @@ void* FUN_1807794dd(int SystemResourcePointer,void* param_2,void* param_3,uint p
     unsignedSystemValue13 = -(uint)(0.0001 < fVar6);
     unsignedSystemValue14 = -(uint)(0.0001 < fVar7);
     unsignedSystemValue15 = -(uint)(0.0001 < fVar8);
-    fVar29 = (float)((uint)((float)(iVar11 + 4) * (float)unaff_XMM12_Da * 0.5 * fVar18 * fVar5 +
+    fVar29 = (float)((uint)((float)(systemStatus1 + 4) * (float)unaff_XMM12_Da * 0.5 * fVar18 * fVar5 +
                            fVar29) & unsignedSystemValue12 | ~unsignedSystemValue12 & (uint)fVar29);
-    fVar31 = (float)((uint)((float)(iVar11 + 5) * (float)unaff_XMM12_Db * 0.5 * fVar20 * fVar6 +
+    fVar31 = (float)((uint)((float)(systemStatus1 + 5) * (float)unaff_XMM12_Db * 0.5 * fVar20 * fVar6 +
                            fVar31) & unsignedSystemValue13 | ~unsignedSystemValue13 & (uint)fVar31);
-    fVar32 = (float)((uint)((float)(iVar11 + 6) * (float)unaff_XMM12_Dc * 0.5 * fVar21 * fVar7 +
+    fVar32 = (float)((uint)((float)(systemStatus1 + 6) * (float)unaff_XMM12_Dc * 0.5 * fVar21 * fVar7 +
                            fVar32) & unsignedSystemValue14 | ~unsignedSystemValue14 & (uint)fVar32);
-    fVar33 = (float)((uint)((float)(iVar11 + 7) * (float)unaff_XMM12_Dd * 0.5 * fVar22 * fVar8 +
+    fVar33 = (float)((uint)((float)(systemStatus1 + 7) * (float)unaff_XMM12_Dd * 0.5 * fVar22 * fVar8 +
                            fVar33) & unsignedSystemValue15 | ~unsignedSystemValue15 & (uint)fVar33);
     fVar34 = (float)((uint)(fVar5 + fVar34) & unsignedSystemValue12 | ~unsignedSystemValue12 & (uint)fVar34);
     fVar35 = (float)((uint)(fVar6 + fVar35) & unsignedSystemValue13 | ~unsignedSystemValue13 & (uint)fVar35);
@@ -65988,7 +65988,7 @@ void* FUN_1807794dd(int SystemResourcePointer,void* param_2,void* param_3,uint p
   fVar24 = fVar30 + fVar32 + fVar24 + fVar29 + fVar17 + fVar33 + fVar28 + fVar31;
   if (SystemResourcePointer < (int)param_4) {
     if (3 < (int)(param_4 - SystemResourcePointer)) {
-      iVar11 = iVar11 + 10;
+      systemStatus1 = systemStatus1 + 10;
       fVar28 = (float)unaff_EBX;
       pfVar10 = unaff_RDI + (long long)SystemResourcePointer + 2;
       fVar30 = (float)(int)param_4;
@@ -66001,21 +66001,21 @@ void* FUN_1807794dd(int SystemResourcePointer,void* param_2,void* param_3,uint p
         fVar17 = pfVar10[-1];
         if (0.0001 < fVar17) {
           fVar18 = fVar18 + fVar17;
-          fVar24 = fVar24 + (((float)(iVar11 + -1) * fVar28 * 0.5) / fVar30) * fVar17;
+          fVar24 = fVar24 + (((float)(systemStatus1 + -1) * fVar28 * 0.5) / fVar30) * fVar17;
         }
         fVar17 = *pfVar10;
         if (0.0001 < fVar17) {
           fVar18 = fVar18 + fVar17;
-          fVar24 = fVar24 + (((float)iVar11 * fVar28 * 0.5) / fVar30) * fVar17;
+          fVar24 = fVar24 + (((float)systemStatus1 * fVar28 * 0.5) / fVar30) * fVar17;
         }
         fVar17 = pfVar10[1];
         if (0.0001 < fVar17) {
           fVar18 = fVar18 + fVar17;
-          fVar24 = fVar24 + (((float)(iVar11 + 1) * fVar28 * 0.5) / fVar30) * fVar17;
+          fVar24 = fVar24 + (((float)(systemStatus1 + 1) * fVar28 * 0.5) / fVar30) * fVar17;
         }
         pfVar10 = pfVar10 + 4;
         SystemResourcePointer = SystemResourcePointer + 4;
-        iVar11 = iVar11 + 4;
+        systemStatus1 = systemStatus1 + 4;
       } while (SystemResourcePointer < (int)(param_4 - 3));
     }
     if (SystemResourcePointer < (int)param_4) {
@@ -66370,11 +66370,11 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
   
   unsignedSystemValue6 = (ulong long)unaff_R13D;
   do {
-    iVar11 = 0;
+    systemStatus1 = 0;
     if (0 < (int)param_3) {
       unsignedSystemValue15 = (ulong long)param_3;
       do {
-        unsignedSystemValue5 = (long long)iVar11 / (long long)(int)unaff_R14D & 0xffffffff;
+        unsignedSystemValue5 = (long long)systemStatus1 / (long long)(int)unaff_R14D & 0xffffffff;
         unsignedSystemValue7 = 0;
         unsignedSystemValue12 = unaff_R13D;
         if (unaff_R13D != 0) {
@@ -66429,14 +66429,14 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
         else {
           fVar19 = 0.0;
         }
-        localMemoryPointer4 = (long long)iVar11;
-        localResourcePointer = (long long)(int)(iVar11 + unaff_R14D);
+        localMemoryPointer4 = (long long)systemStatus1;
+        localResourcePointer = (long long)(int)(systemStatus1 + unaff_R14D);
         fVar19 = -fVar19;
         if (localMemoryPointer4 < localResourcePointer) {
-          iVar10 = iVar11;
+          systemStatus0 = systemStatus1;
           if (3 < localResourcePointer - localMemoryPointer4) {
-            unsignedSystemValue12 = iVar11 + unaff_R14D + 3;
-            iVar10 = iVar11 + ((int)(((localResourcePointer + -3) - localMemoryPointer4) - 1U >> 2) + 1) * 4;
+            unsignedSystemValue12 = systemStatus1 + unaff_R14D + 3;
+            systemStatus0 = systemStatus1 + ((int)(((localResourcePointer + -3) - localMemoryPointer4) - 1U >> 2) + 1) * 4;
             do {
               unsignedSystemValue16 = (ulong long)unsignedSystemValue12;
               localBufferAddress = *(long long *)(in_R11 + 0x218);
@@ -66491,7 +66491,7 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
             } while (localMemoryPointer4 < localResourcePointer + -3);
           }
           if (localMemoryPointer4 < localResourcePointer) {
-            unsignedSystemValue12 = iVar10 + unaff_R14D;
+            unsignedSystemValue12 = systemStatus0 + unaff_R14D;
             do {
               unsignedSystemValue5 = (ulong long)unsignedSystemValue12;
               localBufferAddress = *(long long *)(in_R11 + 0x218);
@@ -66510,7 +66510,7 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
             } while (localMemoryPointer4 < localResourcePointer);
           }
         }
-        iVar11 = iVar11 + unaff_R14D * 2;
+        systemStatus1 = systemStatus1 + unaff_R14D * 2;
         unsignedSystemValue15 = unsignedSystemValue15 - 1;
         param_3 = in_stack_000000a8;
       } while (unsignedSystemValue15 != 0);
