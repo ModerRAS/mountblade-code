@@ -33979,8 +33979,8 @@ ulonglong engine_unnamed_function_1320(longlong engine_data_structure_ptr,uint *
   uint64 engine_stack_uint_d8;
   uint64 engine_stack_uint_d0;
   float engine_stack_float_c8;
-  float fStack_c4;
-  float fStack_c0;
+  float engine_stack_float_c4;
+  float engine_stack_float_c0;
   float fStack_bc;
   float engine_stack_float_b8;
   float engine_stack_float_b4;
@@ -34251,8 +34251,8 @@ LAB_180077879:
       engine_temp_float_4 = *(float *)(engine_data_structure_ptr + 0x134);
       engine_temp_float_5 = *(float *)(engine_data_structure_ptr + 0x130);
       engine_stack_float_c8 = engine_temp_float * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float_3 * engine_temp_float_17;
-      fStack_c4 = engine_temp_float * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float_3 * engine_temp_float_18;
-      fStack_c0 = engine_temp_float * engine_temp_float_15 + engine_temp_float_2 * engine_temp_float_11 + engine_temp_float_3 * engine_temp_float_19;
+      engine_stack_float_c4 = engine_temp_float * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float_3 * engine_temp_float_18;
+      engine_stack_float_c0 = engine_temp_float * engine_temp_float_15 + engine_temp_float_2 * engine_temp_float_11 + engine_temp_float_3 * engine_temp_float_19;
       fStack_bc = engine_temp_float * engine_temp_float_16 + engine_temp_float_2 * engine_temp_float_12 + engine_temp_float_3 * engine_temp_float_20;
       engine_temp_float = *(float *)(engine_data_structure_ptr + 0x138);
       engine_temp_float_2 = *(float *)(engine_data_structure_ptr + 0x140);
