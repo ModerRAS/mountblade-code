@@ -3165,18 +3165,18 @@ uint8_t MonitorResourcePerformance;
 uint8_t1 SystemMemoryConfigDataTemplateBF66D8;
 uint8_t SystemControlByteC;
 uint8_t SystemDataBufferD;
-uint8_t DAT_180bfbf7c;
-uint8_t DAT_180bfbf60;
-uint8_t DAT_180bf7308;
-uint8_t DAT_180bfbf78;
-uint8_t DAT_180bf72a8;
-char DAT_180c8efc8;
+uint8_t SystemMemoryFlagE;
+uint8_t SystemSyncFlagF;
+uint8_t SystemThreadFlagG;
+uint8_t SystemResourceFlagH;
+uint8_t SystemProcessFlagI;
+char SystemStatusCharJ;
 uint8_t SystemBuffer003;
 uint8_t SystemBuffer004;
 uint8_t SystemBuffer005;
 uint8_t SystemBuffer006;
 uint8_t SystemBuffer007;
-uint8_t DAT_180bfbd80;
+uint8_t SystemMemoryFlagK;
 
  /**
  * @brief 处理游戏数据对象
@@ -4139,7 +4139,7 @@ uint8_t8 InitializeObjectHandleB(longlong objectContext)
  * @param param_1 对象上下文参数
  * @return 操作结果状态码
  */
-uint8_t8 InitializeObjectHandleC(longlong param_1)
+uint8_t8 InitializeObjectHandleC(longlong objectContext)
 
 {
   longlong lVar1;
@@ -27929,7 +27929,16 @@ void Unwind_180901f50(uint8_t8 param_1,longlong param_2)
 
 
 
-void Unwind_180901f60(uint8_t8 param_1,longlong param_2)
+/**
+ * @brief 清理验证结果资源
+ * 
+ * 该函数在异常处理过程中清理验证结果相关的资源
+ * 释放验证结果占用的内存，并在必要时调用系统清理处理器
+ * 
+ * @param exceptionHandlerType 异常处理器类型
+ * @param exceptionContext 异常上下文指针
+ */
+void CleanupValidationResultResources(uint8_t8 exceptionHandlerType, longlong exceptionContext)
 
 {
   int *piVar1;
