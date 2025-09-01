@@ -3,28 +3,28 @@
 // 系统初始化模块
 void* GameSystemMainEntryPoint;
 void* SystemGlobalDataReference;              // 全局系统数据引用
-void* SystemPrimaryMemoryPool;                 // 主系统内存池
-void* SystemPrimaryDataTable;                // 系统数据表引用
-void* SystemSecondaryMemoryPool;               // 次级系统内存池
-void* SystemSecondaryDataTable;                // 次级系统数据表
-void* SystemTertiaryMemoryPool;                // 第三级系统内存池
-void* SystemTertiaryDataTable;                 // 第三级系统数据表
-void* SystemQuaternaryMemoryPool;              // 第四级系统内存池
-void* SystemQuaternaryDataTable;               // 第四级系统数据表
-void* SystemQuinaryMemoryPool;                 // 第五级系统内存池
-void* SystemQuinaryDataTable;                  // 第五级系统数据表
-void* SystemSenaryMemoryPool;                  // 第六级系统内存池
-void* SystemSenaryDataTable;                   // 第六级系统数据表
+void* SystemMainMemoryPool;                    // 主系统内存池
+void* SystemMainDataTable;                     // 系统数据表引用
+void* SystemBackupMemoryPool;                   // 备份系统内存池
+void* SystemBackupDataTable;                    // 备份系统数据表
+void* SystemCacheMemoryPool;                    // 缓存系统内存池
+void* SystemCacheDataTable;                     // 缓存系统数据表
+void* SystemTemporaryMemoryPool;               // 临时系统内存池
+void* SystemTemporaryDataTable;                // 临时系统数据表
+void* SystemReservedMemoryPool;                // 保留系统内存池
+void* SystemReservedDataTable;                 // 保留系统数据表
+void* SystemEmergencyMemoryPool;               // 紧急系统内存池
+void* SystemEmergencyDataTable;                // 紧急系统数据表
 
 // 核心系统函数指针和相关数据
 void* GameCoreSystemMainEntryPoint;
 void* CoreSystemMemoryAllocator;                // 核心系统内存分配器
 void* CoreSystemDataTable;                     // 核心系统数据表
 void* CoreSystemMemoryBuffer;                  // 核心系统内存缓冲区
-void* CoreSystemPrimaryConfig;                    // 核心系统主配置
-void* CoreSystemSecondaryConfig;                // 核心系统次级配置
-void* CoreSystemTertiaryConfig;                 // 核心系统第三级配置
-void* CoreSystemQuaternaryConfig;               // 核心系统第四级配置
+void* CoreSystemMainConfiguration;              // 核心系统主配置
+void* CoreSystemBackupConfiguration;            // 核心系统备份配置
+void* CoreSystemCacheConfiguration;             // 核心系统缓存配置
+void* CoreSystemEmergencyConfiguration;         // 核心系统紧急配置
 
 // 渲染系统初始化函数
 void* GameRenderingMainEntryPoint;                  // 游戏渲染系统入口点
@@ -52,10 +52,10 @@ void* GameSubsystemMainEntryPoint;              // 游戏子系统主入口点
 void* SubsystemMainContext;                     // 子系统主上下文
 void* InputSystemDataTable;                     // 输入系统数据表
 uint8_t InputSystemStatusFlags;                  // 输入系统状态标志
-void* InputSystemPrimaryConfig;                 // 输入系统主配置
-void* InputSystemDeviceConfigTable;             // 输入系统设备配置表
-void* InputSystemMappingConfigTable;            // 输入系统映射配置表
-void* InputSystemProfileConfigTable;            // 输入系统配置文件表
+void* InputSystemMainConfiguration;             // 输入系统主配置
+void* InputSystemDeviceConfigurationTable;      // 输入系统设备配置表
+void* InputSystemMappingConfigurationTable;     // 输入系统映射配置表
+void* InputSystemProfileConfigurationTable;      // 输入系统配置文件表
 
 // 物理系统初始化函数
 void* GamePhysicsMainEntryPoint;                 // 游戏物理系统主入口点
@@ -67,11 +67,11 @@ void* GameFileSystemMainEntryPoint;               // 游戏文件系统主入口
 // 字符串处理系统初始化
 void* GameStringProcessingMainInitializer;       // 游戏字符串处理主初始化器
 void* StringProcessingDataBuffer;                // 字符串处理数据缓冲区
-void* StringProcessingPrimaryStructure;          // 字符串处理主结构
-void* StringProcessingSecondaryStructure;         // 字符串处理次级结构
-void* StringProcessingTertiaryStructure;          // 字符串处理第三级结构
-void* StringProcessingQuaternaryStructure;        // 字符串处理第四级结构
-void* StringProcessingGuardCheckHandler;          // 字符串处理保护检查处理器
+void* StringProcessingMainStructure;              // 字符串处理主结构
+void* StringProcessingBackupStructure;            // 字符串处理备份结构
+void* StringProcessingCacheStructure;             // 字符串处理缓存结构
+void* StringProcessingTemporaryStructure;         // 字符串处理临时结构
+void* StringProcessingSecurityCheckHandler;       // 字符串处理安全检查处理器
 
 // 内存管理系统初始化
 void* GameMemoryManagementMainInitializer;       // 游戏内存管理主初始化器

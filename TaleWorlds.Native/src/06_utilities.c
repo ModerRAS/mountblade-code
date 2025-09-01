@@ -1046,9 +1046,9 @@ void SetupMemoryAllocator(void);
 void* SystemResourceConfigTableSecondary;
 void* SystemFileSystemConfigTableSecondary;
 void* SystemThreadingConfigTableTertiary;
-void* SystemProcessConfigTable4;
+void* SystemProcessConfigTableQuaternary;
 void* MemoryPoolFunction;
-void* SystemEventConfigTable6;
+void* SystemEventConfigTableSenary;
 
  void InitializeMemoryTracking(void);
 /**
@@ -1058,8 +1058,8 @@ void* SystemEventConfigTable6;
  * 设置内存使用监控和日志记录
  */
 void InitializeMemoryTracking(void);
-void* SystemLoggingConfigTable5;
-void* SystemAuditConfigTable3;
+void* SystemLoggingConfigTableQuinary;
+void* SystemAuditConfigTableTertiary;
 void* SystemDiagnosticsConfigTableTertiary;
 void* SystemMemoryTracker;
 void* SystemPerformanceMonitor;
@@ -1073,11 +1073,11 @@ void* SystemDebugLogger;
  * 设置内存访问权限和保护级别
  */
 void ConfigureMemoryProtection(void);
-void* SystemThreadingConfigTable4;
-void* SystemProcessConfigTable5;
+void* SystemThreadingConfigTableQuaternary;
+void* SystemProcessConfigTableQuinary;
 void* SystemMemoryAllocator;
-void* SystemSecurityConfigTable4;
-void* SystemNetworkConfigTable3;
+void* SystemSecurityConfigTableQuaternary;
+void* SystemNetworkConfigTableTertiary;
 void* SystemEventConfigTable7;
 
  void InitializeMemoryCache(void);
