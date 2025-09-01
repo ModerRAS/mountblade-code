@@ -205,14 +205,14 @@ void utility_memory_cleanup_handler(void)
  */
 uint64 utility_process_resource_data(longlong resource_handle)
 {
-  uint64 processing_result;
+  uint64 operation_result;
   
   // 执行系统内存操作
-  processing_result = system_memory_operation(*(uint32 *)(resource_handle + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
+  operation_result = system_memory_operation(*(uint32 *)(resource_handle + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
   
   // 验证处理结果
-  if ((int)processing_result != UTILITY_MEMORY_ZERO) {
-    return processing_result;
+  if ((int)operation_result != UTILITY_MEMORY_ZERO) {
+    return operation_result;
   }
   
   // 处理系统资源句柄
@@ -240,15 +240,15 @@ uint64 utility_process_resource_data(longlong resource_handle)
  */
 uint64 utility_resource_data_processor(void)
 {
-  uint64 processing_result;
-  longlong default_resource_context = 0; // 默认资源上下文
+  uint64 operation_result;
+  longlong system_resource_context = 0; // 系统资源上下文
   
   // 执行系统内存操作
-  processing_result = system_memory_operation(*(uint32 *)(default_resource_context + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
+  operation_result = system_memory_operation(*(uint32 *)(system_resource_context + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
   
   // 验证处理结果
-  if ((int)processing_result != UTILITY_MEMORY_ZERO) {
-    return processing_result;
+  if ((int)operation_result != UTILITY_MEMORY_ZERO) {
+    return operation_result;
   }
   
   // 处理系统资源句柄
