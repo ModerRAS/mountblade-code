@@ -404,8 +404,10 @@ void* DatabaseTransactionCommitManager;
 undefined DatabaseSystemConfigTable;
 // 数据库系统状态表指针
 undefined DatabaseSystemStatusTable;
-undefined DAT_180bf6b80;
-undefined DAT_180bf6b88;
+// 数据库系统索引表指针
+undefined DatabaseSystemIndexTable;
+// 数据库系统锁表指针
+undefined DatabaseSystemLockTable;
 undefined DAT_180bf6bc8;
 undefined DAT_180bf6bd0;
 undefined DAT_180bf6bd8;

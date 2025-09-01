@@ -15,15 +15,15 @@ void* GlobalSystemDataReference;              // 全局系统数据引用
 void* SystemMemoryPoolPrimary;                 // 主系统内存池
 void* SystemDataTableReference;                // 系统数据表引用
 void* SystemMemoryPoolSecondary;               // 次级系统内存池
-void* SystemDataTableSecondary;
+void* SystemDataTableSecondary;                // 次级系统数据表
 void* SystemMemoryPoolTertiary;                // 第三级系统内存池
 void* SystemDataTableTertiary;                 // 第三级系统数据表
 void* SystemMemoryPoolQuaternary;              // 第四级系统内存池
 void* SystemDataTableQuaternary;               // 第四级系统数据表
-void* SystemMemoryPoolQuinary;
-void* SystemDataTableQuinary;
-void* SystemMemoryPoolSenary;
-void* SystemDataTableSenary;
+void* SystemMemoryPoolQuinary;                 // 第五级系统内存池
+void* SystemDataTableQuinary;                  // 第五级系统数据表
+void* SystemMemoryPoolSenary;                  // 第六级系统内存池
+void* SystemDataTableSenary;                   // 第六级系统数据表
 
 // 核心系统函数指针和相关数据
 void* GameCoreSystemEntryPoint;
@@ -125,14 +125,14 @@ void* ResourceMemoryRegionTrevigintary;
 void* GameDataTableManagerInitializer;
 void* SystemMemoryRegionQuattuorvigintary;
 void* SystemMemoryRegionQuinvigintary;
-void* SystemDataTableQuinary;
+void* SystemDataTableQuinary;                  // 第五级系统数据表
 void* SystemMemoryRegionSexvigintary;
 void* SystemMemoryRegionSeptenvigintary;
 void* SystemMemoryRegionOctovigintary;
 void* SystemMemoryRegionNovemvigintary;
 void* SystemMemoryRegionTrigintary;
 void* SystemMemoryRegionUntrigintary;
-void* SystemDataTableSenary;
+void* SystemDataTableSenary;                   // 第六级系统数据表
 void* SystemMemoryRegionDuotrigintary;
 void* SystemMemoryRegionTrestrigintary;
 void* SystemMemoryRegionQuattuortrigintary;
@@ -366,7 +366,7 @@ void* SystemDataBufferQuaternary;
 void* SystemDataBufferQuinary;
 void* SystemDataBufferSenary;
 void* SystemDataTablePrimary;
-void* SystemDataTableSecondary;
+void* SystemDataTableSecondary;                // 次级系统数据表
 void* SystemDataStructurePrimary;
 void* SystemDataStructureSecondary;
 void* SystemMemoryRegionPrimary;
@@ -2377,50 +2377,57 @@ void InitializeSystemMemoryManager(void)
 
 
 
-// 函数: void FUN_18002ea70(void)
-void FUN_18002ea70(void)
+/**
+ * @brief 初始化系统数据结构
+ * 
+ * 初始化游戏引擎的数据结构子系统，设置数据表和管理节点。
+ * 该函数负责配置数据结构的基础设施，为系统数据管理提供支持。
+ * 
+ * @note 该函数在系统初始化阶段被调用，是数据管理系统的核心组件
+ */
+void InitializeSystemDataStructure(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char nodeFlag;
+  undefined8 *systemRootPointer;
+  int comparisonResult;
+  longlong *systemTablePointer;
+  longlong allocationSize;
+  undefined8 *currentNode;
+  undefined8 *previousNode;
+  undefined8 *nextNode;
+  undefined8 *allocatedNode;
+  undefined8 *initializationFunction;
   
-  systemDataTable = (longlong *)getSystemRootPointer();
-  systemRootNode = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025c000;
-  systemPreviousNode = systemRootNode;
-  systemCurrentNode = (undefined8 *)systemRootNode[1];
-  while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
-    if (memoryCompareResult < 0) {
-      systemNextNode = (undefined8 *)systemCurrentNode[2];
-      systemCurrentNode = systemPreviousNode;
+  systemTablePointer = (longlong *)getSystemRootPointer();
+  systemRootPointer = (undefined8 *)*systemTablePointer;
+  nodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  initializationFunction = (undefined8 *)FUN_18025c000;
+  previousNode = systemRootPointer;
+  currentNode = (undefined8 *)systemRootPointer[1];
+  while (nodeFlag == '\0') {
+    comparisonResult = memcmp(currentNode + 4,&DAT_180a01078,0x10);
+    if (comparisonResult < 0) {
+      nextNode = (undefined8 *)currentNode[2];
+      currentNode = previousNode;
     }
     else {
-      systemNextNode = (undefined8 *)*systemCurrentNode;
+      nextNode = (undefined8 *)*currentNode;
     }
-    systemPreviousNode = systemCurrentNode;
-    systemCurrentNode = systemNextNode;
-    systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
+    previousNode = currentNode;
+    currentNode = nextNode;
+    nodeFlag = *(char *)((longlong)nextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = getSystemMemorySize(systemDataTable);
-    allocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
-    systemPreviousNode = systemAllocatedNode;
+  if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_180a01078,previousNode + 4,0x10), comparisonResult < 0)) {
+    allocationSize = getSystemMemorySize(systemTablePointer);
+    allocateSystemMemory(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
+    previousNode = allocatedNode;
   }
-  puVar7[6] = 0x431d7c8d7c475be2;
-  puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
-  puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  previousNode[6] = 0x431d7c8d7c475be2;
+  previousNode[7] = 0xb97f048d2153e1b0;
+  previousNode[8] = &UNK_180a00388;
+  previousNode[9] = 4;
+  previousNode[10] = initializationFunction;
   return;
 }
 
