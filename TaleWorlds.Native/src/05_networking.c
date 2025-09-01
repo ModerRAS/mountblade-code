@@ -12575,7 +12575,7 @@ LAB_18084c923:
   primaryNetworkFlag0 = (int)*(uint *)((longlong)connectionContext + 0x84) >> 0x1f;
   *(NetworkStatus *)(connectionContext + 0x10) = 0;
   if (0 < (int)((*(uint *)((longlong)connectionContext + 0x84) ^ primaryNetworkFlag0) - primaryNetworkFlag0)) {
-    FUN_18084d520(connectionContext + 0xf,0);
+    InitializeNetworkConnectionResources(connectionContext + 0xf,0);
   }
 LAB_18084ca76:
   plVar11 = (longlong *)*plVar15;
@@ -12782,7 +12782,7 @@ LAB_18084c923:
   primaryNetworkFlag0 = (int)*(uint *)((longlong)connectionContext + 0x84) >> 0x1f;
   *(NetworkStatus *)(connectionContext + 0x10) = 0;
   if (0 < (int)((*(uint *)((longlong)connectionContext + 0x84) ^ primaryNetworkFlag0) - primaryNetworkFlag0)) {
-    FUN_18084d520(connectionContext + 0xf,0);
+    InitializeNetworkConnectionResources(connectionContext + 0xf,0);
   }
 LAB_18084ca76:
   plVar11 = (longlong *)*plVar15;
@@ -12990,7 +12990,7 @@ LAB_18084c923:
   primaryNetworkFlag0 = (int)*(uint *)((longlong)connectionContext + 0x84) >> 0x1f;
   *(NetworkStatus *)(connectionContext + 0x10) = 0;
   if (0 < (int)((*(uint *)((longlong)connectionContext + 0x84) ^ primaryNetworkFlag0) - primaryNetworkFlag0)) {
-    FUN_18084d520(connectionContext + 0xf,0);
+    InitializeNetworkConnectionResources(connectionContext + 0xf,0);
   }
 LAB_18084ca76:
   plVar11 = (longlong *)*plVar15;
@@ -13155,7 +13155,7 @@ LAB_18084c923:
   uVar8 = (int)*(uint *)((longlong)unaff_R15 + 0x84) >> 0x1f;
   *(uint *)(unaff_R15 + 0x10) = primaryNetworkFlag3;
   if (0 < (int)((*(uint *)((longlong)unaff_R15 + 0x84) ^ uVar8) - uVar8)) {
-    FUN_18084d520(unaff_R15 + 0xf,0);
+    InitializeNetworkConnectionResources(unaff_R15 + 0xf,0);
   }
 LAB_18084ca76:
   plVar12 = (longlong *)*unaff_RSI;
@@ -14596,7 +14596,19 @@ NetworkHandle GetNetworkConnectionTimeoutStatus(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_18084d520(longlong *connectionContext,int packetData)
+/**
+ * @brief 网络连接数据初始化器
+ * 
+ * 该函数负责初始化网络连接数据，设置连接参数和状态
+ * 主要用于新网络连接的数据初始化工作
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据
+ * @return 初始化结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle InitializeNetworkConnectionResources(longlong *connectionContext,int packetData)
 
 {
   longlong lVar1;

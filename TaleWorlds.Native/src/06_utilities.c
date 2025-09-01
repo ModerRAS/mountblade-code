@@ -84519,8 +84519,19 @@ void InitializeSystemDataStructureAG(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941e00(void)
-void FUN_180941e00(void)
+ /**
+ * 初始化系统数据结构AH
+ * 初始化系统数据结构并进行完整性检查
+ * 
+ * 功能：
+ * 1. 调用 FUN_180320e20 初始化位于 0x180d497e0 的数据结构
+ * 2. 检查 _DAT_180d49970 是否为0，如果不为0则调用错误处理函数
+ * 3. 检查 _DAT_180d49950 是否为0，如果不为0则调用错误处理函数
+ * 4. 调用 FUN_180320b20 初始化位于 0x180d498a0 的数据结构
+ * 5. 将 _DAT_180d49830 设置为指向 UNK_18098bcb0
+ */
+void InitializeSystemDataStructureAH(void)
+void InitializeSystemDataStructureAH(void)
 
 {
   FUN_180320e20(0x180d497e0);
