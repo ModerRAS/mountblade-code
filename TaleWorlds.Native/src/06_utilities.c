@@ -3511,7 +3511,7 @@ uint8_t8 ValidateObjectRegistration(longlong objectContext)
 ulonglong ProcessSystemRequest(longlong requestParameters,longlong systemContext)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   int validationStatus;
@@ -4155,12 +4155,12 @@ uint8_t8 ValidateAndProcessObjectStatus(longlong objectContext)
 uint8_t8 InitializeObjectHandleB(longlong objectContext)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint validationResult;
-  uint uVar3;
-  uint8_t8 uVar4;
-  uint8_t8 *puVar5;
-  int iVar6;
+  uint unsignedValue3;
+  uint8_t8 byteValue4;
+  uint8_t8 *bytePointer5;
+  int integerValue6;
   float fVar7;
   uint8_t1 auVar8 [16];
   longlong lStackX_8;
@@ -4222,7 +4222,7 @@ uint8_t8 InitializeObjectHandleB(longlong objectContext)
 uint8_t8 InitializeObjectHandleC(longlong objectContext)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   uint8_t8 uVar3;
   uint8_t4 *puVar4;
@@ -4277,7 +4277,7 @@ uint8_t8 InitializeObjectHandleC(longlong objectContext)
 uint8_t8 InitializeObjectHandleD(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong in_RAX;
   uint8_t8 uVar3;
@@ -4645,7 +4645,7 @@ uint32_t ProcessSystemResource(void)
 
 {
   longlong in_RAX;
-  longlong lVar1;
+  longlong loopCounter;
   
   if (in_RAX == 0) {
     lVar1 = 0;
@@ -4742,7 +4742,7 @@ uint32_t ProcessResourceTask(void)
 
 {
   longlong in_RAX;
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = in_RAX + -8;
   if (in_RAX == 0) {
@@ -8462,7 +8462,7 @@ uint8_t8 ProcessObjectContextFloatRangeValidationAndClamping(longlong objectCont
 uint8_t8 ProcessParameterizedFloatComparison(longlong param_1, longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   uint8_t4 uStack_18;
   uint8_t4 uStack_14;
@@ -8499,7 +8499,7 @@ uint8_t8 ProcessParameterizedFloatComparison(longlong param_1, longlong param_2)
 uint8_t8 ProcessSimplifiedParameterizedFloatComparison(longlong param_1, longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   uint8_t4 uStack_18;
   uint8_t4 uStack_14;
@@ -9705,7 +9705,7 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
 
  
 {
-  longlong *plVar1;
+  longlong *processPointer;
   int iVar2;
   longlong resourceIndex;
   uint8_t1 auStack_c8 [32];
@@ -9789,7 +9789,7 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
 void ProcessResourceIndexAndSecurity(longlong param_1,uint8_t4 *param_2,longlong *param_3)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   int iVar2;
   longlong resourceIndex;
   uint8_t1 auStack_b8 [32];
@@ -9916,7 +9916,7 @@ ExecuteSecurityFinalization(void)
 ProcessResourceIndexOperation(longlong resource_handle, uint8_t4 *resource_data, longlong *resource_index)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   int iVar2;
   longlong resourceIndex;
   uint8_t1 auStack_c8 [32];
@@ -10137,7 +10137,7 @@ void ValidateAndCleanupResourceEntry(longlong param_1,uint8_t8 param_2)
 uint32_t ProcessSystemConfigurationAndValidation(longlong systemContext,uint8_t8 configurationData,uint validationFlags,longlong resultBuffer)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   uint validationResult;
   int iVar3;
   longlong *plVar4;
@@ -10206,7 +10206,7 @@ uint ValidateAndProcessDataContainer(longlong *param_1)
 {
   int iVar1;
   uint validationResult;
-  uint uVar3;
+  uint unsignedValue3;
   
   uVar3 = *(uint *)((longlong)param_1 + 0xc);
   validationResult = uVar3 ^ (int)uVar3 >> 0x1f;
@@ -10262,7 +10262,7 @@ uint ValidateAndProcessDataContainer(longlong *param_1)
 uint64_t ProcessObjectLifecycleManagement(longlong objectHandle)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   int iVar2;
   uint8_t8 uVar3;
   uint uVar4;
@@ -10330,7 +10330,7 @@ uint8_t8 CleanupResourcePoolAndReleaseMemory(longlong *param_1)
 {
   int iVar1;
   uint8_t8 validationResult;
-  uint uVar3;
+  uint unsignedValue3;
   
   uVar3 = *(uint *)((longlong)param_1 + 0xc);
   if ((int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f)) < 0) {
@@ -10509,7 +10509,7 @@ uint8_t8 ExpandResourcePoolCapacity(longlong *ResourcePoolHandle)
 uint8_t8 ExpandResourcePoolCapacitySimple(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int in_EAX;
   uint8_t8 validationResult;
   ulonglong uVar3;
@@ -10721,7 +10721,7 @@ HandleSystemError:
 void ProcessModuleInitialization(longlong param_1,void* param_2,int *param_3)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   char cVar2;
   int iVar3;
   int iVar4;
@@ -10964,7 +10964,7 @@ LAB_180895ccb:
 uint64_t ProcessExtendedParameterizedDataValidation(longlong extendedContext, uint8_t8 contextFlags, longlong operationIndex, uint hashValue)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   uint8_t8 *puVar3;
   int iVar4;
@@ -11495,7 +11495,7 @@ uint64_t CleanupResourcePoolAndReleaseMemory(uint8_t8 resourcePool, int cleanupF
   longlong resourceTable;
   uint8_t8 *puVar3;
   longlong lVar4;
-  uint8_t8 *puVar5;
+  uint8_t8 *bytePointer5;
   longlong *unaff_RBX;
   int unaff_EDI;
   
@@ -12088,10 +12088,10 @@ void ProcessPointerOperationAndReset(longlong *param_1)
 uint8_t8 ExpandResourceTableCapacity(longlong param_1)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   int *piVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   int tableEntry;
   
   if ((*(longlong *)(param_1 + 8) != 0) && (tableEntry = *(int *)(param_1 + 0x30), 0 < tableEntry)) {
@@ -12247,7 +12247,7 @@ uint8_t8 ValidateAndGetBufferContext(longlong param_1,uint8_t8 param_2,uint8_t8 
 void ProcessComplexResourceOperation(uint8_t8 param_1,longlong param_2,uint param_3,char param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   int iVar3;
   int iVar4;
@@ -12597,7 +12597,7 @@ void ModuleProcessErrorHandler(void)
 void ProcessComplexResourceWithRegisters(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   uint8_t4 uVar3;
   uint8_t4 uVar4;
@@ -12906,7 +12906,7 @@ LAB_1808974ec:
 7520(longlong *param_1,longlong *param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   uint8_t1 auStack_248 [32];
   uint8_t1 auStack_228 [512];
@@ -12985,7 +12985,7 @@ LAB_1808974ec:
   longlong resourceIndex;
   longlong lVar4;
   char cVar5;
-  int iVar6;
+  int integerValue6;
   uint uVar7;
   longlong lVar8;
   longlong lVar9;
@@ -13778,7 +13778,7 @@ void FloatProcessingErrorHandler(void)
 {
   float fVar1;
   int iVar2;
-  uint uVar3;
+  uint unsignedValue3;
   float fVar4;
   float *pfVar5;
   longlong unaff_RBP;
@@ -13949,12 +13949,12 @@ LAB_180897af6:
 7b40(longlong *param_1,longlong param_2,uint8_t4 param_3)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   int iVar3;
   int iVar4;
   int tableEntry;
-  int iVar6;
+  int integerValue6;
   int iVar7;
   uint8_t1 auStack_2a8 [32];
   uint8_t4 dataChecksumBuffer8 [2];
@@ -14067,7 +14067,7 @@ LAB_180897ce8:
 uint8_t8 InitializeResourceRenderingConfiguration(longlong *param_1)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   longlong resourceIndex;
   uint8_t4 uVar4;
@@ -14159,7 +14159,7 @@ uint8_t8 InitializeResourceRenderingConfiguration(longlong *param_1)
 uint8_t8 ValidateResourceRenderingState(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   longlong *unaff_RBX;
   
@@ -14212,7 +14212,7 @@ uint8_t8 ValidateResourceRenderingState(void)
   uint8_t4 *puVar3;
   longlong lVar4;
   char cVar5;
-  int iVar6;
+  int integerValue6;
   int iVar7;
   int iVar8;
   ulonglong uVar9;
@@ -14519,7 +14519,7 @@ LAB_18089866f:
   int iVar3;
   int iVar4;
   uint uVar5;
-  int iVar6;
+  int integerValue6;
   
   iVar2 = func_0x00018076b690(param_2);
   iVar1 = *(int *)(param_1 + 0x30);
@@ -14572,7 +14572,7 @@ uint8_t8 ProcessResourceDataExpansion(longlong *param_1,int param_2)
 {
   int iVar1;
   uint8_t8 validationResult;
-  uint uVar3;
+  uint unsignedValue3;
   
   uVar3 = (int)*(uint *)((longlong)param_1 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((longlong)param_1 + 0xc) ^ uVar3) - uVar3) < param_2) &&
@@ -14603,7 +14603,7 @@ uint8_t8 ProcessResourceDataExpansion(longlong *param_1,int param_2)
 uint8_t8 ProcessResourceTimeSynchronization(longlong *param_1,char param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   ulonglong uVar3;
   ulonglong uVar4;
@@ -14657,7 +14657,7 @@ uint8_t8 FindResourceHashTableEntry(longlong *param_1,char *param_2,uint8_t8 *pa
   char *pcVar1;
   uint8_t8 *pvalidationResult;
   byte bVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   char cVar5;
   char cVar6;
   int iVar7;
@@ -14958,7 +14958,7 @@ uint8_t4 ExtractResourceHashData(uint8_t8 param_1,int param_2,uint8_t4 *param_3)
 {
   uint8_t4 *presourceHash;
   uint8_t1 validationResult;
-  uint uVar3;
+  uint unsignedValue3;
   uint3 uVar4;
   uint8_t4 uVar5;
   uint8_t4 uVar6;
@@ -15531,7 +15531,7 @@ uint8_t8 ProcessResourceHashValidation(uint8_t8 *resourceHandle,longlong offset)
 uint8_t8 ProcessResourceDataParsing(longlong *dataContext,uint8_t4 *dataBuffer)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 *pvalidationResult;
   uint8_t8 uVar3;
   uint8_t4 auStackX_8 [2];
@@ -15809,7 +15809,7 @@ LAB_1808992a5:
 uint8_t8 ProcessResourceDataSerialization(longlong *dataContext,uint8_t4 *dataBuffer)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 *pvalidationResult;
   uint8_t8 uVar3;
   uint8_t4 auStackX_8 [2];
@@ -16159,7 +16159,7 @@ uint8_t8 QueryResourceTable(uint8_t8 param_1, longlong *param_2)
 {
   int iVar1;
   uint8_t8 validationResult;
-  uint uVar3;
+  uint unsignedValue3;
   longlong lVar4;
   int tableEntry;
   int aiStackX_18 [2];
@@ -16210,7 +16210,7 @@ uint8_t8 InitializeResourceBuffer(void)
 {
   int iVar1;
   uint8_t8 validationResult;
-  uint uVar3;
+  uint unsignedValue3;
   longlong *unaff_RBX;
   int iVar4;
   int in_stack_00000040;
@@ -16309,7 +16309,7 @@ uint8_t8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
 {
   int iVar1;
   int iVar2;
-  uint uVar3;
+  uint unsignedValue3;
   ulonglong uVar4;
   longlong lVar5;
   ulonglong uVar6;
@@ -17016,7 +17016,7 @@ uint8_t8 ProcessResourceDataNormalizationSimple(void)
   uint resourceHash;
   int iVar2;
   int iVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   uint8_t8 uStackX_8;
   
   uStackX_8 = CONCAT44(uStackX_8._4_4_,*param_2);
@@ -17314,7 +17314,7 @@ uint8_t8 ValidateResourceStatusFlags(longlong resourceContext, longlong statusPo
   short sVar1;
   int iVar2;
   ushort uVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   ushort uVar5;
   longlong lVar6;
   longlong lVar7;
@@ -18307,10 +18307,10 @@ void ValidateAndProcessResourceData(longlong resourceContext, uint8_t8 resourceD
 ulonglong ValidateAndProcessResourceData(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   uint validationResult;
   uint in_EAX;
-  uint uVar3;
+  uint unsignedValue3;
   ulonglong uVar4;
   ulonglong uVar5;
   longlong *unaff_RBX;
@@ -18642,7 +18642,7 @@ ulonglong ExecuteResourceDataValidation(void)
   ulonglong validationResult;
   uint8_t8 *unaff_RBX;
   longlong unaff_RBP;
-  uint uVar3;
+  uint unsignedValue3;
   bool in_CF;
   uint8_t1 auStackX_20 [4];
   uint8_t1 auStackX_24 [2];
@@ -18824,7 +18824,7 @@ b400(longlong param_1,uint8_t8 param_2)
 uint8_t8 ProcessResourceBufferData(longlong ResourceContext, longlong *ResourceData)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   char unaff_BPL;
   char in_stack_00000008;
@@ -18942,7 +18942,7 @@ LAB_1808a2e6d:
 uint8_t8 GetResourcePoolInfo(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong in_RAX;
   uint8_t8 uVar3;
@@ -19028,7 +19028,7 @@ LAB_1808a2e6d:
 uint8_t8 ValidateResourceTableIntegrity(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   uint8_t8 uVar3;
   longlong *unaff_RBX;
@@ -19097,7 +19097,7 @@ b599(void)
 uint8_t8 InitializeSystemResourceCheck(int ResourceCheckFlag)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   uint8_t8 validationResult;
   longlong *unaff_RBX;
   longlong unaff_RDI;
@@ -19159,7 +19159,7 @@ LAB_1808a2e6d:
 b5fc(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   int iVar2;
   longlong *unaff_RBX;
   longlong unaff_RDI;
@@ -19237,7 +19237,7 @@ uint8_t8 ValidateResourceHash(longlong ResourceContext,uint8_t8 *ResourceData)
 {
   uint8_t8 resourceHash;
   int iVar2;
-  uint uVar3;
+  uint unsignedValue3;
   uint uVar4;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
@@ -19296,7 +19296,7 @@ b6df(void)
 {
   int iVar1;
   int iVar2;
-  uint uVar3;
+  uint unsignedValue3;
   uint uStack00000000000000a8;
   
   uStack00000000000000a8 = 0;
@@ -19352,9 +19352,9 @@ b7c7(void)
 ulonglong ProcessResourceDataA(longlong param_1,longlong *param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
-  uint uVar3;
+  uint unsignedValue3;
   uint uVar4;
   ulonglong uVar5;
   ulonglong uVar6;
@@ -19530,9 +19530,9 @@ LAB_18089bbcc:
 ulonglong ProcessResourceDataB(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
-  uint uVar3;
+  uint unsignedValue3;
   uint uVar4;
   longlong in_RAX;
   ulonglong uVar5;
@@ -19702,9 +19702,9 @@ LAB_18089bbcc:
 ulonglong ProcessResourceDataC(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
-  uint uVar3;
+  uint unsignedValue3;
   uint uVar4;
   ulonglong uVar5;
   uint uVar6;
@@ -19856,9 +19856,9 @@ LAB_18089bbcc:
 ulonglong ProcessResourceDataD(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
-  uint uVar3;
+  uint unsignedValue3;
   uint uVar4;
   ulonglong uVar5;
   uint uVar6;
@@ -20010,9 +20010,9 @@ bbff(void)
 bc10(longlong param_1,uint8_t8 *param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
-  uint uVar3;
+  uint unsignedValue3;
   int iVar4;
   int tableEntry;
   uint uVar6;
@@ -20077,9 +20077,9 @@ bc10(longlong param_1,uint8_t8 *param_2)
 bc5a(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
-  uint uVar3;
+  uint unsignedValue3;
   int iVar4;
   int tableEntry;
   longlong unaff_RBX;
@@ -20299,7 +20299,7 @@ ValidateResourceIntegrity(void)
   uint in_EAX;
   int iVar1;
   int iVar2;
-  uint uVar3;
+  uint unsignedValue3;
   uint8_t8 *unaff_RBX;
   uint uVar4;
   longlong lVar5;
@@ -20428,7 +20428,7 @@ ulonglong ProcessResourceDataReadAndValidate(longlong param_1,uint8_t8 *param_2)
 {
   int iVar1;
   int iVar2;
-  uint uVar3;
+  uint unsignedValue3;
   ulonglong uVar4;
   uint uVar5;
   uint8_t8 *puVar6;
@@ -21522,7 +21522,7 @@ c61e(void)
 ulonglong ResourceDataManager(longlong param_1,longlong *param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   uint validationResult;
   ulonglong uVar3;
   uint8_t4 uVar4;
@@ -21882,10 +21882,10 @@ LAB_18089cbf6:
 ulonglong ResourceProcessingHandlerAlt1(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   int in_EAX;
-  uint uVar3;
+  uint unsignedValue3;
   ulonglong uVar4;
   longlong *unaff_RBX;
   longlong unaff_RBP;
@@ -22253,7 +22253,7 @@ LAB_18089cad8:
 ulonglong ResourceProcessingHandlerAlt2(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   uint8_t7 uVar3;
   uint uVar4;
@@ -22510,7 +22510,7 @@ LAB_18089cad8:
 ulonglong ResourceProcessingHandlerAlt3(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   uint8_t7 uVar3;
   uint uVar4;
@@ -22769,7 +22769,7 @@ LAB_18089cad8:
 ulonglong ProcessFloatParameterResourceHash(float param_1)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   uint8_t7 uVar3;
   uint uVar4;
@@ -23007,7 +23007,7 @@ cc41(void)
 ulonglong ResourceDataVerifier(longlong param_1,longlong *param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   uint validationResult;
   ulonglong uVar3;
   int iVar4;
@@ -23090,7 +23090,7 @@ LAB_18089cd76:
 ulonglong ValidateAndProcessResourceDataIntegrity(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   uint validationResult;
   longlong in_RAX;
   ulonglong uVar3;
@@ -23208,9 +23208,9 @@ ce25(void)
 ulonglong ValidateResourcePackageStructure(longlong param_1,longlong *param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   ulonglong validationResult;
-  uint uVar3;
+  uint unsignedValue3;
   bool bVar4;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
@@ -23335,10 +23335,10 @@ LAB_18089d07f:
 ulonglong ExecuteResourceDataIntegrityValidation(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong in_RAX;
   ulonglong validationResult;
-  uint uVar3;
+  uint unsignedValue3;
   longlong *unaff_RDI;
   longlong unaff_R14;
   bool bVar4;
@@ -23460,7 +23460,7 @@ LAB_18089d07f:
 ulonglong ProcessResourceDataValidationFlow(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   uint in_EAX;
   uint validationResult;
   ulonglong unaff_RBX;
@@ -23731,7 +23731,7 @@ d23a(void)
 uint8_t8 ProcessSPRPResource(uint8_t8 ResourceHandle,longlong *ResourceTable)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   uint8_t8 uVar3;
   int aiStackX_18 [2];
@@ -23840,7 +23840,7 @@ LAB_18089d435:
 uint8_t8 ManageResourceTable(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   uint8_t8 uVar3;
   longlong *unaff_RBX;
@@ -24859,9 +24859,9 @@ uint8_t8 ResourceContextProcessor(longlong param_1,uint8_t8 *param_2)
 ulonglong ProcessResourceDataExtraction(longlong param_1,longlong *param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   ulonglong validationResult;
-  uint uVar3;
+  uint unsignedValue3;
   uint uVar4;
   uint uVar6;
   ulonglong uVar7;
@@ -24988,7 +24988,7 @@ LAB_18089e447:
 ulonglong ValidateAndProcessResourceData(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong in_RAX;
   ulonglong validationResult;
   ulonglong uVar3;
@@ -25103,7 +25103,7 @@ LAB_18089e447:
 ulonglong ValidateAndProcessResourceDataVariantB(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   ulonglong validationResult;
   ulonglong uVar3;
   longlong *unaff_RBX;
@@ -25214,7 +25214,7 @@ LAB_18089e447:
 ulonglong ValidateAndProcessResourceDataVariantC(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   ulonglong validationResult;
   ulonglong uVar3;
   longlong *unaff_RBX;
@@ -25344,7 +25344,7 @@ ulonglong ProcessComplexResourceOperations(longlong param_1,uint8_t8 *param_2)
 {
   uint8_t4 resourceHash;
   uint8_t8 validationResult;
-  uint uVar3;
+  uint unsignedValue3;
   ulonglong uVar4;
   uint8_t4 *puVar5;
   longlong lVar6;
@@ -25462,7 +25462,7 @@ ulonglong ProcessResourceHashCalculationAndValidation(void)
   uint8_t4 uVar3;
   uint8_t4 uVar4;
   uint uVar5;
-  int iVar6;
+  int integerValue6;
   uint8_t4 *puVar7;
   ulonglong uVar8;
   longlong lVar9;
@@ -25681,9 +25681,9 @@ e811(void)
 ulonglong ProcessResourceTableOperationsAndDataValidation(longlong param_1,longlong *param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
-  uint uVar3;
+  uint unsignedValue3;
   ulonglong uVar4;
   ulonglong uVar5;
   uint8_t4 uVar6;
@@ -25998,9 +25998,9 @@ LAB_18089ed1b:
 ulonglong ProcessResourceTableValidationAndOperations(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
-  uint uVar3;
+  uint unsignedValue3;
   longlong in_RAX;
   ulonglong uVar4;
   ulonglong uVar5;
@@ -26306,10 +26306,10 @@ LAB_18089ed1b:
 ulonglong ProcessResourceDataValidationAndAllocation(uint8_t8 param_1,uint8_t8 param_2,ulonglong param_3)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   uint in_EAX;
-  uint uVar3;
+  uint unsignedValue3;
   ulonglong uVar4;
   ulonglong uVar5;
   longlong unaff_RBP;
@@ -27336,7 +27336,7 @@ uint8_t8 ModelResourceProcessor(longlong param_1,longlong *param_2)
 ulonglong ProcessResourceCertificateValidation(longlong param_1,longlong *param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint validationResult;
   uint8_t4 *puVar3;
   ulonglong uVar4;
@@ -27417,7 +27417,7 @@ ulonglong ProcessResourceCertificateValidation(longlong param_1,longlong *param_
 ulonglong ValidateResourceCertificateChain(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint validationResult;
   longlong in_RAX;
   ulonglong uVar3;
@@ -27491,7 +27491,7 @@ ulonglong ValidateResourceCertificateChain(void)
 ulonglong ProcessResourceCertificateSigning(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint validationResult;
   ulonglong uVar3;
   longlong unaff_RBP;
@@ -27554,7 +27554,7 @@ ulonglong ProcessResourceCertificateSigning(void)
 ulonglong VerifyResourceCertificateIntegrity(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint validationResult;
   ulonglong uVar3;
   ulonglong unaff_RBX;
@@ -28400,29 +28400,47 @@ void ReleaseSystemResourceFlagVariant1(uint8_t8 exceptionCode, longlong exceptio
 
 
 
-void Unwind_180902040(uint8_t8 param_1,longlong param_2)
+/**
+ * @brief 释放系统资源标记（变体2）
+ * 
+ * 该函数负责在异常处理过程中释放系统资源
+ * 检查不同的资源标记状态并在必要时释放资源
+ * 
+ * @param exceptionCode 异常代码
+ * @param exceptionContext 异常上下文
+ */
+void ReleaseSystemResourceFlagVariant2(uint8_t8 exceptionCode, longlong exceptionContext)
 
 {
   if ((*(uint *)(resourceData + 0x20) & 2) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffd;
-    ReleaseSystemResource(param_2 + 0x30);
+    ReleaseSystemResource(exceptionContext + 0x30);
   }
   return;
 }
 
 
 
-void Unwind_180902070(uint8_t8 param_1,longlong param_2)
+/**
+ * @brief 重置资源描述符
+ * 
+ * 该函数负责重置资源描述符并清理相关状态
+ * 在异常处理过程中确保资源描述符处于正确的状态
+ * 
+ * @param exceptionCode 异常代码
+ * @param exceptionContext 异常上下文
+ */
+void ResetResourceDescriptor(uint8_t8 exceptionCode, longlong exceptionContext)
 
 {
-  *(uint8_t8 *)(param_2 + 0x68) = &ResourceDescriptorTemplate;
-  if (*(longlong *)(param_2 + 0x70) != 0) {
+  *(uint8_t8 *)(exceptionContext + 0x68) = &ResourceDescriptorTemplate;
+  if (*(longlong *)(exceptionContext + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t8 *)(param_2 + 0x70) = 0;
-  *(uint8_t4 *)(param_2 + 0x80) = 0;
-  *(uint8_t8 *)(param_2 + 0x68) = &SystemDataStructure;
+  *(uint8_t8 *)(exceptionContext + 0x70) = 0;
+  *(uint8_t4 *)(exceptionContext + 0x80) = 0;
+  *(uint8_t8 *)(exceptionContext + 0x68) = &SystemDataStructure;
   return;
 }
 
@@ -29150,7 +29168,7 @@ void Unwind_180902530(uint8_t8 param_1,longlong param_2)
 void Unwind_180902540(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerA;
@@ -29183,7 +29201,7 @@ void Unwind_180902540(uint8_t8 param_1,longlong param_2)
 void Unwind_180902550(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
   *(uint8_t8 *)(lVar1 + 0xd8) = &SystemResourceHandlerA;
@@ -29326,7 +29344,7 @@ void Unwind_1809025d0(void)
 void Unwind_1809025e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   
   plVar1 = (longlong *)(*(longlong *)(param_2 + 0x70) + 0xa0);
@@ -29403,7 +29421,7 @@ void Unwind_180902630(uint8_t8 param_1,longlong param_2)
 void Unwind_180902640(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   
   plVar1 = *(longlong **)(param_2 + 0x78);
@@ -29425,7 +29443,7 @@ void Unwind_180902640(uint8_t8 param_1,longlong param_2)
 void Unwind_180902650(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -29446,7 +29464,7 @@ void Unwind_180902650(uint8_t8 param_1,longlong param_2)
 void Unwind_180902660(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -29467,7 +29485,7 @@ void Unwind_180902660(uint8_t8 param_1,longlong param_2)
 void Unwind_180902670(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -29493,7 +29511,7 @@ void Unwind_180902670(uint8_t8 param_1,longlong param_2)
 void Unwind_180902680(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -29519,7 +29537,7 @@ void Unwind_180902680(uint8_t8 param_1,longlong param_2)
 void Unwind_180902690(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -29550,7 +29568,7 @@ void Unwind_180902690(uint8_t8 param_1,longlong param_2)
 void Unwind_1809026a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -29633,7 +29651,7 @@ void Unwind_180902720(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = *(longlong **)(param_2 + 0x70);
   uVar4 = 0xfffffffffffffffe;
@@ -29772,7 +29790,7 @@ void Unwind_1809027b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809027c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -29791,7 +29809,7 @@ void Unwind_1809027c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809027d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
   *(uint8_t8 *)(lVar1 + 0x50) = &SystemResourceHandlerTemplate;
@@ -29922,7 +29940,7 @@ void Unwind_180902860(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180902870(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -30039,7 +30057,7 @@ void Unwind_1809028d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809028e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
   *(uint8_t8 *)(lVar1 + 0x40) = &SystemResourceHandlerTemplate;
@@ -30271,7 +30289,7 @@ void Unwind_180902960(uint8_t8 param_1,longlong param_2)
 void Unwind_180902970(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -30429,7 +30447,7 @@ void Unwind_180902a50(uint8_t8 param_1,longlong param_2)
 void Unwind_180902a60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -30450,7 +30468,7 @@ void Unwind_180902a60(uint8_t8 param_1,longlong param_2)
 void Unwind_180902a70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -30488,7 +30506,7 @@ void Unwind_180902a70(uint8_t8 param_1,longlong param_2)
 void Unwind_180902a80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -30526,7 +30544,7 @@ void Unwind_180902a80(uint8_t8 param_1,longlong param_2)
 void Unwind_180902a90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -30641,7 +30659,7 @@ void Unwind_180902ae0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180902af0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x70) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -30664,7 +30682,7 @@ void Unwind_180902b00(uint8_t8 param_1,longlong param_2)
 void Unwind_180902b30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -30705,7 +30723,7 @@ void Unwind_180902b50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180902b60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -30743,7 +30761,7 @@ void Unwind_180902b60(uint8_t8 param_1,longlong param_2)
 void Unwind_180902b70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -30781,7 +30799,7 @@ void Unwind_180902b70(uint8_t8 param_1,longlong param_2)
 void Unwind_180902b80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
@@ -30800,7 +30818,7 @@ void Unwind_180902b80(uint8_t8 param_1,longlong param_2)
 void Unwind_180902b90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
@@ -30819,7 +30837,7 @@ void Unwind_180902b90(uint8_t8 param_1,longlong param_2)
 void Unwind_180902ba0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -30902,7 +30920,7 @@ void Unwind_180902bd0(uint8_t8 param_1,longlong param_2)
 void Unwind_180902be0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x90);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -31312,7 +31330,7 @@ void Unwind_180902ce0(uint8_t8 param_1,longlong param_2)
 void Unwind_180902cf0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -31353,7 +31371,7 @@ void Unwind_180902d10(uint8_t8 param_1,longlong param_2)
 void Unwind_180902d20(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -31367,7 +31385,7 @@ void Unwind_180902d20(uint8_t8 param_1,longlong param_2)
 void Unwind_180902d30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -31381,7 +31399,7 @@ void Unwind_180902d30(uint8_t8 param_1,longlong param_2)
 void Unwind_180902d40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
@@ -31399,7 +31417,7 @@ void Unwind_180902d40(uint8_t8 param_1,longlong param_2)
 void Unwind_180902d50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   uint8_t8 uVar3;
   
@@ -31431,7 +31449,7 @@ void Unwind_180902d50(uint8_t8 param_1,longlong param_2)
 void Unwind_180902d70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1600);
   if (plVar1 != (longlong *)0x0) {
@@ -31445,7 +31463,7 @@ void Unwind_180902d70(uint8_t8 param_1,longlong param_2)
 void Unwind_180902d90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1698);
   if (plVar1 != (longlong *)0x0) {
@@ -31459,7 +31477,7 @@ void Unwind_180902d90(uint8_t8 param_1,longlong param_2)
 void Unwind_180902db0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1800);
   if (plVar1 != (longlong *)0x0) {
@@ -31482,7 +31500,7 @@ void Unwind_180902dd0(void)
 void Unwind_180902df0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1858);
   if (plVar1 != (longlong *)0x0) {
@@ -31496,7 +31514,7 @@ void Unwind_180902df0(uint8_t8 param_1,longlong param_2)
 void Unwind_180902e10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -31519,7 +31537,7 @@ void Unwind_180902e10(uint8_t8 param_1,longlong param_2)
 void Unwind_180902e30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -31542,7 +31560,7 @@ void Unwind_180902e30(uint8_t8 param_1,longlong param_2)
 void Unwind_180902e40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -31673,7 +31691,7 @@ void Unwind_180902e80(uint8_t8 param_1,longlong param_2)
   uint8_t8 *pvalidationResult;
   ulonglong *puVar3;
   longlong lVar4;
-  uint8_t8 *puVar5;
+  uint8_t8 *bytePointer5;
   ulonglong uVar6;
   
   puVar3 = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x18);
@@ -31712,7 +31730,7 @@ void Unwind_180902e80(uint8_t8 param_1,longlong param_2)
 void Unwind_180902e90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x148) = &SystemResourceHandlerTemplate;
@@ -31735,7 +31753,7 @@ void Unwind_180902eb0(uint8_t8 param_1,longlong param_2)
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong *puVar4;
-  uint8_t8 *puVar5;
+  uint8_t8 *bytePointer5;
   ulonglong uVar6;
   
   puVar4 = (ulonglong *)(*(longlong *)(param_2 + 0x40) + 0x18);
@@ -31778,7 +31796,7 @@ void Unwind_180902ec0(uint8_t8 param_1,longlong param_2)
   uint8_t8 *pvalidationResult;
   ulonglong *puVar3;
   longlong lVar4;
-  uint8_t8 *puVar5;
+  uint8_t8 *bytePointer5;
   ulonglong uVar6;
   
   puVar3 = *(ulonglong **)(param_2 + 0x40);
@@ -31849,7 +31867,7 @@ void Unwind_180902f20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x888);
   uVar4 = 0xfffffffffffffffe;
@@ -31872,7 +31890,7 @@ void Unwind_180902f40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x8a8);
   uVar4 = 0xfffffffffffffffe;
@@ -31939,7 +31957,7 @@ void Unwind_180902f80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180902fa0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x918) = &SystemResourceHandlerTemplate;
@@ -32141,7 +32159,7 @@ void Unwind_1809030a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809030b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x58);
@@ -32167,7 +32185,7 @@ void Unwind_1809030c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809030d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x98);
   if (plVar1 != (longlong *)0x0) {
@@ -32181,7 +32199,7 @@ void Unwind_1809030d0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809030f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x68);
   FinalizeResourceOperation(lVar1 + 0x40);
@@ -32201,7 +32219,7 @@ void Unwind_1809030f0(uint8_t8 param_1,longlong param_2)
 void Unwind_180903100(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
@@ -32221,7 +32239,7 @@ void Unwind_180903100(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903110(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x68);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -32240,7 +32258,7 @@ void Unwind_180903110(uint8_t8 param_1,longlong param_2)
 void Unwind_180903120(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x78);
   if (*(longlong *)(lVar1 + 0x40) != 0) {
@@ -32335,7 +32353,7 @@ void Unwind_180903140(uint8_t8 param_1,longlong param_2)
 void Unwind_180903150(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x78);
   if (*(longlong *)(lVar1 + 0x40) != 0) {
@@ -32394,7 +32412,7 @@ void Unwind_180903160(uint8_t8 param_1,longlong param_2)
 void Unwind_180903170(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x48);
   if (*(longlong *)(lVar1 + 0x40) != 0) {
@@ -32472,7 +32490,7 @@ void Unwind_180903190(uint8_t8 param_1,longlong param_2)
 void Unwind_1809031a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -32493,7 +32511,7 @@ void Unwind_1809031a0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809031b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -32514,7 +32532,7 @@ void Unwind_1809031b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809031c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x98);
   if (plVar1 != (longlong *)0x0) {
@@ -32528,7 +32546,7 @@ void Unwind_1809031c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809031e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
@@ -32620,7 +32638,7 @@ void Unwind_180903200(uint8_t8 param_1,longlong param_2)
 void Unwind_180903210(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -32791,7 +32809,7 @@ void Unwind_180903310(uint8_t8 param_1,longlong param_2)
 void Unwind_180903320(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x78);
   InitializeResourceSystem();
@@ -32859,7 +32877,7 @@ void Unwind_180903350(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903360(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x40) = &SystemResourceHandlerTemplate;
@@ -32921,7 +32939,7 @@ void Unwind_180903430(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903440(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -33349,7 +33367,7 @@ void Unwind_180903520(uint8_t8 param_1,longlong param_2)
 void Unwind_180903540(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x328);
   if (plVar1 != (longlong *)0x0) {
@@ -33613,7 +33631,7 @@ void Unwind_180903610(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903620(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x140) != (code *)0x0) {
@@ -33643,7 +33661,7 @@ void Unwind_180903620(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903640(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1b0) != (code *)0x0) {
@@ -33673,7 +33691,7 @@ void Unwind_180903640(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903660(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x220) != (code *)0x0) {
@@ -33703,7 +33721,7 @@ void Unwind_180903660(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903680(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x290) != (code *)0x0) {
@@ -33733,7 +33751,7 @@ void Unwind_180903680(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809036a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x300) != (code *)0x0) {
@@ -33763,7 +33781,7 @@ void Unwind_1809036a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809036c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x370) != (code *)0x0) {
@@ -33793,7 +33811,7 @@ void Unwind_1809036c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809036e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x3e0) != (code *)0x0) {
@@ -33823,7 +33841,7 @@ void Unwind_1809036e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903700(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x450) != (code *)0x0) {
@@ -33853,7 +33871,7 @@ void Unwind_180903700(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903720(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x510) != (code *)0x0) {
@@ -33907,7 +33925,7 @@ void Unwind_180903720(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903740(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x580) != (code *)0x0) {
@@ -33974,7 +33992,7 @@ void Unwind_180903760(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903770(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x140) != (code *)0x0) {
@@ -34004,7 +34022,7 @@ void Unwind_180903770(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903790(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1b0) != (code *)0x0) {
@@ -34034,7 +34052,7 @@ void Unwind_180903790(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809037b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x220) != (code *)0x0) {
@@ -34064,7 +34082,7 @@ void Unwind_1809037b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809037d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x290) != (code *)0x0) {
@@ -34094,7 +34112,7 @@ void Unwind_1809037d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809037f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x300) != (code *)0x0) {
@@ -34124,7 +34142,7 @@ void Unwind_1809037f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903810(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x370) != (code *)0x0) {
@@ -34154,7 +34172,7 @@ void Unwind_180903810(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903830(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x3e0) != (code *)0x0) {
@@ -34184,7 +34202,7 @@ void Unwind_180903830(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903850(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x450) != (code *)0x0) {
@@ -34214,7 +34232,7 @@ void Unwind_180903850(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903870(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x510) != (code *)0x0) {
@@ -34268,7 +34286,7 @@ void Unwind_180903870(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903890(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x580) != (code *)0x0) {
@@ -34298,7 +34316,7 @@ void Unwind_180903890(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809038b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x88);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
@@ -34317,7 +34335,7 @@ void Unwind_1809038b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809038c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x88);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -34364,7 +34382,7 @@ void Unwind_1809038e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809038f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x4c0) != (code *)0x0) {
@@ -34394,7 +34412,7 @@ void Unwind_1809038f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903910(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x530) != (code *)0x0) {
@@ -34424,7 +34442,7 @@ void Unwind_180903910(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903930(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x5a0) != (code *)0x0) {
@@ -34454,7 +34472,7 @@ void Unwind_180903930(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903950(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x610) != (code *)0x0) {
@@ -34484,7 +34502,7 @@ void Unwind_180903950(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903970(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x680) != (code *)0x0) {
@@ -34514,7 +34532,7 @@ void Unwind_180903970(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903990(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x6f0) != (code *)0x0) {
@@ -34544,7 +34562,7 @@ void Unwind_180903990(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809039b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x760) != (code *)0x0) {
@@ -34574,7 +34592,7 @@ void Unwind_1809039b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809039d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 2000) != (code *)0x0) {
@@ -34604,7 +34622,7 @@ void Unwind_1809039d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809039f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x840) != (code *)0x0) {
@@ -34634,7 +34652,7 @@ void Unwind_1809039f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903a10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x8b0) != (code *)0x0) {
@@ -34664,7 +34682,7 @@ void Unwind_180903a10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903a30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x920) != (code *)0x0) {
@@ -34694,7 +34712,7 @@ void Unwind_180903a30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903a50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x990) != (code *)0x0) {
@@ -34724,7 +34742,7 @@ void Unwind_180903a50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903a70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xa08) != (code *)0x0) {
@@ -34754,7 +34772,7 @@ void Unwind_180903a70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903a90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xa80) != (code *)0x0) {
@@ -34798,7 +34816,7 @@ void Unwind_180903ab0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903ac0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x10) = &SystemResourceHandlerTemplate;
@@ -34817,7 +34835,7 @@ void Unwind_180903ac0(uint8_t8 param_1,longlong param_2)
 void Unwind_180903ad0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x30) = &SystemResourceHandlerTemplate;
@@ -34864,7 +34882,7 @@ void Unwind_180903af0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903b00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x4c0) != (code *)0x0) {
@@ -34894,7 +34912,7 @@ void Unwind_180903b00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903b20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x530) != (code *)0x0) {
@@ -34924,7 +34942,7 @@ void Unwind_180903b20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903b40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x5a0) != (code *)0x0) {
@@ -34954,7 +34972,7 @@ void Unwind_180903b40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903b60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x610) != (code *)0x0) {
@@ -34984,7 +35002,7 @@ void Unwind_180903b60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903b80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x680) != (code *)0x0) {
@@ -35014,7 +35032,7 @@ void Unwind_180903b80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903ba0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x6f0) != (code *)0x0) {
@@ -35044,7 +35062,7 @@ void Unwind_180903ba0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903bc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x760) != (code *)0x0) {
@@ -35074,7 +35092,7 @@ void Unwind_180903bc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903be0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 2000) != (code *)0x0) {
@@ -35104,7 +35122,7 @@ void Unwind_180903be0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903c00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x840) != (code *)0x0) {
@@ -35134,7 +35152,7 @@ void Unwind_180903c00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903c20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x8b0) != (code *)0x0) {
@@ -35164,7 +35182,7 @@ void Unwind_180903c20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903c40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x920) != (code *)0x0) {
@@ -35194,7 +35212,7 @@ void Unwind_180903c40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903c60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x990) != (code *)0x0) {
@@ -35224,7 +35242,7 @@ void Unwind_180903c60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903c80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xa08) != (code *)0x0) {
@@ -35254,7 +35272,7 @@ void Unwind_180903c80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903ca0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xa80) != (code *)0x0) {
@@ -35284,7 +35302,7 @@ void Unwind_180903ca0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903cc0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x88);
   *(uint8_t8 *)(lVar1 + 0x10) = &SystemResourceHandlerTemplate;
@@ -35303,7 +35321,7 @@ void Unwind_180903cc0(uint8_t8 param_1,longlong param_2)
 void Unwind_180903cd0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x88);
   *(uint8_t8 *)(lVar1 + 0x30) = &SystemResourceHandlerTemplate;
@@ -35336,7 +35354,7 @@ void Unwind_180903ce0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903cf0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 400) != (code *)0x0) {
@@ -35390,7 +35408,7 @@ void Unwind_180903cf0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903d10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x250) != (code *)0x0) {
@@ -35444,7 +35462,7 @@ void Unwind_180903d10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903d30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x310) != (code *)0x0) {
@@ -35498,7 +35516,7 @@ void Unwind_180903d30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903d50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x3d0) != (code *)0x0) {
@@ -35552,7 +35570,7 @@ void Unwind_180903d50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903d70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x490) != (code *)0x0) {
@@ -35606,7 +35624,7 @@ void Unwind_180903d70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903d90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x550) != (code *)0x0) {
@@ -35660,7 +35678,7 @@ void Unwind_180903d90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903db0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x610) != (code *)0x0) {
@@ -35714,7 +35732,7 @@ void Unwind_180903db0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903dd0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x6d0) != (code *)0x0) {
@@ -35768,7 +35786,7 @@ void Unwind_180903dd0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903df0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x790) != (code *)0x0) {
@@ -35822,7 +35840,7 @@ void Unwind_180903df0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903e10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x850) != (code *)0x0) {
@@ -35876,7 +35894,7 @@ void Unwind_180903e10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903e30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x910) != (code *)0x0) {
@@ -35930,7 +35948,7 @@ void Unwind_180903e30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903e50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x9d0) != (code *)0x0) {
@@ -35984,7 +36002,7 @@ void Unwind_180903e50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903e70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xa90) != (code *)0x0) {
@@ -36038,7 +36056,7 @@ void Unwind_180903e70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903e90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xb50) != (code *)0x0) {
@@ -36092,7 +36110,7 @@ void Unwind_180903e90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903eb0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xc10) != (code *)0x0) {
@@ -36146,7 +36164,7 @@ void Unwind_180903eb0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903ed0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xcd0) != (code *)0x0) {
@@ -36200,7 +36218,7 @@ void Unwind_180903ed0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903ef0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xd40) != (code *)0x0) {
@@ -36230,7 +36248,7 @@ void Unwind_180903ef0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903f10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xdb0) != (code *)0x0) {
@@ -36260,7 +36278,7 @@ void Unwind_180903f10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903f30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xe20) != (code *)0x0) {
@@ -36290,7 +36308,7 @@ void Unwind_180903f30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903f50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xee0) != (code *)0x0) {
@@ -36344,7 +36362,7 @@ void Unwind_180903f50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903f70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 4000) != (code *)0x0) {
@@ -36398,7 +36416,7 @@ void Unwind_180903f70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903f90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1060) != (code *)0x0) {
@@ -36452,7 +36470,7 @@ void Unwind_180903f90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903fb0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x10d0) != (code *)0x0) {
@@ -36482,7 +36500,7 @@ void Unwind_180903fb0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903fd0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1140) != (code *)0x0) {
@@ -36512,7 +36530,7 @@ void Unwind_180903fd0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180903ff0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x11b0) != (code *)0x0) {
@@ -36542,7 +36560,7 @@ void Unwind_180903ff0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904010(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1220) != (code *)0x0) {
@@ -36572,7 +36590,7 @@ void Unwind_180904010(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904030(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1290) != (code *)0x0) {
@@ -36602,7 +36620,7 @@ void Unwind_180904030(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904050(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1300) != (code *)0x0) {
@@ -36632,7 +36650,7 @@ void Unwind_180904050(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904070(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1370) != (code *)0x0) {
@@ -36665,7 +36683,7 @@ void Unwind_180904090(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x1380);
   uVar4 = 0xfffffffffffffffe;
@@ -36688,7 +36706,7 @@ void Unwind_1809040b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x13a0);
   uVar4 = 0xfffffffffffffffe;
@@ -36708,7 +36726,7 @@ void Unwind_1809040b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809040d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -36755,7 +36773,7 @@ void Unwind_1809040f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904100(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -36807,7 +36825,7 @@ void Unwind_180904120(uint8_t8 param_1,longlong param_2)
 void Unwind_180904130(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -36826,7 +36844,7 @@ void Unwind_180904130(uint8_t8 param_1,longlong param_2)
 void Unwind_180904140(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 0x40) = &SystemResourceHandlerTemplate;
@@ -36845,7 +36863,7 @@ void Unwind_180904140(uint8_t8 param_1,longlong param_2)
 void Unwind_180904150(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 0x60) = &SystemResourceHandlerTemplate;
@@ -36864,7 +36882,7 @@ void Unwind_180904150(uint8_t8 param_1,longlong param_2)
 void Unwind_180904160(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 0x80) = &SystemResourceHandlerTemplate;
@@ -36897,7 +36915,7 @@ void Unwind_180904180(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809041a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x60) = &SystemResourceHandlerTemplate;
@@ -36930,7 +36948,7 @@ void Unwind_1809041b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809041d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 400) != (code *)0x0) {
@@ -36984,7 +37002,7 @@ void Unwind_1809041d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809041f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x250) != (code *)0x0) {
@@ -37038,7 +37056,7 @@ void Unwind_1809041f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904210(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x310) != (code *)0x0) {
@@ -37092,7 +37110,7 @@ void Unwind_180904210(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904230(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x3d0) != (code *)0x0) {
@@ -37146,7 +37164,7 @@ void Unwind_180904230(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904250(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x490) != (code *)0x0) {
@@ -37200,7 +37218,7 @@ void Unwind_180904250(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904270(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x550) != (code *)0x0) {
@@ -37254,7 +37272,7 @@ void Unwind_180904270(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904290(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x610) != (code *)0x0) {
@@ -37308,7 +37326,7 @@ void Unwind_180904290(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809042b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x6d0) != (code *)0x0) {
@@ -37362,7 +37380,7 @@ void Unwind_1809042b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809042d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x790) != (code *)0x0) {
@@ -37416,7 +37434,7 @@ void Unwind_1809042d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809042f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x850) != (code *)0x0) {
@@ -37470,7 +37488,7 @@ void Unwind_1809042f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904310(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x910) != (code *)0x0) {
@@ -37524,7 +37542,7 @@ void Unwind_180904310(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904330(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x9d0) != (code *)0x0) {
@@ -37578,7 +37596,7 @@ void Unwind_180904330(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904350(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xa90) != (code *)0x0) {
@@ -37632,7 +37650,7 @@ void Unwind_180904350(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904370(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xb50) != (code *)0x0) {
@@ -37686,7 +37704,7 @@ void Unwind_180904370(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904390(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xc10) != (code *)0x0) {
@@ -37740,7 +37758,7 @@ void Unwind_180904390(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809043b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xcd0) != (code *)0x0) {
@@ -37794,7 +37812,7 @@ void Unwind_1809043b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809043d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xd40) != (code *)0x0) {
@@ -37824,7 +37842,7 @@ void Unwind_1809043d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809043f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xdb0) != (code *)0x0) {
@@ -37854,7 +37872,7 @@ void Unwind_1809043f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904410(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xe20) != (code *)0x0) {
@@ -37884,7 +37902,7 @@ void Unwind_180904410(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904430(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xee0) != (code *)0x0) {
@@ -37938,7 +37956,7 @@ void Unwind_180904430(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904450(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 4000) != (code *)0x0) {
@@ -37992,7 +38010,7 @@ void Unwind_180904450(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904470(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1060) != (code *)0x0) {
@@ -38046,7 +38064,7 @@ void Unwind_180904470(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904490(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x10d0) != (code *)0x0) {
@@ -38076,7 +38094,7 @@ void Unwind_180904490(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809044b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1140) != (code *)0x0) {
@@ -38106,7 +38124,7 @@ void Unwind_1809044b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809044d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x11b0) != (code *)0x0) {
@@ -38136,7 +38154,7 @@ void Unwind_1809044d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809044f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1220) != (code *)0x0) {
@@ -38166,7 +38184,7 @@ void Unwind_1809044f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904510(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1290) != (code *)0x0) {
@@ -38196,7 +38214,7 @@ void Unwind_180904510(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904530(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1300) != (code *)0x0) {
@@ -38226,7 +38244,7 @@ void Unwind_180904530(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180904550(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1370) != (code *)0x0) {
@@ -38259,7 +38277,7 @@ void Unwind_180904570(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x1380);
   uVar4 = 0xfffffffffffffffe;
@@ -38282,7 +38300,7 @@ void Unwind_180904590(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x13a0);
   uVar4 = 0xfffffffffffffffe;
@@ -38305,7 +38323,7 @@ void Unwind_1809045b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = *(longlong **)(param_2 + 0x88);
   uVar4 = 0xfffffffffffffffe;
@@ -38471,7 +38489,7 @@ void Unwind_1809046b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809046c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
@@ -38490,7 +38508,7 @@ void Unwind_1809046c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809046d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
@@ -38700,7 +38718,7 @@ void Unwind_180904800(uint8_t8 param_1,longlong param_2)
 void Unwind_180904810(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x40) = &SystemResourceHandlerTemplate;
@@ -38727,7 +38745,7 @@ void Unwind_180904810(uint8_t8 param_1,longlong param_2)
 void Unwind_180904820(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -38847,7 +38865,7 @@ void Unwind_1809048d0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809048e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x48);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -38866,7 +38884,7 @@ void Unwind_1809048e0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809048f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x68);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -39715,7 +39733,7 @@ void Unwind_180904b00(uint8_t8 param_1,longlong param_2)
 void Catch_180904b10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
@@ -39734,7 +39752,7 @@ void Catch_180904b10(uint8_t8 param_1,longlong param_2)
 void Catch_180904b50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
   func_0x00018005f320(lVar1);
@@ -39801,7 +39819,7 @@ void Catch_180904b90(uint8_t8 param_1,longlong param_2)
 void Catch_180904c60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong *presourceIndex;
   ulonglong uVar4;
@@ -40258,7 +40276,7 @@ void Unwind_180904f40(uint8_t8 param_1,longlong param_2)
 void Unwind_180904f70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x30) = &SystemResourceHandlerTemplate;
@@ -41796,7 +41814,7 @@ void Unwind_180905630(uint8_t8 param_1,longlong param_2)
 void Unwind_180905640(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0xa8);
   if (*(code **)(lVar1 + 0x198) != (code *)0x0) {
@@ -41814,7 +41832,7 @@ void Unwind_180905640(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180905650(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x48);
   if (*(code **)(lVar1 + 0x198) != (code *)0x0) {
@@ -41962,7 +41980,7 @@ void Unwind_180905770(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = *(longlong **)(param_2 + 0x28);
   uVar4 = 0xfffffffffffffffe;
@@ -41996,12 +42014,12 @@ void Unwind_180905780(uint8_t8 param_1,uint *param_2)
 void Unwind_1809057b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   longlong *plVar4;
-  uint8_t8 *puVar5;
-  int iVar6;
+  uint8_t8 *bytePointer5;
+  int integerValue6;
   int *piVar7;
   longlong *plVar8;
   uint uVar9;
@@ -42121,7 +42139,7 @@ LAB_1801571ef:
 void Unwind_1809057c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0xc0) = &SystemResourceHandlerTemplate;
@@ -42233,7 +42251,7 @@ void Unwind_180905820(uint8_t8 param_1,longlong param_2)
 void Unwind_180905830(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x2e0) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -42259,7 +42277,7 @@ void Unwind_180905860(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x2e0) + 8);
   uVar4 = 0xfffffffffffffffe;
@@ -42282,7 +42300,7 @@ void Unwind_180905870(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = *(longlong **)(param_2 + 0x2e8);
   uVar4 = 0xfffffffffffffffe;
@@ -42338,7 +42356,7 @@ void Unwind_180905880(uint8_t8 param_1,longlong param_2)
 void Unwind_180905890(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -42369,7 +42387,7 @@ void Unwind_1809058a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x2e0) + 0x20);
   uVar4 = 0xfffffffffffffffe;
@@ -42392,7 +42410,7 @@ void Unwind_1809058b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x2e0) + 0x40);
   uVar4 = 0xfffffffffffffffe;
@@ -42412,7 +42430,7 @@ void Unwind_1809058b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809058c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -42494,7 +42512,7 @@ void Unwind_180905910(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x48) + 8);
   uVar4 = 0xfffffffffffffffe;
@@ -42552,7 +42570,7 @@ void Unwind_180905940(uint8_t8 param_1,longlong param_2)
   uint8_t8 *pvalidationResult;
   ulonglong *puVar3;
   longlong lVar4;
-  uint8_t8 *puVar5;
+  uint8_t8 *bytePointer5;
   ulonglong uVar6;
   
   puVar3 = *(ulonglong **)(param_2 + 0x48);
@@ -42593,12 +42611,12 @@ void Unwind_180905940(uint8_t8 param_1,longlong param_2)
 void Unwind_180905950(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   longlong *plVar4;
-  uint8_t8 *puVar5;
-  int iVar6;
+  uint8_t8 *bytePointer5;
+  int integerValue6;
   int *piVar7;
   longlong *plVar8;
   uint uVar9;
@@ -42721,7 +42739,7 @@ void Unwind_180905960(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x2e8) + 0x260);
   uVar4 = 0xfffffffffffffffe;
@@ -42772,7 +42790,7 @@ void Unwind_1809059a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = *(longlong **)(param_2 + 0x40);
   uVar4 = 0xfffffffffffffffe;
@@ -42828,7 +42846,7 @@ void Unwind_1809059d0(void)
 void Unwind_1809059f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xd0);
   if (plVar1 != (longlong *)0x0) {
@@ -42842,7 +42860,7 @@ void Unwind_1809059f0(uint8_t8 param_1,longlong param_2)
 void Unwind_180905a10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xd8);
   if (plVar1 != (longlong *)0x0) {
@@ -42856,7 +42874,7 @@ void Unwind_180905a10(uint8_t8 param_1,longlong param_2)
 void Unwind_180905a30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xe0);
   if (plVar1 != (longlong *)0x0) {
@@ -43028,7 +43046,7 @@ void Unwind_180905b30(void)
 void Unwind_180905b40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -43047,7 +43065,7 @@ void Unwind_180905b40(uint8_t8 param_1,longlong param_2)
 void Unwind_180905b50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x58) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -43285,7 +43303,7 @@ void Unwind_180905c00(uint8_t8 param_1,longlong param_2)
 void Unwind_180905c10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -43321,7 +43339,7 @@ void Unwind_180905c10(uint8_t8 param_1,longlong param_2)
 void Unwind_180905c20(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -43357,7 +43375,7 @@ void Unwind_180905c20(uint8_t8 param_1,longlong param_2)
 void Unwind_180905c30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -43393,7 +43411,7 @@ void Unwind_180905c30(uint8_t8 param_1,longlong param_2)
 void Unwind_180905c40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -43493,7 +43511,7 @@ void Unwind_180905c50(uint8_t8 param_1,longlong param_2)
 void Unwind_180905c60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -43529,7 +43547,7 @@ void Unwind_180905c60(uint8_t8 param_1,longlong param_2)
 void Unwind_180905c80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -43565,7 +43583,7 @@ void Unwind_180905c80(uint8_t8 param_1,longlong param_2)
 void Unwind_180905c90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -43832,7 +43850,7 @@ void Unwind_180905df0(uint8_t8 param_1,longlong param_2)
 void Catch_180905e00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   func_0x00018005f320(lVar1);
@@ -43847,7 +43865,7 @@ void Catch_180905e00(uint8_t8 param_1,longlong param_2)
 void Unwind_180905e40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   int *piVar2;
   longlong *presourceIndex;
   int iVar4;
@@ -44013,7 +44031,7 @@ void Unwind_180905ea0(uint8_t8 param_1,longlong param_2)
 void Unwind_180905ec0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -44034,7 +44052,7 @@ void Unwind_180905ec0(uint8_t8 param_1,longlong param_2)
 void Unwind_180905ee0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -44222,7 +44240,7 @@ void Unwind_180905f70(uint8_t8 param_1,longlong param_2)
 void Unwind_180905f80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -44324,7 +44342,7 @@ void Unwind_180905fa0(uint8_t8 param_1,longlong param_2)
 void Unwind_180905fc0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -44451,7 +44469,7 @@ void Unwind_180906050(uint8_t8 param_1,longlong param_2)
 void Unwind_180906060(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -44472,7 +44490,7 @@ void Unwind_180906060(uint8_t8 param_1,longlong param_2)
 void Unwind_180906070(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   
   presourceTable = *(longlong **)(param_2 + 0x60);
@@ -44490,7 +44508,7 @@ void Unwind_180906070(uint8_t8 param_1,longlong param_2)
 void Unwind_180906080(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x78);
@@ -44508,7 +44526,7 @@ void Unwind_180906080(uint8_t8 param_1,longlong param_2)
 void Unwind_180906090(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x60) + 0xf0);
@@ -44526,7 +44544,7 @@ void Unwind_180906090(uint8_t8 param_1,longlong param_2)
 void Unwind_1809060b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = (longlong *)**(longlong **)(param_2 + 0x68);
   if (plVar1 != *(longlong **)(param_2 + 0x68)) {
@@ -44550,7 +44568,7 @@ void Unwind_1809060c0(void)
 void Unwind_1809060d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = (longlong *)**(longlong **)(param_2 + 0x70);
   if (plVar1 != *(longlong **)(param_2 + 0x70)) {
@@ -44597,7 +44615,7 @@ void Unwind_180906100(uint8_t8 param_1,longlong param_2)
 void Unwind_180906110(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = (longlong *)**(longlong **)(param_2 + 0x40);
   if (plVar1 != *(longlong **)(param_2 + 0x40)) {
@@ -44621,7 +44639,7 @@ void Unwind_180906120(void)
 void Unwind_180906130(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = (longlong *)**(longlong **)(param_2 + 0x40);
   if (plVar1 != *(longlong **)(param_2 + 0x40)) {
@@ -44636,7 +44654,7 @@ void Unwind_180906130(uint8_t8 param_1,longlong param_2)
 void Unwind_180906140(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa8) + 0x1b8);
   if (plVar1 != (longlong *)0x0) {
@@ -44758,7 +44776,7 @@ void Unwind_180906190(uint8_t8 param_1,longlong param_2)
 void Unwind_1809061a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xb8) + 0x70);
   if (plVar1 != (longlong *)0x0) {
@@ -44772,7 +44790,7 @@ void Unwind_1809061a0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809061b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x70);
   if (plVar1 != (longlong *)0x0) {
@@ -44786,7 +44804,7 @@ void Unwind_1809061b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809061c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x70);
   if (plVar1 != (longlong *)0x0) {
@@ -44800,7 +44818,7 @@ void Unwind_1809061c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809061d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1b8);
   if (plVar1 != (longlong *)0x0) {
@@ -45133,7 +45151,7 @@ void Unwind_180906480(uint8_t8 param_1,longlong param_2)
 void Unwind_180906490(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   
   plVar1 = *(longlong **)(param_2 + 0x58);
@@ -45210,7 +45228,7 @@ void Unwind_1809064b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809064c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -45253,7 +45271,7 @@ void Unwind_1809064c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809064d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -45296,7 +45314,7 @@ void Unwind_1809064d0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809064e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(longlong *)(lVar1 + 0x40) != 0) {
@@ -45317,7 +45335,7 @@ void Unwind_1809064e0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809064f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(longlong *)(lVar1 + 0x52) != 0) {
@@ -45338,7 +45356,7 @@ void Unwind_1809064f0(uint8_t8 param_1,longlong param_2)
 void Unwind_180906500(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -45381,7 +45399,7 @@ void Unwind_180906500(uint8_t8 param_1,longlong param_2)
 void Unwind_180906510(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -45457,7 +45475,7 @@ void Unwind_180906540(uint8_t8 param_1,longlong param_2)
 void Unwind_180906550(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(param_2 + 0x58);
   if (*plVar1 != 0) {
@@ -45478,7 +45496,7 @@ void Unwind_180906550(uint8_t8 param_1,longlong param_2)
 void Unwind_180906560(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x58);
   if (*(longlong *)(lVar1 + 0x12) != 0) {
@@ -45499,7 +45517,7 @@ void Unwind_180906560(uint8_t8 param_1,longlong param_2)
 void Unwind_180906570(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(param_2 + 0x50);
   if (*plVar1 != 0) {
@@ -45520,7 +45538,7 @@ void Unwind_180906570(uint8_t8 param_1,longlong param_2)
 void Unwind_180906580(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
   if (*(longlong *)(lVar1 + 0x12) != 0) {
@@ -45541,7 +45559,7 @@ void Unwind_180906580(uint8_t8 param_1,longlong param_2)
 void Unwind_180906590(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(param_2 + 0x60);
   if (*plVar1 != 0) {
@@ -45562,7 +45580,7 @@ void Unwind_180906590(uint8_t8 param_1,longlong param_2)
 void Unwind_1809065a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   if (*(longlong *)(lVar1 + 0x12) != 0) {
@@ -45655,7 +45673,7 @@ void Unwind_180906630(uint8_t8 param_1,longlong param_2)
 void Unwind_180906640(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x118);
   if (plVar1 != (longlong *)0x0) {
@@ -45669,7 +45687,7 @@ void Unwind_180906640(uint8_t8 param_1,longlong param_2)
 void Unwind_180906660(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x1b0);
   if (plVar1 != (longlong *)0x0) {
@@ -45683,7 +45701,7 @@ void Unwind_180906660(uint8_t8 param_1,longlong param_2)
 void Unwind_180906680(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x1b8);
   if (plVar1 != (longlong *)0x0) {
@@ -45697,7 +45715,7 @@ void Unwind_180906680(uint8_t8 param_1,longlong param_2)
 void Unwind_1809066a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x1c0);
   if (plVar1 != (longlong *)0x0) {
@@ -45722,7 +45740,7 @@ void Unwind_1809066c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809066e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x210);
   if (plVar1 != (longlong *)0x0) {
@@ -45739,7 +45757,7 @@ void Unwind_180906700(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0xa0) + 0x218);
   uVar4 = 0xfffffffffffffffe;
@@ -45759,7 +45777,7 @@ void Unwind_180906700(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180906720(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x268);
   if (plVar1 != (longlong *)0x0) {
@@ -45822,7 +45840,7 @@ void Unwind_1809067a0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809067b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x48);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -45856,7 +45874,7 @@ void Unwind_1809067c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809067d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x118);
   if (plVar1 != (longlong *)0x0) {
@@ -45870,7 +45888,7 @@ void Unwind_1809067d0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809067f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1b0);
   if (plVar1 != (longlong *)0x0) {
@@ -45884,7 +45902,7 @@ void Unwind_1809067f0(uint8_t8 param_1,longlong param_2)
 void Unwind_180906810(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1b8);
   if (plVar1 != (longlong *)0x0) {
@@ -45898,7 +45916,7 @@ void Unwind_180906810(uint8_t8 param_1,longlong param_2)
 void Unwind_180906830(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1c0);
   if (plVar1 != (longlong *)0x0) {
@@ -45923,7 +45941,7 @@ void Unwind_180906850(uint8_t8 param_1,longlong param_2)
 void Unwind_180906870(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x210);
   if (plVar1 != (longlong *)0x0) {
@@ -45940,7 +45958,7 @@ void Unwind_180906890(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x50) + 0x218);
   uVar4 = 0xfffffffffffffffe;
@@ -45960,7 +45978,7 @@ void Unwind_180906890(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809068b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x268);
   if (plVar1 != (longlong *)0x0) {
@@ -46004,7 +46022,7 @@ void Unwind_180906940(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = *(longlong **)(param_2 + 0x58);
   uVar4 = 0xfffffffffffffffe;
@@ -46108,7 +46126,7 @@ void Unwind_1809069c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809069d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   if (*(longlong *)(param_2 + 0x68) != 0) {
     RollbackResourceTransaction();
@@ -46152,7 +46170,7 @@ void Unwind_1809069f0(uint8_t8 param_1,longlong param_2)
 void Unwind_180906a00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   if (*(longlong *)(param_2 + 0xa0) != 0) {
     RollbackResourceTransaction();
@@ -46221,7 +46239,7 @@ void Unwind_180906a40(uint8_t8 param_1,longlong param_2)
 void Unwind_180906a50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x180) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -46281,7 +46299,7 @@ void Unwind_180906a90(uint8_t8 param_1,longlong param_2)
 void Unwind_180906ac0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   if (*(longlong *)(param_2 + 0x28) != 0) {
     RollbackResourceTransaction();
@@ -46328,7 +46346,7 @@ void Unwind_180906ae0(uint8_t8 param_1,longlong param_2)
 void Unwind_180906af0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -46491,7 +46509,7 @@ void Unwind_180906b60(uint8_t8 param_1,longlong param_2)
 void Unwind_180906b70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   if (*(longlong *)(param_2 + 0x30) != 0) {
     RollbackResourceTransaction();
@@ -46538,7 +46556,7 @@ void Unwind_180906b90(uint8_t8 param_1,longlong param_2)
 void Unwind_180906ba0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x20) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -46741,7 +46759,7 @@ void Unwind_180906c50(uint8_t8 param_1,longlong param_2)
 void Unwind_180906c60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   for (plVar1 = *(longlong **)(param_2 + 0xf8); plVar1 != *(longlong **)(param_2 + 0x100);
       plVar1 = plVar1 + 4) {
@@ -46762,7 +46780,7 @@ void Unwind_180906c60(uint8_t8 param_1,longlong param_2)
 void Unwind_180906c70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   for (plVar1 = *(longlong **)(param_2 + 0xd8); plVar1 != *(longlong **)(param_2 + 0xe0);
       plVar1 = plVar1 + 4) {
@@ -46891,7 +46909,7 @@ void Unwind_180906ca0(uint8_t8 param_1,longlong param_2)
 void Unwind_180906cb0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   for (plVar1 = *(longlong **)(param_2 + 0x30); plVar1 != *(longlong **)(param_2 + 0x38);
       plVar1 = plVar1 + 4) {
@@ -46984,7 +47002,7 @@ void Unwind_180906cd0(uint8_t8 param_1,longlong param_2)
 void Unwind_180906ce0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   for (plVar1 = *(longlong **)(param_2 + 0xf8); plVar1 != *(longlong **)(param_2 + 0x100);
       plVar1 = plVar1 + 4) {
@@ -47113,7 +47131,7 @@ void Unwind_180906d10(uint8_t8 param_1,longlong param_2)
 void Unwind_180906d20(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   for (plVar1 = *(longlong **)(param_2 + 0xd8); plVar1 != *(longlong **)(param_2 + 0xe0);
       plVar1 = plVar1 + 4) {
@@ -47422,7 +47440,7 @@ void Unwind_180906da0(uint8_t8 param_1,longlong param_2)
 void Unwind_180906db0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   for (plVar1 = *(longlong **)(param_2 + 0x30); plVar1 != *(longlong **)(param_2 + 0x38);
       plVar1 = plVar1 + 4) {
@@ -47479,7 +47497,7 @@ void Unwind_180906dc0(uint8_t8 param_1,longlong param_2)
 void Unwind_180906dd0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   
   plVar1 = *(longlong **)(param_2 + 0x40);
@@ -47501,7 +47519,7 @@ void Unwind_180906dd0(uint8_t8 param_1,longlong param_2)
 void Unwind_180906de0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   
   plVar1 = *(longlong **)(param_2 + 0x40);
@@ -47635,7 +47653,7 @@ void Unwind_180906e80(uint8_t8 param_1,longlong param_2)
 void Unwind_180906e90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x178) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -47671,7 +47689,7 @@ void Unwind_180906eb0(uint8_t8 param_1,longlong param_2)
 void Unwind_180906ec0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x178) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -47685,7 +47703,7 @@ void Unwind_180906ec0(uint8_t8 param_1,longlong param_2)
 void Unwind_180906ed0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x178) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -47699,7 +47717,7 @@ void Unwind_180906ed0(uint8_t8 param_1,longlong param_2)
 void Unwind_180906ee0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x178);
@@ -47733,7 +47751,7 @@ void Unwind_180906ef0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180906f00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -47747,7 +47765,7 @@ void Unwind_180906f00(uint8_t8 param_1,longlong param_2)
 void Unwind_180906f10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -47761,7 +47779,7 @@ void Unwind_180906f10(uint8_t8 param_1,longlong param_2)
 void Unwind_180906f20(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x30);
@@ -47781,7 +47799,7 @@ void Unwind_180906f20(uint8_t8 param_1,longlong param_2)
 void Unwind_180906f30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xb0) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -47795,7 +47813,7 @@ void Unwind_180906f30(uint8_t8 param_1,longlong param_2)
 void Unwind_180906f40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xb0) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -47843,7 +47861,7 @@ void Unwind_180906f70(uint8_t8 param_1,longlong param_2)
 void Unwind_180906f80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -47898,7 +47916,7 @@ void Unwind_180906ff0(uint8_t8 param_1,longlong param_2)
 void CleanupResourceHandleA(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0xd0);
@@ -47940,7 +47958,7 @@ void Unwind_180907020(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180907030(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x160);
@@ -47993,7 +48011,7 @@ void Unwind_180907060(uint8_t8 param_1,longlong param_2)
 void Unwind_180907070(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xd0) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -48007,7 +48025,7 @@ void Unwind_180907070(uint8_t8 param_1,longlong param_2)
 void Unwind_180907080(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xd0) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -48043,7 +48061,7 @@ void Unwind_1809070a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809070b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x160) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -48057,7 +48075,7 @@ void Unwind_1809070b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809070c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x160) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -48082,7 +48100,7 @@ void Unwind_1809070d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809070e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -48096,7 +48114,7 @@ void Unwind_1809070e0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809070f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -48110,7 +48128,7 @@ void Unwind_1809070f0(uint8_t8 param_1,longlong param_2)
 void Unwind_180907100(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x28);
@@ -48130,7 +48148,7 @@ void Unwind_180907100(uint8_t8 param_1,longlong param_2)
 void Unwind_180907110(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x20) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -48144,7 +48162,7 @@ void Unwind_180907110(uint8_t8 param_1,longlong param_2)
 void Unwind_180907120(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x20);
@@ -48327,7 +48345,7 @@ void Unwind_180907210(uint8_t8 param_1,longlong param_2)
 void Unwind_180907230(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
   ReleaseSystemResourceHandle(*(uint8_t8 *)(lVar1 + 0xb0));
@@ -48405,7 +48423,7 @@ void Unwind_1809072a0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809072c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   ReleaseSystemResourceHandle(*(uint8_t8 *)(lVar1 + 0xb0));
@@ -48594,7 +48612,7 @@ void Unwind_180907370(uint8_t8 param_1,longlong param_2)
 void Unwind_180907380(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x78);
@@ -48614,7 +48632,7 @@ void Unwind_180907380(uint8_t8 param_1,longlong param_2)
 void Unwind_180907390(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x80) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -48628,7 +48646,7 @@ void Unwind_180907390(uint8_t8 param_1,longlong param_2)
 void Unwind_1809073a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x80) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -48642,7 +48660,7 @@ void Unwind_1809073a0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809073b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x80);
@@ -48662,7 +48680,7 @@ void Unwind_1809073b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809073c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x88) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -48676,7 +48694,7 @@ void Unwind_1809073c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809073d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x88) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -48690,7 +48708,7 @@ void Unwind_1809073d0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809073e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x78) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -48704,7 +48722,7 @@ void Unwind_1809073e0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809073f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x78) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -48941,7 +48959,7 @@ void Unwind_180907560(uint8_t8 param_1,longlong param_2)
 void Unwind_180907570(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -48955,7 +48973,7 @@ void Unwind_180907570(uint8_t8 param_1,longlong param_2)
 void Unwind_180907580(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -48982,7 +49000,7 @@ void Unwind_180907590(uint8_t8 param_1,longlong param_2)
 void Unwind_1809075a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -48996,7 +49014,7 @@ void Unwind_1809075a0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809075b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -49010,7 +49028,7 @@ void Unwind_1809075b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809075c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x30);
   if (plVar1 != (longlong *)0x0) {
@@ -49024,7 +49042,7 @@ void Unwind_1809075c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809075d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x38);
   if (plVar1 != (longlong *)0x0) {
@@ -49038,7 +49056,7 @@ void Unwind_1809075d0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809075e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x40);
   if (plVar1 != (longlong *)0x0) {
@@ -49052,7 +49070,7 @@ void Unwind_1809075e0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809075f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x48);
   if (plVar1 != (longlong *)0x0) {
@@ -49066,7 +49084,7 @@ void Unwind_1809075f0(uint8_t8 param_1,longlong param_2)
 void Unwind_180907600(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x50);
   if (plVar1 != (longlong *)0x0) {
@@ -49080,7 +49098,7 @@ void Unwind_180907600(uint8_t8 param_1,longlong param_2)
 void Unwind_180907610(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x58);
   if (plVar1 != (longlong *)0x0) {
@@ -49094,7 +49112,7 @@ void Unwind_180907610(uint8_t8 param_1,longlong param_2)
 void Unwind_180907620(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x60);
   if (plVar1 != (longlong *)0x0) {
@@ -49108,7 +49126,7 @@ void Unwind_180907620(uint8_t8 param_1,longlong param_2)
 void Unwind_180907630(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x20) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -49210,7 +49228,7 @@ void Unwind_1809076f0(uint8_t8 param_1,longlong param_2)
 void Unwind_180907700(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -49267,7 +49285,7 @@ void Unwind_180907710(uint8_t8 param_1,longlong param_2)
 void Unwind_180907720(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xb0);
   if (plVar1 != (longlong *)0x0) {
@@ -49319,7 +49337,7 @@ void Unwind_180907740(uint8_t8 param_1,longlong param_2)
 void Unwind_180907750(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xb0);
   if (plVar1 != (longlong *)0x0) {
@@ -49432,7 +49450,7 @@ void Unwind_1809077f0(void)
 void Unwind_180907800(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -49456,7 +49474,7 @@ void Unwind_180907810(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x20) + 0x28);
   uVar4 = 0xfffffffffffffffe;
@@ -49566,7 +49584,7 @@ void Unwind_180907880(uint8_t8 param_1,longlong param_2)
 void Unwind_1809078a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -49590,7 +49608,7 @@ void Unwind_1809078b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = *(longlong **)(param_2 + 0x28);
   uVar4 = 0xfffffffffffffffe;
@@ -49682,7 +49700,7 @@ void Unwind_180907910(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180907920(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -49763,7 +49781,7 @@ void Unwind_180907960(uint8_t8 param_1,longlong param_2)
 void Unwind_180907970(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = (longlong *)(param_2 + 0x50);
   if (*plVar1 != -1) {
@@ -49799,7 +49817,7 @@ void Unwind_180907990(uint8_t8 param_1,longlong param_2)
 void Unwind_1809079a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
@@ -49818,7 +49836,7 @@ void Unwind_1809079a0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809079b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x38) = &SystemResourceHandlerTemplate;
@@ -49837,7 +49855,7 @@ void Unwind_1809079b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809079c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x58) = &SystemResourceHandlerTemplate;
@@ -50122,7 +50140,7 @@ void Unwind_180907a80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180907a90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x28);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -51236,7 +51254,7 @@ void Unwind_180907f60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180907f70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = (longlong *)(param_2 + 0x38);
   if (*plVar1 != -1) {
@@ -51254,7 +51272,7 @@ void Unwind_180907f70(uint8_t8 param_1,longlong param_2)
 void Unwind_180907f80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(param_2 + 0x58);
   if (plVar1 == (longlong *)0x0) {
@@ -51476,7 +51494,7 @@ void Unwind_180908040(void)
 void Unwind_180908050(uint8_t8 param_1,uint8_t8 param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = _MemoryManagementArray;
   InitializeMemoryManagement(&MemoryManagementArray,_MemoryManagementArray[1],param_3,param_4,0xfffffffffffffffe);
@@ -51946,7 +51964,7 @@ void Unwind_180908340(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x388);
   uVar4 = 0xfffffffffffffffe;
@@ -52028,7 +52046,7 @@ void Unwind_180908460(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x388);
   uVar4 = 0xfffffffffffffffe;
@@ -52093,7 +52111,7 @@ void Unwind_180908520(uint8_t8 param_1,longlong param_2)
 void Unwind_180908550(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xd20);
   if (plVar1 != (longlong *)0x0) {
@@ -52170,7 +52188,7 @@ void Unwind_180908600(uint8_t8 param_1,longlong param_2)
 void Unwind_180908630(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xd20);
   if (plVar1 != (longlong *)0x0) {
@@ -52220,7 +52238,7 @@ void Unwind_180908650(uint8_t8 param_1,longlong param_2)
 void Unwind_180908660(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
@@ -52238,7 +52256,7 @@ void Unwind_180908660(uint8_t8 param_1,longlong param_2)
 void Unwind_180908670(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   uint8_t8 uVar3;
   
@@ -52270,7 +52288,7 @@ void Unwind_180908670(uint8_t8 param_1,longlong param_2)
 void Unwind_180908690(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1600);
   if (plVar1 != (longlong *)0x0) {
@@ -52284,7 +52302,7 @@ void Unwind_180908690(uint8_t8 param_1,longlong param_2)
 void Unwind_1809086b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1698);
   if (plVar1 != (longlong *)0x0) {
@@ -52298,7 +52316,7 @@ void Unwind_1809086b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809086d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1800);
   if (plVar1 != (longlong *)0x0) {
@@ -52321,7 +52339,7 @@ void Unwind_1809086f0(void)
 void Unwind_180908710(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1858);
   if (plVar1 != (longlong *)0x0) {
@@ -52335,7 +52353,7 @@ void Unwind_180908710(uint8_t8 param_1,longlong param_2)
 void Unwind_180908730(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -52376,7 +52394,7 @@ void Unwind_180908760(uint8_t8 param_1,longlong param_2)
 void Unwind_180908770(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -52475,7 +52493,7 @@ void Unwind_1809087c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809087d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   
   plVar1 = *(longlong **)(param_2 + 0x168);
@@ -52632,7 +52650,7 @@ void Unwind_180908850(uint8_t8 param_1,longlong param_2)
 void Unwind_180908860(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   
   plVar1 = *(longlong **)(param_2 + 0x168);
@@ -52765,7 +52783,7 @@ void Unwind_1809088f0(uint8_t8 param_1,longlong param_2)
 void Unwind_180908900(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
   *(uint8_t8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
@@ -52784,7 +52802,7 @@ void Unwind_180908900(uint8_t8 param_1,longlong param_2)
 void Unwind_180908910(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
   *(uint8_t8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
@@ -52827,7 +52845,7 @@ void Unwind_180908950(uint8_t8 param_1,longlong param_2)
 void Unwind_180908980(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   if (*(longlong *)(param_2 + 0x70) != 0) {
     RollbackResourceTransaction();
@@ -52874,7 +52892,7 @@ void Unwind_1809089a0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809089b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x20) + 0x60);
   if (plVar1 != (longlong *)0x0) {
@@ -53415,7 +53433,7 @@ void Unwind_180908af0(uint8_t8 param_1,longlong param_2)
 void Unwind_180908b00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x30);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -53501,7 +53519,7 @@ void Unwind_180908b40(uint8_t8 param_1,longlong param_2)
 void Unwind_180908b50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -53515,7 +53533,7 @@ void Unwind_180908b50(uint8_t8 param_1,longlong param_2)
 void Unwind_180908b60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -53540,7 +53558,7 @@ void Unwind_180908b70(uint8_t8 param_1,longlong param_2)
 void Unwind_180908b80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -53620,7 +53638,7 @@ void Unwind_180908bc0(uint8_t8 param_1,longlong param_2)
 void Unwind_180908bd0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x1b8);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
@@ -53730,7 +53748,7 @@ void Unwind_180908c40(uint8_t8 param_1,longlong param_2)
 void Unwind_180908c50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x1b8) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -53744,7 +53762,7 @@ void Unwind_180908c50(uint8_t8 param_1,longlong param_2)
 void Unwind_180908c60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x1b8);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -53763,7 +53781,7 @@ void Unwind_180908c60(uint8_t8 param_1,longlong param_2)
 void Unwind_180908c70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x1b8) + 0x58);
   if (plVar1 != (longlong *)0x0) {
@@ -53918,7 +53936,7 @@ void Unwind_180908db0(uint8_t8 param_1,longlong param_2)
 void Unwind_180908dc0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x108);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -54190,7 +54208,7 @@ void Unwind_180908e70(uint8_t8 param_1,longlong param_2)
 void Unwind_180908e80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
@@ -54210,7 +54228,7 @@ void Unwind_180908e80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180908e90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -54373,7 +54391,7 @@ uint8_t * Catch_180908f50(uint8_t8 param_1,longlong param_2)
 void Unwind_180908f90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   char cVar2;
   
   cVar2 = _uncaught_exception_std__YA_NXZ();
@@ -54400,7 +54418,7 @@ void Unwind_180908f90(uint8_t8 param_1,longlong param_2)
 void Unwind_180908fa0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)
             ((longlong)*(int *)(**(longlong **)(param_2 + 0x38) + 4) + 0x48 +
@@ -54423,7 +54441,7 @@ void Unwind_180908fa0(uint8_t8 param_1,longlong param_2)
 void Unwind_180908fb0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)
             ((longlong)*(int *)(*(longlong *)**(longlong **)(param_2 + 0x40) + 4) + 0x48 +
@@ -54466,7 +54484,7 @@ void Unwind_180909000(uint8_t8 param_1,longlong param_2)
 void Unwind_180909010(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   
   lVar1 = param_2 + 0x128;
@@ -54574,7 +54592,7 @@ void Unwind_180909090(uint8_t8 param_1,longlong param_2)
 void Unwind_1809090a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   if (*(longlong **)(lVar1 + 0x1d50) != (longlong *)0x0) {
@@ -54665,7 +54683,7 @@ void Unwind_1809090b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809090d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x121e0);
   if (plVar1 != (longlong *)0x0) {
@@ -54679,7 +54697,7 @@ void Unwind_1809090d0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809090f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c70);
   if (plVar1 != (longlong *)0x0) {
@@ -54693,7 +54711,7 @@ void Unwind_1809090f0(uint8_t8 param_1,longlong param_2)
 void Unwind_180909110(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c78);
   if (plVar1 != (longlong *)0x0) {
@@ -54707,7 +54725,7 @@ void Unwind_180909110(uint8_t8 param_1,longlong param_2)
 void Unwind_180909130(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c80);
   if (plVar1 != (longlong *)0x0) {
@@ -54721,7 +54739,7 @@ void Unwind_180909130(uint8_t8 param_1,longlong param_2)
 void Unwind_180909150(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c88);
   if (plVar1 != (longlong *)0x0) {
@@ -54735,7 +54753,7 @@ void Unwind_180909150(uint8_t8 param_1,longlong param_2)
 void Unwind_180909170(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c90);
   if (plVar1 != (longlong *)0x0) {
@@ -54749,7 +54767,7 @@ void Unwind_180909170(uint8_t8 param_1,longlong param_2)
 void Unwind_180909190(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1c98);
   if (plVar1 != (longlong *)0x0) {
@@ -54763,7 +54781,7 @@ void Unwind_180909190(uint8_t8 param_1,longlong param_2)
 void Unwind_1809091b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1ca0);
   if (plVar1 != (longlong *)0x0) {
@@ -54777,7 +54795,7 @@ void Unwind_1809091b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809091d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1ca8);
   if (plVar1 != (longlong *)0x0) {
@@ -54791,7 +54809,7 @@ void Unwind_1809091d0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809091f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cb0);
   if (plVar1 != (longlong *)0x0) {
@@ -54805,7 +54823,7 @@ void Unwind_1809091f0(uint8_t8 param_1,longlong param_2)
 void Unwind_180909210(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cb8);
   if (plVar1 != (longlong *)0x0) {
@@ -54819,7 +54837,7 @@ void Unwind_180909210(uint8_t8 param_1,longlong param_2)
 void Unwind_180909230(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cc0);
   if (plVar1 != (longlong *)0x0) {
@@ -54833,7 +54851,7 @@ void Unwind_180909230(uint8_t8 param_1,longlong param_2)
 void Unwind_180909250(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cc8);
   if (plVar1 != (longlong *)0x0) {
@@ -54847,7 +54865,7 @@ void Unwind_180909250(uint8_t8 param_1,longlong param_2)
 void Unwind_180909270(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1cd0);
   if (plVar1 != (longlong *)0x0) {
@@ -54904,7 +54922,7 @@ void Unwind_180909290(uint8_t8 param_1,longlong param_2)
 void Unwind_1809092b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1d50);
   if (plVar1 != (longlong *)0x0) {
@@ -55031,7 +55049,7 @@ void Unwind_180909310(uint8_t8 param_1,longlong param_2)
 void Unwind_180909320(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   uint8_t8 *pvalidationResult;
   uint8_t8 *puVar3;
   longlong lVar4;
@@ -55179,7 +55197,7 @@ void Unwind_1809093a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809093b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   uint8_t8 *pvalidationResult;
   uint8_t8 *puVar3;
   longlong lVar4;
@@ -55260,7 +55278,7 @@ void Unwind_1809093b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809093c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   longlong lVar4;
@@ -55337,7 +55355,7 @@ void Unwind_1809093c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809093e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x90) + 0x8248);
   if (plVar1 != (longlong *)0x0) {
@@ -55392,7 +55410,7 @@ void Unwind_180909430(uint8_t8 param_1,longlong param_2)
 void Unwind_180909440(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xb8) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -55406,7 +55424,7 @@ void Unwind_180909440(uint8_t8 param_1,longlong param_2)
 void Unwind_180909450(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xb8) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -55451,7 +55469,7 @@ void Unwind_180909470(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180909480(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   lVar1 = *(longlong *)(param_2 + 0x148);
@@ -55488,7 +55506,7 @@ void Unwind_1809094a0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809094b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   lVar1 = *(longlong *)(param_2 + 0x148);
@@ -55507,7 +55525,7 @@ void Unwind_1809094b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809094c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -55528,7 +55546,7 @@ void Unwind_1809094c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809094d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   lVar1 = *(longlong *)(param_2 + 0x1c0);
@@ -55641,7 +55659,7 @@ void Unwind_180909540(uint8_t8 param_1,longlong param_2)
 void Unwind_180909550(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = (longlong *)(param_2 + 0x1e8);
   if (*plVar1 != -1) {
@@ -55823,7 +55841,7 @@ void Unwind_180909640(uint8_t8 param_1,longlong param_2)
 void Unwind_180909650(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   lVar1 = *(longlong *)(param_2 + 0x1c0);
@@ -56022,7 +56040,7 @@ void Unwind_1809096a0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809096b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   uint8_t8 *pvalidationResult;
   uint8_t8 *puVar3;
   longlong lVar4;
@@ -56103,7 +56121,7 @@ void Unwind_1809096b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809096c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   longlong lVar4;
@@ -56180,7 +56198,7 @@ void Unwind_1809096c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809096e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x8248);
   if (plVar1 != (longlong *)0x0) {
@@ -56230,7 +56248,7 @@ void Unwind_180909730(uint8_t8 param_1,longlong param_2)
 void Unwind_180909740(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x58) = &SystemResourceHandlerTemplate;
@@ -56274,7 +56292,7 @@ void Unwind_180909760(uint8_t8 param_1,longlong param_2)
 void Unwind_180909770(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x78);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -56293,7 +56311,7 @@ void Unwind_180909770(uint8_t8 param_1,longlong param_2)
 void Unwind_180909780(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
@@ -56885,7 +56903,7 @@ void Unwind_180909b20(uint8_t8 param_1,longlong param_2)
 void Unwind_180909b30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -56899,7 +56917,7 @@ void Unwind_180909b30(uint8_t8 param_1,longlong param_2)
 void Unwind_180909b40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -56922,7 +56940,7 @@ void Unwind_180909b50(uint8_t8 param_1,longlong param_2)
 void Unwind_180909b60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -56953,7 +56971,7 @@ void Unwind_180909b70(uint8_t8 param_1,longlong param_2)
 void Unwind_180909b80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0xe8);
   if (plVar1 != (longlong *)0x0) {
@@ -56967,7 +56985,7 @@ void Unwind_180909b80(uint8_t8 param_1,longlong param_2)
 void Unwind_180909ba0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -57152,7 +57170,7 @@ void Unwind_180909cb0(uint8_t8 param_1,longlong param_2)
 void Unwind_180909ce0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x560) = &SystemResourceHandlerTemplate;
@@ -57171,7 +57189,7 @@ void Unwind_180909ce0(uint8_t8 param_1,longlong param_2)
 void Unwind_180909d00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -57203,7 +57221,7 @@ void Unwind_180909d20(uint8_t8 param_1,longlong param_2)
 void Unwind_180909d60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -57226,7 +57244,7 @@ void Unwind_180909d60(uint8_t8 param_1,longlong param_2)
 void Unwind_180909d80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -57249,7 +57267,7 @@ void Unwind_180909d80(uint8_t8 param_1,longlong param_2)
 void Unwind_180909da0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -57272,7 +57290,7 @@ void Unwind_180909da0(uint8_t8 param_1,longlong param_2)
 void Unwind_180909dc0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -57496,7 +57514,7 @@ void Unwind_180909fe0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a000(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xc58);
   if (plVar1 != (longlong *)0x0) {
@@ -57519,7 +57537,7 @@ void Unwind_18090a020(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a060(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -57772,7 +57790,7 @@ void Unwind_18090a1a0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a1d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x560) = &SystemResourceHandlerTemplate;
@@ -57791,7 +57809,7 @@ void Unwind_18090a1d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a1f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -57823,7 +57841,7 @@ void Unwind_18090a210(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a250(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -57846,7 +57864,7 @@ void Unwind_18090a250(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a270(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -57869,7 +57887,7 @@ void Unwind_18090a270(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a290(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -57892,7 +57910,7 @@ void Unwind_18090a290(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a2b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -58116,7 +58134,7 @@ void Unwind_18090a4d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a4f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0xc58);
   if (plVar1 != (longlong *)0x0) {
@@ -58139,7 +58157,7 @@ void Unwind_18090a510(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a550(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -58162,7 +58180,7 @@ void Unwind_18090a550(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a570(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -58618,7 +58636,7 @@ void Unwind_18090a7d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a7e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -58632,7 +58650,7 @@ void Unwind_18090a7e0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a7f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   
   plVar1 = *(longlong **)(param_2 + 0x38);
@@ -58665,7 +58683,7 @@ void Unwind_18090a800(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a830(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   
   plVar1 = *(longlong **)(param_2 + 0x38);
@@ -58698,7 +58716,7 @@ void Unwind_18090a840(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a870(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -58784,7 +58802,7 @@ void Unwind_18090a890(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a8a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -58807,7 +58825,7 @@ void Unwind_18090a8a0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a8b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -58830,7 +58848,7 @@ void Unwind_18090a8b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a8c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -58853,7 +58871,7 @@ void Unwind_18090a8c0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a8d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -58876,7 +58894,7 @@ void Unwind_18090a8d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a8e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -58890,7 +58908,7 @@ void Unwind_18090a8e0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a8f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -58904,7 +58922,7 @@ void Unwind_18090a8f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a900(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -58927,7 +58945,7 @@ void Unwind_18090a900(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a910(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(longlong **)(lVar1 + 0x40) != (longlong *)0x0) {
@@ -58949,7 +58967,7 @@ void Unwind_18090a910(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a920(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -59162,7 +59180,7 @@ void Unwind_18090a970(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a980(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xe8);
   if (plVar1 != (longlong *)0x0) {
@@ -59176,7 +59194,7 @@ void Unwind_18090a980(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a9a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -59323,7 +59341,7 @@ void Unwind_18090ab50(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ab80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -59337,7 +59355,7 @@ void Unwind_18090ab80(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ab90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -59351,7 +59369,7 @@ void Unwind_18090ab90(uint8_t8 param_1,longlong param_2)
 void Unwind_18090aba0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -59365,7 +59383,7 @@ void Unwind_18090aba0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090abb0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x30);
   if (plVar1 != (longlong *)0x0) {
@@ -59379,7 +59397,7 @@ void Unwind_18090abb0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090abc0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x38);
   if (plVar1 != (longlong *)0x0) {
@@ -59393,7 +59411,7 @@ void Unwind_18090abc0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090abd0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x40);
   if (plVar1 != (longlong *)0x0) {
@@ -59407,7 +59425,7 @@ void Unwind_18090abd0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090abe0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x48);
   if (plVar1 != (longlong *)0x0) {
@@ -59421,7 +59439,7 @@ void Unwind_18090abe0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090abf0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x50);
   if (plVar1 != (longlong *)0x0) {
@@ -59435,7 +59453,7 @@ void Unwind_18090abf0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ac00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x58);
   if (plVar1 != (longlong *)0x0) {
@@ -59449,7 +59467,7 @@ void Unwind_18090ac00(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ac10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x60);
   if (plVar1 != (longlong *)0x0) {
@@ -59463,7 +59481,7 @@ void Unwind_18090ac10(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ac20(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x68);
   if (plVar1 != (longlong *)0x0) {
@@ -59477,7 +59495,7 @@ void Unwind_18090ac20(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ac30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x70);
   if (plVar1 != (longlong *)0x0) {
@@ -59491,7 +59509,7 @@ void Unwind_18090ac30(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ac40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x78);
   if (plVar1 != (longlong *)0x0) {
@@ -59505,7 +59523,7 @@ void Unwind_18090ac40(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ac50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x80);
   if (plVar1 != (longlong *)0x0) {
@@ -59519,7 +59537,7 @@ void Unwind_18090ac50(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ac70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x88);
   if (plVar1 != (longlong *)0x0) {
@@ -59533,7 +59551,7 @@ void Unwind_18090ac70(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ac90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x90);
   if (plVar1 != (longlong *)0x0) {
@@ -59547,7 +59565,7 @@ void Unwind_18090ac90(uint8_t8 param_1,longlong param_2)
 void Unwind_18090acb0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x98);
   if (plVar1 != (longlong *)0x0) {
@@ -59561,7 +59579,7 @@ void Unwind_18090acb0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090acd0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xa0);
   if (plVar1 != (longlong *)0x0) {
@@ -59575,7 +59593,7 @@ void Unwind_18090acd0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090acf0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xa8);
   if (plVar1 != (longlong *)0x0) {
@@ -59589,7 +59607,7 @@ void Unwind_18090acf0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ad10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xb8);
   if (plVar1 != (longlong *)0x0) {
@@ -59603,7 +59621,7 @@ void Unwind_18090ad10(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ad30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xc0);
   if (plVar1 != (longlong *)0x0) {
@@ -59617,7 +59635,7 @@ void Unwind_18090ad30(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ad50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 200);
   if (plVar1 != (longlong *)0x0) {
@@ -59631,7 +59649,7 @@ void Unwind_18090ad50(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ad70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xd0);
   if (plVar1 != (longlong *)0x0) {
@@ -59645,7 +59663,7 @@ void Unwind_18090ad70(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ad90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xd8);
   if (plVar1 != (longlong *)0x0) {
@@ -59659,7 +59677,7 @@ void Unwind_18090ad90(uint8_t8 param_1,longlong param_2)
 void Unwind_18090adb0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xe0);
   if (plVar1 != (longlong *)0x0) {
@@ -59673,7 +59691,7 @@ void Unwind_18090adb0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090add0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0xe8);
   if (plVar1 != (longlong *)0x0) {
@@ -59714,7 +59732,7 @@ void Unwind_18090ae70(uint8_t8 param_1,longlong param_2)
 void Unwind_18090aeb0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x270);
   if (plVar1 != (longlong *)0x0) {
@@ -59728,7 +59746,7 @@ void Unwind_18090aeb0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090aed0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x278);
   if (plVar1 != (longlong *)0x0) {
@@ -59742,7 +59760,7 @@ void Unwind_18090aed0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090aef0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x280);
   if (plVar1 != (longlong *)0x0) {
@@ -59756,7 +59774,7 @@ void Unwind_18090aef0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090af10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x288);
   if (plVar1 != (longlong *)0x0) {
@@ -59770,7 +59788,7 @@ void Unwind_18090af10(uint8_t8 param_1,longlong param_2)
 void Unwind_18090af30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x290);
   if (plVar1 != (longlong *)0x0) {
@@ -59784,7 +59802,7 @@ void Unwind_18090af30(uint8_t8 param_1,longlong param_2)
 void Unwind_18090af50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x298);
   if (plVar1 != (longlong *)0x0) {
@@ -59798,7 +59816,7 @@ void Unwind_18090af50(uint8_t8 param_1,longlong param_2)
 void Unwind_18090af70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -59836,7 +59854,7 @@ void Unwind_18090af70(uint8_t8 param_1,longlong param_2)
 void Unwind_18090af90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2d0);
   if (plVar1 != (longlong *)0x0) {
@@ -59850,7 +59868,7 @@ void Unwind_18090af90(uint8_t8 param_1,longlong param_2)
 void Unwind_18090afb0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2e0);
   if (plVar1 != (longlong *)0x0) {
@@ -59864,7 +59882,7 @@ void Unwind_18090afb0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090afd0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2e8);
   if (plVar1 != (longlong *)0x0) {
@@ -59878,7 +59896,7 @@ void Unwind_18090afd0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090aff0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2f0);
   if (plVar1 != (longlong *)0x0) {
@@ -59892,7 +59910,7 @@ void Unwind_18090aff0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b010(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x2f8);
   if (plVar1 != (longlong *)0x0) {
@@ -59906,7 +59924,7 @@ void Unwind_18090b010(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b030(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x300);
   if (plVar1 != (longlong *)0x0) {
@@ -59920,7 +59938,7 @@ void Unwind_18090b030(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b050(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x308);
   if (plVar1 != (longlong *)0x0) {
@@ -59934,7 +59952,7 @@ void Unwind_18090b050(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b070(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x310);
   if (plVar1 != (longlong *)0x0) {
@@ -59948,7 +59966,7 @@ void Unwind_18090b070(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b090(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x318);
   if (plVar1 != (longlong *)0x0) {
@@ -59962,7 +59980,7 @@ void Unwind_18090b090(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b0b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 800);
   if (plVar1 != (longlong *)0x0) {
@@ -59976,7 +59994,7 @@ void Unwind_18090b0b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b0d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x328);
   if (plVar1 != (longlong *)0x0) {
@@ -59990,7 +60008,7 @@ void Unwind_18090b0d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b0f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x330);
   if (plVar1 != (longlong *)0x0) {
@@ -60004,7 +60022,7 @@ void Unwind_18090b0f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b110(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x338);
   if (plVar1 != (longlong *)0x0) {
@@ -60018,7 +60036,7 @@ void Unwind_18090b110(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b130(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x340);
   if (plVar1 != (longlong *)0x0) {
@@ -60032,7 +60050,7 @@ void Unwind_18090b130(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b150(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x348);
   if (plVar1 != (longlong *)0x0) {
@@ -60046,7 +60064,7 @@ void Unwind_18090b150(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b170(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x350);
   if (plVar1 != (longlong *)0x0) {
@@ -60060,7 +60078,7 @@ void Unwind_18090b170(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b190(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x358);
   if (plVar1 != (longlong *)0x0) {
@@ -60074,7 +60092,7 @@ void Unwind_18090b190(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b1b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x360);
   if (plVar1 != (longlong *)0x0) {
@@ -60088,7 +60106,7 @@ void Unwind_18090b1b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b1d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x368);
   if (plVar1 != (longlong *)0x0) {
@@ -60102,7 +60120,7 @@ void Unwind_18090b1d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b1f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x370);
   if (plVar1 != (longlong *)0x0) {
@@ -60116,7 +60134,7 @@ void Unwind_18090b1f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b210(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x378);
   if (plVar1 != (longlong *)0x0) {
@@ -60130,7 +60148,7 @@ void Unwind_18090b210(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b230(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x380);
   if (plVar1 != (longlong *)0x0) {
@@ -60144,7 +60162,7 @@ void Unwind_18090b230(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b250(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x388);
   if (plVar1 != (longlong *)0x0) {
@@ -60158,7 +60176,7 @@ void Unwind_18090b250(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b270(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x390);
   if (plVar1 != (longlong *)0x0) {
@@ -60172,7 +60190,7 @@ void Unwind_18090b270(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b290(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x398);
   if (plVar1 != (longlong *)0x0) {
@@ -60186,7 +60204,7 @@ void Unwind_18090b290(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b2b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3a0);
   if (plVar1 != (longlong *)0x0) {
@@ -60200,7 +60218,7 @@ void Unwind_18090b2b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b2d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3a8);
   if (plVar1 != (longlong *)0x0) {
@@ -60214,7 +60232,7 @@ void Unwind_18090b2d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b2f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3b0);
   if (plVar1 != (longlong *)0x0) {
@@ -60228,7 +60246,7 @@ void Unwind_18090b2f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b310(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3b8);
   if (plVar1 != (longlong *)0x0) {
@@ -60242,7 +60260,7 @@ void Unwind_18090b310(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b330(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3c0);
   if (plVar1 != (longlong *)0x0) {
@@ -60256,7 +60274,7 @@ void Unwind_18090b330(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b350(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3c8);
   if (plVar1 != (longlong *)0x0) {
@@ -60270,7 +60288,7 @@ void Unwind_18090b350(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b370(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3d0);
   if (plVar1 != (longlong *)0x0) {
@@ -60284,7 +60302,7 @@ void Unwind_18090b370(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b390(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3d8);
   if (plVar1 != (longlong *)0x0) {
@@ -60298,7 +60316,7 @@ void Unwind_18090b390(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b3b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3e0);
   if (plVar1 != (longlong *)0x0) {
@@ -60312,7 +60330,7 @@ void Unwind_18090b3b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b3d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 1000);
   if (plVar1 != (longlong *)0x0) {
@@ -60326,7 +60344,7 @@ void Unwind_18090b3d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b3f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3f0);
   if (plVar1 != (longlong *)0x0) {
@@ -60340,7 +60358,7 @@ void Unwind_18090b3f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b410(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x3f8);
   if (plVar1 != (longlong *)0x0) {
@@ -60354,7 +60372,7 @@ void Unwind_18090b410(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b430(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x400);
   if (plVar1 != (longlong *)0x0) {
@@ -60368,7 +60386,7 @@ void Unwind_18090b430(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b450(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x408);
   if (plVar1 != (longlong *)0x0) {
@@ -60382,7 +60400,7 @@ void Unwind_18090b450(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b470(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x410);
   if (plVar1 != (longlong *)0x0) {
@@ -60405,7 +60423,7 @@ void Unwind_18090b490(void)
 void Unwind_18090b4b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -60443,7 +60461,7 @@ void Unwind_18090b4b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b4c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -60499,7 +60517,7 @@ void Unwind_18090b4e0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b4f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -60537,7 +60555,7 @@ void Unwind_18090b4f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b500(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -60575,7 +60593,7 @@ void Unwind_18090b500(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b510(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x68);
   if (plVar1 != (longlong *)0x0) {
@@ -60589,7 +60607,7 @@ void Unwind_18090b510(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b520(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x78);
   if (plVar1 != (longlong *)0x0) {
@@ -60603,7 +60621,7 @@ void Unwind_18090b520(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b530(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x80);
   if (plVar1 != (longlong *)0x0) {
@@ -60617,7 +60635,7 @@ void Unwind_18090b530(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b550(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x88);
   if (plVar1 != (longlong *)0x0) {
@@ -60631,7 +60649,7 @@ void Unwind_18090b550(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b570(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x90);
   if (plVar1 != (longlong *)0x0) {
@@ -60645,7 +60663,7 @@ void Unwind_18090b570(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b590(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xa0);
   if (plVar1 != (longlong *)0x0) {
@@ -60659,7 +60677,7 @@ void Unwind_18090b590(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b5b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xa8);
   if (plVar1 != (longlong *)0x0) {
@@ -60673,7 +60691,7 @@ void Unwind_18090b5b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b5d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xb8);
   if (plVar1 != (longlong *)0x0) {
@@ -60687,7 +60705,7 @@ void Unwind_18090b5d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b5f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xc0);
   if (plVar1 != (longlong *)0x0) {
@@ -60701,7 +60719,7 @@ void Unwind_18090b5f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b610(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 200);
   if (plVar1 != (longlong *)0x0) {
@@ -60715,7 +60733,7 @@ void Unwind_18090b610(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b630(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0xe8);
   if (plVar1 != (longlong *)0x0) {
@@ -60756,7 +60774,7 @@ void Unwind_18090b6d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b710(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x270);
   if (plVar1 != (longlong *)0x0) {
@@ -60770,7 +60788,7 @@ void Unwind_18090b710(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b730(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x278);
   if (plVar1 != (longlong *)0x0) {
@@ -60784,7 +60802,7 @@ void Unwind_18090b730(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b750(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x280);
   if (plVar1 != (longlong *)0x0) {
@@ -60798,7 +60816,7 @@ void Unwind_18090b750(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b770(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x288);
   if (plVar1 != (longlong *)0x0) {
@@ -60812,7 +60830,7 @@ void Unwind_18090b770(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b790(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x290);
   if (plVar1 != (longlong *)0x0) {
@@ -60826,7 +60844,7 @@ void Unwind_18090b790(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b7b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x298);
   if (plVar1 != (longlong *)0x0) {
@@ -60840,7 +60858,7 @@ void Unwind_18090b7b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b7d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -60878,7 +60896,7 @@ void Unwind_18090b7d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b7f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2d0);
   if (plVar1 != (longlong *)0x0) {
@@ -60892,7 +60910,7 @@ void Unwind_18090b7f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b810(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2e0);
   if (plVar1 != (longlong *)0x0) {
@@ -60906,7 +60924,7 @@ void Unwind_18090b810(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b830(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2e8);
   if (plVar1 != (longlong *)0x0) {
@@ -60920,7 +60938,7 @@ void Unwind_18090b830(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b850(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2f0);
   if (plVar1 != (longlong *)0x0) {
@@ -60934,7 +60952,7 @@ void Unwind_18090b850(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b870(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x2f8);
   if (plVar1 != (longlong *)0x0) {
@@ -60948,7 +60966,7 @@ void Unwind_18090b870(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b890(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x300);
   if (plVar1 != (longlong *)0x0) {
@@ -60962,7 +60980,7 @@ void Unwind_18090b890(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b8b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x308);
   if (plVar1 != (longlong *)0x0) {
@@ -60976,7 +60994,7 @@ void Unwind_18090b8b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b8d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x310);
   if (plVar1 != (longlong *)0x0) {
@@ -60990,7 +61008,7 @@ void Unwind_18090b8d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b8f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x318);
   if (plVar1 != (longlong *)0x0) {
@@ -61004,7 +61022,7 @@ void Unwind_18090b8f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b910(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 800);
   if (plVar1 != (longlong *)0x0) {
@@ -61018,7 +61036,7 @@ void Unwind_18090b910(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b930(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x328);
   if (plVar1 != (longlong *)0x0) {
@@ -61032,7 +61050,7 @@ void Unwind_18090b930(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b950(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x330);
   if (plVar1 != (longlong *)0x0) {
@@ -61046,7 +61064,7 @@ void Unwind_18090b950(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b970(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x338);
   if (plVar1 != (longlong *)0x0) {
@@ -61060,7 +61078,7 @@ void Unwind_18090b970(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b990(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x340);
   if (plVar1 != (longlong *)0x0) {
@@ -61074,7 +61092,7 @@ void Unwind_18090b990(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b9b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x348);
   if (plVar1 != (longlong *)0x0) {
@@ -61088,7 +61106,7 @@ void Unwind_18090b9b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b9d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x350);
   if (plVar1 != (longlong *)0x0) {
@@ -61102,7 +61120,7 @@ void Unwind_18090b9d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090b9f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x358);
   if (plVar1 != (longlong *)0x0) {
@@ -61116,7 +61134,7 @@ void Unwind_18090b9f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ba10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x360);
   if (plVar1 != (longlong *)0x0) {
@@ -61130,7 +61148,7 @@ void Unwind_18090ba10(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ba30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x368);
   if (plVar1 != (longlong *)0x0) {
@@ -61144,7 +61162,7 @@ void Unwind_18090ba30(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ba50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x370);
   if (plVar1 != (longlong *)0x0) {
@@ -61158,7 +61176,7 @@ void Unwind_18090ba50(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ba70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x378);
   if (plVar1 != (longlong *)0x0) {
@@ -61172,7 +61190,7 @@ void Unwind_18090ba70(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ba90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x380);
   if (plVar1 != (longlong *)0x0) {
@@ -61186,7 +61204,7 @@ void Unwind_18090ba90(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bab0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x388);
   if (plVar1 != (longlong *)0x0) {
@@ -61200,7 +61218,7 @@ void Unwind_18090bab0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bad0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x390);
   if (plVar1 != (longlong *)0x0) {
@@ -61214,7 +61232,7 @@ void Unwind_18090bad0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090baf0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x398);
   if (plVar1 != (longlong *)0x0) {
@@ -61228,7 +61246,7 @@ void Unwind_18090baf0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bb10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3a0);
   if (plVar1 != (longlong *)0x0) {
@@ -61242,7 +61260,7 @@ void Unwind_18090bb10(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bb30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3a8);
   if (plVar1 != (longlong *)0x0) {
@@ -61256,7 +61274,7 @@ void Unwind_18090bb30(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bb50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3b0);
   if (plVar1 != (longlong *)0x0) {
@@ -61270,7 +61288,7 @@ void Unwind_18090bb50(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bb70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3b8);
   if (plVar1 != (longlong *)0x0) {
@@ -61284,7 +61302,7 @@ void Unwind_18090bb70(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bb90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3c0);
   if (plVar1 != (longlong *)0x0) {
@@ -61298,7 +61316,7 @@ void Unwind_18090bb90(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bbb0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3c8);
   if (plVar1 != (longlong *)0x0) {
@@ -61312,7 +61330,7 @@ void Unwind_18090bbb0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bbd0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3d0);
   if (plVar1 != (longlong *)0x0) {
@@ -61326,7 +61344,7 @@ void Unwind_18090bbd0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bbf0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3d8);
   if (plVar1 != (longlong *)0x0) {
@@ -61340,7 +61358,7 @@ void Unwind_18090bbf0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bc10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3e0);
   if (plVar1 != (longlong *)0x0) {
@@ -61354,7 +61372,7 @@ void Unwind_18090bc10(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bc30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 1000);
   if (plVar1 != (longlong *)0x0) {
@@ -61368,7 +61386,7 @@ void Unwind_18090bc30(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bc50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3f0);
   if (plVar1 != (longlong *)0x0) {
@@ -61382,7 +61400,7 @@ void Unwind_18090bc50(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bc70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3f8);
   if (plVar1 != (longlong *)0x0) {
@@ -61396,7 +61414,7 @@ void Unwind_18090bc70(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bc90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x400);
   if (plVar1 != (longlong *)0x0) {
@@ -61410,7 +61428,7 @@ void Unwind_18090bc90(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bcb0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x408);
   if (plVar1 != (longlong *)0x0) {
@@ -61424,7 +61442,7 @@ void Unwind_18090bcb0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bcd0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x410);
   if (plVar1 != (longlong *)0x0) {
@@ -61447,7 +61465,7 @@ void Unwind_18090bcf0(void)
 void Unwind_18090bd10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -61485,7 +61503,7 @@ void Unwind_18090bd10(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bd20(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   longlong resourceIndex;
   ulonglong uVar4;
@@ -61580,7 +61598,7 @@ void Unwind_18090bd70(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bd80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   if (*(longlong *)(param_2 + 0x58) != 0) {
     RollbackResourceTransaction();
@@ -61639,7 +61657,7 @@ void Unwind_18090bdd0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bde0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xc0) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -61653,7 +61671,7 @@ void Unwind_18090bde0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bdf0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   if (*(longlong *)(param_2 + 0x60) != 0) {
     RollbackResourceTransaction();
@@ -61781,7 +61799,7 @@ void Unwind_18090bf40(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bf50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -61795,7 +61813,7 @@ void Unwind_18090bf50(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bf60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -61809,7 +61827,7 @@ void Unwind_18090bf60(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bf70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   if (*(longlong *)(param_2 + 0x38) != 0) {
     RollbackResourceTransaction();
@@ -61856,7 +61874,7 @@ void Unwind_18090bf90(uint8_t8 param_1,longlong param_2)
 void Unwind_18090bfa0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x90) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -61873,7 +61891,7 @@ void Unwind_18090bfb0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = *(longlong **)(param_2 + 0x20);
   uVar4 = 0xfffffffffffffffe;
@@ -61915,7 +61933,7 @@ void Unwind_18090bfd0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090bfe0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -61989,7 +62007,7 @@ void Unwind_18090c050(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090c060(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -62097,7 +62115,7 @@ void Unwind_18090c0f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c100(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   
   plVar1 = *(longlong **)(param_2 + 0x58);
@@ -62136,7 +62154,7 @@ void Unwind_18090c120(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c130(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   
   plVar1 = *(longlong **)(param_2 + 0x58);
@@ -62193,7 +62211,7 @@ void Unwind_18090c140(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c150(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x48);
   if (*(longlong **)(lVar1 + 0x40) != (longlong *)0x0) {
@@ -62215,7 +62233,7 @@ void Unwind_18090c150(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c160(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -62229,7 +62247,7 @@ void Unwind_18090c160(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c170(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x68);
   if (*(longlong **)(lVar1 + 0x40) != (longlong *)0x0) {
@@ -62251,7 +62269,7 @@ void Unwind_18090c170(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c180(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -62265,7 +62283,7 @@ void Unwind_18090c180(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c190(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x30);
   if (plVar1 != (longlong *)0x0) {
@@ -62279,7 +62297,7 @@ void Unwind_18090c190(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c1a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -62338,7 +62356,7 @@ void Unwind_18090c1c0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c1d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   
   lVar1 = param_2 + 0x138;
@@ -62619,7 +62637,7 @@ void Unwind_18090c300(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c310(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x78);
   *(uint8_t8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
@@ -62699,7 +62717,7 @@ void Unwind_18090c380(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c390(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x1b8);
   if (plVar1 != (longlong *)0x0) {
@@ -62749,7 +62767,7 @@ void Unwind_18090c3b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c3d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x80) + 0x70);
   if (plVar1 != (longlong *)0x0) {
@@ -62808,7 +62826,7 @@ void Unwind_18090c400(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c420(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   if (*(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
@@ -62951,7 +62969,7 @@ void Unwind_18090c4a0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c4b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x118);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
@@ -63023,7 +63041,7 @@ void Unwind_18090c4f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c500(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x118) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -63037,7 +63055,7 @@ void Unwind_18090c500(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c510(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x118);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -63056,7 +63074,7 @@ void Unwind_18090c510(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c520(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x118) + 0x58);
   if (plVar1 != (longlong *)0x0) {
@@ -63108,7 +63126,7 @@ void Unwind_18090c530(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c540(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -63154,7 +63172,7 @@ void Unwind_18090c540(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c550(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -63230,7 +63248,7 @@ void Unwind_18090c580(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c590(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -63297,7 +63315,7 @@ void Unwind_18090c5b0(void)
 void Unwind_18090c5c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -63343,7 +63361,7 @@ void Unwind_18090c5c0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c5d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -63401,7 +63419,7 @@ void Unwind_18090c5e0(void)
 void Unwind_18090c5f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -63447,7 +63465,7 @@ void Unwind_18090c5f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090c600(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -64136,7 +64154,7 @@ void Unwind_18090ca10(void)
 void Unwind_18090ca20(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -64194,7 +64212,7 @@ void Unwind_18090ca30(void)
 void Unwind_18090ca40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -64264,7 +64282,7 @@ void Unwind_18090ca60(void)
 void Unwind_18090ca70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -64331,7 +64349,7 @@ void Unwind_18090ca90(void)
 void Unwind_18090caa0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -64398,7 +64416,7 @@ void Unwind_18090cac0(void)
 void Unwind_18090cad0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -64465,7 +64483,7 @@ void Unwind_18090caf0(void)
 void Unwind_18090cb00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -64520,7 +64538,7 @@ void Unwind_18090cb10(uint8_t8 param_1,longlong param_2)
 void Unwind_18090cb20(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -64575,7 +64593,7 @@ void Unwind_18090cb30(uint8_t8 param_1,longlong param_2)
 void Unwind_18090cb40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -64633,7 +64651,7 @@ void Unwind_18090cb50(void)
 void Unwind_18090cb60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -64688,7 +64706,7 @@ void Unwind_18090cb70(uint8_t8 param_1,longlong param_2)
 void Unwind_18090cb80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -64779,7 +64797,7 @@ void Unwind_18090cbc0(void)
 void Unwind_18090cbd0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -64846,7 +64864,7 @@ void Unwind_18090cbf0(void)
 void Unwind_18090cc00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -65012,7 +65030,7 @@ void Unwind_18090ccd0(void)
 void Unwind_18090cce0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -65147,7 +65165,7 @@ void Unwind_18090cdf0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ce00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x38);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
@@ -65194,7 +65212,7 @@ void Unwind_18090ce10(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ce20(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x98);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
@@ -65307,7 +65325,7 @@ void Unwind_18090ce60(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ce70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
@@ -65370,7 +65388,7 @@ void Unwind_18090cea0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ceb0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x38) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -65384,7 +65402,7 @@ void Unwind_18090ceb0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090cec0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x38);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -65403,7 +65421,7 @@ void Unwind_18090cec0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ced0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x38) + 0x58);
   if (plVar1 != (longlong *)0x0) {
@@ -68447,7 +68465,7 @@ void Unwind_18090d510(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090d530(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x130);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
@@ -68481,7 +68499,7 @@ void Unwind_18090d540(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d550(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x130) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -68495,7 +68513,7 @@ void Unwind_18090d550(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d560(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x130);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -68514,7 +68532,7 @@ void Unwind_18090d560(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d570(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x130) + 0x58);
   if (plVar1 != (longlong *)0x0) {
@@ -68550,7 +68568,7 @@ void Unwind_18090d580(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d590(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x150);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
@@ -68685,7 +68703,7 @@ void Unwind_18090d640(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d650(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -68708,7 +68726,7 @@ void Unwind_18090d650(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d660(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
@@ -68764,7 +68782,7 @@ void Unwind_18090d6e0(void)
 void Unwind_18090d700(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x13b8);
   if (plVar1 != (longlong *)0x0) {
@@ -68778,7 +68796,7 @@ void Unwind_18090d700(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d720(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x13d0);
   if (plVar1 != (longlong *)0x0) {
@@ -68792,7 +68810,7 @@ void Unwind_18090d720(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d740(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x13e8);
   if (plVar1 != (longlong *)0x0) {
@@ -68806,7 +68824,7 @@ void Unwind_18090d740(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d760(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1400);
   if (plVar1 != (longlong *)0x0) {
@@ -68820,7 +68838,7 @@ void Unwind_18090d760(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d780(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1418);
   if (plVar1 != (longlong *)0x0) {
@@ -68834,7 +68852,7 @@ void Unwind_18090d780(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d7a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1430);
   if (plVar1 != (longlong *)0x0) {
@@ -68848,7 +68866,7 @@ void Unwind_18090d7a0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d7c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1448);
   if (plVar1 != (longlong *)0x0) {
@@ -68913,7 +68931,7 @@ void Unwind_18090d7e0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d800(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14d8);
   if (plVar1 != (longlong *)0x0) {
@@ -68927,7 +68945,7 @@ void Unwind_18090d800(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d820(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14e0);
   if (plVar1 != (longlong *)0x0) {
@@ -68941,7 +68959,7 @@ void Unwind_18090d820(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d840(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14e8);
   if (plVar1 != (longlong *)0x0) {
@@ -68955,7 +68973,7 @@ void Unwind_18090d840(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d860(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14f0);
   if (plVar1 != (longlong *)0x0) {
@@ -68969,7 +68987,7 @@ void Unwind_18090d860(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d880(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x14f8);
   if (plVar1 != (longlong *)0x0) {
@@ -68983,7 +69001,7 @@ void Unwind_18090d880(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d8a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1540);
   if (plVar1 != (longlong *)0x0) {
@@ -68997,7 +69015,7 @@ void Unwind_18090d8a0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d8c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1548);
   if (plVar1 != (longlong *)0x0) {
@@ -69011,7 +69029,7 @@ void Unwind_18090d8c0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d8e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1550);
   if (plVar1 != (longlong *)0x0) {
@@ -69052,7 +69070,7 @@ void Unwind_18090d980(uint8_t8 param_1,longlong param_2)
 void Unwind_18090d9c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x1588);
   if (plVar1 != (longlong *)0x0) {
@@ -69102,7 +69120,7 @@ void Unwind_18090da60(uint8_t8 param_1,longlong param_2)
 void Unwind_18090da80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x3cb0);
   if (plVar1 != (longlong *)0x0) {
@@ -69233,7 +69251,7 @@ void Unwind_18090dc60(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dc90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x48) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -69386,7 +69404,7 @@ void Unwind_18090de20(uint8_t8 param_1,longlong param_2)
 void Unwind_18090de30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -69436,7 +69454,7 @@ void Unwind_18090de40(uint8_t8 param_1,longlong param_2)
 void Unwind_18090de50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -69459,7 +69477,7 @@ void Unwind_18090de50(uint8_t8 param_1,longlong param_2)
 void Unwind_18090de60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x60);
   if (plVar1 != (longlong *)0x0) {
@@ -69482,7 +69500,7 @@ void Unwind_18090de70(void)
 void Unwind_18090de80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0xe0);
@@ -69538,7 +69556,7 @@ void Unwind_18090df00(void)
 void Unwind_18090df20(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x13b8);
   if (plVar1 != (longlong *)0x0) {
@@ -69552,7 +69570,7 @@ void Unwind_18090df20(uint8_t8 param_1,longlong param_2)
 void Unwind_18090df40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x13d0);
   if (plVar1 != (longlong *)0x0) {
@@ -69566,7 +69584,7 @@ void Unwind_18090df40(uint8_t8 param_1,longlong param_2)
 void Unwind_18090df60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x13e8);
   if (plVar1 != (longlong *)0x0) {
@@ -69580,7 +69598,7 @@ void Unwind_18090df60(uint8_t8 param_1,longlong param_2)
 void Unwind_18090df80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1400);
   if (plVar1 != (longlong *)0x0) {
@@ -69594,7 +69612,7 @@ void Unwind_18090df80(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dfa0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1418);
   if (plVar1 != (longlong *)0x0) {
@@ -69608,7 +69626,7 @@ void Unwind_18090dfa0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dfc0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1430);
   if (plVar1 != (longlong *)0x0) {
@@ -69622,7 +69640,7 @@ void Unwind_18090dfc0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090dfe0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1448);
   if (plVar1 != (longlong *)0x0) {
@@ -69687,7 +69705,7 @@ void Unwind_18090e000(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e020(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14d8);
   if (plVar1 != (longlong *)0x0) {
@@ -69701,7 +69719,7 @@ void Unwind_18090e020(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e040(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14e0);
   if (plVar1 != (longlong *)0x0) {
@@ -69715,7 +69733,7 @@ void Unwind_18090e040(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e060(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14e8);
   if (plVar1 != (longlong *)0x0) {
@@ -69729,7 +69747,7 @@ void Unwind_18090e060(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e080(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14f0);
   if (plVar1 != (longlong *)0x0) {
@@ -69743,7 +69761,7 @@ void Unwind_18090e080(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e0a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x14f8);
   if (plVar1 != (longlong *)0x0) {
@@ -69757,7 +69775,7 @@ void Unwind_18090e0a0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e0c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1540);
   if (plVar1 != (longlong *)0x0) {
@@ -69771,7 +69789,7 @@ void Unwind_18090e0c0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e0e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1548);
   if (plVar1 != (longlong *)0x0) {
@@ -69785,7 +69803,7 @@ void Unwind_18090e0e0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e100(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1550);
   if (plVar1 != (longlong *)0x0) {
@@ -69826,7 +69844,7 @@ void Unwind_18090e1a0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e1e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x1588);
   if (plVar1 != (longlong *)0x0) {
@@ -69876,7 +69894,7 @@ void Unwind_18090e280(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e2a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe0) + 0x3cb0);
   if (plVar1 != (longlong *)0x0) {
@@ -70034,7 +70052,7 @@ void Unwind_18090e3d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e3e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -70129,7 +70147,7 @@ void Unwind_18090e4e0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e520(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0xdf8);
   if (plVar1 != (longlong *)0x0) {
@@ -70143,7 +70161,7 @@ void Unwind_18090e520(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e540(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0xe00);
   if (plVar1 != (longlong *)0x0) {
@@ -70166,7 +70184,7 @@ void Unwind_18090e560(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e5a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0xe18);
   if (plVar1 != (longlong *)0x0) {
@@ -70207,7 +70225,7 @@ void Unwind_18090e620(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e650(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x30) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -70221,7 +70239,7 @@ void Unwind_18090e650(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e660(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xe8) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -70285,7 +70303,7 @@ void Unwind_18090e730(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e760(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -70343,7 +70361,7 @@ void Unwind_18090e770(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e7a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -70389,7 +70407,7 @@ void Unwind_18090e7a0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e7b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -70435,7 +70453,7 @@ void Unwind_18090e7b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e7c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -70481,7 +70499,7 @@ void Unwind_18090e7c0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e7d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -70527,7 +70545,7 @@ void Unwind_18090e7d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e7e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -70573,7 +70591,7 @@ void Unwind_18090e7e0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e7f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -70619,7 +70637,7 @@ void Unwind_18090e7f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e800(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -70677,7 +70695,7 @@ void Unwind_18090e810(void)
 void Unwind_18090e820(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -70735,7 +70753,7 @@ void Unwind_18090e830(void)
 void Unwind_18090e840(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -70793,7 +70811,7 @@ void Unwind_18090e850(void)
 void Unwind_18090e860(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -70916,7 +70934,7 @@ void Unwind_18090e8d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e8e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x28);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
@@ -71010,7 +71028,7 @@ void Unwind_18090e930(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e940(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -71024,7 +71042,7 @@ void Unwind_18090e940(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e950(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x28);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -71043,7 +71061,7 @@ void Unwind_18090e950(uint8_t8 param_1,longlong param_2)
 void Unwind_18090e960(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x58);
   if (plVar1 != (longlong *)0x0) {
@@ -71232,7 +71250,7 @@ void Unwind_18090ead0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090eb00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   longlong *plVar4;
@@ -71285,7 +71303,7 @@ void Unwind_18090eb10(uint8_t8 param_1,longlong param_2)
 void Unwind_18090eb20(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x108);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
@@ -71319,7 +71337,7 @@ void Unwind_18090eb30(uint8_t8 param_1,longlong param_2)
 void Unwind_18090eb40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x108) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -71333,7 +71351,7 @@ void Unwind_18090eb40(uint8_t8 param_1,longlong param_2)
 void Unwind_18090eb50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x108);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -71352,7 +71370,7 @@ void Unwind_18090eb50(uint8_t8 param_1,longlong param_2)
 void Unwind_18090eb60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x108) + 0x58);
   if (plVar1 != (longlong *)0x0) {
@@ -71424,7 +71442,7 @@ void Unwind_18090ebf0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ec00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x30);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
@@ -71487,7 +71505,7 @@ void Unwind_18090ec30(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ec40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x30);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -71506,7 +71524,7 @@ void Unwind_18090ec40(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ec50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x30) + 0x58);
   if (plVar1 != (longlong *)0x0) {
@@ -71587,7 +71605,7 @@ void Unwind_18090ecd0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ece0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -71662,7 +71680,7 @@ void Unwind_18090ed20(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ed30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
@@ -71725,7 +71743,7 @@ void Unwind_18090ed60(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ed70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -71744,7 +71762,7 @@ void Unwind_18090ed70(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ed80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x58);
   if (plVar1 != (longlong *)0x0) {
@@ -71836,7 +71854,7 @@ void Unwind_18090ede0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090edf0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x88) + 0x40);
   if (plVar1 != (longlong *)0x0) {
@@ -71914,7 +71932,7 @@ void Unwind_18090ee40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090ee50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x98) + 0x40);
   if (plVar1 != (longlong *)0x0) {
@@ -71978,7 +71996,7 @@ void Unwind_18090ee90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090eea0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   if (*(longlong *)(*(longlong *)(param_2 + 0x58) + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
@@ -72077,7 +72095,7 @@ void Unwind_18090eee0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ef00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x1b8);
   if (plVar1 != (longlong *)0x0) {
@@ -72127,7 +72145,7 @@ void Unwind_18090ef20(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ef40(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 8) + 0x70);
   if (plVar1 != (longlong *)0x0) {
@@ -72213,7 +72231,7 @@ void Unwind_18090ef60(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ef70(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x70);
   if (plVar1 != (longlong *)0x0) {
@@ -72261,7 +72279,7 @@ void Unwind_18090efc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090efe0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   longlong lVar4;
@@ -72307,7 +72325,7 @@ void Unwind_18090efe0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f000(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -72359,7 +72377,7 @@ void Unwind_18090f030(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090f040(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   longlong resourceIndex;
   longlong *plVar4;
@@ -72403,7 +72421,7 @@ void Unwind_18090f040(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f050(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   longlong *presourceIndex;
   
@@ -72436,7 +72454,7 @@ void Unwind_18090f050(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f060(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -72468,7 +72486,7 @@ void Unwind_18090f060(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f070(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x78) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -72522,7 +72540,7 @@ void Unwind_18090f0b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090f0c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   longlong resourceIndex;
   longlong *plVar4;
@@ -72566,7 +72584,7 @@ void Unwind_18090f0c0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f0d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -72632,7 +72650,7 @@ void Unwind_18090f100(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090f110(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   longlong *presourceIndex;
   
@@ -72665,7 +72683,7 @@ void Unwind_18090f110(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f120(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -72679,7 +72697,7 @@ void Unwind_18090f120(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f130(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x48) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -72693,7 +72711,7 @@ void Unwind_18090f130(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f140(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x78);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -72712,7 +72730,7 @@ void Unwind_18090f140(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f150(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
@@ -72731,7 +72749,7 @@ void Unwind_18090f150(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f160(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x78);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
@@ -72750,7 +72768,7 @@ void Unwind_18090f160(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f170(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -72764,7 +72782,7 @@ void Unwind_18090f170(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f180(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -72778,7 +72796,7 @@ void Unwind_18090f180(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f190(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
@@ -72797,7 +72815,7 @@ void Unwind_18090f190(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f1a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -73121,7 +73139,7 @@ void Unwind_18090f2b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f2d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -73187,7 +73205,7 @@ void Unwind_18090f310(void)
 void Unwind_18090f330(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -73210,7 +73228,7 @@ void Unwind_18090f330(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f350(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -73233,9 +73251,9 @@ void Unwind_18090f350(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f370(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
-  uint uVar3;
+  uint unsignedValue3;
   longlong *plVar4;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
@@ -73270,7 +73288,7 @@ void Unwind_18090f390(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090f3b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   if (*(longlong **)(lVar1 + 0x398) != (longlong *)0x0) {
@@ -73309,7 +73327,7 @@ void Unwind_18090f3d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f410(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x410);
   if (plVar1 != (longlong *)0x0) {
@@ -73323,7 +73341,7 @@ void Unwind_18090f410(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f430(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x418);
   if (plVar1 != (longlong *)0x0) {
@@ -73337,7 +73355,7 @@ void Unwind_18090f430(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f450(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x420);
   if (plVar1 != (longlong *)0x0) {
@@ -73351,7 +73369,7 @@ void Unwind_18090f450(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f470(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x428);
   if (plVar1 != (longlong *)0x0) {
@@ -73365,7 +73383,7 @@ void Unwind_18090f470(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f490(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x430);
   if (plVar1 != (longlong *)0x0) {
@@ -73379,7 +73397,7 @@ void Unwind_18090f490(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f4b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x438);
   if (plVar1 != (longlong *)0x0) {
@@ -73393,7 +73411,7 @@ void Unwind_18090f4b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f4d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x440);
   if (plVar1 != (longlong *)0x0) {
@@ -73407,7 +73425,7 @@ void Unwind_18090f4d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f4f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x448);
   if (plVar1 != (longlong *)0x0) {
@@ -73421,7 +73439,7 @@ void Unwind_18090f4f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f510(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x450);
   if (plVar1 != (longlong *)0x0) {
@@ -73435,7 +73453,7 @@ void Unwind_18090f510(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f530(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x458);
   if (plVar1 != (longlong *)0x0) {
@@ -73449,7 +73467,7 @@ void Unwind_18090f530(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f550(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x460);
   if (plVar1 != (longlong *)0x0) {
@@ -73463,7 +73481,7 @@ void Unwind_18090f550(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f570(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x468);
   if (plVar1 != (longlong *)0x0) {
@@ -73488,7 +73506,7 @@ void Unwind_18090f590(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090f5b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x40a0);
   if (plVar1 != (longlong *)0x0) {
@@ -73502,7 +73520,7 @@ void Unwind_18090f5b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f5d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x40a8);
   if (plVar1 != (longlong *)0x0) {
@@ -73516,7 +73534,7 @@ void Unwind_18090f5d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f5f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x40b0);
   if (plVar1 != (longlong *)0x0) {
@@ -73552,7 +73570,7 @@ void Unwind_18090f630(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090f650(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x4140) = &SystemResourceHandlerTemplate;
@@ -73571,7 +73589,7 @@ void Unwind_18090f650(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f670(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x4190) = &SystemResourceHandlerTemplate;
@@ -73590,7 +73608,7 @@ void Unwind_18090f670(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f690(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -73640,7 +73658,7 @@ void Unwind_18090f6c0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f6f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x68);
   if (plVar1 != (longlong *)0x0) {
@@ -73654,7 +73672,7 @@ void Unwind_18090f6f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f700(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x70);
   if (plVar1 != (longlong *)0x0) {
@@ -73668,7 +73686,7 @@ void Unwind_18090f700(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f710(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x78);
   if (plVar1 != (longlong *)0x0) {
@@ -73682,7 +73700,7 @@ void Unwind_18090f710(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f720(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x80);
   if (plVar1 != (longlong *)0x0) {
@@ -73696,7 +73714,7 @@ void Unwind_18090f720(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f740(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x88);
   if (plVar1 != (longlong *)0x0) {
@@ -73710,7 +73728,7 @@ void Unwind_18090f740(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f760(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x68) + 0x90);
   if (plVar1 != (longlong *)0x0) {
@@ -73784,7 +73802,7 @@ void Unwind_18090f7d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_18090f7e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -73932,7 +73950,7 @@ void Unwind_18090f8c0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f8d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x130) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -74003,7 +74021,7 @@ void Unwind_18090f960(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f970(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -74017,7 +74035,7 @@ void Unwind_18090f970(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f980(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x10);
   if (plVar1 != (longlong *)0x0) {
@@ -74031,7 +74049,7 @@ void Unwind_18090f980(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f990(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x18);
   if (plVar1 != (longlong *)0x0) {
@@ -74045,7 +74063,7 @@ void Unwind_18090f990(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f9a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -74059,7 +74077,7 @@ void Unwind_18090f9a0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f9b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x30);
   if (plVar1 != (longlong *)0x0) {
@@ -74073,7 +74091,7 @@ void Unwind_18090f9b0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f9c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x38);
   if (plVar1 != (longlong *)0x0) {
@@ -74087,7 +74105,7 @@ void Unwind_18090f9c0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f9d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x40);
   if (plVar1 != (longlong *)0x0) {
@@ -74101,7 +74119,7 @@ void Unwind_18090f9d0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f9e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x48);
   if (plVar1 != (longlong *)0x0) {
@@ -74115,7 +74133,7 @@ void Unwind_18090f9e0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090f9f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x50);
   if (plVar1 != (longlong *)0x0) {
@@ -74129,7 +74147,7 @@ void Unwind_18090f9f0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090fa00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x58);
   if (plVar1 != (longlong *)0x0) {
@@ -74143,7 +74161,7 @@ void Unwind_18090fa00(uint8_t8 param_1,longlong param_2)
 void Unwind_18090fa10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0xa0) + 0x60);
   if (plVar1 != (longlong *)0x0) {
@@ -74174,7 +74192,7 @@ void Unwind_18090fa20(uint8_t8 param_1,longlong param_2)
 void Unwind_18090fa30(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x130) + 0xc0);
   if (plVar1 != (longlong *)0x0) {
@@ -74261,7 +74279,7 @@ void Unwind_18090fab0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090fac0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x120);
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
@@ -74295,7 +74313,7 @@ void Unwind_18090fad0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090fae0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x120) + 0x20);
   if (plVar1 != (longlong *)0x0) {
@@ -74309,7 +74327,7 @@ void Unwind_18090fae0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090faf0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x120);
   *(uint8_t8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
@@ -74328,7 +74346,7 @@ void Unwind_18090faf0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090fb00(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x120) + 0x58);
   if (plVar1 != (longlong *)0x0) {
@@ -74730,7 +74748,7 @@ void Unwind_18090fe40(uint8_t8 param_1,longlong param_2)
 void Unwind_18090fe50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -74751,7 +74769,7 @@ void Unwind_18090fe50(uint8_t8 param_1,longlong param_2)
 void Unwind_18090fe60(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -74857,7 +74875,7 @@ void Unwind_18090ff00(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ff10(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -74896,7 +74914,7 @@ void Unwind_18090ff30(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ff50(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x100) + 0x180);
   if (plVar1 != (longlong *)0x0) {
@@ -74919,7 +74937,7 @@ void Unwind_18090ff70(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ff80(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -74997,7 +75015,7 @@ void Unwind_18090ffb0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090ffe0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -75018,7 +75036,7 @@ void Unwind_18090ffe0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090fff0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -75039,7 +75057,7 @@ void Unwind_18090fff0(uint8_t8 param_1,longlong param_2)
 void Unwind_180910000(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x38) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -75053,7 +75071,7 @@ void Unwind_180910000(uint8_t8 param_1,longlong param_2)
 void Unwind_180910010(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -75074,7 +75092,7 @@ void Unwind_180910010(uint8_t8 param_1,longlong param_2)
 void Unwind_180910020(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -75095,7 +75113,7 @@ void Unwind_180910020(uint8_t8 param_1,longlong param_2)
 void Unwind_180910030(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   longlong resourceIndex;
   
@@ -75118,7 +75136,7 @@ void Unwind_180910030(uint8_t8 param_1,longlong param_2)
 void Unwind_180910040(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -75141,7 +75159,7 @@ void Unwind_180910040(uint8_t8 param_1,longlong param_2)
 void Unwind_180910050(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -75164,7 +75182,7 @@ void Unwind_180910050(uint8_t8 param_1,longlong param_2)
 void Unwind_180910060(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x68) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -75178,7 +75196,7 @@ void Unwind_180910060(uint8_t8 param_1,longlong param_2)
 void Unwind_180910070(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x48);
   if (*(longlong **)(lVar1 + 0x88) != (longlong *)0x0) {
@@ -75228,7 +75246,7 @@ void Unwind_180910070(uint8_t8 param_1,longlong param_2)
 void Unwind_180910080(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
   if (*(longlong **)(lVar1 + 0x68) != (longlong *)0x0) {
@@ -75296,7 +75314,7 @@ void Unwind_1809100a0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809100b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x98);
   if (plVar1 != (longlong *)0x0) {
@@ -75310,7 +75328,7 @@ void Unwind_1809100b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809100d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -75333,7 +75351,7 @@ void Unwind_1809100d0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809100e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -75356,7 +75374,7 @@ void Unwind_1809100e0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809100f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(longlong **)(lVar1 + 0x68) != (longlong *)0x0) {
@@ -75406,7 +75424,7 @@ void Unwind_1809100f0(uint8_t8 param_1,longlong param_2)
 void Unwind_180910100(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -75429,7 +75447,7 @@ void Unwind_180910100(uint8_t8 param_1,longlong param_2)
 void Unwind_180910110(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   *(uint8_t8 *)(lVar1 + 0x108) = &SystemResourceHandlerTemplate;
@@ -75448,7 +75466,7 @@ void Unwind_180910110(uint8_t8 param_1,longlong param_2)
 void Unwind_180910130(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
   *(uint8_t8 *)(lVar1 + 0x108) = &SystemResourceHandlerTemplate;
@@ -75467,7 +75485,7 @@ void Unwind_180910130(uint8_t8 param_1,longlong param_2)
 void Unwind_180910150(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong *presourceTable;
   longlong resourceIndex;
   
@@ -75506,7 +75524,7 @@ void Unwind_180910190(uint8_t8 param_1,longlong param_2)
 void Unwind_1809101c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t8 *)(lVar1 + 0x108) = &SystemResourceHandlerTemplate;
@@ -75525,7 +75543,7 @@ void Unwind_1809101c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809101e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
   if (*(longlong **)(lVar1 + 0x68) != (longlong *)0x0) {
@@ -75575,7 +75593,7 @@ void Unwind_1809101e0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809101f0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x28) + 8);
   if (plVar1 != (longlong *)0x0) {
@@ -75589,7 +75607,7 @@ void Unwind_1809101f0(uint8_t8 param_1,longlong param_2)
 void Unwind_180910200(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x28);
   if (plVar1 != (longlong *)0x0) {
@@ -75603,7 +75621,7 @@ void Unwind_180910200(uint8_t8 param_1,longlong param_2)
 void Unwind_180910210(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x30);
   if (plVar1 != (longlong *)0x0) {
@@ -75617,7 +75635,7 @@ void Unwind_180910210(uint8_t8 param_1,longlong param_2)
 void Unwind_180910220(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x38);
   if (plVar1 != (longlong *)0x0) {
@@ -75631,7 +75649,7 @@ void Unwind_180910220(uint8_t8 param_1,longlong param_2)
 void Unwind_180910230(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x40);
   if (plVar1 != (longlong *)0x0) {
@@ -75645,7 +75663,7 @@ void Unwind_180910230(uint8_t8 param_1,longlong param_2)
 void Unwind_180910240(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x48);
   if (plVar1 != (longlong *)0x0) {
@@ -75659,7 +75677,7 @@ void Unwind_180910240(uint8_t8 param_1,longlong param_2)
 void Unwind_180910250(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x50);
   if (plVar1 != (longlong *)0x0) {
@@ -75673,7 +75691,7 @@ void Unwind_180910250(uint8_t8 param_1,longlong param_2)
 void Unwind_180910260(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x28) + 0x60);
   if (plVar1 != (longlong *)0x0) {
@@ -75788,7 +75806,7 @@ void Unwind_180910310(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = *(longlong **)(param_2 + 0x150);
   uVar4 = 0xfffffffffffffffe;
@@ -76093,7 +76111,7 @@ void Unwind_180910440(uint8_t8 param_1,longlong param_2)
 void Unwind_180910450(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   
@@ -76116,7 +76134,7 @@ void Unwind_180910450(uint8_t8 param_1,longlong param_2)
 void Unwind_180910470(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x238);
   if (plVar1 != (longlong *)0x0) {
@@ -76130,7 +76148,7 @@ void Unwind_180910470(uint8_t8 param_1,longlong param_2)
 void Unwind_180910490(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 600);
   if (plVar1 != (longlong *)0x0) {
@@ -76144,7 +76162,7 @@ void Unwind_180910490(uint8_t8 param_1,longlong param_2)
 void Unwind_1809104b0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x60) + 0x260);
   if (plVar1 != (longlong *)0x0) {
@@ -76158,7 +76176,7 @@ void Unwind_1809104b0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809104d0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -76314,7 +76332,7 @@ void Unwind_180910590(uint8_t8 param_1,longlong param_2)
 void Unwind_1809105a0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   int iVar2;
   longlong resourceIndex;
   
@@ -76337,7 +76355,7 @@ void Unwind_1809105a0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809105c0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x238);
   if (plVar1 != (longlong *)0x0) {
@@ -76351,7 +76369,7 @@ void Unwind_1809105c0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809105e0(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 600);
   if (plVar1 != (longlong *)0x0) {
@@ -76365,7 +76383,7 @@ void Unwind_1809105e0(uint8_t8 param_1,longlong param_2)
 void Unwind_180910600(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x40) + 0x260);
   if (plVar1 != (longlong *)0x0) {
@@ -76379,7 +76397,7 @@ void Unwind_180910600(uint8_t8 param_1,longlong param_2)
 void Unwind_180910620(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
   
@@ -76632,7 +76650,7 @@ void Unwind_180910750(uint8_t8 param_1,longlong param_2)
 void Unwind_180910760(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   longlong resourceTable;
   
   plVar1 = *(longlong **)(param_2 + 0x40);
@@ -76762,7 +76780,7 @@ void Unwind_180910790(uint8_t8 param_1,longlong param_2)
 void Unwind_1809107a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xa00) != (code *)0x0) {
@@ -76792,7 +76810,7 @@ void Unwind_1809107a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809107c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xa70) != (code *)0x0) {
@@ -76822,7 +76840,7 @@ void Unwind_1809107c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809107e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xae0) != (code *)0x0) {
@@ -76852,7 +76870,7 @@ void Unwind_1809107e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910800(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xb50) != (code *)0x0) {
@@ -76882,7 +76900,7 @@ void Unwind_180910800(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910820(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xbc0) != (code *)0x0) {
@@ -76912,7 +76930,7 @@ void Unwind_180910820(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910840(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xc30) != (code *)0x0) {
@@ -76942,7 +76960,7 @@ void Unwind_180910840(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910860(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xca0) != (code *)0x0) {
@@ -76972,7 +76990,7 @@ void Unwind_180910860(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910880(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xd10) != (code *)0x0) {
@@ -77002,7 +77020,7 @@ void Unwind_180910880(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809108a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xd80) != (code *)0x0) {
@@ -77032,7 +77050,7 @@ void Unwind_1809108a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809108c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xdf0) != (code *)0x0) {
@@ -77062,7 +77080,7 @@ void Unwind_1809108c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809108e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xe60) != (code *)0x0) {
@@ -77092,7 +77110,7 @@ void Unwind_1809108e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910900(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xed0) != (code *)0x0) {
@@ -77122,7 +77140,7 @@ void Unwind_180910900(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910920(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xf40) != (code *)0x0) {
@@ -77152,7 +77170,7 @@ void Unwind_180910920(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910940(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0xfb0) != (code *)0x0) {
@@ -77182,7 +77200,7 @@ void Unwind_180910940(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910960(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1020) != (code *)0x0) {
@@ -77212,7 +77230,7 @@ void Unwind_180910960(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910980(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1090) != (code *)0x0) {
@@ -77242,7 +77260,7 @@ void Unwind_180910980(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809109a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1100) != (code *)0x0) {
@@ -77272,7 +77290,7 @@ void Unwind_1809109a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809109c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1170) != (code *)0x0) {
@@ -77302,7 +77320,7 @@ void Unwind_1809109c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809109e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x11e0) != (code *)0x0) {
@@ -77332,7 +77350,7 @@ void Unwind_1809109e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910a00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1250) != (code *)0x0) {
@@ -77362,7 +77380,7 @@ void Unwind_180910a00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910a20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x12c0) != (code *)0x0) {
@@ -77392,7 +77410,7 @@ void Unwind_180910a20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910a40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1330) != (code *)0x0) {
@@ -77422,7 +77440,7 @@ void Unwind_180910a40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910a60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x13a0) != (code *)0x0) {
@@ -77452,7 +77470,7 @@ void Unwind_180910a60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910a80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1410) != (code *)0x0) {
@@ -77482,7 +77500,7 @@ void Unwind_180910a80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910aa0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1480) != (code *)0x0) {
@@ -77512,7 +77530,7 @@ void Unwind_180910aa0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910ac0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x14f0) != (code *)0x0) {
@@ -77542,7 +77560,7 @@ void Unwind_180910ac0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910ae0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1560) != (code *)0x0) {
@@ -77572,7 +77590,7 @@ void Unwind_180910ae0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910b00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x15d0) != (code *)0x0) {
@@ -77602,7 +77620,7 @@ void Unwind_180910b00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910b20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1640) != (code *)0x0) {
@@ -77632,7 +77650,7 @@ void Unwind_180910b20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910b40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x16b0) != (code *)0x0) {
@@ -77662,7 +77680,7 @@ void Unwind_180910b40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910b60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1720) != (code *)0x0) {
@@ -77692,7 +77710,7 @@ void Unwind_180910b60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910b80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1790) != (code *)0x0) {
@@ -77722,7 +77740,7 @@ void Unwind_180910b80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910ba0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1800) != (code *)0x0) {
@@ -77752,7 +77770,7 @@ void Unwind_180910ba0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910bc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1870) != (code *)0x0) {
@@ -77782,7 +77800,7 @@ void Unwind_180910bc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910be0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x18e0) != (code *)0x0) {
@@ -77812,7 +77830,7 @@ void Unwind_180910be0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910c00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1950) != (code *)0x0) {
@@ -77842,7 +77860,7 @@ void Unwind_180910c00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910c20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x19c0) != (code *)0x0) {
@@ -77872,7 +77890,7 @@ void Unwind_180910c20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910c40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1a30) != (code *)0x0) {
@@ -77902,7 +77920,7 @@ void Unwind_180910c40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910c60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1aa0) != (code *)0x0) {
@@ -77932,7 +77950,7 @@ void Unwind_180910c60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910c80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1b10) != (code *)0x0) {
@@ -77962,7 +77980,7 @@ void Unwind_180910c80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910ca0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1b80) != (code *)0x0) {
@@ -77992,7 +78010,7 @@ void Unwind_180910ca0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910cc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1bf0) != (code *)0x0) {
@@ -78022,7 +78040,7 @@ void Unwind_180910cc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910ce0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1c60) != (code *)0x0) {
@@ -78052,7 +78070,7 @@ void Unwind_180910ce0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910d00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1cd0) != (code *)0x0) {
@@ -78082,7 +78100,7 @@ void Unwind_180910d00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910d20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1d40) != (code *)0x0) {
@@ -78112,7 +78130,7 @@ void Unwind_180910d20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910d40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1db0) != (code *)0x0) {
@@ -78142,7 +78160,7 @@ void Unwind_180910d40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910d60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1e20) != (code *)0x0) {
@@ -78172,7 +78190,7 @@ void Unwind_180910d60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910d80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1e90) != (code *)0x0) {
@@ -78202,7 +78220,7 @@ void Unwind_180910d80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910da0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1f00) != (code *)0x0) {
@@ -78232,7 +78250,7 @@ void Unwind_180910da0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910dc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1f70) != (code *)0x0) {
@@ -78262,7 +78280,7 @@ void Unwind_180910dc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910de0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x1fe0) != (code *)0x0) {
@@ -78292,7 +78310,7 @@ void Unwind_180910de0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910e00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2050) != (code *)0x0) {
@@ -78322,7 +78340,7 @@ void Unwind_180910e00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910e20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x20c0) != (code *)0x0) {
@@ -78352,7 +78370,7 @@ void Unwind_180910e20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910e40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2130) != (code *)0x0) {
@@ -78382,7 +78400,7 @@ void Unwind_180910e40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910e60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x21a0) != (code *)0x0) {
@@ -78412,7 +78430,7 @@ void Unwind_180910e60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910e80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2210) != (code *)0x0) {
@@ -78442,7 +78460,7 @@ void Unwind_180910e80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910ea0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2280) != (code *)0x0) {
@@ -78472,7 +78490,7 @@ void Unwind_180910ea0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910ec0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x22f0) != (code *)0x0) {
@@ -78502,7 +78520,7 @@ void Unwind_180910ec0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910ee0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2360) != (code *)0x0) {
@@ -78532,7 +78550,7 @@ void Unwind_180910ee0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910f00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x23d0) != (code *)0x0) {
@@ -78562,7 +78580,7 @@ void Unwind_180910f00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910f20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2440) != (code *)0x0) {
@@ -78592,7 +78610,7 @@ void Unwind_180910f20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910f40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x24b0) != (code *)0x0) {
@@ -78622,7 +78640,7 @@ void Unwind_180910f40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910f60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2520) != (code *)0x0) {
@@ -78652,7 +78670,7 @@ void Unwind_180910f60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910f80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2590) != (code *)0x0) {
@@ -78682,7 +78700,7 @@ void Unwind_180910f80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180910fa0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   if (*(code **)(lVar1 + 0x2600) != (code *)0x0) {
@@ -78715,7 +78733,7 @@ void Unwind_180910fc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x2610);
   uVar4 = 0xfffffffffffffffe;
@@ -78738,7 +78756,7 @@ void Unwind_180910fe0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x2630);
   uVar4 = 0xfffffffffffffffe;
@@ -78758,7 +78776,7 @@ void Unwind_180910fe0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911000(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xa00) != (code *)0x0) {
@@ -78788,7 +78806,7 @@ void Unwind_180911000(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911020(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xa70) != (code *)0x0) {
@@ -78818,7 +78836,7 @@ void Unwind_180911020(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911040(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xae0) != (code *)0x0) {
@@ -78848,7 +78866,7 @@ void Unwind_180911040(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911060(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xb50) != (code *)0x0) {
@@ -78878,7 +78896,7 @@ void Unwind_180911060(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911080(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xbc0) != (code *)0x0) {
@@ -78908,7 +78926,7 @@ void Unwind_180911080(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809110a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xc30) != (code *)0x0) {
@@ -78938,7 +78956,7 @@ void Unwind_1809110a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809110c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xca0) != (code *)0x0) {
@@ -78968,7 +78986,7 @@ void Unwind_1809110c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809110e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xd10) != (code *)0x0) {
@@ -78998,7 +79016,7 @@ void Unwind_1809110e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911100(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xd80) != (code *)0x0) {
@@ -79028,7 +79046,7 @@ void Unwind_180911100(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911120(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xdf0) != (code *)0x0) {
@@ -79058,7 +79076,7 @@ void Unwind_180911120(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911140(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xe60) != (code *)0x0) {
@@ -79088,7 +79106,7 @@ void Unwind_180911140(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911160(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xed0) != (code *)0x0) {
@@ -79118,7 +79136,7 @@ void Unwind_180911160(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911180(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xf40) != (code *)0x0) {
@@ -79148,7 +79166,7 @@ void Unwind_180911180(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809111a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0xfb0) != (code *)0x0) {
@@ -79178,7 +79196,7 @@ void Unwind_1809111a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809111c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1020) != (code *)0x0) {
@@ -79208,7 +79226,7 @@ void Unwind_1809111c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809111e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1090) != (code *)0x0) {
@@ -79238,7 +79256,7 @@ void Unwind_1809111e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911200(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1100) != (code *)0x0) {
@@ -79268,7 +79286,7 @@ void Unwind_180911200(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911220(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1170) != (code *)0x0) {
@@ -79298,7 +79316,7 @@ void Unwind_180911220(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911240(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x11e0) != (code *)0x0) {
@@ -79328,7 +79346,7 @@ void Unwind_180911240(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911260(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1250) != (code *)0x0) {
@@ -79358,7 +79376,7 @@ void Unwind_180911260(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911280(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x12c0) != (code *)0x0) {
@@ -79388,7 +79406,7 @@ void Unwind_180911280(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809112a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1330) != (code *)0x0) {
@@ -79418,7 +79436,7 @@ void Unwind_1809112a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809112c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x13a0) != (code *)0x0) {
@@ -79448,7 +79466,7 @@ void Unwind_1809112c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809112e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1410) != (code *)0x0) {
@@ -79478,7 +79496,7 @@ void Unwind_1809112e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911300(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1480) != (code *)0x0) {
@@ -79508,7 +79526,7 @@ void Unwind_180911300(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911320(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x14f0) != (code *)0x0) {
@@ -79538,7 +79556,7 @@ void Unwind_180911320(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911340(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1560) != (code *)0x0) {
@@ -79568,7 +79586,7 @@ void Unwind_180911340(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911360(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x15d0) != (code *)0x0) {
@@ -79598,7 +79616,7 @@ void Unwind_180911360(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911380(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1640) != (code *)0x0) {
@@ -79628,7 +79646,7 @@ void Unwind_180911380(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809113a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x16b0) != (code *)0x0) {
@@ -79658,7 +79676,7 @@ void Unwind_1809113a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809113c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1720) != (code *)0x0) {
@@ -79688,7 +79706,7 @@ void Unwind_1809113c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809113e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1790) != (code *)0x0) {
@@ -79718,7 +79736,7 @@ void Unwind_1809113e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911400(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1800) != (code *)0x0) {
@@ -79748,7 +79766,7 @@ void Unwind_180911400(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911420(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1870) != (code *)0x0) {
@@ -79778,7 +79796,7 @@ void Unwind_180911420(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911440(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x18e0) != (code *)0x0) {
@@ -79808,7 +79826,7 @@ void Unwind_180911440(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911460(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1950) != (code *)0x0) {
@@ -79838,7 +79856,7 @@ void Unwind_180911460(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911480(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x19c0) != (code *)0x0) {
@@ -79868,7 +79886,7 @@ void Unwind_180911480(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809114a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1a30) != (code *)0x0) {
@@ -79898,7 +79916,7 @@ void Unwind_1809114a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809114c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1aa0) != (code *)0x0) {
@@ -79928,7 +79946,7 @@ void Unwind_1809114c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809114e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1b10) != (code *)0x0) {
@@ -79958,7 +79976,7 @@ void Unwind_1809114e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911500(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1b80) != (code *)0x0) {
@@ -79988,7 +80006,7 @@ void Unwind_180911500(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911520(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1bf0) != (code *)0x0) {
@@ -80018,7 +80036,7 @@ void Unwind_180911520(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911540(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1c60) != (code *)0x0) {
@@ -80048,7 +80066,7 @@ void Unwind_180911540(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911560(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1cd0) != (code *)0x0) {
@@ -80078,7 +80096,7 @@ void Unwind_180911560(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911580(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1d40) != (code *)0x0) {
@@ -80108,7 +80126,7 @@ void Unwind_180911580(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809115a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1db0) != (code *)0x0) {
@@ -80138,7 +80156,7 @@ void Unwind_1809115a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809115c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1e20) != (code *)0x0) {
@@ -80168,7 +80186,7 @@ void Unwind_1809115c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809115e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1e90) != (code *)0x0) {
@@ -80198,7 +80216,7 @@ void Unwind_1809115e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911600(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1f00) != (code *)0x0) {
@@ -80228,7 +80246,7 @@ void Unwind_180911600(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911620(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1f70) != (code *)0x0) {
@@ -80258,7 +80276,7 @@ void Unwind_180911620(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911640(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x1fe0) != (code *)0x0) {
@@ -80288,7 +80306,7 @@ void Unwind_180911640(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911660(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2050) != (code *)0x0) {
@@ -80318,7 +80336,7 @@ void Unwind_180911660(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911680(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x20c0) != (code *)0x0) {
@@ -80348,7 +80366,7 @@ void Unwind_180911680(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809116a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2130) != (code *)0x0) {
@@ -80378,7 +80396,7 @@ void Unwind_1809116a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809116c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x21a0) != (code *)0x0) {
@@ -80408,7 +80426,7 @@ void Unwind_1809116c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809116e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2210) != (code *)0x0) {
@@ -80438,7 +80456,7 @@ void Unwind_1809116e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911700(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2280) != (code *)0x0) {
@@ -80468,7 +80486,7 @@ void Unwind_180911700(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911720(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x22f0) != (code *)0x0) {
@@ -80498,7 +80516,7 @@ void Unwind_180911720(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911740(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2360) != (code *)0x0) {
@@ -80528,7 +80546,7 @@ void Unwind_180911740(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911760(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x23d0) != (code *)0x0) {
@@ -80558,7 +80576,7 @@ void Unwind_180911760(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911780(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2440) != (code *)0x0) {
@@ -80588,7 +80606,7 @@ void Unwind_180911780(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809117a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x24b0) != (code *)0x0) {
@@ -80618,7 +80636,7 @@ void Unwind_1809117a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809117c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2520) != (code *)0x0) {
@@ -80648,7 +80666,7 @@ void Unwind_1809117c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809117e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2590) != (code *)0x0) {
@@ -80678,7 +80696,7 @@ void Unwind_1809117e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911800(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (*(code **)(lVar1 + 0x2600) != (code *)0x0) {
@@ -80711,7 +80729,7 @@ void Unwind_180911820(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x2610);
   uVar4 = 0xfffffffffffffffe;
@@ -80734,7 +80752,7 @@ void Unwind_180911840(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   uint8_t8 *presourceHash;
   longlong *presourceTable;
   uint8_t8 *puVar3;
-  uint8_t8 uVar4;
+  uint8_t8 byteValue4;
   
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x2630);
   uVar4 = 0xfffffffffffffffe;
@@ -81285,7 +81303,7 @@ void Unwind_180911ad0(uint8_t8 param_1,longlong param_2)
 void Unwind_180911b00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 8);
   if (lVar1 != 0) {
@@ -81305,7 +81323,7 @@ void Unwind_180911b00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911b10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x18);
   if (lVar1 != 0) {
@@ -81325,7 +81343,7 @@ void Unwind_180911b10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911b20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x28);
   if (lVar1 != 0) {
@@ -81345,7 +81363,7 @@ void Unwind_180911b20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911b30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x68);
   if (lVar1 != 0) {
@@ -81365,7 +81383,7 @@ void Unwind_180911b30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911b40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x78);
   if (lVar1 != 0) {
@@ -81385,7 +81403,7 @@ void Unwind_180911b40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911b50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x88);
   if (lVar1 != 0) {
@@ -81405,7 +81423,7 @@ void Unwind_180911b50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911b70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xa0);
   if (lVar1 != 0) {
@@ -81423,7 +81441,7 @@ void Unwind_180911b70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911b90(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
   *(uint8_t1 *)(lVar1 + 0x88) = 0;
@@ -81469,7 +81487,7 @@ void Unwind_180911c00(uint8_t8 param_1,longlong param_2)
 void Unwind_180911c30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1538);
   if (lVar1 != 0) {
@@ -81489,7 +81507,7 @@ void Unwind_180911c30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911c40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1620);
   if (lVar1 != 0) {
@@ -81517,7 +81535,7 @@ void Unwind_180911c40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911c60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1aa8);
   if (lVar1 != 0) {
@@ -81537,7 +81555,7 @@ void Unwind_180911c60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911c80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ab8);
   if (lVar1 != 0) {
@@ -81557,7 +81575,7 @@ void Unwind_180911c80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911ca0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ac8);
   if (lVar1 != 0) {
@@ -81577,7 +81595,7 @@ void Unwind_180911ca0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911cc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ad8);
   if (lVar1 != 0) {
@@ -81597,7 +81615,7 @@ void Unwind_180911cc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911ce0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ae8);
   if (lVar1 != 0) {
@@ -81617,7 +81635,7 @@ void Unwind_180911ce0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911d00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1b88);
   if (lVar1 != 0) {
@@ -81637,7 +81655,7 @@ void Unwind_180911d00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911d20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1b98);
   if (lVar1 != 0) {
@@ -81657,7 +81675,7 @@ void Unwind_180911d20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911d40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ba8);
   if (lVar1 != 0) {
@@ -81677,7 +81695,7 @@ void Unwind_180911d40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911d60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1bb8);
   if (lVar1 != 0) {
@@ -81697,7 +81715,7 @@ void Unwind_180911d60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911d80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1bc8);
   if (lVar1 != 0) {
@@ -81717,7 +81735,7 @@ void Unwind_180911d80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911da0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1c70);
   if (lVar1 != 0) {
@@ -81737,7 +81755,7 @@ void Unwind_180911da0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911dc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1e50);
   if (lVar1 != 0) {
@@ -81832,7 +81850,7 @@ void Unwind_180911de0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911e00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1e90);
   if (lVar1 != 0) {
@@ -81852,7 +81870,7 @@ void Unwind_180911e00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911e20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ea0);
   if (lVar1 != 0) {
@@ -81872,7 +81890,7 @@ void Unwind_180911e20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911e40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x70);
@@ -81910,7 +81928,7 @@ void Unwind_180911e40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911e60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   uint8_t8 uVar3;
   
@@ -81951,7 +81969,7 @@ void Unwind_180911e60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911e80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2dd8);
   if (lVar1 != 0) {
@@ -81971,7 +81989,7 @@ void Unwind_180911e80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911ea0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e10);
   if (lVar1 != 0) {
@@ -81991,7 +82009,7 @@ void Unwind_180911ea0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911ec0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e20);
   if (lVar1 != 0) {
@@ -82011,7 +82029,7 @@ void Unwind_180911ec0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911ee0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e30);
   if (lVar1 != 0) {
@@ -82031,7 +82049,7 @@ void Unwind_180911ee0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911f00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e50);
   if (lVar1 != 0) {
@@ -82061,7 +82079,7 @@ void Unwind_180911f20(uint8_t8 param_1,longlong param_2)
 void Unwind_180911f50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 200);
   if (lVar1 != 0) {
@@ -82081,7 +82099,7 @@ void Unwind_180911f50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911f70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0xe0);
   if (lVar1 != 0) {
@@ -82101,7 +82119,7 @@ void Unwind_180911f70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911f90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 8);
   if (lVar1 != 0) {
@@ -82121,7 +82139,7 @@ void Unwind_180911f90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911fa0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x18);
   if (lVar1 != 0) {
@@ -82141,7 +82159,7 @@ void Unwind_180911fa0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911fb0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x80) + 8);
   if (lVar1 != 0) {
@@ -82161,7 +82179,7 @@ void Unwind_180911fb0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911fc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x10);
   if (lVar1 != 0) {
@@ -82181,7 +82199,7 @@ void Unwind_180911fc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911fd0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x20);
   if (lVar1 != 0) {
@@ -82201,7 +82219,7 @@ void Unwind_180911fd0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911fe0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x30);
   if (lVar1 != 0) {
@@ -82221,7 +82239,7 @@ void Unwind_180911fe0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180911ff0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x48);
   if (lVar1 != 0) {
@@ -82241,7 +82259,7 @@ void Unwind_180911ff0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912000(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x58);
   if (lVar1 != 0) {
@@ -82261,7 +82279,7 @@ void Unwind_180912000(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912010(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x68);
   if (lVar1 != 0) {
@@ -82281,7 +82299,7 @@ void Unwind_180912010(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912020(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x1530);
   if (lVar1 != 0) {
@@ -82301,7 +82319,7 @@ void Unwind_180912020(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912040(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 200);
   if (lVar1 != 0) {
@@ -82321,7 +82339,7 @@ void Unwind_180912040(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912060(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xe0);
   if (lVar1 != 0) {
@@ -82341,7 +82359,7 @@ void Unwind_180912060(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912080(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x10);
   if (lVar1 != 0) {
@@ -82361,7 +82379,7 @@ void Unwind_180912080(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912090(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x20);
   if (lVar1 != 0) {
@@ -82381,7 +82399,7 @@ void Unwind_180912090(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809120a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x30);
   if (lVar1 != 0) {
@@ -82401,7 +82419,7 @@ void Unwind_1809120a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809120b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x90);
   if (lVar1 != 0) {
@@ -82421,7 +82439,7 @@ void Unwind_1809120b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809120d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xc0);
   if (lVar1 != 0) {
@@ -82441,7 +82459,7 @@ void Unwind_1809120d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809120f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xd0);
   if (lVar1 != 0) {
@@ -82461,7 +82479,7 @@ void Unwind_1809120f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912110(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xe0);
   if (lVar1 != 0) {
@@ -82481,7 +82499,7 @@ void Unwind_180912110(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912130(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xf0);
   if (lVar1 != 0) {
@@ -82501,7 +82519,7 @@ void Unwind_180912130(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912150(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x1530);
   if (lVar1 != 0) {
@@ -82521,7 +82539,7 @@ void Unwind_180912150(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912170(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (lVar1 != 0) {
@@ -82541,7 +82559,7 @@ void Unwind_180912170(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912180(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x70);
@@ -82595,7 +82613,7 @@ void Unwind_180912180(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809121a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x220);
   if (lVar1 != 0) {
@@ -82615,7 +82633,7 @@ void Unwind_1809121a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809121c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2c0);
   if (lVar1 != 0) {
@@ -82635,7 +82653,7 @@ void Unwind_1809121c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809121e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2d0);
   if (lVar1 != 0) {
@@ -82655,7 +82673,7 @@ void Unwind_1809121e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912200(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   uint8_t8 uVar3;
   
@@ -82728,7 +82746,7 @@ void Unwind_180912200(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912220(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x90);
   if (lVar1 != 0) {
@@ -82748,7 +82766,7 @@ void Unwind_180912220(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912240(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xc0);
   if (lVar1 != 0) {
@@ -82768,7 +82786,7 @@ void Unwind_180912240(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912260(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xd0);
   if (lVar1 != 0) {
@@ -82788,7 +82806,7 @@ void Unwind_180912260(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912280(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xf0);
   if (lVar1 != 0) {
@@ -82808,7 +82826,7 @@ void Unwind_180912280(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809122a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   resourceTable = *(longlong *)(param_2 + 0x40);
@@ -82862,7 +82880,7 @@ void Unwind_1809122a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809122c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x220);
   if (lVar1 != 0) {
@@ -82882,7 +82900,7 @@ void Unwind_1809122c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809122e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x2c0);
   if (lVar1 != 0) {
@@ -82902,7 +82920,7 @@ void Unwind_1809122e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912300(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x2d0);
   if (lVar1 != 0) {
@@ -82922,7 +82940,7 @@ void Unwind_180912300(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912320(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   uint8_t8 uVar3;
   
@@ -82995,7 +83013,7 @@ void Unwind_180912320(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912340(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x48) + 0x38);
   if (lVar1 != 0) {
@@ -83015,7 +83033,7 @@ void Unwind_180912340(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912350(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x48) + 8);
   if (lVar1 != 0) {
@@ -83035,7 +83053,7 @@ void Unwind_180912350(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912360(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x38);
   if (lVar1 != 0) {
@@ -83085,7 +83103,7 @@ void Unwind_1809123d0(uint8_t8 param_1,longlong param_2)
 void Unwind_180912400(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 200) + 8);
   if (lVar1 != 0) {
@@ -83105,7 +83123,7 @@ void Unwind_180912400(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912410(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 200) + 0x18);
   if (lVar1 != 0) {
@@ -83125,7 +83143,7 @@ void Unwind_180912410(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912420(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 200) + 0x28);
   if (lVar1 != 0) {
@@ -83145,7 +83163,7 @@ void Unwind_180912420(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912430(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 8);
   if (lVar1 != 0) {
@@ -83165,7 +83183,7 @@ void Unwind_180912430(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912440(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x48);
   if (lVar1 != 0) {
@@ -83185,7 +83203,7 @@ void Unwind_180912440(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912450(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x58);
   if (lVar1 != 0) {
@@ -83205,7 +83223,7 @@ void Unwind_180912450(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912460(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x68);
   if (lVar1 != 0) {
@@ -83245,7 +83263,7 @@ void Unwind_1809124a0(uint8_t8 param_1,longlong param_2)
 void Unwind_1809124d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   if (lVar1 != 0) {
@@ -83265,7 +83283,7 @@ void Unwind_1809124d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809124e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   if (lVar1 != 0) {
@@ -83285,7 +83303,7 @@ void Unwind_1809124e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809124f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
@@ -83312,7 +83330,7 @@ void Unwind_1809124f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912500(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x58) + 0x28);
   if (lVar1 != 0) {
@@ -83332,7 +83350,7 @@ void Unwind_180912500(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912510(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x28);
   if (lVar1 != 0) {
@@ -83352,7 +83370,7 @@ void Unwind_180912510(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912520(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 8);
   if (lVar1 != 0) {
@@ -83372,7 +83390,7 @@ void Unwind_180912520(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912530(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x18);
   if (lVar1 != 0) {
@@ -83392,7 +83410,7 @@ void Unwind_180912530(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912540(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 8);
   if (lVar1 != 0) {
@@ -83422,7 +83440,7 @@ void Unwind_180912550(uint8_t8 param_1,longlong param_2)
 void Unwind_180912580(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x48) + 0x28);
   if (lVar1 != 0) {
@@ -83442,7 +83460,7 @@ void Unwind_180912580(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912590(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x58);
   if (lVar1 != 0) {
@@ -83489,7 +83507,7 @@ void Unwind_180912590(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809125a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x48);
   if (lVar1 != 0) {
@@ -83509,7 +83527,7 @@ void Unwind_1809125a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809125b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x58);
   if (lVar1 != 0) {
@@ -83529,7 +83547,7 @@ void Unwind_1809125b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809125c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0xc0) + 8);
   if (lVar1 != 0) {
@@ -83579,7 +83597,7 @@ void Unwind_180912630(uint8_t8 param_1,longlong param_2)
 void Unwind_180912660(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0xa8) + 8);
   if (lVar1 != 0) {
@@ -83609,7 +83627,7 @@ void Unwind_180912670(uint8_t8 param_1,longlong param_2)
 void Unwind_1809126a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x28);
   if (lVar1 != 0) {
@@ -83668,7 +83686,7 @@ void Unwind_180912740(uint8_t8 param_1,longlong param_2)
 void Unwind_180912770(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x30);
   if (lVar1 != 0) {
@@ -83688,7 +83706,7 @@ void Unwind_180912770(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912780(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   
   validationResult = 0xfffffffffffffffe;
@@ -83714,7 +83732,7 @@ void Unwind_180912780(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912790(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   
   validationResult = 0xfffffffffffffffe;
@@ -83740,7 +83758,7 @@ void Unwind_180912790(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809127a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   
   validationResult = 0xfffffffffffffffe;
@@ -83766,7 +83784,7 @@ void Unwind_1809127a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809127b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   
   validationResult = 0xfffffffffffffffe;
@@ -83792,7 +83810,7 @@ void Unwind_1809127b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809127c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   uint8_t8 validationResult;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
@@ -83846,7 +83864,7 @@ void Unwind_1809127d0(void)
 void Unwind_1809127e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x18);
   if (lVar1 != 0) {
@@ -83866,7 +83884,7 @@ void Unwind_1809127e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_1809127f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x18);
   if (lVar1 != 0) {
@@ -83886,7 +83904,7 @@ void Unwind_1809127f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912800(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x58) + 8);
   if (lVar1 != 0) {
@@ -83904,7 +83922,7 @@ void Unwind_180912800(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
 void Unwind_180912810(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   *(uint8_t1 *)(lVar1 + 0x88) = 0;
@@ -83987,7 +84005,7 @@ void Unwind_1809128e0(uint8_t8 param_1,longlong param_2)
 void Unwind_180912910(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x218) = &SystemResourceHandlerTemplate;
@@ -84050,7 +84068,7 @@ void Unwind_180912930(uint8_t8 param_1,longlong param_2)
 void Unwind_180912950(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x388) = &SystemResourceHandlerTemplate;
@@ -84069,7 +84087,7 @@ void Unwind_180912950(uint8_t8 param_1,longlong param_2)
 void Unwind_180912970(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
   *(uint8_t8 *)(lVar1 + 0x3a8) = &SystemResourceHandlerTemplate;
@@ -84249,7 +84267,7 @@ void TriggerResourceHandleOperation(uint8_t8 *ResourceHandlePtr)
 void InitializeResourceTableManager(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   _DAT_180bf52c0 = &SystemResourceHandlerTemplate;
@@ -85121,7 +85139,7 @@ void InitializeSystemDataStructureAI(void)
 void InitializeSystemDataStructureAI(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   ulonglong validationResult;
   
   if (_DAT_180c91f18 != 0) {
@@ -86252,7 +86270,7 @@ void InitializeSystemDataStructureCB(void)
 void InitializeSystemDataStructureCB(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   CleanupSystemState(&DAT_180bfc140);
@@ -86291,7 +86309,7 @@ void InitializeSystemDataStructureCC(void)
 void InitializeSystemDataStructureCC(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   if (0xf < _DAT_180bfc118) {
@@ -86321,7 +86339,7 @@ void InitializeSystemDataStructureCD(void)
 void InitializeSystemDataStructureCD(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   if (0xf < uRam0000000180bfc0f0) {
@@ -86357,7 +86375,7 @@ void InitializeSystemDataStructureCE(void)
 void InitializeSystemDataStructureCE(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   if (0xf < uRam0000000180d499c0) {
@@ -86605,7 +86623,7 @@ void ReleaseResourceReference(void)
 void ReleaseResourceReferenceWithParameter(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   int *piVar2;
   int iVar3;
   longlong lVar4;
@@ -86665,7 +86683,7 @@ void InitializeSystemDataStructureCM(void)
 void InitializeSystemDataStructureCM(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   int *piVar2;
   int iVar3;
   longlong lVar4;
@@ -86708,7 +86726,7 @@ void InitializeSystemDataStructureCN(void)
 void InitializeSystemDataStructureCN(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   int *piVar2;
   int iVar3;
   longlong lVar4;
@@ -86762,7 +86780,7 @@ void NoOperationFunction(void)
 void ExecuteReferenceCountDecrementAndCleanup(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   int *piVar2;
   int iVar3;
   longlong lVar4;
@@ -86805,7 +86823,7 @@ void InitializeSystemDataStructureCP(void)
 void InitializeSystemDataStructureCP(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   int *piVar2;
   int iVar3;
   longlong lVar4;
@@ -86865,7 +86883,7 @@ void InitializeSystemDataStructureCR(void)
 void InitializeSystemDataStructureCR(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   longlong resourceTable;
   
   if (0xf < _DAT_180bfc188) {
@@ -86945,7 +86963,7 @@ void ReleaseValidationResultTable(void)
 void ReleaseValidationResultTable(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   ulonglong validationResult;
   
   if (lRam0000000180d49d90 != 0) {
@@ -87208,7 +87226,7 @@ void InitializeSystemDataStructureCV(void)
 void InitializeSystemDataStructureCV(void)
 
 {
-  longlong lVar1;
+  longlong loopCounter;
   
   lVar1 = _DAT_180c96138;
   if (DAT_180c96140 != '\0') {
@@ -87256,7 +87274,7 @@ void InitializeSystemDataStructureCX(void)
 void InitializeSystemDataStructureCX(void)
 
 {
-  longlong *plVar1;
+  longlong *processPointer;
   
   plVar1 = _DAT_180c95f18;
   if (DAT_180c95f28 != '\0') {
