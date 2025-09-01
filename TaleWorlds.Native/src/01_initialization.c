@@ -400,6 +400,10 @@ uint32_t SystemInitializationStatusD;  // SystemInitializationStatusD
 uint32_t SystemInitializationStatusE;  // SystemInitializationStatusE
 uint32_t SystemInitializationStatusF;  // SystemInitializationStatusF
 
+// 系统内存状态标志变量
+uint32_t SystemMemoryStatusFlagA;      // 系统内存状态标志A
+uint32_t SystemMemoryStatusFlagB;      // 系统内存状态标志B
+
 // 系统回调函数指针
 void* SystemEventCallbackPointer;     // SystemEventNotificationHandler
 void* SystemInitializationCallbackA;  // SystemInitializationHandlerA
@@ -1355,11 +1359,11 @@ int InitializeSystemGlobalVariables(void)
   
   SystemInitializationStatusA = 0;
   SystemInitializationStatusB = 0;
-  uRam0000000180bf5278 = 0;
+  SystemMemoryStatusFlagA = 0;
   SystemInitializationStatusC = 3;
   SystemInitializationStatusD = 0;
   SystemInitializationStatusE = 0;
-  uRam0000000180bf5298 = 0;
+  SystemMemoryStatusFlagB = 0;
   SystemInitializationStatusF = 3;
   SystemConfigDataPointerA = &SystemGlobalDataPointerA;
   SystemConfigDataPointerB = 0;
@@ -23379,10 +23383,19 @@ void SystemMemoryReleaser(long long memoryOffset)
 
 
 // 函数: void FUN_18004bb60(long long param_1)
-void FUN_18004bb60(long long param_1)
+/**
+ * @brief 系统内存偏移处理器
+ * 
+ * 该函数处理系统内存中的偏移量，通过调用底层内存管理函数来处理
+ * 指定偏移位置的操作。
+ * 
+ * @param memoryOffset 内存偏移量参数
+ * @note 这是系统内存管理的重要组成部分，用于处理特定内存位置的操作
+ */
+void SystemMemoryOffsetHandler(long long memoryOffset)
 
 {
-  FUN_180057010(param_1 + 0x60);
+  FUN_180057010(memoryOffset + 0x60);
   return;
 }
 
@@ -23392,52 +23405,64 @@ void FUN_18004bb60(long long param_1)
 
 
 // 函数: void FUN_18004bb90(void* param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004bb90(void* param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统内存区域清理器
+ * 
+ * 该函数负责清理系统内存区域，包括重置内存指针、清理数据结构、
+ * 释放内存资源等操作。它会遍历内存区域中的所有指针，进行安全清理。
+ * 
+ * @param systemContext 系统上下文指针
+ * @param memoryRegion 内存区域指针
+ * @param cleanupFlag 清理标志
+ * @param cleanupParameter 清理参数
+ * @note 这是系统内存管理的关键函数，确保内存资源的正确释放和重置
+ */
+void SystemMemoryRegionCleaner(void* systemContext,void* memoryRegion,void* cleanupFlag,void* cleanupParameter)
 
 {
-  void* *puVar1;
-  long long lVar2;
-  int memoryCompareResult;
-  long long lVar4;
+  void* *memoryPointer;
+  long long systemDataReference;
+  int memoryBlockCount;
+  long long blockIndex;
   
-  lVar2 = _DAT_180c8a9f0;
-  iVar3 = (int)(*(long long *)(_DAT_180c8a9f0 + 0x38) - *(long long *)(_DAT_180c8a9f0 + 0x30) >> 3);
-  lVar4 = 0;
-  if (0 < iVar3) {
+  systemDataReference = _DAT_180c8a9f0;
+  memoryBlockCount = (int)(*(long long *)(_DAT_180c8a9f0 + 0x38) - *(long long *)(_DAT_180c8a9f0 + 0x30) >> 3);
+  blockIndex = 0;
+  if (0 < memoryBlockCount) {
     do {
-      puVar1 = *(void* **)(*(long long *)(lVar2 + 0x30) + lVar4 * 8);
-      if (puVar1 != (void* *)0x0) {
-        puVar1[4] = &SystemGlobalDataReference;
-        if (puVar1[5] != 0) {
+      memoryPointer = *(void* **)(*(long long *)(systemDataReference + 0x30) + blockIndex * 8);
+      if (memoryPointer != (void* *)0x0) {
+        memoryPointer[4] = &SystemGlobalDataReference;
+        if (memoryPointer[5] != 0) {
                     // WARNING: Subroutine does not return
           SystemCleanupFunction();
         }
-        puVar1[5] = 0;
-        *(uint32_t *)(puVar1 + 7) = 0;
-        puVar1[4] = &SystemMemoryAllocatorReference;
-        *puVar1 = &SystemGlobalDataReference;
-        if (puVar1[1] == 0) {
-          puVar1[1] = 0;
-          *(uint32_t *)(puVar1 + 3) = 0;
-          *puVar1 = &SystemMemoryAllocatorReference;
+        memoryPointer[5] = 0;
+        *(uint32_t *)(memoryPointer + 7) = 0;
+        memoryPointer[4] = &SystemMemoryAllocatorReference;
+        *memoryPointer = &SystemGlobalDataReference;
+        if (memoryPointer[1] == 0) {
+          memoryPointer[1] = 0;
+          *(uint32_t *)(memoryPointer + 3) = 0;
+          *memoryPointer = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-          SystemCleanupFunction(puVar1);
+          SystemCleanupFunction(memoryPointer);
         }
                     // WARNING: Subroutine does not return
         SystemCleanupFunction();
       }
-      *(void* *)(*(long long *)(lVar2 + 0x30) + lVar4 * 8) = 0;
-      lVar4 = lVar4 + 1;
-    } while (lVar4 < iVar3);
+      *(void* *)(*(long long *)(systemDataReference + 0x30) + blockIndex * 8) = 0;
+      blockIndex = blockIndex + 1;
+    } while (blockIndex < memoryBlockCount);
   }
-  *(void* *)(lVar2 + 0x38) = *(void* *)(lVar2 + 0x30);
-  lVar4 = lVar2 + 0x50;
-  FUN_180058370(lVar4,*(void* *)(lVar2 + 0x60),param_3,param_4,0xfffffffffffffffe);
-  *(long long *)lVar4 = lVar4;
-  *(long long *)(lVar2 + 0x58) = lVar4;
-  *(void* *)(lVar2 + 0x60) = 0;
-  *(uint8_t *)(lVar2 + 0x68) = 0;
-  *(void* *)(lVar2 + 0x70) = 0;
+  *(void* *)(systemDataReference + 0x38) = *(void* *)(systemDataReference + 0x30);
+  blockIndex = systemDataReference + 0x50;
+  FUN_180058370(blockIndex,*(void* *)(systemDataReference + 0x60),cleanupFlag,cleanupParameter,0xfffffffffffffffe);
+  *(long long *)blockIndex = blockIndex;
+  *(long long *)(systemDataReference + 0x58) = blockIndex;
+  *(void* *)(systemDataReference + 0x60) = 0;
+  *(uint8_t *)(systemDataReference + 0x68) = 0;
+  *(void* *)(systemDataReference + 0x70) = 0;
   return;
 }
 
@@ -23445,10 +23470,22 @@ void FUN_18004bb90(void* param_1,void* param_2,void* param_3,void* param_4)
 
 
 // 函数: void FUN_18004bcb0(long long param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004bcb0(long long param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统内存区域处理器
+ * 
+ * 该函数处理系统内存区域的操作，通过调用底层的内存处理函数来执行
+ * 特定的内存操作任务。
+ * 
+ * @param memoryRegion 内存区域指针
+ * @param memoryOffset 内存偏移量
+ * @param operationFlag 操作标志
+ * @param operationParameter 操作参数
+ * @note 这是系统内存管理的辅助函数，用于处理特定的内存区域操作
+ */
+void SystemMemoryRegionProcessor(long long memoryRegion,void* memoryOffset,void* operationFlag,void* operationParameter)
 
 {
-  FUN_180058420(param_1,*(void* *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058420(memoryRegion,*(void* *)(memoryRegion + 0x10),operationFlag,operationParameter,0xfffffffffffffffe);
   return;
 }
 
@@ -23456,10 +23493,22 @@ void FUN_18004bcb0(long long param_1,void* param_2,void* param_3,void* param_4)
 
 
 // 函数: void FUN_18004bce0(long long param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004bce0(long long param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统内存区域操作器
+ * 
+ * 该函数执行系统内存区域的操作，通过调用底层的内存操作函数来处理
+ * 指定内存区域的特定操作。
+ * 
+ * @param memoryContext 内存上下文指针
+ * @param memoryTarget 内存目标指针
+ * @param operationFlag 操作标志
+ * @param operationParameter 操作参数
+ * @note 这是系统内存管理的核心函数，用于处理内存区域的操作任务
+ */
+void SystemMemoryRegionOperator(long long memoryContext,void* memoryTarget,void* operationFlag,void* operationParameter)
 
 {
-  FUN_180058420(param_1,*(void* *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058420(memoryContext,*(void* *)(memoryContext + 0x10),operationFlag,operationParameter,0xfffffffffffffffe);
   return;
 }
 
