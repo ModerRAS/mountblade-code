@@ -6420,7 +6420,7 @@ LAB_18032bf87:
   }
   return uVar8;
 }
-uint8_t SystemModuleProcessRequest(uint64_t param_1,uint64_t param_2,longlong *param_3)
+uint8_t SystemModuleProcessRequest(uint64_t systemId, uint64_t requestType, longlong *requestData)
 {
   int64_t ModuleInitializationResult;
   uint BufferSize;
