@@ -34511,7 +34511,13 @@ void Unwind_180903290(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809032b0(void)
+/**
+ * @brief 销毁互斥锁副本
+ * 
+ * 该函数负责销毁互斥锁的副本
+ * 调用系统底层的互斥锁销毁函数
+ */
+void DestroyMutexDuplicate(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -44988,7 +44994,7 @@ void Unwind_1809059f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180905a10(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ExecuteResourceContextCallback(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -45002,7 +45008,7 @@ void Unwind_180905a10(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180905a30(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ExecuteResourceContextCallbackAlt(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -45016,7 +45022,7 @@ void Unwind_180905a30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180905a50(void)
+void DestroyMutexInSitu(void)
 
 {
   _Mtx_destroy_in_situ();

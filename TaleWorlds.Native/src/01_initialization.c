@@ -25699,7 +25699,7 @@ void SystemCleanupHandler(void)
   FUN_18020e0e0(punsignedSystemValue6,&puStack_168,3,localSystemHandle + 0x2e0);
   *punsignedSystemValue6 = &UNK_1809fe220;
   apuStack_1c8[0] = punsignedSystemValue6;
-  FUN_18020e840(punsignedSystemValue6);
+  SetupSystemMemoryAllocator(punsignedSystemValue6);
   InitializeSystemHandle(localSystemHandle + 0x48,apuStack_1c8);
   *(void* **)(localBufferAddress + 0x18) = punsignedSystemValue6;
   puStack_168 = &SystemMemoryAllocatorReference;
@@ -25731,8 +25731,8 @@ void SystemCleanupHandler(void)
   RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&DAT_180a00c90,&UNK_180a00480,SystemCallbackHandler7);
   RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&UNK_180a00ab8,&UNK_180a00ac8,SystemCallbackHandler8);
   RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&UNK_180a01170,&UNK_180a00368,SystemCallbackHandler9);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&DAT_180a009f0,&UNK_180a00a00,FUN_180090020);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&DAT_180a00c80,&UNK_180a00490,FUN_180086b40);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&DAT_180a009f0,&UNK_180a00a00,SystemEventCallbackHandler);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&DAT_180a00c80,&UNK_180a00490,SystemNetworkCallbackHandler);
   SystemPreviousNode = (uint32_t *)FUN_18008d660(localResourceOffset + 0xe0,&DAT_180a009f0);
   *SystemPreviousNode = 1;
   SystemPreviousNode = (uint32_t *)FUN_18008d660(localResourceOffset + 0xe0,&DAT_180a012f0);
@@ -31901,7 +31901,7 @@ void CleanupSystemConfigurationData(void* SystemResourcePointer,void* *Configura
 
 
 
-// 函数: void FUN_1800587e2(void* SystemResourcePointer)
+// 函数: void ReleaseSystemResourceHandle(void* SystemResourcePointer)
 /**
  * @brief 系统资源最终清理器函数
  * 
