@@ -50008,7 +50008,19 @@ void Unwind_180906cb0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906cc0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 验证和清理资源上下文
+ * 
+ * 该函数负责验证资源上下文的有效性，并在验证通过后执行资源清理操作
+ * 主要用于处理系统资源的管理和释放
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的运行时信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证资源状态的上下文信息
+ * @return 无返回值
+ * @note 此函数会在资源验证失败时调用内存访问验证函数
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ValidateAndCleanupResourceContext(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -50044,7 +50056,19 @@ void Unwind_180906cc0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906cd0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 执行资源验证和清理的辅助函数
+ * 
+ * 该函数是资源验证和清理的辅助函数，与ValidateAndCleanupResourceContext功能相同
+ * 用于处理系统资源的验证和清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的运行时信息
+ * @param ValidationContextParameter 验证上下文参数，用于验证资源状态的上下文信息
+ * @return 无返回值
+ * @note 此函数是ValidateAndCleanupResourceContext的辅助函数
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ExecuteResourceValidationAndCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
