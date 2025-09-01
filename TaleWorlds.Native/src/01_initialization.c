@@ -22103,27 +22103,27 @@ void ProcessSystemThreeParameterBuffer(long long param_1,long long param_2,long 
 
 
 void* *
-FUN_180049eb0(void* *param_1,long long param_2,void* param_3,void* param_4)
+InitializeStringBufferWithBackup(void* *stringBuffer,long long stringLength,void* reservedParam3,void* reservedParam4)
 
 {
-  long long lVar1;
+  long long characterIndex;
   
-  *param_1 = &SystemMemoryAllocatorReference;
-  param_1[1] = 0;
-  *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &SystemDataBufferTemplateB;
-  param_1[1] = param_1 + 3;
-  *(uint32_t *)(param_1 + 2) = 0;
-  *(uint8_t *)(param_1 + 3) = 0;
-  if (param_2 != 0) {
-    lVar1 = -1;
+  *stringBuffer = &SystemMemoryAllocatorReference;
+  stringBuffer[1] = 0;
+  *(uint32_t *)(stringBuffer + 2) = 0;
+  *stringBuffer = &SystemDataBufferBackupTemplateB;
+  stringBuffer[1] = stringBuffer + 3;
+  *(uint32_t *)(stringBuffer + 2) = 0;
+  *(uint8_t *)(stringBuffer + 3) = 0;
+  if (stringLength != 0) {
+    characterIndex = -1;
     do {
-      lVar1 = lVar1 + 1;
-    } while (*(char *)(param_2 + lVar1) != '\0');
-    *(int *)(param_1 + 2) = (int)lVar1;
-    strcpy_s(param_1[1],0x40,param_2,param_4,0xfffffffffffffffe);
+      characterIndex = characterIndex + 1;
+    } while (*(char *)(stringLength + characterIndex) != '\0');
+    *(int *)(stringBuffer + 2) = (int)characterIndex;
+    strcpy_s(stringBuffer[1],0x40,stringLength,reservedParam4,0xfffffffffffffffe);
   }
-  return param_1;
+  return stringBuffer;
 }
 
 
