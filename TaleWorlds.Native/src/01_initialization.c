@@ -20731,10 +20731,10 @@ long long ManageSystemResources(long long param_1,long long param_2,void* param_
   *(void* *)(param_1 + 0x48) = resourceHandle;
   resourceHandle = *(void* *)(param_2 + 0x58);
   *(void* *)(param_1 + 0x50) = *(void* *)(param_2 + 0x50);
-  *(void* *)(param_1 + 0x58) = uVar5;
-  uVar2 = *(uint32_t *)(param_2 + 100);
-  uVar3 = *(uint32_t *)(param_2 + 0x68);
-  uVar4 = *(uint32_t *)(param_2 + 0x6c);
+  *(void* *)(param_1 + 0x58) = resourceHandle;
+  resourceStatusFlag1 = *(uint32_t *)(param_2 + 100);
+  resourceStatusFlag2 = *(uint32_t *)(param_2 + 0x68);
+  resourceStatusFlag3 = *(uint32_t *)(param_2 + 0x6c);
   *(uint32_t *)(param_1 + 0x60) = *(uint32_t *)(param_2 + 0x60);
   *(uint32_t *)(param_1 + 100) = uVar2;
   *(uint32_t *)(param_1 + 0x68) = uVar3;
