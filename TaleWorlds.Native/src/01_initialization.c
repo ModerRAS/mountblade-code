@@ -1018,12 +1018,12 @@ void initializeSystemCoreData(void)
   undefined8 *newNode;
   code *initializationCallback;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_180073930;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  systemHandle = (longlong *)FUN_18008d070();
+  systemRootPointer = (undefined8 *)*systemHandle;
+  statusFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  initializationCallback = FUN_180073930;
+  previousNode = systemRootPointer;
+  currentNode = (undefined8 *)systemRootPointer[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8f0,0x10);
     if (iVar3 < 0) {
