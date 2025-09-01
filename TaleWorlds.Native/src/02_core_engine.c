@@ -11618,7 +11618,16 @@ void engine_core_shutdown_operations(void)
 
 
 
-undefined8 *
+// 函数: void* engine_core_handle_events
+// 功能: 处理核心系统事件，管理事件队列和分发
+// 参数: 
+//   - engine_engine_param_1: 事件处理器指针
+//   - engine_engine_param_2: 事件标志位
+//   - engine_param_3: 事件参数1
+//   - engine_param_4: 事件参数2
+// 返回值: 事件处理器指针
+// 简化实现: 保留核心事件处理功能
+void*
 engine_core_handle_events(uint64 engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
