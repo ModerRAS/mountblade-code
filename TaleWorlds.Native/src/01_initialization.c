@@ -18500,7 +18500,14 @@ void ProcessSystemMemoryCopy(long long param_1,void* param_2,int param_3)
 
 
 // 函数: void FUN_180045bc1(void)
-void FUN_180045bc1(void)
+/**
+ * @brief 系统内存拷贝操作
+ * 
+ * 该函数执行系统内存拷贝操作，用于在系统初始化过程中复制内存数据。
+ * 
+ * @note 这是一个低级别的系统操作函数
+ */
+void ExecuteSystemMemoryCopyOperation(void)
 
 {
                     // WARNING: Subroutine does not return
