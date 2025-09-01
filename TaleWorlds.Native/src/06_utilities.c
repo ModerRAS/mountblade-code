@@ -3573,16 +3573,16 @@ uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
   int64_t validationContext;
   
   OperationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x18),&validationContext);
-  ValidationStatus = (int)OperationResult;
-  if (ValidationStatus == 0) {
+  ValidationStatusCode = (int)OperationResult;
+  if (ValidationStatusCode == 0) {
     NullDataPointer = (int64_t *)0x0;
     CleanupDataPointer = NullDataPointer;
     if (validationContext != 0) {
       CleanupDataPointer = (int64_t *)(validationContext + -8);
     }
     OperationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x10),&validationContext);
-    ValidationStatus = (int)OperationResult;
-    if (ValidationStatus == 0) {
+    ValidationStatusCode = (int)OperationResult;
+    if (ValidationStatusCode == 0) {
       memoryContextHandle = 0;
       ProcessResult = ProcessSystemObjectValidation(*(uint8_t *)(SystemContext + 0x90),*(int64_t *)(validationContext + 8) + 0x10,
                             &memoryContextHandle);
