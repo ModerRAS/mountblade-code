@@ -28886,7 +28886,16 @@ void RestoreSystemDataStructureToContextF8(uint8_t8 objectContextParam,longlong 
 
 
 
-void Unwind_1809022a0(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 在异常处理时检查并释放特定标志位的系统资源
+ * 
+ * 该函数负责检查资源数据的第4位标志(值为0x10)，如果该位被设置
+ * 则清除该标志位并释放位于0x58偏移位置的系统资源
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void ReleaseSystemResourceWithFlag10(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   if ((*(uint *)(resourceData + 0x30) & 0x10) != 0) {
@@ -28898,7 +28907,16 @@ void Unwind_1809022a0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_1809022d0(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 在异常处理时检查并释放特定标志位的系统资源
+ * 
+ * 该函数负责检查资源数据的第5位标志(值为0x20)，如果该位被设置
+ * 则清除该标志位并释放位于0xd8偏移位置的系统资源
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void ReleaseSystemResourceWithFlag20(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   if ((*(uint *)(resourceData + 0x30) & 0x20) != 0) {
