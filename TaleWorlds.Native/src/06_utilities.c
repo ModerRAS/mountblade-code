@@ -3407,19 +3407,19 @@ uint8_t VerifyObjectRegistration(int64_t objectContext)
         RegistrationArrayPointer = (int64_t *)(RegistrationObjectData + REGISTRATION_ARRAY_OFFSET);
         CurrentArrayIndex = 0;
         RegistrationArraySize = *(int *)(RegistrationObjectData + REGISTRATION_SIZE_OFFSET);
-        if (0 < registrationArraySize) {
-          objectRegistrationArray = (int64_t *)*registrationArrayPointer;
-          objectSearchIndex = currentArrayIndex;
+        if (0 < RegistrationArraySize) {
+          ObjectRegistrationArray = (int64_t *)*RegistrationArrayPointer;
+          ObjectSearchIndex = CurrentArrayIndex;
           do {
-            if (*objectRegistrationArray == registrationObjectHandle) {
-              if (-1 < (int)objectSearchIndex) {
+            if (*ObjectRegistrationArray == registrationObjectHandle) {
+              if (-1 < (int)ObjectSearchIndex) {
                 return 0;
               }
               break;
             }
-            objectSearchIndex = (uint64_t)((int)objectSearchIndex + 1);
+            ObjectSearchIndex = (uint64_t)((int)ObjectSearchIndex + 1);
             currentArrayIndex = currentArrayIndex + 1;
-            objectRegistrationArray = objectRegistrationArray + 1;
+            ObjectRegistrationArray = ObjectRegistrationArray + 1;
           } while ((int64_t)currentArrayIndex < (int64_t)registrationArraySize);
         }
         registrationCounter = registrationCounter + 1;
