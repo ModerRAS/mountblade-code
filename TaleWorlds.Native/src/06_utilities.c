@@ -4801,23 +4801,31 @@ uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t advancedObjectHandle)
 
 
 
-undefined4 FUN_180890f03(void)
+/**
+ * @brief 验证并执行系统退出操作
+ * 
+ * 该函数验证输入的RAX寄存器值，如果验证通过则执行系统退出操作
+ * 这是一个不会返回的函数，用于处理系统级别的退出
+ * 
+ * @return 状态码，0x1c表示验证失败
+ */
+uint32_t ValidateAndExecuteSystemExit(void)
 
 {
-  longlong in_RAX;
-  longlong lVar1;
+  longlong systemRegister;
+  longlong calculatedOffset;
   
-  if (in_RAX == 0) {
-    lVar1 = 0;
+  if (systemRegister == 0) {
+    calculatedOffset = 0;
   }
   else {
-    lVar1 = in_RAX + -8;
+    calculatedOffset = systemRegister + -8;
   }
-  if (*(longlong *)(lVar1 + 0x10) == 0) {
+  if (*(longlong *)(calculatedOffset + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+  ExecuteSystemExitOperation(*(longlong *)(calculatedOffset + 0x10),1);
 }
 
 
@@ -4855,41 +4863,58 @@ void EmptyFunction(void)
 
 
 
-undefined8 FUN_180890f90(longlong param_1)
+/**
+ * @brief 验证对象指针并执行退出操作
+ * 
+ * 该函数验证传入的对象指针，获取相关的栈信息
+ * 如果验证通过则执行系统退出操作
+ * 
+ * @param objectPointer 要验证的对象指针
+ * @return 状态码，0x1c表示验证失败
+ */
+uint64_t ValidateObjectPointerAndExecuteExit(longlong objectPointer)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  uint64_t validationResult;
+  longlong stackOffset;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  validationResult = func_0x00018088c530(*(undefined4 *)(objectPointer + 0x10),&stackOffset);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  if (lStackX_8 != 0) {
-    lStackX_8 = lStackX_8 + -8;
+  if (stackOffset != 0) {
+    stackOffset = stackOffset + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(longlong *)(stackOffset + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  ExecuteSystemExitOperation(*(longlong *)(stackOffset + 0x10),1);
 }
 
 
 
-undefined4 FUN_180890fae(void)
+/**
+ * @brief 验证栈位置并执行退出操作
+ * 
+ * 该函数验证传入的栈位置，如果验证通过则执行系统退出操作
+ * 这是一个不会返回的函数
+ * 
+ * @return 状态码，0x1c表示验证失败
+ */
+uint32_t ValidateStackLocationAndExecuteExit(void)
 
 {
-  longlong in_stack_00000040;
+  longlong stackLocation;
   
-  if (in_stack_00000040 != 0) {
-    in_stack_00000040 = in_stack_00000040 + -8;
+  if (stackLocation != 0) {
+    stackLocation = stackLocation + -8;
   }
-  if (*(longlong *)(in_stack_00000040 + 0x10) == 0) {
+  if (*(longlong *)(stackLocation + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(in_stack_00000040 + 0x10),1);
+  ExecuteSystemExitOperation(*(longlong *)(stackLocation + 0x10),1);
 }
 
 
