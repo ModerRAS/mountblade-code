@@ -19347,33 +19347,33 @@ void ProcessResourceDataLoading(void)
 
 {
   int operationResult;
-  int integerValue2;
-  uint unsignedValue3;
-  uint uStack00000000000000a8;
+  int infoExtractionResult;
+  uint resourceHash;
+  uint stackBuffer;
   
-  uStack00000000000000a8 = 0;
-  integerValue1 = LoadResourceData();
-  if (integerValue1 != 0) {
+  stackBuffer = 0;
+  loadingStatus = LoadResourceData();
+  if (loadingStatus != 0) {
     return;
   }
-  integerValue1 = 0;
-  unsignedResult3 = uStack00000000000000a8 >> 1;
-  if (unsignedResult3 != 0) {
+  loadingStatus = 0;
+  resourceHash = stackBuffer >> 1;
+  if (resourceHash != 0) {
     do {
-      integerValue2 = ExtractResourceInfo();
-      if (integerValue2 != 0) {
+      infoExtractionResult = ExtractResourceInfo();
+      if (infoExtractionResult != 0) {
         return;
       }
-      integerValue2 = ValidateResourceHash();
-      if (integerValue2 != 0) {
+      hashValidationResult = ValidateResourceHash();
+      if (hashValidationResult != 0) {
         return;
       }
-      integerValue2 = ParseResourceMetadata();
-      if (integerValue2 != 0) {
+      metadataParsingResult = ParseResourceMetadata();
+      if (metadataParsingResult != 0) {
         return;
       }
-      integerValue1 = integerValue1 + 1;
-    } while (integerValue1 < (int)unsignedResult3);
+      loadingStatus = loadingStatus + 1;
+    } while (loadingStatus < (int)resourceHash);
   }
                     // WARNING: Subroutine does not return
   CleanupResourceData();
@@ -19382,8 +19382,13 @@ void ProcessResourceDataLoading(void)
 
 
 
- b7c7(void)
-b7c7(void)
+ /**
+ * @brief 执行空操作B
+ * 
+ * 该函数不执行任何操作，直接返回
+ * 用作占位符或空操作
+ */
+void PerformNoOperationB(void)
 
 {
   return;
