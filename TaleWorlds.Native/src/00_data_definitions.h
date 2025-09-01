@@ -85,18 +85,20 @@ int initializeNetworkSystem(void)
   return (callbackResult != 0) - 1;
 }
 /**
- * 初始化模块F
- * 设置模块F所需的全局数据结构和回调
+ * 初始化文件系统模块
+ * 设置文件系统所需的全局数据结构和IO缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
  */
-int initializeModuleF(void)
+int initializeFileSystem(void)
 {
-  longlong result;
-  globalData_180bf5c30 = &unknownData_18098bb30;
-  globalData_180bf5c38 = &globalData_180bf5c48;
-  globalData_180bf5c40 = 0;
-  globalData_180bf5c48 = 0;
-  result = registerSystemCallback(initializeModuleF_Callback);
-  return (result != 0) - 1;
+  longlong callbackResult;
+  g_fileSystemData = &unknownGlobalData;
+  g_fileSystemConfig = &g_fileSystemState;
+  g_fileSystemFlags = 0;
+  g_fileSystemState = 0;
+  callbackResult = registerSystemCallback(fileSystemCallback);
+  return (callbackResult != 0) - 1;
 }
 /**
  * 初始化模块G

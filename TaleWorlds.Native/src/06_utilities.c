@@ -2937,10 +2937,17 @@ undefined8 FUN_1808905ae(void)
 
 
 
-undefined8 FUN_18089062a(char param_1)
+/**
+ * @brief 验证字符参数并执行相应操作
+ * @param charInput 输入的字符参数
+ * @return 返回0表示成功
+ * 
+ * 该函数验证输入的字符参数，如果字符不为空则执行相应的系统操作
+ */
+undefined8 validateCharacterParameter(char charInput)
 
 {
-  if (param_1 != '\0') {
+  if (charInput != '\0') {
                     // WARNING: Subroutine does not return
     FUN_180862e00();
   }

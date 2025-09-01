@@ -404,60 +404,60 @@ undefined8 FUN_180840270(longlong *param_1)
 void InitializeNetworkConnection(ulonglong *connectionHandle,int connectionType)
 
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  int aiStack_148 [2];
-  longlong lStack_140;
-  uint auStack_138 [4];
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
+  int result;
+  int errorStatus;
+  int status;
+  undefined1 securityBuffer [32];
+  undefined1 *errorMessage;
+  int connectionInfo [2];
+  longlong connectionData;
+  uint connectionParams [4];
+  undefined1 errorBuffer [256];
+  ulonglong stackGuard;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  stackGuard = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
   func_0x000180741c10(&DAT_180be12f0);
-  if (param_1 == (ulonglong *)0x0) {
-    iVar3 = 0x1f;
+  if (connectionHandle == (ulonglong *)0x0) {
+    status = 0x1f;
   }
   else {
-    *param_1 = 0;
-    if (param_2 - 0x20200U < 0x100) {
-      lStack_140 = 0;
-      iVar3 = FUN_180875520(&lStack_140);
-      if (iVar3 == 0) {
-        aiStack_148[0] = 0;
-        iVar3 = FUN_18073aab0(*(undefined8 *)(lStack_140 + 0x78),aiStack_148);
-        if (iVar3 == 0) {
-          if (aiStack_148[0] != 0x20214) {
+    *connectionHandle = 0;
+    if (connectionType - 0x20200U < 0x100) {
+      connectionData = 0;
+      status = FUN_180875520(&connectionData);
+      if (status == 0) {
+        connectionInfo[0] = 0;
+        status = FUN_18073aab0(*(undefined8 *)(connectionData + 0x78),connectionInfo);
+        if (status == 0) {
+          if (connectionInfo[0] != 0x20214) {
             FUN_180883a30();
-            goto LAB_1808403d0;
+            goto error_handling;
           }
-          iVar3 = func_0x00018088c570(lStack_140,auStack_138);
-          if (iVar3 == 0) {
-            *param_1 = (ulonglong)auStack_138[0];
-            goto LAB_180840449;
+          status = func_0x00018088c570(connectionData,connectionParams);
+          if (status == 0) {
+            *connectionHandle = (ulonglong)connectionParams[0];
+            goto cleanup;
           }
         }
       }
-      if (iVar3 == 0) goto LAB_180840449;
+      if (status == 0) goto cleanup;
     }
     else {
-LAB_1808403d0:
-      iVar3 = 0x14;
+error_handling:
+      status = 0x14;
     }
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    iVar1 = func_0x00018074bda0(auStack_128,0x100,param_1);
-    iVar2 = FUN_18074b880(auStack_128 + iVar1,0x100 - iVar1,&DAT_180a06434);
-    func_0x00018074b800(auStack_128 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_2);
-    puStack_158 = auStack_128;
+    result = func_0x00018074bda0(errorBuffer,0x100,connectionHandle);
+    errorStatus = FUN_18074b880(errorBuffer + result,0x100 - result,&DAT_180a06434);
+    func_0x00018074b800(errorBuffer + (result + errorStatus),0x100 - (result + errorStatus),connectionType);
+    errorMessage = errorBuffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar3,0,0,&UNK_180984660);
+    FUN_180749ef0(status,0,0,&UNK_180984660);
   }
-LAB_180840449:
+cleanup:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+  FUN_1808fc050(stackGuard ^ (ulonglong)securityBuffer);
 }
 
 
