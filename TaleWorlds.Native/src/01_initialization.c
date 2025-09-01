@@ -64996,32 +64996,33 @@ void* FUN_180779635(int param_1,void* param_2,void* param_3,float param_4)
 
 
 
-void* FUN_1807797e0(long long param_1,uint param_2)
+void* CalculateRotationTransform(long long transformContext, uint rotationBits)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  long long lVar4;
-  int iVar5;
-  uint uVar6;
-  ulong long uVar7;
-  ulong long uVar8;
-  uint uVar9;
-  uint uVar10;
-  long long lVar11;
-  int iVar12;
-  int iVar13;
-  uint uVar14;
-  ulong long uVar15;
-  long long lVar16;
-  ulong long uVar17;
-  ulong long uVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  uint32_t uStackX_10;
+  float sineValue;
+  float cosineValue;
+  float angleValue;
+  long long matrixPointer;
+  int bitMask;
+  uint halfRange;
+  ulong long bitValue;
+  ulong long maxBits;
+  uint bitIndex;
+  uint reversedBits;
+  long long rowIndex;
+  int colIndex;
+  int chunkIndex;
+  uint elementIndex;
+  ulong long chunkSize;
+  long long startRow;
+  ulong long currentChunk;
+  ulong long elementOffset;
+  ulong long matrixElement;
+  float rotationSine;
+  float rotationCosine;
+  float tempFloat1;
+  float tempFloat2;
+  uint32_t loopCounter;
   
   uVar8 = (ulong long)param_2;
   uStackX_10 = 1;

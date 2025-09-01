@@ -340,10 +340,10 @@ void* InputEventQueue;
  */
 void InitializeNetworkManager(void);
 void* NetworkSystemInstance;
-void* networkConnectionManager;
-void* packetHandler;
-void* networkProtocolManager;
-void* networkEventDispatcher;
+void* NetworkConnectionManager;
+void* PacketHandler;
+void* NetworkProtocolManager;
+void* NetworkEventDispatcher;
 
  /**
  * @brief 初始化渲染系统
@@ -352,8 +352,8 @@ void* networkEventDispatcher;
  * 设置图形设备、着色器和渲染队列等相关组件
  */
 void* InitializeRenderingSystem(void);
-void* renderingEngineInstance;
-void* graphicsDeviceHandle;
+void* RenderingEngineInstance;
+void* GraphicsDeviceHandle;
 void* shaderManager;
 void* renderQueueManager;
 void* graphicsMemoryPool;
@@ -1207,14 +1207,14 @@ uint32_t MemoryVirtualizationConfigData3;
 uint32_t MemoryVirtualizationConfigData4;
 void* MemoryVirtualizationReservedMemory;
 
- void SetupMemoryPrefetch;
+ void SetupMemoryPrefetch(void);
 /**
  * @brief 设置内存预取
  * 
  * 该函数负责设置内存预取机制
  * 配置数据预取和缓存策略
  */
-void SetupMemoryPrefetch;
+void SetupMemoryPrefetch(void);
 uint32_t MemoryPrefetchConfigData1;
 uint32_t MemoryPrefetchConfigData2;
 uint32_t MemoryPrefetchConfigData3;
@@ -1235,14 +1235,14 @@ uint32_t MemoryBandwidthConfigData3;
 uint32_t MemoryBandwidthConfigData4;
 void* MemoryBandwidthReservedMemory;
 
- void ConfigureMemoryLatency;
+ void ConfigureMemoryLatency(void);
 /**
  * @brief 配置内存延迟
  * 
  * 该函数负责配置内存延迟参数
  * 设置内存访问延迟优化策略
  */
-void ConfigureMemoryLatency;
+void ConfigureMemoryLatency(void);
 uint32_t MemoryLatencyConfigData1;
 uint32_t MemoryLatencyConfigData2;
 uint32_t MemoryLatencyConfigData3;
@@ -1318,42 +1318,42 @@ void* MemoryMappingStatus;
 void* MemoryMappingConfig;
 void* MemoryMappingBuffer;
 
- void SetupMemoryPaging;
+ void SetupMemoryPaging(void);
 /**
  * @brief 设置内存分页
  * 
  * 该函数负责设置内存分页系统
  * 配置页面大小和分页策略
  */
-void SetupMemoryPaging;
+void SetupMemoryPaging(void);
 void* MemoryPagingConfigTable;
 void* MemoryPagingStatusFlags;
 void* MemoryPagingControlRegisters;
 void* MemoryPagingBufferPointer;
 void* MemoryPagingReservedMemory;
 
- void ValidateMemoryIntegrity;
+ void ValidateMemoryIntegrity(void);
 /**
  * @brief 验证内存完整性
  * 
  * 该函数负责验证系统内存的完整性
  * 检查内存损坏和数据一致性
  */
-void ValidateMemoryIntegrity;
+void ValidateMemoryIntegrity(void);
 void* MemoryValidationContext;
 void* MemoryValidationTable;
 uint32_t MemoryValidationStatus;
 void* MemoryValidationConfig;
 void* MemoryValidationHandle;
 
- void ProcessMemoryAllocation;
+ void ProcessMemoryAllocation(void);
 /**
  * @brief 处理内存分配
  * 
  * 该函数负责处理系统中的内存分配请求
  * 管理内存池和分配策略
  */
-void ProcessMemoryAllocation;
+void ProcessMemoryAllocation(void);
 void* MemoryAllocationContext;
 void* MemoryAllocationTable;
 void* MemoryAllocationStatus;
@@ -1361,70 +1361,70 @@ void* MemoryAllocationConfig;
 void* MemoryAllocationHandle;
 void* MemoryAllocationData;
 
- void InitializeMemoryPool;
+ void InitializeMemoryPool(void);
 /**
  * @brief 初始化内存池
  * 
  * 该函数负责初始化系统内存池
  * 设置内存块大小和分配策略
  */
-void InitializeMemoryPool;
+void InitializeMemoryPool(void);
 void* MemoryPoolConfig;
 void* MemoryPoolStatus;
 void* MemoryPoolHandle;
 void* MemoryPoolData;
 void* MemoryPoolContext;
 
- void CleanupMemoryPool;
+ void CleanupMemoryPool(void);
 /**
  * @brief 清理内存池
  * 
  * 该函数负责清理系统内存池
  * 释放所有分配的内存块
  */
-void CleanupMemoryPool;
+void CleanupMemoryPool(void);
 uint8_t CleanupMemoryConfig;
 uint8_t CleanupMemoryStatus;
 uint8_t CleanupMemoryHandle;
 uint8_t CleanupMemoryData;
 uint8_t CleanupMemoryContext;
 
- void ResizeMemoryPool;
+ void ResizeMemoryPool(void);
 /**
  * @brief 调整内存池大小
  * 
  * 该函数负责调整系统内存池的大小
  * 根据需要扩展或收缩内存池
  */
-void ResizeMemoryPool;
+void ResizeMemoryPool(void);
 uint8_t ResizeMemoryConfig;
 uint8_t ResizeMemoryStatus;
 uint8_t ResizeMemoryHandle;
 uint8_t ResizeMemoryData;
 uint8_t ResizeMemoryContext;
 
- void OptimizeMemoryUsage;
+ void OptimizeMemoryUsage(void);
 /**
  * @brief 优化内存使用
  * 
  * 该函数负责优化系统内存使用
  * 整理内存碎片，提高内存利用率
  */
-void OptimizeMemoryUsage;
+void OptimizeMemoryUsage(void);
 uint8_t OptimizeMemoryConfig;
 uint8_t OptimizeMemoryStatus;
 uint8_t OptimizeMemoryHandle;
 uint8_t OptimizeMemoryData;
 uint8_t OptimizeMemoryContext;
 
- void CheckMemoryLeaks;
+ void CheckMemoryLeaks(void);
 /**
  * @brief 检查内存泄漏
  * 
  * 该函数负责检查系统中的内存泄漏
  * 识别未释放的内存块和资源
  */
-void CheckMemoryLeaks;
+void CheckMemoryLeaks(void);
 uint8_t MemoryLeakConfig;
 uint8_t MemoryLeakStatus;
 uint8_t MemoryLeakHandle;
