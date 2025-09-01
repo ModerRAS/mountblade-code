@@ -27966,12 +27966,12 @@ void engine_unnamed_function_790(uint64 engine_data_structure_ptr,longlong engin
   void* pengine_stack_uint_160;
   uint8* engine_stack_pointer_158;
   uint8 engine_stack_value_148;
-  char cStack_147;
+  char engine_stack_char_147;
   void* pengine_stack_uint_140;
   uint8* engine_stack_pointer_138;
   uint engine_stack_uint_130;
   ulonglong engine_stack_uint_128;
-  char cStack_120;
+  char engine_stack_char_120;
   char cStack_11f;
   uint32 engine_stack_uint_11c;
   void* pengine_stack_uint_118;
@@ -27996,7 +27996,7 @@ void engine_unnamed_function_790(uint64 engine_data_structure_ptr,longlong engin
   
   engine_stack_value_60 = 0xfffffffffffffffe;
   engine_stack_uint_48 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_188;
-  cStack_120 = engine_param_5;
+  engine_stack_char_120 = engine_param_5;
   engine_data_ptr0 = (uint8*)0x0;
   engine_temp_uint4 = 0;
   engine_stack_uint_11c = 0;
@@ -28119,7 +28119,7 @@ LAB_180070b00:
   engine_stack_pointer_138 = (uint8*)0x0;
   engine_stack_uint_130 = 0;
   engine_data_ptr8 = &engine_data_60;
-  if (cStack_120 != '\0') {
+  if (engine_stack_char_120 != '\0') {
     engine_data_ptr8 = &engine_base_data_offset_48;
   }
   engine_temp_long5 = -1;
@@ -28326,10 +28326,10 @@ LAB_18007113f:
     engine_temp_byte13 = 0;
   }
   if (_engine_data_70 == 0) {
-    cStack_147 = '\0';
+    engine_stack_char_147 = '\0';
   }
   else {
-    cStack_147 = *(char *)(_engine_data_70 + 0x24);
+    engine_stack_char_147 = *(char *)(_engine_data_70 + 0x24);
   }
   engine_comparison_result = true;
   if (engine_temp_long_9 != 0) {
@@ -28391,7 +28391,7 @@ LAB_18007113f:
   engine_unnamed_function_30(engine_temp_long5);
   if (engine_data_60 != '\0') {
     if (engine_temp_byte13 != 0) {
-      if (((cStack_147 == '\0') && (engine_param_6 != '\0')) && (*(int *)(_engine_data_70 + 0x340) != 2)) {
+      if (((engine_stack_char_147 == '\0') && (engine_param_6 != '\0')) && (*(int *)(_engine_data_70 + 0x340) != 2)) {
         engine_stack_value_148 = 1;
       }
       else if (engine_graphics_flag == '\0') {
@@ -28413,7 +28413,7 @@ LAB_18007113f:
   }
   if (engine_physics_flag == '\0') {
     engine_data_ptr8 = &engine_special_flag_bc;
-    if (cStack_120 != '\0') {
+    if (engine_stack_char_120 != '\0') {
       engine_data_ptr8 = &engine_base_data_offset_b0;
     }
     do {
@@ -28483,7 +28483,7 @@ LAB_18007113f:
     else {
       engine_temp_char_flag_2 = *(char *)(_engine_data_70 + 0x29);
     }
-    if (cStack_147 != '\0') {
+    if (engine_stack_char_147 != '\0') {
       engine_apply_system_settings(engine_temp_char_flag_2,5);
       presource_status_flag = (code *)swi(3);
       (*presource_status_flag)();
