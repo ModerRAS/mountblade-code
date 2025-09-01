@@ -1557,12 +1557,12 @@ uint8_t ReallocateMemoryBuffer;
  * 在不同内存区域间传输数据
  */
 void CopyMemoryBlock(void);
-uint8_t CopyMemoryHandle;
-uint8_t CopyMemoryContext;
-uint8_t CopyMemoryConfig;
-uint8_t CopyMemoryStatus;
-uint8_t CopyMemoryData;
-uint8_t CopyMemoryPoolBuffer;
+uint8_t MemoryCopyHandle;
+uint8_t MemoryCopyContext;
+uint8_t MemoryCopyConfig;
+uint8_t MemoryCopyStatus;
+uint8_t MemoryCopyData;
+uint8_t MemoryCopyPoolBuffer;
 
  void CompareMemoryBlocks(void);
 /**
@@ -1572,11 +1572,11 @@ uint8_t CopyMemoryPoolBuffer;
  * 检查内存数据是否相同
  */
 void CompareMemoryBlocks(void);
-uint8_t CompareMemoryContext;
-uint8_t CompareMemoryConfig;
-uint8_t CompareMemoryStatus;
-uint8_t CompareMemoryData;
-uint8_t CompareMemoryPoolBuffer;
+uint8_t MemoryCompareContext;
+uint8_t MemoryCompareConfig;
+uint8_t MemoryCompareStatus;
+uint8_t MemoryCompareData;
+uint8_t MemoryComparePoolBuffer;
 
  void SetMemoryProtection(void);
 /**
@@ -1586,11 +1586,11 @@ uint8_t CompareMemoryPoolBuffer;
  * 控制内存访问权限和保护级别
  */
 void SetMemoryProtection(void);
-uint8_t MemoryProtectContext;
-uint8_t MemoryProtectConfig;
-uint8_t MemoryProtectStatus;
-uint8_t MemoryProtectData;
-uint8_t MemoryProtectBuffer;
+uint8_t MemoryProtectionContext;
+uint8_t MemoryProtectionConfig;
+uint8_t MemoryProtectionStatus;
+uint8_t MemoryProtectionData;
+uint8_t MemoryProtectionBuffer;
 
  void GetMemoryProtection(void);
 /**
