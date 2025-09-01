@@ -25731,8 +25731,23 @@ void engine_setup_input_handlers(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void engine_unnamed_function_230(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void engine_unnamed_function_230(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_expand_data_structure_capacity(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+/**
+ * @brief 扩展数据结构容量
+ * 
+ * 该函数用于扩展数据结构的容量，当当前容量不足时，会分配新的内存空间并复制现有数据。
+ * 函数会处理内存分配、数据复制和内存释放等操作。
+ * 
+ * @param engine_data_structure_ptr 数据结构指针
+ * @param engine_result_flag_ptr 结果标志指针
+ * @param engine_comparison_params 比较参数
+ * @param engine_system_parameter_4 系统参数4
+ * @return void
+ * 
+ * 简化实现：保留原有容量扩展逻辑，添加文档注释
+ * 原本实现：完全重构容量管理机制，添加动态扩容算法
+ */
+void engine_expand_data_structure_capacity(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong engine_temporary_long;
@@ -34253,7 +34268,7 @@ LAB_180077879:
       engine_stack_float_c8 = engine_temp_float * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float_3 * engine_temp_float_17;
       engine_stack_float_c4 = engine_temp_float * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float_3 * engine_temp_float_18;
       engine_stack_float_c0 = engine_temp_float * engine_temp_float_15 + engine_temp_float_2 * engine_temp_float_11 + engine_temp_float_3 * engine_temp_float_19;
-      fStack_bc = engine_temp_float * engine_temp_float_16 + engine_temp_float_2 * engine_temp_float_12 + engine_temp_float_3 * engine_temp_float_20;
+      engine_stack_float_bc = engine_temp_float * engine_temp_float_16 + engine_temp_float_2 * engine_temp_float_12 + engine_temp_float_3 * engine_temp_float_20;
       engine_temp_float = *(float *)(engine_data_structure_ptr + 0x138);
       engine_temp_float_2 = *(float *)(engine_data_structure_ptr + 0x140);
       engine_temp_float_3 = *(float *)(engine_data_structure_ptr + 0x144);
