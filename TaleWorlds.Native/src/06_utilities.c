@@ -1,6 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 函数: void InitializeModuleDependencies(longlong ModuleHandle, longlong ModuleContext)
 /**
  * @brief 初始化模块依赖关系
  * 
@@ -30,7 +29,6 @@ uint32_t ModuleDependencyChecksum;
 void* ModuleDependencySignature;
 void* ModuleDependencyHandle;
 
-// 函数: void InitializeGlobalModuleA(void)
 /**
  * @brief 初始化全局模块A
  * 
@@ -1874,8 +1872,14 @@ undefined DAT_180c967e8;
 undefined DAT_180c967f0;
 undefined DAT_180c967f8;
 
-// 函数: undefined FUN_180943200;
-undefined FUN_180943200;
+// 函数: void VerifyDataIntegrity;
+/**
+ * @brief 验证数据完整性
+ * 
+ * 该函数负责验证数据的完整性
+ * 确保数据未被篡改
+ */
+void VerifyDataIntegrity;
 undefined DAT_180c96800;
 undefined DAT_180c96808;
 undefined DAT_180c0c6c0;
@@ -81143,7 +81147,6 @@ void FUN_1809414f0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeGlobalModuleA(void)
 // 初始化全局模块A，设置相关数据结构指针
 void InitializeGlobalModuleA(void)
 
