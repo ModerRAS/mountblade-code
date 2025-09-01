@@ -20993,32 +20993,32 @@ LAB_18089c40a:
         localContextPointer7 = (longlong)integerValue19 * 0x18 + 0x14 + (longlong)presourceHash3;
         do {
           pfVar14 = (float *)AllocateMemoryBlock();
-          fVar21 = *pfVar14;
-          fVar5 = pfVar14[1];
-          fVar6 = pfVar14[2];
-          floatValue7 = pfVar14[3];
-          *(float *)(localContextPointer7 + -0x14) = fVar21;
-          *(float *)(localContextPointer7 + -0x10) = fVar5;
-          *(float *)(localContextPointer7 + -0xc) = fVar6;
-          *(float *)(localContextPointer7 + -8) = floatValue7;
+          matrixElementX = *pfVar14;
+          matrixElementY = pfVar14[1];
+          matrixElementZ = pfVar14[2];
+          matrixElementW = pfVar14[3];
+          *(float *)(localContextPointer7 + -0x14) = matrixElementX;
+          *(float *)(localContextPointer7 + -0x10) = matrixElementY;
+          *(float *)(localContextPointer7 + -0xc) = matrixElementZ;
+          *(float *)(localContextPointer7 + -8) = matrixElementW;
           *(uint8_t8 *)(localContextPointer7 + -4) = 0;
-          localContextPointer8 = localContextPointer8 + -1;
+          loopCounter = loopCounter + -1;
           localContextPointer7 = localContextPointer7 + 0x18;
-        } while (localContextPointer8 != 0);
-        uVar9 = *(uint *)(unaff_RBP + -0x1d);
+        } while (loopCounter != 0);
+        memoryBlockSize = *(uint *)(unaff_RBP + -0x1d);
       }
     }
     *(uint8_t4 *)(unaff_RBP + -0x21) = 0;
-    if ((int)uVar9 < 0) {
-      uVar9 = -uVar9;
+    if ((int)memoryBlockSize < 0) {
+      memoryBlockSize = -memoryBlockSize;
     }
-    if (uVar9 != 0) {
-      fVar21 = (float)FreeMemoryBlock(unaff_RBP + -0x29,0);
+    if (memoryBlockSize != 0) {
+      matrixElementX = (float)FreeMemoryBlock(unaff_RBP + -0x29,0);
     }
   }
   else {
     presourceHash1 = (uint8_t8 *)OptimizeMemoryUsage(validationResult0,unaff_RSI + 0x48);
-    fVar21 = extraout_XMM0_Da_02;
+    matrixElementX = extraout_XMM0_Da_02;
     if ((int)presourceHash1 != 0) {
       return presourceHash1;
     }
@@ -21028,18 +21028,18 @@ LAB_18089c586:
       (*(ulonglong *)(unaff_RSI + 0x48) <= resourceHash5 &&
       (resourceHash5 < (longlong)*(int *)(unaff_RSI + 0x50) * 0x1c + *(ulonglong *)(unaff_RSI + 0x48)));
       resourceHash5 = resourceHash5 + 0x1c) {
-    fVar21 = (float)DefragmentMemory(unaff_RSI + 0x58);
+    matrixElementX = (float)DefragmentMemory(unaff_RSI + 0x58);
   }
 LAB_18089c300:
-  if ((0x70 < *(uint *)(unaff_RDI + 8)) && (uVar8 = 0x1c, *(int *)(unaff_RDI[1] + 0x18) == 0)) {
-    uVar8 = ReadResourceData(*unaff_RDI,unaff_RSI + 0x68,4);
-    fVar21 = extraout_XMM0_Da_01;
+  if ((0x70 < *(uint *)(unaff_RDI + 8)) && (resourceOperationResult = 0x1c, *(int *)(unaff_RDI[1] + 0x18) == 0)) {
+    resourceOperationResult = ReadResourceData(*unaff_RDI,unaff_RSI + 0x68,4);
+    matrixElementX = extraout_XMM0_Da_01;
   }
-  if (uVar8 != 0) {
-    return (uint8_t8 *)(ulonglong)uVar8;
+  if (resourceOperationResult != 0) {
+    return (uint8_t8 *)(ulonglong)resourceOperationResult;
   }
                     // WARNING: Subroutine does not return
-  CleanupResourceData(fVar21,unaff_RBP + -9);
+  CleanupResourceData(matrixElementX,unaff_RBP + -9);
 }
 
 
