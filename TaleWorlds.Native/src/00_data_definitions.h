@@ -348,7 +348,7 @@ int InitializeStringProcessorH(void)
   g_stringProcessorDataPointerC = &UNK_18098bc80;
   g_stringProcessorConfigPointerC = &STRING_PROCESSOR_CONFIG_C;
   STRING_PROCESSOR_CONFIG_C = 0;
-  _DAT_180bf52f8 = 0xd;
+  g_stringProcessorBufferSizeC = 0xd;
   strcpy_s(&STRING_PROCESSOR_CONFIG_C,0x20,&UNK_180a01300,stringProcessorHFlags,0xfffffffffffffffe);
   CallbackResult = RegisterSystemModule(FUN_180941980);
   return (CallbackResult != 0) - 1;
@@ -363,8 +363,8 @@ int InitializeStringProcessorI(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorIFlags;
-  _DAT_180bf5738 = &UNK_18098bc80;
-  _DAT_180bf5740 = &STRING_PROCESSOR_CONFIG_D;
+  g_stringProcessorDataPointerD = &UNK_18098bc80;
+  g_stringProcessorConfigPointerD = &STRING_PROCESSOR_CONFIG_D;
   STRING_PROCESSOR_CONFIG_D = 0;
   _DAT_180bf5748 = 9;
   strcpy_s(&STRING_PROCESSOR_CONFIG_D,0x20,&UNK_180a01330,stringProcessorIFlags,0xfffffffffffffffe);

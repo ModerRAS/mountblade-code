@@ -2471,25 +2471,36 @@ int SerializeNetworkErrorData(longlong errorData, longlong outputBuffer, int buf
 
 
 
-int FUN_180842690(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 序列化网络连接信息
+ * 
+ * 该函数负责将网络连接信息进行序列化处理，
+ * 将连接详细信息转换为可传输的字节流格式。
+ * 
+ * @param connectionInfo 连接信息指针
+ * @param outputBuffer 输出缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return 序列化后的数据大小
+ */
+int SerializeNetworkConnectionInfo(longlong connectionInfo, longlong outputBuffer, int bufferSize)
 
 {
-  undefined4 uVar1;
-  undefined8 uVar2;
-  int iVar3;
-  int iVar4;
+  undefined4 infoField;
+  undefined8 addressField;
+  int bytesProcessed;
+  int currentOffset;
   
-  uVar2 = *(undefined8 *)(param_1 + 0x18);
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_1809842c8);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074bda0(iVar3 + param_2,param_3 - iVar3,uVar2);
-  return iVar4 + iVar3;
+  addressField = *(undefined8 *)(connectionInfo + 0x18);
+  infoField = *(undefined4 *)(connectionInfo + 0x10);
+  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_1809842c8);
+  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,infoField);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074bda0(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,addressField);
+  return currentOffset + bytesProcessed;
 }
 
 
