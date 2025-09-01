@@ -1284,7 +1284,7 @@ void* MemoryValidationHandle;
  */
 void ProcessMemoryAllocation;
 void* MemoryAllocationContext;
-void* g_memoryAllocationTable;
+void* MemoryAllocationTable;
 void* g_memoryAllocationStatus;
 void* g_memoryAllocationConfig;
 void* g_memoryAllocationHandle;
