@@ -4664,19 +4664,31 @@ int ProcessNetworkPacketTypeP(longlong connectionContext,longlong packetData,int
 
 
 
-int FUN_180844a30(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络数据包并进行加密
+ * 
+ * 该函数负责处理网络数据包的完整流程，包括缓冲区数据处理、
+ * 网络句柄处理、数据加密等多个步骤。这是网络通信中的核心
+ * 数据包处理函数。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理后的数据总大小
+ */
+int ProcessNetworkPacketWithEncryption(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkByte uVar2;
-  int networkStatus3;
-  int networkStatus4;
-  NetworkHandle uStackX_8;
+  NetworkStatus networkStatus;
+  NetworkByte encryptionKey;
+  int processedSize;
+  int additionalSize;
+  NetworkHandle networkHandle;
   
-  uStackX_8 = *(NetworkHandle *)(connectionContext + 0x10);
-  uVar2 = *(NetworkByte *)(connectionContext + 0x1c);
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x18);
-  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982128);
+  networkHandle = *(NetworkHandle *)(connectionContext + 0x10);
+  encryptionKey = *(NetworkByte *)(connectionContext + 0x1c);
+  networkStatus = *(NetworkStatus *)(connectionContext + 0x18);
+  processedSize = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982128);
   networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkProcessNetworkHandle(networkStatus3 + packetData,dataSize - networkStatus3,&uStackX_8);

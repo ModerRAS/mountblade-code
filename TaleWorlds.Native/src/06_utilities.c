@@ -742,8 +742,8 @@ undefined SystemPerformanceMetricsTable;
 undefined SystemNetworkStatusTable;
 undefined SystemGraphicsStateTable;
 undefined SystemAudioSettingsTable;
-undefined DAT_180bf85e0;
-undefined DAT_180bf8620;
+undefined SystemInputStateTable;
+undefined SystemPhysicsDataTable;
 undefined DAT_180bf8628;
 undefined DAT_180bf8630;
 undefined DAT_180bf8638;
@@ -6020,7 +6020,7 @@ undefined8 ValidateObjectContextAndUpdateStatus(longlong ObjectContext, longlong
 
 
 
-undefined8 FUN_180891de0(longlong param_1,longlong param_2)
+undefined8 ValidateAndClearObjectState(longlong objectContext, longlong systemContext)
 
 {
   undefined8 uVar1;
@@ -6848,19 +6848,18 @@ undefined8 FUN_1808924f0(longlong param_1,longlong param_2)
  */
 
 {
-  float fVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined8 uVar5;
-  int iVar6;
-  int iVar7;
-  int iVar8;
-  int iVar9;
-  longlong lVar10;
-  longlong alStackX_8 [2];
-  uint uStackX_18;
-  float fStackX_20;
+  float matrixElement1;
+  float matrixElement2;
+  float matrixElement3;
+  float matrixElement4;
+  undefined8 validationStatus;
+  int infinityCheckResult1;
+  int infinityCheckResult2;
+  int infinityCheckResult3;
+  longlong transformContext;
+  longlong matrixBuffer [2];
+  uint matrixFlags;
+  float matrixScaleFactor;
   
   lVar10 = 0;
   iVar8 = 0;
