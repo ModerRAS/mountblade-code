@@ -19197,40 +19197,45 @@ LAB_1808a2e6d:
 
 
 
- b5fc(void)
-b5fc(void)
+ /**
+ * @brief 处理本地上下文指针
+ * 
+ * 该函数负责处理本地上下文指针相关的操作
+ * 验证和处理上下文数据
+ */
+void ProcessLocalContextPointer(void)
 
 {
   longlong *processPointer;
-  int integerValue2;
-  longlong *unaff_RBX;
-  longlong unaff_RDI;
-  char in_stack_00000030;
-  uint8_t8 uStack0000000000000038;
-  uint uStack0000000000000040;
+  int validationStatus;
+  longlong *registerPointer;
+  longlong destinationPointer;
+  char stackParameter;
+  uint8_t8 stackBuffer;
+  uint stackValue;
   
-  plocalContextPointer = (longlong *)*unaff_RBX;
-  uStack0000000000000038 = _uStack0000000000000040;
-  if (*plocalContextPointer == 0) {
-    integerValue2 = 0x1c;
+  localContextPointer = (longlong *)*registerPointer;
+  stackBuffer = _stackValue;
+  if (*localContextPointer == 0) {
+    validationStatus = 0x1c;
   }
   else {
-    if (plocalContextPointer[2] != 0) {
-      uStack0000000000000040 = 0;
-      integerValue2 = func_0x00018076a7d0(*plocalContextPointer,&ObjectStackBuffer40);
-      if (integerValue2 != 0) {
+    if (localContextPointer[2] != 0) {
+      stackValue = 0;
+      validationStatus = ValidateObjectContextData(*localContextPointer,&ObjectStackBuffer40);
+      if (validationStatus != 0) {
         return;
       }
-      if ((ulonglong)plocalContextPointer[2] < (ulonglong)uStack0000000000000040 + 1) {
-        integerValue2 = 0x11;
+      if ((ulonglong)localContextPointer[2] < (ulonglong)stackValue + 1) {
+        validationStatus = 0x11;
         goto LAB_1808a2e6d;
       }
     }
-    integerValue2 = CalculateResourceHash(*plocalContextPointer,&ObjectStackBuffer30,1,1,0);
+    validationStatus = CalculateResourceHash(*localContextPointer,&ObjectStackBuffer30,1,1,0);
   }
 LAB_1808a2e6d:
-  if (integerValue2 == 0) {
-    *(bool *)(unaff_RDI + 0x7c) = in_stack_00000030 != '\0';
+  if (validationStatus == 0) {
+    *(bool *)(destinationPointer + 0x7c) = stackParameter != '\0';
   }
   return;
 }
@@ -19332,8 +19337,13 @@ uint8_t8 ValidateResourceHash(longlong ResourceContext,uint8_t8 *ResourceData)
 
 
 
- b6df(void)
-b6df(void)
+ /**
+ * @brief 处理资源数据加载
+ * 
+ * 该函数负责处理资源数据的加载和验证
+ * 检查资源状态并执行相应的处理操作
+ */
+void ProcessResourceDataLoading(void)
 
 {
   int operationResult;

@@ -19371,9 +19371,9 @@ void ProcessSystemStringCopyWithLimit(long long param_1,long long param_2)
 void ExecuteSystemMemoryCopyWithLimit(long long targetBuffer,void* sourceData,int copyLength)
 
 {
-  if (param_3 + 1 < 0x20) {
+  if (copyLength + 1 < 0x20) {
                     // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(param_1 + 8),param_2,(long long)param_3);
+    memcpy(*(uint8_t **)(targetBuffer + 8),sourceData,(long long)copyLength);
   }
   **(uint8_t **)(targetBuffer + 8) = 0;
   *(uint32_t *)(targetBuffer + 0x10) = 0;
