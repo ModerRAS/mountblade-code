@@ -767,8 +767,8 @@ engine_setup_point_light;
 // 函数: engine_configure_spot_light;
 engine_configure_spot_light;
 
-// 函数: uint32 FUN_18021b9c0;
-uint32 FUN_18021b9c0;
+// 函数: uint32 engine_configure_render_pipeline;
+uint32 engine_configure_render_pipeline;
 
 // 函数: engine_setup_shadow_mapping;
 engine_setup_shadow_mapping;
@@ -973,8 +973,8 @@ engine_unknown_f0;
 engine_data_60;
 engine_unknown_98;
 
-// 函数: uint32 FUN_18020dd10;
-uint32 FUN_18020dd10;
+// 函数: uint32 engine_initialize_input_system;
+uint32 engine_initialize_input_system;
 uint32 UNK_18020dbe0;
 engine_unknown_68;
 
