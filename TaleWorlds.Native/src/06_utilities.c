@@ -181,11 +181,16 @@ void* CleanupContextData3;
 void InitializeResourceManager(void);
 void* ResourceManagerHandle;
 uint32_t ResourceManagerStatus;
-void* ResourceContextData1;
-void* ResourceContextData2;
-void* ResourceBufferPool1;
-void* ResourceBufferPool2;
-void* ResourceBufferPool3;
+// 资源管理器上下文数据：配置信息
+void* ResourceContextConfig;
+// 资源管理器上下文数据：状态信息
+void* ResourceContextStatus;
+// 资源缓冲池1：小型资源
+void* ResourceSmallBufferPool;
+// 资源缓冲池2：中型资源
+void* ResourceMediumBufferPool;
+// 资源缓冲池3：大型资源
+void* ResourceLargeBufferPool;
 
 // 函数: void InitializeTextureManager(void)
 /**
@@ -196,7 +201,8 @@ void* ResourceBufferPool3;
  */
 void InitializeTextureManager(void);
 void* TextureManagerInstance;
-void* TextureSystemData;
+// 纹理系统数据：包含纹理配置和状态信息
+void* TextureSystemContext;
 void* TextureCacheHandle;
 void* TextureLoaderHandle;
 void* TextureMemoryPool;
@@ -82572,8 +82578,14 @@ void ReleaseResourceReference(void)
 
 
 
-// 函数: void FUN_1809428a2(void)
-void FUN_1809428a2(void)
+// 函数: void ReleaseResourceReferenceWithParameter(void)
+/**
+ * @brief 释放资源引用（带参数版本）
+ * 
+ * 该函数负责释放资源的引用计数，当引用计数降为0时
+ * 会调用相应的清理函数来释放资源。这个版本接受一个资源管理器参数
+ */
+void ReleaseResourceReferenceWithParameter(void)
 
 {
   longlong *plVar1;
