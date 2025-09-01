@@ -28521,12 +28521,12 @@ void Unwind_1809023d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x50);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x48); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x48) == 0) {
     return;
@@ -28542,12 +28542,12 @@ void Unwind_1809023e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x50);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x48); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x48) == 0) {
     return;
@@ -28731,12 +28731,12 @@ void Unwind_1809024d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x128);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x120); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x120) == 0) {
     return;
@@ -28784,12 +28784,12 @@ void Unwind_180902500(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x128);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x120); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x120) == 0) {
     return;
@@ -31829,12 +31829,12 @@ void Unwind_1809030a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x30);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x28); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x28) == 0) {
     return;
@@ -39763,12 +39763,12 @@ void Unwind_180904e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 200);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0xc0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0xc0) == 0) {
     return;
@@ -39784,12 +39784,12 @@ void Unwind_180904e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 200);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0xc0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0xc0) == 0) {
     return;
@@ -39877,12 +39877,12 @@ void Unwind_180904f10(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x98);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x90); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x90) == 0) {
     return;
@@ -39898,12 +39898,12 @@ void Unwind_180904f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x98);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x90); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x90) == 0) {
     return;
@@ -40005,12 +40005,12 @@ void Unwind_180904f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x28);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x20); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x20) == 0) {
     return;
@@ -40026,12 +40026,12 @@ void Unwind_180904fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x28);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x20); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x20) == 0) {
     return;
@@ -40099,12 +40099,12 @@ void Unwind_180904fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xa0);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x98); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x98) == 0) {
     return;
@@ -40186,12 +40186,12 @@ void Unwind_180905020(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x48);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x40); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x40) == 0) {
     return;
@@ -40243,12 +40243,12 @@ void Unwind_180905040(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xa0);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x98); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x98) == 0) {
     return;
@@ -40420,12 +40420,12 @@ void Unwind_180905110(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x150);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x148); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x148) == 0) {
     return;
@@ -40441,12 +40441,12 @@ void Unwind_180905120(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x210);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x208); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x208) == 0) {
     return;
@@ -40496,12 +40496,12 @@ void Unwind_180905160(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x110);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x108); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x108) == 0) {
     return;
@@ -40517,12 +40517,12 @@ void Unwind_180905170(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x230);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x228); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x228) == 0) {
     return;
@@ -40600,12 +40600,12 @@ void Unwind_1809051f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x150);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x148); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x148) == 0) {
     return;
@@ -40657,12 +40657,12 @@ void Unwind_180905210(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x210);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x208); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x208) == 0) {
     return;
@@ -40732,12 +40732,12 @@ void Unwind_180905250(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x110);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x108); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x108) == 0) {
     return;
@@ -40789,12 +40789,12 @@ void Unwind_180905270(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x230);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x228); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x228) == 0) {
     return;
@@ -44703,12 +44703,12 @@ void Unwind_1809063f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xe8);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0xe0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0xe0) == 0) {
     return;
@@ -44748,12 +44748,12 @@ void Unwind_180906460(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xe8);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0xe0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0xe0) == 0) {
     return;
@@ -50340,12 +50340,12 @@ void Unwind_180907cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x170);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x168); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x168) == 0) {
     return;
@@ -50431,12 +50431,12 @@ void Unwind_180907d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x170);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x168); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x168) == 0) {
     return;
@@ -50614,12 +50614,12 @@ void Unwind_180907e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x30);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x28); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x28) == 0) {
     return;
@@ -70752,12 +70752,12 @@ void Unwind_18090e9c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x40);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x38); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x38) == 0) {
     return;
@@ -70773,12 +70773,12 @@ void Unwind_18090e9d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x40);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x38); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x38) == 0) {
     return;
@@ -75358,12 +75358,12 @@ void Unwind_1809102e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xf0);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0xe8); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0xe8) == 0) {
     return;
@@ -75379,12 +75379,12 @@ void Unwind_1809102f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xd0);
   for (pvalidationResult = *(undefined8 **)(param_2 + 200); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 200) == 0) {
     return;
@@ -75400,12 +75400,12 @@ void Unwind_180910300(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xf0);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0xe8); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0xe8) == 0) {
     return;
@@ -75480,12 +75480,12 @@ void Unwind_180910330(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xd0);
   for (pvalidationResult = *(undefined8 **)(param_2 + 200); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 200) == 0) {
     return;
@@ -80390,12 +80390,12 @@ void Unwind_180911860(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x78);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x70); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x70) == 0) {
     return;
@@ -80411,12 +80411,12 @@ void Unwind_180911870(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x118);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x110); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x110) == 0) {
     return;
@@ -80432,12 +80432,12 @@ void Unwind_180911880(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xf8);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0xf0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0xf0) == 0) {
     return;
@@ -80453,12 +80453,12 @@ void Unwind_180911890(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xd8);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0xd0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0xd0) == 0) {
     return;
@@ -80474,12 +80474,12 @@ void Unwind_1809118a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xb8);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0xb0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0xb0) == 0) {
     return;
@@ -80495,12 +80495,12 @@ void Unwind_1809118b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x138);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x130); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x130) == 0) {
     return;
@@ -80561,12 +80561,12 @@ void Unwind_1809118e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x78);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x70); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x70) == 0) {
     return;
@@ -80618,12 +80618,12 @@ void Unwind_180911900(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x118);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x110); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x110) == 0) {
     return;
@@ -80639,12 +80639,12 @@ void Unwind_180911910(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xf8);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0xf0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0xf0) == 0) {
     return;
@@ -80660,12 +80660,12 @@ void Unwind_180911920(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xd8);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0xd0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0xd0) == 0) {
     return;
@@ -80681,12 +80681,12 @@ void Unwind_180911930(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0xb8);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0xb0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0xb0) == 0) {
     return;
@@ -80702,12 +80702,12 @@ void Unwind_180911940(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
-  undefined8 uVar3;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
+  cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(undefined8 **)(param_2 + 0x138);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x130); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
   }
   if (*(longlong *)(param_2 + 0x130) == 0) {
     return;
@@ -85762,7 +85762,7 @@ void ProcessSystemOperationA(undefined8 param_1,undefined8 param_2,undefined8 pa
   pvalidationResult = _DAT_180bfa2e8;
   if (_DAT_180bfa2e8 != _DAT_180bfa2f0) {
     do {
-      (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+      (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
       pvalidationResult = pvalidationResult + 0xb;
     } while (pvalidationResult != presourceHash);
   }
@@ -85807,7 +85807,7 @@ void ProcessSystemOperationB(undefined8 param_1,undefined8 param_2,undefined8 pa
   pvalidationResult = _DAT_180bfa308;
   if (_DAT_180bfa308 != _DAT_180bfa310) {
     do {
-      (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+      (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
       pvalidationResult = pvalidationResult + 0xb;
     } while (pvalidationResult != presourceHash);
   }
@@ -85852,7 +85852,7 @@ void ProcessSystemOperationC(undefined8 param_1,undefined8 param_2,undefined8 pa
   pvalidationResult = _DAT_180bfa328;
   if (_DAT_180bfa328 != _DAT_180bfa330) {
     do {
-      (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,uVar3);
+      (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
       pvalidationResult = pvalidationResult + 0xb;
     } while (pvalidationResult != presourceHash);
   }
