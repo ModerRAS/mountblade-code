@@ -1685,7 +1685,7 @@ undefined SystemMemoryConfigDataS;
 undefined SystemMemoryConfigDataT;
 undefined SystemMemoryConfigDataU;
 undefined SystemMemoryConfigDataV;
-undefined DAT_180bfaa90;
+undefined SystemMemoryConfigDataTemplateL;
 undefined SystemMemoryConfigDataTemplateF;
 undefined SystemMemoryConfigDataTemplateG;
 undefined SystemMemoryConfigDataTemplateA;
@@ -1693,9 +1693,9 @@ undefined SystemMemoryConfigDataTemplateH;
 undefined SystemMemoryConfigDataTemplateI;
 undefined SystemMemoryConfigDataTemplateJ;
 undefined SystemMemoryConfigDataTemplateK;
-undefined DAT_180bfab10;
-undefined DAT_180bfab18;
-undefined DAT_180bfab20;
+undefined SystemMemoryConfigDataTemplateM;
+undefined SystemMemoryConfigDataTemplateN;
+undefined SystemMemoryConfigDataTemplateO;
 undefined DAT_180bfab28;
 undefined DAT_180bfaba8;
 undefined DAT_180bfabb0;
@@ -83715,8 +83715,7 @@ void InitializeSystemDataStructureA(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809415f0(void)
-/**
+ /**
  * @brief 初始化系统数据结构B
  * 
  * 该函数负责初始化系统的数据结构B
