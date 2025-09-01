@@ -1322,10 +1322,10 @@ void* MemoryPoolContext;
  */
 void CleanupMemoryPool;
 uint8_t CleanupMemoryConfig;
-uint8_t g_cleanupMemoryStatus;
-uint8_t g_cleanupMemoryHandle;
-uint8_t g_cleanupMemoryData;
-uint8_t g_cleanupMemoryContext;
+uint8_t CleanupMemoryStatus;
+uint8_t CleanupMemoryHandle;
+uint8_t CleanupMemoryData;
+uint8_t CleanupMemoryContext;
 
  void ResizeMemoryPool;
 /**
@@ -1335,11 +1335,11 @@ uint8_t g_cleanupMemoryContext;
  * 根据需要扩展或收缩内存池
  */
 void ResizeMemoryPool;
-uint8_t g_resizeMemoryConfig;
-uint8_t g_resizeMemoryStatus;
-uint8_t g_resizeMemoryHandle;
-uint8_t g_resizeMemoryData;
-uint8_t g_resizeMemoryContext;
+uint8_t ResizeMemoryConfig;
+uint8_t ResizeMemoryStatus;
+uint8_t ResizeMemoryHandle;
+uint8_t ResizeMemoryData;
+uint8_t ResizeMemoryContext;
 
  void OptimizeMemoryUsage;
 /**
@@ -1349,11 +1349,11 @@ uint8_t g_resizeMemoryContext;
  * 整理内存碎片，提高内存利用率
  */
 void OptimizeMemoryUsage;
-uint8_t g_optimizeMemoryConfig;
-uint8_t g_optimizeMemoryStatus;
-uint8_t g_optimizeMemoryHandle;
-uint8_t g_optimizeMemoryData;
-uint8_t g_optimizeMemoryContext;
+uint8_t OptimizeMemoryConfig;
+uint8_t OptimizeMemoryStatus;
+uint8_t OptimizeMemoryHandle;
+uint8_t OptimizeMemoryData;
+uint8_t OptimizeMemoryContext;
 
  void CheckMemoryLeaks;
 /**
