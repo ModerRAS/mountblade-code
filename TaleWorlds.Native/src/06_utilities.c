@@ -23018,7 +23018,14 @@ ce25(void)
 
 
 
-ulonglong FUN_18089ce30(longlong param_1,longlong *param_2)
+/**
+ * 验证资源包数据结构
+ * 该函数负责验证资源包的数据结构完整性，包括校验和计算、数据边界检查和结构验证
+ * @param param_1 资源包上下文指针
+ * @param param_2 资源数据指针数组
+ * @return 验证状态码：0表示成功，其他值表示错误
+ */
+ulonglong ValidateResourcePackageStructure(longlong param_1,longlong *param_2)
 
 {
   longlong *plVar1;
@@ -23140,7 +23147,12 @@ LAB_18089d07f:
 
 
 
-ulonglong FUN_18089ce60(void)
+/**
+ * 执行资源数据完整性验证
+ * 该函数负责执行资源数据的完整性验证，包括数据结构检查和哈希验证
+ * @return 验证状态码：0表示成功，其他值表示错误
+ */
+ulonglong ExecuteResourceDataIntegrityValidation(void)
 
 {
   longlong *plVar1;
@@ -23260,7 +23272,12 @@ LAB_18089d07f:
 
 
 
-ulonglong FUN_18089cfd6(void)
+/**
+ * 处理资源数据验证流程
+ * 该函数负责处理资源数据的验证流程，包括数据结构检查和边界验证
+ * @return 处理状态码：0表示成功，其他值表示错误
+ */
+ulonglong ProcessResourceDataValidationFlow(void)
 
 {
   longlong *plVar1;
@@ -23345,7 +23362,14 @@ d0b0(longlong param_1,undefined8 param_2)
 
 
 
-ulonglong FUN_18089d0f0(longlong param_1,undefined8 *param_2)
+/**
+ * 验证资源文件完整性
+ * 该函数负责验证资源文件的完整性，包括校验和计算、哈希验证和数据结构检查
+ * @param param_1 资源文件上下文指针
+ * @param param_2 资源数据指针数组
+ * @return 验证状态码：0表示成功，其他值表示错误
+ */
+ulonglong ValidateResourceFileIntegrity(longlong param_1,undefined8 *param_2)
 
 {
   uint resourceHash;
