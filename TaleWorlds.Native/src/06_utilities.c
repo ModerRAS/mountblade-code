@@ -1,8 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 工具系统版本信息
-#define UTILITY_SYSTEM_VERSION 2.9
-#define UTILITY_LAST_UPDATED "2025-08-31"
+#define UTILITY_SYSTEM_VERSION 3.0
+#define UTILITY_LAST_UPDATED "2025-09-01"
 
 // 工具系统常量定义
 // 线程存储相关常量
@@ -14,15 +14,15 @@
 #define UTILITY_RESOURCE_PARAM_OFFSET_PRIMARY 0x1      // 第一级参数偏移量
 #define UTILITY_RESOURCE_PARAM_OFFSET_SECONDARY 0x2    // 第二级参数偏移量
 #define UTILITY_RESOURCE_PARAM_OFFSET_TERTIARY 0x3     // 第三级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_FOURTH 0x4        // 第四级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_FIFTH 0x5         // 第五级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_SIXTH 0x6         // 第六级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_QUATERNARY 0x4   // 第四级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_QUINARY 0x5       // 第五级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_SENARY 0x6        // 第六级参数偏移量
 
 // 数组索引常量
 #define UTILITY_ARRAY_INDEX_PRIMARY 0x0                 // 第一级数组索引
 #define UTILITY_ARRAY_INDEX_SECONDARY 0x1               // 第二级数组索引
 #define UTILITY_ARRAY_INDEX_TERTIARY 0x2                // 第三级数组索引
-#define UTILITY_ARRAY_INDEX_FOURTH 0x4                  // 第四级数组索引
+#define UTILITY_ARRAY_INDEX_QUATERNARY 0x4              // 第四级数组索引
 
 // 资源清理偏移量常量
 #define UTILITY_CLEANUP_OFFSET_C60 0xC60                // 清理操作偏移量C60
@@ -111,8 +111,8 @@ static uint32 utility_state = 0;                                   // 系统状�
 
 // 指针和引用变量
 static uint32 *utility_ptr_buffer = NULL;                         // 指针缓冲区，用于动态指针管理
-static longlong utility_temporary_long_storage = 0;               // 临时长整型存储，用于临时数据保存
-static uint32 *utility_generic_data_pointer = NULL;               // 通用数据指针，用于数据访问和操作
+static longlong utility_intermediate_data_storage = 0;           // 中间数据存储，用于临时数据保存和处理
+static uint32 *utility_system_data_pointer = NULL;                // 系统数据指针，用于系统数据访问和操作
 static int *utility_result_pointer = NULL;                        // 结果指针，指向操作结果的存储位置
 static uint32 *utility_cpu_register_rax = NULL;                   // CPU寄存器RAX指针，用于底层寄存器操作
 static longlong utility_data_pointer_primary_extended = 0;        // 主要扩展数据指针，用于扩展数据访问
@@ -121,8 +121,8 @@ static longlong utility_resource_cache = 0;                        // 资源缓�
 
 // 缓冲区变量
 static uint32 utility_buffer[1024] = {0};                          // 主缓冲区，用于数据存储和处理
-static uint32 utility_processing_buffer[1024] = {0};              // 处理缓冲区，用于数据处理操作
-static uint32 utility_resource_size_limit = 1024;                   // 资源大小限制，控制资源分配的最大大小
+static uint32 utility_data_processing_workspace[1024] = {0};     // 数据处理工作区，用于数据处理操作
+static uint32 utility_resource_size_maximum = 1024;                  // 资源大小最大值，控制资源分配的最大大小
 
 // 资源管理变量
 static longlong utility_resource_context_handle = 0;               // 资源上下文句柄，用于资源上下文管理
@@ -139,19 +139,19 @@ static uint64 utility_file_position_offset = 0;                   // 文件位�
 
 // 数据处理变量
 static float utility_resource_data_buffer_position = 0.0f;        // 资源数据缓冲区位置，用于缓冲区位置管理
-static longlong utility_data_buffer_primary = 0;                  // 主要数据缓冲区，用于主要数据存储
+static longlong utility_primary_data_buffer = 0;                    // 主要数据缓冲区，用于主要数据存储
 static uint32 utility_local_integer_value = 0;                    // 本地整数值，用于本地计算和存储
 static longlong utility_buffer_position = 0;                      // 缓冲区位置，用于缓冲区位置管理
 static uint64 utility_result = 0;                                  // 操作结果，用于存储操作结果
 static uint32 utility_thread_offset = 0;                           // 线程偏移量，用于线程相关操作
 static uint64 utility_file_size_parameter = 0;                     // 文件大小参数，用于文件大小管理
-static ulonglong utility_extended_data_pointer = 0;                 // 扩展数据指针，用于扩展数据访问
+static ulonglong utility_extended_data_access_pointer = 0;           // 扩展数据访问指针，用于扩展数据访问
 
 /**
  * @file 06_utilities.c - 工具函数库
  * @brief 提供系统工具函数，包括内存管理、资源处理、系统操作等辅助功能
- * @version 2.9
- * @date 2025-08-31
+ * @version 3.0
+ * @date 2025-09-01
  *
  * 主要功能：
  * - 内存管理工具
@@ -165,7 +165,7 @@ static ulonglong utility_extended_data_pointer = 0;                 // 扩展数
  * 简化实现：使用语义化命名，保留基本功能框架，提供清晰的文档注释
  */
 
-// 工具系统结束标记 - 版本 2.9
+// 工具系统结束标记 - 版本 3.0
 
 /**
  * @brief 空初始化函数
@@ -205,14 +205,14 @@ void utility_memory_cleanup_handler(void)
  */
 uint64 utility_process_resource_data(longlong resource_handle)
 {
-  uint64 operation_result;
+  uint64 processing_result;
   
   // 执行系统内存操作
-  operation_result = system_memory_operation(*(uint32 *)(resource_handle + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
+  processing_result = system_memory_operation(*(uint32 *)(resource_handle + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
   
-  // 验证操作结果
-  if ((int)operation_result != UTILITY_MEMORY_ZERO) {
-    return operation_result;
+  // 验证处理结果
+  if ((int)processing_result != UTILITY_MEMORY_ZERO) {
+    return processing_result;
   }
   
   // 处理系统资源句柄
@@ -240,15 +240,15 @@ uint64 utility_process_resource_data(longlong resource_handle)
  */
 uint64 utility_resource_data_processor(void)
 {
-  uint64 operation_result;
-  longlong default_resource_handle = 0; // 默认资源句柄
+  uint64 processing_result;
+  longlong default_resource_context = 0; // 默认资源上下文
   
   // 执行系统内存操作
-  operation_result = system_memory_operation(*(uint32 *)(default_resource_handle + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
+  processing_result = system_memory_operation(*(uint32 *)(default_resource_context + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
   
-  // 验证操作结果
-  if ((int)operation_result != UTILITY_MEMORY_ZERO) {
-    return operation_result;
+  // 验证处理结果
+  if ((int)processing_result != UTILITY_MEMORY_ZERO) {
+    return processing_result;
   }
   
   // 处理系统资源句柄
