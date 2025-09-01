@@ -12285,7 +12285,7 @@ LAB_180896ce3:
         uStack_298 = param_3;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(param_1,&puStack_2a8);
-        if ((tableEntry != 0) || (tableEntry = FUN_18088c970(resourceTable,afStack_304), tableEntry != 0))
+        if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,afStack_304), tableEntry != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
@@ -12332,7 +12332,7 @@ LAB_180896ce3:
         uStack_298 = param_3;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(param_1,&puStack_2a8);
-        if ((tableEntry != 0) || (tableEntry = FUN_18088c970(resourceTable,afStack_304), tableEntry != 0))
+        if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,afStack_304), tableEntry != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
@@ -12379,7 +12379,7 @@ LAB_180896ce3:
         uStack_298 = param_3;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(param_1,&puStack_2a8);
-        if ((tableEntry != 0) || (tableEntry = FUN_18088c970(resourceTable,afStack_304), tableEntry != 0))
+        if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,afStack_304), tableEntry != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
@@ -12426,7 +12426,7 @@ LAB_180896ce3:
         uStack_298 = param_3;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(param_1,&puStack_2a8);
-        if ((tableEntry != 0) || (tableEntry = FUN_18088c970(resourceTable,afStack_304), tableEntry != 0))
+        if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,afStack_304), tableEntry != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
@@ -83190,8 +83190,7 @@ bool CheckSystemConfigurationStatus(undefined8 *configurationPointer)
 
 
 
- void FUN_1809413ed(undefined8 param_1,longlong param_2)
-/**
+ /**
  * @brief 处理网络连接数据传输
  * 
  * 该函数负责处理网络连接的数据传输操作
