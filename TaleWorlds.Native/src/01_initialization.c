@@ -17245,7 +17245,7 @@ void SystemPerformanceMonitorInitializer(void)
   stackBuffer[0] = 0;
   stackParameterC = 0x1b;
   strcpy_s(stackBuffer,0x80,&UNK_180a3c028,in_R9,0xfffffffffffffffe);
-  _DAT_180c9606c = SystemMemoryAllocationFunction(&stackParameterA);
+  SystemMemoryRegionCacheA = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
 
@@ -18264,7 +18264,7 @@ LAB_180044ee3:
     if (CustomSearchPath != (void* *)0x0) {
       SymbolSearchPath = CustomSearchPath;
     }
-    SymbolInitializationResult = SymInitialize(_DAT_180c96218,SymbolSearchPath,1);
+    SymbolInitializationResult = SymInitialize(SystemCurrentProcessHandle,SymbolSearchPath,1);
     if (SymbolInitializationResult == 0) {
       puStack_b8 = &SystemGlobalDataReference;
       if (puStack_b0 != (void* *)0x0) {
