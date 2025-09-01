@@ -1396,8 +1396,13 @@ int FUN_18002d520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18002d550(void)
-void FUN_18002d550(void)
+/**
+ * @brief 初始化系统字符串处理模块
+ * 
+ * 该函数负责初始化系统字符串处理模块，设置字符串缓冲区
+ * 和处理机制，为系统提供字符串操作支持。
+ */
+void InitializeSystemStringHandler(void)
 
 {
   undefined8 in_R9;
@@ -1418,8 +1423,13 @@ void FUN_18002d550(void)
 
 
 
-// 函数: void FUN_18002d5e0(void)
-void FUN_18002d5e0(void)
+/**
+ * @brief 初始化系统线程管理器
+ * 
+ * 该函数负责初始化系统线程管理器，设置线程创建和管理机制，
+ * 为系统提供多线程支持。
+ */
+void InitializeSystemThreadManager(void)
 
 {
   char cVar1;
