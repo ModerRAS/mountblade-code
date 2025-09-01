@@ -87904,20 +87904,27 @@ void InitializeSystemContext(uint8_t8 contextPtr, uint8_t8 setupParam, uint8_t8 
  * 并将线程恢复到初始状态
  * 重置线程数据结构和资源指针
  */
+/**
+ * @brief 重置线程本地存储
+ * 
+ * 该函数负责重置线程本地存储状态，清理不再需要的资源
+ * 并将线程恢复到初始状态
+ * 
+ * @return 无返回值
+ */
 void ResetThreadLocalStorage(void)
 
 {
-  longlong ThreadData;
+  longlong ThreadContextData;
   
-  ThreadData = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  *(uint8_t8 *)(ThreadData + 0x18) = &threadResourcePointer;
-  if (*(longlong *)(ThreadData + 0x20) != 0) {
-                    // WARNING: Subroutine does not return
+  ThreadContextData = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  *(uint8_t8 *)(ThreadContextData + 0x18) = &threadResourcePointer;
+  if (*(longlong *)(ThreadContextData + 0x20) != 0) {
     CleanupThreadResources();
   }
-  *(uint8_t8 *)(ThreadData + 0x20) = 0;
-  *(uint8_t4 *)(ThreadData + 0x30) = 0;
-  *(uint8_t8 *)(ThreadData + 0x18) = &defaultThreadResource;
+  *(uint8_t8 *)(ThreadContextData + 0x20) = 0;
+  *(uint8_t4 *)(ThreadContextData + 0x30) = 0;
+  *(uint8_t8 *)(ThreadContextData + 0x18) = &defaultThreadResource;
   return;
 }
 
@@ -87937,26 +87944,36 @@ void ResetThreadLocalStorage(void)
  * @param cleanupOptions 清理选项，控制清理行为的具体参数
  * @param cleanupFlags 清理标志，指定清理操作的标志位
  */
-void CleanupSystemResources(uint8_t8 resourceType, uint8_t8 resourceInstance, uint8_t8 cleanupOptions, uint8_t8 cleanupFlags)
+/**
+ * @brief 清理系统资源
+ * 
+ * 该函数负责清理系统运行过程中分配的各种资源
+ * 包括内存、句柄、数据结构等
+ * 
+ * @param ResourceType 资源类型，用于标识要清理的资源种类
+ * @param ResourceInstance 资源实例，用于标识具体的资源实例
+ * @param CleanupOptions 清理选项，控制清理行为的具体参数
+ * @param CleanupFlags 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ */
+void CleanupSystemResources(uint8_t8 ResourceType, uint8_t8 ResourceInstance, uint8_t8 CleanupOptions, uint8_t8 CleanupFlags)
 
 {
-  uint8_t8 *SystemResourceManager;
+  uint8_t8 *ResourceManagementHandle;
   
-  SystemResourceManager = SystemResourceManagerPointer;
+  ResourceManagementHandle = SystemResourceManagerPointer;
   if (SystemResourceManagerPointer == (uint8_t8 *)0x0) {
     return;
   }
-  ReleaseSystemResources(&SystemResourceData, *SystemResourceManagerPointer, cleanupOptions, cleanupFlags, 0xfffffffffffffffe);
-  SystemResourceManager[4] = &ResourceCleanupMarker;
-  if (SystemResourceManager[5] != 0) {
-                    // WARNING: Subroutine does not return
+  ReleaseSystemResources(&SystemResourceData, *SystemResourceManagerPointer, CleanupOptions, CleanupFlags, 0xfffffffffffffffe);
+  ResourceManagementHandle[4] = &ResourceCleanupMarker;
+  if (ResourceManagementHandle[5] != 0) {
     EmergencyResourceCleanup();
   }
-  SystemResourceManager[5] = 0;
-  *(uint8_t4 *)(SystemResourceManager + 7) = 0;
-  SystemResourceManager[4] = &ResourceResetMarker;
-                    // WARNING: Subroutine does not return
-  FinalizeResourceCleanup(SystemResourceManager);
+  ResourceManagementHandle[5] = 0;
+  *(uint8_t4 *)(ResourceManagementHandle + 7) = 0;
+  ResourceManagementHandle[4] = &ResourceResetMarker;
+  FinalizeResourceCleanup(ResourceManagementHandle);
 }
 
 
