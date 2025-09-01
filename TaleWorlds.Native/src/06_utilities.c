@@ -10028,10 +10028,10 @@ void ValidateResourceHashAndProcessEntries(void)
 {
   int operationResult;
   
-  integerValue1 = ValidateResourceHash();
-  if (integerValue1 == 0) {
-    integerValue1 = ProcessResourceTableEntries();
-    if (integerValue1 == 0) {
+  HashValidationResult = ValidateResourceHash();
+  if (HashValidationResult == 0) {
+    HashValidationResult = ProcessResourceTableEntries();
+    if (HashValidationResult == 0) {
       InitializeResourceBuffer();
     }
   }
