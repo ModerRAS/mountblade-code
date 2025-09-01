@@ -3147,7 +3147,7 @@ void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(securityToken ^ (ulonglong)objectBuffer);
+  ExecuteSecurityValidation(securityToken ^ (ulonglong)objectBuffer);
 }
 
 
@@ -3202,7 +3202,7 @@ void ValidateSystemObjects(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(securityValidationHash ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityValidation(securityValidationHash ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -3382,10 +3382,10 @@ ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
     iVar4 = (int)uVar6;
     if (iVar4 == 0) {
       lStackX_8 = 0;
-      uVar5 = FUN_18088fb40(*(undefined8 *)(param_2 + 0x90),*(longlong *)(lStackX_18 + 8) + 0x10,
+      uVar5 = ProcessSystemObjectValidation(*(undefined8 *)(param_2 + 0x90),*(longlong *)(lStackX_18 + 8) + 0x10,
                             &lStackX_8);
       if (uVar5 != 0) {
-        FUN_180867d60(plVar9);
+        CleanupValidationData(plVar9);
         return (ulonglong)uVar5;
       }
       if (((*(uint *)(*(longlong *)(lStackX_18 + 8) + 0xf8) >> 2 & 1) == 0) &&
@@ -3408,7 +3408,7 @@ ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
           *(longlong **)(lStackX_8 + 0x80) = plVar9;
           ProcessMemoryData(lStackX_8,plVar9);
           plVar9[2] = lStackX_8;
-          uVar6 = FUN_18085ff30(lStackX_8);
+          uVar6 = ProcessSystemObjectOperation(lStackX_8);
           if ((int)uVar6 == 0) {
             return 0;
           }
@@ -9025,7 +9025,15 @@ undefined8 ProcessDataValidationAndSystemOperation(longlong param_1,longlong par
 
 
 
-undefined8 FUN_180893f64(void)
+/**
+ * @brief 获取系统运行状态信息
+ * 
+ * 该函数用于获取系统的当前运行状态信息
+ * 包括系统性能指标、资源使用情况等数据
+ * 
+ * @return uint64_t 系统状态信息，包含各种运行时数据
+ */
+uint64_t GetSystemRuntimeStatus(void)
 
 {
   float fVar1;
@@ -9214,7 +9222,15 @@ undefined8 ProcessFloatRangeValidationAndDataHandlingNoParams(void)
 
 
 
-undefined8 FUN_18089406b(void)
+/**
+ * @brief 处理浮点数数据验证
+ * 
+ * 该函数用于验证浮点数数据的有效性和范围
+ * 主要用于数据预处理和参数验证阶段
+ * 
+ * @return uint64_t 验证结果，成功返回0，失败返回错误码
+ */
+uint64_t ProcessFloatDataValidation(void)
 
 {
   float fVar1;
@@ -9923,7 +9939,19 @@ LAB_180894aca:
 
 
 
-undefined4 FUN_180894dd0(longlong param_1,undefined8 param_2,uint param_3,longlong param_4)
+/**
+ * @brief 处理系统配置和数据验证
+ * 
+ * 该函数用于处理系统配置参数的验证和数据操作
+ * 主要用于系统初始化和配置过程中的参数验证
+ * 
+ * @param systemContext 系统上下文参数，包含系统状态和配置信息
+ * @param configurationData 配置数据参数，包含系统配置信息
+ * @param validationFlags 验证标志，控制验证过程的选项
+ * @param resultBuffer 结果缓冲区，用于存储验证结果
+ * @return uint32_t 验证结果，成功返回0，失败返回错误码
+ */
+uint32_t ProcessSystemConfigurationAndValidation(longlong systemContext,undefined8 configurationData,uint validationFlags,longlong resultBuffer)
 
 {
   longlong *plVar1;
@@ -10031,7 +10059,16 @@ uint FUN_180894ef0(longlong *param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180894fb0(longlong param_1)
+/**
+ * @brief 处理对象生命周期管理
+ * 
+ * 该函数用于管理对象的生命周期，包括初始化、更新和销毁操作
+ * 主要用于对象的生命周期控制和资源管理
+ * 
+ * @param objectHandle 对象句柄，用于标识和管理特定的对象
+ * @return uint64_t 操作结果，成功返回0，失败返回错误码
+ */
+uint64_t ProcessObjectLifecycleManagement(longlong objectHandle)
 
 {
   longlong *plVar1;
@@ -14240,9 +14277,21 @@ LAB_1808989f7:
 
 
 
-undefined8
-FUN_180898a50(longlong param_1,uint *param_2,undefined8 param_3,undefined4 param_4,
-             undefined8 param_5)
+/**
+ * @brief 二分查找函数
+ * 
+ * 该函数使用二分查找算法在有序数组中查找指定的元素
+ * 主要用于快速查找和检索操作，提高查找效率
+ * 
+ * @param arrayData 数组数据指针，包含数组的基本信息
+ * @param searchKey 搜索键值，要查找的目标值
+ * @param searchContext 搜索上下文，包含搜索的配置信息
+ * @param searchFlags 搜索标志，控制搜索的行为
+ * @param additionalData 附加数据，用于扩展搜索功能
+ * @return uint64_t 查找结果，成功返回找到的元素，失败返回错误码
+ */
+uint64_t BinarySearchInArray(longlong arrayData,uint *searchKey,undefined8 searchContext,undefined4 searchFlags,
+             undefined8 additionalData)
 
 {
   uint uVar1;
@@ -14256,19 +14305,19 @@ FUN_180898a50(longlong param_1,uint *param_2,undefined8 param_3,undefined4 param
   int iVar9;
   
   iVar8 = 0;
-  iVar9 = *(int *)(param_1 + 0x18) + -1;
+  iVar9 = *(int *)(arrayData + 0x18) + -1;
   if (-1 < iVar9) {
-    lVar2 = *(longlong *)(param_1 + 0x10);
-    uVar1 = *param_2;
+    lVar2 = *(longlong *)(arrayData + 0x10);
+    uVar1 = *searchKey;
     do {
       iVar7 = iVar9 + iVar8 >> 1;
       puVar6 = (uint *)((longlong)iVar7 * 0x10 + lVar2);
       if (uVar1 == *puVar6) {
-        iVar4 = (uint)(ushort)param_2[1] - (uint)(ushort)puVar6[1];
+        iVar4 = (uint)(ushort)searchKey[1] - (uint)(ushort)puVar6[1];
         if ((iVar4 == 0) &&
-           (iVar4 = (uint)*(ushort *)((longlong)param_2 + 6) -
+           (iVar4 = (uint)*(ushort *)((longlong)searchKey + 6) -
                     (uint)*(ushort *)((longlong)puVar6 + 6), iVar4 == 0)) {
-          iVar4 = memcmp(param_2 + 2,puVar6 + 2,8);
+          iVar4 = memcmp(searchKey + 2,puVar6 + 2,8);
         }
       }
       else {
@@ -14281,7 +14330,7 @@ FUN_180898a50(longlong param_1,uint *param_2,undefined8 param_3,undefined4 param
         if (iVar7 < 0) {
           return 0x4a;
         }
-        uVar5 = FUN_180898b40(param_1,iVar7,0,param_3,param_4,param_5);
+        uVar5 = FUN_180898b40(arrayData,iVar7,0,searchContext,searchFlags,additionalData);
         return uVar5;
       }
       iVar3 = iVar7 + -1;
