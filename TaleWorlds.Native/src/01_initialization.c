@@ -64954,19 +64954,30 @@ void* FUN_1807794dd(int param_1,void* param_2,void* param_3,uint param_4)
 
 
 
-void* FUN_180779635(int param_1,void* param_2,void* param_3,float param_4)
+/**
+ * @brief 计算浮点数组的加权平均值
+ * 
+ * 该函数计算一个浮点数组的加权平均值，通过遍历数组元素并应用权重计算。
+ * 这是一个用于数学统计和数据分析的函数。
+ * 
+ * @param startIndex 起始索引，指定数组的开始位置
+ * @param arrayBasePointer 数组基址指针，指向浮点数组的起始位置
+ * @param resultPointer 结果指针，用于存储计算结果
+ * @param weightFactor 权重因子，用于计算加权平均值
+ * @return 计算成功返回0，失败返回非零值
+ */
+void* CalculateWeightedAverageFloatArray(int startIndex, void* arrayBasePointer, void* resultPointer, float weightFactor)
 
 {
-  float fVar1;
-  float *pfVar2;
-  int unaff_EBX;
-  long long unaff_RDI;
-  int memoryCompareResult;
-  int in_R9D;
-  float *in_R11;
-  float unaff_XMM6_Da;
-  float fVar4;
-  float fVar5;
+  float currentValue;
+  float *arrayPointer;
+  int stepSize;
+  long long baseAddress;
+  int endIndex;
+  float *resultStorage;
+  float weightedSum;
+  float rangeFactor;
+  int offsetIndex;
   
   if (param_1 < in_R9D) {
     if (3 < in_R9D - param_1) {
