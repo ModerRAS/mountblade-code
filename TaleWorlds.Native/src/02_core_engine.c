@@ -16563,7 +16563,7 @@ LAB_180054d57:
                 engine_call_data_iterator(engine_current_node_ptr + (longlong)engine_temp_int3 * 4,&engine_stack_pointer_98,engine_temp_int_9 + 1,0xffffffff);
                 engine_temp_uint_7 = engine_manage_system_memory(pengine_temp_long_2,&engine_stack_pointer_98);
                 if (_engine_data_54 != 0) {
-                  FUN_18005c1c0(engine_temp_uint_7,&engine_stack_pointer_78);
+                  engine_setup_audio_parameters(engine_temp_uint_7,&engine_stack_pointer_78);
                   engine_stack_pointer_f0 = &engine_system_context_data;
                   uStack_d8 = 0;
                   engine_stack_pointer_e8 = (uint8*)0x0;
@@ -16585,7 +16585,7 @@ LAB_180054d57:
                     engine_data_pointer_6 = puStack_90;
                   }
                   engine_handle_input_device(&engine_stack_pointer_f0,&engine_vibration_handler_ptr,engine_data_pointer_6);
-                  FUN_18062db60(&engine_stack_pointer_f0,&engine_stack_pointer_78);
+                  engine_process_audio_data(&engine_stack_pointer_f0,&engine_stack_pointer_78);
                   _engine_data_54 = 0;
                   engine_stack_pointer_f0 = &engine_system_context_data;
                   if (engine_stack_pointer_e8 != (uint8*)0x0) {
@@ -16715,9 +16715,9 @@ void engine_finalize_system_initialization(void)
   *(uint32*)(engine_structure_data_ptr + 1) = 0xe;
   _engine_data_28 = engine_structure_data_ptr;
   engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x480,8,3);
-  _engine_audio_device_ptr = FUN_18004bd10(engine_temp_uint_3);
+  _engine_audio_device_ptr = engine_initialize_audio_device(engine_temp_uint_3);
   engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x10420,8,3);
-  _engine_sound_buffer_ptr = FUN_18005c090(engine_temp_uint_3);
+  _engine_sound_buffer_ptr = engine_create_sound_buffer(engine_temp_uint_3);
   _engine_music_buffer_ptr = engine_call_memory_allocator(_engine_data_18,0x30,8,3);
   *(uint32*)(_engine_music_buffer_ptr + 0x19) = 0;
   *(uint16*)(_engine_music_buffer_ptr + 0x1d) = 0;
@@ -25356,7 +25356,7 @@ void FUN_180066320(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 LAB_18006650a:
     engine_process_system_data_request(&engine_stack_pointer_198);
     engine_temp_index = engine_process_system_configuration(&engine_stack_pointer_138,&engine_data_50);
-    engine_temp_int_4 = FUN_180628d60(&engine_stack_pointer_198,engine_temp_index);
+    engine_temp_int_4 = engine_process_stack_data(&engine_stack_pointer_198,engine_temp_index);
     engine_stack_pointer_138 = &engine_system_context_data;
     if (lStack_130 != 0) {
                     // WARNING: Subroutine does not return
@@ -25428,7 +25428,7 @@ LAB_18006650a:
     FUN_1800ba940(&engine_stack_pointer_138);
     FUN_180627e10(&engine_stack_pointer_138,&engine_stack_pointer_f0,&engine_data_1809fe848);
     FUN_180627e10(&engine_stack_pointer_198,&puStack_110,&engine_data_1809fe848);
-    FUN_18062db60(&puStack_110,&engine_stack_pointer_f0);
+    engine_process_audio_data(&puStack_110,&engine_stack_pointer_f0);
     puStack_110 = &engine_system_context_data;
     if (lStack_108 != 0) {
                     // WARNING: Subroutine does not return
@@ -25539,7 +25539,7 @@ LAB_180066bf4:
         engine_stack_value_88 = CONCAT44(engine_stack_value_88._4_4_,engine_temp_uint_4);
         *engine_temporary_pointer = 0x73656873617263;
         uStack_90 = 7;
-        FUN_180628d60(engine_stack_array_80,&engine_stack_param_a0);
+        engine_process_stack_data(engine_stack_array_80,&engine_stack_param_a0);
         engine_stack_param_a0 = &engine_system_context_data;
                     // WARNING: Subroutine does not return
         engine_call_cleanup_routine(engine_temporary_pointer);

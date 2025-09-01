@@ -252,15 +252,23 @@ void* system_module_config_manager;
 // 系统模块数据管理器
 void* system_module_data_manager;
 // 系统模块缓存管理器
+void* system_module_cache_manager;
 // 系统模块网络管理器
 void* system_module_network_manager;
 // 系统模块安全管理器
+void* system_module_security_manager;
 // 系统模块性能管理器
+void* system_module_performance_manager;
 // 系统模块统计管理器
+void* system_module_statistics_manager;
 // 系统模块日志管理器
+void* system_module_log_manager;
 // 系统模块备份管理器
+void* system_module_backup_manager;
 // 系统模块恢复管理器
+void* system_module_recovery_manager;
 // 系统模块清理管理器
+void* system_module_cleanup_manager;
 // 系统模块初始化管理器
 void* system_module_init_manager;
 // 系统模块关闭管理器
@@ -780,6 +788,17 @@ void* system_get_system_init_function;
  * @warning 调用此函数前需要确保系统上下文管理器已初始化
  * @note 此函数是系统启动的第一个关键步骤
  */
+/**
+ * @brief 系统主初始化函数
+ * 
+ * 初始化系统的核心组件，包括：
+ * - 获取上下文管理器
+ * - 遍历上下文节点
+ * - 分配内存并初始化上下文
+ * - 设置初始化函数指针
+ * 
+ * 简化实现：主要处理上下文管理和内存分配的核心逻辑
+ */
 void system_initialize_main(void)
 
 {
@@ -841,19 +860,6 @@ void system_initialize_main(void)
  * 
  * 简化实现：仅保留核心子系统初始化逻辑
  */
-/**
- * @brief 系统子系统初始化函数
- * 
- * 该函数负责初始化系统的所有子系统。
- * 它会获取系统上下文管理器，并遍历子系统列表进行初始化。
- * 
- * @note 这是简化实现，提供基本的子系统初始化功能
- * @warning 调用此函数前需要确保系统上下文管理器已初始化
- * 
- * 简化实现说明：
- * - 原本实现：完整的子系统初始化流程，包含复杂的错误处理
- * - 简化实现：仅保留基本的子系统遍历和初始化逻辑
- */
 void system_initialize_subsystem(void)
 
 {
@@ -875,7 +881,7 @@ void system_initialize_subsystem(void)
   subsystem_prev_ptr = subsystem_manager_ptr;
   subsystem_node_ptr = (uint8_t *)subsystem_manager_ptr[1];
   while (subsystem_init_status == '\0') {
-    subsystem_compare_result = memcmp(subsystem_node_ptr + 4,&system_global_varsystem_data_ptr,0x10);
+    subsystem_compare_result = memcmp(subsystem_node_ptr + 4,&system_global_subsystem_config_data,0x10);
     if (subsystem_compare_result < 0) {
       subsystem_next_ptr = (uint8_t *)subsystem_node_ptr[2];
       subsystem_node_ptr = subsystem_prev_ptr;
@@ -887,7 +893,7 @@ void system_initialize_subsystem(void)
     subsystem_node_ptr = subsystem_next_ptr;
     subsystem_init_status = *(char *)((int64_t)subsystem_next_ptr + 0x19);
   }
-  if ((subsystem_prev_ptr == subsystem_manager_ptr) || (subsystem_compare_result = memcmp(&system_global_varsystem_data_ptr,subsystem_prev_ptr + 4,0x10), subsystem_compare_result < 0)) {
+  if ((subsystem_prev_ptr == subsystem_manager_ptr) || (subsystem_compare_result = memcmp(&system_global_subsystem_config_data,subsystem_prev_ptr + 4,0x10), subsystem_compare_result < 0)) {
     subsystem_allocated_size = allocate_memory(subsystem_memory_ptr);
     context_init_function(subsystem_memory_ptr,&subsystem_buffer_ptr,subsystem_prev_ptr,subsystem_allocated_size + 0x20,subsystem_allocated_size);
     subsystem_prev_ptr = subsystem_buffer_ptr;
@@ -7338,7 +7344,7 @@ void system_initialize_localization(void)
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_varsystem_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
     if (system_memory_comparison_result < 0) {
       system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
       system_buffer_pointer = context_current_ptr;
@@ -7350,7 +7356,7 @@ void system_initialize_localization(void)
     system_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
-  if ((context_current_ptr == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_varsystem_data_ptr,context_current_ptr + 4,0x10), system_memory_comparison_result < 0)) {
+  if ((context_current_ptr == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_subsystem_config_data,context_current_ptr + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
     context_init_function(system_global_context,&stack_context_result,context_current_ptr,system_context_offset + 0x20,system_context_offset);
     context_current_ptr = stack_context_result;
@@ -9205,7 +9211,7 @@ void system_initialize_particle_system_2(void)
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_varsystem_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
     if (system_memory_comparison_result < 0) {
       system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
       system_buffer_pointer = context_current_ptr;
@@ -9217,7 +9223,7 @@ void system_initialize_particle_system_2(void)
     system_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
-  if ((context_current_ptr == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_varsystem_data_ptr,context_current_ptr + 4,0x10), system_memory_comparison_result < 0)) {
+  if ((context_current_ptr == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_subsystem_config_data,context_current_ptr + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
     context_init_function(system_global_context,&stack_context_result,context_current_ptr,system_context_offset + 0x20,system_context_offset);
     context_current_ptr = stack_context_result;
@@ -9662,7 +9668,7 @@ void system_handle_entity_management_2(void)
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_varsystem_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
     if (system_memory_comparison_result < 0) {
       system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
       system_buffer_pointer = context_current_ptr;
@@ -9674,7 +9680,7 @@ void system_handle_entity_management_2(void)
     system_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
-  if ((context_current_ptr == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_varsystem_data_ptr,context_current_ptr + 4,0x10), system_memory_comparison_result < 0)) {
+  if ((context_current_ptr == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_subsystem_config_data,context_current_ptr + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
     context_init_function(system_global_context,&stack_context_result,context_current_ptr,system_context_offset + 0x20,system_context_offset);
     context_current_ptr = stack_context_result;
@@ -11164,7 +11170,7 @@ void system_manage_permission_system_2(void)
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_varsystem_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
     if (system_memory_comparison_result < 0) {
       system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
       system_buffer_pointer = context_current_ptr;
@@ -11176,7 +11182,7 @@ void system_manage_permission_system_2(void)
     system_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
-  if ((context_current_ptr == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_varsystem_data_ptr,context_current_ptr + 4,0x10), system_memory_comparison_result < 0)) {
+  if ((context_current_ptr == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_subsystem_config_data,context_current_ptr + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
     context_init_function(system_global_context,&stack_context_result,context_current_ptr,system_context_offset + 0x20,system_context_offset);
     context_current_ptr = stack_context_result;
@@ -11764,7 +11770,7 @@ void system_initialize_profiling_system_2(void)
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_varsystem_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
     if (system_memory_comparison_result < 0) {
       system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
       system_buffer_pointer = context_current_ptr;
@@ -11776,7 +11782,7 @@ void system_initialize_profiling_system_2(void)
     system_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
-  if ((context_current_ptr == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_varsystem_data_ptr,context_current_ptr + 4,0x10), system_memory_comparison_result < 0)) {
+  if ((context_current_ptr == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_subsystem_config_data,context_current_ptr + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
     context_init_function(system_global_context,&stack_context_result,context_current_ptr,system_context_offset + 0x20,system_context_offset);
     context_current_ptr = stack_context_result;
@@ -13606,7 +13612,7 @@ void system_handle_error_processing_3(void)
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_varsystem_data_ptr,0x10);
+    system_memory_comparison_result = memcmp(system_buffer_pointer + 4,&system_global_subsystem_config_data,0x10);
     if (system_memory_comparison_result < 0) {
       system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
       system_buffer_pointer = context_current_ptr;
@@ -13618,7 +13624,7 @@ void system_handle_error_processing_3(void)
     system_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
-  if ((context_current_ptr == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_varsystem_data_ptr,context_current_ptr + 4,0x10), system_memory_comparison_result < 0)) {
+  if ((context_current_ptr == system_context_base) || (system_memory_comparison_result = memcmp(&system_global_subsystem_config_data,context_current_ptr + 4,0x10), system_memory_comparison_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
     context_init_function(system_global_context,&stack_context_result,context_current_ptr,system_context_offset + 0x20,system_context_offset);
     context_current_ptr = stack_context_result;
@@ -51013,7 +51019,7 @@ void system_process_configuration_updates_7(void)
       (**(code **)(*system_secondary_data_ptr + 0x28))(system_secondary_data_ptr);
     }
     system_process_context_data(auStack_60,&system_stack_alt_ptr);
-    (*psystem_char_var)(system_global_context,&system_global_varsystem_data_ptr,system_context_ptr + 0x17,0,auStack_60,&system_stack_uint_value);
+    (*psystem_char_var)(system_global_context,&system_global_subsystem_config_data,system_context_ptr + 0x17,0,auStack_60,&system_stack_uint_value);
     if (pcStack_50 != (code *)0x0) {
       (*pcStack_50)(auStack_60,0,0);
     }
@@ -51036,7 +51042,7 @@ void system_process_configuration_updates_7(void)
       (**(code **)(*system_secondary_data_ptr + 0x28))(system_secondary_data_ptr);
     }
     system_process_context_data(auStack_80,&system_stack_alt_ptr);
-    system_status_char = (*psystem_char_var)(system_global_context,&system_global_varsystem_data_ptr,system_context_ptr + 0x17,0,auStack_80);
+    system_status_char = (*psystem_char_var)(system_global_context,&system_global_subsystem_config_data,system_context_ptr + 0x17,0,auStack_80);
     if (pcStack_70 != (code *)0x0) {
       (*pcStack_70)(auStack_80,0,0);
     }
