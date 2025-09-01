@@ -18484,16 +18484,16 @@ void InitializeThreadManager(void)
   void* ThreadStackPointer50;
   
   errorPtr = &SystemGlobalDataReference;
-  stack50 = 0;
-  tempStack60 = (void* *)0x0;
-  stack58 = 0;
+  ThreadStackPointer50 = 0;
+  ThreadStackBuffer60 = (void* *)0x0;
+  ThreadStatusFlags = 0;
   threadManager = (void* *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13,registerR9,0xfffffffffffffffe);
   *(uint8_t *)threadManager = 0;
-  tempStack60 = threadManager;
+  ThreadStackBuffer60 = threadManager;
   threadResult = StartSystemThread(threadManager);
-  stack50 = CONCAT44(stack50._4_4_,threadResult);
+  ThreadStackPointer50 = CONCAT44(ThreadStackPointer50._4_4_,threadResult);
   *threadManager = 0x72657472617453;
-  stack58 = 7;
+  ThreadStatusFlags = 7;
   currentThread = GetCurrentThread();
   InitializeSystemThreadContext(currentThread,&errorPtr);
   errorPtr = &SystemGlobalDataReference;
