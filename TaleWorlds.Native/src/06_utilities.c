@@ -2244,7 +2244,7 @@ undefined ResourceReplicationManagerData;
 undefined ResourceSystemPrimaryData;
 undefined ResourceSystemSecondaryData;
 undefined SystemProcessManagerData;
-undefined UNK_180a079c0;
+undefined SystemSecurityManagerData;
 undefined UNK_180a07b48;
 undefined UNK_180a3c313;
 undefined ResourceSystemState;
@@ -10513,8 +10513,8 @@ undefined8 ReturnResourcePoolErrorCode(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- 5360(longlong param_1,undefined1 *param_2,int *param_3)
-5360(longlong param_1,undefined1 *param_2,int *param_3)
+ void ProcessResourceCalculationAndValidation(longlong param_1,undefined1 *param_2,int *param_3)
+void ProcessResourceCalculationAndValidation(longlong param_1,undefined1 *param_2,int *param_3)
 
 {
   byte bVar1;
