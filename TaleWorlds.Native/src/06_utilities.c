@@ -12240,7 +12240,7 @@ int ProcessDataBlockOperationWithExtendedValidator(int64_t objectContextParam,in
  * 
  * @param objectContextParam 数据上下文指针
  * @param validationContextParam 操作上下文指针
- * @param param_3 验证标志
+ * @param validationFlag 验证标志
  * @return 处理结果状态码
  */
 int ProcessDataBlockOperationWithSimplifiedValidator(int64_t objectContextParam,int64_t validationContextParam,int validationFlag)
@@ -12250,18 +12250,22 @@ int ProcessDataBlockOperationWithSimplifiedValidator(int64_t objectContextParam,
   uint32_t validationResult;
   int validationStatus;
   int ResultIndex;
+  int stringProcessingResult1;
+  int stringProcessingResult2;
+  int dataParsingResult;
+  int dataValidationResult;
   
   resourceHash = *(uint32_t *)(objectContextParam + 0x14);
   validationResult = *(uint32_t *)(objectContextParam + 0x10);
-  iVar3 = ProcessStringOperation(validationContextParam,param_3,&StringProcessingTemplate);
-  iVar4 = ProcessStringOperation(iVar3 + validationContextParam,param_3 - iVar3,&StringProcessingTemplate);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = ParseDataContent(iVar3 + validationContextParam,param_3 - iVar3,validationResult);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = ProcessStringOperation(iVar3 + validationContextParam,param_3 - iVar3,&StringProcessingTemplate);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = ValidateDataFormat(iVar3 + validationContextParam,param_3 - iVar3,resourceHash);
-  return iVar4 + iVar3;
+  stringProcessingResult1 = ProcessStringOperation(validationContextParam,validationFlag,&StringProcessingTemplate);
+  stringProcessingResult2 = ProcessStringOperation(stringProcessingResult1 + validationContextParam,validationFlag - stringProcessingResult1,&StringProcessingTemplate);
+  stringProcessingResult1 = stringProcessingResult1 + stringProcessingResult2;
+  dataParsingResult = ParseDataContent(stringProcessingResult1 + validationContextParam,validationFlag - stringProcessingResult1,validationResult);
+  stringProcessingResult1 = stringProcessingResult1 + dataParsingResult;
+  stringProcessingResult2 = ProcessStringOperation(stringProcessingResult1 + validationContextParam,validationFlag - stringProcessingResult1,&StringProcessingTemplate);
+  stringProcessingResult1 = stringProcessingResult1 + stringProcessingResult2;
+  dataValidationResult = ValidateDataFormat(stringProcessingResult1 + validationContextParam,validationFlag - stringProcessingResult1,resourceHash);
+  return dataValidationResult + stringProcessingResult1;
 }
 
 
@@ -12273,7 +12277,7 @@ int ProcessDataBlockOperationWithSimplifiedValidator(int64_t objectContextParam,
  * 
  * @param objectContextParam 缓冲区上下文指针
  * @param validationContextParam 保留参数
- * @param param_3 验证数据指针
+ * @param bufferPointer 验证数据指针
  * @return 验证结果或上下文信息
  */
 uint8_t ValidateAndGetBufferContext(int64_t objectContextParam,uint8_t validationContextParam,uint8_t bufferPointer)
@@ -12281,10 +12285,10 @@ uint8_t ValidateAndGetBufferContext(int64_t objectContextParam,uint8_t validatio
 {
   uint8_t resourceHash;
   
-  resourceHash = ValidateResourceHash(param_3,objectContextParam + 0x10);
+  resourceHash = ValidateResourceHash(bufferPointer,objectContextParam + 0x10);
   if ((int)resourceHash == 0) {
     *(uint32_t *)(objectContextParam + 0x14) = 0;
-    if ((1 < *(int *)(objectContextParam + 0x10)) && (resourceHash = CalculateResourceHash(param_3), (int)resourceHash != 0)) {
+    if ((1 < *(int *)(objectContextParam + 0x10)) && (resourceHash = CalculateResourceHash(bufferPointer), (int)resourceHash != 0)) {
       return resourceHash;
     }
     resourceHash = 0;
@@ -14048,8 +14052,18 @@ LAB_180897af6:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- 7b40(int64_t *objectContextParam,int64_t validationContextParam,uint32_t param_3)
-7b40(int64_t *objectContextParam,int64_t validationContextParam,uint32_t param_3)
+ /**
+ * @brief 执行安全加密验证操作
+ * 
+ * 该函数负责执行系统中的安全加密验证操作
+ * 包括缓冲区验证、数据校验和安全清理等任务
+ * 
+ * @param objectContextParam 对象上下文指针
+ * @param validationContextParam 验证上下文指针
+ * @param encryptionFlag 加密标志参数
+ * @return 无返回值
+ */
+void ExecuteSecurityEncryptionValidation(int64_t *objectContextParam,int64_t validationContextParam,uint32_t encryptionFlag)
 
 {
   int64_t loopCounter;
@@ -14077,53 +14091,53 @@ LAB_180897af6:
   uint64_t EncryptedValue;
   
   EncryptedValue = SecurityEncryptionKey ^ (uint64_t)auStack_2a8;
-  iVar4 = 0;
-  iVar7 = 0;
+  int resultCounter = 0;
+  int loopIndex = 0;
   do {
-    if ((iVar7 < 0) || (*(int *)(validationContextParam + 0x1a8) <= iVar7)) goto LAB_180897ce8;
-    loopCounter = *(int64_t *)(*(int64_t *)(validationContextParam + 0x1a0) + (int64_t)iVar7 * 8);
+    if ((loopIndex < 0) || (*(int *)(validationContextParam + 0x1a8) <= loopIndex)) goto LAB_180897ce8;
+    loopCounter = *(int64_t *)(*(int64_t *)(validationContextParam + 0x1a0) + (int64_t)loopIndex * 8);
     if (**(int **)(localContextPointer + 0xd0) != 0) {
       dataChecksumBuffer8[0] = 0;
-      iVar3 = ValidateBufferContext(*(int **)(localContextPointer + 0xd0),dataChecksumBuffer8);
-      if (iVar3 != 0) {
+      int validationResult = ValidateBufferContext(*(int **)(localContextPointer + 0xd0),dataChecksumBuffer8);
+      if (validationResult != 0) {
 LAB_180897ce8:
                     // WARNING: Subroutine does not return
         FinalizeSecurityOperation(EncryptedValue ^ (uint64_t)auStack_2a8);
       }
-      uStack_24c = *(uint32_t *)(localContextPointer + 0x10);
-      uStack_248 = *(uint32_t *)(localContextPointer + 0x14);
-      uStack_244 = *(uint32_t *)(localContextPointer + 0x18);
-      uStack_240 = *(uint32_t *)(localContextPointer + 0x1c);
-      uStack_260 = 0;
-      iVar3 = iVar4 + 1;
+      uint32_t dataBuffer1 = *(uint32_t *)(localContextPointer + 0x10);
+      uint32_t dataBuffer2 = *(uint32_t *)(localContextPointer + 0x14);
+      uint32_t dataBuffer3 = *(uint32_t *)(localContextPointer + 0x18);
+      uint32_t dataBuffer4 = *(uint32_t *)(localContextPointer + 0x1c);
+      uint32_t operationFlag = 0;
+      int nextResultIndex = resultCounter + 1;
       puStack_268 = &SystemMemoryTemplateA;
-      uStack_23c = dataChecksumBuffer8[0];
-      uStack_258 = param_3;
-      iStack_250 = iVar4;
-      iVar4 = GetAndValidateResourceData(objectContextParam,&puStack_268);
-      if (iVar4 != 0) goto LAB_180897ce8;
-      integerValue6 = 0;
-      tableEntry = func_0x0001808c7ed0(*(uint8_t *)(localContextPointer + 0xd0));
-      iVar4 = iVar3;
-      if (0 < tableEntry) {
+      uint32_t checksumValue = dataChecksumBuffer8[0];
+      uint32_t encryptionParam = encryptionFlag;
+      int resultIndex = resultCounter;
+      int resourceValidationResult = GetAndValidateResourceData(objectContextParam,&puStack_268);
+      if (resourceValidationResult != 0) goto LAB_180897ce8;
+      int processingCounter = 0;
+      int tableEntryIndex = func_0x0001808c7ed0(*(uint8_t *)(localContextPointer + 0xd0));
+      int loopCounter2 = nextResultIndex;
+      if (0 < tableEntryIndex) {
         do {
-          uStack_278 = 0;
+          uint32_t loopFlag = 0;
           resourceTable = objectContextParam[4];
-          puStack_280 = &SystemMemoryTemplateB;
-          uStack_270 = dataChecksumBuffer8[0];
-          if (((char)resourceTable == '\0') && (iVar3 = CheckSystemStatus(objectContextParam,1), iVar3 != 0))
+          uint8_t *memoryTemplatePointer = &SystemMemoryTemplateB;
+          uint32_t checksumValue2 = dataChecksumBuffer8[0];
+          if (((char)resourceTable == '\0') && (int systemStatusResult = CheckSystemStatus(objectContextParam,1), systemStatusResult != 0))
           goto LAB_180897ce8;
-          iVar3 = (**(code **)(puStack_280 + 0x10))(&puStack_280,auStack_238,0x200);
-          func_0x00018074b7b0((int64_t)auStack_238 + (int64_t)iVar3,0x200 - iVar3,10);
-          iVar3 = (**(code **)(*objectContextParam + 8))(objectContextParam,auStack_238);
-          if (iVar3 != 0) goto LAB_180897ce8;
+          int memoryOperationResult = (**(code **)(memoryTemplatePointer + 0x10))(&memoryTemplatePointer,auStack_238,0x200);
+          func_0x00018074b7b0((int64_t)auStack_238 + (int64_t)memoryOperationResult,0x200 - memoryOperationResult,10);
+          int objectOperationResult = (**(code **)(*objectContextParam + 8))(objectContextParam,auStack_238);
+          if (objectOperationResult != 0) goto LAB_180897ce8;
           if ((char)resourceTable == '\0') {
-            iVar3 = (**(code **)(*objectContextParam + 0x18))(objectContextParam);
-            if (iVar3 != 0) goto LAB_180897ce8;
+            int secondaryOperationResult = (**(code **)(*objectContextParam + 0x18))(objectContextParam);
+            if (secondaryOperationResult != 0) goto LAB_180897ce8;
             *(uint8_t1 *)(objectContextParam + 4) = 0;
           }
-          integerValue6 = integerValue6 + 1;
-          iVar3 = func_0x0001808c7ed0(*(uint8_t *)(localContextPointer + 0xd0));
+          processingCounter = processingCounter + 1;
+          int tableValidationResult = func_0x0001808c7ed0(*(uint8_t *)(localContextPointer + 0xd0));
         } while (integerValue6 < iVar3);
       }
     }
