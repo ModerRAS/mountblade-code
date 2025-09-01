@@ -13169,13 +13169,13 @@ void SystemStatusProcessorA(void)
   int operationResult;
   char UnaffectedRegisterSIL;
   int64_t *RegisterRDI;
-  uint64_t in_stack_00000220;
+  uint64_t StackParameter220;
   
   if ((UnaffectedRegisterSIL == '\0') && (ResourceIndex = (**(code **)(*RegisterRDI + 0x18))(), ResourceIndex == 0)) {
     *(uint8_t *)(RegisterRDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(in_stack_00000220 ^ (uint64_t)&SystemSecurityValidationBuffer);
+  FinalizeSecurityOperation(StackParameter220 ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -34695,7 +34695,22 @@ void InitializeSystemResourceProcessor(uint8_t ObjectContextParameter,int64_t Va
 
 
 
-void Unwind_180903330(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理命令
+ * 
+ * 该函数负责执行资源清理命令
+ * 根据清理选项和标志来释放或重置资源
+ * 包括资源哈希查找、命令执行和句柄释放
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含资源验证所需的环境信息
+ * @param CleanupOption 清理选项，指定清理的方式和程度
+ * @param CleanupFlag 清理标志，控制清理过程的细节
+ * @return 无返回值
+ * @note 此函数在资源清理过程中调用
+ * @warning 调用此函数前必须确保资源句柄有效
+ */
+void ExecuteResourceCleanupCommand(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -34711,7 +34726,22 @@ void Unwind_180903330(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903340(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源释放命令
+ * 
+ * 该函数负责执行资源释放命令
+ * 根据清理选项和标志来释放特定类型的资源
+ * 包括资源哈希查找、命令执行和句柄释放
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含资源验证所需的环境信息
+ * @param CleanupOption 清理选项，指定清理的方式和程度
+ * @param CleanupFlag 清理标志，控制清理过程的细节
+ * @return 无返回值
+ * @note 此函数在资源释放过程中调用
+ * @warning 调用此函数前必须确保资源句柄有效
+ */
+void ExecuteResourceReleaseCommand(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
