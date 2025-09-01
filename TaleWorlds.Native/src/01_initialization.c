@@ -764,6 +764,16 @@ void* GetSystemInitializationFunction;
  * 此函数负责初始化游戏的核心系统组件，包括系统节点管理、内存分配和核心系统ID设置。
  * 函数会遍历系统节点树，查找或创建游戏核心系统节点，并配置必要的系统参数。
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 此函数负责初始化游戏的核心系统组件，包括内存分配、系统节点管理和核心系统ID验证。
+ * 函数会遍历系统节点树，查找游戏核心系统节点，并在需要时分配新的内存节点。
+ * 
+ * @note 函数使用全局常量GAME_CORE_SYSTEM_ID进行系统识别
+ * @note 函数依赖GetSystemRootPointer和GetGameCoreSystemInitializationFunction等辅助函数
+ * @note 函数会修改系统数据表结构并设置核心节点数据
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsSystemNodeActive;
@@ -821,6 +831,16 @@ void InitializeGameCoreSystem(void)
  * 
  * 负责初始化系统数据表的基础内存分配器，建立内存分配节点，
  * 并设置基础分配器的配置数据和函数指针。
+ */
+/**
+ * @brief 初始化系统数据表基础分配器
+ * 
+ * 此函数负责初始化系统数据表的基础内存分配器，为后续的系统组件提供内存管理支持。
+ * 函数会查找或创建基础分配器节点，并配置相关的内存管理参数。
+ * 
+ * @note 函数使用BASE_ALLOCATOR_ID进行分配器识别
+ * @note 函数依赖GetSystemRootPointer和GetSystemMemorySize等辅助函数
+ * @note 函数会设置BaseAllocatorNodeData相关配置
  */
 void InitializeSystemDataTableBaseAllocator(void)
 {
@@ -943,18 +963,18 @@ void InitializeSystemDataTableAllocator(void)
  */
 void InitializeSystemCoreConfig(void)
 {
-  char isSystemNodeActive;
-  void** systemDataTablePointer;
-  int memoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNodePointer;
-  void** currentSystemNode;
-  void** nextSystemNode;
-  void** previousSystemNode;
-  void** allocatedSystemNode;
-  uint64_t systemInitializationFlag;
-  long long memoryAllocationSize;
+  char IsSystemNodeActive;
+  void** SystemDataTablePointer;
+  int MemoryCompareResult;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNodePointer;
+  void** CurrentSystemNode;
+  void** NextSystemNode;
+  void** PreviousSystemNode;
+  void** AllocatedSystemNode;
+  uint64_t SystemInitializationFlag;
+  long long MemoryAllocationSize;
   
   systemDataTablePointer = (long long*)GetSystemRootPointer();
   systemRootNodePointer = (void**)*systemDataTablePointer;
@@ -19747,26 +19767,26 @@ void InitializeSystemController(long long *param_1,void* *param_2)
   void** systemPreviousNode;
   long long *plStackX_18;
   long long **pplStackX_20;
-  uint32_t uVar2;
-  void* uVar3;
+  uint32_t systemStatusFlag;
+  void* systemMemoryHandle;
   
-  uVar3 = 0xfffffffffffffffe;
-  uVar2 = 0;
+  systemMemoryHandle = 0xfffffffffffffffe;
+  systemStatusFlag = 0;
   plStackX_8 = param_1;
   puStackX_10 = param_2;
   FUN_180047fc0();
-  plVar1 = (long long *)SystemMemoryAllocationFunction(_DAT_180c8ed18,200,8,3,uVar2,uVar3);
+  plVar1 = (long long *)SystemMemoryAllocationFunction(_DAT_180c8ed18,200,8,3,systemStatusFlag,systemMemoryHandle);
   plStackX_8 = plVar1;
   InitializeSystemDataTableManager(plVar1);
   *plVar1 = (long long)&SystemDataTableTemplate;
   plVar1[0x18] = (long long)&UNK_180046dd0;
   plStackX_18 = plVar1;
   (**(code **)(*plVar1 + 0x28))(plVar1);
-  uVar3 = _DAT_180c82868;
+  systemMemoryHandle = _DAT_180c82868;
   pplStackX_20 = &plStackX_8;
   plStackX_8 = plVar1;
   (**(code **)(*plVar1 + 0x28))(plVar1);
-  SystemManagerInitialize(uVar3,&plStackX_8);
+  SystemManagerInitialize(systemMemoryHandle,&plStackX_8);
   (**(code **)(*plVar1 + 0x38))(plVar1);
   _DAT_180bf52b0 = (long long)*(int *)(_DAT_180c86870 + 0x224);
   FUN_180627be0(&DAT_180bf52c0,param_2);
