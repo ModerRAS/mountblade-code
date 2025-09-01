@@ -605,7 +605,7 @@ void* SystemStackManagerTable;
 void* SystemLinkedListTable;
 void* SystemHashTable;
 void* SystemTreeStructureTable;
-void* SystemGraphDataStructure;
+void* SystemGraphDataTable;
 void* SystemCacheManagerTable;
 void* SystemNetworkConfigurationTable;
 void* SystemGraphicsSettingsTable;
@@ -721,7 +721,7 @@ void* SystemProfilerSampleBuffer;
 void* SystemMemoryPageBuffer;
 void* SystemThreadWorkItemBuffer;
 void* SystemEventHandlerSlotBuffer;
-void* SystemSystemCallBuffer;
+void* SystemKernelCallBuffer;
 
 /**
  * @brief 处理资源条目与验证
