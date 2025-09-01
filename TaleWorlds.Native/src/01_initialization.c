@@ -1,7 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 系统初始化模块
-
 /**
  * @brief 系统内存页面处理函数
  * 
@@ -83,13 +81,11 @@ void* CoreSystemBackupConfiguration;           // 核心系统备份配置
 void* CoreSystemCacheConfiguration;            // 核心系统缓存配置
 void* CoreSystemEmergencyConfiguration;        // 核心系统紧急配置
 
-// 系统指针变量
 void* PhysicsSystemPointer;                     // 物理系统指针
 void* NetworkSystemPointer;                     // 网络系统指针
 void* GameLogicSystemPointer;                   // 游戏逻辑系统指针
 void* UISystemPointer;                          // UI系统指针
 
-// 渲染系统初始化函数
 /**
  * @brief 游戏渲染系统主入口点
  * 
@@ -98,7 +94,6 @@ void* UISystemPointer;                          // UI系统指针
 void* GameRenderingMainEntryPoint;
 void* RenderingSystemContext;                   // 渲染系统上下文
 
-// 网络系统初始化函数
 /**
  * @brief 游戏网络系统主入口点
  * 
@@ -107,7 +102,6 @@ void* RenderingSystemContext;                   // 渲染系统上下文
 void* GameNetworkMainEntryPoint;
 void* NetworkSystemContext;                     // 网络系统上下文
 
-// 音频系统初始化函数
 /**
  * @brief 游戏音频系统主入口点
  * 
@@ -116,7 +110,6 @@ void* NetworkSystemContext;                     // 网络系统上下文
 void* GameAudioMainEntryPoint;
 void* AudioSystemContext;                       // 音频系统上下文
 
-// 输入系统初始化函数和相关数据
 /**
  * @brief 游戏输入系统主入口点
  * 
@@ -702,13 +695,14 @@ void* SystemDataBufferPrimaryNinth;
 // 函数: 系统配置加载器 - 负责加载系统配置参数
 // 系统配置管理器
 void* SystemConfigurationManager;
-void* SystemDataBufferConfigurationFirst;
-void* SystemDataBufferConfigurationSecond;
-void* SystemDataBufferConfiguration012;
-void* SystemDataBufferConfiguration013;
-void* SystemDataBufferConfiguration014;
-void* SystemDataBufferConfiguration015;
-void* SystemDataBufferConfiguration016;
+void* SystemDataBufferConfigurationPrimary;
+void* SystemDataBufferConfigurationSecondary;
+void* SystemDataBufferConfigurationTertiary;
+void* SystemDataBufferConfigurationQuaternary;
+void* SystemDataBufferConfigurationQuinary;
+void* SystemDataBufferConfigurationSenary;
+void* SystemDataBufferConfigurationSeptenary;
+void* SystemDataBufferConfigurationOctonary;
 
 // 系统核心功能组件
 void* SystemErrorHandler;
@@ -716,38 +710,38 @@ void* SystemLogger;
 void* SystemPerformanceMonitor;
 void* SystemResourceCleaner;
 // 系统数据缓冲区 - 核心功能组件使用
-void* SystemDataBufferCore017;
-void* SystemDataBufferCore018;
-void* SystemDataBufferCore019;
-void* SystemDataBufferCore020;
-void* SystemDataBufferCore021;
-void* SystemDataBufferCore022;
-void* SystemDataBufferCore023;
-void* SystemDataBufferCore024;
-void* SystemDataBufferCore025;
-void* SystemDataBufferCore026;
-void* SystemDataBufferCore027;
-void* SystemDataBufferCore028;
-void* SystemDataBufferCore029;
-void* SystemDataBufferCore030;
-void* SystemDataBufferCore031;
-void* SystemDataBufferCore032;
-void* SystemDataBufferCore033;
-void* SystemDataBufferCore034;
-void* SystemDataBufferCore035;
-void* SystemDataBufferCore036;
-void* SystemDataBufferCore037;
-void* SystemDataBufferCore038;
+void* SystemDataBufferCorePrimary;
+void* SystemDataBufferCoreSecondary;
+void* SystemDataBufferCoreTertiary;
+void* SystemDataBufferCoreQuaternary;
+void* SystemDataBufferCoreQuinary;
+void* SystemDataBufferCoreSenary;
+void* SystemDataBufferCoreSeptenary;
+void* SystemDataBufferCoreOctonary;
+void* SystemDataBufferCoreNonary;
+void* SystemDataBufferCoreDenary;
+void* SystemDataBufferCoreUndenary;
+void* SystemDataBufferCoreDuodenary;
+void* SystemDataBufferCoreTredecenary;
+void* SystemDataBufferCoreQuattuordecenary;
+void* SystemDataBufferCoreQuindecenary;
+void* SystemDataBufferCoreSexdecenary;
+void* SystemDataBufferCoreSeptendecenary;
+void* SystemDataBufferCoreOctodecenary;
+void* SystemDataBufferCoreNovemdecenary;
+void* SystemDataBufferCoreVigesimal;
+void* SystemDataBufferCoreUnvigesimal;
+void* SystemDataBufferCoreDuovigesimal;
 
 // 系统状态管理器
 void* SystemStateManager;
 // 系统状态数据缓冲区
 void* SystemDataBufferState039;
-void* SystemDataBufferState040;
-void* SystemDataBufferState041;
-void* SystemDataBufferState042;
-void* SystemDataBufferState043;
-void* SystemDataBufferState044;
+void* SystemDataBufferStateSecondary;
+void* SystemDataBufferStateTertiary;
+void* SystemDataBufferStateQuaternary;
+void* SystemDataBufferStateQuinary;
+void* SystemDataBufferStateSenary;
 // 系统状态标志缓冲区
 char SystemStateFlagBuffer045;
 char SystemStateFlagBuffer046;

@@ -30586,101 +30586,195 @@ void SystemStateResetHandler(void)
 
 
 
-void Unwind_180902750(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 资源命令执行器
+ * 
+ * 该函数负责执行资源命令并处理资源释放
+ * 在异常处理过程中确保资源命令的正确执行
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param commandParam 命令参数
+ * @param flagsParam 标志参数
+ * @note 此函数在异常处理过程中被调用
+ */
+void ResourceCommandExecutor(uint8_t objectContextParam, int64_t validationContextParam, uint8_t commandParam, uint8_t flagsParam)
 
 {
-  uint8_t *presourceHash;
+  uint8_t *pResourceHash;
   
-  presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x78) + 0x10);
-  if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x78),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+  pResourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x78) + 0x10);
+  if (pResourceHash != (uint8_t *)0x0) {
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x78),*pResourceHash,commandParam,flagsParam,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
-    ReleaseResourceHandle(presourceHash);
+    ReleaseResourceHandle(pResourceHash);
   }
   return;
 }
 
 
 
-void Unwind_180902760(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 资源命令执行器（版本2）
+ * 
+ * 该函数负责执行资源命令并处理资源释放
+ * 在异常处理过程中确保资源命令的正确执行
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param commandParam 命令参数
+ * @param flagsParam 标志参数
+ * @note 此函数在异常处理过程中被调用
+ */
+void ResourceCommandExecutorV2(uint8_t objectContextParam, int64_t validationContextParam, uint8_t commandParam, uint8_t flagsParam)
 
 {
-  uint8_t *presourceHash;
+  uint8_t *pResourceHash;
   
-  presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x78) + 0x10);
-  if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x78),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+  pResourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x78) + 0x10);
+  if (pResourceHash != (uint8_t *)0x0) {
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x78),*pResourceHash,commandParam,flagsParam,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
-    ReleaseResourceHandle(presourceHash);
+    ReleaseResourceHandle(pResourceHash);
   }
   return;
 }
 
 
 
-void Unwind_180902770(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 系统设置配置器
+ * 
+ * 该函数负责配置系统设置
+ * 在异常处理过程中确保系统设置的正确配置
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param settingsParam 设置参数
+ * @param flagsParam 标志参数
+ * @note 此函数在异常处理过程中被调用
+ */
+void SystemSettingsConfigurator(uint8_t objectContextParam, int64_t validationContextParam, uint8_t settingsParam, uint8_t flagsParam)
 
 {
   ConfigureSystemSettings(*(int64_t *)(validationContextParam + 0x70),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                settingsParam,flagsParam,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180902780(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 资源请求处理器
+ * 
+ * 该函数负责处理资源请求
+ * 在异常处理过程中确保资源请求的正确处理
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param requestParam 请求参数
+ * @param flagsParam 标志参数
+ * @note 此函数在异常处理过程中被调用
+ */
+void ResourceRequestHandler(uint8_t objectContextParam, int64_t validationContextParam, uint8_t requestParam, uint8_t flagsParam)
 
 {
   ProcessResourceRequest(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                requestParam,flagsParam,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180902790(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 资源请求处理器（版本2）
+ * 
+ * 该函数负责处理资源请求
+ * 在异常处理过程中确保资源请求的正确处理
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param requestParam 请求参数
+ * @param flagsParam 标志参数
+ * @note 此函数在异常处理过程中被调用
+ */
+void ResourceRequestHandlerV2(uint8_t objectContextParam, int64_t validationContextParam, uint8_t requestParam, uint8_t flagsParam)
 
 {
   ProcessResourceRequest(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                requestParam,flagsParam,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809027a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 上下文资源命令执行器
+ * 
+ * 该函数负责执行上下文中的资源命令
+ * 在异常处理过程中确保资源命令的正确执行
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param commandParam 命令参数
+ * @param flagsParam 标志参数
+ * @note 此函数在异常处理过程中被调用
+ */
+void ContextResourceCommandExecutor(uint8_t objectContextParam, int64_t validationContextParam, uint8_t commandParam, uint8_t flagsParam)
 
 {
-  uint8_t *presourceHash;
+  uint8_t *pResourceHash;
   
-  presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x70) + 0x30);
-  if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x70) + 0x20,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+  pResourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x70) + 0x30);
+  if (pResourceHash != (uint8_t *)0x0) {
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x70) + 0x20,*pResourceHash,commandParam,flagsParam,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
-    ReleaseResourceHandle(presourceHash);
+    ReleaseResourceHandle(pResourceHash);
   }
   return;
 }
 
 
 
-void Unwind_1809027b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 系统资源命令执行器
+ * 
+ * 该函数负责执行系统资源命令
+ * 在异常处理过程中确保系统资源命令的正确执行
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param commandParam 命令参数
+ * @param flagsParam 标志参数
+ * @note 此函数在异常处理过程中被调用
+ */
+void SystemResourceCommandExecutor(uint8_t objectContextParam, int64_t validationContextParam, uint8_t commandParam, uint8_t flagsParam)
 
 {
-  uint8_t *presourceHash;
+  uint8_t *pResourceHash;
   
-  presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x70) + 0x60);
-  if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x70) + 0x50,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+  pResourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x70) + 0x60);
+  if (pResourceHash != (uint8_t *)0x0) {
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x70) + 0x50,*pResourceHash,commandParam,flagsParam,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
-    ReleaseResourceHandle(presourceHash);
+    ReleaseResourceHandle(pResourceHash);
   }
   return;
 }
 
 
 
-void Unwind_1809027c0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 系统资源处理器初始化器
+ * 
+ * 该函数负责初始化系统资源处理器
+ * 在异常处理过程中设置系统资源处理器的初始状态
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数在异常处理过程中被调用
+ */
+void SystemResourceHandlerInitializer(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   int64_t loopCounter;
