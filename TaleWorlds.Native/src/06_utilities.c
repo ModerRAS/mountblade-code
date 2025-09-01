@@ -41,7 +41,7 @@ void* ModuleDependencyHandle;
 void InitializeGlobalModuleA(void);
 void* GlobalModuleAInstance;
 void* GlobalModuleAConfiguration;
-uint32_t GlobalModuleAStatus;
+uint32_t GlobalModuleCoreStatus;
 void* GlobalModuleAHandle;
 
  /**
@@ -56,7 +56,7 @@ void* GlobalModuleAHandle;
 void InitializeGlobalModuleB(void);
 void* GlobalModuleBInstance;
 void* GlobalModuleBConfiguration;
-uint32_t GlobalModuleBStatus;
+uint32_t GlobalModuleEngineStatus;
 void* GlobalModuleBHandle;
 void* GlobalModuleBContext;
 /**
@@ -68,7 +68,7 @@ void* GlobalModuleBContext;
 void InitializeGlobalModuleC(void);
 void* GlobalModuleCInstance;
 void* GlobalModuleCConfiguration;
-uint32_t GlobalModuleCStatus;
+uint32_t GlobalModuleGraphicsStatus;
 void* GlobalModuleCHandle;
 void* GlobalModuleCContext;
 
@@ -82,7 +82,7 @@ void* GlobalModuleCContext;
 void InitializeGlobalModuleD(void);
 void* GlobalModuleDInstance;
 void* GlobalModuleDConfiguration;
-uint32_t GlobalModuleDStatus;
+uint32_t GlobalModuleAudioStatus;
 void* GlobalModuleDHandle;
 
 
@@ -95,7 +95,7 @@ void* GlobalModuleDHandle;
 void InitializeGlobalModuleE(void);
 void* GlobalModuleEInstance;
 void* GlobalModuleEConfiguration;
-uint32_t GlobalModuleEStatus;
+uint32_t GlobalModuleNetworkStatus;
 void* GlobalModuleEHandle;
 
 
@@ -106,7 +106,7 @@ void* GlobalModuleEHandle;
  * 用于判断系统是否处于特定的运行状态
  */
 uint32_t GetSystemStatusFlagPrimary(void);
-bool SystemStatusFlagPrimaryInitialized;
+bool SystemStatusFlagCoreInitialized;
 
 
 /**
@@ -116,7 +116,7 @@ bool SystemStatusFlagPrimaryInitialized;
  * 用于判断系统是否处于特定的运行状态
  */
 uint32_t GetSystemStatusFlagSecondary(void);
-bool SystemStatusFlagSecondaryInitialized;
+bool SystemStatusFlagEngineInitialized;
 
 
 /**
@@ -126,7 +126,7 @@ bool SystemStatusFlagSecondaryInitialized;
  * 用于判断系统是否处于特定的运行状态
  */
 uint32_t GetSystemStatusFlagTertiary(void);
-bool SystemStatusFlagTertiaryInitialized;
+bool SystemStatusFlagGraphicsInitialized;
 
  /**
  * @brief 获取系统状态标志4
@@ -135,7 +135,7 @@ bool SystemStatusFlagTertiaryInitialized;
  * 用于判断系统是否处于特定的运行状态
  */
 uint32_t GetSystemStatusFlagQuaternary(void);
-bool SystemStatusFlagQuaternaryInitialized;
+bool SystemStatusFlagAudioInitialized;
 
 
 /**
@@ -811,18 +811,18 @@ void* SystemQueueManagerTable;
 void* SystemStackManagerTable;
 void* SystemLinkedListTable;
 void* SystemHashTable;
-void* SystemDataBufferPool;
-void* SystemDataBufferCache;
-void* SystemDataBufferQueuePool;
+void* SystemDataBufferMemoryPool;
+void* SystemDataBufferDataCache;
+void* SystemDataBufferQueueManager;
 void* SystemMemoryPoolBufferA;
 void* SystemMemoryPoolBufferB;
 void* SystemGraphicsTextureBuffer;
 void* SystemAudioSampleBuffer;
 void* SystemPhysicsCollisionBuffer;
 void* SystemNetworkSocketBuffer;
-void* SystemDataBufferRenderQueue;
-void* SystemDataBufferNetworkQueue;
-void* SystemDataBufferAudioQueue;
+void* SystemDataBufferRenderCommandQueue;
+void* SystemDataBufferNetworkEventQueue;
+void* SystemDataBufferAudioCommandQueue;
 void* SystemDataBufferInputQueue;
 void* SystemDataBufferPhysicsQueue;
 void* SystemDataBufferAnimationQueue;
@@ -2073,10 +2073,10 @@ uint8_t SystemNetworkConfigDataB;
 uint8_t SystemNetworkConfigDataC;
 uint8_t SystemConfigDataQuinary;
 uint8_t SystemConfigDataF;
-bool SystemStatusFlagPrimary;
-bool SystemStatusFlagSecondary;
-uint8_t SystemStatusFlagTertiary;
-uint8_t SystemStatusFlagQuaternary;
+bool SystemStatusFlagCore;
+bool SystemStatusFlagEngine;
+uint8_t SystemStatusFlagGraphics;
+uint8_t SystemStatusFlagAudio;
 uint8_t ResourceBufferPoolSize;
 uint8_t ResourceBufferConfigPrimary;
 uint8_t ResourceBufferConfigSecondary;
