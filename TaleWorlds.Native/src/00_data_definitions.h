@@ -1004,101 +1004,149 @@ int FUN_18003afe0(void)
   lVar1 = FUN_1808fc7d0(FUN_180941fc0);
   return (lVar1 != 0) - 1;
 }
-int FUN_18003b050(void)
+/**
+ * 初始化字符串处理器K
+ * 设置字符串处理K所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorK(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf9450 = &UNK_1809fcc58;
-  _DAT_180bf9458 = &DAT_180bf9468;
-  DAT_180bf9468 = 0;
-  _DAT_180bf9460 = 0x10;
-  strcpy_s(&DAT_180bf9468,0x40,&UNK_180a22bb8,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941fe0);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorKFlags;
+  StringProcessorK_Base = &UnknownData1809fcc58;
+  StringProcessorK_BufferPtr = &StringProcessorK_Buffer;
+  StringProcessorK_Buffer = 0;
+  StringProcessorK_Length = 0x10;
+  strcpy_s(&StringProcessorK_Buffer,0x40,&UnknownData180a22bb8,stringProcessorKFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorK_Callback);
+  return (callbackResult != 0) - 1;
 }
-int FUN_18003b0c0(void)
+/**
+ * 初始化字符串处理器L
+ * 设置字符串处理L所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorL(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf94b0 = &UNK_1809fcc58;
-  _DAT_180bf94b8 = &DAT_180bf94c8;
-  DAT_180bf94c8 = 0;
-  _DAT_180bf94c0 = 0xd;
-  strcpy_s(&DAT_180bf94c8,0x40,&UNK_180a22ba8,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180942000);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorLFlags;
+  StringProcessorL_Base = &UnknownData1809fcc58;
+  StringProcessorL_BufferPtr = &StringProcessorL_Buffer;
+  StringProcessorL_Buffer = 0;
+  StringProcessorL_Length = 0xd;
+  strcpy_s(&StringProcessorL_Buffer,0x40,&UnknownData180a22ba8,stringProcessorLFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorL_Callback);
+  return (callbackResult != 0) - 1;
 }
-int FUN_18003b130(void)
+/**
+ * 初始化字符串处理器M
+ * 设置字符串处理M所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorM(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf9510 = &UNK_1809fcc58;
-  _DAT_180bf9518 = &DAT_180bf9528;
-  DAT_180bf9528 = 0;
-  _DAT_180bf9520 = 0xc;
-  strcpy_s(&DAT_180bf9528,0x40,&UNK_180a22c48,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180942020);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorMFlags;
+  StringProcessorM_Base = &UnknownData1809fcc58;
+  StringProcessorM_BufferPtr = &StringProcessorM_Buffer;
+  StringProcessorM_Buffer = 0;
+  StringProcessorM_Length = 0xc;
+  strcpy_s(&StringProcessorM_Buffer,0x40,&UnknownData180a22c48,stringProcessorMFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorM_Callback);
+  return (callbackResult != 0) - 1;
 }
-int FUN_18003b1a0(void)
+/**
+ * 初始化字符串处理器N
+ * 设置字符串处理N所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorN(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf9570 = &UNK_1809fcc58;
-  _DAT_180bf9578 = &DAT_180bf9588;
-  DAT_180bf9588 = 0;
-  _DAT_180bf9580 = 0x16;
-  strcpy_s(&DAT_180bf9588,0x40,&UNK_180a22c30,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180942040);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorNFlags;
+  StringProcessorN_Base = &UnknownData1809fcc58;
+  StringProcessorN_BufferPtr = &StringProcessorN_Buffer;
+  StringProcessorN_Buffer = 0;
+  StringProcessorN_Length = 0x16;
+  strcpy_s(&StringProcessorN_Buffer,0x40,&UnknownData180a22c30,stringProcessorNFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorN_Callback);
+  return (callbackResult != 0) - 1;
 }
-int FUN_18003b210(void)
+/**
+ * 初始化字符串处理器O
+ * 设置字符串处理O所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorO(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf95d0 = &UNK_1809fcc58;
-  _DAT_180bf95d8 = &DAT_180bf95e8;
-  DAT_180bf95e8 = 0;
-  _DAT_180bf95e0 = 0x13;
-  strcpy_s(&DAT_180bf95e8,0x40,&UNK_180a22c18,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180942060);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorOFlags;
+  StringProcessorO_Base = &UnknownData1809fcc58;
+  StringProcessorO_BufferPtr = &StringProcessorO_Buffer;
+  StringProcessorO_Buffer = 0;
+  StringProcessorO_Length = 0x13;
+  strcpy_s(&StringProcessorO_Buffer,0x40,&UnknownData180a22c18,stringProcessorOFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorO_Callback);
+  return (callbackResult != 0) - 1;
 }
-int FUN_18003b280(void)
+/**
+ * 初始化字符串处理器P
+ * 设置字符串处理P所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorP(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf9630 = &UNK_1809fcc58;
-  _DAT_180bf9638 = &DAT_180bf9648;
-  DAT_180bf9648 = 0;
-  _DAT_180bf9640 = 0x14;
-  strcpy_s(&DAT_180bf9648,0x40,&UNK_180a22c00,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180942080);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorPFlags;
+  StringProcessorP_Base = &UnknownData1809fcc58;
+  StringProcessorP_BufferPtr = &StringProcessorP_Buffer;
+  StringProcessorP_Buffer = 0;
+  StringProcessorP_Length = 0x14;
+  strcpy_s(&StringProcessorP_Buffer,0x40,&UnknownData180a22c00,stringProcessorPFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorP_Callback);
+  return (callbackResult != 0) - 1;
 }
-int FUN_18003b2f0(void)
+/**
+ * 初始化字符串处理器Q
+ * 设置字符串处理Q所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorQ(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf9690 = &UNK_1809fcc58;
-  _DAT_180bf9698 = &DAT_180bf96a8;
-  DAT_180bf96a8 = 0;
-  _DAT_180bf96a0 = 0x17;
-  strcpy_s(&DAT_180bf96a8,0x40,&DAT_180a22cb0,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809420a0);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorQFlags;
+  StringProcessorQ_Base = &UnknownData1809fcc58;
+  StringProcessorQ_BufferPtr = &StringProcessorQ_Buffer;
+  StringProcessorQ_Buffer = 0;
+  StringProcessorQ_Length = 0x17;
+  strcpy_s(&StringProcessorQ_Buffer,0x40,&Data180a22cb0,stringProcessorQFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorQ_Callback);
+  return (callbackResult != 0) - 1;
 }
-int FUN_18003b360(void)
+/**
+ * 初始化字符串处理器R
+ * 设置字符串处理R所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorR(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf96f0 = &UNK_1809fcc58;
-  _DAT_180bf96f8 = &DAT_180bf9708;
-  DAT_180bf9708 = 0;
-  _DAT_180bf9700 = 0x17;
-  strcpy_s(&DAT_180bf9708,0x40,&UNK_180a22c98,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809420c0);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorRFlags;
+  StringProcessorR_Base = &UnknownData1809fcc58;
+  StringProcessorR_BufferPtr = &StringProcessorR_Buffer;
+  StringProcessorR_Buffer = 0;
+  StringProcessorR_Length = 0x17;
+  strcpy_s(&StringProcessorR_Buffer,0x40,&UnknownData180a22c98,stringProcessorRFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorR_Callback);
+  return (callbackResult != 0) - 1;
 }
 int FUN_18003b3d0(void)
 {
