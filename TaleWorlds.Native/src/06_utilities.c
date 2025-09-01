@@ -179,7 +179,7 @@ uint32_t ThreadResourceCleanupFlag;
 void* ThreadCleanupPrimaryDataStorage;
 void* ThreadCleanupSecondaryDataStorage;
 void* ThreadCleanupResourceHandle;
-void* CleanupContextTertiaryDataStorage;
+void* ThreadCleanupTertiaryDataStorage;
 
  /**
  * @brief 初始化资源管理器
@@ -262,10 +262,10 @@ void OptimizeResourceUsage(void);
  */
 void MonitorResourcePerformance(void);
 
-void* ResourceManagerSystemHandle;
-uint32_t ResourceManagerOperationStatus;
+void* ResourceManagementSystemHandle;
+uint32_t ResourceManagementOperationStatus;
 void* ResourceContextConfiguration;
-void* ResourceContextStatusIndicator;
+void* ResourceContextStatusMonitor;
 void* ResourceSmallBufferPool;
 void* ResourceMediumBufferPool;
 void* ResourceLargeBufferPool;
@@ -282,7 +282,7 @@ void* ResourceLargeBufferPool;
  */
 void InitializeTextureManager(void);
 void* TextureManagerInstance;
-void* TextureSystemExecutionContext;
+void* TextureManagementExecutionContext;
 void* TextureCacheManagementHandle;
 void* TextureLoaderManagementHandle;
 void* TextureMemoryPool;
