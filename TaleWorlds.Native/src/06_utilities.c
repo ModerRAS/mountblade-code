@@ -9295,7 +9295,17 @@ void ProcessSystemContextAndDataOperation(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180894300(longlong param_1,longlong param_2)
+/**
+ * @brief 验证对象上下文并处理浮点数验证
+ * 
+ * 该函数负责验证对象上下文的有效性，并在验证通过后处理浮点数验证
+ * 主要用于对象上下文验证和浮点数处理操作
+ * 
+ * @param param_1 对象上下文参数，包含对象的基本信息和浮点数数据
+ * @param param_2 系统上下文参数，用于系统级操作
+ * @return undefined8 验证结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ValidateObjectContextAndProcessFloatValidation(longlong param_1,longlong param_2)
 
 {
   undefined8 uVar1;

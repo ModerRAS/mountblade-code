@@ -7279,8 +7279,9 @@ void InitializeSystemEventProcessor(void)
 
 
 
-// 函数: void FUN_180035a40(void)
-void FUN_180035a40(void)
+// 函数: void InitializeSystemResourceManager(void)
+// 功能: 初始化系统资源管理器，负责管理系统资源的分配和释放
+void InitializeSystemResourceManager(void)
 
 {
   char systemNodeFlag;
@@ -7329,8 +7330,9 @@ void FUN_180035a40(void)
 
 
 
-// 函数: void FUN_180035b40(void)
-void FUN_180035b40(void)
+// 函数: void InitializeSystemMemoryManager(void)
+// 功能: 初始化系统内存管理器，负责内存分配、释放和管理
+void InitializeSystemMemoryManager(void)
 
 {
   char systemNodeFlag;
@@ -7379,8 +7381,9 @@ void FUN_180035b40(void)
 
 
 
-// 函数: void FUN_180035c40(void)
-void FUN_180035c40(void)
+// 函数: void InitializeSystemLogManager(void)
+// 功能: 初始化系统日志管理器，负责系统日志的记录和管理
+void InitializeSystemLogManager(void)
 
 {
   char systemNodeFlag;
@@ -7429,8 +7432,9 @@ void FUN_180035c40(void)
 
 
 
-// 函数: void FUN_180035d40(void)
-void FUN_180035d40(void)
+// 函数: void InitializeSystemPerformanceMonitor(void)
+// 功能: 初始化系统性能监视器，负责监控系统性能指标
+void InitializeSystemPerformanceMonitor(void)
 
 {
   char systemNodeFlag;
@@ -7479,8 +7483,9 @@ void FUN_180035d40(void)
 
 
 
-// 函数: void FUN_180035e40(void)
-void FUN_180035e40(void)
+// 函数: void InitializeSystemSecurityMonitor(void)
+// 功能: 初始化系统安全监视器，负责系统安全监控和防护
+void InitializeSystemSecurityMonitor(void)
 
 {
   char systemNodeFlag;
@@ -7529,8 +7534,9 @@ void FUN_180035e40(void)
 
 
 
-// 函数: void FUN_180035f50(void)
-void FUN_180035f50(void)
+// 函数: void InitializeSystemNetworkManager(void)
+// 功能: 初始化系统网络管理器，负责网络连接和通信管理
+void InitializeSystemNetworkManager(void)
 
 {
   char systemNodeFlag;
@@ -7579,8 +7585,9 @@ void FUN_180035f50(void)
 
 
 
-// 函数: void FUN_180036050(void)
-void FUN_180036050(void)
+// 函数: void InitializeSystemStorageManager(void)
+// 功能: 初始化系统存储管理器，负责数据存储和文件系统管理
+void InitializeSystemStorageManager(void)
 
 {
   char systemNodeFlag;
@@ -7629,8 +7636,9 @@ void FUN_180036050(void)
 
 
 
-// 函数: void FUN_180036150(void)
-void FUN_180036150(void)
+// 函数: void InitializeSystemMemoryManagerNode(void)
+// 功能: 初始化系统内存管理器节点，负责内存管理节点的初始化
+void InitializeSystemMemoryManagerNode(void)
 
 {
   char systemNodeFlag;
@@ -7679,8 +7687,9 @@ void FUN_180036150(void)
 
 
 
-// 函数: void FUN_180036250(void)
-void FUN_180036250(void)
+// 函数: void InitializeSystemConfigurationManager(void)
+// 功能: 初始化系统配置管理器，负责系统配置的加载和管理
+void InitializeSystemConfigurationManager(void)
 
 {
   char systemNodeFlag;
@@ -7729,8 +7738,9 @@ void FUN_180036250(void)
 
 
 
-// 函数: void FUN_180036350(void)
-void FUN_180036350(void)
+// 函数: void InitializeSystemThreadManager(void)
+// 功能: 初始化系统线程管理器，负责线程的创建、调度和管理
+void InitializeSystemThreadManager(void)
 
 {
   char systemNodeFlag;
@@ -7779,8 +7789,9 @@ void FUN_180036350(void)
 
 
 
-// 函数: void FUN_180036450(void)
-void FUN_180036450(void)
+// 函数: void InitializeSystemProcessManager(void)
+// 功能: 初始化系统进程管理器，负责进程的创建、调度和管理
+void InitializeSystemProcessManager(void)
 
 {
   char systemNodeFlag;
@@ -7829,8 +7840,9 @@ void FUN_180036450(void)
 
 
 
-// 函数: void FUN_180036550(void)
-void FUN_180036550(void)
+// 函数: void InitializeSystemDeviceManager(void)
+// 功能: 初始化系统设备管理器，负责硬件设备的检测和管理
+void InitializeSystemDeviceManager(void)
 
 {
   char systemNodeFlag;
