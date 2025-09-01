@@ -7809,7 +7809,7 @@ void system_process_mod_events(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_context_data_2(void)
+void system_process_context_data_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -7828,7 +7828,7 @@ void system_process_context_data_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_resource_allocation_2(void)
+void system_handle_resource_allocation_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -7847,7 +7847,7 @@ void system_handle_resource_allocation_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_memory_pool_2(void)
+void system_manage_memory_pool_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -7866,7 +7866,7 @@ void system_manage_memory_pool_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_thread_scheduler_2(void)
+void system_configure_thread_scheduler_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -7885,7 +7885,7 @@ void system_configure_thread_scheduler_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_subsystem_component_2(void)
+void system_initialize_subsystem_component_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -7904,7 +7904,7 @@ void system_initialize_subsystem_component_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_validate_system_state_2(void)
+void system_validate_system_state_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -7923,7 +7923,7 @@ void system_validate_system_state_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_configuration_data_2(void)
+void system_process_configuration_data_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -7942,7 +7942,7 @@ void system_process_configuration_data_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_module_loading_2(void)
+void system_handle_module_loading_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -7961,7 +7961,7 @@ void system_handle_module_loading_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_resource_cache_2(void)
+void system_manage_resource_cache_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -7978,7 +7978,7 @@ void system_manage_resource_cache_2(void)
 
 
 
-void system_process_event_queue_2(void)
+void system_process_event_queue_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8022,7 +8022,7 @@ void system_process_event_queue_2(void)
 
 
 
-void system_initialize_audio_component_2(void)
+void system_initialize_audio_component_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8066,7 +8066,7 @@ void system_initialize_audio_component_2(void)
 
 
 
-void system_configure_network_settings_2(void)
+void system_configure_network_settings_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8109,7 +8109,7 @@ void system_configure_network_settings_2(void)
 
 
 
-void system_setup_render_pipeline_2(void)
+void system_setup_render_pipeline_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8153,7 +8153,7 @@ void system_setup_render_pipeline_2(void)
 
 
 
-void system_handle_input_processing_2(void)
+void system_handle_input_processing_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8196,7 +8196,7 @@ void system_handle_input_processing_2(void)
 
 
 
-void system_initialize_debug_interface_2(void)
+void system_initialize_debug_interface_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8240,7 +8240,7 @@ void system_initialize_debug_interface_2(void)
 
 
 
-void system_process_performance_metrics_2(void)
+void system_process_performance_metrics_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8283,7 +8283,7 @@ void system_process_performance_metrics_2(void)
 
 
 
-void system_manage_security_context_2(void)
+void system_manage_security_context_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8327,7 +8327,7 @@ void system_manage_security_context_2(void)
 
 
 
-void system_initialize_plugin_system_2(void)
+void system_initialize_plugin_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8371,7 +8371,7 @@ void system_initialize_plugin_system_2(void)
 
 
 
-void system_configure_logging_system_2(void)
+void system_configure_logging_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8414,7 +8414,7 @@ void system_configure_logging_system_2(void)
 
 
 
-void system_handle_error_processing_2(void)
+void system_handle_error_processing_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8458,7 +8458,7 @@ void system_handle_error_processing_2(void)
 
 
 
-void system_initialize_monitoring_system_2(void)
+void system_initialize_monitoring_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8501,7 +8501,7 @@ void system_initialize_monitoring_system_2(void)
 
 
 
-void system_process_data_synchronization_2(void)
+void system_process_data_synchronization_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8545,7 +8545,7 @@ void system_process_data_synchronization_2(void)
 
 
 
-void system_manage_thread_pool_2(void)
+void system_manage_thread_pool_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8588,7 +8588,7 @@ void system_manage_thread_pool_2(void)
 
 
 
-void system_configure_memory_allocator_2(void)
+void system_configure_memory_allocator_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8632,7 +8632,7 @@ void system_configure_memory_allocator_2(void)
 
 
 
-void system_initialize_resource_manager_2(void)
+void system_initialize_resource_manager_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8676,7 +8676,7 @@ void system_initialize_resource_manager_2(void)
 
 
 
-void system_handle_system_events_2(void)
+void system_handle_system_events_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8719,7 +8719,7 @@ void system_handle_system_events_2(void)
 
 
 
-void system_process_configuration_updates_2(void)
+void system_process_configuration_updates_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8763,7 +8763,7 @@ void system_process_configuration_updates_2(void)
 
 
 
-void system_manage_component_lifecycle_2(void)
+void system_manage_component_lifecycle_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8806,7 +8806,7 @@ void system_manage_component_lifecycle_2(void)
 
 
 
-void system_initialize_script_engine_2(void)
+void system_initialize_script_engine_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8850,7 +8850,7 @@ void system_initialize_script_engine_2(void)
 
 
 
-void system_configure_physics_system_2(void)
+void system_configure_physics_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8893,7 +8893,7 @@ void system_configure_physics_system_2(void)
 
 
 
-void system_handle_audio_processing_2(void)
+void system_handle_audio_processing_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8937,7 +8937,7 @@ void system_handle_audio_processing_2(void)
 
 
 
-void system_manage_network_connections_2(void)
+void system_manage_network_connections_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -8981,7 +8981,7 @@ void system_manage_network_connections_2(void)
 
 
 
-void system_process_render_commands_2(void)
+void system_process_render_commands_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9024,7 +9024,7 @@ void system_process_render_commands_2(void)
 
 
 
-void system_initialize_input_system_2(void)
+void system_initialize_input_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9068,7 +9068,7 @@ void system_initialize_input_system_2(void)
 
 
 
-void system_configure_display_settings_2(void)
+void system_configure_display_settings_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9111,7 +9111,7 @@ void system_configure_display_settings_2(void)
 
 
 
-void system_handle_file_operations_2(void)
+void system_handle_file_operations_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9155,7 +9155,7 @@ void system_handle_file_operations_2(void)
 
 
 
-void system_manage_data_streams_2(void)
+void system_manage_data_streams_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9198,7 +9198,7 @@ void system_manage_data_streams_2(void)
 
 
 
-void system_process_animation_data_2(void)
+void system_process_animation_data_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9242,7 +9242,7 @@ void system_process_animation_data_2(void)
 
 
 
-void system_initialize_particle_system_2(void)
+void system_initialize_particle_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9285,7 +9285,7 @@ void system_initialize_particle_system_2(void)
 
 
 
-void system_configure_lighting_system_2(void)
+void system_configure_lighting_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9328,7 +9328,7 @@ void system_configure_lighting_system_2(void)
 
 
 
-void system_handle_collision_detection_2(void)
+void system_handle_collision_detection_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9371,7 +9371,7 @@ void system_handle_collision_detection_2(void)
 
 
 
-void system_manage_shader_programs_2(void)
+void system_manage_shader_programs_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9414,7 +9414,7 @@ void system_manage_shader_programs_2(void)
 
 
 
-void system_process_texture_data_2(void)
+void system_process_texture_data_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9457,7 +9457,7 @@ void system_process_texture_data_2(void)
 
 
 
-void system_initialize_ui_system_2(void)
+void system_initialize_ui_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9500,7 +9500,7 @@ void system_initialize_ui_system_2(void)
 
 
 
-void system_configure_window_manager_2(void)
+void system_configure_window_manager_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9543,7 +9543,7 @@ void system_configure_window_manager_2(void)
 
 
 
-void system_handle_user_input_2(void)
+void system_handle_user_input_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9587,7 +9587,7 @@ void system_handle_user_input_2(void)
 
 
 
-void system_manage_state_machine_2(void)
+void system_manage_state_machine_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9632,7 +9632,7 @@ void system_manage_state_machine_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_game_logic_2(void)
+void system_process_game_logic_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -9650,12 +9650,12 @@ void system_process_game_logic_2(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int system_initialize_ai_system_2(void)
+int system_initialize_ai_system_secondary(void)
   
   system_global_data_pointer = &system_null_ptr;
   system_global_data_pointer = &system_data_animation_manager_ptr;
 
-void system_configure_pathfinding_2(void)
+void system_configure_pathfinding_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9699,7 +9699,7 @@ void system_configure_pathfinding_2(void)
 
 
 
-void system_handle_entity_management_2(void)
+void system_handle_entity_management_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9742,7 +9742,7 @@ void system_handle_entity_management_2(void)
 
 
 
-void system_manage_scene_graph_2(void)
+void system_manage_scene_graph_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9785,7 +9785,7 @@ void system_manage_scene_graph_2(void)
 
 
 
-void system_process_transform_data_2(void)
+void system_process_transform_data_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9828,7 +9828,7 @@ void system_process_transform_data_2(void)
 
 
 
-void system_initialize_camera_system_2(void)
+void system_initialize_camera_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9871,7 +9871,7 @@ void system_initialize_camera_system_2(void)
 
 
 
-void system_configure_projection_matrix_2(void)
+void system_configure_projection_matrix_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9914,7 +9914,7 @@ void system_configure_projection_matrix_2(void)
 
 
 
-void system_handle_view_frustum_2(void)
+void system_handle_view_frustum_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -9957,7 +9957,7 @@ void system_handle_view_frustum_2(void)
 
 
 
-void system_manage_render_targets_2(void)
+void system_manage_render_targets_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10000,7 +10000,7 @@ void system_manage_render_targets_2(void)
 
 
 
-void system_process_shadow_mapping_2(void)
+void system_process_shadow_mapping_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10044,7 +10044,7 @@ void system_process_shadow_mapping_2(void)
 
 
 
-void system_initialize_post_processing_2(void)
+void system_initialize_post_processing_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10089,7 +10089,7 @@ void system_initialize_post_processing_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_shader_parameters_2(void)
+void system_configure_shader_parameters_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -10108,7 +10108,7 @@ void system_configure_shader_parameters_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_buffer_operations_2(void)
+void system_handle_buffer_operations_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -10125,7 +10125,7 @@ void system_handle_buffer_operations_2(void)
 
 
 
-void system_manage_vertex_data_2(void)
+void system_manage_vertex_data_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10169,7 +10169,7 @@ void system_manage_vertex_data_2(void)
 
 
 
-void system_process_index_buffers_2(void)
+void system_process_index_buffers_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10213,7 +10213,7 @@ void system_process_index_buffers_2(void)
 
 
 
-void system_initialize_texture_manager_2(void)
+void system_initialize_texture_manager_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10256,7 +10256,7 @@ void system_initialize_texture_manager_2(void)
 
 
 
-void system_configure_mipmap_generation_2(void)
+void system_configure_mipmap_generation_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10300,7 +10300,7 @@ void system_configure_mipmap_generation_2(void)
 
 
 
-void system_handle_texture_compression_2(void)
+void system_handle_texture_compression_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10343,7 +10343,7 @@ void system_handle_texture_compression_2(void)
 
 
 
-void system_manage_material_system_2(void)
+void system_manage_material_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10387,7 +10387,7 @@ void system_manage_material_system_2(void)
 
 
 
-void system_process_lighting_calculations_2(void)
+void system_process_lighting_calculations_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10431,12 +10431,12 @@ void system_process_lighting_calculations_2(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int system_initialize_animation_system_2(void)
+int system_initialize_animation_system_secondary(void)
   
   system_global_data_pointer = &system_null_ptr;
   system_global_data_pointer = &system_data_physics_engine_ptr;
 
-void system_configure_skeletal_animation_2(void)
+void system_configure_skeletal_animation_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10480,7 +10480,7 @@ void system_configure_skeletal_animation_2(void)
 
 
 
-void system_handle_bone_transforms_2(void)
+void system_handle_bone_transforms_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10524,7 +10524,7 @@ void system_handle_bone_transforms_2(void)
 
 
 
-void system_manage_animation_states_2(void)
+void system_manage_animation_states_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10568,7 +10568,7 @@ void system_manage_animation_states_2(void)
 
 
 
-void system_process_morph_targets_2(void)
+void system_process_morph_targets_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10611,7 +10611,7 @@ void system_process_morph_targets_2(void)
 
 
 
-void system_initialize_physics_engine_2(void)
+void system_initialize_physics_engine_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10655,7 +10655,7 @@ void system_initialize_physics_engine_2(void)
 
 
 
-void system_configure_rigid_body_dynamics_2(void)
+void system_configure_rigid_body_dynamics_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10698,7 +10698,7 @@ void system_configure_rigid_body_dynamics_2(void)
 
 
 
-void system_handle_collision_response_2(void)
+void system_handle_collision_response_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10742,7 +10742,7 @@ void system_handle_collision_response_2(void)
 
 
 
-void system_manage_constraint_system_2(void)
+void system_manage_constraint_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10785,7 +10785,7 @@ void system_manage_constraint_system_2(void)
 
 
 
-void system_process_force_calculations_2(void)
+void system_process_force_calculations_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10829,7 +10829,7 @@ void system_process_force_calculations_2(void)
 
 
 
-void system_initialize_audio_engine_2(void)
+void system_initialize_audio_engine_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10873,7 +10873,7 @@ void system_initialize_audio_engine_2(void)
 
 
 
-void system_configure_sound_spatialization_2(void)
+void system_configure_sound_spatialization_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10916,7 +10916,7 @@ void system_configure_sound_spatialization_2(void)
 
 
 
-void system_handle_audio_mixing_2(void)
+void system_handle_audio_mixing_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -10960,7 +10960,7 @@ void system_handle_audio_mixing_2(void)
 
 
 
-void system_manage_sound_resources_2(void)
+void system_manage_sound_resources_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11003,7 +11003,7 @@ void system_manage_sound_resources_2(void)
 
 
 
-void system_process_audio_effects_2(void)
+void system_process_audio_effects_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11047,7 +11047,7 @@ void system_process_audio_effects_2(void)
 
 
 
-void system_initialize_network_layer_2(void)
+void system_initialize_network_layer_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11092,7 +11092,7 @@ void system_initialize_network_layer_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_protocol_handlers_2(void)
+void system_configure_protocol_handlers_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -11108,7 +11108,7 @@ void system_configure_protocol_handlers_2(void)
 
 
 
-int system_handle_data_serialization_2(void)
+int system_handle_data_serialization_secondary(void)
   
   system_process_context_data();
   system_data_handle = system_process_context_data(system_default_function_call);
@@ -11117,7 +11117,7 @@ int system_handle_data_serialization_2(void)
 
 
 
-int system_manage_connection_pool_2(void)
+int system_manage_connection_pool_secondary(void)
   uint8_t* system_system_stack_arrayx8 [32];
   
   system_system_stack_arrayx8[0] = 1;
@@ -11128,7 +11128,7 @@ int system_manage_connection_pool_2(void)
 
 
 
-int system_process_network_events_2(void)
+int system_process_network_events_secondary(void)
   uint8_t* system_system_stack_arrayx8 [32];
   
   system_system_stack_arrayx8[0] = 0;
@@ -11139,7 +11139,7 @@ int system_process_network_events_2(void)
 
 
 
-int system_initialize_security_layer_2(void)
+int system_initialize_security_layer_secondary(void)
   
   system_data_handle = system_process_context_data(system_default_function_call);
   return (system_data_handle != 0) - 1;
@@ -11147,7 +11147,7 @@ int system_initialize_security_layer_2(void)
 
 
 
-int system_configure_encryption_system_2(void)
+int system_configure_encryption_system_secondary(void)
   
   system_process_context_data(0x180d49d50);
   system_data_handle = system_process_context_data(system_default_function_call);
@@ -11157,7 +11157,7 @@ int system_configure_encryption_system_2(void)
 
 
 
-void system_handle_authentication_2(void)
+void system_handle_authentication_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11201,7 +11201,7 @@ void system_handle_authentication_2(void)
 
 
 
-void system_manage_permission_system_2(void)
+void system_manage_permission_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11244,7 +11244,7 @@ void system_manage_permission_system_2(void)
 
 
 
-void system_process_security_events_2(void)
+void system_process_security_events_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11287,7 +11287,7 @@ void system_process_security_events_2(void)
 
 
 
-void system_initialize_script_runtime_2(void)
+void system_initialize_script_runtime_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11330,7 +11330,7 @@ void system_initialize_script_runtime_2(void)
 
 
 
-void system_configure_virtual_machine_2(void)
+void system_configure_virtual_machine_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11373,7 +11373,7 @@ void system_configure_virtual_machine_2(void)
 
 
 
-void system_handle_script_execution_2(void)
+void system_handle_script_execution_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11416,7 +11416,7 @@ void system_handle_script_execution_2(void)
 
 
 
-void system_manage_script_objects_2(void)
+void system_manage_script_objects_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11459,7 +11459,7 @@ void system_manage_script_objects_2(void)
 
 
 
-void system_process_script_events_2(void)
+void system_process_script_events_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11502,7 +11502,7 @@ void system_process_script_events_2(void)
 
 
 
-void system_initialize_resource_pipeline_2(void)
+void system_initialize_resource_pipeline_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11546,7 +11546,7 @@ void system_initialize_resource_pipeline_2(void)
 
 
 
-void system_configure_asset_loading_2(void)
+void system_configure_asset_loading_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11591,7 +11591,7 @@ void system_configure_asset_loading_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_resource_streaming_2(void)
+void system_handle_resource_streaming_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -11610,7 +11610,7 @@ void system_handle_resource_streaming_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_memory_arena_2(void)
+void system_manage_memory_arena_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -11629,7 +11629,7 @@ void system_manage_memory_arena_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_resource_requests_2(void)
+void system_process_resource_requests_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -11648,7 +11648,7 @@ void system_process_resource_requests_2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_job_system_2(void)
+void system_initialize_job_system_secondary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -11666,12 +11666,12 @@ void system_initialize_job_system_2(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int system_configure_task_scheduler_2(void)
+int system_configure_task_scheduler_secondary(void)
   
   system_global_data_pointer = &system_null_ptr;
   system_global_data_pointer = &system_data_ui_events_ptr;
 
-void system_handle_job_distribution_2(void)
+void system_handle_job_distribution_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11714,7 +11714,7 @@ void system_handle_job_distribution_2(void)
 
 
 
-void system_manage_worker_threads_2(void)
+void system_manage_worker_threads_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11757,7 +11757,7 @@ void system_manage_worker_threads_2(void)
 
 
 
-void system_process_job_completion_2(void)
+void system_process_job_completion_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11801,7 +11801,7 @@ void system_process_job_completion_2(void)
 
 
 
-void system_initialize_profiling_system_2(void)
+void system_initialize_profiling_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11844,7 +11844,7 @@ void system_initialize_profiling_system_2(void)
 
 
 
-void system_configure_performance_counters_2(void)
+void system_configure_performance_counters_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11887,7 +11887,7 @@ void system_configure_performance_counters_2(void)
 
 
 
-void system_handle_metrics_collection_2(void)
+void system_handle_metrics_collection_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11930,7 +11930,7 @@ void system_handle_metrics_collection_2(void)
 
 
 
-void system_manage_profiling_data_2(void)
+void system_manage_profiling_data_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -11973,7 +11973,7 @@ void system_manage_profiling_data_2(void)
 
 
 
-void system_process_performance_reports_2(void)
+void system_process_performance_reports_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12016,7 +12016,7 @@ void system_process_performance_reports_2(void)
 
 
 
-void system_initialize_debug_renderer_2(void)
+void system_initialize_debug_renderer_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12059,7 +12059,7 @@ void system_initialize_debug_renderer_2(void)
 
 
 
-void system_configure_debug_overlay_2(void)
+void system_configure_debug_overlay_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12102,7 +12102,7 @@ void system_configure_debug_overlay_2(void)
 
 
 
-void system_handle_debug_visualization_2(void)
+void system_handle_debug_visualization_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12146,7 +12146,7 @@ void system_handle_debug_visualization_2(void)
 
 
 
-void system_manage_debug_context_2(void)
+void system_manage_debug_context_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12189,7 +12189,7 @@ void system_manage_debug_context_2(void)
 
 
 
-void system_process_debug_commands_2(void)
+void system_process_debug_commands_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12232,7 +12232,7 @@ void system_process_debug_commands_2(void)
 
 
 
-void system_initialize_save_system_2(void)
+void system_initialize_save_system_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12275,7 +12275,7 @@ void system_initialize_save_system_2(void)
 
 
 
-void system_configure_serialization_format_2(void)
+void system_configure_serialization_format_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12319,7 +12319,7 @@ void system_configure_serialization_format_2(void)
 
 
 
-void system_handle_data_persistence_2(void)
+void system_handle_data_persistence_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12363,7 +12363,7 @@ void system_handle_data_persistence_2(void)
 
 
 
-void system_manage_save_slots_2(void)
+void system_manage_save_slots_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12407,7 +12407,7 @@ void system_manage_save_slots_2(void)
 
 
 
-void system_process_load_operations_2(void)
+void system_process_load_operations_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12451,7 +12451,7 @@ void system_process_load_operations_2(void)
 
 
 
-void system_initialize_localization_2(void)
+void system_initialize_localization_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12495,7 +12495,7 @@ void system_initialize_localization_2(void)
 
 
 
-void system_configure_language_settings_2(void)
+void system_configure_language_settings_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12539,7 +12539,7 @@ void system_configure_language_settings_2(void)
 
 
 
-void system_handle_text_translation_2(void)
+void system_handle_text_translation_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12582,7 +12582,7 @@ void system_handle_text_translation_2(void)
 
 
 
-void system_manage_locale_data_2(void)
+void system_manage_locale_data_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12626,7 +12626,7 @@ void system_manage_locale_data_2(void)
 
 
 
-void system_process_string_resources_2(void)
+void system_process_string_resources_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12669,7 +12669,7 @@ void system_process_string_resources_2(void)
 
 
 
-void system_initialize_mod_support_2(void)
+void system_initialize_mod_support_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12713,7 +12713,7 @@ void system_initialize_mod_support_2(void)
 
 
 
-void system_configure_plugin_interface_2(void)
+void system_configure_plugin_interface_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12756,7 +12756,7 @@ void system_configure_plugin_interface_2(void)
 
 
 
-void system_handle_mod_loading_2(void)
+void system_handle_mod_loading_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12799,7 +12799,7 @@ void system_handle_mod_loading_2(void)
 
 
 
-void system_manage_mod_dependencies_2(void)
+void system_manage_mod_dependencies_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12842,7 +12842,7 @@ void system_manage_mod_dependencies_2(void)
 
 
 
-void system_process_mod_events_2(void)
+void system_process_mod_events_secondary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
