@@ -3217,31 +3217,31 @@ void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
     ObjectDataList = ProcessingBuffer;
     ProcessedObjectCount = 0;
     ListIterator = 0;
-    maximumItems = 0xffffffc0;
-    operationStatus = RetrieveObjectList(*(uint8_t8 *)(systemContext + 0x90), *(longlong *)(contextHandles[0] + 8),
-                          &objectDataList);
-    if (operationStatus == 0) {
-      if (0 < listIterator) {
-        currentObjectPointer = 0;
+    MaximumItems = 0xffffffc0;
+    OperationStatus = RetrieveObjectList(*(uint8_t8 *)(systemContext + 0x90), *(longlong *)(ContextHandles[0] + 8),
+                          &ObjectDataList);
+    if (OperationStatus == 0) {
+      if (0 < ListIterator) {
+        CurrentObjectPointer = 0;
         do {
-          validationResult = *(uint8_t8 *)(objectDataList + currentObjectPointer);
-          operationStatus = ValidateObjectStatus(validationResult);
-          if (operationStatus != 2) {
+          ValidationResult = *(uint8_t8 *)(ObjectDataList + CurrentObjectPointer);
+          OperationStatus = ValidateObjectStatus(ValidationResult);
+          if (OperationStatus != 2) {
                     // WARNING: Subroutine does not return
-            HandleInvalidObject(validationResult, 1);
+            HandleInvalidObject(ValidationResult, 1);
           }
-          processedObjectCount = processedObjectCount + 1;
-          currentObjectPointer = currentObjectPointer + 8;
-        } while (processedObjectCount < listIterator);
+          ProcessedObjectCount = ProcessedObjectCount + 1;
+          CurrentObjectPointer = CurrentObjectPointer + 8;
+        } while (ProcessedObjectCount < ListIterator);
       }
-      ReleaseObjectListMemory(&objectDataList);
+      ReleaseObjectListMemory(&ObjectDataList);
     }
     else {
-      ReleaseObjectListMemory(&objectDataList);
+      ReleaseObjectListMemory(&ObjectDataList);
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityValidation(securityToken ^ (ulonglong)objectBuffer);
+  ExecuteSecurityValidation(AccessSecurityToken ^ (ulonglong)ObjectMetadataBuffer);
 }
 
 
