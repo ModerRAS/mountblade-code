@@ -652,8 +652,8 @@ void* SystemDataBufferPrimaryNinth;
 // 函数: 系统配置加载器 - 负责加载系统配置参数
 // 系统配置管理器
 void* SystemConfigurationManager;
-void* SystemDataBufferConfiguration010;
-void* SystemDataBufferConfiguration011;
+void* SystemDataBufferConfigurationFirst;
+void* SystemDataBufferConfigurationSecond;
 void* SystemDataBufferConfiguration012;
 void* SystemDataBufferConfiguration013;
 void* SystemDataBufferConfiguration014;
