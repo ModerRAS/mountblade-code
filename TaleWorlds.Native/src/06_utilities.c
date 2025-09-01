@@ -2185,21 +2185,25 @@ uint8_t LogMessageProcessorDataTemplateE;                 // 日志处理器模�
 uint8_t LogMessageProcessorContextDataA;                  // 日志处理器上下文A
 uint8_t LogMessageProcessorContextDataB;                  // 日志处理器上下文B
 uint8_t LogMessageProcessorContextDataC;                  // 日志处理器上下文C
-uint8_t SystemMemoryController;
-uint8_t* LocaleConversionTablePointer;
-uint8_t SystemLocaleConversionDataA;
-uint8_t SystemModuleDataTemplateD;
-uint8_t SystemModuleDataTemplateA;
-uint8_t SystemModuleDataTemplateB;
-uint8_t SystemModuleDataTemplateC;
-uint8_t SystemModuleDataTemplateE;
-uint8_t SystemModuleDataTemplateF;
-uint8_t SystemModuleDataTemplateG;
-uint8_t SystemModuleDataTemplateH;
-uint8_t SystemModuleDataTemplateI;
-uint8_t SystemModuleDataTemplateJ;
-uint8_t SystemModuleDataTemplateK;
-uint8_t SystemModuleDataTemplateL;
+// 系统内存和本地化变量
+uint8_t SystemMemoryController;                            // 系统内存控制器
+uint8_t* LocaleConversionTablePointer;                     // 本地化转换表指针
+uint8_t SystemLocaleConversionDataA;                       // 系统本地化数据A
+uint8_t SystemModuleDataTemplateD;                          // 系统模块模板D
+uint8_t SystemModuleDataTemplateA;                          // 系统模块模板A
+// 系统模块数据模板变量
+uint8_t SystemModuleDataTemplateB;                         // 系统模块模板B
+uint8_t SystemModuleDataTemplateC;                         // 系统模块模板C
+uint8_t SystemModuleDataTemplateE;                         // 系统模块模板E
+uint8_t SystemModuleDataTemplateF;                         // 系统模块模板F
+// 系统模块数据模板扩展变量
+uint8_t SystemModuleDataTemplateG;                         // 系统模块模板G
+uint8_t SystemModuleDataTemplateH;                         // 系统模块模板H
+uint8_t SystemModuleDataTemplateI;                         // 系统模块模板I
+uint8_t SystemModuleDataTemplateJ;                         // 系统模块模板J
+// 系统模块数据模板最终变量
+uint8_t SystemModuleDataTemplateK;                         // 系统模块模板K
+uint8_t SystemModuleDataTemplateL;                         // 系统模块模板L
 
  void FlushLogBuffer(void);
 /**
@@ -2318,7 +2322,6 @@ uint8_t SystemDatabaseManagerData;
  * 该函数负责初始化系统的内存管理器
  * 设置内存分配策略和回收机制
  */
-void InitializeMemoryManager(void);
 uint8_t SystemDataBufferPrimary;
 uint8_t SystemDataStreamPrimary;
 uint8_t SystemDataPipelinePrimary;
