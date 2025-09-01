@@ -1307,7 +1307,7 @@ int InitializeStringProcessingSystemM(void)
   DAT_180bf9a08 = 0;
   _DAT_180bf9a00 = 0x20;
   strcpy_s(&DAT_180bf9a08,0x40,&UNK_180a22d88,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_1809421c0);
+  ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleE);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
