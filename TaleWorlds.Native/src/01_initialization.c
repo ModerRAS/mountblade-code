@@ -24682,11 +24682,11 @@ void FUN_18004caf0(long long SystemResourcePointer)
   if ((-1 < iVar2) && (iVar3 = iVar2, 3 < iVar2)) {
     iVar3 = 3;
   }
-  fVar8 = (float)iVar3;
-  fVar7 = fVar8 * 1.6750001 + 2.4750001;
-  fVar5 = fVar8 * 4.4666667 + 6.6000004;
-  fVar6 = fVar8 * 3.3500001 + 4.9500003;
-  fVar4 = fVar7 + fVar6;
+  qualityLevel = (float)iVar3;
+  shadowScaleFactor = qualityLevel * 1.6750001 + 2.4750001;
+  baseRenderScale = qualityLevel * 4.4666667 + 6.6000004;
+  textureScaleFactor = qualityLevel * 3.3500001 + 4.9500003;
+  renderQualityMultiplier = shadowScaleFactor + textureScaleFactor;
   *(float *)(SystemResourcePointer + 0x38c) = fVar6 * fVar6;
   fVar7 = fVar7 + fVar4;
   *(float *)(SystemResourcePointer + 0x390) = fVar4 * fVar4;

@@ -12636,39 +12636,44 @@ void ModuleProcessErrorHandler(void)
 
 
 
- void ProcessComplexResourceWithRegisters(void)
+ /**
+ * @brief 处理复杂资源操作和寄存器管理
+ * 
+ * 该函数负责处理复杂的资源操作，包括资源表的遍历、验证和处理
+ * 使用寄存器来优化性能，并处理各种资源类型的数据
+ * 主要用于资源管理和系统优化
+ */
 void ProcessComplexResourceWithRegisters(void)
 
 {
-  longlong loopCounter;
-  longlong resourceTable;
-  uint8_t4 unsignedResult3;
-  uint8_t4 unsignedResult4;
-  uint8_t4 unsignedValue5;
-  uint8_t4 unsignedValue6;
-  int ValidationStatus;
-  int OperationCounter;
-  int iVar9;
-  uint8_t4 unaff_EBX;
-  longlong ExecutionContextPointer;
-  int unaff_R12D;
-  longlong unaff_R13;
-  char unaff_R15B;
-  float extraout_XMM0_Da;
-  float extraout_XMM0_Da_00;
-  float extraout_XMM0_Da_01;
-  float extraout_XMM0_Da_02;
-  float extraout_XMM0_Da_03;
-  float extraout_XMM0_Da_04;
-  float extraout_XMM0_Da_05;
-  float extraout_XMM0_Da_06;
-  float ResultFloatValue;
-  uint8_t4 uStackX_20;
-  float fStackX_24;
-  uint8_t *in_stack_00000030;
-  int in_stack_00000038;
-  uint8_t4 in_stack_00000040;
-  float in_stack_00000048;
+  longlong resourceIndex;
+  longlong resourceTablePointer;
+  uint8_t4 validationStatus1;
+  uint8_t4 validationStatus2;
+  uint8_t4 resourceData1;
+  uint8_t4 resourceData2;
+  int operationResult;
+  int processingCounter;
+  int tempIndex;
+  uint8_t4 systemRegister1;
+  longlong executionContext;
+  int systemRegister2;
+  longlong systemRegister3;
+  char systemFlag1;
+  float calculatedFloat1;
+  float calculatedFloat2;
+  float calculatedFloat3;
+  float calculatedFloat4;
+  float calculatedFloat5;
+  float calculatedFloat6;
+  float calculatedFloat7;
+  float resultFloat;
+  uint8_t4 contextFlags;
+  float stackFloat1;
+  uint8_t *dataTypeTemplate;
+  int validationErrorCode;
+  uint8_t4 stackValidationFlags;
+  float stackResourceValue;
   
   if (((unaff_R15B != '\0') || (*(int *)(*(longlong *)(unaff_R13 + 0x2e8) + 0x34) == unaff_R12D)) &&
      (iVar7 = ProcessResourceOperation(), iVar7 == 0)) {
