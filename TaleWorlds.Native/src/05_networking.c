@@ -42,6 +42,13 @@ uint32_t NetworkEncryptionKey;
 uint32_t NetworkCompressionLevel;
 uint32_t NetworkConnectionStateFlags;
 
+// 网络缓冲区数据模板
+uint32_t NetworkAlternateBufferTemplate;
+uint32_t NetworkHeaderBufferTemplate;
+uint32_t NetworkDataBufferTemplate;
+uint32_t NetworkRequestBufferTemplate;
+uint32_t NetworkFirstProcessingBufferTemplate;
+
 // 函数: void InitializeNetworkConnectionPool(void)
 /**
  * @brief 初始化网络连接池
@@ -3346,7 +3353,7 @@ int ProcessNetworkPacketWithAlternateBuffer(longlong connectionContext,longlong 
   int copiedDataSize;
   
   alternateBufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  initialProcessedSize = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983710);
+  initialProcessedSize = ProcessNetworkBufferData(packetData,dataSize,&NetworkAlternateBufferTemplate);
   copiedDataSize = NetworkBufferCopyData(packetData + initialProcessedSize,dataSize - initialProcessedSize,&NetworkBufferDataTemplate);
   initialProcessedSize = initialProcessedSize + copiedDataSize;
   copiedDataSize = ProcessNetworkBufferCopy(initialProcessedSize + packetData,dataSize - initialProcessedSize,alternateBufferStatus);
@@ -3501,7 +3508,7 @@ int ValidateNetworkPacketHeader(longlong connectionContext,longlong packetData,i
   int validationSize;
   
   connectionStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  headerOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983d60);
+  headerOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkHeaderBufferTemplate);
   validationSize = NetworkBufferCopyData(packetData + headerOffset,dataSize - headerOffset,&NetworkBufferDataTemplate);
   headerOffset = headerOffset + validationSize;
   validationSize = ProcessNetworkBufferCopy(headerOffset + packetData,dataSize - headerOffset,connectionStatus);
@@ -3550,7 +3557,7 @@ int ProcessNetworkConnectionProtocol(longlong connectionContext,longlong packetD
   connectionState = *(NetworkStatus *)(connectionContext + 0x3c);
   errorCode = *(NetworkStatus *)(connectionContext + 0x40);
   statusFlags = *(NetworkStatus *)(connectionContext + 0x44);
-  dataOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809838a8);
+  dataOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkDataBufferTemplate);
   processedSize = NetworkBufferCopyData(packetData + dataOffset,dataSize - dataOffset,&NetworkBufferDataTemplate);
   dataOffset = dataOffset + processedSize;
   processedSize = ProcessNetworkBufferCopy(dataOffset + packetData,dataSize - dataOffset,connectionFlags);
@@ -3585,7 +3592,7 @@ int HandleNetworkConnectionRequest(longlong connectionContext,longlong packetDat
   
   connectionState = *(NetworkStatus *)(connectionContext + 0x18);
   requestFlags = *(NetworkStatus *)(connectionContext + 0x10);
-  requestOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983930);
+  requestOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkRequestBufferTemplate);
   processedSize = ProcessNetworkBufferData(requestOffset + packetData,dataSize - requestOffset,&g_NetworkBufferDataTemplate);
   requestOffset = requestOffset + processedSize;
   processedSize = ProcessNetworkBufferCopy(requestOffset + packetData,dataSize - requestOffset,requestFlags);
@@ -3623,7 +3630,7 @@ int ProcessNetworkPacketWithEncryptionFlag(longlong connectionContext,longlong p
   encryptionFlag = *(NetworkByte *)(connectionContext + 0x24);
   secondaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
   primaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x20);
-  firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983ef0);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkFirstProcessingBufferTemplate);
   secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,secondaryBufferStatus);
@@ -6816,7 +6823,7 @@ void ProcessNetworkStatusDataTransfer(NetworkStatus connectionContext,NetworkSta
     }
   }
   else if (networkStatus1 != 0) goto LAB_18084749d;
-  FUN_1808682e0(lStack_148,packetData,dataSize);
+  GetNetworkConnectionSecondaryData(lStack_148,packetData,dataSize);
 LAB_18084749d:
                     // WARNING: Subroutine does not return
   NetworkConnectionHandleRelease(&uStack_158);
@@ -9805,8 +9812,14 @@ LAB_180849dd1:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180849f40(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize)
-void FUN_180849f40(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize)
+// 函数: void NetworkConnectionSecurityValidator(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize)
+// 功能: 网络连接安全验证器
+// 参数:
+//   connectionContext - 连接上下文
+//   packetData - 数据包数据
+//   dataSize - 数据大小
+// 返回值: 无
+void NetworkConnectionSecurityValidator(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize)
 
 {
   int networkStatus1;
@@ -10804,8 +10817,12 @@ void ProcessNetworkPacketArray(NetworkStatus *connectionContext,NetworkHandle pa
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084b2f0(NetworkHandle connectionContext)
-void FUN_18084b2f0(NetworkHandle connectionContext)
+// 函数: void NetworkConnectionErrorHandler(NetworkHandle connectionContext)
+// 功能: 网络连接错误处理器
+// 参数:
+//   connectionContext - 连接上下文
+// 返回值: 无
+void NetworkConnectionErrorHandler(NetworkHandle connectionContext)
 
 {
   int networkStatus1;
@@ -46985,7 +47002,7 @@ NetworkHandle GetNetworkConnectionData(longlong connectionContext,NetworkStatus 
 
 
 
-NetworkHandle FUN_1808682e0(longlong connectionContext,NetworkStatus *packetData,NetworkStatus *dataSize)
+NetworkHandle GetNetworkConnectionSecondaryData(longlong connectionContext,NetworkStatus *packetData,NetworkStatus *dataSize)
 
 {
   NetworkStatus primaryNetworkFlag;

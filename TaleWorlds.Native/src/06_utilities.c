@@ -9395,7 +9395,7 @@ int ProcessDataWithExtendedValidator(longlong param_1,longlong param_2,int param
   iVar1 = iVar1 + iVar2;
   iVar2 = ProcessStringOperation(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18088ed70(iVar1 + param_2,param_3 - iVar1,param_1 + 0x20,
+  iVar2 = ProcessStringValidation(iVar1 + param_2,param_3 - iVar1,param_1 + 0x20,
                         *(undefined4 *)(param_1 + 0x18));
   iVar1 = iVar1 + iVar2;
   iVar2 = ProcessStringOperation(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
@@ -9431,7 +9431,7 @@ int ProcessDataWithSimplifiedValidator(longlong param_1,longlong param_2,int par
   iVar1 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
   iVar2 = ProcessStringOperation(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18088ed70(iVar1 + param_2,param_3 - iVar1,param_1 + 0x18,
+  iVar2 = ProcessStringValidation(iVar1 + param_2,param_3 - iVar1,param_1 + 0x18,
                         *(undefined4 *)(param_1 + 0x10));
   iVar1 = iVar1 + iVar2;
   iVar2 = ProcessStringOperation(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
