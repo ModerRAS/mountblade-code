@@ -1,8 +1,10 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
-undefined8 g_systemGlobalData;
-undefined8 g_unknownGlobalData;
+// 全局系统数据指针
+void* g_systemGlobalData;
+// 未知全局数据指针
+void* g_unknownGlobalData;
 
 /**
  * 初始化渲染系统模块
@@ -177,13 +179,13 @@ int InitializeConditionMutexC(undefined8 threadId,undefined8 syncPtr,undefined8 
  * 初始化条件变量和互斥锁D
  * 设置线程同步所需的条件变量和互斥锁
  */
-int InitializeConditionMutexD(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int InitializeConditionMutexD(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
 {
   longlong result;
-  undefined8 mutexFlags;
-  mutexFlags = 0xfffffffffffffffe;
+  undefined8 conditionMutexDFlags;
+  conditionMutexDFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c91288,2,param_3,param_4,mutexFlags);
+  _Mtx_init_in_situ(0x180c91288,2,mutexType,mutexAttr,conditionMutexDFlags);
   g_conditionMutexD_Status = 0;
   result = RegisterSystemCallback(InitializeConditionMutexD_Callback);
   return (result != 0) - 1;
@@ -196,12 +198,12 @@ int InitializeConditionMutexD(undefined8 param_1,undefined8 param_2,undefined8 p
 int InitializeStringProcessorA(void)
 {
   longlong result;
-  undefined8 stringFlags;
+  undefined8 stringProcessorAFlags;
   g_stringProcessorA_Base = &unknownData_1809fdc18;
   g_stringProcessorA_BufferPtr = &g_stringProcessorA_Buffer;
   g_stringProcessorA_Buffer = 0;
   g_stringProcessorA_Length = 0xd;
-  strcpy_s(&g_stringProcessorA_Buffer,0x10,&unknownData_180a004e8,stringFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorA_Buffer,0x10,&unknownData_180a004e8,stringProcessorAFlags,0xfffffffffffffffe);
   result = RegisterSystemCallback(InitializeStringProcessorA_Callback);
   return (result != 0) - 1;
 }
@@ -212,12 +214,12 @@ int InitializeStringProcessorA(void)
 int InitializeStringProcessorB(void)
 {
   longlong result;
-  undefined8 stringFlags;
+  undefined8 stringProcessorBFlags;
   g_stringProcessorB_Base = &unknownData_1809fdc18;
   g_stringProcessorB_BufferPtr = &g_stringProcessorB_Buffer;
   g_stringProcessorB_Buffer = 0;
   g_stringProcessorB_Length = 0xf;
-  strcpy_s(&g_stringProcessorB_Buffer,0x10,&unknownData_180a004f8,stringFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorB_Buffer,0x10,&unknownData_180a004f8,stringProcessorBFlags,0xfffffffffffffffe);
   result = RegisterSystemCallback(InitializeStringProcessorB_Callback);
   return (result != 0) - 1;
 }
@@ -228,12 +230,12 @@ int InitializeStringProcessorB(void)
 int InitializeStringProcessorC(void)
 {
   longlong result;
-  undefined8 stringFlags;
+  undefined8 stringProcessorCFlags;
   g_stringProcessorC_Base = &unknownData_1809fdc18;
   g_stringProcessorC_BufferPtr = &g_stringProcessorC_Buffer;
   g_stringProcessorC_Buffer = 0;
   g_stringProcessorC_Length = 0xf;
-  strcpy_s(&g_stringProcessorC_Buffer,0x10,&unknownData_180a00508,stringFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorC_Buffer,0x10,&unknownData_180a00508,stringProcessorCFlags,0xfffffffffffffffe);
   result = RegisterSystemCallback(InitializeStringProcessorC_Callback);
   return (result != 0) - 1;
 }
@@ -244,12 +246,12 @@ int InitializeStringProcessorC(void)
 int InitializeStringProcessorD(void)
 {
   longlong result;
-  undefined8 stringFlags;
+  undefined8 stringProcessorDFlags;
   g_stringProcessorD_Base = &unknownData_1809fdc18;
   g_stringProcessorD_BufferPtr = &g_stringProcessorD_Buffer;
   g_stringProcessorD_Buffer = 0;
   g_stringProcessorD_Length = 0xd;
-  strcpy_s(&g_stringProcessorD_Buffer,0x10,&unknownData_180a00518,stringFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorD_Buffer,0x10,&unknownData_180a00518,stringProcessorDFlags,0xfffffffffffffffe);
   result = RegisterSystemCallback(InitializeStringProcessorD_Callback);
   return (result != 0) - 1;
 }
@@ -260,12 +262,12 @@ int InitializeStringProcessorD(void)
 int InitializeStringProcessorE(void)
 {
   longlong result;
-  undefined8 stringFlags;
+  undefined8 stringProcessorEFlags;
   g_stringProcessorE_Base = &unknownData_1809fdc18;
   g_stringProcessorE_BufferPtr = &g_stringProcessorE_Buffer;
   g_stringProcessorE_Buffer = 0;
   g_stringProcessorE_Length = 0xc;
-  strcpy_s(&g_stringProcessorE_Buffer,0x10,&unknownData_180a00528,stringFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorE_Buffer,0x10,&unknownData_180a00528,stringProcessorEFlags,0xfffffffffffffffe);
   result = RegisterSystemCallback(InitializeStringProcessorE_Callback);
   return (result != 0) - 1;
 }
@@ -300,51 +302,51 @@ int InitializeModuleConfigurationA(void)
   DAT_180bf6698 = 0;
   _DAT_180bf6690 = 5;
   strcpy_s(&DAT_180bf6698,0x10,&UNK_180a00540,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809418e0);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult = FUN_1808fc7d0(FUN_1809418e0);
+  return (callbackResult != 0) - 1;
 }
-int FUN_18002e760(void)
+int InitializeStringProcessorG(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
+  longlong callbackResult;
+  undefined8 stringProcessorGFlags;
   _DAT_180bf66b0 = &UNK_1809fdc18;
   _DAT_180bf66b8 = &DAT_180bf66c8;
   DAT_180bf66c8 = 0;
   _DAT_180bf66c0 = 5;
-  strcpy_s(&DAT_180bf66c8,0x10,&UNK_180a00548,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941900);
-  return (lVar1 != 0) - 1;
+  strcpy_s(&DAT_180bf66c8,0x10,&UNK_180a00548,stringProcessorGFlags,0xfffffffffffffffe);
+  callbackResult = FUN_1808fc7d0(FUN_180941900);
+  return (callbackResult != 0) - 1;
 }
-int FUN_18002e7d0(void)
+int InitializeStringProcessorH(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
+  longlong callbackResult;
+  undefined8 stringProcessorHFlags;
   _DAT_180bf52e8 = &UNK_18098bc80;
   _DAT_180bf52f0 = &DAT_180bf5300;
   DAT_180bf5300 = 0;
   _DAT_180bf52f8 = 0xd;
-  strcpy_s(&DAT_180bf5300,0x20,&UNK_180a01300,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941980);
-  return (lVar1 != 0) - 1;
+  strcpy_s(&DAT_180bf5300,0x20,&UNK_180a01300,stringProcessorHFlags,0xfffffffffffffffe);
+  callbackResult = FUN_1808fc7d0(FUN_180941980);
+  return (callbackResult != 0) - 1;
 }
-int FUN_18002e840(void)
+int InitializeStringProcessorI(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
+  longlong callbackResult;
+  undefined8 stringProcessorIFlags;
   _DAT_180bf5738 = &UNK_18098bc80;
   _DAT_180bf5740 = &DAT_180bf5750;
   DAT_180bf5750 = 0;
   _DAT_180bf5748 = 9;
-  strcpy_s(&DAT_180bf5750,0x20,&UNK_180a01330,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809419a0);
-  return (lVar1 != 0) - 1;
+  strcpy_s(&DAT_180bf5750,0x20,&UNK_180a01330,stringProcessorIFlags,0xfffffffffffffffe);
+  callbackResult = FUN_1808fc7d0(FUN_1809419a0);
+  return (callbackResult != 0) - 1;
 }
 int FUN_18002e8b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
-  longlong lVar1;
+  longlong callbackResult;
   _Mtx_init_in_situ(0x180c91970,0x102,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809419c0);
-  return (lVar1 != 0) - 1;
+  callbackResult = FUN_1808fc7d0(FUN_1809419c0);
+  return (callbackResult != 0) - 1;
 }
   DAT_180bf6768 = 0;
   _DAT_180bf6760 = 0x13;
