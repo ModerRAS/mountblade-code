@@ -815,7 +815,7 @@ void InitializeSystemDataTableAllocator(void)
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -870,7 +870,7 @@ void InitializeSystemCoreConfig(void)
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -925,7 +925,7 @@ void InitializeSystemMemoryPool(void)
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -980,7 +980,7 @@ void InitializeSystemThreadPool(void)
   puVar7[7] = 0x7f74eb2c5a7fadae;
   puVar7[8] = &UNK_18098c7f0;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -1035,7 +1035,7 @@ void InitializeSystemEventManager(void)
   puVar7[7] = 0x8d98f4c06880eda4;
   puVar7[8] = &UNK_18098c810;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -1090,7 +1090,7 @@ void InitializeSystemResourceManager(void)
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -2178,7 +2178,7 @@ void InitializeSystemDataTableStructureG(void)
   puVar7[7] = 0x1aa83fc0020dc1b6;
   puVar7[8] = &UNK_1809fd0d8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -2505,7 +2505,7 @@ void InitializeSystemDataTable(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -2607,7 +2607,7 @@ void InitializeMemoryAllocator(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -2709,7 +2709,7 @@ void InitializeConfigurationManager(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -2925,7 +2925,7 @@ void InitializeSystemResourceManager(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3039,7 +3039,7 @@ void InitializeSystemDataTable(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3149,7 +3149,7 @@ void InitializeSystemNetworkManager(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3314,7 +3314,7 @@ void InitializeSystemDebugManager(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3428,7 +3428,7 @@ void InitializeSystemResourcePool(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3542,7 +3542,7 @@ void InitializeSystemResourceManager(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3599,7 +3599,7 @@ void InitializeSystemPerformanceMonitor(void)
   puVar7[7] = 0x1aa83fc0020dc1b6;
   puVar7[8] = &UNK_1809fd0d8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3799,7 +3799,7 @@ void FUN_180030370(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3899,7 +3899,7 @@ void FUN_180030570(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -3999,7 +3999,7 @@ void FUN_180030770(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4383,7 +4383,7 @@ void FUN_180032010(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4483,7 +4483,7 @@ void FUN_180032210(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4583,7 +4583,7 @@ void FUN_180032410(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4757,7 +4757,7 @@ void FUN_1800327a0(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4857,7 +4857,7 @@ void FUN_1800329a0(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -4957,7 +4957,7 @@ void FUN_180032ba0(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -5359,7 +5359,7 @@ void FUN_180033e50(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -5459,7 +5459,7 @@ void FUN_180034050(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -5559,7 +5559,7 @@ void FUN_180034250(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -5709,7 +5709,7 @@ void FUN_180034550(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -5809,7 +5809,7 @@ void FUN_180034750(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -5909,7 +5909,7 @@ void FUN_180034950(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -6316,7 +6316,7 @@ void FUN_180035140(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -6416,7 +6416,7 @@ void FUN_180035340(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -6516,7 +6516,7 @@ void FUN_180035540(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -6766,7 +6766,7 @@ void FUN_180035a40(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -6866,7 +6866,7 @@ void FUN_180035c40(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -6966,7 +6966,7 @@ void FUN_180035e40(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -7216,7 +7216,7 @@ void FUN_180036350(void)
   puVar7[7] = 0x1aa83fc0020dc1b6;
   puVar7[8] = &UNK_1809fd0d8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -7366,7 +7366,7 @@ void FUN_180036650(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -7466,7 +7466,7 @@ void FUN_180036850(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -7566,7 +7566,7 @@ void FUN_180036a50(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -7796,7 +7796,7 @@ void FUN_180036ff0(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -7896,7 +7896,7 @@ void FUN_1800371f0(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -7996,7 +7996,7 @@ void FUN_1800373f0(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8046,7 +8046,7 @@ void FUN_1800374f0(void)
   puVar7[7] = 0x1aa83fc0020dc1b6;
   puVar7[8] = &UNK_1809fd0d8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8170,7 +8170,7 @@ void FUN_180037780(void)
   puVar7[7] = 0x47f249e43f66f2ab;
   puVar7[8] = &UNK_18098c7a0;
   puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8220,7 +8220,7 @@ void FUN_180037880(void)
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8270,7 +8270,7 @@ void FUN_180037980(void)
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8320,7 +8320,7 @@ void FUN_180037a80(void)
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8370,7 +8370,7 @@ void FUN_180037b80(void)
   puVar7[7] = 0x7f74eb2c5a7fadae;
   puVar7[8] = &UNK_18098c7f0;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8420,7 +8420,7 @@ void FUN_180037c80(void)
   puVar7[7] = 0x8d98f4c06880eda4;
   puVar7[8] = &UNK_18098c810;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8470,7 +8470,7 @@ void FUN_180037d80(void)
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8570,7 +8570,7 @@ void FUN_180037f80(void)
   puVar7[7] = 0x5e3cf00ce2978287;
   puVar7[8] = &UNK_18098c898;
   puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -8986,7 +8986,7 @@ void FUN_1800388a0(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9086,7 +9086,7 @@ void FUN_180038aa0(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9186,7 +9186,7 @@ void FUN_180038ca0(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9336,7 +9336,7 @@ void FUN_180038fa0(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9436,7 +9436,7 @@ void FUN_1800391a0(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9536,7 +9536,7 @@ void FUN_1800393a0(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9686,7 +9686,7 @@ void FUN_1800396a0(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9786,7 +9786,7 @@ void FUN_1800398a0(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -9886,7 +9886,7 @@ void FUN_180039aa0(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10036,7 +10036,7 @@ void FUN_180039db0(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10136,7 +10136,7 @@ void FUN_180039fb0(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10236,7 +10236,7 @@ void FUN_18003a1b0(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10346,7 +10346,7 @@ void InitializeSystemDataTableConfigurator(void)
   puVar7[7] = 0x47f249e43f66f2ab;
   puVar7[8] = &UNK_18098c7a0;
   puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10396,7 +10396,7 @@ void FUN_18003a4b0(void)
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10446,7 +10446,7 @@ void FUN_18003a5b0(void)
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10496,7 +10496,7 @@ void FUN_18003a6b0(void)
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10546,7 +10546,7 @@ void FUN_18003a7b0(void)
   puVar7[7] = 0x7f74eb2c5a7fadae;
   puVar7[8] = &UNK_18098c7f0;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10596,7 +10596,7 @@ void FUN_18003a8b0(void)
   puVar7[7] = 0x8d98f4c06880eda4;
   puVar7[8] = &UNK_18098c810;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10646,7 +10646,7 @@ void FUN_18003a9b0(void)
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10746,7 +10746,7 @@ void FUN_18003abb0(void)
   puVar7[7] = 0x5e3cf00ce2978287;
   puVar7[8] = &UNK_18098c898;
   puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10880,7 +10880,7 @@ void FUN_18003c2f0(void)
   puVar7[7] = 0x47f249e43f66f2ab;
   puVar7[8] = &UNK_18098c7a0;
   puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10930,7 +10930,7 @@ void FUN_18003c3f0(void)
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -10980,7 +10980,7 @@ void FUN_18003c4f0(void)
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11030,7 +11030,7 @@ void FUN_18003c5f0(void)
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11080,7 +11080,7 @@ void FUN_18003c6f0(void)
   puVar7[7] = 0x7f74eb2c5a7fadae;
   puVar7[8] = &UNK_18098c7f0;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11130,7 +11130,7 @@ void FUN_18003c7f0(void)
   puVar7[7] = 0x8d98f4c06880eda4;
   puVar7[8] = &UNK_18098c810;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11180,7 +11180,7 @@ void FUN_18003c8f0(void)
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11280,7 +11280,7 @@ void FUN_18003caf0(void)
   puVar7[7] = 0x5e3cf00ce2978287;
   puVar7[8] = &UNK_18098c898;
   puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11478,7 +11478,7 @@ void FUN_18003cf10(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11578,7 +11578,7 @@ void FUN_18003d110(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11678,7 +11678,7 @@ void FUN_18003d310(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11888,7 +11888,7 @@ void FUN_18003e110(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -11988,7 +11988,7 @@ void FUN_18003e310(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12088,7 +12088,7 @@ void FUN_18003e510(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12238,7 +12238,7 @@ void FUN_18003e810(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12338,7 +12338,7 @@ void FUN_18003ea10(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12438,7 +12438,7 @@ void FUN_18003ec10(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12625,7 +12625,7 @@ void FUN_18003ef90(void)
   puVar7[7] = 0x47f249e43f66f2ab;
   puVar7[8] = &UNK_18098c7a0;
   puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12675,7 +12675,7 @@ void FUN_18003f090(void)
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12725,7 +12725,7 @@ void FUN_18003f190(void)
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12775,7 +12775,7 @@ void FUN_18003f290(void)
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12825,7 +12825,7 @@ void FUN_18003f390(void)
   puVar7[7] = 0x7f74eb2c5a7fadae;
   puVar7[8] = &UNK_18098c7f0;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12875,7 +12875,7 @@ void FUN_18003f490(void)
   puVar7[7] = 0x8d98f4c06880eda4;
   puVar7[8] = &UNK_18098c810;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -12925,7 +12925,7 @@ void FUN_18003f590(void)
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13025,7 +13025,7 @@ void FUN_18003f790(void)
   puVar7[7] = 0x5e3cf00ce2978287;
   puVar7[8] = &UNK_18098c898;
   puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13181,7 +13181,7 @@ void FUN_18003fbb0(void)
   puVar7[7] = 0x727b256e3af32585;
   puVar7[8] = &UNK_180a2ca90;
   puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13231,7 +13231,7 @@ void FUN_18003fcb0(void)
   puVar7[7] = 0x25db30365f277abb;
   puVar7[8] = &UNK_180a2cab0;
   puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13331,7 +13331,7 @@ void FUN_18003feb0(void)
   puVar7[7] = 0x47f249e43f66f2ab;
   puVar7[8] = &UNK_18098c7a0;
   puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13381,7 +13381,7 @@ void FUN_18003ffb0(void)
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13431,7 +13431,7 @@ void FUN_1800400b0(void)
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13481,7 +13481,7 @@ void FUN_1800401b0(void)
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13531,7 +13531,7 @@ void FUN_1800402b0(void)
   puVar7[7] = 0x7f74eb2c5a7fadae;
   puVar7[8] = &UNK_18098c7f0;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13581,7 +13581,7 @@ void FUN_1800403b0(void)
   puVar7[7] = 0x8d98f4c06880eda4;
   puVar7[8] = &UNK_18098c810;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13631,7 +13631,7 @@ void FUN_1800404b0(void)
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13731,7 +13731,7 @@ void FUN_1800406b0(void)
   puVar7[7] = 0x5e3cf00ce2978287;
   puVar7[8] = &UNK_18098c898;
   puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13781,7 +13781,7 @@ void FUN_1800408d0(void)
   puVar7[7] = 0x727b256e3af32585;
   puVar7[8] = &UNK_180a2ca90;
   puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -13831,7 +13831,7 @@ void FUN_1800409d0(void)
   puVar7[7] = 0x25db30365f277abb;
   puVar7[8] = &UNK_180a2cab0;
   puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14181,7 +14181,7 @@ void FUN_1800410e0(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14281,7 +14281,7 @@ void FUN_1800412e0(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14381,7 +14381,7 @@ void FUN_1800414e0(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14431,7 +14431,7 @@ void FUN_1800415e0(void)
   puVar7[7] = 0x1aa83fc0020dc1b6;
   puVar7[8] = &UNK_1809fd0d8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14481,7 +14481,7 @@ void FUN_1800416e0(void)
   puVar7[7] = 0x727b256e3af32585;
   puVar7[8] = &UNK_180a2ca90;
   puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14531,7 +14531,7 @@ void FUN_1800417e0(void)
   puVar7[7] = 0x25db30365f277abb;
   puVar7[8] = &UNK_180a2cab0;
   puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14621,7 +14621,7 @@ void FUN_180041af0(void)
   puVar7[7] = 0x727b256e3af32585;
   puVar7[8] = &UNK_180a2ca90;
   puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14671,7 +14671,7 @@ void FUN_180041bf0(void)
   puVar7[7] = 0x25db30365f277abb;
   puVar7[8] = &UNK_180a2cab0;
   puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14721,7 +14721,7 @@ void FUN_180041d10(void)
   puVar7[7] = 0x727b256e3af32585;
   puVar7[8] = &UNK_180a2ca90;
   puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14771,7 +14771,7 @@ void FUN_180041e10(void)
   puVar7[7] = 0x25db30365f277abb;
   puVar7[8] = &UNK_180a2cab0;
   puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14857,7 +14857,7 @@ void FUN_180041fd0(void)
   puVar7[7] = 0x727b256e3af32585;
   puVar7[8] = &UNK_180a2ca90;
   puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -14907,7 +14907,7 @@ void FUN_1800420d0(void)
   puVar7[7] = 0x25db30365f277abb;
   puVar7[8] = &UNK_180a2cab0;
   puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15157,7 +15157,7 @@ void FUN_1800425d0(void)
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15257,7 +15257,7 @@ void FUN_1800427d0(void)
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15357,7 +15357,7 @@ void FUN_1800429d0(void)
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15457,7 +15457,7 @@ void FUN_180042bd0(void)
   puVar7[7] = 0x47f249e43f66f2ab;
   puVar7[8] = &UNK_18098c7a0;
   puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15507,7 +15507,7 @@ void FUN_180042cd0(void)
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15557,7 +15557,7 @@ void FUN_180042dd0(void)
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15607,7 +15607,7 @@ void FUN_180042ed0(void)
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15657,7 +15657,7 @@ void FUN_180042fd0(void)
   puVar7[7] = 0x7f74eb2c5a7fadae;
   puVar7[8] = &UNK_18098c7f0;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15707,7 +15707,7 @@ void FUN_1800430d0(void)
   puVar7[7] = 0x8d98f4c06880eda4;
   puVar7[8] = &UNK_18098c810;
   puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15757,7 +15757,7 @@ void FUN_1800431d0(void)
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
   systemPreviousNode[9] = 0;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15857,7 +15857,7 @@ void FUN_1800433d0(void)
   puVar7[7] = 0x5e3cf00ce2978287;
   puVar7[8] = &UNK_18098c898;
   puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  puVar7[10] = resourceInitializationCallback;
   return;
 }
 
