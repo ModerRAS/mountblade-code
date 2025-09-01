@@ -13104,7 +13104,7 @@ LAB_1808974ec:
                 iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
-              iVar6 = FUN_1808605e0(param_2);
+              iVar6 = GetResourceType(param_2);
               if (iVar6 != 2) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &UNK_180983ae8;
@@ -13112,7 +13112,7 @@ LAB_1808974ec:
                 iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
-              iVar6 = FUN_1808605e0(param_2);
+              iVar6 = GetResourceType(param_2);
               if (iVar6 == 4) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &UNK_180983b68;
@@ -13380,7 +13380,7 @@ void BufferValidationErrorHandler(void)
               iVar13 = GetAndValidateResourceData(uVar24,&stack0x00000028);
               if (iVar13 != 0) goto FUN_180897b0e;
             }
-            iVar13 = FUN_1808605e0(unaff_R14);
+            iVar13 = GetResourceType(unaff_R14);
             if (iVar13 != 2) {
               in_stack_00000028 = &UNK_180983ae8;
               in_stack_00000038 = uStackX_20;
@@ -13388,7 +13388,7 @@ void BufferValidationErrorHandler(void)
               iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_06,&stack0x00000028);
               if (iVar13 != 0) goto FUN_180897b0e;
             }
-            iVar13 = FUN_1808605e0(unaff_R14);
+            iVar13 = GetResourceType(unaff_R14);
             uVar24 = extraout_XMM0_Da_07;
             if (iVar13 == 4) {
               in_stack_00000028 = &UNK_180983b68;
@@ -13641,7 +13641,7 @@ void DataProcessingErrorHandler(void)
           iVar13 = GetAndValidateResourceData(uVar23,&stack0x00000028);
           if (iVar13 != 0) goto FUN_180897afe;
         }
-        iVar13 = FUN_1808605e0(unaff_R14);
+        iVar13 = GetResourceType(unaff_R14);
         if (iVar13 != 2) {
           in_stack_00000028 = &UNK_180983ae8;
           in_stack_00000038 = uStackX_20;
@@ -13649,7 +13649,7 @@ void DataProcessingErrorHandler(void)
           iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_05,&stack0x00000028);
           if (iVar13 != 0) goto FUN_180897afe;
         }
-        iVar13 = FUN_1808605e0(unaff_R14);
+        iVar13 = GetResourceType(unaff_R14);
         uVar23 = extraout_XMM0_Da_06;
         if (iVar13 == 4) {
           in_stack_00000028 = &UNK_180983b68;
@@ -13790,7 +13790,7 @@ void FloatProcessingErrorHandler(void)
       iVar2 = GetAndValidateResourceData(uVar6,&stack0x00000028);
       if (iVar2 != 0) goto LAB_180897af6;
     }
-    iVar2 = FUN_1808605e0();
+    iVar2 = GetResourceType();
     if (iVar2 != 2) {
       in_stack_00000028 = &UNK_180983ae8;
       in_stack_00000038 = uStackX_20;
@@ -13798,7 +13798,7 @@ void FloatProcessingErrorHandler(void)
       iVar2 = GetAndValidateResourceData(extraout_XMM0_Da_02,&stack0x00000028);
       if (iVar2 != 0) goto LAB_180897af6;
     }
-    iVar2 = FUN_1808605e0();
+    iVar2 = GetResourceType();
     uVar6 = extraout_XMM0_Da_03;
     if (iVar2 == 4) {
       in_stack_00000028 = &UNK_180983b68;
