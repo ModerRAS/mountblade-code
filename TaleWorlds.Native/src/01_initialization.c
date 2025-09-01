@@ -1547,9 +1547,9 @@ void InitializeSystemCoreData(void)
 {
   char StatusFlag;
   void** SystemRootPointer;
-  int comparisonResult;
-  long long *systemHandle;
-  long long memorySize;
+  int ComparisonResult;
+  long long *SystemHandle;
+  long long MemorySize;
   void** CurrentNode;
   void** PreviousNode;
   void** NextNode;
