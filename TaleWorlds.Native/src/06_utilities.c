@@ -8440,8 +8440,16 @@ void ProcessBufferContextValidationAndCleanup(longlong param_1,longlong param_2)
 
 
 
- void FUN_180893700(longlong param_1,longlong param_2)
-void FUN_180893700(longlong param_1,longlong param_2)
+ /**
+ * @brief 处理缓冲区上下文验证和系统退出操作
+ * 
+ * 该函数验证缓冲区上下文的有效性，并在验证通过后执行系统退出操作
+ * 主要用于缓冲区状态验证和系统级退出处理
+ * 
+ * @param param_1 缓冲区上下文参数，包含缓冲区的基本信息
+ * @param param_2 系统上下文参数，用于系统级操作
+ */
+void ProcessBufferContextValidationAndSystemExit(longlong param_1,longlong param_2)
 
 {
   int iVar1;
@@ -8463,7 +8471,17 @@ void FUN_180893700(longlong param_1,longlong param_2)
 // WARNING: Removing unreachable block (ram,0x000180893865)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180893760(longlong param_1,longlong param_2)
+/**
+ * @brief 处理对象上下文验证和状态更新操作
+ * 
+ * 该函数验证对象上下文的有效性，并根据验证结果更新对象状态
+ * 主要用于对象状态管理和状态转换
+ * 
+ * @param param_1 对象上下文参数，包含对象的基本信息
+ * @param param_2 系统上下文参数，用于系统级操作
+ * @return 操作结果状态码
+ */
+int ProcessObjectContextValidationAndStatusUpdate(longlong param_1,longlong param_2)
 
 {
   int iVar1;
@@ -8505,7 +8523,17 @@ int FUN_180893760(longlong param_1,longlong param_2)
 // WARNING: Removing unreachable block (ram,0x000180893865)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18089379d(longlong param_1,undefined8 param_2)
+/**
+ * @brief 处理对象上下文验证和状态更新操作的简化版本
+ * 
+ * 该函数是ProcessObjectContextValidationAndStatusUpdate的简化版本
+ * 主要用于对象状态管理和状态转换
+ * 
+ * @param param_1 对象上下文参数，包含对象的基本信息
+ * @param param_2 系统上下文参数，用于系统级操作
+ * @return 操作结果状态码
+ */
+int ProcessObjectContextValidationAndStatusUpdateSimple(longlong param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -8632,7 +8660,13 @@ int process_data_block_operation(longlong data_context, longlong operation_conte
 // WARNING: Removing unreachable block (ram,0x000180893a22)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180893964(undefined8 param_1,undefined8 param_2)
+/**
+ * @brief 处理数据块操作和内存分配
+ * @param param_1 数据上下文指针，包含数据块信息
+ * @param param_2 系统上下文指针，用于系统级操作
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+int ProcessDataBlockOperationAndMemoryAllocation(undefined8 param_1, undefined8 param_2)
 
 {
   int in_EAX;
@@ -8679,7 +8713,13 @@ undefined8 GetDefaultErrorStatus(void)
 
 
 
-undefined8 FUN_180893d50(longlong param_1,longlong param_2)
+/**
+ * @brief 处理浮点数数据验证和转换操作
+ * @param param_1 对象上下文指针，包含浮点数值和验证信息
+ * @param param_2 系统上下文指针，用于系统级操作
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined8 ProcessFloatDataValidationAndConversion(longlong param_1, longlong param_2)
 
 {
   float fVar1;
@@ -8716,7 +8756,13 @@ undefined8 FUN_180893d50(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180893d8f(undefined8 param_1,undefined8 param_2)
+/**
+ * @brief 处理浮点数数据验证和转换操作（无参数版本）
+ * @param param_1 数据上下文指针
+ * @param param_2 系统上下文指针，用于系统级操作
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined8 ProcessFloatDataValidationAndConversionNoParams(undefined8 param_1, undefined8 param_2)
 
 {
   float fVar1;
@@ -8753,8 +8799,16 @@ undefined8 FUN_180893d8f(undefined8 param_1,undefined8 param_2)
 
 
 
- void FUN_180893ddb(void)
-void FUN_180893ddb(void)
+ /**
+ * @brief 处理对象上下文浮点数范围验证和限制
+ * 
+ * 该函数验证对象上下文中的浮点数是否在指定范围内，如果超出范围则进行限制
+ * 主要用于浮点数参数的验证和规范化处理
+ * 
+ * @param validationContext 验证上下文，包含验证所需的数据和参数
+ * @param systemContext 系统上下文，用于系统级操作和错误处理
+ */
+void ProcessObjectContextFloatRangeValidationAndClamping(void)
 
 {
   float fVar1;
@@ -8819,7 +8873,15 @@ undefined8 FUN_180893e30(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180893e69(void)
+/**
+ * @brief 验证浮点数数据并执行处理
+ * 
+ * 该函数负责验证浮点数数据的有效性，检查数据是否在允许的范围内
+ * 如果验证通过，则执行相应的处理操作
+ * 
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ValidateFloatDataAndExecute(void)
 
 {
   float fVar1;
@@ -82813,7 +82875,13 @@ void FUN_180941fe0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void InitializeGarbageCollectorTable(void)
+ /**
+ * @brief 初始化垃圾收集器表
+ * 
+ * 该函数负责初始化垃圾收集器的数据表
+ * 设置垃圾收集器的基础指针和数据结构
+ */
+void InitializeGarbageCollectorTable(void)
 void InitializeGarbageCollectorTable(void)
 
 {
@@ -82826,11 +82894,17 @@ void InitializeGarbageCollectorTable(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942020(void)
-void FUN_180942020(void)
+ /**
+ * @brief 初始化内存统计表
+ * 
+ * 该函数负责初始化内存统计系统的数据表
+ * 设置内存统计的基础指针和数据结构
+ */
+void InitializeMemoryStatisticsTable(void)
+void InitializeMemoryStatisticsTable(void)
 
 {
-  _DAT_180bf9510 = &UNK_18098bcb0;
+  MemoryStatisticsTable0 = &UNK_18098bcb0;
   return;
 }
 

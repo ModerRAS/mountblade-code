@@ -4909,8 +4909,8 @@ void InitializeNetworkConnectionSession(ulonglong connectionContext,NetworkHandl
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(securityGuardValue ^ (ulonglong)securityBuffer);
     }
-    ProcessNetworkAddressValidation(auStack_128,0x100,0);
-    puStack_158 = auStack_128;
+    ProcessNetworkAddressValidation(connectionBuffer,0x100,0);
+    connectionDataPointer = connectionBuffer;
                     // WARNING: Subroutine does not return
     LogNetworkConnectionError(0x1f,0xd,connectionContext,&UNK_180984908);
   }
@@ -7887,17 +7887,31 @@ void SetNetworkConnectionFullConfiguration(longlong connectionHandle, uint8_t co
 
 
 // 函数: void FUN_180848780(longlong connectionContext,NetworkHandle packetData)
-void FUN_180848780(longlong connectionContext,NetworkHandle packetData)
+/**
+ * @brief 处理网络连接状态配置
+ * 
+ * 该函数负责处理网络连接的状态配置，包括：
+ * - 连接状态验证
+ * - 网络配置应用
+ * - 缓冲区大小设置
+ * - 优先级配置
+ * 
+ * @param connectionContext 网络连接上下文（长整型）
+ * @param packetData 网络数据包句柄
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionStateConfiguration(longlong connectionContext,NetworkHandle packetData)
 
 {
-  int networkStatus1;
+  int networkConfigStatus;
   
-  networkStatus1 = FUN_18088ee60(packetData,connectionContext + 0x10);
-  if (networkStatus1 == 0) {
-    networkStatus1 = FUN_18088f310(packetData,connectionContext + 0x18);
-    if (networkStatus1 == 0) {
-      networkStatus1 = FUN_18088f4d0(packetData,connectionContext + 0x25,0x80);
-      if (networkStatus1 == 0) {
+  networkConfigStatus = FUN_18088ee60(packetData,connectionContext + 0x10);
+  if (networkConfigStatus == 0) {
+    networkConfigStatus = FUN_18088f310(packetData,connectionContext + 0x18);
+    if (networkConfigStatus == 0) {
+      networkConfigStatus = FUN_18088f4d0(packetData,connectionContext + 0x25,0x80);
+      if (networkConfigStatus == 0) {
         FUN_18088f470(packetData,connectionContext + 0x24);
       }
     }
@@ -7909,17 +7923,31 @@ void FUN_180848780(longlong connectionContext,NetworkHandle packetData)
 
 
 // 函数: void FUN_1808487e0(longlong connectionContext,NetworkHandle packetData)
-void FUN_1808487e0(longlong connectionContext,NetworkHandle packetData)
+/**
+ * @brief 处理网络连接数据配置
+ * 
+ * 该函数负责处理网络连接的数据配置，包括：
+ * - 连接状态验证
+ * - 数据包处理配置
+ * - 缓冲区设置
+ * - 数据传输配置
+ * 
+ * @param connectionContext 网络连接上下文（长整型）
+ * @param packetData 网络数据包句柄
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionDataConfiguration(longlong connectionContext,NetworkHandle packetData)
 
 {
-  int networkStatus1;
+  int networkDataConfigStatus;
   
-  networkStatus1 = FUN_18088ee60(packetData,connectionContext + 0x10);
-  if (networkStatus1 == 0) {
-    networkStatus1 = FUN_18088f4d0(packetData,connectionContext + 0x28,0x80);
-    if (networkStatus1 == 0) {
-      networkStatus1 = FUN_18088eea0(packetData,connectionContext + 0x18);
-      if (networkStatus1 == 0) {
+  networkDataConfigStatus = FUN_18088ee60(packetData,connectionContext + 0x10);
+  if (networkDataConfigStatus == 0) {
+    networkDataConfigStatus = FUN_18088f4d0(packetData,connectionContext + 0x28,0x80);
+    if (networkDataConfigStatus == 0) {
+      networkDataConfigStatus = FUN_18088eea0(packetData,connectionContext + 0x18);
+      if (networkDataConfigStatus == 0) {
         FUN_18088f470(packetData,connectionContext + 0x1c);
       }
     }
@@ -7931,17 +7959,31 @@ void FUN_1808487e0(longlong connectionContext,NetworkHandle packetData)
 
 
 // 函数: void FUN_180848840(longlong connectionContext,NetworkHandle packetData)
-void FUN_180848840(longlong connectionContext,NetworkHandle packetData)
+/**
+ * @brief 处理网络连接传输配置
+ * 
+ * 该函数负责处理网络连接的传输配置，包括：
+ * - 连接状态验证
+ * - 传输参数配置
+ * - 数据包处理设置
+ * - 传输优化配置
+ * 
+ * @param connectionContext 网络连接上下文（长整型）
+ * @param packetData 网络数据包句柄
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionTransferConfiguration(longlong connectionContext,NetworkHandle packetData)
 
 {
-  int networkStatus1;
+  int networkTransferConfigStatus;
   
-  networkStatus1 = FUN_18088ee60(packetData,connectionContext + 0x10);
-  if (networkStatus1 == 0) {
-    networkStatus1 = FUN_18088f4d0(packetData,connectionContext + 0x28,0x80);
-    if (networkStatus1 == 0) {
-      networkStatus1 = FUN_18088f4d0(packetData,connectionContext + 0xa8,0x80);
-      if (networkStatus1 == 0) {
+  networkTransferConfigStatus = FUN_18088ee60(packetData,connectionContext + 0x10);
+  if (networkTransferConfigStatus == 0) {
+    networkTransferConfigStatus = FUN_18088f4d0(packetData,connectionContext + 0x28,0x80);
+    if (networkTransferConfigStatus == 0) {
+      networkTransferConfigStatus = FUN_18088f4d0(packetData,connectionContext + 0xa8,0x80);
+      if (networkTransferConfigStatus == 0) {
         FUN_18088f470(packetData,connectionContext + 0x1c);
       }
     }
