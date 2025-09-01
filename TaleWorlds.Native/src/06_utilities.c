@@ -6970,7 +6970,7 @@ void CleanupSecurityTokenFunction(void)
 
 
 
-undefined8 FUN_1808924f0(longlong param_1,longlong param_2)
+undefined8 ValidateMatrixTransformationData(longlong matrixDataPointer,longlong contextPointer)
 /**
  * @brief 验证矩阵变换数据
  * 
@@ -7676,7 +7676,17 @@ undefined8 ValidateObjectContextAndProcessParameterizedComplexFloatOperation(lon
 
 
 
-undefined8 FUN_180892cc0(longlong param_1,longlong param_2)
+undefined8 ValidateObjectContextAndProcessFloatRange(longlong objectContext,longlong validationParams)
+/**
+ * @brief 验证对象上下文并处理浮点数范围
+ * 
+ * 该函数验证对象上下文的有效性，并处理浮点数范围检查
+ * 确保浮点数数据在有效范围内，避免无穷大或NaN值
+ * 
+ * @param objectContext 对象上下文指针，包含待验证的对象数据
+ * @param validationParams 验证参数，包含范围检查和验证规则
+ * @return 验证状态，0表示成功，非0值表示验证失败
+ */
 
 {
   int iVar1;
@@ -7758,22 +7768,30 @@ undefined8 FUN_180892cc0(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180892ceb(void)
+/**
+ * @brief 处理对象上下文中的浮点数范围验证和数值约束
+ * 
+ * 该函数负责验证对象上下文中的浮点数参数，确保数值在指定范围内
+ * 如果数值超出范围，则将其约束到最近的有效边界值
+ * 
+ * @return 返回操作状态码，0表示成功，非零表示错误
+ */
+undefined8 ProcessObjectContextFloatRangeValidationAndClamping(void)
 
 {
-  float fVar1;
-  int iVar2;
-  int iVar3;
-  longlong in_RAX;
-  float *pfVar4;
-  longlong unaff_RBX;
-  longlong lVar5;
-  ulonglong uVar6;
-  float *pfVar7;
-  uint in_R9D;
-  uint uVar8;
-  longlong unaff_R15;
-  float fVar9;
+  float inputValue;
+  int validationRange;
+  int arrayIndex;
+  longlong contextPointer;
+  float *floatArrayPointer;
+  longlong objectContext;
+  longlong dataPointer;
+  ulonglong validationContext;
+  float *floatArrayStart;
+  uint loopCounter;
+  uint iterationIndex;
+  longlong systemContext;
+  float clampedValue;
   
   uVar6 = in_RAX - 8;
   if (in_RAX == 0) {
