@@ -35051,8 +35051,16 @@ void ValidateAndCleanupSystemResourceTable(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005a170(long long SystemResourcePointer)
-void FUN_18005a170(long long SystemResourcePointer)
+/**
+ * @brief 系统资源异常处理函数
+ * 
+ * 该函数负责处理系统资源的异常情况，包括资源释放和异常检查。
+ * 它会检查资源指针的有效性，并在必要时调用系统清理函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含需要处理的资源信息
+ * @note 这是系统资源异常处理的重要组成部分
+ */
+void HandleSystemResourceException(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
@@ -35089,7 +35097,20 @@ void FUN_18005a170(long long SystemResourcePointer)
 
 
 
-void* FUN_18005a1b0(void* SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源释放处理器函数
+ * 
+ * 该函数负责处理系统资源的释放操作，根据配置标志决定是否释放资源。
+ * 它会初始化系统资源处理器，并在条件满足时释放指定的资源。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含需要释放的资源信息
+ * @param ConfigurationDataPointer 配置数据指针，包含释放操作的配置信息
+ * @param AdditionalParameter 额外参数，用于扩展释放功能
+ * @param ConfigurationFlag 配置标志，用于控制释放行为
+ * @return 返回处理后的系统资源指针
+ * @note 这是系统资源管理的重要组成部分，用于处理资源的释放操作
+ */
+void* ReleaseSystemResourceHandler(void* SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* unsignedSystemValue1;
@@ -35106,8 +35127,16 @@ void* FUN_18005a1b0(void* SystemResourcePointer,ulong long ConfigurationDataPoin
 
 
 
-// 函数: void FUN_18005a200(void* *SystemResourcePointer)
-void FUN_18005a200(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源初始化和清理函数
+ * 
+ * 该函数负责初始化系统资源结构，包括内存分配、线程初始化和资源清理。
+ * 它会设置各种系统参数，初始化互斥锁和条件变量，并分配必要的内存空间。
+ * 
+ * @param SystemResourcePointer 系统资源指针的指针，包含需要初始化的资源信息
+ * @note 这是系统资源初始化的重要组成部分，用于设置系统资源的基础结构
+ */
+void InitializeAndCleanupSystemResource(void* *SystemResourcePointer)
 
 {
   ulong long unsignedSystemValue1;
@@ -35184,7 +35213,18 @@ void FUN_18005a200(void* *SystemResourcePointer)
 
 
 
-void* * FUN_18005a420(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
+/**
+ * @brief 系统资源多重清理和释放函数
+ * 
+ * 该函数负责对系统资源进行多重清理操作，包括调用多个清理函数。
+ * 它会按顺序清理不同偏移量的资源，并在条件满足时释放整个资源。
+ * 
+ * @param SystemResourcePointer 系统资源指针的指针，包含需要清理的资源信息
+ * @param ConfigurationDataPointer 配置数据指针，包含清理操作的配置信息
+ * @return 返回清理后的系统资源指针
+ * @note 这是系统资源清理的重要组成部分，用于处理复杂的多重清理操作
+ */
+void* * CleanupAndReleaseMultipleSystemResources(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &UNK_1809fdd78;
@@ -35209,8 +35249,19 @@ void* * FUN_18005a420(void* *SystemResourcePointer,ulong long ConfigurationDataP
 
 
 
-// 函数: void FUN_18005a500(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005a500(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统线程创建和初始化函数
+ * 
+ * 该函数负责创建和初始化系统线程，设置线程参数和标志。
+ * 它会创建线程对象，启动线程，并设置线程的标识信息。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含线程所需的资源信息
+ * @param ConfigurationDataPointer 配置数据指针，包含线程的配置信息
+ * @param AdditionalParameter 额外参数，用于扩展线程功能
+ * @param ConfigurationFlag 配置标志，用于控制线程行为
+ * @note 这是系统线程管理的重要组成部分，用于创建和初始化系统线程
+ */
+void CreateAndInitializeSystemThread(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint32_t unsignedSystemValue1;
@@ -35241,7 +35292,18 @@ void FUN_18005a500(void* SystemResourcePointer,void* ConfigurationDataPointer,vo
 
 
 
-void* FUN_18005a960(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
+/**
+ * @brief 系统资源处理和释放函数
+ * 
+ * 该函数负责处理系统资源并根据配置标志决定是否释放资源。
+ * 它会调用资源处理函数，并在条件满足时释放指定的资源。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含需要处理的资源信息
+ * @param ConfigurationDataPointer 配置数据指针，包含处理操作的配置信息
+ * @return 返回处理后的系统资源指针
+ * @note 这是系统资源管理的重要组成部分，用于处理和释放资源
+ */
+void* ProcessAndReleaseSystemResource(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   FUN_18005a9a0();
