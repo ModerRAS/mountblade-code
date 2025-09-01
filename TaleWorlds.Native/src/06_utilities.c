@@ -87909,22 +87909,26 @@ void CleanupMutexResources(void)
 
 /**
  * @brief 初始化系统上下文并设置相关参数
- * @param contextPtr 上下文指针
- * @param setupParam 设置参数
- * @param configParam 配置参数
- * @param flagsParam 标志参数
  * 
  * 该函数负责初始化系统上下文，设置必要的参数和回调函数
  * 配置系统处理程序并初始化相关的数据结构
+ * 
+ * @param ContextPtr 上下文指针，指向系统上下文数据结构
+ * @param SetupParam 设置参数，包含系统初始化所需的配置信息
+ * @param ConfigParam 配置参数，指定系统运行时的配置选项
+ * @param FlagsParam 标志参数，控制初始化过程的标志位
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用
+ * @warning 调用此函数后，系统处理程序将被设置且不会返回
  */
-void InitializeSystemContext(uint8_t8 contextPtr, uint8_t8 setupParam, uint8_t8 configParam, uint8_t8 flagsParam)
+void InitializeSystemContext(uint8_t8 ContextPtr, uint8_t8 SetupParam, uint8_t8 ConfigParam, uint8_t8 FlagsParam)
 
 {
   uint8_t8 *SystemHandler;
   
   SystemHandler = SystemContextHandler;
   if (SystemContextHandler != (uint8_t8 *)0x0) {
-    InitializeContextData(&SystemContextData, *SystemContextHandler, configParam, flagsParam, 0xfffffffffffffffe);
+    InitializeContextData(&SystemContextData, *SystemContextHandler, ConfigParam, FlagsParam, 0xfffffffffffffffe);
     SetupSystemHandler(SystemHandler + 5);
                     // WARNING: Subroutine does not return
     ExecuteSystemHandler(SystemHandler);
