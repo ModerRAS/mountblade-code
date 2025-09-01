@@ -4577,14 +4577,14 @@ void TriggerSystemShutdown(void)
 
 
 
- void ReturnEmptyFunction(void)
+ void PerformNoOperation(void)
 /**
  * @brief 空返回函数
  * 
  * 该函数是一个空函数，直接返回
  * 通常用作占位符或默认实现
  */
-void ReturnEmptyFunction(void)
+void PerformNoOperation(void)
 
 {
   return;
@@ -4770,14 +4770,14 @@ void TriggerSystemTermination(void)
 
 
 
- void ReturnEmptyFunction(void)
+ void PerformNoOperation(void)
 /**
  * @brief 空函数返回
  * 
  * 该函数是一个空函数，直接返回而不执行任何操作
  * 用于占位或作为默认的空实现
  */
-void ReturnEmptyFunction(void)
+void PerformNoOperation(void)
 
 {
   return;
@@ -5063,7 +5063,7 @@ void ExecuteSystemEmergencyExit(void)
  * 该函数不执行任何操作，直接返回
  * 可能用作占位符或空操作
  */
-void EmptyFunction(void)
+void PerformNoOperation(void)
 
 {
   return;
@@ -5168,7 +5168,7 @@ void ExecuteSystemForcedTermination(void)
  * 该函数是一个空操作函数，不执行任何操作直接返回
  * 用于占位或测试目的
  */
-void EmptyOperationFunction(void)
+void PerformNoOperation(void)
 
 {
   return;
@@ -6625,7 +6625,7 @@ void ValidateAndProcessSystemStatusData(void)
  * 该函数不执行任何操作，直接返回
  * 用作占位符或空操作
  */
-void EmptyOperationFunction(void)
+void PerformNoOperation(void)
 
 {
   return;
@@ -9581,10 +9581,10 @@ int ProcessDataWithSimplifiedValidator(longlong objectContextParam,longlong vali
   integerValue1 = integerValue1 + integerValue2;
   integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessResourceData(integerValue1 + validationContextParam,param_3 - integerValue1,
+  integerValue2 = ProcessResourceData(integerValue1 + validationContextParam,dataLength - integerValue1,
                         objectContextParam + 0x18 + (longlong)*(int *)(objectContextParam + 0x10) * 8);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,param_3 - integerValue1,&StringProcessingTemplate);
+  integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
   integerValue2 = ValidateResourceFormat(integerValue1 + validationContextParam,param_3 - integerValue1,*(uint8_t1 *)(objectContextParam + 0x14));
   return integerValue2 + integerValue1;
@@ -11381,8 +11381,8 @@ uint64_t ValidateAndProcessParameters(int minValue,int maxValue,uint8_t8 systemC
  * 该函数是一个空操作函数，用于占位或作为默认的回调函数
  * 不执行任何操作，直接返回
  */
-void EmptyOperationFunction(void)
-void EmptyOperationFunction(void)
+void PerformNoOperation(void)
+void PerformNoOperation(void)
 
 {
   return;
@@ -17310,7 +17310,7 @@ void ValidateResourcePropertiesAndProcessHash(uint8_t4 resourceId)
  * 
  * @return 无返回值
  */
-void EmptyOperationFunction(void)
+void PerformNoOperation(void)
 
 {
   return;
@@ -20022,7 +20022,7 @@ LAB_18089bbcc:
  * 该函数是一个空操作函数，不执行任何操作
  * 通常用作占位符或默认回调函数
  */
-void EmptyOperationFunction(void)
+void PerformNoOperation(void)
 
 {
   return;
@@ -25350,7 +25350,7 @@ LAB_18089e447:
  * 该函数是一个空操作函数，不执行任何操作
  * 用于占位或作为默认的函数指针
  */
-void EmptyOperationFunction(void)
+void PerformNoOperation(void)
 
 {
   return;
@@ -43819,7 +43819,7 @@ void DestroyConditionVariableInPlace(void)
 
 
 
-void Unwind_180905cd0(void)
+void DestroyMutexInPlace(void)
 
 {
   _Mtx_destroy_in_situ();
