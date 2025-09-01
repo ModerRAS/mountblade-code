@@ -153,7 +153,7 @@ int InitializePhysicsEngineSync(undefined8 threadId,undefined8 syncPtr,undefined
   undefined8 physicsMutexFlags;
   physicsMutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(PHYSICS_MUTEX_ADDRESS,2,mutexType,mutexAttr,mutexFlags);
+  _Mtx_init_in_situ(PHYSICS_MUTEX_ADDRESS,2,mutexType,mutexAttr,physicsMutexFlags);
   g_physicsSyncState = 0;
   callbackResult = RegisterSystemCallback(PhysicsEngineSyncCallback);
   return (callbackResult != 0) - 1;
@@ -162,13 +162,13 @@ int InitializePhysicsEngineSync(undefined8 threadId,undefined8 syncPtr,undefined
  * 初始化条件变量和互斥锁C
  * 设置线程同步所需的条件变量和互斥锁
  */
-int InitializeConditionMutexC(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int InitializeConditionMutexC(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
 {
   longlong result;
-  undefined8 mutexFlags;
-  mutexFlags = 0xfffffffffffffffe;
+  undefined8 conditionMutexFlags;
+  conditionMutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c911e8,2,param_3,param_4,mutexFlags);
+  _Mtx_init_in_situ(0x180c911e8,2,mutexType,mutexAttr,conditionMutexFlags);
   g_conditionMutexC_Status = 0;
   result = RegisterSystemCallback(InitializeConditionMutexC_Callback);
   return (result != 0) - 1;

@@ -16647,21 +16647,21 @@ undefined4 FinalSystemInitialization(void)
   if (tempManager8 != (longlong ****)0x0) {
     (*(code *)(*tempManager8)[7])(tempManager8);
   }
-  pppplVar14 = _DAT_180c86940;
+  tempManager14 = _DAT_180c86940;
   *(undefined1 *)(_DAT_180c86940[1] + 0x80) = 1;
   while( true ) {
-    pplVar3 = *pppplVar14[1];
-    if (pplVar3 == (longlong **)&UNK_1809ff3f8) {
-      cVar11 = *(char *)(pppplVar14[1] + 2) != '\0';
+    systemController = *tempManager14[1];
+    if (systemController == (longlong **)&UNK_1809ff3f8) {
+      isActiveFlag = *(char *)(tempManager14[1] + 2) != '\0';
     }
     else {
-      cVar11 = (*(code *)pplVar3[0xd])();
+      isActiveFlag = (*(code *)systemController[0xd])();
     }
-    pppplVar8 = _DAT_180c86940;
-    if (cVar11 != '\0') break;
+    tempManager8 = _DAT_180c86940;
+    if (isActiveFlag != '\0') break;
     Sleep(1);
   }
-  pppplStackX_8 = _DAT_180c86940;
+  stackManager8 = _DAT_180c86940;
   if (_DAT_180c86940 != (longlong ****)0x0) {
     lVar10 = __RTCastToVoid(_DAT_180c86940);
     *pppplVar8 = (longlong ***)&UNK_1809fee70;
