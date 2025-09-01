@@ -3959,7 +3959,7 @@ int ProcessNetworkPacketWithFullContext(longlong connectionContext,longlong pack
   encryptionFlag = *(NetworkStatus *)(connectionContext + 0x18);
   connectionState = *(NetworkStatus *)(connectionContext + 0x10);
   bufferStatus = *(NetworkStatus *)(connectionContext + 0x1c);
-  firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983a40);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkPayloadDataTemplate);
   secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,connectionState);
@@ -3998,7 +3998,7 @@ int ProcessNetworkPacketWithBufferTemplate(longlong connectionContext,longlong p
   
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983c50);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&NetworkSecurityDataTemplate);
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferCopy(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
@@ -4294,7 +4294,7 @@ int ProcessNetworkPacketTypeG(longlong connectionContext,longlong packetData,int
   uStack_10 = *(NetworkStatus *)(connectionContext + 0x18);
   uStack_c = *(NetworkStatus *)(connectionContext + 0x1c);
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x20);
-  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180981fc0);
+  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&NetworkConnectionTemplateA);
   networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = ValidateNetworkBufferTimeout(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
@@ -10909,7 +10909,7 @@ void ProcessNetworkPacketArray(NetworkStatus *connectionContext,NetworkHandle pa
 
 {
                     // WARNING: Subroutine does not return
-  ProcessNetworkBufferTemplate(packetData,0x27,&UNK_180958180,*connectionContext,*(NetworkData2 *)(connectionContext + 1),
+  ProcessNetworkBufferTemplate(packetData,0x27,&NetworkStandardBufferTemplate,*connectionContext,*(NetworkData2 *)(connectionContext + 1),
                 *(NetworkData2 *)((longlong)connectionContext + 6),*(NetworkByte *)(connectionContext + 2),
                 *(NetworkByte *)((longlong)connectionContext + 9),*(NetworkByte *)((longlong)connectionContext + 10),
                 *(NetworkByte *)((longlong)connectionContext + 0xb),*(NetworkByte *)(connectionContext + 3),
@@ -16142,12 +16142,12 @@ NetworkHandle ValidateNetworkConnection(longlong connectionContext)
     uStackX_8 = 0;
     if (*(int *)(connectionContext + 0x88) == 0) {
       primaryNetworkFlag = *(NetworkStatus *)(*(longlong *)(connectionContext + 0x40) + 0xc0);
-      networkStatus2 = FUN_18073c380(tertiaryNetworkFlag,0xfffffffe,&uStackX_8);
+      networkStatus2 = ProcessNetworkPacketHeader(tertiaryNetworkFlag,0xfffffffe,&uStackX_8);
       tertiaryNetworkFlag = uStackX_8;
       if (networkStatus2 != 0) {
         tertiaryNetworkFlag = 0;
       }
-      tertiaryNetworkFlag = FUN_180853bf0(tertiaryNetworkFlag,primaryNetworkFlag);
+      tertiaryNetworkFlag = UpdateNetworkTransferStatus(tertiaryNetworkFlag,primaryNetworkFlag);
       if ((int)tertiaryNetworkFlag == 0) {
         return 0;
       }
@@ -16155,7 +16155,7 @@ NetworkHandle ValidateNetworkConnection(longlong connectionContext)
     }
   }
   else {
-    tertiaryNetworkFlag = FUN_1807417b0(*(longlong *)(connectionContext + 0x68),1,
+    tertiaryNetworkFlag = CreateNetworkConnectionChannel(*(longlong *)(connectionContext + 0x68),1,
                           *(NetworkStatus *)(*(longlong *)(connectionContext + 0x40) + 0xc0));
     if ((int)tertiaryNetworkFlag != 0) {
       return tertiaryNetworkFlag;
@@ -16168,7 +16168,7 @@ NetworkHandle ValidateNetworkConnection(longlong connectionContext)
     tertiaryNetworkFlag = *(NetworkHandle *)(connectionContext + 0x78);
   }
   uStackX_8 = 0;
-  networkStatus2 = FUN_18073c380(tertiaryNetworkFlag,0xfffffffe,&uStackX_8);
+  networkStatus2 = ProcessNetworkPacketHeader(tertiaryNetworkFlag,0xfffffffe,&uStackX_8);
   tertiaryNetworkFlag = uStackX_8;
   if (networkStatus2 != 0) {
     tertiaryNetworkFlag = 0;
@@ -20712,7 +20712,7 @@ LAB_180851913:
 
 
 
-NetworkHandle FUN_180851917(void)
+NetworkHandle InitializeNetworkConnectionContext(void)
 
 {
   NetworkHandle *networkPointer1;
@@ -20753,7 +20753,7 @@ NetworkHandle FUN_180851917(void)
 
 
 
-NetworkHandle FUN_18085198d(void)
+NetworkHandle ValidateNetworkConnectionState(void)
 
 {
   NetworkHandle primaryNetworkFlag;
