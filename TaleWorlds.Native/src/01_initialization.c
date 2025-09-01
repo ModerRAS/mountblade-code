@@ -652,19 +652,27 @@ undefined GetSystemInitializationFunction;
  * 
  * @note 此函数在系统启动时被调用，是初始化流程的关键部分
  */
-void initializeGameCoreSystem(void)
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 初始化游戏引擎的核心系统组件，包括内存管理、数据表和系统配置。
+ * 设置系统根节点和数据结构，为游戏运行提供基础支持。
+ * 
+ * @note 该函数在游戏启动时被调用，是系统初始化流程的关键部分
+ */
+void InitializeGameCoreSystem(void)
 
 {
-  char nodeFlag;
-  undefined8 *systemRootPointer;
-  int comparisonResult;
-  longlong *systemTablePointer;
-  longlong allocationSize;
-  undefined8 *currentNode;
-  undefined8 *previousNode;
-  undefined8 *nextNode;
-  undefined8 *allocatedNode;
-  code *initializationFunction;
+  char systemNodeFlag;
+  undefined8 *systemRootNode;
+  int memoryCompareResult;
+  longlong *systemDataTable;
+  longlong memoryAllocationSize;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemPreviousNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemAllocatedNode;
+  code *systemInitializationFunction;
   
   plVar4 = (longlong *)FUN_18008d070();
   puVar2 = (undefined8 *)*plVar4;
@@ -2270,8 +2278,15 @@ int FUN_18002e3e0(void)
   _DAT_180bf64d0 = &UNK_1809fdc18;
   _DAT_180bf64d8 = &DAT_180bf64e8;
 
-// 函数: void FUN_18002e8e0(void)
-void FUN_18002e8e0(void)
+/**
+ * @brief 初始化系统字符串处理功能
+ * 
+ * 初始化游戏引擎的字符串处理子系统，设置字符串缓冲区和处理函数。
+ * 该函数负责配置字符串操作的基础设施，为后续的文本处理提供支持。
+ * 
+ * @note 该函数在系统初始化阶段被调用，是文本处理系统的基础
+ */
+void InitializeSystemStringProcessor(void)
 
 {
   undefined8 in_R9;
@@ -2292,8 +2307,15 @@ void FUN_18002e8e0(void)
 
 
 
-// 函数: void FUN_18002e970(void)
-void FUN_18002e970(void)
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 初始化游戏引擎的内存管理子系统，设置内存分配策略和管理机制。
+ * 该函数负责配置内存池、分配器和回收机制，为系统运行提供内存管理支持。
+ * 
+ * @note 该函数在系统初始化阶段被调用，是内存管理系统的核心组件
+ */
+void InitializeSystemMemoryManager(void)
 
 {
   char cVar1;
