@@ -9302,7 +9302,18 @@ undefined8 FUN_180894300(longlong param_1,longlong param_2)
 
 
 
-int FUN_180894380(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 处理带验证器的数据解析操作
+ * 
+ * 该函数负责解析带有验证器的数据，它会先处理验证器部分，
+ * 然后处理数据部分，最后处理结束标记
+ * 
+ * @param param_1 数据对象指针，包含验证器和数据信息
+ * @param param_2 数据缓冲区指针，包含要解析的数据
+ * @param param_3 数据长度，表示要解析的数据大小
+ * @return int 解析结果状态码，0表示成功，非0表示错误
+ */
+int ProcessDataWithValidator(longlong param_1,longlong param_2,int param_3)
 
 {
   int iVar1;
@@ -9327,7 +9338,18 @@ int FUN_180894380(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180894460(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 处理带扩展验证器的数据解析操作
+ * 
+ * 该函数负责解析带有扩展验证器的数据，它会先处理验证器部分，
+ * 然后处理数据部分，最后处理扩展结束标记
+ * 
+ * @param param_1 数据对象指针，包含验证器和数据信息
+ * @param param_2 数据缓冲区指针，包含要解析的数据
+ * @param param_3 数据长度，表示要解析的数据大小
+ * @return int 解析结果状态码，0表示成功，非0表示错误
+ */
+int ProcessDataWithExtendedValidator(longlong param_1,longlong param_2,int param_3)
 
 {
   int iVar1;
@@ -9356,7 +9378,18 @@ int FUN_180894460(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180894570(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 处理带简化验证器的数据解析操作
+ * 
+ * 该函数负责解析带有简化验证器的数据，它会先处理验证器部分，
+ * 然后处理数据部分，最后处理简化结束标记
+ * 
+ * @param param_1 数据对象指针，包含验证器和数据信息
+ * @param param_2 数据缓冲区指针，包含要解析的数据
+ * @param param_3 数据长度，表示要解析的数据大小
+ * @return int 解析结果状态码，0表示成功，非0表示错误
+ */
+int ProcessDataWithSimplifiedValidator(longlong param_1,longlong param_2,int param_3)
 
 {
   int iVar1;
@@ -9381,7 +9414,18 @@ int FUN_180894570(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180894650(longlong *param_1,longlong param_2,int param_3)
+/**
+ * @brief 处理带缓冲区的数据解析操作
+ * 
+ * 该函数负责解析带有缓冲区的数据，它会先处理缓冲区部分，
+ * 然后处理数据部分，最后处理结束标记
+ * 
+ * @param param_1 数据对象指针，包含缓冲区和数据信息
+ * @param param_2 数据缓冲区指针，包含要解析的数据
+ * @param param_3 数据长度，表示要解析的数据大小
+ * @return int 解析结果状态码，0表示成功，非0表示错误
+ */
+int ProcessDataWithBuffer(longlong *param_1,longlong param_2,int param_3)
 
 {
   int iVar1;
@@ -9400,7 +9444,18 @@ int FUN_180894650(longlong *param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180894700(longlong *param_1,longlong param_2,int param_3)
+/**
+ * @brief 处理带队列的数据解析操作
+ * 
+ * 该函数负责解析带有队列的数据，它会先处理队列部分，
+ * 然后处理数据部分，最后处理结束标记
+ * 
+ * @param param_1 数据对象指针，包含队列和数据信息
+ * @param param_2 数据缓冲区指针，包含要解析的数据
+ * @param param_3 数据长度，表示要解析的数据大小
+ * @return int 解析结果状态码，0表示成功，非0表示错误
+ */
+int ProcessDataWithQueue(longlong *param_1,longlong param_2,int param_3)
 
 {
   int iVar1;
@@ -9419,7 +9474,18 @@ int FUN_180894700(longlong *param_1,longlong param_2,int param_3)
 
 
 
-int FUN_1808947b0(longlong *param_1,longlong param_2,int param_3)
+/**
+ * @brief 处理带堆栈的数据解析操作
+ * 
+ * 该函数负责解析带有堆栈的数据，它会先处理堆栈部分，
+ * 然后处理数据部分，最后处理结束标记
+ * 
+ * @param param_1 数据对象指针，包含堆栈和数据信息
+ * @param param_2 数据缓冲区指针，包含要解析的数据
+ * @param param_3 数据长度，表示要解析的数据大小
+ * @return int 解析结果状态码，0表示成功，非0表示错误
+ */
+int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
 
 {
   int iVar1;
@@ -10177,7 +10243,15 @@ undefined8 ExpandResourcePoolCapacity(longlong *ResourcePoolHandle)
 
 
 
-undefined8 FUN_180895236(void)
+/**
+ * @brief 扩展资源池容量的简化版本
+ * 
+ * 该函数是ExpandResourcePoolCapacity的简化版本，
+ * 用于处理资源池容量扩展的简化场景。
+ * 
+ * @return 返回操作状态码，0表示成功，非0表示失败
+ */
+undefined8 ExpandResourcePoolCapacitySimple(void)
 
 {
   longlong lVar1;
@@ -10246,7 +10320,15 @@ undefined8 FUN_180895236(void)
 
 
 
-undefined8 FUN_180895345(void)
+/**
+ * @brief 返回资源池错误状态码
+ * 
+ * 该函数返回资源池的错误状态码，用于表示资源池操作失败。
+ * 这是一个简化版本的错误处理函数。
+ * 
+ * @return 返回错误状态码0x1c，表示资源池操作失败
+ */
+undefined8 ReturnResourcePoolErrorCode(void)
 
 {
   return 0x1c;
