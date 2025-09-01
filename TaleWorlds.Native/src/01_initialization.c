@@ -17389,7 +17389,7 @@ void SystemNetworkManagerInitializer(void)
   stackBuffer[0] = 0;
   stackParameterC = 0x10;
   strcpy_s(stackBuffer,0x80,&UNK_180a3def0,in_R9,0xfffffffffffffffe);
-  _DAT_180c967d0 = SystemMemoryAllocationFunction(&stackParameterA);
+  SystemMemoryRegionCacheC = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
 
@@ -17462,7 +17462,7 @@ void InitializeEngineModuleA(void)
   stringBuffer[0] = 0;
   bufferSize = 0x17;
   strcpy_s(stringBuffer,0x80,&UNK_180a3e3d8,registerR9,0xfffffffffffffffe);
-  _DAT_180c967d4 = SystemMemoryAllocationFunction(&paramStackPtr);
+  SystemMemoryRegionCacheD = SystemMemoryAllocationFunction(&paramStackPtr);
   return;
 }
 
@@ -17489,7 +17489,7 @@ void InitializeEngineModuleB(void)
   stringBuffer[0] = 0;
   bufferSize = 0x11;
   strcpy_s(stringBuffer,0x80,&UNK_180a3e3f0,registerR9,0xfffffffffffffffe);
-  _DAT_180c967d8 = SystemMemoryAllocationFunction(&paramStackPtr);
+  SystemMemoryRegionCacheE = SystemMemoryAllocationFunction(&paramStackPtr);
   return;
 }
 
@@ -18623,7 +18623,6 @@ void ProcessSystemMemoryCopy(long long param_1,void* param_2,int param_3)
 
 
 
-// 函数: void FUN_180045bc1(void)
 /**
  * @brief 系统内存拷贝操作
  * 

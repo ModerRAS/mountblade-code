@@ -34,6 +34,9 @@ void* ModuleDependencyHandle;
  * 
  * 该函数负责初始化游戏引擎的全局模块A
  * 设置模块A所需的数据结构和运行环境
+ * 
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用
  */
 void InitializeGlobalModuleA(void);
 void* GlobalModuleAInstance;
@@ -46,6 +49,9 @@ void* GlobalModuleAHandle;
  * 
  * 该函数负责初始化游戏引擎的全局模块B
  * 设置模块B所需的数据结构和运行环境
+ * 
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用
  */
 void InitializeGlobalModuleB(void);
 void* GlobalModuleBInstance;
