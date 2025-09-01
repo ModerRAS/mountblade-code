@@ -5807,8 +5807,8 @@ uint8_t ValidateSystemConfiguration(int64_t configHandle)
 void ValidateObjectStateAndDispatch(int64_t objectContext, int64_t schedulerContext)
 
 {
-  int validationStatus;
-  uint8_t validationBuffer;
+  int ValidationStatus;
+  uint8_t ValidationBuffer;
   
   if (*(int *)(objectContext + 0x2c) == 0) {
     validationStatus = ProcessSchedulerValidation(schedulerContext,objectContext + 0x1c,&validationBuffer);

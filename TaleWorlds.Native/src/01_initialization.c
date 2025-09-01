@@ -33962,7 +33962,7 @@ void CleanupSystemResources(long long *SystemResourcePointer)
   
   localMemoryPointer = SystemResourcePointer[1];
   for (localSystemHandle = *SystemResourcePointer; localSystemHandle != localMemoryPointer; localSystemHandle = localSystemHandle + 0x50) {
-    FUN_1800596a0(localSystemHandle);
+    ResetSystemResources(localSystemHandle);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -33992,7 +33992,7 @@ void CleanupSystemResourcesIterator(long long *SystemResourcePointer)
   
   localMemoryPointer = SystemResourcePointer[1];
   for (localSystemHandle = *SystemResourcePointer; localSystemHandle != localMemoryPointer; localSystemHandle = localSystemHandle + 0x50) {
-    FUN_1800596a0(localSystemHandle);
+    ResetSystemResources(localSystemHandle);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -34062,7 +34062,20 @@ void ValidateSystemResourceCleanup(long long SystemResourcePointer)
 
 
 
-void* * FUN_180059780(void* *SystemResourcePointer,void* *ConfigurationDataPointer,void* *AdditionalParameter)
+/**
+ * @brief 系统资源数据复制器函数
+ * 
+ * 该函数负责在系统资源之间复制数据，包括配置数据和资源信息的复制。
+ * 它会遍历资源指针数组，并执行相应的复制操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含源资源信息
+ * @param ConfigurationDataPointer 配置数据指针，包含配置信息
+ * @param AdditionalParameter 额外参数，用于控制复制行为
+ * @return 返回处理后的资源指针
+ * 
+ * 原始函数名为FUN_180059780，现已重命名为CopySystemResourceDataExtended
+ */
+void* * CopySystemResourceDataExtended(void* *SystemResourcePointer,void* *ConfigurationDataPointer,void* *AdditionalParameter)
 
 {
   void* *pointerToUnsigned1;
