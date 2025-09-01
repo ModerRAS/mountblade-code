@@ -1019,7 +1019,7 @@ int InitializeStringProcessorAA(void)
 int InitializeStringProcessorAA(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf93f0 = &UNK_1809fcc58;
   _DAT_180bf93f8 = &DAT_180bf9408;
   DAT_180bf9408 = 0;
@@ -1181,7 +1181,7 @@ int InitializeStringProcessorR(void)
 int InitializeStringProcessorS(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9750 = &UNK_1809fcc58;
   _DAT_180bf9758 = &DAT_180bf9768;
   DAT_180bf9768 = 0;
@@ -1193,7 +1193,7 @@ int InitializeStringProcessorS(void)
 int InitializeStringProcessorT(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf97b0 = &UNK_1809fcc58;
   _DAT_180bf97b8 = &DAT_180bf97c8;
   DAT_180bf97c8 = 0;
@@ -1205,7 +1205,7 @@ int InitializeStringProcessorT(void)
 int InitializeStringProcessorU(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9810 = &UNK_1809fcc58;
   _DAT_180bf9818 = &DAT_180bf9828;
   DAT_180bf9828 = 0;
@@ -1217,7 +1217,7 @@ int InitializeStringProcessorU(void)
 int InitializeStringProcessorV(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9870 = &UNK_1809fcc58;
   _DAT_180bf9878 = &DAT_180bf9888;
   DAT_180bf9888 = 0;
@@ -1226,34 +1226,40 @@ int InitializeStringProcessorV(void)
   LocalResult = RegisterSystemModule(FUN_180942140);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003b590(void)
+/**
+ * 初始化系统模块B
+ * 设置系统模块B所需的配置和数据结构
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemModuleB(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf98d0 = &UNK_1809fcc58;
-  _DAT_180bf98d8 = &DAT_180bf98e8;
-  DAT_180bf98e8 = 0;
+  _DAT_180bf98d8 = &SYSTEM_MODULE_B_BUFFER;
+  SYSTEM_MODULE_B_BUFFER = 0;
   _DAT_180bf98e0 = 0x1b;
-  strcpy_s(&DAT_180bf98e8,0x40,&UNK_180a22ce8,in_R9,0xfffffffffffffffe);
+  strcpy_s(&SYSTEM_MODULE_B_BUFFER,0x40,&UNK_180a22ce8,in_R9,0xfffffffffffffffe);
   LocalResult = RegisterSystemModule(FUN_180942160);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003b600(void)
+int InitializeSystemModuleC(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9930 = &UNK_1809fcc58;
-  _DAT_180bf9938 = &DAT_180bf9948;
-  DAT_180bf9948 = 0;
+  _DAT_180bf9938 = &SYSTEM_MODULE_C_BUFFER;
+  SYSTEM_MODULE_C_BUFFER = 0;
   _DAT_180bf9940 = 0x1c;
-  strcpy_s(&DAT_180bf9948,0x40,&UNK_180a22cc8,in_R9,0xfffffffffffffffe);
+  strcpy_s(&SYSTEM_MODULE_C_BUFFER,0x40,&UNK_180a22cc8,in_R9,0xfffffffffffffffe);
   LocalResult = RegisterSystemModule(FUN_180942180);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003b670(void)
+int InitializeSystemModuleD(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9990 = &UNK_1809fcc58;
   _DAT_180bf9998 = &DAT_180bf99a8;
   DAT_180bf99a8 = 0;
@@ -1262,10 +1268,16 @@ int FUN_18003b670(void)
   LocalResult = RegisterSystemModule(FUN_1809421a0);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003b6e0(void)
+/**
+ * 初始化字符串处理系统模块M
+ * 设置字符串处理系统模块M所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemM(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf99f0 = &UNK_1809fcc58;
   _DAT_180bf99f8 = &DAT_180bf9a08;
   DAT_180bf9a08 = 0;
@@ -1274,10 +1286,16 @@ int FUN_18003b6e0(void)
   LocalResult = RegisterSystemModule(FUN_1809421c0);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003b750(void)
+/**
+ * 初始化字符串处理系统模块N
+ * 设置字符串处理系统模块N所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemN(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9a50 = &UNK_1809fcc58;
   _DAT_180bf9a58 = &DAT_180bf9a68;
   DAT_180bf9a68 = 0;
@@ -1286,10 +1304,16 @@ int FUN_18003b750(void)
   LocalResult = RegisterSystemModule(FUN_1809421e0);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003b7c0(void)
+/**
+ * 初始化字符串处理系统模块O
+ * 设置字符串处理系统模块O所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemO(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9ab0 = &UNK_1809fcc58;
   _DAT_180bf9ab8 = &DAT_180bf9ac8;
   DAT_180bf9ac8 = 0;
@@ -1298,10 +1322,16 @@ int FUN_18003b7c0(void)
   LocalResult = RegisterSystemModule(FUN_180942200);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003b830(void)
+/**
+ * 初始化字符串处理系统模块P
+ * 设置字符串处理系统模块P所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemP(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9b10 = &UNK_1809fcc58;
   _DAT_180bf9b18 = &DAT_180bf9b28;
   DAT_180bf9b28 = 0;
@@ -1310,10 +1340,16 @@ int FUN_18003b830(void)
   LocalResult = RegisterSystemModule(FUN_180942220);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003b8a0(void)
+/**
+ * 初始化字符串处理系统模块Q
+ * 设置字符串处理系统模块Q所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemQ(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9b70 = &UNK_1809fcc58;
   _DAT_180bf9b78 = &DAT_180bf9b88;
   DAT_180bf9b88 = 0;
@@ -1322,10 +1358,16 @@ int FUN_18003b8a0(void)
   LocalResult = RegisterSystemModule(FUN_180942240);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003b910(void)
+/**
+ * 初始化字符串处理系统模块R
+ * 设置字符串处理系统模块R所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemR(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9bd0 = &UNK_1809fcc58;
   _DAT_180bf9bd8 = &DAT_180bf9be8;
   DAT_180bf9be8 = 0;
@@ -1334,10 +1376,16 @@ int FUN_18003b910(void)
   LocalResult = RegisterSystemModule(FUN_180942260);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003b980(void)
+/**
+ * 初始化字符串处理系统模块S
+ * 设置字符串处理系统模块S所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemS(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9c30 = &UNK_1809fcc58;
   _DAT_180bf9c38 = &DAT_180bf9c48;
   DAT_180bf9c48 = 0;
@@ -1346,10 +1394,16 @@ int FUN_18003b980(void)
   LocalResult = RegisterSystemModule(FUN_180942280);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003b9f0(void)
+/**
+ * 初始化字符串处理系统模块T
+ * 设置字符串处理系统模块T所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemT(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9c90 = &UNK_1809fcc58;
   _DAT_180bf9c98 = &DAT_180bf9ca8;
   DAT_180bf9ca8 = 0;
@@ -1358,10 +1412,16 @@ int FUN_18003b9f0(void)
   LocalResult = RegisterSystemModule(FUN_1809422a0);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003ba60(void)
+/**
+ * 初始化字符串处理系统模块U
+ * 设置字符串处理系统模块U所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemU(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9cf0 = &UNK_1809fcc58;
   _DAT_180bf9cf8 = &DAT_180bf9d08;
   DAT_180bf9d08 = 0;
@@ -1370,10 +1430,16 @@ int FUN_18003ba60(void)
   LocalResult = RegisterSystemModule(FUN_1809422c0);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003bad0(void)
+/**
+ * 初始化字符串处理系统模块V
+ * 设置字符串处理系统模块V所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemV(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9d50 = &UNK_1809fcc58;
   _DAT_180bf9d58 = &DAT_180bf9d68;
   DAT_180bf9d68 = 0;
@@ -1382,10 +1448,16 @@ int FUN_18003bad0(void)
   LocalResult = RegisterSystemModule(FUN_1809422e0);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003bb40(void)
+/**
+ * 初始化字符串处理系统模块W
+ * 设置字符串处理系统模块W所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemW(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9db0 = &UNK_1809fcc58;
   _DAT_180bf9db8 = &DAT_180bf9dc8;
   DAT_180bf9dc8 = 0;
@@ -1394,10 +1466,16 @@ int FUN_18003bb40(void)
   LocalResult = RegisterSystemModule(FUN_180942300);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003bbb0(void)
+/**
+ * 初始化字符串处理系统模块X
+ * 设置字符串处理系统模块X所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemX(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9e10 = &UNK_1809fcc58;
   _DAT_180bf9e18 = &DAT_180bf9e28;
   DAT_180bf9e28 = 0;
@@ -1406,10 +1484,16 @@ int FUN_18003bbb0(void)
   LocalResult = RegisterSystemModule(FUN_180942320);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003bc20(void)
+/**
+ * 初始化字符串处理系统模块Y
+ * 设置字符串处理系统模块Y所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemY(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9e70 = &UNK_1809fcc58;
   _DAT_180bf9e78 = &DAT_180bf9e88;
   DAT_180bf9e88 = 0;
@@ -1418,10 +1502,16 @@ int FUN_18003bc20(void)
   LocalResult = RegisterSystemModule(FUN_180942340);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003bc90(void)
+/**
+ * 初始化字符串处理系统模块Z
+ * 设置字符串处理系统模块Z所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemZ(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9ed0 = &UNK_1809fcc58;
   _DAT_180bf9ed8 = &DAT_180bf9ee8;
   DAT_180bf9ee8 = 0;
@@ -1430,10 +1520,16 @@ int FUN_18003bc90(void)
   LocalResult = RegisterSystemModule(FUN_180942360);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003bd00(void)
+/**
+ * 初始化字符串处理系统模块AA
+ * 设置字符串处理系统模块AA所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemAA(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9f30 = &UNK_1809fcc58;
   _DAT_180bf9f38 = &DAT_180bf9f48;
   DAT_180bf9f48 = 0;
@@ -1442,10 +1538,16 @@ int FUN_18003bd00(void)
   LocalResult = RegisterSystemModule(FUN_180942380);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003bd70(void)
+/**
+ * 初始化字符串处理系统模块AB
+ * 设置字符串处理系统模块AB所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemAB(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9f90 = &UNK_1809fcc58;
   _DAT_180bf9f98 = &DAT_180bf9fa8;
   DAT_180bf9fa8 = 0;
@@ -1454,10 +1556,16 @@ int FUN_18003bd70(void)
   LocalResult = RegisterSystemModule(FUN_1809423a0);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003bde0(void)
+/**
+ * 初始化字符串处理系统模块AC
+ * 设置字符串处理系统模块AC所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemAC(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf9ff0 = &UNK_1809fcc58;
   _DAT_180bf9ff8 = &DAT_180bfa008;
   DAT_180bfa008 = 0;
@@ -1466,10 +1574,16 @@ int FUN_18003bde0(void)
   LocalResult = RegisterSystemModule(FUN_1809423c0);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003be50(void)
+/**
+ * 初始化字符串处理系统模块AD
+ * 设置字符串处理系统模块AD所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemAD(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa050 = &UNK_1809fcc58;
   _DAT_180bfa058 = &DAT_180bfa068;
   DAT_180bfa068 = 0;
@@ -1478,10 +1592,16 @@ int FUN_18003be50(void)
   LocalResult = RegisterSystemModule(FUN_1809423e0);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003bec0(void)
+/**
+ * 初始化字符串处理系统模块AE
+ * 设置字符串处理系统模块AE所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemAE(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa0b0 = &UNK_1809fcc58;
   _DAT_180bfa0b8 = &DAT_180bfa0c8;
   DAT_180bfa0c8 = 0;
@@ -1490,10 +1610,16 @@ int FUN_18003bec0(void)
   LocalResult = RegisterSystemModule(FUN_180942400);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003bf30(void)
+/**
+ * 初始化字符串处理系统模块AF
+ * 设置字符串处理系统模块AF所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemAF(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa110 = &UNK_1809fcc58;
   _DAT_180bfa118 = &DAT_180bfa128;
   DAT_180bfa128 = 0;
@@ -1502,10 +1628,16 @@ int FUN_18003bf30(void)
   LocalResult = RegisterSystemModule(FUN_180942420);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003bfa0(void)
+/**
+ * 初始化字符串处理系统模块AG
+ * 设置字符串处理系统模块AG所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemAG(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa170 = &UNK_1809fcc58;
   _DAT_180bfa178 = &DAT_180bfa188;
   DAT_180bfa188 = 0;
@@ -1514,10 +1646,16 @@ int FUN_18003bfa0(void)
   LocalResult = RegisterSystemModule(FUN_180942440);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003c010(void)
+/**
+ * 初始化字符串处理系统模块AH
+ * 设置字符串处理系统模块AH所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessingSystemAH(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa1d0 = &UNK_1809fcc58;
   _DAT_180bfa1d8 = &DAT_180bfa1e8;
   DAT_180bfa1e8 = 0;
@@ -1529,7 +1667,7 @@ int FUN_18003c010(void)
 int FUN_18003c080(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa230 = &UNK_1809fcc58;
   _DAT_180bfa238 = &DAT_180bfa248;
   DAT_180bfa248 = 0;
@@ -1541,7 +1679,7 @@ int FUN_18003c080(void)
 int FUN_18003c0f0(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa290 = &UNK_1809fcc58;
   _DAT_180bfa298 = &DAT_180bfa2a8;
   DAT_180bfa2a8 = 0;
@@ -1614,7 +1752,7 @@ int ProcessSystemEvent(uint64_t systemId,uint64_t eventType,uint64_t eventData,u
 int FUN_18003d690(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfa780 = &UNK_1809fcc28;
   _DAT_180bfa788 = &DAT_180bfa798;
   DAT_180bfa798 = 0;
@@ -1651,7 +1789,7 @@ int FUN_18003d690(void)
 int FUN_18003d8c0(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfab10 = &UNK_1809fcc28;
   _DAT_180bfab18 = &DAT_180bfab28;
   DAT_180bfab28 = 0;
@@ -1722,7 +1860,7 @@ int HandleSystemRequest(uint64_t requestId,uint64_t requestType,uint64_t request
 int FUN_18003dcc0(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfaef0 = &UNK_18098bb30;
   _DAT_180bfaef8 = &DAT_180bfaf08;
   DAT_180bfaf08 = 0;
@@ -1734,7 +1872,7 @@ int FUN_18003dcc0(void)
 int FUN_18003dd30(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfb310 = &UNK_18098bb30;
   _DAT_180bfb318 = &DAT_180bfb328;
   DAT_180bfb328 = 0;
@@ -1746,7 +1884,7 @@ int FUN_18003dd30(void)
 int FUN_18003dda0(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bfb730 = &UNK_18098bb30;
   _DAT_180bfb738 = &DAT_180bfb748;
   DAT_180bfb748 = 0;
@@ -1764,7 +1902,7 @@ int FUN_18003dda0(void)
 int FUN_18003fb40(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf6498 = &UNK_18098bc80;
   _DAT_180bf64a0 = &DAT_180bf64b0;
   DAT_180bf64b0 = 0;
@@ -1782,7 +1920,7 @@ int FUN_18003fb40(void)
 int FUN_180041a80(void)
 {
   int64_t LocalResult;
-  undefined8 in_R9;
+  uint64_t in_R9;
   _DAT_180bf6558 = &UNK_18098bc80;
   _DAT_180bf6560 = &DAT_180bf6570;
   DAT_180bf6570 = 0;
@@ -5437,7 +5575,7 @@ code_r0x000180329ed1:
   bVar8 = (byte)auStackX_20[0];
   goto LAB_180329ed5;
 }
-undefined8 FUN_180329fa0(longlong param_1,longlong *param_2,undefined4 *param_3,uint param_4)
+undefined8 FUN_180329fa0(longlong param_1,longlong *param_2,uint32_t *param_3,uint param_4)
 {
   longlong *pLocalResult;
   byte bVar2;
