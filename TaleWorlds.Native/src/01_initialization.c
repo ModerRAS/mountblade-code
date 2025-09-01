@@ -770,50 +770,34 @@ void* GetSystemInitializationFunction;
  * 
  * @note 该函数会设置核心系统节点的标识符和数据结构
  */
- * 
- * 该函数负责初始化游戏的核心系统组件，包括系统节点管理、内存分配和
- * 数据表设置。它会遍历系统节点树，查找或创建游戏核心系统节点，
- * 并设置必要的系统标识符和回调函数。
- * 
- * @note 这是系统启动过程中的关键初始化步骤
- */
-/**
+ /**
  * @brief 初始化游戏核心系统
  * 
- * 该函数负责初始化游戏的核心系统组件，包括系统节点管理、内存分配、
- * 数据表设置等。它会遍历系统节点树，查找并初始化游戏核心系统。
- * 
- * @note 这是系统初始化的关键函数，在游戏启动时被调用
- * @note 函数会设置系统数据表指针并初始化核心系统节点
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 负责初始化游戏的核心系统组件，建立系统节点链表，
- * 分配必要的内存资源，并设置核心系统的配置数据。
+ * 负责初始化游戏的核心系统组件，包括系统节点管理、内存分配、
+ * 数据表设置等核心功能。这是游戏系统启动的关键初始化函数。
  */
 void InitializeGameCoreSystem(void)
 {
   bool isSystemNodeActive;
   void** systemRootNodePointer;
-  int memoryCompareResult;
+  int memoryComparisonResult;
   long long* systemDataTablePointer;
   long long memoryAllocationSize;
   void** currentSystemNode;
   void** previousSystemNode;
   void** nextSystemNode;
   void** allocatedSystemNode;
-  void* coreSystemInitFunction;
+  void* coreSystemInitializationFunction;
   
   systemDataTablePointer = (long long*)GetSystemRootPointer();
   systemRootNodePointer = (void**)*systemDataTablePointer;
   isSystemNodeActive = *(bool*)((long long)systemRootNodePointer[1] + 0x19);
-  coreSystemInitFunction = GetGameCoreSystemInitializationFunction;
+  coreSystemInitializationFunction = GetGameCoreSystemInitializationFunction;
   previousSystemNode = systemRootNodePointer;
   currentSystemNode = (void**)systemRootNodePointer[1];
   
   while (!isSystemNodeActive) {
-    memoryCompareResult = memcmp(currentSystemNode + 4, &GAME_CORE_SYSTEM_ID, 0x10);
+    memoryComparisonResult = memcmp(currentSystemNode + 4, &GAME_CORE_SYSTEM_ID, 0x10);
     if (memoryCompareResult < 0) {
       nextSystemNode = (void**)currentSystemNode[2];
       currentSystemNode = previousSystemNode;
@@ -846,14 +830,6 @@ void InitializeGameCoreSystem(void)
 
 /**
  * @brief 初始化系统数据表基础内存分配器
- * 
- * 该函数负责初始化系统的第一个数据表，专门用于管理基础的内存分配操作。
- * 它会设置数据表的基本结构，包括内存块标识符、分配器指针和状态标志。
- * 
- * @note 这是系统初始化过程中的关键步骤，为后续的内存管理奠定基础
- */
-/**
- * @brief 初始化系统数据表基础分配器
  * 
  * 负责初始化系统数据表的基础内存分配器，建立内存分配节点，
  * 并设置基础分配器的配置数据和函数指针。
@@ -17876,16 +17852,16 @@ void WotsMainSDLL(void* param_1)
  * 
  * @param param_1 系统参数
  */
-void InitializeMainSystemController(long long param_1)
+void InitializeMainSystemController(long long systemParameter)
 
 {
   long long systemObject;
   long long *controllerPtr;
   char isActiveFlag;
-  long long *tempStackPtr8;
-  long long **tempStackPtr10;
-  long long *tempStackPtr18;
-  long long *tempStackPtr20;
+  long long *tempSystemData8;
+  long long **tempSystemData10;
+  long long *tempSystemData18;
+  long long *tempSystemData20;
   void* allocationFlags;
   
   allocationFlags = 0xfffffffffffffffe;
@@ -17902,13 +17878,13 @@ void InitializeMainSystemController(long long param_1)
     if (isActiveFlag == '\0') goto LAB_180043e47;
   }
   controllerPtr = (long long *)SystemMemoryAllocationFunction(_DAT_180c8ed18,0xc0,8,3,allocationFlags);
-  tempStackPtr20 = controllerPtr;
+  tempSystemData20 = controllerPtr;
   InitializeSystemDataTableManager(controllerPtr);
   *controllerPtr = (long long)&UNK_1809fe100;
   controllerPtr[3] = -4;
-  tempStackPtr10 = (long long **)controllerPtr;
+  tempSystemData10 = (long long **)controllerPtr;
   (**(code **)(*controllerPtr + 0x28))(controllerPtr);
-  tempStackPtr10 = (long long **)_DAT_180c91048;
+  tempSystemData10 = (long long **)_DAT_180c91048;
   if (_DAT_180c91048 != (long long *)0x0) {
     systemObject = *_DAT_180c91048;
     _DAT_180c91048 = controllerPtr;
@@ -17925,7 +17901,7 @@ void InitializeMainSystemController(long long param_1)
     (**(code **)((void* *)*_DAT_180c91048 + 0x60))();
   }
   controllerPtr = _DAT_180c91048;
-  tempStackPtr18 = _DAT_180c91048;
+  tempSystemData18 = _DAT_180c91048;
   _DAT_180c91048 = (long long *)0x0;
   if (controllerPtr != (long long *)0x0) {
     (**(code **)(*controllerPtr + 0x38))();
@@ -17944,13 +17920,13 @@ LAB_180043e47:
     controllerPtr[3] = -1;
     *controllerPtr = (long long)&UNK_18098bd40;
     controllerPtr[4] = 0x180c91060;
-    tempStackPtr20 = controllerPtr;
+    tempSystemData20 = controllerPtr;
     (**(code **)(*controllerPtr + 0x28))(controllerPtr);
     allocationFlags = _DAT_180c82868;
-    tempStackPtr10 = &tempStackPtr8;
-    tempStackPtr8 = controllerPtr;
+    tempSystemData10 = &tempSystemData8;
+    tempSystemData8 = controllerPtr;
     (**(code **)(*controllerPtr + 0x28))(controllerPtr);
-    SystemManagerInitialize(allocationFlags,&tempStackPtr8);
+    SystemManagerInitialize(allocationFlags,&tempSystemData8);
     (**(code **)(*controllerPtr + 0x38))(controllerPtr);
   }
   return;
