@@ -281,12 +281,12 @@ void* ResourceLargeBufferPool;
  * @warning 调用此函数前必须确保图形子系统已经初始化
  */
 void InitializeTextureManager(void);
-void* textureManagerInstance;
-void* textureSystemContext;
-void* textureCacheHandle;
-void* textureLoaderHandle;
-void* textureMemoryPool;
-void* textureDescriptorTable;
+void* TextureManagerInstance;
+void* TextureSystemContext;
+void* TextureCacheHandle;
+void* TextureLoaderHandle;
+void* TextureMemoryPool;
+void* TextureDescriptorTable;
 
  /**
  * @brief 初始化音频系统
@@ -299,11 +299,11 @@ void* textureDescriptorTable;
  * @warning 调用此函数前必须确保音频硬件设备可用
  */
 void InitializeAudioSystem(void);
-void* audioSystemInstance;
-void* audioDeviceHandle;
-void* audioMixerHandle;
-void* audioBufferPool;
-void* audioStreamManager;
+void* AudioSystemInstance;
+void* AudioDeviceHandle;
+void* AudioMixerHandle;
+void* AudioBufferPool;
+void* AudioStreamManager;
 
  /**
  * @brief 初始化物理引擎
@@ -312,11 +312,11 @@ void* audioStreamManager;
  * 设置碰撞检测、重力模拟和物理计算的相关系统
  */
 void InitializePhysicsEngine(void);
-void* physicsEngineInstance;
-void* physicsWorldHandle;
-void* collisionSystemHandle;
-void* rigidBodyManager;
-void* physicsConstraintSolver;
+void* PhysicsEngineInstance;
+void* PhysicsWorldHandle;
+void* CollisionSystemHandle;
+void* RigidBodyManager;
+void* PhysicsConstraintSolver;
 
  /**
  * @brief 初始化输入管理器
@@ -325,10 +325,10 @@ void* physicsConstraintSolver;
  * 设置键盘、鼠标和手柄输入的处理机制
  */
 void InitializeInputManager(void);
-void* inputSystemInstance;
-void* inputDeviceManager;
-void* keyboardHandler;
-void* mouseHandler;
+void* InputSystemInstance;
+void* InputDeviceManager;
+void* KeyboardHandler;
+void* MouseHandler;
 void* controllerManager;
 void* inputEventQueue;
 
