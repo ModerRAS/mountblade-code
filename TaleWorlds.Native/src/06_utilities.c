@@ -1223,8 +1223,8 @@ undefined SystemMemoryValidationFlag;
 undefined SystemSecurityContextFlag;
 undefined SystemMemoryProtectionFlag;
 void* MemorySecurityConfigData;
-undefined DAT_180bf9930;
-undefined DAT_180bf9938;
+undefined SystemConfigTable1;
+undefined SystemConfigTable2;
 
  void ConfigureMemoryIsolation;
 /**
@@ -1234,7 +1234,7 @@ undefined DAT_180bf9938;
  * 设置进程间内存隔离和保护
  */
 void ConfigureMemoryIsolation;
-undefined DAT_180bf9940;
+undefined SystemConfigTable3;
 undefined DAT_180bf9948;
 void* MemoryIsolationConfigData;
 undefined DAT_180bf9990;
@@ -26241,6 +26241,14 @@ undefined8 DataValidationProcessor(longlong param_1,undefined8 *param_2)
 
 
 
+/**
+ * @brief 数据清理处理器
+ * 
+ * 该函数用于清理数据资源，包括释放内存、重置状态和清理缓存。
+ * 它是一个无参数的函数，使用全局寄存器变量来访问和清理数据。
+ * 
+ * @return undefined8 返回清理结果状态码，0表示成功，非0表示错误
+ */
 undefined8 DataCleanupHandler(void)
 
 {
@@ -26324,7 +26332,17 @@ ef24(void)
 
 
 
-undefined8 FUN_18089ef40(longlong param_1,longlong *param_2)
+/**
+ * @brief 资源批处理器
+ * 
+ * 该函数用于批量处理资源数据，包括批量读取、验证和处理操作。
+ * 它接收资源上下文参数和资源数据句柄数组作为输入，能够高效处理多个资源。
+ * 
+ * @param param_1 资源上下文参数的指针
+ * @param param_2 资源数据句柄数组的指针
+ * @return undefined8 返回批处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ResourceBatchProcessor(longlong param_1,longlong *param_2)
 
 {
   undefined8 resourceHash;
@@ -26373,7 +26391,17 @@ undefined8 FUN_18089ef40(longlong param_1,longlong *param_2)
 
 
 
-undefined8 FUN_18089f0b0(longlong param_1,longlong *param_2)
+/**
+ * @brief 资源标识符处理器
+ * 
+ * 该函数用于处理资源标识符相关的操作，包括资源ID的验证、解析和处理。
+ * 它接收资源上下文参数和资源数据句柄作为输入，用于处理资源的标识信息。
+ * 
+ * @param param_1 资源上下文参数的指针
+ * @param param_2 资源数据句柄的指针
+ * @return undefined8 返回处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ResourceIdentifierProcessor(longlong param_1,longlong *param_2)
 
 {
   undefined8 resourceHash;
