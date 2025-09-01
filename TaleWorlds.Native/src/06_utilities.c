@@ -58091,7 +58091,7 @@ void Unwind_18090a6a0(uint8_t8 param_1,longlong param_2)
 void Unwind_18090a6d0(void)
 
 {
-  _DAT_180d49240 = &SystemDataStructure;
+  SystemDataPointer012 = &SystemDataStructure;
   return;
 }
 
@@ -84477,7 +84477,7 @@ void InitializeSystemDataStructureV(void)
   }
   _DAT_180d49248 = 0;
   _DAT_180d49258 = 0;
-  _DAT_180d49240 = &SystemDataStructure;
+  SystemDataPointer012 = &SystemDataStructure;
   return;
 }
 
