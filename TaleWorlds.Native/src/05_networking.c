@@ -1766,7 +1766,7 @@ int NetworkCompressConnectionData(longlong connectionContext,longlong packetData
   uStack_10 = *(NetworkStatus *)(connectionContext + 0x40);
   uStack_c = *(NetworkStatus *)(connectionContext + 0x44);
   networkStatus1 = func_0x00018074b800(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus2 = FUN_18074b880(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = NetworkProcessBufferHandle(networkStatus1 + packetData,dataSize - networkStatus1,&networkBuffer);
   return networkStatus2 + networkStatus1;
@@ -1804,7 +1804,7 @@ int NetworkHashConnectionData(longlong connectionContext,longlong packetData,int
   uVar2 = *(NetworkByte *)(connectionContext + 0x24);
   uVar1 = *(NetworkStatus *)(connectionContext + 0x20);
   networkStatus3 = func_0x00018074b800(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus4 = FUN_18074b880(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkProcessNetworkHandle(networkStatus3 + packetData,dataSize - networkStatus3,&uStackX_8);
   networkStatus3 = networkStatus3 + networkStatus4;
@@ -1842,15 +1842,15 @@ int ProcessNetworkDataSendRequest(longlong connectionContext,longlong packetData
   networkHandle = *(NetworkHandle *)(connectionContext + 0x18);
   encryptionKey = *(NetworkByte *)(connectionContext + 0x24);
   processedSize = func_0x00018074b800(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  totalProcessedSize = FUN_18074b880(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  totalProcessedSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
   processedSize = processedSize + totalProcessedSize;
   totalProcessedSize = NetworkProcessNetworkHandle(processedSize + packetData,dataSize - processedSize,&networkHandle);
   processedSize = processedSize + totalProcessedSize;
-  totalProcessedSize = FUN_18074b880(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  totalProcessedSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
   processedSize = processedSize + totalProcessedSize;
-  totalProcessedSize = FUN_18074b880(processedSize + packetData,dataSize - processedSize,connectionContext + 0x25);
+  totalProcessedSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,connectionContext + 0x25);
   processedSize = processedSize + totalProcessedSize;
-  totalProcessedSize = FUN_18074b880(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  totalProcessedSize = ProcessNetworkBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
   processedSize = processedSize + totalProcessedSize;
   totalProcessedSize = NetworkBufferEncryptData(processedSize + packetData,dataSize - processedSize,encryptionKey);
   return totalProcessedSize + processedSize;
@@ -1882,7 +1882,7 @@ int ProcessNetworkPacketValidationA(longlong connectionContext,longlong packetDa
   networkStatus3 = func_0x00018074b800(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,connectionContext + 0x28);
+  networkStatus4 = ProcessNetworkBufferData(networkStatus3 + packetData,dataSize - networkStatus3,connectionContext + 0x28);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
@@ -1916,15 +1916,15 @@ int ProcessNetworkPacketEncryptionB(longlong connectionContext,longlong packetDa
   
   uVar1 = *(NetworkByte *)(connectionContext + 0x1c);
   networkStatus2 = func_0x00018074b800(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0x28);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0x28);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0xa8);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0xa8);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = NetworkBufferEncryptData(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
   return networkStatus3 + networkStatus2;
@@ -1954,7 +1954,7 @@ int ProcessNetworkPacketValidationB(longlong connectionContext,longlong packetDa
   uVar2 = *(NetworkStatus *)(connectionContext + 0x18);
   uVar1 = *(NetworkStatus *)(connectionContext + 0x1c);
   networkStatus3 = func_0x00018074b800(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus4 = FUN_18074b880(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = func_0x00018074b7d0(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
   networkStatus3 = networkStatus3 + networkStatus4;
@@ -2110,11 +2110,11 @@ int ProcessNetworkPacketPhaseThree(longlong connectionContext, longlong packetDa
   bufferStatusFour = *(NetworkStatus *)(connectionContext + 0x3c);
   quaternaryNetworkHandle = *(NetworkHandle *)(connectionContext + 0x40);
   firstProcessingStatus = func_0x00018088ecd0(packetData, dataSize, &primaryNetworkHandle);
-  secondProcessingStatus = FUN_18074b880(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b800(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, secondaryNetworkStatus);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
-  secondProcessingStatus = FUN_18074b880(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b800(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, primaryNetworkStatus);
   return secondProcessingStatus + firstProcessingStatus;
@@ -2149,12 +2149,12 @@ int ProcessNetworkPacketPhaseFour(longlong connectionContext, longlong packetDat
   
   primaryNetworkStatus = *(NetworkStatus *)(connectionContext + 0x10);
   secondaryNetworkStatus = *(NetworkStatus *)(connectionContext + 0x14);
-  firstProcessingStatus = FUN_18074b880(packetData, dataSize, connectionContext + 0x18);
-  secondProcessingStatus = FUN_18074b880(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, connectionContext + 0x18);
+  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b800(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, secondaryNetworkStatus);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
-  secondProcessingStatus = FUN_18074b880(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b800(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, primaryNetworkStatus);
   return secondProcessingStatus + firstProcessingStatus;
@@ -2190,19 +2190,19 @@ int ProcessNetworkPacketPhaseOne(longlong connectionContext, longlong packetData
   secondProcessingStatus = *(NetworkStatus *)(connectionContext + 0x1c);
   firstProcessingStatus = *(NetworkStatus *)(connectionContext + 0x18);
   currentOffset = func_0x00018074bda0(packetData, dataSize, *(NetworkHandle *)(connectionContext + 0x10));
-  processedBytes = FUN_18074b880(packetData + currentOffset, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(packetData + currentOffset, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = func_0x00018074b7d0(currentOffset + packetData, dataSize - currentOffset, firstProcessingStatus);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = FUN_18074b880(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = func_0x00018074b7d0(currentOffset + packetData, dataSize - currentOffset, secondProcessingStatus);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = FUN_18074b880(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = func_0x00018074b800(currentOffset + packetData, dataSize - currentOffset, thirdProcessingStatus);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = FUN_18074b880(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = func_0x00018074b800(currentOffset + packetData, dataSize - currentOffset, fourthProcessingStatus);
   return processedBytes + currentOffset;
@@ -2259,11 +2259,11 @@ int ProcessNetworkPacketPhaseTwo(longlong connectionContext, longlong packetData
   currentOffset = currentOffset + processedBytes;
   processedBytes = NetworkProcessBufferHandle(currentOffset + packetData, dataSize - currentOffset, &networkBuffer);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = FUN_18074b880(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = NetworkProcessSecurityContext(currentOffset + packetData, dataSize - currentOffset, &securityContext);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = FUN_18074b880(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = NetworkBufferEncryptData(currentOffset + packetData, dataSize - currentOffset, encryptionKey);
   return processedBytes + currentOffset;
@@ -2327,11 +2327,11 @@ int ProcessNetworkPacketPhaseFour(longlong connectionContext, longlong packetDat
   encryptionFlag = *(NetworkByte *)(connectionContext + 0x1c);
   connectionStatus = *(NetworkStatus *)(connectionContext + 0x18);
   currentOffset = NetworkProcessNetworkHandle(packetData, dataSize, &networkHandle);
-  processedBytes = FUN_18074b880(packetData + currentOffset, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(packetData + currentOffset, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = func_0x00018074b830(currentOffset + packetData, dataSize - currentOffset, connectionStatus);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = FUN_18074b880(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = FUN_18074be90(currentOffset + packetData, dataSize - currentOffset, encryptionFlag);
   return processedBytes + currentOffset;
@@ -2363,11 +2363,11 @@ int ProcessEncryptedNetworkPacket(longlong connectionContext, longlong packetDat
   networkHandle = *(NetworkHandle *)(connectionContext + 0x10);
   encryptionKey = *(NetworkByte *)(connectionContext + 0x1c);
   currentOffset = NetworkProcessNetworkHandle(packetData, dataSize, &networkHandle);
-  processedBytes = FUN_18074b880(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = FUN_18074b880(currentOffset + packetData, dataSize - currentOffset, connectionContext + 0x1d);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, connectionContext + 0x1d);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = FUN_18074b880(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = NetworkBufferEncryptData(currentOffset + packetData, dataSize - currentOffset, encryptionKey);
   return processedBytes + currentOffset;
@@ -2398,12 +2398,12 @@ int ProcessValidatedNetworkPacket(longlong connectionContext, longlong packetDat
   
   encryptionFlag = *(NetworkByte *)(connectionContext + 0x14);
   validationStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  currentOffset = FUN_18074b880(packetData, dataSize, connectionContext + 0x20);
-  processedBytes = FUN_18074b880(packetData + currentOffset, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(packetData, dataSize, connectionContext + 0x20);
+  processedBytes = ProcessNetworkBufferData(packetData + currentOffset, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = func_0x00018074b830(currentOffset + packetData, dataSize - currentOffset, validationStatus);
   currentOffset = currentOffset + processedBytes;
-  processedBytes = FUN_18074b880(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(currentOffset + packetData, dataSize - currentOffset, &g_NetworkBufferDataTemplate);
   currentOffset = currentOffset + processedBytes;
   processedBytes = FUN_18074be90(currentOffset + packetData, dataSize - currentOffset, encryptionFlag);
   return processedBytes + currentOffset;
@@ -2433,12 +2433,12 @@ int ProcessNetworkPacketPhaseOne(longlong connectionContext, longlong packetData
   int cumulativeProcessedSize;
   
   encryptionKey = *(NetworkByte *)(connectionContext + 0x14);
-  firstPhaseStatus = FUN_18074b880(packetData, dataSize, connectionContext + 0x20);
-  secondPhaseStatus = FUN_18074b880(firstPhaseStatus + packetData, dataSize - firstPhaseStatus, &g_NetworkBufferDataTemplate);
+  firstPhaseStatus = ProcessNetworkBufferData(packetData, dataSize, connectionContext + 0x20);
+  secondPhaseStatus = ProcessNetworkBufferData(firstPhaseStatus + packetData, dataSize - firstPhaseStatus, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstPhaseStatus + secondPhaseStatus;
-  secondPhaseStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, connectionContext + 0xa0);
+  secondPhaseStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, connectionContext + 0xa0);
   cumulativeProcessedSize = cumulativeProcessedSize + secondPhaseStatus;
-  secondPhaseStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  secondPhaseStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = cumulativeProcessedSize + secondPhaseStatus;
   secondPhaseStatus = NetworkBufferEncryptData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, encryptionKey);
   return secondPhaseStatus + cumulativeProcessedSize;
@@ -2521,20 +2521,20 @@ int SerializeNetworkConnectionData(longlong connectionData, longlong outputBuffe
   headerField1 = *(NetworkStatus *)(connectionData + 0x2c);
   headerField2 = *(NetworkStatus *)(connectionData + 0x18);
   headerField3 = *(NetworkStatus *)(connectionData + 0x10);
-  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&NetworkSerializationBuffer);
-  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkSerializationBuffer);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,headerField3);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b7d0(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,headerField2);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = FUN_18074b650(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&connectionTimeout);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,headerField1);
   return currentOffset + bytesProcessed;
@@ -2615,20 +2615,20 @@ int SerializeNetworkConfigData(longlong configData, longlong outputBuffer, int b
   configField1 = *(NetworkStatus *)(configData + 0x2c);
   configField2 = *(NetworkStatus *)(configData + 0x18);
   configField3 = *(NetworkStatus *)(configData + 0x10);
-  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&NetworkReservedMemoryRegion2fa0);
-  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&NetworkReservedMemoryRegion2fa0);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,configField3);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b7d0(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,configField2);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = FUN_18074b650(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&configTimeout);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,configField1);
   return currentOffset + bytesProcessed;
@@ -2751,20 +2751,20 @@ int SerializeNetworkPoolData(longlong poolData, longlong outputBuffer, int buffe
   poolField1 = *(NetworkStatus *)(poolData + 0x2c);
   poolField2 = *(NetworkStatus *)(poolData + 0x18);
   poolField3 = *(NetworkStatus *)(poolData + 0x10);
-  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_1809832a0);
-  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&UNK_1809832a0);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,poolField3);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b7d0(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,poolField2);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = FUN_18074b650(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&poolTimeout);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,poolField1);
   return currentOffset + bytesProcessed;
@@ -2791,8 +2791,8 @@ int SerializeNetworkStateData(longlong stateData, longlong outputBuffer, int buf
   int currentOffset;
   
   stateField = *(NetworkStatus *)(stateData + 0x10);
-  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_180982d28);
-  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&UNK_180982d28);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,stateField);
   return currentOffset + bytesProcessed;
@@ -2819,8 +2819,8 @@ int SerializeNetworkEventData(longlong eventData, longlong outputBuffer, int buf
   int currentOffset;
   
   eventField = *(NetworkStatus *)(eventData + 0x10);
-  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_180982e28);
-  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&UNK_180982e28);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,eventField);
   return currentOffset + bytesProcessed;
@@ -2847,8 +2847,8 @@ int SerializeNetworkErrorData(longlong errorData, longlong outputBuffer, int buf
   int currentOffset;
   
   errorField = *(NetworkStatus *)(errorData + 0x10);
-  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_180982da8);
-  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&UNK_180982da8);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,errorField);
   return currentOffset + bytesProcessed;
@@ -2877,12 +2877,12 @@ int SerializeNetworkConnectionInfo(longlong connectionInfo, longlong outputBuffe
   
   addressField = *(NetworkHandle *)(connectionInfo + 0x18);
   infoField = *(NetworkStatus *)(connectionInfo + 0x10);
-  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_1809842c8);
-  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&UNK_1809842c8);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,infoField);
   bytesProcessed = bytesProcessed + currentOffset;
-  currentOffset = FUN_18074b880(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  currentOffset = ProcessNetworkBufferData(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074bda0(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,addressField);
   return currentOffset + bytesProcessed;
@@ -2909,8 +2909,8 @@ int SerializeNetworkStatsData(longlong statsData, longlong outputBuffer, int buf
   int currentOffset;
   
   statsField = *(NetworkStatus *)(statsData + 0x10);
-  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_1809841c8);
-  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
+  bytesProcessed = ProcessNetworkBufferData(outputBuffer,bufferSize,&UNK_1809841c8);
+  currentOffset = ProcessNetworkBufferData(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,statsField);
   return currentOffset + bytesProcessed;
@@ -2984,12 +2984,12 @@ int ProcessNetworkPacketPhaseTwo(longlong connectionContext, longlong packetData
   
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
-  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &UNK_180984348);
-  secondProcessingStatus = FUN_18074b880(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &UNK_180984348);
+  secondProcessingStatus = ProcessNetworkBufferData(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b800(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, firstNetworkFlag);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
-  secondProcessingStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b830(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
   return secondProcessingStatus + cumulativeProcessedSize;
@@ -3021,12 +3021,12 @@ int ProcessNetworkPacketPhaseThree(longlong connectionContext, longlong packetDa
   
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &NetworkConnectionPhaseOneTemplate);
-  secondProcessingStatus = FUN_18074b880(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &NetworkConnectionPhaseOneTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b800(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
-  secondProcessingStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b7d0(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, firstNetworkFlag);
   return secondProcessingStatus + cumulativeProcessedSize;
@@ -3055,7 +3055,7 @@ int ProcessNetworkPacketPhaseFour(longlong connectionContext, longlong packetDat
   int secondProcessingStatus;
   
   networkFlag = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &NetworkConnectionPhaseTwoTemplate);
+  firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &NetworkConnectionPhaseTwoTemplate);
   secondProcessingStatus = NetworkBufferCopyData(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &NetworkBufferDataTemplate);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b800(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, networkFlag);
@@ -3088,12 +3088,12 @@ int ValidateNetworkConnectionPacket(longlong connectionContext, longlong packetD
   
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
-  firstValidationStatus = FUN_18074b880(packetData, dataSize, &NetworkConnectionValidationTemplate);
-  secondValidationStatus = FUN_18074b880(firstValidationStatus + packetData, dataSize - firstValidationStatus, &g_NetworkBufferDataTemplate);
+  firstValidationStatus = ProcessNetworkBufferData(packetData, dataSize, &NetworkConnectionValidationTemplate);
+  secondValidationStatus = ProcessNetworkBufferData(firstValidationStatus + packetData, dataSize - firstValidationStatus, &g_NetworkBufferDataTemplate);
   cumulativeValidationResult = firstValidationStatus + secondValidationStatus;
   secondValidationStatus = func_0x00018074b800(cumulativeValidationResult + packetData, dataSize - cumulativeValidationResult, secondNetworkFlag);
   cumulativeValidationResult = cumulativeValidationResult + secondValidationStatus;
-  secondValidationStatus = FUN_18074b880(cumulativeValidationResult + packetData, dataSize - cumulativeValidationResult, &g_NetworkBufferDataTemplate);
+  secondValidationStatus = ProcessNetworkBufferData(cumulativeValidationResult + packetData, dataSize - cumulativeValidationResult, &g_NetworkBufferDataTemplate);
   cumulativeValidationResult = cumulativeValidationResult + secondValidationStatus;
   secondValidationStatus = func_0x00018074b800(cumulativeValidationResult + packetData, dataSize - cumulativeValidationResult, firstNetworkFlag);
   return secondValidationStatus + cumulativeValidationResult;
@@ -3125,12 +3125,12 @@ int ProcessNetworkPacketPhaseFive(longlong connectionContext, longlong packetDat
   
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &UNK_1809833b0);
-  secondProcessingStatus = FUN_18074b880(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &UNK_1809833b0);
+  secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b800(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
-  secondProcessingStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b7d0(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, firstNetworkFlag);
   return secondProcessingStatus + cumulativeProcessedSize;
@@ -3164,16 +3164,16 @@ int ProcessNetworkPacketPhaseSix(longlong connectionContext, longlong packetData
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x1c);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   thirdNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &UNK_180983440);
-  secondProcessingStatus = FUN_18074b880(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &UNK_180983440);
+  secondProcessingStatus = ProcessNetworkBufferData(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b800(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, thirdNetworkFlag);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
-  secondProcessingStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b7d0(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
-  secondProcessingStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  secondProcessingStatus = ProcessNetworkBufferData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b7d0(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, firstNetworkFlag);
   return secondProcessingStatus + cumulativeProcessedSize;
@@ -3205,16 +3205,16 @@ int ProcessNetworkPacketHeader(longlong connectionContext,longlong packetData,in
   uVar1 = *(NetworkStatus *)(connectionContext + 0x1c);
   uVar2 = *(NetworkStatus *)(connectionContext + 0x18);
   uVar3 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus4 = FUN_18074b880(packetData,dataSize,&UNK_1809834d0);
-  iVar5 = FUN_18074b880(packetData + networkStatus4,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
+  networkStatus4 = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809834d0);
+  iVar5 = ProcessNetworkBufferData(packetData + networkStatus4,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
   networkStatus4 = networkStatus4 + iVar5;
   iVar5 = func_0x00018074b800(networkStatus4 + packetData,dataSize - networkStatus4,uVar3);
   networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = FUN_18074b880(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
+  iVar5 = ProcessNetworkBufferData(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
   networkStatus4 = networkStatus4 + iVar5;
   iVar5 = func_0x00018074b7d0(networkStatus4 + packetData,dataSize - networkStatus4,uVar2);
   networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = FUN_18074b880(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
+  iVar5 = ProcessNetworkBufferData(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
   networkStatus4 = networkStatus4 + iVar5;
   iVar5 = func_0x00018074b800(networkStatus4 + packetData,dataSize - networkStatus4,uVar1);
   return iVar5 + networkStatus4;
@@ -3243,12 +3243,12 @@ int ProcessNetworkPacketWithMultipleBuffers(longlong connectionContext,longlong 
   
   primaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x18);
   secondaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingOffset = FUN_18074b880(packetData,dataSize,&UNK_180983680);
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983680);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b800(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,secondaryBufferStatus);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b7d0(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,primaryBufferStatus);
   return secondProcessingOffset + firstProcessingOffset;
@@ -3275,7 +3275,7 @@ int ProcessNetworkPacketWithBufferCopy(longlong connectionContext,longlong packe
   int copiedDataSize;
   
   bufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  initialProcessedSize = FUN_18074b880(packetData,dataSize,&UNK_180983560);
+  initialProcessedSize = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983560);
   copiedDataSize = NetworkBufferCopyData(packetData + initialProcessedSize,dataSize - initialProcessedSize,&NetworkBufferDataTemplate);
   initialProcessedSize = initialProcessedSize + copiedDataSize;
   copiedDataSize = func_0x00018074b800(initialProcessedSize + packetData,dataSize - initialProcessedSize,bufferStatus);
@@ -3303,7 +3303,7 @@ int ProcessNetworkPacketWithAlternateBuffer(longlong connectionContext,longlong 
   int copiedDataSize;
   
   alternateBufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  initialProcessedSize = FUN_18074b880(packetData,dataSize,&UNK_180983710);
+  initialProcessedSize = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983710);
   copiedDataSize = NetworkBufferCopyData(packetData + initialProcessedSize,dataSize - initialProcessedSize,&NetworkBufferDataTemplate);
   initialProcessedSize = initialProcessedSize + copiedDataSize;
   copiedDataSize = func_0x00018074b800(initialProcessedSize + packetData,dataSize - initialProcessedSize,alternateBufferStatus);
@@ -3331,7 +3331,7 @@ int ProcessNetworkPacketWithSpecialBuffer(longlong connectionContext,longlong pa
   int copiedDataSize;
   
   specialBufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  initialProcessedSize = FUN_18074b880(packetData,dataSize,&UNK_1809835f0);
+  initialProcessedSize = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809835f0);
   copiedDataSize = NetworkBufferCopyData(packetData + initialProcessedSize,dataSize - initialProcessedSize,&NetworkBufferDataTemplate);
   initialProcessedSize = initialProcessedSize + copiedDataSize;
   copiedDataSize = func_0x00018074b800(initialProcessedSize + packetData,dataSize - initialProcessedSize,specialBufferStatus);
@@ -3361,12 +3361,12 @@ int ProcessNetworkPacketWithHandle(longlong connectionContext,longlong packetDat
   
   networkHandle = *(NetworkHandle *)(connectionContext + 0x18);
   bufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingOffset = FUN_18074b880(packetData,dataSize,&UNK_180983e68);
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983e68);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b800(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,bufferStatus);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074bda0(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,networkHandle);
   return secondProcessingOffset + firstProcessingOffset;
@@ -3396,12 +3396,12 @@ int ProcessNetworkPacketStream(longlong connectionContext,longlong packetData,in
   
   connectionState = *(NetworkStatus *)(connectionContext + 0x18);
   networkFlags = *(NetworkStatus *)(connectionContext + 0x10);
-  streamOffset = FUN_18074b880(packetData,dataSize,&UNK_180983de0);
-  processedBytes = FUN_18074b880(streamOffset + packetData,dataSize - streamOffset,&g_NetworkBufferDataTemplate);
+  streamOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983de0);
+  processedBytes = ProcessNetworkBufferData(streamOffset + packetData,dataSize - streamOffset,&g_NetworkBufferDataTemplate);
   streamOffset = streamOffset + processedBytes;
   processedBytes = func_0x00018074b800(streamOffset + packetData,dataSize - streamOffset,networkFlags);
   streamOffset = streamOffset + processedBytes;
-  processedBytes = FUN_18074b880(streamOffset + packetData,dataSize - streamOffset,&g_NetworkBufferDataTemplate);
+  processedBytes = ProcessNetworkBufferData(streamOffset + packetData,dataSize - streamOffset,&g_NetworkBufferDataTemplate);
   streamOffset = streamOffset + processedBytes;
   processedBytes = func_0x00018074b800(streamOffset + packetData,dataSize - streamOffset,connectionState);
   return processedBytes + streamOffset;
@@ -3429,7 +3429,7 @@ int DecodePacketDataStream(longlong connectionContext,longlong packetData,int da
   int decodedSize;
   
   connectionStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  dataOffset = FUN_18074b880(packetData,dataSize,&UNK_180983ce0);
+  dataOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983ce0);
   decodedSize = NetworkBufferCopyData(packetData + dataOffset,dataSize - dataOffset,&NetworkBufferDataTemplate);
   dataOffset = dataOffset + decodedSize;
   decodedSize = func_0x00018074b800(dataOffset + packetData,dataSize - dataOffset,connectionStatus);
@@ -3458,7 +3458,7 @@ int ValidateNetworkPacketHeader(longlong connectionContext,longlong packetData,i
   int validationSize;
   
   connectionStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  headerOffset = FUN_18074b880(packetData,dataSize,&UNK_180983d60);
+  headerOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983d60);
   validationSize = NetworkBufferCopyData(packetData + headerOffset,dataSize - headerOffset,&NetworkBufferDataTemplate);
   headerOffset = headerOffset + validationSize;
   validationSize = func_0x00018074b800(headerOffset + packetData,dataSize - headerOffset,connectionStatus);
@@ -3507,12 +3507,12 @@ int ProcessNetworkConnectionProtocol(longlong connectionContext,longlong packetD
   connectionState = *(NetworkStatus *)(connectionContext + 0x3c);
   errorCode = *(NetworkStatus *)(connectionContext + 0x40);
   statusFlags = *(NetworkStatus *)(connectionContext + 0x44);
-  dataOffset = FUN_18074b880(packetData,dataSize,&UNK_1809838a8);
+  dataOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809838a8);
   processedSize = NetworkBufferCopyData(packetData + dataOffset,dataSize - dataOffset,&NetworkBufferDataTemplate);
   dataOffset = dataOffset + processedSize;
   processedSize = func_0x00018074b800(dataOffset + packetData,dataSize - dataOffset,connectionFlags);
   dataOffset = dataOffset + processedSize;
-  processedSize = FUN_18074b880(dataOffset + packetData,dataSize - dataOffset,&g_NetworkBufferDataTemplate);
+  processedSize = ProcessNetworkBufferData(dataOffset + packetData,dataSize - dataOffset,&g_NetworkBufferDataTemplate);
   dataOffset = dataOffset + processedSize;
   processedSize = FUN_18088ebb0(dataOffset + packetData,dataSize - dataOffset,&primaryBuffer);
   return processedSize + dataOffset;
@@ -3542,12 +3542,12 @@ int HandleNetworkConnectionRequest(longlong connectionContext,longlong packetDat
   
   connectionState = *(NetworkStatus *)(connectionContext + 0x18);
   requestFlags = *(NetworkStatus *)(connectionContext + 0x10);
-  requestOffset = FUN_18074b880(packetData,dataSize,&UNK_180983930);
-  processedSize = FUN_18074b880(requestOffset + packetData,dataSize - requestOffset,&g_NetworkBufferDataTemplate);
+  requestOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983930);
+  processedSize = ProcessNetworkBufferData(requestOffset + packetData,dataSize - requestOffset,&g_NetworkBufferDataTemplate);
   requestOffset = requestOffset + processedSize;
   processedSize = func_0x00018074b800(requestOffset + packetData,dataSize - requestOffset,requestFlags);
   requestOffset = requestOffset + processedSize;
-  processedSize = FUN_18074b880(requestOffset + packetData,dataSize - requestOffset,&g_NetworkBufferDataTemplate);
+  processedSize = ProcessNetworkBufferData(requestOffset + packetData,dataSize - requestOffset,&g_NetworkBufferDataTemplate);
   requestOffset = requestOffset + processedSize;
   processedSize = func_0x00018074b800(requestOffset + packetData,dataSize - requestOffset,connectionState);
   return processedSize + requestOffset;
@@ -3580,20 +3580,20 @@ int ProcessNetworkPacketWithEncryptionFlag(longlong connectionContext,longlong p
   encryptionFlag = *(NetworkByte *)(connectionContext + 0x24);
   secondaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
   primaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x20);
-  firstProcessingOffset = FUN_18074b880(packetData,dataSize,&UNK_180983ef0);
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983ef0);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b800(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,secondaryBufferStatus);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = FUN_18088ece0(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&networkHandle);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b830(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,primaryBufferStatus);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = FUN_18074be90(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,encryptionFlag);
   return secondProcessingOffset + firstProcessingOffset;
@@ -3626,8 +3626,8 @@ int ProcessNetworkPacketMultiPhase(longlong connectionContext,longlong packetDat
   uStackX_8 = *(NetworkHandle *)(connectionContext + 0x18);
   uVar1 = *(NetworkByte *)(connectionContext + 0x24);
   uVar2 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180983f78);
-  networkStatus4 = FUN_18074b880(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983f78);
+  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
   networkStatus3 = networkStatus3 + networkStatus4;
@@ -3637,7 +3637,7 @@ int ProcessNetworkPacketMultiPhase(longlong connectionContext,longlong packetDat
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,connectionContext + 0x25);
+  networkStatus4 = ProcessNetworkBufferData(networkStatus3 + packetData,dataSize - networkStatus3,connectionContext + 0x25);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
@@ -3670,20 +3670,20 @@ int ProcessNetworkPacketWithBuffer(longlong connectionContext, longlong packetDa
   encryptionFlag = *(NetworkByte *)(connectionContext + 0x1c);
   connectionState = *(NetworkStatus *)(connectionContext + 0x10);
   primaryBuffer = *(NetworkStatus *)(connectionContext + 0x18);
-  firstProcessingOffset = FUN_18074b880(packetData, dataSize, &UNK_1809840a0);
-  secondProcessingOffset = FUN_18074b880(packetData + firstProcessingOffset, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData, dataSize, &UNK_1809840a0);
+  secondProcessingOffset = ProcessNetworkBufferData(packetData + firstProcessingOffset, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b800(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionState);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionContext + 0x28);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionContext + 0x28);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b830(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, primaryBuffer);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = FUN_18074be90(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, encryptionFlag);
   return secondProcessingOffset + firstProcessingOffset;
@@ -3712,20 +3712,20 @@ int ProcessNetworkPacketWithExtendedContext(longlong connectionContext, longlong
   
   encryptionFlag = *(NetworkByte *)(connectionContext + 0x1c);
   connectionState = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingOffset = FUN_18074b880(packetData, dataSize, &UNK_180984130);
-  secondProcessingOffset = FUN_18074b880(packetData + firstProcessingOffset, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData, dataSize, &UNK_180984130);
+  secondProcessingOffset = ProcessNetworkBufferData(packetData + firstProcessingOffset, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b800(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionState);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionContext + 0x28);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionContext + 0x28);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionContext + 0xa8);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionContext + 0xa8);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = FUN_18074be90(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, encryptionFlag);
   return secondProcessingOffset + firstProcessingOffset;
@@ -3754,12 +3754,12 @@ int ProcessNetworkPacketSimplified(longlong connectionContext, longlong packetDa
   
   encryptionFlag = *(NetworkByte *)(connectionContext + 0x18);
   connectionState = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingOffset = FUN_18074b880(packetData, dataSize, &UNK_180983ac8);
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData, dataSize, &UNK_180983ac8);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b800(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionState);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = FUN_18074be90(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, encryptionFlag);
   return secondProcessingOffset + firstProcessingOffset;
@@ -3812,16 +3812,16 @@ int ProcessNetworkPacketWithMultipleStatus(longlong connectionContext, longlong 
   primaryBuffer = *(NetworkStatus *)(connectionContext + 0x18);
   connectionState = *(NetworkStatus *)(connectionContext + 0x10);
   secondaryBuffer = *(NetworkStatus *)(connectionContext + 0x1c);
-  firstProcessingOffset = FUN_18074b880(packetData, dataSize, &UNK_1809839b8);
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData, dataSize, &UNK_1809839b8);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b800(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionState);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b7d0(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, primaryBuffer);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b830(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, secondaryBuffer);
   return secondProcessingOffset + firstProcessingOffset;
@@ -3853,16 +3853,16 @@ int ProcessNetworkPacketWithFullContext(longlong connectionContext,longlong pack
   encryptionFlag = *(NetworkStatus *)(connectionContext + 0x18);
   connectionState = *(NetworkStatus *)(connectionContext + 0x10);
   bufferStatus = *(NetworkStatus *)(connectionContext + 0x1c);
-  firstProcessingOffset = FUN_18074b880(packetData,dataSize,&UNK_180983a40);
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983a40);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b800(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,connectionState);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b7d0(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,encryptionFlag);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
-  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = func_0x00018074b830(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,bufferStatus);
   return secondProcessingOffset + firstProcessingOffset;
@@ -3892,7 +3892,7 @@ int ProcessNetworkPacketWithBufferTemplate(longlong connectionContext,longlong p
   
   uVar1 = *(NetworkStatus *)(connectionContext + 0x18);
   uVar2 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180983c50);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983c50);
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
@@ -3946,7 +3946,7 @@ int ProcessNetworkConnectionBasicPacket(longlong connectionContext, longlong pac
   int secondProcessingStatus;
   
   connectionStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingStatus = FUN_18074b880(packetData,dataSize,&UNK_180983b50);
+  firstProcessingStatus = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983b50);
   secondProcessingStatus = NetworkBufferCopyData(packetData + firstProcessingStatus,dataSize - firstProcessingStatus,&NetworkBufferDataTemplate);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b800(firstProcessingStatus + packetData,dataSize - firstProcessingStatus,connectionStatus);
@@ -3976,7 +3976,7 @@ int ProcessNetworkConnectionAdvancedPacket(longlong connectionContext,longlong p
   
   connectionTimeout = *(NetworkStatus *)(connectionContext + 0x18);
   connectionFlags = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingStatus = FUN_18074b880(packetData,dataSize,&NetworkAdvancedProcessingBuffer);
+  firstProcessingStatus = ProcessNetworkBufferData(packetData,dataSize,&NetworkAdvancedProcessingBuffer);
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
@@ -4005,12 +4005,12 @@ int FUN_180843ce0(longlong connectionContext,longlong packetData,int dataSize)
   uStack_10 = *(NetworkStatus *)(connectionContext + 0x18);
   uStack_c = *(NetworkStatus *)(connectionContext + 0x1c);
   uVar1 = *(NetworkStatus *)(connectionContext + 0x20);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_1809820b0);
+  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809820b0);
   networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = FUN_18074b650(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
   return networkStatus3 + networkStatus2;
@@ -4034,12 +4034,12 @@ int FUN_180843d90(longlong connectionContext,longlong packetData,int dataSize)
   uStack_10 = *(NetworkStatus *)(connectionContext + 0x18);
   uStack_c = *(NetworkStatus *)(connectionContext + 0x1c);
   uVar1 = *(NetworkStatus *)(connectionContext + 0x20);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180981ec0);
+  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180981ec0);
   networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = FUN_18074b650(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
   return networkStatus3 + networkStatus2;
@@ -4055,7 +4055,7 @@ int FUN_180843e40(longlong connectionContext,longlong packetData,int dataSize)
   int networkStatus3;
   
   uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180982878);
+  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982878);
   networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = func_0x00018074b7d0(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
@@ -4096,7 +4096,7 @@ int FUN_180843ee0(longlong connectionContext,longlong packetData,int dataSize)
   
   uVar1 = *(NetworkStatus *)(connectionContext + 0x14);
   uVar2 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180982a98);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982a98);
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = func_0x00018074b7d0(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
@@ -4125,12 +4125,12 @@ int FUN_180843fa0(longlong connectionContext,longlong packetData,int dataSize)
   uStack_10 = *(NetworkStatus *)(connectionContext + 0x18);
   uStack_c = *(NetworkStatus *)(connectionContext + 0x1c);
   uVar1 = *(NetworkStatus *)(connectionContext + 0x20);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180981fc0);
+  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180981fc0);
   networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = FUN_18074b650(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
   return networkStatus3 + networkStatus2;
@@ -4154,12 +4154,12 @@ int FUN_180844050(longlong connectionContext,longlong packetData,int dataSize)
   uStack_10 = *(NetworkStatus *)(connectionContext + 0x18);
   uStack_c = *(NetworkStatus *)(connectionContext + 0x1c);
   uVar1 = *(NetworkStatus *)(connectionContext + 0x20);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180981dc0);
+  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180981dc0);
   networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = FUN_18074b650(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
   return networkStatus3 + networkStatus2;
@@ -4183,12 +4183,12 @@ int FUN_180844100(longlong connectionContext,longlong packetData,int dataSize)
   uStack_10 = *(NetworkStatus *)(connectionContext + 0x18);
   uStack_c = *(NetworkStatus *)(connectionContext + 0x1c);
   uVar1 = *(NetworkStatus *)(connectionContext + 0x20);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180981f40);
+  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180981f40);
   networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = FUN_18074b650(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
   return networkStatus3 + networkStatus2;
@@ -4212,12 +4212,12 @@ int FUN_1808441b0(longlong connectionContext,longlong packetData,int dataSize)
   uStack_10 = *(NetworkStatus *)(connectionContext + 0x18);
   uStack_c = *(NetworkStatus *)(connectionContext + 0x1c);
   uVar1 = *(NetworkStatus *)(connectionContext + 0x20);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180981d40);
+  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180981d40);
   networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = FUN_18074b650(networkStatus2 + packetData,dataSize - networkStatus2,&uStack_18);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
   return networkStatus3 + networkStatus2;
@@ -4233,7 +4233,7 @@ int FUN_180844260(longlong connectionContext,longlong packetData,int dataSize)
   int networkStatus3;
   
   uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180982978);
+  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982978);
   networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = func_0x00018074b7d0(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
@@ -4271,12 +4271,12 @@ int ProcessNetworkPacketHeader(longlong connectionContext,longlong packetData,in
   connectionOffset24 = *(NetworkStatus *)(connectionContext + 0x18);
   connectionOffset28 = *(NetworkStatus *)(connectionContext + 0x1c);
   encryptionKey = *(NetworkStatus *)(connectionContext + 0x20);
-  packetProcessingOffset = FUN_18074b880(packetData,dataSize,&UNK_180982038);
+  packetProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982038);
   dataProcessedSize = NetworkBufferCopyData(packetData + packetProcessingOffset,dataSize - packetProcessingOffset,&NetworkBufferDataTemplate);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = FUN_18074b650(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&connectionOffset16);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
-  dataProcessedSize = FUN_18074b880(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
+  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = func_0x00018074b800(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,encryptionKey);
   return dataProcessedSize + packetProcessingOffset;
@@ -4312,12 +4312,12 @@ int ProcessNetworkPacketBody(longlong connectionContext,longlong packetData,int 
   connectionOffset24 = *(NetworkStatus *)(connectionContext + 0x18);
   connectionOffset28 = *(NetworkStatus *)(connectionContext + 0x1c);
   encryptionKey = *(NetworkStatus *)(connectionContext + 0x20);
-  packetProcessingOffset = FUN_18074b880(packetData,dataSize,&UNK_180981e40);
+  packetProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180981e40);
   dataProcessedSize = NetworkBufferCopyData(packetData + packetProcessingOffset,dataSize - packetProcessingOffset,&NetworkBufferDataTemplate);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = FUN_18074b650(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&connectionOffset16);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
-  dataProcessedSize = FUN_18074b880(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
+  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = func_0x00018074b800(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,encryptionKey);
   return dataProcessedSize + packetProcessingOffset;
@@ -4365,16 +4365,16 @@ int ProcessNetworkPacketComplete(longlong connectionContext,longlong packetData,
   connectionOffset58 = *(NetworkStatus *)(connectionContext + 0x38);
   connectionOffset5c = *(NetworkStatus *)(connectionContext + 0x3c);
   connectionOffset60 = *(NetworkHandle *)(connectionContext + 0x40);
-  packetProcessingOffset = FUN_18074b880(packetData,dataSize,&UNK_180982670);
-  dataProcessedSize = FUN_18074b880(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
+  packetProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982670);
+  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = func_0x00018088ecd0(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&connectionOffset16);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
-  dataProcessedSize = FUN_18074b880(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
+  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = func_0x00018074b800(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,encryptionKey2);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
-  dataProcessedSize = FUN_18074b880(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
+  dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = func_0x00018074b800(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,encryptionKey1);
   return dataProcessedSize + packetProcessingOffset;
@@ -4392,10 +4392,10 @@ int FUN_180844570(longlong connectionContext,longlong packetData,int dataSize)
   
   uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
   uVar2 = *(NetworkStatus *)(connectionContext + 0x14);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180982570);
-  networkStatus4 = FUN_18074b880(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982570);
+  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,connectionContext + 0x18);
+  networkStatus4 = ProcessNetworkBufferData(networkStatus3 + packetData,dataSize - networkStatus3,connectionContext + 0x18);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
@@ -4425,24 +4425,24 @@ int FUN_180844650(longlong connectionContext,longlong packetData,int dataSize)
   uVar3 = *(NetworkStatus *)(connectionContext + 0x1c);
   uVar4 = *(NetworkStatus *)(connectionContext + 0x18);
   uVar5 = *(NetworkHandle *)(connectionContext + 0x10);
-  iVar6 = FUN_18074b880(packetData,dataSize,&UNK_1809825f0);
-  iVar7 = FUN_18074b880(packetData + iVar6,dataSize - iVar6,&g_NetworkBufferDataTemplate);
+  iVar6 = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809825f0);
+  iVar7 = ProcessNetworkBufferData(packetData + iVar6,dataSize - iVar6,&g_NetworkBufferDataTemplate);
   iVar6 = iVar6 + iVar7;
   iVar7 = func_0x00018074bda0(iVar6 + packetData,dataSize - iVar6,uVar5);
   iVar6 = iVar6 + iVar7;
-  iVar7 = FUN_18074b880(iVar6 + packetData,dataSize - iVar6,&g_NetworkBufferDataTemplate);
+  iVar7 = ProcessNetworkBufferData(iVar6 + packetData,dataSize - iVar6,&g_NetworkBufferDataTemplate);
   iVar6 = iVar6 + iVar7;
   iVar7 = func_0x00018074b7d0(iVar6 + packetData,dataSize - iVar6,uVar4);
   iVar6 = iVar6 + iVar7;
-  iVar7 = FUN_18074b880(iVar6 + packetData,dataSize - iVar6,&g_NetworkBufferDataTemplate);
+  iVar7 = ProcessNetworkBufferData(iVar6 + packetData,dataSize - iVar6,&g_NetworkBufferDataTemplate);
   iVar6 = iVar6 + iVar7;
   iVar7 = func_0x00018074b7d0(iVar6 + packetData,dataSize - iVar6,uVar3);
   iVar6 = iVar6 + iVar7;
-  iVar7 = FUN_18074b880(iVar6 + packetData,dataSize - iVar6,&g_NetworkBufferDataTemplate);
+  iVar7 = ProcessNetworkBufferData(iVar6 + packetData,dataSize - iVar6,&g_NetworkBufferDataTemplate);
   iVar6 = iVar6 + iVar7;
   iVar7 = func_0x00018074b800(iVar6 + packetData,dataSize - iVar6,uVar2);
   iVar6 = iVar6 + iVar7;
-  iVar7 = FUN_18074b880(iVar6 + packetData,dataSize - iVar6,&g_NetworkBufferDataTemplate);
+  iVar7 = ProcessNetworkBufferData(iVar6 + packetData,dataSize - iVar6,&g_NetworkBufferDataTemplate);
   iVar6 = iVar6 + iVar7;
   iVar7 = func_0x00018074b800(iVar6 + packetData,dataSize - iVar6,uVar1);
   return iVar7 + iVar6;
@@ -4484,7 +4484,7 @@ int FUN_1808447d0(longlong connectionContext,longlong packetData,int dataSize)
   uStack_14 = *(NetworkStatus *)(connectionContext + 0x38);
   uStack_10 = *(NetworkStatus *)(connectionContext + 0x3c);
   uStack_c = *(NetworkStatus *)(connectionContext + 0x40);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180982460);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982460);
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = func_0x00018074b7d0(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
@@ -4515,8 +4515,8 @@ int FUN_180844910(longlong connectionContext,longlong packetData,int dataSize)
   
   uVar2 = *(NetworkStatus *)(connectionContext + 0x10);
   uVar1 = *(NetworkStatus *)(connectionContext + 0x14);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_1809824e8);
-  networkStatus4 = FUN_18074b880(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809824e8);
+  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = func_0x00018074b7d0(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
   networkStatus3 = networkStatus3 + networkStatus4;
@@ -4536,7 +4536,7 @@ int FUN_1808449c0(longlong connectionContext,longlong packetData,int dataSize)
   int networkStatus3;
   
   uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_1809823e0);
+  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809823e0);
   networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = func_0x00018074b7d0(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
@@ -4557,8 +4557,8 @@ int FUN_180844a30(longlong connectionContext,longlong packetData,int dataSize)
   uStackX_8 = *(NetworkHandle *)(connectionContext + 0x10);
   uVar2 = *(NetworkByte *)(connectionContext + 0x1c);
   uVar1 = *(NetworkStatus *)(connectionContext + 0x18);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180982128);
-  networkStatus4 = FUN_18074b880(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982128);
+  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkProcessNetworkHandle(networkStatus3 + packetData,dataSize - networkStatus3,&uStackX_8);
   networkStatus3 = networkStatus3 + networkStatus4;
@@ -4584,16 +4584,16 @@ int FUN_180844b20(longlong connectionContext,longlong packetData,int dataSize)
   
   uStackX_8 = *(NetworkHandle *)(connectionContext + 0x10);
   uVar1 = *(NetworkByte *)(connectionContext + 0x1c);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_1809821b0);
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809821b0);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = FUN_18088ece0(networkStatus2 + packetData,dataSize - networkStatus2,&uStackX_8);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0x1d);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0x1d);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = NetworkBufferEncryptData(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
   return networkStatus3 + networkStatus2;
@@ -4611,10 +4611,10 @@ int FUN_180844c00(longlong connectionContext,longlong packetData,int dataSize)
   
   uVar2 = *(NetworkByte *)(connectionContext + 0x14);
   uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_1809822c8);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809822c8);
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,connectionContext + 0x20);
+  networkStatus4 = ProcessNetworkBufferData(networkStatus3 + packetData,dataSize - networkStatus3,connectionContext + 0x20);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
@@ -4636,16 +4636,16 @@ int FUN_180844d00(longlong connectionContext,longlong packetData,int dataSize)
   int networkStatus3;
   
   uVar1 = *(NetworkByte *)(connectionContext + 0x14);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180982350);
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982350);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0x20);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0x20);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0xa0);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0xa0);
   networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = NetworkBufferEncryptData(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
   return networkStatus3 + networkStatus2;
@@ -4659,10 +4659,10 @@ int FUN_180844e10(longlong connectionContext,longlong packetData,int dataSize)
   int networkStatus1;
   int networkStatus2;
   
-  networkStatus1 = FUN_18074b880(packetData,dataSize,&UNK_180982770);
-  networkStatus2 = FUN_18074b880(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus1 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982770);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(networkStatus1 + packetData,dataSize - networkStatus1,connectionContext + 0x10);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,connectionContext + 0x10);
   return networkStatus2 + networkStatus1;
 }
 
@@ -4678,8 +4678,8 @@ int FUN_180844e90(longlong connectionContext,longlong packetData,int dataSize)
   
   uVar2 = *(NetworkStatus *)(connectionContext + 0x10);
   uVar1 = *(NetworkStatus *)(connectionContext + 0x18);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180984530);
-  networkStatus4 = FUN_18074b880(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180984530);
+  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
   networkStatus3 = networkStatus3 + networkStatus4;
@@ -4829,8 +4829,8 @@ void FUN_1808451c0(NetworkHandle connectionContext,NetworkHandle packetData,Netw
   networkBuffer = NetworkSecurityGuardValue ^ (ulonglong)auStack_168;
   networkStatus1 = FUN_18083fc50();
   if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
-    networkStatus2 = FUN_18074b880(auStack_138,0x100,packetData);
-    networkStatus3 = FUN_18074b880(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus2 = ProcessNetworkBufferData(auStack_138,0x100,packetData);
+    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
     func_0x00018074bda0(auStack_138 + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),dataSize);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -4851,8 +4851,8 @@ void FUN_180845204(void)
   int networkStatus2;
   NetworkStatus unaff_ESI;
   
-  networkStatus1 = FUN_18074b880(&stack0x00000030,0x100);
-  networkStatus2 = FUN_18074b880(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus1 = ProcessNetworkBufferData(&stack0x00000030,0x100);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   func_0x00018074bda0(&stack0x00000030 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xb);
@@ -4901,7 +4901,7 @@ void FUN_1808452a0(NetworkHandle connectionContext,NetworkStatus *packetData,Net
   }
   if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     networkStatus2 = func_0x00018074bda0(auStack_138,0x100,packetData);
-    networkStatus3 = FUN_18074b880(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
     func_0x00018074bda0(auStack_138 + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),dataSize);
     puStack_158 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -4924,7 +4924,7 @@ void FUN_180845324(void)
   NetworkStatus unaff_ESI;
   
   networkStatus1 = func_0x00018074bda0(&stack0x00000040,0x100);
-  networkStatus2 = FUN_18074b880(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   func_0x00018074bda0(&stack0x00000040 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xb);
@@ -5123,8 +5123,8 @@ void FUN_180845c40(NetworkHandle connectionContext,NetworkHandle packetData,Netw
   networkBuffer = NetworkSecurityGuardValue ^ (ulonglong)auStack_168;
   networkStatus1 = FUN_18083fde0();
   if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
-    networkStatus2 = FUN_18074b880(auStack_138,0x100,packetData);
-    networkStatus3 = FUN_18074b880(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus2 = ProcessNetworkBufferData(auStack_138,0x100,packetData);
+    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
     func_0x00018074bda0(auStack_138 + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),dataSize);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -5145,8 +5145,8 @@ void FUN_180845c84(void)
   int networkStatus2;
   NetworkStatus unaff_ESI;
   
-  networkStatus1 = FUN_18074b880(&stack0x00000030,0x100);
-  networkStatus2 = FUN_18074b880(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus1 = ProcessNetworkBufferData(&stack0x00000030,0x100);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   func_0x00018074bda0(&stack0x00000030 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xb);
@@ -5194,7 +5194,7 @@ void FUN_180845d20(NetworkHandle connectionContext,NetworkStatus *packetData,ulo
       FUN_1808fc050(networkBuffer ^ (ulonglong)auStack_188);
     }
     networkStatus4 = FUN_18074bc50(auStack_138,0x100,packetData);
-    iVar5 = FUN_18074b880(auStack_138 + networkStatus4,0x100 - networkStatus4,&g_NetworkBufferDataTemplate);
+    iVar5 = ProcessNetworkBufferData(auStack_138 + networkStatus4,0x100 - networkStatus4,&g_NetworkBufferDataTemplate);
     func_0x00018074bda0(auStack_138 + (networkStatus4 + iVar5),0x100 - (networkStatus4 + iVar5),dataSize);
     puStack_168 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -5366,12 +5366,12 @@ void FUN_180846210(NetworkHandle connectionContext,longlong packetData,NetworkSt
   }
   if (packetData == 0) {
     if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0) {
-      networkStatus1 = FUN_18074b880(auStack_148,0x100,0);
-      networkStatus2 = FUN_18074b880(auStack_148 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+      networkStatus1 = ProcessNetworkBufferData(auStack_148,0x100,0);
+      networkStatus2 = ProcessNetworkBufferData(auStack_148 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
       networkStatus1 = networkStatus1 + networkStatus2;
       networkStatus2 = FUN_18074bac0(auStack_148 + networkStatus1,0x100 - networkStatus1,dataSize);
       networkStatus1 = networkStatus1 + networkStatus2;
-      networkStatus2 = FUN_18074b880(auStack_148 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+      networkStatus2 = ProcessNetworkBufferData(auStack_148 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
       FUN_18074bac0(auStack_148 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),param_4);
       puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
@@ -5428,7 +5428,7 @@ void FUN_180846410(NetworkHandle connectionContext,NetworkStatus packetData,Netw
   networkStatus1 = FUN_180840600();
   if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     networkStatus2 = func_0x00018074b7d0(auStack_138,0x100,packetData);
-    networkStatus3 = FUN_18074b880(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
     func_0x00018074bda0(auStack_138 + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),dataSize);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -5451,7 +5451,7 @@ void FUN_180846453(void)
   NetworkStatus unaff_ESI;
   
   networkStatus1 = func_0x00018074b7d0(&stack0x00000030,0x100,unaff_EBX);
-  networkStatus2 = FUN_18074b880(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   func_0x00018074bda0(&stack0x00000030 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xc);
@@ -5575,12 +5575,12 @@ void FUN_180846610(ulonglong connectionContext,NetworkByte *packetData,int dataS
                     // WARNING: Subroutine does not return
     FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1a8);
   }
-  networkStatus1 = FUN_18074b880(auStack_148,0x100,packetData);
-  networkStatus2 = FUN_18074b880(auStack_148 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus1 = ProcessNetworkBufferData(auStack_148,0x100,packetData);
+  networkStatus2 = ProcessNetworkBufferData(auStack_148 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = func_0x00018074b7d0(auStack_148 + networkStatus1,0x100 - networkStatus1,dataSize);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(auStack_148 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(auStack_148 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   FUN_18074b930(auStack_148 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),param_4);
   puStack_188 = (NetworkStatus *)auStack_148;
                     // WARNING: Subroutine does not return
@@ -5599,12 +5599,12 @@ void FUN_180846730(void)
   NetworkStatus unaff_EBP;
   NetworkStatus unaff_ESI;
   
-  networkStatus1 = FUN_18074b880(&stack0x00000060,0x100);
-  networkStatus2 = FUN_18074b880(&stack0x00000060 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus1 = ProcessNetworkBufferData(&stack0x00000060,0x100);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000060 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = func_0x00018074b7d0(&stack0x00000060 + networkStatus1,0x100 - networkStatus1,unaff_EBP);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(&stack0x00000060 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000060 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   FUN_18074b930(&stack0x00000060 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xc);
@@ -5818,7 +5818,7 @@ void FUN_180846bc0(ulonglong connectionContext,uint packetData,NetworkStatus *da
     FUN_1808fc050(networkBuffer ^ (ulonglong)auStack_188);
   }
   networkStatus1 = func_0x00018074b7d0(auStack_138,0x100,packetData);
-  networkStatus2 = FUN_18074b880(auStack_138 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(auStack_138 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   FUN_18074bac0(auStack_138 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),dataSize);
   puStack_168 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -6063,8 +6063,8 @@ void FUN_180847230(NetworkHandle connectionContext,NetworkHandle packetData,Netw
   networkBuffer = NetworkSecurityGuardValue ^ (ulonglong)auStack_168;
   networkStatus1 = FUN_180840790();
   if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
-    networkStatus2 = FUN_18074b880(auStack_138,0x100,packetData);
-    networkStatus3 = FUN_18074b880(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus2 = ProcessNetworkBufferData(auStack_138,0x100,packetData);
+    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
     func_0x00018074bda0(auStack_138 + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),dataSize);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -6085,8 +6085,8 @@ void FUN_180847274(void)
   int networkStatus2;
   NetworkStatus unaff_ESI;
   
-  networkStatus1 = FUN_18074b880(&stack0x00000030,0x100);
-  networkStatus2 = FUN_18074b880(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus1 = ProcessNetworkBufferData(&stack0x00000030,0x100);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   func_0x00018074bda0(&stack0x00000030 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xc);
@@ -6125,8 +6125,8 @@ void FUN_180847310(NetworkHandle connectionContext,NetworkHandle packetData,Netw
   networkBuffer = NetworkSecurityGuardValue ^ (ulonglong)auStack_168;
   networkStatus1 = FUN_18083ff70();
   if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
-    networkStatus2 = FUN_18074b880(auStack_138,0x100,packetData);
-    networkStatus3 = FUN_18074b880(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus2 = ProcessNetworkBufferData(auStack_138,0x100,packetData);
+    networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
     func_0x00018074bda0(auStack_138 + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),dataSize);
     puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
@@ -6147,8 +6147,8 @@ void FUN_180847354(void)
   int networkStatus2;
   NetworkStatus unaff_ESI;
   
-  networkStatus1 = FUN_18074b880(&stack0x00000030,0x100);
-  networkStatus2 = FUN_18074b880(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus1 = ProcessNetworkBufferData(&stack0x00000030,0x100);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000030 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   func_0x00018074bda0(&stack0x00000030 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xb);
@@ -6309,15 +6309,15 @@ void FUN_180847690(NetworkHandle connectionContext,NetworkStatus packetData,Netw
   }
   if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     networkStatus2 = func_0x00018074b7d0(auStack_148,0x100,packetData);
-    networkStatus3 = FUN_18074b880(auStack_148 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(auStack_148 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
     networkStatus2 = networkStatus2 + networkStatus3;
     networkStatus3 = func_0x00018074b800(auStack_148 + networkStatus2,0x100 - networkStatus2,dataSize);
     networkStatus2 = networkStatus2 + networkStatus3;
-    networkStatus3 = FUN_18074b880(auStack_148 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(auStack_148 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
     networkStatus2 = networkStatus2 + networkStatus3;
     networkStatus3 = func_0x00018074b800(auStack_148 + networkStatus2,0x100 - networkStatus2,param_4);
     networkStatus2 = networkStatus2 + networkStatus3;
-    networkStatus3 = FUN_18074b880(auStack_148 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(auStack_148 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
     func_0x00018074bda0(auStack_148 + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),param_5);
     puStack_168 = auStack_148;
                     // WARNING: Subroutine does not return
@@ -6343,15 +6343,15 @@ void FUN_180847710(void)
   NetworkStatus unaff_R14D;
   
   networkStatus1 = func_0x00018074b7d0(&stack0x00000040,0x100,unaff_EBX);
-  networkStatus2 = FUN_18074b880(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = func_0x00018074b800(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,unaff_EBP);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = func_0x00018074b800(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,unaff_R14D);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000040 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   func_0x00018074bda0(&stack0x00000040 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xb);
@@ -6738,12 +6738,12 @@ void FUN_180848090(ulonglong connectionContext,longlong packetData,NetworkStatus
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
     }
-    networkStatus2 = FUN_18074b880(auStack_158,0x100,packetData);
-    networkStatus3 = FUN_18074b880(auStack_158 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus2 = ProcessNetworkBufferData(auStack_158,0x100,packetData);
+    networkStatus3 = ProcessNetworkBufferData(auStack_158 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
     networkStatus2 = networkStatus2 + networkStatus3;
     networkStatus3 = func_0x00018074b800(auStack_158 + networkStatus2,0x100 - networkStatus2,uVar1);
     networkStatus2 = networkStatus2 + networkStatus3;
-    networkStatus3 = FUN_18074b880(auStack_158 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
+    networkStatus3 = ProcessNetworkBufferData(auStack_158 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
     func_0x00018074bda0(auStack_158 + (networkStatus2 + networkStatus3),0x100 - (networkStatus2 + networkStatus3),param_4);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return
@@ -8217,7 +8217,7 @@ void FUN_180849782(void)
   NetworkStatus unaff_R14D;
   
   networkStatus1 = func_0x00018074bda0(&stack0x00000050,0x100);
-  networkStatus2 = FUN_18074b880(&stack0x00000050 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000050 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   func_0x00018074b800(&stack0x00000050 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),unaff_R14D);
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xc);
@@ -8293,7 +8293,7 @@ void FUN_1808498e7(void)
   NetworkStatus unaff_R14D;
   
   networkStatus1 = func_0x00018074bda0(&stack0x00000050,0x100);
-  networkStatus2 = FUN_18074b880(&stack0x00000050 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(&stack0x00000050 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
   func_0x00018074b800(&stack0x00000050 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),unaff_R14D);
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xd);
@@ -8342,11 +8342,11 @@ void FUN_180849990(NetworkHandle connectionContext,NetworkStatus packetData,Netw
       FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
     }
     iVar5 = func_0x00018074b7d0(auStack_148,0x100,packetData);
-    iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&g_NetworkBufferDataTemplate);
+    iVar6 = ProcessNetworkBufferData(auStack_148 + iVar5,0x100 - iVar5,&g_NetworkBufferDataTemplate);
     iVar5 = iVar5 + iVar6;
     iVar6 = func_0x00018074bda0(auStack_148 + iVar5,0x100 - iVar5,0);
     iVar5 = iVar5 + iVar6;
-    iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&g_NetworkBufferDataTemplate);
+    iVar6 = ProcessNetworkBufferData(auStack_148 + iVar5,0x100 - iVar5,&g_NetworkBufferDataTemplate);
     FUN_18074bd40(auStack_148 + (iVar5 + iVar6),0x100 - (iVar5 + iVar6),param_4);
     puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
@@ -8473,8 +8473,8 @@ void FUN_180849d40(ulonglong connectionContext,longlong packetData,NetworkStatus
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
     }
-    networkStatus1 = FUN_18074b880(auStack_158,0x100,packetData);
-    networkStatus2 = FUN_18074b880(auStack_158 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+    networkStatus1 = ProcessNetworkBufferData(auStack_158,0x100,packetData);
+    networkStatus2 = ProcessNetworkBufferData(auStack_158 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
     func_0x00018074b830(auStack_158 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),dataSize);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return
@@ -8530,8 +8530,8 @@ void FUN_180849f40(ulonglong connectionContext,longlong packetData,NetworkStatus
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
     }
-    networkStatus1 = FUN_18074b880(auStack_158,0x100,packetData);
-    networkStatus2 = FUN_18074b880(auStack_158 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
+    networkStatus1 = ProcessNetworkBufferData(auStack_158,0x100,packetData);
+    networkStatus2 = ProcessNetworkBufferData(auStack_158 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
     func_0x00018074b830(auStack_158 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),dataSize);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return
@@ -65512,7 +65512,7 @@ int FUN_180879880(longlong connectionContext,longlong packetData,int dataSize)
   uStack_c = *(NetworkStatus *)(connectionContext + 0x1c);
   uVar1 = *(NetworkStatus *)(connectionContext + 0x24);
   uVar2 = *(NetworkStatus *)(connectionContext + 0x20);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180985ae8);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180985ae8);
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkBufferCompressData(networkStatus3 + packetData,dataSize - networkStatus3,&uStack_18);
@@ -94469,16 +94469,16 @@ int FUN_180894380(longlong connectionContext,longlong packetData,int dataSize)
   int networkStatus2;
   
   networkStatus1 = func_0x00018074b800(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus2 = FUN_18074b880(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = func_0x00018074b7d0(networkStatus1 + packetData,dataSize - networkStatus1,*(NetworkStatus *)(connectionContext + 0x18));
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18074b970(networkStatus1 + packetData,dataSize - networkStatus1,connectionContext + 0x20,
                         *(NetworkStatus *)(connectionContext + 0x18));
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18074bb00(networkStatus1 + packetData,dataSize - networkStatus1,
                         connectionContext + 0x20 + (longlong)*(int *)(connectionContext + 0x18) * 4);
@@ -94494,21 +94494,21 @@ int FUN_180894460(longlong connectionContext,longlong packetData,int dataSize)
   int networkStatus2;
   
   networkStatus1 = func_0x00018074b800(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus2 = FUN_18074b880(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = func_0x00018074b7d0(networkStatus1 + packetData,dataSize - networkStatus1,*(NetworkStatus *)(connectionContext + 0x18));
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18088ed70(networkStatus1 + packetData,dataSize - networkStatus1,connectionContext + 0x20,
                         *(NetworkStatus *)(connectionContext + 0x18));
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18074bb00(networkStatus1 + packetData,dataSize - networkStatus1,
                         connectionContext + 0x20 + (longlong)*(int *)(connectionContext + 0x18) * 8);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18074be90(networkStatus1 + packetData,dataSize - networkStatus1,*(NetworkByte *)(connectionContext + 0x1c));
   return networkStatus2 + networkStatus1;
@@ -94523,17 +94523,17 @@ int FUN_180894570(longlong connectionContext,longlong packetData,int dataSize)
   int networkStatus2;
   
   networkStatus1 = func_0x00018074b7d0(packetData,dataSize,*(NetworkStatus *)(connectionContext + 0x10));
-  networkStatus2 = FUN_18074b880(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18088ed70(networkStatus1 + packetData,dataSize - networkStatus1,connectionContext + 0x18,
                         *(NetworkStatus *)(connectionContext + 0x10));
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18074bb00(networkStatus1 + packetData,dataSize - networkStatus1,
                         connectionContext + 0x18 + (longlong)*(int *)(connectionContext + 0x10) * 8);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = FUN_18074be90(networkStatus1 + packetData,dataSize - networkStatus1,*(NetworkByte *)(connectionContext + 0x14));
   return networkStatus2 + networkStatus1;
@@ -94547,12 +94547,12 @@ int FUN_180894650(longlong *connectionContext,longlong packetData,int dataSize)
   int networkStatus1;
   int networkStatus2;
   
-  networkStatus1 = FUN_18074b880(packetData,dataSize,&UNK_180986298);
-  networkStatus2 = FUN_18074b880(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus1 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180986298);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = func_0x00018074b7d0(networkStatus1 + packetData,dataSize - networkStatus1,(int)connectionContext[3] * 8 + 0x20);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = (**(code **)(*connectionContext + 8))(connectionContext,networkStatus1 + packetData,dataSize - networkStatus1);
   return networkStatus2 + networkStatus1;
@@ -94566,12 +94566,12 @@ int FUN_180894700(longlong *connectionContext,longlong packetData,int dataSize)
   int networkStatus1;
   int networkStatus2;
   
-  networkStatus1 = FUN_18074b880(packetData,dataSize,&UNK_180984010);
-  networkStatus2 = FUN_18074b880(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus1 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180984010);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = func_0x00018074b7d0(networkStatus1 + packetData,dataSize - networkStatus1,(int)connectionContext[3] * 0xc + 0x20);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = (**(code **)(*connectionContext + 8))(connectionContext,networkStatus1 + packetData,dataSize - networkStatus1);
   return networkStatus2 + networkStatus1;
@@ -94585,12 +94585,12 @@ int FUN_1808947b0(longlong *connectionContext,longlong packetData,int dataSize)
   int networkStatus1;
   int networkStatus2;
   
-  networkStatus1 = FUN_18074b880(packetData,dataSize,&UNK_180982240);
-  networkStatus2 = FUN_18074b880(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus1 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982240);
+  networkStatus2 = ProcessNetworkBufferData(packetData + networkStatus1,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = func_0x00018074b7d0(networkStatus1 + packetData,dataSize - networkStatus1,((int)connectionContext[2] + 2) * 0xc);
   networkStatus1 = networkStatus1 + networkStatus2;
-  networkStatus2 = FUN_18074b880(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
+  networkStatus2 = ProcessNetworkBufferData(networkStatus1 + packetData,dataSize - networkStatus1,&g_NetworkBufferDataTemplate);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = (**(code **)(*connectionContext + 8))(connectionContext,networkStatus1 + packetData,dataSize - networkStatus1);
   return networkStatus2 + networkStatus1;
@@ -96762,7 +96762,7 @@ int FUN_180896aa0(longlong connectionContext,longlong packetData,int dataSize)
   int networkStatus3;
   
   uVar1 = *(NetworkHandle *)(connectionContext + 0x10);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_1809863f8);
+  networkStatus2 = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809863f8);
   networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
   networkStatus2 = networkStatus2 + networkStatus3;
   networkStatus3 = func_0x00018074be80(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
@@ -96781,7 +96781,7 @@ int FUN_180896b20(longlong connectionContext,longlong packetData,int dataSize)
   
   uVar1 = *(NetworkStatus *)(connectionContext + 0x14);
   uVar2 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180986470);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180986470);
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = func_0x00018074b7d0(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
@@ -99817,7 +99817,7 @@ NetworkHandle FUN_180898e70(longlong *connectionContext,NetworkStatus *packetDat
 
 
 
-NetworkHandle FUN_180898eb0(longlong *connectionContext,NetworkStatus *packetData)
+NetworkHandle ValidateNetworkConnectionContext(longlong *connectionContext,NetworkStatus *packetData)
 
 {
   NetworkHandle uVar1;
@@ -101159,8 +101159,8 @@ void FUN_180899ed5(void)
 
 
 
-// 函数: void FUN_180899ef0(longlong connectionContext,NetworkStatus *packetData)
-void FUN_180899ef0(longlong connectionContext,NetworkStatus *packetData)
+// 函数: void ProcessNetworkConnectionStatus(longlong connectionContext,NetworkStatus *packetData)
+void ProcessNetworkConnectionStatus(longlong connectionContext,NetworkStatus *packetData)
 
 {
   int networkStatus1;

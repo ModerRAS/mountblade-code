@@ -169,6 +169,12 @@ void* CleanupContextData3;
  * 该函数负责初始化游戏资源管理器
  * 设置资源加载、缓存和释放的相关系统
  */
+/**
+ * @brief 初始化资源管理器
+ * 
+ * 该函数负责初始化系统资源管理器
+ * 设置资源分配、管理和释放的基础设施
+ */
 void InitializeResourceManager(void);
 void* ResourceManagerHandle;
 uint32_t ResourceManagerStatus;
