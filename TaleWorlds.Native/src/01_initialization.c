@@ -6,9 +6,9 @@
  */
 
 // 全局函数指针 - 系统初始化相关
-void* GameSystemEntryPoint;                    // 游戏系统主入口点
-void* GlobalSystemDataReference;              // 全局系统数据引用
-void* SystemMemoryPoolPrimary;                 // 主系统内存池
+void* GameSystemMainEntryPoint;                    // 游戏系统主入口点
+void* SystemGlobalDataReferenceA;              // 全局系统数据引用A
+void* SystemPrimaryMemoryPool;                 // 主系统内存池
 void* SystemDataTableReference;                // 系统数据表引用
 void* SystemMemoryPoolSecondary;               // 次级系统内存池
 void* SystemDataTableSecondary;                // 次级系统数据表
@@ -17418,7 +17418,7 @@ uint64_t InitializeThreadLocalStorageCallbackTable(void)
   *callbackTable = 0;
   *(int **)(threadLocalStoragePtr + 0x50) = callbackTable;
 LAB_1808fd14a:
-  *(code **)(callbackTable + (uint64_t)*callbackTable * 2 + 4) = FUN_1809431a0;
+  *(code **)(callbackTable + (uint64_t)*callbackTable * 2 + 4) = SystemTableCallbackFunction;
   *callbackTable = *callbackTable + 1;
   return 0;
 }
@@ -17521,7 +17521,7 @@ int InitializeSystemConfiguration(void)
   _DAT_180c0c6c0 = 0x100;
   configIndex = 0;
   do {
-    FUN_180767e20(configIndex,0x4000000000000000,0xffff7fff,0);
+    ConfigureSystemParameters(configIndex,0x4000000000000000,0xffff7fff,0);
     configIndex = configIndex + 1;
   } while (configIndex < 0xd);
   *(uint *)(_DAT_180be14a0 + 0x330) = *(uint *)(_DAT_180be14a0 + 0x330) | 4;
