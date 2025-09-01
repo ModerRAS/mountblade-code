@@ -9256,14 +9256,6 @@ undefined8 FUN_18089406b(void)
  * 这是一个空操作函数，不执行任何操作
  * 主要用于占位或作为默认的空实现
  */
-void EmptyOperationFunctionB(void)
-
-{
-  return;
-}
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
