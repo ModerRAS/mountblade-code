@@ -8127,10 +8127,10 @@ void UpdateSystemConfigurationAndExecute(longlong configObject, longlong systemC
  * 该函数负责验证对象上下文的有效性，并根据提供的参数进行处理
  * 包括浮点数验证、对象上下文验证和参数处理
  * 
- * @param objectContextParam 对象上下文参数，包含对象的基本信息
- * @param validationContextParam 系统上下文参数，用于系统级操作
- * @param param_3 附加参数1，用于扩展功能
- * @param param_4 附加参数2，用于扩展功能
+ * @param objectContext 对象上下文参数，包含对象的基本信息
+ * @param validationContext 系统上下文参数，用于系统级操作
+ * @param securityFlags 安全标志，用于安全验证
+ * @param operationMode 操作模式，指定处理方式
  * @return uint8_t8 操作结果状态码，0表示成功，非0表示错误
  */
 uint8_t8 ValidateAndProcessObjectContextWithParameters(longlong objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
@@ -28487,7 +28487,16 @@ void SetSystemDataStructurePointer(uint8_t8 objectContextParam, longlong validat
 
 
 
-void Unwind_180902090(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 释放主系统资源
+ * 
+ * 该函数负责释放主系统资源，清除资源标志位
+ * 用于异常处理时的资源清理
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数，包含系统状态信息
+ */
+void ReleasePrimarySystemResource(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
@@ -28499,7 +28508,16 @@ void Unwind_180902090(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_1809020c0(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 释放次级系统资源
+ * 
+ * 该函数负责释放次级系统资源，清除资源标志位
+ * 用于异常处理时的资源清理
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数，包含系统状态信息
+ */
+void ReleaseSecondarySystemResource(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
@@ -29986,32 +30004,32 @@ void Unwind_180902870(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180902880(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *pintegerValue1;
-  uint8_t8 *pvalidationResult;
+  int *referenceCount;
+  uint8_t8 *validationResult;
   longlong resourceIndex;
-  ulonglong unsignedResult4;
+  ulonglong memoryAddress;
   
-  pvalidationResult = *(uint8_t8 **)(*(longlong *)(validationContextParam + 0x70) + 0x18);
-  if (pvalidationResult == (uint8_t8 *)0x0) {
+  validationResult = *(uint8_t8 **)(*(longlong *)(validationContextParam + 0x70) + 0x18);
+  if (validationResult == (uint8_t8 *)0x0) {
     return;
   }
-  unsignedResult4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
-  if (unsignedResult4 != 0) {
-    resourceIndex = unsignedResult4 + 0x80 + ((longlong)pvalidationResult - unsignedResult4 >> 0x10) * 0x50;
+  memoryAddress = (ulonglong)validationResult & 0xffffffffffc00000;
+  if (memoryAddress != 0) {
+    resourceIndex = memoryAddress + 0x80 + ((longlong)validationResult - memoryAddress >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
-      *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      pintegerValue1 = (int *)(resourceIndex + 0x18);
-      *pintegerValue1 = *pintegerValue1 + -1;
-      if (*pintegerValue1 == 0) {
+    if ((*(void ***)(memoryAddress + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
+      *validationResult = *(uint8_t8 *)(resourceIndex + 0x20);
+      *(uint8_t8 **)(resourceIndex + 0x20) = validationResult;
+      referenceCount = (int *)(resourceIndex + 0x18);
+      *referenceCount = *referenceCount - 1;
+      if (*referenceCount == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
-                          pvalidationResult,unsignedResult4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryAddress,CONCAT71(0xff000000,*(void ***)(memoryAddress + 0x70) == &ExceptionList),
+                          validationResult,memoryAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50019,16 +50037,16 @@ void Unwind_1809079d0(uint8_t8 objectContextParam,longlong validationContextPara
 void ProcessResourceCleanup(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int *pintegerValue1;
-  uint8_t8 *pvalidationResult;
+  int *referenceCount;
+  uint8_t8 *validationResult;
   longlong resourceIndex;
-  ulonglong unsignedResult4;
+  ulonglong memoryAddress;
   
-  pvalidationResult = *(uint8_t8 **)(*(longlong *)(validationContextParam + 0x80) + 0x180);
-  if (pvalidationResult == (uint8_t8 *)0x0) {
+  validationResult = *(uint8_t8 **)(*(longlong *)(validationContextParam + 0x80) + 0x180);
+  if (validationResult == (uint8_t8 *)0x0) {
     return;
   }
-  unsignedResult4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
+  memoryAddress = (ulonglong)validationResult & 0xffffffffffc00000;
   if (unsignedResult4 != 0) {
     resourceIndex = unsignedResult4 + 0x80 + ((longlong)pvalidationResult - unsignedResult4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
@@ -87630,10 +87648,10 @@ void CleanupMutexResources(void)
 
 /**
  * @brief 初始化系统上下文并设置相关参数
- * @param context_ptr 上下文指针
- * @param param2 参数2
- * @param param3 参数3
- * @param param4 参数4
+ * @param contextPtr 上下文指针
+ * @param setupParam 设置参数
+ * @param configParam 配置参数
+ * @param flagsParam 标志参数
  * 
  * 该函数负责初始化系统上下文，设置必要的参数和回调函数
  * 配置系统处理程序并初始化相关的数据结构
@@ -87641,14 +87659,14 @@ void CleanupMutexResources(void)
 void InitializeSystemContext(uint8_t8 contextPtr, uint8_t8 setupParam, uint8_t8 configParam, uint8_t8 flagsParam)
 
 {
-  uint8_t8 *system_handler;
+  uint8_t8 *systemHandler;
   
-  system_handler = systemContextHandler;
+  systemHandler = systemContextHandler;
   if (systemContextHandler != (uint8_t8 *)0x0) {
-    InitializeContextData(&systemContextData, *systemContextHandler, param3, param_4, 0xfffffffffffffffe);
-    SetupSystemHandler(system_handler + 5);
+    InitializeContextData(&systemContextData, *systemContextHandler, configParam, flagsParam, 0xfffffffffffffffe);
+    SetupSystemHandler(systemHandler + 5);
                     // WARNING: Subroutine does not return
-    ExecuteSystemHandler(system_handler);
+    ExecuteSystemHandler(systemHandler);
   }
   return;
 }
@@ -87668,15 +87686,15 @@ void InitializeSystemContext(uint8_t8 contextPtr, uint8_t8 setupParam, uint8_t8 
 void ResetThreadLocalStorage(void)
 
 {
-  longlong thread_data;
+  longlong threadData;
   
-  thread_data = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  *(uint8_t8 *)(thread_data + 0x18) = &threadResourcePointer;
-  if (*(longlong *)(thread_data + 0x20) != 0) {
+  threadData = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  *(uint8_t8 *)(threadData + 0x18) = &threadResourcePointer;
+  if (*(longlong *)(threadData + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     CleanupThreadResources();
   }
-  *(uint8_t8 *)(thread_data + 0x20) = 0;
+  *(uint8_t8 *)(threadData + 0x20) = 0;
   *(uint8_t4 *)(thread_data + 0x30) = 0;
   *(uint8_t8 *)(thread_data + 0x18) = &defaultThreadResource;
   return;
