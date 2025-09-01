@@ -987,8 +987,13 @@ void InitializeSystemEventManager(void)
 
 
 
-// 函数: void FUN_18002ca40(void)
-void FUN_18002ca40(void)
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统资源管理器，
+ * 设置资源加载、释放和管理机制。
+ */
+void InitializeSystemResourceManager(void)
 
 {
   char cVar1;

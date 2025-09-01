@@ -1208,21 +1208,33 @@ undefined g_copyMemoryStatus;
 undefined g_copyMemoryData;
 undefined g_copyMemoryBuffer;
 
-// 函数: undefined FUN_1809423c0;
-undefined FUN_1809423c0;
-undefined UNK_180a22f78;
-undefined DAT_180bfa050;
-undefined DAT_180bfa058;
-undefined DAT_180bfa060;
-undefined DAT_180bfa068;
+// 函数: void CompareMemoryBlocks;
+/**
+ * @brief 比较内存块
+ * 
+ * 该函数负责比较两个内存块的内容
+ * 检查内存数据是否相同
+ */
+void CompareMemoryBlocks;
+undefined g_compareMemoryContext;
+undefined g_compareMemoryConfig;
+undefined g_compareMemoryStatus;
+undefined g_compareMemoryData;
+undefined g_compareMemoryBuffer;
 
-// 函数: undefined FUN_1809423e0;
-undefined FUN_1809423e0;
-undefined UNK_180a22f60;
-undefined DAT_180bfa0b0;
-undefined DAT_180bfa0b8;
-undefined DAT_180bfa0c0;
-undefined DAT_180bfa0c8;
+// 函数: void SetMemoryProtection;
+/**
+ * @brief 设置内存保护
+ * 
+ * 该函数负责设置内存保护属性
+ * 控制内存访问权限和保护级别
+ */
+void SetMemoryProtection;
+undefined g_memoryProtectContext;
+undefined g_memoryProtectConfig;
+undefined g_memoryProtectStatus;
+undefined g_memoryProtectData;
+undefined g_memoryProtectBuffer;
 
 // 函数: undefined FUN_180942400;
 undefined FUN_180942400;
