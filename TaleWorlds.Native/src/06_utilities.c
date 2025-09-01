@@ -7280,114 +7280,140 @@ undefined8 ValidateObjectContextAndProcessFloatComparison(longlong objectContext
 undefined8 ProcessFloatComparisonOperation(void)
 
 {
-  float fVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  longlong in_stack_00000040;
+  float floatValue;
+  longlong dataPointer;
+  undefined8 operationResult;
+  longlong systemContext;
+  longlong objectContext;
+  longlong stackBuffer;
   
-  if (in_stack_00000040 == 0) {
+  if (stackBuffer == 0) {
     return 0x4a;
   }
-  lVar2 = *(longlong *)(in_stack_00000040 + 0x10);
-  if (lVar2 == 0) {
+  dataPointer = *(longlong *)(stackBuffer + 0x10);
+  if (dataPointer == 0) {
     return 0x1e;
   }
-  if ((*(byte *)(lVar2 + 0x34) & 0x11) != 0) {
+  if ((*(byte *)(dataPointer + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  uVar3 = FUN_18084de40(lVar2,unaff_RDI + 0x25,unaff_RDI + 0x20);
-  if ((int)uVar3 == 0) {
-    fVar1 = *(float *)(unaff_RDI + 0x20);
-    if ((*(float *)(lVar2 + 0x38) <= fVar1) &&
-       (fVar1 < *(float *)(lVar2 + 0x3c) || fVar1 == *(float *)(lVar2 + 0x3c))) {
-      uVar3 = *(undefined8 *)(unaff_RBP + 0x98);
-      *(float *)(in_stack_00000040 + 4) = fVar1;
+  operationResult = FUN_18084de40(dataPointer,objectContext + 0x25,objectContext + 0x20);
+  if ((int)operationResult == 0) {
+    floatValue = *(float *)(objectContext + 0x20);
+    if ((*(float *)(dataPointer + 0x38) <= floatValue) &&
+       (floatValue < *(float *)(dataPointer + 0x3c) || floatValue == *(float *)(dataPointer + 0x3c))) {
+      operationResult = *(undefined8 *)(systemContext + 0x98);
+      *(float *)(stackBuffer + 4) = floatValue;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(uVar3);
+      FUN_18088d720(operationResult);
     }
-    uVar3 = 0x1c;
+    operationResult = 0x1c;
   }
-  return uVar3;
+  return operationResult;
 }
 
 
 
-undefined8 FUN_1808928f1(void)
+/**
+ * @brief 处理带缓冲区的浮点数比较操作
+ * 
+ * 该函数处理带缓冲区的浮点数比较操作，验证数据有效性并进行范围检查
+ * 从指定的缓冲区中获取数据，检查浮点数是否在指定范围内
+ * 
+ * @return undefined8 操作结果，成功返回0，失败返回错误码
+ */
+undefined8 ProcessBufferedFloatComparison(void)
 
 {
-  float fVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  longlong in_stack_00000040;
+  float floatValue;
+  longlong dataPointer;
+  undefined8 operationResult;
+  longlong bufferContext;
+  longlong systemContext;
+  longlong objectContext;
+  longlong stackBuffer;
   
-  lVar2 = *(longlong *)(unaff_RBX + 0x10);
-  if (lVar2 == 0) {
+  dataPointer = *(longlong *)(bufferContext + 0x10);
+  if (dataPointer == 0) {
     return 0x1e;
   }
-  if ((*(byte *)(lVar2 + 0x34) & 0x11) != 0) {
+  if ((*(byte *)(dataPointer + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  uVar3 = FUN_18084de40(lVar2,unaff_RDI + 0x25,unaff_RDI + 0x20);
-  if ((int)uVar3 == 0) {
-    fVar1 = *(float *)(unaff_RDI + 0x20);
-    if ((*(float *)(lVar2 + 0x38) <= fVar1) &&
-       (fVar1 < *(float *)(lVar2 + 0x3c) || fVar1 == *(float *)(lVar2 + 0x3c))) {
-      uVar3 = *(undefined8 *)(unaff_RBP + 0x98);
-      *(float *)(in_stack_00000040 + 4) = fVar1;
+  operationResult = FUN_18084de40(dataPointer,objectContext + 0x25,objectContext + 0x20);
+  if ((int)operationResult == 0) {
+    floatValue = *(float *)(objectContext + 0x20);
+    if ((*(float *)(dataPointer + 0x38) <= floatValue) &&
+       (floatValue < *(float *)(dataPointer + 0x3c) || floatValue == *(float *)(dataPointer + 0x3c))) {
+      operationResult = *(undefined8 *)(systemContext + 0x98);
+      *(float *)(stackBuffer + 4) = floatValue;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(uVar3);
+      FUN_18088d720(operationResult);
     }
-    uVar3 = 0x1c;
+    operationResult = 0x1c;
   }
-  return uVar3;
+  return operationResult;
 }
 
 
 
-undefined8 FUN_180892909(undefined4 param_1)
+/**
+ * @brief 处理带参数的浮点数比较操作
+ * 
+ * 该函数处理带参数的浮点数比较操作，验证数据有效性并进行范围检查
+ * 根据传入的参数和上下文信息，检查浮点数是否在指定范围内
+ * 
+ * @param parameter 操作参数，用于控制比较行为
+ * @return undefined8 操作结果，成功返回0，失败返回错误码
+ */
+undefined8 ProcessParameterizedFloatComparison(undefined4 parameter)
 
 {
-  float fVar1;
-  undefined8 uVar2;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  longlong in_stack_00000040;
+  float floatValue;
+  undefined8 operationResult;
+  longlong dataPointer;
+  longlong systemContext;
+  longlong objectContext;
+  longlong stackBuffer;
   
-  if ((*(byte *)(unaff_RBX + 0x34) & 0x11) != 0) {
+  if ((*(byte *)(dataPointer + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  uVar2 = FUN_18084de40(param_1,unaff_RDI + 0x25,unaff_RDI + 0x20);
-  if ((int)uVar2 == 0) {
-    fVar1 = *(float *)(unaff_RDI + 0x20);
-    if ((*(float *)(unaff_RBX + 0x38) <= fVar1) &&
-       (fVar1 < *(float *)(unaff_RBX + 0x3c) || fVar1 == *(float *)(unaff_RBX + 0x3c))) {
-      uVar2 = *(undefined8 *)(unaff_RBP + 0x98);
-      *(float *)(in_stack_00000040 + 4) = fVar1;
+  operationResult = FUN_18084de40(parameter,objectContext + 0x25,objectContext + 0x20);
+  if ((int)operationResult == 0) {
+    floatValue = *(float *)(objectContext + 0x20);
+    if ((*(float *)(dataPointer + 0x38) <= floatValue) &&
+       (floatValue < *(float *)(dataPointer + 0x3c) || floatValue == *(float *)(dataPointer + 0x3c))) {
+      operationResult = *(undefined8 *)(systemContext + 0x98);
+      *(float *)(stackBuffer + 4) = floatValue;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(uVar2);
+      FUN_18088d720(operationResult);
     }
-    uVar2 = 0x1c;
+    operationResult = 0x1c;
   }
-  return uVar2;
+  return operationResult;
 }
 
 
 
-undefined8 FUN_180892920(undefined4 param_1)
+/**
+ * @brief 处理简化的参数化浮点数比较操作
+ * 
+ * 该函数处理简化的参数化浮点数比较操作，直接进行范围检查
+ * 根据传入的参数和上下文信息，检查浮点数是否在指定范围内
+ * 
+ * @param parameter 操作参数，用于控制比较行为
+ * @return undefined8 操作结果，成功返回0，失败返回错误码
+ */
+undefined8 ProcessSimplifiedParameterizedFloatComparison(undefined4 parameter)
 
 {
-  float fVar1;
-  undefined8 uVar2;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  longlong in_stack_00000040;
+  float floatValue;
+  undefined8 operationResult;
+  longlong dataPointer;
+  longlong systemContext;
+  longlong objectContext;
+  longlong stackBuffer;
   
   uVar2 = FUN_18084de40(param_1,unaff_RDI + 0x25,unaff_RDI + 0x20);
   if ((int)uVar2 == 0) {
@@ -7415,8 +7441,13 @@ undefined8 FUN_180892974(void)
 
 
 
- void FUN_180892983(void)
-void FUN_180892983(void)
+ /**
+ * @brief 空操作函数
+ * 
+ * 该函数不执行任何操作，直接返回
+ * 用作占位符或空操作
+ */
+void NullOperationFunction(void)
 
 {
   return;
@@ -7763,8 +7794,13 @@ undefined8 FUN_180892ceb(void)
 
 
 
- void FUN_180892e2d(void)
-void FUN_180892e2d(void)
+ /**
+ * @brief 空操作函数
+ * 
+ * 该函数不执行任何操作，直接返回
+ * 用作占位符或空操作
+ */
+void EmptyOperationFunctionV2(void)
 
 {
   return;
@@ -25932,7 +25968,7 @@ undefined8 FUN_18089ffe0(undefined8 param_1,longlong param_2)
 void FUN_180901ec0(undefined8 *param_1)
 
 {
-  FUN_18006a050(*(undefined4 *)*param_1,param_1);
+  InitializeUtilitySystem(*(undefined4 *)*param_1,param_1);
   return;
 }
 
@@ -27101,7 +27137,7 @@ void Unwind_180902580(undefined8 param_1,longlong param_2)
 void Unwind_180902590(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_180058370(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
+  ProcessDataStream(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -27255,7 +27291,7 @@ void Unwind_180902650(undefined8 param_1,longlong param_2)
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x50);
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x58);
   for (lVar3 = *plVar2; lVar3 != lVar1; lVar3 = lVar3 + 0x48) {
-    FUN_180058c20(lVar3);
+    CleanupResourceHandle(lVar3);
   }
   if (*plVar2 == 0) {
     return;
@@ -27276,7 +27312,7 @@ void Unwind_180902660(undefined8 param_1,longlong param_2)
   plVar2 = *(longlong **)(param_2 + 0x78);
   lVar1 = plVar2[1];
   for (lVar3 = *plVar2; lVar3 != lVar1; lVar3 = lVar3 + 0x48) {
-    FUN_180058c20(lVar3);
+    CleanupResourceHandle(lVar3);
   }
   if (*plVar2 == 0) {
     return;
@@ -27361,7 +27397,7 @@ void Unwind_180902690(undefined8 param_1,longlong param_2)
       (**(code **)(**(longlong **)(lVar3 + 0x40) + 0x38))();
     }
     if (*(longlong *)(lVar3 + 0x20) != 0) break;
-    FUN_180057830(lVar3);
+    ProcessSystemState(lVar3);
     lVar3 = lVar3 + 0x48;
   }
                     // WARNING: Subroutine does not return
@@ -27392,7 +27428,7 @@ void Unwind_1809026a0(undefined8 param_1,longlong param_2)
       (**(code **)(**(longlong **)(lVar3 + 0x40) + 0x38))();
     }
     if (*(longlong *)(lVar3 + 0x20) != 0) break;
-    FUN_180057830(lVar3);
+    ProcessSystemState(lVar3);
     lVar3 = lVar3 + 0x48;
   }
                     // WARNING: Subroutine does not return
@@ -27480,7 +27516,7 @@ void Unwind_180902730(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x70),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    TransformDataBuffer(*(longlong *)(param_2 + 0x70),*puVar1,param_3,param_4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -27533,7 +27569,7 @@ void Unwind_180902760(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180902770(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_180058210(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
+  ConfigureSystemSettings(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -27637,8 +27673,8 @@ void Unwind_1809027e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x80);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x70) + 0x70,*puVar1,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005cb60(puVar1);
+    ProcessAdvancedData(*(longlong *)(param_2 + 0x70) + 0x70,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    ResetSystemState(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -27655,7 +27691,7 @@ void Unwind_1809027f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
     FUN_1800587d0(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005cb60(puVar1);
+    ResetSystemState(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -27672,7 +27708,7 @@ void Unwind_180902800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
     FUN_1800587d0(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005cb60(puVar1);
+    ResetSystemState(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -27725,7 +27761,7 @@ void Unwind_180902840(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180902850(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_180058370(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
+  ProcessDataStream(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -27735,7 +27771,7 @@ void Unwind_180902850(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180902860(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_180058370(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
+  ProcessDataStream(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -27795,7 +27831,7 @@ void Unwind_180902880(undefined8 param_1,longlong param_2)
 void Unwind_180902890(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_1800582b0(*(longlong *)(param_2 + 0x70) + 0x40,
+  ProcessIntermediateData(*(longlong *)(param_2 + 0x70) + 0x40,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x50),param_3,param_4,
                 0xfffffffffffffffe);
   return;
@@ -27953,7 +27989,7 @@ void Unwind_180902900(undefined8 param_1,longlong param_2)
 void Unwind_180902920(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_1800f74f0(*(longlong *)(param_2 + 0x70) + 0x28,
+  ProcessSpecialData(*(longlong *)(param_2 + 0x70) + 0x28,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x38),param_3,param_4,
                 0xfffffffffffffffe);
   return;
@@ -28101,7 +28137,7 @@ void Unwind_180902970(undefined8 param_1,longlong param_2)
   plVar2 = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x70);
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x78);
   for (lVar3 = *plVar2; lVar3 != lVar1; lVar3 = lVar3 + 0x18) {
-    FUN_18004bf50(lVar3);
+    HandleBufferOperations(lVar3);
   }
   if (*plVar2 == 0) {
     return;
@@ -28259,7 +28295,7 @@ void Unwind_180902a60(undefined8 param_1,longlong param_2)
   plVar2 = *(longlong **)(param_2 + 0x78);
   lVar1 = plVar2[1];
   for (lVar3 = *plVar2; lVar3 != lVar1; lVar3 = lVar3 + 0x18) {
-    FUN_18004bf50(lVar3);
+    HandleBufferOperations(lVar3);
   }
   if (*plVar2 == 0) {
     return;
@@ -28494,7 +28530,7 @@ void Unwind_180902b30(undefined8 param_1,longlong param_2)
   plVar2 = *(longlong **)(param_2 + 0x40);
   lVar1 = plVar2[1];
   for (lVar3 = *plVar2; lVar3 != lVar1; lVar3 = lVar3 + 0x48) {
-    FUN_180058c20(lVar3);
+    CleanupResourceHandle(lVar3);
   }
   if (*plVar2 == 0) {
     return;
@@ -29786,7 +29822,7 @@ void Unwind_180902fc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x948);
   if (puVar1 != (undefined8 *)0x0) {
     FUN_1800587d0(*(longlong *)(param_2 + 0x40) + 0x938,*puVar1,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005cb60(puVar1);
+    ResetSystemState(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -29803,7 +29839,7 @@ void Unwind_180902fe0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x978);
   if (puVar1 != (undefined8 *)0x0) {
     FUN_1800587d0(*(longlong *)(param_2 + 0x40) + 0x968,*puVar1,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005cb60(puVar1);
+    ResetSystemState(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -29820,7 +29856,7 @@ void Unwind_180903000(undefined8 param_1,longlong param_2,undefined8 param_3,und
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
     FUN_1800587d0(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005cb60(puVar1);
+    ResetSystemState(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -29837,7 +29873,7 @@ void Unwind_180903010(undefined8 param_1,longlong param_2,undefined8 param_3,und
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
     FUN_1800587d0(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005cb60(puVar1);
+    ResetSystemState(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -29914,7 +29950,7 @@ void Unwind_180903080(undefined8 param_1,longlong param_2,undefined8 param_3,und
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
     FUN_1800587d0(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005cb60(puVar1);
+    ResetSystemState(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -29931,7 +29967,7 @@ void Unwind_180903090(undefined8 param_1,longlong param_2,undefined8 param_3,und
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
     FUN_1800587d0(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005cb60(puVar1);
+    ResetSystemState(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }

@@ -18669,75 +18669,87 @@ void FUN_180046ca0(longlong *param_1,undefined8 *param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180046e20(void)
-void FUN_180046e20(void)
+/**
+ * @brief 初始化系统核心引擎
+ * 
+ * 该函数负责初始化系统的核心引擎组件，设置系统启动所需的基础结构。
+ * 它会配置内存管理器、初始化系统参数、设置核心服务，并建立系统状态监控。
+ * 这是系统初始化过程中的核心函数，确保引擎组件正确启动和运行。
+ * 
+ * @note 这是系统初始化过程中的关键函数，负责整个引擎的初始化工作
+ */
+void InitializeSystemCoreEngine(void)
 
 {
-  undefined8 uVar1;
-  char cVar2;
+  undefined8 systemStatusFlag;
+  char initializationStatus;
   int memoryCompareResult;
-  longlong ***ppplVar4;
-  ulonglong uVar5;
-  longlong lVar6;
+  longlong ***systemMemoryManager;
+  ulonglong systemConfigValue;
+  longlong systemTimeValue;
   undefined8 *systemCurrentNode;
-  undefined4 *puVar8;
-  undefined1 *puVar9;
-  undefined4 uVar10;
-  float fVar11;
-  float fVar12;
-  undefined1 auStack_698 [32];
-  longlong lStack_678;
-  longlong lStack_670;
-  int iStack_668;
-  undefined *puStack_618;
-  undefined1 *puStack_610;
-  uint uStack_608;
-  ulonglong uStack_600;
-  undefined4 uStack_5b8;
-  longlong ***ppplStack_590;
-  longlong **pplStack_588;
-  longlong ****pppplStack_580;
-  undefined *puStack_578;
-  undefined8 uStack_570;
-  undefined4 uStack_568;
-  undefined8 uStack_560;
-  undefined *puStack_558;
-  longlong lStack_550;
-  int iStack_548;
-  undefined4 uStack_540;
-  undefined *puStack_538;
-  longlong lStack_530;
-  undefined4 uStack_520;
-  longlong ***appplStack_518 [2];
-  undefined *puStack_508;
-  code *pcStack_500;
-  undefined8 uStack_4f8;
-  longlong **pplStack_4f0;
-  undefined *puStack_4e8;
-  undefined1 *puStack_4e0;
-  undefined4 uStack_4d8;
-  undefined1 auStack_4d0 [72];
-  undefined *puStack_488;
-  undefined1 *puStack_480;
-  undefined4 uStack_478;
-  undefined1 auStack_470 [72];
-  undefined *puStack_428;
-  undefined1 *puStack_420;
-  undefined4 uStack_418;
-  undefined1 auStack_410 [72];
-  undefined *puStack_3c8;
-  undefined1 *puStack_3c0;
-  undefined4 uStack_3b8;
-  undefined1 auStack_3b0 [72];
-  undefined *puStack_368;
-  undefined1 *puStack_360;
-  undefined4 uStack_358;
-  undefined1 auStack_350 [72];
-  undefined *puStack_308;
-  undefined1 *puStack_300;
-  undefined4 uStack_2f8;
-  undefined1 auStack_2f0 [648];
-  ulonglong uStack_68;
+  undefined4 *systemParameterPointer;
+  undefined1 *systemDataBuffer;
+  undefined4 systemControlFlag;
+  float systemPerformanceValue1;
+  float systemPerformanceValue2;
+  undefined1 systemSecurityBuffer [32];
+  longlong systemMemoryHandle;
+  longlong systemResourceHandle;
+  int systemInitStatus;
+  undefined *systemCallbackPointer;
+  undefined1 *systemEventBuffer;
+  uint systemEventCounter;
+  ulonglong systemTimestamp;
+  undefined4 systemOperationFlag;
+  longlong ***systemMemoryPool;
+  longlong **systemMemoryTable;
+  longlong ****systemMemoryRoot;
+  undefined *systemErrorHandler;
+  undefined8 systemContext;
+  undefined4 systemPriority;
+  undefined8 systemSemaphore;
+  undefined *systemLock;
+  longlong systemThreadId;
+  int systemThreadStatus;
+  undefined4 systemThreadFlag;
+  undefined *systemThreadContext;
+  longlong systemHeapHandle;
+  undefined4 systemHeapSize;
+  longlong ***systemHeapArray [2];
+  undefined *systemHeapManager;
+  code *systemEntryPoint;
+  undefined8 systemEntryPointParam;
+  longlong **systemTablePointer;
+  undefined *systemTableLock;
+  undefined1 *systemTableBuffer;
+  undefined4 systemTableFlag;
+  undefined1 systemTableData [72];
+  undefined *systemCacheManager;
+  undefined1 *systemCacheBuffer;
+  undefined4 systemCacheFlag;
+  undefined1 systemCacheData [72];
+  undefined *systemIoManager;
+  undefined1 *systemIoBuffer;
+  undefined4 systemIoFlag;
+  undefined1 systemIoData [72];
+  undefined *systemNetworkManager;
+  undefined1 *systemNetworkBuffer;
+  undefined4 systemNetworkFlag;
+  undefined1 systemNetworkData [72];
+  undefined *systemRenderManager;
+  undefined1 *systemRenderBuffer;
+  undefined4 systemRenderFlag;
+  undefined1 systemRenderData [72];
+  undefined *systemAudioManager;
+  undefined1 *systemAudioBuffer;
+  undefined4 systemAudioFlag;
+  undefined1 systemAudioData [72];
+  undefined *systemInputManager;
+  undefined1 *systemInputBuffer;
+  undefined4 systemInputFlag;
+  undefined1 systemInputData [648];
+  ulonglong systemSecurityHash;
   
   uStack_4f8 = 0xfffffffffffffffe;
   uStack_68 = _DAT_180bf00a8 ^ (ulonglong)auStack_698;
