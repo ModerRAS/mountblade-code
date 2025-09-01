@@ -1658,32 +1658,32 @@ void InitializeMemoryBalancing(void);
  */
 void SetupMemoryOptimization(void);
 
- void InitializeMemoryMonitoring;
+ void InitializeMemoryMonitoring(void);
 /**
  * @brief 初始化内存监控
  * 
  * 该函数负责初始化内存监控系统
  * 设置内存使用监控和报警机制
  */
-void InitializeMemoryMonitoring;
+void InitializeMemoryMonitoring(void);
 
- void ConfigureMemoryLogging;
+ void ConfigureMemoryLogging(void);
 /**
  * @brief 配置内存日志
  * 
  * 该函数负责配置内存日志系统
  * 设置内存操作日志记录和分析
  */
-void ConfigureMemoryLogging;
+void ConfigureMemoryLogging(void);
 
- void InitializeMemoryProfiling;
+ void InitializeMemoryProfiling(void);
 /**
  * @brief 初始化内存性能分析
  * 
  * 该函数负责初始化内存性能分析系统
  * 设置内存使用性能分析和报告
  */
-void InitializeMemoryProfiling;
+void InitializeMemoryProfiling(void);
 uint8_t GlobalMemoryProfilerEnabled;
 uint8_t MemoryProfilerContext;
 uint8_t MemoryProfilingConfiguration;
@@ -2197,14 +2197,14 @@ uint8_t SystemModuleDataTemplateJ;
 uint8_t SystemModuleDataTemplateK;
 uint8_t SystemModuleDataTemplateL;
 
- void FlushLogBuffer;
+ void FlushLogBuffer(void);
 /**
  * @brief 刷新日志缓冲区
  * 
  * 该函数负责刷新日志缓冲区中的内容
  * 确保所有日志消息都被写入输出目标
  */
-void FlushLogBuffer;
+void FlushLogBuffer(void);
 uint8_t SystemResourceQueue;
 uint8_t SystemResourceStack;
 uint8_t SystemResourceHeap;
@@ -2213,14 +2213,14 @@ uint8_t SystemMemoryScheduler;
 uint8_t SystemMemoryOptimizer;
 uint8_t LogSystemConfigurationData;
 
- void SetLogLevel;
+ void SetLogLevel(void);
 /**
  * @brief 设置日志级别
  * 
  * 该函数负责设置系统的日志级别
  * 控制哪些级别的日志消息会被记录
  */
-void SetLogLevel;
+void SetLogLevel(void);
 uint8_t LogLevelConfigurationData;
 uint8_t LogOutputConfigurationData;
 uint8_t LogMessageQueueData;
@@ -2308,14 +2308,14 @@ uint8_t SystemVideoManagerData;
 uint8_t ResourceSystemConfig;
 uint8_t SystemDatabaseManagerData;
 
- void InitializeMemoryManager;
+ void InitializeMemoryManager(void);
 /**
  * @brief 初始化内存管理器
  * 
  * 该函数负责初始化系统的内存管理器
  * 设置内存分配策略和回收机制
  */
-void InitializeMemoryManager;
+void InitializeMemoryManager(void);
 uint8_t SystemDataBufferPrimary;
 uint8_t SystemDataStreamPrimary;
 uint8_t SystemDataPipelinePrimary;
@@ -2462,14 +2462,14 @@ uint8_t PhysicsConstraintTable;
 uint8_t WorkerThreadPoolData;
 uint8_t WorkerThreadQueueData;
 
- void CreateWorkerThread;
+ void CreateWorkerThread(void);
 /**
  * @brief 创建工作线程
  * 
  * 该函数负责创建工作线程来处理任务
  * 设置线程的执行环境和参数
  */
-void CreateWorkerThread;
+void CreateWorkerThread(void);
 uint8_t SystemMemoryConfigDataTemplateWorkerThreadPrimary;
 uint8_t WorkerThreadContextData;
 uint8_t SystemMemoryConfigDataTemplateWorkerThreadSecondary;
