@@ -6020,22 +6020,32 @@ undefined8 ValidateObjectContextAndUpdateStatus(longlong ObjectContext, longlong
 
 
 
+/**
+ * @brief 验证并清除对象状态
+ * 
+ * 该函数负责验证对象上下文的有效性，并清除对象的特定状态标志
+ * 主要用于对象状态的重置和清理操作
+ * 
+ * @param objectContext 对象上下文指针，包含对象的状态信息
+ * @param systemContext 系统上下文指针，用于系统级操作
+ * @return undefined8 操作结果状态码，0表示成功，非0表示错误
+ */
 undefined8 ValidateAndClearObjectState(longlong objectContext, longlong systemContext)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 validationResult;
+  longlong contextBuffer;
   
-  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  validationResult = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&contextBuffer);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  if (*(char *)(lStackX_8 + 0x2c) == '\0') {
+  if (*(char *)(contextBuffer + 0x2c) == '\0') {
     return 0x4f;
   }
-  *(undefined1 *)(lStackX_8 + 0x2c) = 0;
+  *(undefined1 *)(contextBuffer + 0x2c) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+  FUN_18088d720(*(undefined8 *)(systemContext + 0x98),objectContext);
 }
 
 

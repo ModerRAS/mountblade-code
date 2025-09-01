@@ -4705,13 +4705,24 @@ int ProcessNetworkPacketWithEncryption(longlong connectionContext,longlong packe
 
 
 
+/**
+ * @brief 处理网络数据包和句柄缓冲区
+ * 
+ * 该函数负责处理网络数据包，特别关注句柄缓冲区的处理。
+ * 包括数据缓冲区处理、句柄缓冲区处理和连接上下文处理。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理后的数据总大小
+ */
 int ProcessNetworkPacketWithHandleBuffer(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkByte uVar1;
-  int networkStatus2;
-  int networkStatus3;
-  NetworkHandle uStackX_8;
+  NetworkByte encryptionKey;
+  int processedSize;
+  int additionalSize;
+  NetworkHandle networkHandle;
   
   uStackX_8 = *(NetworkHandle *)(connectionContext + 0x10);
   uVar1 = *(NetworkByte *)(connectionContext + 0x1c);
