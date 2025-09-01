@@ -32565,7 +32565,7 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
   float engine_stack_float_b4;
   float engine_stack_float_b0;
   uint32 engine_stack_uint_ac;
-  float fStack_a8;
+  float engine_stack_float_a8;
   float fStack_a4;
   float fStack_a0;
   uint32 engine_stack_uint_9c;
@@ -32611,9 +32611,9 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
     if (*(int *)(engine_stack_long_88 + 0x10) != 0) {
       do {
         pengine_temp_float_6 = (float *)((longlong)(int)engine_temp_uint64_value * 0x10 + *(longlong *)(engine_stack_long_88 + 0x18));
-        fStack_a8 = *pengine_temp_float_6;
-        if (*pengine_temp_float_1 < fStack_a8) {
-          fStack_a8 = *pengine_temp_float_1;
+        engine_stack_float_a8 = *pengine_temp_float_6;
+        if (*pengine_temp_float_1 < engine_stack_float_a8) {
+          engine_stack_float_a8 = *pengine_temp_float_1;
         }
         fStack_a4 = pengine_temp_float_6[1];
         if (engine_data_structure_ptr[0x9e] < fStack_a4) {
@@ -32623,7 +32623,7 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
         if (engine_data_structure_ptr[0x9f] < fStack_a0) {
           fStack_a0 = engine_data_structure_ptr[0x9f];
         }
-        *(ulonglong *)pengine_temp_float_1 = CONCAT44(fStack_a4,fStack_a8);
+        *(ulonglong *)pengine_temp_float_1 = CONCAT44(fStack_a4,engine_stack_float_a8);
         *(ulonglong *)(engine_data_structure_ptr + 0x9f) = CONCAT44(engine_stack_uint_9c,fStack_a0);
         engine_stack_float_b8 = *pengine_temp_float_6;
         if (engine_stack_float_b8 < engine_data_structure_ptr[0xa1]) {
@@ -33986,7 +33986,7 @@ ulonglong engine_unnamed_function_1320(longlong engine_data_structure_ptr,uint *
   float engine_stack_float_b4;
   float engine_stack_float_b0;
   float fStack_ac;
-  float fStack_a8;
+  float engine_stack_float_a8;
   float fStack_a4;
   float fStack_a0;
   float fStack_9c;
@@ -34264,7 +34264,7 @@ LAB_180077879:
       engine_temp_float = *(float *)(engine_data_structure_ptr + 0x148);
       engine_temp_float_4 = *(float *)(engine_data_structure_ptr + 0x154);
       engine_temp_float_5 = *(float *)(engine_data_structure_ptr + 0x150);
-      fStack_a8 = engine_temp_float_3 * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
+      engine_stack_float_a8 = engine_temp_float_3 * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
       fStack_a4 = engine_temp_float_3 * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
       fStack_a0 = engine_temp_float_3 * engine_temp_float_15 + engine_temp_float_2 * engine_temp_float_11 + engine_temp_float * engine_temp_float_19;
       fStack_9c = engine_temp_float_3 * engine_temp_float_16 + engine_temp_float_2 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20;
@@ -38318,7 +38318,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
   float engine_stack_float_b4;
   float engine_stack_float_b0;
   uint32 engine_stack_uint_ac;
-  float fStack_a8;
+  float engine_stack_float_a8;
   float fStack_a4;
   float fStack_a0;
   uint32 engine_stack_uint_9c;
@@ -38393,9 +38393,9 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
     if (*(int *)(engine_stack_long_88 + 0x10) != 0) {
       do {
         pengine_temp_float_7 = (float *)((longlong)(int)engine_temp_uint_8 * 0x10 + *(longlong *)(engine_stack_long_88 + 0x18));
-        fStack_a8 = *pengine_temp_float_7;
-        if (*pengine_temp_float_1 < fStack_a8) {
-          fStack_a8 = *pengine_temp_float_1;
+        engine_stack_float_a8 = *pengine_temp_float_7;
+        if (*pengine_temp_float_1 < engine_stack_float_a8) {
+          engine_stack_float_a8 = *pengine_temp_float_1;
         }
         fStack_a4 = pengine_temp_float_7[1];
         if (engine_data_structure_ptr[0x9e] < fStack_a4) {
@@ -38405,7 +38405,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
         if (engine_data_structure_ptr[0x9f] < fStack_a0) {
           fStack_a0 = engine_data_structure_ptr[0x9f];
         }
-        *(ulonglong *)pengine_temp_float_1 = CONCAT44(fStack_a4,fStack_a8);
+        *(ulonglong *)pengine_temp_float_1 = CONCAT44(fStack_a4,engine_stack_float_a8);
         *(ulonglong *)(engine_data_structure_ptr + 0x9f) = CONCAT44(engine_stack_uint_9c,fStack_a0);
         engine_stack_float_b8 = *pengine_temp_float_7;
         if (engine_stack_float_b8 < engine_data_structure_ptr[0xa1]) {
