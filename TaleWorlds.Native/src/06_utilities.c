@@ -369,10 +369,10 @@ undefined DatabaseSystemCacheTable;
 undefined DatabaseSystemConnectionTable;
 undefined DatabaseSystemTransactionTable;
 undefined DatabaseSystemBackupTable;
-undefined SystemResourceConfig;
-undefined SystemMemoryConfig;
-undefined SystemThreadConfig;
-undefined SystemProcessConfig;
+void* SystemResourceConfigTable;
+void* SystemMemoryConfigTable;
+void* SystemThreadConfigTable;
+void* SystemProcessConfigTable;
 undefined SystemEventConfig;
 undefined SystemTimerConfig;
 undefined SystemSyncConfig;
@@ -404,8 +404,8 @@ undefined SystemPerformanceConfig;
 undefined SystemLocalizationConfig;
 undefined SystemModdingConfig;
 undefined SystemDebugConfig;
-undefined SystemThreadConfig;
-undefined SystemProcessConfig;
+void* SystemThreadConfigTable;
+void* SystemProcessConfigTable;
 undefined SystemEventConfig;
 undefined SystemTimerConfig;
 undefined SystemSyncConfig;
@@ -5600,42 +5600,60 @@ LAB_1808918d2:
 
 
 
- void FUN_180891900(longlong param_1,longlong param_2)
-void FUN_180891900(longlong param_1,longlong param_2)
+ /**
+ * @brief 处理对象状态检查和调度
+ * 
+ * 该函数检查对象的状态标志，如果状态为0则调用处理函数。
+ * 根据处理结果决定是否继续执行调度操作。
+ * 如果状态不为0或处理失败，则执行默认调度。
+ * 
+ * @param objectContext 对象上下文指针，包含对象的状态信息
+ * @param schedulerContext 调度器上下文，包含调度相关的配置信息
+ */
+void ProcessObjectStateAndSchedule(longlong objectContext, longlong schedulerContext)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int processingStatus;
+  longlong processingBuffer;
   
-  if (*(int *)(param_1 + 0x2c) == 0) {
-    iVar1 = FUN_1808949c0(param_2,param_1 + 0x1c,&lStackX_8);
-    if (iVar1 != 0) {
+  if (*(int *)(objectContext + 0x2c) == 0) {
+    processingStatus = FUN_1808949c0(schedulerContext,objectContext + 0x1c,&processingBuffer);
+    if (processingStatus != 0) {
       return;
     }
-    iVar1 = func_0x00018088c500(*(undefined8 *)(lStackX_8 + 0xd0),param_1 + 0x2c);
-    if (iVar1 != 0) {
+    processingStatus = func_0x00018088c500(*(undefined8 *)(processingBuffer + 0xd0),objectContext + 0x2c);
+    if (processingStatus != 0) {
       return;
     }
   }
-  FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+  FUN_18088d7c0(*(undefined8 *)(schedulerContext + 0x98),objectContext);
   return;
 }
 
 
 
 
- void FUN_180891970(longlong param_1,longlong param_2)
-void FUN_180891970(longlong param_1,longlong param_2)
+ /**
+ * @brief 初始化对象属性并调度
+ * 
+ * 该函数通过对象标识符获取对象属性信息，
+ * 将属性值设置到对象上下文中，然后调用调度函数。
+ * 主要用于对象的初始化后的属性设置和调度处理。
+ * 
+ * @param objectContext 对象上下文指针，包含对象的标识符和属性信息
+ * @param schedulerContext 调度器上下文，包含调度相关的配置信息
+ */
+void InitializeObjectPropertiesAndDispatch(longlong objectContext, longlong schedulerContext)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int initializationStatus;
+  longlong propertyBuffer;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if (iVar1 == 0) {
-    *(undefined4 *)(param_1 + 0x18) = *(undefined4 *)(lStackX_8 + 0x30);
-    *(undefined4 *)(param_1 + 0x1c) = *(undefined4 *)(lStackX_8 + 0x34);
-    FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+  initializationStatus = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  if (initializationStatus == 0) {
+    *(undefined4 *)(objectContext + 0x18) = *(undefined4 *)(propertyBuffer + 0x30);
+    *(undefined4 *)(objectContext + 0x1c) = *(undefined4 *)(propertyBuffer + 0x34);
+    FUN_18088d7c0(*(undefined8 *)(schedulerContext + 0x98),objectContext);
   }
   return;
 }
@@ -5643,18 +5661,27 @@ void FUN_180891970(longlong param_1,longlong param_2)
 
 
 
- void FUN_1808919c0(longlong param_1,longlong param_2)
-void FUN_1808919c0(longlong param_1,longlong param_2)
+ /**
+ * @brief 验证对象属性并调度
+ * 
+ * 该函数通过对象标识符获取对象属性信息，
+ * 验证对象属性的合法性，如果验证通过则调用调度函数。
+ * 主要用于对象属性的验证和后续的调度处理。
+ * 
+ * @param objectContext 对象上下文指针，包含对象的标识符和属性信息
+ * @param schedulerContext 调度器上下文，包含调度相关的配置信息
+ */
+void ValidateObjectPropertiesAndDispatch(longlong objectContext, longlong schedulerContext)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int validationStatus;
+  undefined8 propertyBuffer;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = FUN_1808deb90(uStackX_8,param_1 + 0x18);
-    if (iVar1 == 0) {
-      FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+  validationStatus = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  if (validationStatus == 0) {
+    validationStatus = FUN_1808deb90(propertyBuffer,objectContext + 0x18);
+    if (validationStatus == 0) {
+      FUN_18088d7c0(*(undefined8 *)(schedulerContext + 0x98),objectContext);
     }
   }
   return;
@@ -5663,138 +5690,200 @@ void FUN_1808919c0(longlong param_1,longlong param_2)
 
 
 
- void FUN_180891a10(longlong param_1,longlong param_2)
-void FUN_180891a10(longlong param_1,longlong param_2)
+ /**
+ * @brief 验证对象状态并执行调度操作B
+ * 
+ * 该函数检查对象的状态标志，如果状态为0则进行验证处理。
+ * 验证通过后调用调度函数处理对象。如果验证失败或状态不为0，
+ * 则执行错误处理流程。这是第二个版本的验证和调度函数。
+ * 
+ * @param objectContext 对象上下文指针，包含对象的状态信息
+ * @param schedulerContext 调度器上下文，包含调度相关的配置信息
+ */
+void ValidateObjectStateAndDispatchB(longlong objectContext, longlong schedulerContext)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int validationStatus;
+  undefined8 validationBuffer;
   
-  if (*(int *)(param_1 + 0x2c) == 0) {
-    iVar1 = FUN_180894b00(param_2,param_1 + 0x1c,&uStackX_8);
-    if (iVar1 == 0) {
-      iVar1 = func_0x00018088c500(uStackX_8,param_1 + 0x2c);
-      if (iVar1 == 0) goto LAB_180891a52;
+  if (*(int *)(objectContext + 0x2c) == 0) {
+    validationStatus = FUN_180894b00(schedulerContext,objectContext + 0x1c,&validationBuffer);
+    if (validationStatus == 0) {
+      validationStatus = func_0x00018088c500(validationBuffer,objectContext + 0x2c);
+      if (validationStatus == 0) goto LAB_180891a52;
     }
     return;
   }
 LAB_180891a52:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+  FUN_18088d720(*(undefined8 *)(schedulerContext + 0x98),objectContext);
 }
 
 
 
-undefined8 FUN_180891a80(longlong param_1,longlong param_2)
+/**
+ * @brief 检查对象属性并递增计数器
+ * 
+ * 该函数检查对象的属性信息，验证特定标志位的状态。
+ * 如果标志位不为0则返回错误码，否则递增计数器。
+ * 如果计数器原值为0，则调用调度函数处理对象。
+ * 
+ * @param objectContext 对象上下文指针，包含对象的标识符和属性信息
+ * @param schedulerContext 调度器上下文，包含调度相关的配置信息
+ * @return 处理结果状态码，0表示成功，0x2e表示标志位检查失败
+ */
+undefined8 CheckObjectPropertiesAndIncrementCounter(longlong objectContext, longlong schedulerContext)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  longlong lStackX_8;
+  int counterValue;
+  undefined8 operationResult;
+  longlong propertyBuffer;
   
-  uVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar2 == 0) {
-    if (*(int *)(lStackX_8 + 0x34) != 0) {
+  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  if ((int)operationResult == 0) {
+    if (*(int *)(propertyBuffer + 0x34) != 0) {
       return 0x2e;
     }
-    iVar1 = *(int *)(lStackX_8 + 0x28);
-    *(int *)(lStackX_8 + 0x28) = iVar1 + 1;
-    if (iVar1 == 0) {
+    counterValue = *(int *)(propertyBuffer + 0x28);
+    *(int *)(propertyBuffer + 0x28) = counterValue + 1;
+    if (counterValue == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      FUN_18088d720(*(undefined8 *)(schedulerContext + 0x98),objectContext);
     }
-    uVar2 = 0;
+    operationResult = 0;
   }
-  return uVar2;
+  return operationResult;
 }
 
 
 
 
- void FUN_180891af0(longlong param_1,longlong param_2)
-void FUN_180891af0(longlong param_1,longlong param_2)
+ /**
+ * @brief 重置对象属性并调度
+ * 
+ * 该函数获取对象的属性信息，将特定属性值重置为0，
+ * 然后调用调度函数处理对象。主要用于对象的属性重置操作。
+ * 
+ * @param objectContext 对象上下文指针，包含对象的标识符和属性信息
+ * @param schedulerContext 调度器上下文，包含调度相关的配置信息
+ */
+void ResetObjectPropertiesAndDispatch(longlong objectContext, longlong schedulerContext)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int initializationStatus;
+  longlong propertyBuffer;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if (iVar1 == 0) {
-    *(undefined4 *)(lStackX_8 + 0x30) = 0;
+  initializationStatus = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  if (initializationStatus == 0) {
+    *(undefined4 *)(propertyBuffer + 0x30) = 0;
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    FUN_18088d720(*(undefined8 *)(schedulerContext + 0x98),objectContext);
   }
   return;
 }
 
 
 
-undefined8 FUN_180891b40(longlong param_1,longlong param_2)
+/**
+ * @brief 检查对象属性并递减计数器
+ * 
+ * 该函数检查对象的属性信息，验证特定标志位的状态。
+ * 如果标志位不为0则返回错误码，否则检查计数器值。
+ * 根据计数器值的不同状态返回不同的错误码或递减计数器。
+ * 如果计数器值为1，则调用调度函数处理对象。
+ * 
+ * @param objectContext 对象上下文指针，包含对象的标识符和属性信息
+ * @param schedulerContext 调度器上下文，包含调度相关的配置信息
+ * @return 处理结果状态码，0表示成功，其他值表示不同的错误状态
+ */
+undefined8 CheckObjectPropertiesAndDecrementCounter(longlong objectContext, longlong schedulerContext)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  longlong lStackX_8;
+  int counterValue;
+  undefined8 operationResult;
+  longlong propertyBuffer;
   
-  uVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar2 == 0) {
-    if (*(int *)(lStackX_8 + 0x34) != 0) {
+  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  if ((int)operationResult == 0) {
+    if (*(int *)(propertyBuffer + 0x34) != 0) {
       return 0x2e;
     }
-    iVar1 = *(int *)(lStackX_8 + 0x28);
-    if (iVar1 < 0) {
+    counterValue = *(int *)(propertyBuffer + 0x28);
+    if (counterValue < 0) {
       return 0x1c;
     }
-    if (iVar1 == 0) {
+    if (counterValue == 0) {
       return 0x4c;
     }
-    *(int *)(lStackX_8 + 0x28) = iVar1 + -1;
-    if (iVar1 == 1) {
+    *(int *)(propertyBuffer + 0x28) = counterValue + -1;
+    if (counterValue == 1) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      FUN_18088d720(*(undefined8 *)(schedulerContext + 0x98),objectContext);
     }
-    uVar2 = 0;
+    operationResult = 0;
   }
-  return uVar2;
+  return operationResult;
 }
 
 
 
-undefined8 FUN_180891bd0(longlong param_1,longlong param_2)
+/**
+ * @brief 提取对象属性并调度
+ * 
+ * 该函数获取对象的属性信息，检查特定指针的有效性。
+ * 如果指针有效，则提取特定属性值到对象上下文中，
+ * 然后调用调度函数处理对象。
+ * 
+ * @param objectContext 对象上下文指针，包含对象的标识符和属性信息
+ * @param schedulerContext 调度器上下文，包含调度相关的配置信息
+ * @return 处理结果状态码，0表示成功，0x4c表示指针检查失败
+ */
+undefined8 ExtractObjectPropertiesAndDispatch(longlong objectContext, longlong schedulerContext)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 operationResult;
+  longlong propertyBuffer;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 == 0) {
-    if (*(longlong *)(lStackX_8 + 8) == 0) {
+  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  if ((int)operationResult == 0) {
+    if (*(longlong *)(propertyBuffer + 8) == 0) {
       return 0x4c;
     }
-    *(undefined8 *)(param_1 + 0x18) = *(undefined8 *)(*(longlong *)(lStackX_8 + 8) + 0x78);
-    uVar1 = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+    *(undefined8 *)(objectContext + 0x18) = *(undefined8 *)(*(longlong *)(propertyBuffer + 8) + 0x78);
+    operationResult = FUN_18088d7c0(*(undefined8 *)(schedulerContext + 0x98),objectContext);
   }
-  return uVar1;
+  return operationResult;
 }
 
 
 
-undefined8 FUN_180891c40(longlong param_1,longlong param_2)
+/**
+ * @brief 激活对象属性并调度
+ * 
+ * 该函数获取对象的属性信息，检查特定标志位的状态。
+ * 如果标志位已设置则返回错误码，否则设置标志位并调用调度函数。
+ * 主要用于对象属性的激活操作。
+ * 
+ * @param objectContext 对象上下文指针，包含对象的标识符和属性信息
+ * @param schedulerContext 调度器上下文，包含调度相关的配置信息
+ * @return 处理结果状态码，成功时不会返回，失败时返回错误码
+ */
+undefined8 ActivateObjectPropertiesAndDispatch(longlong objectContext, longlong schedulerContext)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 operationResult;
+  longlong propertyBuffer;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  if (*(char *)(lStackX_8 + 0x2c) != '\0') {
+  if (*(char *)(propertyBuffer + 0x2c) != '\0') {
     return 0x4e;
   }
-  *(undefined1 *)(lStackX_8 + 0x2c) = 1;
+  *(undefined1 *)(propertyBuffer + 0x2c) = 1;
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+  FUN_18088d720(*(undefined8 *)(schedulerContext + 0x98),objectContext);
 }
 
 
