@@ -167,12 +167,6 @@ void* CleanupContextData3;
  * @brief 初始化资源管理器
  * 
  * 该函数负责初始化游戏资源管理器
- * 设置资源加载、缓存和释放的相关系统
- */
-/**
- * @brief 初始化资源管理器
- * 
- * 该函数负责初始化系统资源管理器
  * 设置资源分配、管理和释放的基础设施
  */
 void InitializeResourceManager(void);
@@ -789,13 +783,13 @@ undefined DAT_180bf8938;
 undefined DAT_180bf8940;
 undefined DAT_180bf8948;
 undefined DAT_180bf8950;
-undefined UNK_180941ce0;
+undefined SystemResourceConfigTable;
 undefined DAT_180c91d60;
-undefined UNK_180a140f8;
+undefined SystemMemoryConfigTable;
 undefined DAT_180c91d64;
-undefined UNK_180a14290;
+undefined SystemThreadConfigTable;
 undefined DAT_180c91d68;
-undefined UNK_180a14668;
+undefined SystemProcessConfigTable;
 undefined DAT_180c91d6c;
 undefined DAT_180a14640;
 undefined DAT_180c91d70;
