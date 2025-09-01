@@ -837,19 +837,6 @@ void system_initialize_main(void)
  * 
  * 简化实现：仅保留核心子系统初始化逻辑
  */
-/**
- * @brief 系统子系统初始化函数
- * 
- * 初始化系统的各个子系统，包括：
- * - 子系统管理器初始化
- * - 子系统内存分配
- * - 子系统节点配置
- * - 子系统状态设置
- * 
- * @return void 无返回值
- * 
- * 简化实现：主要处理子系统初始化的核心逻辑
- */
 void system_initialize_subsystem(void)
 
 {
