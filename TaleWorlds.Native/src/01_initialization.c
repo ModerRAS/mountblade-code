@@ -2003,22 +2003,22 @@ void InitializeSystemMemoryManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunction;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
     if (MemoryCompareResult < 0) {
@@ -2032,9 +2032,9 @@ void InitializeSystemMemoryManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x406be72011d07d37;
@@ -2058,22 +2058,22 @@ void InitializeSystemMemoryAllocator(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
     if (MemoryCompareResult < 0) {
@@ -2087,9 +2087,9 @@ void InitializeSystemMemoryAllocator(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40afa5469b6ac06d;
@@ -2166,22 +2166,22 @@ void InitializeSystemThreadManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -2195,9 +2195,9 @@ void InitializeSystemThreadManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -2221,22 +2221,22 @@ void InitializeSystemEventManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -2250,9 +2250,9 @@ void InitializeSystemEventManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -2557,22 +2557,22 @@ void InitializeSystemDataTableStructureC(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionE;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
     if (MemoryCompareResult < 0) {
@@ -2586,9 +2586,9 @@ void InitializeSystemDataTableStructureC(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateE,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateE,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x449bafe9b77ddd3c;
@@ -2613,22 +2613,22 @@ void InitializeSystemDataTableStructureD(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionF;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (MemoryCompareResult < 0) {
@@ -2642,9 +2642,9 @@ void InitializeSystemDataTableStructureD(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45425dc186a5d575;
@@ -2669,22 +2669,22 @@ void InitializeSystemDataTableStructureE(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunction;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
     if (MemoryCompareResult < 0) {
@@ -2698,9 +2698,9 @@ void InitializeSystemDataTableStructureE(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x406be72011d07d37;
@@ -2725,22 +2725,22 @@ void InitializeSystemDataTableStructureF(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
     if (MemoryCompareResult < 0) {
@@ -2754,9 +2754,9 @@ void InitializeSystemDataTableStructureF(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40afa5469b6ac06d;
@@ -2781,22 +2781,22 @@ void InitializeSystemDataTableStructureG(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
     if (MemoryCompareResult < 0) {
@@ -2810,9 +2810,9 @@ void InitializeSystemDataTableStructureG(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x42bea5b911d9c4bf;
@@ -2837,22 +2837,22 @@ void InitializeSystemDataTableStructureH(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionG;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateO,0x10);
     if (MemoryCompareResult < 0) {
@@ -2866,9 +2866,9 @@ void InitializeSystemDataTableStructureH(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateO,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateO,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40db4257e97d3df8;
@@ -2893,22 +2893,22 @@ void InitializeSystemDataTableStructureI(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemEventCallbackPointer;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemMemoryComparisonTemplate,0x10);
     if (MemoryCompareResult < 0) {
@@ -2922,9 +2922,9 @@ void InitializeSystemDataTableStructureI(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemMemoryComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemMemoryComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4e33c4803e67a08f;
@@ -2999,22 +2999,22 @@ void InitializeSystemMemoryManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -3028,9 +3028,9 @@ void InitializeSystemMemoryManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -3107,22 +3107,22 @@ void InitializeSystemDataTable(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -3136,9 +3136,9 @@ void InitializeSystemDataTable(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -3158,22 +3158,22 @@ void InitializeSystemNodeTree(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -3187,9 +3187,9 @@ void InitializeSystemNodeTree(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -3209,22 +3209,22 @@ void InitializeMemoryAllocator(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -3238,9 +3238,9 @@ void InitializeMemoryAllocator(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -3260,22 +3260,22 @@ void InitializeResourcePool(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* resourcePoolCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   resourcePoolCallbackPointer = &ResourcePoolCallbackNode;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -3289,9 +3289,9 @@ void InitializeResourcePool(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -3311,22 +3311,22 @@ void InitializeConfigurationManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -3340,9 +3340,9 @@ void InitializeConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -3362,22 +3362,22 @@ void InitializeEventSystem(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionF;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (MemoryCompareResult < 0) {
@@ -3391,9 +3391,9 @@ void InitializeEventSystem(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45425dc186a5d575;
@@ -3417,22 +3417,22 @@ void InitializeSystemMemoryManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -3446,9 +3446,9 @@ void InitializeSystemMemoryManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -3472,22 +3472,22 @@ void InitializeSystemThreadPoolManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -3501,9 +3501,9 @@ void InitializeSystemThreadPoolManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -3527,22 +3527,22 @@ void InitializeSystemResourceManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -3556,9 +3556,9 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -3584,22 +3584,22 @@ void InitializeSystemNodeTree(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -3613,9 +3613,9 @@ void InitializeSystemNodeTree(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -3641,22 +3641,22 @@ void InitializeSystemDataTable(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -3670,9 +3670,9 @@ void InitializeSystemDataTable(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -3696,22 +3696,22 @@ void InitializeSystemEventHandler(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -3725,9 +3725,9 @@ void InitializeSystemEventHandler(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -3751,22 +3751,22 @@ void InitializeSystemNetworkManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -3780,9 +3780,9 @@ void InitializeSystemNetworkManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -3806,22 +3806,22 @@ void InitializeSystemSecurityManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -3835,9 +3835,9 @@ void InitializeSystemSecurityManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -3861,22 +3861,22 @@ void InitializeSystemPerformanceMonitor(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -3890,9 +3890,9 @@ void InitializeSystemPerformanceMonitor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -3916,22 +3916,22 @@ void InitializeSystemDebugManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -3945,9 +3945,9 @@ void InitializeSystemDebugManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -3973,22 +3973,22 @@ void InitializeSystemMemoryAllocator(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -4002,9 +4002,9 @@ void InitializeSystemMemoryAllocator(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -4030,22 +4030,22 @@ void InitializeSystemResourcePool(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -4059,9 +4059,9 @@ void InitializeSystemResourcePool(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -4087,22 +4087,22 @@ void InitializeSystemConfigurationManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -4116,9 +4116,9 @@ void InitializeSystemConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -4144,22 +4144,22 @@ void InitializeSystemResourceManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* *resourceInitializationCallback;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   resourceInitializationCallback = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -4173,9 +4173,9 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -4201,22 +4201,22 @@ void InitializeSystemPerformanceMonitor(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
     if (MemoryCompareResult < 0) {
@@ -4230,9 +4230,9 @@ void InitializeSystemPerformanceMonitor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x42bea5b911d9c4bf;
@@ -4258,22 +4258,22 @@ void InitializeSystemDebugManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   code *debugInitializationCallback;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   debugInitializationCallback = SystemDebugCallback;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (MemoryCompareResult < 0) {
@@ -4287,9 +4287,9 @@ void InitializeSystemDebugManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45425dc186a5d575;
@@ -4315,22 +4315,22 @@ void InitializeSystemEventHandler(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -4344,9 +4344,9 @@ void InitializeSystemEventHandler(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -4372,22 +4372,22 @@ void InitializeSystemNetworkManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -4401,9 +4401,9 @@ void InitializeSystemNetworkManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -4429,22 +4429,22 @@ void InitializeSystemSecurityManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -4458,9 +4458,9 @@ void InitializeSystemSecurityManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -4486,22 +4486,22 @@ void InitializeSystemDataTableStructureA(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -4515,9 +4515,9 @@ void InitializeSystemDataTableStructureA(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -4543,22 +4543,22 @@ void InitializeSystemResourceManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackData;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackData = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -4572,11 +4572,11 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     long long MemoryAllocationSize;
     void** SystemAllocatedNode;
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -4602,22 +4602,22 @@ void InitializeSystemPerformanceMonitor(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemPerformanceCallback;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemPerformanceCallback = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -4631,11 +4631,11 @@ void InitializeSystemPerformanceMonitor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     long long MemoryAllocationSize;
     void** SystemAllocatedNode;
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -4661,22 +4661,22 @@ void InitializeSystemDebugManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemDebugData;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemDebugData = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -4690,11 +4690,11 @@ void InitializeSystemDebugManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     long long MemoryAllocationSize;
     void** SystemAllocatedNode;
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -4799,7 +4799,7 @@ void InitializeSystemEventManager(void)
     CurrentNode = NextNode;
     NodeFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     long long MemoryAllocationSize;
     void** SystemAllocatedNode;
     MemoryAllocationSize = GetSystemMemorySize(dataTable);
@@ -5006,22 +5006,22 @@ void InitializeSystemEventManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   code *systemInitializationFunction;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFunction = GetSystemEventManagerFunction;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&EVENT_MANAGER_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -5035,9 +5035,9 @@ void InitializeSystemEventManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&EVENT_MANAGER_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&EVENT_MANAGER_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -5063,22 +5063,22 @@ void InitializeSystemDataManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   code *systemInitializationFunction;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFunction = GetSystemDataManagerFunction;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&DATA_MANAGER_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -5092,9 +5092,9 @@ void InitializeSystemDataManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&DATA_MANAGER_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&DATA_MANAGER_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -5120,22 +5120,22 @@ void InitializeSystemResourceNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemResourceFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemResourceFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&RESOURCE_NODE_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -5149,9 +5149,9 @@ void InitializeSystemResourceNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&RESOURCE_NODE_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&RESOURCE_NODE_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -5178,22 +5178,22 @@ void InitializeSystemNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* nodeManagerCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   nodeManagerCallbackPointer = SystemNodeManagerCallback;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -5207,9 +5207,9 @@ void InitializeSystemNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -5236,22 +5236,22 @@ void InitializeSystemDataNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -5265,9 +5265,9 @@ void InitializeSystemDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -5294,22 +5294,22 @@ void InitializeSystemResourceNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -5323,9 +5323,9 @@ void InitializeSystemResourceNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -5352,22 +5352,22 @@ void InitializeSystemMemoryNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -5381,9 +5381,9 @@ void InitializeSystemMemoryNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -5440,22 +5440,22 @@ void InitializeSystemConfigurationNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -5469,9 +5469,9 @@ void InitializeSystemConfigurationNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -5497,22 +5497,22 @@ void InitializeSystemEventNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -5526,9 +5526,9 @@ void InitializeSystemEventNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -5553,22 +5553,22 @@ void InitializeSystemResourceNode(void)
 
 {
   char SystemNodeFlag;
-  void* systemDataTable;
+  void* SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (void*)GetSystemRootPointer();
-  systemRootNode = (void**)*(long long*)systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (void*)GetSystemRootPointer();
+  SystemRootNode = (void**)*(long long*)SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp((void*)((long long)SystemCurrentNode + 4),&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -5582,10 +5582,10 @@ void InitializeSystemResourceNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemCurrentNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,(void*)((long long)SystemCurrentNode + 4),0x10), MemoryCompareResult < 0)) {
-    long long MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
+  if ((SystemCurrentNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,(void*)((long long)SystemCurrentNode + 4),0x10), MemoryCompareResult < 0)) {
+    long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     void** SystemAllocatedNode;
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemCurrentNode[6] = 0x4b2d79e470ee4e2c;
@@ -5610,22 +5610,22 @@ void InitializeSystemEventNode(void)
 
 {
   char SystemNodeFlag;
-  void *systemDataTable;
+  void *SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void *systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void *SystemRootNode;
   void *SystemCurrentNode;
   void *SystemNextNode;
   void *SystemPreviousNode;
   void *systemValidationCallback;
   
-  systemDataTable = (void*)GetSystemRootPointer();
-  systemRootNode = (void *)*(long long *)systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (void*)GetSystemRootPointer();
+  SystemRootNode = (void *)*(long long *)SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemValidationCallback = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp((void*)((long long)SystemCurrentNode + 4),&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -5639,10 +5639,10 @@ void InitializeSystemEventNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemCurrentNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,(void*)((long long)SystemCurrentNode + 4),0x10), MemoryCompareResult < 0)) {
-    long long MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
+  if ((SystemCurrentNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,(void*)((long long)SystemCurrentNode + 4),0x10), MemoryCompareResult < 0)) {
+    long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     void *SystemAllocatedNode;
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemCurrentNode[6] = 0x49086ba08ab981a7;
@@ -5667,22 +5667,22 @@ void InitializeSystemMemoryNode(void)
 
 {
   char SystemNodeFlag;
-  void *systemDataTable;
+  void *SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void *systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void *SystemRootNode;
   void *SystemCurrentNode;
   void *SystemNextNode;
   void *SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (void*)GetSystemRootPointer();
-  systemRootNode = (void *)*(long long *)systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (void*)GetSystemRootPointer();
+  SystemRootNode = (void *)*(long long *)SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp((void*)((long long)SystemCurrentNode + 4),&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -5696,10 +5696,10 @@ void InitializeSystemMemoryNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemCurrentNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,(void*)((long long)SystemCurrentNode + 4),0x10), MemoryCompareResult < 0)) {
-    long long MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
+  if ((SystemCurrentNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,(void*)((long long)SystemCurrentNode + 4),0x10), MemoryCompareResult < 0)) {
+    long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     void *SystemAllocatedNode;
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemCurrentNode[6] = 0x402feffe4481676e;
@@ -5723,23 +5723,23 @@ void InitializeSystemMemoryNode(void)
 void InitializeRenderingSystem(void)
 
 {
-  bool systemNodeIsActive;
-  void** systemDataTable;
-  int memoryComparisonResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  bool SystemNodeIsActive;
+  void** SystemDataTable;
+  int MemoryComparisonResult;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* renderingInitializationCallback;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -5753,9 +5753,9 @@ void InitializeRenderingSystem(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -5781,22 +5781,22 @@ void InitializeSystemConfigurationManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -5810,9 +5810,9 @@ void InitializeSystemConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -6036,7 +6036,7 @@ void InitializeSystemStorageManager(void)
 {
   char SystemNodeTraversalFlag;
   void** SystemDataTableReference;
-  int memoryComparisonResult;
+  int MemoryComparisonResult;
   long long *systemMemoryAllocationPointer;
   long long systemTimestamp;
   void** SystemRootStorageNode;
@@ -6045,15 +6045,15 @@ void InitializeSystemStorageManager(void)
   void** SystemPreviousStorageNode;
   void* storageManagerCallbackFunction;
   
-  systemDataTableReference = (long long*)GetSystemRootPointer();
-  systemRootStorageNode = (void* *)*systemDataTableReference;
-  SystemNodeTraversalFlag = *(char*)((long long)systemRootStorageNode[1] + 0x19);
+  SystemDataTableReference = (long long*)GetSystemRootPointer();
+  SystemRootStorageNode = (void* *)*SystemDataTableReference;
+  SystemNodeTraversalFlag = *(char*)((long long)SystemRootStorageNode[1] + 0x19);
   storageManagerCallbackFunction = SystemStorageManagerCallback;
-  systemPreviousStorageNode = systemRootStorageNode;
-  systemCurrentStorageNode = (void* *)systemRootStorageNode[1];
+  systemPreviousStorageNode = SystemRootStorageNode;
+  systemCurrentStorageNode = (void* *)SystemRootStorageNode[1];
   while (SystemNodeTraversalFlag == '\0') {
-    memoryComparisonResult = memcmp(systemCurrentStorageNode + 4,&SystemDataComparisonTemplateO,0x10);
-    if (memoryComparisonResult < 0) {
+    MemoryComparisonResult = memcmp(systemCurrentStorageNode + 4,&SystemDataComparisonTemplateO,0x10);
+    if (MemoryComparisonResult < 0) {
       systemNextStorageNode = (void* *)systemCurrentStorageNode[2];
       systemCurrentStorageNode = systemPreviousStorageNode;
     }
@@ -6064,10 +6064,10 @@ void InitializeSystemStorageManager(void)
     systemCurrentStorageNode = systemNextStorageNode;
     SystemNodeTraversalFlag = *(char*)((long long)systemNextStorageNode + 0x19);
   }
-  if ((systemCurrentStorageNode == systemRootStorageNode) || (memoryComparisonResult = memcmp(&SystemDataComparisonTemplateO,systemCurrentStorageNode + 4,0x10), memoryComparisonResult < 0)) {
-    long long MemoryAllocationSize = GetSystemMemorySize(systemDataTableReference);
+  if ((systemCurrentStorageNode == SystemRootStorageNode) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateO,systemCurrentStorageNode + 4,0x10), MemoryComparisonResult < 0)) {
+    long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTableReference);
     void** SystemAllocatedStorageNode;
-    AllocateSystemMemory(systemDataTableReference,&systemAllocatedStorageNode,systemPreviousStorageNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    AllocateSystemMemory(SystemDataTableReference,&systemAllocatedStorageNode,systemPreviousStorageNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     systemPreviousStorageNode = systemAllocatedStorageNode;
   }
   systemCurrentStorageNode[6] = 0x40db4257e97d3df8;
@@ -6095,7 +6095,7 @@ void InitializeSystemMemoryManagerNode(void)
 {
   char SystemNodeTraversalFlag;
   void** SystemDataTableReference;
-  int memoryComparisonResult;
+  int MemoryComparisonResult;
   long long *systemMemoryAllocationPointer;
   long long systemTimestamp;
   void** SystemRootMemoryNode;
@@ -6104,15 +6104,15 @@ void InitializeSystemMemoryManagerNode(void)
   void* *systemPreviousMemoryNode;
   void* memoryManagerCallbackFunction;
   
-  systemDataTableReference = (long long*)GetSystemRootPointer();
-  systemRootMemoryNode = (void* *)*systemDataTableReference;
+  SystemDataTableReference = (long long*)GetSystemRootPointer();
+  systemRootMemoryNode = (void* *)*SystemDataTableReference;
   SystemNodeTraversalFlag = *(char*)((long long)systemRootMemoryNode[1] + 0x19);
   memoryManagerCallbackFunction = SystemMemoryManagerCallback;
   systemPreviousMemoryNode = systemRootMemoryNode;
   systemCurrentMemoryNode = (void* *)systemRootMemoryNode[1];
   while (SystemNodeTraversalFlag == '\0') {
-    memoryComparisonResult = memcmp(systemCurrentMemoryNode + 4,&SystemMemoryComparisonTemplate,0x10);
-    if (memoryComparisonResult < 0) {
+    MemoryComparisonResult = memcmp(systemCurrentMemoryNode + 4,&SystemMemoryComparisonTemplate,0x10);
+    if (MemoryComparisonResult < 0) {
       systemNextMemoryNode = (void* *)systemCurrentMemoryNode[2];
       systemCurrentMemoryNode = systemPreviousMemoryNode;
     }
@@ -6123,10 +6123,10 @@ void InitializeSystemMemoryManagerNode(void)
     systemCurrentMemoryNode = systemNextMemoryNode;
     SystemNodeTraversalFlag = *(char*)((long long)systemNextMemoryNode + 0x19);
   }
-  if ((systemCurrentMemoryNode == systemRootMemoryNode) || (memoryComparisonResult = memcmp(&SystemMemoryComparisonTemplate,systemCurrentMemoryNode + 4,0x10), memoryComparisonResult < 0)) {
-    long long MemoryAllocationSize = GetSystemMemorySize(systemDataTableReference);
+  if ((systemCurrentMemoryNode == systemRootMemoryNode) || (MemoryComparisonResult = memcmp(&SystemMemoryComparisonTemplate,systemCurrentMemoryNode + 4,0x10), MemoryComparisonResult < 0)) {
+    long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTableReference);
     void* *systemAllocatedMemoryNode;
-    AllocateSystemMemory(systemDataTableReference,&systemAllocatedMemoryNode,systemPreviousMemoryNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    AllocateSystemMemory(SystemDataTableReference,&systemAllocatedMemoryNode,systemPreviousMemoryNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     systemPreviousMemoryNode = systemAllocatedMemoryNode;
   }
   systemCurrentMemoryNode[6] = 0x4e33c4803e67a08f;
@@ -6153,22 +6153,22 @@ void InitializeSystemDataTableNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -6182,9 +6182,9 @@ void InitializeSystemDataTableNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -6211,22 +6211,22 @@ void InitializeSystemConfigurationNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -6240,9 +6240,9 @@ void InitializeSystemConfigurationNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -6269,22 +6269,22 @@ void InitializeSystemEventNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -6298,9 +6298,9 @@ void InitializeSystemEventNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -6327,22 +6327,22 @@ void InitializeSystemNodeTreeProcessor(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -6356,9 +6356,9 @@ void InitializeSystemNodeTreeProcessor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -6385,22 +6385,22 @@ void InitializeSystemMemoryPoolManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -6414,9 +6414,9 @@ void InitializeSystemMemoryPoolManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -6443,22 +6443,22 @@ void InitializeSystemServiceManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -6472,9 +6472,9 @@ void InitializeSystemServiceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -6501,22 +6501,22 @@ void InitializeSystemResourceManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -6530,9 +6530,9 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -6559,22 +6559,22 @@ void InitializeSystemEventHandler(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -6588,9 +6588,9 @@ void InitializeSystemEventHandler(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -6617,22 +6617,22 @@ void InitializeSystemTaskManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -6646,9 +6646,9 @@ void InitializeSystemTaskManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -6675,22 +6675,22 @@ void InitializeSystemDataProcessor(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -6704,9 +6704,9 @@ void InitializeSystemDataProcessor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -6733,22 +6733,22 @@ void InitializeSystemCommunicationManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -6762,9 +6762,9 @@ void InitializeSystemCommunicationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -6791,22 +6791,22 @@ void InitializeSystemMemoryManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -6820,9 +6820,9 @@ void InitializeSystemMemoryManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -6849,22 +6849,22 @@ void InitializeSystemThreadManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -6878,9 +6878,9 @@ void InitializeSystemThreadManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -6906,22 +6906,22 @@ void InitializeSystemResourceInitializer(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -6935,10 +6935,10 @@ void InitializeSystemResourceInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    long long MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     void** SystemAllocatedNode;
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -7028,22 +7028,22 @@ void InitializeSystemEventManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   code *eventHandlerFunction;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   eventHandlerFunction = SystemEventDispatcher;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (MemoryCompareResult < 0) {
@@ -7057,10 +7057,10 @@ void InitializeSystemEventManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    long long MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     void** SystemAllocatedNode;
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45425dc186a5d575;
@@ -7087,22 +7087,22 @@ void InitializeSystemSearchManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionE;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
     if (MemoryCompareResult < 0) {
@@ -7116,9 +7116,9 @@ void InitializeSystemSearchManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateE,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateE,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x449bafe9b77ddd3c;
@@ -7145,22 +7145,22 @@ void InitializeSystemIndexManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunction;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
     if (MemoryCompareResult < 0) {
@@ -7174,9 +7174,9 @@ void InitializeSystemIndexManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x406be72011d07d37;
@@ -7203,22 +7203,22 @@ void InitializeSystemCacheManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
     if (MemoryCompareResult < 0) {
@@ -7232,9 +7232,9 @@ void InitializeSystemCacheManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40afa5469b6ac06d;
@@ -7261,22 +7261,22 @@ void InitializeSystemLogManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -7290,9 +7290,9 @@ void InitializeSystemLogManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -7319,22 +7319,22 @@ void InitializeSystemPerformanceMonitor(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -7348,9 +7348,9 @@ void InitializeSystemPerformanceMonitor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -7377,22 +7377,22 @@ void InitializeSystemResourceManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -7406,9 +7406,9 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -7435,22 +7435,22 @@ void InitializeSystemEventDispatcher(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -7464,9 +7464,9 @@ void InitializeSystemEventDispatcher(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -7493,22 +7493,22 @@ void InitializeSystemSecurityManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -7522,9 +7522,9 @@ void InitializeSystemSecurityManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -7551,22 +7551,22 @@ void InitializeSystemConfigurationManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -7580,9 +7580,9 @@ void InitializeSystemConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -7609,22 +7609,22 @@ void InitializeSystemNetworkManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -7638,9 +7638,9 @@ void InitializeSystemNetworkManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -7667,22 +7667,22 @@ void InitializeSystemStorageManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionG;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateO,0x10);
     if (MemoryCompareResult < 0) {
@@ -7696,9 +7696,9 @@ void InitializeSystemStorageManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateO,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateO,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40db4257e97d3df8;
@@ -7725,22 +7725,22 @@ void InitializeSystemProcessManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemEventCallbackPointer;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemMemoryComparisonTemplate,0x10);
     if (MemoryCompareResult < 0) {
@@ -7754,9 +7754,9 @@ void InitializeSystemProcessManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemMemoryComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemMemoryComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4e33c4803e67a08f;
@@ -7783,22 +7783,22 @@ void InitializeSystemThreadManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -7812,9 +7812,9 @@ void InitializeSystemThreadManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -7864,7 +7864,7 @@ void InitializeSystemEventProcessor(void)
     eventCurrentNode = eventNextNode;
     EventNodeFlag = *(char*)((long long)eventNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(eventSystemDataTable);
     AllocateSystemMemory(eventSystemDataTable,&eventAllocatedNode,eventPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     eventPreviousNode = eventAllocatedNode;
@@ -7886,22 +7886,22 @@ void InitializeSystemResourceManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -7915,9 +7915,9 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -7937,22 +7937,22 @@ void InitializeSystemMemoryManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -7966,9 +7966,9 @@ void InitializeSystemMemoryManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -7988,22 +7988,22 @@ void InitializeSystemLogManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -8017,9 +8017,9 @@ void InitializeSystemLogManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -8039,22 +8039,22 @@ void InitializeSystemPerformanceMonitor(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -8068,9 +8068,9 @@ void InitializeSystemPerformanceMonitor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -8090,22 +8090,22 @@ void InitializeSystemSecurityMonitor(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -8119,9 +8119,9 @@ void InitializeSystemSecurityMonitor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -8141,22 +8141,22 @@ void InitializeSystemNetworkManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionE;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
     if (MemoryCompareResult < 0) {
@@ -8170,9 +8170,9 @@ void InitializeSystemNetworkManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateE,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateE,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x449bafe9b77ddd3c;
@@ -8192,22 +8192,22 @@ void InitializeSystemStorageManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionF;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (MemoryCompareResult < 0) {
@@ -8221,9 +8221,9 @@ void InitializeSystemStorageManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45425dc186a5d575;
@@ -8243,22 +8243,22 @@ void InitializeSystemMemoryManagerNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionG;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateO,0x10);
     if (MemoryCompareResult < 0) {
@@ -8272,9 +8272,9 @@ void InitializeSystemMemoryManagerNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateO,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateO,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40db4257e97d3df8;
@@ -8294,22 +8294,22 @@ void InitializeSystemConfigurationManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemEventCallbackPointer;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemMemoryComparisonTemplate,0x10);
     if (MemoryCompareResult < 0) {
@@ -8323,9 +8323,9 @@ void InitializeSystemConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemMemoryComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemMemoryComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4e33c4803e67a08f;
@@ -8345,22 +8345,22 @@ void InitializeSystemThreadManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
     if (MemoryCompareResult < 0) {
@@ -8374,9 +8374,9 @@ void InitializeSystemThreadManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x42bea5b911d9c4bf;
@@ -8396,22 +8396,22 @@ void InitializeSystemProcessManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -8425,9 +8425,9 @@ void InitializeSystemProcessManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -8447,22 +8447,22 @@ void InitializeSystemDeviceManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -8476,9 +8476,9 @@ void InitializeSystemDeviceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -8498,22 +8498,22 @@ void InitializeSystemServiceManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -8527,9 +8527,9 @@ void InitializeSystemServiceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -8549,22 +8549,22 @@ void InitializeSystemDriverManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -8578,9 +8578,9 @@ void InitializeSystemDriverManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -8607,22 +8607,22 @@ void InitializeSystemModuleManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -8636,9 +8636,9 @@ void InitializeSystemModuleManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -8658,22 +8658,22 @@ void InitializeSystemComponentManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -8687,9 +8687,9 @@ void InitializeSystemComponentManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -8709,22 +8709,22 @@ void InitializeSystemPluginManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -8738,9 +8738,9 @@ void InitializeSystemPluginManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -8855,22 +8855,22 @@ void InitializeSystemFrameworkManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -8884,9 +8884,9 @@ void InitializeSystemFrameworkManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -8909,11 +8909,11 @@ void InitializeSystemFrameworkManager(void)
 void InitializeSystemSearchManagerD(void)
 {
   char IsSystemNodeActive;
-  void** systemDataTablePointer;
+  void** SystemDataTablePointer;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNodePointer;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNodePointer;
   void** currentSystemNode;
   void** nextSystemNode;
   void** previousSystemNode;
@@ -8921,12 +8921,12 @@ void InitializeSystemSearchManagerD(void)
   void* systemSearchFunctionPointer;
   long long MemoryAllocationSize;
   
-  systemDataTablePointer = (long long*)GetSystemRootPointer();
-  systemRootNodePointer = (void**)*systemDataTablePointer;
-  IsSystemNodeActive = *(char*)((long long)systemRootNodePointer[1] + 0x19);
+  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemRootNodePointer = (void**)*SystemDataTablePointer;
+  IsSystemNodeActive = *(char*)((long long)SystemRootNodePointer[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  previousSystemNode = systemRootNodePointer;
-  currentSystemNode = (void**)systemRootNodePointer[1];
+  previousSystemNode = SystemRootNodePointer;
+  currentSystemNode = (void**)SystemRootNodePointer[1];
   
   while (IsSystemNodeActive == '\0') {
     MemoryCompareResult = memcmp(currentSystemNode + 4, &SystemDataComparisonTemplateI, 0x10);
@@ -8942,10 +8942,10 @@ void InitializeSystemSearchManagerD(void)
     IsSystemNodeActive = *(char*)((long long)nextSystemNode + 0x19);
   }
   
-  if ((previousSystemNode == systemRootNodePointer) || 
+  if ((previousSystemNode == SystemRootNodePointer) || 
       (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI, previousSystemNode + 4, 0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTablePointer);
-    AllocateSystemMemory(systemDataTablePointer, &allocatedSystemNode, previousSystemNode, MemoryAllocationSize + 0x20, MemoryAllocationSize);
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
+    AllocateSystemMemory(SystemDataTablePointer, &allocatedSystemNode, previousSystemNode, MemoryAllocationSize + 0x20, MemoryAllocationSize);
     previousSystemNode = allocatedSystemNode;
   }
   
@@ -8970,22 +8970,22 @@ void InitializeSystemResourceNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -8999,9 +8999,9 @@ void InitializeSystemResourceNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -9024,22 +9024,22 @@ void InitializeSystemMemoryNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   code *systemInitializationCallback;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationCallback = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -9053,9 +9053,9 @@ void InitializeSystemMemoryNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -9078,22 +9078,22 @@ void InitializeSystemDataTableNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -9107,9 +9107,9 @@ void InitializeSystemDataTableNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -9132,22 +9132,22 @@ void InitializeSystemConfigurationNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemConfigurationData;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemConfigurationData = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -9161,9 +9161,9 @@ void InitializeSystemConfigurationNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -9182,22 +9182,22 @@ void InitializeSystemEventNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -9211,9 +9211,9 @@ void InitializeSystemEventNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -9232,22 +9232,22 @@ void InitializeSystemThreadNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
     if (MemoryCompareResult < 0) {
@@ -9261,9 +9261,9 @@ void InitializeSystemThreadNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x42bea5b911d9c4bf;
@@ -9305,22 +9305,22 @@ void InitializeSystemSecurityNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFunction = SystemInitializationFunction;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -9334,9 +9334,9 @@ void InitializeSystemSecurityNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4fc124d23d41985f;
@@ -9355,22 +9355,22 @@ void InitializeSystemNetworkNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -9384,9 +9384,9 @@ void InitializeSystemNetworkNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4770584fbb1df897;
@@ -9405,22 +9405,22 @@ void InitializeSystemAudioNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
     if (MemoryCompareResult < 0) {
@@ -9434,9 +9434,9 @@ void InitializeSystemAudioNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4666df49b97e0f10;
@@ -9455,22 +9455,22 @@ void InitializeSystemInputNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
     if (MemoryCompareResult < 0) {
@@ -9484,9 +9484,9 @@ void InitializeSystemInputNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x46ecbd4daf41613e;
@@ -9505,22 +9505,22 @@ void InitializeSystemPhysicsNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -9534,9 +9534,9 @@ void InitializeSystemPhysicsNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4c868a42644030f6;
@@ -9555,22 +9555,22 @@ void InitializeSystemFileSystemNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -9584,9 +9584,9 @@ void InitializeSystemFileSystemNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40ea3a798283cbbb;
@@ -9605,22 +9605,22 @@ void InitializeSystemDatabaseNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -9634,9 +9634,9 @@ void InitializeSystemDatabaseNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45b8d074df27d12f;
@@ -9664,22 +9664,22 @@ void InitializeSystemConfigurationManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -9693,9 +9693,9 @@ void InitializeSystemConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x42d293584c8cf3e5;
@@ -9723,22 +9723,22 @@ void InitializeSystemEventConfigurationManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemCallbackManager;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
     if (MemoryCompareResult < 0) {
@@ -9752,9 +9752,9 @@ void InitializeSystemEventConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x421c3cedd07d816d;
@@ -9782,22 +9782,22 @@ void InitializeSystemNetworkConfigurationManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
     if (MemoryCompareResult < 0) {
@@ -9811,9 +9811,9 @@ void InitializeSystemNetworkConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4c22bb0c326587ce;
@@ -9841,22 +9841,22 @@ void InitializeSystemSearchConfigurationManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionF;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (MemoryCompareResult < 0) {
@@ -9870,9 +9870,9 @@ void InitializeSystemSearchConfigurationManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45425dc186a5d575;
@@ -10138,22 +10138,22 @@ void InitializeSystemStringProcessorE(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -10167,9 +10167,9 @@ void InitializeSystemStringProcessorE(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -10188,22 +10188,22 @@ void InitializeSystemStringProcessorF(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -10217,9 +10217,9 @@ void InitializeSystemStringProcessorF(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -10238,22 +10238,22 @@ void InitializeSystemStringProcessorG(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -10267,9 +10267,9 @@ void InitializeSystemStringProcessorG(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -10288,22 +10288,22 @@ void InitializeSystemStringProcessorH(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -10317,9 +10317,9 @@ void InitializeSystemStringProcessorH(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -10338,22 +10338,22 @@ void InitializeSystemStringProcessorI(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -10367,9 +10367,9 @@ void InitializeSystemStringProcessorI(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -10388,22 +10388,22 @@ void InitializeSystemStringProcessorJ(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -10417,9 +10417,9 @@ void InitializeSystemStringProcessorJ(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -10438,22 +10438,22 @@ void InitializeSystemStringProcessorK(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -10467,9 +10467,9 @@ void InitializeSystemStringProcessorK(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -10488,22 +10488,22 @@ void InitializeSystemStringProcessorL(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -10517,9 +10517,9 @@ void InitializeSystemStringProcessorL(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -10538,22 +10538,22 @@ void InitializeSystemStringProcessorM(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -10567,9 +10567,9 @@ void InitializeSystemStringProcessorM(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -10588,22 +10588,22 @@ void InitializeSystemStringProcessorN(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -10617,9 +10617,9 @@ void InitializeSystemStringProcessorN(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -10638,22 +10638,22 @@ void InitializeSystemStringProcessorO(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -10667,9 +10667,9 @@ void InitializeSystemStringProcessorO(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -10688,22 +10688,22 @@ void InitializeSystemStringProcessorP(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -10717,9 +10717,9 @@ void InitializeSystemStringProcessorP(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -10738,22 +10738,22 @@ void InitializeSystemStringProcessorQ(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -10767,9 +10767,9 @@ void InitializeSystemStringProcessorQ(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -10788,22 +10788,22 @@ void InitializeSystemStringProcessorR(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -10817,9 +10817,9 @@ void InitializeSystemStringProcessorR(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -10838,22 +10838,22 @@ void InitializeSystemStringProcessorS(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -10867,9 +10867,9 @@ void InitializeSystemStringProcessorS(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -10888,22 +10888,22 @@ void InitializeSystemStringProcessorT(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -10917,9 +10917,9 @@ void InitializeSystemStringProcessorT(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -10938,22 +10938,22 @@ void InitializeSystemStringProcessorU(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -10967,9 +10967,9 @@ void InitializeSystemStringProcessorU(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -10988,22 +10988,22 @@ void InitializeSystemStringProcessorV(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -11017,9 +11017,9 @@ void InitializeSystemStringProcessorV(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -11038,22 +11038,22 @@ void InitializeSystemStringProcessorW(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -11067,9 +11067,9 @@ void InitializeSystemStringProcessorW(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -11088,22 +11088,22 @@ void InitializeSystemStringProcessorX(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -11117,9 +11117,9 @@ void InitializeSystemStringProcessorX(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -11138,22 +11138,22 @@ void InitializeSystemStringProcessorY(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -11167,9 +11167,9 @@ void InitializeSystemStringProcessorY(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -11188,22 +11188,22 @@ void InitializeSystemStringProcessorZ(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -11217,9 +11217,9 @@ void InitializeSystemStringProcessorZ(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -11238,22 +11238,22 @@ void InitializeSystemMemoryManagerA(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -11267,9 +11267,9 @@ void InitializeSystemMemoryManagerA(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -11288,22 +11288,22 @@ void InitializeSystemMemoryManagerB(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -11317,9 +11317,9 @@ void InitializeSystemMemoryManagerB(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -11338,22 +11338,22 @@ void InitializeSystemMemoryManagerC(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -11367,9 +11367,9 @@ void InitializeSystemMemoryManagerC(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -11388,22 +11388,22 @@ void InitializeSystemMemoryManagerD(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -11417,9 +11417,9 @@ void InitializeSystemMemoryManagerD(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -11438,22 +11438,22 @@ void InitializeSystemMemoryManagerE(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -11467,9 +11467,9 @@ void InitializeSystemMemoryManagerE(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -11488,22 +11488,22 @@ void InitializeSystemMemoryManagerF(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -11517,9 +11517,9 @@ void InitializeSystemMemoryManagerF(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -11543,22 +11543,22 @@ void InitializeSystemMemoryAllocatorSetup(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFunction = SystemInitializationFunction;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -11572,9 +11572,9 @@ void InitializeSystemMemoryAllocatorSetup(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4fc124d23d41985f;
@@ -11598,22 +11598,22 @@ void InitializeSystemDataTableConfigurator(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -11627,9 +11627,9 @@ void InitializeSystemDataTableConfigurator(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4770584fbb1df897;
@@ -11648,22 +11648,22 @@ void InitializeSystemMemoryManagerG(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
     if (MemoryCompareResult < 0) {
@@ -11677,9 +11677,9 @@ void InitializeSystemMemoryManagerG(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4666df49b97e0f10;
@@ -11698,22 +11698,22 @@ void InitializeSystemMemoryManagerH(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
     if (MemoryCompareResult < 0) {
@@ -11727,9 +11727,9 @@ void InitializeSystemMemoryManagerH(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x46ecbd4daf41613e;
@@ -11748,22 +11748,22 @@ void InitializeSystemMemoryManagerI(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -11777,9 +11777,9 @@ void InitializeSystemMemoryManagerI(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4c868a42644030f6;
@@ -11806,22 +11806,22 @@ void InitializeSystemConfigurationDataNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -11835,9 +11835,9 @@ void InitializeSystemConfigurationDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40ea3a798283cbbb;
@@ -11864,22 +11864,22 @@ void InitializeSystemEventDataNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -11893,9 +11893,9 @@ void InitializeSystemEventDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45b8d074df27d12f;
@@ -11922,22 +11922,22 @@ void InitializeSystemResourceNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -11951,9 +11951,9 @@ void InitializeSystemResourceNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x42d293584c8cf3e5;
@@ -11980,22 +11980,22 @@ void InitializeSystemMemoryNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemCallbackManager;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
     if (MemoryCompareResult < 0) {
@@ -12009,9 +12009,9 @@ void InitializeSystemMemoryNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x421c3cedd07d816d;
@@ -12038,22 +12038,22 @@ void InitializeSystemDeviceNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
     if (MemoryCompareResult < 0) {
@@ -12067,9 +12067,9 @@ void InitializeSystemDeviceNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4c22bb0c326587ce;
@@ -12143,22 +12143,22 @@ void InitializeSystemMemoryNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFunction = SystemInitializationFunction;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -12172,9 +12172,9 @@ void InitializeSystemMemoryNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4fc124d23d41985f;
@@ -12200,22 +12200,22 @@ void InitializeSystemDeviceNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -12229,9 +12229,9 @@ void InitializeSystemDeviceNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4770584fbb1df897;
@@ -12257,22 +12257,22 @@ void InitializeSystemConfigurationDataNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
     if (MemoryCompareResult < 0) {
@@ -12286,9 +12286,9 @@ void InitializeSystemConfigurationDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4666df49b97e0f10;
@@ -12314,22 +12314,22 @@ void InitializeSystemEventDataNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
     if (MemoryCompareResult < 0) {
@@ -12343,9 +12343,9 @@ void InitializeSystemEventDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x46ecbd4daf41613e;
@@ -12371,22 +12371,22 @@ void InitializeSystemMemoryAllocatorNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -12400,9 +12400,9 @@ void InitializeSystemMemoryAllocatorNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4c868a42644030f6;
@@ -12428,22 +12428,22 @@ void InitializeSystemConfigurationNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -12457,9 +12457,9 @@ void InitializeSystemConfigurationNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40ea3a798283cbbb;
@@ -12485,22 +12485,22 @@ void InitializeSystemEventNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -12514,9 +12514,9 @@ void InitializeSystemEventNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45b8d074df27d12f;
@@ -12542,22 +12542,22 @@ void InitializeSystemResourceNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -12571,9 +12571,9 @@ void InitializeSystemResourceNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x42d293584c8cf3e5;
@@ -12599,22 +12599,22 @@ void InitializeSystemDataNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemCallbackManager;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
     if (MemoryCompareResult < 0) {
@@ -12628,9 +12628,9 @@ void InitializeSystemDataNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x421c3cedd07d816d;
@@ -12656,22 +12656,22 @@ void InitializeSystemStringProcessor(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
     if (MemoryCompareResult < 0) {
@@ -12685,9 +12685,9 @@ void InitializeSystemStringProcessor(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4c22bb0c326587ce;
@@ -12771,22 +12771,22 @@ void InitializeSystemConfigurationDataNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -12800,9 +12800,9 @@ void InitializeSystemConfigurationDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -12828,22 +12828,22 @@ void InitializeSystemEventDataNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -12857,9 +12857,9 @@ void InitializeSystemEventDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -12885,22 +12885,22 @@ void InitializeSystemResourceDataNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -12914,9 +12914,9 @@ void InitializeSystemResourceDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -12942,22 +12942,22 @@ void InitializeSystemDataNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -12971,9 +12971,9 @@ void InitializeSystemDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -12999,22 +12999,22 @@ void InitializeSystemStringDataNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -13028,9 +13028,9 @@ void InitializeSystemStringDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -13056,22 +13056,22 @@ void InitializeSystemMemoryDataNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -13085,9 +13085,9 @@ void InitializeSystemMemoryDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -13113,22 +13113,22 @@ void InitializeSystemDeviceDataNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -13142,9 +13142,9 @@ void InitializeSystemDeviceDataNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -13188,22 +13188,22 @@ void InitializeSystemSearchNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionF;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (MemoryCompareResult < 0) {
@@ -13217,9 +13217,9 @@ void InitializeSystemSearchNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45425dc186a5d575;
@@ -13245,22 +13245,22 @@ void InitializeSystemDebugNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -13274,9 +13274,9 @@ void InitializeSystemDebugNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -13302,22 +13302,22 @@ void InitializeSystemLoggingNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -13331,9 +13331,9 @@ void InitializeSystemLoggingNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -13359,22 +13359,22 @@ void InitializeSystemPerformanceNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -13388,9 +13388,9 @@ void InitializeSystemPerformanceNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -13416,22 +13416,22 @@ void InitializeSystemSecurityNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -13445,9 +13445,9 @@ void InitializeSystemSecurityNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -13473,22 +13473,22 @@ void InitializeSystemNetworkNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -13502,9 +13502,9 @@ void InitializeSystemNetworkNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -13530,22 +13530,22 @@ void InitializeSystemThreadNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -13559,9 +13559,9 @@ void InitializeSystemThreadNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -13587,22 +13587,22 @@ void InitializeSystemProcessNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -13616,9 +13616,9 @@ void InitializeSystemProcessNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -13645,22 +13645,22 @@ void InitializeSystemEventManagerG(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -13674,9 +13674,9 @@ void InitializeSystemEventManagerG(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -13703,22 +13703,22 @@ void InitializeSystemEventManagerH(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -13732,9 +13732,9 @@ void InitializeSystemEventManagerH(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -13761,22 +13761,22 @@ void InitializeSystemEventManagerI(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -13790,9 +13790,9 @@ void InitializeSystemEventManagerI(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -13813,22 +13813,22 @@ void InitializeSystemEventManagerJ(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -13842,9 +13842,9 @@ void InitializeSystemEventManagerJ(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -13865,22 +13865,22 @@ void InitializeSystemEventManagerK(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -13894,9 +13894,9 @@ void InitializeSystemEventManagerK(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -13917,22 +13917,22 @@ void InitializeSystemEventManagerL(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -13946,9 +13946,9 @@ void InitializeSystemEventManagerL(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -13969,22 +13969,22 @@ void InitializeSystemEventManagerM(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -13998,9 +13998,9 @@ void InitializeSystemEventManagerM(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -14127,22 +14127,22 @@ void InitializeSystemResourceManagerA(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFunction = SystemInitializationFunction;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -14156,9 +14156,9 @@ void InitializeSystemResourceManagerA(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4fc124d23d41985f;
@@ -14179,22 +14179,22 @@ void InitializeSystemResourceManagerB(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -14208,9 +14208,9 @@ void InitializeSystemResourceManagerB(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4770584fbb1df897;
@@ -14231,22 +14231,22 @@ void InitializeSystemResourceManagerC(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
     if (MemoryCompareResult < 0) {
@@ -14260,9 +14260,9 @@ void InitializeSystemResourceManagerC(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4666df49b97e0f10;
@@ -14283,22 +14283,22 @@ void InitializeSystemResourceManagerD(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
     if (MemoryCompareResult < 0) {
@@ -14312,9 +14312,9 @@ void InitializeSystemResourceManagerD(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x46ecbd4daf41613e;
@@ -14335,22 +14335,22 @@ void InitializeSystemResourceManagerE(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -14364,9 +14364,9 @@ void InitializeSystemResourceManagerE(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4c868a42644030f6;
@@ -14388,22 +14388,22 @@ void InitializeSystemResourceManagerF(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -14417,9 +14417,9 @@ void InitializeSystemResourceManagerF(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40ea3a798283cbbb;
@@ -14441,22 +14441,22 @@ void InitializeSystemResourceManagerG(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -14470,9 +14470,9 @@ void InitializeSystemResourceManagerG(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45b8d074df27d12f;
@@ -14494,22 +14494,22 @@ void InitializeSystemResourceManagerH(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -14523,9 +14523,9 @@ void InitializeSystemResourceManagerH(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x42d293584c8cf3e5;
@@ -14547,22 +14547,22 @@ void InitializeSystemResourceManagerI(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemCallbackManager;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
     if (MemoryCompareResult < 0) {
@@ -14576,9 +14576,9 @@ void InitializeSystemResourceManagerI(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x421c3cedd07d816d;
@@ -14600,22 +14600,22 @@ void InitializeSystemResourceManagerJ(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
     if (MemoryCompareResult < 0) {
@@ -14629,9 +14629,9 @@ void InitializeSystemResourceManagerJ(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4c22bb0c326587ce;
@@ -14766,22 +14766,22 @@ void InitializeSystemDebugManagerA(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
     if (MemoryCompareResult < 0) {
@@ -14795,9 +14795,9 @@ void InitializeSystemDebugManagerA(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x46c54bc98fc3fc2a;
@@ -14819,22 +14819,22 @@ void InitializeSystemDebugManagerB(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
     if (MemoryCompareResult < 0) {
@@ -14848,9 +14848,9 @@ void InitializeSystemDebugManagerB(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x41ffd0b76c1e136f;
@@ -14872,22 +14872,22 @@ void InitializeSystemDebugManagerC(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFunction = SystemInitializationFunction;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -14901,9 +14901,9 @@ void InitializeSystemDebugManagerC(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4fc124d23d41985f;
@@ -14930,22 +14930,22 @@ void InitializeSystemResourceAllocator(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -14959,9 +14959,9 @@ void InitializeSystemResourceAllocator(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4770584fbb1df897;
@@ -14988,22 +14988,22 @@ void InitializeSystemDataTableAllocator(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
     if (MemoryCompareResult < 0) {
@@ -15017,9 +15017,9 @@ void InitializeSystemDataTableAllocator(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4666df49b97e0f10;
@@ -15039,22 +15039,22 @@ void InitializeSystemResourceComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
     if (MemoryCompareResult < 0) {
@@ -15068,9 +15068,9 @@ void InitializeSystemResourceComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x46ecbd4daf41613e;
@@ -15090,22 +15090,22 @@ void InitializeSystemAllocatorComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -15119,9 +15119,9 @@ void InitializeSystemAllocatorComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4c868a42644030f6;
@@ -15141,22 +15141,22 @@ void InitializeSystemConfigurationComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -15170,9 +15170,9 @@ void InitializeSystemConfigurationComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40ea3a798283cbbb;
@@ -15192,22 +15192,22 @@ void InitializeSystemCoreComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -15221,9 +15221,9 @@ void InitializeSystemCoreComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45b8d074df27d12f;
@@ -15243,22 +15243,22 @@ void InitializeSystemMemoryComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -15272,9 +15272,9 @@ void InitializeSystemMemoryComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x42d293584c8cf3e5;
@@ -15294,22 +15294,22 @@ void InitializeSystemThreadComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemCallbackManager;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
     if (MemoryCompareResult < 0) {
@@ -15323,9 +15323,9 @@ void InitializeSystemThreadComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x421c3cedd07d816d;
@@ -15345,22 +15345,22 @@ void InitializeSystemEventComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
     if (MemoryCompareResult < 0) {
@@ -15374,9 +15374,9 @@ void InitializeSystemEventComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4c22bb0c326587ce;
@@ -15396,22 +15396,22 @@ void InitializeSystemSecurityComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
     if (MemoryCompareResult < 0) {
@@ -15425,9 +15425,9 @@ void InitializeSystemSecurityComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x46c54bc98fc3fc2a;
@@ -15447,22 +15447,22 @@ void InitializeSystemNetworkComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
     if (MemoryCompareResult < 0) {
@@ -15476,9 +15476,9 @@ void InitializeSystemNetworkComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x41ffd0b76c1e136f;
@@ -15498,22 +15498,22 @@ void InitializeSystemDatabaseComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionF;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (MemoryCompareResult < 0) {
@@ -15527,9 +15527,9 @@ void InitializeSystemDatabaseComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateF,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45425dc186a5d575;
@@ -15549,22 +15549,22 @@ void InitializeSystemLoggingComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionE;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
     if (MemoryCompareResult < 0) {
@@ -15578,9 +15578,9 @@ void InitializeSystemLoggingComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateE,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateE,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x449bafe9b77ddd3c;
@@ -15600,22 +15600,22 @@ void InitializeSystemPerformanceComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunction;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
     if (MemoryCompareResult < 0) {
@@ -15629,9 +15629,9 @@ void InitializeSystemPerformanceComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x406be72011d07d37;
@@ -15651,22 +15651,22 @@ void InitializeSystemDiagnosticComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
     if (MemoryCompareResult < 0) {
@@ -15680,9 +15680,9 @@ void InitializeSystemDiagnosticComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40afa5469b6ac06d;
@@ -15702,22 +15702,22 @@ void InitializeSystemDebugComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -15731,9 +15731,9 @@ void InitializeSystemDebugComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -15753,22 +15753,22 @@ void InitializeSystemPluginComponent(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (MemoryCompareResult < 0) {
@@ -15782,9 +15782,9 @@ void InitializeSystemPluginComponent(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateI,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -15805,22 +15805,22 @@ void InitializeSystemSubcomponentA(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
     if (MemoryCompareResult < 0) {
@@ -15834,9 +15834,9 @@ void InitializeSystemSubcomponentA(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -15857,22 +15857,22 @@ void InitializeSystemSubcomponentB(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
     if (MemoryCompareResult < 0) {
@@ -15886,9 +15886,9 @@ void InitializeSystemSubcomponentB(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateK,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -15909,22 +15909,22 @@ void InitializeSystemSubcomponentC(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
     if (MemoryCompareResult < 0) {
@@ -15938,9 +15938,9 @@ void InitializeSystemSubcomponentC(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateL,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -15961,22 +15961,22 @@ void InitializeSystemSubcomponentD(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -15990,9 +15990,9 @@ void InitializeSystemSubcomponentD(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -16013,22 +16013,22 @@ void InitializeSystemSubcomponentE(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -16042,9 +16042,9 @@ void InitializeSystemSubcomponentE(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -16065,22 +16065,22 @@ void InitializeSystemSubcomponentF(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
     if (MemoryCompareResult < 0) {
@@ -16094,9 +16094,9 @@ void InitializeSystemSubcomponentF(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateC,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x42bea5b911d9c4bf;
@@ -16117,22 +16117,22 @@ void InitializeSystemSubcomponentG(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
     if (MemoryCompareResult < 0) {
@@ -16146,9 +16146,9 @@ void InitializeSystemSubcomponentG(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x46c54bc98fc3fc2a;
@@ -16169,22 +16169,22 @@ void InitializeSystemSubcomponentH(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
     if (MemoryCompareResult < 0) {
@@ -16198,9 +16198,9 @@ void InitializeSystemSubcomponentH(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x41ffd0b76c1e136f;
@@ -16276,22 +16276,22 @@ void InitializeSystemSubcomponentI(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
     if (MemoryCompareResult < 0) {
@@ -16305,9 +16305,9 @@ void InitializeSystemSubcomponentI(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x46c54bc98fc3fc2a;
@@ -16328,22 +16328,22 @@ void InitializeSystemSubcomponentJ(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
     if (MemoryCompareResult < 0) {
@@ -16357,9 +16357,9 @@ void InitializeSystemSubcomponentJ(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x41ffd0b76c1e136f;
@@ -16380,22 +16380,22 @@ void InitializeSystemSubcomponentK(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
     if (MemoryCompareResult < 0) {
@@ -16409,9 +16409,9 @@ void InitializeSystemSubcomponentK(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x46c54bc98fc3fc2a;
@@ -16432,22 +16432,22 @@ void InitializeSystemSubcomponentL(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
     if (MemoryCompareResult < 0) {
@@ -16461,9 +16461,9 @@ void InitializeSystemSubcomponentL(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x41ffd0b76c1e136f;
@@ -16533,22 +16533,22 @@ void InitializeSystemSubcomponentN(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateS,0x10);
     if (MemoryCompareResult < 0) {
@@ -16562,9 +16562,9 @@ void InitializeSystemSubcomponentN(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateS,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x46c54bc98fc3fc2a;
@@ -16589,22 +16589,22 @@ void InitializeSystemNodeManagerPrimary(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateT,0x10);
     if (MemoryCompareResult < 0) {
@@ -16618,9 +16618,9 @@ void InitializeSystemNodeManagerPrimary(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateT,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x41ffd0b76c1e136f;
@@ -16645,22 +16645,22 @@ void InitializeSystemSearchManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   code *systemSearchCallback;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunction;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
     if (MemoryCompareResult < 0) {
@@ -16674,9 +16674,9 @@ void InitializeSystemSearchManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x406be72011d07d37;
@@ -16702,22 +16702,22 @@ void InitializeSystemNodeManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
     if (MemoryCompareResult < 0) {
@@ -16731,9 +16731,9 @@ void InitializeSystemNodeManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateG,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40afa5469b6ac06d;
@@ -16761,22 +16761,22 @@ void InitializeSystemSearchManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemSearchFunctionPointer = GetSystemSearchFunctionC;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (MemoryCompareResult < 0) {
@@ -16790,9 +16790,9 @@ void InitializeSystemSearchManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateH,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x43330a43fcdb3653;
@@ -16819,22 +16819,22 @@ void InitializeSystemEventManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   code *eventSearchFunctionPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   eventSearchFunctionPointer = GetSystemSearchFunctionD;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventComparisonTemplate,0x10);
     if (MemoryCompareResult < 0) {
@@ -16848,9 +16848,9 @@ void InitializeSystemEventManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemEventComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x431d7c8d7c475be2;
@@ -16877,22 +16877,22 @@ void InitializeSystemResourceManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceComparisonTemplate,0x10);
     if (MemoryCompareResult < 0) {
@@ -16906,9 +16906,9 @@ void InitializeSystemResourceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4b2d79e470ee4e2c;
@@ -16935,22 +16935,22 @@ void InitializeSystemDeviceManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   code *deviceInitializationCallback;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   deviceInitializationCallback = SystemInitializationCallbackB;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDeviceComparisonTemplate,0x10);
     if (MemoryCompareResult < 0) {
@@ -16964,9 +16964,9 @@ void InitializeSystemDeviceManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDeviceComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDeviceComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x49086ba08ab981a7;
@@ -16993,22 +16993,22 @@ void InitializeSystemMemoryManager(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemMemoryComparisonTemplate,0x10);
     if (MemoryCompareResult < 0) {
@@ -17022,9 +17022,9 @@ void InitializeSystemMemoryManager(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemMemoryComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemMemoryComparisonTemplate,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x402feffe4481676e;
@@ -17049,22 +17049,22 @@ void SystemDataNodeInitializerM(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void** SystemStackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemStackPointer = &SystemDataNodeJ;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateM,0x10);
     if (MemoryCompareResult < 0) {
@@ -17078,9 +17078,9 @@ void SystemDataNodeInitializerM(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateM,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4384dcc4b6d3f417;
@@ -17105,22 +17105,22 @@ void InitializeSystemResourceInitializationNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateN,0x10);
     if (MemoryCompareResult < 0) {
@@ -17134,9 +17134,9 @@ void InitializeSystemResourceInitializationNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateN,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4140994454d56503;
@@ -17161,22 +17161,22 @@ void InitializeGameCoreSystemNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFunction = SystemInitializationFunction;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -17190,9 +17190,9 @@ void InitializeGameCoreSystemNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4fc124d23d41985f;
@@ -17217,22 +17217,22 @@ void InitializeBaseAllocatorNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&BASE_ALLOCATOR_ID,0x10);
     if (MemoryCompareResult < 0) {
@@ -17246,9 +17246,9 @@ void InitializeBaseAllocatorNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4770584fbb1df897;
@@ -17273,22 +17273,22 @@ void InitializeSystemDataTableNode(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateP,0x10);
     if (MemoryCompareResult < 0) {
@@ -17302,9 +17302,9 @@ void InitializeSystemDataTableNode(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateP,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4666df49b97e0f10;
@@ -17329,22 +17329,22 @@ void ResourceInitializationCallbackSetter(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateQ,0x10);
     if (MemoryCompareResult < 0) {
@@ -17358,9 +17358,9 @@ void ResourceInitializationCallbackSetter(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateQ,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x46ecbd4daf41613e;
@@ -17385,22 +17385,22 @@ void SystemAllocatorNodeInitializer(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemAllocatorIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -17414,9 +17414,9 @@ void SystemAllocatorNodeInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemAllocatorIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4c868a42644030f6;
@@ -17441,22 +17441,22 @@ void SystemConfigurationNodeInitializer(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemConfigurationIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -17470,9 +17470,9 @@ void SystemConfigurationNodeInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemConfigurationIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x40ea3a798283cbbb;
@@ -17497,22 +17497,22 @@ void SystemEventNodeInitializer(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemEventIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -17526,9 +17526,9 @@ void SystemEventNodeInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemEventIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x45b8d074df27d12f;
@@ -17553,22 +17553,22 @@ void SystemMemoryManagementNodeInitializer(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemResourceIdentifier,0x10);
     if (MemoryCompareResult < 0) {
@@ -17582,9 +17582,9 @@ void SystemMemoryManagementNodeInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemResourceIdentifier,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x42d293584c8cf3e5;
@@ -17609,22 +17609,22 @@ void SystemThreadManagerInitializer(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   void* systemCallbackPointer;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemCallbackPointer = SystemCallbackManager;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
     if (MemoryCompareResult < 0) {
@@ -17638,9 +17638,9 @@ void SystemThreadManagerInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateR,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x421c3cedd07d816d;
@@ -17665,22 +17665,22 @@ void SystemResourceTrackerInitializer(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void** SystemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (long long*)GetSystemRootPointer();
-  systemRootNode = (void**)*systemDataTable;
-  SystemNodeFlag = *(char*)((long long)systemRootNode[1] + 0x19);
+  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemRootNode = (void**)*SystemDataTable;
+  SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
-  SystemPreviousNode = systemRootNode;
-  SystemCurrentNode = (void**)systemRootNode[1];
+  SystemPreviousNode = SystemRootNode;
+  SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
     MemoryCompareResult = memcmp(SystemCurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
     if (MemoryCompareResult < 0) {
@@ -17694,9 +17694,9 @@ void SystemResourceTrackerInitializer(void)
     SystemCurrentNode = SystemNextNode;
     SystemNodeFlag = *(char*)((long long)SystemNextNode + 0x19);
   }
-  if ((SystemPreviousNode == systemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+  if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateB,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&SystemAllocatedNode,SystemPreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     SystemPreviousNode = SystemAllocatedNode;
   }
   SystemPreviousNode[6] = 0x4c22bb0c326587ce;
@@ -19914,7 +19914,7 @@ void InitializeSystemDataPointers(long long *SystemResourcePointer)
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   
   pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
   for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 5) {
@@ -19947,7 +19947,7 @@ void ReleaseMemoryBlockReference(ulong long *SystemResourcePointer)
 
 {
   int *pointerToInteger1;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
   
@@ -20298,7 +20298,7 @@ void InitializeSystemCoreEngine(void)
   int MemoryCompareResult;
   long long ***systemMemoryManager;
   ulong long systemConfigValue;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   void** SystemCurrentNode;
   uint32_t *systemParameterPointer;
   uint8_t *systemDataBuffer;
@@ -21088,7 +21088,7 @@ void InitializeSystemDataTable(long long *SystemResourcePointer)
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   
   pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
   for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 5) {
@@ -21120,7 +21120,7 @@ void ProcessSystemExceptionList(ulong long *SystemResourcePointer)
 
 {
   int *pointerToInteger1;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
   
@@ -21196,7 +21196,7 @@ long long ManageSystemResources(long long SystemResourcePointer,long long resour
   uint32_t resourceStatusFlag2;
   uint32_t resourceStatusFlag3;
   void* resourceHandle;
-  void** systemRootNode;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void** SystemNextNode;
   void* *systemConfigPointer;
@@ -21457,7 +21457,7 @@ void ProcessSystemDataTransfer(long long SystemResourcePointer,void* Configurati
   byte *pbVar2;
   uint unsignedSystemValue3;
   void* *punsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   void* unsignedSystemValue6;
   void* unsignedSystemValue7;
   
@@ -21503,7 +21503,7 @@ void* * CreateSystemResourcePointer(long long SystemResourcePointer,long long *C
 
 {
   long long *PrimaryResourcePointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* *pointerToUnsigned3;
   void* *punsignedSystemValue4;
   void* unsignedSystemValue5;
@@ -22661,7 +22661,7 @@ void* SystemThreadObjectManager(long long threadPoolContext, uint32_t threadFlag
   long long localResourceOffset;
   void* *punsignedSystemValue4;
   void* *punsignedSystemValue5;
-  void** systemRootNode;
+  void** SystemRootNode;
   void* unsignedSystemValue7;
   
   unsignedSystemValue7 = 0xfffffffffffffffe;
@@ -23034,10 +23034,10 @@ void InitializeSystemDataCleaner(void)
 
 {
   char SystemNodeFlag;
-  void** systemDataTable;
+  void** SystemDataTable;
   char *pcVar3;
   void* unsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long localSystemFlags;
   void* *SystemPreviousNode;
   int systemCode;
@@ -23167,7 +23167,7 @@ InitializeSystemPathBuffers(void* *pathBufferRef,void* reservedParam2,void* rese
 
 {
   uint32_t *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   int MemoryCompareResult;
   int systemIndex;
   void* unsignedSystemValue5;
@@ -24145,7 +24145,7 @@ void SystemDataTableProcessorA(long long *DataTablePointer,void* systemContext,v
 
 {
   void* *tableEntryPointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* cleanupFlag;
   
   cleanupFlag = 0xfffffffffffffffe;
@@ -24180,7 +24180,7 @@ void SystemDataTableProcessorB(long long *DataTablePointer,void* systemContext,v
 
 {
   void* *tableEntryPointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* cleanupFlag;
   
   cleanupFlag = 0xfffffffffffffffe;
@@ -24554,7 +24554,7 @@ void ManageSystemResourceReferenceCount(ulong long *SystemResourcePointer)
 
 {
   int *referenceCountPointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long resourceOffset;
   ulong long memoryRegionMask;
   
@@ -24605,7 +24605,7 @@ void ExecuteSystemCleanup(long long *SystemResourcePointer,void* ConfigurationDa
 
 {
   void* *cleanupArrayEnd;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* cleanupFlag;
   
   cleanupFlag = 0xfffffffffffffffe;
@@ -24789,7 +24789,7 @@ void* * SystemResourceComplexInitializer(void* *SystemResourcePointer)
   long long *plocalResourceOffset;
   long long localBufferAddress;
   uint32_t *punsignedSystemValue5;
-  void** systemRootNode;
+  void** SystemRootNode;
   long long *plocalDataPointer;
   uint32_t *punsignedSystemValue8;
   uint32_t *punsignedSystemValue9;
@@ -25873,7 +25873,7 @@ void SystemCleanupHandler(void)
   long long localResourceOffset;
   long long localBufferAddress;
   int *pointerToInteger5;
-  void** systemRootNode;
+  void** SystemRootNode;
   uint32_t *SystemPreviousNode;
   void* *punsignedSystemValue8;
   char cVar9;
@@ -26321,7 +26321,7 @@ void InitializeSystemDataStructures(void)
 
 {
   long long *systemDataPointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   code *systemCodePointer;
   uint8_t *systemBytePointer;
   void* systemHandle;
@@ -26455,7 +26455,7 @@ void InitializeSystemResourceAllocator(long long systemResourcePointer)
 
 {
   long long *primaryResourcePointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   code *programCounter;
   uint8_t *systemDataPointer;
   void* systemValuePointer;
@@ -26651,7 +26651,7 @@ void InitializeSystemResourceManager(long long systemResourcePointer)
 
 {
   int *integerPointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   ulong long systemValue4;
   
@@ -26800,7 +26800,7 @@ void SystemResourceManager(long long SystemResourcePointer)
   ulong long unsignedSystemValue4;
   long long *threadContextPointer;
   long long *threadDataPointer;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   ulong long unsignedSystemValue6;
   
   localMemoryPointer = unaff_RSI[1];
@@ -28158,7 +28158,7 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long Conf
   uint unsignedSystemValue1;
   int systemResult;
   void* unsignedSystemValue3;
-  long long* systemMemoryPointer;
+  long long* SystemMemoryPointer;
   void* *punsignedSystemValue5;
   long long localSystemFlags;
   ulong long unsignedSystemValue7;
@@ -29346,7 +29346,7 @@ void ManageSystemResourceData(long long SystemResourcePointer,void* Configuratio
 
 {
   ulong long *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   ulong long unsignedSystemValue3;
   ulong long unsignedSystemValue4;
   ulong long unsignedSystemValue5;
@@ -29443,7 +29443,7 @@ void InitializeSystemMemoryResource(long long *SystemResourcePointer)
   void* *pointerToUnsigned1;
   code *pcVar2;
   long long localResourceOffset;
-  long long* systemMemoryPointer;
+  long long* SystemMemoryPointer;
   uint8_t auStack_98 [32];
   long long lStack_78;
   long long *plStack_68;
@@ -29547,7 +29547,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourcePointer)
   uint unsignedSystemValue3;
   long long localBufferAddress;
   uint32_t *punsignedSystemValue5;
-  void** systemRootNode;
+  void** SystemRootNode;
   int systemOffset;
   long long localMemoryAddress;
   void* *punsignedSystemValue9;
@@ -30013,12 +30013,12 @@ void SystemResourceCleaner(long long *SystemResourcePointer)
 
 {
   long long *PrimaryResourcePointer;
-  long long localSystemHandle;
+  long long LocalSystemHandle;
   
   PrimaryResourcePointer = SystemResourcePointer + 3;
-  localSystemHandle = *SystemResourcePointer;
-  while ((long long *)localSystemHandle != PrimaryResourcePointer) {
-    localSystemHandle = *(long long *)((ulong long)(-(int)localSystemHandle & 7) + localSystemHandle);
+  LocalSystemHandle = *SystemResourcePointer;
+  while ((long long *)LocalSystemHandle != PrimaryResourcePointer) {
+    LocalSystemHandle = *(long long *)((ulong long)(-(int)LocalSystemHandle & 7) + LocalSystemHandle);
     if ((code *)SystemResourcePointer[0x604] == (code *)0x0) {
       free();
     }
@@ -30180,7 +30180,7 @@ void ProcessSystemDataTable(long long *SystemResourcePointer,void* Configuration
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* unsignedSystemValue3;
   
   unsignedSystemValue3 = 0xfffffffffffffffe;
@@ -30343,7 +30343,7 @@ void ResizeSystemMemoryPool(long long *SystemResourcePointer,ulong long Configur
   ulong long unsignedSystemValue2;
   ulong long unsignedSystemValue3;
   ulong long unsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long localSystemFlags;
   
   localSystemPointer = SystemResourcePointer[1];
@@ -30705,7 +30705,7 @@ void SystemCleanupFunction(void)
 
 {
   int *pointerToInteger1;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   long long unaff_RBP;
   ulong long unaff_RSI;
@@ -30764,7 +30764,7 @@ void InitializeSystemResourceManager(void)
 
 {
   int *pointerToInteger1;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   long long unaff_RBP;
   ulong long unaff_RSI;
@@ -30811,7 +30811,7 @@ void InitializeSystemResourceAllocator(void)
 
 {
   int *pointerToInteger1;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   long long unaff_RBP;
   ulong long unsignedSystemValue4;
@@ -30887,7 +30887,7 @@ void ProcessResourceArrayCleanup(long long *SystemResourcePointer,void* Configur
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* unsignedSystemValue3;
   
   unsignedSystemValue3 = 0xfffffffffffffffe;
@@ -31123,7 +31123,7 @@ void SystemMemoryCleanup(void)
 
 {
   int *memoryReferenceCount;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long memoryBlockAddress;
   long long memoryBlockBase;
   ulong long memoryBlockCount;
@@ -31184,7 +31184,7 @@ void SystemResourceRelease(void)
 
 {
   int *resourceReferenceCount;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long resourceAddress;
   long long resourceBase;
   ulong long resourceCount;
@@ -31231,7 +31231,7 @@ void SystemExceptionHandler(void)
 
 {
   int *pointerToInteger1;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   long long unaff_RBP;
   ulong long unsignedSystemValue4;
@@ -31306,7 +31306,7 @@ void DestroyRenderingSystem(void)
 
 {
   int *pointerToInteger1;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
   
@@ -31575,7 +31575,7 @@ void ProcessSystemResourceData(long long *SystemResourcePointer,void* Configurat
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* unsignedSystemValue3;
   
   unsignedSystemValue3 = 0xfffffffffffffffe;
@@ -32011,10 +32011,10 @@ void ProcessSystemResourceAllocation(void* *SystemResourcePointer,long long Conf
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* *pointerToUnsigned3;
   void* *punsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long localSystemFlags;
   void** SystemCurrentNode;
   
@@ -32406,7 +32406,7 @@ void InitializeSystemTables(void)
 {
   void* *pointerToUnsigned1;
   long long unaff_RBX;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long unaff_RSI;
   long long *unaff_RDI;
   long long unaff_R12;
@@ -32447,7 +32447,7 @@ void FinalizeSystemInitialization(void)
 
 {
   long long localMemoryPointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* *pointerToUnsigned3;
   long long unaff_RSI;
   long long *unaff_RDI;
@@ -32490,7 +32490,7 @@ void SystemResourceProcessor(long long SystemResourcePointer,void* Configuration
 
 {
   void* *resourcePointer1;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* resourceHandle;
   long long resourceOffset;
   void* *resourcePointer4;
@@ -34079,7 +34079,7 @@ void* * CopySystemResourceDataExtended(void* *SystemResourcePointer,void* *Confi
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   
   if (SystemResourcePointer != ConfigurationDataPointer) {
@@ -34876,7 +34876,7 @@ void ProcessSystemResourceCleanup(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
   
@@ -34969,7 +34969,7 @@ void ValidateSystemResourcePointer(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
   
@@ -35017,7 +35017,7 @@ void ValidateAndCleanupSystemResourceTable(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
   
@@ -35064,7 +35064,7 @@ void HandleSystemResourceException(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
   
@@ -35265,7 +35265,7 @@ void CreateAndInitializeSystemThread(void* SystemResourcePointer,void* Configura
 
 {
   uint32_t unsignedSystemValue1;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* *memoryAllocationEnd;
   void* *puStack_48;
   uint32_t uStack_40;
@@ -35853,7 +35853,7 @@ void InitializeSystemThread(void* SystemResourcePointer,void* ConfigurationDataP
 
 {
   uint32_t threadStatus;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* *memoryAllocationEnd;
   void* *threadContextPointer;
   uint32_t threadConfiguration;
@@ -36760,7 +36760,7 @@ void FUN_18005d0e0(ulong long SystemResourcePointer,long long ConfigurationDataP
   uint unsignedSystemValue2;
   ulong long unsignedSystemValue3;
   ulong long *punsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long localSystemFlags;
   int systemOffset;
   int systemCode;
@@ -36967,7 +36967,7 @@ void FUN_18005d3a0(void* SystemResourcePointer,void* ConfigurationDataPointer,vo
 
 {
   void* unsignedSystemValue1;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* uStackX_10;
   uint64_t systemInitializationFlag;
   void* uStackX_20;
@@ -36990,7 +36990,7 @@ void* * FUN_18005d400(long long SystemResourcePointer,char *ConfigurationDataPoi
   char cVar2;
   void* *pointerToUnsigned3;
   char *pcVar4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   char *pcVar6;
   
   if (ConfigurationDataPointer == (char *)0x0) {
@@ -37129,7 +37129,7 @@ void* * FUN_18005d4b0(long long SystemResourcePointer,char *ConfigurationDataPoi
   char cVar2;
   void* *pointerToUnsigned3;
   char *pcVar4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   
   if (ConfigurationDataPointer == (char *)0x0) {
     return *(void* **)(SystemResourcePointer + 0x30);
@@ -37267,7 +37267,7 @@ void FUN_18005d560(long long *SystemResourcePointer,void* ConfigurationDataPoint
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* unsignedSystemValue3;
   
   unsignedSystemValue3 = 0xfffffffffffffffe;
@@ -37290,7 +37290,7 @@ void CleanupSystemMemoryAllocation(long long *SystemResourcePointer,void* Config
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* unsignedSystemValue3;
   
   unsignedSystemValue3 = 0xfffffffffffffffe;
@@ -37376,8 +37376,8 @@ void InitializeSystemLogger(long long SystemResourcePointer,void* ConfigurationD
   long long *PrimaryResourcePointer;
   long long *SecondaryResourcePointer;
   long long *plocalResourceOffset;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
   int systemFlag;
   long long localDataPointer;
   
@@ -37671,7 +37671,7 @@ void FUN_18005dbb0(void)
   int systemResult;
   void* unsignedSystemValue3;
   void* *punsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long localDataPointer;
   ulong long unsignedSystemValue8;
   ulong long unsignedSystemValue9;
@@ -38095,7 +38095,7 @@ void ReleaseSystemResourceHandle(long long SystemResourcePointer,long long *Conf
   long long *PrimaryResourcePointer;
   ulong long unsignedSystemValue2;
   long long localResourceOffset;
-  long long* systemMemoryPointer;
+  long long* SystemMemoryPointer;
   int systemValue;
   ulong long unsignedSystemValue6;
   
@@ -38142,7 +38142,7 @@ void FUN_18005e57a(long long SystemResourcePointer,long long *ConfigurationDataP
   long long *PrimaryResourcePointer;
   ulong long unsignedSystemValue2;
   long long localResourceOffset;
-  long long* systemMemoryPointer;
+  long long* SystemMemoryPointer;
   int systemValue;
   ulong long unsignedSystemValue6;
   
@@ -38276,7 +38276,7 @@ void FUN_18005e770(void* SystemResourcePointer,long long *ConfigurationDataPoint
   bool bVar2;
   long long *plocalResourceOffset;
   ulong long unsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long localSystemFlags;
   char cVar7;
   
@@ -38372,7 +38372,7 @@ void* * FUN_18005e950(void* *SystemResourcePointer)
   void* *pointerToUnsigned3;
   ulong long unsignedSystemValue4;
   ulong long unsignedSystemValue5;
-  void** systemRootNode;
+  void** SystemRootNode;
   long long localDataPointer;
   long long localMemoryAddress;
   
@@ -38448,7 +38448,7 @@ void InitializeSystemHandle(ulong long *SystemResourcePointer,void* *Configurati
 
 {
   long long localMemoryPointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* *pointerToUnsigned3;
   void* *punsignedSystemValue4;
   
@@ -38890,11 +38890,11 @@ void* * FUN_18005ee30(long long *SystemResourcePointer,char ConfigurationDataPoi
 
 {
   long long *PrimaryResourcePointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   long long localBufferAddress;
   void* *punsignedSystemValue5;
-  void** systemRootNode;
+  void** SystemRootNode;
   ulong long unsignedSystemValue7;
   ulong long unsignedSystemValue8;
   bool bVar9;
@@ -39209,7 +39209,7 @@ void* * ExpandSystemResourceAllocator(long long SystemResourcePointer)
   long long localResourceOffset;
   void* *punsignedSystemValue4;
   void* *punsignedSystemValue5;
-  void** systemRootNode;
+  void** SystemRootNode;
   ulong long unsignedSystemValue7;
   long long localMemoryAddress;
   long long localResourcePointer;
@@ -39283,7 +39283,7 @@ void* ExpandSystemResourceAllocatorB(void)
 {
   ulong long unsignedSystemValue1;
   long long in_RAX;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* *pointerToUnsigned3;
   ulong long unsignedSystemValue4;
   long long unaff_RBX;
@@ -39292,7 +39292,7 @@ void* ExpandSystemResourceAllocatorB(void)
   long long *unaff_RDI;
   void* *in_R9;
   void* *punsignedSystemValue5;
-  void** systemRootNode;
+  void** SystemRootNode;
   
   punsignedSystemValue6 = (void* *)((ulong long)(-(int)in_RAX & 7) + in_RAX);
   punsignedSystemValue5 = (void* *)
@@ -40655,7 +40655,7 @@ void* FUN_180060c60(long long SystemResourcePointer,void* ConfigurationDataPoint
   ulong long *pointerToUnsigned2;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long localSystemFlags;
   ulong long unsignedSystemValue7;
   
@@ -40749,8 +40749,8 @@ void* FUN_180060d76(void)
   ulong long *pointerToUnsigned1;
   ulong long unsignedSystemValue2;
   long long localResourceOffset;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
   long long localSystemFlags;
   ulong long unaff_RSI;
   long long unaff_RDI;
@@ -40805,7 +40805,7 @@ void* FUN_180060e40(void* *SystemResourcePointer,long long ConfigurationDataPoin
   char SystemNodeFlag;
   long long *SecondaryResourcePointer;
   long long localResourceOffset;
-  long long* systemMemoryPointer;
+  long long* SystemMemoryPointer;
   long long *plocalSystemPointer;
   long long *plocalSystemFlags;
   
@@ -41006,7 +41006,7 @@ void ValidateSystemResourceEx(long long SystemResourcePointer,long long *Configu
   long long localSystemHandle;
   long long localResourceOffset;
   int systemIndex;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   void* unsignedSystemValue6;
   uint8_t unsignedSystemValue7;
   
@@ -41819,7 +41819,7 @@ int FUN_1800634b0(void* SystemResourcePointer,void* ConfigurationDataPointer,voi
 
 {
   int systemStatus;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* uStackX_20;
   
   uStackX_20 = ConfigurationFlag;
@@ -42048,7 +42048,7 @@ void ConfigureSecurityParameters(void* SystemResourcePointer,long long Configura
   void* *dataPointer;
   long long stringLength;
   long long loopCounter1;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long fileHandle;
   void* stackValue1;
   long long outputStream;
@@ -42065,9 +42065,9 @@ void ConfigureSecurityParameters(void* SystemResourcePointer,long long Configura
   }
   ProcessSystemResourceData(&stackValue1,dataPointer,&SystemEventTemplate);
   fileHandle = outputStream;
-  systemTimeValue = -1;
-  stringLength = systemTimeValue;
-  loopCounter1 = systemTimeValue;
+  SystemTimeValue = -1;
+  stringLength = SystemTimeValue;
+  loopCounter1 = SystemTimeValue;
   if (ConfigurationDataPointer != 0) {
     do {
       stringLength = stringLength + 1;
@@ -42227,7 +42227,7 @@ void FUN_180064010(void* SystemResourcePointer)
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* *pointerToUnsigned3;
   void* *punsignedSystemValue4;
   uint8_t auStack_358 [64];
@@ -42386,8 +42386,8 @@ ulong long FUN_1800649d0(void* SystemResourcePointer)
   ulong long unsignedSystemValue2;
   void* *pointerToUnsigned3;
   void* *punsignedSystemValue4;
-  long long systemTimeValue;
-  void** systemRootNode;
+  long long SystemTimeValue;
+  void** SystemRootNode;
   void** SystemCurrentNode;
   void* *puStack_b8;
   long long lStack_b0;
@@ -42797,7 +42797,7 @@ void FUN_180065160(void* SystemResourcePointer)
   bool bVar3;
   void* *punsignedSystemValue4;
   void* *punsignedSystemValue5;
-  void** systemRootNode;
+  void** SystemRootNode;
   char cVar7;
   int systemCode;
   long long localResourcePointer;
@@ -43931,7 +43931,7 @@ void FUN_180066df0(long long *SystemResourcePointer,long long ConfigurationDataP
 
 {
   long long localMemoryPointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   void* *punsignedSystemValue4;
   void* *punsignedSystemValue5;
@@ -44722,7 +44722,7 @@ void* FUN_180068250(long long SystemResourcePointer,long long ConfigurationDataP
   int MemoryCompareResult;
   void* unsignedSystemValue4;
   ulong long unsignedSystemValue5;
-  void** systemRootNode;
+  void** SystemRootNode;
   ulong long unsignedSystemValue7;
   ulong long unsignedSystemValue8;
   
@@ -45156,7 +45156,7 @@ void* FUN_180068ce0(long long SystemResourcePointer,void* *ConfigurationDataPoin
   ulong long *pointerToUnsigned2;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   ulong long unsignedSystemValue6;
   
   if (*(char *)(SystemResourcePointer + 0x48) == '\0') {
@@ -46214,7 +46214,7 @@ long long FUN_18006b350(long long *SystemResourcePointer,long long *Configuratio
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   
   if (AdditionalParameter == 3) {
     return 0x180bfd730;
@@ -46415,7 +46415,7 @@ void FUN_18006b6f0(long long *SystemResourcePointer,void* ConfigurationDataPoint
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* unsignedSystemValue3;
   
   unsignedSystemValue3 = 0xfffffffffffffffe;
@@ -46438,7 +46438,7 @@ void FUN_18006b760(long long *SystemResourcePointer,void* ConfigurationDataPoint
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* unsignedSystemValue3;
   
   unsignedSystemValue3 = 0xfffffffffffffffe;
@@ -46596,7 +46596,7 @@ void FUN_18006bd60(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   ulong long unsignedSystemValue3;
   ulong long unsignedSystemValue4;
   
@@ -46632,7 +46632,7 @@ void FUN_18006bd80(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   ulong long unsignedSystemValue3;
   ulong long unsignedSystemValue4;
   
@@ -46787,7 +46787,7 @@ void FUN_18006c070(long long SystemResourcePointer)
   byte *pbVar3;
   void* unsignedSystemValue4;
   void* *punsignedSystemValue5;
-  void** systemRootNode;
+  void** SystemRootNode;
   bool bVar7;
   long long localMemoryAddress;
   char cVar9;
@@ -47245,7 +47245,7 @@ void FUN_18006cb90(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
-  void** systemDataTable;
+  void** SystemDataTable;
   ulong long unsignedSystemValue3;
   ulong long unsignedSystemValue4;
   
@@ -47377,7 +47377,7 @@ void FUN_18006cc8d(void* SystemResourcePointer,void* ConfigurationDataPointer,lo
   long long in_RAX;
   long long localResourceOffset;
   long long localBufferAddress;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long *unaff_RDI;
   long long in_R10;
   long long in_stack_00000050;
@@ -47964,7 +47964,7 @@ void* FUN_18006d810(long long SystemResourcePointer,void* ConfigurationDataPoint
   ulong long *pointerToUnsigned2;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long localSystemFlags;
   void* unsignedSystemValue7;
   ulong long unsignedSystemValue8;
@@ -48136,7 +48136,7 @@ ulong long FUN_18006da90(long long SystemResourcePointer,void* ConfigurationData
   ulong long *pointerToUnsigned2;
   uint *pointerToUnsigned3;
   uint unsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   ulong long unsignedSystemValue6;
   long long localDataPointer;
   ulong long unsignedSystemValue8;
@@ -48227,7 +48227,7 @@ void FUN_18006dc10(long long *SystemResourcePointer)
   int *pointerToInteger2;
   int MemoryCompareResult;
   long long localBufferAddress;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long localSystemFlags;
   long long localDataPointer;
   bool bVar8;
@@ -48928,7 +48928,7 @@ void* * FUN_18006e660(void* *SystemResourcePointer,void* ConfigurationDataPointe
   ulong long unsignedSystemValue3;
   long long localBufferAddress;
   void* *punsignedSystemValue5;
-  void** systemRootNode;
+  void** SystemRootNode;
   long long localDataPointer;
   
   InitializeSystemDataTableManager();
@@ -49047,7 +49047,7 @@ void FUN_18006e990(void)
   long long localMemoryPointer;
   char cVar2;
   int MemoryCompareResult;
-  long long* systemMemoryPointer;
+  long long* SystemMemoryPointer;
   
   localMemoryPointer = SystemInitializationFlag;
   FUN_18006f160(SystemInitializationFlag);
@@ -50114,7 +50114,7 @@ void FUN_180070680(void* SystemResourcePointer,void* ConfigurationDataPointer)
   char cVar2;
   int MemoryCompareResult;
   int systemIndex;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   void* *punsignedSystemValue6;
   void* unsignedSystemValue7;
   void* *punsignedSystemValue8;
@@ -51708,7 +51708,7 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
   int MemoryCompareResult;
   long long localBufferAddress;
   void* *punsignedSystemValue5;
-  void** systemRootNode;
+  void** SystemRootNode;
   void* **pSystemPreviousNode;
   uint8_t *punsignedSystemValue8;
   void* unsignedSystemValue9;
@@ -52614,7 +52614,7 @@ void FUN_180073b64(uint *SystemResourcePointer)
   uint32_t *pointerToUnsigned3;
   uint *punsignedSystemValue4;
   long long *unaff_RBX;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   ulong long unsignedSystemValue6;
   long long unaff_R12;
   uint unaff_R13D;
@@ -52769,7 +52769,7 @@ void FUN_180073e0b(uint32_t *SystemResourcePointer)
   void* unsignedSystemValue2;
   uint32_t *pointerToUnsigned3;
   uint *punsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long *unaff_RBX;
   ulong long unsignedSystemValue6;
   uint32_t unaff_R13D;
@@ -52859,7 +52859,7 @@ void ProcessSystemResourceOperationA(void)
   void* unsignedSystemValue2;
   uint32_t *pointerToUnsigned3;
   uint *punsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long *unaff_RBX;
   ulong long unsignedSystemValue6;
   uint32_t unaff_R13D;
@@ -52996,7 +52996,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long 
   int *pointerToInteger2;
   uint unsignedSystemValue3;
   int systemIndex;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   ulong long unsignedSystemValue6;
   long long localDataPointer;
   long long localMemoryAddress;
@@ -53174,7 +53174,7 @@ void FUN_1800740a2(long long *SystemResourcePointer)
   uint unsignedSystemValue3;
   int systemIndex;
   uint *in_RAX;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   ulong long unsignedSystemValue6;
   long long localDataPointer;
   long long localMemoryAddress;
@@ -53673,7 +53673,7 @@ void ManageSystemResourceTimestamp(long long SystemResourcePointer, long long Ti
   int systemResult;
   uint unsignedSystemValue3;
   int *pointerToInteger4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   int systemFlag;
   int systemOffset;
   int systemCode;
@@ -53767,7 +53767,7 @@ void* * CreateAndConfigureSystemDataTable(void* SystemResourcePointer, long long
 
 {
   void* unsignedSystemValue1;
-  void** systemDataTable;
+  void** SystemDataTable;
   
   pointerToUnsigned2 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x38,8,3,0xfffffffffffffffe);
   *pointerToUnsigned2 = &UNK_1809ffa18;
@@ -53805,7 +53805,7 @@ void FUN_1800746c0(long long SystemResourcePointer)
   long long localMemoryPointer;
   int systemResult;
   long long *plocalResourceOffset;
-  long long* systemMemoryPointer;
+  long long* SystemMemoryPointer;
   void* *punsignedSystemValue5;
   
   if (*(char *)(*(long long *)(SystemResourcePointer + 0x20) + 0x28) == '\0') {
@@ -54019,7 +54019,7 @@ void FUN_180074b30(long long *SystemResourcePointer,ulong long ConfigurationData
   ulong long unsignedSystemValue2;
   long long *plocalResourceOffset;
   long long localBufferAddress;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   
   PrimaryResourcePointer = (long long *)SystemResourcePointer[1];
   localSystemPointer = *SystemResourcePointer;
@@ -54072,7 +54072,7 @@ void FUN_180074c20(void* *SystemResourcePointer,ulong long ConfigurationDataPoin
   long long *PrimaryResourcePointer;
   long long *SecondaryResourcePointer;
   void* *pointerToUnsigned3;
-  long long* systemMemoryPointer;
+  long long* SystemMemoryPointer;
   long long *plocalSystemPointer;
   ulong long unsignedSystemValue6;
   void** SystemCurrentNode;
@@ -54290,7 +54290,7 @@ void* * FUN_180075030(void* *SystemResourcePointer,char ConfigurationDataPointer
   long long *PrimaryResourcePointer;
   byte bVar2;
   long long *plocalResourceOffset;
-  long long* systemMemoryPointer;
+  long long* SystemMemoryPointer;
   
   *SystemResourcePointer = &SystemMemoryTemplateA;
   *SystemResourcePointer = &SystemMemoryTemplateB;
@@ -55902,7 +55902,7 @@ void FUN_180077020(long long *SystemResourcePointer)
 
 {
   void* *pointerToUnsigned1;
-  void** systemDataTable;
+  void** SystemDataTable;
   
   pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
   for (pointerToUnsigned2 = (void* *)*SystemResourcePointer; pointerToUnsigned2 != pointerToUnsigned1; pointerToUnsigned2 = pointerToUnsigned2 + 6) {
@@ -55932,7 +55932,7 @@ ulong long FUN_180077040(long long SystemResourcePointer)
   byte bVar2;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   long long localSystemFlags;
   
   if (*(long long *)(SystemResourcePointer + 0x1b8) != 0) {
@@ -55990,8 +55990,8 @@ void FUN_180077150(long long *SystemResourcePointer)
   void* unsignedSystemValue1;
   ulong long *pointerToUnsigned2;
   ulong long unsignedSystemValue3;
-  long long* systemMemoryPointer;
-  long long systemTimeValue;
+  long long* SystemMemoryPointer;
+  long long SystemTimeValue;
   byte bVar6;
   uint8_t stackBuffer [32];
   ulong long *puStack_68;
@@ -56238,7 +56238,7 @@ void FUN_180077710(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
-  void** systemDataTable;
+  void** SystemDataTable;
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
   
@@ -60310,7 +60310,7 @@ void FUN_18007940e(void)
   long long *SecondaryResourcePointer;
   byte *pbVar3;
   char cVar4;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   uint32_t unsignedSystemValue6;
   uint unsignedSystemValue7;
   long long *plocalMemoryAddress;
@@ -60582,7 +60582,7 @@ uint8_t GetSystemResourceState(void)
   long long localResourceOffset;
   long long unaff_RBX;
   int systemIndex;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   
   systemIndex = 0;
   localSystemPointer = 0;
@@ -62952,7 +62952,7 @@ void FUN_18007c490(long long *SystemResourcePointer,byte ConfigurationDataPointe
   char *pcVar1;
   long long *SecondaryResourcePointer;
   long long *plocalResourceOffset;
-  long long* systemMemoryPointer;
+  long long* SystemMemoryPointer;
   code *pcVar5;
   char cVar6;
   void* *SystemPreviousNode;
@@ -64104,7 +64104,7 @@ void FUN_18007e080(long long SystemResourcePointer,ulong long ConfigurationDataP
   int *pointerToInteger2;
   int MemoryCompareResult;
   int systemIndex;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   int systemFlag;
   long long lStack_70;
   uint32_t uStack_68;
@@ -64501,7 +64501,7 @@ code * FUN_18007eb80(long long SystemResourcePointer,char ConfigurationDataPoint
   code *in_RAX;
   void* unsignedSystemValue2;
   code *pcVar3;
-  long long* systemMemoryPointer;
+  long long* SystemMemoryPointer;
   long long lStack_30;
   uint32_t uStack_28;
   code *pcStack_20;
@@ -64917,7 +64917,7 @@ void FUN_18007f0e0(long long SystemResourcePointer,long long ConfigurationDataPo
 
 {
   int *pointerToInteger1;
-  void** systemDataTable;
+  void** SystemDataTable;
   void* *pointerToUnsigned3;
   void* *punsignedSystemValue4;
   uint unsignedSystemValue5;
@@ -64925,7 +64925,7 @@ void FUN_18007f0e0(long long SystemResourcePointer,long long ConfigurationDataPo
   long long localMemoryAddress;
   ulong long unsignedSystemValue9;
   long long localAllocationFlags;
-  void** systemRootNode;
+  void** SystemRootNode;
   
   unsignedSystemValue9 = (ulong long)AdditionalParameter;
   if (**(long long **)(SystemResourcePointer + 0x2d0) != 0) {
@@ -65067,7 +65067,7 @@ void FUN_18007f176(void)
   int *pointerToInteger3;
   long long localBufferAddress;
   long long unaff_R14;
-  long long systemTimeValue;
+  long long SystemTimeValue;
   
   localSystemPointer = -8 - unaff_RBP;
   localBufferAddress = (unaff_R14 - 4U >> 2) + 1;
