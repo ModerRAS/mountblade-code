@@ -97,10 +97,10 @@ void* SystemConfigurationBufferMain;
 void* SystemConfigurationBufferSecondary;
 
 // 系统配置标志 - 用于存储系统配置状态
-char SystemConfigurationFlagPrimary;
+char SystemConfigurationFlagMain;
 
 // 系统常量字符串 - 用于存储系统常量字符串数据
-char* SystemConstantStringPrimary;
+char* SystemConstantStringMain;
 
 // 系统模块缓冲区 - 用于存储系统模块数据
 char* SystemModuleAudioBuffer;
@@ -111,20 +111,20 @@ uint32_t StringProcessorFlags;
 uint32_t SystemMutexFlags;
 
 // 字符串处理系统AB的配置变量
-void* StringProcessingSystemABMemoryPoolPointer;
-void* StringProcessingSystemABConfigBufferPointer;
+void* StringProcessingSystemABMemoryPool;
+void* StringProcessingSystemABConfigBuffer;
 char StringProcessingSystemABConfigBuffer[64];
 uint32_t StringProcessingSystemABConfigSize;
 
 // 字符串处理系统AC的配置变量
-void* StringProcessingSystemACMemoryPoolPointer;
-void* StringProcessingSystemACConfigBufferPointer;
+void* StringProcessingSystemACMemoryPool;
+void* StringProcessingSystemACConfigBuffer;
 char StringProcessingSystemACConfigBuffer[64];
 uint32_t StringProcessingSystemACConfigSize;
 
 // 字符串处理系统AD的配置变量
-void* StringProcessingSystemADMemoryPoolPointer;
-void* StringProcessingSystemADConfigBufferPointer;
+void* StringProcessingSystemADMemoryPool;
+void* StringProcessingSystemADConfigBuffer;
 char StringProcessingSystemADConfigBuffer[64];
 uint32_t StringProcessingSystemADConfigSize;
 
