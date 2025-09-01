@@ -4227,7 +4227,7 @@ uint8_t8 InitializeObjectHandleC(longlong objectContext)
   uint8_t8 unsignedResult3;
   uint8_t4 *punsignedResult4;
   ulonglong unsignedValue5;
-  uint unsignedValue6;
+  uint configurationFlags;
   ulonglong unsignedValue7;
   longlong longValue8;
   longlong lStackX_8;
@@ -4284,7 +4284,7 @@ uint8_t8 InitializeObjectHandleD(void)
   uint8_t4 *punsignedResult4;
   ulonglong unsignedValue5;
   longlong unaff_RSI;
-  uint unsignedValue6;
+  uint configurationFlags;
   ulonglong unsignedValue7;
   longlong longValue8;
   
@@ -5390,7 +5390,7 @@ uint64_t ProcessFloatParameterAndUpdateSystem(longlong parameterObject)
 int InitializeSystemManager(longlong managerHandle)
 
 {
-  int integerValue1;
+  int operationResult;
   longlong resourceTable;
   uint8_t1 ArrayUnionStackX8 [8];
   uint8_t1 ArrayUnionStack50 [72];
@@ -5514,7 +5514,7 @@ int ValidateSystemConfigurationParameter(uint8_t4 configParameter)
 
 {
   int in_EAX;
-  int integerValue1;
+  int operationResult;
   longlong resourceTable;
   longlong unaff_RDI;
   uint8_t4 unsignedResult3;
@@ -5590,7 +5590,7 @@ uint8_t8 GetSystemVersionInfo(void)
 void ProcessSystemDataPacketTransmission(longlong packetHandle, longlong transmissionConfig)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = ProcessResourceRequest(*(uint8_t8 *)(validationContextParam + 0x78),*(uint8_t4 *)(objectContextParam + 0x10),
                         objectContextParam + 0x14,objectContextParam + 0x20,objectContextParam + 0x2c,objectContextParam + 0x38);
@@ -6376,7 +6376,7 @@ LAB_180891fc0:
 void ProcessDynamicBufferReallocation(void)
 
 {
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   longlong in_RAX;
   longlong resourceIndex;
@@ -6556,7 +6556,7 @@ void SystemResourceCleanupCompleteFlag(void)
 void ValidateObjectContextAndUpdateStatus(longlong objectContext, longlong systemContext)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t8 uStackX_8;
   
   integerValue1 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&uStackX_8);
@@ -7848,7 +7848,7 @@ uint8_t8 ValidateObjectContextAndProcessFloatRange(longlong objectContext,longlo
  */
 
 {
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   uint8_t8 unsignedResult3;
   float *pfVar4;
@@ -8580,7 +8580,7 @@ void ValidateAndProcessBufferContext(longlong objectContextParam,longlong valida
 void ProcessBufferContextValidationAndCleanup(longlong objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   longlong lStackX_8;
   
   integerValue1 = ProcessSchedulerOperation(validationContextParam,objectContextParam + 0x10,&lStackX_8);
@@ -8608,7 +8608,7 @@ void ProcessBufferContextValidationAndCleanup(longlong objectContextParam,longlo
 void ProcessBufferContextValidationAndSystemExit(longlong objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t8 uStackX_8;
   
   integerValue1 = ProcessSchedulerFinalization(validationContextParam,objectContextParam + 0x10,&uStackX_8);
@@ -8640,7 +8640,7 @@ void ProcessBufferContextValidationAndSystemExit(longlong objectContextParam,lon
 int ProcessObjectContextValidationAndStatusUpdate(longlong objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   longlong resourceTable;
   longlong lStackX_8;
   
@@ -8692,7 +8692,7 @@ int ProcessObjectContextValidationAndStatusUpdate(longlong objectContextParam,lo
 int ProcessObjectContextValidationAndStatusUpdateSimple(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   longlong resourceTable;
   longlong unaff_RDI;
   longlong unaff_R15;
@@ -8826,7 +8826,7 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t8 objectContextParam, ui
 
 {
   int in_EAX;
-  int integerValue1;
+  int operationResult;
   longlong resourceTable;
   longlong unaff_RDI;
   longlong unaff_R15;
@@ -9246,7 +9246,7 @@ void ProcessFloatRangeClamping(void)
   float fVar1;
   uint8_t8 *pvalidationResult;
   uint8_t4 in_EAX;
-  int iVar3;
+  int validationStatus;
   uint8_t4 in_register_00000004;
   longlong unaff_RBX;
   longlong unaff_RDI;
@@ -9510,7 +9510,7 @@ uint8_t8 ValidateObjectContextAndProcessFloatValidation(longlong objectContextPa
 int ProcessDataWithValidator(longlong objectContextParam,longlong validationContextParam,int param_3)
 
 {
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   
   integerValue1 = func_0x00018074b800(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
@@ -9546,7 +9546,7 @@ int ProcessDataWithValidator(longlong objectContextParam,longlong validationCont
 int ProcessDataWithExtendedValidator(longlong objectContextParam,longlong validationContextParam,int param_3)
 
 {
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   
   integerValue1 = func_0x00018074b800(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
@@ -9586,7 +9586,7 @@ int ProcessDataWithExtendedValidator(longlong objectContextParam,longlong valida
 int ProcessDataWithSimplifiedValidator(longlong objectContextParam,longlong validationContextParam,int param_3)
 
 {
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   
   integerValue1 = func_0x00018074b7d0(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
@@ -9622,7 +9622,7 @@ int ProcessDataWithSimplifiedValidator(longlong objectContextParam,longlong vali
 int ProcessDataWithBuffer(longlong *objectContextParam,longlong validationContextParam,int param_3)
 
 {
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   
   integerValue1 = ProcessStringOperation(validationContextParam,param_3,&SystemStringBufferA);
@@ -9652,7 +9652,7 @@ int ProcessDataWithBuffer(longlong *objectContextParam,longlong validationContex
 int ProcessDataWithQueue(longlong *objectContextParam,longlong validationContextParam,int param_3)
 
 {
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   
   integerValue1 = ProcessStringOperation(validationContextParam,param_3,&SystemStringBufferB);
@@ -9682,7 +9682,7 @@ int ProcessDataWithQueue(longlong *objectContextParam,longlong validationContext
 int ProcessDataWithStack(longlong *objectContextParam,longlong validationContextParam,int param_3)
 
 {
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   
   integerValue1 = ProcessStringOperation(validationContextParam,param_3,&SystemStringBufferC);
@@ -9853,7 +9853,7 @@ void ProcessResourceIndexAndSecurity(longlong objectContextParam,uint8_t4 *valid
 ValidateResourceTableAccess(ulonglong resource_handle)
 
 {
-  int integerValue1;
+  int operationResult;
   longlong in_RAX;
   longlong resourceTable;
   longlong *unaff_RSI;
@@ -9985,7 +9985,7 @@ ProcessResourceIndexOperation(longlong resource_handle, uint8_t4 *resource_data,
 4bf5(void)
 
 {
-  int integerValue1;
+  int operationResult;
   longlong in_RAX;
   longlong *unaff_RDI;
   longlong lStack0000000000000080;
@@ -10006,7 +10006,7 @@ ProcessResourceIndexOperation(longlong resource_handle, uint8_t4 *resource_data,
 void ValidateAndInitializeResource(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = CalculateResourceHash(validationContextParam,objectContextParam + 0x10);
   if (((integerValue1 == 0) && (integerValue1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x18), integerValue1 == 0)) &&
@@ -10023,7 +10023,7 @@ void ValidateAndInitializeResource(longlong objectContextParam,uint8_t8 validati
 void ValidateResourceHashAndProcessEntries(void)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = ValidateResourceHash();
   if (integerValue1 == 0) {
@@ -10052,7 +10052,7 @@ void EmptyResourceValidationFunction(void)
 void ProcessResourceValidationAndFinalization(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = CalculateResourceHash(validationContextParam,objectContextParam + 0x10);
   if ((((integerValue1 == 0) && (integerValue1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x18), integerValue1 == 0)) &&
@@ -10071,7 +10071,7 @@ void ProcessResourceValidationAndFinalization(longlong objectContextParam,uint8_
 void ValidateResourceHashAndTable(void)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = ValidateResourceHash();
   if (integerValue1 == 0) {
@@ -10103,7 +10103,7 @@ void EmptyResourceProcessingFunction(void)
 void ValidateAndCleanupResourceEntry(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x10);
   if (integerValue1 == 0) {
@@ -10137,10 +10137,10 @@ uint32_t ProcessSystemConfigurationAndValidation(longlong systemContext,uint8_t8
 {
   longlong *processPointer;
   uint validationResult;
-  int iVar3;
-  longlong *plVar4;
+  int validationStatus;
+  longlong *contextPointer;
   int tableEntry;
-  uint unsignedValue6;
+  uint configurationFlags;
   uint8_t8 uStackX_20;
   uint8_t8 dataChecksumBuffer [2];
   
@@ -10202,7 +10202,7 @@ LAB_180894ebf:
 uint ValidateAndProcessDataContainer(longlong *objectContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint validationResult;
   uint unsignedValue3;
   
@@ -10326,7 +10326,7 @@ uint64_t ProcessObjectLifecycleManagement(longlong objectHandle)
 uint8_t8 CleanupResourcePoolAndReleaseMemory(longlong *objectContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t8 validationResult;
   uint unsignedValue3;
   
@@ -10732,7 +10732,7 @@ void ProcessModuleInitialization(longlong ModuleHandle, void* ModuleContext, int
 {
   longlong loopCounter;
   char cVar2;
-  int iVar3;
+  int validationStatus;
   int iVar4;
   longlong in_RAX;
   longlong lVar5;
@@ -11262,12 +11262,12 @@ uint64_t FindOrInsertInResourcePool(uint8_t8 resourcePool, int searchKey)
 uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t8 extendedResourcePool, uint8_t4 operationFlags)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t8 validationResult;
   uint8_t8 *punsignedResult3;
   int iVar4;
   uint8_t4 *resourcePointer5;
-  uint unsignedValue6;
+  uint configurationFlags;
   int iVar7;
   int *unaff_RBX;
   int iVar8;
@@ -11500,7 +11500,7 @@ MemoryAllocationComplete:
 uint64_t CleanupResourcePoolAndReleaseMemory(uint8_t8 resourcePool, int cleanupFlags)
 
 {
-  int integerValue1;
+  int operationResult;
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
   longlong lVar4;
@@ -12071,7 +12071,7 @@ uint8_t8 * InitializeAlternativeDataStructure(uint8_t8 *dataPointer, ulonglong f
 void ProcessPointerOperationAndReset(longlong *objectContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = (**(code **)(*objectContextParam + 0x18))();
   if (integerValue1 == 0) {
@@ -12149,7 +12149,7 @@ int ProcessDataBlockOperationWithBasicValidator(longlong objectContextParam,long
 {
   uint8_t4 resourceHash;
   int integerValue2;
-  int iVar3;
+  int validationStatus;
   
   resourceHash = *(uint8_t4 *)(objectContextParam + 0x14);
   integerValue2 = func_0x00018074b7d0(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
@@ -12176,7 +12176,7 @@ int ProcessDataBlockOperationWithExtendedValidator(longlong objectContextParam,l
 {
   uint8_t8 resourceHash;
   int integerValue2;
-  int iVar3;
+  int validationStatus;
   
   resourceHash = *(uint8_t8 *)(objectContextParam + 0x10);
   integerValue2 = ProcessStringOperation(validationContextParam,param_3,&StringOperationTemplate);
@@ -12203,7 +12203,7 @@ int ProcessDataBlockOperationWithSimplifiedValidator(longlong objectContextParam
 {
   uint8_t4 resourceHash;
   uint8_t4 validationResult;
-  int iVar3;
+  int validationStatus;
   int iVar4;
   
   resourceHash = *(uint8_t4 *)(objectContextParam + 0x14);
@@ -12258,7 +12258,7 @@ void ProcessComplexResourceOperation(uint8_t8 objectContextParam,longlong valida
 {
   longlong loopCounter;
   longlong resourceTable;
-  int iVar3;
+  int validationStatus;
   int iVar4;
   int tableEntry;
   uint8_t **ppunsignedValue6;
@@ -12943,7 +12943,7 @@ LAB_1808974ec:
 7560(void)
 
 {
-  int integerValue1;
+  int operationResult;
   longlong in_RAX;
   char unaff_SIL;
   longlong *unaff_RDI;
@@ -12968,7 +12968,7 @@ LAB_1808974ec:
 75a6(void)
 
 {
-  int integerValue1;
+  int operationResult;
   char unaff_SIL;
   longlong *unaff_RDI;
   ulonglong in_stack_00000220;
@@ -13960,7 +13960,7 @@ LAB_180897af6:
 {
   longlong loopCounter;
   longlong resourceTable;
-  int iVar3;
+  int validationStatus;
   int iVar4;
   int tableEntry;
   int integerValue6;
@@ -14523,9 +14523,9 @@ LAB_18089866f:
 86b0(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   int integerValue2;
-  int iVar3;
+  int validationStatus;
   int iVar4;
   uint unsignedValue5;
   int integerValue6;
@@ -14579,7 +14579,7 @@ LAB_18089866f:
 uint8_t8 ProcessResourceDataExpansion(longlong *objectContextParam,int validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t8 validationResult;
   uint unsignedValue3;
   
@@ -14762,7 +14762,7 @@ uint64_t BinarySearchInArray(longlong arrayData,uint *searchKey,uint8_t8 searchC
 {
   uint resourceHash;
   longlong resourceTable;
-  int iVar3;
+  int validationStatus;
   int iVar4;
   uint8_t8 unsignedValue5;
   uint *punsignedValue6;
@@ -15101,7 +15101,7 @@ uint8_t4 ValidateResourceHashIndex(uint8_t8 objectContextParam,ulonglong validat
 {
   uint8_t1 resourceHash;
   int integerValue2;
-  int iVar3;
+  int validationStatus;
   uint unsignedResult4;
   uint8_t1 *resourcePointer5;
   uint8_t1 *punsignedValue6;
@@ -15328,7 +15328,7 @@ uint8_t8 GetDefaultSystemStatus(void)
 uint8_t8 ProcessResourceTableIndex(longlong *objectContextParam,int validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   longlong resourceTable;
   uint8_t2 *punsignedResult3;
   longlong lVar4;
@@ -15388,7 +15388,7 @@ LAB_180898e0b:
 uint8_t8 ValidateResourceParameters(uint8_t8 objectContextParam,int validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   longlong resourceTable;
   uint8_t2 *punsignedResult3;
   longlong lVar4;
@@ -15568,7 +15568,7 @@ uint8_t8 ProcessResourceDataParsing(longlong *dataContext,uint8_t4 *dataBuffer)
 8fc0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = ReadResourceData(objectContextParam,validationContextParam,4);
   if (integerValue1 == 0) {
@@ -15593,7 +15593,7 @@ uint8_t8 ProcessResourceDataParsing(longlong *dataContext,uint8_t4 *dataBuffer)
 9040(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = GetResourceProperty();
   if (integerValue1 == 0) {
@@ -15615,7 +15615,7 @@ uint8_t8 ProcessResourceDataParsing(longlong *dataContext,uint8_t4 *dataBuffer)
 9090(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = ReadResourceData(objectContextParam,validationContextParam,4);
   if (integerValue1 == 0) {
@@ -15637,7 +15637,7 @@ uint8_t8 ProcessResourceDataParsing(longlong *dataContext,uint8_t4 *dataBuffer)
 9100(longlong objectContextParam,uint8_t4 *validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t4 ArrayUnionStackX8 [2];
   uint8_t4 auStackX_10 [2];
   uint8_t4 auStackX_18 [2];
@@ -15978,7 +15978,7 @@ LAB_180899546:
 95c0(longlong *objectContextParam,uint8_t4 *validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint ArrayUnionStackX8 [2];
   uint8_t4 auStackX_18 [4];
   
@@ -16142,7 +16142,7 @@ uint8_t8 ValidateResourceHash(void)
 97b0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = ReadResourceData(objectContextParam,validationContextParam,4);
   if (integerValue1 == 0) {
@@ -16166,7 +16166,7 @@ uint8_t8 ValidateResourceHash(void)
 uint8_t8 QueryResourceTable(uint8_t8 objectContextParam, longlong *validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t8 validationResult;
   uint unsignedValue3;
   longlong lVar4;
@@ -16217,7 +16217,7 @@ uint8_t8 QueryResourceTable(uint8_t8 objectContextParam, longlong *validationCon
 uint8_t8 InitializeResourceBuffer(void)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t8 validationResult;
   uint unsignedValue3;
   longlong *unaff_RBX;
@@ -16274,7 +16274,7 @@ uint8_t8 InitializeResourceBuffer(void)
 uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   longlong resourceTable;
   uint8_t8 unsignedResult3;
   longlong lVar4;
@@ -16316,7 +16316,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
 9950(longlong objectContextParam,uint8_t4 *validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   uint unsignedValue3;
   ulonglong unsignedResult4;
@@ -16469,7 +16469,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
 {
   uint8_t8 *presourceHash;
   int integerValue2;
-  int iVar3;
+  int validationStatus;
   longlong unaff_RBX;
   longlong unaff_RBP;
   uint unsignedResult4;
@@ -16626,7 +16626,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
 {
   uint resourceHash;
   uint8_t8 *pvalidationResult;
-  int iVar3;
+  int validationStatus;
   int iVar4;
   longlong unaff_RBX;
   longlong unaff_RBP;
@@ -16737,7 +16737,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
 9c60(longlong objectContextParam,uint8_t4 *validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t4 ArrayUnionStackX8 [2];
   
   ArrayUnionStackX8[0] = *validationContextParam;
@@ -16777,7 +16777,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
 9c96(void)
 
 {
-  int integerValue1;
+  int operationResult;
   longlong unaff_RBX;
   longlong unaff_RDI;
   uint8_t4 in_stack_00000030;
@@ -16846,7 +16846,7 @@ uint8_t8 ProcessResourceDataNormalization(longlong resourceContext, longlong dat
 {
   uint8_t8 resourceHash;
   float *pfVar2;
-  int iVar3;
+  int validationStatus;
   float fVar4;
   uint8_t2 ArrayUnionStackX8 [4];
   
@@ -16914,7 +16914,7 @@ uint8_t8 ProcessResourceDataNormalizationSimple(void)
   float *pfVar2;
   longlong unaff_RBP;
   longlong unaff_RSI;
-  int iVar3;
+  int validationStatus;
   float fVar4;
   uint8_t2 uStack0000000000000070;
   
@@ -16976,7 +16976,7 @@ uint8_t8 ProcessResourceDataNormalizationSimple(void)
 9ef0(longlong objectContextParam,uint8_t4 *validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t4 ArrayUnionStackX8 [2];
   
   ArrayUnionStackX8[0] = *validationContextParam;
@@ -17003,7 +17003,7 @@ uint8_t8 ProcessResourceDataNormalizationSimple(void)
 9f80(longlong objectContextParam,uint8_t4 *validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t4 ArrayUnionStackX8 [2];
   
   ArrayUnionStackX8[0] = *validationContextParam;
@@ -17024,7 +17024,7 @@ uint8_t8 ProcessResourceDataNormalizationSimple(void)
 {
   uint resourceHash;
   int integerValue2;
-  int iVar3;
+  int validationStatus;
   uint8_t8 byteValue4;
   uint8_t8 uStackX_8;
   
@@ -17530,9 +17530,9 @@ void InitializeSystemState(void)
 uint8_t8 ProcessResourceConfigurationData(longlong configContext, uint8_t4 *configData)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t8 validationResult;
-  int iVar3;
+  int validationStatus;
   uint8_t8 uStackX_8;
   
   uStackX_8 = CONCAT44(uStackX_8._4_4_,*validationContextParam);
@@ -17578,9 +17578,9 @@ uint8_t8 ProcessResourceConfigurationData(longlong configContext, uint8_t4 *conf
 uint8_t8 ProcessResourceOperation(uint8_t8 *resourceHandle, uint8_t8 operationParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t8 validationResult;
-  int iVar3;
+  int validationStatus;
   longlong unaff_RSI;
   int iStack0000000000000030;
   
@@ -17710,7 +17710,7 @@ ulonglong ValidateResourceHash(longlong resourceContext, uint8_t8 *resourceData)
 {
   ulonglong resourceHash;
   longlong resourceTable;
-  int iVar3;
+  int validationStatus;
   int iVar4;
   uint *resourcePointer5;
   int aiStackX_8 [2];
@@ -17791,7 +17791,7 @@ ulonglong ProcessResourceValidation(void)
 {
   ulonglong resourceHash;
   longlong resourceTable;
-  int iVar3;
+  int validationStatus;
   int unaff_EBX;
   longlong unaff_RSI;
   uint *unaff_RDI;
@@ -18326,7 +18326,7 @@ ulonglong ValidateAndProcessResourceData(void)
   longlong unaff_RBP;
   uint unaff_ESI;
   uint unaff_EDI;
-  uint unsignedValue6;
+  uint configurationFlags;
   uint unsignedValue7;
   char cStack0000000000000030;
   uint uStack0000000000000034;
@@ -18804,7 +18804,7 @@ b3e6(void)
 b400(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t1 dataChecksumBuffer [32];
   
   integerValue1 = ComputeDataChecksum(validationContextParam,dataChecksumBuffer,0,0x4f525443);
@@ -19303,7 +19303,7 @@ uint8_t8 ValidateResourceHash(longlong ResourceContext,uint8_t8 *ResourceData)
 b6df(void)
 
 {
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   uint unsignedValue3;
   uint uStack00000000000000a8;
@@ -19545,7 +19545,7 @@ ulonglong ProcessResourceDataB(void)
   uint unsignedResult4;
   longlong in_RAX;
   ulonglong unsignedValue5;
-  uint unsignedValue6;
+  uint configurationFlags;
   longlong *unaff_RBX;
   ulonglong unsignedValue7;
   longlong unaff_RSI;
@@ -19716,7 +19716,7 @@ ulonglong ProcessResourceDataC(void)
   uint unsignedValue3;
   uint unsignedResult4;
   ulonglong unsignedValue5;
-  uint unsignedValue6;
+  uint configurationFlags;
   longlong *unaff_RBX;
   ulonglong unsignedValue7;
   longlong unaff_RSI;
@@ -19870,7 +19870,7 @@ ulonglong ProcessResourceDataD(void)
   uint unsignedValue3;
   uint unsignedResult4;
   ulonglong unsignedValue5;
-  uint unsignedValue6;
+  uint configurationFlags;
   longlong *unaff_RBX;
   ulonglong unsignedValue7;
   longlong unaff_RSI;
@@ -20040,7 +20040,7 @@ void ValidateAndProcessResourceData(longlong objectContextParam, uint8_t8 *valid
   uint unsignedValue3;
   int iVar4;
   int tableEntry;
-  uint unsignedValue6;
+  uint configurationFlags;
   uint unsignedValue7;
   uint resourceStackBuffer18 [2];
   uint resourceStackBuffer20 [2];
@@ -20109,7 +20109,7 @@ bc5a(void)
   int tableEntry;
   longlong unaff_RBX;
   uint8_t8 *unaff_RDI;
-  uint unsignedValue6;
+  uint configurationFlags;
   uint uStack0000000000000088;
   
   uStack0000000000000088 = 0;
@@ -20211,7 +20211,7 @@ ProcessResourceData(longlong ResourceContext, uint8_t8 *ResourceData, int Proces
 {
   uint resourceHash;
   int integerValue2;
-  int iVar3;
+  int validationStatus;
   uint unsignedResult4;
   uint unsignedValue5;
   longlong lVar6;
@@ -20322,7 +20322,7 @@ ValidateResourceIntegrity(void)
 
 {
   uint in_EAX;
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   uint unsignedValue3;
   uint8_t8 *unaff_RBX;
@@ -20451,7 +20451,7 @@ c019(void)
 ulonglong ProcessResourceDataReadAndValidate(longlong objectContextParam,uint8_t8 *validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   uint unsignedValue3;
   ulonglong unsignedResult4;
@@ -20538,7 +20538,7 @@ ulonglong ProcessResourceAllocation(longlong ResourceHandle,uint8_t8 *ResourceDa
   uint8_t4 unsignedResult3;
   uint8_t4 unsignedResult4;
   uint unsignedValue5;
-  uint unsignedValue6;
+  uint configurationFlags;
   ulonglong unsignedValue7;
   uint8_t4 *puVar8;
   uint uVar9;
@@ -21915,7 +21915,7 @@ ulonglong ResourceProcessingHandlerAlt1(void)
   longlong *unaff_RBX;
   longlong unaff_RBP;
   uint unsignedValue5;
-  uint unsignedValue6;
+  uint configurationFlags;
   uint uVar8;
   longlong unaff_R13;
   uint unaff_R14D;
@@ -23556,7 +23556,7 @@ d0a3(void)
 d0b0(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = ProcessResourceTable(objectContextParam + 0xd8);
   if (integerValue1 == 0) {
@@ -24022,7 +24022,7 @@ uint8_t8 ValidateResourceAccess(longlong ResourceOffset,uint8_t8 *ResourceData)
 d520(longlong objectContextParam,uint8_t8 *validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t1 resourceValidationBuffer [32];
   uint8_t1 dataChecksumBuffer [32];
   
@@ -24080,7 +24080,7 @@ d520(longlong objectContextParam,uint8_t8 *validationContextParam)
 d557(uint8_t4 objectContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t8 *unaff_RBX;
   longlong unaff_RDI;
   uint8_t4 extraout_XMM0_Da;
@@ -24888,7 +24888,7 @@ ulonglong ProcessResourceDataExtraction(longlong objectContextParam,longlong *va
   ulonglong validationResult;
   uint unsignedValue3;
   uint unsignedResult4;
-  uint unsignedValue6;
+  uint configurationFlags;
   ulonglong unsignedValue7;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
@@ -25021,7 +25021,7 @@ ulonglong ValidateAndProcessResourceData(void)
   uint unsignedResult4;
   longlong unaff_RSI;
   uint unsignedValue5;
-  uint unsignedValue6;
+  uint configurationFlags;
   ulonglong unsignedValue7;
   uint in_stack_000000b0;
   uint in_stack_000000b8;
@@ -25135,7 +25135,7 @@ ulonglong ValidateAndProcessResourceDataVariantB(void)
   uint unsignedResult4;
   longlong unaff_RSI;
   uint unsignedValue5;
-  uint unsignedValue6;
+  uint configurationFlags;
   ulonglong unsignedValue7;
   uint in_stack_000000b0;
   uint in_stack_000000b8;
@@ -25246,7 +25246,7 @@ ulonglong ValidateAndProcessResourceDataVariantC(void)
   uint unsignedResult4;
   longlong unaff_RSI;
   uint unsignedValue5;
-  uint unsignedValue6;
+  uint configurationFlags;
   ulonglong unsignedValue7;
   uint in_stack_000000b0;
   uint uStack00000000000000b8;
@@ -25611,7 +25611,7 @@ ulonglong ProcessResourceValidationAndMemoryAllocation(void)
 {
   uint8_t4 resourceHash;
   uint validationResult;
-  int iVar3;
+  int validationStatus;
   ulonglong unsignedResult4;
   longlong lVar5;
   uint8_t4 *punsignedValue6;
@@ -27155,7 +27155,7 @@ f31e(void)
 
 {
   int in_EAX;
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   longlong *unaff_RBX;
   int unaff_EBP;
@@ -27686,7 +27686,7 @@ ulonglong ProcessResourceCertificateRevocation(void)
 fb06(void)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = VerifyResourceSignature();
   if (integerValue1 == 0) {
@@ -27713,7 +27713,7 @@ fb2b(void)
 fb40(longlong objectContextParam,uint8_t8 validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   uint8_t1 dataChecksumBuffer [32];
   
   integerValue1 = CalculateDataChecksum(validationContextParam,dataChecksumBuffer,0,0x4f525443,0);
@@ -32997,7 +32997,7 @@ void Unwind_180903460(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -33296,7 +33296,7 @@ void Unwind_180903510(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -33447,7 +33447,7 @@ void Unwind_180903580(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -38876,7 +38876,7 @@ void Unwind_1809048c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809048d0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x58));
   if (integerValue1 != 0) {
@@ -41895,7 +41895,7 @@ void Unwind_180905620(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905630(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0xa0));
   if (integerValue1 != 0) {
@@ -42112,7 +42112,7 @@ void Unwind_1809057b0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   uint8_t8 *bytePointer5;
   int integerValue6;
   int *piVar7;
@@ -42709,7 +42709,7 @@ void Unwind_180905950(uint8_t8 objectContextParam,longlong validationContextPara
   longlong *processPointer;
   longlong *presourceTable;
   longlong *presourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   uint8_t8 *bytePointer5;
   int integerValue6;
   int *piVar7;
@@ -43295,7 +43295,7 @@ void Unwind_180905b90(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -43717,7 +43717,7 @@ void Unwind_180905ca0(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -43844,7 +43844,7 @@ void Unwind_180905d40(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180905d50(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   if (*(char *)(validationContextParam + 0x50) != '\0') {
     integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x48));
@@ -44171,7 +44171,7 @@ void Unwind_180905ef0(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -44277,7 +44277,7 @@ void Unwind_180905f70(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -44461,7 +44461,7 @@ void Unwind_180905fe0(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue1;
   char *pcVar2;
   uint8_t8 *punsignedResult3;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   ulonglong unsignedValue6;
   
@@ -44696,7 +44696,7 @@ void Unwind_1809060f0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906100(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x70));
   if (integerValue1 != 0) {
@@ -52106,7 +52106,7 @@ void Unwind_1809083a0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809083e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x98));
   if (integerValue1 != 0) {
@@ -52251,7 +52251,7 @@ void Unwind_1809085b0(void)
 void Unwind_1809085c0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x1d0));
   if (integerValue1 != 0) {
@@ -52802,7 +52802,7 @@ void Unwind_180908870(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908880(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0xc0));
   if (integerValue1 != 0) {
@@ -52816,7 +52816,7 @@ void Unwind_180908880(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908890(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 200));
   if (integerValue1 != 0) {
@@ -53021,7 +53021,7 @@ void Unwind_1809089d0(void)
 void Unwind_1809089e0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   GlobalUnwindContext = *(uint8_t8 *)(validationContextParam + 0x70);
   integerValue1 = _Mtx_unlock(0x180c91970);
@@ -53045,7 +53045,7 @@ void Unwind_1809089e0(uint8_t8 objectContextParam,longlong validationContextPara
 void UnwindMutexLockA(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x68));
   if (integerValue1 != 0) {
@@ -53068,7 +53068,7 @@ void UnwindMutexLockA(uint8_t8 objectContextParam,longlong validationContextPara
 void UnwindMutexLockB(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x148));
   if (integerValue1 != 0) {
@@ -53091,7 +53091,7 @@ void UnwindMutexLockB(uint8_t8 objectContextParam,longlong validationContextPara
 void UnwindMutexLockC(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x1d8));
   if (integerValue1 != 0) {
@@ -56691,7 +56691,7 @@ void Unwind_180909960(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909970(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0xe8));
   if (integerValue1 != 0) {
@@ -56820,7 +56820,7 @@ void Unwind_180909a20(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909a30(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0xd8));
   if (integerValue1 != 0) {
@@ -56984,7 +56984,7 @@ void Unwind_180909af0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909b20(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x38));
   if (integerValue1 != 0) {
@@ -57106,7 +57106,7 @@ void Unwind_180909bb0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909be0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x30));
   if (integerValue1 != 0) {
@@ -57170,7 +57170,7 @@ void Unwind_180909c20(uint8_t8 objectContextParam,longlong validationContextPara
 void UnwindThreadContextA(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   int integerValue2;
   
   integerValue1 = *(int *)(**(longlong **)(GlobalThreadManager + 8) + 0x48);
@@ -57240,7 +57240,7 @@ void Unwind_180909c90(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180909ca0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   if (*(char *)(validationContextParam + 0x40) != '\0') {
     integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x38));
@@ -58484,7 +58484,7 @@ void Unwind_18090a650(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a660(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x78));
   if (integerValue1 != 0) {
@@ -58632,7 +58632,7 @@ void Unwind_18090a780(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090a790(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x90));
   if (integerValue1 != 0) {
@@ -63224,7 +63224,7 @@ void Unwind_18090c540(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x180)) {
@@ -63270,7 +63270,7 @@ void Unwind_18090c550(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x240)) {
@@ -63346,7 +63346,7 @@ void Unwind_18090c590(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x1e0)) {
@@ -63413,7 +63413,7 @@ void Unwind_18090c5c0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x120)) {
@@ -63459,7 +63459,7 @@ void Unwind_18090c5d0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x2a0)) {
@@ -63517,7 +63517,7 @@ void Unwind_18090c5f0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x300)) {
@@ -63563,7 +63563,7 @@ void Unwind_18090c600(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x360)) {
@@ -64252,7 +64252,7 @@ void Unwind_18090ca20(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0xd0)) {
@@ -64310,7 +64310,7 @@ void Unwind_18090ca40(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x130)) {
@@ -64380,7 +64380,7 @@ void Unwind_18090ca70(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 400)) {
@@ -64447,7 +64447,7 @@ void Unwind_18090caa0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x1f0)) {
@@ -64514,7 +64514,7 @@ void Unwind_18090cad0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x250)) {
@@ -64581,7 +64581,7 @@ void Unwind_18090cb00(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x2b0)) {
@@ -64636,7 +64636,7 @@ void Unwind_18090cb20(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x310)) {
@@ -64691,7 +64691,7 @@ void Unwind_18090cb40(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x4f0)) {
@@ -64749,7 +64749,7 @@ void Unwind_18090cb60(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x370)) {
@@ -64804,7 +64804,7 @@ void Unwind_18090cb80(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x3d0)) {
@@ -64895,7 +64895,7 @@ void Unwind_18090cbd0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x430)) {
@@ -64962,7 +64962,7 @@ void Unwind_18090cc00(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x490)) {
@@ -65128,7 +65128,7 @@ void Unwind_18090cce0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x50)) {
@@ -65722,7 +65722,7 @@ void Unwind_18090cfc0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090cfd0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   GlobalUnwindContext = *(uint8_t8 *)(validationContextParam + 0x28);
   integerValue1 = _Mtx_unlock(0x180c91970);
@@ -65739,7 +65739,7 @@ void Unwind_18090cfd0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090cfe0(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   GlobalUnwindContext = *(uint8_t8 *)(validationContextParam + 0x90);
   integerValue1 = _Mtx_unlock(0x180c91970);
@@ -70401,7 +70401,7 @@ void Unwind_18090e760(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x70)) {
@@ -70459,7 +70459,7 @@ void Unwind_18090e7a0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x1a0)) {
@@ -70505,7 +70505,7 @@ void Unwind_18090e7b0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0xa0)) {
@@ -70551,7 +70551,7 @@ void Unwind_18090e7c0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x100)) {
@@ -70597,7 +70597,7 @@ void Unwind_18090e7d0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x60)) {
@@ -70643,7 +70643,7 @@ void Unwind_18090e7e0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x90)) {
@@ -70689,7 +70689,7 @@ void Unwind_18090e7f0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0xf0)) {
@@ -70735,7 +70735,7 @@ void Unwind_18090e800(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x1b0)) {
@@ -70793,7 +70793,7 @@ void Unwind_18090e820(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x210)) {
@@ -70851,7 +70851,7 @@ void Unwind_18090e840(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x270)) {
@@ -70909,7 +70909,7 @@ void Unwind_18090e860(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x2d0)) {
@@ -71348,7 +71348,7 @@ void Unwind_18090eb00(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   int integerValue2;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   longlong lVar5;
   
   if (0 < *(int *)(validationContextParam + 0x140)) {
@@ -72475,7 +72475,7 @@ void Unwind_18090f040(uint8_t8 objectContextParam,longlong validationContextPara
   longlong *processPointer;
   longlong resourceTable;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   
   plocalContextPointer = *(longlong **)(validationContextParam + 0x78);
   resourceTable = plocalContextPointer[2];
@@ -72638,7 +72638,7 @@ void Unwind_18090f0c0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong *processPointer;
   longlong resourceTable;
   longlong resourceIndex;
-  longlong *plVar4;
+  longlong *contextPointer;
   
   plocalContextPointer = *(longlong **)(validationContextParam + 0x40);
   resourceTable = plocalContextPointer[2];
@@ -73349,7 +73349,7 @@ void Unwind_18090f370(uint8_t8 objectContextParam,longlong validationContextPara
   longlong loopCounter;
   longlong resourceTable;
   uint unsignedValue3;
-  longlong *plVar4;
+  longlong *contextPointer;
   
   loopCounter = *(longlong *)(validationContextParam + 0x60);
   unsignedResult3 = 0;
@@ -73987,7 +73987,7 @@ void Unwind_18090f870(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_18090f880(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  int integerValue1;
+  int operationResult;
   
   integerValue1 = _Mtx_unlock(*(uint8_t8 *)(validationContextParam + 0x140));
   if (integerValue1 != 0) {
@@ -81875,7 +81875,7 @@ void Unwind_180911de0(uint8_t8 objectContextParam,longlong validationContextPara
   longlong resourceIndex;
   longlong lVar4;
   ulonglong unsignedValue5;
-  uint unsignedValue6;
+  uint configurationFlags;
   ulonglong unsignedValue7;
   
   lVar4 = *(longlong *)(validationContextParam + 0x70);
@@ -86720,7 +86720,7 @@ void ReleaseResourceReferenceWithParameter(void)
 {
   longlong *processPointer;
   int *pintegerValue2;
-  int iVar3;
+  int validationStatus;
   longlong lVar4;
   longlong *unaff_RBX;
   
@@ -86780,7 +86780,7 @@ void InitializeSystemDataStructureCM(void)
 {
   longlong *processPointer;
   int *pintegerValue2;
-  int iVar3;
+  int validationStatus;
   longlong lVar4;
   longlong *plVar5;
   
@@ -86823,7 +86823,7 @@ void InitializeSystemDataStructureCN(void)
 {
   longlong *processPointer;
   int *pintegerValue2;
-  int iVar3;
+  int validationStatus;
   longlong lVar4;
   longlong *unaff_RBX;
   
@@ -86877,7 +86877,7 @@ void ExecuteReferenceCountDecrementAndCleanup(void)
 {
   longlong *processPointer;
   int *pintegerValue2;
-  int iVar3;
+  int validationStatus;
   longlong lVar4;
   longlong *plVar5;
   
@@ -86920,7 +86920,7 @@ void InitializeSystemDataStructureCP(void)
 {
   longlong *processPointer;
   int *pintegerValue2;
-  int iVar3;
+  int validationStatus;
   longlong lVar4;
   longlong *unaff_RBX;
   
