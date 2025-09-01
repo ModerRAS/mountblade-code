@@ -5663,14 +5663,14 @@ uint8_t8 ValidateSystemDataIntegrity(longlong dataBuffer, longlong validationCon
   if (0 < *(int *)(objectContextParam + 0x10)) {
     do {
       if (((*pintegerValue2 != SystemValidationCodeA) || (pintegerValue2[1] != SystemValidationCodeB)) &&
-         (resourceHash = CalculateResourceHash(validationContextParam + 0x60,(int *)(objectContextParam + 0x18) + (longlong)iVar4 * 2,*punsignedResult3
+         (resourceHash = CalculateResourceHash(validationContextParam + 0x60,(int *)(objectContextParam + 0x18) + (longlong)validationIndex * 2,*punsignedResult3
                                 ,*(uint8_t1 *)(objectContextParam + 0x14)), (int)resourceHash != 0)) {
         return resourceHash;
       }
-      iVar4 = iVar4 + 1;
+      validationIndex = validationIndex + 1;
       punsignedResult3 = punsignedResult3 + 1;
       pintegerValue2 = pintegerValue2 + 2;
-    } while (iVar4 < *(int *)(objectContextParam + 0x10));
+    } while (validationIndex < *(int *)(objectContextParam + 0x10));
   }
   return 0;
 }
@@ -5687,7 +5687,6 @@ uint8_t8 ValidateSystemDataIntegrity(longlong dataBuffer, longlong validationCon
  * @param objectHandle 对象句柄，用于标识要处理的对象
  * @param queueContext 队列上下文，包含队列的状态和管理信息
  */
-void ProcessSystemObjectQueue(longlong objectHandle, longlong queueContext)
 void ProcessSystemObjectQueue(longlong objectHandle, longlong queueContext)
 
 {
