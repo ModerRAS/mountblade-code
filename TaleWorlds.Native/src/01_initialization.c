@@ -26226,7 +26226,7 @@ void SystemDataInitializer(void)
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(plocalResourcePointer);
   }
-  _DAT_180c868f8 = (long long *)0x0;
+  SystemCleanupStatusFlag = (long long *)0x0;
   if (SystemGlobalControllerPointer != (long long *)0x0) {
     pplStack_80 = &plStack_88;
     plStack_88 = SystemGlobalControllerPointer;
@@ -27541,7 +27541,7 @@ void ProcessSystemResourceAndRenderManagement(long long *SystemResourcePointer,v
       } while ((ulong long)(long long)(int)itemCounter <
                (ulong long)(*(long long *)(renderManagerOffset + 0x1870) - dataBufferPointer >> 3));
     }
-    (**(code **)(_DAT_180c8a9c0 + 0x40))();
+    (**(code **)(SystemCallbackTable + 0x40))();
   }
   (**(code **)(**(long long **)(systemHandle + 0x2b0) + 0xd0))();
   if (((*(int *)(SystemNodeManagerPointer + 0x4d4) != *(int *)(SystemNodeManagerPointer + 0x4d0)) ||
@@ -27552,7 +27552,7 @@ void ProcessSystemResourceAndRenderManagement(long long *SystemResourcePointer,v
     localBuffer3 = &UNK_180058f80;
     ProcessSystemResourceData(localBuffer1);
   }
-  if ((_DAT_180c8a9d0 != 0) &&
+  if ((SystemAllocationFlags != 0) &&
      ((*(int *)(SystemNodeManagerPointer + 900) != *(int *)(SystemNodeManagerPointer + 0x380) ||
       (*(int *)(SystemNodeManagerPointer + 0x3f4) != *(int *)(SystemNodeManagerPointer + 0x3f0))))) {
     memoryAllocationHandle = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x40,8,3);
@@ -28327,7 +28327,7 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long Conf
   uStack_218 = 0xffffffff;
   uStack_1d0 = unsignedSystemValue1;
   uStack_1c8._4_4_ = *(uint *)(localSystemFlags + 0x1c);
-  ConfigureSystemData(plocalBufferAddress,_DAT_180c868e8,&puStack_1e0,&uStack_148);
+  ConfigureSystemData(plocalBufferAddress,SystemConfigurationData,&puStack_1e0,&uStack_148);
   ReleaseSystemResources(plocalBufferAddress);
   (**(code **)(*(long long *)SystemResourcePointer[0x56] + 0x138))((long long *)SystemResourcePointer[0x56],plocalBufferAddress);
   InitializeSystemBuffer(plocalBufferAddress,0x3d072b02,1);
@@ -28817,10 +28817,10 @@ void SystemContextManagerInitializer(void)
   *(uint32_t *)(pointerToUnsigned2 + 1) = 0xe;
   SystemContextManagerPointer = pointerToUnsigned2;
   unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x480,8,3);
-  _DAT_180c8a9f8 = GetSystemResourcePointer(unsignedSystemValue3);
+  SystemResourcePointer = GetSystemResourcePointer(unsignedSystemValue3);
   unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x10420,8,3);
-  _DAT_180c868c0 = InitializeSystemContext(unsignedSystemValue3);
-  _DAT_180c868d8 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x30,8,3);
+  SystemContextPointer = InitializeSystemContext(unsignedSystemValue3);
+  SystemMemoryBlockPrimary = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x30,8,3);
   *(uint32_t *)(_DAT_180c868d8 + 0x19) = 0;
   *(void*2 *)(_DAT_180c868d8 + 0x1d) = 0;
   *(uint8_t *)(_DAT_180c868d8 + 0x1f) = 0;
