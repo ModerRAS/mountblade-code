@@ -45099,7 +45099,7 @@ void InitializeSystemResourceHandlerAlt(uint8_t ObjectContextParameter,int64_t V
 
 
 
-void Unwind_180905ab0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void InitializeSystemResourceHandlerE0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   *(uint8_t *)(ValidationContextParameter + 0xe0) = &SystemResourceHandlerTemplate;
@@ -45115,7 +45115,7 @@ void Unwind_180905ab0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180905ad0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void InitializeSystemResourceHandler100(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   *(uint8_t *)(ValidationContextParameter + 0x100) = &SystemResourceHandlerTemplate;
@@ -45131,7 +45131,7 @@ void Unwind_180905ad0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180905af0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void SetSystemDataStructure(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   **(uint8_t **)(ValidationContextParameter + 0x2e0) = &SystemDataStructure;
@@ -45140,7 +45140,7 @@ void Unwind_180905af0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180905b00(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void InitializeResourceHashTable(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   uint8_t *presourceHash;
