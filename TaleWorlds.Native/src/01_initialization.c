@@ -16987,7 +16987,19 @@ LAB_180044db8:
 
 
 // 函数: void FUN_180044dc0(undefined8 param_1,longlong param_2)
-void FUN_180044dc0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 初始化系统调试符号管理器
+ * 
+ * 该函数负责初始化系统的调试符号处理组件，包括符号表的初始化、
+ * 动态库加载、符号搜索路径设置和性能计数器配置。它还会初始化
+ * 线程管理器和时间相关功能。
+ * 
+ * @param systemContext 系统上下文参数
+ * @param initializationFlag 初始化标志
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保调试功能的正常运行
+ */
+void InitializeSystemDebugSymbolManager(undefined8 systemContext,longlong initializationFlag)
 
 {
   longlong **pplVar1;
@@ -21108,22 +21120,36 @@ FUN_18004b640(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8
 
 
 
-// 函数: void FUN_18004b6b0(undefined8 *param_1)
-void FUN_18004b6b0(undefined8 *param_1)
+/**
+ * @brief 设置系统字符串处理器入口点
+ * 
+ * 该函数设置系统字符串处理器的入口点指针，
+ * 用于初始化字符串处理子系统。
+ * 
+ * @param stringProcessorPointer 字符串处理器指针的指针
+ */
+void SetSystemStringProcessorEntryPoint(void **stringProcessorPointer)
 
 {
-  *param_1 = &UNK_1809fcca0;
+  *stringProcessorPointer = &UNK_1809fcca0;
   return;
 }
 
 
 
 
-// 函数: void FUN_18004b6d0(undefined8 *param_1)
-void FUN_18004b6d0(undefined8 *param_1)
+/**
+ * @brief 设置系统内存管理器入口点
+ * 
+ * 该函数设置系统内存管理器的入口点指针，
+ * 用于初始化内存管理子系统。
+ * 
+ * @param memoryManagerPointer 内存管理器指针的指针
+ */
+void SetSystemMemoryManagerEntryPoint(void **memoryManagerPointer)
 
 {
-  *param_1 = &UNK_1809fcc88;
+  *memoryManagerPointer = &UNK_1809fcc88;
   return;
 }
 
