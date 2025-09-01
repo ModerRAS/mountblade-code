@@ -753,9 +753,9 @@ void* SystemMemoryConfigTable2;
 void* SystemThreadConfigTable2;
 void* SystemProcessConfigTable2;
 void* SystemSecurityConfigTable2;
-undefined DAT_180bf86e0;
-undefined DAT_180bf86e8;
-undefined DAT_180bf8728;
+void* SystemNetworkConfigTable2;
+void* SystemEventConfigTable2;
+void* SystemLoggingConfigTable2;
 undefined DAT_180bf8730;
 undefined DAT_180bf8738;
 undefined DAT_180bf8740;
@@ -6358,8 +6358,14 @@ void SystemInitializationCompleteFlag(void)
 
 
 
- void FUN_180891fd9(void)
-void FUN_180891fd9(void)
+ /**
+ * @brief 初始化内存管理器
+ * 
+ * 该函数负责初始化系统的内存管理器，设置内存分配和释放的基本机制
+ * 确保内存管理器能够正确处理内存分配请求
+ */
+void InitializeMemoryManager(void)
+void InitializeMemoryManager(void)
 
 {
   return;
