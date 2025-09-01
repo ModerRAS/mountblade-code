@@ -848,7 +848,7 @@ undefined DAT_180bf91b0;
 undefined DAT_180bf91b8;
 undefined DAT_180bf91c0;
 undefined DAT_180bf91c8;
-undefined UNK_180a22b38;
+void* MemoryAllocatorFunction;
 
  void InitializeSystemResources;
 /**
@@ -862,7 +862,7 @@ undefined DAT_180bf9210;
 undefined DAT_180bf9218;
 undefined DAT_180bf9220;
 undefined DAT_180bf9228;
-undefined UNK_180a22b90;
+void* MemoryManagerInstance;
 
  void* CreateMemoryManager;
 /**
@@ -887,7 +887,7 @@ undefined DAT_180bf9270;
 undefined DAT_180bf9278;
 undefined DAT_180bf9280;
 undefined DAT_180bf9288;
-undefined UNK_180a22b78;
+void* MemoryPoolFunction;
 undefined DAT_180bf92d0;
 
  void InitializeMemoryTracking;
@@ -6487,19 +6487,28 @@ void EmptyOperationFunction(void)
 
 
 
- void FUN_180892090(longlong param_1,longlong param_2)
-void FUN_180892090(longlong param_1,longlong param_2)
+ /**
+ * @brief 处理对象上下文释放
+ * 
+ * 该函数负责处理对象上下文的释放操作，验证对象状态后执行释放
+ * 确保对象资源能够被正确回收
+ * 
+ * @param ObjectHandle 对象句柄，标识要处理的对象
+ * @param SystemContext 系统上下文，包含系统运行环境信息
+ */
+void ProcessObjectContextRelease(longlong ObjectHandle, longlong SystemContext)
+void ProcessObjectContextRelease(longlong ObjectHandle, longlong SystemContext)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int validationStatus;
+  undefined8 contextBuffer;
   
-  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = func_0x0001808c8470(uStackX_8);
-    if (iVar1 == 0) {
+  validationStatus = ValidateObjectContext(*(undefined4 *)(ObjectHandle + 0x10), &contextBuffer);
+  if (validationStatus == 0) {
+    validationStatus = func_0x0001808c8470(contextBuffer);
+    if (validationStatus == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      FUN_18088d720(*(undefined8 *)(SystemContext + 0x98), ObjectHandle);
     }
   }
   return;
