@@ -2957,8 +2957,12 @@ undefined8 validateCharacterParameter(char charInput)
 
 
 
-// 函数: void FUN_18089064b(void)
-void FUN_18089064b(void)
+/**
+ * @brief 初始化系统资源
+ * 
+ * 该函数负责初始化系统所需的资源，为后续操作做准备
+ */
+void initializeSystemResources(void)
 
 {
   return;
@@ -2966,27 +2970,34 @@ void FUN_18089064b(void)
 
 
 
-undefined8 FUN_180890650(longlong param_1)
+/**
+ * @brief 验证对象句柄有效性
+ * @param objectPointer 对象指针
+ * @return 返回验证结果，0表示成功，非0表示错误代码
+ * 
+ * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
+ */
+undefined8 validateObjectHandle(longlong objectPointer)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 validationResult;
+  longlong handleStorage;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  validationResult = func_0x00018088c530(*(undefined4 *)(objectPointer + 0x10), &handleStorage);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  if (lStackX_8 == 0) {
-    lStackX_8 = 0;
+  if (handleStorage == 0) {
+    handleStorage = 0;
   }
   else {
-    lStackX_8 = lStackX_8 + -8;
+    handleStorage = handleStorage + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(longlong *)(handleStorage + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(longlong *)(handleStorage + 0x10), 1);
 }
 
 
