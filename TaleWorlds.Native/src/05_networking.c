@@ -6622,7 +6622,7 @@ void ProcessNetworkConnectionDataTransfer(NetworkHandle connectionContext,Networ
 
 
 
-// 函数: void FUN_180847274(void)
+// 函数: void ProcessNetworkConnectionBufferData(void)
 /**
  * @brief 处理网络连接缓冲区数据
  * 
@@ -6977,7 +6977,7 @@ LAB_1808477fa:
 
 
 
-// 函数: void FUN_180847710(void)
+// 函数: void ProcessNetworkDataValidationAndBufferOperation(void)
 /**
  * @brief 处理网络数据验证和缓冲区操作
  * 
