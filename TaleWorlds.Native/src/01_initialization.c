@@ -30655,7 +30655,16 @@ void ProcessResourceArrayCleanup(long long *SystemResourcePointer,void* param_2,
 
 
 // 函数: void FUN_180057680(long long SystemResourcePointer)
-void FUN_180057680(long long SystemResourcePointer)
+/**
+ * @brief 系统资源句柄清理器
+ * 
+ * 该函数负责清理系统资源句柄数组，遍历所有句柄并调用相应的清理函数。
+ * 确保所有系统资源都被正确释放，避免资源泄漏。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含句柄数组信息
+ * @note 这是系统资源管理的重要组成部分，用于清理系统句柄
+ */
+void CleanupSystemResourceHandles(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
