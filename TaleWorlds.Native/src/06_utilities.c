@@ -262,13 +262,13 @@ void OptimizeResourceUsage(void);
  */
 void MonitorResourcePerformance(void);
 
-void* ResourceManagerHandle;
-uint32_t ResourceManagerStatus;
-void* ResourceContextConfig;
-void* ResourceContextStatus;
-void* ResourceSmallBufferPool;
-void* ResourceMediumBufferPool;
-void* ResourceLargeBufferPool;
+void* resourceManagerHandle;
+uint32_t resourceManagerStatus;
+void* resourceContextConfig;
+void* resourceContextStatus;
+void* resourceSmallBufferPool;
+void* resourceMediumBufferPool;
+void* resourceLargeBufferPool;
 
  /**
  * @brief 初始化纹理管理器
@@ -281,12 +281,12 @@ void* ResourceLargeBufferPool;
  * @warning 调用此函数前必须确保图形子系统已经初始化
  */
 void InitializeTextureManager(void);
-void* TextureManagerInstance;
-void* TextureSystemContext;
-void* TextureCacheHandle;
-void* TextureLoaderHandle;
-void* TextureMemoryPool;
-void* TextureDescriptorTable;
+void* textureManagerInstance;
+void* textureSystemContext;
+void* textureCacheHandle;
+void* textureLoaderHandle;
+void* textureMemoryPool;
+void* textureDescriptorTable;
 
  /**
  * @brief 初始化音频系统

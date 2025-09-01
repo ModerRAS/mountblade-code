@@ -369,7 +369,7 @@ void* SystemDataNodePrimaryRoot;       // 系统数据节点主根节点
 void* SystemDataNodeSecondaryRoot;     // 系统数据节点次根节点
 void* SystemDataNodeTertiaryRoot;      // 系统数据节点第三根节点
 void* SystemDataNodeQuaternaryRoot;    // 系统数据节点第四根节点
-void* SystemDataNodeE;                // UNK_180a00370
+void* SystemDataNodeQuinaryRoot;       // 系统数据节点第五根节点
 void* SystemDataNodeF;                // UNK_180a00388
 void* SystemDataNodeG;                // UNK_180a003a0
 void* SystemDataNodeH;                // UNK_180a003b8
