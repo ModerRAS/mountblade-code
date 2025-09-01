@@ -21408,24 +21408,43 @@ FreeMemoryAndSetAllocator(void* *memoryBlock,ulong long memoryFlags,void* unknow
 
 
 
-// 函数: void FUN_180049910(long long param_1,void* param_2,int param_3)
-void FUN_180049910(long long param_1,void* param_2,int param_3)
+// 函数: 复制字符串数据
+/**
+ * @brief 复制字符串数据到指定位置
+ * 
+ * 该函数负责将字符串数据从源位置复制到目标位置。
+ * 它会检查字符串长度，确保不会超过缓冲区大小，并在复制完成后进行清理。
+ * 
+ * @param targetAddress 目标地址，字符串数据要复制到的位置
+ * @param sourceData 源数据，要被复制的字符串数据
+ * @param dataLength 数据长度，要复制的数据长度
+ * 
+ * @note 这是字符串处理的重要函数，确保字符串数据安全复制
+ */
+void CopyStringData(long long targetAddress,void* sourceData,int dataLength)
 
 {
-  if (param_3 + 1 < 0x80) {
+  if (dataLength + 1 < 0x80) {
                     // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(param_1 + 8),param_2,(long long)param_3);
+    memcpy(*(uint8_t **)(targetAddress + 8),sourceData,(long long)dataLength);
   }
-  **(uint8_t **)(param_1 + 8) = 0;
-  *(uint32_t *)(param_1 + 0x10) = 0;
+  **(uint8_t **)(targetAddress + 8) = 0;
+  *(uint32_t *)(targetAddress + 0x10) = 0;
   return;
 }
 
 
 
 
-// 函数: void FUN_180049931(void)
-void FUN_180049931(void)
+// 函数: 执行内存复制操作
+/**
+ * @brief 执行内存复制操作
+ * 
+ * 该函数负责执行内存复制操作，可能是一个内联函数或者特定平台的内存复制实现。
+ * 
+ * @note 这是一个不返回的函数，通常用于系统级别的内存操作
+ */
+void ExecuteMemoryCopyOperation(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -21435,14 +21454,24 @@ void FUN_180049931(void)
 
 
 
-// 函数: void FUN_180049956(uint8_t *param_1)
-void FUN_180049956(uint8_t *param_1)
+// 函数: 重置数据结构
+/**
+ * @brief 重置数据结构
+ * 
+ * 该函数负责重置指定的数据结构，将字节标志位设置为0，
+ * 并清除相关的32位字段。
+ * 
+ * @param dataFlagPointer 数据标志指针，指向需要重置的数据结构
+ * 
+ * @note 这是数据结构初始化和清理的重要函数
+ */
+void ResetDataStructure(uint8_t *dataFlagPointer)
 
 {
-  long long unaff_RDI;
+  long long systemRegisterValue;
   
-  *param_1 = 0;
-  *(uint32_t *)(unaff_RDI + 0x10) = 0;
+  *dataFlagPointer = 0;
+  *(uint32_t *)(systemRegisterValue + 0x10) = 0;
   return;
 }
 
