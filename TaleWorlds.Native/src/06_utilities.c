@@ -136,23 +136,31 @@ bool SystemStatusCoreInitialized;
 
 
 /**
- * @brief 获取系统状态标志2
+ * @brief 获取渲染引擎系统状态标志
  * 
- * 该函数负责获取系统的第二个状态标志
- * 用于判断系统是否处于特定的运行状态
+ * 该函数负责获取渲染引擎系统的状态标志
+ * 用于判断渲染引擎是否已初始化并处于正常运行状态
+ * 
+ * @return uint32_t 返回渲染引擎系统的状态标志值
+ * @note 此函数返回的状态标志可用于诊断渲染系统状态
+ * @warning 状态标志值的含义取决于具体的渲染引擎实现
  */
 uint32_t GetRenderingEngineSystemStatusFlag(void);
-bool SystemStatusFlagEngineInitialized;
+bool SystemStatusEngineInitialized;
 
 
 /**
- * @brief 获取系统状态标志3
+ * @brief 获取图形系统状态标志
  * 
- * 该函数负责获取系统的第三个状态标志
- * 用于判断系统是否处于特定的运行状态
+ * 该函数负责获取图形系统的状态标志
+ * 用于判断图形系统是否已初始化并处于正常运行状态
+ * 
+ * @return uint32_t 返回图形系统的状态标志值
+ * @note 此函数返回的状态标志可用于诊断图形系统状态
+ * @warning 状态标志值的含义取决于具体的图形系统实现
  */
 uint32_t GetGraphicsSystemStatusFlag(void);
-bool SystemStatusFlagGraphicsInitialized;
+bool SystemStatusGraphicsInitialized;
 
  /**
  * @brief 获取系统状态标志4
@@ -161,7 +169,7 @@ bool SystemStatusFlagGraphicsInitialized;
  * 用于判断系统是否处于特定的运行状态
  */
 uint32_t GetAudioSystemStatusFlag(void);
-bool SystemStatusFlagAudioInitialized;
+bool SystemStatusAudioInitialized;
 
 
 /**
@@ -87984,13 +87992,13 @@ void ResetThreadLocalStorage(void)
  * @param CleanupFlags 清理标志，指定清理操作的标志位
  * @return 无返回值
  */
-void CleanupSystemResources(uint8_t8 ResourceType, uint8_t8 ResourceInstance, uint8_t8 CleanupOptions, uint8_t8 CleanupFlags)
+void CleanupSystemResources(UInt8Type8 ResourceType, UInt8Type8 ResourceInstance, UInt8Type8 CleanupOptions, UInt8Type8 CleanupFlags)
 
 {
-  uint8_t8 *ResourceManagementHandle;
+  UInt8Type8 *ResourceManagementHandle;
   
   ResourceManagementHandle = SystemResourceManagerPointer;
-  if (SystemResourceManagerPointer == (uint8_t8 *)0x0) {
+  if (SystemResourceManagerPointer == (UInt8Type8 *)0x0) {
     return;
   }
   ReleaseSystemResources(&SystemResourceData, *SystemResourceManagerPointer, CleanupOptions, CleanupFlags, 0xfffffffffffffffe);
@@ -87999,7 +88007,7 @@ void CleanupSystemResources(uint8_t8 ResourceType, uint8_t8 ResourceInstance, ui
     EmergencyResourceCleanup();
   }
   ResourceManagementHandle[5] = 0;
-  *(uint8_t4 *)(ResourceManagementHandle + 7) = 0;
+  *(UInt8Type4 *)(ResourceManagementHandle + 7) = 0;
   ResourceManagementHandle[4] = &ResourceResetMarker;
   FinalizeResourceCleanup(ResourceManagementHandle);
 }
