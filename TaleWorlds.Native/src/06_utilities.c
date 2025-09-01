@@ -1,5 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 
+/**
+ * @brief 初始化模块依赖关系
+ * 
+ * 该函数负责初始化系统中各个模块之间的依赖关系
+ * 建立模块间的通信机制和数据共享通道
+ * 
+ * @param ModuleHandle 模块句柄，用于标识特定的模块实例
+ * @param ModuleContext 模块上下文，包含模块运行所需的环境信息
+ */
 void InitializeModuleDependencies(longlong ModuleHandle, longlong ModuleContext);
 void* ModuleDependencyTable;
 uint32_t ModuleDependencyCount;
@@ -53522,7 +53531,7 @@ void Unwind_180908d30(void)
 void Unwind_180908d40(void)
 
 {
-  _DAT_180d49218 = &SystemDataStructure;
+  SystemDataPointer011 = &SystemDataStructure;
   return;
 }
 
@@ -84440,7 +84449,7 @@ void InitializeSystemDataStructureU(void)
   }
   _DAT_180d49220 = 0;
   _DAT_180d49230 = 0;
-  _DAT_180d49218 = &SystemDataStructure;
+  SystemDataPointer011 = &SystemDataStructure;
   return;
 }
 
