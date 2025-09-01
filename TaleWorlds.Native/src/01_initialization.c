@@ -32027,8 +32027,9 @@ void FUN_1800588fc(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005892b(void)
-void FUN_18005892b(void)
+// 函数: void InitializeSystemTables(void)
+// 功能: 初始化系统表，设置系统数据结构和表
+void InitializeSystemTables(void)
 
 {
   void* *pointerToUnsigned1;
@@ -32068,8 +32069,9 @@ void FUN_18005892b(void)
 
 
 
-// 函数: void FUN_18005895a(void)
-void FUN_18005895a(void)
+// 函数: void FinalizeSystemInitialization(void)
+// 功能: 完成系统初始化，清理临时资源
+void FinalizeSystemInitialization(void)
 
 {
   long long localMemoryPointer;
@@ -32304,8 +32306,9 @@ void FUN_180058b3e(long long SystemResourcePointer,long long param_2)
 
 
 
-// 函数: void FUN_180058bfa(void)
-void FUN_180058bfa(void)
+// 函数: void ResetSystemState(void)
+// 功能: 重置系统状态，清理系统状态
+void ResetSystemState(void)
 
 {
   return;

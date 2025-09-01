@@ -1836,8 +1836,8 @@ void InitializeMemoryValidation(void);
 uint8_t SystemMemoryRecoveryController;
 uint8_t SystemMemoryRecoveryStatus;
 uint8_t SystemMemoryRecoveryPoolPrimary;
-uint8_t SystemMemoryRecoveryPoolB;
-uint8_t SystemMemoryRecoveryPoolC;
+uint8_t SystemMemoryRecoveryPoolSecondary;
+uint8_t SystemMemoryRecoveryPoolTertiary;
 uint8_t SystemMemoryRecoveryPoolD;
 
  void ConfigureMemoryRecovery(void);
