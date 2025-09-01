@@ -4770,22 +4770,22 @@ void InitializeSystemEventManager(void)
 
 {
   char NodeFlag;
-  void* *dataTable;
+  void* *DataTable;
   int MemoryCompareResult;
-  long long *memoryPointer;
-  long long timeValue;
-  void* *rootNode;
+  long long *MemoryPointer;
+  long long TimeValue;
+  void* *RootNode;
   void** CurrentNode;
   void** NextNode;
   void** PreviousNode;
   code *eventCallbackPointer;
   
-  dataTable = (long long*)GetSystemRootPointer();
-  rootNode = (void* *)*dataTable;
-  NodeFlag = *(char*)((long long)rootNode[1] + 0x19);
+  DataTable = (long long*)GetSystemRootPointer();
+  RootNode = (void* *)*DataTable;
+  NodeFlag = *(char*)((long long)RootNode[1] + 0x19);
   eventCallbackPointer = SystemEventCallback;
-  PreviousNode = rootNode;
-  CurrentNode = (void* *)rootNode[1];
+  PreviousNode = RootNode;
+  CurrentNode = (void* *)RootNode[1];
   while (NodeFlag == '\0') {
     MemoryCompareResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
     if (MemoryCompareResult < 0) {
@@ -4802,8 +4802,8 @@ void InitializeSystemEventManager(void)
   if ((SystemPreviousNode == SystemRootNode) || (MemoryCompareResult = memcmp(&SystemDataComparisonTemplateD,SystemPreviousNode + 4,0x10), MemoryCompareResult < 0)) {
     long long MemoryAllocationSize;
     void** SystemAllocatedNode;
-    MemoryAllocationSize = GetSystemMemorySize(dataTable);
-    AllocateSystemMemory(dataTable,&SystemAllocatedNode,PreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
+    MemoryAllocationSize = GetSystemMemorySize(DataTable);
+    AllocateSystemMemory(DataTable,&SystemAllocatedNode,PreviousNode,MemoryAllocationSize + 0x20,MemoryAllocationSize);
     PreviousNode = SystemAllocatedNode;
   }
   PreviousNode[6] = 0x406be72011d07d37;
@@ -16513,12 +16513,12 @@ void InitializeSystemSubcomponentM(void)
  * @param syncParameter2 同步参数2
  * @return int 初始化成功返回0，失败返回-1
  */
-int InitializeSystemMutex(void* mutexIdentifier,void* mutexType,void* syncParameter1,void* syncParameter2)
+int InitializeSystemMutex(void* MutexIdentifier,void* MutexType,void* SyncParameter1,void* SyncParameter2)
 
 {
   long long initializationResult;
   
-  _Mtx_init_in_situ(0x180c96690,2,syncParameter1,syncParameter2,0xfffffffffffffffe);
+  _Mtx_init_in_situ(0x180c96690,2,SyncParameter1,SyncParameter2,0xfffffffffffffffe);
   initializationResult = InitializeSystemSyncMechanism(SystemSyncCallbackFunction);
   return (initializationResult != 0) - 1;
 }
@@ -17788,12 +17788,12 @@ int InitializeSystemPerformanceCounters(void)
  * @param mutexParameter4 互斥锁参数4
  * @return 初始化状态，成功返回0，失败返回-1
  */
-int InitializeSystemMutex(void* mutexParameter1,void* mutexParameter2,void* mutexParameter3,void* mutexParameter4)
+int InitializeSystemMutex(void* MutexParameter1,void* MutexParameter2,void* MutexParameter3,void* MutexParameter4)
 
 {
   long long InitializationStatus;
   
-  _Mtx_init_in_situ(0x180c966f0,2,mutexParameter3,mutexParameter4,0xfffffffffffffffe);
+  _Mtx_init_in_situ(0x180c966f0,2,MutexParameter3,MutexParameter4,0xfffffffffffffffe);
   InitializationStatus = ValidateSystemConfiguration(SystemConfigValidatorSenary);
   return (InitializationStatus != 0) - 1;
 }
@@ -17812,12 +17812,12 @@ int InitializeSystemMutex(void* mutexParameter1,void* mutexParameter2,void* mute
  * @param semaphoreParameter4 信号量参数4
  * @return 初始化状态，成功返回0，失败返回-1
  */
-int InitializeSystemSemaphore(void* semaphoreParameter1,void* semaphoreParameter2,void* semaphoreParameter3,void* semaphoreParameter4)
+int InitializeSystemSemaphore(void* SemaphoreParameter1,void* SemaphoreParameter2,void* SemaphoreParameter3,void* SemaphoreParameter4)
 
 {
   long long InitializationStatus;
   
-  _Mtx_init_in_situ(0x180c96740,2,semaphoreParameter3,semaphoreParameter4,0xfffffffffffffffe);
+  _Mtx_init_in_situ(0x180c96740,2,SemaphoreParameter3,SemaphoreParameter4,0xfffffffffffffffe);
   InitializationStatus = ValidateSystemConfiguration(SystemConfigValidatorSeptenary);
   return (InitializationStatus != 0) - 1;
 }
@@ -63046,52 +63046,65 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
 
 
 
-// 函数: void FUN_18007c490(long long *SystemResourcePointer,byte ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag,char param_5)
-void FUN_18007c490(long long *SystemResourcePointer,byte ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag,char param_5)
+/**
+ * @brief 系统初始化参数配置函数
+ * 
+ * 该函数负责配置系统初始化参数，设置初始化标志和配置选项
+ * 用于系统初始化过程的参数配置和验证
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数指针
+ * @param ConfigurationFlag 配置标志指针
+ * @param InitializationFlag 初始化标志
+ * 
+ * 原始函数名为FUN_18007c490，现已重命名为ConfigureSystemInitializationParameters
+ */
+void ConfigureSystemInitializationParameters(long long *SystemResourcePointer,byte ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag,char InitializationFlag)
 
 {
-  char *pcVar1;
+  char *SystemCharacterPointer;
   long long *SecondaryResourcePointer;
-  long long *plocalResourceOffset;
+  long long *LocalResourceOffset;
   long long* SystemMemoryPointer;
-  code *pcVar5;
-  char cVar6;
+  code *SystemCodePointer;
+  char SystemCharacterFlag;
   void* *SystemPreviousNode;
-  uint32_t uStack_100;
-  uint32_t uStack_fc;
-  uint32_t uStack_f8;
-  uint32_t uStack_f4;
-  code *pcStack_f0;
-  void* *puStack_e8;
-  void* uStack_e0;
-  uint32_t uStack_d8;
-  uint32_t uStack_d4;
-  long long *plStack_d0;
-  byte bStack_c8;
-  long long *plStack_c0;
-  long long *plStack_b8;
-  long long *plStack_b0;
-  byte bStack_a8;
-  long long *plStack_a0;
-  long long *plStack_98;
-  void* stackParameterC;
-  long long **pplStack_88;
-  uint8_t auStack_80 [16];
-  code *pcStack_70;
-  uint8_t auStack_60 [16];
-  code *pcStack_50;
+  uint32_t SystemStatusFlag1;
+  uint32_t SystemStatusFlag2;
+  uint32_t SystemStatusFlag3;
+  uint32_t SystemStatusFlag4;
+  code *SystemFunctionPointer1;
+  void* *SystemNodePointer;
+  void* SystemResourcePointer1;
+  uint32_t SystemConfigurationFlag1;
+  uint32_t SystemConfigurationFlag2;
+  long long *SystemDataPointer1;
+  byte SystemDataByte1;
+  long long *SystemDataPointer2;
+  long long *SystemDataPointer3;
+  long long *SystemDataPointer4;
+  byte SystemDataByte2;
+  long long *SystemDataPointer5;
+  long long *SystemDataPointer6;
+  void* SystemStackParameter;
+  long long **SystemDoublePointer;
+  uint8_t SystemBuffer1 [16];
+  code *SystemFunctionPointer2;
+  uint8_t SystemBuffer2 [16];
+  code *SystemFunctionPointer3;
   
-  stackParameterC = 0xfffffffffffffffe;
+  SystemStackParameter = 0xfffffffffffffffe;
   SecondaryResourcePointer = (long long *)*ConfigurationFlag;
   if (SecondaryResourcePointer != (long long *)0x0) {
     (**(code **)(*SecondaryResourcePointer + 0x28))(SecondaryResourcePointer);
   }
-  plocalResourceOffset = (long long *)*AdditionalParameter;
-  if (plocalResourceOffset != (long long *)0x0) {
-    (**(code **)(*plocalResourceOffset + 0x28))(plocalResourceOffset);
+  LocalResourceOffset = (long long *)*AdditionalParameter;
+  if (LocalResourceOffset != (long long *)0x0) {
+    (**(code **)(*LocalResourceOffset + 0x28))(LocalResourceOffset);
   }
-  uStack_d8 = CONCAT31(uStack_d8._1_3_,ConfigurationDataPointer);
-  uStack_e0 = SystemResourcePointer;
+  SystemConfigurationFlag1 = CONCAT31(SystemConfigurationFlag1._1_3_,ConfigurationDataPointer);
+  SystemResourcePointer1 = SystemResourcePointer;
   if ((void* *)*SystemResourcePointer == &UNK_180a00270) {
     LOCK();
     *(int *)(SystemResourcePointer + 1) = (int)SystemResourcePointer[1] + 1;
@@ -63100,7 +63113,7 @@ void FUN_18007c490(long long *SystemResourcePointer,byte ConfigurationDataPointe
   else {
     (**(code **)((void* *)*SystemResourcePointer + 0x28))(SystemResourcePointer);
   }
-  if (param_5 == '\0') {
+  if (InitializationFlag == '\0') {
     plocalBufferAddress = *(long long **)(SystemResourcePointer[0x15] + 0x88);
     pcVar5 = *(code **)(*plocalBufferAddress + 0x70);
     pcStack_f0 = (code *)&UNK_180083180;
