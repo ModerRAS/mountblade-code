@@ -5085,7 +5085,7 @@ void InitializeSystemMemoryNodeManager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemStorageManager(void)
+// 函数: void InitializeSystemStringConfigurationManager(void)
 /**
  * @brief 初始化系统字符串配置管理器
  * 
