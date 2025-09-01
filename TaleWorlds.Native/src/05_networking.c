@@ -20162,26 +20162,26 @@ NetworkHandle NetworkConnectionValidator(longlong connectionContext)
   int loopCounter;
   bool isConnectionNull;
   
-  lVar5 = *(longlong *)(*(longlong *)(connectionContext + 8) + 0x28);
-  bVar7 = lVar5 == 0;
-  if (bVar7) {
-    lVar5 = 0;
+  connectionHandle = *(longlong *)(*(longlong *)(connectionContext + 8) + 0x28);
+  isConnectionNull = connectionHandle == 0;
+  if (isConnectionNull) {
+    connectionHandle = 0;
   }
   else {
-    FUN_180768360(lVar5);
+    FUN_180768360(connectionHandle);
   }
-  networkPointer2 = (NetworkHandle *)AllocateNetworkMemoryPool();
-  if (networkPointer2 == (NetworkHandle *)0x0) {
-    networkPointer2 = (NetworkHandle *)AllocateNetworkMemoryPool();
+  networkHandlePointer = (NetworkHandle *)AllocateNetworkMemoryPool();
+  if (networkHandlePointer == (NetworkHandle *)0x0) {
+    networkHandlePointer = (NetworkHandle *)AllocateNetworkMemoryPool();
   }
-  if (!bVar7) {
+  if (!isConnectionNull) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar5);
+    FUN_180768400(connectionHandle);
   }
-  if (networkPointer2 != (NetworkHandle *)0x0) {
-    networkStatus1 = *(int *)((longlong)networkPointer2 + 0x24);
-    iVar6 = 0;
-    if (0 < networkStatus1) {
+  if (networkHandlePointer != (NetworkHandle *)0x0) {
+    primaryNetworkStatus = *(int *)((longlong)networkHandlePointer + 0x24);
+    loopCounter = 0;
+    if (0 < primaryNetworkStatus) {
       do {
         if (*(int *)(networkPointer2 + 1) != 0) {
           pnetworkStatus3 = (int *)*networkPointer2;
