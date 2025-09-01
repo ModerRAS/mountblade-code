@@ -8999,7 +8999,7 @@ undefined8 ProcessDataValidationAndSystemOperation(longlong param_1,longlong par
     return 0x1d;
   }
   auStackX_18[0] = 0;
-  uVar2 = FUN_180840af0(param_2,param_1 + 0x20,auStackX_18);
+  uVar2 = ProcessDataValidationAdvanced(param_2,param_1 + 0x20,auStackX_18);
   if ((int)uVar2 == 0) {
     resourceIndex = func_0x000180867680(param_2 + 0x60,auStackX_18[0]);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
@@ -9147,7 +9147,7 @@ undefined8 ProcessFloatRangeValidationAndDataHandling(longlong param_1,longlong 
   undefined4 auStackX_18 [2];
   
   auStackX_18[0] = 0;
-  uVar2 = FUN_180840af0(param_2,param_1 + 0x20,auStackX_18);
+  uVar2 = ProcessDataValidationAdvanced(param_2,param_1 + 0x20,auStackX_18);
   if ((int)uVar2 == 0) {
     resourceIndex = func_0x000180867680(param_2 + 0x60,auStackX_18[0]);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
@@ -9353,16 +9353,16 @@ int ProcessDataWithValidator(longlong param_1,longlong param_2,int param_3)
   int iVar2;
   
   iVar1 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,*(undefined4 *)(param_1 + 0x18));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b970(iVar1 + param_2,param_3 - iVar1,param_1 + 0x20,
+  iVar2 = ProcessStringEncoding(iVar1 + param_2,param_3 - iVar1,param_1 + 0x20,
                         *(undefined4 *)(param_1 + 0x18));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074bb00(iVar1 + param_2,param_3 - iVar1,
                         param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 4);
@@ -9389,21 +9389,21 @@ int ProcessDataWithExtendedValidator(longlong param_1,longlong param_2,int param
   int iVar2;
   
   iVar1 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,*(undefined4 *)(param_1 + 0x18));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18088ed70(iVar1 + param_2,param_3 - iVar1,param_1 + 0x20,
                         *(undefined4 *)(param_1 + 0x18));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074bb00(iVar1 + param_2,param_3 - iVar1,
                         param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 8);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074be90(iVar1 + param_2,param_3 - iVar1,*(undefined1 *)(param_1 + 0x1c));
   return iVar2 + iVar1;
@@ -9429,17 +9429,17 @@ int ProcessDataWithSimplifiedValidator(longlong param_1,longlong param_2,int par
   int iVar2;
   
   iVar1 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18088ed70(iVar1 + param_2,param_3 - iVar1,param_1 + 0x18,
                         *(undefined4 *)(param_1 + 0x10));
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074bb00(iVar1 + param_2,param_3 - iVar1,
                         param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074be90(iVar1 + param_2,param_3 - iVar1,*(undefined1 *)(param_1 + 0x14));
   return iVar2 + iVar1;
@@ -9464,12 +9464,12 @@ int ProcessDataWithBuffer(longlong *param_1,longlong param_2,int param_3)
   int iVar1;
   int iVar2;
   
-  iVar1 = FUN_18074b880(param_2,param_3,&UNK_180986298);
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
+  iVar1 = ProcessStringOperation(param_2,param_3,&UNK_180986298);
+  iVar2 = ProcessStringOperation(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 8 + 0x20);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = (**(code **)(*param_1 + 8))(param_1,iVar1 + param_2,param_3 - iVar1);
   return iVar2 + iVar1;
@@ -9494,12 +9494,12 @@ int ProcessDataWithQueue(longlong *param_1,longlong param_2,int param_3)
   int iVar1;
   int iVar2;
   
-  iVar1 = FUN_18074b880(param_2,param_3,&UNK_180984010);
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
+  iVar1 = ProcessStringOperation(param_2,param_3,&UNK_180984010);
+  iVar2 = ProcessStringOperation(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 0xc + 0x20);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = (**(code **)(*param_1 + 8))(param_1,iVar1 + param_2,param_3 - iVar1);
   return iVar2 + iVar1;
@@ -9524,12 +9524,12 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
   int iVar1;
   int iVar2;
   
-  iVar1 = FUN_18074b880(param_2,param_3,&UNK_180982240);
-  iVar2 = FUN_18074b880(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
+  iVar1 = ProcessStringOperation(param_2,param_3,&UNK_180982240);
+  iVar2 = ProcessStringOperation(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,((int)param_1[2] + 2) * 0xc);
   iVar1 = iVar1 + iVar2;
-  iVar2 = FUN_18074b880(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + iVar2;
   iVar2 = (**(code **)(*param_1 + 8))(param_1,iVar1 + param_2,param_3 - iVar1);
   return iVar2 + iVar1;
@@ -11941,7 +11941,7 @@ int ProcessDataBlockOperationWithBasicValidator(longlong param_1,longlong param_
   
   resourceHash = *(undefined4 *)(param_1 + 0x14);
   iVar2 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar3 = ProcessStringOperation(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,resourceHash);
   return iVar3 + iVar2;
@@ -11967,8 +11967,8 @@ int ProcessDataBlockOperationWithExtendedValidator(longlong param_1,longlong par
   int iVar3;
   
   resourceHash = *(undefined8 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809863f8);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
+  iVar2 = ProcessStringOperation(param_2,param_3,&UNK_1809863f8);
+  iVar3 = ProcessStringOperation(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
   iVar2 = iVar2 + iVar3;
   iVar3 = func_0x00018074be80(iVar2 + param_2,param_3 - iVar2,resourceHash);
   return iVar3 + iVar2;
@@ -11996,12 +11996,12 @@ int ProcessDataBlockOperationWithSimplifiedValidator(longlong param_1,longlong p
   
   resourceHash = *(undefined4 *)(param_1 + 0x14);
   uVar2 = *(undefined4 *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180986470);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar3 = ProcessStringOperation(param_2,param_3,&UNK_180986470);
+  iVar4 = ProcessStringOperation(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar2);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
+  iVar4 = ProcessStringOperation(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
   iVar3 = iVar3 + iVar4;
   iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,resourceHash);
   return iVar4 + iVar3;
