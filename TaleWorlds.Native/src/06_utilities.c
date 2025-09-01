@@ -13599,8 +13599,8 @@ void SystemInitializerA(void)
               ResourceIndex3 = GetAndValidateResourceData(StackFloatParameter,&ObjectStackBufferResource28);
               if (ResourceIndex3 != 0) goto ProcessMemoryRelease;
             }
-            FloatPointer = (float *)(RegisterR15 + 0x94);
-            floatValue19 = FloatRegisterValue;
+            FloatDataPointer = (float *)(RegisterR15 + 0x94);
+            FloatIterationValue = FloatRegisterValue;
             do {
               floatValue1 = *FloatPointer;
               if (floatValue1 != 0.0) {
@@ -13612,11 +13612,11 @@ void SystemInitializerA(void)
                 ResourceIndex3 = GetAndValidateResourceData(floatValue1,&ObjectStackBufferResource28);
                 if (ResourceIndex3 != 0) goto ProcessMemoryRelease;
               }
-              floatValue19 = (float)((int)floatValue19 + 1);
+              FloatIterationValue = (float)((int)floatValue19 + 1);
               FloatPointer = FloatPointer + 1;
             } while ((int)floatValue19 < 4);
             FloatPointer = (float *)&SystemFloatTemplateActive;
-            floatValue19 = FloatRegisterValue;
+            FloatIterationValue = FloatRegisterValue;
             do {
               floatValue1 = *(float *)(RegisterR15 + -0x180985054 + (int64_t)FloatPointer);
               if (floatValue1 != *FloatPointer) {
@@ -13628,7 +13628,7 @@ void SystemInitializerA(void)
                 ResourceIndex3 = GetAndValidateResourceData(floatValue1,&ObjectStackBufferResource28);
                 if (ResourceIndex3 != 0) goto ProcessMemoryRelease;
               }
-              floatValue19 = (float)((int)floatValue19 + 1);
+              FloatIterationValue = (float)((int)floatValue19 + 1);
               FloatPointer = FloatPointer + 1;
             } while ((int)floatValue19 < 6);
             resourceHash4 = CalculateSecurityHash(ResourceRegisterPointer + 200);
@@ -13868,8 +13868,8 @@ void CalculateFloatValueAndValidateResources(void)
           ResourceIndex3 = GetAndValidateResourceData(StackFloatParameter,&ObjectStackBufferResource28);
           if (ResourceIndex3 != 0) goto ExecuteMemoryDeallocation;
         }
-        FloatPointer = (float *)(RegisterR15 + 0x94);
-        floatValue19 = FloatRegisterValue;
+        FloatDataPointer = (float *)(RegisterR15 + 0x94);
+        FloatIterationValue = FloatRegisterValue;
         do {
           floatValue1 = *FloatPointer;
           if (floatValue1 != 0.0) {
@@ -13881,11 +13881,11 @@ void CalculateFloatValueAndValidateResources(void)
             ResourceIndex3 = GetAndValidateResourceData(floatValue1,&ObjectStackBufferResource28);
             if (ResourceIndex3 != 0) goto ExecuteMemoryDeallocation;
           }
-          floatValue19 = (float)((int)floatValue19 + 1);
+          FloatIterationValue = (float)((int)floatValue19 + 1);
           FloatPointer = FloatPointer + 1;
         } while ((int)floatValue19 < 4);
         FloatPointer = (float *)&SystemFloatTemplateActive;
-        floatValue19 = FloatRegisterValue;
+        FloatIterationValue = FloatRegisterValue;
         do {
           floatValue1 = *(float *)(RegisterR15 + -0x180985054 + (int64_t)FloatPointer);
           if (floatValue1 != *FloatPointer) {
@@ -13897,7 +13897,7 @@ void CalculateFloatValueAndValidateResources(void)
             ResourceIndex3 = GetAndValidateResourceData(floatValue1,&ObjectStackBufferResource28);
             if (ResourceIndex3 != 0) goto ExecuteMemoryDeallocation;
           }
-          floatValue19 = (float)((int)floatValue19 + 1);
+          FloatIterationValue = (float)((int)floatValue19 + 1);
           FloatPointer = FloatPointer + 1;
         } while ((int)floatValue19 < 6);
         resourceHash4 = CalculateSecurityHash(ResourceRegisterPointer + 200);
