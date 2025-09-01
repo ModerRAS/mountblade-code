@@ -30069,7 +30069,17 @@ void ResetSystemContextOnException(uint8_t objectContextParam, int64_t validatio
 
 
 
-void Unwind_180902600(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 异常处理资源清理器
+ * 
+ * 该函数负责在异常处理过程中清理资源
+ * 释放异常处理过程中分配的资源并恢复系统状态
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数在异常处理栈展开时被调用
+ */
+void ExceptionResourceCleanupHandler(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int *pintegerValue1;
@@ -30277,24 +30287,35 @@ void ResourcePointerCleanupHandler(uint8_t objectContextParam, int64_t validatio
 
 
 
-void Unwind_180902680(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 资源队列清理处理器
+ * 
+ * 该函数负责清理资源队列中的所有资源指针
+ * 使用队列结构遍历资源指针，调用相应的析构函数
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象状态信息
+ * @param validationContextParam 验证上下文参数，包含资源队列信息
+ * @note 此函数在异常处理过程中被调用
+ * @warning 如果资源队列异常，将触发系统紧急退出
+ */
+void ResourceQueueCleanupHandler(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   int64_t *processPointer;
-  int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceTable;
+  int64_t *pResourceIndex;
   
-  presourceTable = *(int64_t **)(validationContextParam + 0x78);
-  plocalContextPointer = (int64_t *)presourceTable[1];
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != plocalContextPointer; presourceIndex = presourceIndex + 3) {
-    if ((int64_t *)presourceIndex[1] != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)presourceIndex[1] + 0x38))();
+  pResourceTable = *(int64_t **)(validationContextParam + 0x78);
+  pLocalContextPointer = (int64_t *)pResourceTable[1];
+  for (pResourceIndex = (int64_t *)*pResourceTable; pResourceIndex != pLocalContextPointer; pResourceIndex = pResourceIndex + 3) {
+    if ((int64_t *)pResourceIndex[1] != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)pResourceIndex[1] + 0x38))();
     }
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
-  if (*presourceTable == 0) {
+  if (*pResourceTable == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -30303,7 +30324,17 @@ void Unwind_180902680(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902690(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 资源表验证处理器
+ * 
+ * 该函数负责验证资源表的完整性
+ * 在异常处理过程中检查资源表的状态并执行相应的清理操作
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数在异常处理过程中被调用
+ */
+void ResourceTableValidationHandler(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int64_t loopCounter;
