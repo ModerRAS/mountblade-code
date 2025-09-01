@@ -298,10 +298,10 @@ int InitializeModuleConfigurationA(void)
   int64_t initializationResult;
   uint64_t configurationFlags;
   _DAT_180bf6680 = &UNK_1809fdc18;
-  _DAT_180bf6688 = &DAT_180bf6698;
-  DAT_180bf6698 = 0;
+  _DAT_180bf6688 = &STRING_PROCESSOR_CONFIG_A;
+  STRING_PROCESSOR_CONFIG_A = 0;
   _DAT_180bf6690 = 5;
-  strcpy_s(&DAT_180bf6698,0x10,&UNK_180a00540,in_R9,0xfffffffffffffffe);
+  strcpy_s(&STRING_PROCESSOR_CONFIG_A,0x10,&UNK_180a00540,in_R9,0xfffffffffffffffe);
   longlong CallbackResult = RegisterSystemModule(FUN_1809418e0);
   return (CallbackResult != 0) - 1;
 }
@@ -316,10 +316,10 @@ int InitializeStringProcessorG(void)
   int64_t CallbackResult;
   uint64_t stringProcessorGFlags;
   _DAT_180bf66b0 = &UNK_1809fdc18;
-  _DAT_180bf66b8 = &DAT_180bf66c8;
-  DAT_180bf66c8 = 0;
+  _DAT_180bf66b8 = &STRING_PROCESSOR_CONFIG_B;
+  STRING_PROCESSOR_CONFIG_B = 0;
   _DAT_180bf66c0 = 5;
-  strcpy_s(&DAT_180bf66c8,0x10,&UNK_180a00548,stringProcessorGFlags,0xfffffffffffffffe);
+  strcpy_s(&STRING_PROCESSOR_CONFIG_B,0x10,&UNK_180a00548,stringProcessorGFlags,0xfffffffffffffffe);
   CallbackResult = RegisterSystemModule(FUN_180941900);
   return (CallbackResult != 0) - 1;
 }
@@ -334,10 +334,10 @@ int InitializeStringProcessorH(void)
   int64_t CallbackResult;
   uint64_t stringProcessorHFlags;
   _DAT_180bf52e8 = &UNK_18098bc80;
-  _DAT_180bf52f0 = &DAT_180bf5300;
-  DAT_180bf5300 = 0;
+  _DAT_180bf52f0 = &STRING_PROCESSOR_CONFIG_C;
+  STRING_PROCESSOR_CONFIG_C = 0;
   _DAT_180bf52f8 = 0xd;
-  strcpy_s(&DAT_180bf5300,0x20,&UNK_180a01300,stringProcessorHFlags,0xfffffffffffffffe);
+  strcpy_s(&STRING_PROCESSOR_CONFIG_C,0x20,&UNK_180a01300,stringProcessorHFlags,0xfffffffffffffffe);
   CallbackResult = RegisterSystemModule(FUN_180941980);
   return (CallbackResult != 0) - 1;
 }
@@ -352,10 +352,10 @@ int InitializeStringProcessorI(void)
   int64_t CallbackResult;
   uint64_t stringProcessorIFlags;
   _DAT_180bf5738 = &UNK_18098bc80;
-  _DAT_180bf5740 = &DAT_180bf5750;
-  DAT_180bf5750 = 0;
+  _DAT_180bf5740 = &STRING_PROCESSOR_CONFIG_D;
+  STRING_PROCESSOR_CONFIG_D = 0;
   _DAT_180bf5748 = 9;
-  strcpy_s(&DAT_180bf5750,0x20,&UNK_180a01330,stringProcessorIFlags,0xfffffffffffffffe);
+  strcpy_s(&STRING_PROCESSOR_CONFIG_D,0x20,&UNK_180a01330,stringProcessorIFlags,0xfffffffffffffffe);
   CallbackResult = RegisterSystemModule(FUN_1809419a0);
   return (CallbackResult != 0) - 1;
 }
@@ -376,14 +376,14 @@ int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mut
   CallbackResult = RegisterSystemModule(FUN_1809419c0);
   return (CallbackResult != 0) - 1;
 }
-  DAT_180bf6768 = 0;
+  CONFIG_DATA_BUFFER_A = 0;
   _DAT_180bf6760 = 0x13;
-  strcpy_s(&DAT_180bf6768,0x40,&UNK_180a0cb48,in_R9,0xfffffffffffffffe);
+  strcpy_s(&CONFIG_DATA_BUFFER_A,0x40,&UNK_180a0cb48,in_R9,0xfffffffffffffffe);
   _DAT_180bf67a8 = &UNK_1809fcc58;
-  _DAT_180bf67b0 = &DAT_180bf67c0;
-  DAT_180bf67c0 = 0;
+  _DAT_180bf67b0 = &CONFIG_DATA_BUFFER_B;
+  CONFIG_DATA_BUFFER_B = 0;
   _DAT_180bf67b8 = 0xd;
-  strcpy_s(&DAT_180bf67c0,0x40,&UNK_180a0cb80);
+  strcpy_s(&CONFIG_DATA_BUFFER_B,0x40,&UNK_180a0cb80);
   _DAT_180bf6800 = &UNK_1809fcc58;
   _DAT_180bf6808 = &DAT_180bf6818;
   DAT_180bf6818 = 0;
@@ -1550,7 +1550,7 @@ int FUN_18003c1a0(void)
   LocalResult = RegisterSystemModule(FUN_180942580);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003c1c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int ProcessSystemEvent(uint64_t systemId,uint64_t eventType,uint64_t eventData,uint64_t eventFlags)
 {
   int64_t LocalResult;
   _Mtx_init_in_situ(0x180c91f70,2,param_3,param_4,0xfffffffffffffffe);
@@ -1690,7 +1690,7 @@ int FUN_18003dba0(void)
   LocalResult = RegisterSystemModule(FUN_180942750);
   return (LocalResult != 0) - 1;
 }
-int FUN_18003dc30(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int HandleSystemRequest(uint64_t requestId,uint64_t requestType,uint64_t requestData,uint64_t requestFlags)
 {
   int64_t LocalResult;
   _Mtx_init_in_situ(0x180c91ff0,2,param_3,param_4,0xfffffffffffffffe);

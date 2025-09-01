@@ -996,9 +996,9 @@ void ProcessNetworkConnectionContext(undefined8 connectionContext, undefined8 pr
     stackParameter2 = *(longlong *)(stackParameter3 + 8);
   }
   else if (operationStatus != 0) goto LAB_1808408dd;
-  puVar1 = (undefined8 *)(lStack0000000000000030 + 0xb0);
-  puVar5 = &DAT_18098bc73;
-  for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
+  connectionTable = (undefined8 *)(stackParameter2 + 0xb0);
+  connectionResult = &DAT_18098bc73;
+  for (connectionEntry = (undefined8 *)*connectionTable; connectionEntry != connectionTable; connectionEntry = (undefined8 *)*connectionEntry) {
     if (*(int *)(puVar2 + 3) < 1) {
       puVar4 = &DAT_18098bc73;
     }
@@ -1228,19 +1228,30 @@ LAB_180840ad5:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180840af0(longlong param_1,longlong param_2,int *param_3)
-void FUN_180840af0(longlong param_1,longlong param_2,int *param_3)
+/**
+ * 查找网络连接索引
+ * 
+ * 该函数负责在给定的网络连接上下文中查找特定连接的索引。
+ * 主要用于网络连接管理和查询操作。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param searchKey 搜索关键字或标识符
+ * @param resultIndex 返回找到的连接索引
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void FindNetworkConnectionIndex(longlong connectionContext, longlong searchKey, int *resultIndex)
 
 {
-  bool bVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined *puVar4;
-  int iVar5;
-  undefined1 auStack_58 [32];
-  longlong lStack_38;
-  longlong lStack_30;
-  ulonglong uStack_28;
+  bool connectionFound;
+  int operationStatus;
+  longlong connectionEntry;
+  undefined *connectionData;
+  int currentIndex;
+  undefined1 stackBuffer [32];
+  longlong connectionId;
+  longlong connectionOffset;
+  ulonglong securityKey;
   
   uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
   if (param_2 != 0) {
@@ -1299,8 +1310,17 @@ LAB_180840b99:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180840c00(undefined8 param_1)
-void FUN_180840c00(undefined8 param_1)
+/**
+ * 验证网络连接状态
+ * 
+ * 该函数负责验证网络连接的状态和有效性。
+ * 主要用于确保网络连接处于可用状态。
+ * 
+ * @param connectionHandle 网络连接句柄
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ValidateNetworkConnectionStatus(undefined8 connectionHandle)
 
 {
   int iVar1;

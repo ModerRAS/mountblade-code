@@ -21,9 +21,9 @@ bool g_moduleDependencyInitialized;
 void* g_moduleDependencyContext;
 void* g_moduleDependencyConfig;
 bool g_moduleDependencyEnabled;
-void* ModuleDependencyData;
-void* ModuleDependencyPointer1;
-void* ModuleDependencyPointer2;
+void* g_moduleDependencyData;
+void* g_moduleDependencyCache;
+void* g_moduleDependencyBuffer;
 uint32_t g_moduleDependencyVersion;
 uint32_t g_moduleDependencyBuild;
 uint32_t g_moduleDependencyChecksum;
@@ -38,10 +38,10 @@ void* g_moduleDependencyHandle;
  * 设置模块A所需的数据结构和运行环境
  */
 void InitializeGlobalModuleA(void);
-void* GlobalModuleA_Instance;
-void* GlobalModuleA_Config;
-uint32_t GlobalModuleA_Status;
-void* GlobalModuleA_Handle;
+void* g_globalModuleA_Instance;
+void* g_globalModuleA_Config;
+uint32_t g_globalModuleA_Status;
+void* g_globalModuleA_Handle;
 
 // 函数: void InitializeGlobalModuleB(void)
 /**
@@ -145,8 +145,8 @@ bool SystemStatusFlag4Initialized;
  * 释放相关资源，清理同步状态
  */
 void DestroyThreadSyncObjects(void);
-void* ThreadSyncObjectHandle;
-void* ThreadSyncContext;
+void* g_threadSyncObjectHandle;
+void* g_threadSyncContext;
 
 // 函数: void CloseSystemHandle(void)
 /**
@@ -165,11 +165,11 @@ void CloseSystemHandle(void);
  * 释放内存，关闭句柄，重置状态
  */
 void CleanupThreadResources(void);
-uint32_t ThreadResourceFlag;
-void* CleanupContextData1;
-void* CleanupContextData2;
-void* CleanupResourceHandle;
-void* CleanupContextData3;
+uint32_t g_threadResourceFlag;
+void* g_cleanupContextData1;
+void* g_cleanupContextData2;
+void* g_cleanupResourceHandle;
+void* g_cleanupContextData3;
 
 // 函数: void InitializeResourceManager(void)
 /**
@@ -179,13 +179,13 @@ void* CleanupContextData3;
  * 设置资源加载、缓存和释放的相关系统
  */
 void InitializeResourceManager(void);
-void* ResourceManagerHandle;
-uint32_t ResourceManagerStatus;
-void* ResourceContextData1;
-void* ResourceContextData2;
-void* ResourceBufferPool1;
-void* ResourceBufferPool2;
-void* ResourceBufferPool3;
+void* g_resourceManagerHandle;
+uint32_t g_resourceManagerStatus;
+void* g_resourceContextData1;
+void* g_resourceContextData2;
+void* g_resourceBufferPool1;
+void* g_resourceBufferPool2;
+void* g_resourceBufferPool3;
 
 // 函数: void InitializeTextureManager(void)
 /**
@@ -195,12 +195,12 @@ void* ResourceBufferPool3;
  * 设置纹理加载、缓存和释放的相关数据结构
  */
 void InitializeTextureManager(void);
-void* TextureManagerInstance;
-void* TextureSystemData;
-void* TextureCacheHandle;
-void* TextureLoaderHandle;
-void* TextureMemoryPool;
-void* TextureDescriptorTable;
+void* g_textureManagerInstance;
+void* g_textureSystemData;
+void* g_textureCacheHandle;
+void* g_textureLoaderHandle;
+void* g_textureMemoryPool;
+void* g_textureDescriptorTable;
 
 // 函数: void InitializeAudioSystem(void)
 /**
@@ -210,11 +210,11 @@ void* TextureDescriptorTable;
  * 设置音效、音乐和语音播放的相关参数
  */
 void InitializeAudioSystem(void);
-void* AudioSystemInstance;
-void* AudioDeviceHandle;
-void* AudioMixerHandle;
-void* AudioBufferPool;
-void* AudioStreamManager;
+void* g_audioSystemInstance;
+void* g_audioDeviceHandle;
+void* g_audioMixerHandle;
+void* g_audioBufferPool;
+void* g_audioStreamManager;
 
 // 函数: void InitializePhysicsEngine(void)
 /**
@@ -224,11 +224,11 @@ void* AudioStreamManager;
  * 设置碰撞检测、重力模拟和物理计算的相关系统
  */
 void InitializePhysicsEngine(void);
-void* PhysicsEngineInstance;
-void* PhysicsWorldHandle;
-void* CollisionSystemHandle;
-void* RigidBodyManager;
-void* PhysicsConstraintSolver;
+void* g_physicsEngineInstance;
+void* g_physicsWorldHandle;
+void* g_collisionSystemHandle;
+void* g_rigidBodyManager;
+void* g_physicsConstraintSolver;
 
 // 函数: void InitializeInputManager(void)
 /**
@@ -238,12 +238,12 @@ void* PhysicsConstraintSolver;
  * 设置键盘、鼠标和手柄输入的处理机制
  */
 void InitializeInputManager(void);
-void* InputSystemInstance;
-void* InputDeviceManager;
-void* KeyboardHandler;
-void* MouseHandler;
-void* ControllerManager;
-void* InputEventQueue;
+void* g_inputSystemInstance;
+void* g_inputDeviceManager;
+void* g_keyboardHandler;
+void* g_mouseHandler;
+void* g_controllerManager;
+void* g_inputEventQueue;
 
 // 函数: void InitializeNetworkManager(void)
 /**
