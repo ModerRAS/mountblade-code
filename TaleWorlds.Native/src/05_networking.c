@@ -13669,12 +13669,12 @@ uint * GetNetworkPacketSize(longlong connectionContext,uint *packetData)
         quinaryNetworkFlag = *(uint *)((longlong)puVar8 + 0x34);
       }
       *packetData = quinaryNetworkFlag;
-      if ((*(int *)(lVar3 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+      if ((*(int *)(lVar3 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+         (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+        NetworkConnectionTimeoutValue = 0;
+        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
       }
-      if (*(int *)(puVar8 + 0x14) != _DAT_180c4ea94) {
+      if (*(int *)(puVar8 + 0x14) != NetworkConnectionTimeoutValue) {
         plVar4 = *(longlong **)(connectionContext + 0x78);
         plVar11 = plVar4;
         while( true ) {
@@ -13825,12 +13825,12 @@ uint * ValidateNetworkDataPacket(longlong connectionContext,uint *packetData)
         quinaryNetworkFlag = *(uint *)((longlong)puVar8 + 0x34);
       }
       *packetData = quinaryNetworkFlag;
-      if ((*(int *)(lVar3 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+      if ((*(int *)(lVar3 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+         (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+        NetworkConnectionTimeoutValue = 0;
+        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
       }
-      if (*(int *)(puVar8 + 0x14) != _DAT_180c4ea94) {
+      if (*(int *)(puVar8 + 0x14) != NetworkConnectionTimeoutValue) {
         plVar4 = *(longlong **)(connectionContext + 0x78);
         plVar11 = plVar4;
         while( true ) {
@@ -13919,13 +13919,13 @@ void ProcessNetworkPacketHandler(longlong connectionContext,NetworkHandle *packe
       quaternaryNetworkFlag = *(uint *)((longlong)dataSize + 0x34);
     }
     *unaff_RDI = quaternaryNetworkFlag;
-    if ((*(int *)(lVar2 + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-      _DAT_180c4ea94 = unaff_R12D;
-      FUN_1808fcb30(&DAT_180c4ea98);
+    if ((*(int *)(lVar2 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+       (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+      NetworkConnectionTimeoutValue = unaff_R12D;
+      FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
     }
     quaternaryNetworkFlag = (uint)unaff_RBP;
-    if (*(int *)(unaff_RBX + 0x14) != _DAT_180c4ea94) {
+    if (*(int *)(unaff_RBX + 0x14) != NetworkConnectionTimeoutValue) {
       plVar3 = *(longlong **)(unaff_RSI + 0x78);
       plVar10 = plVar3;
       while( true ) {
@@ -14072,14 +14072,14 @@ void ProcessNetworkStatusReset(void)
   uint in_stack_00000050;
   
   do {
-    FUN_1808fcb90(&DAT_180c4ea98);
-    if (_DAT_180c4ea98 == -1) {
-      _DAT_180c4ea94 = unaff_R12D;
-      FUN_1808fcb30(&DAT_180c4ea98);
+    FUN_1808fcb90(&NetworkConnectionTimeoutThreshold);
+    if (_NetworkConnectionTimeoutThreshold == -1) {
+      NetworkConnectionTimeoutValue = unaff_R12D;
+      FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
     }
     do {
       tertiaryNetworkFlag = (uint)unaff_RBP;
-      if (*(int *)(unaff_RBX + 0x14) != _DAT_180c4ea94) {
+      if (*(int *)(unaff_RBX + 0x14) != NetworkConnectionTimeoutValue) {
         plVar2 = *(longlong **)(unaff_RSI + 0x78);
         plVar9 = plVar2;
         while( true ) {
@@ -14133,7 +14133,7 @@ LAB_18084cfd9:
         tertiaryNetworkFlag = *(uint *)((longlong)unaff_RBX + 0x34);
       }
       *unaff_RDI = tertiaryNetworkFlag;
-    } while (_DAT_180c4ea98 <= *unaff_R15);
+    } while (_NetworkConnectionTimeoutThreshold <= *unaff_R15);
   } while( true );
 }
 
@@ -15247,11 +15247,11 @@ NetworkData * NetworkDataManager(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180c4ea98) {
-    FUN_1808fcb90(&DAT_180c4ea98);
-    if (_DAT_180c4ea98 == -1) {
-      _DAT_180c4ea94 = 0;
-      FUN_1808fcb30(&DAT_180c4ea98);
+              0x48) < _NetworkConnectionTimeoutThreshold) {
+    FUN_1808fcb90(&NetworkConnectionTimeoutThreshold);
+    if (_NetworkConnectionTimeoutThreshold == -1) {
+      NetworkConnectionTimeoutValue = 0;
+      FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
     }
   }
   return &DAT_180c4ea94;
@@ -28971,11 +28971,11 @@ NetworkData * GetNetworkData(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180c4eaac) {
-    FUN_1808fcb90(&DAT_180c4eaac);
-    if (_DAT_180c4eaac == -1) {
-      _DAT_180c4eaa8 = 0xffffffff;
-      FUN_1808fcb30(&DAT_180c4eaac);
+              0x48) < _NetworkConnectionRetryCounter) {
+    FUN_1808fcb90(&NetworkConnectionRetryCounter);
+    if (_NetworkConnectionRetryCounter == -1) {
+      NetworkConnectionRetryValue = 0xffffffff;
+      FUN_1808fcb30(&NetworkConnectionRetryCounter);
     }
   }
   return &DAT_180c4eaa8;
@@ -29169,13 +29169,13 @@ LAB_180857f82:
 LAB_1808580a0:
   do {
     while( true ) {
-      if ((*piStack_100 < _DAT_180c4ea98) && (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1))
+      if ((*piStack_100 < _NetworkConnectionTimeoutThreshold) && (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1))
       {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+        NetworkConnectionTimeoutValue = 0;
+        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
       }
       uVar7 = (uint)primaryNetworkFlag2;
-      if (uVar7 <= _DAT_180c4ea94) {
+      if (uVar7 <= NetworkConnectionTimeoutValue) {
         return 0;
       }
       if (*(longlong *)(connectionContext + 0x140) == 0) break;
@@ -29325,12 +29325,12 @@ LAB_1808580a0:
         quinaryNetworkFlag = uStack_168;
         uStack_158 = uVar6;
       }
-      if ((*(int *)(*plStack_c8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+      if ((*(int *)(*plStack_c8 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+         (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+        NetworkConnectionTimeoutValue = 0;
+        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
       }
-      if (_DAT_180c4ea94 < uStack_158) {
+      if (NetworkConnectionTimeoutValue < uStack_158) {
         uVar9 = 0;
         if ((char)uStack_150 != '\0') {
           uVar9 = uStack_80;
@@ -29388,12 +29388,12 @@ LAB_180859163:
           }
           return primaryNetworkFlag8;
         }
-        if ((*(int *)(*plStack_c8 + 0x48) < _DAT_180c4ea98) &&
-           (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-          _DAT_180c4ea94 = uVar7;
-          FUN_1808fcb30(&DAT_180c4ea98);
+        if ((*(int *)(*plStack_c8 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+           (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+          NetworkConnectionTimeoutValue = uVar7;
+          FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
         }
-        *(uint *)(connectionContext + 0x148) = _DAT_180c4ea94;
+        *(uint *)(connectionContext + 0x148) = NetworkConnectionTimeoutValue;
         uVar7 = FUN_180855810(connectionContext,secondaryNetworkFlag6);
         primaryNetworkFlag8 = (ulonglong)uVar7;
         if (uVar7 != 0) goto LAB_180859163;
@@ -29526,12 +29526,12 @@ LAB_180858c20:
           return primaryNetworkFlag8;
         }
       }
-      if ((*(int *)(*plStack_c8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+      if ((*(int *)(*plStack_c8 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+         (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+        NetworkConnectionTimeoutValue = 0;
+        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
       }
-      if (*(uint *)(lVar15 + 0xa0) != _DAT_180c4ea94) {
+      if (*(uint *)(lVar15 + 0xa0) != NetworkConnectionTimeoutValue) {
         networkPointer14 = (NetworkStatus *)CreateNetworkStatus();
         uVar7 = auStack_140[0];
         plVar24 = (longlong *)(connectionContext + 0x70);
@@ -29765,12 +29765,12 @@ LAB_180858e04:
     }
     *(uint *)(connectionContext + 8) = uVar7;
     *(NetworkStatus *)(connectionContext + 0xc) = 2;
-    if ((*(int *)(lStack_c0 + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-      _DAT_180c4ea94 = 0;
-      FUN_1808fcb30(&DAT_180c4ea98);
+    if ((*(int *)(lStack_c0 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+       (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+      NetworkConnectionTimeoutValue = 0;
+      FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
     }
-    uStack_15c = _DAT_180c4ea94;
+    uStack_15c = NetworkConnectionTimeoutValue;
     plVar24 = (longlong *)(connectionContext + 0x70);
     if (bVar28) {
       uVar6 = *(uint *)(*(longlong *)(connectionContext + 0x168) + 0x774);
@@ -31812,12 +31812,12 @@ LAB_180857f18:
 LAB_1808580a0:
   do {
     while( true ) {
-      if ((*piStack_100 < _DAT_180c4ea98) && (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1))
+      if ((*piStack_100 < _NetworkConnectionTimeoutThreshold) && (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1))
       {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+        NetworkConnectionTimeoutValue = 0;
+        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
       }
-      if (secondaryNetworkFlag7 <= _DAT_180c4ea94) {
+      if (secondaryNetworkFlag7 <= NetworkConnectionTimeoutValue) {
         return 0;
       }
       if (*(longlong *)(connectionContext + 0x140) == 0) break;
@@ -31969,12 +31969,12 @@ LAB_1808580a0:
         uVar6 = uStack_168;
         uStack_158 = uVar7;
       }
-      if ((*(int *)(*plStack_c8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+      if ((*(int *)(*plStack_c8 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+         (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+        NetworkConnectionTimeoutValue = 0;
+        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
       }
-      if (_DAT_180c4ea94 < uStack_158) {
+      if (NetworkConnectionTimeoutValue < uStack_158) {
         primaryNetworkFlag0 = 0;
         if ((char)uStack_150 != '\0') {
           primaryNetworkFlag0 = uStack_80;
@@ -32032,12 +32032,12 @@ LAB_180859163:
           }
           return primaryNetworkFlag9;
         }
-        if ((*(int *)(*plStack_c8 + 0x48) < _DAT_180c4ea98) &&
-           (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-          _DAT_180c4ea94 = uVar7;
-          FUN_1808fcb30(&DAT_180c4ea98);
+        if ((*(int *)(*plStack_c8 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+           (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+          NetworkConnectionTimeoutValue = uVar7;
+          FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
         }
-        *(uint *)(connectionContext + 0x148) = _DAT_180c4ea94;
+        *(uint *)(connectionContext + 0x148) = NetworkConnectionTimeoutValue;
         uVar7 = FUN_180855810(connectionContext,secondaryNetworkFlag6);
         primaryNetworkFlag9 = (ulonglong)uVar7;
         if (uVar7 != 0) goto LAB_180859163;
@@ -32173,13 +32173,13 @@ LAB_180858c20:
           return primaryNetworkFlag9;
         }
       }
-      if ((*(int *)(*plStack_c8 + 0x48) < _DAT_180c4ea98) &&
-         (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-        _DAT_180c4ea94 = 0;
-        FUN_1808fcb30(&DAT_180c4ea98);
+      if ((*(int *)(*plStack_c8 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+         (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+        NetworkConnectionTimeoutValue = 0;
+        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
       }
       secondaryNetworkFlag7 = uStack_15c;
-      if (*(uint *)(lVar14 + 0xa0) != _DAT_180c4ea94) {
+      if (*(uint *)(lVar14 + 0xa0) != NetworkConnectionTimeoutValue) {
         networkPointer13 = (NetworkStatus *)CreateNetworkStatus();
         uVar7 = auStack_140[0];
         plVar17 = (longlong *)(connectionContext + 0x70);
@@ -32413,12 +32413,12 @@ LAB_180858e04:
     }
     *(uint *)(connectionContext + 8) = uVar7;
     *(NetworkStatus *)(connectionContext + 0xc) = 2;
-    if ((*(int *)(lStack_c0 + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-      _DAT_180c4ea94 = 0;
-      FUN_1808fcb30(&DAT_180c4ea98);
+    if ((*(int *)(lStack_c0 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+       (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+      NetworkConnectionTimeoutValue = 0;
+      FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
     }
-    secondaryNetworkFlag7 = _DAT_180c4ea94;
+    secondaryNetworkFlag7 = NetworkConnectionTimeoutValue;
     plVar17 = (longlong *)(connectionContext + 0x70);
     if (bVar29) {
       secondaryNetworkFlag1 = *(uint *)(*(longlong *)(connectionContext + 0x168) + 0x774);
@@ -32552,15 +32552,15 @@ FUN_18085acd0(longlong connectionContext,longlong *packetData,uint *dataSize,ulo
       return 0;
     }
     bVar3 = false;
-    if ((*(int *)(*plVar1 + 0x48) < _DAT_180c4ea98) &&
-       (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-      _DAT_180c4ea94 = 0;
-      FUN_1808fcb30(&DAT_180c4ea98);
+    if ((*(int *)(*plVar1 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+       (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+      NetworkConnectionTimeoutValue = 0;
+      FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
     }
     uVar8 = *(uint *)(primaryNetworkFlag3 + 0x10);
     quaternaryNetworkFlag = *dataSize;
     if ((uVar8 < quaternaryNetworkFlag) || (uVar9 = uVar8, dataSize[1] <= uVar8)) {
-      primaryNetworkFlag0 = _DAT_180c4ea94;
+      primaryNetworkFlag0 = NetworkConnectionTimeoutValue;
       if ((param_6 != '\0') && (uVar8 <= quaternaryNetworkFlag)) {
         uVar6 = 0xffffffff;
         if ((ulonglong)*(uint *)(primaryNetworkFlag3 + 0x14) + (ulonglong)uVar8 < 0x100000000) {
@@ -41958,7 +41958,7 @@ LAB_18086350f:
   *(uint *)(connectionContext + 0x2d8) =
        (-(uint)(abStackX_8[0] != 0) & 0x1000 | *(uint *)(connectionContext + 0x2d8)) & ~primaryNetworkFlag2;
   lVar9 = *(longlong *)(*(longlong *)(*(longlong *)(connectionContext + 0x88) + 0xd0) + 0x30);
-  if (lVar9 == _DAT_180bef7b8) {
+  if (lVar9 == _NetworkConnectionErrorCode) {
 LAB_180863615:
     if (*(longlong *)(connectionContext + 0x2d0) == 0) goto LAB_180863724;
     auStackX_10[0] = 0;
@@ -42126,7 +42126,7 @@ LAB_18086350f:
   *(uint *)(connectionContext + 0x2d8) =
        (-(uint)(in_stack_00000050 != 0) & 0x1000 | *(uint *)(connectionContext + 0x2d8)) & ~uVar7;
   lVar9 = *(longlong *)(*(longlong *)(*(longlong *)(connectionContext + 0x88) + 0xd0) + 0x30);
-  if (lVar9 == _DAT_180bef7b8) {
+  if (lVar9 == _NetworkConnectionErrorCode) {
 LAB_180863615:
     if (((*(longlong *)(connectionContext + 0x2d0) == 0) ||
         (in_stack_00000058 = primaryNetworkFlag5,
@@ -63052,15 +63052,15 @@ NetworkHandle FUN_180875520(longlong *connectionContext)
             ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),puVar6,&UNK_18095b500,0xc6,1);
           }
           lVar7 = FUN_1808719a0(lVar7,lStackX_8,lVar3,plVar5,puVar6);
-          primaryNetworkFlag = _DAT_180c4eaf0;
+          primaryNetworkFlag = _NetworkConnectionSequenceNumber;
           while( true ) {
-            _DAT_180c4eaf0 = primaryNetworkFlag + 1 & 0x80000007;
-            if ((int)_DAT_180c4eaf0 < 0) {
-              _DAT_180c4eaf0 = (_DAT_180c4eaf0 - 1 | 0xfffffff8) + 1;
+            _NetworkConnectionSequenceNumber = primaryNetworkFlag + 1 & 0x80000007;
+            if ((int)_NetworkConnectionSequenceNumber < 0) {
+              _NetworkConnectionSequenceNumber = (_NetworkConnectionSequenceNumber - 1 | 0xfffffff8) + 1;
             }
             if (*(longlong *)((longlong)(int)primaryNetworkFlag * 8 + 0x180c4eab0) == 0) break;
             iVar8 = iVar8 + 1;
-            primaryNetworkFlag = _DAT_180c4eaf0;
+            primaryNetworkFlag = _NetworkConnectionSequenceNumber;
             if (7 < iVar8) {
               FUN_180873460(lVar7);
                     // WARNING: Subroutine does not return
@@ -63140,15 +63140,15 @@ NetworkHandle FUN_180875538(void)
             ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),puVar6,&UNK_18095b500,0xc6,1);
           }
           lVar7 = FUN_1808719a0(lVar7,lStack0000000000000070,lVar3,plVar5,puVar6);
-          primaryNetworkFlag = _DAT_180c4eaf0;
+          primaryNetworkFlag = _NetworkConnectionSequenceNumber;
           while( true ) {
-            _DAT_180c4eaf0 = primaryNetworkFlag + 1 & 0x80000007;
-            if ((int)_DAT_180c4eaf0 < 0) {
-              _DAT_180c4eaf0 = (_DAT_180c4eaf0 - 1 | 0xfffffff8) + 1;
+            _NetworkConnectionSequenceNumber = primaryNetworkFlag + 1 & 0x80000007;
+            if ((int)_NetworkConnectionSequenceNumber < 0) {
+              _NetworkConnectionSequenceNumber = (_NetworkConnectionSequenceNumber - 1 | 0xfffffff8) + 1;
             }
             if (*(longlong *)((longlong)(int)primaryNetworkFlag * 8 + 0x180c4eab0) == 0) break;
             iVar8 = iVar8 + 1;
-            primaryNetworkFlag = _DAT_180c4eaf0;
+            primaryNetworkFlag = _NetworkConnectionSequenceNumber;
             if (7 < iVar8) {
               FUN_180873460(lVar7);
                     // WARNING: Subroutine does not return
@@ -63238,16 +63238,16 @@ ulonglong FUN_180875569(longlong connectionContext,NetworkHandle packetData,Netw
         }
         lVar2 = FUN_1808719a0(lVar3,in_stack_00000070,lVar2,plVar4,networkPointer5);
         uVar7 = unaff_RDI & 0xffffffff;
-        primaryNetworkFlag = _DAT_180c4eaf0;
+        primaryNetworkFlag = _NetworkConnectionSequenceNumber;
         while( true ) {
-          _DAT_180c4eaf0 = primaryNetworkFlag + 1 & 0x80000007;
-          if ((int)_DAT_180c4eaf0 < 0) {
-            _DAT_180c4eaf0 = (_DAT_180c4eaf0 - 1 | 0xfffffff8) + 1;
+          _NetworkConnectionSequenceNumber = primaryNetworkFlag + 1 & 0x80000007;
+          if ((int)_NetworkConnectionSequenceNumber < 0) {
+            _NetworkConnectionSequenceNumber = (_NetworkConnectionSequenceNumber - 1 | 0xfffffff8) + 1;
           }
           if (*(ulonglong *)((longlong)(int)primaryNetworkFlag * 8 + 0x180c4eab0) == unaff_RDI) break;
           uVar6 = (int)uVar7 + 1;
           uVar7 = (ulonglong)uVar6;
-          primaryNetworkFlag = _DAT_180c4eaf0;
+          primaryNetworkFlag = _NetworkConnectionSequenceNumber;
           if (7 < (int)uVar6) {
             FUN_180873460(lVar2);
                     // WARNING: Subroutine does not return
@@ -66520,12 +66520,12 @@ LAB_1808788de:
         if (plVar16 != plVar1) {
           lVar3 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
           do {
-            if ((*(int *)(lVar3 + 0x48) < _DAT_180c4ea98) &&
-               (FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-              _DAT_180c4ea94 = 0;
-              FUN_1808fcb30(&DAT_180c4ea98);
+            if ((*(int *)(lVar3 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+               (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+              NetworkConnectionTimeoutValue = 0;
+              FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
             }
-            if ((int)plVar16[0x14] != _DAT_180c4ea94) {
+            if ((int)plVar16[0x14] != NetworkConnectionTimeoutValue) {
               for (primaryNetworkFlag0 = plVar16[0x10];
                   (primaryNetworkFlag2 = plVar16[0x10], primaryNetworkFlag2 <= primaryNetworkFlag0 &&
                   (primaryNetworkFlag0 < primaryNetworkFlag2 + (longlong)(int)plVar16[0x11] * 0x18)); primaryNetworkFlag0 = primaryNetworkFlag0 + 0x18)
@@ -66812,12 +66812,12 @@ void FUN_1808789b7(float connectionContext)
         if (plVar17 != plVar1) {
           lVar3 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
           do {
-            if ((*(int *)(lVar3 + 0x48) < _DAT_180c4ea98) &&
-               (connectionContext = (float)FUN_1808fcb90(&DAT_180c4ea98), _DAT_180c4ea98 == -1)) {
-              _DAT_180c4ea94 = 0;
-              connectionContext = (float)FUN_1808fcb30(&DAT_180c4ea98);
+            if ((*(int *)(lVar3 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
+               (connectionContext = (float)FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+              NetworkConnectionTimeoutValue = 0;
+              connectionContext = (float)FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
             }
-            if ((int)plVar17[0x14] != _DAT_180c4ea94) {
+            if ((int)plVar17[0x14] != NetworkConnectionTimeoutValue) {
               for (primaryNetworkFlag3 = plVar17[0x10];
                   (primaryNetworkFlag4 = plVar17[0x10], primaryNetworkFlag4 <= primaryNetworkFlag3 &&
                   (primaryNetworkFlag3 < primaryNetworkFlag4 + (longlong)(int)plVar17[0x11] * 0x18)); primaryNetworkFlag3 = primaryNetworkFlag3 + 0x18)
@@ -67057,13 +67057,13 @@ void FUN_180879232(void)
   int in_stack_00000070;
   
   do {
-    secondaryNetworkFlag0 = FUN_1808fcb90(&DAT_180c4ea98);
-    if (_DAT_180c4ea98 == -1) {
-      _DAT_180c4ea94 = unaff_R12D;
-      secondaryNetworkFlag0 = FUN_1808fcb30(&DAT_180c4ea98);
+    secondaryNetworkFlag0 = FUN_1808fcb90(&NetworkConnectionTimeoutThreshold);
+    if (_NetworkConnectionTimeoutThreshold == -1) {
+      NetworkConnectionTimeoutValue = unaff_R12D;
+      secondaryNetworkFlag0 = FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
     }
     do {
-      if ((int)unaff_RDI[0x14] != _DAT_180c4ea94) {
+      if ((int)unaff_RDI[0x14] != NetworkConnectionTimeoutValue) {
         for (primaryNetworkFlag3 = unaff_RDI[0x10];
             (primaryNetworkFlag4 = unaff_RDI[0x10], primaryNetworkFlag4 <= primaryNetworkFlag3 &&
             (primaryNetworkFlag3 < primaryNetworkFlag4 + (longlong)(int)unaff_RDI[0x11] * 0x18)); primaryNetworkFlag3 = primaryNetworkFlag3 + 0x18) {
@@ -67110,7 +67110,7 @@ void FUN_180879232(void)
         unaff_R14 = 0x48;
         unaff_R13 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
       }
-    } while (_DAT_180c4ea98 <= *(int *)(unaff_R14 + unaff_R13));
+    } while (_NetworkConnectionTimeoutThreshold <= *(int *)(unaff_R14 + unaff_R13));
   } while( true );
 LAB_180878cc1:
   iVar8 = (int)primaryNetworkFlag4;
@@ -76890,7 +76890,7 @@ void CloseNetworkConnection(longlong connectionContext)
               uStack_58 = 0;
               puStack_60 = &UNK_180985a80;
               uStack_40 = 0;
-              uStack_50 = _DAT_180c4eaf8;
+              uStack_50 = _NetworkConnectionBandwidthLimit;
               uStack_4c = uRam0000000180c4eafc;
               uStack_48 = uRam0000000180c4eb00;
               uStack_44 = uRam0000000180c4eb04;
@@ -76981,7 +76981,7 @@ void ResetNetworkBuffers(void)
           *(NetworkStatus *)(unaff_RBP + 7) = 0;
           *(NetworkData **)(unaff_RBP + -1) = &UNK_180985a80;
           *(NetworkStatus *)(unaff_RBP + 0x1f) = 0;
-          uVar6 = _DAT_180c4eaf8;
+          uVar6 = _NetworkConnectionBandwidthLimit;
           uVar7 = uRam0000000180c4eafc;
           uVar8 = uRam0000000180c4eb00;
           uVar9 = uRam0000000180c4eb04;
@@ -77898,7 +77898,7 @@ NetworkHandle GetNetworkConnectionRejectedStatus(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_180883110(longlong *connectionContext,int packetData)
+NetworkHandle PrepareNetworkTransfer(longlong *connectionContext,int packetData)
 
 {
   int networkStatus1;
@@ -77996,7 +77996,7 @@ LAB_18088322e:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_180883134(void)
+NetworkHandle GetNetworkTransferStatus(void)
 
 {
   int networkStatus1;
@@ -78091,7 +78091,7 @@ LAB_18088322e:
 
 
 
-NetworkHandle FUN_180883279(void)
+NetworkHandle ValidateNetworkProtocol(void)
 
 {
   return 0x26;
@@ -78101,7 +78101,7 @@ NetworkHandle FUN_180883279(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_180883290(longlong *connectionContext,int packetData)
+NetworkHandle StartNetworkTransfer(longlong *connectionContext,int packetData)
 
 {
   int networkStatus1;
@@ -92853,7 +92853,7 @@ NetworkHandle FUN_1808909d0(longlong connectionContext)
     pnetworkStatus2 = (int *)(connectionContext + 0x20);
     if (0 < *(int *)(connectionContext + 0x18)) {
       do {
-        if ((*pnetworkStatus2 != _DAT_180c4eaa0) || (pnetworkStatus2[1] != _DAT_180c4eaa4)) {
+        if ((*pnetworkStatus2 != _NetworkConnectionStatusFlag1) || (pnetworkStatus2[1] != _NetworkConnectionStatusFlag2)) {
           lStackX_8 = 0;
           primaryNetworkFlag = FUN_1808681d0(uVar6,(int *)(connectionContext + 0x20) + (longlong)(int)quinaryNetworkFlag * 2,&lStackX_8)
           ;
@@ -92906,7 +92906,7 @@ NetworkHandle FUN_1808909f3(void)
   pnetworkStatus2 = (int *)(unaff_RBP + 0x20);
   if (0 < *(int *)(unaff_RBP + 0x18)) {
     do {
-      if ((*pnetworkStatus2 != _DAT_180c4eaa0) || (pnetworkStatus2[1] != _DAT_180c4eaa4)) {
+      if ((*pnetworkStatus2 != _NetworkConnectionStatusFlag1) || (pnetworkStatus2[1] != _NetworkConnectionStatusFlag2)) {
         lStack0000000000000050 = 0;
         primaryNetworkFlag = FUN_1808681d0(uVar6,(int *)(unaff_RBP + 0x20) + (longlong)(int)quinaryNetworkFlag * 2,
                               &stack0x00000050);
@@ -93784,7 +93784,7 @@ NetworkHandle FUN_180891650(longlong connectionContext,longlong packetData)
   pnetworkStatus2 = (int *)(connectionContext + 0x18);
   if (0 < *(int *)(connectionContext + 0x10)) {
     do {
-      if (((*pnetworkStatus2 != _DAT_180c4eaa0) || (pnetworkStatus2[1] != _DAT_180c4eaa4)) &&
+      if (((*pnetworkStatus2 != _NetworkConnectionStatusFlag1) || (pnetworkStatus2[1] != _NetworkConnectionStatusFlag2)) &&
          (primaryNetworkFlag = FUN_1808678e0(packetData + 0x60,(int *)(connectionContext + 0x18) + (longlong)networkStatus4 * 2,*ptertiaryNetworkFlag
                                 ,*(NetworkByte *)(connectionContext + 0x14)), (int)primaryNetworkFlag != 0)) {
         return primaryNetworkFlag;
