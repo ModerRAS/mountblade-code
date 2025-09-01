@@ -1204,7 +1204,14 @@ int FUN_18002cd40(void)
   _DAT_180bf52c8 = 0;
   _DAT_180bf52d0 = 0;
 
-// 函数: void FUN_18002d150(void)
+// 函数: void InitializeCoreEngine(void)
+/**
+ * @brief 初始化核心引擎
+ * 
+ * 该函数负责初始化游戏引擎的核心系统
+ * 设置基本的运行环境和管理结构
+ */
+void InitializeCoreEngine(void)
 /**
  * 初始化渲染系统配置
  * 设置渲染系统的基本配置参数和数据结构
