@@ -87452,7 +87452,7 @@ void InitializeSystemDataStructureDB(void)
 void InitializeSystemDataStructureDB(void)
 
 {
-  _DAT_180bf6558 = &SystemDataStructure;
+  SystemDataStructurePointerDB = &SystemDataStructure;
   return;
 }
 
