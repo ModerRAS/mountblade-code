@@ -3186,8 +3186,13 @@ void InitializeSystemSecurityManager(void)
 
 
 
-// 函数: void FUN_18002f970(void)
-void FUN_18002f970(void)
+/**
+ * @brief 初始化系统性能监控器
+ * 
+ * 该函数负责初始化系统的性能监控器，设置性能指标的
+ * 收集、分析和报告机制，确保系统性能的实时监控
+ */
+void InitializeSystemPerformanceMonitor(void)
 
 {
   char systemNodeFlag;
@@ -3236,8 +3241,13 @@ void FUN_18002f970(void)
 
 
 
-// 函数: void FUN_18002fa70(void)
-void FUN_18002fa70(void)
+/**
+ * @brief 初始化系统调试管理器
+ * 
+ * 该函数负责初始化系统的调试管理器，设置调试信息的
+ * 收集、存储和分析机制，便于系统问题的诊断和解决
+ */
+void InitializeSystemDebugManager(void)
 
 {
   char systemNodeFlag;

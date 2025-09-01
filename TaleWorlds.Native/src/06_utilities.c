@@ -419,7 +419,7 @@ undefined SystemQueueConfig;
 undefined SystemStackConfig;
 undefined* SystemConfigurationTable;
 undefined* SystemStatusTable;
-undefined DAT_180bf7050;
+undefined* SystemResourceTable;
 undefined DAT_180bf7058;
 undefined DAT_180bf7098;
 undefined DAT_180bf70a0;
@@ -5026,18 +5026,30 @@ void InitializeSystemResources(void)
 
 
  void FUN_180891185(void)
-void FUN_180891185(void)
+/**
+ * @brief 执行紧急系统退出
+ * 
+ * 该函数直接调用系统退出函数，不会返回
+ * 用于处理紧急情况下的系统退出
+ */
+void ExecuteEmergencySystemExit(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ExecuteSystemExitOperation();
 }
 
 
 
 
  void FUN_1808911a2(void)
-void FUN_1808911a2(void)
+/**
+ * @brief 空操作函数
+ * 
+ * 该函数不执行任何操作，直接返回
+ * 用作占位符或空操作
+ */
+void NoOperationFunction(void)
 
 {
   return;
@@ -5047,21 +5059,30 @@ void FUN_1808911a2(void)
 
 
  void FUN_1808911b0(longlong param_1,undefined8 param_2)
-void FUN_1808911b0(longlong param_1,undefined8 param_2)
+/**
+ * @brief 处理对象配置和初始化
+ * 
+ * 该函数处理对象的配置参数，并根据条件执行初始化操作
+ * 从对象结构中提取配置信息并调用相应的处理函数
+ * 
+ * @param objectPointer 对象指针，包含配置信息
+ * @param configData 配置数据，用于对象初始化
+ */
+void ProcessObjectConfiguration(longlong objectPointer, undefined8 configData)
 
 {
-  int iVar1;
-  undefined8 auStackX_8 [4];
-  undefined4 auStack_58 [2];
-  undefined8 uStack_50;
-  undefined4 uStack_48;
+  int processResult;
+  undefined8 tempBuffer [4];
+  undefined4 configParams [2];
+  undefined8 objectConfig;
+  undefined4 objectFlags;
   
-  uStack_50 = *(undefined8 *)(param_1 + 0x10);
-  uStack_48 = *(undefined4 *)(param_1 + 0x18);
-  auStack_58[0] = 2;
-  iVar1 = func_0x0001808757f0(param_2,auStack_58,*(undefined4 *)(param_1 + 0x1c),auStackX_8);
-  if (iVar1 == 0) {
-    FUN_180875fc0(param_2,auStackX_8[0]);
+  objectConfig = *(undefined8 *)(objectPointer + 0x10);
+  objectFlags = *(undefined4 *)(objectPointer + 0x18);
+  configParams[0] = 2;
+  processResult = func_0x0001808757f0(configData, configParams, *(undefined4 *)(objectPointer + 0x1c), tempBuffer);
+  if (processResult == 0) {
+    InitializeObjectWithConfig(configData, tempBuffer[0]);
   }
   return;
 }
@@ -5072,54 +5093,63 @@ void FUN_1808911b0(longlong param_1,undefined8 param_2)
 // WARNING: Removing unreachable block (ram,0x0001808d74a4)
 // WARNING: Removing unreachable block (ram,0x0001808d74b1)
 
-undefined8 FUN_180891210(longlong param_1)
+/**
+ * @brief 处理浮点数参数和更新系统状态
+ * 
+ * 该函数处理传入的浮点数参数，遍历相关的数据结构
+ * 根据条件更新系统状态并执行相应的操作
+ * 
+ * @param parameterObject 参数对象，包含浮点数值和配置信息
+ * @return 处理结果状态码，0表示成功，0x1c表示失败
+ */
+uint64_t ProcessFloatParameterAndUpdateSystem(longlong parameterObject)
 
 {
-  longlong lVar1;
-  uint uVar2;
-  uint uVar3;
-  undefined8 uVar4;
-  undefined8 *puVar5;
-  int iVar6;
-  float fVar7;
-  undefined1 auVar8 [16];
-  longlong lStackX_8;
+  longlong systemData;
+  uint statusFlags1;
+  uint statusFlags2;
+  uint64_t processResult;
+  undefined8 *dataPointer;
+  int intValue;
+  float floatValue;
+  undefined1 vectorData [16];
+  longlong stackOffset;
   
-  uVar4 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  processResult = func_0x00018088c530(*(undefined4 *)(parameterObject + 0x10),&stackOffset);
+  if ((int)processResult != 0) {
+    return processResult;
   }
-  lVar1 = *(longlong *)(lStackX_8 + 8);
-  if (lVar1 != 0) {
-    fVar7 = *(float *)(param_1 + 0x14);
-    for (puVar5 = *(undefined8 **)(lVar1 + 0x48);
-        (*(undefined8 **)(lVar1 + 0x48) <= puVar5 &&
-        (puVar5 < *(undefined8 **)(lVar1 + 0x48) + *(int *)(lVar1 + 0x50))); puVar5 = puVar5 + 1) {
-      uVar4 = FUN_1808d73b0(*puVar5,fVar7,0);
-      if ((int)uVar4 != 0) {
-        return uVar4;
+  systemData = *(longlong *)(stackOffset + 8);
+  if (systemData != 0) {
+    floatValue = *(float *)(parameterObject + 0x14);
+    for (dataPointer = *(undefined8 **)(systemData + 0x48);
+        (*(undefined8 **)(systemData + 0x48) <= dataPointer &&
+        (dataPointer < *(undefined8 **)(systemData + 0x48) + *(int *)(systemData + 0x50))); dataPointer = dataPointer + 1) {
+      processResult = ProcessDataElement(*dataPointer, floatValue, 0);
+      if ((int)processResult != 0) {
+        return processResult;
       }
     }
-    if ((*(char *)(lVar1 + 0x34) == '\0') ||
-       ((*(uint *)(*(longlong *)(lVar1 + 0x18) + 0x34) >> 1 & 1) == 0)) {
-      uVar3 = *(uint *)(*(longlong *)(lVar1 + 0x18) + 0x34);
-      uVar2 = uVar3 >> 4;
-      if ((uVar2 & 1) == 0) {
-        if ((((uVar3 >> 3 & 1) != 0) && (iVar6 = (int)fVar7, iVar6 != -0x80000000)) &&
-           ((float)iVar6 != fVar7)) {
-          auVar8._4_4_ = fVar7;
-          auVar8._0_4_ = fVar7;
-          auVar8._8_8_ = 0;
-          uVar3 = movmskps(uVar2,auVar8);
-          fVar7 = (float)(int)(iVar6 - (uVar3 & 1));
+    if ((*(char *)(systemData + 0x34) == '\0') ||
+       ((*(uint *)(*(longlong *)(systemData + 0x18) + 0x34) >> 1 & 1) == 0)) {
+      statusFlags2 = *(uint *)(*(longlong *)(systemData + 0x18) + 0x34);
+      statusFlags1 = statusFlags2 >> 4;
+      if ((statusFlags1 & 1) == 0) {
+        if ((((statusFlags2 >> 3 & 1) != 0) && (intValue = (int)floatValue, intValue != -0x80000000)) &&
+           ((float)intValue != floatValue)) {
+          vectorData._4_4_ = floatValue;
+          vectorData._0_4_ = floatValue;
+          vectorData._8_8_ = 0;
+          statusFlags2 = movmskps(statusFlags1, vectorData);
+          floatValue = (float)(int)(intValue - (statusFlags2 & 1));
         }
-        fVar7 = (float)func_0x00018084dcc0(*(longlong *)(lVar1 + 0x18),fVar7);
-        if (((*(char *)(lVar1 + 0x34) == '\0') ||
-            ((*(uint *)(*(longlong *)(lVar1 + 0x18) + 0x34) >> 1 & 1) == 0)) &&
-           (fVar7 != *(float *)(lVar1 + 0x20))) {
-          *(float *)(lVar1 + 0x20) = fVar7;
-          FUN_1808d7020(lVar1);
-          *(undefined1 *)(lVar1 + 0x35) = 0;
+        floatValue = (float)func_0x00018084dcc0(*(longlong *)(systemData + 0x18), floatValue);
+        if (((*(char *)(systemData + 0x34) == '\0') ||
+            ((*(uint *)(*(longlong *)(systemData + 0x18) + 0x34) >> 1 & 1) == 0)) &&
+           (floatValue != *(float *)(systemData + 0x20))) {
+          *(float *)(systemData + 0x20) = floatValue;
+          UpdateSystemData(systemData);
+          *(undefined1 *)(systemData + 0x35) = 0;
         }
       }
     }
@@ -5173,18 +5203,26 @@ int InitializeSystemManager(longlong managerHandle)
 
 
 
- void FUN_180891360(longlong param_1,undefined8 param_2)
-void FUN_180891360(longlong param_1,undefined8 param_2)
+ /**
+ * @brief 处理系统消息队列和配置数据
+ * 
+ * 该函数处理系统消息队列，根据配置数据执行相应的操作
+ * 包括消息验证、队列管理和状态更新等功能
+ * 
+ * @param messageQueueHandle 消息队列句柄，用于访问消息队列
+ * @param configurationData 配置数据，包含系统配置信息
+ */
+void ProcessSystemMessageQueue(longlong messageQueueHandle, undefined8 configurationData)
 
 {
   undefined8 uStackX_8;
   int aiStack_58 [2];
   longlong lStack_50;
   
-  aiStack_58[0] = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
+  aiStack_58[0] = func_0x00018088c530(*(undefined4 *)(messageQueueHandle + 0x10),&uStackX_8);
   if (aiStack_58[0] == 0) {
-    lStack_50 = param_1 + 0x18;
-    FUN_180894dd0(param_2,aiStack_58,*(undefined4 *)(param_1 + 0x14),uStackX_8);
+    lStack_50 = messageQueueHandle + 0x18;
+    FUN_180894dd0(configurationData,aiStack_58,*(undefined4 *)(messageQueueHandle + 0x14),uStackX_8);
   }
   return;
 }
@@ -5193,7 +5231,17 @@ void FUN_180891360(longlong param_1,undefined8 param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1808913c0(longlong param_1,undefined8 param_2)
+/**
+ * @brief 处理系统资源分配和释放
+ * 
+ * 该函数处理系统资源的分配和释放操作，根据传入的参数
+ * 执行相应的资源管理任务，包括内存分配、状态检查等
+ * 
+ * @param resourceHandle 资源句柄，用于标识要处理的资源
+ * @param operationFlag 操作标志，指定要执行的操作类型
+ * @return 处理结果，成功返回0，失败返回错误码
+ */
+ulonglong ProcessSystemResourceAllocation(longlong resourceHandle, undefined8 operationFlag)
 
 {
   uint uVar1;
@@ -5204,21 +5252,21 @@ ulonglong FUN_1808913c0(longlong param_1,undefined8 param_2)
   longlong lStack_50;
   int iStack_48;
   
-  uVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x24),&uStackX_8);
+  uVar2 = func_0x00018088c530(*(undefined4 *)(resourceHandle + 0x24),&uStackX_8);
   if ((int)uVar2 == 0) {
-    iStack_48 = *(int *)(param_1 + 0x18);
-    if ((0 < iStack_48) && (*(uint *)(param_1 + 0x1c) < 2)) {
+    iStack_48 = *(int *)(resourceHandle + 0x18);
+    if ((0 < iStack_48) && (*(uint *)(resourceHandle + 0x1c) < 2)) {
       lVar3 = 0;
-      if (*(uint *)(param_1 + 0x1c) == 0) {
-        lStack_50 = *(longlong *)(param_1 + 0x10);
+      if (*(uint *)(resourceHandle + 0x1c) == 0) {
+        lStack_50 = *(longlong *)(resourceHandle + 0x10);
         auStack_58[0] = 1;
         lVar3 = lStack_50;
       }
       else {
-        lStack_50 = *(longlong *)(param_1 + 0x10);
+        lStack_50 = *(longlong *)(resourceHandle + 0x10);
         auStack_58[0] = 2;
       }
-      uVar1 = FUN_180894dd0(param_2,auStack_58,*(undefined4 *)(param_1 + 0x20),uStackX_8);
+      uVar1 = FUN_180894dd0(operationFlag,auStack_58,*(undefined4 *)(resourceHandle + 0x20),uStackX_8);
       uVar2 = (ulonglong)uVar1;
       if (uVar1 == 0) {
         uVar2 = 0;
@@ -5238,7 +5286,16 @@ ulonglong FUN_1808913c0(longlong param_1,undefined8 param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1808913ff(undefined4 param_1)
+/**
+ * @brief 验证系统配置参数
+ * 
+ * 该函数验证系统配置参数的有效性，检查参数是否符合系统要求
+ * 执行相应的验证逻辑并返回验证结果
+ * 
+ * @param configParameter 配置参数，包含要验证的配置信息
+ * @return 验证结果，0表示验证成功，非0表示验证失败
+ */
+int ValidateSystemConfigurationParameter(undefined4 configParameter)
 
 {
   int in_EAX;
