@@ -30812,7 +30812,7 @@ void Unwind_1809027d0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809027e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessAdvancedDataCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   uint8_t *presourceHash;
@@ -30829,7 +30829,7 @@ void Unwind_1809027e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809027f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void HandleMemoryResourceCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   uint8_t *presourceHash;
@@ -30846,7 +30846,7 @@ void Unwind_1809027f0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180902800(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void HandleBufferResourceCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   uint8_t *presourceHash;
@@ -30863,7 +30863,7 @@ void Unwind_180902800(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180902810(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ReleaseShaderResourceLock(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x70) + 0x18,
@@ -30874,7 +30874,7 @@ void Unwind_180902810(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180902820(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ResetGraphicsPipelineState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x70),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x10),
@@ -30884,7 +30884,7 @@ void Unwind_180902820(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180902830(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ClearRenderQueueState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
