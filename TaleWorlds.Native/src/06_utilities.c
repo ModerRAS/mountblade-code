@@ -38,11 +38,11 @@ void* ModuleDependencySystemHandle;
  * @return 无返回值
  * @note 此函数必须在系统启动时调用
  */
-void InitializeGlobalModuleA(void);
-void* GlobalModuleAInstance;
-void* GlobalModuleAConfiguration;
-uint32_t GlobalModuleCoreInitializationStatus;
-void* GlobalModuleAHandle;
+void InitializeCoreEngineModule(void);
+void* CoreEngineModuleInstance;
+void* CoreEngineModuleConfiguration;
+uint32_t CoreEngineInitializationStatus;
+void* CoreEngineModuleHandle;
 
  /**
  * @brief 初始化全局模块B
@@ -53,9 +53,9 @@ void* GlobalModuleAHandle;
  * @return 无返回值
  * @note 此函数必须在系统启动时调用
  */
-void InitializeGlobalModuleB(void);
-void* GlobalModuleBInstance;
-void* GlobalModuleBConfiguration;
+void InitializeRenderingEngineModule(void);
+void* RenderingEngineModuleInstance;
+void* RenderingEngineModuleConfiguration;
 uint32_t GlobalModuleEngineInitializationStatus;
 void* GlobalModuleBHandle;
 void* GlobalModuleBExecutionContext;
