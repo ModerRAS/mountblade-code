@@ -13262,7 +13262,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
                 floatValue13 = (float)((int)floatValue13 + 1);
                 pfloatValue15 = pfloatValue15 + 1;
               } while ((int)floatValue13 < 4);
-              pfloatValue15 = (float *)&SystemFloatTemplateA;
+              pfloatValue15 = (float *)&SystemFloatTemplateActive;
               floatValue13 = 0.0;
               do {
                 floatValue1 = *(float *)(resourceTable + -0x180985054 + (int64_t)pfloatValue15);
@@ -13543,7 +13543,7 @@ void SystemInitializerA(void)
               floatValue19 = (float)((int)floatValue19 + 1);
               pfVar21 = pfVar21 + 1;
             } while ((int)floatValue19 < 4);
-            pfVar21 = (float *)&SystemFloatTemplateA;
+            pfVar21 = (float *)&SystemFloatTemplateActive;
             floatValue19 = unaff_R13D;
             do {
               floatValue1 = *(float *)(RegisterR15 + -0x180985054 + (int64_t)pfVar21);
@@ -13804,7 +13804,7 @@ void DataProcessingErrorHandler(void)
           floatValue19 = (float)((int)floatValue19 + 1);
           pfVar21 = pfVar21 + 1;
         } while ((int)floatValue19 < 4);
-        pfVar21 = (float *)&SystemFloatTemplateA;
+        pfVar21 = (float *)&SystemFloatTemplateActive;
         floatValue19 = unaff_R13D;
         do {
           floatValue1 = *(float *)(RegisterR15 + -0x180985054 + (int64_t)pfVar21);
@@ -13953,7 +13953,7 @@ void FloatProcessingErrorHandler(void)
       floatValue4 = (float)((int)floatValue4 + 1);
       pfloatValue5 = pfloatValue5 + 1;
     } while ((int)floatValue4 < 4);
-    pfloatValue5 = (float *)&SystemFloatTemplateA;
+    pfloatValue5 = (float *)&SystemFloatTemplateActive;
     floatValue4 = unaff_R13D;
     do {
       floatValue1 = *(float *)(RegisterR15 + -0x180985054 + (int64_t)pfloatValue5);
