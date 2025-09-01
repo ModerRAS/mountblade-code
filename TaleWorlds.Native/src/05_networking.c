@@ -22555,8 +22555,8 @@ NetworkStatus FUN_180852f68(void)
 
 
 
-// 函数: void FUN_180853000(longlong connectionContext,NetworkHandle packetData)
-void FUN_180853000(longlong connectionContext,NetworkHandle packetData)
+// 函数: void NetworkConnectionContextInitializer(longlong connectionContext,NetworkHandle packetData)
+void NetworkConnectionContextInitializer(longlong connectionContext,NetworkHandle packetData)
 
 {
   int networkStatus1;
