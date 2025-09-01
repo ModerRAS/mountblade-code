@@ -2955,11 +2955,11 @@ uint8_t SystemEventHandlerSlot97;
 uint8_t SystemEventHandlerSlot98;
 uint8_t SystemEventHandlerSlot99;
 uint8_t SystemEventHandlerSlot100;
-uint8_t SystemEventManagerSlot01;
-uint8_t SystemEventManagerSlot02;
-uint8_t SystemEventManagerSlot03;
-uint8_t SystemEventManagerSlot04;
-uint8_t SystemEventManagerSlot05;
+uint8_t SystemEventManagerInputSlot;
+uint8_t SystemEventManagerOutputSlot;
+uint8_t SystemEventManagerEventSlot;
+uint8_t SystemEventHandlerSlot;
+uint8_t SystemEventCallbackSlot;
 uint8_t SystemEventManagerSlot06;
 uint8_t SystemEventManagerSlot07;
 uint8_t SystemEventManagerSlot08;
@@ -3005,18 +3005,18 @@ uint8_t SystemEventManagerSlot47;
 uint8_t SystemEventManagerSlot48;
 uint8_t SystemEventManagerSlot49;
 uint8_t SystemEventManagerSlot50;
-uint8_t SystemPerformanceCounter01;
-uint8_t SystemPerformanceCounter02;
-uint8_t SystemPerformanceCounter03;
-uint8_t SystemPerformanceCounter04;
+uint8_t SystemFrameTimeCounter;
+uint8_t SystemMemoryUsageCounter;
+uint8_t SystemCpuUsageCounter;
+uint8_t SystemGpuUsageCounter;
 uint8_t SystemPerformanceCounter05;
 uint8_t SystemPerformanceCounter06;
 uint8_t SystemPerformanceCounter07;
 uint8_t SystemPerformanceCounter08;
 uint8_t SystemPerformanceCounter09;
 uint8_t SystemPerformanceCounter10;
-uint8_t SystemConfigurationParameter01;
-uint8_t SystemConfigurationParameter02;
+uint8_t SystemConfigResolutionWidth;
+uint8_t SystemConfigResolutionHeight;
 uint8_t SystemConfigurationParameter03;
 uint8_t SystemConfigurationParameter04;
 uint8_t SystemConfigurationParameter05;
@@ -9646,7 +9646,7 @@ int ProcessDataWithSimplifiedValidator(int64_t objectContextParam,int64_t valida
   integerValue1 = integerValue1 + integerValue2;
   integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
-  integerValue2 = ValidateResourceFormat(integerValue1 + validationContextParam,param_3 - integerValue1,*(uint8_t1 *)(objectContextParam + 0x14));
+  integerValue2 = ValidateResourceFormat(integerValue1 + validationContextParam,CleanupOption - integerValue1,*(uint8_t1 *)(objectContextParam + 0x14));
   return integerValue2 + integerValue1;
 }
 
@@ -10669,7 +10669,7 @@ void ProcessResourceCalculationAndValidation(int64_t objectContextParam,uint8_t1
   ValidationParam1 = SecurityEncryptionKey ^ (uint64_t)SecurityValidationBuffer;
   iVar4 = *(int *)(objectContextParam + 0xac);
   lVar7 = (int64_t)iVar4;
-  ParameterPointer = param_3;
+  ParameterPointer = CleanupOption;
   if (iVar4 < *(int *)(objectContextParam + 0x20)) {
     ObjectContextOffset = *(int64_t *)(objectContextParam + 0x18);
     SecurityContextOffset = lVar7 * 3;
@@ -11034,11 +11034,11 @@ uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uin
   
   if (((!in_ZF) && (*(int *)(dataContext + 0x78) != 0)) &&
      (iVar4 = *(int *)(*(int64_t *)(in_R10 + 0x70) +
-                      (int64_t)(int)(*(int *)(dataContext + 0x78) - 1U & param_4) * 4), iVar4 != -1)) {
+                      (int64_t)(int)(*(int *)(dataContext + 0x78) - 1U & CleanupFlag) * 4), iVar4 != -1)) {
     loopCounter = *(int64_t *)(in_R10 + 0x80);
     do {
       resourceTable = (int64_t)iVar4;
-      if (*(uint *)(localContextPointer + resourceTable * 0x10) == param_4) {
+      if (*(uint *)(localContextPointer + resourceTable * 0x10) == CleanupFlag) {
         iStack0000000000000044 = (int)((uint64_t)*(uint8_t *)(localContextPointer + 8 + resourceTable * 0x10) >> 0x20)
         ;
         if (iStack0000000000000044 != 0) {
@@ -11053,7 +11053,7 @@ uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uin
   iStack0000000000000044 = 0;
 LAB_180895ccb:
   punsignedResult3 = (uint8_t *)
-           ((int64_t)*(int *)(*(int64_t *)(in_R10 + 0x18) + param_3 * 0xc) +
+           ((int64_t)*(int *)(*(int64_t *)(in_R10 + 0x18) + CleanupOption * 0xc) +
            *(int64_t *)(in_R10 + 8));
   if (punsignedResult3 != (uint8_t *)0x0) {
     (**(code **)*punsignedResult3)();
@@ -11386,7 +11386,7 @@ uint64_t UpdateResourcePoolEntryData(int64_t entryIndex, uint8_t reservedParam, 
 {
   uint8_t *unaff_R14;
   
-  *(uint8_t *)(param_3 + 8 + objectContextParam * 8) = *unaff_R14;
+  *(uint8_t *)(CleanupOption + 8 + objectContextParam * 8) = *unaff_R14;
   return 0;
 }
 
@@ -12350,13 +12350,13 @@ void ProcessComplexResourceOperation(uint8_t objectContextParam,int64_t validati
   
   ResourceFlag9 = SecurityEncryptionKey ^ (uint64_t)GraphicsDataBuffer;
   tableEntry = 0;
-  if (param_3 != 0) {
+  if (CleanupOption != 0) {
     iVar3 = *(int *)(validationContextParam + 0x220);
     if (iVar3 == 0) {
       puStack_278 = &BufferTemplate1;
       uStack_270 = 0;
       uStack_264 = 0;
-      uStack_268 = param_3;
+      uStack_268 = CleanupOption;
       func_0x00018076b450(auStack_260,*(uint8_t *)(validationContextParam + 0x228),0x200);
       ppunsignedValue6 = &puStack_278;
 LAB_180896ce3:
@@ -12375,11 +12375,11 @@ LAB_180896ce3:
         GraphicsOperationFlag4 = 0;
         GraphicsOperationFlag5 = 0;
         GraphicsOperationFlag6 = 0;
-        GraphicsOperationFlag8 = param_3;
+        GraphicsOperationFlag8 = CleanupOption;
         goto LAB_180896ce3;
       }
       GraphicsDataPointer = &BufferTemplate3;
-      GraphicsContextOffset = (uint64_t)param_3 << 0x20;
+      GraphicsContextOffset = (uint64_t)CleanupOption << 0x20;
       GraphicsOperationFlag1 = *(uint8_t *)(validationContextParam + 0x228);
       GraphicsOperationFlag2 = (uint64_t)CONCAT14(iVar3 != 1,*(uint32_t *)(validationContextParam + 0x230));
       iVar3 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
@@ -12392,7 +12392,7 @@ LAB_180896ce3:
     GraphicsDataIndex2 = 0;
     GraphicsDataPointer2 = &BufferTemplate4;
     uStack_284 = 0;
-    uStack_288 = param_3;
+    uStack_288 = CleanupOption;
     iVar3 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer2);
     if (iVar3 != 0) goto ResourceErrorHandler;
     iVar7 = 0;
@@ -12401,15 +12401,15 @@ LAB_180896ce3:
       do {
         GraphicsDataIndex = 0;
         GraphicsDataPointer = &BufferTemplate5;
-        GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,param_3);
+        GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,CleanupOption);
         iVar4 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
         if (iVar4 != 0) goto ResourceErrorHandler;
         iVar7 = iVar7 + 1;
       } while (iVar7 < iVar3);
     }
   }
-  if (((param_4 != '\0') || (*(int *)(*(int64_t *)(validationContextParam + 0x2e8) + 0x34) == 0)) &&
-     (iVar3 = ProcessResourceOperation(objectContextParam,validationContextParam,param_3), iVar3 == 0)) {
+  if (((CleanupFlag != '\0') || (*(int *)(*(int64_t *)(validationContextParam + 0x2e8) + 0x34) == 0)) &&
+     (iVar3 = ProcessResourceOperation(objectContextParam,validationContextParam,CleanupOption), iVar3 == 0)) {
     for (iVar3 = 0; (-1 < iVar3 && (iVar3 < *(int *)(validationContextParam + 0x48))); iVar3 = iVar3 + 1) {
       loopCounter = *(int64_t *)(*(int64_t *)(validationContextParam + 0x40) + (int64_t)iVar3 * 8);
       resourceTable = *(int64_t *)(localContextPointer + 0x68);
@@ -12425,7 +12425,7 @@ LAB_180896ce3:
         iVar4 = tableEntry + 1;
         uStack_27c = GraphicsDataFlag;
         GraphicsDataIndex2 = iVar7;
-        uStack_298 = param_3;
+        uStack_298 = CleanupOption;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
@@ -12472,7 +12472,7 @@ LAB_180896ce3:
         iVar4 = tableEntry + 1;
         uStack_27c = GraphicsDataFlag;
         GraphicsDataIndex2 = iVar7;
-        uStack_298 = param_3;
+        uStack_298 = CleanupOption;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
@@ -12519,7 +12519,7 @@ LAB_180896ce3:
         iVar4 = tableEntry + 1;
         uStack_27c = GraphicsDataFlag;
         GraphicsDataIndex2 = iVar7;
-        uStack_298 = param_3;
+        uStack_298 = CleanupOption;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
@@ -12566,7 +12566,7 @@ LAB_180896ce3:
         iVar4 = tableEntry + 1;
         uStack_27c = GraphicsDataFlag;
         GraphicsDataIndex2 = iVar7;
-        uStack_298 = param_3;
+        uStack_298 = CleanupOption;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
@@ -12616,7 +12616,7 @@ LAB_180896ce3:
         iVar4 = tableEntry + 1;
         uStack_27c = GraphicsDataFlag;
         GraphicsDataIndex2 = iVar7;
-        uStack_298 = param_3;
+        uStack_298 = CleanupOption;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (iVar7 = SearchResourceTable(resourceTable,GraphicsTransformMatrix,0), iVar7 != 0)) break;
@@ -14779,7 +14779,7 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *objectContextParam,char vali
  * 
  * @param objectContextParam 哈希表上下文指针，包含哈希表的结构信息
  * @param validationContextParam 要查找的资源名称字符串
- * @param param_3 输出参数，用于返回找到的资源信息
+ * @param CleanupOption 输出参数，用于返回找到的资源信息
  * @return 查找状态码，0表示成功，非0表示错误
  */
 uint8_t FindResourceHashTableEntry(int64_t *objectContextParam,char *validationContextParam,uint8_t *hashTableEntry)
@@ -14855,8 +14855,8 @@ LAB_1808989f7:
     if (((char)(presourceHash1[1] >> 0x18) == '\0') && ((int)uVar8 < (int)objectContextParam[3])) {
       pvalidationResult = (uint8_t *)(objectContextParam[2] + (uint64_t)uVar8 * 0x10);
       unsignedResult4 = pvalidationResult[1];
-      *param_3 = *pvalidationResult;
-      param_3[1] = unsignedResult4;
+      *CleanupOption = *pvalidationResult;
+      CleanupOption[1] = unsignedResult4;
       return 0;
     }
   }
@@ -15081,7 +15081,7 @@ ProcessResourceHashData(int64_t *ResourceTable,int ResourceIndex,uint32_t *HashD
  * 
  * @param objectContextParam 资源表句柄，用于访问资源表数据
  * @param validationContextParam 资源索引，指定要提取的资源条目
- * @param param_3 输出参数，用于返回提取的哈希数据
+ * @param CleanupOption 输出参数，用于返回提取的哈希数据
  * @return 操作状态码，0表示成功，非0表示错误
  */
 uint32_t ExtractResourceHashData(uint8_t resourceTableHandle,int resourceIndex,uint32_t *outputHashData)
@@ -15110,15 +15110,15 @@ uint32_t ExtractResourceHashData(uint8_t resourceTableHandle,int resourceIndex,u
   int integerValue18;
   int *in_stack_00000078;
   
-  if (param_3 != (uint32_t *)0x0) {
+  if (CleanupOption != (uint32_t *)0x0) {
     presourceHash = (uint32_t *)(unaff_R14[2] + (int64_t)validationContextParam * 0x10);
     resourceHash7 = presourceHash[1];
     unsignedValue5 = presourceHash[2];
     unsignedValue6 = presourceHash[3];
-    *param_3 = *presourceHash;
-    param_3[1] = resourceHash7;
-    param_3[2] = unsignedValue5;
-    param_3[3] = unsignedValue6;
+    *CleanupOption = *presourceHash;
+    CleanupOption[1] = resourceHash7;
+    CleanupOption[2] = unsignedValue5;
+    CleanupOption[3] = unsignedValue6;
   }
   integerValue18 = 0;
   resourceHash2 = 0;
@@ -20474,7 +20474,7 @@ ProcessResourceData(int64_t ResourceContext, uint8_t *ResourceData, int ProcessF
     }
   }
 LAB_18089bfc7:
-  if (param_3 == 0) {
+  if (CleanupOption == 0) {
     integerValue2 = ProcessResourceValidation(objectContextParam,validationContextParam);
   }
   else {
@@ -26533,7 +26533,7 @@ uint64_t ProcessResourceDataValidationAndAllocation(uint8_t objectContext,uint8_
   
   unsignedValue5 = 0x1c;
   if (0x7e < in_EAX) goto LAB_18089ed1b;
-  if (*(int *)(unaff_RDI[1] + 0x18) != (int)param_3) {
+  if (*(int *)(unaff_RDI[1] + 0x18) != (int)CleanupOption) {
     return 0x1c;
   }
   plocalContextPointer = (int64_t *)*unaff_RDI;
@@ -26542,15 +26542,15 @@ uint64_t ProcessResourceDataValidationAndAllocation(uint8_t objectContext,uint8_
     unsignedResult4 = 0x1c;
   }
   else {
-    if (plocalContextPointer[2] == param_3) {
+    if (plocalContextPointer[2] == CleanupOption) {
 LAB_18089ea0f:
-      unsignedResult4 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + -0x41,unaff_R12D,4,param_3);
+      unsignedResult4 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + -0x41,unaff_R12D,4,CleanupOption);
     }
     else {
-      *(int *)(ExecutionContextPointer + 0x77) = (int)param_3;
+      *(int *)(ExecutionContextPointer + 0x77) = (int)CleanupOption;
       unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + 0x77);
       if ((int)byteValue4 == 0) {
-        param_3 = 0;
+        CleanupOption = 0;
         if ((uint64_t)plocalContextPointer[2] < (uint64_t)*(uint *)(ExecutionContextPointer + 0x77) + 4) {
           unsignedResult4 = 0x11;
           goto LAB_18089ea2c;
@@ -26558,7 +26558,7 @@ LAB_18089ea0f:
         goto LAB_18089ea0f;
       }
     }
-    param_3 = 0;
+    CleanupOption = 0;
   }
 LAB_18089ea2c:
   if ((int)byteValue4 != 0) {
@@ -26569,7 +26569,7 @@ LAB_18089ea2c:
   *(char *)(ExecutionContextPointer + 0x7f) = (char)unsignedResult4;
   bVar8 = false;
   if (*(uint *)(unaff_RDI + 8) < 0x38) {
-    unsignedResult4 = param_3 & 0xffffffff;
+    unsignedResult4 = CleanupOption & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     plocalContextPointer = (int64_t *)*unaff_RDI;
@@ -26589,7 +26589,7 @@ LAB_18089ea93:
         unsignedResult3 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,0);
         goto LAB_18089eaae;
       }
-      *(int *)(ExecutionContextPointer + -0x45) = (int)param_3;
+      *(int *)(ExecutionContextPointer + -0x45) = (int)CleanupOption;
       unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x45);
       bVar7 = unsignedResult3 == 0;
       if (bVar7) {
@@ -26600,7 +26600,7 @@ LAB_18089ea93:
         goto LAB_18089ea93;
       }
     }
-    param_3 = 0;
+    CleanupOption = 0;
     unsignedResult4 = (uint64_t)unsignedResult3;
     if (bVar7) {
       unsignedResult4 = 0;
@@ -26613,7 +26613,7 @@ LAB_18089ea93:
     return byteValue4;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x67) {
-    unsignedResult4 = param_3 & 0xffffffff;
+    unsignedResult4 = CleanupOption & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     plocalContextPointer = (int64_t *)*unaff_RDI;
@@ -26624,13 +26624,13 @@ LAB_18089ea93:
     else {
       if (plocalContextPointer[2] == 0) {
 LAB_18089eb22:
-        unsignedResult3 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,param_3);
+        unsignedResult3 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,CleanupOption);
       }
       else {
-        *(int *)(ExecutionContextPointer + -0x45) = (int)param_3;
+        *(int *)(ExecutionContextPointer + -0x45) = (int)CleanupOption;
         unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
-          param_3 = 0;
+          CleanupOption = 0;
           if ((uint64_t)plocalContextPointer[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
             unsignedResult3 = 0x11;
             goto LAB_18089eb3c;
@@ -26638,7 +26638,7 @@ LAB_18089eb22:
           goto LAB_18089eb22;
         }
       }
-      param_3 = 0;
+      CleanupOption = 0;
     }
 LAB_18089eb3c:
     if (unsignedResult3 == 0) {
@@ -26646,7 +26646,7 @@ LAB_18089eb3c:
     }
     unsignedResult4 = (uint64_t)unsignedResult3;
     if (unsignedResult3 == 0) {
-      unsignedResult4 = param_3 & 0xffffffff;
+      unsignedResult4 = CleanupOption & 0xffffffff;
     }
   }
   else {
@@ -26656,7 +26656,7 @@ LAB_18089eb3c:
     return byteValue4;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x79) {
-    unsignedResult4 = param_3 & 0xffffffff;
+    unsignedResult4 = CleanupOption & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     plocalContextPointer = (int64_t *)*unaff_RDI;
@@ -26667,13 +26667,13 @@ LAB_18089eb3c:
     else {
       if (plocalContextPointer[2] == 0) {
 LAB_18089ebaa:
-        unsignedResult3 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,param_3);
+        unsignedResult3 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,CleanupOption);
       }
       else {
-        *(int *)(ExecutionContextPointer + -0x45) = (int)param_3;
+        *(int *)(ExecutionContextPointer + -0x45) = (int)CleanupOption;
         unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
-          param_3 = 0;
+          CleanupOption = 0;
           if ((uint64_t)plocalContextPointer[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
             unsignedResult3 = 0x11;
             goto LAB_18089ebc4;
@@ -26681,7 +26681,7 @@ LAB_18089ebaa:
           goto LAB_18089ebaa;
         }
       }
-      param_3 = 0;
+      CleanupOption = 0;
     }
 LAB_18089ebc4:
     if (unsignedResult3 == 0) {
@@ -26689,7 +26689,7 @@ LAB_18089ebc4:
     }
     unsignedResult4 = (uint64_t)unsignedResult3;
     if (unsignedResult3 == 0) {
-      unsignedResult4 = param_3 & 0xffffffff;
+      unsignedResult4 = CleanupOption & 0xffffffff;
     }
   }
   else {
@@ -26699,7 +26699,7 @@ LAB_18089ebc4:
     return byteValue4;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x7a) {
-    unsignedResult4 = param_3 & 0xffffffff;
+    unsignedResult4 = CleanupOption & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     plocalContextPointer = (int64_t *)*unaff_RDI;
@@ -26710,13 +26710,13 @@ LAB_18089ebc4:
     else {
       if (plocalContextPointer[2] == 0) {
 LAB_18089ec32:
-        unsignedResult3 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,param_3);
+        unsignedResult3 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,CleanupOption);
       }
       else {
-        *(int *)(ExecutionContextPointer + -0x45) = (int)param_3;
+        *(int *)(ExecutionContextPointer + -0x45) = (int)CleanupOption;
         unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
-          param_3 = 0;
+          CleanupOption = 0;
           if ((uint64_t)plocalContextPointer[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
             unsignedResult3 = 0x11;
             goto LAB_18089ec4c;
@@ -26724,7 +26724,7 @@ LAB_18089ec32:
           goto LAB_18089ec32;
         }
       }
-      param_3 = 0;
+      CleanupOption = 0;
     }
 LAB_18089ec4c:
     if (unsignedResult3 == 0) {
@@ -26732,7 +26732,7 @@ LAB_18089ec4c:
     }
     unsignedResult4 = (uint64_t)unsignedResult3;
     if (unsignedResult3 == 0) {
-      unsignedResult4 = param_3 & 0xffffffff;
+      unsignedResult4 = CleanupOption & 0xffffffff;
     }
   }
   else {
@@ -26742,7 +26742,7 @@ LAB_18089ec4c:
     return byteValue4;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x7b) {
-    unsignedResult4 = param_3 & 0xffffffff;
+    unsignedResult4 = CleanupOption & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     plocalContextPointer = (int64_t *)*unaff_RDI;
@@ -26753,13 +26753,13 @@ LAB_18089ec4c:
     else {
       if (plocalContextPointer[2] == 0) {
 LAB_18089ecba:
-        unsignedResult3 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,param_3);
+        unsignedResult3 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,CleanupOption);
       }
       else {
-        *(int *)(ExecutionContextPointer + -0x45) = (int)param_3;
+        *(int *)(ExecutionContextPointer + -0x45) = (int)CleanupOption;
         unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
-          param_3 = 0;
+          CleanupOption = 0;
           if ((uint64_t)plocalContextPointer[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
             unsignedResult3 = 0x11;
             goto LAB_18089ecd4;
@@ -26767,7 +26767,7 @@ LAB_18089ecba:
           goto LAB_18089ecba;
         }
       }
-      param_3 = 0;
+      CleanupOption = 0;
     }
 LAB_18089ecd4:
     if (unsignedResult3 == 0) {
@@ -26775,7 +26775,7 @@ LAB_18089ecd4:
     }
     unsignedResult4 = (uint64_t)unsignedResult3;
     if (unsignedResult3 == 0) {
-      unsignedResult4 = param_3 & 0xffffffff;
+      unsignedResult4 = CleanupOption & 0xffffffff;
     }
   }
   else {
@@ -26786,13 +26786,13 @@ LAB_18089ecd4:
   }
   if ((((!bVar6) && (*(char *)(ExecutionContextPointer + 0x77) == '\0')) && (*(char *)(ExecutionContextPointer + 0x7f) == '\0'))
      && (!bVar8)) {
-    unaff_R12D = (uint32_t)param_3;
+    unaff_R12D = (uint32_t)CleanupOption;
   }
   *(uint32_t *)(unaff_R15 + 0x38) = unaff_R12D;
   in_EAX = *(uint *)(unaff_RDI + 8);
 LAB_18089ed1b:
   if (in_EAX < 0x7f) {
-    unsignedValue5 = param_3 & 0xffffffff;
+    unsignedValue5 = CleanupOption & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     unsignedResult3 = ReadResourceData(*unaff_RDI,unaff_R15 + 0x38,4);
@@ -27424,8 +27424,8 @@ f47c(void)
 
 
 
-uint64_t ValidateResourceDataIntegrity(int64_t objectContextParam,uint8_t *validationContextParam,uint32_t param_3,uint32_t param_4,
-                       char param_5)
+uint64_t ValidateResourceDataIntegrity(int64_t objectContextParam,uint8_t *validationContextParam,uint32_t CleanupOption,uint32_t CleanupFlag,
+                       char ValidationMode)
 
 {
   uint resourceHash;
@@ -27433,14 +27433,14 @@ uint64_t ValidateResourceDataIntegrity(int64_t objectContextParam,uint8_t *valid
   uint8_t1 aResourceFlag6 [64];
   uint8_t1 auStack_30 [40];
   
-  validationResult = CalculateDataChecksum(validationContextParam,auStack_30,1,0x5453494c,param_3);
-  if (((int)validationResult == 0) && (validationResult = CalculateDataChecksum(validationContextParam,aResourceFlag6,0,param_4,0), (int)validationResult == 0))
+  validationResult = CalculateDataChecksum(validationContextParam,auStack_30,1,0x5453494c,CleanupOption);
+  if (((int)validationResult == 0) && (validationResult = CalculateDataChecksum(validationContextParam,aResourceFlag6,0,CleanupFlag,0), (int)validationResult == 0))
   {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
       resourceHash = GetResourceEntry(*validationContextParam,objectContextParam + 0x10);
       validationResult = (uint64_t)resourceHash;
       if ((resourceHash == 0) &&
-         ((param_5 == '\0' || (validationResult = CheckResourceIntegrity(objectContextParam + 0x48,validationContextParam), (int)validationResult == 0)))) {
+         ((ValidationMode == '\0' || (validationResult = CheckResourceIntegrity(objectContextParam + 0x48,validationContextParam), (int)validationResult == 0)))) {
                     // WARNING: Subroutine does not return
         CleanupResourceBuffer(validationContextParam,aResourceFlag6);
       }
@@ -28771,14 +28771,14 @@ void ResetSystemUnwindFlag(void)
 
 
 
-void ProcessObjectContextCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessObjectContextCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xa0) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa0),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa0),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -28796,14 +28796,14 @@ void ExecuteValidationCleanup(uint8_t objectContextParam,int64_t validationConte
 
 
 
-void ProcessResourceValidation(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessResourceValidation(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xa0) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa0),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa0),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -29282,7 +29282,7 @@ void ExecuteResourceCleanupLoop(uint8_t objectContextParam, int64_t validationCo
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x50);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x48); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x48) == 0) {
     return;
@@ -29301,12 +29301,12 @@ void ExecuteResourceCleanupLoop(uint8_t objectContextParam, int64_t validationCo
  * 
  * @param objectContextParam 对象上下文参数，用于标识当前处理的对象
  * @param validationContextParam 验证上下文参数，包含验证相关的上下文信息
- * @param param_3 清理参数3，用于传递额外的清理信息
- * @param param_4 清理参数4，用于传递额外的清理信息
+ * @param CleanupOption 清理参数3，用于传递额外的清理信息
+ * @param CleanupFlag 清理参数4，用于传递额外的清理信息
  * @return 无返回值
  * @note 此函数会遍历验证结果链表并执行相应的清理操作
  */
-void ExecuteValidationCleanupLoop(uint8_t objectContextParam, int64_t validationContextParam, uint8_t param_3, uint8_t param_4)
+void ExecuteValidationCleanupLoop(uint8_t objectContextParam, int64_t validationContextParam, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -29316,7 +29316,7 @@ void ExecuteValidationCleanupLoop(uint8_t objectContextParam, int64_t validation
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x50);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x48); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x48) == 0) {
     return;
@@ -29583,10 +29583,10 @@ void ResetIndirectSystemDataStructureAtContextOffset200(uint8_t objectContextPar
  * 用于在异常处理过程中执行资源清理操作
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数，包含资源哈希表指针
- * @param param_3 清理参数3
- * @param param_4 清理参数4
+ * @param CleanupOption 清理参数3
+ * @param CleanupFlag 清理参数4
  */
-void ExecuteResourceHashCleanupCallbacks(uint8_t objectContextParam, int64_t validationContextParam, uint8_t param_3, uint8_t param_4)
+void ExecuteResourceHashCleanupCallbacks(uint8_t objectContextParam, int64_t validationContextParam, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
   uint8_t *presourceHash;
   uint8_t *pvalidationResult;
@@ -29595,7 +29595,7 @@ void ExecuteResourceHashCleanupCallbacks(uint8_t objectContextParam, int64_t val
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x128);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x120); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x120) == 0) {
     return;
@@ -29658,12 +29658,12 @@ void RestoreSystemResourceHandlerAtContextOffset88(uint8_t objectContextParam, i
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 清理参数3
- * @param param_4 清理参数4
+ * @param CleanupOption 清理参数3
+ * @param CleanupFlag 清理参数4
  * @note 此函数会遍历所有验证结果并执行清理操作
  * @warning 如果清理失败，可能会触发系统紧急退出
  */
-void CleanupResourceValidationResults(uint8_t objectContextParam, int64_t validationContextParam, uint8_t param_3, uint8_t param_4)
+void CleanupResourceValidationResults(uint8_t objectContextParam, int64_t validationContextParam, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -29673,7 +29673,7 @@ void CleanupResourceValidationResults(uint8_t objectContextParam, int64_t valida
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x128);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x120); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x120) == 0) {
     return;
@@ -29944,15 +29944,15 @@ void ResetMemoryManagerOnException(uint8_t objectContextParam, int64_t validatio
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 清理类型参数
- * @param param_4 清理选项参数
+ * @param CleanupOption 清理类型参数
+ * @param CleanupFlag 清理选项参数
  * @note 此函数会根据参数执行相应的资源清理操作
  */
-void ExecuteResourceCleanupOnException(uint8_t objectContextParam, int64_t validationContextParam, uint8_t param_3, uint8_t param_4)
+void ExecuteResourceCleanupOnException(uint8_t objectContextParam, int64_t validationContextParam, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessDataStream(*(int64_t *)(validationContextParam + 0x70),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -29966,15 +29966,15 @@ void ExecuteResourceCleanupOnException(uint8_t objectContextParam, int64_t valid
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 数据流处理参数
- * @param param_4 数据流清理选项
+ * @param CleanupOption 数据流处理参数
+ * @param CleanupFlag 数据流清理选项
  * @note 此函数会清理数据流并处理异常数据
  */
-void CleanupDataStreamOnException(uint8_t objectContextParam, int64_t validationContextParam, uint8_t param_3, uint8_t param_4)
+void CleanupDataStreamOnException(uint8_t objectContextParam, int64_t validationContextParam, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -29988,15 +29988,15 @@ void CleanupDataStreamOnException(uint8_t objectContextParam, int64_t validation
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 资源操作类型
- * @param param_4 资源操作参数
+ * @param CleanupOption 资源操作类型
+ * @param CleanupFlag 资源操作参数
  * @note 此函数会执行资源操作并处理异常情况
  */
-void ExecuteResourceOperationOnException(uint8_t objectContextParam, int64_t validationContextParam, uint8_t param_3, uint8_t param_4)
+void ExecuteResourceOperationOnException(uint8_t objectContextParam, int64_t validationContextParam, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -30492,15 +30492,15 @@ void HandleResourceOperationExceptionRecoveryV2(uint8_t objectContext,int64_t va
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 参数3
- * @param param_4 参数4
+ * @param CleanupOption 参数3
+ * @param CleanupFlag 参数4
  * @note 此函数在异常处理过程中被调用
  */
-void ExceptionHandlerStackManager(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ExceptionHandlerStackManager(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperationEx(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -30514,11 +30514,11 @@ void ExceptionHandlerStackManager(uint8_t objectContextParam,int64_t validationC
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 参数3
- * @param param_4 参数4
+ * @param CleanupOption 参数3
+ * @param CleanupFlag 参数4
  * @note 此函数在异常处理过程中被调用
  */
-void ResourceLockManager(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ResourceLockManager(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -30530,7 +30530,7 @@ void ResourceLockManager(uint8_t objectContextParam,int64_t validationContextPar
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = (uint8_t *)presourceTable[1];
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -30549,18 +30549,18 @@ void ResourceLockManager(uint8_t objectContextParam,int64_t validationContextPar
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 参数3
- * @param param_4 参数4
+ * @param CleanupOption 参数3
+ * @param CleanupFlag 参数4
  * @note 此函数在异常处理过程中被调用
  */
-void MemoryAllocationTracker(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void MemoryAllocationTracker(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x70) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    TransformDataBuffer(*(int64_t *)(validationContextParam + 0x70),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    TransformDataBuffer(*(int64_t *)(validationContextParam + 0x70),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -30793,7 +30793,19 @@ void SystemResourceHandlerInitializer(uint8_t objectContextParam, int64_t valida
 
 
 
-void Unwind_1809027d0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 系统上下文恢复处理
+ * 
+ * 该函数负责处理系统上下文的恢复操作
+ * 包括系统资源处理器的初始化和紧急退出机制的设置
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于系统上下文恢复
+ * @warning 如果系统资源处理器已初始化，将触发紧急退出
+ */
+void UnwindSystemContext001(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int64_t loopCounter;
@@ -30812,14 +30824,28 @@ void Unwind_1809027d0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void ProcessAdvancedDataCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 处理高级数据清理
+ * 
+ * 该函数负责清理系统中的高级数据结构
+ * 包括复杂数据对象的释放和内存回收
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param CleanupOption 清理参数3
+ * @param CleanupFlag 清理参数4
+ * @return 无返回值
+ * @note 此函数用于清理高级数据资源
+ * @warning 清理操作不可逆，请确保资源不再使用
+ */
+void ProcessAdvancedDataCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x70) + 0x80);
   if (presourceHash != (uint8_t *)0x0) {
-    ProcessAdvancedData(*(int64_t *)(validationContextParam + 0x70) + 0x70,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ProcessAdvancedData(*(int64_t *)(validationContextParam + 0x70) + 0x70,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -30829,14 +30855,28 @@ void ProcessAdvancedDataCleanup(uint8_t objectContextParam,int64_t validationCon
 
 
 
-void HandleMemoryResourceCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 处理内存资源清理
+ * 
+ * 该函数负责清理系统中的内存资源
+ * 包括内存块的释放和内存池的管理
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param CleanupOption 清理参数3
+ * @param CleanupFlag 清理参数4
+ * @return 无返回值
+ * @note 此函数用于清理内存资源
+ * @warning 清理操作不可逆，请确保内存不再使用
+ */
+void HandleMemoryResourceCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x78) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x78),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x78),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -30846,14 +30886,14 @@ void HandleMemoryResourceCleanup(uint8_t objectContextParam,int64_t validationCo
 
 
 
-void HandleBufferResourceCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void HandleBufferResourceCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x78) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x78),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x78),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -30863,68 +30903,80 @@ void HandleBufferResourceCleanup(uint8_t objectContextParam,int64_t validationCo
 
 
 
-void ReleaseShaderResourceLock(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ReleaseShaderResourceLock(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x70) + 0x18,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x28),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x28),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void ResetGraphicsPipelineState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ResetGraphicsPipelineState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x70),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void ClearRenderQueueState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ClearRenderQueueState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void ResetFrameBufferState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ResetFrameBufferState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void ClearTextureCacheState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ClearTextureCacheState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessDataStream(*(int64_t *)(validationContextParam + 0x70),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180902860(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ReleaseVertexBufferLock(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessDataStream(*(int64_t *)(validationContextParam + 0x70),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180902870(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 资源处理器回调执行
+ * 
+ * 该函数负责执行资源处理器的回调操作
+ * 通过验证上下文获取本地上下文指针并执行回调
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于资源处理器回调执行
+ * @warning 需要确保本地上下文指针有效
+ */
+void UnwindResourceHandler001(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int64_t *processPointer;
@@ -30974,11 +31026,11 @@ void Unwind_180902880(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902890(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ReleaseIndexBufferLock(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessIntermediateData(*(int64_t *)(validationContextParam + 0x70) + 0x40,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x50),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x50),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -31021,21 +31073,21 @@ void Unwind_1809028a0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809028c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ResetConstantBufferState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ValidateResourceOperation(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809028d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ClearShaderProgramState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ValidateResourceOperation(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -31132,32 +31184,32 @@ void Unwind_180902900(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void UnwindResourceLockHandler(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void UnwindResourceLockHandler(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessSpecialData(*(int64_t *)(validationContextParam + 0x70) + 0x28,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x38),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x38),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180902930(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180902930(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180902940(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180902940(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -31566,11 +31618,11 @@ void Unwind_180902a90(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902aa0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ReleaseAudioResourceLock(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceAllocation(*(int64_t *)(validationContextParam + 0x70),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -31612,32 +31664,32 @@ void Unwind_180902ab0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902ac0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ReleaseSoundBufferLock(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x70) + 0x50,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x60),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x60),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180902ad0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ResetAudioChannelState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceAllocation(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180902ae0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ClearAudioMixerState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceAllocation(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -31687,21 +31739,21 @@ void Unwind_180902b30(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902b40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ReleaseNetworkResourceLock(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceRequest(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180902b50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ResetNetworkConnectionState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceRequest(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -32129,7 +32181,7 @@ void Unwind_180902c50(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902c60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessResourceHashCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -32139,9 +32191,9 @@ void Unwind_180902c60(uint8_t objectContextParam,int64_t validationContextParam,
   presourceHash = *(uint8_t **)(validationContextParam + 0x38);
   unsignedResult3 = 0xfffffffffffffffe;
   *presourceHash = &ResourceHashTable002;
-  cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,0xfffffffffffffffe);
+  cVar2 = ProcessResourceHashOperation(presourceHash,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   while (cVar2 != '\0') {
-    cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,unsignedResult3);
+    cVar2 = ProcessResourceHashOperation(presourceHash,1,CleanupOption,CleanupFlag,unsignedResult3);
   }
   if (presourceHash[1] == 0) {
     presourceHash[1] = 0;
@@ -32166,28 +32218,28 @@ void Unwind_180902c60(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180902c70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ReleaseSystemResourceLock(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x60) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x60),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x60),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180902c80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ReleaseKernelResourceLock(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x60) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x60),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x60),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -32837,18 +32889,18 @@ void Unwind_180902ee0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902f00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ReleaseFileSystemLock(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceRequest(*(int64_t *)(validationContextParam + 0x40) + 0x858,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x868),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x868),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180902f20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessFileHandleCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -32860,7 +32912,7 @@ void Unwind_180902f20(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x890);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -32871,7 +32923,7 @@ void Unwind_180902f20(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180902f40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessDirectoryHandleCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -32883,7 +32935,7 @@ void Unwind_180902f40(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x8b0);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -32930,11 +32982,11 @@ void Unwind_180902f60(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902f80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ReleaseStreamResourceLock(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x40) + 0x8e8,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x8f8),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x8f8),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -32960,14 +33012,14 @@ void Unwind_180902fa0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902fc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void HandleFileStreamCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x948);
   if (presourceHash != (uint8_t *)0x0) {
-    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x40) + 0x938,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x40) + 0x938,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -32977,14 +33029,14 @@ void Unwind_180902fc0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180902fe0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void HandleMemoryStreamCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x978);
   if (presourceHash != (uint8_t *)0x0) {
-    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x40) + 0x968,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x40) + 0x968,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -32994,14 +33046,14 @@ void Unwind_180902fe0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903000(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void HandleSystemMemoryCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x48) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x48),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x48),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -33011,14 +33063,14 @@ void Unwind_180903000(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903010(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void HandleUserMemoryCleanup(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x48) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x48),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x48),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -33028,74 +33080,74 @@ void Unwind_180903010(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ResetMemoryAllocatorState(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180903030(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903030(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180903040(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903040(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceRequest(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180903050(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903050(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceRequest(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180903060(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903060(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceRequest(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180903070(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903070(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceRequest(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180903080(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903080(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x40),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x40),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -33105,14 +33157,14 @@ void Unwind_180903080(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903090(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903090(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x40),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    HandleResourceAllocation(*(int64_t *)(validationContextParam + 0x40),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     ResetSystemState(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -33122,7 +33174,7 @@ void Unwind_180903090(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809030a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809030a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -33132,7 +33184,7 @@ void Unwind_1809030a0(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x30);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x28); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x28) == 0) {
     return;
@@ -33203,7 +33255,7 @@ void Unwind_1809030f0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180903100(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903100(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -33212,7 +33264,7 @@ void Unwind_180903100(uint8_t objectContextParam,int64_t validationContextParam,
   loopCounter = *(int64_t *)(validationContextParam + 0x70);
   validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  ProcessResourceOperation(localContextPointer + 0x110,*(uint8_t *)(localContextPointer + 0x120),param_3,param_4,validationResult);
+  ProcessResourceOperation(localContextPointer + 0x110,*(uint8_t *)(localContextPointer + 0x120),CleanupOption,CleanupFlag,validationResult);
   ProcessResourceOperation(localContextPointer + 0xe0,*(uint8_t *)(localContextPointer + 0xf0));
   ProcessResourceOperation(localContextPointer + 0xb0,*(uint8_t *)(localContextPointer + 0xc0));
   ProcessResourceRelease(localContextPointer + 0x80,*(uint8_t *)(localContextPointer + 0x90));
@@ -33530,7 +33582,7 @@ void Unwind_1809031c0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809031e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809031e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -33539,7 +33591,7 @@ void Unwind_1809031e0(uint8_t objectContextParam,int64_t validationContextParam,
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  ProcessResourceOperation(localContextPointer + 0x110,*(uint8_t *)(localContextPointer + 0x120),param_3,param_4,validationResult);
+  ProcessResourceOperation(localContextPointer + 0x110,*(uint8_t *)(localContextPointer + 0x120),CleanupOption,CleanupFlag,validationResult);
   ProcessResourceOperation(localContextPointer + 0xe0,*(uint8_t *)(localContextPointer + 0xf0));
   ProcessResourceOperation(localContextPointer + 0xb0,*(uint8_t *)(localContextPointer + 0xc0));
   ProcessResourceRelease(localContextPointer + 0x80,*(uint8_t *)(localContextPointer + 0x90));
@@ -33643,65 +33695,65 @@ void Unwind_180903210(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180903220(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903220(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceRelease(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180903230(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903230(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceRequest(*(int64_t *)(validationContextParam + 0x40) + 0x30,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x40),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x40),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180903240(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903240(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceRelease(*(int64_t *)(validationContextParam + 0x40) + 0x60,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x70),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x70),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180903250(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903250(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x40) + 0x90,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0xa0),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0xa0),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180903270(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903270(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x40) + 0xc0,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0xd0),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0xd0),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180903290(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903290(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x40) + 0xf0,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x100),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x100),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -33717,41 +33769,41 @@ void Unwind_1809032b0(void)
 
 
 
-void Unwind_1809032d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809032d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceRelease(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809032e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809032e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceRelease(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809032f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809032f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceRelease(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180903300(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903300(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceRelease(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -33813,14 +33865,14 @@ void Unwind_180903320(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180903330(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903330(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x80) + 0x30);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x80) + 0x20,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x80) + 0x20,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -33829,14 +33881,14 @@ void Unwind_180903330(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903340(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903340(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x88) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x88),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x88),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -33845,14 +33897,14 @@ void Unwind_180903340(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903350(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903350(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x88) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x88),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x88),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -33907,14 +33959,14 @@ void Unwind_1809033f0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180903430(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903430(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x30);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x40) + 0x20,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x40) + 0x20,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -34578,7 +34630,7 @@ void Unwind_180903600(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180903610(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903610(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -34593,7 +34645,7 @@ void Unwind_180903610(uint8_t objectContextParam,int64_t validationContextParam,
   presourceHash[0x19] = 0;
   *(uint32_t *)(presourceHash + 0x1b) = 0;
   presourceHash[0x18] = &SystemDataStructure;
-  ProcessResourceValidation(presourceHash + 0x12,presourceHash[0x14],param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceValidation(presourceHash + 0x12,presourceHash[0x14],CleanupOption,CleanupFlag,0xfffffffffffffffe);
   if (presourceHash[0xd] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34615,14 +34667,14 @@ void Unwind_180903610(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903620(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903620(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x140) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x140))(localContextPointer + 0x130,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x140))(localContextPointer + 0x130,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x110) != 0) {
@@ -34645,14 +34697,14 @@ void Unwind_180903620(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903640(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903640(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1b0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1b0))(localContextPointer + 0x1a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1b0))(localContextPointer + 0x1a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x178) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x180) != 0) {
@@ -34675,14 +34727,14 @@ void Unwind_180903640(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903660(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903660(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x220) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x220))(localContextPointer + 0x210,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x220))(localContextPointer + 0x210,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1f0) != 0) {
@@ -34705,14 +34757,14 @@ void Unwind_180903660(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903680(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903680(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x290) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x290))(localContextPointer + 0x280,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x290))(localContextPointer + 0x280,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 600) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x260) != 0) {
@@ -34735,14 +34787,14 @@ void Unwind_180903680(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809036a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809036a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x300) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x300))(localContextPointer + 0x2f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x300))(localContextPointer + 0x2f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2d0) != 0) {
@@ -34765,14 +34817,14 @@ void Unwind_1809036a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809036c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809036c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x370) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x370))(localContextPointer + 0x360,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x370))(localContextPointer + 0x360,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x338) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x340) != 0) {
@@ -34795,14 +34847,14 @@ void Unwind_1809036c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809036e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809036e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x3e0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x3e0))(localContextPointer + 0x3d0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x3e0))(localContextPointer + 0x3d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x3a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x3b0) != 0) {
@@ -34825,14 +34877,14 @@ void Unwind_1809036e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903700(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903700(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x450) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x450))(localContextPointer + 0x440,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x450))(localContextPointer + 0x440,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x418) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x420) != 0) {
@@ -34855,14 +34907,14 @@ void Unwind_180903700(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903720(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903720(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x510) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x510))(localContextPointer + 0x500,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x510))(localContextPointer + 0x500,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x4e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4e8) != 0) {
@@ -34909,14 +34961,14 @@ void Unwind_180903720(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903740(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903740(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x580) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x580))(localContextPointer + 0x570,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x580))(localContextPointer + 0x570,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x548) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x550) != 0) {
@@ -34939,7 +34991,7 @@ void Unwind_180903740(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903760(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903760(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -34954,7 +35006,7 @@ void Unwind_180903760(uint8_t objectContextParam,int64_t validationContextParam,
   presourceHash[0x19] = 0;
   *(uint32_t *)(presourceHash + 0x1b) = 0;
   presourceHash[0x18] = &SystemDataStructure;
-  ProcessResourceValidation(presourceHash + 0x12,presourceHash[0x14],param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceValidation(presourceHash + 0x12,presourceHash[0x14],CleanupOption,CleanupFlag,0xfffffffffffffffe);
   if (presourceHash[0xd] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34976,14 +35028,14 @@ void Unwind_180903760(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903770(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903770(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x140) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x140))(localContextPointer + 0x130,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x140))(localContextPointer + 0x130,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x110) != 0) {
@@ -35006,14 +35058,14 @@ void Unwind_180903770(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903790(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903790(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1b0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1b0))(localContextPointer + 0x1a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1b0))(localContextPointer + 0x1a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x178) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x180) != 0) {
@@ -35036,14 +35088,14 @@ void Unwind_180903790(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809037b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809037b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x220) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x220))(localContextPointer + 0x210,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x220))(localContextPointer + 0x210,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1f0) != 0) {
@@ -35066,14 +35118,14 @@ void Unwind_1809037b0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809037d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809037d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x290) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x290))(localContextPointer + 0x280,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x290))(localContextPointer + 0x280,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 600) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x260) != 0) {
@@ -35096,14 +35148,14 @@ void Unwind_1809037d0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809037f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809037f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x300) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x300))(localContextPointer + 0x2f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x300))(localContextPointer + 0x2f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2d0) != 0) {
@@ -35126,14 +35178,14 @@ void Unwind_1809037f0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903810(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903810(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x370) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x370))(localContextPointer + 0x360,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x370))(localContextPointer + 0x360,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x338) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x340) != 0) {
@@ -35156,14 +35208,14 @@ void Unwind_180903810(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903830(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903830(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x3e0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x3e0))(localContextPointer + 0x3d0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x3e0))(localContextPointer + 0x3d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x3a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x3b0) != 0) {
@@ -35186,14 +35238,14 @@ void Unwind_180903830(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903850(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903850(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x450) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x450))(localContextPointer + 0x440,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x450))(localContextPointer + 0x440,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x418) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x420) != 0) {
@@ -35216,14 +35268,14 @@ void Unwind_180903850(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903870(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903870(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x510) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x510))(localContextPointer + 0x500,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x510))(localContextPointer + 0x500,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x4e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4e8) != 0) {
@@ -35270,14 +35322,14 @@ void Unwind_180903870(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903890(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903890(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x580) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x580))(localContextPointer + 0x570,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x580))(localContextPointer + 0x570,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x548) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x550) != 0) {
@@ -35338,28 +35390,28 @@ void Unwind_1809038c0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809038d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809038d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x88) + 0x60);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x88) + 0x50,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x88) + 0x50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809038e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809038e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x90) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x90),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x90),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -35374,18 +35426,18 @@ void Unwind_1809038e0(uint8_t objectContextParam,int64_t validationContextParam,
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 附加参数3
- * @param param_4 附加参数4
+ * @param CleanupOption 附加参数3
+ * @param CleanupFlag 附加参数4
  * @return 无返回值
  */
-void UnwindSystemResourceHandler(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void UnwindSystemResourceHandler(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x4c0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x4c0))(localContextPointer + 0x4b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x4c0))(localContextPointer + 0x4b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x488) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x490) != 0) {
@@ -35416,18 +35468,18 @@ void UnwindSystemResourceHandler(uint8_t objectContextParam,int64_t validationCo
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 附加参数3
- * @param param_4 附加参数4
+ * @param CleanupOption 附加参数3
+ * @param CleanupFlag 附加参数4
  * @return 无返回值
  */
-void UnwindSystemDataStructureHandler(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void UnwindSystemDataStructureHandler(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x530) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x530))(localContextPointer + 0x520,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x530))(localContextPointer + 0x520,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x4f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x500) != 0) {
@@ -35450,14 +35502,14 @@ void UnwindSystemDataStructureHandler(uint8_t objectContextParam,int64_t validat
 
 
 
-void Unwind_180903930(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903930(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x5a0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x5a0))(localContextPointer + 0x590,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x5a0))(localContextPointer + 0x590,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x568) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x570) != 0) {
@@ -35480,14 +35532,14 @@ void Unwind_180903930(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903950(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903950(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x610) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x610))(localContextPointer + 0x600,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x610))(localContextPointer + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x5d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x5e0) != 0) {
@@ -35510,14 +35562,14 @@ void Unwind_180903950(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903970(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903970(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x680) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x680))(localContextPointer + 0x670,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x680))(localContextPointer + 0x670,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x648) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x650) != 0) {
@@ -35540,14 +35592,14 @@ void Unwind_180903970(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903990(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903990(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x6f0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x6f0))(localContextPointer + 0x6e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x6f0))(localContextPointer + 0x6e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x6b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x6c0) != 0) {
@@ -35570,14 +35622,14 @@ void Unwind_180903990(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809039b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809039b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x760) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x760))(localContextPointer + 0x750,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x760))(localContextPointer + 0x750,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x728) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x730) != 0) {
@@ -35600,14 +35652,14 @@ void Unwind_1809039b0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809039d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809039d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 2000) != (code *)0x0) {
-    (**(code **)(localContextPointer + 2000))(localContextPointer + 0x7c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 2000))(localContextPointer + 0x7c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x798) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x7a0) != 0) {
@@ -35630,14 +35682,14 @@ void Unwind_1809039d0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809039f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809039f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x840) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x840))(localContextPointer + 0x830,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x840))(localContextPointer + 0x830,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x808) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x810) != 0) {
@@ -35660,14 +35712,14 @@ void Unwind_1809039f0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903a10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903a10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x8b0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x8b0))(localContextPointer + 0x8a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x8b0))(localContextPointer + 0x8a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x878) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x880) != 0) {
@@ -35690,14 +35742,14 @@ void Unwind_180903a10(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903a30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903a30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x920) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x920))(localContextPointer + 0x910,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x920))(localContextPointer + 0x910,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x8e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x8f0) != 0) {
@@ -35720,14 +35772,14 @@ void Unwind_180903a30(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903a50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903a50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x990) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x990))(localContextPointer + 0x980,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x990))(localContextPointer + 0x980,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x958) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x960) != 0) {
@@ -35750,14 +35802,14 @@ void Unwind_180903a50(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903a70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903a70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xa08) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xa08))(localContextPointer + 0x9f8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xa08))(localContextPointer + 0x9f8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x9d0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x9d8) != 0) {
@@ -35780,14 +35832,14 @@ void Unwind_180903a70(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903a90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903a90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xa80) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xa80))(localContextPointer + 0xa70,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xa80))(localContextPointer + 0xa70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xa48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa50) != 0) {
@@ -35810,14 +35862,14 @@ void Unwind_180903a90(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903ab0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903ab0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x40) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -35862,42 +35914,42 @@ void Unwind_180903ad0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180903ae0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903ae0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x50) + 0x68);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0x58,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0x58,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180903af0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903af0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x58) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x58),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x58),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180903b00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903b00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x4c0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x4c0))(localContextPointer + 0x4b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x4c0))(localContextPointer + 0x4b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x488) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x490) != 0) {
@@ -35920,14 +35972,14 @@ void Unwind_180903b00(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903b20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903b20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x530) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x530))(localContextPointer + 0x520,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x530))(localContextPointer + 0x520,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x4f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x500) != 0) {
@@ -35950,14 +36002,14 @@ void Unwind_180903b20(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903b40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903b40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x5a0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x5a0))(localContextPointer + 0x590,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x5a0))(localContextPointer + 0x590,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x568) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x570) != 0) {
@@ -35980,14 +36032,14 @@ void Unwind_180903b40(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903b60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903b60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x610) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x610))(localContextPointer + 0x600,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x610))(localContextPointer + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x5d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x5e0) != 0) {
@@ -36010,14 +36062,14 @@ void Unwind_180903b60(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903b80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903b80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x680) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x680))(localContextPointer + 0x670,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x680))(localContextPointer + 0x670,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x648) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x650) != 0) {
@@ -36040,14 +36092,14 @@ void Unwind_180903b80(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903ba0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903ba0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x6f0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x6f0))(localContextPointer + 0x6e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x6f0))(localContextPointer + 0x6e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x6b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x6c0) != 0) {
@@ -36070,14 +36122,14 @@ void Unwind_180903ba0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903bc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903bc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x760) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x760))(localContextPointer + 0x750,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x760))(localContextPointer + 0x750,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x728) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x730) != 0) {
@@ -36100,14 +36152,14 @@ void Unwind_180903bc0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903be0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903be0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 2000) != (code *)0x0) {
-    (**(code **)(localContextPointer + 2000))(localContextPointer + 0x7c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 2000))(localContextPointer + 0x7c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x798) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x7a0) != 0) {
@@ -36130,14 +36182,14 @@ void Unwind_180903be0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903c00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903c00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x840) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x840))(localContextPointer + 0x830,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x840))(localContextPointer + 0x830,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x808) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x810) != 0) {
@@ -36160,14 +36212,14 @@ void Unwind_180903c00(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903c20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903c20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x8b0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x8b0))(localContextPointer + 0x8a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x8b0))(localContextPointer + 0x8a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x878) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x880) != 0) {
@@ -36190,14 +36242,14 @@ void Unwind_180903c20(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903c40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903c40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x920) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x920))(localContextPointer + 0x910,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x920))(localContextPointer + 0x910,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x8e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x8f0) != 0) {
@@ -36220,14 +36272,14 @@ void Unwind_180903c40(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903c60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903c60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x990) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x990))(localContextPointer + 0x980,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x990))(localContextPointer + 0x980,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x958) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x960) != 0) {
@@ -36250,14 +36302,14 @@ void Unwind_180903c60(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903c80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903c80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xa08) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xa08))(localContextPointer + 0x9f8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xa08))(localContextPointer + 0x9f8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x9d0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x9d8) != 0) {
@@ -36280,14 +36332,14 @@ void Unwind_180903c80(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903ca0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903ca0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xa80) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xa80))(localContextPointer + 0xa70,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xa80))(localContextPointer + 0xa70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xa48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa50) != 0) {
@@ -36348,28 +36400,28 @@ void Unwind_180903cd0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180903ce0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903ce0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x88) + 0x68);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x88) + 0x58,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x88) + 0x58,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180903cf0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903cf0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 400) != (code *)0x0) {
-    (**(code **)(localContextPointer + 400))(localContextPointer + 0x180,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 400))(localContextPointer + 0x180,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x160) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x168) != 0) {
@@ -36416,14 +36468,14 @@ void Unwind_180903cf0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903d10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903d10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x250) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x250))(localContextPointer + 0x240,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x250))(localContextPointer + 0x240,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x220) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x228) != 0) {
@@ -36470,14 +36522,14 @@ void Unwind_180903d10(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903d30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903d30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x310) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x310))(localContextPointer + 0x300,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x310))(localContextPointer + 0x300,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2e8) != 0) {
@@ -36524,14 +36576,14 @@ void Unwind_180903d30(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903d50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903d50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x3d0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x3d0))(localContextPointer + 0x3c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x3d0))(localContextPointer + 0x3c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x3a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x3a8) != 0) {
@@ -36578,14 +36630,14 @@ void Unwind_180903d50(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903d70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903d70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x490) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x490))(localContextPointer + 0x480,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x490))(localContextPointer + 0x480,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x460) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x468) != 0) {
@@ -36632,14 +36684,14 @@ void Unwind_180903d70(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903d90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903d90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x550) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x550))(localContextPointer + 0x540,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x550))(localContextPointer + 0x540,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x520) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x528) != 0) {
@@ -36686,14 +36738,14 @@ void Unwind_180903d90(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903db0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903db0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x610) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x610))(localContextPointer + 0x600,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x610))(localContextPointer + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x5e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x5e8) != 0) {
@@ -36740,14 +36792,14 @@ void Unwind_180903db0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903dd0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903dd0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x6d0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x6d0))(localContextPointer + 0x6c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x6d0))(localContextPointer + 0x6c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x6a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x6a8) != 0) {
@@ -36794,14 +36846,14 @@ void Unwind_180903dd0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903df0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903df0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x790) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x790))(localContextPointer + 0x780,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x790))(localContextPointer + 0x780,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x760) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x768) != 0) {
@@ -36848,14 +36900,14 @@ void Unwind_180903df0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903e10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903e10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x850) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x850))(localContextPointer + 0x840,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x850))(localContextPointer + 0x840,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x820) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x828) != 0) {
@@ -36902,14 +36954,14 @@ void Unwind_180903e10(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903e30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903e30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x910) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x910))(localContextPointer + 0x900,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x910))(localContextPointer + 0x900,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x8e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x8e8) != 0) {
@@ -36956,14 +37008,14 @@ void Unwind_180903e30(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903e50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903e50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x9d0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x9d0))(localContextPointer + 0x9c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x9d0))(localContextPointer + 0x9c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x9a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x9a8) != 0) {
@@ -37010,14 +37062,14 @@ void Unwind_180903e50(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903e70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903e70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xa90) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xa90))(localContextPointer + 0xa80,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xa90))(localContextPointer + 0xa80,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xa60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa68) != 0) {
@@ -37064,14 +37116,14 @@ void Unwind_180903e70(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903e90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903e90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xb50) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xb50))(localContextPointer + 0xb40,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xb50))(localContextPointer + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xb20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb28) != 0) {
@@ -37118,14 +37170,14 @@ void Unwind_180903e90(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903eb0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903eb0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xc10) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xc10))(localContextPointer + 0xc00,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xc10))(localContextPointer + 0xc00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xbe0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xbe8) != 0) {
@@ -37172,14 +37224,14 @@ void Unwind_180903eb0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903ed0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903ed0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xcd0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xcd0))(localContextPointer + 0xcc0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xcd0))(localContextPointer + 0xcc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xca0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xca8) != 0) {
@@ -37226,14 +37278,14 @@ void Unwind_180903ed0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903ef0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903ef0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xd40) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xd40))(localContextPointer + 0xd30,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xd40))(localContextPointer + 0xd30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xd08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xd10) != 0) {
@@ -37256,14 +37308,14 @@ void Unwind_180903ef0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903f10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903f10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xdb0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xdb0))(localContextPointer + 0xda0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xdb0))(localContextPointer + 0xda0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xd78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xd80) != 0) {
@@ -37286,14 +37338,14 @@ void Unwind_180903f10(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903f30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903f30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xe20) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xe20))(localContextPointer + 0xe10,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xe20))(localContextPointer + 0xe10,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xde8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xdf0) != 0) {
@@ -37316,14 +37368,14 @@ void Unwind_180903f30(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903f50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903f50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xee0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xee0))(localContextPointer + 0xed0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xee0))(localContextPointer + 0xed0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xeb0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xeb8) != 0) {
@@ -37370,14 +37422,14 @@ void Unwind_180903f50(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903f70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903f70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 4000) != (code *)0x0) {
-    (**(code **)(localContextPointer + 4000))(localContextPointer + 0xf90,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 4000))(localContextPointer + 0xf90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xf70) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf78) != 0) {
@@ -37424,14 +37476,14 @@ void Unwind_180903f70(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903f90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903f90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1060) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1060))(localContextPointer + 0x1050,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1060))(localContextPointer + 0x1050,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1030) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1038) != 0) {
@@ -37478,14 +37530,14 @@ void Unwind_180903f90(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903fb0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903fb0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x10d0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x10d0))(localContextPointer + 0x10c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x10d0))(localContextPointer + 0x10c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1098) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x10a0) != 0) {
@@ -37508,14 +37560,14 @@ void Unwind_180903fb0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903fd0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903fd0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1140) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1140))(localContextPointer + 0x1130,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1140))(localContextPointer + 0x1130,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1110) != 0) {
@@ -37538,14 +37590,14 @@ void Unwind_180903fd0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180903ff0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180903ff0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x11b0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x11b0))(localContextPointer + 0x11a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x11b0))(localContextPointer + 0x11a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1178) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1180) != 0) {
@@ -37568,14 +37620,14 @@ void Unwind_180903ff0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904010(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904010(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1220) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1220))(localContextPointer + 0x1210,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1220))(localContextPointer + 0x1210,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x11e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x11f0) != 0) {
@@ -37598,14 +37650,14 @@ void Unwind_180904010(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904030(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904030(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1290) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1290))(localContextPointer + 0x1280,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1290))(localContextPointer + 0x1280,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1258) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1260) != 0) {
@@ -37628,14 +37680,14 @@ void Unwind_180904030(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904050(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904050(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1300) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1300))(localContextPointer + 0x12f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1300))(localContextPointer + 0x12f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x12c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x12d0) != 0) {
@@ -37658,14 +37710,14 @@ void Unwind_180904050(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904070(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904070(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1370) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1370))(localContextPointer + 0x1360,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1370))(localContextPointer + 0x1360,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1338) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1340) != 0) {
@@ -37688,7 +37740,7 @@ void Unwind_180904070(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904090(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904090(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -37700,7 +37752,7 @@ void Unwind_180904090(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 5000);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -37711,7 +37763,7 @@ void Unwind_180904090(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809040b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809040b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -37723,7 +37775,7 @@ void Unwind_1809040b0(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x13a8);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -37753,28 +37805,28 @@ void Unwind_1809040d0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809040e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809040e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x20) + 0x60);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x20) + 0x50,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x20) + 0x50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809040f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809040f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x28) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x28),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x28),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -37800,14 +37852,14 @@ void Unwind_180904100(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904110(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904110(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x50) + 0x60);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0x50,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0x50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -37909,14 +37961,14 @@ void Unwind_180904160(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904180(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904180(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x20) + 0xb0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x20) + 0xa0,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x20) + 0xa0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -37942,28 +37994,28 @@ void Unwind_1809041a0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809041b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809041b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x50) + 0xb0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0xa0,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0xa0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809041d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809041d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 400) != (code *)0x0) {
-    (**(code **)(localContextPointer + 400))(localContextPointer + 0x180,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 400))(localContextPointer + 0x180,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x160) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x168) != 0) {
@@ -38010,14 +38062,14 @@ void Unwind_1809041d0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809041f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809041f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x250) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x250))(localContextPointer + 0x240,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x250))(localContextPointer + 0x240,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x220) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x228) != 0) {
@@ -38064,14 +38116,14 @@ void Unwind_1809041f0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904210(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904210(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x310) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x310))(localContextPointer + 0x300,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x310))(localContextPointer + 0x300,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2e8) != 0) {
@@ -38118,14 +38170,14 @@ void Unwind_180904210(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904230(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904230(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x3d0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x3d0))(localContextPointer + 0x3c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x3d0))(localContextPointer + 0x3c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x3a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x3a8) != 0) {
@@ -38172,14 +38224,14 @@ void Unwind_180904230(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904250(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904250(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x490) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x490))(localContextPointer + 0x480,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x490))(localContextPointer + 0x480,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x460) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x468) != 0) {
@@ -38226,14 +38278,14 @@ void Unwind_180904250(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904270(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904270(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x550) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x550))(localContextPointer + 0x540,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x550))(localContextPointer + 0x540,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x520) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x528) != 0) {
@@ -38280,14 +38332,14 @@ void Unwind_180904270(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904290(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904290(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x610) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x610))(localContextPointer + 0x600,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x610))(localContextPointer + 0x600,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x5e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x5e8) != 0) {
@@ -38334,14 +38386,14 @@ void Unwind_180904290(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809042b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809042b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x6d0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x6d0))(localContextPointer + 0x6c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x6d0))(localContextPointer + 0x6c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x6a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x6a8) != 0) {
@@ -38388,14 +38440,14 @@ void Unwind_1809042b0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809042d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809042d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x790) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x790))(localContextPointer + 0x780,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x790))(localContextPointer + 0x780,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x760) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x768) != 0) {
@@ -38442,14 +38494,14 @@ void Unwind_1809042d0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809042f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809042f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x850) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x850))(localContextPointer + 0x840,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x850))(localContextPointer + 0x840,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x820) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x828) != 0) {
@@ -38496,14 +38548,14 @@ void Unwind_1809042f0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904310(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904310(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x910) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x910))(localContextPointer + 0x900,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x910))(localContextPointer + 0x900,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x8e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x8e8) != 0) {
@@ -38550,14 +38602,14 @@ void Unwind_180904310(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904330(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904330(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x9d0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x9d0))(localContextPointer + 0x9c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x9d0))(localContextPointer + 0x9c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x9a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x9a8) != 0) {
@@ -38604,14 +38656,14 @@ void Unwind_180904330(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904350(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904350(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xa90) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xa90))(localContextPointer + 0xa80,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xa90))(localContextPointer + 0xa80,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xa60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa68) != 0) {
@@ -38658,14 +38710,14 @@ void Unwind_180904350(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904370(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904370(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xb50) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xb50))(localContextPointer + 0xb40,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xb50))(localContextPointer + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xb20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb28) != 0) {
@@ -38712,14 +38764,14 @@ void Unwind_180904370(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904390(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904390(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xc10) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xc10))(localContextPointer + 0xc00,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xc10))(localContextPointer + 0xc00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xbe0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xbe8) != 0) {
@@ -38766,14 +38818,14 @@ void Unwind_180904390(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809043b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809043b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xcd0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xcd0))(localContextPointer + 0xcc0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xcd0))(localContextPointer + 0xcc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xca0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xca8) != 0) {
@@ -38820,14 +38872,14 @@ void Unwind_1809043b0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809043d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809043d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xd40) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xd40))(localContextPointer + 0xd30,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xd40))(localContextPointer + 0xd30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xd08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xd10) != 0) {
@@ -38850,14 +38902,14 @@ void Unwind_1809043d0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809043f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809043f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xdb0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xdb0))(localContextPointer + 0xda0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xdb0))(localContextPointer + 0xda0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xd78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xd80) != 0) {
@@ -38880,14 +38932,14 @@ void Unwind_1809043f0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904410(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904410(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xe20) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xe20))(localContextPointer + 0xe10,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xe20))(localContextPointer + 0xe10,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xde8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xdf0) != 0) {
@@ -38910,14 +38962,14 @@ void Unwind_180904410(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904430(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904430(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xee0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xee0))(localContextPointer + 0xed0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xee0))(localContextPointer + 0xed0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xeb0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xeb8) != 0) {
@@ -38964,14 +39016,14 @@ void Unwind_180904430(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904450(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904450(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 4000) != (code *)0x0) {
-    (**(code **)(localContextPointer + 4000))(localContextPointer + 0xf90,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 4000))(localContextPointer + 0xf90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xf70) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf78) != 0) {
@@ -39018,14 +39070,14 @@ void Unwind_180904450(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904470(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904470(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1060) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1060))(localContextPointer + 0x1050,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1060))(localContextPointer + 0x1050,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1030) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1038) != 0) {
@@ -39072,14 +39124,14 @@ void Unwind_180904470(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904490(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904490(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x10d0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x10d0))(localContextPointer + 0x10c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x10d0))(localContextPointer + 0x10c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1098) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x10a0) != 0) {
@@ -39102,14 +39154,14 @@ void Unwind_180904490(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809044b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809044b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1140) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1140))(localContextPointer + 0x1130,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1140))(localContextPointer + 0x1130,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1108) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1110) != 0) {
@@ -39132,14 +39184,14 @@ void Unwind_1809044b0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809044d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809044d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x11b0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x11b0))(localContextPointer + 0x11a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x11b0))(localContextPointer + 0x11a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1178) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1180) != 0) {
@@ -39162,14 +39214,14 @@ void Unwind_1809044d0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809044f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809044f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1220) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1220))(localContextPointer + 0x1210,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1220))(localContextPointer + 0x1210,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x11e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x11f0) != 0) {
@@ -39192,14 +39244,14 @@ void Unwind_1809044f0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904510(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904510(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1290) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1290))(localContextPointer + 0x1280,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1290))(localContextPointer + 0x1280,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1258) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1260) != 0) {
@@ -39222,14 +39274,14 @@ void Unwind_180904510(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904530(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904530(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1300) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1300))(localContextPointer + 0x12f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1300))(localContextPointer + 0x12f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x12c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x12d0) != 0) {
@@ -39252,14 +39304,14 @@ void Unwind_180904530(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904550(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904550(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1370) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1370))(localContextPointer + 0x1360,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1370))(localContextPointer + 0x1360,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1338) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1340) != 0) {
@@ -39282,7 +39334,7 @@ void Unwind_180904550(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904570(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904570(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -39294,7 +39346,7 @@ void Unwind_180904570(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x80) + 5000);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -39305,7 +39357,7 @@ void Unwind_180904570(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904590(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904590(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -39317,7 +39369,7 @@ void Unwind_180904590(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x80) + 0x13a8);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -39328,7 +39380,7 @@ void Unwind_180904590(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809045b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809045b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -39340,7 +39392,7 @@ void Unwind_1809045b0(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = (uint8_t *)presourceTable[1];
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -39405,42 +39457,42 @@ void Unwind_180904630(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904650(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904650(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x40) + 0x30);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 0x20,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 0x20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904660(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904660(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x50) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904670(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904670(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x58) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x58),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x58),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -39461,14 +39513,14 @@ void Unwind_180904680(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904690(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904690(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x50) + 0x30);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0x20,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0x20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -39535,70 +39587,70 @@ void Unwind_1809046d0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809046e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809046e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x40) + 0xd0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 0xc0,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 0xc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904700(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904700(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x68) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x68),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x68),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904710(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904710(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x60) + 0xd0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x60) + 0xc0,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x60) + 0xc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904730(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904730(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x70) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x70),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x70),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180904740(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904740(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x68) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x68),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x68),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -39615,14 +39667,14 @@ void Unwind_180904750(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904760(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904760(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x20) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x20),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x20),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -39685,14 +39737,14 @@ void Unwind_1809047c0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809047d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809047d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x20) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x20),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x20),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -39911,21 +39963,21 @@ void Unwind_1809048f0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904900(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904900(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180904910(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904910(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -40627,7 +40679,7 @@ void Unwind_180904aa0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904ab0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904ab0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -40637,9 +40689,9 @@ void Unwind_180904ab0(uint8_t objectContextParam,int64_t validationContextParam,
   presourceHash = *(uint8_t **)(validationContextParam + 0x160);
   unsignedResult3 = 0xfffffffffffffffe;
   *presourceHash = &ResourceHashTable002;
-  cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,0xfffffffffffffffe);
+  cVar2 = ProcessResourceHashOperation(presourceHash,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   while (cVar2 != '\0') {
-    cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,unsignedResult3);
+    cVar2 = ProcessResourceHashOperation(presourceHash,1,CleanupOption,CleanupFlag,unsignedResult3);
   }
   if (presourceHash[1] == 0) {
     presourceHash[1] = 0;
@@ -40730,10 +40782,10 @@ void ExecuteSystemValidationCallback(uint8_t objectContextParam,int64_t validati
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数，包含资源哈希表指针
- * @param param_3 操作参数3，用于哈希计算
- * @param param_4 操作参数4，用于哈希计算
+ * @param CleanupOption 操作参数3，用于哈希计算
+ * @param CleanupFlag 操作参数4，用于哈希计算
  */
-void ProcessResourceHashOperations(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessResourceHashOperations(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -40743,9 +40795,9 @@ void ProcessResourceHashOperations(uint8_t objectContextParam,int64_t validation
   ResourceHashPointer = *(uint8_t **)(validationContextParam + 0x50);
   OperationResult = 0xfffffffffffffffe;
   *ResourceHashPointer = &ResourceHashTable002;
-  cVar2 = ProcessResourceHashOperation(ResourceHashPointer,1,param_3,param_4,0xfffffffffffffffe);
+  cVar2 = ProcessResourceHashOperation(ResourceHashPointer,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   while (cVar2 != '\0') {
-    cVar2 = ProcessResourceHashOperation(ResourceHashPointer,1,param_3,param_4,OperationResult);
+    cVar2 = ProcessResourceHashOperation(ResourceHashPointer,1,CleanupOption,CleanupFlag,OperationResult);
   }
   if (ResourceHashPointer[1] == 0) {
     ResourceHashPointer[1] = 0;
@@ -41149,13 +41201,13 @@ void ExecuteSystemCallback(uint8_t objectContextParam,int64_t validationContextP
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 操作参数3
- * @param param_4 操作参数4
+ * @param CleanupOption 操作参数3
+ * @param CleanupFlag 操作参数4
  * @return 无返回值
  * @note 此函数主要用于资源管理和哈希表操作
  * @warning 如果发生错误，系统可能会调用紧急退出函数
  */
-void ProcessResourceHashOperation(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessResourceHashOperation(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
@@ -41165,9 +41217,9 @@ void ProcessResourceHashOperation(uint8_t objectContextParam,int64_t validationC
   resourceHashPointer = *(uint8_t **)(validationContextParam + 0x30);
   operationFlag = 0xfffffffffffffffe;
   *resourceHashPointer = &ResourceHashTable002;
-  operationResult = ProcessResourceHashOperationInternal(resourceHashPointer,1,param_3,param_4,0xfffffffffffffffe);
+  operationResult = ProcessResourceHashOperationInternal(resourceHashPointer,1,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   while (operationResult != '\0') {
-    operationResult = ProcessResourceHashOperationInternal(resourceHashPointer,1,param_3,param_4,operationFlag);
+    operationResult = ProcessResourceHashOperationInternal(resourceHashPointer,1,CleanupOption,CleanupFlag,operationFlag);
   }
   if (resourceHashPointer[1] == 0) {
     resourceHashPointer[1] = 0;
@@ -41200,13 +41252,13 @@ void ProcessResourceHashOperation(uint8_t objectContextParam,int64_t validationC
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 操作参数3
- * @param param_4 操作参数4
+ * @param CleanupOption 操作参数3
+ * @param CleanupFlag 操作参数4
  * @return 无返回值
  * @note 此函数主要用于资源验证和回调处理
  * @warning 如果验证失败，系统可能会调用紧急退出函数
  */
-void ExecuteResourceHashValidationCallbacks(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ExecuteResourceHashValidationCallbacks(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
@@ -41216,7 +41268,7 @@ void ExecuteResourceHashValidationCallbacks(uint8_t objectContextParam,int64_t v
   cleanupFlag = 0xfffffffffffffffe;
   resourceHashPointer = *(uint8_t **)(validationContextParam + 200);
   for (validationResultPointer = *(uint8_t **)(validationContextParam + 0xc0); validationResultPointer != resourceHashPointer; validationResultPointer = validationResultPointer + 4) {
-    (**(code **)*validationResultPointer)(validationResultPointer,0,param_3,param_4,cleanupFlag);
+    (**(code **)*validationResultPointer)(validationResultPointer,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0xc0) == 0) {
     return;
@@ -41227,7 +41279,7 @@ void ExecuteResourceHashValidationCallbacks(uint8_t objectContextParam,int64_t v
 
 
 
-void Unwind_180904e60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904e60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -41237,7 +41289,7 @@ void Unwind_180904e60(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 200);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0xc0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0xc0) == 0) {
     return;
@@ -41320,7 +41372,7 @@ void Unwind_180904ee0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904f10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904f10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -41330,7 +41382,7 @@ void Unwind_180904f10(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x98);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x90); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x90) == 0) {
     return;
@@ -41341,7 +41393,7 @@ void Unwind_180904f10(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904f20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904f20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -41351,7 +41403,7 @@ void Unwind_180904f20(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x98);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x90); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x90) == 0) {
     return;
@@ -41448,7 +41500,7 @@ void Unwind_180904f80(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904f90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904f90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -41458,7 +41510,7 @@ void Unwind_180904f90(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x28);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x20); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x20) == 0) {
     return;
@@ -41469,7 +41521,7 @@ void Unwind_180904f90(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180904fa0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904fa0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -41479,7 +41531,7 @@ void Unwind_180904fa0(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x28);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x20); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x20) == 0) {
     return;
@@ -41542,7 +41594,7 @@ void Unwind_180904fc0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180904fd0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180904fd0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -41552,7 +41604,7 @@ void Unwind_180904fd0(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xa0);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x98); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x98) == 0) {
     return;
@@ -41629,7 +41681,7 @@ void Unwind_180905010(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -41639,7 +41691,7 @@ void Unwind_180905020(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x48);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x40); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x40) == 0) {
     return;
@@ -41686,7 +41738,7 @@ void Unwind_180905030(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905040(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905040(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -41696,7 +41748,7 @@ void Unwind_180905040(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xa0);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x98); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x98) == 0) {
     return;
@@ -41863,7 +41915,7 @@ void Unwind_180905100(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905110(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905110(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -41873,7 +41925,7 @@ void Unwind_180905110(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x150);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x148); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x148) == 0) {
     return;
@@ -41884,7 +41936,7 @@ void Unwind_180905110(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180905120(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905120(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -41894,7 +41946,7 @@ void Unwind_180905120(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x210);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x208); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x208) == 0) {
     return;
@@ -41939,7 +41991,7 @@ void Unwind_180905150(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905160(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905160(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -41949,7 +42001,7 @@ void Unwind_180905160(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x110);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x108); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x108) == 0) {
     return;
@@ -41960,7 +42012,7 @@ void Unwind_180905160(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180905170(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905170(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -41970,7 +42022,7 @@ void Unwind_180905170(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x230);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x228); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x228) == 0) {
     return;
@@ -42043,7 +42095,7 @@ void Unwind_1809051e0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809051f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809051f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -42053,7 +42105,7 @@ void Unwind_1809051f0(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x150);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x148); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x148) == 0) {
     return;
@@ -42100,7 +42152,7 @@ void Unwind_180905200(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905210(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905210(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -42110,7 +42162,7 @@ void Unwind_180905210(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x210);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x208); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x208) == 0) {
     return;
@@ -42175,7 +42227,7 @@ void Unwind_180905240(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905250(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905250(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -42185,7 +42237,7 @@ void Unwind_180905250(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x110);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x108); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x108) == 0) {
     return;
@@ -42232,7 +42284,7 @@ void Unwind_180905260(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905270(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905270(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -42242,7 +42294,7 @@ void Unwind_180905270(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x230);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x228); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x228) == 0) {
     return;
@@ -42432,53 +42484,53 @@ void Unwind_180905380(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905390(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905390(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xd8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xd8),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xd8),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809053a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809053a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xd8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xd8),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xd8),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809053b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809053b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x50) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x50))(validationContextParam + 0x40,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x50))(validationContextParam + 0x40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809053c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809053c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xf0) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xf0),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xf0),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -42496,165 +42548,165 @@ void Unwind_1809053d0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809053e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809053e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x50) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x50))(validationContextParam + 0x40,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x50))(validationContextParam + 0x40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809053f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809053f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xf8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xf8),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xf8),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905400(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905400(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x100) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x100),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x100),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905410(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905410(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xf8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xf8),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xf8),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905420(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905420(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xf0) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xf0),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xf0),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905430(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905430(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x100) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x100),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x100),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905440(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905440(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x108) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x108),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x108),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905450(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905450(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x100) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x100),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x100),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905460(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905460(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x108) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x108),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x108),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905470(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905470(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xa8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa8),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa8),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905480(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905480(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xf8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xf8),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xf8),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905490(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905490(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x40) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -42948,14 +43000,14 @@ void Unwind_180905630(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905640(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905640(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0xa8);
   if (*(code **)(localContextPointer + 0x198) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x198))(localContextPointer + 0x188,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x198))(localContextPointer + 0x188,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   if (*(code **)(localContextPointer + 0x178) != (code *)0x0) {
     (**(code **)(localContextPointer + 0x178))(localContextPointer + 0x168,0,0);
@@ -42966,14 +43018,14 @@ void Unwind_180905640(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180905650(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905650(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x48);
   if (*(code **)(localContextPointer + 0x198) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x198))(localContextPointer + 0x188,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x198))(localContextPointer + 0x188,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   if (*(code **)(localContextPointer + 0x178) != (code *)0x0) {
     (**(code **)(localContextPointer + 0x178))(localContextPointer + 0x168,0,0);
@@ -42984,28 +43036,28 @@ void Unwind_180905650(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180905660(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905660(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x20) + 0x158);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x20) + 0x148,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x20) + 0x148,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905680(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905680(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x20) + 0x178);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x20) + 0x168,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x20) + 0x168,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -43030,42 +43082,42 @@ void Unwind_1809056b0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809056c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809056c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x40) + 0x158);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 0x148,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 0x148,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809056e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809056e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x40) + 0x178);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 0x168,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 0x168,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905700(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905700(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x48) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x48),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x48),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -43111,7 +43163,7 @@ void Unwind_180905740(uint8_t objectContextParam,uint *validationContextParam)
 
 
 
-void Unwind_180905770(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905770(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -43123,7 +43175,7 @@ void Unwind_180905770(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = (uint8_t *)presourceTable[1];
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 0x13) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -43340,14 +43392,14 @@ void Unwind_1809057e0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809057f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809057f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x2e8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x2e8),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x2e8),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -43408,7 +43460,7 @@ void Unwind_180905840(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905860(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905860(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -43420,7 +43472,7 @@ void Unwind_180905860(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x2e0) + 0x10);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -43431,7 +43483,7 @@ void Unwind_180905860(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180905870(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905870(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -43443,7 +43495,7 @@ void Unwind_180905870(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = (uint8_t *)presourceTable[1];
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -43518,7 +43570,7 @@ void Unwind_180905890(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809058a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809058a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -43530,7 +43582,7 @@ void Unwind_1809058a0(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x2e0) + 0x28);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -43541,7 +43593,7 @@ void Unwind_1809058a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809058b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809058b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -43553,7 +43605,7 @@ void Unwind_1809058b0(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x2e0) + 0x48);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -43643,7 +43695,7 @@ void Unwind_180905900(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905910(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905910(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -43655,7 +43707,7 @@ void Unwind_180905910(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x48) + 0x10);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -43870,7 +43922,7 @@ LAB_1801571ef:
 
 
 
-void Unwind_180905960(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905960(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -43882,7 +43934,7 @@ void Unwind_180905960(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x2e8) + 0x268);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 0x13) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -43921,7 +43973,7 @@ void Unwind_180905980(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809059a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809059a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -43933,7 +43985,7 @@ void Unwind_1809059a0(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = (uint8_t *)presourceTable[1];
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 0x13) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -43944,14 +43996,14 @@ void Unwind_1809059a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809059b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809059b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x2e8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x2e8),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x2e8),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -44157,14 +44209,14 @@ void Unwind_180905b00(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905b10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905b10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x50) + 0xd0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0xc0,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0xc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -44850,11 +44902,11 @@ void DestroyMutexInPlace(void)
 
 
 
-void Unwind_180905cf0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905cf0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x1f8) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x1f8))(validationContextParam + 0x1e8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x1f8))(validationContextParam + 0x1e8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   if (*(code **)(validationContextParam + 0x1d8) != (code *)0x0) {
     (**(code **)(validationContextParam + 0x1d8))(validationContextParam + 0x1c8,0,0);
@@ -44865,36 +44917,36 @@ void Unwind_180905cf0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180905d00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905d00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x1d8) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x1d8))(validationContextParam + 0x1c8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x1d8))(validationContextParam + 0x1c8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905d20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905d20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x1f8) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x1f8))(validationContextParam + 0x1e8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x1f8))(validationContextParam + 0x1e8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905d40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905d40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x30) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x30),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x30),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -44944,28 +44996,28 @@ void Unwind_180905d80(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905d90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905d90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x50) + 0x158);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0x148,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0x148,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905db0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905db0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x50) + 0x178);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0x168,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 0x168,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -45077,42 +45129,42 @@ void Unwind_180905e40(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180905e50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905e50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x70) + 0x158);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x70) + 0x148,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x70) + 0x148,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905e70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905e70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x70) + 0x178);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x70) + 0x168,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x70) + 0x168,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905e90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180905e90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x78) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x78),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x78),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -46164,7 +46216,7 @@ void Unwind_1809063c0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809063f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809063f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -46174,7 +46226,7 @@ void Unwind_1809063f0(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xe8);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0xe0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0xe0) == 0) {
     return;
@@ -46209,7 +46261,7 @@ void Unwind_180906430(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180906460(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180906460(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -46219,7 +46271,7 @@ void Unwind_180906460(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xe8);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0xe0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0xe0) == 0) {
     return;
@@ -46906,7 +46958,7 @@ void Unwind_1809066e0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180906700(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180906700(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -46918,7 +46970,7 @@ void Unwind_180906700(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0xa0) + 0x220);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -47107,7 +47159,7 @@ void Unwind_180906870(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180906890(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180906890(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -47119,7 +47171,7 @@ void Unwind_180906890(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x50) + 0x220);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -47171,7 +47223,7 @@ void Unwind_180906910(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180906940(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180906940(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -47183,7 +47235,7 @@ void Unwind_180906940(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = (uint8_t *)presourceTable[1];
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -47512,11 +47564,11 @@ void Unwind_180906af0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180906b00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180906b00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x78) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x78))(validationContextParam + 0x68,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x78))(validationContextParam + 0x68,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -47560,11 +47612,11 @@ void Unwind_180906b20(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180906b30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180906b30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x78) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x78))(validationContextParam + 0x68,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x78))(validationContextParam + 0x68,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -48758,14 +48810,14 @@ void Unwind_180906e40(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180906e50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180906e50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x170) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x170),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x170),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -48889,14 +48941,14 @@ void Unwind_180906ee0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180906ef0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180906ef0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x170) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x170),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x170),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -49088,22 +49140,22 @@ void CleanupResourceHandleA(uint8_t objectContextParam,int64_t validationContext
 
 
 
-void Unwind_180907010(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907010(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0xe8) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0xe8))(validationContextParam + 0xd8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0xe8))(validationContextParam + 0xd8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x68) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x68))(validationContextParam + 0x58,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x68))(validationContextParam + 0x58,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -49130,11 +49182,11 @@ void Unwind_180907030(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180907040(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907040(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x108) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x108))(validationContextParam + 0xf8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x108))(validationContextParam + 0xf8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -49191,22 +49243,22 @@ void Unwind_180907080(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180907090(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907090(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0xe8) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0xe8))(validationContextParam + 0xd8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0xe8))(validationContextParam + 0xd8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809070a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809070a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x68) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x68))(validationContextParam + 0x58,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x68))(validationContextParam + 0x58,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -49241,11 +49293,11 @@ void Unwind_1809070c0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809070d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809070d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x108) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x108))(validationContextParam + 0xf8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x108))(validationContextParam + 0xf8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -49427,22 +49479,22 @@ void Unwind_1809071b0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809071c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809071c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x48) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x48))(validationContextParam + 0x38,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x48))(validationContextParam + 0x38,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809071d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809071d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x48) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x48))(validationContextParam + 0x38,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x48))(validationContextParam + 0x38,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -50658,10 +50710,10 @@ void ValidateResourceVersion180907800(uint8_t objectContextParam,int64_t validat
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 参数3
- * @param param_4 参数4
+ * @param CleanupOption 参数3
+ * @param CleanupFlag 参数4
  */
-void ProcessResourceHashValidation180907810(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessResourceHashValidation180907810(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -50673,7 +50725,7 @@ void ProcessResourceHashValidation180907810(uint8_t objectContextParam,int64_t v
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x20) + 0x30);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -50691,14 +50743,14 @@ void ProcessResourceHashValidation180907810(uint8_t objectContextParam,int64_t v
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 参数3
- * @param param_4 参数4
+ * @param CleanupOption 参数3
+ * @param CleanupFlag 参数4
  */
-void ProcessResourceData180907820(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessResourceData180907820(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x20) + 0x48,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x20) + 0x58),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x20) + 0x58),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -50712,14 +50764,14 @@ void ProcessResourceData180907820(uint8_t objectContextParam,int64_t validationC
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 参数3
- * @param param_4 参数4
+ * @param CleanupOption 参数3
+ * @param CleanupFlag 参数4
  */
-void ProcessResourceValidation180907830(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessResourceValidation180907830(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x20) + 0x78,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x20) + 0x88),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x20) + 0x88),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -50733,17 +50785,17 @@ void ProcessResourceValidation180907830(uint8_t objectContextParam,int64_t valid
  * 
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 参数3
- * @param param_4 参数4
+ * @param CleanupOption 参数3
+ * @param CleanupFlag 参数4
  */
-void ExecuteResourceCommand180907840(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ExecuteResourceCommand180907840(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x20) + 0xc0);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x20) + 0xb0,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x20) + 0xb0,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -50752,14 +50804,14 @@ void ExecuteResourceCommand180907840(uint8_t objectContextParam,int64_t validati
 
 
 
-void Unwind_180907860(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907860(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x20) + 0xf0);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x20) + 0xe0,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x20) + 0xe0,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -50825,7 +50877,7 @@ void Unwind_1809078a0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809078b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809078b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -50837,7 +50889,7 @@ void Unwind_1809078b0(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = (uint8_t *)presourceTable[1];
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -50848,54 +50900,54 @@ void Unwind_1809078b0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809078c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809078c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x28),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809078d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809078d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x28),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809078e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809078e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x28),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809078f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809078f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x28),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180907900(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907900(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x28) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x28),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x28),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -50904,14 +50956,14 @@ void Unwind_180907900(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180907910(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907910(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x28) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x28),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x28),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -50941,21 +50993,21 @@ void Unwind_180907920(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180907930(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907930(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180907940(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907940(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -51227,20 +51279,20 @@ void ProcessResourceValidationCleanup(uint8_t objectContextParam,int64_t validat
 
 
 
-void Unwind_180907a20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907a20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  ProcessResourceData(validationContextParam + 0xe8,*(uint8_t *)(validationContextParam + 0xf8),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(validationContextParam + 0xe8,*(uint8_t *)(validationContextParam + 0xf8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180907a30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907a30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x200) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x200))(validationContextParam + 0x1f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x200))(validationContextParam + 0x1f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   if (*(code **)(validationContextParam + 0x1e0) != (code *)0x0) {
     (**(code **)(validationContextParam + 0x1e0))(validationContextParam + 0x1d0,0,0);
@@ -51253,11 +51305,11 @@ void Unwind_180907a30(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180907a40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907a40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x2a0) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x2a0))(validationContextParam + 0x290,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x2a0))(validationContextParam + 0x290,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   if (*(code **)(validationContextParam + 0x280) != (code *)0x0) {
     (**(code **)(validationContextParam + 0x280))(validationContextParam + 0x270,0,0);
@@ -51342,19 +51394,19 @@ void Unwind_180907a60(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180907a70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907a70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  ProcessResourceData(validationContextParam + 0xe8,*(uint8_t *)(validationContextParam + 0xf8),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(validationContextParam + 0xe8,*(uint8_t *)(validationContextParam + 0xf8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180907a80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907a80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  ProcessResourceData(validationContextParam + 0xe8,*(uint8_t *)(validationContextParam + 0xf8),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(validationContextParam + 0xe8,*(uint8_t *)(validationContextParam + 0xf8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -51476,33 +51528,33 @@ void SystemUnwindDataStructureA(uint8_t unwindContext, int64_t dataStructurePoin
 
 
 
-void SystemUnwindHandlerD(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void SystemUnwindHandlerD(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x260) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x260))(validationContextParam + 0x250,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x260))(validationContextParam + 0x250,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void SystemUnwindHandlerE(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void SystemUnwindHandlerE(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x280) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x280))(validationContextParam + 0x270,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x280))(validationContextParam + 0x270,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void SystemUnwindHandlerF(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void SystemUnwindHandlerF(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x2a0) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x2a0))(validationContextParam + 0x290,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x2a0))(validationContextParam + 0x290,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -51536,28 +51588,28 @@ void SystemUnwindDataStructureD(uint8_t objectContextParam,int64_t validationCon
 
 
 
-void SystemUnwindHandlerG(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void SystemUnwindHandlerG(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x40) + 0x50);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 0x40,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 0x40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void SystemUnwindHandlerH(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void SystemUnwindHandlerH(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *FunctionPointer;
   
   FunctionPointer = *(code **)(*(int64_t *)(validationContextParam + 0x40) + 0x70);
   if (FunctionPointer != (code *)0x0) {
-    (*FunctionPointer)(*(int64_t *)(validationContextParam + 0x40) + 0x60,0,0,param_4,0xfffffffffffffffe);
+    (*FunctionPointer)(*(int64_t *)(validationContextParam + 0x40) + 0x60,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -51739,11 +51791,11 @@ void SystemUnwindValidationHandler(uint8_t objectContextParam,int64_t validation
 
 
 
-void Unwind_180907c30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907c30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x210) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x210))(validationContextParam + 0x200,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x210))(validationContextParam + 0x200,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   if (*(code **)(validationContextParam + 0x1f0) != (code *)0x0) {
     (**(code **)(validationContextParam + 0x1f0))(validationContextParam + 0x1e0,0,0);
@@ -51882,40 +51934,40 @@ void Unwind_180907c80(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180907c90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907c90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x1d0) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x1d0))(validationContextParam + 0x1c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x1d0))(validationContextParam + 0x1c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907ca0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907ca0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x1f0) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x1f0))(validationContextParam + 0x1e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x1f0))(validationContextParam + 0x1e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907cb0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907cb0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x210) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x210))(validationContextParam + 0x200,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x210))(validationContextParam + 0x200,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907cc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907cc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -51925,7 +51977,7 @@ void Unwind_180907cc0(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x170);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x168); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x168) == 0) {
     return;
@@ -51989,11 +52041,11 @@ void Unwind_180907d00(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180907d10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907d10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x150) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x150))(validationContextParam + 0x140,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x150))(validationContextParam + 0x140,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   if (*(code **)(validationContextParam + 0x130) != (code *)0x0) {
     (**(code **)(validationContextParam + 0x130))(validationContextParam + 0x120,0,0);
@@ -52006,7 +52058,7 @@ void Unwind_180907d10(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180907d20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907d20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -52016,7 +52068,7 @@ void Unwind_180907d20(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x170);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x168); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x168) == 0) {
     return;
@@ -52156,40 +52208,40 @@ void Unwind_180907e40(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180907e50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907e50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x110) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x110))(validationContextParam + 0x100,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x110))(validationContextParam + 0x100,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907e60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907e60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x130) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x130))(validationContextParam + 0x120,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x130))(validationContextParam + 0x120,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907e70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907e70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x150) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x150))(validationContextParam + 0x140,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x150))(validationContextParam + 0x140,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907e80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907e80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -52199,7 +52251,7 @@ void Unwind_180907e80(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x30);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x28); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x28) == 0) {
     return;
@@ -52390,22 +52442,22 @@ void Unwind_180907ed0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180907ee0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907ee0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x60) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x60))(validationContextParam + 0x50,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x60))(validationContextParam + 0x50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907ef0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907ef0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x208) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x208))(validationContextParam + 0x1f8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x208))(validationContextParam + 0x1f8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   if (*(code **)(validationContextParam + 0x1e8) != (code *)0x0) {
     (**(code **)(validationContextParam + 0x1e8))(validationContextParam + 0x1d8,0,0);
@@ -52416,11 +52468,11 @@ void Unwind_180907ef0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180907f00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907f00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x60) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x60))(validationContextParam + 0x50,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x60))(validationContextParam + 0x50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -52436,36 +52488,36 @@ void Unwind_180907f10(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180907f20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907f20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x1e8) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x1e8))(validationContextParam + 0x1d8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x1e8))(validationContextParam + 0x1d8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907f40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907f40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x208) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x208))(validationContextParam + 0x1f8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x208))(validationContextParam + 0x1f8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907f60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907f60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x40) + 0x18);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 8,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -52565,14 +52617,14 @@ void Unwind_180907fe0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180907ff0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180907ff0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(validationContextParam + 0x78);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(validationContextParam + 0x68,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(validationContextParam + 0x68,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -52617,14 +52669,14 @@ void Unwind_180908000(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180908010(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908010(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(validationContextParam + 0x78);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(validationContextParam + 0x68,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(validationContextParam + 0x68,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -52633,14 +52685,14 @@ void Unwind_180908010(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180908020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(validationContextParam + 0x78);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(validationContextParam + 0x68,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(validationContextParam + 0x68,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -52714,13 +52766,13 @@ void Unwind_180908040(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180908050(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908050(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t *processPointer;
   
   plocalContextPointer = _MemoryManagementArray;
-  InitializeMemoryManagement(&MemoryManagementArray,_MemoryManagementArray[1],param_3,param_4,0xfffffffffffffffe);
+  InitializeMemoryManagement(&MemoryManagementArray,_MemoryManagementArray[1],CleanupOption,CleanupFlag,0xfffffffffffffffe);
   _MemoryManagementArray[1] = (int64_t)plocalContextPointer;
   *_MemoryManagementArray = (int64_t)plocalContextPointer;
   _MemoryManagementArray[2] = (int64_t)plocalContextPointer;
@@ -52769,7 +52821,7 @@ void Catch_180908080(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809080a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809080a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -52779,10 +52831,10 @@ void Unwind_1809080a0(uint8_t objectContextParam,int64_t validationContextParam,
   resourceTable = *(int64_t *)(validationContextParam + 0x68);
   unsignedResult3 = 0xfffffffffffffffe;
   InitializeResourceSystem();
-  ProcessResourceOperation(resourceTable + 0x60,*(uint8_t *)(resourceTable + 0x70),param_3,param_4,unsignedResult3);
+  ProcessResourceOperation(resourceTable + 0x60,*(uint8_t *)(resourceTable + 0x70),CleanupOption,CleanupFlag,unsignedResult3);
   presourceHash = *(uint8_t **)(resourceTable + 0x40);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(resourceTable + 0x30,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(resourceTable + 0x30,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -52791,7 +52843,7 @@ void Unwind_1809080a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809080b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809080b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -52801,10 +52853,10 @@ void Unwind_1809080b0(uint8_t objectContextParam,int64_t validationContextParam,
   resourceTable = *(int64_t *)(validationContextParam + 0x70);
   unsignedResult3 = 0xfffffffffffffffe;
   InitializeResourceSystem();
-  ProcessResourceOperation(resourceTable + 0x40,*(uint8_t *)(resourceTable + 0x50),param_3,param_4,unsignedResult3);
+  ProcessResourceOperation(resourceTable + 0x40,*(uint8_t *)(resourceTable + 0x50),CleanupOption,CleanupFlag,unsignedResult3);
   presourceHash = *(uint8_t **)(resourceTable + 0x20);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(resourceTable + 0x10,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(resourceTable + 0x10,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -52813,14 +52865,14 @@ void Unwind_1809080b0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809080c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809080c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x78) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x78),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x78),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -52829,25 +52881,25 @@ void Unwind_1809080c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809080d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809080d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x78) + 0x30,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x40),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x40),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809080e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809080e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x78) + 0x70);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x78) + 0x60,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x78) + 0x60,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -52856,34 +52908,34 @@ void Unwind_1809080e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809080f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809080f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x30),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x30) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180908100(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908100(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x30),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x30) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180908110(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908110(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x68) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x68),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x68),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -52892,14 +52944,14 @@ void Unwind_180908110(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180908120(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908120(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x68) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x68),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x68),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -52945,7 +52997,7 @@ void Unwind_180908150(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180908160(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908160(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -52955,10 +53007,10 @@ void Unwind_180908160(uint8_t objectContextParam,int64_t validationContextParam,
   resourceTable = *(int64_t *)(validationContextParam + 0x80);
   unsignedResult3 = 0xfffffffffffffffe;
   InitializeResourceSystem();
-  ProcessResourceOperation(resourceTable + 0x40,*(uint8_t *)(resourceTable + 0x50),param_3,param_4,unsignedResult3);
+  ProcessResourceOperation(resourceTable + 0x40,*(uint8_t *)(resourceTable + 0x50),CleanupOption,CleanupFlag,unsignedResult3);
   presourceHash = *(uint8_t **)(resourceTable + 0x20);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(resourceTable + 0x10,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(resourceTable + 0x10,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -52967,14 +53019,14 @@ void Unwind_180908160(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180908170(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908170(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x60) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x60),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x60),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -52983,25 +53035,25 @@ void Unwind_180908170(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180908180(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908180(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x60) + 0x30,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0x40),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0x40),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180908190(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908190(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x60) + 0x70);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x60) + 0x60,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x60) + 0x60,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -53010,27 +53062,27 @@ void Unwind_180908190(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809081a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809081a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809081b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809081b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809081c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809081c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -53040,10 +53092,10 @@ void Unwind_1809081c0(uint8_t objectContextParam,int64_t validationContextParam,
   resourceTable = *(int64_t *)(validationContextParam + 0x40);
   unsignedResult3 = 0xfffffffffffffffe;
   InitializeResourceSystem();
-  ProcessResourceOperation(resourceTable + 0x40,*(uint8_t *)(resourceTable + 0x50),param_3,param_4,unsignedResult3);
+  ProcessResourceOperation(resourceTable + 0x40,*(uint8_t *)(resourceTable + 0x50),CleanupOption,CleanupFlag,unsignedResult3);
   presourceHash = *(uint8_t **)(resourceTable + 0x20);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(resourceTable + 0x10,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(resourceTable + 0x10,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -53052,14 +53104,14 @@ void Unwind_1809081c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809081d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809081d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x40),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x40),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -53068,25 +53120,25 @@ void Unwind_1809081d0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809081e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809081e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x40) + 0x30,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x40),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x40),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809081f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809081f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x70);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x40) + 0x60,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x40) + 0x60,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -53095,28 +53147,28 @@ void Unwind_1809081f0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180908200(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908200(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x58) + 0x18);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x58) + 8,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x58) + 8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180908210(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908210(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x50) + 0x18);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 8,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x50) + 8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -53181,7 +53233,7 @@ void Unwind_180908300(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180908340(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908340(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -53193,7 +53245,7 @@ void Unwind_180908340(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x80) + 0x390);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -53263,7 +53315,7 @@ void Unwind_180908420(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180908460(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908460(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -53275,7 +53327,7 @@ void Unwind_180908460(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x390);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -55304,14 +55356,14 @@ void Unwind_180908e10(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180908e40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908e40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x60) + 0x30);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x60) + 0x20,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x60) + 0x20,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -55428,7 +55480,7 @@ void Unwind_180908e70(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180908e80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180908e80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -55437,7 +55489,7 @@ void Unwind_180908e80(uint8_t objectContextParam,int64_t validationContextParam,
   loopCounter = *(int64_t *)(validationContextParam + 0x60);
   validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  ProcessResourceOperation(localContextPointer + 0x110,*(uint8_t *)(localContextPointer + 0x120),param_3,param_4,validationResult);
+  ProcessResourceOperation(localContextPointer + 0x110,*(uint8_t *)(localContextPointer + 0x120),CleanupOption,CleanupFlag,validationResult);
   ProcessResourceOperation(localContextPointer + 0xe0,*(uint8_t *)(localContextPointer + 0xf0));
   ProcessResourceOperation(localContextPointer + 0xb0,*(uint8_t *)(localContextPointer + 0xc0));
   ProcessResourceRelease(localContextPointer + 0x80,*(uint8_t *)(localContextPointer + 0x90));
@@ -56389,28 +56441,28 @@ void Unwind_180909360(uint8_t objectContextParam,uint *validationContextParam)
 
 
 
-void Unwind_180909390(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909390(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x98) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x98),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x98),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809093a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809093a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x98) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x98),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x98),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -56498,7 +56550,7 @@ void Unwind_1809093b0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809093c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809093c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t *processPointer;
@@ -56553,7 +56605,7 @@ void Unwind_1809093c0(uint8_t objectContextParam,int64_t validationContextParam,
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(pvalidationResult);
   }
-  ProcessResourceOperation(resourceIndex + 0x81d8,*(uint8_t *)(resourceIndex + 0x81e8),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceOperation(resourceIndex + 0x81d8,*(uint8_t *)(resourceIndex + 0x81e8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   ProcessResourceOperation(resourceIndex + 0x81a8,*(uint8_t *)(resourceIndex + 0x81b8));
   ProcessResourceOperation(resourceIndex + 0x8178,*(uint8_t *)(resourceIndex + 0x8188));
   RegisterResourceHandler(resourceIndex + 0x80d8,0x20,5,SystemResourceHandler);
@@ -56589,14 +56641,14 @@ void Unwind_1809093e0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180909400(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909400(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x48) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x48),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x48),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -56675,14 +56727,14 @@ void Unwind_180909460(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180909470(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909470(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x70) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x70),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x70),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -57341,7 +57393,7 @@ void Unwind_1809096b0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809096c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809096c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t *processPointer;
@@ -57396,7 +57448,7 @@ void Unwind_1809096c0(uint8_t objectContextParam,int64_t validationContextParam,
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(pvalidationResult);
   }
-  ProcessResourceOperation(resourceIndex + 0x81d8,*(uint8_t *)(resourceIndex + 0x81e8),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceOperation(resourceIndex + 0x81d8,*(uint8_t *)(resourceIndex + 0x81e8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   ProcessResourceOperation(resourceIndex + 0x81a8,*(uint8_t *)(resourceIndex + 0x81b8));
   ProcessResourceOperation(resourceIndex + 0x8178,*(uint8_t *)(resourceIndex + 0x8188));
   RegisterResourceHandler(resourceIndex + 0x80d8,0x20,5,SystemResourceHandler);
@@ -57550,34 +57602,34 @@ void Unwind_180909780(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180909790(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909790(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ConfigureResourceHandler(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809097a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809097a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ConfigureResourceHandler(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809097b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809097b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x20) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x20),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x20),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -57586,14 +57638,14 @@ void Unwind_1809097b0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809097c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809097c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x20) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x20),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x20),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -57602,21 +57654,21 @@ void Unwind_1809097c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809097d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809097d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809097e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809097e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ConfigureResourceHandler(*(int64_t *)(validationContextParam + 0x40) + 0x30,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x40),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x40),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -57632,14 +57684,14 @@ void Unwind_1809097f0(void)
 
 
 
-void Unwind_180909800(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909800(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 200);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x40) + 0xb8,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x40) + 0xb8,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -57648,14 +57700,14 @@ void Unwind_180909800(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180909820(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909820(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0xf8);
   if (presourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x40) + 0xe8,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(validationContextParam + 0x40) + 0xe8,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
   }
@@ -57664,21 +57716,21 @@ void Unwind_180909820(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180909840(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909840(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ConfigureResourceHandler(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180909850(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909850(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ConfigureResourceHandler(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -57720,52 +57772,52 @@ void Unwind_180909860(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180909870(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909870(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x40) + 0x90,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0xa0),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0xa0),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180909890(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909890(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x50),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x50) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809098a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809098a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x50),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x50) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809098b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809098b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809098c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809098c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -58533,11 +58585,11 @@ void Unwind_180909dc0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180909de0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909de0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceAllocation(*(int64_t *)(validationContextParam + 0x40) + 0x740,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x750),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x750),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -58634,14 +58686,14 @@ void Unwind_180909f20(void)
 
 
 
-void Unwind_180909f40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909f40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0xaa0);
   if (presourceHash != (uint8_t *)0x0) {
-    ValidateResourceHash(*(int64_t *)(validationContextParam + 0x40) + 0xa90,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ValidateResourceHash(*(int64_t *)(validationContextParam + 0x40) + 0xa90,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -58703,22 +58755,22 @@ void Unwind_180909f80(void)
 
 
 
-void Unwind_180909fa0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909fa0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x40) + 0xba8,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 3000),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 3000),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180909fc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180909fc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x40) + 0xbd8,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0xbe8),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0xbe8),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -58789,21 +58841,21 @@ void Unwind_18090a080(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090a0b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a0b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090a0c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a0c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -58817,17 +58869,17 @@ void Unwind_18090a0c0(uint8_t objectContextParam,int64_t validationContextParam,
  * 
  * @param objectContextParam 回滚上下文参数1
  * @param validationContextParam 回滚上下文参数2
- * @param param_3 回滚上下文参数3
- * @param param_4 回滚上下文参数4
+ * @param CleanupOption 回滚上下文参数3
+ * @param CleanupFlag 回滚上下文参数4
  */
-void CleanupResourceHashUnwindA(void* objectContextParam, int64_t validationContextParam, void* param_3, void* param_4)
+void CleanupResourceHashUnwindA(void* objectContextParam, int64_t validationContextParam, void* CleanupOption, void* CleanupFlag)
 
 {
   void** resourceHashPointer;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x48) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x48),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x48),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -58845,17 +58897,17 @@ void CleanupResourceHashUnwindA(void* objectContextParam, int64_t validationCont
  * 
  * @param objectContextParam 回滚上下文参数1
  * @param validationContextParam 回滚上下文参数2
- * @param param_3 回滚上下文参数3
- * @param param_4 回滚上下文参数4
+ * @param CleanupOption 回滚上下文参数3
+ * @param CleanupFlag 回滚上下文参数4
  */
-void CleanupResourceHashUnwindB(void* objectContextParam, int64_t validationContextParam, void* param_3, void* param_4)
+void CleanupResourceHashUnwindB(void* objectContextParam, int64_t validationContextParam, void* CleanupOption, void* CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x48) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x48),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x48),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -58873,14 +58925,14 @@ void CleanupResourceHashUnwindB(void* objectContextParam, int64_t validationCont
  * 
  * @param objectContextParam 回滚上下文参数1
  * @param validationContextParam 回滚上下文参数2
- * @param param_3 回滚上下文参数3
- * @param param_4 回滚上下文参数4
+ * @param CleanupOption 回滚上下文参数3
+ * @param CleanupFlag 回滚上下文参数4
  */
-void CleanupResourceHashUnwindC(void* objectContextParam, int64_t validationContextParam, void* param_3, void* param_4)
+void CleanupResourceHashUnwindC(void* objectContextParam, int64_t validationContextParam, void* CleanupOption, void* CleanupFlag)
 
 {
   HandleResourceTableAccess(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -58894,14 +58946,14 @@ void CleanupResourceHashUnwindC(void* objectContextParam, int64_t validationCont
  * 
  * @param objectContextParam 回滚上下文参数1
  * @param validationContextParam 回滚上下文参数2
- * @param param_3 回滚上下文参数3
- * @param param_4 回滚上下文参数4
+ * @param CleanupOption 回滚上下文参数3
+ * @param CleanupFlag 回滚上下文参数4
  */
-void CleanupResourceHashUnwindD(void* objectContextParam, int64_t validationContextParam, void* param_3, void* param_4)
+void CleanupResourceHashUnwindD(void* objectContextParam, int64_t validationContextParam, void* CleanupOption, void* CleanupFlag)
 
 {
   HandleResourceTableAccess(*(int64_t *)(validationContextParam + 0x48),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -58915,37 +58967,37 @@ void CleanupResourceHashUnwindD(void* objectContextParam, int64_t validationCont
  * 
  * @param objectContextParam 回滚上下文参数1
  * @param validationContextParam 回滚上下文参数2
- * @param param_3 回滚上下文参数3
- * @param param_4 回滚上下文参数4
+ * @param CleanupOption 回滚上下文参数3
+ * @param CleanupFlag 回滚上下文参数4
  */
-void CleanupResourceHashUnwindE(void* objectContextParam, int64_t validationContextParam, void* param_3, void* param_4)
+void CleanupResourceHashUnwindE(void* objectContextParam, int64_t validationContextParam, void* CleanupOption, void* CleanupFlag)
 
 {
   HandleResourceTableAccess(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090a120(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a120(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceTableAccess(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090a130(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a130(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x40),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x40),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -58955,14 +59007,14 @@ void Unwind_18090a130(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_18090a140(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a140(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x40),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x40),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -58972,21 +59024,21 @@ void Unwind_18090a140(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_18090a150(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a150(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ManageResourceTableEntry(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090a160(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a160(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ManageResourceTableEntry(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -59153,11 +59205,11 @@ void Unwind_18090a2b0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090a2d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a2d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceTableAccess(*(int64_t *)(validationContextParam + 0x60) + 0x740,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0x750),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0x750),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -59254,14 +59306,14 @@ void Unwind_18090a410(void)
 
 
 
-void Unwind_18090a430(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a430(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x60) + 0xaa0);
   if (presourceHash != (uint8_t *)0x0) {
-    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x60) + 0xa90,*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x60) + 0xa90,*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -59323,22 +59375,22 @@ void Unwind_18090a470(void)
 
 
 
-void Unwind_18090a490(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a490(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ManageResourceTableEntry(*(int64_t *)(validationContextParam + 0x60) + 0xba8,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 3000),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 3000),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090a4b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a4b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x60) + 0xbd8,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0xbe8),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0xbe8),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -59423,34 +59475,34 @@ void Unwind_18090a570(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090a580(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a580(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceTableAccess(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090a590(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a590(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceTableAccess(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090a5a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a5a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x68) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x68),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x68),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -59460,14 +59512,14 @@ void Unwind_18090a5a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_18090a5b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a5b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x68) + 0x10);
   if (presourceHash != (uint8_t *)0x0) {
-    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x68),*presourceHash,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceHashOperation(*(int64_t *)(validationContextParam + 0x68),*presourceHash,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     CleanupResourceHash(presourceHash);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(presourceHash);
@@ -59558,21 +59610,21 @@ void Unwind_18090a5e0(void)
 
 
 
-void Unwind_18090a5f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a5f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ManageResourceTableEntry(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090a600(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a600(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ManageResourceTableEntry(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -59587,22 +59639,22 @@ void Unwind_18090a610(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090a640(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a640(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x38) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x38))(validationContextParam + 0x28,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x38))(validationContextParam + 0x28,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090a650(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090a650(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x38) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x38))(validationContextParam + 0x28,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x38))(validationContextParam + 0x28,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -62761,22 +62813,22 @@ void Unwind_18090bd20(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090bd30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090bd30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x58) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x58))(validationContextParam + 0x48,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x58))(validationContextParam + 0x48,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090bd40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090bd40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x58) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x58))(validationContextParam + 0x48,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x58))(validationContextParam + 0x48,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -63108,7 +63160,7 @@ void Unwind_18090bfa0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090bfb0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090bfb0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -63120,7 +63172,7 @@ void Unwind_18090bfb0(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = (uint8_t *)presourceTable[1];
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -63131,22 +63183,22 @@ void Unwind_18090bfb0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_18090bfc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090bfc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceDataTransfer(*(int64_t *)(validationContextParam + 0x20) + 0x20,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x20) + 0x30),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x20) + 0x30),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090bfd0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090bfd0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceDataValidation(*(int64_t *)(validationContextParam + 0x20) + 0x50,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x20) + 0x60),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x20) + 0x60),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -63176,52 +63228,52 @@ void Unwind_18090bfe0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090c000(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c000(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(validationContextParam + 0x20) + 0xa0,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x20) + 0xb0),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x20) + 0xb0),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090c020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceDataTransfer(*(int64_t *)(validationContextParam + 0x28),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090c030(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c030(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceDataTransfer(*(int64_t *)(validationContextParam + 0x28),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090c040(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c040(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceDataValidation(*(int64_t *)(validationContextParam + 0x28),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090c050(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c050(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceDataValidation(*(int64_t *)(validationContextParam + 0x28),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -63250,41 +63302,41 @@ void Unwind_18090c060(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090c070(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c070(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceDataTransfer(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090c080(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c080(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceDataTransfer(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090c090(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c090(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceDataValidation(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090c0a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c0a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceDataValidation(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -63677,10 +63729,10 @@ void Unwind_18090c240(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090c260(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c260(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  ProcessResourceData(validationContextParam + 0x48,*(uint8_t *)(validationContextParam + 0x58),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(validationContextParam + 0x48,*(uint8_t *)(validationContextParam + 0x58),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -63731,19 +63783,19 @@ void Unwind_18090c280(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090c290(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c290(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  ProcessResourceData(validationContextParam + 0x48,*(uint8_t *)(validationContextParam + 0x58),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(validationContextParam + 0x48,*(uint8_t *)(validationContextParam + 0x58),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090c2a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c2a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  ProcessResourceData(validationContextParam + 0x48,*(uint8_t *)(validationContextParam + 0x58),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(validationContextParam + 0x48,*(uint8_t *)(validationContextParam + 0x58),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -64969,11 +65021,11 @@ void Unwind_18090c750(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090c760(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c760(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x110) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x110))(validationContextParam + 0x100,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x110))(validationContextParam + 0x100,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -64991,11 +65043,11 @@ void Unwind_18090c770(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090c780(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090c780(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x110) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x110))(validationContextParam + 0x100,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x110))(validationContextParam + 0x100,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -68665,56 +68717,56 @@ void Unwind_18090d310(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090d320(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090d320(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xa88) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa88),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa88),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090d330(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090d330(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xa88) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa88),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa88),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090d340(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090d340(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xa80) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa80),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa80),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090d350(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090d350(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xa80) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa80),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xa80),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -69657,28 +69709,28 @@ void Unwind_18090d4f0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090d500(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090d500(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x28) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x28),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x28),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090d510(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090d510(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xe8) + 0xd0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xe8) + 0xc0,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xe8) + 0xc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -72354,7 +72406,7 @@ void Unwind_18090e9b0(void)
 
 
 
-void Unwind_18090e9c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090e9c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -72364,7 +72416,7 @@ void Unwind_18090e9c0(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x40);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x38); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x38) == 0) {
     return;
@@ -72375,7 +72427,7 @@ void Unwind_18090e9c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_18090e9d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090e9d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -72385,7 +72437,7 @@ void Unwind_18090e9d0(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x40);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x38); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x38) == 0) {
     return;
@@ -72850,28 +72902,28 @@ void Unwind_18090ecf0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090ed00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090ed00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x80) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x80),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x80),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090ed10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090ed10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x80) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x80),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x80),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -72996,28 +73048,28 @@ void Unwind_18090ed80(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090ed90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090ed90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x178) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x178),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x178),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090eda0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090eda0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x150) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x150),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x150),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -73060,14 +73112,14 @@ void Unwind_18090edd0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090ede0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090ede0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x88) + 0x30);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x88) + 0x20,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x88) + 0x20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -73110,14 +73162,14 @@ void Unwind_18090ee10(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090ee20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090ee20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x150) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x150),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x150),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -73138,14 +73190,14 @@ void Unwind_18090ee30(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090ee40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090ee40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x98) + 0x30);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x98) + 0x20,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x98) + 0x20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -73188,28 +73240,28 @@ void Unwind_18090ee70(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090ee80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090ee80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0xe8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0xe8),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0xe8),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090ee90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090ee90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x178) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x178),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x178),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -73465,14 +73517,14 @@ void Unwind_18090ef70(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090ef80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090ef80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x78) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x78),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x78),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -73488,11 +73540,11 @@ void Unwind_18090ef90(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090efc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090efc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ResourceProcessingHandler(*(int64_t *)(validationContextParam + 0x70) + 0x2d0,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x2e0),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x2e0),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -73577,21 +73629,21 @@ void Unwind_18090f000(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090f020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ResourceProcessingHandler(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f030(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f030(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ResourceProcessingHandler(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -73720,41 +73772,41 @@ void Unwind_18090f070(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090f080(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f080(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ResourceOperationHandler(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f090(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f090(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ResourceOperationHandler(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f0a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f0a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ResourceProcessingHandler(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f0b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f0b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ResourceProcessingHandler(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -73836,35 +73888,35 @@ void Unwind_18090f0d0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090f0e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f0e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *pcVar1;
   
   pcVar1 = *(code **)(*(int64_t *)(validationContextParam + 0x40) + 0x68);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 0x58,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(int64_t *)(validationContextParam + 0x40) + 0x58,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_18090f0f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f0f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ResourceOperationHandler(*(int64_t *)(validationContextParam + 0x20),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x20) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f100(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f100(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ResourceOperationHandler(*(int64_t *)(validationContextParam + 0x20),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x20) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -74497,11 +74549,11 @@ void Unwind_18090f370(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090f390(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f390(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceConfiguration(*(int64_t *)(validationContextParam + 0x60) + 0x2c8,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0x2d8),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0x2d8),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -74715,11 +74767,11 @@ void Unwind_18090f570(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090f590(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f590(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceOptimization(*(int64_t *)(validationContextParam + 0x60) + 0x470,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0x480),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0x480),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -74768,22 +74820,22 @@ void Unwind_18090f5f0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090f610(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f610(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x60) + 0x40e0,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0x40f0),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0x40f0),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f630(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f630(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceRequest(*(int64_t *)(validationContextParam + 0x60) + 0x4110,
-                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0x4120),param_3,param_4,
+                *(uint8_t *)(*(int64_t *)(validationContextParam + 0x60) + 0x4120),CleanupOption,CleanupFlag,
                 0xfffffffffffffffe);
   return;
 }
@@ -74849,21 +74901,21 @@ void Unwind_18090f690(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090f6a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f6a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceConfiguration(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f6b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f6b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceConfiguration(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -74962,61 +75014,61 @@ void Unwind_18090f760(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090f780(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f780(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceOptimization(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f790(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f790(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceOptimization(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f7a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f7a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f7b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f7b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f7c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f7c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceRequest(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f7d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f7d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceRequest(*(int64_t *)(validationContextParam + 0x68),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -75043,21 +75095,21 @@ void Unwind_18090f7e0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090f7f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f7f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceConfiguration(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f800(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f800(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceConfiguration(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -75072,41 +75124,41 @@ void Unwind_18090f810(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090f840(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f840(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceOptimization(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f850(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f850(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceOptimization(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f860(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f860(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090f870(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090f870(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x40),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -75580,10 +75632,10 @@ void Unwind_18090fb00(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090fb10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090fb10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  ProcessResourceValidation(validationContextParam + 0x58,*(uint8_t *)(validationContextParam + 0x68),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceValidation(validationContextParam + 0x58,*(uint8_t *)(validationContextParam + 0x68),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -75598,19 +75650,19 @@ void Unwind_18090fb20(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_18090fb30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090fb30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  ProcessResourceValidation(validationContextParam + 0x58,*(uint8_t *)(validationContextParam + 0x68),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceValidation(validationContextParam + 0x58,*(uint8_t *)(validationContextParam + 0x68),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090fb40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_18090fb40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  ProcessResourceValidation(validationContextParam + 0x58,*(uint8_t *)(validationContextParam + 0x68),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceValidation(validationContextParam + 0x58,*(uint8_t *)(validationContextParam + 0x68),CleanupOption,CleanupFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -76960,7 +77012,7 @@ void Unwind_1809102b0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809102e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809102e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -76970,7 +77022,7 @@ void Unwind_1809102e0(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xf0);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0xe8); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0xe8) == 0) {
     return;
@@ -76981,7 +77033,7 @@ void Unwind_1809102e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809102f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809102f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -76991,7 +77043,7 @@ void Unwind_1809102f0(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xd0);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 200); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 200) == 0) {
     return;
@@ -77002,7 +77054,7 @@ void Unwind_1809102f0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910300(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910300(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -77012,7 +77064,7 @@ void Unwind_180910300(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xf0);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0xe8); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0xe8) == 0) {
     return;
@@ -77023,7 +77075,7 @@ void Unwind_180910300(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910310(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910310(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -77035,7 +77087,7 @@ void Unwind_180910310(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = (uint8_t *)presourceTable[1];
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -77082,7 +77134,7 @@ void Unwind_180910320(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180910330(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910330(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -77092,7 +77144,7 @@ void Unwind_180910330(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xd0);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 200); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 200) == 0) {
     return;
@@ -78000,14 +78052,14 @@ void Unwind_180910790(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809107a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809107a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xa00) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xa00))(localContextPointer + 0x9f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xa00))(localContextPointer + 0x9f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x9c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x9d0) != 0) {
@@ -78030,14 +78082,14 @@ void Unwind_1809107a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809107c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809107c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xa70) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xa70))(localContextPointer + 0xa60,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xa70))(localContextPointer + 0xa60,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xa38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa40) != 0) {
@@ -78060,14 +78112,14 @@ void Unwind_1809107c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809107e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809107e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xae0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xae0))(localContextPointer + 0xad0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xae0))(localContextPointer + 0xad0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xaa8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xab0) != 0) {
@@ -78090,14 +78142,14 @@ void Unwind_1809107e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910800(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910800(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xb50) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xb50))(localContextPointer + 0xb40,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xb50))(localContextPointer + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xb18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb20) != 0) {
@@ -78120,14 +78172,14 @@ void Unwind_180910800(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910820(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910820(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xbc0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xbc0))(localContextPointer + 0xbb0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xbc0))(localContextPointer + 0xbb0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xb88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb90) != 0) {
@@ -78150,14 +78202,14 @@ void Unwind_180910820(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910840(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910840(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xc30) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xc30))(localContextPointer + 0xc20,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xc30))(localContextPointer + 0xc20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xbf8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc00) != 0) {
@@ -78180,14 +78232,14 @@ void Unwind_180910840(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910860(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910860(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xca0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xca0))(localContextPointer + 0xc90,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xca0))(localContextPointer + 0xc90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xc68) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc70) != 0) {
@@ -78210,14 +78262,14 @@ void Unwind_180910860(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910880(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910880(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xd10) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xd10))(localContextPointer + 0xd00,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xd10))(localContextPointer + 0xd00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xcd8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xce0) != 0) {
@@ -78240,14 +78292,14 @@ void Unwind_180910880(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809108a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809108a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xd80) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xd80))(localContextPointer + 0xd70,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xd80))(localContextPointer + 0xd70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xd48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xd50) != 0) {
@@ -78270,14 +78322,14 @@ void Unwind_1809108a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809108c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809108c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xdf0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xdf0))(localContextPointer + 0xde0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xdf0))(localContextPointer + 0xde0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xdb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xdc0) != 0) {
@@ -78300,14 +78352,14 @@ void Unwind_1809108c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809108e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809108e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xe60) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xe60))(localContextPointer + 0xe50,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xe60))(localContextPointer + 0xe50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xe28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe30) != 0) {
@@ -78330,14 +78382,14 @@ void Unwind_1809108e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910900(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910900(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xed0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xed0))(localContextPointer + 0xec0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xed0))(localContextPointer + 0xec0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xe98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xea0) != 0) {
@@ -78360,14 +78412,14 @@ void Unwind_180910900(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910920(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910920(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xf40) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xf40))(localContextPointer + 0xf30,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xf40))(localContextPointer + 0xf30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xf08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf10) != 0) {
@@ -78390,14 +78442,14 @@ void Unwind_180910920(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910940(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910940(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0xfb0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xfb0))(localContextPointer + 4000,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xfb0))(localContextPointer + 4000,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xf78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf80) != 0) {
@@ -78420,14 +78472,14 @@ void Unwind_180910940(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910960(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910960(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1020) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1020))(localContextPointer + 0x1010,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1020))(localContextPointer + 0x1010,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xfe8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xff0) != 0) {
@@ -78450,14 +78502,14 @@ void Unwind_180910960(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910980(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910980(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1090) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1090))(localContextPointer + 0x1080,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1090))(localContextPointer + 0x1080,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1058) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1060) != 0) {
@@ -78480,14 +78532,14 @@ void Unwind_180910980(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809109a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809109a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1100) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1100))(localContextPointer + 0x10f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1100))(localContextPointer + 0x10f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x10c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x10d0) != 0) {
@@ -78510,14 +78562,14 @@ void Unwind_1809109a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809109c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809109c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1170) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1170))(localContextPointer + 0x1160,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1170))(localContextPointer + 0x1160,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1138) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1140) != 0) {
@@ -78540,14 +78592,14 @@ void Unwind_1809109c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809109e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809109e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x11e0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x11e0))(localContextPointer + 0x11d0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x11e0))(localContextPointer + 0x11d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x11a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x11b0) != 0) {
@@ -78570,14 +78622,14 @@ void Unwind_1809109e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910a00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910a00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1250) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1250))(localContextPointer + 0x1240,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1250))(localContextPointer + 0x1240,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1218) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1220) != 0) {
@@ -78600,14 +78652,14 @@ void Unwind_180910a00(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910a20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910a20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x12c0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x12c0))(localContextPointer + 0x12b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x12c0))(localContextPointer + 0x12b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1288) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1290) != 0) {
@@ -78630,14 +78682,14 @@ void Unwind_180910a20(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910a40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910a40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1330) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1330))(localContextPointer + 0x1320,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1330))(localContextPointer + 0x1320,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x12f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1300) != 0) {
@@ -78660,14 +78712,14 @@ void Unwind_180910a40(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910a60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910a60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x13a0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x13a0))(localContextPointer + 0x1390,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x13a0))(localContextPointer + 0x1390,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1368) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1370) != 0) {
@@ -78690,14 +78742,14 @@ void Unwind_180910a60(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910a80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910a80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1410) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1410))(localContextPointer + 0x1400,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1410))(localContextPointer + 0x1400,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x13d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x13e0) != 0) {
@@ -78720,14 +78772,14 @@ void Unwind_180910a80(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910aa0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910aa0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1480) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1480))(localContextPointer + 0x1470,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1480))(localContextPointer + 0x1470,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1448) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1450) != 0) {
@@ -78750,14 +78802,14 @@ void Unwind_180910aa0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910ac0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910ac0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x14f0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x14f0))(localContextPointer + 0x14e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x14f0))(localContextPointer + 0x14e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x14b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x14c0) != 0) {
@@ -78780,14 +78832,14 @@ void Unwind_180910ac0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910ae0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910ae0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1560) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1560))(localContextPointer + 0x1550,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1560))(localContextPointer + 0x1550,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1528) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1530) != 0) {
@@ -78810,14 +78862,14 @@ void Unwind_180910ae0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910b00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910b00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x15d0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x15d0))(localContextPointer + 0x15c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x15d0))(localContextPointer + 0x15c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1598) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x15a0) != 0) {
@@ -78840,14 +78892,14 @@ void Unwind_180910b00(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910b20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910b20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1640) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1640))(localContextPointer + 0x1630,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1640))(localContextPointer + 0x1630,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1608) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1610) != 0) {
@@ -78870,14 +78922,14 @@ void Unwind_180910b20(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910b40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910b40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x16b0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x16b0))(localContextPointer + 0x16a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x16b0))(localContextPointer + 0x16a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1678) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1680) != 0) {
@@ -78900,14 +78952,14 @@ void Unwind_180910b40(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910b60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910b60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1720) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1720))(localContextPointer + 0x1710,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1720))(localContextPointer + 0x1710,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x16e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x16f0) != 0) {
@@ -78930,14 +78982,14 @@ void Unwind_180910b60(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910b80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910b80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1790) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1790))(localContextPointer + 0x1780,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1790))(localContextPointer + 0x1780,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1758) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1760) != 0) {
@@ -78960,14 +79012,14 @@ void Unwind_180910b80(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910ba0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910ba0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1800) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1800))(localContextPointer + 0x17f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1800))(localContextPointer + 0x17f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x17c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x17d0) != 0) {
@@ -78990,14 +79042,14 @@ void Unwind_180910ba0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910bc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910bc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1870) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1870))(localContextPointer + 0x1860,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1870))(localContextPointer + 0x1860,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1838) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1840) != 0) {
@@ -79020,14 +79072,14 @@ void Unwind_180910bc0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910be0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910be0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x18e0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x18e0))(localContextPointer + 0x18d0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x18e0))(localContextPointer + 0x18d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x18a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x18b0) != 0) {
@@ -79050,14 +79102,14 @@ void Unwind_180910be0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910c00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910c00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1950) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1950))(localContextPointer + 0x1940,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1950))(localContextPointer + 0x1940,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1918) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1920) != 0) {
@@ -79080,14 +79132,14 @@ void Unwind_180910c00(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910c20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910c20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x19c0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x19c0))(localContextPointer + 0x19b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x19c0))(localContextPointer + 0x19b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1988) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1990) != 0) {
@@ -79110,14 +79162,14 @@ void Unwind_180910c20(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910c40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910c40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1a30) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1a30))(localContextPointer + 0x1a20,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1a30))(localContextPointer + 0x1a20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x19f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1a00) != 0) {
@@ -79140,14 +79192,14 @@ void Unwind_180910c40(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910c60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910c60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1aa0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1aa0))(localContextPointer + 0x1a90,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1aa0))(localContextPointer + 0x1a90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1a68) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1a70) != 0) {
@@ -79170,14 +79222,14 @@ void Unwind_180910c60(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910c80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910c80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1b10) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1b10))(localContextPointer + 0x1b00,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1b10))(localContextPointer + 0x1b00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1ad8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1ae0) != 0) {
@@ -79200,14 +79252,14 @@ void Unwind_180910c80(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910ca0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910ca0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1b80) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1b80))(localContextPointer + 0x1b70,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1b80))(localContextPointer + 0x1b70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1b48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1b50) != 0) {
@@ -79230,14 +79282,14 @@ void Unwind_180910ca0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910cc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910cc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1bf0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1bf0))(localContextPointer + 0x1be0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1bf0))(localContextPointer + 0x1be0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1bb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1bc0) != 0) {
@@ -79260,14 +79312,14 @@ void Unwind_180910cc0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910ce0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910ce0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1c60) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1c60))(localContextPointer + 0x1c50,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1c60))(localContextPointer + 0x1c50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1c28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1c30) != 0) {
@@ -79290,14 +79342,14 @@ void Unwind_180910ce0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910d00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910d00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1cd0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1cd0))(localContextPointer + 0x1cc0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1cd0))(localContextPointer + 0x1cc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1c98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1ca0) != 0) {
@@ -79320,14 +79372,14 @@ void Unwind_180910d00(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910d20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910d20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1d40) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1d40))(localContextPointer + 0x1d30,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1d40))(localContextPointer + 0x1d30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1d08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1d10) != 0) {
@@ -79350,14 +79402,14 @@ void Unwind_180910d20(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910d40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910d40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1db0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1db0))(localContextPointer + 0x1da0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1db0))(localContextPointer + 0x1da0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1d78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1d80) != 0) {
@@ -79380,14 +79432,14 @@ void Unwind_180910d40(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910d60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910d60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1e20) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1e20))(localContextPointer + 0x1e10,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1e20))(localContextPointer + 0x1e10,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1de8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1df0) != 0) {
@@ -79410,14 +79462,14 @@ void Unwind_180910d60(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910d80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910d80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1e90) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1e90))(localContextPointer + 0x1e80,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1e90))(localContextPointer + 0x1e80,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1e58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1e60) != 0) {
@@ -79440,14 +79492,14 @@ void Unwind_180910d80(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910da0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910da0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1f00) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1f00))(localContextPointer + 0x1ef0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1f00))(localContextPointer + 0x1ef0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1ec8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1ed0) != 0) {
@@ -79470,14 +79522,14 @@ void Unwind_180910da0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910dc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910dc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1f70) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1f70))(localContextPointer + 0x1f60,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1f70))(localContextPointer + 0x1f60,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1f38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 8000) != 0) {
@@ -79500,14 +79552,14 @@ void Unwind_180910dc0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910de0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910de0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x1fe0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1fe0))(localContextPointer + 0x1fd0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1fe0))(localContextPointer + 0x1fd0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1fa8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1fb0) != 0) {
@@ -79530,14 +79582,14 @@ void Unwind_180910de0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910e00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910e00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x2050) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2050))(localContextPointer + 0x2040,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2050))(localContextPointer + 0x2040,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2018) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2020) != 0) {
@@ -79560,14 +79612,14 @@ void Unwind_180910e00(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910e20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910e20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x20c0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x20c0))(localContextPointer + 0x20b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x20c0))(localContextPointer + 0x20b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2088) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2090) != 0) {
@@ -79590,14 +79642,14 @@ void Unwind_180910e20(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910e40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910e40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x2130) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2130))(localContextPointer + 0x2120,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2130))(localContextPointer + 0x2120,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x20f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2100) != 0) {
@@ -79620,14 +79672,14 @@ void Unwind_180910e40(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910e60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910e60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x21a0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x21a0))(localContextPointer + 0x2190,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x21a0))(localContextPointer + 0x2190,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2168) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2170) != 0) {
@@ -79650,14 +79702,14 @@ void Unwind_180910e60(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910e80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910e80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x2210) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2210))(localContextPointer + 0x2200,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2210))(localContextPointer + 0x2200,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x21d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x21e0) != 0) {
@@ -79680,14 +79732,14 @@ void Unwind_180910e80(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910ea0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910ea0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x2280) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2280))(localContextPointer + 0x2270,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2280))(localContextPointer + 0x2270,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2248) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2250) != 0) {
@@ -79710,14 +79762,14 @@ void Unwind_180910ea0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910ec0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910ec0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x22f0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x22f0))(localContextPointer + 0x22e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x22f0))(localContextPointer + 0x22e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x22b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x22c0) != 0) {
@@ -79740,14 +79792,14 @@ void Unwind_180910ec0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910ee0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910ee0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x2360) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2360))(localContextPointer + 0x2350,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2360))(localContextPointer + 0x2350,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 9000) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2330) != 0) {
@@ -79770,14 +79822,14 @@ void Unwind_180910ee0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910f00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910f00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x23d0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x23d0))(localContextPointer + 0x23c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x23d0))(localContextPointer + 0x23c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2398) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x23a0) != 0) {
@@ -79800,14 +79852,14 @@ void Unwind_180910f00(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910f20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910f20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x2440) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2440))(localContextPointer + 0x2430,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2440))(localContextPointer + 0x2430,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2408) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2410) != 0) {
@@ -79830,14 +79882,14 @@ void Unwind_180910f20(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910f40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910f40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x24b0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x24b0))(localContextPointer + 0x24a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x24b0))(localContextPointer + 0x24a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2478) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2480) != 0) {
@@ -79860,14 +79912,14 @@ void Unwind_180910f40(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910f60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910f60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x2520) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2520))(localContextPointer + 0x2510,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2520))(localContextPointer + 0x2510,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x24e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x24f0) != 0) {
@@ -79890,14 +79942,14 @@ void Unwind_180910f60(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910f80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910f80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x2590) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2590))(localContextPointer + 0x2580,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2590))(localContextPointer + 0x2580,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2558) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2560) != 0) {
@@ -79920,14 +79972,14 @@ void Unwind_180910f80(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910fa0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910fa0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x80);
   if (*(code **)(localContextPointer + 0x2600) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2600))(localContextPointer + 0x25f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2600))(localContextPointer + 0x25f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x25c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x25d0) != 0) {
@@ -79950,7 +80002,7 @@ void Unwind_180910fa0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910fc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910fc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -79962,7 +80014,7 @@ void Unwind_180910fc0(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x80) + 0x2618);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -79973,7 +80025,7 @@ void Unwind_180910fc0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180910fe0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180910fe0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -79985,7 +80037,7 @@ void Unwind_180910fe0(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x80) + 0x2638);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -79996,14 +80048,14 @@ void Unwind_180910fe0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911000(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911000(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xa00) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xa00))(localContextPointer + 0x9f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xa00))(localContextPointer + 0x9f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x9c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x9d0) != 0) {
@@ -80026,14 +80078,14 @@ void Unwind_180911000(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xa70) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xa70))(localContextPointer + 0xa60,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xa70))(localContextPointer + 0xa60,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xa38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa40) != 0) {
@@ -80056,14 +80108,14 @@ void Unwind_180911020(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911040(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911040(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xae0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xae0))(localContextPointer + 0xad0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xae0))(localContextPointer + 0xad0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xaa8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xab0) != 0) {
@@ -80086,14 +80138,14 @@ void Unwind_180911040(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911060(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911060(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xb50) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xb50))(localContextPointer + 0xb40,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xb50))(localContextPointer + 0xb40,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xb18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb20) != 0) {
@@ -80116,14 +80168,14 @@ void Unwind_180911060(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911080(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911080(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xbc0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xbc0))(localContextPointer + 0xbb0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xbc0))(localContextPointer + 0xbb0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xb88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb90) != 0) {
@@ -80146,14 +80198,14 @@ void Unwind_180911080(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809110a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809110a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xc30) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xc30))(localContextPointer + 0xc20,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xc30))(localContextPointer + 0xc20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xbf8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc00) != 0) {
@@ -80176,14 +80228,14 @@ void Unwind_1809110a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809110c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809110c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xca0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xca0))(localContextPointer + 0xc90,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xca0))(localContextPointer + 0xc90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xc68) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc70) != 0) {
@@ -80206,14 +80258,14 @@ void Unwind_1809110c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809110e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809110e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xd10) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xd10))(localContextPointer + 0xd00,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xd10))(localContextPointer + 0xd00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xcd8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xce0) != 0) {
@@ -80236,14 +80288,14 @@ void Unwind_1809110e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911100(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911100(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xd80) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xd80))(localContextPointer + 0xd70,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xd80))(localContextPointer + 0xd70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xd48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xd50) != 0) {
@@ -80266,14 +80318,14 @@ void Unwind_180911100(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911120(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911120(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xdf0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xdf0))(localContextPointer + 0xde0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xdf0))(localContextPointer + 0xde0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xdb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xdc0) != 0) {
@@ -80296,14 +80348,14 @@ void Unwind_180911120(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911140(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911140(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xe60) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xe60))(localContextPointer + 0xe50,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xe60))(localContextPointer + 0xe50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xe28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe30) != 0) {
@@ -80326,14 +80378,14 @@ void Unwind_180911140(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911160(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911160(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xed0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xed0))(localContextPointer + 0xec0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xed0))(localContextPointer + 0xec0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xe98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xea0) != 0) {
@@ -80356,14 +80408,14 @@ void Unwind_180911160(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911180(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911180(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xf40) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xf40))(localContextPointer + 0xf30,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xf40))(localContextPointer + 0xf30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xf08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf10) != 0) {
@@ -80386,14 +80438,14 @@ void Unwind_180911180(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809111a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809111a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0xfb0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0xfb0))(localContextPointer + 4000,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0xfb0))(localContextPointer + 4000,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xf78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf80) != 0) {
@@ -80416,14 +80468,14 @@ void Unwind_1809111a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809111c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809111c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1020) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1020))(localContextPointer + 0x1010,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1020))(localContextPointer + 0x1010,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0xfe8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xff0) != 0) {
@@ -80446,14 +80498,14 @@ void Unwind_1809111c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809111e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809111e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1090) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1090))(localContextPointer + 0x1080,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1090))(localContextPointer + 0x1080,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1058) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1060) != 0) {
@@ -80476,14 +80528,14 @@ void Unwind_1809111e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911200(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911200(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1100) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1100))(localContextPointer + 0x10f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1100))(localContextPointer + 0x10f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x10c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x10d0) != 0) {
@@ -80506,14 +80558,14 @@ void Unwind_180911200(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911220(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911220(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1170) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1170))(localContextPointer + 0x1160,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1170))(localContextPointer + 0x1160,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1138) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1140) != 0) {
@@ -80536,14 +80588,14 @@ void Unwind_180911220(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911240(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911240(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x11e0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x11e0))(localContextPointer + 0x11d0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x11e0))(localContextPointer + 0x11d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x11a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x11b0) != 0) {
@@ -80566,14 +80618,14 @@ void Unwind_180911240(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911260(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911260(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1250) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1250))(localContextPointer + 0x1240,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1250))(localContextPointer + 0x1240,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1218) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1220) != 0) {
@@ -80596,14 +80648,14 @@ void Unwind_180911260(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911280(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911280(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x12c0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x12c0))(localContextPointer + 0x12b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x12c0))(localContextPointer + 0x12b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1288) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1290) != 0) {
@@ -80626,14 +80678,14 @@ void Unwind_180911280(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809112a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809112a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1330) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1330))(localContextPointer + 0x1320,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1330))(localContextPointer + 0x1320,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x12f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1300) != 0) {
@@ -80656,14 +80708,14 @@ void Unwind_1809112a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809112c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809112c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x13a0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x13a0))(localContextPointer + 0x1390,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x13a0))(localContextPointer + 0x1390,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1368) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1370) != 0) {
@@ -80686,14 +80738,14 @@ void Unwind_1809112c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809112e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809112e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1410) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1410))(localContextPointer + 0x1400,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1410))(localContextPointer + 0x1400,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x13d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x13e0) != 0) {
@@ -80716,14 +80768,14 @@ void Unwind_1809112e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911300(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911300(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1480) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1480))(localContextPointer + 0x1470,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1480))(localContextPointer + 0x1470,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1448) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1450) != 0) {
@@ -80746,14 +80798,14 @@ void Unwind_180911300(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911320(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911320(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x14f0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x14f0))(localContextPointer + 0x14e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x14f0))(localContextPointer + 0x14e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x14b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x14c0) != 0) {
@@ -80776,14 +80828,14 @@ void Unwind_180911320(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911340(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911340(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1560) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1560))(localContextPointer + 0x1550,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1560))(localContextPointer + 0x1550,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1528) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1530) != 0) {
@@ -80806,14 +80858,14 @@ void Unwind_180911340(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911360(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911360(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x15d0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x15d0))(localContextPointer + 0x15c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x15d0))(localContextPointer + 0x15c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1598) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x15a0) != 0) {
@@ -80836,14 +80888,14 @@ void Unwind_180911360(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911380(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911380(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1640) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1640))(localContextPointer + 0x1630,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1640))(localContextPointer + 0x1630,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1608) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1610) != 0) {
@@ -80866,14 +80918,14 @@ void Unwind_180911380(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809113a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809113a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x16b0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x16b0))(localContextPointer + 0x16a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x16b0))(localContextPointer + 0x16a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1678) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1680) != 0) {
@@ -80896,14 +80948,14 @@ void Unwind_1809113a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809113c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809113c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1720) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1720))(localContextPointer + 0x1710,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1720))(localContextPointer + 0x1710,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x16e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x16f0) != 0) {
@@ -80926,14 +80978,14 @@ void Unwind_1809113c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809113e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809113e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1790) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1790))(localContextPointer + 0x1780,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1790))(localContextPointer + 0x1780,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1758) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1760) != 0) {
@@ -80956,14 +81008,14 @@ void Unwind_1809113e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911400(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911400(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1800) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1800))(localContextPointer + 0x17f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1800))(localContextPointer + 0x17f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x17c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x17d0) != 0) {
@@ -80986,14 +81038,14 @@ void Unwind_180911400(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911420(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911420(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1870) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1870))(localContextPointer + 0x1860,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1870))(localContextPointer + 0x1860,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1838) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1840) != 0) {
@@ -81016,14 +81068,14 @@ void Unwind_180911420(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911440(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911440(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x18e0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x18e0))(localContextPointer + 0x18d0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x18e0))(localContextPointer + 0x18d0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x18a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x18b0) != 0) {
@@ -81046,14 +81098,14 @@ void Unwind_180911440(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911460(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911460(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1950) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1950))(localContextPointer + 0x1940,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1950))(localContextPointer + 0x1940,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1918) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1920) != 0) {
@@ -81076,14 +81128,14 @@ void Unwind_180911460(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911480(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911480(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x19c0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x19c0))(localContextPointer + 0x19b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x19c0))(localContextPointer + 0x19b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1988) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1990) != 0) {
@@ -81106,14 +81158,14 @@ void Unwind_180911480(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809114a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809114a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1a30) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1a30))(localContextPointer + 0x1a20,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1a30))(localContextPointer + 0x1a20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x19f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1a00) != 0) {
@@ -81136,14 +81188,14 @@ void Unwind_1809114a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809114c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809114c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1aa0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1aa0))(localContextPointer + 0x1a90,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1aa0))(localContextPointer + 0x1a90,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1a68) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1a70) != 0) {
@@ -81166,14 +81218,14 @@ void Unwind_1809114c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809114e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809114e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1b10) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1b10))(localContextPointer + 0x1b00,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1b10))(localContextPointer + 0x1b00,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1ad8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1ae0) != 0) {
@@ -81196,14 +81248,14 @@ void Unwind_1809114e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911500(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911500(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1b80) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1b80))(localContextPointer + 0x1b70,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1b80))(localContextPointer + 0x1b70,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1b48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1b50) != 0) {
@@ -81226,14 +81278,14 @@ void Unwind_180911500(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911520(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911520(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1bf0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1bf0))(localContextPointer + 0x1be0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1bf0))(localContextPointer + 0x1be0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1bb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1bc0) != 0) {
@@ -81256,14 +81308,14 @@ void Unwind_180911520(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911540(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911540(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1c60) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1c60))(localContextPointer + 0x1c50,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1c60))(localContextPointer + 0x1c50,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1c28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1c30) != 0) {
@@ -81286,14 +81338,14 @@ void Unwind_180911540(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911560(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911560(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1cd0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1cd0))(localContextPointer + 0x1cc0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1cd0))(localContextPointer + 0x1cc0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1c98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1ca0) != 0) {
@@ -81316,14 +81368,14 @@ void Unwind_180911560(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911580(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911580(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1d40) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1d40))(localContextPointer + 0x1d30,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1d40))(localContextPointer + 0x1d30,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1d08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1d10) != 0) {
@@ -81346,14 +81398,14 @@ void Unwind_180911580(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809115a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809115a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1db0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1db0))(localContextPointer + 0x1da0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1db0))(localContextPointer + 0x1da0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1d78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1d80) != 0) {
@@ -81376,14 +81428,14 @@ void Unwind_1809115a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809115c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809115c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1e20) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1e20))(localContextPointer + 0x1e10,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1e20))(localContextPointer + 0x1e10,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1de8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1df0) != 0) {
@@ -81406,14 +81458,14 @@ void Unwind_1809115c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809115e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809115e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1e90) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1e90))(localContextPointer + 0x1e80,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1e90))(localContextPointer + 0x1e80,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1e58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1e60) != 0) {
@@ -81436,14 +81488,14 @@ void Unwind_1809115e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911600(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911600(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1f00) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1f00))(localContextPointer + 0x1ef0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1f00))(localContextPointer + 0x1ef0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1ec8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1ed0) != 0) {
@@ -81466,14 +81518,14 @@ void Unwind_180911600(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911620(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911620(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1f70) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1f70))(localContextPointer + 0x1f60,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1f70))(localContextPointer + 0x1f60,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1f38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 8000) != 0) {
@@ -81496,14 +81548,14 @@ void Unwind_180911620(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911640(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911640(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x1fe0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x1fe0))(localContextPointer + 0x1fd0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x1fe0))(localContextPointer + 0x1fd0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x1fa8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1fb0) != 0) {
@@ -81526,14 +81578,14 @@ void Unwind_180911640(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911660(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911660(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x2050) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2050))(localContextPointer + 0x2040,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2050))(localContextPointer + 0x2040,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2018) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2020) != 0) {
@@ -81556,14 +81608,14 @@ void Unwind_180911660(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911680(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911680(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x20c0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x20c0))(localContextPointer + 0x20b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x20c0))(localContextPointer + 0x20b0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2088) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2090) != 0) {
@@ -81586,14 +81638,14 @@ void Unwind_180911680(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809116a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809116a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x2130) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2130))(localContextPointer + 0x2120,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2130))(localContextPointer + 0x2120,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x20f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2100) != 0) {
@@ -81616,14 +81668,14 @@ void Unwind_1809116a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809116c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809116c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x21a0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x21a0))(localContextPointer + 0x2190,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x21a0))(localContextPointer + 0x2190,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2168) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2170) != 0) {
@@ -81646,14 +81698,14 @@ void Unwind_1809116c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809116e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809116e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x2210) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2210))(localContextPointer + 0x2200,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2210))(localContextPointer + 0x2200,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x21d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x21e0) != 0) {
@@ -81676,14 +81728,14 @@ void Unwind_1809116e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911700(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911700(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x2280) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2280))(localContextPointer + 0x2270,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2280))(localContextPointer + 0x2270,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2248) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2250) != 0) {
@@ -81706,14 +81758,14 @@ void Unwind_180911700(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911720(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911720(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x22f0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x22f0))(localContextPointer + 0x22e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x22f0))(localContextPointer + 0x22e0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x22b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x22c0) != 0) {
@@ -81736,14 +81788,14 @@ void Unwind_180911720(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911740(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911740(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x2360) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2360))(localContextPointer + 0x2350,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2360))(localContextPointer + 0x2350,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 9000) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2330) != 0) {
@@ -81766,14 +81818,14 @@ void Unwind_180911740(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911760(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911760(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x23d0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x23d0))(localContextPointer + 0x23c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x23d0))(localContextPointer + 0x23c0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2398) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x23a0) != 0) {
@@ -81796,14 +81848,14 @@ void Unwind_180911760(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911780(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911780(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x2440) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2440))(localContextPointer + 0x2430,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2440))(localContextPointer + 0x2430,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2408) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2410) != 0) {
@@ -81826,14 +81878,14 @@ void Unwind_180911780(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809117a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809117a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x24b0) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x24b0))(localContextPointer + 0x24a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x24b0))(localContextPointer + 0x24a0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2478) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2480) != 0) {
@@ -81856,14 +81908,14 @@ void Unwind_1809117a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809117c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809117c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x2520) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2520))(localContextPointer + 0x2510,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2520))(localContextPointer + 0x2510,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x24e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x24f0) != 0) {
@@ -81886,14 +81938,14 @@ void Unwind_1809117c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809117e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809117e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x2590) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2590))(localContextPointer + 0x2580,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2590))(localContextPointer + 0x2580,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x2558) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2560) != 0) {
@@ -81916,14 +81968,14 @@ void Unwind_1809117e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911800(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911800(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
   
   loopCounter = *(int64_t *)(validationContextParam + 0x40);
   if (*(code **)(localContextPointer + 0x2600) != (code *)0x0) {
-    (**(code **)(localContextPointer + 0x2600))(localContextPointer + 0x25f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(localContextPointer + 0x2600))(localContextPointer + 0x25f0,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(localContextPointer + 0x25c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x25d0) != 0) {
@@ -81946,7 +81998,7 @@ void Unwind_180911800(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911820(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911820(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -81958,7 +82010,7 @@ void Unwind_180911820(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x2618);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -81969,7 +82021,7 @@ void Unwind_180911820(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911840(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911840(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -81981,7 +82033,7 @@ void Unwind_180911840(uint8_t objectContextParam,int64_t validationContextParam,
   unsignedResult4 = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x40) + 0x2638);
   for (punsignedResult3 = (uint8_t *)*presourceTable; punsignedResult3 != presourceHash; punsignedResult3 = punsignedResult3 + 4) {
-    (**(code **)*punsignedResult3)(punsignedResult3,0,param_3,param_4,unsignedResult4);
+    (**(code **)*punsignedResult3)(punsignedResult3,0,CleanupOption,CleanupFlag,unsignedResult4);
   }
   if (*presourceTable == 0) {
     return;
@@ -81992,7 +82044,7 @@ void Unwind_180911840(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911860(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911860(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -82002,7 +82054,7 @@ void Unwind_180911860(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x78);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x70); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x70) == 0) {
     return;
@@ -82013,7 +82065,7 @@ void Unwind_180911860(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911870(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911870(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -82023,7 +82075,7 @@ void Unwind_180911870(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x118);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x110); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x110) == 0) {
     return;
@@ -82034,7 +82086,7 @@ void Unwind_180911870(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911880(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911880(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -82044,7 +82096,7 @@ void Unwind_180911880(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xf8);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0xf0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0xf0) == 0) {
     return;
@@ -82055,7 +82107,7 @@ void Unwind_180911880(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911890(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911890(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -82065,7 +82117,7 @@ void Unwind_180911890(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xd8);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0xd0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0xd0) == 0) {
     return;
@@ -82076,7 +82128,7 @@ void Unwind_180911890(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809118a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809118a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -82086,7 +82138,7 @@ void Unwind_1809118a0(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xb8);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0xb0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0xb0) == 0) {
     return;
@@ -82097,7 +82149,7 @@ void Unwind_1809118a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_1809118b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809118b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -82107,7 +82159,7 @@ void Unwind_1809118b0(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x138);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x130); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x130) == 0) {
     return;
@@ -82163,7 +82215,7 @@ void Unwind_1809118d0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_1809118e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809118e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -82173,7 +82225,7 @@ void Unwind_1809118e0(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x78);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x70); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x70) == 0) {
     return;
@@ -82220,7 +82272,7 @@ void Unwind_1809118f0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180911900(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911900(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -82230,7 +82282,7 @@ void Unwind_180911900(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x118);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x110); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x110) == 0) {
     return;
@@ -82241,7 +82293,7 @@ void Unwind_180911900(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911910(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911910(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -82251,7 +82303,7 @@ void Unwind_180911910(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xf8);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0xf0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0xf0) == 0) {
     return;
@@ -82262,7 +82314,7 @@ void Unwind_180911910(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911920(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911920(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -82272,7 +82324,7 @@ void Unwind_180911920(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xd8);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0xd0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0xd0) == 0) {
     return;
@@ -82283,7 +82335,7 @@ void Unwind_180911920(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911930(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911930(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -82293,7 +82345,7 @@ void Unwind_180911930(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0xb8);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0xb0); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0xb0) == 0) {
     return;
@@ -82304,7 +82356,7 @@ void Unwind_180911930(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180911940(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911940(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -82314,7 +82366,7 @@ void Unwind_180911940(uint8_t objectContextParam,int64_t validationContextParam,
   cleanupFlag = 0xfffffffffffffffe;
   presourceHash = *(uint8_t **)(validationContextParam + 0x138);
   for (pvalidationResult = *(uint8_t **)(validationContextParam + 0x130); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 4) {
-    (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+    (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
   }
   if (*(int64_t *)(validationContextParam + 0x130) == 0) {
     return;
@@ -82409,88 +82461,88 @@ void Unwind_1809119f0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180911a20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911a20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x30) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x30))(validationContextParam + 0x20,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x30))(validationContextParam + 0x20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911a30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x98) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x98))(validationContextParam + 0x88,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x98))(validationContextParam + 0x88,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911a40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0xb8) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0xb8))(validationContextParam + 0xa8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0xb8))(validationContextParam + 0xa8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911a50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0xd8) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0xd8))(validationContextParam + 200,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0xd8))(validationContextParam + 200,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911a60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0xf8) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0xf8))(validationContextParam + 0xe8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0xf8))(validationContextParam + 0xe8,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911a70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x118) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x118))(validationContextParam + 0x108,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x118))(validationContextParam + 0x108,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911a80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x138) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x138))(validationContextParam + 0x128,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x138))(validationContextParam + 0x128,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180911a90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911a90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(validationContextParam + 0x30) != (code *)0x0) {
-    (**(code **)(validationContextParam + 0x30))(validationContextParam + 0x20,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContextParam + 0x30))(validationContextParam + 0x20,0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82523,7 +82575,7 @@ void Unwind_180911ad0(uint8_t objectContextParam,int64_t validationContextParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911b00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82534,7 +82586,7 @@ void Unwind_180911b00(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82543,7 +82595,7 @@ void Unwind_180911b00(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911b10(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82554,7 +82606,7 @@ void Unwind_180911b10(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82563,7 +82615,7 @@ void Unwind_180911b10(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911b20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82574,7 +82626,7 @@ void Unwind_180911b20(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82583,7 +82635,7 @@ void Unwind_180911b20(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911b30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82594,7 +82646,7 @@ void Unwind_180911b30(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82603,7 +82655,7 @@ void Unwind_180911b30(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911b40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82614,7 +82666,7 @@ void Unwind_180911b40(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82623,7 +82675,7 @@ void Unwind_180911b40(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911b50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82634,7 +82686,7 @@ void Unwind_180911b50(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82643,7 +82695,7 @@ void Unwind_180911b50(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911b70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911b70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82654,7 +82706,7 @@ void Unwind_180911b70(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82707,7 +82759,7 @@ void Unwind_180911c00(uint8_t objectContextParam,int64_t validationContextParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911c30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911c30(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82718,7 +82770,7 @@ void Unwind_180911c30(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82727,7 +82779,7 @@ void Unwind_180911c30(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911c40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911c40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82738,7 +82790,7 @@ void Unwind_180911c40(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(*(int64_t *)(validationContextParam + 0x70) + 0x1608);
   if (loopCounter != 0) {
@@ -82746,7 +82798,7 @@ void Unwind_180911c40(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82755,7 +82807,7 @@ void Unwind_180911c40(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911c60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911c60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82766,7 +82818,7 @@ void Unwind_180911c60(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82775,7 +82827,7 @@ void Unwind_180911c60(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911c80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911c80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82786,7 +82838,7 @@ void Unwind_180911c80(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82795,7 +82847,7 @@ void Unwind_180911c80(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911ca0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911ca0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82806,7 +82858,7 @@ void Unwind_180911ca0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82815,7 +82867,7 @@ void Unwind_180911ca0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911cc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911cc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82826,7 +82878,7 @@ void Unwind_180911cc0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82835,7 +82887,7 @@ void Unwind_180911cc0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911ce0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911ce0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82846,7 +82898,7 @@ void Unwind_180911ce0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82855,7 +82907,7 @@ void Unwind_180911ce0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911d00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911d00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82866,7 +82918,7 @@ void Unwind_180911d00(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82875,7 +82927,7 @@ void Unwind_180911d00(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911d20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911d20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82886,7 +82938,7 @@ void Unwind_180911d20(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82895,7 +82947,7 @@ void Unwind_180911d20(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911d40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911d40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82906,7 +82958,7 @@ void Unwind_180911d40(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82915,7 +82967,7 @@ void Unwind_180911d40(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911d60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911d60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82926,7 +82978,7 @@ void Unwind_180911d60(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82935,7 +82987,7 @@ void Unwind_180911d60(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911d80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911d80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82946,7 +82998,7 @@ void Unwind_180911d80(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82955,7 +83007,7 @@ void Unwind_180911d80(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911da0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911da0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82966,7 +83018,7 @@ void Unwind_180911da0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82975,7 +83027,7 @@ void Unwind_180911da0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911dc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911dc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -82986,7 +83038,7 @@ void Unwind_180911dc0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -82995,7 +83047,7 @@ void Unwind_180911dc0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911de0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911de0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int *pintegerValue1;
@@ -83020,7 +83072,7 @@ void Unwind_180911de0(uint8_t objectContextParam,int64_t validationContextParam,
           *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        ProcessResourceOperation(resourceIndex,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+        ProcessResourceOperation(resourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
       }
       unsignedValue6 = (int)unsignedValue7 + 1;
       unsignedValue5 = unsignedValue5 + 0x10;
@@ -83035,7 +83087,7 @@ void Unwind_180911de0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(resourceIndex,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(resourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   resourceIndex = *(int64_t *)(lVar4 + 0x1e68);
   if (resourceIndex == 0) {
@@ -83046,7 +83098,7 @@ void Unwind_180911de0(uint8_t objectContextParam,int64_t validationContextParam,
         *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      ProcessResourceOperation(resourceIndex,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+      ProcessResourceOperation(resourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     }
     lVar4 = *(int64_t *)(lVar4 + 0x1e68);
     if (lVar4 == 0) {
@@ -83056,21 +83108,21 @@ void Unwind_180911de0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(lVar4,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(lVar4,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint8_t *)(lVar4 + 0x1e60) = 0;
   if (GlobalUnwindContext != 0) {
     *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  ProcessResourceOperation(resourceIndex,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceOperation(resourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911e00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911e00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83081,7 +83133,7 @@ void Unwind_180911e00(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83090,7 +83142,7 @@ void Unwind_180911e00(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911e20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911e20(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83101,7 +83153,7 @@ void Unwind_180911e20(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83110,7 +83162,7 @@ void Unwind_180911e20(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911e40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911e40(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83123,7 +83175,7 @@ void Unwind_180911e40(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1ec8);
   if (loopCounter != 0) {
@@ -83131,7 +83183,7 @@ void Unwind_180911e40(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1eb8);
   if (loopCounter != 0) {
@@ -83139,7 +83191,7 @@ void Unwind_180911e40(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83148,7 +83200,7 @@ void Unwind_180911e40(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911e60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911e60(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83164,7 +83216,7 @@ void Unwind_180911e60(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x2d58);
   if (loopCounter != 0) {
@@ -83172,7 +83224,7 @@ void Unwind_180911e60(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x2d48);
   if (loopCounter != 0) {
@@ -83180,7 +83232,7 @@ void Unwind_180911e60(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   return;
 }
@@ -83189,7 +83241,7 @@ void Unwind_180911e60(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911e80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911e80(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83200,7 +83252,7 @@ void Unwind_180911e80(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83209,7 +83261,7 @@ void Unwind_180911e80(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911ea0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911ea0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83220,7 +83272,7 @@ void Unwind_180911ea0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83229,7 +83281,7 @@ void Unwind_180911ea0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911ec0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911ec0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83240,7 +83292,7 @@ void Unwind_180911ec0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83249,7 +83301,7 @@ void Unwind_180911ec0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911ee0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911ee0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83260,7 +83312,7 @@ void Unwind_180911ee0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83269,7 +83321,7 @@ void Unwind_180911ee0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911f00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911f00(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83280,7 +83332,7 @@ void Unwind_180911f00(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83299,7 +83351,7 @@ void Unwind_180911f20(uint8_t objectContextParam,int64_t validationContextParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911f50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911f50(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83310,7 +83362,7 @@ void Unwind_180911f50(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83319,7 +83371,7 @@ void Unwind_180911f50(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911f70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911f70(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83330,7 +83382,7 @@ void Unwind_180911f70(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83339,7 +83391,7 @@ void Unwind_180911f70(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911f90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911f90(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83350,7 +83402,7 @@ void Unwind_180911f90(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83359,7 +83411,7 @@ void Unwind_180911f90(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911fa0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911fa0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83370,7 +83422,7 @@ void Unwind_180911fa0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83379,7 +83431,7 @@ void Unwind_180911fa0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911fb0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911fb0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83390,7 +83442,7 @@ void Unwind_180911fb0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83399,7 +83451,7 @@ void Unwind_180911fb0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911fc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911fc0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83410,7 +83462,7 @@ void Unwind_180911fc0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83419,7 +83471,7 @@ void Unwind_180911fc0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911fd0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911fd0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83430,7 +83482,7 @@ void Unwind_180911fd0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83439,7 +83491,7 @@ void Unwind_180911fd0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911fe0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911fe0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83450,7 +83502,7 @@ void Unwind_180911fe0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83459,7 +83511,7 @@ void Unwind_180911fe0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911ff0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180911ff0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83470,7 +83522,7 @@ void Unwind_180911ff0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83479,7 +83531,7 @@ void Unwind_180911ff0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912000(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912000(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83490,7 +83542,7 @@ void Unwind_180912000(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83499,7 +83551,7 @@ void Unwind_180912000(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912010(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912010(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83510,7 +83562,7 @@ void Unwind_180912010(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83519,7 +83571,7 @@ void Unwind_180912010(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912020(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83530,7 +83582,7 @@ void Unwind_180912020(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83539,7 +83591,7 @@ void Unwind_180912020(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912040(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912040(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83550,7 +83602,7 @@ void Unwind_180912040(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83559,7 +83611,7 @@ void Unwind_180912040(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912060(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912060(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83570,7 +83622,7 @@ void Unwind_180912060(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83579,7 +83631,7 @@ void Unwind_180912060(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912080(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912080(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83590,7 +83642,7 @@ void Unwind_180912080(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83599,7 +83651,7 @@ void Unwind_180912080(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912090(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912090(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83610,7 +83662,7 @@ void Unwind_180912090(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83619,7 +83671,7 @@ void Unwind_180912090(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809120a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809120a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83630,7 +83682,7 @@ void Unwind_1809120a0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83639,7 +83691,7 @@ void Unwind_1809120a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809120b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809120b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83650,7 +83702,7 @@ void Unwind_1809120b0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83659,7 +83711,7 @@ void Unwind_1809120b0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809120d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809120d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83670,7 +83722,7 @@ void Unwind_1809120d0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83679,7 +83731,7 @@ void Unwind_1809120d0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809120f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809120f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83690,7 +83742,7 @@ void Unwind_1809120f0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83699,7 +83751,7 @@ void Unwind_1809120f0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912110(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912110(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83710,7 +83762,7 @@ void Unwind_180912110(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83719,7 +83771,7 @@ void Unwind_180912110(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912130(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912130(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83730,7 +83782,7 @@ void Unwind_180912130(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83739,7 +83791,7 @@ void Unwind_180912130(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912150(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912150(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83750,7 +83802,7 @@ void Unwind_180912150(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83759,7 +83811,7 @@ void Unwind_180912150(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912170(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912170(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83770,7 +83822,7 @@ void Unwind_180912170(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83779,7 +83831,7 @@ void Unwind_180912170(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912180(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912180(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83792,7 +83844,7 @@ void Unwind_180912180(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1e0);
   if (loopCounter != 0) {
@@ -83800,7 +83852,7 @@ void Unwind_180912180(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1d0);
   if (loopCounter != 0) {
@@ -83808,7 +83860,7 @@ void Unwind_180912180(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1c0);
   if (loopCounter != 0) {
@@ -83816,7 +83868,7 @@ void Unwind_180912180(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 400);
   if (loopCounter != 0) {
@@ -83824,7 +83876,7 @@ void Unwind_180912180(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83833,7 +83885,7 @@ void Unwind_180912180(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809121a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809121a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83844,7 +83896,7 @@ void Unwind_1809121a0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83853,7 +83905,7 @@ void Unwind_1809121a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809121c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809121c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83864,7 +83916,7 @@ void Unwind_1809121c0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83873,7 +83925,7 @@ void Unwind_1809121c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809121e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809121e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83884,7 +83936,7 @@ void Unwind_1809121e0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83893,7 +83945,7 @@ void Unwind_1809121e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912200(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912200(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83909,7 +83961,7 @@ void Unwind_180912200(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x378);
   if (loopCounter != 0) {
@@ -83917,7 +83969,7 @@ void Unwind_180912200(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x368);
   if (loopCounter != 0) {
@@ -83925,7 +83977,7 @@ void Unwind_180912200(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x358);
   if (loopCounter != 0) {
@@ -83933,7 +83985,7 @@ void Unwind_180912200(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x318);
   if (loopCounter != 0) {
@@ -83941,7 +83993,7 @@ void Unwind_180912200(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x308);
   if (loopCounter != 0) {
@@ -83949,7 +84001,7 @@ void Unwind_180912200(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x2f8);
   if (loopCounter != 0) {
@@ -83957,7 +84009,7 @@ void Unwind_180912200(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   return;
 }
@@ -83966,7 +84018,7 @@ void Unwind_180912200(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912220(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912220(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83977,7 +84029,7 @@ void Unwind_180912220(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -83986,7 +84038,7 @@ void Unwind_180912220(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912240(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912240(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -83997,7 +84049,7 @@ void Unwind_180912240(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84006,7 +84058,7 @@ void Unwind_180912240(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912260(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912260(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84017,7 +84069,7 @@ void Unwind_180912260(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84026,7 +84078,7 @@ void Unwind_180912260(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912280(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912280(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84037,7 +84089,7 @@ void Unwind_180912280(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84046,7 +84098,7 @@ void Unwind_180912280(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809122a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809122a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84059,7 +84111,7 @@ void Unwind_1809122a0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1e0);
   if (loopCounter != 0) {
@@ -84067,7 +84119,7 @@ void Unwind_1809122a0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1d0);
   if (loopCounter != 0) {
@@ -84075,7 +84127,7 @@ void Unwind_1809122a0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x1c0);
   if (loopCounter != 0) {
@@ -84083,7 +84135,7 @@ void Unwind_1809122a0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(resourceTable + 400);
   if (loopCounter != 0) {
@@ -84091,7 +84143,7 @@ void Unwind_1809122a0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84100,7 +84152,7 @@ void Unwind_1809122a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809122c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809122c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84111,7 +84163,7 @@ void Unwind_1809122c0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84120,7 +84172,7 @@ void Unwind_1809122c0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809122e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809122e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84131,7 +84183,7 @@ void Unwind_1809122e0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84140,7 +84192,7 @@ void Unwind_1809122e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912300(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912300(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84151,7 +84203,7 @@ void Unwind_180912300(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84160,7 +84212,7 @@ void Unwind_180912300(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912320(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912320(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84176,7 +84228,7 @@ void Unwind_180912320(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x378);
   if (loopCounter != 0) {
@@ -84184,7 +84236,7 @@ void Unwind_180912320(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x368);
   if (loopCounter != 0) {
@@ -84192,7 +84244,7 @@ void Unwind_180912320(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x358);
   if (loopCounter != 0) {
@@ -84200,7 +84252,7 @@ void Unwind_180912320(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x318);
   if (loopCounter != 0) {
@@ -84208,7 +84260,7 @@ void Unwind_180912320(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x308);
   if (loopCounter != 0) {
@@ -84216,7 +84268,7 @@ void Unwind_180912320(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   loopCounter = *(int64_t *)(resourceTable + 0x2f8);
   if (loopCounter != 0) {
@@ -84224,7 +84276,7 @@ void Unwind_180912320(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,unsignedResult3);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,unsignedResult3);
   }
   return;
 }
@@ -84233,7 +84285,7 @@ void Unwind_180912320(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912340(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912340(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84244,7 +84296,7 @@ void Unwind_180912340(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84253,7 +84305,7 @@ void Unwind_180912340(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912350(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912350(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84264,7 +84316,7 @@ void Unwind_180912350(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84273,7 +84325,7 @@ void Unwind_180912350(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912360(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912360(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84284,7 +84336,7 @@ void Unwind_180912360(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84323,7 +84375,7 @@ void Unwind_1809123d0(uint8_t objectContextParam,int64_t validationContextParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912400(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912400(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84334,7 +84386,7 @@ void Unwind_180912400(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84343,7 +84395,7 @@ void Unwind_180912400(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912410(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912410(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84354,7 +84406,7 @@ void Unwind_180912410(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84363,7 +84415,7 @@ void Unwind_180912410(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912420(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912420(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84374,7 +84426,7 @@ void Unwind_180912420(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84383,7 +84435,7 @@ void Unwind_180912420(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912430(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912430(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84394,7 +84446,7 @@ void Unwind_180912430(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84403,7 +84455,7 @@ void Unwind_180912430(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912440(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912440(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84414,7 +84466,7 @@ void Unwind_180912440(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84423,7 +84475,7 @@ void Unwind_180912440(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912450(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912450(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84434,7 +84486,7 @@ void Unwind_180912450(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84443,7 +84495,7 @@ void Unwind_180912450(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912460(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912460(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84454,7 +84506,7 @@ void Unwind_180912460(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84483,7 +84535,7 @@ void Unwind_1809124a0(uint8_t objectContextParam,int64_t validationContextParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809124d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809124d0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84494,7 +84546,7 @@ void Unwind_1809124d0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84503,7 +84555,7 @@ void Unwind_1809124d0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809124e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809124e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84514,7 +84566,7 @@ void Unwind_1809124e0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84523,7 +84575,7 @@ void Unwind_1809124e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809124f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809124f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84541,7 +84593,7 @@ void Unwind_1809124f0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,validationResult);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,validationResult);
   }
   return;
 }
@@ -84550,7 +84602,7 @@ void Unwind_1809124f0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912500(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912500(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84561,7 +84613,7 @@ void Unwind_180912500(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84570,7 +84622,7 @@ void Unwind_180912500(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912510(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912510(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84581,7 +84633,7 @@ void Unwind_180912510(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84590,7 +84642,7 @@ void Unwind_180912510(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912520(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912520(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84601,7 +84653,7 @@ void Unwind_180912520(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84610,7 +84662,7 @@ void Unwind_180912520(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912530(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912530(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84621,7 +84673,7 @@ void Unwind_180912530(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84630,7 +84682,7 @@ void Unwind_180912530(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912540(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912540(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84641,7 +84693,7 @@ void Unwind_180912540(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84660,7 +84712,7 @@ void Unwind_180912550(uint8_t objectContextParam,int64_t validationContextParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912580(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912580(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84671,7 +84723,7 @@ void Unwind_180912580(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84680,7 +84732,7 @@ void Unwind_180912580(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912590(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912590(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84692,7 +84744,7 @@ void Unwind_180912590(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(validationContextParam + 0x48);
   if (loopCounter != 0) {
@@ -84701,7 +84753,7 @@ void Unwind_180912590(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   *(uint32_t *)(validationContextParam + 0x60) = 0;
   loopCounter = *(int64_t *)(validationContextParam + 0x58);
@@ -84710,7 +84762,7 @@ void Unwind_180912590(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   loopCounter = *(int64_t *)(validationContextParam + 0x48);
   if (loopCounter != 0) {
@@ -84718,7 +84770,7 @@ void Unwind_180912590(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84727,7 +84779,7 @@ void Unwind_180912590(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809125a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809125a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84738,7 +84790,7 @@ void Unwind_1809125a0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84747,7 +84799,7 @@ void Unwind_1809125a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809125b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809125b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84758,7 +84810,7 @@ void Unwind_1809125b0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84767,7 +84819,7 @@ void Unwind_1809125b0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809125c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809125c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84778,7 +84830,7 @@ void Unwind_1809125c0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84817,7 +84869,7 @@ void Unwind_180912630(uint8_t objectContextParam,int64_t validationContextParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912660(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912660(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84828,7 +84880,7 @@ void Unwind_180912660(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84847,7 +84899,7 @@ void Unwind_180912670(uint8_t objectContextParam,int64_t validationContextParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809126a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809126a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84858,7 +84910,7 @@ void Unwind_1809126a0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84906,7 +84958,7 @@ void Unwind_180912740(uint8_t objectContextParam,int64_t validationContextParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912770(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912770(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84917,7 +84969,7 @@ void Unwind_180912770(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -84926,7 +84978,7 @@ void Unwind_180912770(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912780(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912780(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84943,7 +84995,7 @@ void Unwind_180912780(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,validationResult);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,validationResult);
   }
   return;
 }
@@ -84952,7 +85004,7 @@ void Unwind_180912780(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912790(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912790(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84969,7 +85021,7 @@ void Unwind_180912790(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,validationResult);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,validationResult);
   }
   return;
 }
@@ -84978,7 +85030,7 @@ void Unwind_180912790(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809127a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809127a0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -84995,7 +85047,7 @@ void Unwind_1809127a0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,validationResult);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,validationResult);
   }
   return;
 }
@@ -85004,7 +85056,7 @@ void Unwind_1809127a0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809127b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809127b0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -85021,7 +85073,7 @@ void Unwind_1809127b0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,validationResult);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,validationResult);
   }
   return;
 }
@@ -85030,7 +85082,7 @@ void Unwind_1809127b0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809127c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809127c0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -85048,7 +85100,7 @@ void Unwind_1809127c0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,validationResult);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,validationResult);
   }
   return;
 }
@@ -85084,7 +85136,7 @@ void Unwind_1809127d0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809127e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809127e0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -85095,7 +85147,7 @@ void Unwind_1809127e0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -85104,7 +85156,7 @@ void Unwind_1809127e0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809127f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_1809127f0(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -85115,7 +85167,7 @@ void Unwind_1809127f0(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -85124,7 +85176,7 @@ void Unwind_1809127f0(uint8_t objectContextParam,int64_t validationContextParam,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912800(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void Unwind_180912800(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -85135,7 +85187,7 @@ void Unwind_180912800(uint8_t objectContextParam,int64_t validationContextParam,
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
+    ProcessResourceOperation(localContextPointer,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -87333,19 +87385,19 @@ void InitializeSystemDataStructureBZ(void)
  * 执行系统级别的操作，包括资源验证和处理
  * @param objectContextParam 操作参数1
  * @param validationContextParam 操作参数2
- * @param param_3 操作参数3
- * @param param_4 操作参数4
+ * @param CleanupOption 操作参数3
+ * @param CleanupFlag 操作参数4
  */
-void ProcessSystemOperationA(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessSystemOperationA(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 /**
  * 处理系统操作A
  * 执行系统级别的操作，包括资源验证和处理
  * @param objectContextParam 操作参数1
  * @param validationContextParam 操作参数2
- * @param param_3 操作参数3
- * @param param_4 操作参数4
+ * @param CleanupOption 操作参数3
+ * @param CleanupFlag 操作参数4
  */
-void ProcessSystemOperationA(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessSystemOperationA(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -87357,7 +87409,7 @@ void ProcessSystemOperationA(uint8_t objectContextParam,uint8_t validationContex
   pvalidationResult = SystemDataValidationPointer001;
   if (SystemDataValidationPointer001 != SystemDataHashPointer001) {
     do {
-      (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+      (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
       pvalidationResult = pvalidationResult + 0xb;
     } while (pvalidationResult != presourceHash);
   }
@@ -87378,19 +87430,19 @@ void ProcessSystemOperationA(uint8_t objectContextParam,uint8_t validationContex
  * 执行系统级别的操作，包括资源验证和处理
  * @param objectContextParam 操作参数1
  * @param validationContextParam 操作参数2
- * @param param_3 操作参数3
- * @param param_4 操作参数4
+ * @param CleanupOption 操作参数3
+ * @param CleanupFlag 操作参数4
  */
-void ProcessSystemOperationB(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessSystemOperationB(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 /**
  * 处理系统操作B
  * 执行系统级别的操作，包括资源验证和处理
  * @param objectContextParam 操作参数1
  * @param validationContextParam 操作参数2
- * @param param_3 操作参数3
- * @param param_4 操作参数4
+ * @param CleanupOption 操作参数3
+ * @param CleanupFlag 操作参数4
  */
-void ProcessSystemOperationB(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessSystemOperationB(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -87402,7 +87454,7 @@ void ProcessSystemOperationB(uint8_t objectContextParam,uint8_t validationContex
   pvalidationResult = SystemDataValidationPointer002;
   if (SystemDataValidationPointer002 != SystemDataHashPointer002) {
     do {
-      (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+      (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
       pvalidationResult = pvalidationResult + 0xb;
     } while (pvalidationResult != presourceHash);
   }
@@ -87423,19 +87475,19 @@ void ProcessSystemOperationB(uint8_t objectContextParam,uint8_t validationContex
  * 执行系统级别的操作，包括资源验证和处理
  * @param objectContextParam 操作参数1
  * @param validationContextParam 操作参数2
- * @param param_3 操作参数3
- * @param param_4 操作参数4
+ * @param CleanupOption 操作参数3
+ * @param CleanupFlag 操作参数4
  */
-void ProcessSystemOperationC(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessSystemOperationC(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 /**
  * 处理系统操作C
  * 执行系统级别的操作，包括资源验证和处理
  * @param objectContextParam 操作参数1
  * @param validationContextParam 操作参数2
- * @param param_3 操作参数3
- * @param param_4 操作参数4
+ * @param CleanupOption 操作参数3
+ * @param CleanupFlag 操作参数4
  */
-void ProcessSystemOperationC(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessSystemOperationC(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -87447,7 +87499,7 @@ void ProcessSystemOperationC(uint8_t objectContextParam,uint8_t validationContex
   pvalidationResult = SystemDataValidationPointer003;
   if (SystemDataValidationPointer003 != SystemDataHashPointer003) {
     do {
-      (**(code **)*pvalidationResult)(pvalidationResult,0,param_3,param_4,cleanupFlag);
+      (**(code **)*pvalidationResult)(pvalidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
       pvalidationResult = pvalidationResult + 0xb;
     } while (pvalidationResult != presourceHash);
   }
@@ -87640,25 +87692,25 @@ void InitializeSystemDataStructureCE(void)
  * 执行系统级别的操作，包括资源验证和处理
  * @param objectContextParam 操作参数1
  * @param validationContextParam 操作参数2
- * @param param_3 操作参数3
- * @param param_4 操作参数4
+ * @param CleanupOption 操作参数3
+ * @param CleanupFlag 操作参数4
  */
-void ProcessSystemOperationD(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessSystemOperationD(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 /**
  * 处理系统操作D
  * 执行系统级别的操作，包括资源验证和处理
  * @param objectContextParam 操作参数1
  * @param validationContextParam 操作参数2
- * @param param_3 操作参数3
- * @param param_4 操作参数4
+ * @param CleanupOption 操作参数3
+ * @param CleanupFlag 操作参数4
  */
-void ProcessSystemOperationD(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessSystemOperationD(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
   uint8_t *pvalidationResult;
   
-  ProcessResourceData(&SystemResourceDataBuffer001,SystemResourceDataBuffer002,param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(&SystemResourceDataBuffer001,SystemResourceDataBuffer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   presourceHash = SystemResourceHashPointer004;
   for (pvalidationResult = SystemResourceValidationPointer001; pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 7) {
     *pvalidationResult = &SystemResourceHandlerTemplate;
@@ -88289,18 +88341,18 @@ void InitializeSecondaryDataPointer(void)
  * 
  * @param objectContextParam 数据包句柄
  * @param validationContextParam 数据包类型
- * @param param_3 数据包大小
- * @param param_4 数据包标志
+ * @param CleanupOption 数据包大小
+ * @param CleanupFlag 数据包标志
  */
-void ProcessNetworkDataPacket(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t param_3,uint8_t param_4)
-void ProcessNetworkDataPacket(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t param_3,uint8_t param_4)
+void ProcessNetworkDataPacket(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessNetworkDataPacket(uint8_t objectContextParam,uint8_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *networkDataPointer;
   
   networkDataPointer = NetworkDataBufferPointer;
   if (NetworkDataBufferPointer != (uint8_t *)0x0) {
-    SystemResourceManager(objectContextParam,*NetworkDataBufferPointer,param_3,param_4,0xfffffffffffffffe);
+    SystemResourceManager(objectContextParam,*NetworkDataBufferPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(networkDataPointer);
   }
